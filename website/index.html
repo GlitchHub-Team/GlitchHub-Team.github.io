@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlitchHub Team - Documenti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <div class="container">
+        <header>
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <img src="logo&banner/G.svg" alt="G Logo">
+                </div>
+                
+                <div class="logo-banner">
+                    <img src="logo&banner/banner.svg" alt="GlitchHub Team">
+                </div>
+            </div>
+
+
+            
+        </header>
+
+        <h2 class="titolo-body">Documenti utili</h1>
+
+        <div class="categories">
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon">📄</div>
+                    <h3 class="category-title">Documentazione Progetto</h3>
+                    <span class="category-count" id="count-doc_prog">0</span>
+                </div>
+                <div class="documents" id="docs-doc_prog"></div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon">📄</div>
+                    <h3 class="category-title">Verbali</h3>
+                    <span class="category-count" id="count-verbali">0</span>
+                </div>
+                <div class="documents" id="docs-verbali"></div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon">📄</div>
+                    <h3 class="category-title">Diari di Bordo</h3>
+                    <span class="category-count" id="count-diari_di_bordo">0</span>
+                </div>
+                <div class="documents" id="docs-diari_di_bordo"></div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon">📄</div>
+                    <h3 class="category-title">Altri documenti</h3>
+                    <span class="category-count" id="count-altri_doc">0</span>
+                </div>
+                <div class="documents" id="docs-altri_doc"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--finestra che si apre quando clicchi su un file-->
+    <div class="modal" id="docModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <iframe id="docFrame" style="width: 100%; height: 60vh; border: none; border-radius: 8px;"></iframe>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <a id="downloadLink" download style="color: #000000; text-decoration: none; font-weight: 600;">
+                        📥 Scarica documento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
