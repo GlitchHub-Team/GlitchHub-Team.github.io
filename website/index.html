@@ -1,90 +1,111 @@
 <!DOCTYPE html>
-
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlitchHub Team - Documenti</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="GlitchHub Team">
+        <meta name="description" content="Sito del gruppo 5 di Ingegneria del Software (GlitchHub Team)" >
 
-<body>
+        <title>GlitchHub Team</title>
+
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="logo&banner/GlitchHub-Team_LogoP.svg" >
+
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <div class="containernav">
+                <img class="logoPiccolo" src="logo&banner/GlitchHub-Team_LogoP.svg" alt="Logo GlitchHub Piccolo">
+            
+                <button class="menu-toggle" id="menu-toggle" aria-label="Apri menu">
+                    ☰
+                </button>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#candidatura">Candidatura</a></li>
+                    <li><a href="#rtb">RTB</a></li>
+                    <li><a href="#pb">PB</a></li>
+                    <li><a href="#diari">Diari di Bordo</a></li>
+                    <li><a href="#chisiamo">Chi siamo</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <header class="header">
+            <div class="logo-Header">
+                <img class="logoGrande" src="logo&banner/GlitchHub-Team_LogoG.svg" alt="Logo GlitchHub Grande">
+            </div>
+            <div class="text">
+                <p>
+                    Sito di presentazione del progetto didattico di Ingegneria del Software (2024-25) <br>del corso di Informatica dell'Università degli Studi di Padova.
+                    <br>È stato svolto dal gruppo 5 del primo lotto
+                </p>
+            </div>
+        </header>
     
-    <div class="container">
-        <header>
-            <div class="logo-section">
-                <div class="logo-icon">
-                    <img src="logo&banner/G.svg" alt="G Logo">
+        <div class="container">
+
+            <h2 class="titolo-body">Documenti</h2>
+
+            <div class="categories">
+                <div class="category">
+                    <div class="category-header">
+                        <div class="category-icon">📄</div>
+                        <h3 class="candidatura">Candidatura</h3>
+                        <span class="category-count" id="count-doc_prog">0</span>
+                    </div>
+                    <div class="documents" id="docs-doc_prog"></div>
+                </div>
+
+                <div class="category">
+                    <div class="category-header">
+                        <div class="category-icon">📄</div>
+                        <h3 class="rtb">RTB</h3>
+                        <span class="category-count" id="count-diari_di_bordo">0</span>
+                    </div>
+                    <div class="documents" id="docs-diari_di_bordo"></div>
+                </div>
+
+                <div class="category">
+                    <div class="category-header">
+                        <div class="category-icon">📄</div>
+                        <h3 class="pb">PB</h3>
+                        <span class="category-count" id="count-altri_doc">0</span>
+                    </div>
+                    <div class="documents" id="docs-altri_doc"></div>
                 </div>
                 
-                <div class="logo-banner">
-                    <img src="logo&banner/banner.svg" alt="GlitchHub Team">
+                <div class="category">
+                    <div class="category-header">
+                        <div class="category-icon">📄</div>
+                        <h3 class="diari di bordo">Diari di bordo</h3>
+                        <span class="category-count" id="count-verbali">0</span>
+                    </div>
+                    <div class="documents" id="docs-verbali"></div>
                 </div>
-            </div>
 
-
-            
-        </header>
-
-        <h2 class="titolo-body">Documenti utili</h1>
-
-        <div class="categories">
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Documentazione Progetto</h3>
-                    <span class="category-count" id="count-doc_prog">0</span>
-                </div>
-                <div class="documents" id="docs-doc_prog"></div>
-            </div>
-
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Verbali</h3>
-                    <span class="category-count" id="count-verbali">0</span>
-                </div>
-                <div class="documents" id="docs-verbali"></div>
-            </div>
-
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Diari di Bordo</h3>
-                    <span class="category-count" id="count-diari_di_bordo">0</span>
-                </div>
-                <div class="documents" id="docs-diari_di_bordo"></div>
-            </div>
-
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Altri documenti</h3>
-                    <span class="category-count" id="count-altri_doc">0</span>
-                </div>
-                <div class="documents" id="docs-altri_doc"></div>
             </div>
         </div>
-    </div>
 
-    <!--finestra che si apre quando clicchi su un file-->
-    <div class="modal" id="docModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle"></h2>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <iframe id="docFrame" style="width: 100%; height: 60vh; border: none; border-radius: 8px;"></iframe>
-                <div style="margin-top: 1rem; text-align: center;">
-                    <a id="downloadLink" download style="color: #000000; text-decoration: none; font-weight: 600;">
-                        📥 Scarica documento
-                    </a>
+        <!--finestra che si apre quando clicchi su un file-->
+        <div class="modal" id="docModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <button class="close-btn" onclick="closeModal()">×</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <iframe id="docFrame" style="width: 100%; height: 60vh; border: none; border-radius: 8px;"></iframe>
+                    <div style="margin-top: 1rem; text-align: center;">
+                        <a id="downloadLink" download style="color: #000000; text-decoration: none; font-weight: 600;">
+                            📥 Scarica documento
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
