@@ -23,7 +23,7 @@
   set text(font: main-font, lang: language)
 
   // SETUP Title page
-  let equal-spacing = 0.25fr
+  let equal-spacing = 4.5em
   set align(center)
 
   // Logo settings
@@ -74,7 +74,7 @@
   let line-length = 90%
   text(1em, weight: 700, baseline: -13.5pt, metadata.at("paper_type", default: []))
   line(length: line-length)
-  text(2em, weight: 700, metadata.title)
+  text(2em, weight: 900, metadata.title)
   line(length: line-length)
 
   // Author information.

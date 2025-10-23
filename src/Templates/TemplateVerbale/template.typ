@@ -135,11 +135,11 @@
     ]
 
     #table(
-      columns: (0.1fr, 0.20fr, 0.30fr, 0.40fr),
+      columns: (0.1fr, 0.14fr, 0.22fr, 0.22fr, 0.32fr),
       align: left,
-      table.header([*Ver.*], [*Data*], [*Autore*], [*Descrizione*]),
-      ..for (ver, data, autore, descrizione) in registro-modifiche {
-        ([#ver], [#data], [#autore], [#descrizione])
+      table.header([*Ver.*], [*Data*], [*Autore*], [*Verificatore*], [*Descrizione*]),
+      ..for (ver, data, autore, verificatore, descrizione) in registro-modifiche {
+        ([#ver], [#data], [#autore], [#verificatore], [#descrizione])
       },
     )
 
@@ -149,5 +149,8 @@
 
   #v(1em)
   #outline()
+
+  #pagebreak()
+
   #body
 ]
