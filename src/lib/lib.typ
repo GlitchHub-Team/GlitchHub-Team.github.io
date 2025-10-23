@@ -7,7 +7,7 @@
     title: [PTB Template],
     version: none,
     university: none,
-    odg: none,
+    odg: (),
     uni-logo: none,
     company-logo: none,
   ),
@@ -87,7 +87,14 @@
   )
 
   // Middle sec
-  text(1.1em, [#metadata.at("odg", default: "")])
+  let odg = metadata.at("odg")
+  align(center, block[
+    #set align(left)
+    #enum(
+      ..odg,
+    )
+  ])
+
   v(0.6em, weak: true)
   $circle.filled.small$
   v(0.6em, weak: true)

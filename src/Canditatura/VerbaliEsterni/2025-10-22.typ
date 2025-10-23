@@ -1,4 +1,4 @@
-#import "../../templates/TemplateVerbale/template.typ": report
+#import "../../Templates/TemplateVerbale/template.typ": report
 
 #show: report.with(
   titolo: "Verbale esterno 22/10/2025 (Miriade)",
@@ -9,7 +9,11 @@
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
   distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "Miriade SRL"),
-  odg: "Primo incontro con l’azienda Miriade SRL per chiarire le domande e i dubbi emersi tra i componenti del gruppo",
+  odg: (
+    "Presentazione gruppo GlitchHub Team",
+    "Discussione domande e dubbi sorti nel gruppo GlitchHub Team",
+    "Varie ed eventuali",
+  ),
   htmlId: "Candidatura-DocumentiEsterni-VerbaliEsterni",
   left-signature: "",
   right-signature: "",
