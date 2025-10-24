@@ -14,41 +14,40 @@
         let current = counter(page).get().first()
         let total = counter(page).final().first()
         let progress = (current - 1) / (total - 1) * 100%
-        
+
         set text(size: 12pt, fill: gray)
-        
+
         v(-2em)
-        
+
         place(
           rect(
             width: 100%,
             height: 4pt,
             fill: gray.lighten(80%),
-            radius: 2pt
-          )
+            radius: 2pt,
+          ),
         )
-        
+
         place(
           rect(
             width: progress,
             height: 4pt,
             fill: primary,
-            radius: 2pt
-          )
+            radius: 2pt,
+          ),
         )
-        
+
         v(1.8em)
-        
+
         grid(
           columns: (1fr, 1fr),
           align: (left, right),
-          [GlitchHub Team - diario di bordo],
-          [#current / #total]
+          [GlitchHub Team - diario di bordo], [#current / #total],
         )
       }
-    }
+    },
   )
-  
+
   set text(font: "Lato", size: 20pt)
   body
 }
@@ -63,11 +62,11 @@
           columns: (1fr, 1fr),
           align: (left, right),
           [
-            #image("../../assets/loghi/GlitchHub-Team_LogoP.png", height: 1.2cm)
+            #image("../../assets/loghi/GlitchHub-Team_LogoP.png", height: 1cm)
           ],
           [
-            #image("../../assets/loghi/Logo_Università_Padova.svg-300x300.png", height: 1.2cm)
-          ]
+            #image("../../assets/loghi/Logo_Università_Padova.svg-300x300.png", height: 1cm)
+          ],
         )
         line(length: 100%, stroke: 0.5pt + primary)
       }
@@ -76,9 +75,9 @@
       if counter(page).get().first() > 1 {
         let current = counter(page).get().first()
         let total = counter(page).final().first()
-        
+
         set text(size: 12pt, fill: gray)
-        
+
         v(-0.5em)
         rect(
           width: 100%,
@@ -89,21 +88,19 @@
             primary,
             primary,
             angle: 0deg,
-          )
+          ),
         )
-        
+
         v(0.3em)
         grid(
           columns: (1fr, 1fr, 1fr),
           align: (left, center, right),
-          [GitHub Team - diario di bordo],
-          [#title],
-          [#current / #total]
+          [GitHub Team - diario di bordo], [#title], [#current / #total],
         )
       }
-    }
+    },
   )
-  
+
   set text(font: "Lato", size: 20pt)
   body
 }
@@ -113,18 +110,18 @@
   subtitle: "Diario di bordo",
   date: none,
   logo-left: "../../assets/loghi/GlitchHub-Team_LogoP.png",
-  logo-right: "../../assets/loghi/Logo_Università_Padova.svg-300x300.png"
+  logo-right: "../../assets/loghi/Logo_Università_Padova.svg-300x300.png",
 ) = {
   set page(paper: "presentation-16-9")
   set text(font: "Lato", size: 20pt)
-  
+
   place(top + left)[
-    #image(logo-left, width: 3cm)
+    #image(logo-left, height: 3cm)
   ]
   place(top + right)[
-    #image(logo-right, width: 3cm)
+    #image(logo-right, height: 3cm)
   ]
-  
+
   align(center + horizon)[
     #rect(width: 50%, height: 0.15em, fill: gradient.linear(
       primary.lighten(70%),
@@ -134,7 +131,7 @@
       angle: 0deg,
     ))
     #text(size: 2.5em, weight: "bold")[#team-name]
-    
+
     #text(size: 1.5em, weight: 40)[#subtitle]
     #rect(width: 50%, height: 0.15em, fill: gradient.linear(
       primary.lighten(70%),
@@ -170,10 +167,12 @@
     columns: (auto, 1fr),
     column-gutter: 1em,
     row-gutter: 1.5em,
-    ..item-list.map(item => (
-      text(fill: icon-color, size: 1.3em)[#icon],
-      text(size: 1.1em)[#item]
-    )).flatten()
+    ..item-list
+      .map(item => (
+        text(fill: icon-color, size: 1.3em)[#icon],
+        text(size: 1.1em)[#item],
+      ))
+      .flatten()
   )
 }
 
@@ -182,20 +181,19 @@
   subtitle: "Diario di bordo",
   date: datetime.today().display("[year]-[month]-[day]"),
   authors: (),
-  body
+  body,
 ) = {
-
   set page(paper: "presentation-16-9")
   set text(font: "Lato", size: 20pt)
 
   cover-slide(
     team-name: title,
     subtitle: subtitle,
-    date: date
+    date: date,
   )
-  
+
   pagebreak()
-  
+
 
   body
 }
