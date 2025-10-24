@@ -153,8 +153,8 @@ header {
     text-align: center;     /* centra il testo sotto il logo */
     gap: 1.5rem; 
     margin-bottom: 3rem;
-    margin-top: 4rem;
-    padding-bottom: 4rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
     border-bottom: 2px solid #9948bc; /*per avere quella lineetta carina sotto l header*/
 }
 
