@@ -5,8 +5,7 @@
   stato: "Approvato",
   versione: "3.0.1",
   registro-modifiche: (
-    ("1.0", "14-10-2025", "Alessandro Dinato", "CISIISISIS"),
-    ("1.0", "14-10-2025", "Alessandro Dinato", "CISIISISIS"),
+    ("1.0", "14-10-2025", "Alessandro Dinato", " ","CISIISISIS"),
   ),
   partecipanti: ("Alessandro", "Michele", "Ale", "Michele", "Ale", "Ale", "Michele"),
   distribuzione: ("Tullio", "GlitchHubTeam", "M31"),
@@ -16,3 +15,5 @@
   right-signature: "",
   tipo-verbale: "Interno",
 )
+
+= Introduzione

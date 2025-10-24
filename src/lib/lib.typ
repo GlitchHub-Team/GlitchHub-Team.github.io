@@ -86,13 +86,16 @@
     ),
   )
 
-  // Middle sec
   let odg = metadata.at("odg")
   align(center, block[
     #set align(left)
-    #enum(
-      ..odg,
-    )
+    #if type(odg) == "string" [
+      #enum(
+        ..odg.split("\n").filter(x => x != "")
+      )
+    ] else [
+      #enum(..odg)
+    ]
   ])
 
   v(0.6em, weak: true)
