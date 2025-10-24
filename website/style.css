@@ -460,7 +460,26 @@ margin: auto;
   background-color: #f4fafe;
 }
 
+@media (max-width: 1400px) {
+  .members > * {
+    flex: 1 1 30%; 
+    max-width: 30%;
+  }
+}
 
+@media (max-width: 1024px) {
+  .members > * {
+    flex: 1 1 45%; 
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .members > * {
+    flex: 1 1 90%;
+    max-width: 90%;
+  }
+}
 
 .member {
   position: relative;
