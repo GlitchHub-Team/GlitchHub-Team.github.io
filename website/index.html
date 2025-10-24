@@ -10,29 +10,30 @@
 
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="logo&banner/GlitchHub-Team_LogoP.svg" >
+        <script src="script.js"></script>
 
     </head>
 
     <body>
-        <nav class="navbar">
-            <div class="containernav">
-                <img class="logoPiccolo" src="logo&banner/GlitchHub-Team_LogoP.svg" alt="Logo GlitchHub Piccolo">
-            
-                <button class="menu-toggle" id="menu-toggle" aria-label="Apri menu">
-                    ☰
-                </button>
-                
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="#candidatura">Candidatura</a></li>
-                    <li><a href="#rtb">RTB</a></li>
-                    <li><a href="#pb">PB</a></li>
-                    <li><a href="#diari">Diari di Bordo</a></li>
-                    <li><a href="#chisiamo">Chi siamo</a></li>
-                </ul>
-            </div>
-        </nav>
         
-        <header class="header">
+        <header>
+            <nav class="navbar">
+                <div class="containernav">
+                    <img class="logoPiccolo" src="logo&banner/GlitchHub-Team_LogoP.svg" alt="Logo GlitchHub Piccolo">
+                
+                    <button class="menu-toggle" id="menu-toggle" aria-label="Apri menu">
+                        ☰
+                    </button>
+                    
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="#candidatura">Candidatura</a></li>
+                        <li><a href="#rtb">RTB</a></li>
+                        <li><a href="#pb">PB</a></li>
+                        <li><a href="#diapositive">Diapositive</a></li>
+                        <li><a href="#chisiamo">Chi siamo</a></li>
+                    </ul>
+                </div>
+            </nav>
             <div class="logo-Header">
                 <img class="logoGrande" src="logo&banner/GlitchHub-Team_LogoG.svg" alt="Logo GlitchHub Grande">
             </div>
@@ -40,71 +41,190 @@
                 <p>
                     Sito di presentazione del progetto didattico di Ingegneria del Software (2025-26) <br>del corso di Informatica dell'Università degli Studi di Padova.
                 </p>
+                <p>È stato svolto dal gruppo 5 del primo lotto</p>
             </div>
         </header>
-    
+        
         <div class="container">
-
-            <h2 class="titolo-body">Documenti</h2>
-
-            <div class="categories">
-                <div class="category">
-                    <div class="category-header">
-                        <div class="category-icon">📄</div>
-                        <h3 class="candidatura">Candidatura</h3>
-                        <span class="category-count" id="count-doc_prog">0</span>
+            <div id="candidatura">
+                <h2>Candidatura</h2>
+                <div class="liste">
+                    <div class="lista-sinistra">
+                    <details>
+                        <summary>Verbali interni</summary>
+                        <ul>
+                        <li><a href="documenti/documenti_di_progetto/candidatura_prova.txt" target="_blank">candidatura_prova.txt</a></li>
+                        <li><a href="">Documento 2</a></li>
+                        <li><a href="">Documento 3</a></li>
+                        </ul>
+                    </details>
                     </div>
-                    <div class="documents" id="docs-doc_prog"></div>
-                </div>
 
-                <div class="category">
-                    <div class="category-header">
-                        <div class="category-icon">📄</div>
-                        <h3 class="rtb">RTB</h3>
-                        <span class="category-count" id="count-diari_di_bordo">0</span>
+                    <div class="lista-destra">
+                    <details>
+                        <summary>Verbali esterni</summary>
+                        <ul>
+                        <li><a href="">Documento 1</a></li>
+                        <li><a href="">Documento 2</a></li>
+                        <li><a href="">Documento 3</a></li>
+                        </ul>
+                    </details>
                     </div>
-                    <div class="documents" id="docs-diari_di_bordo"></div>
                 </div>
+            </div>
+            
+            <div id="pb">
+                <h2>PB</h2>
+                <div class="liste">
+                    <div class="lista-sinistra">
+                    <details>
+                        <summary>Verbali interni</summary>
+                        <ul>
+                        <li><a href="">Documento 1</a></li>
+                        <li><a href="">Documento 2</a></li>
+                        <li><a href="">Documento 3</a></li>
+                        </ul>
+                    </details>
+                    </div>
 
-                <div class="category">
-                    <div class="category-header">
-                        <div class="category-icon">📄</div>
-                        <h3 class="pb">PB</h3>
-                        <span class="category-count" id="count-altri_doc">0</span>
+                    <div class="lista-destra">
+                    <details>
+                        <summary>Verbali esterni</summary>
+                        <ul>
+                        <li><a href="">Documento 1</a></li>
+                        <li><a href="">Documento 2</a></li>
+                        <li><a href="">Documento 3</a></li>
+                        </ul>
+                    </details>
                     </div>
-                    <div class="documents" id="docs-altri_doc"></div>
                 </div>
-                
-                <div class="category">
-                    <div class="category-header">
-                        <div class="category-icon">📄</div>
-                        <h3 class="diari di bordo">Diari di bordo</h3>
-                        <span class="category-count" id="count-verbali">0</span>
+            </div>
+            
+            <div id="rtb">
+                <h2>RTB</h2>
+                <div class="liste">
+                    <div class="lista-sinistra">
+                    <details>
+                        <summary>Verbali interni</summary>
+                        <ul>
+                        <li><a href="">Documento 1</a></li>
+                        <li><a href="">Documento 2</a></li>
+                        <li><a href="">Documento 3</a></li>
+                        </ul>
+                    </details>
                     </div>
-                    <div class="documents" id="docs-verbali"></div>
+
+                    <div class="lista-destra">
+                    <details>
+                        <summary>Verbali esterni</summary>
+                        <ul>
+                        <li><a href="">Documento 1</a></li>
+                        <li><a href="">Documento 2</a></li>
+                        <li><a href="">Documento 3</a></li>
+                        </ul>
+                    </details>
+                    </div>
                 </div>
+            </div>
+            
+            <div id="diapositive">
+                <h2>Diapositive</h2>
+                <ul>
+                    <li><a href="">Documento 1</a></li>
+                    <li><a href="">Documento 2</a></li>
+                    <li><a href="">Documento 3</a></li>
+                </ul>
 
             </div>
         </div>
 
-        <!--finestra che si apre quando clicchi su un file-->
-        <div class="modal" id="docModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="modalTitle"></h2>
-                    <button class="close-btn" onclick="closeModal()">×</button>
-                </div>
-                <div class="modal-body" id="modalBody">
-                    <iframe id="docFrame" style="width: 100%; height: 60vh; border: none; border-radius: 8px;"></iframe>
-                    <div style="margin-top: 1rem; text-align: center;">
-                        <a id="downloadLink" download style="color: #000000; text-decoration: none; font-weight: 600;">
-                            📥 Scarica documento
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <section class="aboutus">
+    <h3>CHI SIAMO</h3>
+
+    <div class="members">
+        <div class="member">
+        <p class="name">PIERO ROSSI</p>
+        <dl>
+            <dt>Matricola</dt>
+            <dd>1234567</dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:banana@banana.it">banana@banana.it</a></dd>
+        </dl>
         </div>
 
-        <script src="script.js"></script>
-    </body>
+        <div class="member">
+        <p class="name">MARIA BIANCHI</p>
+        <dl>
+            <dt>Matricola</dt>
+            <dd>7654321</dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:maria@banana.it">maria@banana.it</a></dd>
+        </dl>
+        </div>
+        <div class="member">
+        <p class="name">PIERO ROSSI</p>
+        <dl>
+            <dt>Matricola</dt>
+            <dd>1234567</dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:banana@banana.it">banana@banana.it</a></dd>
+        </dl>
+        </div>
+
+        <div class="member">
+        <p class="name">MARIA BIANCHI</p>
+        <dl>
+            <dt>Matricola</dt>
+            <dd>7654321</dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:maria@banana.it">maria@banana.it</a></dd>
+        </dl>
+        </div>
+        <div class="member">
+        <p class="name">PIERO ROSSI</p>
+        <dl>
+            <dt>Matricola</dt>
+            <dd>1234567</dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:banana@banana.it">banana@banana.it</a></dd>
+        </dl>
+        </div>
+
+        <div class="member">
+        <p class="name">MARIA BIANCHI</p>
+        <dl>
+            <dt>Matricola</dt>
+            <dd>7654321</dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:maria@banana.it">maria@banana.it</a></dd>
+        </dl>
+        </div>
+
+        <div class="member">
+        <p class="name">MARIA BIANCHI</p>
+        <dl>
+            <dt>Matricola</dt>
+            <dd>7654321</dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:maria@banana.it">maria@banana.it</a></dd>
+        </dl>
+        </div>
+
+    </div>
+    </section>
+
+    <footer>
+    <dl>
+        <dt>Email</dt>
+        <dd><a href="mailto:glitchhubteam@gmail.com" target="_blank">glitchhubteam@gmail.com</a></dd>
+    </dl>
+
+    <dl>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/GlitchHub-Team" target="_blank" rel="noopener noreferrer">GlitchHubteam</a></dd>
+    </dl>
+    </footer>
+
+        
+</body>
 </html>
