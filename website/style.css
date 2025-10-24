@@ -138,7 +138,7 @@ header::before {
 }
 
 .logoGrande {
-    max-width: 300px;
+    max-width: 600px;
     height: auto;
     animation: fadeInScale 1s ease;
 }
@@ -156,7 +156,7 @@ header::before {
 
 .text {
     text-align: center;
-    padding: 2rem 1rem 3rem;
+    padding: 0.8rem 1rem 0.8rem;
     max-width: 800px;
     margin: 0 auto;
 }
