@@ -35,7 +35,7 @@
 #content-slide(title: "Difficoltà riscontrate e questioni aperte")[
   #icon-list(
     icon: "•",
-    "Scegliere quali risorse allocare nelle singole task",
+    "Scegliere quante risorse allocare nelle singole task",
     "Una volta scelti i compiti da eseguire, è complesso scegliere delle scadenze equilibrate",
     "La comunicazione tra componenti del gruppo assegnati alla stessa task non è sempre efficiente",
   )
