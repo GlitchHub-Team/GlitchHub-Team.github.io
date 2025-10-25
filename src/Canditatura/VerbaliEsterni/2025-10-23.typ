@@ -5,7 +5,7 @@
   stato: "In attesa di verifica",
   versione: "1.0.0",
   registro-modifiche: (
-    ("1.0.0", "23/10/2025", "Alessandro Dinato", "-", "Verbale incontro con M31"),
+    ("1.0.0", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
   distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "M31 SRL"),
@@ -36,7 +36,7 @@ I quesiti inviati:
   "",
 )
 = Resoconto
-I due rappresentanti si sono presentati in orario alle ore 10 per l'incontro con il proponente *M31 SRL*. \
+I due rappresentanti si sono collegati puntualmente alle ore 10 per l'incontro con il proponente *M31 SRL*. \
 Avendo già a disposizione le domande i rappresentanti dell'azienda M31 hanno immediatamente cominciato con le delucidazioni.
 == Informazioni sul supporto offerto dall'azienda
 La domanda è stata posta dal gruppo con lo scopo di avere la massima conoscenza degli strumenti a disposizione durante lo svolgimento del capitolato. \
