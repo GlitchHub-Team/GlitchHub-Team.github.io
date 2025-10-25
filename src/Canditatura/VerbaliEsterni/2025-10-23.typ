@@ -3,9 +3,10 @@
 #show: report.with(
   titolo: "Verbale esterno 23/10/2025 (M31)",
   stato: "In attesa di verifica",
-  versione: "1.0.0",
+  versione: "0.0.1",
   registro-modifiche: (
-    ("1.0.0", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
+    ("0.0.1", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
+
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
   distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "M31 SRL"),
