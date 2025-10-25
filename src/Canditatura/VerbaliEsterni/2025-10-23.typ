@@ -6,7 +6,6 @@
   versione: "0.0.1",
   registro-modifiche: (
     ("0.0.1", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
-
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
   distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "M31 SRL"),
@@ -51,10 +50,10 @@ I requisiti menzionati si possono trovare nel #link("https://www.math.unipd.it/~
 == Gestione multi-tenant
 Il gruppo ha posto diverse domande sulla gestione multi-tenant per avere una visione chiara dell'architettura che si aspetta il proponente. \
 === Rapporto 1 a 1 tra tenant e gateway
-Il gruppo non aveva chiaro se un gateway è associato ad un solo tenant o se un gateway potesse produrre dati per più tenant. \
+Il gruppo desiderava chiarire se un gateway è associato ad un solo tenant o se un gateway potesse produrre dati per più tenant. \
 M31 ha chiarito che un gateway può avere un solo tenant associato. \
 === Separazione a livello fisico dei dati di diversi tenant
-Il gruppo non aveva chiaro cosa si intendesse per "separazione fisica dei dati di diversi tenant". \
+Il gruppo non aveva compreso cosa si intendesse per "separazione fisica dei dati di diversi tenant". \
 L'azienda ha spiegato che la loro richiesta è che i dati di diversi tenant vengano inseriti in tabelle diverse per evitare che il volume di un'ipotetica tabella generica diventi troppo grande.
 == Dashboard con funzioni di setup
 Il gruppo aveva dei dubbi riguardo al requisito di "registrazione di nuovi sensori e gateway via dashboard". \

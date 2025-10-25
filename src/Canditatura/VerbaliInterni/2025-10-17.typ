@@ -3,9 +3,9 @@
 #show: report.with(
   titolo: "Verbale interno 17/10/2025",
   stato: "In attesa di verifica",
-  versione: "0.0.1",
+  versione: "0.1.0",
   registro-modifiche: (
-    ("0.1.0", "24/10/2025", "Alessandro Dinato", "-", "Stesura verbale dalla bozza"),
+    ("0.1.0", "25/10/2025", "Alessandro Dinato", "-", "Stesura verbale dalla bozza"),
     ("0.0.1", "18/10/2025", "Riccardo Graziani", "Alessandro Dinato", "Bozza primo incontro del gruppo"),
   ),
   partecipanti: (
@@ -39,7 +39,7 @@
 = Introduzione
 Il presente documento attesta che, in data *17 ottobre 2025*, dalle 17:43 alle 18:53, si è tenuta, in modalità virtuale, la riunione del gruppo *GlitchHub Team*. \
 L'incontro è stato organizzato con lo scopo di creare un _way of working_ iniziale e configurare alcune caratteristiche del gruppo, come _nome_ e _logo_.
-= Resoconto della riunione
+= Resoconto
 == Scelta del nome del gruppo
 Dopo una breve serie di proposte, è stato deciso di adottare *GlitchHub Team* come nome ufficiale del gruppo su proposta di Siria Salvalaio.
 == Creazione del recapito email
