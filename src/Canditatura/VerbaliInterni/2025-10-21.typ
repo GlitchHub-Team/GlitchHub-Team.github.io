@@ -5,6 +5,7 @@
   stato: "In attesa di verifica",
   versione: "0.1.0",
   registro-modifiche: (
+    ("1.0.0", "26/10/2025", "Jaume Bernardi", "-", "Verifica del documento")
     ("0.1.0", "25/10/2025", "Alessandro Dinato", "-", "Stesura verbale dalla bozza"),
     ("0.0.1", "22/10/2025", "Riccardo Graziani", "Alessandro Dinato", "Bozza secondo incontro del gruppo"),
   ),
