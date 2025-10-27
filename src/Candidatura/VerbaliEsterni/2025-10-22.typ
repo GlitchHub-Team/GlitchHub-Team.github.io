@@ -5,7 +5,7 @@
   stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
-    ("1.0.0", "27/10/2025", "Alessandro Dinato", "Alessandro Dinato", "Verifica del documento"),
+    ("1.0.0", "27/10/2025", "Siria Salvalaio", "Alessandro Dinato", "Versione finale firmata"),
     ("0.0.1", "23/10/2025", "Siria Salvalaio", "Alessandro Dinato", "Verbale riunione con Miriade"),
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
@@ -17,9 +17,9 @@
   ),
   htmlId: "Candidatura-VerbaliEsterni",
   verificatore-interno: "Alessandro Dinato",
-  left-signature: "/assets/firme/firma_Alessandro_Dinato.png",
-  verificatore-esterno: "",
-  right-signature: "",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-esterno: "Arianna Bellino",
+  right-signature: "../assets/firme/miriade/firma_arianna_bellino.png",
   tipo-verbale: "Esterno",
 )
 

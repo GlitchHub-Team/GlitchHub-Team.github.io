@@ -2,10 +2,11 @@
 
 #show: report.with(
   titolo: "Verbale esterno 23/10/2025 (M31)",
-  stato: "Verificato",
+  stato: "Da verificare",
   versione: "1.0.0",
   registro-modifiche: (
-    ("1.0.0", "26/10/2025", "Siria Salvalaio", "Siria Salvalaio", "Verifica del documento"),
+    ("1.1.0", "27/10/2025", "Alessandro Dinato", "-", "Aggiunta domande M31"),
+    ("1.0.0", "26/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Versione finale"),
     ("0.0.1", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
@@ -16,9 +17,9 @@
     "Varie ed eventuali",
   ),
   htmlId: "Candidatura-VerbaliEsterni",
-  verificatore-interno: "",
+  verificatore-interno: "Siria Salvalaio",
   left-signature: "",
-  verificatore-esterno: "",
+  verificatore-esterno: "Cristian Pirlog",
   right-signature: "",
   tipo-verbale: "Esterno",
 )
@@ -35,8 +36,15 @@ La richiesta è stata soddisfatta in data *20/10/2025* con l'invio delle domande
 
 I quesiti inviati:
 #enum(
-  "Waiting for Google Unlock",
-  "",
+  "Nel punto 3.2 del capitolato è presente questa frase 'Devono(i gateway) essere provisionati in modo sicuro, associandosi a un tenant specifico e caricando certificati di autenticazione'. Quindi ogni gateway sarà associato solo ad un singolo tenant?",
+  "Perchè i dati dei tenant devono essere separati anche a livello fisico? Cosa si intende un database diverso per ogni tenant?",
+  "Quali saranno i servizi di Google Cloud disponibili?",
+  "Perchè dalla UI c’è la necessità di registrare e configurare nuovi sensori o gateway simulati? Quindi la UI oltre ad essere una grande dashboard di dati real-time e on-demand, è anche una piattaforma di setup?",
+  "Che tipologia di autenticazione a due fattori verrà richiesta?",
+  "Quale/i tra i requisiti opzionali apporterebbe/ro il maggior valore aggiunto al progetto?",
+  "Quale funzionalità del gateway simulato ritenete sia la più critica per il PoC e l'MPV, e quale ritenete sia la più complessa?",
+  "Che tipo di supporto puó offrire M31 al nostro gruppo nei periodi verso la RTB e la PB? ",
+  "Una volta completato il verbale del meeting possiamo inviarvelo e riceverlo firmato (sarebbe ottimale avere una piccola foto del vostro timbro e/o firma)?",
 )
 = Resoconto
 I due rappresentanti si sono collegati puntualmente alle ore 10 per l'incontro con il proponente *M31 SRL*. \
