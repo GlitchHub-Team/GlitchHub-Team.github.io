@@ -6,33 +6,20 @@
   date: "27/10/2025",
 )
 
-#section-slide("Attività completate")
+#section-slide("Questioni aperte")
 
-#content-slide(title: "Attività completate")[
+#content-slide(title: "Questioni aperte")[
   #icon-list(
-    icon: "✓",
-    "Definizione del nome del gruppo",
-    "Creazione della mail e del logo del gruppo",
-    "Creazione della repository GitHub per la documentazione del progetto",
-    "Conduzione di colloqui con alcune aziende proponenti",
-    "Creazione GitHub Actions e GitHub Pages per pubblicazione automatica della documentazione",
-    "Introduzione di ClickUp come sistema di ticketing e gestione delle task del team",
-  )
-]
 
-#section-slide("Attività pianificate")
-
-#content-slide(title: "Attività pianificate")[
-  #icon-list(
-    icon: "•",
+  icon: "•",
     "Completare l'analisi dei rischi, il preventivo e la pianificazione delle scadenze",
     "Preparare la documentazione necessaria per la candidatura al progetto",
   )
 ]
 
-#section-slide("Difficoltà riscontrate e questioni aperte")
+#section-slide("Difficoltà incontrate")
 
-#content-slide(title: "Difficoltà riscontrate e questioni aperte")[
+#content-slide(title: "Difficoltà incontrate")[
   #icon-list(
     icon: "•",
     "Scegliere quante risorse allocare nelle singole task",
@@ -40,3 +27,4 @@
     "La comunicazione tra componenti del gruppo assegnati alla stessa task non è sempre efficiente",
   )
 ]
+
