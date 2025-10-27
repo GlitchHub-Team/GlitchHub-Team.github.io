@@ -15,7 +15,7 @@
     "Discussione domande inviate preventivamente via email",
     "Varie ed eventuali",
   ),
-  htmlId: "Candidatura-DocumentiEsterni-VerbaliEsterni",
+  htmlId: "Candidatura-VerbaliEsterni",
   verificatore-interno: "",
   left-signature: "",
   verificatore-esterno: "",

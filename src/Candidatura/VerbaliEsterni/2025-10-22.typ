@@ -15,7 +15,7 @@
     "Discussione domande e dubbi sorti nel gruppo GlitchHub Team",
     "Varie ed eventuali",
   ),
-  htmlId: "Candidatura-DocumentiEsterni-VerbaliEsterni",
+  htmlId: "Candidatura-VerbaliEsterni",
   verificatore-interno: "Alessandro Dinato",
   left-signature: "/src/assets/firme/firma_Alessandro_Dinato.png",
   verificatore-esterno: "",

@@ -31,7 +31,7 @@
     "Organizzazione del repository e della documentazione",
     "Varie ed eventuali",
   ),
-  htmlId: "Candidatura-DocumentiInterni-VerbaliInterni",
+  htmlId: "Candidatura-VerbaliInterni",
   verificatore-interno: "",
   left-signature: "",
   tipo-verbale: "Interno",

@@ -4,14 +4,14 @@
   title: "GlitchHub Team",
   subtitle: "Diario di bordo",
   date: "27/10/2025",
+  htmlId: "Diapositive",
 )
 
 #section-slide("Questioni aperte")
 
 #content-slide(title: "Questioni aperte")[
   #icon-list(
-
-  icon: "•",
+    icon: "•",
     "Completare l'analisi dei rischi, il preventivo e la pianificazione delle scadenze",
     "Preparare la documentazione necessaria per la candidatura al progetto",
   )
