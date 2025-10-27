@@ -1,3 +1,5 @@
 .DS_Store
 src/**/*.pdf
 pdf/**/*.tex
+.vscode
+website/pdf/

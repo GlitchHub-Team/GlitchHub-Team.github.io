@@ -13,7 +13,9 @@
   htmlId: none,
   odg: none,
   registro-modifiche: (),
+  verificatore-interno: "",
   left-signature: "",
+  verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Interno",
   body,
@@ -72,11 +74,12 @@
         index: 2,
       ),
     ),
-    label-signature-left: [#if (tipo-verbale == "Esterno") { "Firma del revisore aziendale" } else {
-      "Firma del revisore interno"
-    }],
+    tipo-verbale: tipo-verbale,
+    verificatore-interno: verificatore-interno,
+    label-signature-left: [Firma del revisore interno],
     left-signature: left-signature,
-    label-signature-right: [Firma dell'autore],
+    verificatore-esterno: verificatore-esterno,
+    label-signature-right: [Firma del revisore esterno],
     right-signature: right-signature,
   )
 
@@ -117,11 +120,6 @@
   #let nRegModifiche = registro-modifiche.len()
   #show table.cell.where(y: 0): strong
   #set table(
-    stroke: (x, y) => (
-      if y != nRegModifiche {
-        (bottom: 0.8pt + black)
-      }
-    ),
     align: (x, y) => (
       if x > 0 { center } else { left }
     ),
@@ -137,6 +135,9 @@
     #table(
       columns: (0.1fr, 0.14fr, 0.22fr, 0.22fr, 0.32fr),
       align: left,
+      stroke: (x, y) => (
+        bottom: if y == 0 { 1pt + black } else { 0.8pt + black },
+      ),
       table.header([*Ver.*], [*Data*], [*Autore*], [*Verificatore*], [*Descrizione*]),
       ..for (ver, data, autore, verificatore, descrizione) in registro-modifiche {
         ([#ver], [#data], [#autore], [#verificatore], [#descrizione])

@@ -1,0 +1,46 @@
+name: Compile Typst
+
+on:
+  push:
+    branches: [ "Documentation/**", "Documentation" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: '0.13.1'
+
+      - name: Pull latest changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git pull origin Documentation
+          
+      - name: Run bash
+        run: | 
+          chmod +x compile.sh
+          ./compile.sh
+
+      - name: Check Git status
+        run: git status
+      
+      - name: Upload website and PDFs as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-pdf-files
+          path: website/
+          retention-days: 1
+          if-no-files-found: error
