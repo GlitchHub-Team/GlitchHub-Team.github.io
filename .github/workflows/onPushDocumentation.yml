@@ -2,7 +2,7 @@ name: Compile Typst
 
 on:
   push:
-    branches: [ "Documentation/**" ]
+    branches: [ "Documentation/**", "Documentation" ]
   workflow_dispatch:
 
 permissions:
