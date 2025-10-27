@@ -2,9 +2,10 @@
 
 #show: report.with(
   titolo: "Verbale esterno 23/10/2025 (M31)",
-  stato: "In attesa di verifica",
-  versione: "0.0.1",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
+    ("1.0.0", "26/10/2025", "Siria Salvalaio", "Siria Salvalaio", "Verifica del documento"),
     ("0.0.1", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
