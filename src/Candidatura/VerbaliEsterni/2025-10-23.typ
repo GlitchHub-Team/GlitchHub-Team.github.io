@@ -15,7 +15,9 @@
     "Varie ed eventuali",
   ),
   htmlId: "Candidatura-DocumentiEsterni-VerbaliEsterni",
+  verificatore-interno: "",
   left-signature: "",
+  verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
 )

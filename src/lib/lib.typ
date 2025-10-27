@@ -12,8 +12,11 @@
     company-logo: none,
   ),
   custom-entries: (),
+  tipo-verbale: "",
+  verificatore-interno: "",
   label-signature-left: [],
   left-signature: "",
+  verificatore-esterno: "",
   label-signature-right: [],
   right-signature: "",
   body,
@@ -91,7 +94,7 @@
     #set align(left)
     #if type(odg) == "string" [
       #enum(
-        ..odg.split("\n").filter(x => x != "")
+        ..odg.split("\n").filter(x => x != ""),
       )
     ] else [
       #enum(..odg)
@@ -150,9 +153,20 @@
   table(
     columns: (50%, 50%),
     stroke: none,
-    inset: 20pt,
+    inset: (x: 20pt, y: 0pt),
     align: left,
-    if left-signature != "" [#image(left-signature)], if right-signature != "" [#image(right-signature)],
-    [#line(length: 100%)#label-signature-left], [#line(length: 100%)#label-signature-right],
+    if left-signature != "" [
+      #text(weight: "bold")[#verificatore-interno]
+      #image(left-signature, height: 1.5cm),
+    ],
+    if right-signature != "" and tipo-verbale == "Esterno" [
+      #text(weight: "bold")[#verificatore-esterno]
+      #image(right-signature, height: 1.5cm),
+    ],
+
+    [#line(length: 100%)#label-signature-left],
+    if tipo-verbale == "Esterno" [
+      #line(length: 100%)#label-signature-right
+    ],
   )
 }

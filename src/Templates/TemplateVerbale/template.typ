@@ -13,7 +13,9 @@
   htmlId: none,
   odg: none,
   registro-modifiche: (),
+  verificatore-interno: "",
   left-signature: "",
+  verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Interno",
   body,
@@ -72,11 +74,12 @@
         index: 2,
       ),
     ),
-    label-signature-left: [#if (tipo-verbale == "Esterno") { "Firma del revisore aziendale" } else {
-      "Firma del revisore interno"
-    }],
+    tipo-verbale: tipo-verbale,
+    verificatore-interno: verificatore-interno,
+    label-signature-left: [Firma del revisore interno],
     left-signature: left-signature,
-    label-signature-right: [Firma dell'autore],
+    verificatore-esterno: verificatore-esterno,
+    label-signature-right: [Firma del revisore esterno],
     right-signature: right-signature,
   )
 

@@ -31,8 +31,8 @@
     "Varie ed eventuali",
   ),
   htmlId: "Candidatura-DocumentiInterni-VerbaliInterni",
+  verificatore-interno: "",
   left-signature: "",
-  right-signature: "",
   tipo-verbale: "Interno",
 )
 
