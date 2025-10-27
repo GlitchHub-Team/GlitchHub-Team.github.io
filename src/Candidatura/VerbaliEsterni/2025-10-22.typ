@@ -17,7 +17,7 @@
   ),
   htmlId: "Candidatura-VerbaliEsterni",
   verificatore-interno: "Alessandro Dinato",
-  left-signature: "/src/assets/firme/firma_Alessandro_Dinato.png",
+  left-signature: "/assets/firme/firma_Alessandro_Dinato.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",

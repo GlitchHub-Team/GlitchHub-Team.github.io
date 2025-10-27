@@ -109,7 +109,6 @@
   team-name: "GlitchHub Team",
   subtitle: "Diario di bordo",
   date: none,
-  htmlId: "Diapositive",
   logo-left: "../../assets/loghi/GlitchHub-Team_LogoP.png",
   logo-right: "../../assets/loghi/Logo_Università_Padova.svg-300x300.png",
 ) = {
@@ -117,11 +116,6 @@
   set text(
     font: "Lato",
     size: 20pt,
-  )
-
-  set document(
-    author: "GlitchHub Team",
-    keywords: htmlId,
   )
 
   place(top + left)[
@@ -188,6 +182,7 @@
 #let report(
   title: "GlitchHub Team",
   subtitle: "Diario di bordo",
+  htmlId: "Diapositive",
   date: datetime.today().display("[year]-[month]-[day]"),
   authors: (),
   body,
@@ -201,6 +196,11 @@
     date: date,
   )
 
+  set document(
+    title: "Diario di bordo " + date,
+    author: "GlitchHub Team",
+    keywords: htmlId,
+  )
   pagebreak()
 
 
