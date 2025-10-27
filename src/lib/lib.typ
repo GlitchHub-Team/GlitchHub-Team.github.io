@@ -1,6 +1,6 @@
 #let hwr(
   language: "en",
-  main-font: "Futura",
+  main-font: "Poppins",
   // Main Metadata for the title page
   metadata: (
     paper_type: [],

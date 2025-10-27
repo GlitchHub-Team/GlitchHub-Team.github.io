@@ -113,7 +113,10 @@
   logo-right: "../../assets/loghi/Logo_Università_Padova.svg-300x300.png",
 ) = {
   set page(paper: "presentation-16-9")
-  set text(font: "Lato", size: 20pt)
+  set text(
+    font: "Lato",
+    size: 20pt,
+  )
 
   place(top + left)[
     #image(logo-left, height: 3cm)
