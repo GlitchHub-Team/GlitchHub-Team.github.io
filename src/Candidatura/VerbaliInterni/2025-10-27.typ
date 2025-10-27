@@ -110,7 +110,7 @@ Ogni qualvolta si voglia eseguire un task di scrittura di documentazione, i pass
 
 4. Quindi, i Reviewer dovranno continuare ad apportare modifiche al branch `Documentation-[...]`, che siano esse nuove modifiche o solamente l'aggiornamento della versione, per poi accettare la Pull Request in main.
 
-5. Una volta eseguito il merge, il verbale compilato apparirà sul sito del gruppo. In caso siano richiesti ulteriori modifiche, è possibile riaprire la Pull Request e continuare ad apportare modifiche al branch `Documentation-[...]`, per poi esgeuire nuovamente il merge in `main`
+5. Una volta eseguito il merge, il verbale compilato apparirà sul sito del gruppo. In caso siano richiesti ulteriori modifiche, è possibile aprire una nuova Pull Request e continuare ad apportare modifiche al branch `Documentation-[...]`, per poi esgeuire nuovamente il merge in `main`
 
 = Conclusioni
 Il gruppo non ha ancora stabilito le coordinate della prossima riunione, verranno stabilite per le vie brevi.
