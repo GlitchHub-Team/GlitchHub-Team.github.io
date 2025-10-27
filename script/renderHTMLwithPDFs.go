@@ -21,7 +21,7 @@ type PDFDocument struct {
 const KEYWORDS_N = 1
 const PATH_TO_DOCUMENTS = "../website/pdf/"
 const PATH_TO_HTML = "../website/index.html"
-const TEMPLATE = "<a href='%s'>%s</a>"
+const TEMPLATE = "<li><a href='%s' target='_blank'>%s</a></li>"
 
 func loadPDFMetadata(pdf *PDFDocument) error {
 	ctx, err := api.ReadContextFile(pdf.path)

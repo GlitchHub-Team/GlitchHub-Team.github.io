@@ -10,7 +10,7 @@
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
   distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "Miriade SRL"),
   odg: "Primo incontro con l’azienda Miriade SRL per chiarire le domande e i dubbi emersi tra i componenti del gruppo",
-  htmlId: "Candidatura-DocumentiEsterni-VerbaliEsterni",
+  htmlId: "Candidatura-VerbaliEsterni",
   left-signature: "",
   right-signature: "",
   tipo-verbale: "Esterno",
