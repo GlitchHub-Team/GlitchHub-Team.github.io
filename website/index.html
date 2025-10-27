@@ -1,90 +1,214 @@
 <!DOCTYPE html>
-
 <html lang="it">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlitchHub Team - Documenti</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="GlitchHub Team" />
+    <meta name="description" content="Sito del gruppo 5 di Ingegneria del Software (GlitchHub Team)" />
+
+    <title>GlitchHub Team</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="logo&amp;banner/GlitchHub-Team_LogoP.svg" />
+    <script src="script.js"></script>
+
 </head>
 
 <body>
-    
+
+    <header>
+        <nav class="navbar">
+            <div class="containernav">
+                <img class="logoPiccolo" src="logo&amp;banner/GlitchHub-Team_LogoP.svg" alt="Logo GlitchHub Piccolo" />
+
+                <button class="menu-toggle" id="menu-toggle" aria-label="Apri menu">
+                    ☰
+                </button>
+
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#candidatura">Candidatura</a></li>
+                    <li><a href="#rtb">RTB</a></li>
+                    <li><a href="#pb">PB</a></li>
+                    <li><a href="#diapositive">Diapositive</a></li>
+                    <li><a href="#chisiamo">Chi siamo</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="logo-Header">
+            <img class="logoGrande" src="logo&amp;banner/GlitchHub-Team_LogoG.svg" alt="Logo GlitchHub Grande" />
+        </div>
+        <div class="text">
+            <p>
+                Sito di presentazione del progetto didattico di Ingegneria del Software (2025-2026) <br />del corso di
+                Informatica dell&#39;Università degli Studi di Padova.
+            </p>
+        </div>
+    </header>
+
     <div class="container">
-        <header>
-            <div class="logo-section">
-                <div class="logo-icon">
-                    <img src="logo&banner/G.svg" alt="G Logo">
+        <div id="candidatura">
+            <h2>Candidatura</h2>
+            <div class="liste">
+                <div class="lista-sinistra">
+                    <details>
+                        <summary>Verbali interni</summary>
+                        <ul id="Candidatura-VerbaliInterni">
+                        </ul>
+                    </details>
                 </div>
-                
-                <div class="logo-banner">
-                    <img src="logo&banner/banner.svg" alt="GlitchHub Team">
-                </div>
-            </div>
 
-
-            
-        </header>
-
-        <h2 class="titolo-body">Documenti utili</h1>
-
-        <div class="categories">
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Documentazione Progetto</h3>
-                    <span class="category-count" id="count-doc_prog">0</span>
-                </div>
-                <div class="documents" id="docs-doc_prog"></div>
-            </div>
-
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Verbali</h3>
-                    <span class="category-count" id="count-verbali">0</span>
-                </div>
-                <div class="documents" id="docs-verbali"></div>
-            </div>
-
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Diari di Bordo</h3>
-                    <span class="category-count" id="count-diari_di_bordo">0</span>
-                </div>
-                <div class="documents" id="docs-diari_di_bordo"></div>
-            </div>
-
-            <div class="category">
-                <div class="category-header">
-                    <div class="category-icon">📄</div>
-                    <h3 class="category-title">Altri documenti</h3>
-                    <span class="category-count" id="count-altri_doc">0</span>
-                </div>
-                <div class="documents" id="docs-altri_doc"></div>
-            </div>
-        </div>
-    </div>
-
-    <!--finestra che si apre quando clicchi su un file-->
-    <div class="modal" id="docModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle"></h2>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <iframe id="docFrame" style="width: 100%; height: 60vh; border: none; border-radius: 8px;"></iframe>
-                <div style="margin-top: 1rem; text-align: center;">
-                    <a id="downloadLink" download style="color: #000000; text-decoration: none; font-weight: 600;">
-                        📥 Scarica documento
-                    </a>
+                <div class="lista-destra">
+                    <details>
+                        <summary>Verbali esterni</summary>
+                        <ul id="Candidatura-VerbaliEsterni">
+                        </ul>
+                    </details>
                 </div>
             </div>
         </div>
+
+        <div id="rtb">
+            <h2>RTB</h2>
+            <div class="liste">
+                <div class="lista-sinistra">
+                    <details>
+                        <summary>Verbali interni</summary>
+                        <ul id="RTB-VerbaliInterni">
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="lista-destra">
+                    <details>
+                        <summary>Verbali esterni</summary>
+                        <ul id="RTB-VerbaliEsterni">
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <div id="pb">
+            <h2>PB</h2>
+            <div class="liste">
+                <div class="lista-sinistra">
+                    <details>
+                        <summary>Verbali interni</summary>
+                        <ul id="PB-VerbaliInterni">
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="lista-destra">
+                    <details>
+                        <summary>Verbali esterni</summary>
+                        <ul id="PB-VerbaliEsterni">
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Diapositive</h2>
+            <ul id="Diapositive">
+            </ul>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <section class="aboutus" id="chisiamo">
+        <h3>CHI SIAMO</h3>
+
+        <div class="members">
+            <div class="member">
+                <p class="name">Alessandro Dinato</p>
+                <dl>
+                    <dt>Matricola</dt>
+                    <dd>2101043</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:mail@gmail.com">mail@gmail.com</a></dd>
+                </dl>
+            </div>
+
+            <div class="member">
+                <p class="name">Elia Ernesto Stellin</p>
+                <dl>
+                    <dt>Matricola</dt>
+                    <dd>2101084</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:eliaernesto.stellin@studenti.unipd.it">eliaernesto.stellin@studenti.unipd.it</a>
+                    </dd>
+                </dl>
+            </div>
+            <div class="member">
+                <p class="name">Hossam Ezzemouri</p>
+                <dl>
+                    <dt>Matricola</dt>
+                    <dd>2079250</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:hossnv@gmail.com">hossnv@gmail.com</a></dd>
+                </dl>
+            </div>
+
+            <div class="member">
+                <p class="name">Jaume Bernardi</p>
+                <dl>
+                    <dt>Matricola</dt>
+                    <dd>2069428</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:maria@banana.it">maria@banana.it</a></dd>
+                </dl>
+            </div>
+            <div class="member">
+                <p class="name">Michele Dioli</p>
+                <dl>
+                    <dt>Matricola</dt>
+                    <dd>2077629</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:michele.dioli@studenti.unipd.it">michele.dioli@studenti.unipd.it</a></dd>
+                </dl>
+            </div>
+
+            <div class="member">
+                <p class="name">Riccardo Graziani</p>
+                <dl>
+                    <dt>Matricola</dt>
+                    <dd>2101054</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:maria@banana.it">maria@banana.it</a></dd>
+                </dl>
+            </div>
+
+            <div class="member">
+                <p class="name">Siria Salvalaio</p>
+                <dl>
+                    <dt>Matricola</dt>
+                    <dd>2075520</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:siria.salvalaio@studenti.unipd.it">siria.salvalaio@studenti.unipd.it</a></dd>
+                </dl>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <dl>
+            <dt>Email</dt>
+            <dd><a href="mailto:glitchhubteam@gmail.com" target="_blank">glitchhubteam@gmail.com</a></dd>
+        </dl>
+
+        <dl>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/GlitchHub-Team" target="_blank" rel="noopener noreferrer">GlitchHubteam</a>
+            </dd>
+        </dl>
+    </footer>
+
+
+
+
 </body>
+
 </html>
