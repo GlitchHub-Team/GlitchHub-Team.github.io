@@ -6,7 +6,7 @@
   stato: "In attesa di verifica",
   versione: "0.1.0",
   registro-modifiche: (
-    ("0.1.0", "28/10/2025", "Elia Ernesto Stellin", "", "Prima stesura: Introduzione, C1, C2, C5, C6, C7"),
+    ("0.1.0", "28/10/2025", "Elia Ernesto Stellin", "", "Stesura Introduzione, C1, C2, C6"),
     ("0.0.1", "27/10/2025", "Elia Ernesto Stellin", "", "Bozza valutazione capitolati"),
   ),
   distribuzione: (
