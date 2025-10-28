@@ -3,9 +3,9 @@
 #show: report.with(
   titolo: "Verbale esterno 23/10/2025 (M31)",
   stato: "Verificato",
-  versione: "1.1.0",
+  versione: "1.1.1",
   registro-modifiche: (
-    ("1.0.1", "28/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Correzione refusi"),
+    ("1.1.1", "28/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Correzione refusi"),
     ("1.1.0", "27/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Aggiunta domande M31"),
     ("1.0.0", "26/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Versione finale"),
     ("0.0.1", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
