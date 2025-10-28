@@ -27,7 +27,7 @@ All’interno del gruppo di lavoro, i ruoli sono stati definiti e assegnati in m
 attività necessarie per la corretta gestione,progettazione e realizzazione del progetto. La
 suddivisione dei compiti è stata ispirata ai principi della gestione di progetto insegnati nel corso di
 Ingegneria del Software, con l’obiettivo di garantire equilibrio,responsabilità e qualità
-nell’esecuzione delle diverse fasi di laovro.
+nell’esecuzione delle diverse fasi di lavoro.
 
 Di seguito si fornisce un’analisi dettagliata dei principali ruoli previsti e delle relative responsabilità.
 
