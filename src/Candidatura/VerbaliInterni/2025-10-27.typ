@@ -6,6 +6,7 @@
   stato: "In attesa di verifica",
   versione: "0.1.0",
   registro-modifiche: (
+    ("0.1.1", "27/10/2025", "Elia Ernesto Stellin", "", ""),
     ("0.1.0", "27/10/2025", "Elia Ernesto Stellin", "", "Prima stesura"),
     ("0.0.1", "27/10/2025", "Elia Ernesto Stellin", "", "Bozza terzo incontro interno"),
   ),
@@ -20,7 +21,7 @@
   distribuzione: (
     "GlitchHub Team",
     "Prof. Cardin Riccardo",
-    "Prof. Vardenega Tullio",
+    "Prof. Vardanega Tullio",
   ),
   odg: (
     "Sollecito a VarGroup",
