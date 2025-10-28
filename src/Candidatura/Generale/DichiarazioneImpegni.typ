@@ -65,7 +65,7 @@ In questa tabella verranno utilizzati degli acronimi per descrivere i singoli ru
     chart.piechart(
       costi,
       value-key: 1,
-      label-key: 1,
+      label-key: 0,
       radius: 4,
       stroke: none,
       slice-style: colors,
@@ -114,7 +114,7 @@ In questa tabella verranno utilizzati degli acronimi per descrivere i singoli ru
     chart.piechart(
       costi,
       value-key: 1,
-      label-key: 1,
+      label-key: 0,
       radius: 4,
       stroke: none,
       slice-style: colors,
