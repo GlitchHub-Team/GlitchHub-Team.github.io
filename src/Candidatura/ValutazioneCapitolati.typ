@@ -4,9 +4,10 @@
 #show: report.with(
   titolo: "Valutazione Capitolati",
   stato: "In attesa di verifica",
-  versione: "0.1.0",
+  versione: "0.2.0",
   registro-modifiche: (
-    ("0.1.0", "28/10/2025", "Elia Ernesto Stellin", "", "Stesura Introduzione, C1, C2, C6"),
+    ("0.2.0", "28/10/2025", "Siria Salvalaio", "", "Stesura C3, C4, C5, C9 e Conclusione"),
+    ("0.1.0", "28/10/2025", "Elia Ernesto Stellin", "Siria Salvalaio", "Stesura Introduzione, C1, C2, C6"),
     ("0.0.1", "27/10/2025", "Elia Ernesto Stellin", "", "Bozza valutazione capitolati"),
   ),
   distribuzione: (
@@ -22,7 +23,7 @@
 
 = Introduzione
 // TODO: non mi piace "presentato nel Progetto Didattico"
-Il presente documento ha lo scopo di indicare la valutazione di ciascun capitolato, presentato nel Progetto Didattico, da parte del gruppo *GlitchHub Team*, in modo tale da motivare la scelta di quest'ultimo di presentare la candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori* proposto da *M31 S.r.l.*
+Il presente documento ha lo scopo di indicare la valutazione di ciascun capitolato, presentato nel Progetto Didattico, da parte del gruppo *GlitchHub Team*, in modo tale da motivare la scelta di quest'ultimo di presentare la candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori* proposto da _M31 S.r.l._.
 
 = Valutazione dei capitolati
 // TODO: non mi piace "candidatura PER questo capitolato"
@@ -47,7 +48,7 @@ Inoltre, il gruppo trova troppo vaghe le specifiche tecnologiche richieste dal p
 Per le motivazioni sopra descritte, il gruppo ha deciso di non candidarsi al capitolato C1, non considerandolo nemmeno come possibile alternativa.
 
 == C2: Code Guardian (VarGroup S.p.A.)
-Il progetto proposto da VarGroup S.p.A. nel capitolato *C2* prevede lo sviluppo di una piattaforma in cloud basata su un sistema ad agenti orchestrato in grado di automatizzare processi di miglioramento del codice e di audit di sicurezza del codice. La piattaforma dev'essere capace di analizzare repository GitHub per valutarne qualità, sicurezza e manutenzione, fornendo reportistica automatica e sfruttando gli agenti per fornire rimedi in caso di lacune, che siano vulnerabilità di sicurezza, mancanze di best practices o test mancanti.
+Il progetto proposto da _VarGroup S.p.A._ nel capitolato *C2* prevede lo sviluppo di una piattaforma in cloud basata su un sistema ad agenti orchestrato in grado di automatizzare processi di miglioramento del codice e di audit di sicurezza del codice. La piattaforma dev'essere capace di analizzare repository GitHub per valutarne qualità, sicurezza e manutenzione, fornendo reportistica automatica e sfruttando gli agenti per fornire rimedi in caso di lacune, che siano vulnerabilità di sicurezza, mancanze di best practices o test mancanti.
 
 Nonostante il gruppo trovi d'interesse le tecnologie richieste e l'idea proposta, si è deciso di non procedere con la candidatura per questo capitolato, per i seguenti motivi.
 
@@ -55,21 +56,45 @@ Innanzitutto, all'interno del gruppo non vi è interesse nello sviluppo di siste
 
 Più nello specifico, sono sorti dubbi in merito alla capacità di un LLM di scorgere vulnerabilità di sicurezza all'interno di una codebase estesa, la cui potrebbe essere potenzialmente composta da numerose parti interconnesse, che possono nascondere vulnerabilità, difficili da rilevare anche a un essere umano. Essendo gli LLM degli strumenti fondamentalmente probabilistici e non algoritmici, la probabilità che alcune rilevazioni di vulnerabilità siano falsi positivi o falsi negativi è considerevole e, in questo contesto, altamente pericolosa.
 
-// TODO: non so se vadano bene "nostro", "LORO progetto"...
-Al momento della scrittura di questo documento, il gruppo non ha ricevuto risposta a questi dubbi, in quanto VarGroup S.r.l. non ha risposto alle nostre richieste di incontro, facendoci dubitare del supporto che l'azienda potrebbe fornirci durante lo sviluppo del loro progetto.
+// TODO: non so se vadano bene "nostro", "LORO progetto" -> meglio loro
+Al momento della scrittura di questo documento, il gruppo non ha ricevuto risposta a questi dubbi, in quanto _VarGroup S.r.l._ non ha risposto alle nostre richieste di incontro, facendoci dubitare del supporto che l'azienda potrebbe fornirci durante lo sviluppo del loro progetto.
 
 Nonostante ciò, seguendo la votazione interna al gruppo, si è deciso di mantenere questo capitolato come "seconda scelta" in caso di rifiuto della candidatura al *C7*.
 
-== C3: DIPReader
+== C3: DIPReader (Sanmarco Informatica S.p.A)
+Il capitolato *C3*, proposto da Sanmarco Informatica S.p.A., prevede lo sviluppo di una piattaforma che consenta di eseguire ricerche e consultazioni sui documenti conservati all’interno di un sistema di archiviazione digitale centralizzato, denominato Distribution Information Package (DIP).
+L’obiettivo del progetto è fornire agli utenti la possibilità di accedere e ricercare tali documenti anche in assenza di connettività, tramite un’interfaccia accessibile via browser o applicazione multipiattaforma. Tra le funzionalità principali figurano la visualizzazione semplificata dei dati tecnici contenuti nei pacchetti, la ricerca tramite metadati, la visualizzazione in anteprima dei formati più comuni e la possibilità di esportare selezioni di documenti. Tra le funzionalità opzionali sono inoltre previste la ricerca semantica, la verifica delle firme digitali e l’accesso a pacchetti disponibili in cloud.
 
-== C4: L'app che Protegge e Trasforma
+Le tecnologie suggerite comprendono l’utilizzo di SQLite per la gestione locale dei dati e FAISS (Facebook AI Similarity Search) per la ricerca basata su similarità, mentre per il front-end vengono proposti framework moderni come React o Angular sviluppati in TypeScript o JavaScript.
 
-== C5: NEXUM
+Il gruppo ha ritenuto il progetto interessante e attuale, in quanto affronta un tema concreto nel campo della conservazione digitale e propone tecnologie moderne e largamente utilizzate. Tuttavia, sono emerse alcune incertezze riguardo all’architettura del sistema e al livello di complessità nella gestione dei pacchetti di conservazione, che potrebbero richiedere una notevole fase di analisi preliminare. Inoltre, diverse parti non risultano sufficientemente dettagliate e lasciano spazio a dubbi sull’effettiva implementazione.
+
+Per tali motivi, il gruppo ha deciso di non candidarsi per il capitolato C3, pur riconoscendo il potenziale applicativo.
+
+
+== C4: L'app che Protegge e Trasforma (Miriade)
+Il capitolato *C4*, proposto da _Miriade S.r.l._, prevede lo sviluppo di un’applicazione mobile dedicata alla prevenzione e al supporto delle vittime di violenza di genere. L’applicazione, destinata ai sistemi iOS e Android, mira a offrire un supporto concreto e personalizzato attraverso funzionalità intelligenti e sicure, come il rilevamento di situazioni di rischio, l’invio di allarmi discreti, l’accesso a servizi di assistenza, la formazione e la sensibilizzazione sul tema della violenza di genere.
+
+Il progetto presenta un’architettura moderna, basata su microservizi e orientata al cloud, con un’infrastruttura preferibilmente serverless su AWS. Tra le tecnologie suggerite figurano Flutter per lo sviluppo multipiattaforma e servizi cloud come AWS Lambda, DynamoDB, RDS e SageMaker per l’implementazione di componenti basate su Machine Learning. Particolare attenzione è posta alla sicurezza e alla protezione dei dati, con un approccio _security by design_ conforme al GDPR.
+
+Il gruppo ha valutato positivamente il capitolato per l’impatto sociale del progetto e per la varietà di tecnologie coinvolte. Durante l’incontro con i referenti aziendali, Miriade si è dimostrata estremamente disponibile e collaborativa, offrendo supporto tecnico, formativo e specialistico, anche su aspetti legali e di privacy, fattore che è stato molto apprezzato.
+
+Pur non essendo stato scelto come progetto principale, il gruppo ha deciso di mantenerlo tra le possibili alternative in caso di rifiuto della candidatura al C7, riconoscendone la solidità tecnica e il valore umano.
+
+== C5: NEXUM (Eggon S.r.l.)
+Il capitolato C5, proposto da Eggon S.r.l., prevede lo sviluppo di nuove funzionalità intelligenti e interoperabili per la piattaforma NEXUM, una soluzione di gestione HR che semplifica la comunicazione tra aziende, dipendenti e studi dei Consulenti del Lavoro.
+
+L’obiettivo del progetto è integrare moduli basati su Intelligenza Artificiale e Data Analytics per migliorare l’automazione dei processi e la gestione documentale, introducendo componenti come un AI Assistant Generativo per la creazione di contenuti e un AI Co-Pilot per l’analisi, classificazione e distribuzione automatica di documenti.
+Le tecnologie indicate comprendono Ruby on Rails per il backend, Angular e Next.js per le interfacce, e un’infrastruttura cloud su AWS, basata su servizi come S3 e Amazon RDS for PostgreSQL. Il progetto segue metodologie Agile/SCRUM e offre un ambiente di sviluppo professionale, con strumenti di versionamento, test e deployment integrato.
+
+Il gruppo ha valutato positivamente il capitolato per la solidità dell’azienda proponente e per la possibilità di lavorare su un progetto reale già in produzione, che combina aspetti pratici e innovativi, offrendo un contesto vicino a quello aziendale. Tuttavia, sono state rilevate alcune criticità legate alla complessità dell’architettura e all’ampia varietà di tecnologie coinvolte, che richiederebbero un significativo sforzo iniziale di apprendimento e coordinamento.
+
+Per queste ragioni, pur riconoscendone il valore tecnico e l’elevato potenziale formativo, il gruppo ha deciso di non candidarsi al capitolato C5, preferendo orientarsi verso progetti di dominio più chiaro e con obiettivi maggiormente allineati alle proprie competenze e interessi.
 
 == C6: Second Brain (Zucchetti S.p.A.)
-Il progetto proposto da Zucchetti S.p.A. nel capitolato *C6* prevede lo sviluppo di un editor di testo in formato Markdown, con l'integrazione di un LLM atto a migliorare o correggere il testo dell'utente. Tra i casi d'utilizzo propsti del LLM vi sono la riscrittura del testo in diversi registri di formalità, la creazione di riassunto e la critica del testo scritto dall'utente da più punti di vista differenti. Opzionalmente, l'applicazione potrebbe anche scrivere interamente il testo seguendo un prompt specifico e salvare i testi creati.
+Il progetto proposto da Zucchetti S.p.A. nel capitolato *C6* prevede lo sviluppo di un editor di testo in formato Markdown, con l'integrazione di un LLM atto a migliorare o correggere il testo dell'utente. Tra i casi d'uso proposti del LLM vi sono la riscrittura del testo in diversi registri di formalità, la creazione di riassunto e la critica del testo scritto dall'utente da più punti di vista differenti. Opzionalmente, l'applicazione potrebbe anche scrivere interamente il testo seguendo un prompt specifico e salvare i testi creati.
 
-Il gruppo non è interessato nel procedere con la candidatura a questo capitolato, poiché non proviamo un forte interesse né verso l'utilizzo degli LLM e i sistemi di AI né verso le tecnologie richieste dal progetto, quali Java/Python per un eventuale back end.
+Il gruppo non è interessato nel procedere con la candidatura a questo capitolato, poiché il gruppo non nutre un forte interesse né verso l'utilizzo degli LLM e dei sistemi di AI né verso le tecnologie richieste dal progetto, quali Java/Python per un eventuale back end.
 
 Inoltre, il gruppo non trova il progetto abbastanza stimolante e interessante didatticamente, in quanto le specifiche richieste dal capitolato non sembrano fornire il livello di esperienza didattica che gli altri capitolati proposti offrono, data la loro maggiore complessità. Poiché il progetto didattico viene svolto in vista di un apprendimento utile al nostro inserimento nel mondo di lavoro, non riteniamo che _Second Brain_ possa soddisfare la nostra aspettativa di apprendimento e di crescita nell'ambito del Software Engineering.
 
@@ -78,8 +103,19 @@ Inoltre, il gruppo non trova il progetto abbastanza stimolante e interessante di
 
 == C8: Smart Order
 
-== C9: View4Life
+== C9: View4Life (Vimar S.p.A.)
+Il capitolato C9, proposto da Vimar S.p.A., prevede la realizzazione di View4Life, una piattaforma per la gestione completa degli impianti smart nelle residenze protette. Il progetto si colloca nell’ambito della domotica avanzata e mira a creare un sistema integrato per il monitoraggio e il controllo di dispositivi IoT, come sensori di presenza, attuatori, termostati e sistemi di illuminazione, con l’obiettivo di migliorare sicurezza, comfort e sostenibilità energetica nelle strutture dedicate agli anziani autosufficienti.
 
+Il progetto richiede lo sviluppo di due componenti principali: un’infrastruttura Cloud, realizzata secondo il principio di Infrastructure as Code tramite Docker, e un applicativo web responsive per il personale sanitario, in grado di gestire allarmi, analisi e consumi energetici attraverso l’interfaccia KNX IoT 3rd-party API fornita da Vimar. Le tecnologie suggerite includono framework moderni come React, Angular o Flask per il front-end, e Node.js, Java con Spring e/o Python per il back-end, con la possibilità di integrazione su AWS.
+
+Il gruppo ha valutato molto positivamente il progetto, ritenendolo concreto, tecnicamente stimolante e ben strutturato. La possibilità di interagire con un kit fisico fornito dall’azienda rappresenta un forte valore aggiunto, così come la solidità e la disponibilità di Vimar nel fornire supporto tecnico e organizzativo durante lo sviluppo.
+
+Nonostante ciò, dopo un’attenta votazione interna, il gruppo ha deciso di candidarsi per il capitolato C7, preferendolo per un margine molto ridotto rispetto a View4Life. Quest’ultimo rimane comunque considerato un ottimo progetto, apprezzato sia per la chiarezza della proposta sia per il valore formativo che avrebbe potuto offrire.
 
 = Conclusione
+Al termine dell’analisi e delle valutazioni effettuate, il gruppo _GlitchHub Team_ ha esaminato con attenzione tutti i capitolati proposti, confrontandone obiettivi, tecnologie e ambiti applicativi.
+Il processo di selezione si è basato su criteri condivisi da tutti i membri, tra cui l’interesse tecnico, la chiarezza della proposta, la disponibilità dell’azienda proponente e il potenziale formativo del progetto.
 
+Tra i capitolati analizzati, diversi sono risultati di particolare interesse, in particolare *C2: Code Guardian*,  *C4: L’app che Protegge e Trasforma* e *C9: View4Life*, ritenuti progetti solidi, concreti e con un notevole valore applicativo. Tuttavia, dopo un confronto approfondito e una votazione interna, il gruppo ha deciso di presentare la propria candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._, che è risultato il più in linea con le competenze, gli interessi e gli obiettivi formativi del team.
+
+La scelta è stata presa con un margine ristretto rispetto ad altri capitolati di elevata qualità, segno della varietà e dell’elevato livello delle proposte di quest’anno. Il gruppo ritiene che il percorso di analisi e confronto svolto sia stato estremamente utile per definire con maggiore consapevolezza la direzione progettuale e le priorità comuni, ponendo le basi per un lavoro motivato e coerente con le proprie aspirazioni tecniche e professionali.
