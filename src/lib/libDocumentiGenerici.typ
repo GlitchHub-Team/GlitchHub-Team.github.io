@@ -7,18 +7,14 @@
     title: [PTB Template],
     version: none,
     university: none,
-    odg: (),
     uni-logo: none,
     company-logo: none,
   ),
   custom-entries: (),
-  tipo-verbale: "",
+  tipo-documento: "",
   verificatore-interno: "",
   label-signature-left: [],
   left-signature: "",
-  verificatore-esterno: "",
-  label-signature-right: [],
-  right-signature: "",
   body,
 ) = {
   set document(title: metadata.title)
@@ -85,21 +81,9 @@
     top: 2.9em,
     text(
       1.3em,
-      strong("Ordine del giorno"),
+      strong(""),
     ),
   )
-
-  let odg = metadata.at("odg")
-  align(center, block[
-    #set align(left)
-    #if type(odg) == "string" [
-      #enum(
-        ..odg.split("\n").filter(x => x != ""),
-      )
-    ] else [
-      #enum(..odg)
-    ]
-  ])
 
   v(0.6em, weak: true)
   $circle.filled.small$
@@ -159,14 +143,8 @@
       #text(weight: "bold")[#verificatore-interno]
       #image(left-signature, height: 1.5cm),
     ],
-    if right-signature != "" and tipo-verbale == "Esterno" [
-      #text(weight: "bold")[#verificatore-esterno]
-      #image(right-signature, height: 1.5cm),
-    ],
+    [],
 
     [#line(length: 100%)#label-signature-left],
-    if tipo-verbale == "Esterno" [
-      #line(length: 100%)#label-signature-right
-    ],
   )
 }
