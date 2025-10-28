@@ -1,4 +1,4 @@
-#import "../../lib/lib.typ": *
+#import "../lib/libVerbali.typ": *
 
 #let primary = rgb("#9948bc")
 #let secondary = rgb("#000")
@@ -53,8 +53,8 @@
       title: titolo,
       odg: odg,
       version: "Versione " + text(weight: "bold")[#versione],
-      company-logo: image("../../assets/loghi/GlitchHub-Team_LogoG.png", width: 75%),
-      uni-logo: image("../../assets/loghi/logo_unipd_scritta.jpg", width: 51%),
+      company-logo: image("../assets/loghi/GlitchHub-Team_LogoG.png", width: 75%),
+      uni-logo: image("../assets/loghi/logo_unipd_scritta.jpg", width: 51%),
     ),
 
     custom-entries: (
@@ -94,7 +94,7 @@
         columns: (1fr, 1fr),
         align(left)[
           #move(dy: 2pt)[
-            #image("../../assets/loghi/GlitchHub-Team_LogoP.png", height: 15pt)
+            #image("../assets/loghi/GlitchHub-Team_LogoP.png", height: 15pt)
           ]
         ],
         align(right)[

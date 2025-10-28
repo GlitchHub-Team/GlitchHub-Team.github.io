@@ -1,4 +1,4 @@
-#import "../Templates/TemplateSlide/template.typ": *
+#import "../Templates/templateSlides.typ": *
 
 #show: report.with(
   title: "GlitchHub Team",

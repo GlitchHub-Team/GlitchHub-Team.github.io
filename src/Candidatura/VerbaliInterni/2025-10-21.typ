@@ -1,4 +1,4 @@
-#import "../../Templates/TemplateVerbale/template.typ": report
+#import "../../Templates/templateVerbali.typ": report
 
 #show: report.with(
   titolo: "Verbale interno 21/10/2025",
