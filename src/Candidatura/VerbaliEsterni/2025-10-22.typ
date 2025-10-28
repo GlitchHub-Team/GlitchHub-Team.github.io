@@ -5,11 +5,12 @@
   stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
+    ("1.0.1", "28/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Correzione refusi"),
     ("1.0.0", "27/10/2025", "Siria Salvalaio", "Alessandro Dinato", "Versione finale firmata"),
     ("0.0.1", "23/10/2025", "Siria Salvalaio", "Alessandro Dinato", "Verbale riunione con Miriade"),
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
-  distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "Miriade SRL"),
+  distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo", "Miriade SRL"),
   odg: (
     "Presentazione gruppo GlitchHub Team",
     "Discussione domande e dubbi sorti nel gruppo GlitchHub Team",

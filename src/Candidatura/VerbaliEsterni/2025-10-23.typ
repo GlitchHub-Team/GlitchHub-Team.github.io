@@ -5,12 +5,13 @@
   stato: "Verificato",
   versione: "1.1.0",
   registro-modifiche: (
+    ("1.0.1", "28/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Correzione refusi"),
     ("1.1.0", "27/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Aggiunta domande M31"),
     ("1.0.0", "26/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Versione finale"),
     ("0.0.1", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
   ),
   partecipanti: ("Alessandro Dinato", "Siria Salvalaio"),
-  distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "M31 SRL"),
+  distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo", "M31 SRL"),
   odg: (
     "Presentazione gruppo GlitchHub Team",
     "Discussione domande inviate preventivamente via email",
