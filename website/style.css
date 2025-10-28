@@ -134,13 +134,11 @@ header::before {
 .logo-Header {
     text-align: center;
     padding: 3rem 0;
-    background: linear-gradient(135deg, rgba(94, 63, 181, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
 }
 
 .logoGrande {
     max-width: 600px;
     height: auto;
-    animation: fadeInScale 1s ease;
 }
 
 @keyframes fadeInScale {
@@ -178,19 +176,25 @@ header::before {
     width: 90%;
     margin: 3rem auto;
     padding: 0 2rem;
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
+    justify-content: space-between;
+     align-items: baseline; 
 }
 
-.container > div {
+.container > details {
+    flex: 1 1 48%;   
+    min-width: 31em; 
+    box-sizing: border-box;
     background: var(--bg-white);
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    position: relative;
     overflow: hidden;
+    max-width: 70%;
+    margin: 0 auto;
 }
 
 .container > div::before {
@@ -394,18 +398,6 @@ header::before {
     outline-offset: 2px;
 }
 
-.liste {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-}
-
-.lista-sinistra,
-.lista-destra {
-  width: 45%;
-}
-
 details {
   background: white;
   border: 1px solid #ccc;
@@ -467,14 +459,14 @@ margin: auto;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .members > * {
     flex: 1 1 45%; 
     max-width: 45%;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .members > * {
     flex: 1 1 90%;
     max-width: 90%;
