@@ -3,7 +3,7 @@
 #let primary = rgb("#630691")
 
 #let watermark = {
-  place(right + bottom, image("../../assets/loghi/GlitchHub-Team_LogoWM.png", width: 17cm))
+  place(right + bottom, image("../assets/loghi/GlitchHub-Team_LogoWM.png", width: 17cm))
 }
 
 #let slide-title-internal(body) = {
@@ -62,10 +62,10 @@
           columns: (1fr, 1fr),
           align: (left, right),
           [
-            #image("../../assets/loghi/GlitchHub-Team_LogoP.png", height: 1cm)
+            #image("../assets/loghi/GlitchHub-Team_LogoP.png", height: 1cm)
           ],
           [
-            #image("../../assets/loghi/Logo_Università_Padova.svg-300x300.png", height: 1cm)
+            #image("../assets/loghi/Logo_Università_Padova.svg-300x300.png", height: 1cm)
           ],
         )
         line(length: 100%, stroke: 0.5pt + primary)
@@ -109,8 +109,8 @@
   team-name: "GlitchHub Team",
   subtitle: "Diario di bordo",
   date: none,
-  logo-left: "../../assets/loghi/GlitchHub-Team_LogoP.png",
-  logo-right: "../../assets/loghi/Logo_Università_Padova.svg-300x300.png",
+  logo-left: "../assets/loghi/GlitchHub-Team_LogoP.png",
+  logo-right: "../assets/loghi/Logo_Università_Padova.svg-300x300.png",
 ) = {
   set page(paper: "presentation-16-9")
   set text(
