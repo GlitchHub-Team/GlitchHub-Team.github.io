@@ -2,10 +2,10 @@
 
 #show: report.with(
   titolo: "Verbale esterno 23/10/2025 (M31)",
-  stato: "Da verificare",
-  versione: "1.0.0",
+  stato: "Verificato",
+  versione: "1.1.0",
   registro-modifiche: (
-    ("1.1.0", "27/10/2025", "Alessandro Dinato", "-", "Aggiunta domande M31"),
+    ("1.1.0", "27/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Aggiunta domande M31"),
     ("1.0.0", "26/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Versione finale"),
     ("0.0.1", "23/10/2025", "Alessandro Dinato", "Siria Salvalaio", "Verbale incontro con M31"),
   ),
@@ -18,9 +18,9 @@
   ),
   htmlId: "Candidatura-VerbaliEsterni",
   verificatore-interno: "Siria Salvalaio",
-  left-signature: "",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   verificatore-esterno: "Cristian Pirlog",
-  right-signature: "",
+  right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
   tipo-verbale: "Esterno",
 )
 
