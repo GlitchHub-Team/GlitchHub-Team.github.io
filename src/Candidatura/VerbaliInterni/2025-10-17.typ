@@ -3,8 +3,9 @@
 #show: report.with(
   titolo: "Verbale interno 17/10/2025",
   stato: "Verificato",
-  versione: "1.0.0",
+  versione: "1.0.1",
   registro-modifiche: (
+    ("1.0.1", "28/10/2025", "Elia Ernesto Stellin", "Elia Ernesto Stellin", "Correzione refuso"),
     ("1.0.0", "26/10/2025", "Jaume Bernardi", "Jaume Bernardi", "Verifica del documento"),
     ("0.1.0", "25/10/2025", "Alessandro Dinato", "Jaume Bernardi", "Stesura verbale dalla bozza"),
     ("0.0.1", "18/10/2025", "Riccardo Graziani", "Alessandro Dinato", "Bozza primo incontro del gruppo"),
@@ -21,7 +22,7 @@
   distribuzione: (
     "GlitchHub Team",
     "Prof. Cardin Riccardo",
-    "Prof. Vardenega Tullio",
+    "Prof. Vardanega Tullio",
   ),
   odg: (
     "Scelta del nome e logo del gruppo",

@@ -5,6 +5,7 @@
   stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
+    ("1.0.1", "28/10/2025", "Elia Ernesto Stellin", "Elia Ernesto Stellin", "Correzione refusi"),
     ("1.0.0", "26/10/2025", "Jaume Bernardi", "Jaume Bernardi", "Verifica del documento"),
     ("0.1.0", "25/10/2025", "Alessandro Dinato", "Jaume Bernardi", "Stesura verbale dalla bozza"),
     ("0.0.1", "22/10/2025", "Riccardo Graziani", "Alessandro Dinato", "Bozza secondo incontro del gruppo"),
@@ -21,7 +22,7 @@
   distribuzione: (
     "GlitchHub Team",
     "Prof. Cardin Riccardo",
-    "Prof. Vardenega Tullio",
+    "Prof. Vardanega Tullio",
   ),
   odg: (
     "Organizzazione della documentazione per la Candidatura",
@@ -41,7 +42,7 @@ Il presente documento attesta che, in data *21 ottobre 2025*, dalle 16:30 alle 1
 L'incontro è stato organizzato con lo scopo di organizzare la documentazione necessaria alla candidatura dei capitolati di appalto.
 = Resoconto della riunione
 
-== Organizzazione clickup
+== Organizzazione ClickUp
 È stato deciso di organizzare il workflow del gruppo attraverso la piattaforma *ClickUp*, con l'obiettivo di gestire in maniera centralizzata scadenze, task e incontri.\
 ClickUp mette a disposizione le seguenti funzionalità:
 - un calendario *centralizzato*, con la possibilità di sincronizzarsi con altri calendari quali Google Calendar e Apple Calendar;
