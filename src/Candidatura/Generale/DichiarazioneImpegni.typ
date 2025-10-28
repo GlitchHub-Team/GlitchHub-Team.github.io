@@ -7,7 +7,7 @@
   stato: "Bozza",
   versione: "0.0.1",
   registro-modifiche: (
-    ("0.0.1", "28/10/2025", "Alessandro Dinato", "-", "Bozza documento"),
+    ("0.0.1", "28/10/2025", "Alessandro Dinato", "Michele Dioli", "Bozza analisi costi e tempo necessario"),
   ),
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "Candidatura-Generale",
