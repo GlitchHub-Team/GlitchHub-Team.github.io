@@ -8,7 +8,7 @@
   registro-modifiche: (
     ("0.4.0", "29/10/2025", "Elia Ernesto Stellin", "-", "Stesura sezioni C7 e C8; correzioni di formattazione varie"),
     ("0.3.0", "29/10/2025", "Elia Ernesto Stellin", "-", "Correzioni di stile e modifiche a sezioni C3, C4, C5, C9 e Conclusione"),
-    ("0.2.1", "29/10/2025", "Siria Salvalaio", "", "Piccole correzioni"),
+    ("0.2.1", "29/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Piccole correzioni"),
     ("0.2.0", "28/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Stesura C3, C4, C5, C9 e Conclusione"),
     ("0.1.1", "28/10/2025", "Alessandro Dinato", "-", "Correzioni di forma o riguardanti piccoli errori"),
     ("0.1.0", "28/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Stesura Introduzione, C1, C2, C6"),
