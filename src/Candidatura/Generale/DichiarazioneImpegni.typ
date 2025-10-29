@@ -7,7 +7,7 @@
   stato: "Bozza",
   versione: "0.0.2",
   registro-modifiche: (
-    ("0.0.2", "28/10/2025", "Hossam Ezzemouri", "-", "Bozza introduzione e analisi dei ruoli"),
+    ("0.0.2","28/10/2025","Hossam Ezzemouri", "-","Bozza introduzione e analisi dei ruoli"),
     ("0.0.1", "28/10/2025", "Alessandro Dinato", "Michele Dioli", "Bozza analisi costi e tempo necessario"),
   ),
 
@@ -19,24 +19,22 @@
 )
 
 = Introduzione
-Il gruppo *GlitchHub Team* si impegna formalmente alla realizzazione del *Capitolato C7 – Sistema di acquisizione dati e sensori*,proposto dall'azienda *M31 S.r.l*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova. \
-Con la presente dichiarazione, i membri del gruppo si impegnano a svolgere con responsabilità e continuità le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
+Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato C7 – Sistema di acquisizione dati e sensori,proposto dall'azienda M31, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.
+Con la presente dichiarazione, i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
 
 = Analisi dei ruoli
 All'interno del gruppo di lavoro, i ruoli sono stati definiti e assegnati in modo da coprire tutte le
-attività necessarie per la corretta gestione,progettazione e realizzazione del progetto. La
+attività necessarie per la corretta realizzazione del progetto. La
 suddivisione dei compiti è stata ispirata ai principi della gestione di progetto insegnati nel corso di
 Ingegneria del Software, con l'obiettivo di garantire equilibrio,responsabilità e qualità
 nell'esecuzione delle diverse fasi di lavoro.
 
-Di seguito si fornisce un'analisi dettagliata dei principali ruoli previsti e delle relative responsabilità.
+Di seguito si fornisce una descrizione dei principali ruoli previsti e delle relative responsabilità.
 
 == Responsabile
 Il Responsabile coordina il gruppo di lavoro, gestisce le risorse e assicura il rispetto delle scadenze.
-È la figura di riferimento sia per il team interno sia per gli interlocutori esterni (azienda e
-università). Supervisiona l'intero progetto, pianifica le attività, monitora l'avanzamento e
-interviene in caso di deviazioni dai piani stabiliti. Deve possedere competenze tecniche e capacità
-gestionali per valutare rischi, alternative e scelte operative. Il suo contributo è costante per tutta la
+È la figura di riferimento sia per il team interno sia per gli interlocutori esterni. Supervisiona l'intero progetto, pianifica le attività, monitora l'avanzamento e
+interviene in caso di deviazioni dai piani stabiliti. È richiesta una solida preparazione tecnica e ottime capacità decisionali per valutare rischi. Il suo contributo è costante per tutta la
 durata del progetto.
 
 == Amministratore
@@ -51,21 +49,22 @@ sviluppo.
 L'Analista è la figura incaricata di definire i requisiti del sistema e di modellare i casi d'uso. Riveste
 un ruolo cruciale nelle fasi iniziali del progetto, poiché traduce le esigenze del committente in
 specifiche tecniche e funzionali. Deve possedere conoscenze approfondite del dominio del
-problema e capacità di comunicazione, poiché la chiarezza dei requisiti influenza in modo diretto il
+problema e buone capacità comunicative, poiché la chiarezza dei requisiti influenza in modo diretto il
+
 successo dell'intero progetto. Gli analisti partecipano soprattutto alle prime fasi di progettazione,
 fornendo le basi per il lavoro dei progettisti e programmatori.
 
 == Progettista
 Il Progettista definisce l'architettura del sistema e le scelte tecnologiche principali. È responsabile
 della coerenza interna del software e della qualità del design, garantendo che le soluzioni adottate
-siano efficienti, mantenibili e scalabili. Deve possedere competenze tecniche aggiornate e una
+siano efficienti, manutenibili e scalabili. Deve possedere competenze tecniche avanzate (soprattutto aggiornate) e una
 visione d'insieme del sistema, in modo da guidare correttamente lo sviluppo. Generalmente segue
 il progetto nella fase di realizzazione, ma non durante la manutenzione.
 
 == Programmatore
 Il Programmatore realizza il codice seguendo le specifiche fornite dal Progettista. È la figura più
 numerosa e operativa del gruppo, impegnata nella concreta implementazione delle funzionalità
-previste. Oltre a scrivere codice, contribuisce alla manutenzione e all'integrazione del prodotto.
+previste, ponendo anche attenzione alla manutenzione del sistema. Oltre a scrivere codice, contribuisce alla manutenzione e all'integrazione del prodotto.
 Pur avendo competenze tecniche, ha margini decisionali limitati, operando nel rispetto delle linee
 guida progettuali stabilite a monte.
 
@@ -75,6 +74,8 @@ esecuzione delle attività. Effettua test, revisioni e validazioni per garantire
 gli standard di progetto. È una figura presente per l'intera durata del progetto e deve possedere
 esperienza tecnica, conoscenza del processo di sviluppo e capacità di giudizio indipendente. Il suo
 lavoro è cruciale per assicurare l'affidabilità e la coerenza del risultato finale.
+
+
 
 
 La chiara definizione dei ruoli consente al gruppo di operare in modo coordinato e trasparente,
