@@ -8,6 +8,7 @@
   registro-modifiche: (
     ("0.4.0", "29/10/2025", "Elia Ernesto Stellin", "-", "Stesura sezioni C7 e C8; correzioni di formattazione varie"),
     ("0.3.0", "29/10/2025", "Elia Ernesto Stellin", "-", "Correzioni di stile e modifiche a sezioni C3, C4, C5, C9 e Conclusione"),
+    ("0.2.1", "29/10/2025", "Siria Salvalaio", "", "Piccole correzioni"),
     ("0.2.0", "28/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Stesura C3, C4, C5, C9 e Conclusione"),
     ("0.1.1", "28/10/2025", "Alessandro Dinato", "-", "Correzioni di forma o riguardanti piccoli errori"),
     ("0.1.0", "28/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Stesura Introduzione, C1, C2, C6"),
@@ -25,7 +26,7 @@
 )
 
 = Introduzione
-Il presente documento ha lo scopo di mostrare la valutazione, da parte del gruppo *GlitchHub Team*, di ciascun capitolato presentato nella *Presentazione dei Capitolati di Appalto* in data *14 ottobre 2025*. \
+Il presente documento ha lo scopo di mostrare la valutazione, da parte del gruppo _GlitchHub Team_, di ciascun capitolato presentato nella *Presentazione dei Capitolati di Appalto* in data *14 ottobre 2025*. \
 Tale valutazione ha permesso di motivare la scelta del gruppo di presentare la candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._.
 
 = Valutazione dei capitolati
@@ -79,7 +80,7 @@ Il gruppo ritiene che sia interessante la sfida, proposta dal capitolato, di eff
 
 Tuttavia, sono emerse alcune incertezze riguardo all'architettura del sistema e al livello di complessità nella gestione dei pacchetti di conservazione, che potrebbero richiedere una notevole fase di analisi preliminare. Inoltre, diverse parti non risultano sufficientemente dettagliate e lasciano spazio a dubbi sull'effettiva implementazione.
 
-Per tali motivi, il gruppo ha deciso di non candidarsi per il capitolato C3, pur riconoscendo il potenziale applicativo.
+Per tali motivi, il gruppo ha deciso di non candidarsi per il capitolato *C3*, pur riconoscendo il potenziale applicativo.
 
 == C4: L'app che Protegge e Trasforma (Miriade S.r.l.)
 Il capitolato *C4*, proposto da _Miriade S.r.l._, prevede lo sviluppo di un'applicazione mobile dedicata alla prevenzione e al supporto delle vittime di violenza di genere. L'applicazione, destinata ai sistemi iOS e Android, mira a offrire un supporto concreto e personalizzato attraverso funzionalità intelligenti e sicure, come il rilevamento di situazioni di rischio, l'invio di allarmi discreti, l'accesso a servizi di assistenza, la formazione e la sensibilizzazione sul tema della violenza di genere.
@@ -112,7 +113,7 @@ Inoltre, sono state rilevate alcune criticità legate alla complessità dell'arc
 Per queste ragioni, pur riconoscendone il valore tecnico e l'esperienza che questo progetto può offrire, il gruppo ha deciso di non candidarsi al capitolato C5, per le motivazioni sopra descritte.
 
 == C6: Second Brain (Zucchetti S.p.A.)
-Il progetto proposto da Zucchetti S.p.A. nel capitolato *C6* prevede lo sviluppo di un editor di testo in formato _Markdown_, con l'integrazione di un LLM volto a migliorare o correggere il testo dell'utente. \
+Il progetto proposto da _Zucchetti S.p.A._ nel capitolato *C6* prevede lo sviluppo di un editor di testo in formato _Markdown_, con l'integrazione di un LLM volto a migliorare o correggere il testo dell'utente. \
 Tra i casi d'uso proposti per l'LLM vi sono la riscrittura del testo in registri di formalità differenti, la generazione di riassunti e la fornitura di critiche costruttive e suggerimenti di miglioramento da più punti di vista.\
 Opzionalmente, l'applicazione potrebbe anche scrivere interamente il testo seguendo un prompt specifico e salvare i testi creati.
 
@@ -159,13 +160,17 @@ Il capitolato C9, proposto da _Vimar S.p.A_., prevede la realizzazione di _View4
 Il progetto richiede lo sviluppo di due componenti principali: un'infrastruttura Cloud, realizzata secondo il principio di Infrastructure as Code tramite Docker e un applicativo web responsive per il personale sanitario, in grado di gestire allarmi, analisi e consumi energetici attraverso l'interfaccia IoT fornita da Vimar. Le tecnologie suggerite includono framework moderni come React, Angular o Flask per il front-end, e Node.js, Java con Spring e/o Python per il back-end, con la possibilità di integrazione su AWS.
 
 Il gruppo ha valutato molto positivamente il progetto, ritenendolo concreto, tecnicamente stimolante e ben strutturato. La possibilità di interagire con un kit fisico fornito dall'azienda rappresenta un forte valore aggiunto, così come la solidità e la disponibilità di Vimar nel fornire supporto tecnico e organizzativo durante lo sviluppo.
+Il gruppo ha valutato molto positivamente il progetto, ritenendolo concreto, tecnicamente stimolante e ben strutturato. La possibilità di interagire con un kit fisico fornito dall'azienda rappresenta un forte valore aggiunto, così come la solidità e la disponibilità di Vimar nel fornire supporto tecnico e organizzativo durante lo sviluppo.
 
 Nonostante ciò, dopo un'attenta votazione interna, il gruppo ha deciso di candidarsi per il capitolato C7, preferendolo per un margine molto ridotto rispetto a View4Life. Quest'ultimo rimane comunque considerato un ottimo progetto, apprezzato sia per la chiarezza della proposta sia per il valore formativo che può offrire.
 
 = Conclusione
 Al termine dell'analisi e delle valutazioni effettuate, il gruppo _GlitchHub Team_ ha esaminato con attenzione tutti i capitolati proposti, confrontandone obiettivi, tecnologie e ambiti applicativi.
 Il processo di selezione si è basato su criteri condivisi da tutti i membri, tra cui l'interesse tecnico, la chiarezza della proposta, la disponibilità dell'azienda proponente e il potenziale formativo del progetto.
+Al termine dell'analisi e delle valutazioni effettuate, il gruppo _GlitchHub Team_ ha esaminato con attenzione tutti i capitolati proposti, confrontandone obiettivi, tecnologie e ambiti applicativi.
+Il processo di selezione si è basato su criteri condivisi da tutti i membri, tra cui l'interesse tecnico, la chiarezza della proposta, la disponibilità dell'azienda proponente e il potenziale formativo del progetto.
 
+Tra i capitolati analizzati, diversi sono risultati di particolare interesse, in particolare *C2: Code Guardian*,  *C4: L'app che Protegge e Trasforma* e *C9: View4Life*, ritenuti progetti solidi, concreti e con un notevole valore applicativo. Tuttavia, dopo un confronto approfondito e una votazione interna, il gruppo ha deciso di presentare la propria candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._, che è risultato il più in linea con le competenze, gli interessi e gli obiettivi formativi del team.
 Tra i capitolati analizzati, diversi sono risultati di particolare interesse, in particolare *C2: Code Guardian*,  *C4: L'app che Protegge e Trasforma* e *C9: View4Life*, ritenuti progetti solidi, concreti e con un notevole valore applicativo. Tuttavia, dopo un confronto approfondito e una votazione interna, il gruppo ha deciso di presentare la propria candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._, che è risultato il più in linea con le competenze, gli interessi e gli obiettivi formativi del team.
 
 La scelta è stata presa con un margine rispetto ad altri capitolati di elevata qualità, segno della varietà e dell'elevato livello delle proposte di quest'anno. Il gruppo ritiene che il percorso di analisi e confronto svolto sia stato estremamente utile per definire con maggiore consapevolezza la direzione progettuale e le priorità comuni, ponendo le basi per un lavoro motivato e coerente con le proprie aspirazioni tecniche e professionali.
