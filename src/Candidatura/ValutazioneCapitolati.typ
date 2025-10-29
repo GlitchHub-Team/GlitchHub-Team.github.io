@@ -4,9 +4,10 @@
 #show: report.with(
   titolo: "Valutazione Capitolati",
   stato: "In attesa di verifica",
-  versione: "0.2.0",
+  versione: "0.3.0",
   registro-modifiche: (
-    ("0.2.0", "28/10/2025", "Siria Salvalaio", "", "Stesura C3, C4, C5, C9 e Conclusione"),
+    ("0.3.0", "29/10/2025", "Elia Ernesto Stellin", "-", "Correzioni di stile e modifiche a sezioni C3, C4, C5, C9 e Conclusione"),
+    ("0.2.0", "28/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Stesura C3, C4, C5, C9 e Conclusione"),
     ("0.1.1", "28/10/2025", "Alessandro Dinato", "-", "Correzioni di forma o riguardanti piccoli errori"),
     ("0.1.0", "28/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Stesura Introduzione, C1, C2, C6"),
     ("0.0.1", "27/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Bozza valutazione capitolati"),
@@ -27,7 +28,6 @@ Il presente documento ha lo scopo di mostrare la valutazione, da parte del grupp
 Tale valutazione ha permesso di motivare la scelta del gruppo di presentare la candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._.
 
 = Valutazione dei capitolati
-// TODO: non mi piace "candidatura PER questo capitolato"(Ale: per me va bene)
 Di seguito, per ciascun capitolato verranno riportati: una breve descrizione, la valutazione del gruppo in merito e le motivazioni per cui il gruppo ha scelto di procedere o meno con la candidatura per tale capitolato.
 
 Come verrà descritto anche successivamente, il gruppo ha scelto di candidarsi al capitolato *C7*.
@@ -35,7 +35,7 @@ Tale scelta è avvenuta tramite un sistema di votazione in cui ogni membro ha es
 
 Sebbene questo capitolato non sia stato scelto all'unanimità, la maggior parte del gruppo ha espresso interesse nello sviluppare il progetto da esso proposto, considerando al contempo altri capitolati come "seconde scelte", in caso di rifiuto della candidatura al *C7*.
 
-== C1: Automated EN18031 Compliance Verification (Bluewind)
+== C1: Automated EN18031 Compliance Verification (Bluewind S.r.l.)
 Lo standard della Gazzetta Ufficiale dell'Unione Europea EN 18031 è una norma armonizzata per la Direttiva europea sulle apparecchiature radio, in breve RED. \
 Quest'ultima copre tutti i device immessi nel mercato europeo che scambiano dati tramite onde radio, tra cui prodotti collegati alla rete tramite Wi-Fi e Bluetooth, dispositivi wireless di IoT e altri, richiedendo che questi rispettino dei requisiti di sicurezza informatica.
 
@@ -67,34 +67,48 @@ Al momento della scrittura di questo documento, il gruppo non ha ricevuto rispos
 Nonostante ciò, seguendo la votazione interna al gruppo, si è deciso di mantenere questo capitolato come "seconda scelta" in caso di rifiuto della candidatura al *C7*.
 
 == C3: DIPReader (Sanmarco Informatica S.p.A)
-Il capitolato *C3*, proposto da Sanmarco Informatica S.p.A., prevede lo sviluppo di una piattaforma che consenta di eseguire ricerche e consultazioni sui documenti conservati all’interno di un sistema di archiviazione digitale centralizzato, denominato Distribution Information Package (DIP).
-L’obiettivo del progetto è fornire agli utenti la possibilità di accedere e ricercare tali documenti anche in assenza di connettività, tramite un’interfaccia accessibile via browser o applicazione multipiattaforma. Tra le funzionalità principali figurano la visualizzazione semplificata dei dati tecnici contenuti nei pacchetti, la ricerca tramite metadati, la visualizzazione in anteprima dei formati più comuni e la possibilità di esportare selezioni di documenti. Tra le funzionalità opzionali sono inoltre previste la ricerca semantica, la verifica delle firme digitali e l’accesso a pacchetti disponibili in cloud.
+Il capitolato *C3*, proposto da Sanmarco Informatica S.p.A., prevede lo sviluppo di una piattaforma che consenta di ricercare e consultare documenti conservati all'interno di un sistema di archiviazione digitale centralizzato, denominato _Distribution Information Package_ (DIP).
 
-Le tecnologie suggerite comprendono l’utilizzo di SQLite per la gestione locale dei dati e FAISS (Facebook AI Similarity Search) per la ricerca basata su similarità, mentre per il front-end vengono proposti framework moderni come React o Angular sviluppati in TypeScript o JavaScript.
+L'obiettivo del progetto è fornire agli utenti la possibilità di accedere e ricercare tali documenti anche in assenza di connettività, tramite un'interfaccia accessibile via browser o applicazione multipiattaforma. Tra le funzionalità principali figurano la visualizzazione semplificata dei dati tecnici contenuti nei pacchetti, la ricerca tramite metadati, la visualizzazione in anteprima dei formati più comuni e la possibilità di esportare selezioni di documenti. Tra le funzionalità opzionali sono inoltre previste la ricerca semantica, la verifica delle firme digitali e l'accesso a pacchetti disponibili in cloud.
 
-Il gruppo ha ritenuto il progetto interessante e attuale, in quanto affronta un tema concreto nel campo della conservazione digitale e propone tecnologie moderne e largamente utilizzate. Tuttavia, sono emerse alcune incertezze riguardo all’architettura del sistema e al livello di complessità nella gestione dei pacchetti di conservazione, che potrebbero richiedere una notevole fase di analisi preliminare. Inoltre, diverse parti non risultano sufficientemente dettagliate e lasciano spazio a dubbi sull’effettiva implementazione.
+Le tecnologie suggerite comprendono l'utilizzo di SQLite per la gestione locale dei dati e FAISS (Facebook AI Similarity Search) per la ricerca basata su similarità, mentre per il front-end vengono proposti framework moderni come React o Angular sviluppati in TypeScript o JavaScript.
+
+// NOTA [Elia]: Ho corretto leggermente la frase secondo quello che avevamo detto in riunione (Vedi Appunti Riunione Interna 2025-10-27)
+Il gruppo ritiene che sia interessante la sfida, proposta dal capitolato, di efficientare il sistema di archiviazione, ma la maggior parte del gruppo non prova particolare interesse verso il dominio dell'archiviazione di documentazione.
+
+Tuttavia, sono emerse alcune incertezze riguardo all'architettura del sistema e al livello di complessità nella gestione dei pacchetti di conservazione, che potrebbero richiedere una notevole fase di analisi preliminare. Inoltre, diverse parti non risultano sufficientemente dettagliate e lasciano spazio a dubbi sull'effettiva implementazione.
 
 Per tali motivi, il gruppo ha deciso di non candidarsi per il capitolato C3, pur riconoscendo il potenziale applicativo.
 
+== C4: L'app che Protegge e Trasforma (Miriade S.r.l.)
+Il capitolato *C4*, proposto da _Miriade S.r.l._, prevede lo sviluppo di un'applicazione mobile dedicata alla prevenzione e al supporto delle vittime di violenza di genere. L'applicazione, destinata ai sistemi iOS e Android, mira a offrire un supporto concreto e personalizzato attraverso funzionalità intelligenti e sicure, come il rilevamento di situazioni di rischio, l'invio di allarmi discreti, l'accesso a servizi di assistenza, la formazione e la sensibilizzazione sul tema della violenza di genere.
 
-== C4: L'app che Protegge e Trasforma (Miriade)
-Il capitolato *C4*, proposto da _Miriade S.r.l._, prevede lo sviluppo di un’applicazione mobile dedicata alla prevenzione e al supporto delle vittime di violenza di genere. L’applicazione, destinata ai sistemi iOS e Android, mira a offrire un supporto concreto e personalizzato attraverso funzionalità intelligenti e sicure, come il rilevamento di situazioni di rischio, l’invio di allarmi discreti, l’accesso a servizi di assistenza, la formazione e la sensibilizzazione sul tema della violenza di genere.
+Il progetto presenta un'architettura moderna, basata su microservizi e orientata al cloud, con un'infrastruttura preferibilmente serverless su AWS. Tra le tecnologie suggerite figurano Flutter per lo sviluppo multipiattaforma e servizi clouconced come AWS Lambda, DynamoDB, RDS e SageMaker per l'implementazione di componenti basate su Machine Learning. Particolare attenzione è posta alla sicurezza e alla protezione dei dati, con un approccio _security by design_ conforme al GDPR.
 
-Il progetto presenta un’architettura moderna, basata su microservizi e orientata al cloud, con un’infrastruttura preferibilmente serverless su AWS. Tra le tecnologie suggerite figurano Flutter per lo sviluppo multipiattaforma e servizi cloud come AWS Lambda, DynamoDB, RDS e SageMaker per l’implementazione di componenti basate su Machine Learning. Particolare attenzione è posta alla sicurezza e alla protezione dei dati, con un approccio _security by design_ conforme al GDPR.
+// NOTA [Elia]:
+//  - ho modificato le considerazioni positive (vd. sempre Appunti Riunione 2025-10-27)
+// - non direi che ha offerto "supporto tecnico", ma che hanno risposto a dubbi di svariato tipo
+Il gruppo ha valutato positivamente il capitolato per l'impatto sociale del progetto, soprattutto visto la rinnovata sensibilità verso i temi di violenza di genere nell'immaginario collettivo degli ultimi anni. Durante l'incontro con i referenti aziendali, Miriade si è dimostrata estremamente disponibile e collaborativa, rispondendo a dubbi di tipo tecnico, specialistico e legale. In particolare, l'azienda ha risposto a perplessità del gruppo relative principalmente all'utilizzo degli LLM per il trattamento dei dati sensibili degli utenti.
 
-Il gruppo ha valutato positivamente il capitolato per l’impatto sociale del progetto e per la varietà di tecnologie coinvolte. Durante l’incontro con i referenti aziendali, Miriade si è dimostrata estremamente disponibile e collaborativa, offrendo supporto tecnico, formativo e specialistico, anche su aspetti legali e di privacy, fattore che è stato molto apprezzato.
+// NOTA [Elia]: aggiunti dubbi e considerazioni negative (dire più cose è meglio)
+Nonostante ciò, gran parte del gruppo non prova interesse verso lo sviluppo del front end mobile e l'utilizzo delle tecnologie dell'AI generativa con Amazon SageMaker e Amazon Bedrock.
 
-Pur non essendo stato scelto come progetto principale, il gruppo ha deciso di mantenerlo tra le possibili alternative in caso di rifiuto della candidatura al C7, riconoscendone la solidità tecnica e il valore umano.
+Pur non essendo stato scelto come progetto principale, il gruppo ha deciso di mantenerlo tra le possibili alternative in caso di rifiuto della candidatura al *C7*, riconoscendone la solidità tecnica e il valore umano e morale.
 
 == C5: NEXUM (Eggon S.r.l.)
-Il capitolato C5, proposto da Eggon S.r.l., prevede lo sviluppo di nuove funzionalità intelligenti e interoperabili per la piattaforma NEXUM, una soluzione di gestione HR che semplifica la comunicazione tra aziende, dipendenti e studi dei Consulenti del Lavoro.
+Il capitolato C5, proposto da Eggon S.r.l., prevede lo sviluppo di nuove funzionalità intelligenti e interoperabili per NEXUM, la piattaforma proprietaria di Eggon per la gestione HR, il cui scopo è di semplificare la comunicazione tra aziende, dipendenti e studi dei Consulenti del Lavoro.
 
-L’obiettivo del progetto è integrare moduli basati su Intelligenza Artificiale e Data Analytics per migliorare l’automazione dei processi e la gestione documentale, introducendo componenti come un AI Assistant Generativo per la creazione di contenuti e un AI Co-Pilot per l’analisi, classificazione e distribuzione automatica di documenti.
-Le tecnologie indicate comprendono Ruby on Rails per il backend, Angular e Next.js per le interfacce, e un’infrastruttura cloud su AWS, basata su servizi come S3 e Amazon RDS for PostgreSQL. Il progetto segue metodologie Agile/SCRUM e offre un ambiente di sviluppo professionale, con strumenti di versionamento, test e deployment integrato.
+L'obiettivo del progetto è di integrare moduli basati su Intelligenza Artificiale e Data Analytics per migliorare l'automazione dei processi e la gestione documentale, introducendo componenti quali un AI Assistant Generativo per la creazione di contenuti e un AI Co-Pilot per l'analisi, classificazione e distribuzione automatica di documenti.
 
-Il gruppo ha valutato positivamente il capitolato per la solidità dell’azienda proponente e per la possibilità di lavorare su un progetto reale già in produzione, che combina aspetti pratici e innovativi, offrendo un contesto vicino a quello aziendale. Tuttavia, sono state rilevate alcune criticità legate alla complessità dell’architettura e all’ampia varietà di tecnologie coinvolte, che richiederebbero un significativo sforzo iniziale di apprendimento e coordinamento.
+Le tecnologie indicate comprendono Ruby on Rails per il backend, Angular e Next.js per le interfacce, e un'infrastruttura cloud su AWS, basata su servizi come S3 e Amazon RDS for PostgreSQL. Il progetto segue metodologie Agile/SCRUM, offrendo un ambiente di sviluppo professionale, con strumenti di versionamento, test e deployment integrato.
 
-Per queste ragioni, pur riconoscendone il valore tecnico e l’elevato potenziale formativo, il gruppo ha deciso di non candidarsi al capitolato C5, preferendo orientarsi verso progetti di dominio più chiaro e con obiettivi maggiormente allineati alle proprie competenze e interessi.
+// NOTA [Elia]: aggiunto qualche contro, sempre riferendomi alla riunione del 27/10
+Il gruppo ha valutato positivamente il capitolato data la solidità dell'azienda proponente. D'altro canto, il gruppo ha opinioni discordanti riguardo a lavorare su una piattaforma reale già in produzione, poiché, sebbene sia un'opportunità per fare esperienza in una realtà vicina a quella aziendale, parte del gruppo ha mostrato una preferenza maggiore verso la creazione di un progetto dall'inizio alla fine, dato il valore didattico che ciò può offrire. 
+
+Inoltre, sono state rilevate alcune criticità legate alla complessità dell'architettura e all'ampia varietà di tecnologie coinvolte, che richiederebbero un significativo sforzo iniziale di apprendimento e coordinamento.
+
+// NOTA [Elia]: in realtà il dominio del C5 è chiaro, è che preferiamo lavorare in un progetto da zero
+Per queste ragioni, pur riconoscendone il valore tecnico e l'esperienza che questo progetto può offrire, il gruppo ha deciso di non candidarsi al capitolato C5, per le motivazioni sopra descritte.
 
 == C6: Second Brain (Zucchetti S.p.A.)
 Il progetto proposto da Zucchetti S.p.A. nel capitolato *C6* prevede lo sviluppo di un editor di testo in formato _Markdown_, con l'integrazione di un LLM volto a migliorare o correggere il testo dell'utente. \
@@ -108,22 +122,28 @@ Poiché il progetto didattico viene svolto in vista di un apprendimento utile al
 
 
 == C7: Sistema di acquisizione dati da sensori
+// TODO: non mi piace "è situato"
+// Il progetto proposto dal capitolato *C7* è situato nell'ambito della gestione e acquisizione di dati provenienti da sensori distribuiti a basso consumo energetico, i quali permettono di raccogliere dati in modo dettagliato.
+
+
 
 == C8: Smart Order
 
+
+
 == C9: View4Life (Vimar S.p.A.)
-Il capitolato C9, proposto da Vimar S.p.A., prevede la realizzazione di View4Life, una piattaforma per la gestione completa degli impianti smart nelle residenze protette. Il progetto si colloca nell’ambito della domotica avanzata e mira a creare un sistema integrato per il monitoraggio e il controllo di dispositivi IoT, come sensori di presenza, attuatori, termostati e sistemi di illuminazione, con l’obiettivo di migliorare sicurezza, comfort e sostenibilità energetica nelle strutture dedicate agli anziani autosufficienti.
+Il capitolato C9, proposto da Vimar S.p.A., prevede la realizzazione di _View4Life_, una piattaforma per la gestione completa degli impianti smart nelle residenze protette. Il progetto si colloca nell'ambito della domotica avanzata e mira a creare un sistema integrato per il monitoraggio e il controllo di dispositivi IoT, come sensori di presenza, attuatori, termostati e sistemi di illuminazione, con l'obiettivo di migliorare sicurezza, comfort e sostenibilità energetica nelle strutture dedicate agli anziani non autosufficienti.
 
-Il progetto richiede lo sviluppo di due componenti principali: un’infrastruttura Cloud, realizzata secondo il principio di Infrastructure as Code tramite Docker, e un applicativo web responsive per il personale sanitario, in grado di gestire allarmi, analisi e consumi energetici attraverso l’interfaccia KNX IoT 3rd-party API fornita da Vimar. Le tecnologie suggerite includono framework moderni come React, Angular o Flask per il front-end, e Node.js, Java con Spring e/o Python per il back-end, con la possibilità di integrazione su AWS.
+Il progetto richiede lo sviluppo di due componenti principali: un'infrastruttura Cloud, realizzata secondo il principio di Infrastructure as Code tramite Docker e un applicativo web responsive per il personale sanitario, in grado di gestire allarmi, analisi e consumi energetici attraverso l'interfaccia IoT fornita da Vimar. Le tecnologie suggerite includono framework moderni come React, Angular o Flask per il front-end, e Node.js, Java con Spring e/o Python per il back-end, con la possibilità di integrazione su AWS.
 
-Il gruppo ha valutato molto positivamente il progetto, ritenendolo concreto, tecnicamente stimolante e ben strutturato. La possibilità di interagire con un kit fisico fornito dall’azienda rappresenta un forte valore aggiunto, così come la solidità e la disponibilità di Vimar nel fornire supporto tecnico e organizzativo durante lo sviluppo.
+Il gruppo ha valutato molto positivamente il progetto, ritenendolo concreto, tecnicamente stimolante e ben strutturato. La possibilità di interagire con un kit fisico fornito dall'azienda rappresenta un forte valore aggiunto, così come la solidità e la disponibilità di Vimar nel fornire supporto tecnico e organizzativo durante lo sviluppo.
 
-Nonostante ciò, dopo un’attenta votazione interna, il gruppo ha deciso di candidarsi per il capitolato C7, preferendolo per un margine molto ridotto rispetto a View4Life. Quest’ultimo rimane comunque considerato un ottimo progetto, apprezzato sia per la chiarezza della proposta sia per il valore formativo che avrebbe potuto offrire.
+Nonostante ciò, dopo un'attenta votazione interna, il gruppo ha deciso di candidarsi per il capitolato C7, preferendolo per un margine molto ridotto rispetto a View4Life. Quest'ultimo rimane comunque considerato un ottimo progetto, apprezzato sia per la chiarezza della proposta sia per il valore formativo che può offrire.
 
 = Conclusione
-Al termine dell’analisi e delle valutazioni effettuate, il gruppo _GlitchHub Team_ ha esaminato con attenzione tutti i capitolati proposti, confrontandone obiettivi, tecnologie e ambiti applicativi.
-Il processo di selezione si è basato su criteri condivisi da tutti i membri, tra cui l’interesse tecnico, la chiarezza della proposta, la disponibilità dell’azienda proponente e il potenziale formativo del progetto.
+Al termine dell'analisi e delle valutazioni effettuate, il gruppo _GlitchHub Team_ ha esaminato con attenzione tutti i capitolati proposti, confrontandone obiettivi, tecnologie e ambiti applicativi.
+Il processo di selezione si è basato su criteri condivisi da tutti i membri, tra cui l'interesse tecnico, la chiarezza della proposta, la disponibilità dell'azienda proponente e il potenziale formativo del progetto.
 
-Tra i capitolati analizzati, diversi sono risultati di particolare interesse, in particolare *C2: Code Guardian*,  *C4: L’app che Protegge e Trasforma* e *C9: View4Life*, ritenuti progetti solidi, concreti e con un notevole valore applicativo. Tuttavia, dopo un confronto approfondito e una votazione interna, il gruppo ha deciso di presentare la propria candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._, che è risultato il più in linea con le competenze, gli interessi e gli obiettivi formativi del team.
+Tra i capitolati analizzati, diversi sono risultati di particolare interesse, in particolare *C2: Code Guardian*,  *C4: L'app che Protegge e Trasforma* e *C9: View4Life*, ritenuti progetti solidi, concreti e con un notevole valore applicativo. Tuttavia, dopo un confronto approfondito e una votazione interna, il gruppo ha deciso di presentare la propria candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._, che è risultato il più in linea con le competenze, gli interessi e gli obiettivi formativi del team.
 
-La scelta è stata presa con un margine ristretto rispetto ad altri capitolati di elevata qualità, segno della varietà e dell’elevato livello delle proposte di quest’anno. Il gruppo ritiene che il percorso di analisi e confronto svolto sia stato estremamente utile per definire con maggiore consapevolezza la direzione progettuale e le priorità comuni, ponendo le basi per un lavoro motivato e coerente con le proprie aspirazioni tecniche e professionali.
+La scelta è stata presa con un margine rispetto ad altri capitolati di elevata qualità, segno della varietà e dell'elevato livello delle proposte di quest'anno. Il gruppo ritiene che il percorso di analisi e confronto svolto sia stato estremamente utile per definire con maggiore consapevolezza la direzione progettuale e le priorità comuni, ponendo le basi per un lavoro motivato e coerente con le proprie aspirazioni tecniche e professionali.
