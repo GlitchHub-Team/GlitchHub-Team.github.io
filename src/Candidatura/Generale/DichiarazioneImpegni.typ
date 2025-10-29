@@ -5,8 +5,9 @@
 #show: report.with(
   titolo: "Dichiarazione impegni",
   stato: "Bozza",
-  versione: "0.0.2",
+  versione: "0.0.3",
   registro-modifiche: (
+    ("0.0.3","29/10/2025","Jaume Bernardi", "-","Bozza analisi dei rischi"),
     ("0.0.2","28/10/2025","Hossam Ezzemouri", "-","Bozza introduzione e analisi dei ruoli"),
     ("0.0.1", "28/10/2025", "Alessandro Dinato", "Michele Dioli", "Bozza analisi costi e tempo necessario"),
   ),
@@ -248,6 +249,13 @@ In questa tabella verranno utilizzati degli acronimi per descrivere i singoli ru
 #pagebreak()
 
 = Analisi dei rischi
+Il gruppo ha individuato diversi rischi potenziali nella realizzazione del progetto concordato che potrebbero risultare in disagi,
+qualora venissero gestiti incorrettamente:
+Valutazione errata della suddivisione del lavoro tra i membri del gruppo e nel tempo, 
+portando ad una scarsità di risorse per altri compiti. Rischio alto, originato dall'inesperienza del gruppo su veri progetti.
+Un insufficiente e/o inefficiente coinvolgimento del cliente, che può portare ad una incomprensione dei requisiti. Rischio basso, considerando che quest'ultimo è competente nell'ambito richiesto, minimizzando la possibilità di equivoci e dati mancanti tra i requisiti.
+Difficoltà ad utilizzare le tecnologie richieste. Rischo basso, provato che la comunicazione tra il gruppo e l'altra parte avvenga in maniera rapida e utile.
+
 = Costi
 Il preventivo finale calcolato dai componenti del gruppo basandosi sulla suddivisione dei compiti e del costo orario dei vari ruoli è di *12975€*.
 = Consegna
