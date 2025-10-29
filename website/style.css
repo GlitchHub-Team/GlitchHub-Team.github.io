@@ -185,7 +185,7 @@ header::before {
 
 .container > details {
     flex: 1 1 48%;   
-    min-width: 80%; 
+    min-width: 31em; 
     box-sizing: border-box;
     background: var(--bg-white);
     border-radius: 12px;
