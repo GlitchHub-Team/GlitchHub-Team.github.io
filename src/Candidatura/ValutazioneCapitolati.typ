@@ -4,8 +4,9 @@
 #show: report.with(
   titolo: "Valutazione Capitolati",
   stato: "In attesa di verifica",
-  versione: "0.3.0",
+  versione: "0.4.0",
   registro-modifiche: (
+    ("0.4.0", "29/10/2025", "Elia Ernesto Stellin", "-", "Stesura sezioni C7 e C8; correzioni di formattazione varie"),
     ("0.3.0", "29/10/2025", "Elia Ernesto Stellin", "-", "Correzioni di stile e modifiche a sezioni C3, C4, C5, C9 e Conclusione"),
     ("0.2.0", "28/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Stesura C3, C4, C5, C9 e Conclusione"),
     ("0.1.1", "28/10/2025", "Alessandro Dinato", "-", "Correzioni di forma o riguardanti piccoli errori"),
@@ -121,18 +122,39 @@ Inoltre, il gruppo non trova il progetto abbastanza stimolante e interessante di
 Poiché il progetto didattico viene svolto in vista di un apprendimento utile al nostro inserimento nel mondo del lavoro, non riteniamo che _Second Brain_ possa soddisfare la nostra aspettativa di apprendimento e di crescita nell'ambito del Software Engineering.
 
 
-== C7: Sistema di acquisizione dati da sensori
-// TODO: non mi piace "è situato"
-// Il progetto proposto dal capitolato *C7* è situato nell'ambito della gestione e acquisizione di dati provenienti da sensori distribuiti a basso consumo energetico, i quali permettono di raccogliere dati in modo dettagliato.
+== C7: Sistema di acquisizione dati da sensori (M31 S.r.l.)
+Il progetto proposto dal capitolato *C7* è inerente alla gestione e acquisizione di dati provenienti da sensori distribuiti a basso consumo energetico, i quali permettono di raccogliere dati in modo dettagliato.
 
+Nello specifico, lo sviluppo richiesto dal progetto si colloca in un sistema distribuito di acquisizione e smistamento dati da sensori Bluetooth Low Energy (BLE) diviso in 3 strati principali:
 
+// TODO: non so se vada bene l'elenco numerato
+1. Lo strato di raccolta dati di campo tramite sensori, 
+2. Lo strato di gateway tra i sensori e il cloud tramite Wi-Fi,
+3. Lo strato di cloud, oggetto del capitolato di progetto, che si connette in modo sicuro al gateway preso in considerazione per rendere disponibili i dati raccolti tramite API.
 
-== C8: Smart Order
+Più nello specifico, l'obiettivo del progetto è di progettare un'infrastruttura scalabile che comunichi in modo sicuro con i sensori non conformati e che ne gestisca i dati raccolti, in modo tale da fornire strumenti di monitoraggio e visualizzazione dei dati raccolti agli amministratori e agli utenti finali, garantendo al contempo la totale separazione dei dati tra i diversi tenant.
 
+Il gruppo ha dimostrato un interesse unanime verso l'architettura richiesta dal progetto e le tecnologie di riferimento, nello specifico l'utilizzo di Google Cloud per la gestione del servizio, Go per il back end di componenti ad alte prestazione e NATS per la comunicazione tra microservizi. Inoltre, il gruppo, oltre ad aver dimostrato un forte interesse verso il dominio dell'IoT, ritiene che il progetto proposto dal capitolato abbia una complessità tale da essere un progetto didattico in grado di fornire un valore di apprendimento notevole.
+
+Infine, l'azienda è stata disponibile sin da subito per rispondere ai dubbi e alle domande di approfondimento del gruppo, dimostrando professionalità e alta competenza nell'incontro avvenuto il *23 ottobre 2025*.
+
+Perciò, in seguito a queste motivazioni, il gruppo ha deciso di procedere con la candidatura al capitolato *C7*.
+
+== C8: Smart Order (Ergon Informatica S.r.l.)
+Il progetto proposto nel capitolato C9 da _Ergon Informatica S.r.l._ si colloca nell'ambito della gestione e ricezione degli ordini di acquisto da parte dei clienti di un'azienda, i quali sono _multimodali_, ovvero ricevuti in formati diversi e non strutturati: per esempio, alcuni ordini vengono recapitati dai clienti sotto forma di testo tramite email o messaggi istantanei, altri sotto forma di audio, tramite chiamate o messaggi vocali, oppure sotto forma di immagini.
+
+La gestione di tali ordini di acquisto è tediosa, poiché richiede un grande sforzo umano per categorizzare e interpretare questi ordini. Per cui, il progetto prevede lo sviluppo di una piattaforma in grado di automatizzare questi processi, sfruttando tecnologie di Machine Learning per analizzare i diversi ordini di acquisto multimodali, elaborarli ed interpretarli in maniera più efficiente, trasformandoli in dati strutturati.
+
+Il capitolato richiede che la piattafofma sia sviluppata a strati, suddividendo gli strati di raccolta input, pre-processing ed elaborazione dei dati, dagli strati di interfaccia utente e di gestione degli ordini strutturati, utilizzando tecnologie innovative, quali i sistemi di database vettoriali e di Computer Vision, verso le quali parte del gruppo ha mostrato interesse.
+
+Il gruppo ha anche trovato particolarmente stimolante il dominio del progetto, ritenendo che il Machine Learning sia uno strumento totalmente appropriato il caso d'uso dell'elaborazione e interpretazione di dati non strutturati. Infatti, il progetto di _SmartOrder_ richiede l'uso di diverse tecnologie di Intelligenza Artificiale per i diversi formati analizzabili, quali i Transformer quali GPT e BERT per analizzare il testo, le reti neurali convoluzionali (CNN) per l'analisi delle immagini, e i sistemi di speech-to-text per l'analisi dell'audio e molti altri.
+
+// TODO: non sono sicuro di essere stato chiaro, mi sembra di essere discordante con quello che ho detto prima
+Per tale motivo, questo capitolato si distingue dagli altri che impiegano l'utilizzo dell'AI, tuttavia il gruppo, a seguito di discussioni e considerazioni interne, ha deciso di non candidarsi al capitolato *C8* data la mancanza di familiarità e interesse della maggior parte del gruppo verso questo tipo di tecnologie innovative.
 
 
 == C9: View4Life (Vimar S.p.A.)
-Il capitolato C9, proposto da Vimar S.p.A., prevede la realizzazione di _View4Life_, una piattaforma per la gestione completa degli impianti smart nelle residenze protette. Il progetto si colloca nell'ambito della domotica avanzata e mira a creare un sistema integrato per il monitoraggio e il controllo di dispositivi IoT, come sensori di presenza, attuatori, termostati e sistemi di illuminazione, con l'obiettivo di migliorare sicurezza, comfort e sostenibilità energetica nelle strutture dedicate agli anziani non autosufficienti.
+Il capitolato C9, proposto da _Vimar S.p.A_., prevede la realizzazione di _View4Life_, una piattaforma per la gestione completa degli impianti smart nelle residenze protette. Il progetto si colloca nell'ambito della domotica avanzata e mira a creare un sistema integrato per il monitoraggio e il controllo di dispositivi IoT, come sensori di presenza, attuatori, termostati e sistemi di illuminazione, con l'obiettivo di migliorare sicurezza, comfort e sostenibilità energetica nelle strutture dedicate agli anziani non autosufficienti.
 
 Il progetto richiede lo sviluppo di due componenti principali: un'infrastruttura Cloud, realizzata secondo il principio di Infrastructure as Code tramite Docker e un applicativo web responsive per il personale sanitario, in grado di gestire allarmi, analisi e consumi energetici attraverso l'interfaccia IoT fornita da Vimar. Le tecnologie suggerite includono framework moderni come React, Angular o Flask per il front-end, e Node.js, Java con Spring e/o Python per il back-end, con la possibilità di integrazione su AWS.
 
