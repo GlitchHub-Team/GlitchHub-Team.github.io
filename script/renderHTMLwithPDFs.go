@@ -121,7 +121,8 @@ func main() {
 
 	htmlStr := string(htmlBytes)
 
-	for _, d := range docs {
+	for i := len(docs) - 1; i >= 0; i-- {
+		d := docs[i]
 		d.path = strings.Replace(d.path, "./website", "", 1)
 		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title)
 		fmt.Println(d.id)
