@@ -7,6 +7,7 @@
   stato: "Bozza",
   versione: "0.0.4",
   registro-modifiche: (
+    ("0.0.5", "30/10/2025", "Jaume Bernardi", "-", "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento"),
     ("0.0.4", "29/10/2025", "Alessandro Dinato", "-", "Stesura motivazioni suddivisione oraria"),
     ("0.0.3", "29/10/2025", "Jaume Bernardi", "-", "Bozza analisi dei rischi"),
     ("0.0.2", "28/10/2025", "Hossam Ezzemouri", "Alessandro Dinato", "Bozza introduzione e analisi dei ruoli"),
@@ -253,14 +254,31 @@ Il preventivo dei costi si basa sulla suddivisione oraria combinata al costo ora
     })
   ]
 ]
-
+= Periodi di rallentamento
+Il gruppo ha individuato periodi in cui il lavoro rallenterà, possibilmente fino ad uno stato di inattività: il periodo natalizio e la sessione invernale.
+#table(
+  columns: (0.33fr, 0.33fr, 0.33fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Periodo*], [*Da*], [*A*]),
+  "Natalizio", "24 dicembre 2025", "6 gennaio 2026",
+  "Sessione Invernale", "19 gennaio 2026", "21 febbraio 2026",
+)
 = Analisi dei rischi
-Il gruppo ha individuato diversi rischi potenziali nella realizzazione del progetto concordato che potrebbero risultare in disagi, qualora venissero gestiti incorrettamente:
-- Valutazione errata della suddivisione del lavoro tra i membri del gruppo e nel tempo, portando ad una scarsità di risorse per altri compiti.
-- Rischio alto, originato dall'inesperienza del gruppo su veri progetti.
-- Un insufficiente e/o inefficiente coinvolgimento del cliente, che può portare ad una incomprensione dei requisiti. Rischio basso, considerando che quest'ultimo è competente nell'ambito richiesto, minimizzando la possibilità di equivoci e dati mancanti tra i requisiti.
-- Difficoltà ad utilizzare le tecnologie richieste. Rischio basso, provato che la comunicazione tra il gruppo e l'altra parte avvenga in maniera rapida e utile.
+Il gruppo ha individuato diversi rischi potenziali nella realizzazione del progetto concordato che potrebbero risultare in disagi, qualora venissero gestiti incorrettamente.
+== Organizzazione e distribuzione delle risorse
+La valutazione della suddivisione del lavoro tra i membri del gruppo e nel tempo potrebbe risultare errata, portando ad una scarsità di risorse tra i vari compiti. Presenta un rischio alto, originato dall'inesperienza del gruppo su progetti più corposi, nonché nell'utilizzo di un way of working professionale e la comprensione e conseguimento dello stato dell'arte nell'ambito richiesto.
 
+Qualora ciò dovesse avvenire, è necessario che tale ostacolo venga discusso durante la riunione appena successiva, in modo da poter pianificare una migliore suddivisione dei compiti, una fase di riallinemento o altra attività ritenuta sul momento più adeguata.
+== Comprensione dei requisiti
+Un insufficiente e/o inefficiente coinvolgimento del cliente può portare ad una incomprensione dei requisiti del progetto. Il rischio in questo caso è basso, considerando che il cliente è competente nell'ambito richiesto, minimizzando la possibilità di equivoci e dati mancanti tra i requisiti.
+
+Rimane importante riuscire a fornire lo stato di lavoro del progetto al cliente, in modo che possa visualizzarlo, comprenderlo ed eventualmente esporre dubbi al riguardo. Migliore è la comunicazione tra i membri del gruppo di GlitchHub Team e con il cliente, più semplice sarà ottenere il risultato atteso.
+== Studio delle nuove tecnologie
+È possibile che, durante lo svolgimento del progetto, il gruppo trovi difficoltà nell'utilizzare e comprendere le tecnologie richieste. Il rischio viene reputato basso nonostante l'inesperienza dei memebri del gruppo, provato che la comunicazione tra qeust'ultimo e l'altra parte avvenga in maniera rapida e utile, in modo da rispondere a dubbi e non interrompere il workflow.
 = Costi
 Il preventivo finale, calcolato sulla base della suddivisione dei compiti e del costo orario dei diversi ruoli, è di *12.975€*.
 = Consegna
