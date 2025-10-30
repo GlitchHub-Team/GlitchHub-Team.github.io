@@ -5,7 +5,7 @@
 #show: report.with(
   titolo: "Dichiarazione impegni",
   stato: "Bozza",
-  versione: "0.0.4",
+  versione: "0.0.5",
   registro-modifiche: (
     ("0.0.5", "30/10/2025", "Jaume Bernardi", "-", "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento"),
     ("0.0.4", "29/10/2025", "Alessandro Dinato", "-", "Stesura motivazioni suddivisione oraria"),
