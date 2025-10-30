@@ -21,7 +21,7 @@
 )
 
 = Introduzione
-Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato C7 - Sistema di acquisizione dati e sensori,proposto dall'azienda M31, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
+Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.L.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
 Con la presente dichiarazione, i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
 
 = Analisi dei ruoli
@@ -70,7 +70,8 @@ Il suo lavoro è cruciale per assicurare l'affidabilità e la coerenza del risul
 
 #pagebreak()
 = Impegno individuale
-== Tabella suddivisione ore per componente e ruolo
+Il gruppo ha deciso di dedicare un complessivo di *93 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
+== Tabella suddivisione ore produttive per componente e ruolo
 In questa tabella verranno utilizzati degli acronimi per descrivere i singoli ruoli.
 - *Resp* = Responsabile
 - *Amm* = Amministratore
@@ -107,7 +108,7 @@ In questa tabella verranno utilizzati degli acronimi per descrivere i singoli ru
 
 #align(center)[
   #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore complessive per ogni ruolo",
+    caption: "Il grafico a torta contiene le ore produttive complessive per ogni ruolo",
   )[
     #cetz.canvas({
       let colors = gradient.linear(
@@ -156,7 +157,7 @@ In questa tabella verranno utilizzati degli acronimi per descrivere i singoli ru
 
 == Motivazioni suddivisione oraria
 La suddivisione oraria è stata definita tenendo conto del metodo di lavoro del gruppo e della complessità tecnica del capitolato *C7* proposto da *M31 S.r.l*. \
-È stata concordata una stima di *93 ore* per componente, ritenuta adeguata per lo svolgimento delle attività previste.
+È stata concordata una stima di *93 ore produttive* per componente, ritenuta adeguata per lo svolgimento delle attività previste.
 
 L'allocazione delle ore per ruolo è motivata dalle esigenze operative e dalla necessità di contenere i rischi progettuali. \
 Ai ruoli di *programmatore* e di *verificatore* sono stati assegnati a *165 ore* ciascuno(330 ore complessive), corrispondenti al 50% del totale. \
@@ -177,6 +178,7 @@ Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i com
 #pagebreak()
 
 = Preventivo costi
+Il preventivo dei costi si basa sulla suddivisione oraria combinata al costo orario per ogni ruolo.
 == Tabella suddivisione ore e costi
 #table(
   columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
@@ -260,6 +262,6 @@ Il gruppo ha individuato diversi rischi potenziali nella realizzazione del proge
 - Difficoltà ad utilizzare le tecnologie richieste. Rischio basso, provato che la comunicazione tra il gruppo e l'altra parte avvenga in maniera rapida e utile.
 
 = Costi
-Il preventivo finale calcolato dai componenti del gruppo basandosi sulla suddivisione dei compiti e del costo orario dei vari ruoli è di *12975€*.
+Il preventivo finale, calcolato sulla base della suddivisione dei compiti e del costo orario dei diversi ruoli, è di *12.975€*.
 = Consegna
-La data di consegna scelta dai membri del gruppo è stata fissata al *27 marzo 2026*, non sarà possibile avere ulteriori deroghe.
+La data di consegna è stata prudentemente fissata al *27 marzo 2026*, non sarà possibile ricevere ulteriori deroghe.
