@@ -4,10 +4,11 @@
 
 #show: report.with(
   titolo: "Dichiarazione impegni",
-  stato: "Bozza",
-  versione: "0.0.6",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
-    ("0.0.6","30/10/2025", "Hossam Ezzemouri", "-", "Revisione e correzioni del documento"),
+    ("1.0.0","30/10/2025", "Siria Salvalaio", "-", "Versione stabile del documento"),
+    ("0.0.6","30/10/2025", "Hossam Ezzemouri", "Siria Salvalaio", "Revisione e correzioni del documento"),
     ("0.0.5", "30/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento"),
     ("0.0.4", "29/10/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Stesura motivazioni suddivisione oraria"),
     ("0.0.3", "29/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Bozza analisi dei rischi"),
@@ -17,8 +18,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "Candidatura-Generale",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-documento: "Dichiarazione impegni",
 )
 
@@ -28,10 +29,10 @@ Con la presente dichiarazione, i membri del gruppo assumono l'impegno di svolger
 
 = Analisi dei ruoli
 All'interno del gruppo di lavoro, i ruoli sono stati definiti e assegnati in modo da coprire tutte le attività necessarie per la corretta realizzazione del progetto. \
-La suddivisione dei compiti è stata ispirata ai principi della gestione di progetto insegnati nel corso di Ingegneria del Software, con l'obiettivo di garantire equilibrio,responsabilità e qualità nell'esecuzione delle diverse fasi di lavoro.
+La suddivisione dei compiti è stata ispirata ai principi della gestione di progetto insegnati nel corso di Ingegneria del Software, con l'obiettivo di garantire equilibrio, responsabilità e qualità nell'esecuzione delle diverse fasi di lavoro.
 
 La chiara definizione dei ruoli consente al gruppo di operare in modo coordinato e trasparente, facilitando la comunicazione e la gestione delle responsabilità. \
-Ogni componente conosce il proprio ambito d'azione e gli obiettivi di riferimento,contribuendo in modo sinergico al raggiungimento dell'obiettivo comune.
+Ogni componente conosce il proprio ambito d'azione e gli obiettivi di riferimento, contribuendo in modo sinergico al raggiungimento dell'obiettivo comune.
 
 Di seguito si fornisce una descrizione dei principali ruoli previsti e delle relative responsabilità.
 
