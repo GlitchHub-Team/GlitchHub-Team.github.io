@@ -84,7 +84,7 @@
     top: 2.9em,
     text(
       1.3em,
-      strong("Alla corte attenzione di"),
+      strong("Alla cortese attenzione di"),
     ),
   )
 

@@ -18,13 +18,13 @@
 Egregi professori Vardanega e Cardin, \
 
 Il gruppo GlitchHub Team, composto da:
-- Bernardi Jaume - 2069428
-- Dinato Alessandro - 2101043
-- Dioli Michele - 2077629
-- Ezzemouri Hossam - 2079250
-- Graziani Riccardo - 2101054
-- Salvalaio Siria - 2075520
-- Stellin Elia Ernesto - 2101084
+- Bernardi Jaume -- mat. 2069428
+- Dinato Alessandro -- mat. 2101043
+- Dioli Michele -- mat. 2077629
+- Ezzemouri Hossam -- mat. 2079250
+- Graziani Riccardo -- mat. 2101054
+- Salvalaio Siria -- mat. 2075520
+- Stellin Elia Ernesto -- mat. 2101084
 intende ufficialmente presentare la propria candidatura al capitolato #underline(link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*C7 - Sistema di acquisizione dati da sensori*])#footnote[Capitolato C7: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")], proposto da *M31 S.r.l.*, nell'ambito del Progetto Didattico del corso di Ingegneria del Software.
 
 All'interno del documento di #underline(link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[dichiarazione degli impegni])#footnote[Dichiarazione degli impegni: #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")] è stato stimato un costo totale per la realizzazione del progetto pari a *Euro 12.975* e fissato il termine di
@@ -39,7 +39,7 @@ La scelta del capitolato è motivata da:
 È possibile approfondire le motivazioni di scelta o di esclusione dei diversi capitolati visionando il documento di #underline(link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/ValutazioneCapitolati.pdf")[valutazione dei capitolati])#footnote[Valutazione dei capitolati: #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/ValutazioneCapitolati.pdf")].
 #pagebreak()
 
-Tutta la documentazione è consultabile sul #underline(link("https://glitchhub-team.github.io")[*sito ufficiale*])#footnote[Sito ufficiale: #link("https://glitchhub-team.github.io")] del gruppo, insieme alla #underline(link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io")[*repository*])#footnote[Repository della documentazione: #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io")] contenente i documenti di produzione.
+Tutta la documentazione prodotta da _GlitchHub Team_ è consultabile sul #underline(link("https://glitchhub-team.github.io")[*sito ufficiale*])#footnote[Sito ufficiale: #link("https://glitchhub-team.github.io")] del gruppo, insieme alla #underline(link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io")[*repository*])#footnote[Repository della documentazione: #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io")] contenente i documenti di produzione.
 
 Tutti i componenti del gruppo si impegnano a:
 - rispettare le scadenze e il preventivo fissato;
