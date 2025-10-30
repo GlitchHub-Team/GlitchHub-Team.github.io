@@ -3,10 +3,10 @@
 #show link: underline
 #show: report.with(
   titolo: "Valutazione Capitolati",
-  stato: "In attesa di verifica",
+  stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
-    ("1.0.0", "29/10/2025", "Alessandro Dinato", "-", "Lievi correzioni della bozza per versione stabile"),
+    ("1.0.0", "29/10/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Lievi correzioni della bozza per versione stabile"),
     (
       "0.4.0",
       "29/10/2025",
@@ -34,7 +34,7 @@
   ),
   htmlId: "Candidatura-Generale",
   verificatore-interno: "",
-  left-signature: "",
+  left-signature: "../assets/firme/prova.png",
   tipo-documento: "Valutazione dei Capitolati",
 )
 
