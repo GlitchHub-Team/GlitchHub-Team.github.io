@@ -5,11 +5,12 @@
 #show: report.with(
   titolo: "Dichiarazione impegni",
   stato: "Bozza",
-  versione: "0.0.5",
+  versione: "0.0.6",
   registro-modifiche: (
-    ("0.0.5", "30/10/2025", "Jaume Bernardi", "-", "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento"),
-    ("0.0.4", "29/10/2025", "Alessandro Dinato", "-", "Stesura motivazioni suddivisione oraria"),
-    ("0.0.3", "29/10/2025", "Jaume Bernardi", "-", "Bozza analisi dei rischi"),
+    ("0.0.6","30/10/2025", "Hossam Ezzemouri", "-", "Revisione e correzioni del documento"),
+    ("0.0.5", "30/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento"),
+    ("0.0.4", "29/10/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Stesura motivazioni suddivisione oraria"),
+    ("0.0.3", "29/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Bozza analisi dei rischi"),
     ("0.0.2", "28/10/2025", "Hossam Ezzemouri", "Alessandro Dinato", "Bozza introduzione e analisi dei ruoli"),
     ("0.0.1", "28/10/2025", "Alessandro Dinato", "Michele Dioli", "Bozza analisi costi e tempo necessario"),
   ),
@@ -37,13 +38,13 @@ Di seguito si fornisce una descrizione dei principali ruoli previsti e delle rel
 == Responsabile
 Il Responsabile coordina il gruppo di lavoro, gestisce le risorse e assicura il rispetto delle scadenze. \
 È la figura di riferimento sia per il team interno sia per gli interlocutori esterni. Supervisiona l'intero progetto, pianifica le attività, monitora l'avanzamento e interviene in caso di deviazioni dai piani stabiliti. \
-È richiesta una solida preparazione tecnica e ottime capacità decisionali per valutare rischi. \
+È richiesta una solida preparazione tecnica e ottime capacità decisionali per valutare i rischi. \
 Il suo contributo è costante per tutta la durata del progetto.
 
 == Amministratore
 L'Amministratore si occupa della gestione delle risorse informatiche e del setup dell'ambiente di lavoro. \
 È responsabile del corretto funzionamento degli strumenti di produzione e della configurazione delle piattaforme di collaborazione. \
-La sua attività include la selezione, messa in opera e manutenzione degli strumenti tecnici, oltre alla gestione di eventuali segnalazioni di malfunzionamento. Si tratta di un ruolo essenziale per garantire continuità e stabilità al processo di sviluppo.
+La sua attività include la selezione, messa in opera e manutenzione degli strumenti tecnici, oltre alla gestione di eventuali segnalazioni di malfunzionamenti. Si tratta di un ruolo essenziale per garantire continuità e stabilità al processo di sviluppo.
 
 == Analista
 L'Analista è la figura incaricata di definire i requisiti del sistema e di modellare i casi d'uso. \
@@ -65,7 +66,7 @@ Pur avendo competenze tecniche, ha margini decisionali limitati, operando nel ri
 
 == Verificatore
 Il Verificatore è responsabile del controllo di qualità del prodotto e della verifica della corretta esecuzione delle attività. \
-Effettua test revisioni e validazioni per garantire che il lavoro svolto rispetti gli standard di progetto. \
+Effettua test, revisioni e validazioni per garantire che il lavoro svolto rispetti gli standard di progetto. \
 È una figura presente per l'intera durata del progetto e deve possedere esperienza tecnica, conoscenza del processo di sviluppo e capacità di giudizio indipendente. \
 Il suo lavoro è cruciale per assicurare l'affidabilità e la coerenza del risultato finale.
 
@@ -161,17 +162,17 @@ La suddivisione oraria è stata definita tenendo conto del metodo di lavoro del 
 È stata concordata una stima di *93 ore produttive* per componente, ritenuta adeguata per lo svolgimento delle attività previste.
 
 L'allocazione delle ore per ruolo è motivata dalle esigenze operative e dalla necessità di contenere i rischi progettuali. \
-Ai ruoli di *programmatore* e di *verificatore* sono stati assegnati a *165 ore* ciascuno(330 ore complessive), corrispondenti al 50% del totale. \
+Ai ruoli di *programmatore* e di *verificatore* sono stati assegnati *165 ore* ciascuno (330 ore complessive), corrispondenti al 50% del totale. \
 Questa scelta riflette la prevalenza di attività di *sviluppo* e *validazione* richieste dal progetto e l'importanza di un programma di testing intensivo per ridurre la possibilità di *ritardi* e *bug software*.\
 
 Al ruolo di *progettista* sono state assegnate *145 ore*, in modo tale da definire un'architettura coerente e ridurre la probabilità di revisioni progettuali durante le fasi avanzate dello sviluppo.\
-La somma delle ore destinate ai ruoli di progettista, programmatore e verificatore ammonta a 475 ore, equivalenti a *73%* dell'impegno complessivo.
+La somma delle ore destinate ai ruoli di progettista, programmatore e verificatore ammonta a 475 ore, equivalenti al *73%* dell'impegno complessivo.
 Lo scopo è preservare l'efficacia del design e limitare il costo delle eventuali modifiche successive.
 
 Ai ruoli di *responsabile* e *amministratore* sono state assegnate *54 ore* ciascuno.\
 Al responsabile è attribuito il compito di coordinamento, pianificazione e supervisione, mentre all'amministratore è demandata la gestione degli strumenti e degli ambienti di lavoro.\
 Entrambi richiedono una presenza costante, ma con un impegno operativo inferiore rispetto alle attività di sviluppo e verifica. \
-Infine, il ruolo di *analista* è stato stimato in *68 ore*, poichè è un ruolo intensamente coinvolto nelle attività iniziali del progetto e tende a diminuire con l'inizio della fase di sviluppo.
+Infine, il ruolo di *analista* è stato stimato in *68 ore*, poiché è un ruolo intensamente coinvolto nelle attività iniziali del progetto e tende a diminuire con l'inizio della fase di sviluppo.
 
 Per scopi didattici, i ruoli verranno ruotati periodicamente tra i membri del gruppo.\
 Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i componenti, garantendo equità nelle responsabilità e opportunità di apprendimento per tutti.
@@ -272,13 +273,13 @@ Il gruppo ha individuato diversi rischi potenziali nella realizzazione del proge
 == Organizzazione e distribuzione delle risorse
 La valutazione della suddivisione del lavoro tra i membri del gruppo e nel tempo potrebbe risultare errata, portando ad una scarsità di risorse tra i vari compiti. Presenta un rischio alto, originato dall'inesperienza del gruppo su progetti più corposi, nonché nell'utilizzo di un way of working professionale e la comprensione e conseguimento dello stato dell'arte nell'ambito richiesto.
 
-Qualora ciò dovesse avvenire, è necessario che tale ostacolo venga discusso durante la riunione appena successiva, in modo da poter pianificare una migliore suddivisione dei compiti, una fase di riallinemento o altra attività ritenuta sul momento più adeguata.
+Qualora ciò dovesse avvenire, è necessario che tale ostacolo venga discusso durante la riunione appena successiva, in modo da poter pianificare una migliore suddivisione dei compiti, una fase di riallineamento o altra attività ritenuta sul momento più adeguata.
 == Comprensione dei requisiti
 Un insufficiente e/o inefficiente coinvolgimento del cliente può portare ad una incomprensione dei requisiti del progetto. Il rischio in questo caso è basso, considerando che il cliente è competente nell'ambito richiesto, minimizzando la possibilità di equivoci e dati mancanti tra i requisiti.
 
 Rimane importante riuscire a fornire lo stato di lavoro del progetto al cliente, in modo che possa visualizzarlo, comprenderlo ed eventualmente esporre dubbi al riguardo. Migliore è la comunicazione tra i membri del gruppo di GlitchHub Team e con il cliente, più semplice sarà ottenere il risultato atteso.
 == Studio delle nuove tecnologie
-È possibile che, durante lo svolgimento del progetto, il gruppo trovi difficoltà nell'utilizzare e comprendere le tecnologie richieste. Il rischio viene reputato basso nonostante l'inesperienza dei memebri del gruppo, provato che la comunicazione tra qeust'ultimo e l'altra parte avvenga in maniera rapida e utile, in modo da rispondere a dubbi e non interrompere il workflow.
+È possibile che, durante lo svolgimento del progetto, il gruppo trovi difficoltà nell'utilizzare e comprendere le tecnologie richieste. Il rischio viene reputato basso nonostante l'inesperienza dei membri del gruppo, purché la comunicazione tra quest'ultimo e l'altra parte avvenga in maniera rapida e utile, in modo da rispondere ai dubbi e non interrompere il workflow.
 = Costi
 Il preventivo finale, calcolato sulla base della suddivisione dei compiti e del costo orario dei diversi ruoli, è di *12.975€*.
 = Consegna
