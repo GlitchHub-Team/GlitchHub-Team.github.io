@@ -222,16 +222,16 @@ header::before {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 50px;
+    width: -webkit-fill-available;
     height: 2px;
     background: var(--accent-color);
 }
 
 .container p {
     color: var(--text-dark);
-    font-weight: 600;
-    margin: 1.5rem 0 0.5rem;
+    margin: 1.5rem 0 0rem;
     font-size: 1.1rem;
+    font-weight: 400;
 }
 
 .container ul {
@@ -263,7 +263,6 @@ header::before {
 
 .container a:hover {
     color: var(--primary-dark);
-    transform: translateX(5px);
 }
 
 @keyframes glitch {
@@ -393,11 +392,6 @@ header::before {
     background: var(--primary-dark);
 }
 
-*:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-}
-
 details {
   background: white;
   border: 1px solid #ccc;
@@ -443,7 +437,7 @@ details:not([open]) summary::before {
 .container summary h2 {
     margin: 0;
     padding: 0;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 details[open] {
@@ -581,6 +575,7 @@ footer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  gap: 1em;
 }
 
 footer dl {
@@ -602,4 +597,18 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+#version-tag {
+    margin-left: 1em;
+    border: 1px solid #ccc;
+    color: #555;
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 0.8em;
+    background: #f9f9f9;
+}
+
+details>div{
+    padding-left: 1.5em;
 }
