@@ -4,7 +4,7 @@
 #show: report.with(
   titolo: "Verbale interno 27/10/2025",
   stato: "Da verificare",
-  versione: "0.2.0",
+  versione: "1.0.0",
   registro-modifiche: (
     ("1.0.0", "30/10/2025", "Alessandro Dinato", "", "Versione stabile verbale"),
     ("0.2.0", "30/10/2025", "Elia Ernesto Stellin", "", "Correzione refusi e raffinamento della scorrevolezza"),
