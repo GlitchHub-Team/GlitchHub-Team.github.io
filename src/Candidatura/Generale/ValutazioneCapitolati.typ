@@ -34,7 +34,7 @@
   ),
   htmlId: "Candidatura-Generale",
   verificatore-interno: "",
-  left-signature: "../assets/firme/prova.png",
+  left-signature: "../assets/firme/firma_Hossam_Ezzemouri.png",
   tipo-documento: "Valutazione dei Capitolati",
 )
 
