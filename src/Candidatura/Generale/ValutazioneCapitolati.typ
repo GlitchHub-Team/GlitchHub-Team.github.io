@@ -1,4 +1,4 @@
-#import "../Templates/templateDocumentiGenerici.typ": report
+#import "../../Templates/templateDocumentiGenerici.typ": report
 
 #show link: underline
 #show: report.with(
@@ -32,7 +32,7 @@
     "Prof. Cardin Riccardo",
     "Prof. Vardanega Tullio",
   ),
-  htmlId: "Candidatura",
+  htmlId: "Candidatura-Generale",
   verificatore-interno: "",
   left-signature: "",
   tipo-documento: "Valutazione dei Capitolati",
