@@ -24,7 +24,7 @@
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-    keywords: htmlId,
+    keywords: (htmlId, versione),
   )
 
   #set page(
