@@ -8,7 +8,8 @@
   versione: "1.0.0",
   registro-modifiche: (
     ("1.0.0","30/10/2025", "Siria Salvalaio", "-", "Versione stabile del documento"),
-    ("0.0.6","30/10/2025", "Hossam Ezzemouri", "Siria Salvalaio", "Revisione e correzioni del documento"),
+    ("0.0.7","30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
+    ("0.0.6","30/10/2025", "Hossam Ezzemouri", "Michele Dioli", "Revisione e correzioni del documento"),
     ("0.0.5", "30/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento"),
     ("0.0.4", "29/10/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Stesura motivazioni suddivisione oraria"),
     ("0.0.3", "29/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Bozza analisi dei rischi"),
@@ -25,10 +26,10 @@
 
 = Introduzione
 Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.L.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
-Con la presente dichiarazione, i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
+Con la presente dichiarazione i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
 
 = Analisi dei ruoli
-All'interno del gruppo di lavoro, i ruoli sono stati definiti e assegnati in modo da coprire tutte le attività necessarie per la corretta realizzazione del progetto. \
+All'interno del gruppo di lavoro i ruoli sono stati definiti e assegnati in modo da coprire tutte le attività necessarie per la corretta realizzazione del progetto. \
 La suddivisione dei compiti è stata ispirata ai principi della gestione di progetto insegnati nel corso di Ingegneria del Software, con l'obiettivo di garantire equilibrio, responsabilità e qualità nell'esecuzione delle diverse fasi di lavoro.
 
 La chiara definizione dei ruoli consente al gruppo di operare in modo coordinato e trasparente, facilitando la comunicazione e la gestione delle responsabilità. \
@@ -73,9 +74,9 @@ Il suo lavoro è cruciale per assicurare l'affidabilità e la coerenza del risul
 
 #pagebreak()
 = Impegno individuale
-Il gruppo ha deciso di dedicare un complessivo di *93 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
+Il gruppo ha deciso di dedicare un totale di *93 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
 == Tabella suddivisione ore produttive per componente e ruolo
-In questa tabella verranno utilizzati degli acronimi per descrivere i singoli ruoli.
+Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere i singoli ruoli.
 - *Resp* = Responsabile
 - *Amm* = Amministratore
 - *Verif* = Verificatore
@@ -163,7 +164,7 @@ La suddivisione oraria è stata definita tenendo conto del metodo di lavoro del 
 È stata concordata una stima di *93 ore produttive* per componente, ritenuta adeguata per lo svolgimento delle attività previste.
 
 L'allocazione delle ore per ruolo è motivata dalle esigenze operative e dalla necessità di contenere i rischi progettuali. \
-Ai ruoli di *programmatore* e di *verificatore* sono stati assegnati *165 ore* ciascuno (330 ore complessive), corrispondenti al 50% del totale. \
+Ai ruoli di *programmatore* e di *verificatore* sono state assegnate *165 ore* ciascuno (330 ore complessive), corrispondenti al 50% del totale. \
 Questa scelta riflette la prevalenza di attività di *sviluppo* e *validazione* richieste dal progetto e l'importanza di un programma di testing intensivo per ridurre la possibilità di *ritardi* e *bug software*.\
 
 Al ruolo di *progettista* sono state assegnate *145 ore*, in modo tale da definire un'architettura coerente e ridurre la probabilità di revisioni progettuali durante le fasi avanzate dello sviluppo.\
@@ -173,7 +174,7 @@ Lo scopo è preservare l'efficacia del design e limitare il costo delle eventual
 Ai ruoli di *responsabile* e *amministratore* sono state assegnate *54 ore* ciascuno.\
 Al responsabile è attribuito il compito di coordinamento, pianificazione e supervisione, mentre all'amministratore è demandata la gestione degli strumenti e degli ambienti di lavoro.\
 Entrambi richiedono una presenza costante, ma con un impegno operativo inferiore rispetto alle attività di sviluppo e verifica. \
-Infine, il ruolo di *analista* è stato stimato in *68 ore*, poiché è un ruolo intensamente coinvolto nelle attività iniziali del progetto e tende a diminuire con l'inizio della fase di sviluppo.
+Infine, il ruolo di *analista* è stato stimato in *68 ore*, poiché è un ruolo intensamente coinvolto nelle attività iniziali del progetto e tende a ridursi con l'inizio della fase di sviluppo.
 
 Per scopi didattici, i ruoli verranno ruotati periodicamente tra i membri del gruppo.\
 Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i componenti, garantendo equità nelle responsabilità e opportunità di apprendimento per tutti.
@@ -181,7 +182,7 @@ Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i com
 #pagebreak()
 
 = Preventivo costi
-Il preventivo dei costi si basa sulla suddivisione oraria combinata al costo orario per ogni ruolo.
+Il preventivo dei costi si basa sulla suddivisione oraria moltiplicata al costo orario per ogni ruolo.
 == Tabella suddivisione ore e costi
 #table(
   columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
@@ -270,7 +271,7 @@ Il gruppo ha individuato periodi in cui il lavoro rallenterà, possibilmente fin
   "Sessione Invernale", "19 gennaio 2026", "21 febbraio 2026",
 )
 = Analisi dei rischi
-Il gruppo ha individuato diversi rischi potenziali nella realizzazione del progetto concordato che potrebbero risultare in disagi, qualora venissero gestiti incorrettamente.
+Il gruppo ha individuato diversi rischi potenziali nella realizzazione del progetto concordato che potrebbero risultare in disagi, qualora venissero gestiti non correttamente.
 == Organizzazione e distribuzione delle risorse
 La valutazione della suddivisione del lavoro tra i membri del gruppo e nel tempo potrebbe risultare errata, portando ad una scarsità di risorse tra i vari compiti. Presenta un rischio alto, originato dall'inesperienza del gruppo su progetti più corposi, nonché nell'utilizzo di un way of working professionale e la comprensione e conseguimento dello stato dell'arte nell'ambito richiesto.
 
