@@ -1,56 +1,51 @@
-#import "../../Templates/templateLetteraCandidatura.typ": report
+#import "../../lib/libLetter.typ": *
 
-#show: report.with(
-  titolo: "Lettera di Candidatura",
-  stato: "Bozza",
-  versione: "0.0.1",
-  registro-modifiche: (
-    ("0.0.1", "30/10/2025", "Siria Salvalaio", "", "Prima bozza"),
+#show: almost-tud-letter.with(
+  from: (
+    name: "GlitchHub Team",
+    email: "glitchhubteam@gmail.com",
   ),
-  aca: (
-    "Prof. Cardin Riccardo",
-    "Prof. Tullio Vardanega",
-  ),
-  componenti: (
-    "Jaume Bernardi",
-    "Alessandro Dinato",
-    "Michele Dioli",
-    "Hossam Ezzemouri",
-    "Riccardo Graziani",
-    "Siria Salvalaio",
-    "Elia Ernesto Stellin",
-    "Riccardo Graziani",
-  ),
-  distribuzione: (
-    "GlitchHub Team",
-    "Prof. Cardin Riccardo",
-    "Prof. Vardanega Tullio",
-  ),
-  htmlId: "Generale-LetteraCandidatura",
-  verificatore-interno: "",
-  left-signature: "",
+  to: [
+    Alla cortese attenzione di \
+    Prof. Vardanega Tullio \
+    Prof. Cardin Riccardo \
+  ],
+  date: datetime.today().display(),
+  subject: "Candidatura capitolato C7",
+  logo: "../assets/loghi/GlitchHub-Team_LogoG.png",
 )
 
-Egregio Prof. Vardanega, \ Egregio Prof. Cardin, \
-con la presente lettera il gruppo *GlitchHub Team* desidera comunicarVi il nostro interesse ad impegnarci a realizzare il progetto denominato: \
-#align(center)[
-  #text(1.2em, weight: "bold")[Sistema di acquisizione dati da sensori]
-]
-proposto dall'azienda _M31_, capitolato di progetto *C7*.
-\
-\
-La documentazione dettagliata - in particolare la dichiarazione degli impegni e il preventivo dei costi e impegni - è consultabile nella nostra pagina github dedicata, al seguente link:
-#align(center)[
-  #text(1.2em)["link github"]
-]
-Come specificato del documento "Preventivo dei costi e impegni", _GlitchHub Team_ ha preventivato un costo complessivo per la realizzazione del progetto di *€ ??* e ha fissato come termine ultimo di consegna del capitolato al *?? Marzo 2026*.
+Egregi professori Vardanega e Cardin, \
 
-Si riassumono le principali motivazioni che hanno portato il gruppo alla scelta del capitolato: \
-//TODO lista puntata e aggiungere/modificare le motivazioni
-- *Coerenza con le competenze tecniche* dei membri del gruppo e un'*immediato interesse* degli argomenti trattati \
-- Opportunità significativa di approfondimento e sviluppo di *nuove competenze*, in linea con gli *obiettivi* di apprendimento del team \
-- Collaborazione con un'azienda *professionale e competente*, come confermato dall'incontro con M31, che ha chiarito i nostri dubbi e approfondito curiosità sul capitolato proposto \
-- Apprezzamento per *tecnologie avanzate e linguaggi moderni* 
+Il gruppo GlitchHub Team, composto da:
+- Bernardi Jaume - 2069428
+- Dinato Alessandro - 2101043
+- Dioli Michele - 2077629
+- Ezzemouri Hossam - 2079250
+- Graziani Riccardo - 2101054
+- Salvalaio Siria - 2075520
+- Stellin Elia Ernesto - 2101084
+intende ufficialmente presentare la propria candidatura al capitolato #underline(link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*C7 - Sistema di acquisizione dati da sensori*])#footnote[Capitolato C7: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")], proposto da *M31 S.r.l.*, nell'ambito del Progetto Didattico del corso di Ingegneria del Software.
 
-Cordialmente, \
+All'interno del documento di #underline(link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[dichiarazione degli impegni])#footnote[Dichiarazione degli impegni: #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")] è stato stimato un costo totale per la realizzazione del progetto pari a *Euro 12.975* e fissato il termine di
+consegna al *27 Marzo 2026*.
+
+La scelta del capitolato è motivata da:
+- forte interesse verso le tecnologie richieste dal progetto, quali *Go*, *NATS* e *Google Cloud Platform*;
+- particolare interesse allo sviluppo di un'applicazione capace di scalare in modo efficiente;
+- il dominio applicativo e la complessità del progetto risultano pienamente in linea con le aspettative del gruppo;
+- l'azienda si è mostrata disponibile, altamente competente e professionale.
+
+È possibile approfondire le motivazioni di scelta o di esclusione dei diversi capitolati visionando il documento di #underline(link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/ValutazioneCapitolati.pdf")[valutazione dei capitolati])#footnote[Valutazione dei capitolati: #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/ValutazioneCapitolati.pdf")].
+#pagebreak()
+
+Tutta la documentazione è consultabile sul #underline(link("https://glitchhub-team.github.io")[*sito ufficiale*])#footnote[Sito ufficiale: #link("https://glitchhub-team.github.io")] del gruppo, insieme alla #underline(link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io")[*repository*])#footnote[Repository della documentazione: #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io")] contenente i documenti di produzione.
+
+Tutti i componenti del gruppo si impegnano a:
+- rispettare le scadenze e il preventivo fissato;
+- sviluppare il prodotto richiesto rispettando i requisiti fissati;
+- redigere la documentazione richiesta dai committenti.
+
+Cordiali saluti,
+
 _GlitchHub Team_
