@@ -416,6 +416,36 @@ summary::-webkit-details-marker {
   display: none; 
 }
 
+.container summary {
+    display: flex;
+    align-items: center; 
+    gap: 0.4em;          
+    cursor: pointer;
+    list-style: none;
+}
+
+.container summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::before {
+    content: '▼';
+    display: inline-block;
+    color: #00bcd4;
+    transition: transform 0.3s ease;
+    font-size: 0.9em;
+}
+
+details:not([open]) summary::before {
+    transform: rotate(-90deg);
+}
+
+.container summary h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+}
+
 details[open] {
   border-color: #007bff;
 }
@@ -467,10 +497,28 @@ margin: auto;
 }
 
 @media (max-width: 800px) {
-  .members > * {
-    flex: 1 1 90%;
-    max-width: 90%;
-  }
+    .members > * {
+        flex: 1 1 90%;
+        max-width: 90%;
+    }
+    body{
+        font-size: 0.9em;
+    }
+
+  .text p:first-child {
+    font-size: 1.2em;
+    }
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    footer dl:last-child{
+        margin-top:100m;
+    }
+    .container > details{
+        min-width: 100%;
+    }
 }
 
 .member {
