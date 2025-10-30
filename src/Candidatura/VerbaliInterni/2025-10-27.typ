@@ -3,13 +3,13 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 27/10/2025",
-  stato: "Da verificare",
+  stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
-    ("1.0.0", "30/10/2025", "Alessandro Dinato", "", "Versione stabile verbale"),
-    ("0.2.0", "30/10/2025", "Elia Ernesto Stellin", "", "Correzione refusi e raffinamento della scorrevolezza"),
-    ("0.1.0", "27/10/2025", "Elia Ernesto Stellin", "", "Prima stesura"),
-    ("0.0.1", "27/10/2025", "Elia Ernesto Stellin", "", "Bozza terzo incontro interno"),
+    ("1.0.0", "30/10/2025", "Alessandro Dinato", "Elia Ernesto Stellin", "Versione stabile verbale"),
+    ("0.2.0", "30/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Correzione refusi e raffinamento della scorrevolezza"),
+    ("0.1.0", "27/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Prima stesura"),
+    ("0.0.1", "27/10/2025", "Elia Ernesto Stellin", "Alessandro Dinato", "Bozza terzo incontro interno"),
   ),
   partecipanti: (
     "Jaume Bernardi",
@@ -32,8 +32,8 @@
     "Varie ed eventuali",
   ),
   htmlId: "Candidatura-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-verbale: "Interno",
 )
 
