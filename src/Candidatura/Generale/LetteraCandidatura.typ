@@ -1,6 +1,7 @@
 #import "../../lib/libLetter.typ": *
 
 #show: almost-tud-letter.with(
+  title: "Lettera di Candidatura",
   from: (
     name: "GlitchHub Team",
     email: "glitchhubteam@gmail.com",
@@ -13,6 +14,8 @@
   date: datetime.today().display(),
   subject: "Candidatura capitolato C7",
   logo: "../assets/loghi/GlitchHub-Team_LogoG.png",
+  htmlId: "Candidatura-Generale",
+  versione: "1.0.0",
 )
 
 Egregi professori Vardanega e Cardin, \
