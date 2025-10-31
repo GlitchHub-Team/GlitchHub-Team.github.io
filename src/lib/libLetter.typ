@@ -1,7 +1,7 @@
 #let almost-tud-letter(
   from: "",
   to: "",
-  date: datetime.today().display(),
+  date: "2025-10-31",
   subject: "",
   lang: "it",
   logo: "",
@@ -17,6 +17,8 @@
       ),
     ),
   ),
+  htmlId: "Candidatura-Generale",
+  versione: "1.0.0",
   body,
 ) = {
   let body-font = "PT Sans"
@@ -26,6 +28,10 @@
     thecontact: "mittente",
     theemail: "email",
     thesubject: "oggetto",
+  )
+
+  set document(
+    keywords: (htmlId, versione),
   )
 
   set text(
