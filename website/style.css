@@ -516,7 +516,7 @@ details[open] {
     }
 
     footer dl:last-child {
-        margin-top: 100m;
+        margin-top: 1em;
     }
 
     .container>details {
@@ -587,6 +587,10 @@ footer {
 
 footer dl {
     margin: 0;
+}
+
+footer dl:last-child {
+    flex-basis: 100%;
 }
 
 footer dt {
