@@ -1,6 +1,7 @@
 #import "../../lib/libLetter.typ": *
 
 #show: almost-tud-letter.with(
+  title: "Lettera di Candidatura",
   from: (
     name: "GlitchHub Team",
     email: "glitchhubteam@gmail.com",

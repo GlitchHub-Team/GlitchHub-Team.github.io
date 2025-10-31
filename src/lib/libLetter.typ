@@ -17,6 +17,7 @@
       ),
     ),
   ),
+  title: "",
   htmlId: "Candidatura-Generale",
   versione: "1.0.0",
   body,
@@ -31,6 +32,7 @@
   )
 
   set document(
+    title: title,
     keywords: (htmlId, versione),
   )
 
