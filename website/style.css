@@ -583,6 +583,7 @@ footer {
     justify-content: space-evenly;
     align-items: center;
     gap: 1em;
+    flex-wrap: wrap;
 }
 
 footer dl {
@@ -608,6 +609,13 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+footer div{
+    flex-basis: 100%;
+    text-align: center;
+    margin-top: 1em;
+    font-weight: 100;
 }
 
 .version-tag {
