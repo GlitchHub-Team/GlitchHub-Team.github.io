@@ -13,15 +13,16 @@ import (
 )
 
 type PDFDocument struct {
-	path  string
-	title string
-	id    string
+	path    string
+	version string
+	title   string
+	htmlId  string
 }
 
-const KEYWORDS_N = 1
+const KEYWORDS_N = 2
 const PATH_TO_DOCUMENTS = "../website/pdf/"
 const PATH_TO_HTML = "../website/index.html"
-const TEMPLATE = "<li><a href='%s' target='_blank'>%s</a></li>"
+const TEMPLATE = "<li><a href='%s' target='_blank'>%s</a><span class='version-tag'>v%s</span></li>"
 
 func loadPDFMetadata(pdf *PDFDocument) error {
 	ctx, err := api.ReadContextFile(pdf.path)
@@ -34,7 +35,8 @@ func loadPDFMetadata(pdf *PDFDocument) error {
 	if len(keywordsList) != KEYWORDS_N {
 		return fmt.Errorf("there are not exactly %d keywords, check the typst file", KEYWORDS_N)
 	}
-	pdf.id = keywordsList[0]
+	pdf.htmlId = keywordsList[0]
+	pdf.version = keywordsList[1]
 
 	return nil
 }
@@ -121,11 +123,11 @@ func main() {
 
 	htmlStr := string(htmlBytes)
 
-	for _, d := range docs {
+	for i := len(docs) - 1; i >= 0; i-- {
+		d := docs[i]
 		d.path = strings.Replace(d.path, "./website", "", 1)
-		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title)
-		fmt.Println(d.id)
-		updatedHTML, err := addChildToId(htmlStr, d.id, renderedHTML)
+		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title, d.version)
+		updatedHTML, err := addChildToId(htmlStr, d.htmlId, renderedHTML)
 		if err != nil {
 			fmt.Println("Error:", err)
 			return

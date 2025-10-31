@@ -199,7 +199,7 @@
   set document(
     title: "Diario di bordo " + date,
     author: "GlitchHub Team",
-    keywords: htmlId,
+    keywords: (htmlId, "1.0.0"), //versione di default per script Go
   )
   pagebreak()
 
