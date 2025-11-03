@@ -7,6 +7,13 @@
   versione: "0.0.2",
   registro-modifiche: (
     (
+      "0.1.0",
+      "3/11/2025",
+      "Alessandro Dinato",
+      "-",
+      "Definizione termini specificati a lezione",
+    ),
+    (
       "0.0.2",
       "1/11/2025",
       "Alessandro Dinato",
@@ -119,12 +126,26 @@
     term: "Fornitore",
     definition: [È il singolo gruppo che si aggiudica il capitolato. Il suo obiettivo è rispettare vincoli e aspettative del progetto producendo la documentazione necessaria e il prodotto software richiesto dal *proponente*.],
   ),
-  (term: "Dichiarazione degli impegni", definition: []),
-  (term: "Lettera di candidatura", definition: []),
-  (term: "Valutazione capitolati", definition: []),
-  (term: "Capitolato d'appalto", definition: []),
-  (term: "Analisi dei rischi", definition: []),
-  (term: "Way of working", definition: []),
+  (
+    term: "Dichiarazione degli impegni",
+    definition: [Documento redatto in fase di candidatura del gruppo presso un *capitolato d'appalto*. Contiene l'analisi dei ruoli e dei rischi, la divisione delle risorse e il preventivo costi.],
+  ),
+  (
+    term: "Lettera di candidatura",
+    definition: [Lettera formale rivolta ai committenti, in cui il gruppo dichiara ufficialmente la candidatura verso un *capitolato d'appalto* specifico.],
+  ),
+  (
+    term: "Valutazione capitolati",
+    definition: [Documento in cui il gruppo, secondo i pareri dei diversi componenti, elabora un pensiero comune riguardo ogni *capitolato d'appalto*],
+  ),
+  (
+    term: "Capitolato d'appalto",
+    definition: [Documento redatto dai *proponenti* con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative(*requisiti utente*)],
+  ),
+  (
+    term: "Way of working",
+    definition: [Rappresenta l'insieme di pratiche volte a rendere l'organizzazione delle attività di progetto _il più professionale possibile_. Deve essere incrementale nel tempo e includere sempre le nuove attività normate prima di essere attuate.],
+  ),
   (
     term: "Typst",
     definition: [Linguaggio di markup moderno utilizzato per creare documenti in modo semplice e programmabile, simile a _LaTeX_ ma con sintassi più intuitiva.],
@@ -193,10 +214,22 @@
     term: "On-demand",
     definition: [Servizio o funzionalità disponibile su richiesta dell'utente e attivabile quando necessario.],
   ),
-  (term: "Proof of Concept", definition: []),
-  (term: "Minimum Viable Product", definition: []),
-  (term: "Requirements and Technology Baseline", definition: []),
-  (term: "Product Baseline", definition: []),
+  (
+    term: "Proof of Concept",
+    definition: [Artefatto realizzato ad inizio progetto con lo scopo di valutare la _fattibilità tecnologica_ del prodotto atteso. Deve rappresentare le richieste principali del capitolato.],
+  ),
+  (
+    term: "MVP",
+    definition: [Il _Minimum Viable Product_ è un'approssimazione del prodotto atteso dal *proponente*, dotata di funzionalità minime ma sufficienti a essere testata e valutare la bontà della visione iniziale.],
+  ),
+  (
+    term: "RTB",
+    definition: [La _Requirements and Technology Baseline_ è un fase del *Progetto Didattico* che fissa in modo stabile i requisiti da soddisfare, concordati con il proponente, e motiva le tecnologie, i framework e le librerie scelti. È supportata dal *Proof of Concept*.],
+  ),
+  (
+    term: "PB",
+    definition: [La _Product Baseline_ valuta la maturità della baseline architetturale del software e la sua realizzazione, includendo il design definitivo nel documento di *Specifica Tecnica*. È presente un avanzamento sostanziale del prodotto software che viene sottoposto al proponente(come *MVP*) per valutarne qualità e adeguatezza.],
+  ),
   (
     term: "Repository",
     definition: [Archivio di progetto che contiene codice, file e cronologia delle versioni, può essere gestito tramite un sistema di controllo versione come *Git*.],
@@ -318,37 +351,134 @@
     term: "Code coverage",
     definition: [Percentuale di codice coperta dai test automatici, indica quanto è testata l'applicazione.],
   ),
-  (term: "Analisi dei requisiti", definition: []),
-  (term: "Piano di progetto", definition: []),
-  (term: "Piano di qualifica", definition: []),
-  (term: "Architettura/Design", definition: []),
-  (term: "Stakeholder", definition: []),
-  (term: "Efficacia", definition: []),
-  (term: "Efficienza", definition: []),
-  (term: "Economicità", definition: []),
-  (term: "Ciclo di vita", definition: []),
-  (term: "Processo di ciclo di vita", definition: []),
-  (term: "Modello di ciclo di vita", definition: []),
-  (term: "Controllo di versione", definition: []),
-  (term: "ISO/IEC 12207:1995", definition: []),
-  (term: "PDSA Cycle", definition: []),
-  (term: "Iterazione", definition: []),
-  (term: "Incremento", definition: []),
-  (term: "Prototipo", definition: []),
-  (term: "Riuso", definition: []),
-  (term: "Debito tecnico", definition: []),
-  (term: "User story", definition: []),
-  (term: "Milestone", definition: []),
-  (term: "Baseline", definition: []),
-  (term: "Consuntivo di periodo", definition: []),
-  (term: "Consuntivo a finire", definition: []),
-  (term: "Slack time", definition: []),
-  (term: "Diagramma dei casi d'uso", definition: []),
-  (term: "Diagramma delle classi", definition: []),
-  (term: "Test Driven Development", definition: []),
-  (term: "Verifica", definition: []),
-  (term: "Validazione", definition: []),
-  (term: "Norme di progetto", definition: []),
+  (
+    term: "Analisi dei requisiti",
+    definition: [È l'attività che studia i bisogni dell'utente e del dominio d'uso per definire che cosa il prodotto software deve fare per soddisfarli, senza descrivere come sarà realizzato. Produce una specifica _completa_, _verificabile_ e _tracciabile_ dei requisiti del sistema(lato soluzione).],
+  ),
+  (
+    term: "Piano di progetto",
+    definition: [Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando *preventivo* e *consuntivo*, e a ricalibrare le attività in corso d'opera.],
+  ),
+  (
+    term: "Piano di qualifica",
+    definition: [Documento gestionale che descrive come verranno svolte *Verifica* e *Validazione*, fissando gli obiettivi di qualità, le metriche e gli strumenti di controllo.],
+  ),
+  (
+    term: "Architettura/Design",
+    definition: [Descrive come il sistema è organizzato internamente: componenti, interazioni e tecnologia scelta. Indica come verranno soddisfatti i requisiti software. Ne è responsabile il _progettista_],
+  ),
+  (
+    term: "Stakeholder",
+    definition: [Chiunque abbia interesse nel progetto: committente, proponente, utenti finali, fornitore e figure che influenzano requisiti e valutazioni.],
+  ),
+  (
+    term: "Efficacia",
+    definition: [Misura della capacità di un prodotto o processo di raggiungere gli obiettivi prefissati.],
+  ),
+  (
+    term: "Efficienza",
+    definition: [Misura di capacità di ottenere un risultato usando il minor numero possibile di risorse.],
+  ),
+  (
+    term: "Economicità",
+    definition: [È la combinazione tra *efficacia* e *efficienza*, ovvero l'equilibrio tra costi sostenuti, risorse impiegate e risultati ottenuti, con l'obiettivo di minimizzare sprechi o spese inutili.],
+  ),
+  (
+    term: "Ciclo di vita",
+    definition: [Insieme delle fasi attraversate da un prodotto software: _concezione_, _sviluppo_, _utilizzo_ e _ritiro_.],
+  ),
+  (
+    term: "Processo di ciclo di vita",
+    definition: [Sono l'insieme di attività che guidano(secondo best practice) un cambio di fase all'interno di un prodotto software(es: concezione -> sviluppo). Il processo è l'insieme di attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_ secondo _regole date_ consumando _risorse_ nel farlo],
+  ),
+  (
+    term: "Modello di ciclo di vita",
+    definition: [Descrivono gli stati e le transizioni che caratterizzano lo sviluppo di un prodotto software, indicando quali processi devono essere attivati. Permettono di pianificare, organizzare ed eseguire il lavoro in modo strutturato, aiutando a studiare, comprendere, misurare e trasformare il sistema in sviluppo.],
+  ),
+  (
+    term: "Controllo di versione (VCS)",
+    definition: [Sistema che registra la storia delle modifiche ai file, permettendo collaborazione, tracciamento e ripristino di versioni precedenti.],
+  ),
+  (
+    term: "ISO/IEC 12207:1995",
+    definition: [Standard internazionale che definisce i processi primari del ciclo di vita del software: _analisi_, _progettazione_, _realizzazione_ e _manutenzione_.],
+  ),
+  (
+    term: "PDSA Cycle",
+    definition: [Ciclo _Plan-Do-Study-Act_: modello iterativo di miglioramento continuo basato su pianificazione, esecuzione, studio dei risultati ed eventuale correzione iterando nuovamente. A seguito dello studio dei risultati può esserci l'adozione o l'abbandono della misura messa in atto.],
+  ),
+  (
+    term: "Iterazione",
+    definition: [Passaggio che comprende raffinamenti o rivisitazioni a scopo _distruttivo_, tornando indietro nell'avanzamento del progetto.],
+  ),
+  (
+    term: "Incremento",
+    definition: [Aggiunta rilasciabile che estende il prodotto rispetto alla versione precedente(scopo _costruttivo_).],
+  ),
+  (
+    term: "Prototipo",
+    definition: [Versione semplificata del sistema o di una funzionalità con lo scopo di aiutare la scelta delle soluzioni da adottare nel prodotto finale.],
+  ),
+  (
+    term: "Riuso",
+    definition: [Impiego di componenti, codice o documenti esistenti per ridurre tempi di sviluppo e rischi. La frequenza di riuso è direttamente proporzionale al _costo di adozione_ e all'impatto nel workflow],
+  ),
+  (
+    term: "Debito tecnico",
+    definition: [Conseguenza di scelte di sviluppo o di design che privilegiano la velocità iniziale a scapito della qualità, richiedendo iterazioni future per correggerle.],
+  ),
+  (
+    term: "User story",
+    definition: [Breve descrizione di una funzionalità significativa dal punto di vista dell'utente finale, che specifica _cosa_ l'utente vuole ottenere con la funzionalità e _perché_.],
+  ),
+  (
+    term: "Milestone",
+    definition: [Punto di avanzamento nel tempo di progetto, fissato da una data specifica, che segnala il completamento di determinati obiettivi o risultati intermedi. Il raggiungimento di una _milestone_ è generalmente associato alla realizzazione di una *baseline* che soddisfa i requisiti previsti fino a quel punto.],
+  ),
+  (
+    term: "Baseline",
+    definition: [Versione approvata di un prodotto (software, documentazione o loro insieme) che può essere modificata solo tramite procedure formali di controllo delle modifiche. Ogni _baseline_ è sottoposta a controllo di versione e di configurazione e serve come riferimento stabile per il progresso del progetto.],
+  ),
+  (
+    term: "Consuntivo di periodo",
+    definition: [Strumento _quantitativo_ che misura le azioni completate, gli obiettivi raggiunti e le risorse consumate (tempo, costi, ore produttive) in un periodo di progetto, utile per migliorare la pianificazione futura.],
+  ),
+  (
+    term: "Retrospettiva",
+    definition: [Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni.],
+  ),
+  (
+    term: "Consuntivo a finire",
+    definition: [Stima aggiornata dei costi, attività e risorse necessarie a completare il progetto sulla base dell'avanzamento corrente.],
+  ),
+  (
+    term: "Slack time",
+    definition: [Margine di ritardo tollerabile senza compromettere scadenze successive.],
+  ),
+  (
+    term: "Diagramma dei casi d'uso",
+    definition: [Diagramma UML che descrive le interazioni tra _attori_ e _sistema_ evidenziando cosa può essere richiesto al software.],
+  ),
+  (
+    term: "Diagramma delle classi",
+    definition: [Diagramma UML che mostra le classi del sistema, attributi, metodi e relazioni strutturali.],
+  ),
+  (
+    term: "Test Driven Development",
+    definition: [Tecnica di sviluppo in cui prima si scrivono i test, poi il codice necessario a soddisfarli ed infine si ristruttura il codice. Garantisce verificabilità e qualità],
+  ),
+  (
+    term: "Verifica",
+    definition: [Accertamento che lo sviluppo non introduca errori e rispetti i *requisiti software*. Pratica che si svolge lungo tutto il periodo di progetto.],
+  ),
+  (
+    term: "Validazione",
+    definition: [Accertamento che il prodotto finale soddisfi le attese degli *stakeholder*. Il fornitore dimostra che tutti i *requisiti utente* siano soddisfatti con il collaudo del prodotto.],
+  ),
+  (
+    term: "Norme di progetto",
+    definition: [Documento esecutivo interno al gruppo che definisce procedure, regole e strumenti per organizzare il lavoro in modo professionale e ripetibile.],
+  ),
   (
     term: "Docker",
     definition: [Piattaforma che permette di creare, distribuire e eseguire applicazioni all'interno di container isolati, garantendo portabilità tra diversi ambienti.],
