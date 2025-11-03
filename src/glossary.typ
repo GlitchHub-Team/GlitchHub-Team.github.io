@@ -95,12 +95,30 @@
     term: "Kubernetes",
     definition: [Orchestrator di container che automatizza deploy, scalabilità e gestione di applicazioni distribuite.],
   ),
-  (term: "Requisito", definition: []),
-  (term: "Requisito utente", definition: []),
-  (term: "Requisito software", definition: []),
-  (term: "Committente", definition: []),
-  (term: "Proponente", definition: []),
-  (term: "Fornitore", definition: []),
+  (
+    term: "Requisito",
+    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_(lato bisogno), oppure una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_(lato soluzione).],
+  ),
+  (
+    term: "Requisito utente",
+    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_(lato bisogno). Il capitolato specifica le aspettative del *proponente* fissate nella fase di studio del problema.],
+  ),
+  (
+    term: "Requisito software",
+    definition: [Una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_(lato soluzione). L'*analisi dei requisiti* esplora il punto di vista lato soluzione, ovvero ciò che il prodotto deve fare per soddisfare i bisogni.],
+  ),
+  (
+    term: "Committente",
+    definition: [Nel _Progetto Didattico_ lo sono i docenti ed hanno lo scopo di: misurare il progresso con due revisioni, regolare il Progetto Didattico e valutarlo],
+  ),
+  (
+    term: "Proponente",
+    definition: [È l'azienda che presenta un capitolato e richiede lo sviluppo di un prodotto software. Definisce aspettative, requisiti, e funzionalità. Segue e aiuta nel processo di sviluppo (offre chiarimenti, supporto tecnico e feedback).],
+  ),
+  (
+    term: "Fornitore",
+    definition: [È il singolo gruppo che si aggiudica il capitolato. Il suo obiettivo è rispettare vincoli e aspettative del progetto producendo la documentazione necessaria e il prodotto software richiesto dal *proponente*.],
+  ),
   (term: "Dichiarazione degli impegni", definition: []),
   (term: "Lettera di candidatura", definition: []),
   (term: "Valutazione capitolati", definition: []),
