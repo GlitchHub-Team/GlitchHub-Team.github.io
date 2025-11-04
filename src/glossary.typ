@@ -3,14 +3,14 @@
 #show link: underline
 #show: report.with(
   titolo: "Glossario",
-  stato: "Da verificare",
+  stato: "Verificato",
   versione: "0.1.1",
   registro-modifiche: (
     (
       "0.1.1",
-      "3/11/2025",
+      "4/11/2025",
       "Michele Dioli",
-      "-",
+      "Alessandro Dinato",
       "Sistemate alcune definizioni",
     ),
     (
@@ -24,14 +24,14 @@
       "0.0.2",
       "1/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Michele Dioli",
       "Definizione termini tecnici glossario",
     ),
     (
       "0.0.1",
       "31/10/2025",
       "Alessandro Dinato",
-      "-",
+      "Michele Dioli",
       "Creazione glossario",
     ),
   ),
@@ -39,8 +39,8 @@
     "Pubblica",
   ),
   htmlId: "Glossario",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Glossario",
 )
 
@@ -424,7 +424,7 @@
   ),
   (
     term: "Riuso",
-    definition: [Pratica che consiste nell’impiegare componenti, codice o documenti già esistenti per ridurre tempi di sviluppo e rischi. Quanto più basso è il _costo di adozione_ e l’impatto sul workflow maggiore è la frequenza di riuso.],
+    definition: [Pratica che consiste nell'impiegare componenti, codice o documenti già esistenti per ridurre tempi di sviluppo e rischi. Quanto più basso è il _costo di adozione_ e l'impatto sul workflow maggiore è la frequenza di riuso.],
   ),
   (
     term: "Debito tecnico",
