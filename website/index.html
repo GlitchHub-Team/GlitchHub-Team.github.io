@@ -27,11 +27,13 @@
                 </button>
 
                 <ul class="nav-links" id="nav-links">
+                    <li><a href="./pdf/glossary.pdf" target="_blank">Glossario</a></li>
                     <li><a href="#candidatura">Candidatura</a></li>
-                    <li><a href="#rtb">RTB</a></li>
-                    <li><a href="#pb">PB</a></li>
-                    <li><a href="#Diapositive">Diapositive</a></li>
+                    <li class="nascondi"><a href="#rtb">RTB</a></li>
+                    <li class="nascondi"><a href="#pb">PB</a></li>
+                    <li class="nascondi"><a href="#Diapositive">Diapositive</a></li>
                     <li><a href="#chisiamo">Chi siamo</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
                 </ul>
             </div>
         </nav>
@@ -47,19 +49,19 @@
     </header>
 
     <div class="container">
-        <details id="candidatura">
+        <details id="candidatura" open>
             <summary>
                 <h2>Candidatura</h2>
             </summary>
 
             <div>
                 <section>
-                    <p>Candidatura</p>
+                    <p>Documenti</p>
                     <ul id="Candidatura-Generale">
                     </ul>
                 </section>
             </div>
-
+            
             <div class="liste">
                 <div>
                     <section>
@@ -79,7 +81,7 @@
             </div>
         </details>
 
-        <details id="rtb">
+        <details id="rtb" class="nascondi">
             <summary>
                 <h2>RTB</h2>
             </summary>
@@ -102,7 +104,7 @@
             </div>
         </details>
 
-        <details id="pb">
+        <details id="pb" class="nascondi">
             <summary>
                 <h2>PB</h2>
             </summary>
@@ -125,7 +127,7 @@
             </div>
         </details>
 
-        <details>
+        <details class="nascondi">
             <summary>
                 <h2>Diapositive</h2>
             </summary>
@@ -212,7 +214,7 @@
     </section>
 
     <footer>
-        <dl>
+        <dl id="contatti">
             <dt>Email</dt>
             <dd><a href="mailto:glitchhubteam@gmail.com" target="_blank">glitchhubteam@gmail.com</a></dd>
         </dl>
