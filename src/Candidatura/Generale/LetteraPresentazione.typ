@@ -1,7 +1,7 @@
 #import "../../lib/libLetter.typ": *
 
 #show: almost-tud-letter.with(
-  title: "Lettera di Candidatura",
+  title: "Lettera di Presentazione",
   from: (
     name: "GlitchHub Team",
     email: "glitchhubteam@gmail.com",
@@ -15,8 +15,15 @@
   subject: "Candidatura capitolato C7",
   logo: "../assets/loghi/GlitchHub-Team_LogoG.png",
   htmlId: "Candidatura-Generale",
-  versione: "1.0.0",
+  versione: "1.1.0",
 )
+
+#align(center)[
+  #set text(14pt, weight: "bold")
+  LETTЕRA DI PRESENTAZIONE
+]
+
+#v(1cm)
 
 Egregi professori Vardanega e Cardin, \
 
@@ -29,6 +36,13 @@ Il gruppo GlitchHub Team, composto da:
 - Salvalaio Siria -- mat. 2075520
 - Stellin Elia Ernesto -- mat. 2101084
 intende ufficialmente presentare la propria candidatura al capitolato #underline(link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*C7 - Sistema di acquisizione dati da sensori*])#footnote[Capitolato C7: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")], proposto da *M31 S.r.l.*, nell'ambito del Progetto Didattico del corso di Ingegneria del Software.
+
+Sul sito di #underline(link("https://glitchhub-team.github.io/")[GlitchHub Team]) sono disponibili i documenti scritti e pubblicati attualmente. In particolare:
+- *Valutazione dei capitolati*
+- *Lettera di presentazione*
+- *Dichiarazione degli impegni*
+- *Verbali esterni*
+- *Verbali interni*
 
 All'interno del documento di #underline(link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[dichiarazione degli impegni])#footnote[Dichiarazione degli impegni: #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")] è stato stimato un costo totale per la realizzazione del progetto pari a *Euro 12.975* e fissato il termine di
 consegna al *27 Marzo 2026*.
