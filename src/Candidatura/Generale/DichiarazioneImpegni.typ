@@ -190,8 +190,8 @@ Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i com
 Il gruppo, dopo aver definito una durata dello *Sprint* pari a *una settimana*, ha stabilito di effettuare la rotazione dei ruoli ogni *due settimane*. \
 Questa scelta permette a ciascun componente di ricoprire tutti i ruoli nell'arco del Progetto Didattico e consente di includere due Sprint all'interno del periodo di rotazione, così da individuare e correggere eventuali criticità legate all'assunzione di un nuovo ruolo.
 
-Una rotazione con frequenza inferiore non garantirebbe un sufficiente periodo di adattamento e non favorirebbe l'apprendimento delle competenze richieste.
-Inoltre, ogni componente si impegna a trasferire al proprio successore le conoscenze maturate nello svolgimento del ruolo, al fine di agevolare l'inserimento e favorire la continuità operativa.
+Una rotazione con frequenza inferiore non garantirebbe un sufficiente periodo di adattamento e non favorirebbe l'apprendimento delle competenze richieste. \
+Inoltre, ogni componente si impegna a trasferire al proprio successore le conoscenze maturate nello svolgimento del ruolo, al fine di agevolare e velocizzare l'inserimento.
 
 Il gruppo si riserva la possibilità di rivedere i criteri esposti qualora dovessero emergere nuove esigenze organizzative. \
 Tuttavia, al momento si ritiene che, per le prossime *9 settimane*, ovvero fino al termine dell'*RTB*, tali criteri rimarranno invariati.
