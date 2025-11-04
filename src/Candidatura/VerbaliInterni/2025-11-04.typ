@@ -3,14 +3,14 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 04/11/2025",
-  stato: "Da verificare",
+  stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
     (
       "1.0.0",
       "04/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Siria Salvalaio",
       "Revisione e lievi correzioni per versione stabile",
     ),
     (
@@ -45,8 +45,8 @@
     "Varie ed eventuali",
   ),
   htmlId: "Candidatura-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-verbale: "Interno",
 )
 
