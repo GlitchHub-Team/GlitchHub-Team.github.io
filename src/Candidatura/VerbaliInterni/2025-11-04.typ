@@ -59,7 +59,7 @@ L'incontro è stato organizzato con lo scopo di risolvere i problemi emersi dura
 Il gruppo, dopo aver valutato rispettivi impegni individuali e universitari, ha deciso di adottare un sistema di organizzazione temporale a _sprint_ settimanali in accordo con il modello di sviluppo _Agile_.
 
 Al termine di ogni sprint verrà svolta una cerimonia di _sprint retrospective_, fissata ogni mercoledì alle ore 14:30 in seguito a una votazione di gruppo, con lo scopo di analizzare il lavoro svolto, discutere insieme eventuali dubbi e/o problemi emersi durante la settimana e proporre soluzioni condivise. \
-Questa cerimonia avrà anche il ruolo di _sprint review_, dato che si analizzeranno i prodotti dello sprint, una volta aggiudicato l'appalto il gruppo procederà a separare le due cerimonie integrando l'azienda proponente nella _sprint review_.
+Questa cerimonia avrà anche il ruolo di _sprint review_, dato che si analizzeranno i prodotti dello sprint. Una volta aggiudicato l'appalto, il gruppo procederà a separare le due cerimonie integrando l'azienda proponente nella _sprint review_.
 
 == Organizzazione Issues e Projects
 Il gruppo ha deciso di utilizzare le GitHub Issues, che sono pubbliche a differenza delle issues di ClickUp, usate in precedenza, con l'obiettivo di centralizzare e semplificare il workflow. \
