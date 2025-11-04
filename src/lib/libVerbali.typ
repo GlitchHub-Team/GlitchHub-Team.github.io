@@ -21,7 +21,6 @@
   right-signature: "",
   body,
 ) = {
-  set document(title: metadata.title)
   set page(numbering: none, number-align: center)
   set text(font: main-font, lang: language)
 

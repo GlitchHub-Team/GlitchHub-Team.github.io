@@ -5,12 +5,19 @@
 #show: report.with(
   titolo: "Dichiarazione impegni",
   stato: "Verificato",
-  versione: "1.0.0",
+  versione: "1.1.0",
   registro-modifiche: (
-    ("1.0.0","30/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Versione stabile del documento"),
-    ("0.0.7","30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
-    ("0.0.6","30/10/2025", "Hossam Ezzemouri", "Michele Dioli", "Revisione e correzioni del documento"),
-    ("0.0.5", "30/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento"),
+    ("1.1.0", "4/11/2025", "Alessandro Dinato", "Michele Dioli", "Aggiunta criteri di rotazione dei ruoli"),
+    ("1.0.0", "30/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Versione stabile del documento"),
+    ("0.0.7", "30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
+    ("0.0.6", "30/10/2025", "Hossam Ezzemouri", "Michele Dioli", "Revisione e correzioni del documento"),
+    (
+      "0.0.5",
+      "30/10/2025",
+      "Jaume Bernardi",
+      "Hossam Ezzemouri",
+      "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento",
+    ),
     ("0.0.4", "29/10/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Stesura motivazioni suddivisione oraria"),
     ("0.0.3", "29/10/2025", "Jaume Bernardi", "Hossam Ezzemouri", "Bozza analisi dei rischi"),
     ("0.0.2", "28/10/2025", "Hossam Ezzemouri", "Alessandro Dinato", "Bozza introduzione e analisi dei ruoli"),
@@ -19,13 +26,13 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "Candidatura-Generale",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Michele Dioli",
+  left-signature: "../assets/firme/firma_Michele_Dioli.png",
   tipo-documento: "Dichiarazione impegni",
 )
 
 = Introduzione
-Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.L.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
+Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
 Con la presente dichiarazione i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
 
 = Analisi dei ruoli
@@ -178,6 +185,17 @@ Infine, il ruolo di *analista* è stato stimato in *68 ore*, poiché è un ruolo
 
 Per scopi didattici, i ruoli verranno ruotati periodicamente tra i membri del gruppo.\
 Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i componenti, garantendo equità nelle responsabilità e opportunità di apprendimento per tutti.
+
+== Criteri di rotazione dei ruoli
+Il gruppo, dopo aver definito una durata dello *Sprint* pari a *una settimana*, ha stabilito di effettuare la rotazione dei ruoli ogni *due settimane*. \
+Questa scelta permette a ciascun componente di ricoprire tutti i ruoli nell'arco del Progetto Didattico e consente di includere due Sprint all'interno del periodo di rotazione, così da individuare e correggere eventuali criticità legate all'assunzione di un nuovo ruolo.
+
+Una rotazione con frequenza inferiore non garantirebbe un sufficiente periodo di adattamento e non favorirebbe l'apprendimento delle competenze richieste. \
+Inoltre, ogni componente si impegna a trasferire al proprio successore le conoscenze maturate nello svolgimento del ruolo, al fine di agevolare e velocizzare l'inserimento.
+
+Il gruppo si riserva la possibilità di rivedere i criteri esposti qualora dovessero emergere nuove esigenze organizzative. \
+Tuttavia, al momento si ritiene che, per le prossime *9 settimane*, ovvero fino al termine dell'*RTB*, tali criteri rimarranno invariati.
+
 
 #pagebreak()
 
