@@ -4,13 +4,20 @@
 #show: report.with(
   titolo: "Glossario",
   stato: "Bozza",
-  versione: "0.0.2",
+  versione: "0.1.1",
   registro-modifiche: (
+    (
+      "0.1.1",
+      "3/11/2025",
+      "Michele Dioli",
+      "-",
+      "Sistemate alcune definizioni",
+    ),
     (
       "0.1.0",
       "3/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Michele Dioli",
       "Definizione termini specificati a lezione",
     ),
     (
@@ -104,15 +111,15 @@
   ),
   (
     term: "Requisito",
-    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_(lato bisogno), oppure una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_(lato soluzione).],
+    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_ (lato bisogno), oppure una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_(lato soluzione).],
   ),
   (
     term: "Requisito utente",
-    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_(lato bisogno). Il capitolato specifica le aspettative del *proponente* fissate nella fase di studio del problema.],
+    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_ (lato bisogno). Il capitolato specifica le aspettative del *proponente* fissate nella fase di studio del problema.],
   ),
   (
     term: "Requisito software",
-    definition: [Una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_(lato soluzione). L'*analisi dei requisiti* esplora il punto di vista lato soluzione, ovvero ciò che il prodotto deve fare per soddisfare i bisogni.],
+    definition: [Una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_ (lato soluzione). L'*analisi dei requisiti* esplora il punto di vista lato soluzione, ovvero ciò che il prodotto deve fare per soddisfare i bisogni.],
   ),
   (
     term: "Committente",
@@ -140,11 +147,11 @@
   ),
   (
     term: "Capitolato d'appalto",
-    definition: [Documento redatto dai *proponenti* con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative(*requisiti utente*)],
+    definition: [Documento redatto dai *proponenti* con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative (*requisiti utente*)],
   ),
   (
     term: "Way of working",
-    definition: [Rappresenta l'insieme di pratiche volte a rendere l'organizzazione delle attività di progetto _il più professionale possibile_. Deve essere incrementale nel tempo e includere sempre le nuove attività normate prima di essere attuate.],
+    definition: [Rappresenta l'insieme di pratiche volte a rendere l'organizzazione delle attività di progetto _il più professionale possibile_. Deve essere incrementale nel tempo e includere sempre le nuove attività nelle norme prima della loro attuazione.],
   ),
   (
     term: "Typst",
@@ -331,10 +338,6 @@
     definition: [Test che verificano isolamento dei dati e corretto funzionamento di un sistema con più tenant.],
   ),
   (
-    term: "Test di integrazione",
-    definition: [Test che controllano interazioni tra moduli software, database o servizi esterni.],
-  ),
-  (
     term: "Test di sicurezza",
     definition: [Verificano che il sistema protegga dati e accessi da vulnerabilità o minacce.],
   ),
@@ -389,7 +392,7 @@
   ),
   (
     term: "Processo di ciclo di vita",
-    definition: [Sono l'insieme di attività che guidano(secondo best practice) un cambio di fase all'interno di un prodotto software(es: concezione -> sviluppo). Il processo è l'insieme di attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_ secondo _regole date_ consumando _risorse_ nel farlo],
+    definition: [Sono l'insieme di attività che guidano, secondo best practice, un cambio di fase all'interno di un prodotto software(es: concezione -> sviluppo). Un processo è composto da attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_ , secondo _regole definite_, consumando _risorse_ nel farlo],
   ),
   (
     term: "Modello di ciclo di vita",
@@ -421,7 +424,7 @@
   ),
   (
     term: "Riuso",
-    definition: [Impiego di componenti, codice o documenti esistenti per ridurre tempi di sviluppo e rischi. La frequenza di riuso è direttamente proporzionale al _costo di adozione_ e all'impatto nel workflow],
+    definition: [Pratica che consiste nell’impiegare componenti, codice o documenti già esistenti per ridurre tempi di sviluppo e rischi. Quanto più basso è il _costo di adozione_ e l’impatto sul workflow maggiore è la frequenza di riuso.],
   ),
   (
     term: "Debito tecnico",
@@ -433,7 +436,7 @@
   ),
   (
     term: "Milestone",
-    definition: [Punto di avanzamento nel tempo di progetto, fissato da una data specifica, che segnala il completamento di determinati obiettivi o risultati intermedi. Il raggiungimento di una _milestone_ è generalmente associato alla realizzazione di una *baseline* che soddisfa i requisiti previsti fino a quel punto.],
+    definition: [Traguardo intermedio o punto di controllo in un progetto, che segna il completamento di una fase importante del lavoro. Il raggiungimento di una _milestone_ è generalmente associato alla realizzazione di una *baseline* che soddisfa i requisiti previsti fino a quel punto.],
   ),
   (
     term: "Baseline",
