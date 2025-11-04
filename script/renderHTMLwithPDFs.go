@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
+	"strconv"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -13,15 +15,17 @@ import (
 )
 
 type PDFDocument struct {
-	path  string
-	title string
-	id    string
+	index   int
+	path    string
+	version string
+	title   string
+	htmlId  string
 }
 
-const KEYWORDS_N = 1
+const KEYWORDS_N = 3
 const PATH_TO_DOCUMENTS = "../website/pdf/"
 const PATH_TO_HTML = "../website/index.html"
-const TEMPLATE = "<li><a href='%s' target='_blank'>%s</a></li>"
+const TEMPLATE = "<li><a href='%s' target='_blank'>%s</a><span class='version-tag'>v%s</span></li>"
 
 func loadPDFMetadata(pdf *PDFDocument) error {
 	ctx, err := api.ReadContextFile(pdf.path)
@@ -34,7 +38,13 @@ func loadPDFMetadata(pdf *PDFDocument) error {
 	if len(keywordsList) != KEYWORDS_N {
 		return fmt.Errorf("there are not exactly %d keywords, check the typst file", KEYWORDS_N)
 	}
-	pdf.id = keywordsList[0]
+	pdf.htmlId = keywordsList[0]
+	pdf.version = keywordsList[1]
+	index, err := strconv.Atoi(strings.TrimSpace(keywordsList[2]))
+	if err != nil {
+		return fmt.Errorf("invalid index: %w", err)
+	}
+	pdf.index = index
 
 	return nil
 }
@@ -113,6 +123,17 @@ func main() {
 		panic(err)
 	}
 
+	sort.Slice(docs, func(i, j int) bool {
+		if docs[i].index == docs[j].index {
+			return docs[i].path > docs[j].path
+		}
+		return docs[i].index > docs[j].index
+	})
+
+	for _, d := range docs {
+		fmt.Println(d.path, d.title, d.index)
+	}
+
 	htmlBytes, err := os.ReadFile(PATH_TO_HTML)
 	if err != nil {
 		fmt.Println("Error while reading the HTML file:", err)
@@ -121,11 +142,11 @@ func main() {
 
 	htmlStr := string(htmlBytes)
 
-	for _, d := range docs {
+	for i := 0; i < len(docs); i++ {
+		d := docs[i]
 		d.path = strings.Replace(d.path, "./website", "", 1)
-		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title)
-		fmt.Println(d.id)
-		updatedHTML, err := addChildToId(htmlStr, d.id, renderedHTML)
+		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title, d.version)
+		updatedHTML, err := addChildToId(htmlStr, d.htmlId, renderedHTML)
 		if err != nil {
 			fmt.Println("Error:", err)
 			return

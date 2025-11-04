@@ -183,6 +183,7 @@
   title: "GlitchHub Team",
   subtitle: "Diario di bordo",
   htmlId: "Diapositive",
+  index: "0",
   date: datetime.today().display("[year]-[month]-[day]"),
   authors: (),
   body,
@@ -199,7 +200,7 @@
   set document(
     title: "Diario di bordo " + date,
     author: "GlitchHub Team",
-    keywords: htmlId,
+    keywords: (htmlId, "1.0.0", index), //versione di default per script Go
   )
   pagebreak()
 
