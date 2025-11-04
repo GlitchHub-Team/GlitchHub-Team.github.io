@@ -14,13 +14,14 @@
   verificatore-interno: "",
   left-signature: "",
   tipo-documento: "",
+  index: "0",
   body,
 ) = [
 
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-    keywords: (htmlId, versione),
+    keywords: (htmlId, versione, index),
   )
 
   #set page(

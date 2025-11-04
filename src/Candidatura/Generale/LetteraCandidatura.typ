@@ -16,6 +16,7 @@
   logo: "../assets/loghi/GlitchHub-Team_LogoG.png",
   htmlId: "Candidatura-Generale",
   versione: "1.0.0",
+  index: "1",
 )
 
 Egregi professori Vardanega e Cardin, \

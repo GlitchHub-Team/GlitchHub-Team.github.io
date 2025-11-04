@@ -11,6 +11,7 @@
   partecipanti: none,
   distribuzione: none,
   htmlId: none,
+  index: "0",
   odg: none,
   registro-modifiche: (),
   verificatore-interno: "",
@@ -24,7 +25,7 @@
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-    keywords: (htmlId, versione),
+    keywords: (htmlId, versione, index),
   )
 
   #set page(
