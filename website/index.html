@@ -27,10 +27,11 @@
                 </button>
 
                 <ul class="nav-links" id="nav-links">
+                    <li><a href="./pdf/glossary.pdf" target="_blank">Glossario</a></li>
                     <li><a href="#candidatura">Candidatura</a></li>
-                    <li><a href="#rtb">RTB</a></li>
-                    <li><a href="#pb">PB</a></li>
-                    <li><a href="#Diapositive">Diapositive</a></li>
+                    <li class="nascondi"><a href="#rtb">RTB</a></li>
+                    <li class="nascondi"><a href="#pb">PB</a></li>
+                    <li class="nascondi"><a href="#Diapositive">Diapositive</a></li>
                     <li><a href="#chisiamo">Chi siamo</a></li>
                 </ul>
             </div>
@@ -47,19 +48,20 @@
     </header>
 
     <div class="container">
-        <details id="candidatura">
+        <details id="candidatura" open>
             <summary>
                 <h2>Candidatura</h2>
             </summary>
 
             <div>
                 <section>
-                    <p>Candidatura</p>
+                    <p>Documenti</p>
                     <ul id="Candidatura-Generale">
+                        <li><a href="./pdf/Candidatura/Generale/ValutazioneCapitolati.pdf" target="_blank">Valutazione Capitolati</a><span class="version-tag">v 1.0.0</span></li>
                     </ul>
                 </section>
             </div>
-
+            
             <div class="liste">
                 <div>
                     <section>
@@ -79,7 +81,7 @@
             </div>
         </details>
 
-        <details id="rtb">
+        <details id="rtb" class="nascondi">
             <summary>
                 <h2>RTB</h2>
             </summary>
@@ -102,7 +104,7 @@
             </div>
         </details>
 
-        <details id="pb">
+        <details id="pb" class="nascondi">
             <summary>
                 <h2>PB</h2>
             </summary>
@@ -125,7 +127,7 @@
             </div>
         </details>
 
-        <details>
+        <details class="nascondi">
             <summary>
                 <h2>Diapositive</h2>
             </summary>
