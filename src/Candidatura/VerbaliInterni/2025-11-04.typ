@@ -4,9 +4,22 @@
 #show: report.with(
   titolo: "Verbale interno 04/11/2025",
   stato: "Da verificare",
-  versione: "0.1.0",
+  versione: "1.0.0",
   registro-modifiche: (
-    ("0.1.0", "04/11/2025", "Elia Ernesto Stellin", "-", "Modifiche alla struttura e alla scorrevolezza; aggiunte motivazioni nella selezione di date di RTB e PB"),
+    (
+      "1.0.0",
+      "04/11/2025",
+      "Alessandro Dinato",
+      "-",
+      "Revisione e lievi correzioni per versione stabile",
+    ),
+    (
+      "0.1.0",
+      "04/11/2025",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      "Modifiche alla struttura e alla scorrevolezza; aggiunte motivazioni nella selezione di date di RTB e PB",
+    ),
     ("0.0.1", "04/11/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Bozza quarto incontro interno"),
   ),
   partecipanti: (
@@ -23,7 +36,7 @@
     "Prof. Vardanega Tullio",
   ),
   odg: (
-    "Organizzazione sprint e retrospective settimanali",
+    "Organizzazione sprint e retrospective",
     "Scelta delle date indicative RTB e PB",
     "Organizzazione compiti da ClickUp a Issues e Projects su GitHub",
     "Allineamento sui criteri di rotazione dei ruoli",
@@ -32,8 +45,8 @@
     "Varie ed eventuali",
   ),
   htmlId: "Candidatura-VerbaliInterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "",
+  left-signature: "",
   tipo-verbale: "Interno",
 )
 
@@ -43,11 +56,10 @@ L'incontro è stato organizzato con lo scopo di risolvere i problemi emersi dura
 
 = Resoconto della riunione
 == Organizzazione sprint settimanali
-Il gruppo, dopo aver valutato rispettivi impegni individuali e universitari, ha deciso di adottare un sistema di organizzazione temporale a "sprint" settimanali.
+Il gruppo, dopo aver valutato rispettivi impegni individuali e universitari, ha deciso di adottare un sistema di organizzazione temporale a _sprint_ settimanali in accordo con il modello di sviluppo _Agile_.
 
-Al termine di ogni sprint verrà svolta una cerimonia di _retrospective_, fissata ogni mercoledì alle ore 14:30 in seguito a una votazione di gruppo, per analizzare il lavoro svolto, discutere insieme eventuali dubbi e/o problemi emersi durante la settimana e proporre soluzioni condivise.
-
-Per il momento verrà mantenuta questa organizzazione, eventuali modifiche saranno valutate in concomitanza con gli incontri previsti con l'azienda proponente.
+Al termine di ogni sprint verrà svolta una cerimonia di _sprint retrospective_, fissata ogni mercoledì alle ore 14:30 in seguito a una votazione di gruppo, con lo scopo di analizzare il lavoro svolto, discutere insieme eventuali dubbi e/o problemi emersi durante la settimana e proporre soluzioni condivise. \
+Questa cerimonia avrà anche il ruolo di _sprint review_, dato che si analizzeranno i prodotti dello sprint, una volta aggiudicato l'appalto il gruppo procederà a separare le due cerimonie integrando l'azienda proponente nella _sprint review_.
 
 == Organizzazione Issues e Projects
 Il gruppo ha deciso di utilizzare le GitHub Issues, che sono pubbliche a differenza delle issues di ClickUp, usate in precedenza, con l'obiettivo di centralizzare e semplificare il workflow. \
@@ -61,7 +73,7 @@ Il gruppo ha fissato le deadline per le due _baseline_ principali del progetto i
 
 Il *Requirements and Technology Baseline* (RTB) è previsto indicativamente a metà del periodo fissato dal gruppo ovvero nella settimana tra il 12 e il 18 gennaio, mentre il *Product Baseline* (PB), è pianificato per la fine del periodo, cioè nel mese di marzo.
 
-Queste date sono molto approssimative e sono soggette a notevoli cambiamenti, a seconda dell'evoluzione delle necessità del gruppo e dell'azienda proponente.
+Queste date sono molto approssimative e possono essere soggette a notevoli cambiamenti, a seconda dell'evoluzione delle necessità del gruppo e dell'azienda proponente.
 
 == Criteri di rotazione dei ruoli
 In seguito alla cerimonia di aggiudicazione degli appalti del *4 novembre 2025*, è emersa una criticità nella Dichiarazione degli Impegni consegnata alla candidatura del *31 ottobre 2025*, relativa alla mancata descrizione della rotazione dei ruoli durante lo svolgimento del progetto.
@@ -85,10 +97,24 @@ Questa modifica comporta un aggiornamento delle automazioni di pubblicazione dei
   align: center + horizon,
   [*Task*], [*Responsabile*], [*Issue*],
   [Scrittura Verbale Interno 2025-11-04 \ - Verifica  #footnote[
-    Le task segnate con il trattino "-" sono sub-issue delle principali indicate sopra
-  ]], [Siria Salvalaio \ - Elia Ernesto Stellin], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/20")[*\#20*] \ - #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/28")[*\#28*]],
-  [Inserire criteri di rotazione in Dichiarazione Impegni], [Michele Dioli e Alessandro Dinato], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/21")[*\#21*]],
-  [Modificare organizzazione sito], [Michele Dioli], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/22")[*\#22*]],
-  [Sistemare script pubblicazione PDF], [Alessandro Dinato], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/23")[*\#23*]],
-  [Modifica lettera di presentazione \ - Verifica ], [Hossam Ezzemouri \ - Jaume Bernardi], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/24")[*\#24*]\ - #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/26")[*\#26*]]
+      Le task segnate con il trattino "-" sono sub-issue delle principali indicate sopra
+    ]],
+  [Siria Salvalaio \ - Elia Ernesto Stellin],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/20")[*\#20*] \ - #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/28")[*\#28*]],
+
+  [Inserire criteri di rotazione in Dichiarazione Impegni],
+  [Michele Dioli e Alessandro Dinato],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/21")[*\#21*]],
+
+  [Modificare organizzazione sito],
+  [Michele Dioli],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/22")[*\#22*]],
+
+  [Sistemare script pubblicazione PDF],
+  [Alessandro Dinato],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/23")[*\#23*]],
+
+  [Modifica lettera di presentazione \ - Verifica ],
+  [Hossam Ezzemouri \ - Jaume Bernardi],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/24")[*\#24*]\ - #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/26")[*\#26*]],
 )
