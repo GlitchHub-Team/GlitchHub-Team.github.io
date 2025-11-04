@@ -4,10 +4,10 @@
 
 #show: report.with(
   titolo: "Dichiarazione impegni",
-  stato: "Da verificare",
+  stato: "Verificato",
   versione: "1.1.0",
   registro-modifiche: (
-    ("1.1.0", "4/11/2025", "Alessandro Dinato", "", "Aggiunta criteri di rotazione dei ruoli"),
+    ("1.1.0", "4/11/2025", "Alessandro Dinato", "Michele Dioli", "Aggiunta criteri di rotazione dei ruoli"),
     ("1.0.0", "30/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Versione stabile del documento"),
     ("0.0.7", "30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
     ("0.0.6", "30/10/2025", "Hossam Ezzemouri", "Michele Dioli", "Revisione e correzioni del documento"),
@@ -26,8 +26,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "Candidatura-Generale",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Michele Dioli",
+  left-signature: "../assets/firme/firma_Michele_Dioli.png",
   tipo-documento: "Dichiarazione impegni",
 )
 
