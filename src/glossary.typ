@@ -3,7 +3,7 @@
 #show link: underline
 #show: report.with(
   titolo: "Glossario",
-  stato: "Bozza",
+  stato: "Da verificare",
   versione: "0.1.1",
   registro-modifiche: (
     (
