@@ -12,9 +12,9 @@
 #content-slide(title: "Questioni aperte")[
   #icon-list(
     icon: "•",
+    "Discussione e decisione di argomenti utili da trattare nell' incontro con M31",
     "Studiare le tecnologie consigliate e richieste dal proponente",
     "Stesura di documenti RTB (Requirements and Technology Baseline)",
-    "decidere di cosa parlare con M31",
   )
 ]
 
