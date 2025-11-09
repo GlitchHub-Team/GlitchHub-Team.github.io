@@ -24,7 +24,7 @@
   #icon-list(
     icon: "•",
     "Scegliere una cadenza temporanea per sprint e per il cambio dei ruoli",
-    "Assegnare ruoli in nel breve periodo",
+    "Assegnare ruoli nel breve periodo",
   )
 ]
 
