@@ -3,8 +3,9 @@
 #show: report.with(
     titolo: "Analisi dei Requisiti",
     stato: "Bozza",
-    versione: "0.1.0",
+    versione: "0.3.0",
     registro-modifiche: (
+        ("0.3.0","16/11/2025","Hossam Ezzemouri","-","Stesura degli Use Case 3, 3.1, 3.2, 3.3, 4, 5 e 6"),
         ("0.2.0","16/11/2025","Riccardo Graziani","-","Stesura descrizione struttura dei casi d'uso, aggiunta sezione 2.2"),
         ("0.1.0","15/11/2025","Hossam Ezzemouri","-","Stesura introduzione e inizio dei Casi d'uso"),
     ),
@@ -47,4 +48,79 @@ I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione s
 
 == Attori
 Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
+
+
+== Lista dei casi d'uso
+=== UC3 - Inserimento nuovo utente da parte di un Admin
+#figure(
+  image("UC_images/UC3.png", width: 11cm)
+)
+
+- *Attore principale*: Admin
+- *Trigger*: L'Admin vuole creare un nuovo utente
+- *Precondizioni*:
+                    - Admin autenticato nel sistema
+                   
+- *Postcondizioni*: 
+                    - Il nuovo utente è registrato nel sistema e può autenticarsi
+                    - L'utente è correttamente associato al tenant dell'Admin
+- *Scenari alternativi*:
+                            - Username già in uso
+
+=== UC3.1 - Inserimento username nuovo utente
+- *Attore principale*: Admin
+- *Trigger*: L'Admin inserisce lo username da dare al nuovo utente da creare
+- *Precondizioni*:
+                    - Admin autenticato
+                    - Flusso UC3 iniziato (l'Admin ha scelto di inserire un nuovo utente)
+- *Postcondizioni*: 
+                    - Lo username viene registrato correttamente nel sistema
+                    - Il nuovo utente è associato al tenant dell'Admin
+- *Flussi alternativi*:
+                        - Username già in uso
+                        - Username con caratteri non validi
+
+=== UC3.2 - Inserimento password nuovo utente
+- *Attore principale*: Admin
+- *Trigger*: L'admin assegna una password all'utente da creare
+- *Precondizioni*: 
+                    - Admin autenticato
+                    - Flusso UC3 inziato e username inserito (UC3.1 completato)
+- *Postcondizioni*:
+                    - La password viene registrata correttamente nel sistema
+- *Flussi alternativi*: 
+                        - Password non conforme ai criteri di sicurezza
+
+=== UC4 - L'Admin seleziona un utente
+#figure(
+  image("UC_images/UC4.png", width: 11cm)
+)
+
+- *Attore principale*: Admin
+- *Trigger*: L'Admin dalla dashboard seleziona un utente del suo tenant
+- *Precondizioni*:
+                    - Admin autenticato nel sistema
+                    - Esistono utenti registrati nel tenant dell'Admin
+- *Postcondizioni*: - L'Admin può visualizzare i dati dell'utente selezionato
+                    - L'Admin può modificare/eliminare l'utente
+
+=== UC5 - Modifica di un utente selezionato dall'Admin
+- *Attore principale*: Admin
+- *Trigger*: L'Admin modifica un utente
+- *Precondizioni*: 
+                    - Admin autenticato
+                    - Utente già selezionato dall'Admin (UC4 completato)
+                    - L' Admin appartiene al tenant dell'utente selezionato
+- *Postcondizioni*: 
+                    - L'utente viene aggiornato secondo le modifiche dell'Admin
+
+=== UC6 -  Eliminazione di un utente selezionato dall'Admin
+- *Attore principale*: Admin
+- *Trigger*: L'Admin vuole eliminare l'utente selezionato
+- *Precondizioni*: 
+                    - Admin autenticato
+                    - Utente già selezionato dall'Admin (UC4 completato)
+                    - L'utente selezionato appartiene al tenant dell'Admin
+- *Postcondizioni*: 
+                    - L'utente viene rimosso dal sistema
 
