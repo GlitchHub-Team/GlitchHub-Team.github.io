@@ -5,6 +5,7 @@
     stato: "Bozza",
     versione: "0.1.0",
     registro-modifiche: (
+        ("0.2.0","16/11/2025","Riccardo Graziani","-","Stesura descrizione struttura dei casi d'uso, aggiunta sezione 2.2"),
         ("0.1.0","15/11/2025","Hossam Ezzemouri","-","Stesura introduzione e inizio dei Casi d'uso"),
     ),
 
@@ -33,4 +34,17 @@ I sensori svolgono la funzione di acquisizione locale mentre i gateway aggregano
 == Introduzione
 La definizione dei casi d'uso rappresenta una fase fondamentale nell'analisi dei requisiti di sistema previsto dal capitolato M31. I casi d'uso permettono di descrivere in maniera chiara e strutturata come gli *attori* interagiscono con il sistema per raggiungere un determinato obiettivo.
 
-Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei,sia umani che automatici. L' utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema, quali l'acquisizione e l'aggregazione dei dati,l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
+I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione sintetica delle relazioni tra attori e funzionalità, e di una descrizione testuale dettagliata. Quest'ultima specifica gli elementi principali del comportamento del sistema attraverso i seguenti punti:
+- *Attori primari*: indicano gli attori che interagiscono attivamente con il sistema e che avviano o guidano il flusso principale del caso d'uso;
+- *Attori secondari*: rappresentano gli attori che intervengono in modo indiretto o passivo;
+- *Precondizioni*: descrizione delle condizioni che devono essere vere affinchè l'attore possa avviare il caso d'uso;  
+- *Postcondizioni*: descrizione dello stato interno del sistema al completamento del caso d'uso;
+- *Scenario principale*: sequenza ordinata di passi che descrive il flusso di interazione tra attori e sistema in assenza di errori o di situazioni eccezionali; 
+- *Scenario secondario*: deviazioni dal flusso principale che si verificano quando l'attore compie una scelta alternativa o si verificano condizioni particolari previste dal caso d'uso;
+- *Inclusioni*: riferimenti a casi d'uso che l'attore deve completare per poter portare a termine il caso d'uso corrente;
+- *Estensioni*: riferimenti a casi d'uso che posso verificarsi durante il flusso principale del caso d'uso;
+- *Trigger*: descrizione dell'evento o condizione che dà avvio al caso d'uso;
+
+== Attori
+Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
+
