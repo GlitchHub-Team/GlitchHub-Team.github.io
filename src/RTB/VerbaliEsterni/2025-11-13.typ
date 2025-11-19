@@ -48,7 +48,7 @@ L'azienda si è detta disponibile a creare un canale privato su Microsoft Teams,
 
 == Framework organizzativo M31
 === Metodologia di lavoro
-Si è approfondito con Luca Cossaro del _way of working_ adottato da M31. L'azienda adotta una metodologia agile, utilizzando *Scrum* per i progetti più intensivi e *Kanban* per quelli a ritmo più disteso. Dopo una breve confronto si concordato di adottare il framework Scrum, definendo due tipologie di meeting ricorrenti:
+Si è approfondito con Luca Cossaro del _way of working_ adottato da M31. L'azienda adotta una metodologia agile, utilizzando *Scrum* per i progetti più intensivi e *Kanban* per quelli a ritmo più disteso. Dopo una breve confronto si è concordato di adottare il framework Scrum, definendo due tipologie di meeting ricorrenti:
 - *settimanale di allineamento*, in cui M31 assume un ruolo di mentore per discutere dubbi, eventuali ritardi e criticità. L'azienda ha precisato che non è necessaria la presenza dell'intero gruppo a questi incontri;
 - *bisettimanale strutturato*, in cui l'azienda si pone come cliente e il gruppo presenta il lavoro svolto e la pianificazione delle attività successive. 
 Il periodo di tempo tra questi incontri formali rimane flessibile in base alle esigenze del gruppo. \
