@@ -2,10 +2,17 @@
 
 #show link: underline
 #show: report.with(
-  titolo: "Verbale interno 04/11/2025",
-  stato: "Bozza",
-  versione: "0.0.1",
+  titolo: "Verbale interno 12/11/2025",
+  stato: "Da verificare",
+  versione: "1.0.0",
   registro-modifiche: (
+       (
+      "1.0.0",
+      "18/11/2025",
+      "Michele Dioli",
+      "-",
+      "Aggiunta desrizione nelle sezioni",
+    ),
     (
       "0.0.1",
       "13/11/2025",
@@ -55,15 +62,20 @@ I ruoli verranno ruotati tra due settimane a partire dalla data dell’incontro.
 
 Durante l’incontro sono emerse alcune divergenze riguardo ai compiti di determinati ruoli.
 È stato quindi dedicato del tempo per chiarire le responsabilità e allineare tutti i membri del team.
+È stato discusso il ruolo del verificatore, il quale avrà come impegno quello di leggere tutti i documenti in fase di verifica e lasciare commenti all’autore che suggeriscano le modifiche da apportare; di conseguenza non apporterà modifiche dirette al documento.\
+La stesura dei documenti è affidata agli analisti, che per questa fase di progetto si concentreranno sull’impostazione dei documenti e dei casi d’uso.
+Inoltre è stato stimato il monte ore di ciascun ruolo per lo sprint avviato.
 
-== Suddivisione dei documenti da redigere
-
-I componenti del team responsabili della redazione dei documenti si sono organizzati per rendere il lavoro di scrittura più agevole ed evitare conflitti.
-È stato deciso di iniziare la stesura del *Piano di Progetto*, dell’*Analisi dei Requisiti* e delle *Norme di Progetto*.
+== Suddivisione dei documenti da iniziare 
+Con l’inizio della RTB è stato deciso che gli analisti si occuperanno principalmente della redazione dei documenti, suddividendo il carico tra Norme di Progetto, Analisi dei Requisiti e Piano di Progetto.
+Essendo nelle fasi iniziali, il lavoro sarà principalmente di “palestra”, soprattutto per quanto riguarda l’Analisi dei Requisiti, che richiede la scrittura e la comprensione dei casi d’uso.\
+I componenti del team responsabili della redazione dei documenti si sono organizzati per rendere il lavoro di scrittura più agevole ed evitare conflitti, preferendo una modalità di lavoro asincrona.
 
 == Preparazione per l’incontro formale con M31
-
-In vista del primo incontro in presenza con l’azienda proponente, si è deciso di riflettere su alcune domande da porre per chiarire i dubbi iniziali emersi dopo la candidatura.
+Si è deciso di comunicare all’azienda l’avvenuta candidatura e quindi l’inizio del progetto didattico. Inoltre, si richiederà un primo incontro formale per allinearsi sulle attività da svolgere.\
+In vista di questo incontro in presenza con l’azienda proponente, il gruppo ha scelto di riflettere su alcune domande da porre, al fine di chiarire i dubbi iniziali emersi dopo la candidatura.\
+Principalmente si chiederà all’azienda di predisporre un canale di comunicazione rapido e di fornire alcuni consigli operativi, dato che ha già maturato esperienza nel tutoraggio di gruppi negli anni precedenti.\
+Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato nel capitolato dell’azienda, così da rendere l’incontro il più produttivo possibile.
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
@@ -101,4 +113,5 @@ In vista del primo incontro in presenza con l’azienda proponente, si è deciso
 
 = Conclusioni
 Il gruppo ha come prossima data di incontro il 19 novembre 2025, in cui è stata fissata la sprint retrospective.
-La data potrà comunque essere confermata o modificata in base agli impegni lavorativi dei membri del gruppo.
+La data potrà comunque essere confermata o modificata in base agli impegni lavorativi dei membri del gruppo.\
+In generale c’è un clima collaborativo; tuttavia il gruppo si trova in leggera difficoltà riguardo al da farsi, con alcuni dubbi che si spera possano essere risolti il prima possibile.
