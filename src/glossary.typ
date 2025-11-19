@@ -231,7 +231,7 @@
   ),
   (
     term: "RTB",
-    definition: [La _Requirements and Technology Baseline_ è un fase del *Progetto Didattico* che fissa in modo stabile i requisiti da soddisfare, concordati con il proponente, e motiva le tecnologie, i framework e le librerie scelti. È supportata dal *Proof of Concept*.],
+    definition: [La _Requirements and Technology Baseline_ è una fase del *Progetto Didattico* che fissa in modo stabile i requisiti da soddisfare, concordati con il proponente, e motiva le tecnologie, i framework e le librerie scelti. È supportata dal *Proof of Concept*.],
   ),
   (
     term: "PB",
