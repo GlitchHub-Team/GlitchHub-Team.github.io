@@ -3,15 +3,15 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 12/11/2025",
-  stato: "Da verificare",
-  versione: "1.0.0",
+  stato: "Verificato",
+  versione: "0.1.0",
   registro-modifiche: (
        (
-      "1.0.0",
+      "0.1.0",
       "18/11/2025",
       "Michele Dioli",
-      "-",
-      "Aggiunta desrizione nelle sezioni",
+      "Siria Salvalaio",
+      "Aggiunta descrizione nelle sezioni",
     ),
     (
       "0.0.1",
@@ -42,14 +42,14 @@
     "Preparazione per l incontro formale con M31",
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "../assets/firme/firma_Michele_Dioli.png",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-verbale: "Interno",
 )
 
 = Introduzione
 Il presente documento attesta che, in data *12 novembre 2025* dalle ore 16:00 alle ore 17:30, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*. \
-L’incontro settimanale di sprint retrospective si è svolto come previsto, ma è stato utilizzato non come retrospettiva, bensì come momento di pianificazione.
+L’incontro settimanale di sprint retrospective si è svolto come previsto, ma è stato utilizzato non come retrospettiva bensì come momento di pianificazione.
 
 = Resoconto della riunione
 
@@ -59,16 +59,17 @@ Per la rotazione corrente, i ruoli sono stati assegnati tenendo conto dei vari i
 I ruoli verranno ruotati tra due settimane a partire dalla data dell’incontro.
 
 == Allineamento sui compiti dei diversi ruoli
-
+//riformulata una frase
 Durante l’incontro sono emerse alcune divergenze riguardo ai compiti di determinati ruoli.
 È stato quindi dedicato del tempo per chiarire le responsabilità e allineare tutti i membri del team.
-È stato discusso il ruolo del verificatore, il quale avrà come impegno quello di leggere tutti i documenti in fase di verifica e lasciare commenti all’autore che suggeriscano le modifiche da apportare; di conseguenza non apporterà modifiche dirette al documento.\
+È stato discusso il ruolo del verificatore, che dovrà leggere tutti i documenti in fase di verifica e lasciare commenti all’autore con i suggerimenti sulle modifiche da apportare; non interverrà quindi direttamente al documento.\
 La stesura dei documenti è affidata agli analisti, che per questa fase di progetto si concentreranno sull’impostazione dei documenti e dei casi d’uso.
 Inoltre è stato stimato il monte ore di ciascun ruolo per lo sprint avviato.
 
 == Suddivisione dei documenti da iniziare 
+// cambiate un paio di parole
 Con l’inizio della RTB è stato deciso che gli analisti si occuperanno principalmente della redazione dei documenti, suddividendo il carico tra Norme di Progetto, Analisi dei Requisiti e Piano di Progetto.
-Essendo nelle fasi iniziali, il lavoro sarà principalmente di “palestra”, soprattutto per quanto riguarda l’Analisi dei Requisiti, che richiede la scrittura e la comprensione dei casi d’uso.\
+Poichè ci si trova nelle fasi iniziali, il lavoro sarà principalmente una fase di allenamento, soprattutto per quanto riguarda l’Analisi dei Requisiti, che richiede la scrittura e la comprensione dei casi d’uso.\
 I componenti del team responsabili della redazione dei documenti si sono organizzati per rendere il lavoro di scrittura più agevole ed evitare conflitti, preferendo una modalità di lavoro asincrona.
 
 == Preparazione per l’incontro formale con M31
@@ -98,11 +99,11 @@ Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato
   [Jaume Bernardi],
   [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/36")[*\#36*] ],
 
-  [Stesura piano di progetto],
+  [Stesura Piano di Progetto],
   [Alessandro Dinato],
   [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/37")[*\#37*]],
 
-  [Stesura norma di progetto],
+  [Stesura Norme di Progetto],
   [Elia Stellin],
   [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/38")[*\#38*]],
 
@@ -114,4 +115,4 @@ Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato
 = Conclusioni
 Il gruppo ha come prossima data di incontro il 19 novembre 2025, in cui è stata fissata la sprint retrospective.
 La data potrà comunque essere confermata o modificata in base agli impegni lavorativi dei membri del gruppo.\
-In generale c’è un clima collaborativo; tuttavia il gruppo si trova in leggera difficoltà riguardo al da farsi, con alcuni dubbi che si spera possano essere risolti il prima possibile.
+In generale c’è un clima collaborativo; tuttavia il gruppo si trova in leggera difficoltà riguardo al da farsi, con alcuni dubbi che si spera possano essere chiariti il prima possibile.
