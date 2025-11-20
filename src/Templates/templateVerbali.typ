@@ -4,7 +4,6 @@
 #let secondary = rgb("#000")
 #let gray-dark = rgb("#2c3e50")
 
-#show link: underline
 #let gloss(content) = [*#content#sub[G]*]
 
 #let report(
@@ -24,7 +23,7 @@
   tipo-verbale: "Interno",
   body,
 ) = [
-
+  #show link: underline
   #set document(
     title: titolo,
     author: "GlitchHub Team",
