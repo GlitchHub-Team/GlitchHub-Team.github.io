@@ -1,4 +1,4 @@
-#import "../../Templates/templateDocumentiGenerici.typ": report
+#import "../../Templates/templateDocumentiGenerici.typ": *
 #import "@preview/cetz:0.4.2"
 #import "@preview/cetz-plot:0.1.3": chart, plot
 
@@ -22,9 +22,6 @@
   left-signature: "",
   tipo-documento: "Piano di Progetto",
 )
-
-#show link: underline
-#let gloss(content) = [*#content#sub[G]*]
 
 = Introduzione
 == Obiettivi del documento
