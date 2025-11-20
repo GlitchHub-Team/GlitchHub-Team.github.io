@@ -4,7 +4,6 @@
 
 #show table: it => block(breakable: false, it)
 
-#show link: underline
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Bozza",
@@ -24,6 +23,7 @@
   tipo-documento: "Piano di Progetto",
 )
 
+#show link: underline
 #let gloss(content) = [*#content#sub[G]*]
 
 = Introduzione
@@ -122,13 +122,13 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
     Inoltre il componente che incontrerà questa problematica avrà sempre a disposizione il supporto degli altri membri ed eventualmente di _M31_.
   ],
 
-  [*Occorrenza*], [Alta],
-  [*Impatto*], [Alto],
+  [*Occorrenza*], [Da definire],
+  [*Impatto*], [Da definire],
 )
 
-
+// TO FIX
 == Rischi organizzativi
-=== Ritardi nello svolgimento delle attività
+=== Mancato rispetto delle scadenze prefissate
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -139,7 +139,7 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   ),
   [], [],
   [*ID*], [RO1],
-  [*Nome*], [Ritardi nello svolgimento delle attività],
+  [*Nome*], [Mancato rispetto delle scadenze prefissate],
   [*Descrizione*],
   [
     Durante lo svolgimento delle attività è prevista la presenza di ritardi nello svolgimento delle attività, i quali rischiano di far allungare i tempi di consegna e bloccare le attività successive.
@@ -178,8 +178,8 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
     Per affrontare efficacemente questo tipo di problema, il gruppo ha scelto fin dalle prime fasi del progetto, di fissare la durata dello #gloss[sprint] a una settimana, così da poter adattare tempestivamente la pianificazione e intervenire rapidamente in caso di squilibri.
   ],
 
-  [*Occorrenza*], [Media],
-  [*Impatto*], [Basso],
+  [*Occorrenza*], [Bassa],
+  [*Impatto*], [Medio],
 )
 
 === Incomprensione dei requisiti
@@ -207,7 +207,7 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   ],
 
   [*Occorrenza*], [Bassa],
-  [*Impatto*], [Basso],
+  [*Impatto*], [Alto],
 )
 
 === Presenza di opinioni contrastanti
@@ -234,7 +234,7 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
     Qualora non fosse possibile trovare un accordo interno, si farà riferimento a un parere esterno del committente o del cliente.
   ],
 
-  [*Occorrenza*], [Bassa],
+  [*Occorrenza*], [Media],
   [*Impatto*], [Basso],
 )
 
@@ -291,7 +291,7 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
     Le discussioni vanno gestite senza coinvolgere i membri non interessati, così da prevenire inutili tensioni all'interno del gruppo.
   ],
 
-  [*Occorrenza*], [Media],
+  [*Occorrenza*], [Bassa],
   [*Impatto*], [Medio],
 )
 
@@ -562,10 +562,10 @@ Il gruppo ha individuato le seguenti attività da svolgere:
     })
   ]
 ]
-==== Attività da svolte
+==== Attività svolte
 Il gruppo ha svolto con successo le seguenti attività:
 -
-==== Risorse da utilizzate
+==== Risorse utilizzate
 #table(
   columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
   align: left,
@@ -580,7 +580,7 @@ Il gruppo ha svolto con successo le seguenti attività:
   "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
   "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
   "Siria Salvalaio", "-", "-", "-", "-", "-", "1",
-  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-",
+  "Elia Ernesto Stellin", "-", "-", "3 -> 2", "-", "-", "-",
   table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*2*]),
 )
 ==== Grafico a torta della suddivisione oraria prevista
