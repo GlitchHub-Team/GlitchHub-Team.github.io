@@ -6,6 +6,9 @@
   place(right + bottom, image("../assets/loghi/GlitchHub-Team_LogoWM.png", width: 17cm))
 }
 
+#show link: underline
+#let gloss(content) = [*#content#sub[G]*]
+
 #let slide-title-internal(body) = {
   set page(
     paper: "presentation-16-9",
