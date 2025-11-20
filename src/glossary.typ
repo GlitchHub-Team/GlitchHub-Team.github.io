@@ -451,7 +451,7 @@
     definition: [Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni.],
   ),
   (
-    term: "Consuntivo a finire",
+    term: "Preventivo a finire",
     definition: [Stima aggiornata dei costi, attività e risorse necessarie a completare il progetto sulla base dell'avanzamento corrente.],
   ),
   (
