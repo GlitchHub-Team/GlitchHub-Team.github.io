@@ -30,6 +30,56 @@
   tipo-documento: "Piano di Progetto",
 )
 
+#let graficoTorta = (caption, data) => {
+  align(center)[
+    #figure.with(numbering: none)(
+      caption: caption,
+    )[
+      #cetz.canvas({
+        let colors = gradient.linear(
+          rgb(153, 72, 188),
+          rgb("#19e0d9"),
+          rgb(84, 101, 255),
+        )
+
+        chart.piechart(
+          data,
+          value-key: 1,
+          label-key: 0,
+          radius: 2.5,
+          stroke: none,
+          slice-style: colors,
+          inner-radius: 0.5,
+          // Label interne con ore
+          inner-label: (
+            content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
+            radius: 90%,
+          ),
+          // Label esterne con linee di connessione
+          outer-label: (
+            content: (value, label) => [
+              #box(
+                fill: white,
+                outset: 3pt,
+                radius: 3pt,
+                stroke: 0.5pt + luma(200),
+                text(black, size: 0.85em, weight: "medium", label),
+              )
+            ],
+            radius: 110%,
+          ),
+          // Abilita le linee di connessione
+          outer-label-line: (
+            stroke: 1pt + luma(150),
+            mark: (end: ">", size: 0.15),
+          ),
+          legend: (label: none),
+        )
+      })
+    ]
+  ]
+}
+
 = Introduzione
 == Obiettivi del documento
 Il #gloss[Piano di Progetto] ha lo scopo di definire in modo chiaro e strutturato le attività necessarie alla realizzazione del progetto, stabilendo risorse, modalità operative e tempistiche di sviluppo. \
@@ -553,63 +603,16 @@ Il gruppo ha individuato le seguenti attività da svolgere:
 )
 ==== Grafico a torta della suddivisione oraria prevista
 
-#align(center)[
-  #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore produttive previste per ogni ruolo",
-  )[
+#let orePrevSprint2 = (
+  ("Analista", 12),
+  ("Responsabile", 2),
+  //("Amministratore", 0),
+  //("Progettista", 145),
+  //("Programmatore", 165),
+  ("Verificatore", 2),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint2)
 
-    #let ore = (
-      ("Analista", 12),
-      ("Responsabile", 2),
-      //("Amministratore", 0),
-      //("Progettista", 145),
-      //("Programmatore", 165),
-      ("Verificatore", 2),
-    )
-
-    #cetz.canvas({
-      let colors = gradient.linear(
-        rgb(153, 72, 188),
-        rgb("#19e0d9"),
-        rgb(84, 101, 255),
-      )
-
-      chart.piechart(
-        ore,
-        value-key: 1,
-        label-key: 0,
-        radius: 2.5,
-        stroke: none,
-        slice-style: colors,
-        inner-radius: 0.5,
-        // Label interne con ore
-        inner-label: (
-          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
-          radius: 90%,
-        ),
-        // Label esterne con linee di connessione
-        outer-label: (
-          content: (value, label) => [
-            #box(
-              fill: white,
-              outset: 3pt,
-              radius: 3pt,
-              stroke: 0.5pt + luma(200),
-              text(black, size: 0.85em, weight: "medium", label),
-            )
-          ],
-          radius: 110%,
-        ),
-        // Abilita le linee di connessione
-        outer-label-line: (
-          stroke: 1pt + luma(150),
-          mark: (end: ">", size: 0.15),
-        ),
-        legend: (label: none),
-      )
-    })
-  ]
-]
 ==== Attività svolte
 Il gruppo ha svolto con successo le seguenti attività:
 - Stesura *Piano di Progetto*;
@@ -636,61 +639,18 @@ Il gruppo ha svolto con successo le seguenti attività:
 )
 ==== Grafico a torta della suddivisione oraria prevista
 
-#align(center)[
-  #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
-  )[
-    #let ore = (
-      ("Analista", 11),
-      ("Responsabile", 2),
-      //("Amministratore", 0),
-      //("Progettista", 145),
-      //("Programmatore", 165),
-      ("Verificatore", 2),
-    )
-    #cetz.canvas({
-      let colors = gradient.linear(
-        rgb(153, 72, 188),
-        rgb("#19e0d9"),
-        rgb(84, 101, 255),
-      )
-
-      chart.piechart(
-        ore,
-        value-key: 1,
-        label-key: 0,
-        radius: 2.5,
-        stroke: none,
-        slice-style: colors,
-        inner-radius: 0.5,
-        // Label interne con ore
-        inner-label: (
-          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
-          radius: 90%,
-        ),
-        // Label esterne con linee di connessione
-        outer-label: (
-          content: (value, label) => [
-            #box(
-              fill: white,
-              outset: 3pt,
-              radius: 3pt,
-              stroke: 0.5pt + luma(200),
-              text(black, size: 0.85em, weight: "medium", label),
-            )
-          ],
-          radius: 110%,
-        ),
-        // Abilita le linee di connessione
-        outer-label-line: (
-          stroke: 1pt + luma(150),
-          mark: (end: ">", size: 0.15),
-        ),
-        legend: (label: none),
-      )
-    })
-  ]
-]
+#let oreEffettiveSprint1 = (
+  ("Analista", 11),
+  ("Responsabile", 2),
+  //("Amministratore", 0),
+  //("Progettista", 145),
+  //("Programmatore", 165),
+  ("Verificatore", 2),
+)
+#graficoTorta(
+  "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint1,
+)
 
 ==== Rischi occorsi
 Il gruppo ha riscontrato il rischio *RP1* durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
@@ -774,65 +734,15 @@ Il gruppo ha individuato le seguenti attività da svolgere:
 )
 ==== Grafico a torta della suddivisione oraria prevista
 
-#align(center)[
-  #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore produttive previste per ogni ruolo",
-  )[
-
-    #let ore = (
-      ("Analista", 12),
-      ("Responsabile", 2),
-      //("Amministratore", 0),
-      //("Progettista", 145),
-      //("Programmatore", 165),
-      ("Verificatore", 4),
-    )
-
-    #cetz.canvas({
-      let colors = gradient.linear(
-        rgb(153, 72, 188),
-        rgb("#19e0d9"),
-        rgb(84, 101, 255),
-      )
-
-      chart.piechart(
-        ore,
-        value-key: 1,
-        label-key: 0,
-        radius: 2.5,
-        stroke: none,
-        slice-style: colors,
-        inner-radius: 0.5,
-        // Label interne con ore
-        inner-label: (
-          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
-          radius: 90%,
-        ),
-        // Label esterne con linee di connessione
-        outer-label: (
-          content: (value, label) => [
-            #box(
-              fill: white,
-              outset: 3pt,
-              radius: 3pt,
-              stroke: 0.5pt + luma(200),
-              text(black, size: 0.85em, weight: "medium", label),
-            )
-          ],
-          radius: 110%,
-        ),
-        // Abilita le linee di connessione
-        outer-label-line: (
-          stroke: 1pt + luma(150),
-          mark: (end: ">", size: 0.15),
-        ),
-        legend: (label: none),
-      )
-    })
-  ]
-]
-
-
+#let orePrevSprint2 = (
+  ("Analista", 12),
+  ("Responsabile", 2),
+  //("Amministratore", 0),
+  //("Progettista", 145),
+  //("Programmatore", 165),
+  ("Verificatore", 4),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint2)
 
 
 
