@@ -7,8 +7,15 @@
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Bozza",
-  versione: "0.0.1",
+  versione: "0.1.0",
   registro-modifiche: (
+    (
+      "0.1.0",
+      "22/11/2025",
+      "Alessandro Dinato",
+      "-",
+      "Compilazione Sprint 1, preventivo Sprint 2, pianificazione attività RTB",
+    ),
     ("0.0.1", "17/11/2025", "Alessandro Dinato", "-", "Bozza Piano di Progetto"),
   ),
   distribuzione: (
@@ -43,8 +50,18 @@ Al fine di specificare se la definizione di una parola o di un concetto è dispo
 == Riferimenti
 
 === Riferimenti normativi
+- Capitolato d'appalto C7: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf") \
+  *Ultimo accesso: 22/11/2025*
+//- Norme di Progetto: #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto] \
+// *Versione: 1.0.0*
 
 === Riferimenti informativi
+- Regolamento del Progetto Didattico: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf") \
+  *Ultimo accesso: 22/11/2025*
+- Il ciclo di vita del Software: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf") \
+  *Ultimo accesso: 22/11/2025*
+- Gestione di progetto: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf") \
+  *Ultimo accesso: 22/11/2025*
 
 = Analisi e mitigazione dei rischi
 Questa sezione si occupa di analizzare gli eventuali rischi e difficoltà che il gruppo potrebbe incontrare durante lo svolgimento del progetto didattico.\
@@ -123,7 +140,6 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   [*Impatto*], [Da definire],
 )
 
-// TO FIX
 == Rischi organizzativi
 === Mancato rispetto delle scadenze prefissate
 #table(
@@ -325,19 +341,20 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
   table.footer([*Totale*], [*54*], [*54*], [*68*], [*145*], [*165*], [*165*], [*651*]),
 )
 == Grafico a torta della suddivisione oraria
-#let ore = (
-  ("Responsabile", 54),
-  ("Amministratore", 54),
-  ("Analista", 68),
-  ("Progettista", 145),
-  ("Programmatore", 165),
-  ("Verificatore", 165),
-)
 
 #align(center)[
   #figure.with(numbering: none)(
     caption: "Il grafico a torta contiene le ore produttive complessive per ogni ruolo",
   )[
+    #let ore = (
+      ("Responsabile", 54),
+      ("Amministratore", 54),
+      ("Analista", 68),
+      ("Progettista", 145),
+      ("Programmatore", 165),
+      ("Verificatore", 165),
+    )
+
     #cetz.canvas({
       let colors = gradient.linear(
         rgb(153, 72, 188),
@@ -402,19 +419,20 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
   table.footer([*Totale*], [*651*], [-], [*12975 €*]),
 )
 == Grafico a torta dei costi progettuali
-#let costi = (
-  ("Responsabile", 1620),
-  ("Amministratore", 1080),
-  ("Analista", 1700),
-  ("Progettista", 3625),
-  ("Programmatore", 2475),
-  ("Verificatore", 2475),
-)
 
 #align(center)[
   #figure.with(numbering: none)(
     caption: "Il grafico a torta contiene le ore complessive per ogni ruolo",
   )[
+    #let costi = (
+      ("Responsabile", 1620),
+      ("Amministratore", 1080),
+      ("Analista", 1700),
+      ("Progettista", 3625),
+      ("Programmatore", 2475),
+      ("Verificatore", 2475),
+    )
+
     #cetz.canvas({
       let colors = gradient.linear(
         rgb(153, 72, 188),
@@ -467,10 +485,41 @@ Inoltre, è necessario produrre un artefatto, chiamato #gloss[PoC], il quale ha 
 
 = Pianificazione e Analisi Sprint per RTB
 
-La sezione dedicata alla *Pianificazione e Analisi degli Sprint per la RTB* descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno sprint. \
-Ogni sprint viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
+La sezione dedicata alla *Pianificazione e Analisi degli Sprint per la RTB* descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
+Ogni #gloss[sprint] viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
 
-Al termine di ogni sprint viene, inoltre, aggiornato il #gloss[preventivo a finire], includendo la retrospettiva di periodo per identificare come migliorare in futuro e la revisione del calendario rimanente con l'aggiornamento della stima dei costi finali.
+Al termine di ogni #gloss[sprint] viene, inoltre, aggiornato il #gloss[preventivo a finire], includendo la retrospettiva di periodo per identificare come migliorare in futuro e la revisione del calendario rimanente con l'aggiornamento della stima dei costi finali.
+
+== Stesura Analisi dei Requisiti
+
+== Stesura Piano di Progetto
+Il #gloss[Piano di Progetto] definisce in modo chiaro e strutturato tutte le attività necessarie alla realizzazione del progetto, stabilendo risorse, modalità operative e tempistiche di sviluppo.
+Per completare il documento sono richieste le seguenti attività:
+- Redazione dell'introduzione;
+- Analisi e mitigazione dei rischi;
+- Stima delle tempistiche di consegna, dei costi e delle risorse impiegate;
+- Pianificazione a lungo termine delle attività previste per la RTB;
+- Analisi dettagliata dei singoli sprint.
+
+Il documento verrà redatto e aggiornato nel corso di tutti gli sprint, poiché ha il compito di rendicontarne l'avanzamento. \
+Le stime relative ai costi e alla data di consegna potranno essere corrette qualora emergano nuove informazioni o si rilevino previsioni non accurate. \
+Allo stesso modo, l'analisi dei rischi e le relative strategie di mitigazione dovranno essere aggiornate ogni volta che un rischio si presenta, infatti non si tratta di un'analisi definita esclusivamente a monte.
+
+
+== Stesura Norme di Progetto
+
+== Stesura Piano di Qualifica
+
+== Stesura Glossario
+Il *glossario* ha lo scopo di facilitare la comprensione della documentazione prodotta ai lettori esterni e di fissare, all'interno del gruppo, definizioni univoche che riducano ogni possibile ambiguità interpretativa.\
+Sebbene la sua prima versione sia stata redatta durante la fase di *Candidatura*, il documento richiede un aggiornamento continuo, integrando progressivamente nuove definizioni man mano che emergono durante il progetto.\
+Perciò, la sua completa realizzazione è prevista al termine del progetto didattico.
+
+
+
+== Realizzazione #gloss[Proof of Concept] (PoC)
+
+
 == Sprint 1
 Inizio: 12/11/2025 \
 Fine: 19/11/2025 \
@@ -503,19 +552,21 @@ Il gruppo ha individuato le seguenti attività da svolgere:
   table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*2*]),
 )
 ==== Grafico a torta della suddivisione oraria prevista
-#let ore = (
-  ("Analista", 12),
-  ("Responsabile", 2),
-  //("Amministratore", 0),
-  //("Progettista", 145),
-  //("Programmatore", 165),
-  ("Verificatore", 2),
-)
 
 #align(center)[
   #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore produttive complessive per ogni ruolo",
+    caption: "Il grafico a torta contiene le ore produttive previste per ogni ruolo",
   )[
+
+    #let ore = (
+      ("Analista", 12),
+      ("Responsabile", 2),
+      //("Amministratore", 0),
+      //("Progettista", 145),
+      //("Programmatore", 165),
+      ("Verificatore", 2),
+    )
+
     #cetz.canvas({
       let colors = gradient.linear(
         rgb(153, 72, 188),
@@ -561,7 +612,10 @@ Il gruppo ha individuato le seguenti attività da svolgere:
 ]
 ==== Attività svolte
 Il gruppo ha svolto con successo le seguenti attività:
--
+- Stesura *Piano di Progetto*;
+- Stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
+- Stesura *Norme di Progetto*;
+- Redazione e invio del verbale esterno relativo all'incontro con _M31_ del 13/11/2025
 ==== Risorse utilizzate
 #table(
   columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
@@ -577,23 +631,23 @@ Il gruppo ha svolto con successo le seguenti attività:
   "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
   "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
   "Siria Salvalaio", "-", "-", "-", "-", "-", "1",
-  "Elia Ernesto Stellin", "-", "-", "3 -> 2", "-", "-", "-",
-  table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*2*]),
+  "Elia Ernesto Stellin", "-", "-", "2 (-1)", "-", "-", "-",
+  table.footer([*Totale*], [*2*], [*-*], [*11*], [*-*], [*-*], [*2*]),
 )
 ==== Grafico a torta della suddivisione oraria prevista
-#let ore = (
-  ("Analista", 12),
-  ("Responsabile", 2),
-  //("Amministratore", 0),
-  //("Progettista", 145),
-  //("Programmatore", 165),
-  ("Verificatore", 2),
-)
 
 #align(center)[
   #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore produttive complessive per ogni ruolo",
+    caption: "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
   )[
+    #let ore = (
+      ("Analista", 11),
+      ("Responsabile", 2),
+      //("Amministratore", 0),
+      //("Progettista", 145),
+      //("Programmatore", 165),
+      ("Verificatore", 2),
+    )
     #cetz.canvas({
       let colors = gradient.linear(
         rgb(153, 72, 188),
@@ -639,17 +693,144 @@ Il gruppo ha svolto con successo le seguenti attività:
 ]
 
 ==== Rischi occorsi
-Rischi occorsi, impatto, mitigazione
+Il gruppo ha riscontrato il rischio *RP1* durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
+L'impatto complessivo è stato positivo, infatti il gruppo ha completato correttamente tutte le attività pianificate e i componenti con impegni accademici sono riusciti a portare a termine i compiti loro affidati.
+
 === Preventivo a finire
 
 ==== Retrospettiva
+Il gruppo ha svolto, come da programma, la #gloss[Sprint Retrospective] in data _19/11/2025_.\
+Le attività programmate sono state tutte eseguite correttamente.
+È presente un sentimento di tranquillità rispetto all'avanzamento del progetto e alla distribuzione delle attività, il team è soddisfatto di come si sta lavorando insieme.\
+Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisiti] hanno fatto notare la difficoltà nell'individuazione dei casi d'uso, ciò richiederà una maggior allocazione di risorse verso quella specifica attività. Tuttavia, ad oggi, l'analisi dei casi d'uso è ancora in una fase "esplorativa", perciò non ha la priorità più alta.
+
 
 ==== Aggiornamento ore rimanenti
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "10", "21", "24", "22 (-1)", [*92*],
+  "Alessandro Dinato", "7", "8", "7 (-3)", "21", "23", "24", [*90*],
+  "Michele Dioli", "6 (-2)", "7", "10", "21", "24", "23", [*91*],
+  "Hossam Ezzemouri", "7", "8", "7 (-3)", "20", "24", "24", [*90*],
+  "Riccardo Graziani", "8", "8", "7 (-3)", "20", "23", "24", [*90*],
+  "Siria Salvalaio", "8", "8", "9", "21", "24", "22 (-1)", [*92*],
+  "Elia Ernesto Stellin", "8", "8", "7 (-2)", "21", "23", "24", [*91*],
+  table.footer([*Totale*], [*52*], [*54*], [*57*], [*145*], [*165*], [*163*], [*636*]),
+)
 
 ==== Aggiornamento costi
+#table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "52 (-2)", "30 €/h", "1560 € (-60 €)",
+  "Amministratore", "54", "20 €/h", "1080 €",
+  "Analista", "57 (-11)", "25 €/h", "1425 € (-275 €)",
+  "Progettista", "145", "25 €/h", "3625 €",
+  "Programmatore", "165", "15 €/h", "2475 €",
+  "Verificatore", "165 (-2)", "15 €/h", "2445 € (-30 €)",
+  table.footer([*Totale*], [*636*], [-], [*12610 €*]),
+)
 
 == Sprint 2
+Inizio: 19/11/2025 \
+Fine: 26/11/2025 \
 
+Questo secondo sprint ha lo scopo di completare la stesura dei documenti #gloss[Piano di Progetto] e #gloss[Norme di Progetto] e di continuare nell'individuazione dei casi d'uso nel documento dell'#gloss[Analisi dei Requisiti].
+
+=== Consuntivo di periodo
+==== Attività da svolgere
+Il gruppo ha individuato le seguenti attività da svolgere:
+- Completamento *Piano di Progetto*;
+- Continuazione stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
+- Completamento *Norme di Progetto*;
+==== Preventivo risorse da utilizzare
+#table(
+  columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Respons*], [*Amministr*], [*Analista*], [*Progettista*], [*Program*], [*Verific*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "2",
+  "Alessandro Dinato", "-", "-", "3", "-", "-", "-",
+  "Michele Dioli", "2", "-", "-", "-", "-", "-",
+  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
+  "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "2",
+  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-",
+  table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*4*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#align(center)[
+  #figure.with(numbering: none)(
+    caption: "Il grafico a torta contiene le ore produttive previste per ogni ruolo",
+  )[
+
+    #let ore = (
+      ("Analista", 12),
+      ("Responsabile", 2),
+      //("Amministratore", 0),
+      //("Progettista", 145),
+      //("Programmatore", 165),
+      ("Verificatore", 4),
+    )
+
+    #cetz.canvas({
+      let colors = gradient.linear(
+        rgb(153, 72, 188),
+        rgb("#19e0d9"),
+        rgb(84, 101, 255),
+      )
+
+      chart.piechart(
+        ore,
+        value-key: 1,
+        label-key: 0,
+        radius: 2.5,
+        stroke: none,
+        slice-style: colors,
+        inner-radius: 0.5,
+        // Label interne con ore
+        inner-label: (
+          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
+          radius: 90%,
+        ),
+        // Label esterne con linee di connessione
+        outer-label: (
+          content: (value, label) => [
+            #box(
+              fill: white,
+              outset: 3pt,
+              radius: 3pt,
+              stroke: 0.5pt + luma(200),
+              text(black, size: 0.85em, weight: "medium", label),
+            )
+          ],
+          radius: 110%,
+        ),
+        // Abilita le linee di connessione
+        outer-label-line: (
+          stroke: 1pt + luma(150),
+          mark: (end: ">", size: 0.15),
+        ),
+        legend: (label: none),
+      )
+    })
+  ]
+]
 
 
 
