@@ -3,7 +3,8 @@
 #import "@preview/cetz-plot:0.1.3": chart, plot
 
 //Comando per eseguire script generazione sezione Sprint X
-// cd src/RTB/DocumentiEsterni/sprintPdPGenerator && go run . -sprint 2
+// 1) configurare da terminale il token con: export PDP_GITHUB_TOKEN = <token presente su BitWarden>
+// 2) cd src/RTB/DocumentiEsterni/sprintPdPGenerator && go run . -sprint 2
 // (a partire da root della repo)
 
 #show table: it => block(breakable: false, it)
