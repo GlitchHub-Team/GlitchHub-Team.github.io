@@ -9,7 +9,7 @@
   stato: "Bozza",
   versione: "0.0.1",
   registro-modifiche: (
-    ("0.0.1", "17/11/2025", "Alessandro Dinato", "-", "Bozza Piano di Progetto"),
+    ("0.0.1", "17/11/2025", "Alessandro Dinato", "Siria Salvalaio", "Bozza Piano di Progetto"),
   ),
   distribuzione: (
     "GlitchHub Team",
@@ -18,27 +18,28 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-documento: "Piano di Progetto",
 )
 
 = Introduzione
 == Obiettivi del documento
-Il #gloss[Piano di Progetto] ha lo scopo di definire in modo chiaro e strutturato le attività necessarie alla realizzazione del progetto, stabilendo risorse, modalità operative e tempistiche di sviluppo. \
-Il documento fornisce una visione complessiva e continuamente aggiornata dell'avanzamento del progetto didattico, consentendo al gruppo di pianificare, assegnare e monitorare le attività definite all'interno di ogni #gloss[sprint].
+// piccole migliorie di stile (se non ti piacciono cambiali pure, era solo per la leggibilità più corrente)
+Il #gloss[Piano di Progetto] ha lo scopo di definire in modo chiaro e strutturato le attività necessarie alla realizzazione del progetto, stabilendone risorse, modalità operative e tempistiche di sviluppo. \
+Il documento fornisce una visione complessiva e costantemente aggiornata dell'avanzamento del progetto didattico, consentendo al gruppo di pianificare, assegnare e monitorare le attività definite all'interno di ogni #gloss[sprint].
 
-Un aspetto fondamentale del documento è l'analisi dei rischi attesi, accompagnata dalle relative strategie di mitigazione, così da ridurre l'incertezza e migliorare la capacità del gruppo di rispondere a imprevisti tecnologici, organizzativi e personali.
-Il documento riporta, inoltre, il calendario di massima del progetto, la stima dei costi complessivi e l'impegno orario previsto per ogni ruolo, i quali sono stati definiti in fase di *Candidatura*.
+Un aspetto fondamentale del documento è l'analisi dei rischi attesi, accompagnata dalle relative strategie di mitigazione, con l'obiettivo di ridurre l'incertezza e migliorare la capacità del gruppo di affrontare imprevisti tecnologici, organizzativi e/o personali.
+Il documento include inoltre il calendario di massima del progetto, la stima dei costi complessivi e l'impegno orario previsto per ogni ruolo, i quali sono stati definiti in fase di *Candidatura*.
 
-Poiché il gruppo ha deciso di adottare un metodo di sviluppo #gloss[Agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi occorsi e il #gloss[preventivo a finire]; il tutto analizzato nella #gloss[sprint retrospective] settimanale. \
-Ciò permette di rivedere costantemente la pianificazione delle attività, migliorare i processi tramite retrospettive periodiche e mantenere una stima realistica del completamento finale.
+Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[Agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi e il #gloss[preventivo a finire], i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
+Questo processo permette di rivedere costantemente la pianificazione delle attività, migliorare i processi tramite retrospettive periodiche e mantenere una stima realistica del completamento finale.
 == Glossario
-Il #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*glossario*] è un documento redatto dal gruppo e che verrà aggiornato nell'arco del progetto didattico con lo scopo di fornire definizioni consistenti per termini tecnici e relativi al corso di Ingegneria del Software.
+Il #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*glossario*] è un documento redatto dal gruppo e aggiornato nell'arco del progetto didattico, con lo scopo di fornire definizioni coerenti per i termini tecnici e quelli specifici relativi al corso di Ingegneria del Software.
 
-Questo documento è fondamentalmente per far comprendere la documentazione prodotta ai lettori esterni dal gruppo e per fissare una definizione interna al gruppo così da ridurre le ambiguità interpretative.
+Questo documento è fondamentale per garantire una comprensione uniforme della documentazione prodotta ai lettori esterni dal gruppo e per definire un riferimento interno al gruppo, riducendo possibili ambiguità interpretative.
 
-Al fine di specificare se la definizione di una parola o di un concetto è disponibile è stato deciso di utilizzare la seguente notazione:
+Per indicare che la definizione di una parola o di un concetto è disponibile, si è deciso di utilizzare la seguente notazione:
 #gloss[definizione nel glossario].
 == Riferimenti
 
@@ -47,12 +48,14 @@ Al fine di specificare se la definizione di una parola o di un concetto è dispo
 === Riferimenti informativi
 
 = Analisi e mitigazione dei rischi
-Questa sezione si occupa di analizzare gli eventuali rischi e difficoltà che il gruppo potrebbe incontrare durante lo svolgimento del progetto didattico.\
-Realizzare un'ottima analisi permette di prevenire dissidi interni, ritardi nelle scadenze, l'aumento dei costi di produzione e la realizzazione di un prodotto difettoso.
+//piccoli miglioramenti di stile
+Questa sezione analizza i potenziali rischi e le difficoltà che il gruppo potrebbe incontrare durante lo svolgimento del progetto didattico.\
+Realizzare un'ottima analisi preventiva consente di evitare conflitti interni, ritardi nelle scadenze, aumento dei costi di produzione e, soprattutto, la realizzazione di un prodotto non conforme agli obiettivi.
 
-L'analisi dei rischi deve avvenire passando attraverso 4 fasi:
-- *Identificazione*: consiste nel riconoscere i possibili rischi legati al progetto, al prodotto e al mercato, individuando tutto ciò che potrebbe causare problemi durante lo sviluppo;
-- *Analisi*: per ogni rischio identificato si valuta quanto è probabile che accada e quali conseguenze potrebbe comportare sul lavoro del gruppo e sul prodotto;
+L'analisi dei rischi si articola in quattro fasi principali:
+- *Identificazione*: consiste nell'individuare i possibili rischi legati al progetto, al prodotto e al contesto di riferimento, riconoscendo tutto ciò che potrebbe compromettere lo sviluppo;
+// sono arrivata qui
+- *Analisi*: per ciascun rischio identificato si valuta la probabità di occorrenza e l'impatto che potenziale sul lavoro del gruppo e sul prodotto;
 - *Pianificazione*: consiste nel prevenire i rischi oppure come ridurne l'impatto, stabilendo in anticipo le azioni da intraprendere in caso si verifichino;
 - *Controllo*: prevede un monitoraggio continuo attraverso indicatori che segnalano eventuali problemi, l'attuazione delle strategie di mitigazione e il miglioramento costante #gloss[way of working].
 
