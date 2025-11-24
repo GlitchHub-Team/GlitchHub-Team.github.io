@@ -18,7 +18,7 @@
       "0.1.1",
       "24/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Siria Salvalaio",
       "Correzione piccoli errori",
     ),
     (
@@ -37,8 +37,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-documento: "Piano di Progetto",
 )
 
