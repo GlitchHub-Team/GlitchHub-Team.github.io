@@ -3,10 +3,18 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 19/11/2025",
-  stato: "Bozza",
-  versione: "0.0.1",
+  stato: "Veruficato",
+  versione: "1.0.0",
   registro-modifiche: (
+
     (
+      "1.0.0",
+      "20/11/2025",
+      "Michele Dioli",
+      "Siria Salvalaio",
+      "Corrette e riformulate frasi",
+    ),
+    ( 
       "0.0.1",
       "19/11/2025",
       "Michele Dioli",
@@ -15,7 +23,6 @@
     ),
   ),
   partecipanti: (
-    
     "Alessandro Dinato",
     "Elia Ernesto Stellin",
     "Hossam Ezzemouri",
@@ -30,12 +37,11 @@
     "Prof. Vardanega Tullio",
   ),
   odg: (
-    "Discussione sui casi d’uso.",
-    "Allineamento sui consigli ricevuti relativi ai diari di bordo.",
-    "Miglioramento della fluidità dei template.",
-    "Allineamento generale sui documenti RTB.",
-    "Pianificazione dei futuri incontri con l’azienda."
-  ),
+    "Convenzioni per la scrittura dei documenti",
+    "Allineamento sulle Norme di progetto",
+    "Allineamento sulle Norme di progetto",
+    "Prossimi incontri con M31",
+    ),
   htmlId: "RTB-VerbaliInterni",
   verificatore-interno: "Siria Salvalaio",
   left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
@@ -46,20 +52,17 @@
 Il presente documento attesta che, in data *19 novembre 2025* dalle ore 14.30 alle ore 16:05, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 = Resoconto della riunione
-//il documento va più o meno bene ma l'ordine del giorno deve corrispondere alle varie parti del testo quindi sistema i titoli e aggiungi quelli che mancano
+
 
 == Convenzioni per la scrittura dei documenti
-// riscritto alcune frasi in modo che sia più leggibile
+
 Il gruppo è stato aggiornato sulla metodologia di lavoro prevista in questa fase.\
 È stato chiarito che non è ancora necessario concentrarsi sulla stesura del documento _Analisi dei Requisiti_; è invece preferibile dedicare tempo alle fasi di allenamento, ovvero esercitarsi nella produzione dei casi d’uso.\
 Per la realizzazione dei diagrammi dei casi d’uso è stato scelto _draw.io_, ritenuto utile poiché consente di generare file PNG successivamente modificabili.
 Durante la discussione è emerso un dubbio riguardo alla corretta gestione dei sotto-diagrammi. Si è deciso che un diagramma deve essere ridisegnato solo quando il sotto-diagramma non rappresenti una foglia. 
 
-//va tolta la parte di "Allineamento sull’Analisi dei Requisiti" perché ridondante rispetto alla parte superiore cioè la tua:
-//Il gruppo viene aggiornato sulla metodologia di lavoro, in questa fase non bisogna concentrarsi sulla scrittura del documento _Analisi dei requisiti_, ma dedicare tempo nelle attività di allenamento per lo sviluppo dei casi d'uso. A tale proposito il mezzo utilizzato per la realizzazione dei grafici dei casi d'uso è stato Draw.io il quale consente di avere file PNG successivamente modificabili. Inoltre e' stato esposto un dubbio Decisione: bisogna ridisegnare il diagramma solo se il sotto-diagramma non è una foglia. Ciò sarà visibile nell'analisi dei req.
 
 == Allineamento sulle Norme di progetto
-// modificato alcune frasi e corretto errori grammaticali
 È stata definita una scaletta per la conduzione delle Sprint Retrospective, in modo da adottare un framework comune e mantenere gli incontri ordinati. La scaletta comprende:
 - riepilogo delle attività svolte;
 - allineamento sulle risorse utilizzate;
@@ -73,7 +76,6 @@ Ogni attività di creazione di un documento corrisponderà a un’issue di tipo 
 
 Nella descrizione dell'issue su GitHub verranno indicati i responsabili di ciascuna attività.\
 All'avvio della scrittura, l’issue verrà contrassegnata come “In Progress”; quando il documento passa alla verifica, lo stato diventerà “In Review”.
-
 Per i documenti incrementali, ovvero soggetti a modifiche durante tutto il progetto, sarà creata una _parent issue_ che raccoglierà tutte le attività relative al documento. Per ciascuna versione verrà aperta una sub-issue collegata alla parent issue, mentre la versione 1.0.0 sarà associata al documento consegnato alla relativa milestone.
 
 == Prossimi incontri con M31

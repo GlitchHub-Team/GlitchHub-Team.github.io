@@ -4,8 +4,15 @@
 #show: report.with(
   titolo: "Verbale interno 12/11/2025",
   stato: "Verificato",
-  versione: "0.1.0",
+  versione: "1.0.0",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "19/11/2025",
+      "Michele Dioli",
+      "Siria Salvalaio",
+      "Minori correzioni",
+    ),
        (
       "0.1.0",
       "18/11/2025",
@@ -59,7 +66,7 @@ Per la rotazione corrente, i ruoli sono stati assegnati tenendo conto dei vari i
 I ruoli verranno ruotati tra due settimane a partire dalla data dell’incontro.
 
 == Allineamento sui compiti dei diversi ruoli
-//riformulata una frase
+
 Durante l’incontro sono emerse alcune divergenze riguardo ai compiti di determinati ruoli.
 È stato quindi dedicato del tempo per chiarire le responsabilità e allineare tutti i membri del team.
 È stato discusso il ruolo del verificatore, che dovrà leggere tutti i documenti in fase di verifica e lasciare commenti all’autore con i suggerimenti sulle modifiche da apportare; non interverrà quindi direttamente al documento.\
@@ -67,7 +74,7 @@ La stesura dei documenti è affidata agli analisti, che per questa fase di proge
 Inoltre è stato stimato il monte ore di ciascun ruolo per lo sprint avviato.
 
 == Suddivisione dei documenti da iniziare 
-// cambiate un paio di parole
+
 Con l’inizio della RTB è stato deciso che gli analisti si occuperanno principalmente della redazione dei documenti, suddividendo il carico tra Norme di Progetto, Analisi dei Requisiti e Piano di Progetto.
 Poichè ci si trova nelle fasi iniziali, il lavoro sarà principalmente una fase di allenamento, soprattutto per quanto riguarda l’Analisi dei Requisiti, che richiede la scrittura e la comprensione dei casi d’uso.\
 I componenti del team responsabili della redazione dei documenti si sono organizzati per rendere il lavoro di scrittura più agevole ed evitare conflitti, preferendo una modalità di lavoro asincrona.
