@@ -6,9 +6,16 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Bozza",
-  versione: "0.0.1",
+  stato: "Verificato",
+  versione: "0.1.0",
   registro-modifiche: (
+    (
+      "0.1.0",
+      "22/11/2025",
+      "Alessandro Dinato",
+      "Siria Salvalaio",
+      "Compilazione Sprint 1, preventivo Sprint 2, pianificazione attività RTB",
+    ),
     ("0.0.1", "17/11/2025", "Alessandro Dinato", "Siria Salvalaio", "Bozza Piano di Progetto"),
   ),
   distribuzione: (
@@ -23,9 +30,59 @@
   tipo-documento: "Piano di Progetto",
 )
 
+#let graficoTorta = (caption, data) => {
+  align(center)[
+    #figure.with(numbering: none)(
+      caption: caption,
+    )[
+      #cetz.canvas({
+        let colors = gradient.linear(
+          rgb(153, 72, 188),
+          rgb("#19e0d9"),
+          rgb(84, 101, 255),
+        )
+
+        chart.piechart(
+          data,
+          value-key: 1,
+          label-key: 0,
+          radius: 2.5,
+          stroke: none,
+          slice-style: colors,
+          inner-radius: 0.5,
+          // Label interne con ore
+          inner-label: (
+            content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
+            radius: 90%,
+          ),
+          // Label esterne con linee di connessione
+          outer-label: (
+            content: (value, label) => [
+              #box(
+                fill: white,
+                outset: 3pt,
+                radius: 3pt,
+                stroke: 0.5pt + luma(200),
+                text(black, size: 0.85em, weight: "medium", label),
+              )
+            ],
+            radius: 110%,
+          ),
+          // Abilita le linee di connessione
+          outer-label-line: (
+            stroke: 1pt + luma(150),
+            mark: (end: ">", size: 0.15),
+          ),
+          legend: (label: none),
+        )
+      })
+    ]
+  ]
+}
+
 = Introduzione
 == Obiettivi del documento
-// piccole migliorie di stile (se non ti piacciono cambiali pure, era solo per la leggibilità più corrente)
+// piccole migliorie di stile
 Il #gloss[Piano di Progetto] ha lo scopo di definire in modo chiaro e strutturato le attività necessarie alla realizzazione del progetto, stabilendone risorse, modalità operative e tempistiche di sviluppo. \
 Il documento fornisce una visione complessiva e costantemente aggiornata dell'avanzamento del progetto didattico, consentendo al gruppo di pianificare, assegnare e monitorare le attività definite all'interno di ogni #gloss[sprint].
 
@@ -34,6 +91,7 @@ Il documento include inoltre il calendario di massima del progetto, la stima dei
 
 Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[Agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi e il #gloss[preventivo a finire], i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
 Questo processo permette di rivedere costantemente la pianificazione delle attività, migliorare i processi tramite retrospettive periodiche e mantenere una stima realistica del completamento finale.
+
 == Glossario
 Il #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*glossario*] è un documento redatto dal gruppo e aggiornato nell'arco del progetto didattico, con lo scopo di fornire definizioni coerenti per i termini tecnici e quelli specifici relativi al corso di Ingegneria del Software.
 
@@ -41,11 +99,22 @@ Questo documento è fondamentale per garantire una comprensione uniforme della d
 
 Per indicare che la definizione di una parola o di un concetto è disponibile, si è deciso di utilizzare la seguente notazione:
 #gloss[definizione nel glossario].
-== Riferimenti
 
+== Riferimenti
 === Riferimenti normativi
+- Capitolato d'appalto C7: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf") \
+  *Ultimo accesso: 22/11/2025*
+//- Norme di Progetto: #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto] \
+// *Versione: 1.0.0*
 
 === Riferimenti informativi
+- Regolamento del Progetto Didattico: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf") \
+  *Ultimo accesso: 22/11/2025* //scriviamo ultimo accesso o ultima modifica?
+- Il ciclo di vita del Software: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf") \
+  *Ultimo accesso: 22/11/2025*
+- Gestione di progetto: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf") \
+  *Ultimo accesso: 22/11/2025*
+
 
 = Analisi e mitigazione dei rischi
 //piccoli miglioramenti di stile
@@ -53,14 +122,13 @@ Questa sezione analizza i potenziali rischi e le difficoltà che il gruppo potre
 Realizzare un'ottima analisi preventiva consente di evitare conflitti interni, ritardi nelle scadenze, aumento dei costi di produzione e, soprattutto, la realizzazione di un prodotto non conforme agli obiettivi.
 
 L'analisi dei rischi si articola in quattro fasi principali:
-- *Identificazione*: consiste nell'individuare i possibili rischi legati al progetto, al prodotto e al contesto di riferimento, riconoscendo tutto ciò che potrebbe compromettere lo sviluppo;
-// sono arrivata qui
-- *Analisi*: per ciascun rischio identificato si valuta la probabità di occorrenza e l'impatto che potenziale sul lavoro del gruppo e sul prodotto;
-- *Pianificazione*: consiste nel prevenire i rischi oppure come ridurne l'impatto, stabilendo in anticipo le azioni da intraprendere in caso si verifichino;
-- *Controllo*: prevede un monitoraggio continuo attraverso indicatori che segnalano eventuali problemi, l'attuazione delle strategie di mitigazione e il miglioramento costante #gloss[way of working].
+- *Identificazione*: individuare i possibili rischi legati al progetto, al prodotto e al contesto di riferimento, riconoscendo tutto ciò che potrebbe compromettere lo sviluppo;
+- *Analisi*: per ciascun rischio identificato si valuta la probabità di occorrenza e l'impatto che potenziale sul lavoro del gruppo e sul prodotto finale;
+- *Pianificazione*: definizione delle strategie di prevenzione o mitigazione, stabilendo in anticipo le azioni da intraprendere in caso in cui il rischio si verifichi;
+- *Controllo*: monitoraggio continuo attraverso indicatori che segnalano eventuali problemi, l'attuazione delle strategie di mitigazione e il miglioramento costante del #gloss[way of working].
 
-In seguito sono riportati i rischi individuati dal gruppo con la rispettiva analisi e strategia di mitigazione. \
-I rischi sono codificati con l'acronimo della tipologia del rischio a cui appartengono e un numero incrementale.
+Di seguito sono riportati i rischi individuati dal gruppo, accompagnati dalla rispettiva analisi e dalle strategie di mitigazione. \
+Ogni rischio è identificato tramite un codice composto dall'acronimo della sua tipologia e da un numero incrementale.
 
 
 == Rischi tecnologici
@@ -79,17 +147,17 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   [*Descrizione*],
   [
     Il gruppo potrebbe incontrare difficoltà nell'utilizzo e nella comprensione delle tecnologie richieste dal progetto, rallentando lo sviluppo e causando blocchi imprevisti. \
-    Il capitolato aggiudicato, inoltre, richiede molteplici tecnologie sconosciute ai componenti del gruppo.
+    Il capitolato aggiudicato, inoltre, richiede l'impiego di diverse tecnologie non ancora conosciute ai componenti del gruppo.
   ],
 
   [*Misure di mitigazione*],
   [
-    Una volta stabilite le tecnologie da utilizzare nel progetto, è fondamentale cominciare la fase di studio il prima possibile.
-    Tuttavia delle lacune potrebbero sorgere durante il progetto, il gruppo opererà nel seguente modo:
-    - Se tutti i membri riscontrano gravi difficoltà nella comprensione della tecnologia si fisserà un colloquio con _M31_ richiedendo chiarimenti;
-    - Se qualche membro riscontra difficoltà nell'apprendere una o più tecnologie i componenti del gruppo che hanno una comprensione maggiore provvederanno ad aiutare il componente in difficoltà. \
-    Ciò viene fatto con lo scopo far avanzare il gruppo, omogeneamente, sullo stesso livello di conoscenza. \
-    L'allineamento può avvenire attraverso spiegazioni individuali o attraverso _lezioni_ rivolte a tutto il gruppo e svolte da un componente.
+    Una volta stabilite le tecnologie da utilizzare nel progetto, è fondamentale avviare la fase di studio il prima possibile.
+    Poiché durante il progetto potrebbero comunque emergere delle lacune, il gruppo adotterà le seguenti misure:
+    - Se tutti i membri riscontrano gravi difficoltà nella comprensione di una tecnologia si organizzerà un colloquio con _M31_ per richedere chiarimenti;
+    - Se solo alcuni membri riscontrano difficoltà nell'apprendimento, i componenti del gruppo con una maggiore padronanza della tecnologia forniranno supporto a chi è in difficoltà. \
+    L'obiettivo ègarantire un avanzamento omogeneo del gruppo, mantenendo lo stesso livello di conoscenza. \
+    L'allineamento può avvenire attraverso spiegazioni individuali o attraverso _lezioni interne_ rivolte a tutto il gruppo condotte da un componente.
 
   ],
 
@@ -111,22 +179,23 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   [*Nome*], [Problematiche nello sviluppo software],
   [*Descrizione*],
   [
-    Il gruppo potrebbe incontrare difficoltà nello sviluppo software riguardanti il #gloss[PoC] o l'#gloss[MVP] dovuti a bug di programmazione o, peggio, errori di design.
-    Questa problematica risulta nel rallentamento delle attività e ostacola i raggiungimenti degli obiettivi.
+    Il gruppo potrebbe incontrare difficoltà nello sviluppo software del #gloss[PoC] o l'#gloss[MVP], dovute a bug di programmazione o, nei casi più gravi, a errori di design.
+    Queste problematiche possono rallentare significativamente le attività e ostacolare il raggiungimento degli obiettivi.
   ],
 
   [*Misure di mitigazione*],
   [
-    Il gruppo è consapevole che gli errori di programmazione sono difficili da evitare, soprattutto considerando la scarsa esperienza dei componenti. \
-    Perciò il gruppo si impegna ad adottare un approccio #gloss[fail fast], ovvero far si che i bug software si possano trovare il prima possibile, ciò è possibile attraverso una scrittura dei test corretti e il mantenimento di un'altra #gloss[code coverage]. \
-    Inoltre il componente che incontrerà questa problematica avrà sempre a disposizione il supporto degli altri membri ed eventualmente di _M31_.
+    Il gruppo è consapevole che gli errori di programmazione sono difficili da evitare, soprattutto considerando la limitata esperienza dei componenti. \
+    Per questo motivo verrà adottato un approccio #gloss[fail fast], volto ad individuare i bug software il prima possibile tramite:
+    - Scrittura dei test corretti e aggiornati;
+    - Mantenimento di un'elevata #gloss[code coverage]. \
+    Il membro che dovesse incontrare questa problematica potrà sempre contare sul supporto degli altri membri ed eventualmente del contributo di _M31_.
   ],
 
   [*Occorrenza*], [Da definire],
   [*Impatto*], [Da definire],
 )
 
-// TO FIX
 == Rischi organizzativi
 === Mancato rispetto delle scadenze prefissate
 #table(
@@ -142,13 +211,14 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   [*Nome*], [Mancato rispetto delle scadenze prefissate],
   [*Descrizione*],
   [
-    Durante lo svolgimento delle attività è prevista la presenza di ritardi nello svolgimento delle attività, i quali rischiano di far allungare i tempi di consegna e bloccare le attività successive.
+    Durante lo svolgimento delle attività possono verificarsi ritardi nello svolgimento delle attività, i quali rischiano di prolungare i tempi di consegna e bloccare le attività successive.
   ],
 
   [*Misure di mitigazione*],
-  [I ritardi nello svolgimento delle attività sono considerati possibili nel corso del progetto, assumendo che ogni membro del gruppo faccia tutto il necessario per evitarli. \
-    Devono essere adeguatamente giustificati e non devono ostacolare o bloccare il lavoro degli altri componenti. \
-    Qualora un membro riscontri un ritardo, ha il dovere di comunicarlo tempestivamente agli altri, affinché il gruppo possa riorganizzarsi rapidamente in funzione della specifica attività coinvolta e minimizzare l'impatto del ritardo sulle altre attività.
+  [ 
+    I ritardi sono considerati eventi possibili nel corso del progetto, pur assumendo che ogni membro del gruppo faccia il necessario per evitarli. \
+    Essi devono essere adeguatamente giustificati e non devono compromettere o interrompere il lavoro degli altri componenti. \
+    Qualora un membro preveda o riscontri un ritardo, è tenuto a comunicarlo tempestivamente al gruppo, in modo da consentire una rapida riorganizzazione delle attività coinvolte e minimizzare l'impatto del ritardo sulle altre attività.
   ],
 
   [*Occorrenza*], [Media],
@@ -169,13 +239,13 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   [*Nome*], [Errata organizzazione e distribuzione delle risorse],
   [*Descrizione*],
   [
-    La suddivisione del carico di lavoro potrebbe essere errata a causa dell'inesperienza del gruppo, causando sovraccarichi e, di conseguenza, rallentamenti.
+    La suddivisione del carico di lavoro potrebbe risultare non adeguata a causa dell'inesperienza del gruppo, causando sovraccarichi per alcuni membri e, di conseguenza, rallentamenti nelle attività.
   ],
 
   [*Misure di mitigazione*],
   [
     È possibile che il carico di lavoro venga distribuito in modo non omogeneo. Tuttavia tali situazioni possono essere corrette rapidamente discutendone nella riunione successiva, riallineando le attività e ridefinendo in maniera chiara le responsabilità.
-    Per affrontare efficacemente questo tipo di problema, il gruppo ha scelto fin dalle prime fasi del progetto, di fissare la durata dello #gloss[sprint] a una settimana, così da poter adattare tempestivamente la pianificazione e intervenire rapidamente in caso di squilibri.
+    Per prevenire e gestire efficacemente questo tipo di problema, il gruppo ha scelto sin dalle prime fasi del progetto, di fissare la durata dello #gloss[sprint] a una settimana, così da poter adattare tempestivamente la pianificazione e intervenire rapidamente in caso di squilibri nella distribuzione del lavoro.
   ],
 
   [*Occorrenza*], [Bassa],
@@ -224,13 +294,13 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   [*Nome*], [Presenza di opinioni contrastanti],
   [*Descrizione*],
   [
-    All'interno del gruppo la presenza di opinioni contrastanti è un aspetto positivo con lo scopo di incentivare il confronto e il raggiungimento della miglior soluzione possibile.
-    Tuttavia, ciò diventa negativo quando genera contrasti e dissidi tra i componenti.
+    All'interno del gruppo, la presenza di opinioni differenti è un aspetto positivo, poiché incentiva il confronto e contribuisce al raggiungimento della miglior soluzione possibile.
+    Tuttavia, questo aspetto può diventare critico quando genera contrasti e dissidi tra i componenti.
   ],
 
   [*Misure di mitigazione*],
   [
-    Il gruppo si impegna a confrontarsi in modo trasparente e costruttivo, con l'obiettivo di raggiungere una soluzione condivisa. \
+    Il gruppo si impegna a confrontarsi in modo trasparente e costruttivo, con l'obiettivo di raggiungere soluzioni condivise. \
     Qualora non fosse possibile trovare un accordo interno, si farà riferimento a un parere esterno del committente o del cliente.
   ],
 
@@ -258,9 +328,12 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
 
   [*Misure di mitigazione*],
   [
-    Il gruppo è consapevole che, durante il periodo di progetto, la disponibilità dei membri potrà variare a causa di impegni personali o accademici.\
-    Fin dall'inizio sono stati individuati i periodi di inattività dei diversi componenti, e per gestirli sarà necessario prevedere buffer temporali, favorire una comunicazione trasparente e assegnare ruoli e attività in modo flessibile in base alla disponibilità di ciascun membro. \
-    I dettagli sui periodi di inattività, comprensivi di vacanze e sessioni di studio, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
+    Il gruppo è consapevole che, durante il periodo di progetto, la disponibilità dei membri potrà variare a causa di esigenze personali o accademiche.\
+    Fin dall'inizio sono stati individuati i periodi di inattività dei diversi componenti. Per gestire efficacemente tali situazioni sarà necessario:
+    - Prevedere adeguati buffer temporali nelle pianificazioni;
+    - Mantenere una comunicazione trasparente riguardo a possibili variazioni di disponibilità;
+    - Assegnare ruoli e attività in modo flessibile, adattandoli alle esigenze e ai carichi di ciascun membro. \
+    I dettagli relativi ai periodi di inattività, comprensivi di vacanze, sessioni di studio ed eventuali altri impegni rilevanti, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
   ],
 
   [*Occorrenza*], [Media],
@@ -281,14 +354,14 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
   [*Nome*], [Dissidi interni],
   [*Descrizione*],
   [
-    Il gruppo è formato da persone con personalità, approcci lavorativi e motivazioni differenti. \
-    Queste diversità, se non gestite correttamente, possono aumentare la probabilità che emergano dissidi di varia natura.
+    Il gruppo è formato da persone con personalità, approcci lavorativi e livelli di motivazione differenti. \
+    Queste diversità, se non gestite correttamente, possono aumentare la probabilità che emergano tensioni di varia natura.
   ],
 
   [*Misure di mitigazione*],
   [
-    Ogni dissidio deve essere affrontato tempestivamente, evitando che si accumulino malumori, e discusso privatamente con le persone direttamente coinvolte. \
-    Le discussioni vanno gestite senza coinvolgere i membri non interessati, così da prevenire inutili tensioni all'interno del gruppo.
+    Ogni dissidio deve essere affrontato tempestivamente, evitando che si accumulino malumori. Le questioni vanno discusse privatamente con le persone direttamente coinvolte, così da favorire un confronto sereno e mirato. \
+    Le discussioni devono essere gestite senza coinvolgere i membri non interessati, prevenendo così inutili tensioni all'interno del gruppo e preservando un ambiente di lavoro collaborativo.
   ],
 
   [*Occorrenza*], [Bassa],
@@ -296,12 +369,13 @@ I rischi sono codificati con l'acronimo della tipologia del rischio a cui appart
 )
 
 = Calendario di massima del progetto
+//ricordarsi di modificare la data
 Il gruppo si impegna a presentare la candidatura per la #gloss[Requirements and Technology Baseline] entro il XX-XX-XXXX.\
 Inoltre, come descritto nella #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni], _GlitchHub Team_ si impegna a terminare il progetto entro il giorno *27 marzo 2026*, senza alcuna possibilità di deroga.
 
-
 = Impegno orario previsto
 Il gruppo ha deciso di dedicare un totale di *93 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
+
 == Tabella suddivisione ore produttive per componente e ruolo
 Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere i singoli ruoli.
 - *Resp* = Responsabile
@@ -327,20 +401,21 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
   "Elia Ernesto Stellin", "8", "8", "9", "21", "23", "24", [*93*],
   table.footer([*Totale*], [*54*], [*54*], [*68*], [*145*], [*165*], [*165*], [*651*]),
 )
-== Grafico a torta della suddivisione oraria
-#let ore = (
-  ("Responsabile", 54),
-  ("Amministratore", 54),
-  ("Analista", 68),
-  ("Progettista", 145),
-  ("Programmatore", 165),
-  ("Verificatore", 165),
-)
 
+== Grafico a torta della suddivisione oraria
 #align(center)[
   #figure.with(numbering: none)(
     caption: "Il grafico a torta contiene le ore produttive complessive per ogni ruolo",
   )[
+    #let ore = (
+      ("Responsabile", 54),
+      ("Amministratore", 54),
+      ("Analista", 68),
+      ("Progettista", 145),
+      ("Programmatore", 165),
+      ("Verificatore", 165),
+    )
+
     #cetz.canvas({
       let colors = gradient.linear(
         rgb(153, 72, 188),
@@ -387,6 +462,7 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
 
 = Stima dei costi di realizzazione
 Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ruolo per il relativo costo orario.\
+
 == Tabella suddivisione ore e costi
 #table(
   columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
@@ -404,20 +480,21 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
   "Verificatore", "165", "15 €/h", "2475 €",
   table.footer([*Totale*], [*651*], [-], [*12975 €*]),
 )
-== Grafico a torta dei costi progettuali
-#let costi = (
-  ("Responsabile", 1620),
-  ("Amministratore", 1080),
-  ("Analista", 1700),
-  ("Progettista", 3625),
-  ("Programmatore", 2475),
-  ("Verificatore", 2475),
-)
 
+== Grafico a torta dei costi progettuali
 #align(center)[
   #figure.with(numbering: none)(
     caption: "Il grafico a torta contiene le ore complessive per ogni ruolo",
   )[
+    #let costi = (
+      ("Responsabile", 1620),
+      ("Amministratore", 1080),
+      ("Analista", 1700),
+      ("Progettista", 3625),
+      ("Programmatore", 2475),
+      ("Verificatore", 2475),
+    )
+
     #cetz.canvas({
       let colors = gradient.linear(
         rgb(153, 72, 188),
@@ -462,18 +539,52 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
   ]
 ]
 
+
 = Pianificazione attività RTB
 == Introduzione
-La #gloss[RTB] è una fase in cui si fissano i requisiti da soddisfare e si motivano le tecnologie, i framework e le librerie scelte. \
+La #gloss[RTB] è una fase in cui vengono fissati i requisiti da soddisfare e si motivano le tecnologie, i framework e le librerie scelte. \
 Inoltre, è necessario produrre un artefatto, chiamato #gloss[PoC], il quale ha lo scopo di valutare la fattibilità tecnologica del prodotto atteso secondo le scelte implementative fatte.
+
 == Attività pianificate
+// TODO
 
 = Pianificazione e Analisi Sprint per RTB
+Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
+Ogni #gloss[sprint] viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
 
-La sezione dedicata alla *Pianificazione e Analisi degli Sprint per la RTB* descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno sprint. \
-Ogni sprint viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
+Al termine di ogni #gloss[sprint] viene inoltre aggiornato il #gloss[preventivo a finire], includendo la retrospettiva di periodo, per identificare come miglioraramenti futuri e la revisione del calendario rimanente con una stima aggiornata dei costi finali.
 
-Al termine di ogni sprint viene, inoltre, aggiornato il #gloss[preventivo a finire], includendo la retrospettiva di periodo per identificare come migliorare in futuro e la revisione del calendario rimanente con l'aggiornamento della stima dei costi finali.
+== Stesura Analisi dei Requisiti
+//TODO
+
+== Stesura Piano di Progetto
+Il #gloss[Piano di Progetto] definisce in modo chiaro e strutturato tutte le attività necessarie alla realizzazione del progetto, stabilendo risorse, modalità operative e tempistiche di sviluppo. \
+Per completare il documento sono richieste le seguenti attività:
+- Redazione dell'introduzione;
+- Analisi e mitigazione dei rischi;
+- Stima delle tempistiche di consegna, dei costi e delle risorse impiegate;
+- Pianificazione a lungo termine delle attività previste per la RTB;
+- Analisi dettagliata dei singoli sprint.
+
+Il documento verrà redatto e aggiornato nel corso di tutti gli sprint, poiché ha il compito di rendicontarne l'avanzamento. \
+Le stime relative ai costi e alla data di consegna potranno essere aggiornate qualora emergano nuove informazioni o si rilevino previsioni non accurate. \
+Allo stesso modo, l'analisi dei rischi e le relative strategie di mitigazione dovranno essere riviste ogni volta che un rischio si presenta, itrattandosi di un processo continuo e non limitato alla fase iniziale.
+
+
+== Stesura Norme di Progetto
+//TODO
+
+== Stesura Piano di Qualifica
+//TODO
+
+== Stesura Glossario
+Il *glossario* ha lo scopo di facilitare la comprensione della documentazione da parte di lettori esterni e di fissare, all'interno del gruppo, definizioni univoche che riducano possibili ambiguità interpretative.\
+Sebbene la sua prima versione sia stata redatta durante la fase di *Candidatura*, il documento richiede un aggiornamento continuo, integrando progressivamente nuove definizioni man mano che emergono durante il progetto.\
+La sua completa realizzazione è pertanto prevista al termine dell'intero progetto didattico.
+
+== Realizzazione #gloss[Proof of Concept] (PoC)
+//TODO
+
 == Sprint 1
 Inizio: 12/11/2025 \
 Fine: 19/11/2025 \
@@ -487,6 +598,7 @@ Il gruppo ha individuato le seguenti attività da svolgere:
 - Stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
 - Stesura *Norme di Progetto*;
 - Redazione e invio del verbale esterno relativo all'incontro con _M31_ del 13/11/2025
+
 ==== Preventivo risorse da utilizzare
 #table(
   columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
@@ -505,8 +617,9 @@ Il gruppo ha individuato le seguenti attività da svolgere:
   "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-",
   table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*2*]),
 )
+
 ==== Grafico a torta della suddivisione oraria prevista
-#let ore = (
+#let orePrevSprint2 = (
   ("Analista", 12),
   ("Responsabile", 2),
   //("Amministratore", 0),
@@ -514,57 +627,16 @@ Il gruppo ha individuato le seguenti attività da svolgere:
   //("Programmatore", 165),
   ("Verificatore", 2),
 )
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint2)
 
-#align(center)[
-  #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore produttive complessive per ogni ruolo",
-  )[
-    #cetz.canvas({
-      let colors = gradient.linear(
-        rgb(153, 72, 188),
-        rgb("#19e0d9"),
-        rgb(84, 101, 255),
-      )
-
-      chart.piechart(
-        ore,
-        value-key: 1,
-        label-key: 0,
-        radius: 2.5,
-        stroke: none,
-        slice-style: colors,
-        inner-radius: 0.5,
-        // Label interne con ore
-        inner-label: (
-          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
-          radius: 90%,
-        ),
-        // Label esterne con linee di connessione
-        outer-label: (
-          content: (value, label) => [
-            #box(
-              fill: white,
-              outset: 3pt,
-              radius: 3pt,
-              stroke: 0.5pt + luma(200),
-              text(black, size: 0.85em, weight: "medium", label),
-            )
-          ],
-          radius: 110%,
-        ),
-        // Abilita le linee di connessione
-        outer-label-line: (
-          stroke: 1pt + luma(150),
-          mark: (end: ">", size: 0.15),
-        ),
-        legend: (label: none),
-      )
-    })
-  ]
-]
 ==== Attività svolte
+// sarebbe da mettere il link ai documenti?
 Il gruppo ha svolto con successo le seguenti attività:
--
+- Stesura *Piano di Progetto*;
+- Stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
+- Stesura *Norme di Progetto*;
+- Redazione e invio del verbale esterno relativo all'incontro con _M31_ del 13/11/2025
+
 ==== Risorse utilizzate
 #table(
   columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
@@ -580,81 +652,119 @@ Il gruppo ha svolto con successo le seguenti attività:
   "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
   "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
   "Siria Salvalaio", "-", "-", "-", "-", "-", "1",
-  "Elia Ernesto Stellin", "-", "-", "3 -> 2", "-", "-", "-",
-  table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*2*]),
+  "Elia Ernesto Stellin", "-", "-", "2 (-1)", "-", "-", "-",
+  table.footer([*Totale*], [*2*], [*-*], [*11*], [*-*], [*-*], [*2*]),
 )
+
 ==== Grafico a torta della suddivisione oraria prevista
-#let ore = (
-  ("Analista", 12),
+#let oreEffettiveSprint1 = (
+  ("Analista", 11),
   ("Responsabile", 2),
   //("Amministratore", 0),
   //("Progettista", 145),
   //("Programmatore", 165),
   ("Verificatore", 2),
 )
-
-#align(center)[
-  #figure.with(numbering: none)(
-    caption: "Il grafico a torta contiene le ore produttive complessive per ogni ruolo",
-  )[
-    #cetz.canvas({
-      let colors = gradient.linear(
-        rgb(153, 72, 188),
-        rgb("#19e0d9"),
-        rgb(84, 101, 255),
-      )
-
-      chart.piechart(
-        ore,
-        value-key: 1,
-        label-key: 0,
-        radius: 2.5,
-        stroke: none,
-        slice-style: colors,
-        inner-radius: 0.5,
-        // Label interne con ore
-        inner-label: (
-          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
-          radius: 90%,
-        ),
-        // Label esterne con linee di connessione
-        outer-label: (
-          content: (value, label) => [
-            #box(
-              fill: white,
-              outset: 3pt,
-              radius: 3pt,
-              stroke: 0.5pt + luma(200),
-              text(black, size: 0.85em, weight: "medium", label),
-            )
-          ],
-          radius: 110%,
-        ),
-        // Abilita le linee di connessione
-        outer-label-line: (
-          stroke: 1pt + luma(150),
-          mark: (end: ">", size: 0.15),
-        ),
-        legend: (label: none),
-      )
-    })
-  ]
-]
+#graficoTorta(
+  "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint1,
+)
 
 ==== Rischi occorsi
-Rischi occorsi, impatto, mitigazione
+//da mettere il link al codice del rischio che porta alla sua tabella?
+Il gruppo ha riscontrato il rischio *RP1* durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
+L'impatto complessivo è stato positivo, infatti il gruppo ha completato correttamente tutte le attività pianificate e i componenti con impegni accademici sono riusciti a portare a termine i compiti loro affidati.
+
 === Preventivo a finire
+//TODO?
 
 ==== Retrospettiva
+Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _19/11/2025_.\
+Le attività programmate sono state tutte completate correttamente.
+È presente un sentimento di tranquillità rispetto all'avanzamento del progetto e alla distribuzione delle attività, il team è soddisfatto di come si sta lavorando insieme.\
+Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisiti] hanno fatto notare la difficoltà nell'individuazione dei casi d'uso, ciò richiederà una maggior allocazione di risorse verso quella specifica attività. Tuttavia, ad oggi, l'analisi dei casi d'uso è ancora in una fase "esplorativa", perciò non ha la priorità più alta.
+
 
 ==== Aggiornamento ore rimanenti
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "10", "21", "24", "22 (-1)", [*92*],
+  "Alessandro Dinato", "7", "8", "7 (-3)", "21", "23", "24", [*90*],
+  "Michele Dioli", "6 (-2)", "7", "10", "21", "24", "23", [*91*],
+  "Hossam Ezzemouri", "7", "8", "7 (-3)", "20", "24", "24", [*90*],
+  "Riccardo Graziani", "8", "8", "7 (-3)", "20", "23", "24", [*90*],
+  "Siria Salvalaio", "8", "8", "9", "21", "24", "22 (-1)", [*92*],
+  "Elia Ernesto Stellin", "8", "8", "7 (-2)", "21", "23", "24", [*91*],
+  table.footer([*Totale*], [*52*], [*54*], [*57*], [*145*], [*165*], [*163*], [*636*]),
+)
 
 ==== Aggiornamento costi
+#table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "52 (-2)", "30 €/h", "1560 € (-60 €)",
+  "Amministratore", "54", "20 €/h", "1080 €",
+  "Analista", "57 (-11)", "25 €/h", "1425 € (-275 €)",
+  "Progettista", "145", "25 €/h", "3625 €",
+  "Programmatore", "165", "15 €/h", "2475 €",
+  "Verificatore", "165 (-2)", "15 €/h", "2445 € (-30 €)",
+  table.footer([*Totale*], [*636*], [-], [*12610 €*]),
+)
 
 == Sprint 2
+Inizio: 19/11/2025 \
+Fine: 26/11/2025 \
 
+Questo secondo sprint ha lo scopo di completare la stesura dei documenti #gloss[Piano di Progetto] e #gloss[Norme di Progetto] e di continuare nell'individuazione dei casi d'uso nel documento dell'#gloss[Analisi dei Requisiti].
 
+=== Consuntivo di periodo
+==== Attività da svolgere
+//anche qua i link? brutto che il prof legga qua e si debba cercare da solo i documenti
+Il gruppo ha individuato le seguenti attività da svolgere:
+- Completamento *Piano di Progetto*;
+- Continuazione stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
+- Completamento *Norme di Progetto*;
 
+==== Preventivo risorse da utilizzare
+#table(
+  columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Respons*], [*Amministr*], [*Analista*], [*Progettista*], [*Program*], [*Verific*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "2",
+  "Alessandro Dinato", "-", "-", "3", "-", "-", "-",
+  "Michele Dioli", "2", "-", "-", "-", "-", "-",
+  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
+  "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "2",
+  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-",
+  table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*4*]),
+)
+
+==== Grafico a torta della suddivisione oraria prevista
+#let orePrevSprint2 = (
+  ("Analista", 12),
+  ("Responsabile", 2),
+  //("Amministratore", 0),
+  //("Progettista", 145),
+  //("Programmatore", 165),
+  ("Verificatore", 4),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint2)
 
 
 
