@@ -82,7 +82,6 @@
 
 = Introduzione
 == Obiettivi del documento
-// piccole migliorie di stile
 Il #gloss[Piano di Progetto] ha lo scopo di definire in modo chiaro e strutturato le attività necessarie alla realizzazione del progetto, stabilendone risorse, modalità operative e tempistiche di sviluppo. \
 Il documento fornisce una visione complessiva e costantemente aggiornata dell'avanzamento del progetto didattico, consentendo al gruppo di pianificare, assegnare e monitorare le attività definite all'interno di ogni #gloss[sprint].
 
@@ -117,13 +116,12 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 
 
 = Analisi e mitigazione dei rischi
-//piccoli miglioramenti di stile
 Questa sezione analizza i potenziali rischi e le difficoltà che il gruppo potrebbe incontrare durante lo svolgimento del progetto didattico.\
 Realizzare un'ottima analisi preventiva consente di evitare conflitti interni, ritardi nelle scadenze, aumento dei costi di produzione e, soprattutto, la realizzazione di un prodotto non conforme agli obiettivi.
 
 L'analisi dei rischi si articola in quattro fasi principali:
 - *Identificazione*: individuare i possibili rischi legati al progetto, al prodotto e al contesto di riferimento, riconoscendo tutto ciò che potrebbe compromettere lo sviluppo;
-- *Analisi*: per ciascun rischio identificato si valuta la probabità di occorrenza e l'impatto che potenziale sul lavoro del gruppo e sul prodotto finale;
+- *Analisi*: per ciascun rischio identificato si valuta la probabilità di occorrenza e l'impatto che potenziale sul lavoro del gruppo e sul prodotto finale;
 - *Pianificazione*: definizione delle strategie di prevenzione o mitigazione, stabilendo in anticipo le azioni da intraprendere in caso in cui il rischio si verifichi;
 - *Controllo*: monitoraggio continuo attraverso indicatori che segnalano eventuali problemi, l'attuazione delle strategie di mitigazione e il miglioramento costante del #gloss[way of working].
 
@@ -154,9 +152,9 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [
     Una volta stabilite le tecnologie da utilizzare nel progetto, è fondamentale avviare la fase di studio il prima possibile.
     Poiché durante il progetto potrebbero comunque emergere delle lacune, il gruppo adotterà le seguenti misure:
-    - Se tutti i membri riscontrano gravi difficoltà nella comprensione di una tecnologia si organizzerà un colloquio con _M31_ per richedere chiarimenti;
+    - Se tutti i membri riscontrano gravi difficoltà nella comprensione di una tecnologia si organizzerà un colloquio con _M31_ per richiedere chiarimenti;
     - Se solo alcuni membri riscontrano difficoltà nell'apprendimento, i componenti del gruppo con una maggiore padronanza della tecnologia forniranno supporto a chi è in difficoltà. \
-    L'obiettivo ègarantire un avanzamento omogeneo del gruppo, mantenendo lo stesso livello di conoscenza. \
+    L'obiettivo è garantire un avanzamento omogeneo del gruppo, mantenendo lo stesso livello di conoscenza. \
     L'allineamento può avvenire attraverso spiegazioni individuali o attraverso _lezioni interne_ rivolte a tutto il gruppo condotte da un componente.
 
   ],
@@ -215,7 +213,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   ],
 
   [*Misure di mitigazione*],
-  [ 
+  [
     I ritardi sono considerati eventi possibili nel corso del progetto, pur assumendo che ogni membro del gruppo faccia il necessario per evitarli. \
     Essi devono essere adeguatamente giustificati e non devono compromettere o interrompere il lavoro degli altri componenti. \
     Qualora un membro preveda o riscontri un ritardo, è tenuto a comunicarlo tempestivamente al gruppo, in modo da consentire una rapida riorganizzazione delle attività coinvolte e minimizzare l'impatto del ritardo sulle altre attività.
@@ -309,7 +307,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 )
 
 == Rischi personali
-=== Problemi personali o accademici
+=== Problemi personali o accademici <RP1>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -552,7 +550,7 @@ Inoltre, è necessario produrre un artefatto, chiamato #gloss[PoC], il quale ha 
 Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
 Ogni #gloss[sprint] viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
 
-Al termine di ogni #gloss[sprint] viene inoltre aggiornato il #gloss[preventivo a finire], includendo la retrospettiva di periodo, per identificare come miglioraramenti futuri e la revisione del calendario rimanente con una stima aggiornata dei costi finali.
+Al termine di ogni #gloss[sprint] viene inoltre aggiornato il #gloss[preventivo a finire], includendo la retrospettiva di periodo, per identificare come miglioramenti futuri e la revisione del calendario rimanente con una stima aggiornata dei costi finali.
 
 == Stesura Analisi dei Requisiti
 //TODO
@@ -568,7 +566,7 @@ Per completare il documento sono richieste le seguenti attività:
 
 Il documento verrà redatto e aggiornato nel corso di tutti gli sprint, poiché ha il compito di rendicontarne l'avanzamento. \
 Le stime relative ai costi e alla data di consegna potranno essere aggiornate qualora emergano nuove informazioni o si rilevino previsioni non accurate. \
-Allo stesso modo, l'analisi dei rischi e le relative strategie di mitigazione dovranno essere riviste ogni volta che un rischio si presenta, itrattandosi di un processo continuo e non limitato alla fase iniziale.
+Allo stesso modo, l'analisi dei rischi e le relative strategie di mitigazione dovranno essere riviste ogni volta che un rischio si presenta, trattandosi di un processo continuo e non limitato alla fase iniziale.
 
 
 == Stesura Norme di Progetto
@@ -636,7 +634,7 @@ Il gruppo ha svolto con successo le seguenti attività:
 - Stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
 - Stesura *Norme di Progetto*;
 - Redazione e invio del verbale esterno relativo all'incontro con _M31_ del 13/11/2025
-
+//cambio ore effettive da 3 ore di analista a 2
 ==== Risorse utilizzate
 #table(
   columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
@@ -647,13 +645,13 @@ Il gruppo ha svolto con successo le seguenti attività:
   ),
   table.header([*Nome*], [*Respons*], [*Amministr*], [*Analista*], [*Progettista*], [*Program*], [*Verific*]),
   "Jaume Bernardi", "-", "-", "-", "-", "-", "1",
-  "Alessandro Dinato", "-", "-", "3", "-", "-", "-",
+  "Alessandro Dinato", "-", "-", "2 (-1)", "-", "-", "-",
   "Michele Dioli", "2", "-", "-", "-", "-", "-",
-  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
-  "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
+  "Hossam Ezzemouri", "-", "-", "2 (-1)", "-", "-", "-",
+  "Riccardo Graziani", "-", "-", "2 (-1)", "-", "-", "-",
   "Siria Salvalaio", "-", "-", "-", "-", "-", "1",
   "Elia Ernesto Stellin", "-", "-", "2 (-1)", "-", "-", "-",
-  table.footer([*Totale*], [*2*], [*-*], [*11*], [*-*], [*-*], [*2*]),
+  table.footer([*Totale*], [*2*], [*-*], [*8*], [*-*], [*-*], [*2*]),
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -671,13 +669,10 @@ Il gruppo ha svolto con successo le seguenti attività:
 )
 
 ==== Rischi occorsi
-//da mettere il link al codice del rischio che porta alla sua tabella?
-Il gruppo ha riscontrato il rischio *RP1* durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
+Il gruppo ha riscontrato il rischio *RP1*(@RP1) durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
 L'impatto complessivo è stato positivo, infatti il gruppo ha completato correttamente tutte le attività pianificate e i componenti con impegni accademici sono riusciti a portare a termine i compiti loro affidati.
 
 === Preventivo a finire
-//TODO?
-
 ==== Retrospettiva
 Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _19/11/2025_.\
 Le attività programmate sono state tutte completate correttamente.
@@ -695,13 +690,13 @@ Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisit
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "8", "7", "10", "21", "24", "22 (-1)", [*92*],
-  "Alessandro Dinato", "7", "8", "7 (-3)", "21", "23", "24", [*90*],
+  "Alessandro Dinato", "7", "8", "8 (-2)", "21", "23", "24", [*90*],
   "Michele Dioli", "6 (-2)", "7", "10", "21", "24", "23", [*91*],
-  "Hossam Ezzemouri", "7", "8", "7 (-3)", "20", "24", "24", [*90*],
-  "Riccardo Graziani", "8", "8", "7 (-3)", "20", "23", "24", [*90*],
+  "Hossam Ezzemouri", "7", "8", "8 (-2)", "20", "24", "24", [*90*],
+  "Riccardo Graziani", "8", "8", "8 (-2)", "20", "23", "24", [*90*],
   "Siria Salvalaio", "8", "8", "9", "21", "24", "22 (-1)", [*92*],
   "Elia Ernesto Stellin", "8", "8", "7 (-2)", "21", "23", "24", [*91*],
-  table.footer([*Totale*], [*52*], [*54*], [*57*], [*145*], [*165*], [*163*], [*636*]),
+  table.footer([*Totale*], [*52*], [*54*], [*60*], [*145*], [*165*], [*163*], [*636*]),
 )
 
 ==== Aggiornamento costi
@@ -715,11 +710,11 @@ Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisit
   table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
   "Responsabile", "52 (-2)", "30 €/h", "1560 € (-60 €)",
   "Amministratore", "54", "20 €/h", "1080 €",
-  "Analista", "57 (-11)", "25 €/h", "1425 € (-275 €)",
+  "Analista", "60 (-8)", "25 €/h", "1500 € (-200 €)",
   "Progettista", "145", "25 €/h", "3625 €",
   "Programmatore", "165", "15 €/h", "2475 €",
   "Verificatore", "165 (-2)", "15 €/h", "2445 € (-30 €)",
-  table.footer([*Totale*], [*636*], [-], [*12610 €*]),
+  table.footer([*Totale*], [*636*], [-], [*12685 €*]),
 )
 
 == Sprint 2
@@ -730,7 +725,7 @@ Questo secondo sprint ha lo scopo di completare la stesura dei documenti #gloss[
 
 === Consuntivo di periodo
 ==== Attività da svolgere
-//anche qua i link? brutto che il prof legga qua e si debba cercare da solo i documenti
+//anche qua i link? brutto che il prof legga qua e si debba cercare da solo i documenti, si potrebbe linkare le issue più che il documento
 Il gruppo ha individuato le seguenti attività da svolgere:
 - Completamento *Piano di Progetto*;
 - Continuazione stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
@@ -746,18 +741,18 @@ Il gruppo ha individuato le seguenti attività da svolgere:
   ),
   table.header([*Nome*], [*Respons*], [*Amministr*], [*Analista*], [*Progettista*], [*Program*], [*Verific*]),
   "Jaume Bernardi", "-", "-", "-", "-", "-", "2",
-  "Alessandro Dinato", "-", "-", "3", "-", "-", "-",
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-",
   "Michele Dioli", "2", "-", "-", "-", "-", "-",
-  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
-  "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
+  "Hossam Ezzemouri", "-", "-", "2", "-", "-", "-",
+  "Riccardo Graziani", "-", "-", "2", "-", "-", "-",
   "Siria Salvalaio", "-", "-", "-", "-", "-", "2",
-  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-",
-  table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*4*]),
+  "Elia Ernesto Stellin", "-", "-", "2", "-", "-", "-",
+  table.footer([*Totale*], [*2*], [*-*], [*8*], [*-*], [*-*], [*4*]),
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
 #let orePrevSprint2 = (
-  ("Analista", 12),
+  ("Analista", 8),
   ("Responsabile", 2),
   //("Amministratore", 0),
   //("Progettista", 145),
