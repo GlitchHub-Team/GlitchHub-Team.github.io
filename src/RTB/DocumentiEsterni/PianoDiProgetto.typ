@@ -2,6 +2,10 @@
 #import "@preview/cetz:0.4.2"
 #import "@preview/cetz-plot:0.1.3": chart, plot
 
+//Comando per eseguire script generazione sezione Sprint X
+// cd src/RTB/DocumentiEsterni/sprintPdPGenerator && go run . -sprint 2
+// (a partire da root della repo)
+
 #show table: it => block(breakable: false, it)
 
 #show: report.with(
