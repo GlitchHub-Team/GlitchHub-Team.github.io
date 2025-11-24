@@ -7,8 +7,15 @@
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Verificato",
-  versione: "0.1.0",
+  versione: "0.1.1",
   registro-modifiche: (
+    (
+      "0.1.1",
+      "24/11/2025",
+      "Alessandro Dinato",
+      "-",
+      "Correzione piccoli errori",
+    ),
     (
       "0.1.0",
       "22/11/2025",
@@ -25,8 +32,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
+  verificatore-interno: "",
+  left-signature: "",
   tipo-documento: "Piano di Progetto",
 )
 
