@@ -3,10 +3,16 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 19/11/2025",
-  stato: "Veruficato",
-  versione: "1.0.0",
+  stato: "Verificato",
+  versione: "1.0.1",
   registro-modifiche: (
-
+    (
+      "1.0.1",
+      "20/11/2025",
+      "Michele Dioli",
+      "Siria Salvalaio",
+      "Corretto errore di battitura e allineamento con PdP",
+    ),
     (
       "1.0.0",
       "20/11/2025",
@@ -63,6 +69,7 @@ Durante la discussione è emerso un dubbio riguardo alla corretta gestione dei s
 
 
 == Allineamento sulle Norme di progetto
+
 È stata definita una scaletta per la conduzione delle Sprint Retrospective, in modo da adottare un framework comune e mantenere gli incontri ordinati. La scaletta comprende:
 - riepilogo delle attività svolte;
 - allineamento sulle risorse utilizzate;
