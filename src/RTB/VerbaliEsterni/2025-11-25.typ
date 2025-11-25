@@ -1,7 +1,7 @@
 #import "../../Templates/TemplateVerbale/template.typ": report
 
 #show: report.with(
-  titolo: "Verbale esterno 13/11/2025 (M31)",
+  titolo: "Verbale esterno 25/11/2025 (M31)",
   stato: "da verificare",
   versione: "0.1.0",
   registro-modifiche: (
@@ -19,7 +19,6 @@
   odg: (
     "Discussione sui casi d'uso",
     "Stabilire giorno settimanale per futuri incotri",
-    "Consigli sulla gestione del cuscotto di qualità",
   ),
   htmlId: "RTB-VerbaliEsterni",
   verificatore-interno: "Siria Salvalaio",
