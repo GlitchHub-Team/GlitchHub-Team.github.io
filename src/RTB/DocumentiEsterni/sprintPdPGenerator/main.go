@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -12,6 +14,7 @@ func main() {
 			fmt.Sscanf(os.Args[i+1], "%d", &sprint)
 		}
 	}
+	godotenv.Load()
 	token := os.Getenv("PDP_GITHUB_TOKEN")
 	owner := "GlitchHub-Team"
 	projectNumber := 2

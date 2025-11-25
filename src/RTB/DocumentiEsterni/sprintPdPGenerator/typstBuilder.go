@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -236,7 +237,18 @@ func formatDate(t time.Time) string {
 	return t.Format("02/01/2006")
 }
 
-func buildUsage(content string, usage *map[string]map[string]int, tablePlaceholder string, chartPlaceholder string) string {
+func diffFormat(h int, hPrev int, unit string) string {
+	diff := hPrev - h
+	if diff > 0 {
+		return "(" + "-" + strconv.Itoa(diff) + unit + ")"
+	}
+	if diff == 0 {
+		return ""
+	}
+	return "(" + "+" + strconv.Itoa(diff*-1) + unit + ")"
+}
+
+func buildUsage(content string, usage *map[string]map[string]int, prevUsage *map[string]map[string]int, tablePlaceholder string, chartPlaceholder string) string {
 	totals := map[string]int{
 		"Responsabile":   0,
 		"Amministratore": 0,
@@ -268,7 +280,11 @@ func buildUsage(content string, usage *map[string]map[string]int, tablePlacehold
 			if h == 0 {
 				row += ", \"-\""
 			} else {
-				row += fmt.Sprintf(", \"%d\"", h)
+				if prevUsage != nil && (*prevUsage)[role][nameToUsername[name]]-h != 0 {
+					row += fmt.Sprintf(", \"%d %s\"", h, diffFormat(h, (*prevUsage)[role][nameToUsername[name]], ""))
+				} else {
+					row += fmt.Sprintf(", \"%d\"", h)
+				}
 			}
 			totals[role] += h
 			assigneeTotals[name] += h
@@ -305,9 +321,18 @@ func buildSprintIssues(content string, issuesCodes *map[string][]int, placeholde
 	return strings.Replace(content, placeholder, sprintIssues, 1)
 }
 
-func buildCosts(content string, resources *map[string]map[string]int, placeholder string) string {
+func buildCosts(content string, resources *map[string]map[string]int, prevResources *map[string]map[string]int, placeholder string) string {
 	table := ""
 	totals := map[string]int{
+		"Responsabile":   0,
+		"Amministratore": 0,
+		"Analista":       0,
+		"Progettista":    0,
+		"Programmatore":  0,
+		"Verificatore":   0,
+	}
+
+	prevTotals := map[string]int{
 		"Responsabile":   0,
 		"Amministratore": 0,
 		"Analista":       0,
@@ -319,8 +344,9 @@ func buildCosts(content string, resources *map[string]map[string]int, placeholde
 	costOverall := 0
 
 	for role, roleResources := range *resources {
-		for _, h := range roleResources {
+		for username, h := range roleResources {
 			totals[role] += h
+			prevTotals[role] += (*prevResources)[role][username]
 			overall += h
 		}
 	}
@@ -328,7 +354,7 @@ func buildCosts(content string, resources *map[string]map[string]int, placeholde
 	for _, role := range orderedRoles {
 		costPerRole := totals[role] * costPerHourPerRole[role]
 		costOverall += costPerRole
-		table += fmt.Sprintf("\"%s\", \"%d\" ,\"%d €/h\", \"%d €\",\n", role, totals[role], costPerHourPerRole[role], costPerRole)
+		table += fmt.Sprintf("\"%s\", \"%d %s\" ,\"%d €/h\", \"%d € %s\",\n", role, totals[role], diffFormat(totals[role], prevTotals[role], ""), costPerHourPerRole[role], costPerRole, diffFormat(totals[role]*costPerHourPerRole[role], prevTotals[role]*costPerHourPerRole[role], " €"))
 	}
 
 	table += fmt.Sprintf("table.footer([*Totale*], [*%d*], [-], [*%d €*]),", overall, costOverall)
@@ -345,12 +371,13 @@ func generateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time
 	effSprintUsage := ResourceUsage(issues, sprint, Effective)
 	groupedIssuesByState := GroupIssuesByState(issues, sprint)
 	updatedResources := UpdateResources(issues, sprint)
+	updatedPrevResources := UpdateResources(issues, sprint-1)
 
-	content = buildUsage(content, &expSprintUsage, "{{EXPECTED_USAGE}}", "{{CHART_EXPECTED_USAGE}}")
-	content = buildUsage(content, &effSprintUsage, "{{EFFECTIVE_USAGE}}", "{{CHART_EFFECTIVE_USAGE}}")
+	content = buildUsage(content, &expSprintUsage, nil, "{{EXPECTED_USAGE}}", "{{CHART_EXPECTED_USAGE}}")
+	content = buildUsage(content, &effSprintUsage, &expSprintUsage, "{{EFFECTIVE_USAGE}}", "{{CHART_EFFECTIVE_USAGE}}")
 	content = buildSprintIssues(content, &groupedIssuesByState, "{{GROUPED_BY_STATE_ISSUES}}")
-	content = buildUsage(content, &updatedResources, "{{UPDATED_RESOURCES}}", "")
-	content = buildCosts(content, &updatedResources, "{{UPDATED_COSTS}}")
+	content = buildUsage(content, &updatedResources, &updatedPrevResources, "{{UPDATED_RESOURCES}}", "")
+	content = buildCosts(content, &updatedResources, &updatedPrevResources, "{{UPDATED_COSTS}}")
 
 	buf.WriteString(content)
 
