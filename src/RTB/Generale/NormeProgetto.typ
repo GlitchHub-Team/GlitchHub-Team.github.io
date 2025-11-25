@@ -7,6 +7,9 @@
   stato: "Da verificare",
   versione: "0.1.0",
   registro-modifiche: (
+    ("0.2.0", "25/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
+      Ristrutturazione di qualche frase e correzione di link mancanti.
+    ]),
     ("0.1.0", "24/11/2025", "Elia Ernesto Stellin", "-", [
       Stesura iniziale di @introduzione, @processi-di-supporto, introduzione di @documentazione; \
       Stesura di @doc-strumenti-a-supporto, @doc-attivita-previste, @doc-convenzioni, @doc-produzione, @doc-manutenzione.
@@ -27,7 +30,7 @@
 == Scopo del documento
 Lo scopo di questo documento è di descrivere il #gloss[_Way of Working_] del gruppo _GlitchHub Team_ durante lo svolgimento del progetto didattico.
 
-A tale scopo, il gruppo ha deciso di prendere come riferimento lo standard internazionale *ISO/IEC 12207:1995*, che descrive una struttura standardizzata per descrivere i processi di cicli di vita del Software.
+A tale scopo, il gruppo ha deciso di prendere come riferimento lo standard internazionale *ISO/IEC 12207:1995*, che definisce una struttura normata per descrivere i processi di cicli di vita del Software.
 
 Più nello specifico, vengono riconosciuti dallo standard tre tipi principali di processi:
 
@@ -35,19 +38,19 @@ Più nello specifico, vengono riconosciuti dallo standard tre tipi principali di
 - *Processi di supporto* (@processi-di-supporto): i processi che si integrano con i processi primari per semplificare lo svolgimento del progetto
 - *Processi organizzativi* (@processi-organizzativi): i processi che semplificano le procedure di sviluppo
 
-Questo documento ha carattere incrementale, per cui, verrà modificato e aggiornato col progredire dello sviluppo del progetto didattico a seguito di miglioramenti e modifiche nel #gloss[_Way of Working_] del gruppo.
+Questo documento ha carattere incrementale, per cui, verrà modificato e aggiornato col progredire dello sviluppo del progetto didattico a seguito di miglioramenti e modifiche al #gloss[_Way of Working_] del gruppo.
 
 == Scopo del prodotto
 Il progetto proposto dal #gloss[capitolato] *C7* di *M31 Srl* è inerente alla gestione e acquisizione di dati provenienti da sensori #gloss[IoT] distribuiti ed eterogenei a basso consumo energetico, i quali permettono di raccogliere dettagliatamente dati da qualunque fonte.
 
-Nello specifico, lo sviluppo richiesto dal progetto si colloca in un sistema distribuito di acquisizione e smistamento dati da sensori #gloss[Bluetooth Low Energy (BLE)]. L'obiettivo del progetto è di sviluppare un'infrastruttura scalabile che comunichi in modo sicuro con sensori non conformati e che ne gestisca i dati raccolti, fornendo strumenti di monitoraggio e visualizzazione dei dati raccolti ad amministratori e utenti finali, garantendo al contempo la totale separazione dei dati tra diversi _tenant_.
+Nello specifico, lo sviluppo richiesto dal progetto si colloca in un sistema distribuito di acquisizione e smistamento dati da sensori #gloss[Bluetooth Low Energy (BLE)]. L'obiettivo del progetto è di sviluppare un'infrastruttura scalabile che comunichi in modo sicuro con sensori non conformati e che ne gestisca i dati raccolti tramite strumenti di monitoraggio e visualizzazione, ad amministratori e utenti finali, garantendo al contempo la totale separazione dei dati tra diversi _tenant_.
 
 Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/LetteraPresentazione.pdf")[*Lettera di Presentazione*], il gruppo si è posto di realizzare questo progetto entro il *27 marzo 2026* con un budget massimo di *Euro 12.975*.
 
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
-Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata dal gruppo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un documento incrementale che definisce ogni parola rilevante per il dominio del progetto.
+Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un documento incrementale che definisce ogni parola rilevante per il dominio del progetto.
 
 Come descritto nel #link("https://glitchub-team.github.io/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
 
@@ -70,7 +73,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - Note: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 - *Glossario*
-  - Link: da definire
+  - Link: https://glitchhub-team.github.io/pdf/glossary.pdf
   - Ultimo accesso: 24 novembre 2025
 
 // TODO: differenza tra riferimenti normativi e informativi
@@ -119,19 +122,19 @@ Il processo di produzione di documentazione è uno dei processi di supporto più
 
 Nello specifico, una decisione viene documentata solamente se questa si può tradurre in un'azione tracciabile e concreta, che necessariamente influisce sul ciclo di vita del prodotto.
 
-Quindi, questo processo riguarda tutte le attività di pianificazione, progettazione, sviluppo, produzione e modifica dei documenti necessari al gruppo per lavorare secondo una linea di lavoro condivisa, e necessari alle proponente e alla committente per osservare l'avanzamento del prodotto.
+Quindi, questo processo riguarda tutte le attività di pianificazione, progettazione, sviluppo, produzione e modifica dei documenti necessari al gruppo per lavorare secondo una linea di lavoro condivisa, e necessari al proponente e alla committente per osservare l'avanzamento del prodotto.
 
 === Strumenti a supporto <doc-strumenti-a-supporto>
 - *#gloss[Typst]*: è un sistema di composizione tipografica digitale, che permette di redigere documenti con un linguaggio di mark-up intuitivo e più semplice di LaTeX. Il sistema fornisce anche un linguaggio di scripting che permette di scrivere con semplicità macro e procedure che semplificano la scrittura di contenuti dinamici. La forza di #gloss[Typst] risiede nel suo sistema di templating, utilizzato in modo ubiquitario da _GlitchHub Team_ e nel reloading istantaneo che consente una scrittura più rapida dei documenti.
 
 - *#gloss[GitHub]*: per il controllo del versionamento dei sorgenti #gloss[Typst] dei documenti
-  - *GitHub Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository]; sono fondamentali per il tracciamento delle azioni prese in seguito a decisioni di gruppo
-  - *Github Project*: per la visualizzazione delle task in modalità Kanban, in modo tale da vedere lo stato d'avanzamento delle task assegnate
+  - *GitHub Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];, sono fondamentali per il tracciamento delle azioni prese in seguito a decisioni di gruppo
+  - *Github Project*: per la visualizzazione delle task in modalità Kanban, utile ad illustrare lo stato d'avanzamento delle task assegnate
   - #gloss[GitHub Pages]: per l'hosting via sito web della documentazione stabile di progetto
 
 - *#gloss[ClickUp]*: per la condivisione di appunti e documenti interni
-- *Google Calendar*: per il tracciamento di
-- *#gloss[Discord]*: per le riunioni interne, svolte da remoto
+- *Google Calendar*: per il tracciamento delle date di riunione
+- *#gloss[Discord]*: per lo svolgimento delle riunioni interne, effettuate da remoto
 
 === Attività previste <doc-attivita-previste>
 Le attività previste per la scrittura di documentazione sono:
@@ -139,7 +142,7 @@ Le attività previste per la scrittura di documentazione sono:
 - *Manutenzione*: nella @doc-manutenzione si descrive l'attività di eventuale modifica di un documento considerato #link(label("doc-def-verificato"))[*Verificato*]
 
 === Caratteristiche e struttura dei documenti <doc-caratteristiche-struttura>
-Ogni tipo di documento prodotto ha diversa struttura e caratteristiche in virtù del fatto che ogni tipo di documento ha uno scopo ben preciso.
+Ogni tipo di documento prodotto ha una struttura e caratteristiche diverse, poiché ciascuno ha uno scopo ben preciso.
 
 Per mantenere coerenza tra più documenti dello stesso tipo, mantenendo un processo di scrittura rapido, ogni tipo di documento prevede l'utilizzo di uno specifico template di #gloss[Typst].
 
@@ -151,7 +154,7 @@ A prescindere dal proprio tipo, il frontespizio di tutti i documenti tranne i Di
 - Lo stato del documento (descritto nella @doc-stato), sotto il titolo;
 - La distribuzione del documento, ovvero i destinatari del documento, sotto lo stato.
 
-Inoltre, dalla seconda pagina di ogni documento, vi è presente la tabella del registro delle modifiche, in cui ogni riga rappresenta una versione del documento e con le seguenti colonne:
+Inoltre, dalla seconda pagina di ogni documento, vi è presente la tabella del registro delle modifiche, dove ogni riga rappresenta una versione del documento e con le seguenti colonne:
 - Codice che descrive la *Versione* (vd. @doc-versionamento)
 - *Data* di scrittura della versione;
 - *Autore* della versione;
@@ -258,7 +261,7 @@ Fanno da eccezione:
 Si noti che sul sito web il gruppo rende disponibile sempre l'*ultima* versione *verificata* (vd. @doc-def-verificato) dei documenti della _baseline_ corrente.
 
 ==== Metadati
-Uno dei punti di forza di #gloss[Typst] è la funzionalità di codificare metadati all'interno del codice sorgente di un documento. Infatti, tutti i template utilizzati dal gruppo (descritti nella @doc-caratteristiche-struttura) richiedono la descrizione di una serie di metadati precisi per ogni documento
+Uno dei punti di forza di #gloss[Typst] è la funzionalità di codificare metadati all'interno del codice sorgente di un documento. Infatti, tutti i template utilizzati dal gruppo (descritti nella @doc-caratteristiche-struttura) richiedono la descrizione di una serie di metadati precisi per ogni documento.
 
 #heading(outlined: false, depth: 5)[`htmlId`]
 Il metadato `htmlId` permette di specificare a quale sottosezione della #link("https://GlitchHub-Team.github.io")[*pagina web del gruppo*] associare l'ancora verso il PDF di questo documento.
