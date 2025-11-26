@@ -72,7 +72,8 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - Ultimo accesso: 24 novembre 2025
   - Note: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
-- *Glossario*
+// NOTA: Importante tenere aggiornato questo numero
+- *Glossario v0.1.1*
   - Link: https://glitchhub-team.github.io/pdf/glossary.pdf
   - Ultimo accesso: 24 novembre 2025
 
