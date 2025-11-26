@@ -10,11 +10,11 @@
     ("0.2.0", "25/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
       Ristrutturazione di qualche frase e correzione di link mancanti.
     ]),
-    ("0.1.0", "24/11/2025", "Elia Ernesto Stellin", "-", [
+    ("0.1.0", "24/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
       Stesura iniziale di @introduzione, @processi-di-supporto, introduzione di @documentazione; \
       Stesura di @doc-strumenti-a-supporto, @doc-attivita-previste, @doc-convenzioni, @doc-produzione, @doc-manutenzione.
     ]),
-    ("0.0.1", "15/11/2025", "Elia Ernesto Stellin", "-", "Bozza prima stesura"),
+    ("0.0.1", "15/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", "Bozza prima stesura"),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
