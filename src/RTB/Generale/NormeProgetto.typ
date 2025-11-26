@@ -5,7 +5,7 @@
 #show: report.with(
   titolo: "Norme di Progetto",
   stato: "Da verificare",
-  versione: "0.1.0",
+  versione: "0.2.0",
   registro-modifiche: (
     ("0.2.0", "25/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
       Ristrutturazione di qualche frase e correzione di link mancanti.
