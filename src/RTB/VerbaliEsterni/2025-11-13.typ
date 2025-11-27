@@ -6,7 +6,13 @@
   versione: "1.0.1",
   registro-modifiche: (
     ("1.0.1", "18/11/2025", "Riccardo Graziani", "Siria Salvalaio", "Minori modifiche per coerenza"),
-    ("1.0.0", "18/11/2025", "Riccardo Graziani", "Siria Salvalaio", "Correzione refusi e raffinamento scorrevolezza per versione stabile"),
+    (
+      "1.0.0",
+      "18/11/2025",
+      "Riccardo Graziani",
+      "Siria Salvalaio",
+      "Correzione refusi e raffinamento scorrevolezza per versione stabile",
+    ),
     ("0.0.1", "17/11/2025", "Riccardo Graziani", "Siria Salvalaio", "Bozza primo incontro con proponente"),
   ),
   partecipanti: (
@@ -18,11 +24,11 @@
     "Elia Ernesto Stellin",
     "Riccardo Graziani",
   ),
-  distribuzione: ("GlitchHub Team", "Prof. Vardenega Tullio", "Prof. Cardin Riccardo", "M31 SRL"),
+  distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo", "M31 SRL"),
   odg: (
     "Stabilire canali di comunicazione asincrona",
     "Conoscere framework organizzativo di M31",
-    "Analizzare insieme il testo del capitolato"
+    "Analizzare insieme il testo del capitolato",
   ),
   htmlId: "RTB-VerbaliEsterni",
   verificatore-interno: "Siria Salvalaio",
@@ -51,7 +57,7 @@ L'azienda si è detta disponibile a creare un canale privato su Microsoft Teams,
 === Metodologia di lavoro
 Si è approfondito con Luca Cossaro del _way of working_ adottato da M31. L'azienda adotta una metodologia agile, utilizzando *Scrum* per i progetti più intensivi e *Kanban* per quelli a ritmo più disteso. Dopo una breve confronto si è concordato di adottare un framework agile, definendo due tipologie di meeting ricorrenti:
 - *settimanale di allineamento*, in cui M31 assume un ruolo di mentore per discutere dubbi, eventuali ritardi e criticità. L'azienda ha precisato che non è necessaria la presenza dell'intero gruppo a questi incontri;
-- *bisettimanale strutturato*, in cui l'azienda si pone come cliente e il gruppo presenta il lavoro svolto e la pianificazione delle attività successive. 
+- *bisettimanale strutturato*, in cui l'azienda si pone come cliente e il gruppo presenta il lavoro svolto e la pianificazione delle attività successive.
 Il periodo di tempo tra questi incontri formali rimane flessibile in base alle esigenze del gruppo. \
 Per l'organizzazione interna del gruppo è stato suggerito di adottare un approccio ibrido *Scrum-Kanban*, definendo obiettivi chiari per ogni *sprint*.
 

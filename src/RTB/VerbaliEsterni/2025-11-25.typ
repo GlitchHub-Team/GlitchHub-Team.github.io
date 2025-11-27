@@ -15,10 +15,10 @@
     "Riccardo Graziani",
     "Siria Salvalaio",
   ),
-  distribuzione: ("GlitchHub Team", "M31 SRL","Prof. Cardin Riccardo", "Prof. Vardenega Tullio"),
+  distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Cardin Riccardo", "Prof. Vardanega Tullio"),
   odg: (
     "Discussione sui casi d'uso",
-    "Stabilire giorno settimanale per futuri incotri",
+    "Stabilire giorno settimanale per futuri incontri",
   ),
   htmlId: "RTB-VerbaliEsterni",
   verificatore-interno: "Siria Salvalaio",
@@ -54,19 +54,19 @@ I casi d’uso hanno il compito di rendere quantificabili gli User Need.
 
 Trattamento dei casi d’uso per requisiti non funzionali / sicurezza
 È stato chiarito che:
-	-	Un caso d’uso è tale solo se coinvolge un attore.
-	-	I requisiti non funzionali non vengono modellati tramite casi d’uso, bensì descritti attraverso specifiche, che definiscono come il software deve essere implementato per soddisfare i requisiti.
+- Un caso d’uso è tale solo se coinvolge un attore.
+- I requisiti non funzionali non vengono modellati tramite casi d’uso, bensì descritti attraverso specifiche, che definiscono come il software deve essere implementato per soddisfare i requisiti.
 
 È stata inoltre fornita una definizione pratica di attore:
 
 Un attore è una persona o un’entità esterna al sistema, che può agire su o attraverso il sistema.\
 
-Per aiutare la compresensione sono stati discussi alcuni espempi presi dal nostro progetto:
-	-	Il Gateway non è un attore.
-	-	L’utente non può essere attore di sé stesso.
-	-	Il Bluetooth è un attore, in quanto entità esterna non direttamente controllabile.
+Per aiutare la comprensione sono stati discussi alcuni esempi presi dal nostro progetto:
+- Il Gateway non è un attore.
+- L’utente non può essere attore di sé stesso.
+- Il Bluetooth è un attore, in quanto entità esterna non direttamente controllabile.
 
-== Stabilire giorno settimanale per futuri incotri
+== Stabilire giorno settimanale per futuri incontri
 
 È stato richiesto all’azienda di definire un giorno ricorrente per i futuri incontri, a causa delle indisponibilità di alcuni membri del gruppo in determinate giornate. Dopo un confronto interno, è stato proposto e approvato il martedì pomeriggio come giorno dedicato.\
 Giorni e orari potranno comunque essere variati, purché comunicati con adeguato anticipo tramite email.\
