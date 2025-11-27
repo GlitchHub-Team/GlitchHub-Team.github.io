@@ -20,7 +20,7 @@
       "Siria Salvalaio",
       "Corrette e riformulate frasi",
     ),
-    ( 
+    (
       "0.0.1",
       "19/11/2025",
       "Michele Dioli",
@@ -47,7 +47,7 @@
     "Allineamento sulle Norme di progetto",
     "Allineamento sulle Norme di progetto",
     "Prossimi incontri con M31",
-    ),
+  ),
   htmlId: "RTB-VerbaliInterni",
   verificatore-interno: "Siria Salvalaio",
   left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
@@ -65,7 +65,7 @@ Il presente documento attesta che, in data *19 novembre 2025* dalle ore 14.30 al
 Il gruppo è stato aggiornato sulla metodologia di lavoro prevista in questa fase.\
 È stato chiarito che non è ancora necessario concentrarsi sulla stesura del documento _Analisi dei Requisiti_; è invece preferibile dedicare tempo alle fasi di allenamento, ovvero esercitarsi nella produzione dei casi d’uso.\
 Per la realizzazione dei diagrammi dei casi d’uso è stato scelto _draw.io_, ritenuto utile poiché consente di generare file PNG successivamente modificabili.
-Durante la discussione è emerso un dubbio riguardo alla corretta gestione dei sotto-diagrammi. Si è deciso che un diagramma deve essere ridisegnato solo quando il sotto-diagramma non rappresenti una foglia. 
+Durante la discussione è emerso un dubbio riguardo alla corretta gestione dei sotto-diagrammi. Si è deciso che un diagramma deve essere ridisegnato solo quando il sotto-diagramma non rappresenti una foglia.
 
 
 == Allineamento sulle Norme di progetto
@@ -97,10 +97,10 @@ Nel frattempo, è stato ricevuto il verbale esterno firmato relativo all’incon
   [Scrittura Piano di Progetto v0.1.0],
   [Alessandro Dinato],
   [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/40")[*\#40*] ],
-  
+
   [Verifica Piano di Progetto v0.1.0],
   [Siria Salvalaio],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/40")[*\#40*] ],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/47")[*\#47*] ],
 
   [Scrittura Norme di Progetto v0.1.0],
   [Elia Stellin],
@@ -108,13 +108,13 @@ Nel frattempo, è stato ricevuto il verbale esterno firmato relativo all’incon
 
   [Verifica Norme di Progetto v0.1.0],
   [Jaume Bernardi],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/41")[*\#41*] ],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/50")[*\#50*] ],
 
   [Scrittura Verbale Interno 2025-11-19],
   [Michele Dioli],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/42")[*\#42*]],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/54")[*\#54*]],
 
   [Verifica Verbale Interno 2025-11-19],
   [Siria Salvalaio],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/42")[*\#42*]],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/53")[*\#53*]],
 )

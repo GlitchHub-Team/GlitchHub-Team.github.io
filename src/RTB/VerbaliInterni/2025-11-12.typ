@@ -13,7 +13,7 @@
       "Siria Salvalaio",
       "Minori correzioni",
     ),
-       (
+    (
       "0.1.0",
       "18/11/2025",
       "Michele Dioli",
@@ -73,7 +73,7 @@ Durante l’incontro sono emerse alcune divergenze riguardo ai compiti di determ
 La stesura dei documenti è affidata agli analisti, che per questa fase di progetto si concentreranno sull’impostazione dei documenti e dei casi d’uso.
 Inoltre è stato stimato il monte ore di ciascun ruolo per lo sprint avviato.
 
-== Suddivisione dei documenti da iniziare 
+== Suddivisione dei documenti da iniziare
 
 Con l’inizio della RTB è stato deciso che gli analisti si occuperanno principalmente della redazione dei documenti, suddividendo il carico tra Norme di Progetto, Analisi dei Requisiti e Piano di Progetto.
 Poichè ci si trova nelle fasi iniziali, il lavoro sarà principalmente una fase di allenamento, soprattutto per quanto riguarda l’Analisi dei Requisiti, che richiede la scrittura e la comprensione dei casi d’uso.\
@@ -92,15 +92,15 @@ Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato
   [*Task*], [*Responsabile*], [*Issue*],
   [Scrittura Verbale Interno 2025-11-12],
   [Michele Dioli],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/33")[*\#33*] ],
-  
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/56")[*\#56*] ],
+
   [Verifica Verbale Interno 2025-11-12],
   [Siria Salvalaio],
   [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/34")[*\#34*] ],
 
   [Scrittura Verbale Esterno 2025-11-13],
-  [Alessandro Dinato],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/35")[*\#35*] ],
+  [Riccardo Graziani],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/55")[*\#55*] ],
 
   [Verifica Verbale Esterno 2025-11-13],
   [Jaume Bernardi],
@@ -108,15 +108,15 @@ Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato
 
   [Stesura Piano di Progetto],
   [Alessandro Dinato],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/37")[*\#37*]],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/45")[*\#45*]],
 
   [Stesura Norme di Progetto],
   [Elia Stellin],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/38")[*\#38*]],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/49")[*\#49*]],
 
   [Stesura analisi dei requisiti],
-  [Hossam Ezzemouri, Jaume Bernardi],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/39")[*\#39*]],
+  [Hossam Ezzemouri, Riccardo Graziani],
+  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/59")[*\#59*]],
 )
 
 = Conclusioni
