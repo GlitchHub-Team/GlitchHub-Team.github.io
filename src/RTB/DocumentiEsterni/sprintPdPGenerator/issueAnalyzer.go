@@ -112,9 +112,6 @@ func GroupIssuesByState(issues *[]Issue, sprint int) map[string][]int {
 }
 
 func UpdateResources(issues *[]Issue, sprint int) map[string]map[string]int {
-	if sprint <= 0 {
-		return hoursPerRolePerName
-	}
 	result := make(map[string]map[string]int)
 
 	for role, people := range hoursPerRolePerName {
@@ -122,6 +119,10 @@ func UpdateResources(issues *[]Issue, sprint int) map[string]map[string]int {
 		for name, hours := range people {
 			result[role][nameToUsername[name]] = hours
 		}
+	}
+
+	if sprint <= 0 {
+		return result
 	}
 
 	for i := 1; i <= sprint; i++ {

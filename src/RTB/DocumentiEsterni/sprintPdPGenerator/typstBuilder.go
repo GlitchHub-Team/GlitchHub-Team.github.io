@@ -372,6 +372,8 @@ func generateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time
 	groupedIssuesByState := GroupIssuesByState(issues, sprint)
 	updatedResources := UpdateResources(issues, sprint)
 	updatedPrevResources := UpdateResources(issues, sprint-1)
+	fmt.Printf("Updated resources: %+v\n", updatedResources)
+	fmt.Printf("Updated previous resources: %+v\n", updatedPrevResources)
 
 	content = buildUsage(content, &expSprintUsage, nil, "{{EXPECTED_USAGE}}", "{{CHART_EXPECTED_USAGE}}")
 	content = buildUsage(content, &effSprintUsage, &expSprintUsage, "{{EFFECTIVE_USAGE}}", "{{CHART_EFFECTIVE_USAGE}}")
