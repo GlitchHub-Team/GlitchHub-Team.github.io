@@ -105,7 +105,7 @@ const (
 
 	Piccola introduzione sprint.
 
-	=== Consuntivo di periodo
+	=== Preventivo a finire
 	==== Attività da svolgere
 	Il gruppo ha individuato le seguenti attività da svolgere:
 	- 
@@ -129,6 +129,8 @@ const (
 	)
 	#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint%d)
 
+	=== Consuntivo di periodo
+
 	==== Attività svolte
 	Il gruppo ha svolto con successo le seguenti attività: \
 	Issue relative a sprint %d: \
@@ -136,6 +138,10 @@ const (
 	- 
 	-
 	-
+
+	==== Retrospettiva
+	Raccontare retrospettiva
+
 	==== Risorse utilizzate
 	#table(
 	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
@@ -159,12 +165,6 @@ const (
 
 	==== Rischi occorsi
 	Descrivere i rischi occorsi
-
-	=== Preventivo a finire
-
-	==== Retrospettiva
-	Raccontare retrospettiva
-
 
 	==== Aggiornamento ore rimanenti
 	#table(
@@ -372,8 +372,6 @@ func generateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time
 	groupedIssuesByState := GroupIssuesByState(issues, sprint)
 	updatedResources := UpdateResources(issues, sprint)
 	updatedPrevResources := UpdateResources(issues, sprint-1)
-	fmt.Printf("Updated resources: %+v\n", updatedResources)
-	fmt.Printf("Updated previous resources: %+v\n", updatedPrevResources)
 
 	content = buildUsage(content, &expSprintUsage, nil, "{{EXPECTED_USAGE}}", "{{CHART_EXPECTED_USAGE}}")
 	content = buildUsage(content, &effSprintUsage, &expSprintUsage, "{{EFFECTIVE_USAGE}}", "{{CHART_EFFECTIVE_USAGE}}")

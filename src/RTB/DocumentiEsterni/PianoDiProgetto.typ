@@ -7,8 +7,15 @@
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Verificato",
-  versione: "0.1.1",
+  versione: "0.2.0",
   registro-modifiche: (
+    (
+      "0.2.0",
+      "27/11/2025",
+      "Alessandro Dinato",
+      "-",
+      "Stesura per sprint 2",
+    ),
     (
       "0.1.1",
       "24/11/2025",
@@ -32,8 +39,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
+  verificatore-interno: "",
+  left-signature: "",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -137,7 +144,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 
 
 == Rischi tecnologici
-=== Apprendimento delle nuove tecnologie
+=== Apprendimento delle nuove tecnologie <RT1>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -170,7 +177,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [*Impatto*], [Medio],
 )
 
-=== Problematiche nello sviluppo software
+=== Problematiche nello sviluppo software <RT2>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -202,7 +209,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 )
 
 == Rischi organizzativi
-=== Mancato rispetto delle scadenze prefissate
+=== Mancato rispetto delle scadenze prefissate <RO1>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -230,7 +237,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [*Impatto*], [Alto],
 )
 
-=== Errata organizzazione e distribuzione delle risorse
+=== Errata organizzazione e distribuzione delle risorse <RO2>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -257,7 +264,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [*Impatto*], [Medio],
 )
 
-=== Incomprensione dei requisiti
+=== Incomprensione dei requisiti <RO3>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -285,7 +292,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [*Impatto*], [Alto],
 )
 
-=== Presenza di opinioni contrastanti
+=== Presenza di opinioni contrastanti <RO4>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -345,7 +352,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [*Impatto*], [Medio],
 )
 
-=== Dissidi interni
+=== Dissidi interni <RP2>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -546,18 +553,8 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
 
 
 = Pianificazione attività RTB
-== Introduzione
 La #gloss[RTB] è una fase in cui vengono fissati i requisiti da soddisfare e si motivano le tecnologie, i framework e le librerie scelte. \
 Inoltre, è necessario produrre un artefatto, chiamato #gloss[PoC], il quale ha lo scopo di valutare la fattibilità tecnologica del prodotto atteso secondo le scelte implementative fatte.
-
-== Attività pianificate
-// TODO
-
-= Pianificazione e Analisi Sprint per RTB
-Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
-Ogni #gloss[sprint] viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
-
-Al termine di ogni #gloss[sprint] viene inoltre aggiornato il #gloss[preventivo a finire], includendo la retrospettiva di periodo, per identificare come miglioramenti futuri e la revisione del calendario rimanente con una stima aggiornata dei costi finali.
 
 == Stesura Analisi dei Requisiti
 //TODO
@@ -589,6 +586,12 @@ La sua completa realizzazione è pertanto prevista al termine dell'intero proget
 
 == Realizzazione #gloss[Proof of Concept] (PoC)
 //TODO
+= Pianificazione e Analisi Sprint per RTB
+Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
+Ogni #gloss[sprint] viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
+
+Al termine di ogni #gloss[sprint] viene inoltre aggiornato il #gloss[consuntivo di periodo], includendo la retrospettiva di periodo, le attività svolte e i rischi occorsi.
+
 
 == Sprint 1
 Inizio: 12/11/2025 \
@@ -596,7 +599,7 @@ Fine: 19/11/2025 \
 
 Questo primo sprint ha lo scopo di avviare le stesura dei documenti #gloss[Piano di Progetto], #gloss[Analisi dei Requisiti] e #gloss[Norme di Progetto].
 
-=== Consuntivo di periodo
+=== Preventivo a finire
 ==== Attività da svolgere
 Il gruppo ha individuato le seguenti attività da svolgere:
 - Stesura *Piano di Progetto*;
@@ -606,33 +609,36 @@ Il gruppo ha individuato le seguenti attività da svolgere:
 
 ==== Preventivo risorse da utilizzare
 #table(
-  columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
     top: if y == 0 { 0pt } else { 0.5pt + black },
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
-  table.header([*Nome*], [*Respons*], [*Amministr*], [*Analista*], [*Progettista*], [*Program*], [*Verific*]),
-  "Jaume Bernardi", "-", "-", "-", "-", "-", "1",
-  "Alessandro Dinato", "-", "-", "3", "-", "-", "-",
-  "Michele Dioli", "2", "-", "-", "-", "-", "-",
-  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-",
-  "Riccardo Graziani", "-", "-", "3", "-", "-", "-",
-  "Siria Salvalaio", "-", "-", "-", "-", "-", "1",
-  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-",
-  table.footer([*Totale*], [*2*], [*-*], [*12*], [*-*], [*-*], [*2*]),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "1", [*1*],
+  "Alessandro Dinato", "-", "-", "3", "-", "-", "-", [*3*],
+  "Michele Dioli", "2", "-", "-", "-", "-", "-", [*2*],
+  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-", [*3*],
+  "Riccardo Graziani", "-", "-", "3", "-", "-", "-", [*3*],
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "1", [*1*],
+  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-", [*3*],
+  table.footer([*Totale*], [*2*], [*0*], [*12*], [*0*], [*0*], [*2*], [*16*]),
 )
-
 ==== Grafico a torta della suddivisione oraria prevista
-#let orePrevSprint2 = (
-  ("Analista", 12),
+
+#let orePrevSprint1 = (
   ("Responsabile", 2),
-  //("Amministratore", 0),
-  //("Progettista", 145),
-  //("Programmatore", 165),
+  ("Amministratore", 0),
+  ("Analista", 12),
+  ("Progettista", 0),
+  ("Programmatore", 0),
   ("Verificatore", 2),
 )
-#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint2)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint1)
+
+
+=== Consuntivo di periodo
 
 ==== Attività svolte
 // sarebbe da mettere il link ai documenti?
@@ -641,33 +647,39 @@ Il gruppo ha svolto con successo le seguenti attività:
 - Stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
 - Stesura *Norme di Progetto*;
 - Redazione e invio del verbale esterno relativo all'incontro con _M31_ del 13/11/2025
-//cambio ore effettive da 3 ore di analista a 2
+
+==== Retrospettiva
+Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _19/11/2025_.\
+Le attività programmate sono state tutte completate correttamente.
+È presente un sentimento di tranquillità rispetto all'avanzamento del progetto e alla distribuzione delle attività, il team è soddisfatto di come si sta lavorando insieme.\
+Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisiti] hanno fatto notare la difficoltà nell'individuazione dei casi d'uso, ciò richiederà una maggior allocazione di risorse verso quella specifica attività. Tuttavia, ad oggi, l'analisi dei casi d'uso è ancora in una fase "esplorativa", perciò non ha la priorità più alta.
+
 ==== Risorse utilizzate
 #table(
-  columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
     top: if y == 0 { 0pt } else { 0.5pt + black },
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
-  table.header([*Nome*], [*Respons*], [*Amministr*], [*Analista*], [*Progettista*], [*Program*], [*Verific*]),
-  "Jaume Bernardi", "-", "-", "-", "-", "-", "1",
-  "Alessandro Dinato", "-", "-", "2 (-1)", "-", "-", "-",
-  "Michele Dioli", "2", "-", "-", "-", "-", "-",
-  "Hossam Ezzemouri", "-", "-", "2 (-1)", "-", "-", "-",
-  "Riccardo Graziani", "-", "-", "2 (-1)", "-", "-", "-",
-  "Siria Salvalaio", "-", "-", "-", "-", "-", "1",
-  "Elia Ernesto Stellin", "-", "-", "2 (-1)", "-", "-", "-",
-  table.footer([*Totale*], [*2*], [*-*], [*8*], [*-*], [*-*], [*2*]),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "1", [*1*],
+  "Alessandro Dinato", "-", "-", "2 (-1)", "-", "-", "-", [*2*],
+  "Michele Dioli", "2", "-", "-", "-", "-", "-", [*2*],
+  "Hossam Ezzemouri", "-", "-", "2 (-1)", "-", "-", "-", [*2*],
+  "Riccardo Graziani", "-", "-", "2 (-1)", "-", "-", "-", [*2*],
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "1", [*1*],
+  "Elia Ernesto Stellin", "-", "-", "2 (-1)", "-", "-", "-", [*2*],
+  table.footer([*Totale*], [*2*], [*0*], [*8*], [*0*], [*0*], [*2*], [*12*]),
 )
-
 ==== Grafico a torta della suddivisione oraria prevista
+
 #let oreEffettiveSprint1 = (
-  ("Analista", 11),
   ("Responsabile", 2),
-  //("Amministratore", 0),
-  //("Progettista", 145),
-  //("Programmatore", 165),
+  ("Amministratore", 0),
+  ("Analista", 8),
+  ("Progettista", 0),
+  ("Programmatore", 0),
   ("Verificatore", 2),
 )
 #graficoTorta(
@@ -679,14 +691,6 @@ Il gruppo ha svolto con successo le seguenti attività:
 Il gruppo ha riscontrato il rischio *RP1*(@RP1) durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
 L'impatto complessivo è stato positivo, infatti il gruppo ha completato correttamente tutte le attività pianificate e i componenti con impegni accademici sono riusciti a portare a termine i compiti loro affidati.
 
-=== Preventivo a finire
-==== Retrospettiva
-Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _19/11/2025_.\
-Le attività programmate sono state tutte completate correttamente.
-È presente un sentimento di tranquillità rispetto all'avanzamento del progetto e alla distribuzione delle attività, il team è soddisfatto di come si sta lavorando insieme.\
-Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisiti] hanno fatto notare la difficoltà nell'individuazione dei casi d'uso, ciò richiederà una maggior allocazione di risorse verso quella specifica attività. Tuttavia, ad oggi, l'analisi dei casi d'uso è ancora in una fase "esplorativa", perciò non ha la priorità più alta.
-
-
 ==== Aggiornamento ore rimanenti
 #table(
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
@@ -697,13 +701,13 @@ Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisit
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "8", "7", "10", "21", "24", "22 (-1)", [*92*],
-  "Alessandro Dinato", "7", "8", "8 (-2)", "21", "23", "24", [*90*],
+  "Alessandro Dinato", "7", "8", "8 (-2)", "21", "23", "24", [*91*],
   "Michele Dioli", "6 (-2)", "7", "10", "21", "24", "23", [*91*],
-  "Hossam Ezzemouri", "7", "8", "8 (-2)", "20", "24", "24", [*90*],
-  "Riccardo Graziani", "8", "8", "8 (-2)", "20", "23", "24", [*90*],
+  "Hossam Ezzemouri", "7", "8", "8 (-2)", "20", "24", "24", [*91*],
+  "Riccardo Graziani", "8", "8", "8 (-2)", "20", "23", "24", [*91*],
   "Siria Salvalaio", "8", "8", "9", "21", "24", "22 (-1)", [*92*],
   "Elia Ernesto Stellin", "8", "8", "7 (-2)", "21", "23", "24", [*91*],
-  table.footer([*Totale*], [*52*], [*54*], [*60*], [*145*], [*165*], [*163*], [*636*]),
+  table.footer([*Totale*], [*52*], [*54*], [*60*], [*145*], [*165*], [*163*], [*639*]),
 )
 
 ==== Aggiornamento costi
@@ -716,57 +720,148 @@ Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisit
   ),
   table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
   "Responsabile", "52 (-2)", "30 €/h", "1560 € (-60 €)",
-  "Amministratore", "54", "20 €/h", "1080 €",
+  "Amministratore", "54 ", "20 €/h", "1080 € ",
   "Analista", "60 (-8)", "25 €/h", "1500 € (-200 €)",
-  "Progettista", "145", "25 €/h", "3625 €",
-  "Programmatore", "165", "15 €/h", "2475 €",
-  "Verificatore", "165 (-2)", "15 €/h", "2445 € (-30 €)",
-  table.footer([*Totale*], [*636*], [-], [*12685 €*]),
+  "Progettista", "145 ", "25 €/h", "3625 € ",
+  "Programmatore", "165 ", "15 €/h", "2475 € ",
+  "Verificatore", "163 (-2)", "15 €/h", "2445 € (-30 €)",
+  table.footer([*Totale*], [*639*], [-], [*12685 €*]),
 )
+
 
 == Sprint 2
 Inizio: 19/11/2025 \
 Fine: 26/11/2025 \
 
-Questo secondo sprint ha lo scopo di completare la stesura dei documenti #gloss[Piano di Progetto] e #gloss[Norme di Progetto] e di continuare nell'individuazione dei casi d'uso nel documento dell'#gloss[Analisi dei Requisiti].
+Il seguente sprint ha lo scopo di continuare la stesura dei documenti *Piano di Progetto*, *Analisi dei Requisiti* e *Norme di Progetto*.
+Inoltre, si procederà nell'approfondimento dei casi d'uso.
 
-=== Consuntivo di periodo
+=== Preventivo a finire
 ==== Attività da svolgere
-//anche qua i link? brutto che il prof legga qua e si debba cercare da solo i documenti, si potrebbe linkare le issue più che il documento
 Il gruppo ha individuato le seguenti attività da svolgere:
-- Completamento *Piano di Progetto*;
-- Continuazione stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
-- Completamento *Norme di Progetto*;
-
+- Continuazione stesura *Piano di Progetto*;
+- Continuazione stesura *Norme di Progetto*;
+- Approfondimento casi d'uso in *Analisi dei Requisiti*, grazie al supporto di _M31_ nell'incontro del 24/11/2025.
 ==== Preventivo risorse da utilizzare
 #table(
-  columns: (0.20fr, 0.10fr, 0.12fr, 0.10fr, 0.12fr, 0.12fr, 0.10fr),
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
     top: if y == 0 { 0pt } else { 0.5pt + black },
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
-  table.header([*Nome*], [*Respons*], [*Amministr*], [*Analista*], [*Progettista*], [*Program*], [*Verific*]),
-  "Jaume Bernardi", "-", "-", "-", "-", "-", "2",
-  "Alessandro Dinato", "-", "-", "2", "-", "-", "-",
-  "Michele Dioli", "2", "-", "-", "-", "-", "-",
-  "Hossam Ezzemouri", "-", "-", "2", "-", "-", "-",
-  "Riccardo Graziani", "-", "-", "2", "-", "-", "-",
-  "Siria Salvalaio", "-", "-", "-", "-", "-", "2",
-  "Elia Ernesto Stellin", "-", "-", "2", "-", "-", "-",
-  table.footer([*Totale*], [*2*], [*-*], [*8*], [*-*], [*-*], [*4*]),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "1", [*1*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "2", "-", "-", "-", "-", "-", [*2*],
+  "Hossam Ezzemouri", "-", "-", "2", "-", "-", "-", [*2*],
+  "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "1", [*1*],
+  "Elia Ernesto Stellin", "-", "-", "2", "-", "-", "-", [*2*],
+  table.footer([*Totale*], [*2*], [*0*], [*8*], [*0*], [*0*], [*2*], [*12*]),
 )
-
 ==== Grafico a torta della suddivisione oraria prevista
+
 #let orePrevSprint2 = (
-  ("Analista", 8),
   ("Responsabile", 2),
-  //("Amministratore", 0),
-  //("Progettista", 145),
-  //("Programmatore", 165),
-  ("Verificatore", 4),
+  ("Amministratore", 0),
+  ("Analista", 8),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 2),
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint2)
 
+=== Consuntivo di periodo
 
+==== Attività svolte
+Il gruppo ha svolto con successo le seguenti attività: \
+- Continuazione stesura *Piano di Progetto*;
+- Continuazione stesura *Norme di Progetto*;
+- Approfondimento casi d'uso in *Analisi dei Requisiti*;
+- Incontro con _M31_ in data 24/11/2025 per discutere i casi d'uso.
 
+==== Retrospettiva
+Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _26/11/2025_.\
+Le attività programmate sono state tutte eseguite correttamente ed entro i tempi stabiliti.
+
+Questo sprint ha permesso al gruppo di avanzare nella conoscenza e nella definizione dei casi d'uso, grazie al supporto fornito da _M31_ durante l'incontro del 24/11/2025.\
+L'azienda si è dimostrata disponibile a chiarire i dubbi del gruppo e ha fornito un contributo sostanziale all'approfondimento e alla definizione dei casi d'uso. \
+Questo incontro è stato positivo perché ha dimostrato che il gruppo può fare affidamento sul supporto del proponente, vista la sua alta disponibilità e competenza.
+
+Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub Issues, al fine di migliorare la gestione delle attività e la tracciabilità del lavoro svolto. Ciò è un segnale positivo, in quanto dimostra la volontà del gruppo di ottimizzare continuamente i propri processi di lavoro.
+
+==== Risorse utilizzate
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "1", [*1*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "2", "-", "-", "-", "-", "-", [*2*],
+  "Hossam Ezzemouri", "-", "-", "2", "-", "-", "-", [*2*],
+  "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "1", [*1*],
+  "Elia Ernesto Stellin", "-", "-", "2", "-", "-", "-", [*2*],
+  table.footer([*Totale*], [*2*], [*0*], [*8*], [*0*], [*0*], [*2*], [*12*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let oreEffettiveSprint2 = (
+  ("Responsabile", 2),
+  ("Amministratore", 0),
+  ("Analista", 8),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 2),
+)
+#graficoTorta(
+  "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint2,
+)
+
+==== Rischi occorsi
+Il gruppo ha riscontrato il rischio *RP2*(@RP2) durante lo *Sprint 2*. \
+Un componente del gruppo ha fatto notare la mancanza di intraprendenza da parte di due membri, tuttavia la questione è stato risolta con un semplice confronto diretto. \
+La questione sollevata è stata affrontata in modo costruttivo con lo scopo di portare tutti i componenti sullo stesso livello di partecipazione attiva. \
+
+==== Aggiornamento ore rimanenti
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "10", "21", "24", "21 (-1)", [*91*],
+  "Alessandro Dinato", "7", "8", "6 (-2)", "21", "23", "24", [*89*],
+  "Michele Dioli", "4 (-2)", "7", "10", "21", "24", "23", [*89*],
+  "Hossam Ezzemouri", "7", "8", "6 (-2)", "20", "24", "24", [*89*],
+  "Riccardo Graziani", "8", "8", "6 (-2)", "20", "23", "24", [*89*],
+  "Siria Salvalaio", "8", "8", "9", "21", "24", "21 (-1)", [*91*],
+  "Elia Ernesto Stellin", "8", "8", "5 (-2)", "21", "23", "24", [*89*],
+  table.footer([*Totale*], [*50*], [*54*], [*52*], [*145*], [*165*], [*161*], [*627*]),
+)
+
+==== Aggiornamento costi
+#table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "50 (-2)", "30 €/h", "1500 € (-60 €)",
+  "Amministratore", "54 ", "20 €/h", "1080 € ",
+  "Analista", "52 (-8)", "25 €/h", "1300 € (-200 €)",
+  "Progettista", "145 ", "25 €/h", "3625 € ",
+  "Programmatore", "165 ", "15 €/h", "2475 € ",
+  "Verificatore", "161 (-2)", "15 €/h", "2415 € (-30 €)",
+  table.footer([*Totale*], [*627*], [-], [*12395 €*]),
+)
