@@ -70,7 +70,7 @@ Durante l'incontro sono stati definiti nuovi campi da aggiungere alle GitHub Iss
   - una sub-issue deve essere assegnata a una sola persona;
   - utilizzare *blocking* / *blocked by* (es. la scrittura di un documento blocca la sua verifica).
 
-L'assignee, al momento dell'assegnazione, deve compilare:
+La persona assegnata alla task, al momento dell'assegnazione, deve compilare:
 - start date
 - target date
 - expected worked hours
