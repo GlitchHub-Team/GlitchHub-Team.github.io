@@ -10,7 +10,7 @@
       "0.1.2",
       "28/11/2025",
       "Siria Salvalaio",
-      "-",
+      "Hossam Ezzemouri",
       "Aggiunta definizione",
     ),
     (
@@ -515,7 +515,8 @@
   ),
   (
     term: "Documento incrementale",
-    definition: [Documento che viene redatto e aggiornato progressivamente insieme all'avanzamento del progetto. Può contenere inizialmente sezioni vuote e incomplete e ogni versione stabile include solo le parti effettivamente compilate e verficate. Viene pubblicato man mano tramite versioni aggiornate],
+    //corretto "verficate" in "verificate"
+    definition: [Documento che viene redatto e aggiornato progressivamente insieme all'avanzamento del progetto. Può contenere inizialmente sezioni vuote e incomplete e ogni versione stabile include solo le parti effettivamente compilate e verificate. Viene pubblicato man mano tramite versioni aggiornate],
   ),
 )
 
