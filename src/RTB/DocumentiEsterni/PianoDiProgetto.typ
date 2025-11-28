@@ -102,7 +102,7 @@ Il documento fornisce una visione complessiva e costantemente aggiornata dell'av
 Un aspetto fondamentale del documento è l'analisi dei rischi attesi, accompagnata dalle relative strategie di mitigazione, con l'obiettivo di ridurre l'incertezza e migliorare la capacità del gruppo di affrontare imprevisti tecnologici, organizzativi e/o personali.
 Il documento include inoltre il calendario di massima del progetto, la stima dei costi complessivi e l'impegno orario previsto per ogni ruolo, i quali sono stati definiti in fase di *Candidatura*.
 
-Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[Agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi e il #gloss[preventivo a finire], i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
+Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[Agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi e il #gloss[preventivo a finire] dello sprint successivo, i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
 Questo processo permette di rivedere costantemente la pianificazione delle attività, migliorare i processi tramite retrospettive periodiche e mantenere una stima realistica del completamento finale.
 
 == Glossario
@@ -588,9 +588,9 @@ La sua completa realizzazione è pertanto prevista al termine dell'intero proget
 //TODO
 = Pianificazione e Analisi Sprint per RTB
 Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
-Ogni #gloss[sprint] viene analizzato attraverso un #gloss[consuntivo di periodo], nel quale vengono confrontati l'avanzamento atteso e quello effettivamente conseguito, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
+Ogni #gloss[sprint] viene valutato attraverso un #gloss[consuntivo di periodo], nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
 
-Al termine di ogni #gloss[sprint] viene inoltre aggiornato il #gloss[consuntivo di periodo], includendo la retrospettiva di periodo, le attività svolte e i rischi occorsi.
+Al termine di ogni #gloss[sprint] viene redatto il #gloss[preventivo a finire], il quale descrive le attività pianificate per lo sprint successivo e la stima delle risorse necessarie.
 
 
 == Sprint 1
@@ -733,9 +733,8 @@ L'impatto complessivo è stato positivo, infatti il gruppo ha completato corrett
 Inizio: 19/11/2025 \
 Fine: 26/11/2025 \
 
-//sarebbe piu corretto scrivere il "presente", ma si può lasciare anche cosi
-Il seguente sprint ha lo scopo di continuare la stesura dei documenti *Piano di Progetto*, *Analisi dei Requisiti* e *Norme di Progetto*.
-Inoltre, si procederà nell'approfondimento dei casi d'uso. //"si procederà con l'approfondimento"
+Il presente sprint ha lo scopo di continuare la stesura dei documenti *Piano di Progetto*, *Analisi dei Requisiti* e *Norme di Progetto*.
+Inoltre, si procederà con l'approfondimento dei casi d'uso.
 
 === Preventivo a finire
 ==== Attività da svolgere
@@ -788,11 +787,9 @@ Le attività programmate sono state tutte eseguite correttamente ed entro i temp
 
 Questo sprint ha permesso al gruppo di avanzare nella conoscenza e nella definizione dei casi d'uso, grazie al supporto fornito da _M31_ durante l'incontro del 24/11/2025.\
 L'azienda si è dimostrata disponibile a chiarire i dubbi del gruppo e ha fornito un contributo sostanziale all'approfondimento e alla definizione dei casi d'uso. \
-//Più formale scrivere l'"incontro"
-Questo incontro è stato positivo perché ha dimostrato che il gruppo può fare affidamento sul supporto del proponente, vista la sua alta disponibilità e competenza.
+L'incontro è stato positivo perché ha dimostrato che il gruppo può fare affidamento sul supporto del proponente, vista la sua alta disponibilità e competenza.
 
-//"Ciò rappresenta un segnale positivo" suona meglio
-Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub Issues, al fine di migliorare la gestione delle attività e la tracciabilità del lavoro svolto. Ciò è un segnale positivo, in quanto dimostra la volontà del gruppo di ottimizzare continuamente i propri processi di lavoro.
+Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub Issues, al fine di migliorare la gestione delle attività e la tracciabilità del lavoro svolto. Ciò rappresenta un segnale positivo, in quanto dimostra la volontà del gruppo di ottimizzare continuamente i propri processi di lavoro.
 
 ==== Risorse utilizzate
 #table(
@@ -830,8 +827,7 @@ Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub I
 ==== Rischi occorsi
 Il gruppo ha riscontrato il rischio *RP2*(@RP2) durante lo *Sprint 2*. \
 Un componente del gruppo ha fatto notare la mancanza di intraprendenza da parte di due membri, tuttavia la questione è stato risolta con un semplice confronto diretto. \
-//per evitare la ripetizione di "questione" puoi scrivere "La situazione sollevata" oppure "equivoco"
-La questione sollevata è stata affrontata in modo costruttivo con lo scopo di portare tutti i componenti sullo stesso livello di partecipazione attiva. \
+La situazione sollevata è stata affrontata in modo costruttivo con lo scopo di portare tutti i componenti sullo stesso livello di partecipazione attiva. \
 
 ==== Aggiornamento ore rimanenti
 #table(
