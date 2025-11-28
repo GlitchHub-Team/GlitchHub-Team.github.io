@@ -5,7 +5,7 @@
   stato: "verificato",
   versione: "1.0.0",
   registro-modifiche: (
-    ("1.0.0", "28/11/2025", "Michele Dioli", "Siria Salvalaio", "Riveste frasi per migliorare scorrevolezza"),
+    ("1.0.0", "28/11/2025", "Michele Dioli", "Siria Salvalaio", "Riviste frasi per migliorare la scorrevolezza"),
     ("0.1.0", "25/11/2025", "Michele Dioli", "Siria Salvalaio", "Bozza secondo incontro con M31"),
   ),
   partecipanti: (
@@ -43,7 +43,7 @@ L’incontro è stato organizzato per ottenere maggiore chiarezza sui casi d’u
 
 È stato chiarito che i casi d’uso hanno il compito di rendere quantificabili gli User Need.\
 
-Durante l’incontro sono stati chiariti alcuni punti importanti riguardo alla gestione dei casi d’uso relativi ai requisiti non funzionali.
+Durante l’incontro sono stati approfonditi alcuni punti importanti riguardo alla gestione dei casi d’uso relativi ai requisiti non funzionali.
 Anzitutto, è stato ribadito che un caso d’uso può essere definito tale soltanto quando coinvolge un attore. I requisiti non funzionali, invece, non vengono rappresentati tramite casi d’uso: per questi si utilizzano delle specifiche che descrivono nel dettaglio come il software deve essere realizzato affinché tali requisiti siano soddisfatti.\
 
 Per rendere più chiari questi concetti, sono stati discussi alcuni esempi tratti direttamente dal nostro progetto. È stato sottolineato che:
@@ -61,5 +61,6 @@ Le due tipologie di incontro verranno alternate secondo il ciclo stabilito nel V
 #pagebreak()
 
 = Conclusioni
-Si è trattato del primo incontro nel quale M31 ha ricoperto il ruolo di mentore. Tutte le domande poste sono state accolte e affrontate con l’obiettivo di chiarire nel modo più completo possibile la tematica dei casi d’uso. \ Le spiegazioni fornite sono risultate chiare, mirate e utili a consolidare la comprensione dell’argomento.
+Si è trattato del primo incontro nel quale M31 ha ricoperto il ruolo di mentore. Tutte le domande poste sono state accolte e affrontate con l’obiettivo di chiarire nel modo più completo possibile la tematica dei casi d’uso. \ 
+Le spiegazioni fornite sono risultate chiare, mirate e utili a consolidare la comprensione dell’argomento.
 I componenti del gruppo _GlitchHub Team_ ringraziano *M31 SRL* per l'accoglienza nella loro sede, la disponibilità, la chiarezza e la professionalità dimostrata.
