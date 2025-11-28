@@ -3,9 +3,16 @@
 #show link: underline
 #show: report.with(
   titolo: "Glossario",
-  stato: "Verificato",
-  versione: "0.1.1",
+  stato: "Da verificare",
+  versione: "0.1.2",
   registro-modifiche: (
+      (
+      "0.1.2",
+      "28/11/2025",
+      "Siria Salvalaio",
+      "-",
+      "Aggiunta definizione",
+    ),
     (
       "0.1.1",
       "4/11/2025",
@@ -505,6 +512,10 @@
       - *Continuous Delivery*: il codice è sempre pronto per essere rilasciato in produzione, ma il deploy avviene manualmente.
       - *Continuous Deployment*: ogni modifica che passa i test automatici viene rilasciata automaticamente in produzione.
     ],
+  ),
+  (
+    term: "Documento incrementale",
+    definition: [Documento che viene redatto e aggiornato progressivamente insieme all'avanzamento del progetto. Può contenere inizialmente sezioni vuote e incomplete e ogni versione stabile include solo le parti effettivamente compilate e verficate. Viene pubblicato man mano tramite versioni aggiornate],
   ),
 )
 
