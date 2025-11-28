@@ -10,7 +10,7 @@
       "0.1.0",
       "27/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       "Stesura sesto verbale interno",
     ),
   ),
@@ -34,8 +34,8 @@
     "Workflow documentazione incrementale",
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-verbale: "Interno",
 )
 
@@ -86,6 +86,9 @@ Questi documenti evolvono insieme al progetto e contengono sezioni inizialmente 
 Il workflow differisce da quello dei documenti monolitici:
 - ogni versione "stabile" considera solo le sezioni già completate, ignorando le parti ancora vuote;
 - ogni versione "stabile" dev'essere pubblicata tramite PR sul sito web, così da mantenere sempre disponibile la versione aggiornata.
+
+// Un linebreak qui migliora l'impaginazione (altrimenti la tabella viene spezzata)
+#pagebreak()
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 
