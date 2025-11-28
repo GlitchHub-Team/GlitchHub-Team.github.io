@@ -59,7 +59,7 @@ Più nello specifico, vengono riconosciuti dallo standard tre tipi principali di
 - *Processi di supporto* (@processi-di-supporto): i processi che si integrano con i processi primari per semplificare lo svolgimento del progetto
 - *Processi organizzativi* (@processi-organizzativi): i processi che semplificano le procedure di sviluppo
 
-Questo documento ha carattere incrementale, per cui, verrà modificato e aggiornato col progredire dello sviluppo del progetto didattico a seguito di miglioramenti e modifiche al #gloss[_Way of Working_] del gruppo.
+Questo documento ha carattere #gloss[incrementale], per cui, verrà modificato e aggiornato col progredire dello sviluppo del progetto didattico a seguito di miglioramenti e modifiche al #gloss[_Way of Working_] del gruppo.
 
 == Scopo del prodotto
 Il progetto proposto dal #gloss[capitolato] *C7* di *M31 Srl* è inerente alla gestione e acquisizione di dati provenienti da sensori #gloss[IoT] distribuiti ed eterogenei a basso consumo energetico, i quali permettono di raccogliere dettagliatamente dati da qualunque fonte.
@@ -71,7 +71,7 @@ Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Can
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
-Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un documento incrementale che definisce ogni parola rilevante per il dominio del progetto.
+Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
 
 Come descritto nel #link("https://glitchub-team.github.io/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
 
@@ -184,7 +184,7 @@ Dopo il registro delle modifiche è presente l'indice del documento il quale ne 
 
 Infine, sull'ultima pagina è presente la firma del revisore interno del documento.
 
-==== Documenti incrementali <doc-incrementali>
+==== #gloss[Documenti incrementali] <doc-incrementali>
 Alcuni documenti, come il presente _Norme di Progetto_, _Piano di Qualifica_ e _Piano di Progetto_, sono *incrementali*, cioè crescono parallelamente allo sviluppo del progetto. Per questo motivo alcuni sezioni possono rimanere inizialmente vuote o incomplete, poiché non è ancora possibile definirne i concetti.
 
 Il workflow di questi documenti differisce dagli altri "monolitici", infatti ogni *versione stabile* (vd. @doc-versionamento) considera tali solo le sezioni complete e verificate (vd. @doc-verifica), ignorando quelle vuote. Ogni versione stabile deve essere poi pubblicata nel sito tramite _pull request_, così da rendere disponibile il prima possibile lo stato aggiornato del documento.
@@ -323,7 +323,7 @@ Le procedure di verifica sono riportate di seguito, come descritte nel #link("ht
 
   b. Se invece, esso ritiene che il documento sia corretto e non richieda ulteriori modifiche, il documento è da considerarsi stabile.
 
-Si noti che nel caso di documenti incrementali, la verifica deve avvenire a ogni versione intermedia, considerata "stabile" dall'autore.
+Si noti che nel caso di #gloss[documenti incrementali], la verifica deve avvenire a ogni versione intermedia, considerata "stabile" dall'autore.
 
 Nel caso di questo documento, le versioni "intermedie" sono considerabili incomplete, poiché non tutte le sezioni sono presenti, ma le sezioni che sono già state scritte sono da considerarsi "stabili" e quindi da verificare.
 
