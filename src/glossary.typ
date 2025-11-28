@@ -6,7 +6,14 @@
   stato: "Da verificare",
   versione: "0.1.2",
   registro-modifiche: (
-      (
+    (
+      "0.1.3",
+      "28/11/2025",
+      "Alessandro Dinato",
+      "-",
+      "Correzione consuntivo di periodo e preventivo a finire",
+    ),
+    (
       "0.1.2",
       "28/11/2025",
       "Siria Salvalaio",
@@ -451,15 +458,20 @@
   ),
   (
     term: "Consuntivo di periodo",
-    definition: [Strumento _quantitativo_ che misura le azioni completate, gli obiettivi raggiunti e le risorse consumate (tempo, costi, ore produttive) in un periodo di progetto, utile per migliorare la pianificazione futura.],
+    definition: [
+      È una sezione nel *Piano di Progetto* nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
+      L'analisi generica dello sprint appena svolto si chiama *retrospettiva di periodo*.
+    ],
   ),
   (
     term: "Retrospettiva",
-    definition: [Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni.],
+    definition: [
+      Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni.
+    ],
   ),
   (
     term: "Preventivo a finire",
-    definition: [Stima aggiornata dei costi, attività e risorse necessarie a completare il progetto sulla base dell'avanzamento corrente.],
+    definition: [È una sezione del *Piano di Progetto* nel quale si descrivono le attività pianificate per lo sprint successivo e la stima delle risorse necessarie.],
   ),
   (
     term: "Slack time",
@@ -515,7 +527,6 @@
   ),
   (
     term: "Documento incrementale",
-    //corretto "verficate" in "verificate"
     definition: [Documento che viene redatto e aggiornato progressivamente insieme all'avanzamento del progetto. Può contenere inizialmente sezioni vuote e incomplete e ogni versione stabile include solo le parti effettivamente compilate e verificate. Viene pubblicato man mano tramite versioni aggiornate],
   ),
 )
