@@ -13,7 +13,7 @@
       "0.2.0",
       "27/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Hossam Ezzemouri",
       "Stesura per sprint 2",
     ),
     (
