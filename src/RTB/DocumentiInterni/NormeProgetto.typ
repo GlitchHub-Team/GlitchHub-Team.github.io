@@ -11,7 +11,7 @@
         "0.2.1",
         "28/11/2025",
         "Siria Salvalaio",
-        "-",
+        "Hossam Ezzemouri",
         [
           Aggiunta paragrafo @doc-incrementali.
         ],
@@ -185,6 +185,7 @@ Dopo il registro delle modifiche è presente l'indice del documento il quale ne 
 Infine, sull'ultima pagina è presente la firma del revisore interno del documento.
 
 ==== #gloss[Documenti incrementali] <doc-incrementali>
+//alcune sezioni
 Alcuni documenti, come il presente _Norme di Progetto_, _Piano di Qualifica_ e _Piano di Progetto_, sono *incrementali*, cioè crescono parallelamente allo sviluppo del progetto. Per questo motivo alcuni sezioni possono rimanere inizialmente vuote o incomplete, poiché non è ancora possibile definirne i concetti.
 
 Il workflow di questi documenti differisce dagli altri "monolitici", infatti ogni *versione stabile* (vd. @doc-versionamento) considera tali solo le sezioni complete e verificate (vd. @doc-verifica), ignorando quelle vuote. Ogni versione stabile deve essere poi pubblicata nel sito tramite _pull request_, così da rendere disponibile il prima possibile lo stato aggiornato del documento.
@@ -206,6 +207,7 @@ Il template da utilizzare per la scrittura dei verbali è il file `src/Templates
 ==== Diari di bordo
 I diari di bordo sono degli incontri periodici in aula, organizzati dal prof. Vardanega durante l'orario di lezione, in cui ogni gruppo può esporre eventuali dubbi e difficoltà riscontrate durante lo svolgimento del progetto e porre domande al professore e agli altri gruppi, tramite una serie di diapositive brevi.
 
+//"ma hanno la seguente organizzazione" per evitare ripetizioni,inotre conviene uniformare Diari di Bordo perche a volte si scrive con le maiuscole e a volte tutto in minuscolo
 Le diapositive dei diari di bordo non seguono la struttura descritta precedentemente ma hanno la seguente struttura:
 - *Difficoltà riscontrate*: Sezione in cui si enunciano le difficoltà riscontrate dal gruppo.
 - *Questioni aperte*: Sezione in cui il gruppo pone eventuali domande al professore e/o agli altri gruppi.
@@ -330,8 +332,8 @@ Nel caso di questo documento, le versioni "intermedie" sono considerabili incomp
 === Manutenzione <doc-manutenzione>
 // TODO: dobbiamo definire bene la procedura di manutenzione
 Un documento stabile non è da considerarsi finito e immutabile, poiché in seguito alla sua verifica potrebbero emergere errori che non sono stati rilevati né dallo scrittore che dal verificatore.
-
-In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente proporre una modifica, che contribuirà a creare una nuova versione del documento, la quale andrà successivamente verificata da qualcun'altro.
+//tolto l apostrofo da "qualcun'altro"
+In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente proporre una modifica, che contribuirà a creare una nuova versione del documento, la quale andrà successivamente verificata da qualcun altro.
 
 
 == Gestione delle configurazioni
