@@ -733,8 +733,9 @@ L'impatto complessivo è stato positivo, infatti il gruppo ha completato corrett
 Inizio: 19/11/2025 \
 Fine: 26/11/2025 \
 
+//sarebbe piu corretto scrivere il "presente", ma si può lasciare anche cosi
 Il seguente sprint ha lo scopo di continuare la stesura dei documenti *Piano di Progetto*, *Analisi dei Requisiti* e *Norme di Progetto*.
-Inoltre, si procederà nell'approfondimento dei casi d'uso.
+Inoltre, si procederà nell'approfondimento dei casi d'uso. //"si procederà con l'approfondimento"
 
 === Preventivo a finire
 ==== Attività da svolgere
@@ -787,8 +788,10 @@ Le attività programmate sono state tutte eseguite correttamente ed entro i temp
 
 Questo sprint ha permesso al gruppo di avanzare nella conoscenza e nella definizione dei casi d'uso, grazie al supporto fornito da _M31_ durante l'incontro del 24/11/2025.\
 L'azienda si è dimostrata disponibile a chiarire i dubbi del gruppo e ha fornito un contributo sostanziale all'approfondimento e alla definizione dei casi d'uso. \
+//Più formale scrivere l'"incontro"
 Questo incontro è stato positivo perché ha dimostrato che il gruppo può fare affidamento sul supporto del proponente, vista la sua alta disponibilità e competenza.
 
+//"Ciò rappresenta un segnale positivo" suona meglio
 Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub Issues, al fine di migliorare la gestione delle attività e la tracciabilità del lavoro svolto. Ciò è un segnale positivo, in quanto dimostra la volontà del gruppo di ottimizzare continuamente i propri processi di lavoro.
 
 ==== Risorse utilizzate
@@ -827,6 +830,7 @@ Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub I
 ==== Rischi occorsi
 Il gruppo ha riscontrato il rischio *RP2*(@RP2) durante lo *Sprint 2*. \
 Un componente del gruppo ha fatto notare la mancanza di intraprendenza da parte di due membri, tuttavia la questione è stato risolta con un semplice confronto diretto. \
+//per evitare la ripetizione di "questione" puoi scrivere "La situazione sollevata" oppure "equivoco"
 La questione sollevata è stata affrontata in modo costruttivo con lo scopo di portare tutti i componenti sullo stesso livello di partecipazione attiva. \
 
 ==== Aggiornamento ore rimanenti
