@@ -7,18 +7,30 @@
   stato: "Da verificare",
   versione: "0.2.0",
   registro-modifiche: (
-    ("0.2.0", "25/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
-      Ristrutturazione di qualche frase e correzione di link mancanti.
-    ]),
-    ("0.1.0", "24/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
-      Stesura iniziale di @introduzione, @processi-di-supporto, introduzione di @documentazione; \
-      Stesura di @doc-strumenti-a-supporto, @doc-attivita-previste, @doc-convenzioni, @doc-produzione, @doc-manutenzione.
-    ]),
+    (
+      "0.2.0",
+      "25/11/2025",
+      "Elia Ernesto Stellin",
+      "Jaume Bernardi",
+      [
+        Ristrutturazione di qualche frase e correzione di link mancanti.
+      ],
+    ),
+    (
+      "0.1.0",
+      "24/11/2025",
+      "Elia Ernesto Stellin",
+      "Jaume Bernardi",
+      [
+        Stesura iniziale di @introduzione, @processi-di-supporto, introduzione di @documentazione; \
+        Stesura di @doc-strumenti-a-supporto, @doc-attivita-previste, @doc-convenzioni, @doc-produzione, @doc-manutenzione.
+      ],
+    ),
     ("0.0.1", "15/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", "Bozza prima stesura"),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
-  htmlId: "RTB-Generale",
+  htmlId: "RTB-DocumentiInterni",
   verificatore-interno: "",
   left-signature: "",
   tipo-documento: "Norme di Progetto",
@@ -101,20 +113,17 @@ Tra i #gloss[processi] di supporto applicati nel progetto si distinguono:
 // NOTA: Questa lista è automatica e guarda tutti gli header 3.x
 #context {
   let h1 = heading.where(level: 1)
-  let h2 = heading.where(level: 2);
+  let h2 = heading.where(level: 2)
   let processi = query(
-    selector(h2)
-      .after(here())
-      .before(h1.after(here()))
+    selector(h2).after(here()).before(h1.after(here())),
   )
-  
+
   for processo in processi {
     let loc = processo.location()
     let cur = counter(heading).get()
 
-    [ - *#processo.body* ]
+    [- *#processo.body*]
   }
-
 }
 
 == Documentazione <documentazione>
@@ -199,7 +208,7 @@ Il gruppo si impegna ad attuare sempre le seguenti convenzioni durante la redazi
 Un documento attraversa tre stadi principali durante la sua scrittura:
 
 #heading(outlined: false, depth: 5)["Bozza"] <doc-def-bozza>
-Un documento è una *"bozza"* quando è in fase di scrittura, per cui non è ancora da verificare, finché l'autore corrente non richiede una verifica; 
+Un documento è una *"bozza"* quando è in fase di scrittura, per cui non è ancora da verificare, finché l'autore corrente non richiede una verifica;
 
 #heading(outlined: false, depth: 5)["Da verificare"] <doc-def-da-verificare>
 Un documento è *"da verificare"* quando ciò che è stato scritto è considerato completo e pronto per essere verificato;
@@ -302,7 +311,7 @@ Le procedure di verifica sono riportate di seguito, come descritte nel #link("ht
 
 Si noti che nel caso di documenti incrementali, la verifica deve avvenire a ogni versione intermedia, considerata "stabile" dall'autore.
 
-Nel caso di questo documento, le versioni "intermedie" sono considerabili incomplete, poiché non tutte le sezioni sono presenti, ma le sezioni che sono già state scritte sono da considerarsi "stabili" e quindi da verificare. 
+Nel caso di questo documento, le versioni "intermedie" sono considerabili incomplete, poiché non tutte le sezioni sono presenti, ma le sezioni che sono già state scritte sono da considerarsi "stabili" e quindi da verificare.
 
 === Manutenzione <doc-manutenzione>
 // TODO: dobbiamo definire bene la procedura di manutenzione
