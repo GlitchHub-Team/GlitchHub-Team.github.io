@@ -5,8 +5,17 @@
 #show: report.with(
   titolo: "Norme di Progetto",
   stato: "Da verificare",
-  versione: "0.2.0",
+  versione: "0.2.1",
   registro-modifiche: (
+      (
+        "0.2.1",
+        "28/11/2025",
+        "Siria Salvalaio",
+        "-",
+        [
+          Aggiunta paragrafo @doc-incrementali.
+        ],
+    ),
     (
       "0.2.0",
       "25/11/2025",
@@ -174,6 +183,11 @@ Inoltre, dalla seconda pagina di ogni documento, vi è presente la tabella del r
 Dopo il registro delle modifiche è presente l'indice del documento il quale ne descrive la struttura delle intestazioni.
 
 Infine, sull'ultima pagina è presente la firma del revisore interno del documento.
+
+==== Documenti incrementali <doc-incrementali>
+Alcuni documenti, come il presente _Norme di Progetto_, _Piano di Qualifica_ e _Piano di Progetto_, sono *incrementali*, cioè crescono parallelamente allo sviluppo del progetto. Per questo motivo alcuni sezioni possono rimanere inizialmente vuote o incomplete, poiché non è ancora possibile definirne i concetti.
+
+Il workflow di questi documenti differisce dagli altri "monolitici", infatti ogni *versione stabile* (vd. @doc-versionamento) considera tali solo le sezioni complete e verificate (vd. @doc-verifica), ignorando quelle vuote. Ogni versione stabile deve essere poi pubblicata nel sito tramite _pull request_, così da rendere disponibile il prima possibile lo stato aggiornato del documento.
 
 ==== Verbali
 I verbali hanno una versione modificata del frontespizio descritto sopra, in cui:
