@@ -2,7 +2,7 @@
 
 #show: report.with(
   titolo: "Verbale esterno 25/11/2025 (M31)",
-  stato: "verificato",
+  stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
     ("1.0.0", "28/11/2025", "Michele Dioli", "Siria Salvalaio", "Riviste frasi per migliorare la scorrevolezza"),
@@ -47,13 +47,13 @@ Durante l’incontro sono stati approfonditi alcuni punti importanti riguardo al
 Anzitutto, è stato ribadito che un caso d’uso può essere definito tale soltanto quando coinvolge un attore. I requisiti non funzionali, invece, non vengono rappresentati tramite casi d’uso: per questi si utilizzano delle specifiche che descrivono nel dettaglio come il software deve essere realizzato affinché tali requisiti siano soddisfatti.\
 
 Per rendere più chiari questi concetti, sono stati discussi alcuni esempi tratti direttamente dal nostro progetto. È stato sottolineato che:
-	-	il Gateway non può essere considerato un attore;
-	-	l’utente non può essere attore di sé stesso nei casi d’uso;
-	-	il Bluetooth, invece, è considerato un attore, poiché rappresenta un’entità esterna non completamente controllabile dal sistema.
+- il Gateway non può essere considerato un attore;
+- l’utente non può essere attore di sé stesso nei casi d’uso;
+- il Bluetooth, invece, è considerato un attore, poiché rappresenta un’entità esterna non completamente controllabile dal sistema.
 
 == Stabilire giorno settimanale per futuri incontri
 È stato richiesto all’azienda di definire un giorno ricorrente per i futuri incontri, a causa delle indisponibilità di alcuni membri del gruppo in determinate giornate. \
-Dopo un confronto interno, è stato proposto e approvato il martedì pomeriggio come giorno dedicato. 
+Dopo un confronto interno, è stato proposto e approvato il martedì pomeriggio come giorno dedicato.
 Giorni e orari potranno comunque essere variati, purché comunicati con adeguato anticipo tramite email.
 
 Le due tipologie di incontro verranno alternate secondo il ciclo stabilito nel Verbale Esterno del 13 novembre.
@@ -61,6 +61,6 @@ Le due tipologie di incontro verranno alternate secondo il ciclo stabilito nel V
 #pagebreak()
 
 = Conclusioni
-Si è trattato del primo incontro nel quale M31 ha ricoperto il ruolo di mentore. Tutte le domande poste sono state accolte e affrontate con l’obiettivo di chiarire nel modo più completo possibile la tematica dei casi d’uso. \ 
+Si è trattato del primo incontro nel quale M31 ha ricoperto il ruolo di mentore. Tutte le domande poste sono state accolte e affrontate con l’obiettivo di chiarire nel modo più completo possibile la tematica dei casi d’uso. \
 Le spiegazioni fornite sono risultate chiare, mirate e utili a consolidare la comprensione dell’argomento.
 I componenti del gruppo _GlitchHub Team_ ringraziano *M31 SRL* per l'accoglienza nella loro sede, la disponibilità, la chiarezza e la professionalità dimostrata.
