@@ -3,9 +3,16 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 26/11/2025",
-  stato: "Da verificare",
-  versione: "0.1.0",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "28/11/2025",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      "Versione stabile verbale interno",
+    ),
     (
       "0.1.0",
       "27/11/2025",
