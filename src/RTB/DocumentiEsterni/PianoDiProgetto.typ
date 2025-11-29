@@ -826,7 +826,7 @@ Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub I
 
 ==== Rischi occorsi
 Il gruppo ha riscontrato il rischio *RP2*(@RP2) durante lo *Sprint 2*. \
-Un componente del gruppo ha fatto notare la mancanza di intraprendenza da parte di due membri, tuttavia la questione è stato risolta con un semplice confronto diretto. \
+Un componente del gruppo ha fatto notare la mancanza di intraprendenza da parte di due membri, tuttavia la questione è stata risolta con un semplice confronto diretto. \
 La situazione sollevata è stata affrontata in modo costruttivo con lo scopo di portare tutti i componenti sullo stesso livello di partecipazione attiva. \
 
 ==== Aggiornamento ore rimanenti
