@@ -5,20 +5,41 @@
 #show: report.with(
   titolo: "Norme di Progetto",
   stato: "Da verificare",
-  versione: "0.2.0",
+  versione: "0.2.1",
   registro-modifiche: (
-    ("0.2.0", "25/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
-      Ristrutturazione di qualche frase e correzione di link mancanti.
-    ]),
-    ("0.1.0", "24/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", [
-      Stesura iniziale di @introduzione, @processi-di-supporto, introduzione di @documentazione; \
-      Stesura di @doc-strumenti-a-supporto, @doc-attivita-previste, @doc-convenzioni, @doc-produzione, @doc-manutenzione.
-    ]),
+      (
+        "0.2.1",
+        "28/11/2025",
+        "Siria Salvalaio",
+        "Hossam Ezzemouri",
+        [
+          Aggiunta paragrafo @doc-incrementali.
+        ],
+    ),
+    (
+      "0.2.0",
+      "25/11/2025",
+      "Elia Ernesto Stellin",
+      "Jaume Bernardi",
+      [
+        Ristrutturazione di qualche frase e correzione di link mancanti.
+      ],
+    ),
+    (
+      "0.1.0",
+      "24/11/2025",
+      "Elia Ernesto Stellin",
+      "Jaume Bernardi",
+      [
+        Stesura iniziale di @introduzione, @processi-di-supporto, introduzione di @documentazione; \
+        Stesura di @doc-strumenti-a-supporto, @doc-attivita-previste, @doc-convenzioni, @doc-produzione, @doc-manutenzione.
+      ],
+    ),
     ("0.0.1", "15/11/2025", "Elia Ernesto Stellin", "Jaume Bernardi", "Bozza prima stesura"),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
-  htmlId: "RTB-Generale",
+  htmlId: "RTB-DocumentiInterni",
   verificatore-interno: "",
   left-signature: "",
   tipo-documento: "Norme di Progetto",
@@ -38,7 +59,7 @@ Più nello specifico, vengono riconosciuti dallo standard tre tipi principali di
 - *Processi di supporto* (@processi-di-supporto): i processi che si integrano con i processi primari per semplificare lo svolgimento del progetto
 - *Processi organizzativi* (@processi-organizzativi): i processi che semplificano le procedure di sviluppo
 
-Questo documento ha carattere incrementale, per cui, verrà modificato e aggiornato col progredire dello sviluppo del progetto didattico a seguito di miglioramenti e modifiche al #gloss[_Way of Working_] del gruppo.
+Questo documento ha carattere #gloss[incrementale], per cui, verrà modificato e aggiornato col progredire dello sviluppo del progetto didattico a seguito di miglioramenti e modifiche al #gloss[_Way of Working_] del gruppo.
 
 == Scopo del prodotto
 Il progetto proposto dal #gloss[capitolato] *C7* di *M31 Srl* è inerente alla gestione e acquisizione di dati provenienti da sensori #gloss[IoT] distribuiti ed eterogenei a basso consumo energetico, i quali permettono di raccogliere dettagliatamente dati da qualunque fonte.
@@ -50,7 +71,7 @@ Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Can
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
-Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un documento incrementale che definisce ogni parola rilevante per il dominio del progetto.
+Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
 
 Come descritto nel #link("https://glitchub-team.github.io/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
 
@@ -101,20 +122,17 @@ Tra i #gloss[processi] di supporto applicati nel progetto si distinguono:
 // NOTA: Questa lista è automatica e guarda tutti gli header 3.x
 #context {
   let h1 = heading.where(level: 1)
-  let h2 = heading.where(level: 2);
+  let h2 = heading.where(level: 2)
   let processi = query(
-    selector(h2)
-      .after(here())
-      .before(h1.after(here()))
+    selector(h2).after(here()).before(h1.after(here())),
   )
-  
+
   for processo in processi {
     let loc = processo.location()
     let cur = counter(heading).get()
 
-    [ - *#processo.body* ]
+    [- *#processo.body*]
   }
-
 }
 
 == Documentazione <documentazione>
@@ -166,6 +184,12 @@ Dopo il registro delle modifiche è presente l'indice del documento il quale ne 
 
 Infine, sull'ultima pagina è presente la firma del revisore interno del documento.
 
+==== #gloss[Documenti incrementali] <doc-incrementali>
+//alcune sezioni
+Alcuni documenti, come il presente _Norme di Progetto_, _Piano di Qualifica_ e _Piano di Progetto_, sono *incrementali*, cioè crescono parallelamente allo sviluppo del progetto. Per questo motivo alcuni sezioni possono rimanere inizialmente vuote o incomplete, poiché non è ancora possibile definirne i concetti.
+
+Il workflow di questi documenti differisce dagli altri "monolitici", infatti ogni *versione stabile* (vd. @doc-versionamento) considera tali solo le sezioni complete e verificate (vd. @doc-verifica), ignorando quelle vuote. Ogni versione stabile deve essere poi pubblicata nel sito tramite _pull request_, così da rendere disponibile il prima possibile lo stato aggiornato del documento.
+
 ==== Verbali
 I verbali hanno una versione modificata del frontespizio descritto sopra, in cui:
 - Compare l'*ordine del giorno* come lista numerata tra il titolo e la versione;
@@ -183,6 +207,7 @@ Il template da utilizzare per la scrittura dei verbali è il file `src/Templates
 ==== Diari di bordo
 I diari di bordo sono degli incontri periodici in aula, organizzati dal prof. Vardanega durante l'orario di lezione, in cui ogni gruppo può esporre eventuali dubbi e difficoltà riscontrate durante lo svolgimento del progetto e porre domande al professore e agli altri gruppi, tramite una serie di diapositive brevi.
 
+//"ma hanno la seguente organizzazione" per evitare ripetizioni,inotre conviene uniformare Diari di Bordo perche a volte si scrive con le maiuscole e a volte tutto in minuscolo
 Le diapositive dei diari di bordo non seguono la struttura descritta precedentemente ma hanno la seguente struttura:
 - *Difficoltà riscontrate*: Sezione in cui si enunciano le difficoltà riscontrate dal gruppo.
 - *Questioni aperte*: Sezione in cui il gruppo pone eventuali domande al professore e/o agli altri gruppi.
@@ -199,7 +224,7 @@ Il gruppo si impegna ad attuare sempre le seguenti convenzioni durante la redazi
 Un documento attraversa tre stadi principali durante la sua scrittura:
 
 #heading(outlined: false, depth: 5)["Bozza"] <doc-def-bozza>
-Un documento è una *"bozza"* quando è in fase di scrittura, per cui non è ancora da verificare, finché l'autore corrente non richiede una verifica; 
+Un documento è una *"bozza"* quando è in fase di scrittura, per cui non è ancora da verificare, finché l'autore corrente non richiede una verifica;
 
 #heading(outlined: false, depth: 5)["Da verificare"] <doc-def-da-verificare>
 Un documento è *"da verificare"* quando ciò che è stato scritto è considerato completo e pronto per essere verificato;
@@ -300,15 +325,15 @@ Le procedure di verifica sono riportate di seguito, come descritte nel #link("ht
 
   b. Se invece, esso ritiene che il documento sia corretto e non richieda ulteriori modifiche, il documento è da considerarsi stabile.
 
-Si noti che nel caso di documenti incrementali, la verifica deve avvenire a ogni versione intermedia, considerata "stabile" dall'autore.
+Si noti che nel caso di #gloss[documenti incrementali], la verifica deve avvenire a ogni versione intermedia, considerata "stabile" dall'autore.
 
-Nel caso di questo documento, le versioni "intermedie" sono considerabili incomplete, poiché non tutte le sezioni sono presenti, ma le sezioni che sono già state scritte sono da considerarsi "stabili" e quindi da verificare. 
+Nel caso di questo documento, le versioni "intermedie" sono considerabili incomplete, poiché non tutte le sezioni sono presenti, ma le sezioni che sono già state scritte sono da considerarsi "stabili" e quindi da verificare.
 
 === Manutenzione <doc-manutenzione>
 // TODO: dobbiamo definire bene la procedura di manutenzione
 Un documento stabile non è da considerarsi finito e immutabile, poiché in seguito alla sua verifica potrebbero emergere errori che non sono stati rilevati né dallo scrittore che dal verificatore.
-
-In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente proporre una modifica, che contribuirà a creare una nuova versione del documento, la quale andrà successivamente verificata da qualcun'altro.
+//tolto l apostrofo da "qualcun'altro"
+In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente proporre una modifica, che contribuirà a creare una nuova versione del documento, la quale andrà successivamente verificata da qualcun altro.
 
 
 == Gestione delle configurazioni
