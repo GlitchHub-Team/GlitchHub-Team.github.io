@@ -2,10 +2,10 @@
 
 #show: report.with(
   titolo: "Verbale esterno 02/12/2025 (M31)",
-  stato: "Bozza",
-  versione: "0.1.0",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
-    ("0.1.0", "02/12/2025", "Alessandro Dinato", "-", "Bozza terzo incontro con il proponente"),
+    ("0.1.0", "02/12/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Bozza terzo incontro con il proponente"),
   ),
   partecipanti: (
     "Elia Ernesto Stellin",
@@ -20,8 +20,8 @@
     "Discussione dubbi sui privilegi e le funzionalità dell'utente super-admin",
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Hossam Ezzemouri",
+  left-signature: "../assets/firme/firma_Hossam_Ezzemouri.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
@@ -45,7 +45,7 @@ Poiché il proponente era interessato a materiale tecnico più dettagliato, si �
 == Discussione sull'esempio implementativo e il ruolo del super-admin
 === Ruolo e privilegi del Super Admin
 Il super admin può operare come tenant admin all'interno di qualsiasi tenant.\
-Ciò gli permette di accedere nel tenant, dallo stesso profilo, al fine di verificare le configurazioni e il corretto funzionamento del sistema.
+Ciò gli permette di accedere al tenant, dallo stesso profilo, al fine di verificare le configurazioni e il corretto funzionamento del sistema. //cambiato "nel tenant" con "al tenant"
 Tuttavia sarà in grado di visualizzare i dati solo in forma anonima.
 
 === Operazioni sui Gateway
