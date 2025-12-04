@@ -5,6 +5,7 @@
   stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
+    ("1.0.0", "02/12/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Versione stabile verbale esterno"),
     ("0.1.0", "02/12/2025", "Alessandro Dinato", "Hossam Ezzemouri", "Bozza terzo incontro con il proponente"),
   ),
   partecipanti: (
@@ -45,7 +46,7 @@ Poiché il proponente era interessato a materiale tecnico più dettagliato, si �
 == Discussione sull'esempio implementativo e il ruolo del super-admin
 === Ruolo e privilegi del Super Admin
 Il super admin può operare come tenant admin all'interno di qualsiasi tenant.\
-Ciò gli permette di accedere al tenant, dallo stesso profilo, al fine di verificare le configurazioni e il corretto funzionamento del sistema. //cambiato "nel tenant" con "al tenant"
+Ciò gli permette di accedere al tenant, dallo stesso profilo, al fine di verificare le configurazioni e il corretto funzionamento del sistema. \
 Tuttavia sarà in grado di visualizzare i dati solo in forma anonima.
 
 === Operazioni sui Gateway
