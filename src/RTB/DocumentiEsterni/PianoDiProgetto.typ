@@ -13,7 +13,7 @@
       "0.3.0",
       "04/12/2025",
       "Alessandro Dinato",
-      "-",
+      "Hossam Ezzemouri",
       "Stesura per sprint 3",
     ),
     (
@@ -901,6 +901,7 @@ Il gruppo ha individuato le seguenti attività da svolgere:
 
 ==== Rischi attesi
 Il gruppo prevede i seguenti rischi per lo *Sprint 3*:
+//"E' possibile che l'attività di selezione delle metriche subisca un ritardo, poichè l'individuazione di metriche adeguate non è immediata e occorre un'analisi piu profonoda" 
 - *RO1*(@RO1): è possibile che nell'attività di selezione delle metriche si sarà un ritardo dato che le metriche non sono semplici da trovare e richiedono un'analisi approfondita;
 - *RO3*(@RO4): ci potrebbero essere opinioni contrastanti nel brainstorming sull'analisi dei requisiti;
 - *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo sprint.
@@ -945,8 +946,10 @@ Il gruppo ha svolto con successo le seguenti attività: \
 - Implementazione automazione per la generazione della rendicontazione delle ore previste e lavorate per il #gloss[Piano di Progetto].
 
 ==== Retrospettiva
+//"completate"
 Durante lo *sprint 3* sono state completare tutte le attività pianificate, eccetto la definizione delle metriche per il #gloss[Piano di Qualifica], la quale è stata posticipata dato che attualmente non possiede la massima priorità.\
-Il brainstorming ha fatto maturare nel gruppo molto dubbi riguardo al capitolato i quali sono stati posti e discussi con _M31_ nell'incontro del 01/12/2025. È possibile trovare le risposte a tali dubbi nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2025-12-02.pdf")[verbale esterno del 02/12/2025].\
+//"molti dubbi"
+Il brainstorming ha fatto maturare nel gruppo molto dubbi riguardo al capitolato, i quali sono stati posti e discussi con _M31_ nell'incontro del 01/12/2025. È possibile trovare le risposte a tali dubbi nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2025-12-02.pdf")[verbale esterno del 02/12/2025].\
 L'incontro interno e quello con M31 hanno permesso al gruppo di chiarire molti aspetti riguardo ai casi d'uso e alle funzionalità attese dal proponente, migliorando così la comprensione del progetto da parte di tutti i membri.\
 Infine, è stata implementata un'automazione per la rendicontazione, per singolo sprint, delle ore previste e lavorate nel #gloss[Piano di Progetto]. Ciò permetterà al gruppo di risparmiare tempo nella stesura del documento e di ridurre gli errori umani.
 
