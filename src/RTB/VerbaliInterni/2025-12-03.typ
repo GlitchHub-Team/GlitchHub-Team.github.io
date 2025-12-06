@@ -3,14 +3,14 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 03/12/2025",
-  stato: "Da verificare",
-  versione: "0.1.0",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
     (
       "0.1.0",
       "04/12/2025",
       "Alessandro Dinato",
-      "-",
+      "Hossam Ezzemouri",
       "Prima stesura verbale interno del 03/12/2025",
     ),
   ),
@@ -35,8 +35,8 @@
     "Assegnazione delle prossime task basate sulle decisioni prese",
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Hossam Ezzemouri",
+  left-signature: "../assets/firme/firma_Hossam_Ezzemouri.png",
   tipo-verbale: "Interno",
 )
 
