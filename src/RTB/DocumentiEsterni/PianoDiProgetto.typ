@@ -6,9 +6,16 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Da verificare",
-  versione: "0.3.0",
+  stato: "Verificato",
+  versione: "0.3.1",
   registro-modifiche: (
+    (
+      "0.3.1",
+      "08/12/2025",
+      "Alessandro Dinato",
+      "Hossam Ezzemouri",
+      "Correzione piccoli errori",
+    ),
     (
       "0.3.0",
       "04/12/2025",
