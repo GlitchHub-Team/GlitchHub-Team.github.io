@@ -1031,3 +1031,54 @@ Il rischio ha avuto un impatto medio, in quanto era stato preventivato ma rimane
   "Verificatore", "160 (-1)", "15 €/h", "2400 € (-15 €)",
   table.footer([*Totale*], [*621*], [-], [*12245 €*]),
 )
+
+== Sprint 4
+Inizio: 03/12/2025 \
+Fine: 10/12/2025 \
+
+Il presente sprint ha lo scopo di continuare lo sviluppo dei casi d'uso.
+
+=== Preventivo a finire
+==== Attività da svolgere
+Il gruppo ha individuato le seguenti attività da svolgere:
+- Stesura casi d'uso per l'attore *super-admin*;
+- Stesura casi d'uso per l'attore *tenant-admin*;
+- Stesura casi d'uso per l'attore *tenant-user*;
+- Stesura casi d'uso per l'attore *REST client*;
+- Stesura casi d'uso per l'attore *gateway*;
+- Stesura casi d'uso per l'attore *user generico*.
+
+==== Rischi attesi
+Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
+- *RO3*(@RO3): andando in profondità nei casi d'uso potrebbero sorgere dubbi, bloccando così lo sviluppo di certi casi d'uso;
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali imprevisti.
+
+==== Preventivo risorse da utilizzare // da rivedere eseguendo lo script
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+  "Alessandro Dinato", "3", "-", "-", "-", "-", "-", [*3*],
+  "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+  "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+  "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "-", [*0*],
+  "Elia Ernesto Stellin", "-", "-", "-", "-", "-", "-", [*0*],
+  table.footer([*Totale*], [*3*], [*0*], [*0*], [*0*], [*0*], [*0*], [*3*]),
+)
+==== Grafico a torta della suddivisione oraria prevista // da rivedere eseguendo lo script
+
+#let orePrevSprint4 = (
+  ("Responsabile", 3),
+  ("Amministratore", 0),
+  ("Analista", 0),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint4)
