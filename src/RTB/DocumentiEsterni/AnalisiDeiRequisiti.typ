@@ -66,11 +66,154 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 //Dina
 
 === Attore principale - Tenant Admin
-//Hoss, Michele
-
-=== Attore principale - Super Admin
 //Riccardo, Elia
 
+=== Attore principale - Super Admin
+==== Creazione Tenant
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole creare un nuovo tenant
+- *Precondizioni*:
+  - Il super-admin è autenticato
+  - L'utente ha i permessi di gestione dei tenant
+
+- *Postcondizioni*:
+  - Un nuovo tenant è registrato nel sistema
+  - Il tenant appare nella lista dei tenant disponibili
+- *Scenari alternativi*:
+  - I dati inseriti non sono validi
+
+==== Gestione Tenant
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole vedere o modificare un tenant
+- *Precondizioni*:
+  - Super-admin autenticato
+
+- *Postcondizioni*:
+  - Il tenant può essere visualizzato, modificato o eliminato
+- *Scenari alternativi*:
+  - Il tenant selezionato non esiste più (race condition)
+
+==== Visualizzazione lista gateway
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole consultare tutti i gateway registrati
+- *Precondizioni*:
+  - Super-admin autenticato
+  
+- *Postcondizioni*:
+  - Lista dei gateway visualizzata
+- *Scenari alternativi*:
+  - Nessun gateway registrato
+  
+==== Visualizzazione stato gateway
+- *Attore principale*: Super-admin
+- *Trigger*: l super-admin vuole verificare il funzionamento di un gateway
+- *Precondizioni*:
+  - Super-admin autenticato
+  - Esistenza del gateway
+
+- *Postcondizioni*:
+  - l super-admin visualizza informazioni aggiornate sul gateway
+- *Scenari alternativi*:
+  - Il sistema segnala malfunzionamenti (extends UC Alert Globali)
+
+==== Gestione sensori
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole gestire i sensori associati a un gateway o a un tenant
+- *Precondizioni*:
+  - Super-admin autenticato
+
+- *Postcondizioni*:
+  - Un sensore può essere creato, modificato o eliminato
+- *Scenari alternativi*:
+  - Sensore già registrato
+
+==== Visualizzazione log di sistema
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole consultare i log del sistema
+- *Precondizioni*:
+  - Super-admin autenticato
+
+- *Postcondizioni*:
+  - Log visualizzato
+- *Scenari alternativi*:
+  - Log vuoto
+
+==== Configurazione alert globali
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole impostare degli alert
+- *Precondizioni*:
+  - Super-admin autenticato
+
+- *Postcondizioni*:
+  - Un nuovo alert è configurato e attivo
+- *Scenari alternativi*:
+  - Alert già esistente con gli stessi criteri
+
+==== Configurazione limiti di utilizzo
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole impostare limiti (max gateway per tenant, storage buffer ecc...)
+- *Precondizioni*:
+  - Super-admin autenticato
+  - Tenant esistente
+
+- *Postcondizioni*:
+  - I limiti del tenant sono aggiornati
+- *Scenari alternativi*:
+  - Tentativo di impostare limiti già inferiori a quellii in uso
+
+==== Riavvio gateway
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin richiede un riavvio remoto del gateway
+- *Precondizioni*:
+  - Super-admin autenticato
+  - Gateway raggiungibile
+
+- *Postcondizioni*:
+  - Il sistema invia il comando di riavvio
+- *Scenari alternativi*:
+  - Il gateway è offline
+  - Errore nella comunicazione col gateway
+
+==== Reset gateway
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole ripristinare un gateway alle impostazioni di fabbrica
+- *Precondizioni*:
+  - Super-admin autenticato
+  - Gateway raggiungibule
+
+- *Postcondizioni*:
+  - Il gateway viene resettato alle condizioni iniziali
+- *Scenari alternativi*:
+  - Include UC Riavvio Gateway
+  - Gateway non raggiungibile
+
+==== Riconfigurazione gateway
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole modificare le Configurazioni di un gateway
+- *Precondizioni*:
+  - Super-admin autenticato
+  - Gateway raggiungibile
+
+- *Postcondizioni*:
+  - Configurazioni aggiornate
+- *Scenari alternativi*:
+  - Include UC Riavvio gateway
+  - Impostazioni non valide
+  - Gateway non raggiungibile
+
+==== Decommissioning gateway
+- *Attore principale*: Super-admin
+- *Trigger*: Il super-admin vuole dissociare un gateway da un tenant
+- *Precondizioni*:
+  - Super-admin autenticato
+  - Gateway raggiungibile
+  - Gateway associato a un tenant
+
+- *Postcondizioni*:
+  - Il gateway viene disassociato dal tenant
+
+- *Scenari alternativi*:
+  - Gateway non raggiungibile
 === Attore principale - Gateway
 //Siria, Jaume
 
