@@ -7,6 +7,13 @@
   versione: "1.0.0",
   registro-modifiche: (
     (
+      "1.0.0",
+      "06/12/2025",
+      "Alessandro Dinato",
+      "Hossam Ezzemouri",
+      "Versione stabile del verbale interno del 03/12/2025",
+    ),
+    (
       "0.1.0",
       "04/12/2025",
       "Alessandro Dinato",
