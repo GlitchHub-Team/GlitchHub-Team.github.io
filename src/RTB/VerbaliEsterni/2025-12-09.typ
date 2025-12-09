@@ -71,6 +71,11 @@ Per quanto riguarda il provisioning sicuro, il proponente ha indicato che:
 
 Il super-admin deve poter effettuare il *provisioning iniziale* e anche la *rimozione dell'associazione* di un gateway.
 
+== Organizzazione dei prossimi incontri
+Come prestabilito, è stato fissato il prossimo incontro per il *16 dicembre 2025* alle ore 14:30, per discutere i seguenti punti:
+- Discussione ulteriori dubbi;
+- Presentazione use cases redatti dal gruppo.
+
 = Attività conseguenti
 #table(
   columns: (4fr, 2fr, 1fr),
