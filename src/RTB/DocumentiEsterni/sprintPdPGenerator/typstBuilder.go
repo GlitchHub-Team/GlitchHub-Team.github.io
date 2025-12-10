@@ -111,6 +111,10 @@ const (
 	- 
 	-
 	-
+
+	==== Rischi attesi
+	Descrivere i rischi attesi
+	
 	==== Preventivo risorse da utilizzare
 	#table(
 	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
