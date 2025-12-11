@@ -64,6 +64,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 == Lista dei casi d'uso
 
 === Attore principale - Utente
+Utente è l'utente generico che tenta di accedere al sistema.
 //Dina
 //possibilità bloccare utente?
 ==== UC1 - Autenticazione <UC1>
@@ -137,6 +138,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 - *Estensioni*:
   - #uc("UC2.3")
 - *Inclusioni*:
+  - #uc("UC2.1")
   - #uc("UC2.2")
 
 ===== UC2.1 - Inserimento indirizzo email <UC2.1>
@@ -204,6 +206,8 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   - La nuova password viene registrata nel Sistema
 - *Scenario principale*:
   - L'Utente inserisce la nuova password
+
+//inserimento conferma password, UC3.3
 
 ===== UC3.2 - Password non conforme ai criteri di sicurezza <UC3.2>
 - *Attore principale*: Utente
@@ -374,7 +378,6 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   - Nessun dato disponibile per il sensore richiesto
   - Sensore non associato al tenant del REST Client
 - *Estensioni*:
-  - #uc("UC11")
   - #uc("UC9.1")
   - #uc("UC9.2")
   - #uc("UC9.3")
