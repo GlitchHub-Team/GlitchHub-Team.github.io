@@ -10,6 +10,13 @@
   versione: "0.3.1",
   registro-modifiche: (
     (
+      "0.4.0",
+      "11/12/2025",
+      "Alessandro Dinato",
+      "-",
+      "Aggiunta sezione \"Redazione del documento\"",
+    ),
+    (
       "0.3.1",
       "08/12/2025",
       "Alessandro Dinato",
@@ -141,6 +148,26 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
   *Ultimo accesso: 22/11/2025*
 - Gestione di progetto: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf") \
   *Ultimo accesso: 22/11/2025*
+
+
+== Redazione del documento
+Questa sezione descrive le pratiche adottate per la redazione del #gloss[Piano di Progetto]. \
+Il Responsabile è la figura incaricata di compilare e aggiornare il documento, con cadenza regolare al termine di ogni sprint.
+
+Il workflow previsto per ogni sprint è il seguente:
+1. Durante l'incontro settimanale del gruppo vengono analizzati i risultati dello sprint precedente e pianificate le attività future;
+2. Il Responsabile dello sprint compila il consuntivo di periodo sulla base di quanto emerso in riunione, eseguendo le seguenti attività:
+  - descrive le attività svolte;
+  - redige la retrospettiva di periodo;
+  - aggiorna le risorse impiegate;
+  - registra i rischi occorsi analizzandone cause e modalità di gestione;
+  - aggiorna ore e budget rimanente.
+3. Infine, definisce le attività da svolgere nello sprint corrente, individua i rischi attesi e compila il preventivo delle risorse necessarie.
+
+Per rendere più efficiente questo processo è stato sviluppato uno script in #gloss[Go] che, a partire dai *custom fields* delle #gloss[GitHub Issues] e dallo sprint selezionato, genera automaticamente la sezione dello sprint con costi e ore aggiornate. \
+Le parti descrittive e narrative richiedono comunque l'intervento del Responsabile, che deve completarle manualmente.
+
+In ogni caso, è preferibile che dopo la riunione vengano compilati sia il consuntivo dello sprint concluso sia il preventivo a finire dello sprint successivo, così da mantenere una pianificazione sempre aggiornata e accurata.
 
 
 = Analisi e mitigazione dei rischi
