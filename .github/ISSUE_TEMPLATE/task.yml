@@ -1,0 +1,12 @@
+name: Task Documentazione
+description: File a bug report.
+title: "Task"
+labels: ["documentation"]
+projects: ["GlitchHub-Team/2"]
+# assignees:
+type: task
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: Descrizione della Task
