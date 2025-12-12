@@ -20,8 +20,8 @@
     "Organizzazione prossimi incontri",
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
@@ -82,6 +82,8 @@ Come prestabilito, è stato fissato il prossimo incontro per il *16 dicembre 202
   align: center + horizon,
   [*Task*], [*Responsabile*], [*Issue*],
 
-  [-], [-], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/77")[*\#77*]],
+  [Redazione use cases Super Admin], [Michele Dioli, Alessandro Dinato], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/97")[*\#97*]],
+  [Redazione use cases Tenant Admin], [Elia Ernesto Stellin, Riccardo Graziani], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/98")[*\#98*]],
+  [Redazione use cases Gateway], [Alessandro Dinato, Jaume Bernardi, Siria Salvalaio], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/99")[*\#99*]],
 )
 
