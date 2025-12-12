@@ -2,8 +2,8 @@
 
 #show: report.with(
   titolo: "Verbale esterno 09/12/2025 (M31)",
-  stato: "Da verificare",
-  versione: "0.1.0",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
     ("1.0.0", "09/12/2025", "Alessandro Dinato", "Riccardo Graziani", "Versione stabile verbale esterno"),
     ("0.1.0", "09/12/2025", "Alessandro Dinato", "Riccardo Graziani", "Prima stesura verbale esterno del 09/12/2025"),
