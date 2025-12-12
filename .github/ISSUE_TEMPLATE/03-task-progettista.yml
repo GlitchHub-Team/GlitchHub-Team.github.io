@@ -1,9 +1,8 @@
-name: Task Documentazione
-description: File a bug report.
+name: Task Progettista
+description: Crea una task generica per progettista
 title: "Task"
-labels: ["documentation"]
+labels: ["documentation", "task-progettista"]
 projects: ["GlitchHub-Team/2"]
-# assignees:
 type: task
 body:
 - type: textarea
