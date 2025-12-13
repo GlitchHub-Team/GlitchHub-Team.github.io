@@ -96,8 +96,26 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   - #uc("UC1.2")
 
 === UC1.1 - Inserimento username <UC1.1>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Il Sistema riceve lo username inserito
+- *Scenario principale*:
+  - Il Tenant Admin inserisce lo username
 
 === UC1.2 - Inserimento email <UC1.2>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Il Sistema riceve l'indirizzo email inserito
+- *Scenario principale*:
+  - Il Tenant Admin inserisce l'indirizzo email 
 
 // Nel caso ci sia un problema interno al sistema che non riesce
 // a salvare il nuovo utente
@@ -116,12 +134,49 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   - Il Sistema mostra un messaggio di errore
 
 === UC1.4 - Dati di registrazione già utilizzati <UC1.4>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant Admin ha registrato un nuovo utente
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema tenta di salvare il nuovo utente
+  - Il Sistema rileva un utente già registrato che possiede gli stessi dati
 
 // Ha senso metterla?
-=== UCX - Sospendi Tenant User <UCX>
+=== UC2 - Sospendi Tenant User <UC2>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole sospendere l'accesso di un Tenant User al Sistema 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant User esiste ed è registrato
+- *Post-condizioni*:
+  - Il Tenant User non può più accedere al Sistema
+- *Scenario principale*:
+  - Il Tenant Admin seleziona il Tenant User che vuole sospendere
+  - Il Sistema richiede la conferma dell'operazione
+  - Il Tenant Admin conferma
+  - Il Sistema blocca l'accesso del Tenant User alla piattaforma
 
 // Stessa cosa di prima
-=== UCY - Riattiva Tenant User <UCY>
+=== UC3 - Riattiva Tenant User <UC3>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole riattivare l'accesso di un Tenant User al Sistema 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant User esiste ed è registrato
+- *Post-condizioni*:
+  - Il Tenant User può accedere al Sistema
+- *Scenario principale*:
+  - Il Tenant Admin seleziona il Tenant User che vuole riattivare
+  - Il Sistema richiede la conferma dell'operazione
+  - Il Tenant Admin conferma
+  - Il Sistema sblocca l'accesso del Tenant User alla piattaforma
 
 === UC4 - Elimina Tenant User <UC4>
 - *Attore principale*: Tenant Admin
@@ -269,8 +324,28 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 
 // Req. opzionale, lo mettiamo?
 === UC15 - Visualizza audit log <UC16>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare gli audit log
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Vengono visualizzate le informazioni degli audit log
+- *Scenario principale*:
+  - Il Tenant Admin seleziona l'opzione di visualizzazione degli audit log
+- *Estensioni*:
+  - #uc("UC15.1")
 
 === UC15.1 - Esporta log <UC15.1>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole esportare gli audit log
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Il Sistema fornisce i log in un file scaricabile
+- *Scenario principale*:
+  - Il Tenant Admin seleziona l'opzione di esportazione degli audit log
  
 === Attore principale - Super Admin
 //Hoss, Michele
