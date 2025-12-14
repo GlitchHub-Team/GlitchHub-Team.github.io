@@ -540,6 +540,154 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di visualizzazione lista richieste di fornitura Gateway
 
+==== UC17 - Creazione utente Tenant-admin <UC17>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Client email
+- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il nuovo Tenant-admin è registrato nel Sistema e associato al tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di creazione nuovo Tenant-admin
+  - Il Super-admin seleziona il tenant a cui associare il nuovo Tenant-admin
+  - Il Super-admin inserisce l'email del nuovo Tenant-admin
+  - Il Tenant-admin riceve una email con le credenziali di accesso //use case del tenant-admin da fare
+- *Scenari alternativi*:
+  - L'email inserita è già in uso da un altro utente nel Sistema
+- *Estensioni*:
+  - #uc("UC17.1")
+- *Inclusioni*:
+  - #uc("UC17.2")
+  - #uc("UC17.3")
+  - #uc("UC17.4")
+
+===== UC17.1 - Email già in uso <UC17.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin inserisce un'email già in uso da un altro utente
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Sistema visualizza un messaggio di errore
+- *Scenario principale*:
+  - L'email inserita è già in uso da un altro utente nel Sistema
+
+===== UC17.2 - Selezione tenant <UC17.2>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del tenant da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il tenant a cui associare il nuovo Tenant-admin
+
+===== UC17.3 - Inserimento email nuovo Tenant-admin <UC17.3>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve l'email del nuovo Tenant-admin da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin inserisce l'email del nuovo Tenant-admin
+
+===== UC17.4 - Invio credenziali di accesso nuovo Tenant-admin <UC17.4>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Client email
+- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+  - L'email del nuovo Tenant-admin è valida
+- *Post-condizioni*:
+  - Il Tenant-admin riceve una email con le credenziali di accesso
+- *Scenario principale*:
+  - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
+
+==== UC18 - Sospensione account Tenant-admin <UC18>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin non deve essere già sospeso
+- *Post-condizioni*:
+  - L'account del Tenant-admin viene sospeso
+- *Scenario principale*:
+  - Il Super-admin seleziona il Tenant-admin da sospendere
+  - Il Super-admin conferma la sospensione dell'account
+- *Inclusioni*:
+  - #uc("UC18.1")
+  - #uc("UC18.2")
+
+===== UC18.1 - Selezione Tenant-admin da sospendere <UC18.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin non deve essere già sospeso
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del Tenant-admin da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il Tenant-admin da sospendere
+
+===== UC18.2 - Conferma sospensione account Tenant-admin <UC18.2>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin non deve essere già sospeso
+- *Post-condizioni*:
+  - L'account del Tenant-admin viene sospeso
+- *Scenario principale*:
+  - Il Super-admin conferma la sospensione dell'account del Tenant-admin selezionato
+
+=== UC19 - Riattivazione account Tenant-admin <UC19>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin deve essere sospeso
+- *Post-condizioni*:
+  - L'account del Tenant-admin viene riattivato, annullando la sospensione
+- *Scenario principale*:
+  - Il Super-admin seleziona il Tenant-admin da riattivare
+  - Il Super-admin conferma la riattivazione dell'account
+- *Inclusioni*:
+  - #uc("UC19.1")
+  - #uc("UC19.2")
+
+===== UC19.1 - Selezione Tenant-admin da riattivare <UC19.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin deve essere sospeso
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del Tenant-admin da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il Tenant-admin da riattivare
+
+===== UC19.2 - Conferma riattivazione account Tenant-admin <UC19.2>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin deve essere sospeso
+- *Post-condizioni*:
+  - L'account del Tenant-admin viene riattivato, annullando la sospensione
+- *Scenario principale*:
+  - Il Super-admin conferma la riattivazione dell'account del Tenant-admin selezionato
+
 /*
 ==== Configurazione alert globali
 - *Attore principale*: Super-admin
