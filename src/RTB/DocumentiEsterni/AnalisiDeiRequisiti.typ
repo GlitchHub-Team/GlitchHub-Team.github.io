@@ -58,6 +58,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 
 
 == Lista dei casi d'uso
+Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
 
 === Attore principale - Utente (non autenticato)
 //Dina
@@ -75,7 +76,6 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 - *Precondizioni*:
   - Il super-admin è autenticato
   - L'utente ha i permessi di gestione dei tenant
-
 - *Postcondizioni*:
   - Un nuovo tenant è registrato nel sistema
   - Il tenant appare nella lista dei tenant disponibili
@@ -87,7 +87,6 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 - *Trigger*: Il super-admin vuole vedere o modificare un tenant
 - *Precondizioni*:
   - Super-admin autenticato
-
 - *Postcondizioni*:
   - Il tenant può essere visualizzato, modificato o eliminato
 - *Scenari alternativi*:
@@ -98,12 +97,12 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 - *Trigger*: Il super-admin vuole consultare tutti i gateway registrati
 - *Precondizioni*:
   - Super-admin autenticato
-  
+
 - *Postcondizioni*:
   - Lista dei gateway visualizzata
 - *Scenari alternativi*:
   - Nessun gateway registrato
-  
+
 ==== Visualizzazione stato gateway
 - *Attore principale*: Super-admin
 - *Trigger*: l super-admin vuole verificare il funzionamento di un gateway
