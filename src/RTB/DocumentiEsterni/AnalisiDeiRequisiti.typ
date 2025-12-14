@@ -86,7 +86,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 - *Attore principale*: Super-admin
 - *Trigger*: Il super-admin vuole vedere o modificare un tenant
 - *Precondizioni*:
-  - Super-admin autenticato
+  - Super-admi
 
 - *Postcondizioni*:
   - Il tenant può essere visualizzato, modificato o eliminato
@@ -214,6 +214,22 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 
 - *Scenari alternativi*:
   - Gateway non raggiungibile
+
+=== Attore principale - Super Admin
+==== Richiesta gateway
+- *Attore principale*: Super-admin
+- *Trigger*: Tenant richiesde gateway
+- *Precondizioni*:
+  - Il super-admin è autenticato
+  - L'utente ha i permessi di gestione dei tenant
+
+- *Postcondizioni*:
+  - Un nuovo tenant è registrato nel sistema
+  - Il tenant appare nella lista dei tenant disponibili
+- *Scenari alternativi*:
+  - I dati inseriti non sono validi
+
+
 === Attore principale - Gateway
 //Siria, Jaume
 
