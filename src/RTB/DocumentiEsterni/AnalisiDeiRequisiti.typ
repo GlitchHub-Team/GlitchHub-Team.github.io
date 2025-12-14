@@ -66,7 +66,6 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 === Attore principale - Utente
 Utente è l'utente generico che tenta di accedere al sistema.
 //Dina
-//possibilità bloccare utente?
 ==== UC1 - Autenticazione <UC1>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
@@ -83,6 +82,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente inserisce username o password errati
 - *Estensioni*:
   - #uc("UC1.1")
+  - #uc("UC1.4")
 - *Inclusioni*:
   - #uc("UC1.2")
   - #uc("UC1.3")
@@ -102,7 +102,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== UC1.2 - Inserimento username <UC1.2>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce lo username
+- *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - Il Sistema è raggiungibile e funzionante
@@ -113,7 +113,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== UC1.3 - Inserimento password <UC1.3>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce la password
+- *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - Il Sistema è raggiungibile e funzionante
@@ -121,6 +121,18 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Sistema riceve la password inserita dall'Utente
 - *Scenario principale*:
   - L'Utente inserisce la password
+
+==== UC1.4 - Account sospeso <UC1.4>
+- *Attore principale*: Utente
+- *Trigger*: L'Utente prova ad autenticarsi con un account sospeso
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - L'Utente non viene autenticato nel Sistema
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema verifica lo stato dell'account dell'Utente e rileva che l'account è sospeso
 
 ==== UC2 - Password dimenticata <UC2>
 - *Attore principale*: Utente
@@ -154,6 +166,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== UC2.2 - Invio email di reimpostazione password <UC2.2>
 - *Attore principale*: Utente
+- *Attore secondario*: Client email
 - *Trigger*: L'Utente ha inserito l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -197,11 +210,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== UC3.1 - Inserimento nuova password <UC3.1>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce la nuova password
+- *Trigger*: L'Utente ha cliccato sul link di reimpostazione password nell'email
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - Il Sistema è raggiungibile e funzionante
-  - L'Utente ha cliccato sul link di reimpostazione password nell'email
 - *Post-condizioni*:
   - La nuova password viene registrata nel Sistema
 - *Scenario principale*:
@@ -259,6 +271,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant User seleziona la funzionalità di visualizzazione sensori
   - Viene mostrata la lista dei sensori associati al tenant del Tenant User
 
+//generalizzazione UC7 e UC8
 ==== UC7 - Visualizzazione dati real-time sensore <UC7>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare i dati real-time di un sensore
@@ -482,107 +495,41 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client tenta di autenticarsi nel Sistema
 - *Pre-condizioni*:
   - Il Sistema è raggiungibile e funzionante
+  - Il REST Client possiede delle credenziali di accesso
 - *Post-condizioni*:
   - Il REST Client è autenticato nel Sistema
 - *Scenario principale*:
   - Il REST Client invia le credenziali di autenticazione al Sistema
-  - Il Sistema verifica le credenziali e autentica il REST Client
+  - Il Sistema verifica le credenziali
+  - Il Sistema autentica il REST Client
 - *Scenari alternativi*:
   - Credenziali non valide
+  - Credenziali scadute
 - *Estensioni*:
   - #uc("UC11.1")
+  - #uc("UC11.2")
 
-===== UC11.1 - Credenziali REST Client non valide <UC11.1>
+//potenziale generalizzazione dell'errore
+===== UC11.1 - Credenziali REST Client errate <UC11.1>
 - *Attore principale*: REST Client
-- *Trigger*: Il REST Client invia credenziali non valide al Sistema
+- *Trigger*: Il REST Client invia credenziali errate al Sistema
 - *Pre-condizioni*:
   - Il Sistema è raggiungibile e funzionante
-  - Il REST Client ha inviato credenziali non valide
+  - Il REST Client ha inviato credenziali errate
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
   - Il Sistema verifica le credenziali inviate dal REST Client e rileva l'errore nelle credenziali
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//casi d'uso iniziali di Hossam e Riccardo, da cui pescare in caso
-=== UC3 - Inserimento nuovo utente da parte di un Admin
-
-- *Attore principale*: Admin
-- *Trigger*: L'Admin vuole creare un nuovo utente
-- *Precondizioni*:
-  - Admin autenticato nel sistema
-
-- *Postcondizioni*:
-  - Il nuovo utente è registrato nel sistema e può autenticarsi
-  - L'utente è correttamente associato al tenant dell'Admin
-- *Scenari alternativi*:
-  - Username già in uso
-
-=== UC3.1 - Inserimento username nuovo utente
-- *Attore principale*: Admin
-- *Trigger*: L'Admin inserisce lo username da dare al nuovo utente da creare
-- *Precondizioni*:
-  - Admin autenticato
-  - Flusso UC3 iniziato (l'Admin ha scelto di inserire un nuovo utente)
-- *Postcondizioni*:
-  - Lo username viene registrato correttamente nel sistema
-  - Il nuovo utente è associato al tenant dell'Admin
-- *Flussi alternativi*:
-  - Username già in uso
-  - Username con caratteri non validi
-
-=== UC3.2 - Inserimento password nuovo utente
-- *Attore principale*: Admin
-- *Trigger*: L'admin assegna una password all'utente da creare
-- *Precondizioni*:
-  - Admin autenticato
-  - Flusso UC3 inziato e username inserito (UC3.1 completato)
-- *Postcondizioni*:
-  - La password viene registrata correttamente nel sistema
-- *Flussi alternativi*:
-  - Password non conforme ai criteri di sicurezza
-
-=== UC4 - L'Admin seleziona un utente
-- *Attore principale*: Admin
-- *Trigger*: L'Admin dalla dashboard seleziona un utente del suo tenant
-- *Precondizioni*:
-  - Admin autenticato nel sistema
-  - Esistono utenti registrati nel tenant dell'Admin
-- *Postcondizioni*: - L'Admin può visualizzare i dati dell'utente selezionato
-  - L'Admin può modificare/eliminare l'utente
-
-=== UC5 - Modifica di un utente selezionato dall'Admin
-- *Attore principale*: Admin
-- *Trigger*: L'Admin modifica un utente
-- *Precondizioni*:
-  - Admin autenticato
-  - Utente già selezionato dall'Admin (UC4 completato)
-  - L' Admin appartiene al tenant dell'utente selezionato
-- *Postcondizioni*:
-  - L'utente viene aggiornato secondo le modifiche dell'Admin
-
-=== UC6 -  Eliminazione di un utente selezionato dall'Admin
-- *Attore principale*: Admin
-- *Trigger*: L'Admin vuole eliminare l'utente selezionato
-- *Precondizioni*:
-  - Admin autenticato
-  - Utente già selezionato dall'Admin (UC4 completato)
-  - L'utente selezionato appartiene al tenant dell'Admin
-- *Postcondizioni*:
-  - L'utente viene rimosso dal sistema
+===== UC11.2 - Credenziali REST Client scadute <UC11.2>
+- *Attore principale*: REST Client
+- *Trigger*: Il REST Client invia credenziali scadute al Sistema
+- *Pre-condizioni*:
+  - Il Sistema è raggiungibile e funzionante
+  - Il REST Client ha inviato credenziali scadute
+- *Post-condizioni*:
+  - Viene restituito un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema verifica le credenziali inviate dal REST Client e rileva che le credenziali sono scadute
 
