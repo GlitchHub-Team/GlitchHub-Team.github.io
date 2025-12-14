@@ -3,8 +3,15 @@
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
-  versione: "0.3.0",
+  versione: "0.5.0",
   registro-modifiche: (
+    (
+      "0.5.0",
+      "14/12/2025",
+      "Alessandro Dinato, Michele Dioli",
+      "-",
+      "Stesura Use Case relativi al Super-admin",
+    ),
     ("0.3.0", "16/11/2025", "Hossam Ezzemouri", "-", "Stesura degli Use Case 3, 3.1, 3.2, 3.3, 4, 5 e 6"),
     (
       "0.2.0",
@@ -23,6 +30,10 @@
   tipo-documento: "Analisi dei Requisiti",
 )
 
+#let uc(id) = {
+  link(label(id))[#underline()[#id]]
+}
+
 = Introduzione
 Questo documento ha come obiettivo quello di fornire informazioni  dettagliate e chiare riguardo i requisiti che il software progettato possiede: questo per poter esser un punto di riferimento sia per i soggetti coinvolti nello sviluppo sia per gli appaltanti, consentendo ad entrambi di verificare che il progetto soddisfi i requisiti funzionali e non funzionali esplicitati.
 
@@ -36,7 +47,7 @@ L'architettura prevista si articola in tre principali livelli che collaborano pe
 - *Gateway BLE WiFI*
 - *Cloud*
 
-I sensori svolgono la funzione di acquisizione locale mentre i gateway aggregano e inoltrano i dati verso il cloud, che rappresenta il core del sistema. Quest'ultimo si occupa di archiviazione, gestione dei tenant, esposizione delle API e monitoraggio tramite dashboard.
+I sensori svolgono la funzione di acquisizione locale mentre i Gateway aggregano e inoltrano i dati verso il cloud, che rappresenta il core del sistema. Quest'ultimo si occupa di archiviazione, gestione dei tenant, esposizione delle API e monitoraggio tramite dashboard.
 
 = Casi d'uso
 == Introduzione
@@ -70,77 +81,469 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 //Riccardo, Elia
 
 === Attore principale - Super Admin
-==== Creazione Tenant
+==== UC1 - Creazione Tenant <UC1>
 - *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole creare un nuovo tenant
-- *Precondizioni*:
-  - Il super-admin è autenticato
-  - L'utente ha i permessi di gestione dei tenant
-- *Postcondizioni*:
-  - Un nuovo tenant è registrato nel sistema
-  - Il tenant appare nella lista dei tenant disponibili
+- *Trigger*: Il Super-admin vuole creare un nuovo tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il nuovo tenant è registrato nel Sistema
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di creazione tenant
+  - Il Super-admin inserisce il nome del nuovo tenant
 - *Scenari alternativi*:
-  - I dati inseriti non sono validi
+  - Il nome del tenant è già in uso da un altro tenant
+- *Estensioni*:
+  - #uc("UC1.1")
 
-==== Gestione Tenant
+==== UC1.1 - Nome del tenant già utilizzato <UC1.1>
 - *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole vedere o modificare un tenant
-- *Precondizioni*:
+- *Trigger*: Il Super-admin ha inserito un nome di tenant già esistente
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il nome del tenant inserito esiste già nel Sistema
+- *Post-condizioni*:
+  - Il Sistema visualizza un messaggio di errore
+- *Scenario principale*:
+  - Il Super-admin ha inserito il nome del nuovo tenant ma è già in uso
 
-  - Super-admin autenticato
-- *Postcondizioni*:
-  - Il tenant può essere visualizzato, modificato o eliminato
-- *Scenari alternativi*:
-  - Il tenant selezionato non esiste più (race condition)
-
-==== Visualizzazione lista gateway
+==== UC2 - Eliminazione Tenant <UC2>
 - *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole consultare tutti i gateway registrati
-- *Precondizioni*:
-  - Super-admin autenticato
-
-- *Postcondizioni*:
-  - Lista dei gateway visualizzata
+- *Trigger*: Il Super-admin vuole eliminare un tenant esistente
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - I Gateway associati subiscono un azione di decommissioning
+  - I dati associati al tenant vengono eliminati
+  - Gli utenti associati al tenant vengono eliminati
+  - Il tenant viene rimosso dal Sistema
+- *Scenario principale*:
+  - Il Super-admin seleziona il tenant da eliminare
+  - Il Super-admin conferma l'eliminazione del tenant
+  - Il Sistema esegue il decommissioning dei Gateway associati
+  - Il Sistema elimina i dati e gli utenti associati al tenant
+  - Il Sistema elimina gli utenti associati al tenant
+  - Il Sistema elimina il tenant
 - *Scenari alternativi*:
-  - Nessun gateway registrato
+  - Il decommissioning di uno o più Gateway associati fallisce
+- *Estensioni*:
+  - #uc("UC2.1")
+- *Inclusioni*:
+  - #uc("UC2.2")
+  - #uc("UC2.3")
+  - #uc("UC2.4")
+  - #uc("UC2.5")
 
-==== Visualizzazione stato gateway
+===== UC2.1 - Decommissioning Gateway fallito <UC2.1>
 - *Attore principale*: Super-admin
-- *Trigger*: l super-admin vuole verificare il funzionamento di un gateway
-- *Precondizioni*:
-  - Super-admin autenticato
-  - Esistenza del gateway
+- *Trigger*: Durante l'eliminazione del tenant, il decommissioning di uno o più Gateway associati fallisce
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il decommissioning del o dei Gateway non viene completato
+  - Il tenant non viene eliminato
+  - Il Sistema visualizza un messaggio di errore
+- *Scenario principale*:
+  - Il decommissioning di uno o più Gateway associati fallisce durante l'eliminazione del tenant
 
-- *Postcondizioni*:
-  - l super-admin visualizza informazioni aggiornate sul gateway
-- *Scenari alternativi*:
-  - Il sistema segnala malfunzionamenti (extends UC Alert Globali)
-
-==== Gestione sensori
+===== UC2.2 - Selezione e conferma tenant da eliminare <UC2.2>
 - *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole gestire i sensori associati a un gateway o a un tenant
-- *Precondizioni*:
-  - Super-admin autenticato
+- *Trigger*: Il Super-admin vuole eliminare un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione e la conferma del tenant da eliminare
+- *Scenario principale*:
+  - Il Super-admin seleziona il tenant da eliminare
+  - Il Super-admin conferma l'eliminazione del tenant
 
-- *Postcondizioni*:
-  - Un sensore può essere creato, modificato o eliminato
-- *Scenari alternativi*:
-  - Sensore già registrato
-
-==== Visualizzazione log di sistema
+===== UC2.3 - Esecuzione decommissioning Gateway associati al tenant <UC2.3>
 - *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole consultare i log del sistema
-- *Precondizioni*:
-  - Super-admin autenticato
-
-- *Postcondizioni*:
-  - Log visualizzato
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin vuole eliminare un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - I Gateway associati al tenant subiscono un azione di decommissioning
+- *Scenario principale*:
+  - Il Sistema invia il comando di decommissioning a tutti i Gateway associati al tenant
 - *Scenari alternativi*:
-  - Log vuoto
+  - Uno o più gateway non sono raggiungibili perciò il decommissioning non può essere completato
+- *Estensioni*:
+  - #uc("UC7.1")
 
+===== UC2.4 - Eliminazione dati e utenti associati al tenant <UC2.4>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel sistema
+- *Post-condizioni*:
+  - I dati associati al tenant vengono eliminati
+  - Gli utenti associati al tenant vengono eliminati
+- *Scenario principale*:
+  - Il Sistema elimina tutti i dati associati al tenant
+  - Il Sistema elimina tutti gli utenti associati al tenant
+
+===== UC2.5 - Eliminazione tenant <UC2.5>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il tenant viene rimosso dal Sistema
+- *Scenario principale*:
+  - Il Sistema elimina il tenant selezionato
+
+==== UC3 - Visualizzazione dashboard Super-admin <UC3>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole accedere alla dashboard
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Super-admin visualizza la dashboard con le informazioni sui tenant e sui Gateway
+- *Scenario principale*:
+  - Il Super-admin visualizza le informazioni aggregate sui tenant
+  - Il Super-admin visualizza le informazioni aggregate sui Gateway
+
+==== UC4 - Visualizzazione lista Gateway <UC4>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare tutti i Gateway registrati nel Sistema
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Viene mostrata la lista di tutti i Gateway registrati nel Sistema
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di visualizzazione lista Gateway
+  - Il sistema mostra la lista di tutti i Gateway registrati
+
+==== UC5 - Visualizzazione Gateway <UC5>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare i dettagli di un Gateway specifico
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Vengono mostrati i dettagli del Gateway selezionato
+- *Scenario principale*:
+  - Il Super-admin visualizza i dettagli del Gateway selezionato
+
+
+// AZIONI SUPER-ADMIN SUI GATEWAY
+
+==== UC6 - Associazione Gateway-tenant <UC6> //è corretto considerare il Gateway come attore secondario?
+- *Attore principale*: Super-admin
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+  - Il Gateway non deve essere già associato ad un altro tenant
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Gateway viene associato al tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin seleziona il Gateway da associare//possibili sotto use cases
+  - Il Super-admin seleziona il tenant a cui associare il Gateway
+  - Il Super-admin esegue la configurazione del Gateway per il tenant selezionato
+- *Inclusioni*:
+  - #uc("UC6.1")
+  - #uc("UC6.2")
+  - #uc("UC7")
+
+===== UC6.1 - Selezione Gateway <UC6.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+  - Il Gateway non deve essere già associato ad un altro tenant
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del Gateway da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il Gateway da associare
+
+===== UC6.2 - Selezione tenant <UC6.2>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del tenant da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il tenant a cui associare il Gateway
+
+==== UC7 - Configurazione Gateway <UC7>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin applica la nuova configurazione al Gateway
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - La configurazione del Gateway è applicata correttamente
+- *Scenario principale*:
+  - Il Super-admin inserisce la nuova configurazione per il Gateway selezionato
+  - Il Sistema invia le informazioni di configurazione al Gateway
+- *Scenari alternativi*:
+  - Il Gateway non è raggiungibile perciò la configurazione non può essere completata
+  - La configurazione fornita non è valida per il Gateway selezionato
+- *Estensioni*:
+  - #uc("UC7.1")
+  - #uc("UC7.2")
+
+===== UC7.1 - Gateway non raggiungibile <UC7.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin tenta di configurare un Gateway non raggiungibile
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore
+- *Scenario principale*:
+  - Il Super-admin tenta di configurare il Gateway ma non è raggiungibile
+
+===== UC7.2 - Configurazione non valida <UC7.2>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin fornisce una configurazione non valida per il Gateway selezionato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore e non applica la configurazione al Gateway
+- *Scenario principale*:
+  - Il Super-admin inserisce una configurazione non valida per il Gateway selezionato
+
+
+==== UC8 - Decommissioning Gateway <UC8>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+  - Il Gateway deve essere associato ad un tenant
+- *Post-condizioni*:
+  - Il Gateway viene disassociato dal tenant
+  - Il Gateway viene resettato alle impostazioni di fabbrica
+- *Scenario principale*:
+  - Il Super-admin seleziona il Gateway su cui eseguire il decommissioning
+  - Il Sistema invia il comando di disassociazione al Gateway
+  - Il Sistema invia il comando di reset al Gateway
+- *Scenari alternativi*:
+  - Il Gateway non è raggiungibile perciò il decommissioning non può essere completato
+- *Estensioni*:
+  - #uc("UC7.1")
+- *Inclusioni*:
+  - #uc("UC8.1")
+  - #uc("UC9")
+
+===== UC8.1 - Disassociazione Gateway dal tenant <UC8.1>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+  - Il Gateway deve essere associato ad un tenant
+- *Post-condizioni*:
+  - Il Gateway viene disassociato dal tenant a livello di Sistema
+- *Scenario principale*:
+  - Il Super-admin seleziona il Gateway da disassociare
+  - Il Sistema invia il comando di disassociazione al Gateway
+
+==== UC9 - Reset Gateway <UC9>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin vuole resettare un Gateway alle impostazioni di fabbrica
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Gateway viene resettato alle impostazioni di fabbrica
+- *Scenario principale*:
+  - Il Super-admin seleziona il Gateway da resettare
+  - Il Sistema invia il comando di reset al Gateway
+- *Scenari alternativi*:
+  - Il Gateway non è raggiungibile perciò il reset non può essere completato
+- *Estensioni*:
+  - #uc("UC7.1")
+
+==== UC10 - Riavvio Gateway <UC10>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin vuole riavviare un Gateway
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway deve essere registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Gateway viene riavviato correttamente
+- *Scenario principale*:
+  - Il Super-admin seleziona il Gateway da riavviare
+  - Il Sistema invia il comando di riavvio al Gateway
+- *Scenari alternativi*:
+  - Il Gateway non è raggiungibile perciò il riavvio non può essere completato
+- *Estensioni*:
+  - #uc("UC7.1")
+
+
+==== UC11 - Autenticazione Gateway <UC11>
+- *Attore principale*: Super-admin
+- *Attore secondario*: Gateway
+- *Trigger*: Il Super-admin vuole autenticare un Gateway registrato nel Sistema
+- *Precondizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway è registrato nel Sistema ma non ancora autenticato //registrato significa che comunica con il sistema da non autenticato
+- *Postcondizioni*:
+  - Il Sistema autentica il Gateway
+- *Scenario principale*:
+  - Il Super-admin seleziona il Gateway da autenticare
+  - Il Super-admin fornisce il certificato di autenticazione
+- *Scenario alternativo*:
+  - Il Gateway non è raggiungibile perciò l'autenticazione non può essere completata
+  - Il certificato fornito non è valido per il Gateway selezionato
+- *Estensioni*:
+  - #uc("UC7.1")
+  - #uc("UC11.1")
+
+===== UC11.1 - Certificato non valido <UC11.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin fornisce un certificato non valido per l'autenticazione del Gateway
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway è registrato nel Sistema ma non ancora autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore e non autentica il Gateway
+- *Scenario principale*:
+  - Il Super-admin fornisce un certificato non valido per l'autenticazione del Gateway selezionato
+
+==== UC12 - Gestione richiesta fornitura Gateway <UC12>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole accettare o rifiutare una richiesta di fornitura Gateway da parte di un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Esiste una richiesta di fornitura Gateway da parte di un tenant
+- *Post-condizioni*:
+  - La richiesta di fornitura Gateway viene accettata o rifiutata
+- *Scenario principale*:
+  - Il Super-admin visualizza la richiesta di fornitura Gateway da parte di un tenant
+  - Il Super-admin accetta o rifiuta la richiesta
+- *Scenari alternativi*:
+  - Viene fornita una motivazione per il rifiuto della richiesta
+- *Estensioni*:
+  - #uc("UC12.1")
+
+===== UC12.1 - Motivazione rifiuto richiesta <UC12.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin rifiuta una richiesta di fornitura Gateway da parte di un tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Viene fornita una motivazione per il rifiuto della richiesta
+- *Scenario principale*:
+  - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
+
+==== UC13 - Visualizzazione log di attività di un tenant <UC13> //???????????
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare i log di attività di un tenant specifico
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve esistere nel Sistema
+- *Post-condizioni*:
+  - Vengono mostrati i log di attività del tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin seleziona il tenant di cui vuole visualizzare i log di attività
+
+==== UC14 - Visualizzazione lista tenant <UC14>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare tutti i tenant registrati nel Sistema
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Viene mostrata la lista di tutti i tenant registrati nel Sistema
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di visualizzazione lista tenant
+
+==== UC15 - Visualizzazione tenant <UC15>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve essere registrato nel Sistema
+- *Post-condizioni*:
+  - Vengono mostrati i dettagli del tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin visualizza i dettagli del tenant selezionato
+- *Inclusioni*:
+  - #uc("UC15.1")
+  - #uc("UC15.2")
+  - #uc("UC15.3")
+  - #uc("UC15.4")
+
+===== UC15.1 - Visualizzazione identificativo del tenant <UC15.1> // troppo specifico??????
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve essere registrato nel Sistema
+- *Post-condizioni*:
+  - Viene mostrato l'identificativo del tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin visualizza l'identificativo del tenant selezionato
+
+===== UC15.2 - Visualizzazione lista utenti associati al tenant <UC15.2>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve essere registrato nel Sistema
+- *Post-condizioni*:
+  - Viene mostrata la lista degli utenti associati al tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di visualizzazione lista utenti associati al tenant
+
+===== UC15.3 - Visualizzazione lista Gateway associati al tenant <UC15.3>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve essere registrato nel Sistema
+- *Post-condizioni*:
+  - Viene mostrata la lista dei Gateway associati al tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di visualizzazione lista Gateway associati al tenant
+
+===== UC15.4 - Visualizzazione lista sensori associati al tenant <UC15.4>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve essere registrato nel Sistema
+- *Post-condizioni*:
+  - Viene mostrata la lista dei sensori associati al tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di visualizzazione lista sensori associati al tenant
+
+==== UC16 - Visualizzazione richieste di fornitura Gateway <UC16>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole consultare tutte le richieste di fornitura Gateway di tutti i tenant
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Viene mostrata la lista di tutte le richieste di fornitura Gateway di tutti i tenant
+- *Scenario principale*:
+  - Il Super-admin seleziona la funzionalità di visualizzazione lista richieste di fornitura Gateway
+
+/*
 ==== Configurazione alert globali
 - *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole impostare degli alert
+- *Trigger*: Il Super-admin vuole impostare degli alert
 - *Precondizioni*:
   - Super-admin autenticato
 
@@ -151,7 +554,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ==== Configurazione limiti di utilizzo
 - *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole impostare limiti (max gateway per tenant, storage buffer ecc...)
+- *Trigger*: Il Super-admin vuole impostare limiti (max Gateway per tenant, storage buffer ecc...)
 - *Precondizioni*:
   - Super-admin autenticato
   - Tenant esistente
@@ -160,74 +563,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
   - I limiti del tenant sono aggiornati
 - *Scenari alternativi*:
   - Tentativo di impostare limiti già inferiori a quellii in uso
-
-==== Riavvio gateway
-- *Attore principale*: Super-admin
-- *Trigger*: Il super-admin richiede un riavvio remoto del gateway
-- *Precondizioni*:
-  - Super-admin autenticato
-  - Gateway raggiungibile
-
-- *Postcondizioni*:
-  - Il sistema invia il comando di riavvio
-- *Scenari alternativi*:
-  - Il gateway è offline
-  - Errore nella comunicazione col gateway
-
-==== Reset gateway
-- *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole ripristinare un gateway alle impostazioni di fabbrica
-- *Precondizioni*:
-  - Super-admin autenticato
-  - Gateway raggiungibule
-
-- *Postcondizioni*:
-  - Il gateway viene resettato alle condizioni iniziali
-- *Scenari alternativi*:
-  - Include UC Riavvio Gateway
-  - Gateway non raggiungibile
-
-==== Riconfigurazione gateway
-- *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole modificare le Configurazioni di un gateway
-- *Precondizioni*:
-  - Super-admin autenticato
-  - Gateway raggiungibile
-
-- *Postcondizioni*:
-  - Configurazioni aggiornate
-- *Scenari alternativi*:
-  - Include UC Riavvio gateway
-  - Impostazioni non valide
-  - Gateway non raggiungibile
-
-==== Decommissioning gateway
-- *Attore principale*: Super-admin
-- *Trigger*: Il super-admin vuole dissociare un gateway da un tenant
-- *Precondizioni*:
-  - Super-admin autenticato
-  - Gateway raggiungibile
-  - Gateway associato a un tenant
-
-- *Postcondizioni*:
-  - Il gateway viene disassociato dal tenant
-
-- *Scenari alternativi*:
-  - Gateway non raggiungibile
-
-=== Attore principale - Super Admin
-==== Richiesta gateway
-- *Attore principale*: Super-admin
-- *Trigger*: Tenant richiesde gateway
-- *Precondizioni*:
-  - Il super-admin è autenticato
-  - L'utente ha i permessi di gestione dei tenant
-
-- *Postcondizioni*:
-  - Un nuovo tenant è registrato nel sistema
-  - Il tenant appare nella lista dei tenant disponibili
-- *Scenari alternativi*:
-  - I dati inseriti non sono validi
+*/
 
 
 === Attore principale - Gateway
