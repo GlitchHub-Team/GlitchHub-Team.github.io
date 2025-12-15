@@ -2,7 +2,6 @@ name: Edit issue project fields
 on:
   issues:
     types:
-      - opened
       - labeled
 
 permissions:
