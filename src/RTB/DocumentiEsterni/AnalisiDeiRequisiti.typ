@@ -364,10 +364,285 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 
 === Attore principale - Tenant Admin
-//Hoss, Michele
+// Tenant Admin inserisce username e email e poi il Tenant User
+// dalla mail che gli arriva si setta la password?
+=== UC1 - Registrazione nuovo Tenant <UC1>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un nuovo Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Il Sistema registra correttamente il nuovo Tenant User
+  - Il Sistema invia una mail all'indirizzo email indicato con le istruzioni per attivare l'account
+- *Scenario principale*:
+  - Il Tenant Admin seleziona la funzione di registrazione
+  - Il Tenant Admin inserisce lo username
+  - Il Tenant Admin inserisce l'indirizzo email
+- *Scenari alternativi*:
+  - La mail o lo username esistono già nel Sistema
+  - Il Sistema non riesce a salvare il nuovo utente
+- *Estensioni*:
+  - #uc("UC1.3")
+  - #uc("UC1.4")
+- *Inclusioni*:
+  - #uc("UC1.1")
+  - #uc("UC1.2")
 
+=== UC1.1 - Inserimento username <UC1.1>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Il Sistema riceve lo username inserito
+- *Scenario principale*:
+  - Il Tenant Admin inserisce lo username
+
+=== UC1.2 - Inserimento email <UC1.2>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Il Sistema riceve l'indirizzo email inserito
+- *Scenario principale*:
+  - Il Tenant Admin inserisce l'indirizzo email 
+
+// Nel caso ci sia un problema interno al sistema che non riesce
+// a salvare il nuovo utente
+=== UC1.3 - Errore salvataggio dati <UC1.3>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant Admin ha registrato un nuovo utente
+- *Post-condizioni*:
+  - Il Sistema annulla l'operazione e mostra un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema tenta di salvare il nuovo utente
+  - Si verifica un errore interno
+  - Il Sistema mostra un messaggio di errore
+
+=== UC1.4 - Dati di registrazione già utilizzati <UC1.4>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant Admin ha registrato un nuovo utente
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema tenta di salvare il nuovo utente
+  - Il Sistema rileva un utente già registrato che possiede gli stessi dati
+
+// Ha senso metterla?
+=== UC2 - Sospendi Tenant User <UC2>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole sospendere l'accesso di un Tenant User al Sistema 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant User esiste ed è registrato
+- *Post-condizioni*:
+  - Il Tenant User non può più accedere al Sistema
+- *Scenario principale*:
+  - Il Tenant Admin seleziona il Tenant User che vuole sospendere
+  - Il Sistema richiede la conferma dell'operazione
+  - Il Tenant Admin conferma
+  - Il Sistema blocca l'accesso del Tenant User alla piattaforma
+
+// Stessa cosa di prima
+=== UC3 - Riattiva Tenant User <UC3>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole riattivare l'accesso di un Tenant User al Sistema 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant User esiste ed è registrato
+- *Post-condizioni*:
+  - Il Tenant User può accedere al Sistema
+- *Scenario principale*:
+  - Il Tenant Admin seleziona il Tenant User che vuole riattivare
+  - Il Sistema richiede la conferma dell'operazione
+  - Il Tenant Admin conferma
+  - Il Sistema sblocca l'accesso del Tenant User alla piattaforma
+
+=== UC4 - Elimina Tenant User <UC4>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole eliminare un Tenant User 
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel sistema 
+  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant User che si vuole eliminare esiste
+- *Post-condizioni*:
+  - Il Sistema elimina correttamente il Tenant User
+- *Scenario principale*:
+  - Il Tenant Admin seleziona il Tenant User che vuole rimuovere
+  - Il Sistema richiede la conferma dell'operazione
+  - Il Tenant Admin conferma 
+  - Il Sistema rimuove l'account del Tenant User
+
+=== UC5 - Visualizza dashboard Tenant Admin <UC5>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare la propria dashboard
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - La dashboard viene visualizzata correttamente
+- *Scenario principale*:
+  - Il Tenant Admin accede alla dashboard del proprio tenant
+
+=== UC6 - Visualizza lista Tenant User <UC6>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare i Tenant User registrati nel tenant
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Viene visualizzata la lista dei Tenant User registrati nel tenant
+- *Scenario principale*:
+  - Il Tenant Admin seleziona la funzionalità di visualizzazione dei Tenant User
+  - Viene mostrata la lista dei Tenant User registrati nel Tenant
+
+// Competenza del Tenant Admin? Lo può fare?
+=== UC7 - Registra nuovo sensore <UC7>
+
+// Penso sia doppione con lo UC del Tenant User
+=== UCZ - Visualizza lista dei sensori <UCZ>
+
+=== UC8 - Disattiva sensore <UC8>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole disattivare un sensore
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+  - Il sensore è registrato nel tenant
+- *Post-condizioni*:
+  - Il Sistema disattiva il sensore e sospende la ricezione dei suoi dati
+- *Scenario principale*:
+  - Il Tenant Admin seleziona il sensore che vuole disattivare
+  - Il Tenant Admin disattiva il sensore
+
+=== UC9 - Riattiva sensore <UC9>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole riattivare un sensore
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+  - Il sensore è registrato nel tenant
+- *Post-condizioni*:
+  - Il Sistema riattivare il sensore e riprende la ricezione dei suoi dati
+- *Scenario principale*:
+  - Il Tenant Admin seleziona il sensore che vuole riattivare
+  - Il Tenant Admin riattivare il sensore
+
+// Ha senso? Lo fa il Tenant Admin o lo fa il Super Admin?
+=== UC10 - Elimina sensore <UC10>
+
+=== UC11 - Visualizza lista di gateway <UC11>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare i gateway associati al tenant
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Viene visualizzata la lista dei gateway associati al tenant
+- *Scenario principale*:
+  - Il Tenant Admin seleziona la funzionalità di visualizzazione dei gateway
+  - Viene mostrata la lista dei gateway associati al Tenant
+
+// Tipo: è online, quanta roba sta mandando, magari il costo associato
+=== UC12 - Visualizza informazioni dettagliate gateway <UC12>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare le informazioni del gateway
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+  - Il gateway è attivo
+- *Post-condizioni*:
+  - Vengono visualizzate le informazioni dettagliate del gateway
+- *Scenario principale*:
+  - Il Tenant Admin seleziona un gateway dalla lista dei gateway
+  - Vengono mostrate le informazioni dettagliate del gateway
+- *Inclusioni*:
+  - #uc("UC12.1")
+- *Estensioni*:
+  - #uc("UC12.2")
+
+=== UC12.1 - Seleziona gateway <UC12.1>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin seleziona un gateway
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+  - Il gateway selezionato appartiene al tenant del Tenant Admin
+- *Post-condizioni*:
+  - Il Sistema riceve l'identificativo del gateway selezionato
+- *Scenario principale*:
+  - Il Tenant Admin seleziona un gateway associato al proprio tenant
+
+// Ha senso?
+=== UC12.2 - Gateway offline <UC12.2>
+
+=== UC13 - Disattiva gateway <UC13>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole disattivare un gateway
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+  - Il gateway selezionato appartiene al tenant del Tenant Admin
+- *Post-condizioni*:
+  - Il Sistema disattiva il gateway e sospende la ricezione dei suoi dati
+- *Scenario principale*:
+  - Il Tenant Admin seleziona un gateway associato al proprio tenant
+  - Il Tenant Admin disattiva il gateway
+
+=== UC14 - Riattiva gateway <UC14>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole riattivare un gateway
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+  - Il gateway selezionato appartiene al tenant del Tenant Admin
+- *Post-condizioni*:
+  - Il Sistema riattivare il gateway e riprende la ricezione dei suoi dati
+- *Scenario principale*:
+  - Il Tenant Admin seleziona un gateway associato al proprio tenant
+  - Il Tenant Admin riattivare il gateway
+
+// Req. opzionale, lo mettiamo?
+=== UC15 - Visualizza audit log <UC16>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare gli audit log
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Vengono visualizzate le informazioni degli audit log
+- *Scenario principale*:
+  - Il Tenant Admin seleziona l'opzione di visualizzazione degli audit log
+- *Estensioni*:
+  - #uc("UC15.1")
+
+=== UC15.1 - Esporta log <UC15.1>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole esportare gli audit log
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema è raggiungibile e funzionante
+- *Post-condizioni*:
+  - Il Sistema fornisce i log in un file scaricabile
+- *Scenario principale*:
+  - Il Tenant Admin seleziona l'opzione di esportazione degli audit log
+ 
 === Attore principale - Super Admin
-//Riccardo, Elia
+//Hoss, Michele
 
 === Attore principale - Gateway
 //Siria, Jaume
