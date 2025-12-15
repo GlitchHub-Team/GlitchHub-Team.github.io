@@ -1,4 +1,4 @@
-name: Edit issue project fields
+name: [1, 2, 3, 4]
 on:
   issues:
     types:
@@ -71,7 +71,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
           ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
-          ISSUE_LABELS: "${{ github.event.issue.labels }}"
+          ISSUE_: ${{ github.event.issue.number }}
 
         run: |
           AMMINISTRATORE_LABEL=$(echo $ISSUE_LABELS | jq '.[] | select(.name == "task-amministratore")')
