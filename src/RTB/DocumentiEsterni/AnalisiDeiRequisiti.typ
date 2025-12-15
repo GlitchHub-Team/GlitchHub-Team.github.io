@@ -6,6 +6,13 @@
   versione: "0.6.0",
   registro-modifiche: (
     (
+      "0.7.0",
+      "15/12/2025",
+      "Jaume Bernardi, Siria Salvalaio",
+      "-",
+      "Stesura Use Case relativi al Gateway",
+    ),
+    (
       "0.6.0",
       "14/12/2025",
       "Alessandro Dinato, Michele Dioli",
@@ -100,7 +107,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - L'Utente ha eseguito l'accesso al Sistema ed è stato riconosciuto come _Tenant User_, _Tenant Admin_ o _Super Admin_
 - *Scenario principale*:
@@ -120,7 +127,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente inserisce username o password errati
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - L'Utente ha inserito username che non corrisponde ad un utente registrato o ha inserito una password errata
 - *Post-condizioni*:
   - L'Utente non viene autenticato nel Sistema
@@ -133,7 +140,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Il Sistema riceve lo username inserito dall'Utente
 - *Scenario principale*:
@@ -144,7 +151,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Il Sistema riceve la password inserita dall'Utente
 - *Scenario principale*:
@@ -155,19 +162,30 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente prova ad autenticarsi con un account sospeso
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - L'Utente non viene autenticato nel Sistema
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - Il Sistema verifica lo stato dell'account dell'Utente e rileva che l'account è sospeso
 
+==== UC#uc-number() - Logout <Logout>
+- *Attore principale*: Utente
+- *Trigger*: L'Utente vuole effettuare il logout dal Sistema
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+
+- *Post-condizioni*:
+  - L'Utente viene disconnesso dal Sistema
+- *Scenario principale*:
+  - L'Utente seleziona la funzionalità di logout
+
 ==== UC#uc-number() - Password dimenticata <Password-dimenticata>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente ha dimenticato la password e vuole reimpostarla
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Viene inviata un'email all'Utente con le istruzioni per reimpostare la password
 - *Scenario principale*:
@@ -186,7 +204,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente inserisce l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Il Sistema riceve l'indirizzo email inserito dall'Utente
 - *Scenario principale*:
@@ -198,7 +216,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente ha inserito l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - L'Utente ha inserito l'indirizzo email associato al proprio account
 - *Post-condizioni*:
   - Viene inviata un'email all'Utente con le istruzioni per reimpostare la password
@@ -210,7 +228,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente inserisce un indirizzo email non associato ad alcun account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - L'Utente ha inserito un indirizzo email non associato ad alcun account
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
@@ -222,7 +240,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente vuole reimpostare la password
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - L'Utente ha ricevuto l'email di reimpostazione password
 - *Post-condizioni*:
   - La password dell'Utente viene reimpostata
@@ -241,7 +259,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente ha cliccato sul link di reimpostazione password nell'email
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - La nuova password viene registrata nel Sistema
 - *Scenario principale*:
@@ -254,7 +272,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente inserisce una nuova password che non rispetta i criteri di sicurezza
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - L'Utente ha cliccato sul link di reimpostazione password nell'email
   - L'Utente ha inserito una nuova password non conforme ai criteri di sicurezza
 - *Post-condizioni*:
@@ -264,24 +282,13 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 
 === Attore principale - Tenant User
-//Dina
-==== UC#uc-number() - Logout <Logout>
-- *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole effettuare il logout dal Sistema
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
-- *Post-condizioni*:
-  - Il Tenant User viene disconnesso dal Sistema
-- *Scenario principale*:
-  - Il Tenant User seleziona la funzionalità di logout
 
 ==== UC#uc-number() - Visualizzazione dashboard Tenant User <Visualizzazione-dashboard-tenant-user>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare la propria dashboard
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - La dashboard viene visualizzata correttamente
 - *Scenario principale*:
@@ -292,7 +299,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User vuole visualizzare i sensori collegati al proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Viene visualizzata la lista dei sensori associati al tenant del Tenant User
 - *Scenario principale*:
@@ -305,7 +312,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User vuole visualizzare i dati real-time di un sensore
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Esistono sensori associati al tenant del Tenant User
 - *Post-condizioni*:
   - Vengono visualizzati i dati real-time del sensore selezionato
@@ -325,7 +332,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User seleziona un sensore per il quale non sono disponibili dati
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Esistono sensori associati al tenant del Tenant User
   - Il Tenant User ha selezionato un sensore per il quale non sono disponibili dati
 - *Post-condizioni*:
@@ -338,7 +345,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User seleziona un sensore
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il sensore selezionato appartiene al tenant del Tenant User
 - *Post-condizioni*:
   - Il Sistema riceve l'identificativo del sensore selezionato
@@ -350,7 +357,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User ha selezionato un sensore per visualizzare i dati real-time
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il sensore selezionato appartiene al tenant del Tenant User
 - *Post-condizioni*:
   - Vengono visualizzati i dati real-time del sensore selezionato
@@ -362,7 +369,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User vuole visualizzare lo storico dei dati di un sensore
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Esistono sensori associati al tenant del Tenant User
 - *Post-condizioni*:
   - Viene visualizzato lo storico dei dati del sensore selezionato
@@ -382,7 +389,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User ha selezionato un sensore per visualizzare lo storico dei dati
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il sensore selezionato appartiene al tenant del Tenant User
 - *Post-condizioni*:
   - Viene visualizzato lo storico dei dati del sensore selezionato
@@ -394,19 +401,20 @@ Utente è l'utente generico che tenta di accedere al sistema.
 === Attore principale - Tenant Admin
 // Tenant Admin inserisce username e email e poi il Tenant User
 // dalla mail che gli arriva si setta la password?
-==== UC#uc-number() - Registrazione nuovo Tenant <Registrazione-nuovo-tenant>
+==== UC#uc-number() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
 - *Attore principale*: Tenant Admin
+- *Attore secondario*: Client email
 - *Trigger*: Il Tenant Admin vuole registrare un nuovo Tenant User
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
+  - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema registra correttamente il nuovo Tenant User
-  - Il Sistema invia una mail all'indirizzo email indicato con le istruzioni per attivare l'account
+  - Il Sistema registra correttamente il nuovo Tenant User nel tenant associato al Tenant Admin
+  - Il Sistema invia una email al nuovo Tenant-User con le credenziali di accesso
 - *Scenario principale*:
-  - Il Tenant Admin seleziona la funzione di registrazione
+  - Il Tenant Admin seleziona la funzione di registrazione Tenant User
   - Il Tenant Admin inserisce lo username
   - Il Tenant Admin inserisce l'indirizzo email
+  - Il Sistema invia una email al nuovo Tenant-User con le credenziali di accesso
 - *Scenari alternativi*:
   - La mail o lo username esistono già nel Sistema
   - Il Sistema non riesce a salvare il nuovo utente
@@ -416,13 +424,14 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Inclusioni*:
   - @Inserimento-username
   - @Inserimento-email
+  - @Invio-credenziali-accesso-nuovo-tenant-user
 
 ===== UC#sub-uc-number().1 - Inserimento username <Inserimento-username>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Il Sistema riceve lo username inserito
 - *Scenario principale*:
@@ -433,7 +442,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Il Sistema riceve l'indirizzo email inserito
 - *Scenario principale*:
@@ -446,7 +455,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il Tenant Admin ha registrato un nuovo utente
 - *Post-condizioni*:
   - Il Sistema annulla l'operazione e mostra un messaggio di errore
@@ -455,12 +464,24 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Si verifica un errore interno
   - Il Sistema mostra un messaggio di errore
 
-===== UC#sub-uc-number().4 - Dati di registrazione già utilizzati <Dati-registrazione-gia-utilizzati>
+===== UC#sub-uc-number().4 - Invio credenziali di accesso nuovo Tenant-User <Invio-credenziali-accesso-nuovo-tenant-user>
+- *Attore principale*: Tenant-admin
+- *Attore secondario*: Client email
+- *Trigger*: Il Tenant-admin vuole creare un nuovo Tenant-user
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Tenant-admin
+  - L'email del nuovo Tenant-user è valida
+- *Post-condizioni*:
+  - Il Tenant-user riceve una email con le credenziali di accesso
+- *Scenario principale*:
+  - Il Sistema invia una email al nuovo Tenant-user con le credenziali di accesso
+
+===== UC#sub-uc-number().5 - Dati di registrazione già utilizzati <Dati-registrazione-gia-utilizzati>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il Tenant Admin ha registrato un nuovo utente
 - *Post-condizioni*:
   - Il Sistema mostra un messaggio di errore
@@ -468,20 +489,19 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Sistema tenta di salvare il nuovo utente
   - Il Sistema rileva un utente già registrato che possiede gli stessi dati
 
-// Ha senso metterla?
+
 ==== UC#uc-number() - Sospensione Tenant User <Sospensione-Tenant-User>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole sospendere l'accesso di un Tenant User al Sistema
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
   - Il Tenant User esiste ed è registrato
 - *Post-condizioni*:
   - Il Tenant User non può più accedere al Sistema
 - *Scenario principale*:
   - Il Tenant Admin seleziona il Tenant User che vuole sospendere
   - Il Sistema richiede la conferma dell'operazione
-  - Il Tenant Admin conferma
+  - Il Tenant Admin conferma l'operazione
   - Il Sistema blocca l'accesso del Tenant User alla piattaforma
 
 // Stessa cosa di prima
@@ -490,7 +510,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole riattivare l'accesso di un Tenant User al Sistema
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il Tenant User esiste ed è registrato
 - *Post-condizioni*:
   - Il Tenant User può accedere al Sistema
@@ -505,7 +525,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole eliminare un Tenant User
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il Tenant User che si vuole eliminare esiste
 - *Post-condizioni*:
   - Il Sistema elimina correttamente il Tenant User
@@ -520,7 +540,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole visualizzare la propria dashboard
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - La dashboard viene visualizzata correttamente
 - *Scenario principale*:
@@ -531,7 +551,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole visualizzare i Tenant User registrati nel tenant
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Viene visualizzata la lista dei Tenant User registrati nel tenant
 - *Scenario principale*:
@@ -539,17 +559,20 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Viene mostrata la lista dei Tenant User registrati nel Tenant
 
 // Competenza del Tenant Admin? Lo può fare?
-==== UC#uc-number() - Registrazione nuovo sensore <Registrazione-nuovo-sensore>
+//==== UC#uc-number() - Registrazione nuovo sensore <Registrazione-nuovo-sensore>
 
 // Penso sia doppione con lo UC del Tenant User
-==== UCZ - Visualizzazione lista dei sensori <Visualizzazione-lista-dei-sensori>
+//==== UCZ - Visualizzazione lista dei sensori <Visualizzazione-lista-dei-sensori>
 
+
+
+//Dina: non penso sia un requisito
 ==== UC#uc-number() - Disattivazione sensore <Disattivazione-sensore>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole disattivare un sensore
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il sensore è registrato nel tenant
 - *Post-condizioni*:
   - Il Sistema disattiva il sensore e sospende la ricezione dei suoi dati
@@ -562,7 +585,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole riattivare un sensore
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il sensore è registrato nel tenant
 - *Post-condizioni*:
   - Il Sistema riattivare il sensore e riprende la ricezione dei suoi dati
@@ -578,7 +601,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole visualizzare i gateway associati al tenant
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
 - *Post-condizioni*:
   - Viene visualizzata la lista dei gateway associati al tenant
 - *Scenario principale*:
@@ -591,8 +613,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole visualizzare le informazioni del gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
-  - Il gateway è attivo
+  - Il gateway è raggiungibile
 - *Post-condizioni*:
   - Vengono visualizzate le informazioni dettagliate del gateway
 - *Scenario principale*:
@@ -608,7 +629,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin seleziona un gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema riceve l'identificativo del gateway selezionato
@@ -623,7 +643,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole disattivare un gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema disattiva il gateway e sospende la ricezione dei suoi dati
@@ -636,7 +655,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole riattivare un gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema riattivare il gateway e riprende la ricezione dei suoi dati
@@ -650,7 +668,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole visualizzare gli audit log
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
 - *Post-condizioni*:
   - Vengono visualizzate le informazioni degli audit log
 - *Scenario principale*:
@@ -663,13 +680,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant Admin vuole esportare gli audit log
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
 - *Post-condizioni*:
   - Il Sistema fornisce i log in un file scaricabile
 - *Scenario principale*:
   - Il Tenant Admin seleziona l'opzione di esportazione degli audit log
-
-//Riccardo, Elia
 
 === Attore principale - Super Admin
 ==== UC#uc-number() - Creazione Tenant <Creazione-tenant>
@@ -1144,7 +1158,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona la funzionalità di creazione nuovo Tenant-admin
   - Il Super-admin seleziona il tenant a cui associare il nuovo Tenant-admin
   - Il Super-admin inserisce l'email del nuovo Tenant-admin
-  - Il Tenant-admin riceve una email con le credenziali di accesso //use case del tenant-admin da fare
+  - Il Tenant-admin riceve una email con le credenziali di accesso
 - *Scenari alternativi*:
   - L'email inserita è già in uso da un altro utente nel Sistema
 - *Estensioni*:
@@ -1346,141 +1360,140 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 
 === Attore principale - Gateway
-//Siria, Jaume
-=== UC1 - Gestione persistenza dati di commissioning 
+==== UC#uc-number() - Gestione persistenza dati di commissioning <Gestione-persistenza-dati-commissioning>
 - *Attore primario*: Gateway (simulato)
 - *Trigger*: Avvio o riavvio del gateway
 - *Pre-condizione*: I dati di commissioning sono stati inviati e salvati precedentemente
 - *Post-condizione*: Le informazioni di commissioning sono caricate in memoria e garantiscono consistenza per i successivi flussi di lavoro
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway si avvia
   - Il gateway carica le informazioni persistenti dalla sua memoria locale
   - Le informazioni sono rese disponibili ai moduli interni per garantire la consistenza
-- *Scenario secondario*: Le informazioni di autenticazione di commissioning risultano assenti o corrotte
-- *Estensioni*: Dati di Commissioning Assenti/Corrotti (UC1.1)
-- *Inclusioni*: Autenticazione e provisioning (UC2)
+- *Scenari alternativi*:
+Le informazioni di autenticazione di commissioning risultano assenti o corrotte
+- *Estensioni*:
+  @Dati-commissioning-assenti-corrotti
+- *Inclusioni*:
+  @Autenticazione-provisioning
 
-=== UC1.1 - Dati di Commissioning Assenti/Corrotti
+
+==== UC#sub-uc-number().1 - Dati di Commissioning Assenti/Corrotti <Dati-commissioning-assenti-corrotti>
 - *Attore primario*:  Gateway (simulato)
 - *Trigger*: La verifica dell'integrità e della validità delle informazioni di commissioning fallisce
 - *Pre-condizione*: Il gateway ha tentato di caricare le informazioni di commissioning dalla memoria locale ma i dati risultano assenti, illeggibili o non superano il controllo dal Cloud
 - *Post-condizione*: Il gateway è in uno stato di errore e non può proseguire il flusso di lavoro
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il processo di verifica delle informazioni di commissioning fallisce
   - Il gateway entra in uno stato di errore e blocca i flussi di lavoro
   - Il gateway attende comandi o un riavvio
-- *Estensioni*: 
+- *Estensioni*:
 - *Inclusioni*:
 
-=== UC2 - Autenticazione e provisioning
+==== UC#uc-number() - Autenticazione e provisioning <Autenticazione-provisioning>
 - *Attore primario*:  Gateway (simulatore)
 - *Trigger*: Il gateway si avvia per la prima volta
 - *Pre-condizione*:
   - Il gateway è avviato
   - Il gateway possiede i parametri di connessione al Cloud e le credenziali iniziali
-- *Post-condizione*: 
-  - Il gataway è autenticato, è associato in modo univoco
+- *Post-condizione*:
+  - Il Gateway è autenticato, è associato in modo univoco
   - Le informazioni di commissioning sono persistenti
-- *Scenario principale*: 
-  - Il gateway tenta di stabilire una connessione sicura con il Cloud
-  - Il gateway presenta i certificati/chiavi d'accesso per l'autenticazione
-  - Il cloud valida le credenziali e associa il gateway ad un tenant
-  - Il gateway riceve conferma del provisioning
-- *Estensioni*: Gestione autenticazione fallita (UC2.1)
-- *Inclusioni*: 
-
-//non so se l'attore primario sia il gateway o il cloud
-=== UC2.1 - Gestione Autenticazione Fallita
-- *Attore primario*:  gateway (simulato)
-- *Trigger*: Rifiuto di connessione da parte del Cloud dovuto a credenziali non valide
-- *Pre-condizione*:
-  - Il gateway ha tentato la connessione
-  - Il cloud ha determinato che le credenziali non sono valide
-- *Post-condizione*: 
-  - il cloud rifiuta la connessione
-  - Il gateway è in stato di errore (e interrompe i tentativi di invio dati)
-- *Scenario principale*: 
-  - Il cloud respinge la richiesta di connessione
-  - il cloud invia un messaggio di errore al gateway
-  - il gateway registra l'errore di autenticazione e sospende i tentativi di connessione
-  - Il gateway attende il riavvio o un intervento di un user
-- *Estensioni*: 
+- *Scenario principale*:
+  - Il Gateway presenta i certificati/chiavi d'accesso per l'autenticazione
+  - Il Sistema valida le credenziali e associa il Gateway ad un tenant
+  - Il Gateway riceve conferma del provisioning andato a buon fine
+- *Estensioni*:
 - *Inclusioni*:
 
-=== UC3 - Trasmissione sicura e cifrata dati al cloud
+==== UC#sub-uc-number().1 - Gestione Autenticazione Fallita <Gestione-autenticazione-fallita>
 - *Attore primario*:  Gateway (simulato)
-- *Trigger*: Sono disponibili nuovi dati da mandare al cloud
-- *Pre-condizione*: 
-  - Il gateway è autenticato, autorizzato e dispone dei certificati necessari per la cifratura
-  - I dati in un formato standardizzato interno sono disponibili
-  - Il gateway è online
-- *Post-condizione*: 
-  - La comunicazione tra gateway e cloud è stabilita su un canale cifrato
-  - I dati sono stati inviati al Cloud con protocolli sicuri e la trasmissione è stata confermata
-- *Scenario principale*: 
-  - Il gateway prepara i dati da inviare
-  - Il gateway avvia la connessione con il cloud e negozia il protocollo di cifratura
-  - La connessione sicura con il Cloud viene stabilita
-  - Il gateway invia i dati al cloud in modo cifrato
-  - Il gateway riceve conferma di ricezione dal cloud
-*Estensioni*: Salvataggio (buffer) dati per disconnessione (UC3.1)
-*Inclusioni*: 
+- *Trigger*: Le credenziali fornite al Sistema non sono valide
+- *Pre-condizione*:
+  - Il gateway ha tentato la connessione con il Sistema
+- *Post-condizione*:
+  - il Sistema rifiuta la connessione
+  - Il Gateway è in stato di errore (e interrompe i tentativi di invio dati)
+- *Scenario principale*:
+  - Il Sistema respinge la richiesta di connessione dal Gateway
+  - il Sistema invia un messaggio di errore al Gateway
+  - il Gateway registra l'errore di autenticazione e sospende i tentativi di connessione
+  - Il Gateway attende il riavvio o un intervento di uno user
+- *Estensioni*:
+- *Inclusioni*:
 
-=== UC3.1 - Salvataggio (buffer) dati per disconnessione
+==== UC#uc-number() - Trasmissione sicura e cifrata dati al Sistema <Trasmissione-sicura-cifrata-dati-sistema>
+- *Attore primario*:  Gateway (simulato)
+- *Trigger*: Sono disponibili nuovi dati da mandare al Sistema
+- *Pre-condizione*:
+  - Il Gateway è autenticato, autorizzato e dispone delle chiavi necessarie per la cifratura
+  - I dati in un formato standardizzato interno sono disponibili
+  - Il Gateway è raggiungibile dal Cloud
+- *Post-condizione*:
+  - La comunicazione tra Gateway e Sistema è stabilita su un canale cifrato
+  - I dati sono stati inviati al Sistema con protocolli sicuri e la trasmissione è stata confermata
+- *Scenario principale*:
+  - Il Gateway prepara i dati da inviare
+  - Il Gateway avvia la connessione con il Sistema e negozia il protocollo di cifratura
+  - La connessione sicura con il Sistema viene stabilita
+  - Il Gateway invia i dati al Sistema in modo cifrato
+  - Il Gateway riceve conferma di ricezione dal Sistema
+*Estensioni*:
+@Salvataggio-buffer-dati-disconnessione
+*Inclusioni*:
+
+==== UC#uc-number() - Salvataggio (buffer) dati per disconnessione <Salvataggio-buffer-dati-disconnessione>
 - *Attore primario*:  Gateway (simulato)
 - *Trigger*: Tentativo fallito di invio dati al cloud
-- *Pre-condizione*: 
+- *Pre-condizione*:
   - Il gateway ha dati da inviare
   - La connessione al Cloud si è interrotta o non è disponibile
-- *Post-condizione*: 
-  - Il pacchetto di dati è salvato in un buffer locale
-  - La connessione al cloud viene ripristinata 
-  - I dati vengono inviati in ordine (definito)
-- *Scenario principale*: 
+- *Post-condizione*:
+  - I dati da inviare sono salvati in un buffer locale
+- *Scenario principale*:
   - Il tentativo di invio dati fallisce
-  - Il gateway memorizza il pacchetto dati non inviato nel suo buffer locale
-  - Il gateway continua a tentare periodicamente di ristabilire la connessione al cloud
-  - La connessione viene ristabilita
-  - Il gateway invia i dati memorizzati nel buffer al cloud in ordine (definito)
-  - Il gateway riceve conferma e svuota il buffer con i dati inviati con successo
-- *Scenario secondario*: Se il buffer raggiungere la capacità massima, i dati più vecchi vengono eliminati per scartati per aggiungere i nuovi
-- *Estensioni*: 
-- *Inclusioni*: 
+  - Il gateway memorizza i dati non inviati nel suo buffer locale
+- *Scenari alternativi*:
+  - Se il buffer raggiungere la capacità massima, i dati più vecchi vengono eliminati per scartati per aggiungere i nuovi
+  - Se il cloud ritorna raggiungibile il invia i dati salvati nel buffer
+- *Estensioni*:
+- *Inclusioni*:
+//DA SVILUPPARE i due scenari alternativi
 
-// quindi da togliere questo?
-=== UC4 - Normalizzazione e Formattazione interna dei dati 
+==== UC#uc-number() - Normalizzazione e Formattazione interna dei dati
 - *Attore primario*:  Gateway (simulato)
 - *Trigger*: Sono pronti dati grezzi da normalizzare
 - *Pre-condizione*: I dati grezzi sono stati acquisiti con successo dai sensori simulati
 - *Post-condizione*: I dati sono stati convertiti in un formato interno standardizzato
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway riceve i dati grezzi
   - Il gateway applica la logica di normalizzazione dei dati
   - I dati risultano uniformati in un formato interno standardizzato
-- *Estensioni*: 
-- *Inclusioni*: 
+- *Estensioni*:
+- *Inclusioni*:
 
-=== UC5 - Aggiornamento sicuro delle credenziali di autenticazione
+//Dina: secondo me non ha senso che il certificato scada, al massimo è il super-admin che lo cambia
+//o invia comando di rinnovo al gateway, se lo vuole far scadere rimuove il certificato
+==== UC#uc-number() - Aggiornamento sicuro delle credenziali di autenticazione
 - *Attore primario*:  Gateway (simulato)
 - *Trigger*: Il certificato di autenticazione sta scadendo
-- *Pre-condizione*: Le credenziali attuali (certificati) sono in scadenza 
+- *Pre-condizione*: Le credenziali attuali (certificati) sono in scadenza
 - *Post-condizione*: Le nuove credenziali di autenticazione sono state generate, acquisite e persistono nel gateway
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway rileva che le credenziali attuali sono in scadenza o non valide
   - Il gateway avvia un processo di rinnovo automatico/manuale con il cloud
   - Il gateway riceve le nuove credenziali tramite una sessione sicura
   - Il gateway si salva le nuove informazioni e tenta l'autenticazione con le nuove credenziali
-- *Inclusioni*: 
+- *Inclusioni*:
   - Autenticazione e Provisioning (UC2)
   - Gestione persistenza dati di commissioning (UC1)
 - *Estensioni*:
 
-=== UC06 - Ricezione e risposta a messaggi dal Cloud
+==== UC#uc-number() - Ricezione e risposta a messaggi dal Cloud
 - *Attore primario*: Gateway (simulato)
 - *Trigger*: Ricezione di un messaggio di controllo del Cloud
 - *Pre-condizione*: il gateway è connesso e autenticato con il cloud, il gateway ha la possibilità di rispondere ai messaggi del Cloud
 - *Post-condizione*: il messaggio è stato elaborato, il gateway manda una risposta coerente
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway riceve un messaggio dal Cloud
   - Il gateway elabora la richiesta, se possibile, come la modifica di parametri
   - Il gateway invia una risposta adatta al Cloud
@@ -1492,37 +1505,37 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - (UC06.5) Avvio simulazione di specifico sensore
   - (UC06.6) Stop simulazione di specifico sensore
 
-=== UC06.1 - Comando del Cloud fallito
+==== UC#sub-uc-number().1 - Comando del Cloud fallito
 - *Attore primario*: Gateway (simulato)
 - *Trigger*: Non è possibile soddisfare il comando ricevuto dal Cloud
 - *Pre-condizione*: il gateway è connesso e autenticato con il cloud, il gateway ha la possibilità di rispondere ai messaggi del Cloud
 - *Post-condizione*: il gateway informa il Cloud che la sua richiesta non è andata a buon fine
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway non riesce a soddisfare la richiesta del Cloud
   - Il gateway invia un messaggio di errore al Cloud
 
-=== UC06.2 - Creazione sensore simulato
+==== UC#sub-uc-number().2 - Creazione sensore simulato
 - *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richista relativa del Cloud
-- *Pre-condizione*: 
+- *Trigger*: Ricezione di richiesta relativa del Cloud
+- *Pre-condizione*:
   - Il gateway è connesso e autenticato con il Cloud.
   - Non esiste già un sensore con lo stesso identificativo.
   - Il gateway ha risorse disponibili per ospitare un nuovo sensore (memoria, slot liberi).
 - *Post-condizione*: Un nuovo sensore simulato è registrato nel gateway.
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway riceve dal Cloud il comando di creazione.
   - Il gateway verifica che non esista già un sensore con lo stesso ID.
   - Il gateway crea il sensore simulato con i parametri di default.
   - Il gateway invia conferma al Cloud.
 
-=== UC06.3 - Cancellazione sensore simulato
+==== UC#sub-uc-number().3 - Cancellazione sensore simulato
 - *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richista relativa del Cloud
-- *Pre-condizione*: 
+- *Trigger*: Ricezione di richiesta relativa del Cloud
+- *Pre-condizione*:
   - Il gateway è connesso e autenticato con il Cloud.
   - Il sensore da cancellare esiste ed è registrato nel gateway.
 - *Post-condizione*: Il sensore simulato selezionato è rimosso dal gateway.
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway riceve dal Cloud il comando di cancellazione.
   - Il gateway verifica che il sensore esista.
   - Il gateway interrompe eventuale simulazione attiva.
@@ -1531,55 +1544,55 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Inclusioni*:
   - (UC06.6) Stop simulazione di specifico sensore
 
-=== UC06.4 - Modifica parametri sensore simulato
+==== UC#sub-uc-number().4 - Modifica parametri sensore simulato
 - *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richista relativa del Cloud
-- *Pre-condizione*: 
+- *Trigger*: Ricezione di richiesta relativa del Cloud
+- *Pre-condizione*:
   - Il gateway è connesso e autenticato con il Cloud.
   - Il sensore da modificare esiste ed è attivo o configurabile.
   - I nuovi parametri sono validi.
 - *Post-condizione*: I parametri del sensore simulato sono aggiornati nel gateway.
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway riceve dal Cloud il comando di modifica.
   - Il gateway verifica che il sensore esista.
   - Il gateway controlla la validità dei nuovi parametri.
   - Il gateway aggiorna la configurazione del sensore.
   - Il gateway invia conferma al Cloud.
 
-=== UC06.5 - Avvio simulazione di specifico sensore
+==== UC#sub-uc-number().5 - Avvio simulazione di specifico sensore
 - *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richista relativa del Cloud
+- *Trigger*: Ricezione di richiesta relativa del Cloud
 - *Pre-condizione*:
   - Il gateway è connesso e autenticato con il Cloud.
   - Il sensore simulato esiste.
   - Il sensore non è già in stato di simulazione attiva.
 - *Post-condizione*: Il gateway inizia a generare dati con quel sensore simulato.
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway riceve dal Cloud il comando di avvio simulazione.
   - Il gateway inizia a produrre dati simulati.
   - Il gateway invia conferma al Cloud.
 
-=== UC06.6 - Stop simulazione di specifico sensore
+==== UC#sub-uc-number().6 - Stop simulazione di specifico sensore
 - *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richista relativa del Cloud
+- *Trigger*: Ricezione di richiesta relativa del Cloud
 - *Pre-condizione*:
   - Il gateway è connesso e autenticato con il Cloud.
   - Il sensore simulato esiste.
   - Il sensore è in stato di simulazione attiva.
 - *Post-condizione*: Il gateway smette a generare dati con quel sensore simulato.
-- *Scenario principale*: 
+- *Scenario principale*:
   - Il gateway riceve dal Cloud il comando di stop simulazione.
   - Il gateway smette di produrre dati simulati.
   - Il gateway invia conferma al Cloud.
 
 === Attore principale - REST Client
-//Dina
+// REST Client autenticato significa che ha un token valido per un tenant specifico
 ==== UC#uc-number() - Richiesta dati real-time sensore <Richiesta-dati-real-time-sensore>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client vuole richiedere i dati real-time di un sensore
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
@@ -1601,7 +1614,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client richiede i dati di un sensore non esistente
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il REST Client ha richiesto i dati di un sensore non esistente
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
@@ -1613,7 +1626,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client seleziona un sensore per il quale non sono disponibili dati
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
@@ -1624,7 +1637,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client richiede i dati di un sensore non associato al proprio tenant
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
@@ -1635,7 +1648,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
 - *Post-condizioni*:
   - Viene verificata la validità del sensore richiesto e la sua associazione al tenant del REST Client
 - *Scenario principale*:
@@ -1646,7 +1659,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
+
   - Il sensore richiesto esiste ed appartiene al tenant del REST Client
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
@@ -1658,7 +1671,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client vuole richiedere lo storico dei dati di un sensore
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
 - *Post-condizioni*:
   - Viene restituito lo storico dei dati del sensore richiesto
 - *Scenario principale*:
@@ -1682,7 +1694,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il REST Client ha richiesto lo storico dei dati di un sensore
 - *Pre-condizioni*:
   - Il REST Client è autenticato nel Sistema
-  - Il Sistema è raggiungibile e funzionante
   - Il sensore richiesto esiste ed appartiene al tenant del REST Client
 - *Post-condizioni*:
   - Viene restituito lo storico dei dati del sensore richiesto
@@ -1691,9 +1702,8 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== UC#uc-number() - Autenticazione REST Client <Autenticazione-REST-Client>
 - *Attore principale*: REST Client
-- *Trigger*: Il REST Client tenta di autenticarsi nel Sistema
+- *Trigger*: Il REST Client vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
-  - Il Sistema è raggiungibile e funzionante
   - Il REST Client possiede delle credenziali di accesso
 - *Post-condizioni*:
   - Il REST Client è autenticato nel Sistema
@@ -1711,9 +1721,8 @@ Utente è l'utente generico che tenta di accedere al sistema.
 //potenziale generalizzazione dell'errore
 ===== UC#sub-uc-number().1 - Credenziali REST Client errate <Credenziali-REST-Client-errate>
 - *Attore principale*: REST Client
-- *Trigger*: Il REST Client invia credenziali errate al Sistema
+- *Trigger*: Il REST Client invia delle credenziali errate al Sistema
 - *Pre-condizioni*:
-  - Il Sistema è raggiungibile e funzionante
   - Il REST Client ha inviato credenziali errate
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
@@ -1723,9 +1732,8 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== UC#sub-uc-number().2 - Credenziali REST Client scadute <Credenziali-REST-Client-scadute>
 - *Attore principale*: REST Client
-- *Trigger*: Il REST Client invia credenziali scadute al Sistema
+- *Trigger*: Il REST Client invia delle credenziali scadute al Sistema
 - *Pre-condizioni*:
-  - Il Sistema è raggiungibile e funzionante
   - Il REST Client ha inviato credenziali scadute
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
