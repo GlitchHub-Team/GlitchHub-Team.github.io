@@ -73,6 +73,134 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 
 === Attore principale - Gateway
 //Siria, Jaume
+=== UC1 - Gestione persistenza dati di commissioning 
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Avvio o riavvio del gateway
+- *Pre-condizione*: I dati di commissioning sono stati inviati e salvati precedentemente
+- *Post-condizione*: Le informazioni di commissioning sono caricate in memoria e garantiscono consistenza per i successivi flussi di lavoro
+- *Scenario principale*: 
+  - Il gateway si avvia
+  - Il gateway carica le informazioni persistenti dalla sua memoria locale
+  - Le informazioni sono rese disponibili ai moduli interni per garantire la consistenza
+- *Scenario secondario*: Le informazioni di autenticazione di commissioning risultano assenti o corrotte
+- *Estensioni*: Dati di Commissioning Assenti/Corrotti (UC1.1)
+- *Inclusioni*: Autenticazione e provisioning (UC2)
+
+=== UC1.1 - Dati di Commissioning Assenti/Corrotti
+- *Attore primario*:  Gateway (simulato)
+- *Trigger*: La verifica dell'integrità e della validità delle informazioni di commissioning fallisce
+- *Pre-condizione*: Il gateway ha tentato di caricare le informazioni di commissioning dalla memoria locale ma i dati risultano assenti, illeggibili o non superano il controllo dal Cloud
+- *Post-condizione*: Il gateway è in uno stato di errore e non può proseguire il flusso di lavoro
+- *Scenario principale*: 
+  - Il processo di verifica delle informazioni di commissioning fallisce
+  - Il gateway entra in uno stato di errore e blocca i flussi di lavoro
+  - Il gateway attende comandi o un riavvio
+- *Estensioni*: 
+- *Inclusioni*:
+
+=== UC2 - Autenticazione e provisioning
+- *Attore primario*:  Gateway (simulatore)
+- *Trigger*: Il gateway si avvia per la prima volta
+- *Pre-condizione*:
+  - Il gateway è avviato
+  - Il gateway possiede i parametri di connessione al Cloud e le credenziali iniziali
+- *Post-condizione*: 
+  - Il gataway è autenticato, è associato in modo univoco
+  - Le informazioni di commissioning sono persistenti
+- *Scenario principale*: 
+  - Il gateway tenta di stabilire una connessione sicura con il Cloud
+  - Il gateway presenta i certificati/chiavi d'accesso per l'autenticazione
+  - Il cloud valida le credenziali e associa il gateway ad un tenant
+  - Il gateway riceve conferma del provisioning
+- *Estensioni*: Gestione autenticazione fallita (UC2.1)
+- *Inclusioni*: 
+
+//non so se l'attore primario sia il gateway o il cloud
+=== UC2.1 - Gestione Autenticazione Fallita
+- *Attore primario*:  gateway (simulato)
+- *Trigger*: Rifiuto di connessione da parte del Cloud dovuto a credenziali non valide
+- *Pre-condizione*:
+  - Il gateway ha tentato la connessione
+  - Il cloud ha determinato che le credenziali non sono valide
+- *Post-condizione*: 
+  - il cloud rifiuta la connessione
+  - Il gateway è in stato di errore (e interrompe i tentativi di invio dati)
+- *Scenario principale*: 
+  - Il cloud respinge la richiesta di connessione
+  - il cloud invia un messaggio di errore al gateway
+  - il gateway registra l'errore di autenticazione e sospende i tentativi di connessione
+  - Il gateway attende il riavvio o un intervento di un user
+- *Estensioni*: 
+- *Inclusioni*:
+
+=== UC3 - Trasmissione sicura e cifrata dati al cloud
+- *Attore primario*:  Gateway (simulato)
+- *Trigger*: Sono disponibili nuovi dati da mandare al cloud
+- *Pre-condizione*: 
+  - Il gateway è autenticato, autorizzato e dispone dei certificati necessari per la cifratura
+  - I dati in un formato standardizzato interno sono disponibili
+  - Il gateway è online
+- *Post-condizione*: 
+  - La comunicazione tra gateway e cloud è stabilita su un canale cifrato
+  - I dati sono stati inviati al Cloud con protocolli sicuri e la trasmissione è stata confermata
+- *Scenario principale*: 
+  - Il gateway prepara i dati da inviare
+  - Il gateway avvia la connessione con il cloud e negozia il protocollo di cifratura
+  - La connessione sicura con il Cloud viene stabilita
+  - Il gateway invia i dati al cloud in modo cifrato
+  - Il gateway riceve conferma di ricezione dal cloud
+*Estensioni*: Salvataggio (buffer) dati per disconnessione (UC3.1)
+*Inclusioni*: 
+
+=== UC3.1 - Salvataggio (buffer) dati per disconnessione
+- *Attore primario*:  Gateway (simulato)
+- *Trigger*: Tentativo fallito di invio dati al cloud
+- *Pre-condizione*: 
+  - Il gateway ha dati da inviare
+  - La connessione al Cloud si è interrotta o non è disponibile
+- *Post-condizione*: 
+  - Il pacchetto di dati è salvato in un buffer locale
+  - La connessione al cloud viene ripristinata 
+  - I dati vengono inviati in ordine (definito)
+- *Scenario principale*: 
+  - Il tentativo di invio dati fallisce
+  - Il gateway memorizza il pacchetto dati non inviato nel suo buffer locale
+  - Il gateway continua a tentare periodicamente di ristabilire la connessione al cloud
+  - La connessione viene ristabilita
+  - Il gateway invia i dati memorizzati nel buffer al cloud in ordine (definito)
+  - Il gateway riceve conferma e svuota il buffer con i dati inviati con successo
+- *Scenario secondario*: Se il buffer raggiungere la capacità massima, i dati più vecchi vengono eliminati per scartati per aggiungere i nuovi
+- *Estensioni*: 
+- *Inclusioni*: 
+
+// quindi da togliere questo?
+=== UC4 - Normalizzazione e Formattazione interna dei dati 
+- *Attore primario*:  Gateway (simulato)
+- *Trigger*: Sono pronti dati grezzi da normalizzare
+- *Pre-condizione*: I dati grezzi sono stati acquisiti con successo dai sensori simulati
+- *Post-condizione*: I dati sono stati convertiti in un formato interno standardizzato
+- *Scenario principale*: 
+  - Il gateway riceve i dati grezzi
+  - Il gateway applica la logica di normalizzazione dei dati
+  - I dati risultano uniformati in un formato interno standardizzato
+- *Estensioni*: 
+- *Inclusioni*: 
+
+=== UC5 - Aggiornamento sicuro delle credenziali di autenticazione
+- *Attore primario*:  Gateway (simulato)
+- *Trigger*: Il certificato di autenticazione sta scadendo
+- *Pre-condizione*: Le credenziali attuali (certificati) sono in scadenza 
+- *Post-condizione*: Le nuove credenziali di autenticazione sono state generate, acquisite e persistono nel gateway
+- *Scenario principale*: 
+  - Il gateway rileva che le credenziali attuali sono in scadenza o non valide
+  - Il gateway avvia un processo di rinnovo automatico/manuale con il cloud
+  - Il gateway riceve le nuove credenziali tramite una sessione sicura
+  - Il gateway si salva le nuove informazioni e tenta l'autenticazione con le nuove credenziali
+- *Inclusioni*: 
+  - Autenticazione e Provisioning (UC2)
+  - Gestione persistenza dati di commissioning (UC1)
+- *Estensioni*:
+
 
 
 === Attore principale - REST Client
