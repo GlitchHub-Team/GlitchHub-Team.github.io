@@ -201,6 +201,26 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   - Gestione persistenza dati di commissioning (UC1)
 - *Estensioni*:
 
+=== UC06 - Ricezione e risposta a messaggi dal Cloud
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Ricezione di un messaggio di controllo del Cloud
+- *Pre-condizione*: il gateway è connesso e autenticato con il cloud, il gateway ha la possibilità di rispondere ai messaggi del Cloud
+- *Post-condizione*: il messaggio è stato elaborato, il gateway manda una risposta coerente
+- *Scenario principale*: 
+  - Il gateway riceve un messaggio dal Cloud
+  - Il gateway elabora la richiesta, se possibile
+  - Il gateway invia una risposta adatta al Cloud
+- *Estensioni*: 
+  - Comando del Cloud non riconosciuto (UC06.1)
+
+=== UC06.1 - Comando del Cloud non riconosciuto 
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Non è possibile soddisfare il comando ricevuto dal Cloud
+- *Pre-condizione*: il gateway è connesso e autenticato con il cloud, il gateway ha la possibilità di rispondere ai messaggi del Cloud
+- *Post-condizione*: il gateway informa il Cloud che la sua richiesta non è andata a buon fine
+- *Scenario principale*: 
+  - Il gateway non riesce a soddisfare la richiesta del Cloud
+  - Il gateway invia un messaggio di errore al Cloud
 
 
 === Attore principale - REST Client
