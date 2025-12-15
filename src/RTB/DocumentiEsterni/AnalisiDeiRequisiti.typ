@@ -3,14 +3,28 @@
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
-  versione: "0.5.0",
+  versione: "0.6.0",
   registro-modifiche: (
     (
-      "0.5.0",
+      "0.6.0",
       "14/12/2025",
       "Alessandro Dinato, Michele Dioli",
       "-",
       "Stesura Use Case relativi al Super-admin",
+    ),
+    (
+      "0.5.0",
+      "9/12/2025",
+      "Elia Ernesto Stellin, Riccardo Graziani",
+      "-",
+      "Stesura Use Case relativi al Tenant-admin",
+    ),
+    (
+      "0.4.0",
+      "8/12/2025",
+      "Alessandro Dinato",
+      "-",
+      "Stesura Use Case relativi a Utente, Tenant User e REST Client",
     ),
     ("0.3.0", "16/11/2025", "Hossam Ezzemouri", "-", "Stesura degli Use Case 3, 3.1, 3.2, 3.3, 4, 5 e 6"),
     (
@@ -30,13 +44,18 @@
   tipo-documento: "Analisi dei Requisiti",
 )
 
-#let uc(id) = {
-  link(label(id))[#underline()[#id]]
+#let uc-counter = counter("uc-counter")
+#uc-counter.update(0)
+
+#let uc-number = () => {
+  uc-counter.step()
+  context uc-counter.display()
 }
 
-#let uc(id) = {
-  link(label(id))[#underline()[#id]]
+#let sub-uc-number = () => {
+  context uc-counter.display()
 }
+
 
 = Introduzione
 Questo documento ha come obiettivo quello di fornire informazioni  dettagliate e chiare riguardo i requisiti che il software progettato possiede: questo per poter esser un punto di riferimento sia per i soggetti coinvolti nello sviluppo sia per gli appaltanti, consentendo ad entrambi di verificare che il progetto soddisfi i requisiti funzionali e non funzionali esplicitati.
@@ -71,14 +90,12 @@ I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione s
 == Attori
 Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
 
-
 == Lista dei casi d'uso
 Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
 
 === Attore principale - Utente
 Utente è l'utente generico che tenta di accedere al sistema.
-//Dina
-==== UC1 - Autenticazione <UC1>
+==== UC#uc-number() - Autenticazione Utente <Autenticazione-Utente>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
@@ -93,13 +110,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - L'Utente inserisce username o password errati
 - *Estensioni*:
-  - #uc("UC1.1")
-  - #uc("UC1.4")
+  - @Autenticazione-non-riuscita
+  - @Account-sospeso
 - *Inclusioni*:
-  - #uc("UC1.2")
-  - #uc("UC1.3")
-
-==== UC1.1 - Autenticazione non riuscita <UC1.1>
+  - @Inserimento-username-auth
+  - @Inserimento-password
+===== UC#sub-uc-number().1 - Autenticazione non riuscita <Autenticazione-non-riuscita>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente inserisce username o password errati
 - *Pre-condizioni*:
@@ -112,7 +128,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica le credenziali inserite dall'Utente e rileva l'errore
 
-===== UC1.2 - Inserimento username <UC1.2>
+===== UC#sub-uc-number().2 - Inserimento username autenticazione <Inserimento-username-auth>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
@@ -123,7 +139,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce lo username
 
-===== UC1.3 - Inserimento password <UC1.3>
+==== UC#sub-uc-number().3 - Inserimento password <Inserimento-password>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
@@ -134,7 +150,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce la password
 
-==== UC1.4 - Account sospeso <UC1.4>
+==== UC#sub-uc-number().4 - Account sospeso <Account-sospeso>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente prova ad autenticarsi con un account sospeso
 - *Pre-condizioni*:
@@ -146,7 +162,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica lo stato dell'account dell'Utente e rileva che l'account è sospeso
 
-==== UC2 - Password dimenticata <UC2>
+==== UC#uc-number() - Password dimenticata <Password-dimenticata>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente ha dimenticato la password e vuole reimpostarla
 - *Pre-condizioni*:
@@ -160,12 +176,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - L'Utente inserisce un indirizzo email non associato ad alcun account
 - *Estensioni*:
-  - #uc("UC2.3")
+  - @Indirizzo-email-non-associato-account
 - *Inclusioni*:
-  - #uc("UC2.1")
-  - #uc("UC2.2")
+  - @Inserimento-indirizzo-email
+  - @Invio-email-reimpostazione-password
 
-===== UC2.1 - Inserimento indirizzo email <UC2.1>
+===== UC#sub-uc-number().1 - Inserimento indirizzo email <Inserimento-indirizzo-email>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente inserisce l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
@@ -176,7 +192,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce l'indirizzo email associato al proprio account
 
-===== UC2.2 - Invio email di reimpostazione password <UC2.2>
+===== UC#sub-uc-number().2 - Invio email di reimpostazione password <Invio-email-reimpostazione-password>
 - *Attore principale*: Utente
 - *Attore secondario*: Client email
 - *Trigger*: L'Utente ha inserito l'indirizzo email associato al proprio account
@@ -189,7 +205,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica l'indirizzo email inserito dall'Utente ed invia l'email di reimpostazione password
 
-===== UC2.3 - Indirizzo email non associato ad alcun account <UC2.3>
+===== UC#sub-uc-number().3 - Indirizzo email non associato ad alcun account <Indirizzo-email-non-associato-account>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente inserisce un indirizzo email non associato ad alcun account
 - *Pre-condizioni*:
@@ -201,7 +217,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica l'indirizzo email inserito dall'Utente e rileva l'errore
 
-===== UC3 - Reimpostazione password <UC3>
+===== UC#uc-number() - Reimpostazione password <Reimpostazione-password>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole reimpostare la password
 - *Pre-condizioni*:
@@ -216,11 +232,11 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - La nuova password non rispetta i criteri di sicurezza
 - *Estensioni*:
-  - #uc("UC3.2")
+  - @Password-non-conforme-criteri-sicurezza
 - *Inclusioni*:
-  - #uc("UC3.1")
+  - @Inserimento-nuova-password
 
-===== UC3.1 - Inserimento nuova password <UC3.1>
+===== UC#sub-uc-number().1 - Inserimento nuova password <Inserimento-nuova-password>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente ha cliccato sul link di reimpostazione password nell'email
 - *Pre-condizioni*:
@@ -231,9 +247,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce la nuova password
 
-//inserimento conferma password, UC3.3
+//inserimento conferma password, UC#sub-uc-number().3
 
-===== UC3.2 - Password non conforme ai criteri di sicurezza <UC3.2>
+===== UC#sub-uc-number().2 - Password non conforme ai criteri di sicurezza <Password-non-conforme-criteri-sicurezza>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente inserisce una nuova password che non rispetta i criteri di sicurezza
 - *Pre-condizioni*:
@@ -249,7 +265,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 === Attore principale - Tenant User
 //Dina
-==== UC4 - Logout <UC4>
+==== UC#uc-number() - Logout <Logout>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole effettuare il logout dal Sistema
 - *Pre-condizioni*:
@@ -260,7 +276,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant User seleziona la funzionalità di logout
 
-==== UC5 - Visualizzazione dashboard Tenant User <UC5>
+==== UC#uc-number() - Visualizzazione dashboard Tenant User <Visualizzazione-dashboard-tenant-user>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare la propria dashboard
 - *Pre-condizioni*:
@@ -271,7 +287,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant User accede alla dashboard del proprio tenant
 
-==== UC6 - Visualizzazione sensori collegati al tenant <UC6>
+==== UC#uc-number() - Visualizzazione sensori collegati al tenant <Visualizzazione-sensori-collegati-tenant>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare i sensori collegati al proprio tenant
 - *Pre-condizioni*:
@@ -283,8 +299,8 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant User seleziona la funzionalità di visualizzazione sensori
   - Viene mostrata la lista dei sensori associati al tenant del Tenant User
 
-//generalizzazione UC7 e UC8
-==== UC7 - Visualizzazione dati real-time sensore <UC7>
+//generalizzazione UC#uc-number() e UC#sub-uc-number()
+==== UC#uc-number() - Visualizzazione dati real-time sensore <Visualizzazione-dati-real-time-sensore>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare i dati real-time di un sensore
 - *Pre-condizioni*:
@@ -299,12 +315,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Nessun dato disponibile per il sensore selezionato
 - *Estensioni*:
-  - #uc("UC7.1")
+  - @Dati-non-disponibili-sensore-selezionato
 - *Inclusioni*:
-  - #uc("UC7.2")
-  - #uc("UC7.3")
+  - @Selezione-sensore
+  - @Visualizzazione-dati-real-time-sensore-selezionato
 
-===== UC7.1 - Dati non disponibili per il sensore selezionato <UC7.1>
+===== UC#sub-uc-number().1 - Dati non disponibili per il sensore selezionato <Dati-non-disponibili-sensore-selezionato>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User seleziona un sensore per il quale non sono disponibili dati
 - *Pre-condizioni*:
@@ -317,7 +333,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
 
-===== UC7.2 - Selezione sensore <UC7.2>
+===== UC#sub-uc-number().2 - Selezione sensore <Selezione-sensore>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User seleziona un sensore
 - *Pre-condizioni*:
@@ -329,7 +345,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant User seleziona un sensore associato al proprio tenant
 
-===== UC7.3 - Visualizzazione dati real-time del sensore selezionato <UC7.3>
+===== UC#sub-uc-number().3 - Visualizzazione dati real-time del sensore selezionato <Visualizzazione-dati-real-time-sensore-selezionato>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User ha selezionato un sensore per visualizzare i dati real-time
 - *Pre-condizioni*:
@@ -341,7 +357,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema recupera e mostra i dati real-time del sensore selezionato
 
-==== UC8 - Visualizzazione storico dati sensore <UC8>
+==== UC#uc-number() - Visualizzazione storico dati sensore <Visualizzazione-storico-dati-sensore>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare lo storico dei dati di un sensore
 - *Pre-condizioni*:
@@ -356,12 +372,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Nessun dato storico disponibile per il sensore selezionato
 - *Estensioni*:
-  - #uc("UC7.1")
+  - @Dati-non-disponibili-sensore-selezionato
 - *Inclusioni*:
-  - #uc("UC7.2")
-  - #uc("UC8.3")
+  - @Selezione-sensore
+  - @Visualizzazione-storico-dati-sensore-selezionato
 
-===== UC8.3 - Visualizzazione storico dati del sensore selezionato <UC8.3>
+===== UC#sub-uc-number().3 - Visualizzazione storico dati del sensore selezionato <Visualizzazione-storico-dati-sensore-selezionato>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User ha selezionato un sensore per visualizzare lo storico dei dati
 - *Pre-condizioni*:
@@ -378,7 +394,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 === Attore principale - Tenant Admin
 // Tenant Admin inserisce username e email e poi il Tenant User
 // dalla mail che gli arriva si setta la password?
-=== UC1 - Registrazione nuovo Tenant <UC1>
+==== UC#uc-number() - Registrazione nuovo Tenant <Registrazione-nuovo-tenant>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole registrare un nuovo Tenant User
 - *Pre-condizioni*:
@@ -395,13 +411,13 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - La mail o lo username esistono già nel Sistema
   - Il Sistema non riesce a salvare il nuovo utente
 - *Estensioni*:
-  - #uc("UC1.3")
-  - #uc("UC1.4")
+  - @Errore-salvataggio-dati
+  - @Dati-registrazione-gia-utilizzati
 - *Inclusioni*:
-  - #uc("UC1.1")
-  - #uc("UC1.2")
+  - @Inserimento-username
+  - @Inserimento-email
 
-=== UC1.1 - Inserimento username <UC1.1>
+===== UC#sub-uc-number().1 - Inserimento username <Inserimento-username>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
@@ -412,7 +428,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant Admin inserisce lo username
 
-=== UC1.2 - Inserimento email <UC1.2>
+===== UC#sub-uc-number().2 - Inserimento email <Inserimento-email>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
@@ -425,7 +441,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 // Nel caso ci sia un problema interno al sistema che non riesce
 // a salvare il nuovo utente
-=== UC1.3 - Errore salvataggio dati <UC1.3>
+===== UC#sub-uc-number().3 - Errore salvataggio dati <Errore-salvataggio-dati>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
@@ -439,7 +455,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Si verifica un errore interno
   - Il Sistema mostra un messaggio di errore
 
-=== UC1.4 - Dati di registrazione già utilizzati <UC1.4>
+===== UC#sub-uc-number().4 - Dati di registrazione già utilizzati <Dati-registrazione-gia-utilizzati>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole registrare un Tenant User
 - *Pre-condizioni*:
@@ -453,7 +469,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Sistema rileva un utente già registrato che possiede gli stessi dati
 
 // Ha senso metterla?
-=== UC2 - Sospendi Tenant User <UC2>
+==== UC#uc-number() - Sospensione Tenant User <Sospensione-Tenant-User>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole sospendere l'accesso di un Tenant User al Sistema
 - *Pre-condizioni*:
@@ -469,7 +485,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Sistema blocca l'accesso del Tenant User alla piattaforma
 
 // Stessa cosa di prima
-=== UC3 - Riattiva Tenant User <UC3>
+==== UC#uc-number() - Riattivazione Tenant User <Riattivazione-Tenant-User>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole riattivare l'accesso di un Tenant User al Sistema
 - *Pre-condizioni*:
@@ -484,7 +500,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin conferma
   - Il Sistema sblocca l'accesso del Tenant User alla piattaforma
 
-=== UC4 - Elimina Tenant User <UC4>
+==== UC#uc-number() - Eliminazione Tenant User <Eliminazione-Tenant-User>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole eliminare un Tenant User
 - *Pre-condizioni*:
@@ -499,7 +515,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin conferma
   - Il Sistema rimuove l'account del Tenant User
 
-=== UC5 - Visualizza dashboard Tenant Admin <UC5>
+==== UC#uc-number() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole visualizzare la propria dashboard
 - *Pre-condizioni*:
@@ -510,7 +526,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant Admin accede alla dashboard del proprio tenant
 
-=== UC6 - Visualizza lista Tenant User <UC6>
+==== UC#uc-number() - Visualizzazione lista Tenant User <Visualizzazione-lista-tenant-user>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole visualizzare i Tenant User registrati nel tenant
 - *Pre-condizioni*:
@@ -523,12 +539,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Viene mostrata la lista dei Tenant User registrati nel Tenant
 
 // Competenza del Tenant Admin? Lo può fare?
-=== UC7 - Registra nuovo sensore <UC7>
+==== UC#uc-number() - Registrazione nuovo sensore <Registrazione-nuovo-sensore>
 
 // Penso sia doppione con lo UC del Tenant User
-=== UCZ - Visualizza lista dei sensori <UCZ>
+==== UCZ - Visualizzazione lista dei sensori <Visualizzazione-lista-dei-sensori>
 
-=== UC8 - Disattiva sensore <UC8>
+==== UC#uc-number() - Disattivazione sensore <Disattivazione-sensore>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole disattivare un sensore
 - *Pre-condizioni*:
@@ -541,7 +557,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin seleziona il sensore che vuole disattivare
   - Il Tenant Admin disattiva il sensore
 
-=== UC9 - Riattiva sensore <UC9>
+==== UC#uc-number() - Riattivazione sensore <Riattivazione-sensore>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole riattivare un sensore
 - *Pre-condizioni*:
@@ -555,9 +571,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin riattivare il sensore
 
 // Ha senso? Lo fa il Tenant Admin o lo fa il Super Admin?
-=== UC10 - Elimina sensore <UC10>
+==== UC#uc-number() - Eliminazione sensore <Eliminazione-sensore>
 
-=== UC11 - Visualizza lista di gateway <UC11>
+==== UC#uc-number() - Visualizzazione lista di gateway <Visualizzazione-lista-gateway>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole visualizzare i gateway associati al tenant
 - *Pre-condizioni*:
@@ -570,7 +586,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Viene mostrata la lista dei gateway associati al Tenant
 
 // Tipo: è online, quanta roba sta mandando, magari il costo associato
-=== UC12 - Visualizza informazioni dettagliate gateway <UC12>
+==== UC#uc-number() - Visualizzazione informazioni dettagliate gateway <Visualizzazione-informazioni-dettagliate-gateway>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole visualizzare le informazioni del gateway
 - *Pre-condizioni*:
@@ -583,11 +599,11 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin seleziona un gateway dalla lista dei gateway
   - Vengono mostrate le informazioni dettagliate del gateway
 - *Inclusioni*:
-  - #uc("UC12.1")
+  - @Selezione-gateway-tenant-admin
 - *Estensioni*:
-  - #uc("UC12.2")
+  - @Gateway-non-raggiungibile//problema l'attore principale, non è tenant admin ma super admin
 
-=== UC12.1 - Seleziona gateway <UC12.1>
+==== UC#uc-number() - Selezione gateway <Selezione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin seleziona un gateway
 - *Pre-condizioni*:
@@ -599,10 +615,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant Admin seleziona un gateway associato al proprio tenant
 
-// Ha senso?
-=== UC12.2 - Gateway offline <UC12.2>
+// Ha senso?Dina->c'è gateway-non-raggiungibile
+//===== UC#sub-uc-number().2 - Gateway offline <Gateway-offline>
 
-=== UC13 - Disattiva gateway <UC13>
+===== UC#uc-number() - Disattivazione gateway <Disattivazione-gateway>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole disattivare un gateway
 - *Pre-condizioni*:
@@ -615,7 +631,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin seleziona un gateway associato al proprio tenant
   - Il Tenant Admin disattiva il gateway
 
-=== UC14 - Riattiva gateway <UC14>
+==== UC#uc-number() - Riattivazione gateway <Riattivazione-gateway>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole riattivare un gateway
 - *Pre-condizioni*:
@@ -629,7 +645,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin riattivare il gateway
 
 // Req. opzionale, lo mettiamo?
-=== UC15 - Visualizza audit log <UC16>
+==== UC#uc-number() - Visualizzazione audit log <Visualizzazione-audit-log>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole visualizzare gli audit log
 - *Pre-condizioni*:
@@ -640,9 +656,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant Admin seleziona l'opzione di visualizzazione degli audit log
 - *Estensioni*:
-  - #uc("UC15.1")
+  - @Esportazione-log
 
-=== UC15.1 - Esporta log <UC15.1>
+===== UC#sub-uc-number().1 - Esportazione log <Esportazione-log>
 - *Attore principale*: Tenant Admin
 - *Trigger*: Il Tenant Admin vuole esportare gli audit log
 - *Pre-condizioni*:
@@ -656,7 +672,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 //Riccardo, Elia
 
 === Attore principale - Super Admin
-==== UC1 - Creazione Tenant <UC1>
+==== UC#uc-number() - Creazione Tenant <Creazione-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole creare un nuovo tenant
 - *Pre-condizioni*:
@@ -669,9 +685,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Il nome del tenant è già in uso da un altro tenant
 - *Estensioni*:
-  - #uc("UC1.1")
+  - @Nome-tenant-gia-utilizzato
 
-==== UC1.1 - Nome del tenant già utilizzato <UC1.1>
+==== UC#sub-uc-number().1 - Nome del tenant già utilizzato <Nome-tenant-gia-utilizzato>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin ha inserito un nome di tenant già esistente
 - *Pre-condizioni*:
@@ -682,7 +698,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin ha inserito il nome del nuovo tenant ma è già in uso
 
-==== UC2 - Eliminazione Tenant <UC2>
+==== UC#uc-number() - Eliminazione Tenant <Eliminazione-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare un tenant esistente
 - *Pre-condizioni*:
@@ -703,14 +719,14 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Il decommissioning di uno o più Gateway associati fallisce
 - *Estensioni*:
-  - #uc("UC2.1")
+  - @Decommissioning-gateway-fallito
 - *Inclusioni*:
-  - #uc("UC2.2")
-  - #uc("UC2.3")
-  - #uc("UC2.4")
-  - #uc("UC2.5")
+  - @Selezione-e-conferma-tenant-da-eliminare
+  - @Esecuzione-decommissioning-gateway-associati-tenant
+  - @Eliminazione-dati-utenti-associati-tenant
+  - @Esecuzione-eliminazione-tenant
 
-===== UC2.1 - Decommissioning Gateway fallito <UC2.1>
+===== UC#sub-uc-number().1 - Decommissioning Gateway fallito <Decommissioning-gateway-fallito>
 - *Attore principale*: Super-admin
 - *Trigger*: Durante l'eliminazione del tenant, il decommissioning di uno o più Gateway associati fallisce
 - *Pre-condizioni*:
@@ -723,7 +739,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il decommissioning di uno o più Gateway associati fallisce durante l'eliminazione del tenant
 
-===== UC2.2 - Selezione e conferma tenant da eliminare <UC2.2>
+===== UC#sub-uc-number().2 - Selezione e conferma tenant da eliminare <Selezione-e-conferma-tenant-da-eliminare>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
@@ -735,7 +751,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona il tenant da eliminare
   - Il Super-admin conferma l'eliminazione del tenant
 
-===== UC2.3 - Esecuzione decommissioning Gateway associati al tenant <UC2.3>
+===== UC#sub-uc-number().3 - Esecuzione decommissioning Gateway associati al tenant <Esecuzione-decommissioning-gateway-associati-tenant>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole eliminare un tenant
@@ -749,9 +765,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Uno o più gateway non sono raggiungibili perciò il decommissioning non può essere completato
 - *Estensioni*:
-  - #uc("UC7.1")
+  - @Gateway-non-raggiungibile
 
-===== UC2.4 - Eliminazione dati e utenti associati al tenant <UC2.4>
+===== UC#sub-uc-number().4 - Eliminazione dati e utenti associati al tenant <Eliminazione-dati-utenti-associati-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
@@ -764,7 +780,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Sistema elimina tutti i dati associati al tenant
   - Il Sistema elimina tutti gli utenti associati al tenant
 
-===== UC2.5 - Eliminazione tenant <UC2.5>
+===== UC#sub-uc-number().5 - Eliminazione tenant <Esecuzione-eliminazione-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
@@ -775,7 +791,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema elimina il tenant selezionato
 
-==== UC3 - Visualizzazione dashboard Super-admin <UC3>
+==== UC#uc-number() - Visualizzazione dashboard Super-admin <Visualizzazione-dashboard-super-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole accedere alla dashboard
 - *Pre-condizioni*:
@@ -786,7 +802,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin visualizza le informazioni aggregate sui tenant
   - Il Super-admin visualizza le informazioni aggregate sui Gateway
 
-==== UC4 - Visualizzazione lista Gateway <UC4>
+==== UC#uc-number() - Visualizzazione lista Gateway <Visualizzazione-lista-gateway>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare tutti i Gateway registrati nel Sistema
 - *Pre-condizioni*:
@@ -797,7 +813,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona la funzionalità di visualizzazione lista Gateway
   - Il sistema mostra la lista di tutti i Gateway registrati
 
-==== UC5 - Visualizzazione Gateway <UC5>
+==== UC#uc-number() - Visualizzazione Gateway <Visualizzazione-gateway>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i dettagli di un Gateway specifico
 - *Pre-condizioni*:
@@ -811,7 +827,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 // AZIONI SUPER-ADMIN SUI GATEWAY
 
-==== UC6 - Associazione Gateway-tenant <UC6> //è corretto considerare il Gateway come attore secondario?
+==== UC#uc-number() - Associazione Gateway-tenant <Associazione-gateway-tenant> //è corretto considerare il Gateway come attore secondario?
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
@@ -827,11 +843,11 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona il tenant a cui associare il Gateway
   - Il Super-admin esegue la configurazione del Gateway per il tenant selezionato
 - *Inclusioni*:
-  - #uc("UC6.1")
-  - #uc("UC6.2")
-  - #uc("UC7")
+  - @Selezione-gateway-super-admin
+  - @Selezione-tenant-super-admin
+  - @Configurazione-gateway
 
-===== UC6.1 - Selezione Gateway <UC6.1>
+===== UC#sub-uc-number().1 - Selezione Gateway <Selezione-gateway-super-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
 - *Pre-condizioni*:
@@ -843,7 +859,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona il Gateway da associare
 
-===== UC6.2 - Selezione tenant <UC6.2>
+==== UC#uc-number() - Selezione tenant <Selezione-tenant-super-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
 - *Pre-condizioni*:
@@ -854,7 +870,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona il tenant a cui associare il Gateway
 
-==== UC7 - Configurazione Gateway <UC7>
+==== UC#uc-number() - Configurazione Gateway <Configurazione-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin applica la nuova configurazione al Gateway
@@ -870,10 +886,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Gateway non è raggiungibile perciò la configurazione non può essere completata
   - La configurazione fornita non è valida per il Gateway selezionato
 - *Estensioni*:
-  - #uc("UC7.1")
-  - #uc("UC7.2")
+  - @Gateway-non-raggiungibile
+  - @Configurazione-gateway-non-valida
 
-===== UC7.1 - Gateway non raggiungibile <UC7.1>
+===== UC#sub-uc-number().1 - Gateway non raggiungibile <Gateway-non-raggiungibile>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin tenta di configurare un Gateway non raggiungibile
 - *Pre-condizioni*:
@@ -884,7 +900,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin tenta di configurare il Gateway ma non è raggiungibile
 
-===== UC7.2 - Configurazione non valida <UC7.2>
+===== UC#sub-uc-number().2 - Configurazione Gateway non valida <Configurazione-gateway-non-valida>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin fornisce una configurazione non valida per il Gateway selezionato
 - *Pre-condizioni*:
@@ -896,7 +912,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin inserisce una configurazione non valida per il Gateway selezionato
 
 
-==== UC8 - Decommissioning Gateway <UC8>
+==== UC#uc-number() - Decommissioning Gateway <Decommissioning-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
@@ -914,12 +930,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Il Gateway non è raggiungibile perciò il decommissioning non può essere completato
 - *Estensioni*:
-  - #uc("UC7.1")
+  - @Gateway-non-raggiungibile
 - *Inclusioni*:
-  - #uc("UC8.1")
-  - #uc("UC9")
+  - @Disassociazione-gateway-dal-tenant
+  - @Reset-gateway
 
-===== UC8.1 - Disassociazione Gateway dal tenant <UC8.1>
+===== UC#sub-uc-number().1 - Disassociazione Gateway dal tenant <Disassociazione-gateway-dal-tenant>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
@@ -933,7 +949,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona il Gateway da disassociare
   - Il Sistema invia il comando di disassociazione al Gateway
 
-==== UC9 - Reset Gateway <UC9>
+==== UC#uc-number() - Reset Gateway <Reset-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole resettare un Gateway alle impostazioni di fabbrica
@@ -948,9 +964,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Il Gateway non è raggiungibile perciò il reset non può essere completato
 - *Estensioni*:
-  - #uc("UC7.1")
+  - @Gateway-non-raggiungibile
 
-==== UC10 - Riavvio Gateway <UC10>
+==== UC#uc-number() - Riavvio Gateway <Riavvio-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole riavviare un Gateway
@@ -965,17 +981,17 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Il Gateway non è raggiungibile perciò il riavvio non può essere completato
 - *Estensioni*:
-  - #uc("UC7.1")
+  - @Gateway-non-raggiungibile
 
 
-==== UC11 - Autenticazione Gateway <UC11>
+==== UC#uc-number() - Autenticazione Gateway <Autenticazione-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole autenticare un Gateway registrato nel Sistema
 - *Precondizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway è registrato nel Sistema ma non ancora autenticato //registrato significa che comunica con il sistema da non autenticato
-- *Postcondizioni*:
+- *Post-condizioni*:
   - Il Sistema autentica il Gateway
 - *Scenario principale*:
   - Il Super-admin seleziona il Gateway da autenticare
@@ -984,10 +1000,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Gateway non è raggiungibile perciò l'autenticazione non può essere completata
   - Il certificato fornito non è valido per il Gateway selezionato
 - *Estensioni*:
-  - #uc("UC7.1")
-  - #uc("UC11.1")
+  - @Gateway-non-raggiungibile
+  - @Certificato-non-valido
 
-===== UC11.1 - Certificato non valido <UC11.1>
+===== UC#sub-uc-number().1 - Certificato non valido <Certificato-non-valido>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin fornisce un certificato non valido per l'autenticazione del Gateway
 - *Pre-condizioni*:
@@ -998,7 +1014,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin fornisce un certificato non valido per l'autenticazione del Gateway selezionato
 
-==== UC12 - Gestione richiesta fornitura Gateway <UC12>
+==== UC#uc-number() - Gestione richiesta fornitura Gateway <Gestione-richiesta-fornitura-gateway>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole accettare o rifiutare una richiesta di fornitura Gateway da parte di un tenant
 - *Pre-condizioni*:
@@ -1012,9 +1028,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - Viene fornita una motivazione per il rifiuto della richiesta
 - *Estensioni*:
-  - #uc("UC12.1")
+  - @Motivazione-rifiuto-richiesta
 
-===== UC12.1 - Motivazione rifiuto richiesta <UC12.1>
+===== UC#sub-uc-number().1 - Motivazione rifiuto richiesta <Motivazione-rifiuto-richiesta>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin rifiuta una richiesta di fornitura Gateway da parte di un tenant
 - *Pre-condizioni*:
@@ -1024,7 +1040,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
 
-==== UC13 - Visualizzazione log di attività di un tenant <UC13> //???????????
+==== UC#uc-number() - Visualizzazione log di attività di un tenant <Visualizzazione-log-attivita-tenant> ///è giusto metterlo?
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i log di attività di un tenant specifico
 - *Pre-condizioni*:
@@ -1035,7 +1051,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona il tenant di cui vuole visualizzare i log di attività
 
-==== UC14 - Visualizzazione lista tenant <UC14>
+==== UC#uc-number() - Visualizzazione lista tenant <Visualizzazione-lista-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare tutti i tenant registrati nel Sistema
 - *Pre-condizioni*:
@@ -1045,7 +1061,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di visualizzazione lista tenant
 
-==== UC15 - Visualizzazione tenant <UC15>
+==== UC#uc-number() - Visualizzazione tenant <Visualizzazione-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
@@ -1056,12 +1072,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin visualizza i dettagli del tenant selezionato
 - *Inclusioni*:
-  - #uc("UC15.1")
-  - #uc("UC15.2")
-  - #uc("UC15.3")
-  - #uc("UC15.4")
+  - @Visualizzazione-identificativo-tenant
+  - @Visualizzazione-lista-utenti-associati-tenant
+  - @Visualizzazione-lista-gateway-associati-tenant
+  - @Visualizzazione-lista-sensori-associati-tenant
 
-===== UC15.1 - Visualizzazione identificativo del tenant <UC15.1> // troppo specifico??????
+===== UC#sub-uc-number().1 - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant> // troppo specifico??????
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
@@ -1072,7 +1088,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin visualizza l'identificativo del tenant selezionato
 
-===== UC15.2 - Visualizzazione lista utenti associati al tenant <UC15.2>
+===== UC#sub-uc-number().2 - Visualizzazione lista utenti associati al tenant <Visualizzazione-lista-utenti-associati-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
@@ -1083,7 +1099,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di visualizzazione lista utenti associati al tenant
 
-===== UC15.3 - Visualizzazione lista Gateway associati al tenant <UC15.3>
+===== UC#sub-uc-number().3 - Visualizzazione lista Gateway associati al tenant <Visualizzazione-lista-gateway-associati-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
@@ -1094,7 +1110,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di visualizzazione lista Gateway associati al tenant
 
-===== UC15.4 - Visualizzazione lista sensori associati al tenant <UC15.4>
+===== UC#sub-uc-number().4 - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
@@ -1105,7 +1121,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di visualizzazione lista sensori associati al tenant
 
-==== UC16 - Visualizzazione richieste di fornitura Gateway <UC16>
+==== UC#uc-number() - Visualizzazione richieste di fornitura Gateway <Visualizzazione-richieste-fornitura-gateway>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare tutte le richieste di fornitura Gateway di tutti i tenant
 - *Pre-condizioni*:
@@ -1115,7 +1131,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di visualizzazione lista richieste di fornitura Gateway
 
-==== UC17 - Creazione utente Tenant-admin <UC17>
+==== UC#uc-number() - Creazione utente Tenant-admin <Creazione-utente-tenant-admin>
 - *Attore principale*: Super-admin
 - *Attore secondario*: Client email
 - *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
@@ -1132,13 +1148,13 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - L'email inserita è già in uso da un altro utente nel Sistema
 - *Estensioni*:
-  - #uc("UC17.1")
+  - @Email-gia-in-uso
 - *Inclusioni*:
-  - #uc("UC17.2")
-  - #uc("UC17.3")
-  - #uc("UC17.4")
+  - @Selezione-tenant
+  - @Inserimento-email-nuovo-tenant-admin
+  - @Invio-credenziali-accesso-nuovo-tenant-admin
 
-===== UC17.1 - Email già in uso <UC17.1>
+===== UC#sub-uc-number().1 - Email già in uso <Email-gia-in-uso>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin inserisce un'email già in uso da un altro utente
 - *Pre-condizioni*:
@@ -1148,7 +1164,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'email inserita è già in uso da un altro utente nel Sistema
 
-===== UC17.2 - Selezione tenant <UC17.2>
+===== UC#sub-uc-number().2 - Selezione tenant <Selezione-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
 - *Pre-condizioni*:
@@ -1159,7 +1175,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona il tenant a cui associare il nuovo Tenant-admin
 
-===== UC17.3 - Inserimento email nuovo Tenant-admin <UC17.3>
+===== UC#sub-uc-number().3 - Inserimento email nuovo Tenant-admin <Inserimento-email-nuovo-tenant-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
 - *Pre-condizioni*:
@@ -1170,7 +1186,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin inserisce l'email del nuovo Tenant-admin
 
-===== UC17.4 - Invio credenziali di accesso nuovo Tenant-admin <UC17.4>
+===== UC#sub-uc-number().4 - Invio credenziali di accesso nuovo Tenant-admin <Invio-credenziali-accesso-nuovo-tenant-admin>
 - *Attore principale*: Super-admin
 - *Attore secondario*: Client email
 - *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
@@ -1183,7 +1199,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
 
-==== UC18 - Sospensione account Tenant-admin <UC18>
+==== UC#uc-number() - Sospensione account Tenant-admin <Sospensione-account-tenant-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1196,10 +1212,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona il Tenant-admin da sospendere
   - Il Super-admin conferma la sospensione dell'account
 - *Inclusioni*:
-  - #uc("UC18.1")
-  - #uc("UC18.2")
+  - @Selezione-tenant-admin-da-sospendere
+  - @Conferma-sospensione-account-tenant-admin
 
-===== UC18.1 - Selezione Tenant-admin da sospendere <UC18.1>
+===== UC#sub-uc-number().1 - Selezione Tenant-admin da sospendere <Selezione-tenant-admin-da-sospendere>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1211,7 +1227,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona il Tenant-admin da sospendere
 
-===== UC18.2 - Conferma sospensione account Tenant-admin <UC18.2>
+===== UC#sub-uc-number().2 - Conferma sospensione account Tenant-admin <Conferma-sospensione-account-tenant-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1223,7 +1239,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin conferma la sospensione dell'account del Tenant-admin selezionato
 
-=== UC19 - Riattivazione account Tenant-admin <UC19>
+=== UC#uc-number() - Riattivazione account Tenant-admin <Riattivazione-account-tenant-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1236,10 +1252,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona il Tenant-admin da riattivare
   - Il Super-admin conferma la riattivazione dell'account
 - *Inclusioni*:
-  - #uc("UC19.1")
-  - #uc("UC19.2")
+  - @Selezione-tenant-admin-da-riattivare
+  - @Conferma-riattivazione-account-tenant-admin
 
-===== UC19.1 - Selezione Tenant-admin da riattivare <UC19.1>
+===== UC#sub-uc-number().1 - Selezione Tenant-admin da riattivare <Selezione-tenant-admin-da-riattivare>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1251,7 +1267,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona il Tenant-admin da riattivare
 
-===== UC19.2 - Conferma riattivazione account Tenant-admin <UC19.2>
+===== UC#sub-uc-number().2 - Conferma riattivazione account Tenant-admin <Conferma-riattivazione-account-tenant-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1263,7 +1279,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin conferma la riattivazione dell'account del Tenant-admin selezionato
 
-==== UC20 - Eliminazione account Tenant-admin <UC20>
+==== UC#uc-number() - Eliminazione account Tenant-admin <Eliminazione-account-tenant-admin>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1276,10 +1292,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Super-admin seleziona il Tenant-admin da eliminare
   - Il Super-admin conferma l'eliminazione dell'account
 - *Inclusioni*:
-  - #uc("UC20.1")
-  - #uc("UC20.2")
+  - @Selezione-tenant-admin-da-eliminare
+  - @Conferma-eliminazione-account-tenant-admin
 
-===== UC20.1 - Selezione Tenant-admin da eliminare <UC20.1>
+===== UC#sub-uc-number().1 - Selezione Tenant-admin da eliminare <Selezione-tenant-admin-da-eliminare>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
 - *Pre-condizioni*:
@@ -1291,8 +1307,8 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Super-admin seleziona il Tenant-admin da eliminare
 
-===== UC20.2 - Conferma eliminazione account Tenant-admin <UC20.2>
-- *Attore principale*: Super-admin
+===== UC#sub-uc-number().2 - Conferma eliminazione account Tenant-admin <Conferma-eliminazione-account-tenant-admin>
+- *Attore principale*: Super-admin4
 - *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -1310,7 +1326,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Precondizioni*:
   - Super-admin autenticato
 
-- *Postcondizioni*:
+- *Post-condizioni*:
   - Un nuovo alert è configurato e attivo
 - *Scenari alternativi*:
   - Alert già esistente con gli stessi criteri
@@ -1322,13 +1338,12 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Super-admin autenticato
   - Tenant esistente
 
-- *Postcondizioni*:
+- *Post-condizioni*:
   - I limiti del tenant sono aggiornati
 - *Scenari alternativi*:
-  - Tentativo di impostare limiti già inferiori a quellii in uso
+  - Tentativo di impostare limiti già inferiori a quelli in uso
 */
 
-//Hoss, Michele
 
 === Attore principale - Gateway
 //Siria, Jaume
@@ -1336,7 +1351,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 === Attore principale - REST Client
 //Dina
-==== UC9 - Richiesta dati real-time sensore <UC9>
+==== UC#uc-number() - Richiesta dati real-time sensore <Richiesta-dati-real-time-sensore>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client vuole richiedere i dati real-time di un sensore
 - *Pre-condizioni*:
@@ -1352,13 +1367,13 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Nessun dato disponibile per il sensore richiesto
   - Sensore non associato al tenant del REST Client
 - *Estensioni*:
-  - #uc("UC9.1")
-  - #uc("UC9.2")
-  - #uc("UC9.3")
+  - @Sensore-non-trovato
+  - @Nessun-dato-disponibile-sensore-richiesto
+  - @Sensore-non-associato-tenant-REST-Client
 - *Inclusioni*:
-  - #uc("UC9.4")
-  - #uc("UC9.5")
-===== UC9.1 - Sensore non trovato <UC9.1>
+  - @Verifica-sensore
+  - @Restituzione-dati-real-time-sensore
+===== UC#sub-uc-number().1 - Sensore non trovato <Sensore-non-trovato>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client richiede i dati di un sensore non esistente
 - *Pre-condizioni*:
@@ -1370,7 +1385,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema rileva che il sensore richiesto non esiste
 
-===== UC9.2 - Nessun dato disponibile per il sensore richiesto <UC9.2>
+===== UC#sub-uc-number().2 - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client seleziona un sensore per il quale non sono disponibili dati
 - *Pre-condizioni*:
@@ -1381,7 +1396,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
 
-===== UC9.3 - Sensore non associato al tenant del REST Client <UC9.3>
+===== UC#sub-uc-number().3 - Sensore non associato al tenant del REST Client <Sensore-non-associato-tenant-REST-Client>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client richiede i dati di un sensore non associato al proprio tenant
 - *Pre-condizioni*:
@@ -1392,7 +1407,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema rileva che il sensore richiesto non appartiene al tenant del REST Client
 
-===== UC9.4 - Verifica sensore <UC9.4>
+===== UC#sub-uc-number().4 - Verifica sensore <Verifica-sensore>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
@@ -1403,7 +1418,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del REST Client
 
-===== UC9.5 - Restituzione dati real-time sensore <UC9.5>
+===== UC#sub-uc-number().5 - Restituzione dati real-time sensore <Restituzione-dati-real-time-sensore>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
@@ -1415,7 +1430,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema recupera e restituisce i dati real-time del sensore richiesto
 
-==== UC10 - Richiesta storico dati sensore <UC10>
+==== UC#uc-number() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client vuole richiedere lo storico dei dati di un sensore
 - *Pre-condizioni*:
@@ -1431,15 +1446,15 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Nessun dato storico disponibile per il sensore richiesto
   - Sensore non associato al tenant del REST Client
 - *Estensioni*:
-  - #uc("UC9.1")
-  - #uc("UC9.2")
-  - #uc("UC9.3")
+  - @Sensore-non-trovato
+  - @Nessun-dato-disponibile-sensore-richiesto
+  - @Sensore-non-associato-tenant-REST-Client
 - *Inclusioni*:
-  - #uc("UC11")
-  - #uc("UC9.4")
-  - #uc("UC10.1")
+  - @Autenticazione-REST-Client
+  - @Verifica-sensore
+  - @Restituzione-storico-dati-sensore
 
-===== UC10.1 - Restituzione storico dati sensore <UC10.1>
+===== UC#sub-uc-number().1 - Restituzione storico dati sensore <Restituzione-storico-dati-sensore>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client ha richiesto lo storico dei dati di un sensore
 - *Pre-condizioni*:
@@ -1451,7 +1466,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema recupera e restituisce lo storico dei dati del sensore richiesto, eventualmente filtrati per intervallo temporale
 
-==== UC11 - Autenticazione REST Client <UC11>
+==== UC#uc-number() - Autenticazione REST Client <Autenticazione-REST-Client>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client tenta di autenticarsi nel Sistema
 - *Pre-condizioni*:
@@ -1467,11 +1482,11 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Credenziali non valide
   - Credenziali scadute
 - *Estensioni*:
-  - #uc("UC11.1")
-  - #uc("UC11.2")
+  - @Credenziali-REST-Client-errate
+  - @Credenziali-REST-Client-scadute
 
 //potenziale generalizzazione dell'errore
-===== UC11.1 - Credenziali REST Client errate <UC11.1>
+===== UC#sub-uc-number().1 - Credenziali REST Client errate <Credenziali-REST-Client-errate>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client invia credenziali errate al Sistema
 - *Pre-condizioni*:
@@ -1483,7 +1498,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Sistema verifica le credenziali inviate dal REST Client e rileva l'errore nelle credenziali
 
 
-===== UC11.2 - Credenziali REST Client scadute <UC11.2>
+===== UC#sub-uc-number().2 - Credenziali REST Client scadute <Credenziali-REST-Client-scadute>
 - *Attore principale*: REST Client
 - *Trigger*: Il REST Client invia credenziali scadute al Sistema
 - *Pre-condizioni*:
