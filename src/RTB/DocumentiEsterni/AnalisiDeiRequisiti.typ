@@ -688,6 +688,46 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 - *Scenario principale*:
   - Il Super-admin conferma la riattivazione dell'account del Tenant-admin selezionato
 
+==== UC20 - Eliminazione account Tenant-admin <UC20>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin non deve essere l'unico Tenant-admin nel tenant
+- *Post-condizioni*:
+  - L'account del Tenant-admin viene eliminato dal Sistema
+- *Scenario principale*:
+  - Il Super-admin seleziona il Tenant-admin da eliminare
+  - Il Super-admin conferma l'eliminazione dell'account
+- *Inclusioni*:
+  - #uc("UC20.1")
+  - #uc("UC20.2")
+
+===== UC20.1 - Selezione Tenant-admin da eliminare <UC20.1>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin non deve essere l'unico Tenant-admin nel tenant
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del Tenant-admin da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il Tenant-admin da eliminare
+
+===== UC20.2 - Conferma eliminazione account Tenant-admin <UC20.2>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Tenant-admin deve esistere nel Sistema
+  - Il Tenant-admin non deve essere l'unico Tenant-admin nel tenant
+- *Post-condizioni*:
+  - L'account del Tenant-admin viene eliminato dal Sistema
+- *Scenario principale*:
+  - Il Super-admin conferma l'eliminazione dell'account del Tenant-admin selezionato
+
 /*
 ==== Configurazione alert globali
 - *Attore principale*: Super-admin
