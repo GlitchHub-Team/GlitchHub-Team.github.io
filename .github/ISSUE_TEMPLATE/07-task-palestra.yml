@@ -1,0 +1,11 @@
+name: Task Palestra
+description: Crea una task di palestra non rendicontabile
+title: "Task"
+labels: ["task-palestra"]
+projects: ["GlitchHub-Team/2"]
+type: task
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: Descrizione della Task
