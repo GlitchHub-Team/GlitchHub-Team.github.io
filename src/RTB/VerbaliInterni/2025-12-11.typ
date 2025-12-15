@@ -48,8 +48,8 @@
     [Assegnazione dei ruoli per le prossime due settimane],
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-verbale: "Interno",
 )
 
