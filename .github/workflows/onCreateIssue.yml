@@ -196,7 +196,7 @@ jobs:
             -f project_id=$PROJECT_ID \
             -f item_id=$ITEM_ID \
             -f sprint_role_field=$SPRINT_ROLE_FIELD_ID \
-            -f sprint_role_value=$SPRINT_ROLE_OPTION_ID \
+            -f sprint_role_value=${SPRINT_ROLE_OPTION_ID//\"/} \
             --silent
           else
               echo  Warning: Sprint role not found
