@@ -67,6 +67,13 @@ jobs:
           echo 'CURRENT_ITERATION_OPTION_ID='$( echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name == "Sprint") | .configuration.iterations | first | .id') >> $GITHUB_ENV
           echo 'SPRINT_ROLE_FIELD_ID='$(        echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .id') >> $GITHUB_ENV
       
+          echo 'RESPONSABILE_OPTION_ID='$(  echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Responsabile") |.id') >> $GITHUB_ENV
+          echo 'AMMINISTRATORE_OPTION_ID='$(echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Amministratore") |.id') >> $GITHUB_ENV
+          echo 'ANALISTA_OPTION_ID='$(      echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Analista") |.id') >> $GITHUB_ENV
+          echo 'VERIFICATORE_OPTION_ID='$(  echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Verificatore") |.id') >> $GITHUB_ENV
+          echo 'PROGRAMMATORE_OPTION_ID='$( echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Programmatore") |.id') >> $GITHUB_ENV
+          echo 'PROGETTISTA_OPTION_ID='$(   echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Progettista") |.id') >> $GITHUB_ENV
+          
       - name: Get issue data
         env:
           GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
@@ -90,6 +97,7 @@ jobs:
           PROGRAMMATORE_LABEL=$( echo $ISSUE_DATA | jq '.data.repository.issue.labels.nodes[] | select(.name == "task-programmatore")')
           RESPONSABILE_LABEL=$(  echo $ISSUE_DATA | jq '.data.repository.issue.labels.nodes[] | select(.name == "task-responsabile")')
           VERIFICATORE_LABEL=$(  echo $ISSUE_DATA | jq '.data.repository.issue.labels.nodes[] | select(.name == "task-verificatore")')
+
 
           SPRINT_ROLE_OPTION_ID=""
           if [[ $RESPONSABILE_LABEL ]]; then
@@ -161,7 +169,7 @@ jobs:
             -f project_id=$PROJECT_ID \
             -f item_id=$ITEM_ID \
             -f sprint_field=$SPRINT_FIELD_ID \
-            -f sprint_value=$CURRENT_ITERATION_OPTION_ID \
+            -f sprint_value=${CURRENT_ITERATION_OPTION_ID//\"/} \
             --silent
           else
               echo Warning: Sprint field does not exist
