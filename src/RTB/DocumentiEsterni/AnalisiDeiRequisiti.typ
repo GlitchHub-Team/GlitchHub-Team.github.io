@@ -162,7 +162,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ===== UC2.3 - Esecuzione decommissioning Gateway associati al tenant <UC2.3>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -238,7 +238,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ==== UC6 - Associazione Gateway-tenant <UC6> //è corretto considerare il Gateway come attore secondario?
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -281,7 +281,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ==== UC7 - Configurazione Gateway <UC7>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin applica la nuova configurazione al Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -323,7 +323,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ==== UC8 - Decommissioning Gateway <UC8>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -346,7 +346,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ===== UC8.1 - Disassociazione Gateway dal tenant <UC8.1>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -360,7 +360,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ==== UC9 - Reset Gateway <UC9>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole resettare un Gateway alle impostazioni di fabbrica
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -377,7 +377,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ==== UC10 - Riavvio Gateway <UC10>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole riavviare un Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -395,7 +395,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 
 ==== UC11 - Autenticazione Gateway <UC11>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Gateway
+//- *Attore secondario*: Gateway
 - *Trigger*: Il Super-admin vuole autenticare un Gateway registrato nel Sistema
 - *Precondizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
