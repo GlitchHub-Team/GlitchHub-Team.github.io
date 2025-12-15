@@ -208,12 +208,17 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 - *Post-condizione*: il messaggio è stato elaborato, il gateway manda una risposta coerente
 - *Scenario principale*: 
   - Il gateway riceve un messaggio dal Cloud
-  - Il gateway elabora la richiesta, se possibile
+  - Il gateway elabora la richiesta, se possibile, come la modifica di parametri
   - Il gateway invia una risposta adatta al Cloud
-- *Estensioni*: 
-  - Comando del Cloud non riconosciuto (UC06.1)
+- *Estensioni*:
+  - (UC06.1) Comando del Cloud fallito
+  - (UC06.2) Creazione sensore simulato
+  - (UC06.3) Cancellazione sensore simulato
+  - (UC06.4) Modifica parametri sensore simulato
+  - (UC06.5) Avvio simulazione di specifico sensore
+  - (UC06.6) Stop simulazione di specifico sensore
 
-=== UC06.1 - Comando del Cloud non riconosciuto 
+=== UC06.1 - Comando del Cloud fallito
 - *Attore primario*: Gateway (simulato)
 - *Trigger*: Non è possibile soddisfare il comando ricevuto dal Cloud
 - *Pre-condizione*: il gateway è connesso e autenticato con il cloud, il gateway ha la possibilità di rispondere ai messaggi del Cloud
@@ -222,6 +227,76 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   - Il gateway non riesce a soddisfare la richiesta del Cloud
   - Il gateway invia un messaggio di errore al Cloud
 
+=== UC06.2 - Creazione sensore simulato
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Ricezione di richista relativa del Cloud
+- *Pre-condizione*: 
+  - Il gateway è connesso e autenticato con il Cloud.
+  - Non esiste già un sensore con lo stesso identificativo.
+  - Il gateway ha risorse disponibili per ospitare un nuovo sensore (memoria, slot liberi).
+- *Post-condizione*: Un nuovo sensore simulato è registrato nel gateway.
+- *Scenario principale*: 
+  - Il gateway riceve dal Cloud il comando di creazione.
+  - Il gateway verifica che non esista già un sensore con lo stesso ID.
+  - Il gateway crea il sensore simulato con i parametri di default.
+  - Il gateway invia conferma al Cloud.
+
+=== UC06.3 - Cancellazione sensore simulato
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Ricezione di richista relativa del Cloud
+- *Pre-condizione*: 
+  - Il gateway è connesso e autenticato con il Cloud.
+  - Il sensore da cancellare esiste ed è registrato nel gateway.
+- *Post-condizione*: Il sensore simulato selezionato è rimosso dal gateway.
+- *Scenario principale*: 
+  - Il gateway riceve dal Cloud il comando di cancellazione.
+  - Il gateway verifica che il sensore esista.
+  - Il gateway interrompe eventuale simulazione attiva.
+  - Il gateway elimina il sensore simulato.
+  - Il gateway invia conferma al Cloud.
+- *Inclusioni*:
+  - (UC06.6) Stop simulazione di specifico sensore
+
+=== UC06.4 - Modifica parametri sensore simulato
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Ricezione di richista relativa del Cloud
+- *Pre-condizione*: 
+  - Il gateway è connesso e autenticato con il Cloud.
+  - Il sensore da modificare esiste ed è attivo o configurabile.
+  - I nuovi parametri sono validi.
+- *Post-condizione*: I parametri del sensore simulato sono aggiornati nel gateway.
+- *Scenario principale*: 
+  - Il gateway riceve dal Cloud il comando di modifica.
+  - Il gateway verifica che il sensore esista.
+  - Il gateway controlla la validità dei nuovi parametri.
+  - Il gateway aggiorna la configurazione del sensore.
+  - Il gateway invia conferma al Cloud.
+
+=== UC06.5 - Avvio simulazione di specifico sensore
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Ricezione di richista relativa del Cloud
+- *Pre-condizione*:
+  - Il gateway è connesso e autenticato con il Cloud.
+  - Il sensore simulato esiste.
+  - Il sensore non è già in stato di simulazione attiva.
+- *Post-condizione*: Il gateway inizia a generare dati con quel sensore simulato.
+- *Scenario principale*: 
+  - Il gateway riceve dal Cloud il comando di avvio simulazione.
+  - Il gateway inizia a produrre dati simulati.
+  - Il gateway invia conferma al Cloud.
+
+=== UC06.6 - Stop simulazione di specifico sensore
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Ricezione di richista relativa del Cloud
+- *Pre-condizione*:
+  - Il gateway è connesso e autenticato con il Cloud.
+  - Il sensore simulato esiste.
+  - Il sensore è in stato di simulazione attiva.
+- *Post-condizione*: Il gateway smette a generare dati con quel sensore simulato.
+- *Scenario principale*: 
+  - Il gateway riceve dal Cloud il comando di stop simulazione.
+  - Il gateway smette di produrre dati simulati.
+  - Il gateway invia conferma al Cloud.
 
 === Attore principale - REST Client
 //Dina
