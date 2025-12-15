@@ -71,9 +71,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
           ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
-          ISSUE_LABELS: '${{ github.event.issue.labels }}'
 
         run: |
+          ISSUE_LABELS='${{ github.event.issue.labels }}'
+          
           AMMINISTRATORE_LABEL=$(echo $ISSUE_LABELS | jq '.[] | select(.name == "task-amministratore")')
           ANALISTA_LABEL=$(      echo $ISSUE_LABELS | jq '.[] | select(.name == "task-analista")')
           PROGETTISTA_LABEL=$(   echo $ISSUE_LABELS | jq '.[] | select(.name == "task-progettista")')
