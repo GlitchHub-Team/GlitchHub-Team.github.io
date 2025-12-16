@@ -23,7 +23,7 @@
   verificatore-interno: "Riccardo Graziani",
   left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   verificatore-esterno: "Cristian Pirlog",
-  right-signature: "../../assets/firme/m31/firma_cristian_pirlog.png",
+  right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
   tipo-verbale: "Esterno",
 )
 
