@@ -1,4 +1,5 @@
 #import "../lib/libVerbali.typ": *
+#import "../lib/libUtil.typ": *
 
 #let primary = rgb("#9948bc")
 #let secondary = rgb("#000")
