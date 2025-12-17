@@ -1,20 +1,26 @@
 #import "../../Templates/templateVerbali.typ": *
 
 #show: report.with(
-  titolo: "Verbale esterno 09/12/2025 (M31)",
-  stato: "Bozza",
-  versione: "0.1.0",
+  titolo: "Verbale esterno 16/12/2025 (M31)",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
     (
+      "1.0.0",
+      "17/12/2025",
+      "Elia Ernesto Stellin", "Riccardo Graziani",
+      "Versione stabile documento"
+    ),
+    (
       "0.1.0",
-      "17/01/2025",
-      "Elia Ernesto Stellin", "-",
+      "17/12/2025",
+      "Elia Ernesto Stellin", "Riccardo Graziani",
       "Prima stesura verbale esterno del 16/12/2025"
     ),
     (
       "0.0.1", 
       "16/12/2025", 
-      "Elia Ernesto Stellin", "-", 
+      "Elia Ernesto Stellin", "Riccardo Graziani", 
       "Prima bozza verbale esterno del 16/12/2025"
     ),
   ),
@@ -34,8 +40,8 @@
     "Organizzazione prossimi incontri",
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../../assets/firme/firma_Riccardo_Graziani.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
