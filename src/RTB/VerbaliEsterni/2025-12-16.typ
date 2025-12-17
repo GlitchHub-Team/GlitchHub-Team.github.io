@@ -49,7 +49,7 @@ L'incontro ha avuto l'obiettivo di mostrare al proponente gli use cases (UC) pro
 = Resoconto
 
 == Discussione sugli use cases prodotti
-Durante la riunione in oggetto, il gruppo ha mostrato al proponente gli UC prodotti fino ad allora, contenuti della versione *v0.7.0* del documento di *Analisi dei requisiti*.
+Durante la riunione in oggetto, il gruppo ha mostrato al proponente gli UC prodotti fino ad allora, contenuti nella versione *v0.7.0* del documento di *Analisi dei requisiti*.
 
 Il confronto con l'azienda ha al contempo risolto alcuni dubbi del gruppo relativi agli use cases e ne ha fatti emergere altri, i quali andranno risolti con uno studio più approfondito del capitolato e dei suoi casi d'utilizzo. I punti salienti del dialogo sono riassunti nella @dubbi-chiarimenti.
 
