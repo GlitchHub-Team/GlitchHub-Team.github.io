@@ -2,7 +2,7 @@
 
 #show: report.with(
   titolo: "Verbale esterno 16/12/2025 (M31)",
-  stato: "Verificato",
+  stato: "Verificato (da verificare esternamente)",
   versione: "1.0.0",
   registro-modifiche: (
     (
@@ -41,7 +41,7 @@
   ),
   htmlId: "RTB-VerbaliEsterni",
   verificatore-interno: "Riccardo Graziani",
-  left-signature: "../../assets/firme/firma_Riccardo_Graziani.png",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
