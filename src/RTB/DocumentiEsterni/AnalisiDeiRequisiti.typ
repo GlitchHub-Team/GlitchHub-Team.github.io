@@ -10,7 +10,7 @@
       "16/12/2025",
       "Elia Ernesto Stellin",
       "-",
-      "Modifica formattazione use cases e riferimenti dentro il documento"
+      "Modifica formattazione use cases e riferimenti dentro il documento",
     ),
     (
       "0.7.0",
@@ -59,23 +59,28 @@
 )
 
 #let uc-counter = counter("uc-counter")
-#uc-counter.update((1, ))
+#let sub-uc-counter = counter("sub-uc-counter")
+#let subsub-uc-counter = counter("subsub-uc-counter")
+#uc-counter.update(0)
+#sub-uc-counter.update(0)
+#subsub-uc-counter.update(0)
 
 #let uc = () => {
-  context uc-counter.display("UC1.1.1")
   uc-counter.step(level: 1)
+  context [UC#uc-counter.display()]
+  sub-uc-counter.update(0)
 }
 
 #let sub-uc = () => {
-  context uc-counter.display("UC1.1.1")
-  uc-counter.step(level: 2)
+  sub-uc-counter.step()
+  context [UC#uc-counter.display().#sub-uc-counter.display()]
+  subsub-uc-counter.update(0)
 }
 
 #let subsub-uc = () => {
-  context uc-counter.display("UC1.1.1")
-  uc-counter.step(level: 3)
+  subsub-uc-counter.step()
+  context [UC#uc-counter.display().#sub-uc-counter.display().#subsub-uc-counter.display()]
 }
-
 /*
   = Esempio
   Se da qualche parte ho un titolo con label `<Autenticazione-Utente>`
@@ -87,16 +92,16 @@
   == uc-label
   Tipo: label
 */
-#let ref-uc = (uc-label) => {
+#let ref-uc = uc-label => {
   context {
-    let uc-number = uc-counter.at(locate(uc-label));
-    let section-number = counter(heading).at(uc-label);
+    let uc-number = uc-counter.at(locate(uc-label))
+    let section-number = counter(heading).at(uc-label)
 
     let section-id = numbering(
       (..numbers) => numbers.pos().map(str).join("."),
-      ..section-number
-    );
-    let uc-id = numbering("UC1.1.1", ..uc-number);
+      ..section-number,
+    )
+    let uc-id = numbering("UC1.1.1", ..uc-number)
     [
       #link(uc-label, [#uc-id \[Sezione #section-id\]])
     ]
@@ -147,62 +152,57 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
 - *Post-condizioni*:
   - L'Utente ha eseguito l'accesso al Sistema ed è stato riconosciuto come _Tenant User_, _Tenant Admin_ o _Super Admin_
 - *Scenario principale*:
   - L'Utente seleziona la funzionalità di login
-  - L'Utente inserisce lo username
+  - L'Utente inserisce l'indirizzo email associato al proprio account
   - L'Utente inserisce la password
 - *Scenari alternativi*:
-  - L'Utente inserisce username o password errati
+  - L'Utente inserisce email o password errati
 - *Estensioni*:
   - #ref-uc(<Autenticazione-non-riuscita>)
   - #ref-uc(<Account-sospeso>)
 - *Inclusioni*:
-  - #ref-uc(<Inserimento-username-auth>)
+  - #ref-uc(<Inserimento-email-auth>)
   - #ref-uc(<Inserimento-password>)
 ===== #sub-uc() - Autenticazione non riuscita <Autenticazione-non-riuscita>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce username o password errati
+- *Trigger*: L'Utente inserisce email o password errati
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
-  - L'Utente ha inserito username che non corrisponde ad un utente registrato o ha inserito una password errata
+  - L'Utente ha inserito un'email che non corrisponde ad un utente registrato o ha inserito una password errata
 - *Post-condizioni*:
   - L'Utente non viene autenticato nel Sistema
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - Il Sistema verifica le credenziali inserite dall'Utente e rileva l'errore
 
-===== #sub-uc() - Inserimento username autenticazione <Inserimento-username-auth>
+===== #sub-uc() - Inserimento email autenticazione <Inserimento-email-auth>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
 - *Post-condizioni*:
-  - Il Sistema riceve lo username inserito dall'Utente
+  - Il Sistema riceve l'indirizzo email inserito dall'Utente
 - *Scenario principale*:
-  - L'Utente inserisce lo username
+  - L'Utente inserisce l'indirizzo email associato al proprio account
 
-==== #sub-uc() - Inserimento password <Inserimento-password>
+===== #sub-uc() - Inserimento password <Inserimento-password>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
 - *Post-condizioni*:
   - Il Sistema riceve la password inserita dall'Utente
 - *Scenario principale*:
   - L'Utente inserisce la password
 
-==== #sub-uc() - Account sospeso <Account-sospeso>
+===== #sub-uc() - Account sospeso <Account-sospeso>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente prova ad autenticarsi con un account sospeso
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
 - *Post-condizioni*:
   - L'Utente non viene autenticato nel Sistema
   - Viene mostrato un messaggio di errore
@@ -214,7 +214,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente vuole effettuare il logout dal Sistema
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
-
 - *Post-condizioni*:
   - L'Utente viene disconnesso dal Sistema
 - *Scenario principale*:
@@ -222,10 +221,10 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Password dimenticata <Password-dimenticata>
 - *Attore principale*: Utente
+- *Attore secondario*: Client email
 - *Trigger*: L'Utente ha dimenticato la password e vuole reimpostarla
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
 - *Post-condizioni*:
   - Viene inviata un'email all'Utente con le istruzioni per reimpostare la password
 - *Scenario principale*:
@@ -244,7 +243,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente inserisce l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
 - *Post-condizioni*:
   - Il Sistema riceve l'indirizzo email inserito dall'Utente
 - *Scenario principale*:
@@ -256,7 +254,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente ha inserito l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
   - L'Utente ha inserito l'indirizzo email associato al proprio account
 - *Post-condizioni*:
   - Viene inviata un'email all'Utente con le istruzioni per reimpostare la password
@@ -268,7 +265,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente inserisce un indirizzo email non associato ad alcun account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
   - L'Utente ha inserito un indirizzo email non associato ad alcun account
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
@@ -279,8 +275,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Attore principale*: Utente
 - *Trigger*: L'Utente vuole reimpostare la password
 - *Pre-condizioni*:
-  - L'Utente non è autenticato nel Sistema
-
   - L'Utente ha ricevuto l'email di reimpostazione password
 - *Post-condizioni*:
   - La password dell'Utente viene reimpostata
@@ -299,7 +293,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: L'Utente ha cliccato sul link di reimpostazione password nell'email
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
 - *Post-condizioni*:
   - La nuova password viene registrata nel Sistema
 - *Scenario principale*:
@@ -309,10 +302,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== #sub-uc() - Password non conforme ai criteri di sicurezza <Password-non-conforme-criteri-sicurezza>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce una nuova password che non rispetta i criteri di sicurezza
+- *Trigger*: L'Utente inserisce una nuova password non conforme ai criteri di sicurezza
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
-
   - L'Utente ha cliccato sul link di reimpostazione password nell'email
   - L'Utente ha inserito una nuova password non conforme ai criteri di sicurezza
 - *Post-condizioni*:
@@ -325,34 +317,69 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Visualizzazione dashboard Tenant User <Visualizzazione-dashboard-tenant-user>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole visualizzare la propria dashboard
+- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-
 - *Post-condizioni*:
   - La dashboard viene visualizzata correttamente
 - *Scenario principale*:
   - Il Tenant User accede alla dashboard del proprio tenant
+  - Visualizza il numero di sensori attivi e non attivi
+  - Visualizza il numero di gateway
+  - Visualizza eventuali alert o notifiche riguardanti il funzionamento dei sensori
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-numero-di-sensori-attivi-non-attivi>)
+  - #ref-uc(<Visualizzazione-numero-di-gateway-attivi-non-attivi>)
+  - #ref-uc(<Visualizzazione-alert-notifiche>)
+
+===== #sub-uc() - Visualizzazione numero di sensori attivi e non attivi <Visualizzazione-numero-di-sensori-attivi-non-attivi>
+- *Attore principale*: Tenant User
+- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
+- *Pre-condizioni*:
+  - Il Tenant User è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene visualizzato il numero di sensori attivi e non attivi
+- *Scenario principale*:
+  - Il Tenant User visualizza il numero di sensori attivi e non attivi
+
+===== #sub-uc() - Visualizzazione numero di gateway attivi e non attivi <Visualizzazione-numero-di-gateway-attivi-non-attivi>
+- *Attore principale*: Tenant User
+- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
+- *Pre-condizioni*:
+  - Il Tenant User è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene visualizzato il numero di gateway attivi e non attivi
+- *Scenario principale*:
+  - Il Tenant User visualizza il numero di gateway attivi e non attivi
+
+===== #sub-uc() - Visualizzazione alert e notifiche <Visualizzazione-alert-notifiche>
+- *Attore principale*: Tenant User
+- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
+- *Pre-condizioni*:
+  - Il Tenant User è autenticato nel Sistema
+- *Post-condizioni*:
+  - Vengono visualizzati eventuali alert o notifiche riguardanti il funzionamento dei sensori del tenant
+- *Scenario principale*:
+  - Il Tenant User visualizza eventuali alert o notifiche riguardanti il funzionamento dei sensori del tenant
+
+// DA AGGIUNGERE EVENTUALI INFORMAZIONI DA AGGIUNGERE ALLA DASHBOARD
 
 ==== #uc() - Visualizzazione sensori collegati al tenant <Visualizzazione-sensori-collegati-tenant>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare i sensori collegati al proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-
 - *Post-condizioni*:
   - Viene visualizzata la lista dei sensori associati al tenant del Tenant User
 - *Scenario principale*:
   - Il Tenant User seleziona la funzionalità di visualizzazione sensori
   - Viene mostrata la lista dei sensori associati al tenant del Tenant User
 
-//generalizzazione UC#uc-number() e UC#sub-uc-number()
 ==== #uc() - Visualizzazione dati real-time sensore <Visualizzazione-dati-real-time-sensore>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare i dati real-time di un sensore
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-
   - Esistono sensori associati al tenant del Tenant User
 - *Post-condizioni*:
   - Vengono visualizzati i dati real-time del sensore selezionato
@@ -385,7 +412,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User seleziona un sensore
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-
   - Il sensore selezionato appartiene al tenant del Tenant User
 - *Post-condizioni*:
   - Il Sistema riceve l'identificativo del sensore selezionato
@@ -397,12 +423,39 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Trigger*: Il Tenant User ha selezionato un sensore per visualizzare i dati real-time
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
-
   - Il sensore selezionato appartiene al tenant del Tenant User
 - *Post-condizioni*:
   - Vengono visualizzati i dati real-time del sensore selezionato
 - *Scenario principale*:
-  - Il Sistema recupera e mostra i dati real-time del sensore selezionato
+  - Il Tenant User visualizza i dati real-time del sensore selezionato
+  - I dati vengono mostrati in forma di grafico
+  - I dati vengono mostrati in forma di testuale
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-grafico-dati-real-time>)
+  - #ref-uc(<Visualizzazione-testuale-dati-real-time>)
+
+
+====== #subsub-uc() - Visualizzazione grafico dati real-time <Visualizzazione-grafico-dati-real-time>
+- *Attore principale*: Tenant User
+- *Trigger*: Il Tenant User ha selezionato un sensore per visualizzare i dati in real-time
+- *Pre-condizioni*:
+  - Il Tenant User è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant del Tenant User
+- *Post-condizioni*:
+  - Vengono visualizzati i dati real-time del sensore selezionato in forma di grafico
+- *Scenario principale*:
+  - Il Tenant User visualizza i dati real-time del sensore selezionato in forma di grafico
+
+====== #subsub-uc() - Visualizzazione testuale dati real-time <Visualizzazione-testuale-dati-real-time>
+- *Attore principale*: Tenant User
+- *Trigger*: Il Tenant User ha selezionato un sensore per visualizzare i dati in real-time
+- *Pre-condizioni*:
+  - Il Tenant User è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant del Tenant User
+- *Post-condizioni*:
+  - Vengono visualizzati i dati real-time del sensore selezionato in forma testuale
+- *Scenario principale*:
+  - Il Tenant User visualizza i dati real-time del sensore selezionato in forma testuale
 
 ==== #uc() - Visualizzazione storico dati sensore <Visualizzazione-storico-dati-sensore>
 - *Attore principale*: Tenant User
@@ -633,8 +686,112 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin seleziona il sensore che vuole riattivare
   - Il Tenant Admin riattivare il sensore
 
-// Ha senso? Lo fa il Tenant Admin o lo fa il Super Admin?
-==== #uc() - Eliminazione sensore <Eliminazione-sensore>
+==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare una nuova API key
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene generata una nuova API key associata al tenant del Tenant Admin
+- *Scenario principale*:
+  - Il Tenant Admin seleziona la funzionalità di registrazione nuova API key
+  - Inserisce il nome della API key
+  - Inserisce la scadenza della API key
+  - Viene generata la nuova API key
+- *Inclusioni*:
+  - @Inserimento-nome-api-key
+  - @Inserimento-scadenza-api-key
+
+
+===== #sub-uc() - Inserimento nome API key <Inserimento-nome-api-key>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare una nuova API key
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve il nome inserito per la nuova API key
+- *Scenario principale*:
+  - Il Tenant Admin inserisce il nome della nuova API key
+  - Il Sistema riceve il nome inserito
+- *Scenari alternativi*:
+  - Il nome inserito è già utilizzato da un'altra API key nel tenant
+- *Estensioni*:
+  - #ref-uc(<Nome-api-key-gia-utilizzato>)
+
+====== #subsub-uc() - Nome API key già utilizzato <Nome-api-key-gia-utilizzato>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin inserisce un nome già utilizzato per la nuova API key
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Tenant Admin ha inserito un nome già utilizzato per la nuova API key all'interno del proprio tenant
+- *Post-condizioni*:
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema verifica il nome inserito e rileva l'errore
+
+===== #sub-uc() - Inserimento scadenza API key <Inserimento-scadenza-api-key>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole registrare una nuova API key
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la scadenza inserita per la nuova API key
+- *Scenario principale*:
+  - Il Tenant Admin inserisce la scadenza della nuova API key
+  - Il Sistema riceve la scadenza inserita
+- *Scenari alternativi*:
+  - La scadenza inserita non è valida
+- *Estensioni*:
+  - #ref-uc(<Scadenza-api-key-non-valida>)
+
+====== #subsub-uc() - Scadenza API key non valida <Scadenza-api-key-non-valida>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin inserisce una scadenza non valida per la nuova API key
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Tenant Admin ha inserito una scadenza non valida per la nuova API key
+- *Post-condizioni*:
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema verifica la scadenza inserita e rileva l'errore
+
+==== #uc() - Visualizzazione lista API key <Visualizzazione-lista-api-key>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare le API key associate al proprio tenant
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene visualizzata la lista delle API key associate al tenant
+- *Scenario principale*:
+  - Il Tenant Admin seleziona la funzionalità di visualizzazione delle API key
+  - Viene mostrata la lista delle API key associate al Tenant
+
+==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole visualizzare i dettagli di una API key
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - La API key selezionata esiste e appartiene al tenant del Tenant Admin
+- *Post-condizioni*:
+  - Vengono visualizzati i dettagli della API key selezionata
+- *Scenario principale*:
+  - Il Tenant Admin seleziona una API key dalla lista delle API key
+  - Viene mostrato il nome della API key
+  - Viene mostrata la data di creazione
+  - Viene mostrata la data di scadenza
+  - Viene mostrato un grafico di utilizzo della API key
+
+==== #uc() - Eliminazione API key <Eliminazione-api-key>
+- *Attore principale*: Tenant Admin
+- *Trigger*: Il Tenant Admin vuole eliminare una API key
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - La API key selezionata appartiene al tenant del Tenant Admin
+- *Post-condizioni*:
+  - Il Sistema elimina la API key selezionata
+- *Scenario principale*:
+  - Il Tenant Admin seleziona una API key associata al proprio tenant
+  - Il Tenant Admin elimina la API key selezionata
 
 ==== #uc() - Visualizzazione lista di gateway <Visualizzazione-lista-gateway>
 - *Attore principale*: Tenant Admin
