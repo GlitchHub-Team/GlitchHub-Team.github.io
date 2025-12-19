@@ -352,46 +352,58 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
-  - La dashboard viene visualizzata correttamente
+  - La dashboard viene mostrata correttamente
 - *Scenario principale*:
   - Il Tenant User accede alla dashboard del proprio tenant
   - Visualizza il numero di sensori attivi e non attivi
-  - Visualizza il numero di gateway
-  - Visualizza eventuali alert o notifiche riguardanti il funzionamento dei sensori
+  - Visualizza il numero di gateway attivi e non attivi
+  - Visualizza gli alert riguardanti eventi anomali all'interno del tenant
 - *Inclusioni*:
-  - #ref-uc(<Visualizzazione-numero-di-sensori-attivi-non-attivi>)
-  - #ref-uc(<Visualizzazione-numero-di-gateway-attivi-non-attivi>)
-  - #ref-uc(<Visualizzazione-alert-notifiche>)
+  - #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)
+  - #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)
+  - #ref-uc(<Visualizzazione-lista-alert>)
 
-===== #sub-uc() - Visualizzazione numero di sensori attivi e non attivi <Visualizzazione-numero-di-sensori-attivi-non-attivi>
+===== #sub-uc() - Visualizzazione numero di sensori attivi e non attivi <Visualizzazione-numero-sensori-attivi-non-attivi>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene visualizzato il numero di sensori attivi e non attivi
+  - Viene visualizzato il numero di sensori attivi e non attivi in forma testuale e di grafico a torta
 - *Scenario principale*:
   - Il Tenant User visualizza il numero di sensori attivi e non attivi
+  - Il Tenant User visualizza le informazioni in forma testuale e di grafico a torta.
 
-===== #sub-uc() - Visualizzazione numero di gateway attivi e non attivi <Visualizzazione-numero-di-gateway-attivi-non-attivi>
+===== #sub-uc() - Visualizzazione numero di gateway attivi e non attivi <Visualizzazione-numero-gateway-attivi-non-attivi>
 - *Attore principale*: Tenant User
 - *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene visualizzato il numero di gateway attivi e non attivi
+  - Viene visualizzato il numero di gateway attivi e non attivi in forma testuale e di grafico a torta
 - *Scenario principale*:
   - Il Tenant User visualizza il numero di gateway attivi e non attivi
+  - Il Tenant User visualizza le informazioni in forma testuale e di grafico a torta.
 
-===== #sub-uc() - Visualizzazione alert e notifiche <Visualizzazione-alert-notifiche>
+==== #uc() - Visualizzazione lista alert <Visualizzazione-lista-alert>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
-  - Vengono visualizzati eventuali alert o notifiche riguardanti il funzionamento dei sensori del tenant
+  - Il Sistema mostra la lista degli alert riguardanti eventi anomali all'interno del tenant
 - *Scenario principale*:
-  - Il Tenant User visualizza eventuali alert o notifiche riguardanti il funzionamento dei sensori del tenant
+  - Il Tenant User visualizza gli alert riguardanti eventi anomali nel proprio tenant
+  - Il Tenant User visualizza gli alert in forma di lista ordinata in ordine cronologico decrescente (dal più recente al meno recente).
+
+==== #uc() - Visualizzazione alert <Visualizzazione-alert>
+- *Attore principale*: Tenant User
+- *Pre-condizioni*:
+  - Il Tenant User è autenticato nel Sistema
+  - L'alert esiste ed è associato al tenant del Tenant User
+- *Post-condizioni*:
+  - Il Sistema mostra il titolo e la descrizione dell'alert selezionato
+- *Scenario principale*:
+  - Il Tenant User visualizza il titolo e la descrizione dell'alert selezionato
 
 // DA AGGIUNGERE EVENTUALI INFORMAZIONI DA AGGIUNGERE ALLA DASHBOARD
 
@@ -714,110 +726,125 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole visualizzare la propria dashboard
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-
 - *Post-condizioni*:
-  - La dashboard viene visualizzata correttamente
+  - La dashboard viene mostrata correttamente
 - *Scenario principale*:
   - Il Tenant Admin accede alla dashboard del proprio tenant
+  - Visualizza il numero di API key valide e scadute nel tenant
+  - Visualizza il numero di sensori attivi e non attivi nel tenant
+  - Visualizza il numero di gateway attivi e non attivi nel tenant
+  - Visualizza eventuali alert o notifiche riguardanti il funzionamento dei sensori nel tenant
+  - Visualizza lo stato delle richieste di commissioning e decommissioning di gateway
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-numero-api-key-valide-scadute>)
+  - #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)
+  - #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)
+  - #ref-uc(<Visualizzazione-lista-alert>)
+  - #ref-uc(<Visualizzazione-stato-richieste-commissioning-decommissioning-gateway>)
 
-=====
+===== #sub-uc() - Visualizzazione numero di API key valide e scadute <Visualizzazione-numero-api-key-valide-scadute>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene visualizzato il numero di API key valide e scadute nel tenant
+- *Scenario principale*:
+  - Il Tenant Admin visualizza il numero di API key valide e scadute nel tenant
+  - Il Tenant Admin visualizza le informazioni in forma testuale e di grafico a torta.
+
+==== #uc() - Visualizzazione stato delle richieste di commissioning e decommissioning di gateway <Visualizzazione-stato-richieste-commissioning-decommissioning-gateway>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene visualizzato lo stato delle richieste di commissioning e decommissioning di gateway
+- *Scenario principale*:
+  - Il Tenant Admin visualizza lo stato delle richieste di commissioning e decommissioning di gateway
+  - Il Tenant Admin visualizza le richieste in forma di lista ordinata in ordine cronologico decrescente (dalla più recente alla meno recente).
 
 ==== #uc() - Visualizzazione lista Tenant User <Visualizzazione-lista-tenant-user>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole visualizzare i Tenant User registrati nel tenant
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-
 - *Post-condizioni*:
-  - Viene visualizzata la lista dei Tenant User registrati nel tenant
+  - Il Sistema mostra la lista dei Tenant User registrati nel tenant
 - *Scenario principale*:
-  - Il Tenant Admin seleziona la funzionalità di visualizzazione dei Tenant User
-  - Viene mostrata la lista dei Tenant User registrati nel Tenant
+  - Il Tenant Admin visualizza la lista dei Tenant User registrati nel tenant
 
-// Competenza del Tenant Admin? Lo può fare?
-//==== UC#uc-number() - Registrazione nuovo sensore <Registrazione-nuovo-sensore>
-
-// Penso sia doppione con lo UC del Tenant User
-//==== UCZ - Visualizzazione lista dei sensori <Visualizzazione-lista-dei-sensori>
-
-
-
-//Dina: non penso sia un requisito
 ==== #uc() - Disattivazione sensore <Disattivazione-sensore>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole disattivare un sensore
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-
-  - Il sensore è registrato nel tenant
+  - Il sensore è associato ad un gateway registrato nel tenant del Tenant Admin
+  - Il sensore non è già disattivato
 - *Post-condizioni*:
-  - Il Sistema disattiva il sensore e sospende la ricezione dei suoi dati
+  - Il Sistema invia un comando al gateway per ignorare i dati provenienti dal sensore specificato
 - *Scenario principale*:
   - Il Tenant Admin seleziona il sensore che vuole disattivare
-  - Il Tenant Admin disattiva il sensore
+- *Scenari alternativi*:
+  - Il gateway associato al sensore non è raggiungibile
+- *Estensioni*:
+  - #ref-uc(<Gateway-non-raggiungibile>)
+- *Inclusioni*:
+  - #ref-uc(<Selezione-sensore>)
 
 ==== #uc() - Riattivazione sensore <Riattivazione-sensore>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole riattivare un sensore
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-
-  - Il sensore è registrato nel tenant
+  - Il sensore è associato ad un gateway registrato nel tenant del Tenant Admin
+  - Il sensore è disattivato
 - *Post-condizioni*:
-  - Il Sistema riattivare il sensore e riprende la ricezione dei suoi dati
+  - Il Sistema invia un comando al gateway per riprendere la raccolta dei dati provenienti dal sensore specificato
 - *Scenario principale*:
   - Il Tenant Admin seleziona il sensore che vuole riattivare
-  - Il Tenant Admin riattivare il sensore
+- *Scenari alternativi*:
+  - Il gateway associato al sensore non è raggiungibile
+- *Estensioni*:
+  - #ref-uc(<Gateway-non-raggiungibile>)
+- *Inclusioni*:
+  - #ref-uc(<Selezione-sensore>)
 
 ==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole registrare una nuova API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene generata una nuova API key associata al tenant del Tenant Admin
+  - Il Sistema genera una nuova API key associata al tenant del Tenant Admin
 - *Scenario principale*:
-  - Il Tenant Admin seleziona la funzionalità di registrazione nuova API key
-  - Inserisce il nome della API key
-  - Inserisce la scadenza della API key
-  - Viene generata la nuova API key
+  - Il Tenant Admin inserisce il nome della API key
+  - Il Tenant Admin inserisce la scadenza della API key
 - *Inclusioni*:
-  - @Inserimento-nome-api-key
-  - @Inserimento-scadenza-api-key
-
+  - #ref-uc(<Inserimento-nome-api-key>)
+  - #ref-uc(<Inserimento-scadenza-api-key>)
 
 ===== #sub-uc() - Inserimento nome API key <Inserimento-nome-api-key>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole registrare una nuova API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema riceve il nome inserito per la nuova API key
 - *Scenario principale*:
   - Il Tenant Admin inserisce il nome della nuova API key
-  - Il Sistema riceve il nome inserito
 - *Scenari alternativi*:
-  - Il nome inserito è già utilizzato da un'altra API key nel tenant
+  - Il nome inserito è già utilizzato da un'altra API key all'interno del tenant
 - *Estensioni*:
   - #ref-uc(<Nome-api-key-gia-utilizzato>)
 
 ====== #subsub-uc() - Nome API key già utilizzato <Nome-api-key-gia-utilizzato>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin inserisce un nome già utilizzato per la nuova API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - Il Tenant Admin ha inserito un nome già utilizzato per la nuova API key all'interno del proprio tenant
 - *Post-condizioni*:
-  - Viene mostrato un messaggio di errore
+  - L'operazione di registrazione della nuova API key viene interrotta
 - *Scenario principale*:
-  - Il Sistema verifica il nome inserito e rileva l'errore
+  - Il Tenant Admin visualizza un messaggio di errore dopo aver inserito il nome già utilizzato
 
 ===== #sub-uc() - Inserimento scadenza API key <Inserimento-scadenza-api-key>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole registrare una nuova API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
@@ -827,48 +854,58 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenari alternativi*:
   - La scadenza inserita non è valida
 - *Estensioni*:
-  - #ref-uc(<Scadenza-api-key-non-valida>)
+  - #ref-uc(<Scadenza-api-key-data-passata>)
 
-====== #subsub-uc() - Scadenza API key non valida <Scadenza-api-key-non-valida>
+====== #subsub-uc() - Scadenza API key in data passata <Scadenza-api-key-data-passata>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin inserisce una scadenza non valida per la nuova API key
+- *Trigger*: Il Tenant Admin inserisce una scadenza in data passata per la nuova API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il Tenant Admin ha inserito una scadenza non valida per la nuova API key
+  - Il Tenant Admin ha inserito una scadenza in data passata per la nuova API key
 - *Post-condizioni*:
-  - Viene mostrato un messaggio di errore
+  - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica la scadenza inserita e rileva l'errore
+  - Il Tenant Admin visualizza un messaggio di errore dopo aver inserito una scadenza in data passata
 
 ==== #uc() - Visualizzazione lista API key <Visualizzazione-lista-api-key>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole visualizzare le API key associate al proprio tenant
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene visualizzata la lista delle API key associate al tenant
+  - Il Sistema mostra la lista delle API key associate al tenant
 - *Scenario principale*:
-  - Il Tenant Admin seleziona la funzionalità di visualizzazione delle API key
-  - Viene mostrata la lista delle API key associate al Tenant
+  - Il Tenant Admin visualizza la lista delle API key associate al tenant
+  - Sono visualizzati per ogni API key il nome, la data di creazione e la data di scadenza
 
 ==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole visualizzare i dettagli di una API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - La API key selezionata esiste e appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Vengono visualizzati i dettagli della API key selezionata
 - *Scenario principale*:
-  - Il Tenant Admin seleziona una API key dalla lista delle API key
-  - Viene mostrato il nome della API key
-  - Viene mostrata la data di creazione
-  - Viene mostrata la data di scadenza
-  - Viene mostrato un grafico di utilizzo della API key
+  - Il Tenant Admin visualizza il nome della API key
+  - Il Tenant Admin visualizza la data di creazione
+  - Il Tenant Admin visualizza la data di scadenza
+  - Il Tenant Admin visualizza il grafico di utilizzo della API key
+- *Inclusioni*:
+  - #ref-uc(<Grafico-utilizzo-api-key>)
+
+===== #sub-uc() - Grafico utilizzo API key <Grafico-utilizzo-api-key>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - La API key selezionata esiste e appartiene al tenant del Tenant Admin
+- *Post-condizioni*:
+  - Il Sistema mostra il grafico Time Series di utilizzo della API key selezionata
+- *Scenario principale*:
+  - Il Tenant Admin visualizza il grafico Time Series di utilizzo della API key selezionata
+  - Visualizza nell'asse Y il numero di richieste effettuate con la API key
+  - Visualizza nell'asse X il tempo
 
 ==== #uc() - Eliminazione API key <Eliminazione-api-key>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole eliminare una API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - La API key selezionata appartiene al tenant del Tenant Admin
@@ -876,78 +913,98 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Sistema elimina la API key selezionata
 - *Scenario principale*:
   - Il Tenant Admin seleziona una API key associata al proprio tenant
+  - Il Tenant Admin conferma l'eliminazione della API key selezionata
   - Il Tenant Admin elimina la API key selezionata
+- *Inclusioni*:
+  - #ref-uc(<Conferma-eliminazione-api-key>)
+
+===== #sub-uc() - Conferma eliminazione API key <Conferma-eliminazione-api-key>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - La API key selezionata appartiene al tenant del Tenant Admin
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma dell'eliminazione della API key selezionata
+- *Scenario principale*:
+  - Il Tenant Admin conferma l'eliminazione della API key selezionata
 
 ==== #uc() - Visualizzazione lista di gateway <Visualizzazione-lista-gateway>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole visualizzare i gateway associati al tenant
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene visualizzata la lista dei gateway associati al tenant
+  - Il Sistema mostra la lista dei gateway associati al tenant del Tenant Admin
 - *Scenario principale*:
-  - Il Tenant Admin seleziona la funzionalità di visualizzazione dei gateway
-  - Viene mostrata la lista dei gateway associati al Tenant
+  - Il Tenant Admin visualizza la lista dei gateway associati al tenant
 
-// Tipo: è online, quanta roba sta mandando, magari il costo associato
-==== #uc() - Visualizzazione informazioni dettagliate gateway <Visualizzazione-informazioni-dettagliate-gateway>
+==== #uc() - Visualizzazione gateway <Visualizzazione-gateway>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole visualizzare le informazioni del gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il gateway è raggiungibile
+  - Il gateway è associato al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Vengono visualizzate le informazioni dettagliate del gateway
+  - Il Sistema mostra le informazioni dettagliate del gateway selezionato
 - *Scenario principale*:
-  - Il Tenant Admin seleziona un gateway dalla lista dei gateway
-  - Vengono mostrate le informazioni dettagliate del gateway
+  - Il Tenant Admin visualizza le informazioni del gateway selezionato, tra cui:
+    - Nome del gateway
+    - Stato: attivo, non raggiungibile, non associato, non autenticato
+    - Sensori collegati al gateway
 - *Inclusioni*:
-  - #ref-uc(<Selezione-gateway-tenant-admin>)
-- *Estensioni*:
-  - #ref-uc(<Gateway-non-raggiungibile>)//problema l'attore principale, non è tenant admin ma super admin
+  - #ref-uc(<Visualizzazione-stato-gateway>)
+  - #ref-uc(<Visualizzazione-sensori-collegati-gateway>)
 
-==== #uc() - Selezione gateway <Selezione-gateway-tenant-admin>
+===== #sub-uc() - Visualizzazione stato gateway <Visualizzazione-stato-gateway>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin seleziona un gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Il gateway selezionato appartiene al tenant del Tenant Admin
+  - Il gateway è associato al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Il Sistema riceve l'identificativo del gateway selezionato
+  - Il Sistema mostra lo stato del gateway selezionato
 - *Scenario principale*:
-  - Il Tenant Admin seleziona un gateway associato al proprio tenant
+  - Il Tenant Admin visualizza lo stato del gateway selezionato, che può essere:
+    - Attivo
+    - Non raggiungibile
+    - Non associato
+    - Non autenticato
 
-// Ha senso?Dina->c'è gateway-non-raggiungibile
-//===== UC#sub-uc-number().2 - Gateway offline <Gateway-offline>
+===== #sub-uc() - Visualizzazione sensori collegati al gateway <Visualizzazione-sensori-collegati-gateway>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant del Tenant Admin
+  - Il gateway ha sensori collegati
+- *Post-condizioni*:
+  - Il Sistema mostra la lista dei sensori collegati al gateway selezionato
+- *Scenario principale*:
+  - Il Tenant Admin visualizza la lista dei sensori collegati al gateway selezionato
 
+/*
+Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in caso
 ===== #uc() - Disattivazione gateway <Disattivazione-gateway>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole disattivare un gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Il Sistema disattiva il gateway e sospende la ricezione dei suoi dati
+  - Il Sistema invia il comando di disattivazione al gateway e sospende la ricezione dei suoi dati
 - *Scenario principale*:
-  - Il Tenant Admin seleziona un gateway associato al proprio tenant
   - Il Tenant Admin disattiva il gateway
 
 ==== #uc() - Riattivazione gateway <Riattivazione-gateway>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole riattivare un gateway
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Il Sistema riattivare il gateway e riprende la ricezione dei suoi dati
+  - Il Sistema riattiva il gateway e riprende la ricezione dei suoi dati
 - *Scenario principale*:
   - Il Tenant Admin seleziona un gateway associato al proprio tenant
-  - Il Tenant Admin riattivare il gateway
+  - Il Tenant Admin riattiva il gateway
+*/
 
-// Req. opzionale, lo mettiamo?
+
 ==== #uc() - Visualizzazione audit log <Visualizzazione-audit-log>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole visualizzare gli audit log
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
@@ -957,9 +1014,11 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Estensioni*:
   - #ref-uc(<Esportazione-log>)
 
-===== #sub-uc() - Esportazione log <Esportazione-log>
+// DA SVILUPPARE TUTTI I TIPI DI AUDIT LOG, es: creazione utente, eliminazione utente, login, logout, creazione api key, eliminazione api key, ecc.
+// DA SVILUPPARE FILTRI
+
+===== #uc() - Esportazione log <Esportazione-log>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin vuole esportare gli audit log
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
@@ -967,10 +1026,11 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant Admin seleziona l'opzione di esportazione degli audit log
 
+//DINA WAS HERE
+
 === Attore principale - Super Admin
 ==== #uc() - Creazione Tenant <Creazione-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un nuovo tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
