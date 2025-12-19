@@ -2,7 +2,7 @@
 
 #show: report.with(
   titolo: "Verbale esterno 16/12/2025 (M31)",
-  stato: "Verificato (da verificare esternamente)",
+  stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
     (
