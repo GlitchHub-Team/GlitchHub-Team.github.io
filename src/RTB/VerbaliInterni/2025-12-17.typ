@@ -4,21 +4,29 @@
 #show: report.with(
   titolo: "Verbale interno 17/12/2025",
   stato: "Da verificare",
-  versione: "0.1.0",
+  versione: "1.0.0",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "19/12/2025",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      "Versione stabile verbale interno 19/12/2025",
+    ),
     (
       "0.1.0",
       "19/12/2025",
-      "Elia Ernesto Stellin", "-",
-      "Prima stesura documento"
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      "Prima stesura documento",
     ),
-    
     (
       "0.0.1",
       "18/12/2025",
-      "Elia Ernesto Stellin", "-",
-      "Prima bozza documento"
-    )
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      "Prima bozza documento",
+    ),
   ),
   partecipanti: (
     "Alessandro Dinato",
@@ -36,11 +44,11 @@
   odg: (
     [Allineamento su workflow per GitHub Issues],
     [Discussione sprint venturo e milestone interna 31/12/2025],
-    [Assegnazione delle task]
+    [Assegnazione delle task],
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-verbale: "Interno",
 )
 
@@ -76,14 +84,11 @@ Il gruppo per il *Piano di Qualifica* è composto da Michele Dioli, Hossam Ezzem
   align: center + horizon,
   [*Task*], [*Issue*],
 
-  [Trovare e definire metriche del PdQ],
-  [#issue(120)],
+  [Trovare e definire metriche del PdQ], [#issue(120)],
 
-  [Definire la struttura del documento],
-  [#issue(121)],
+  [Definire la struttura del documento], [#issue(121)],
 
-  [Creare uno spreadsheet interno per il cruscotto e definire automazione per la loro compilazione],
-  [#issue(122)],
+  [Creare uno spreadsheet interno per il cruscotto e definire automazione per la loro compilazione], [#issue(122)],
 )
 
 Il gruppo per l'*Analisi dei Requisiti* è composto da Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin e le sotto-attività assegnate a loro sono le seguenti:
@@ -92,23 +97,16 @@ Il gruppo per l'*Analisi dei Requisiti* è composto da Jaume Bernardi, Alessandr
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Approfondire use cases attuali],
-  [Alessandro Dinato, Riccardo Graziani],
-  [#issue(123)],
+  [Approfondire use cases attuali], [Alessandro Dinato, Riccardo Graziani], [#issue(123)],
 
   [Approfondire use cases per interfaccia utente e use cases troppo generici],
   [Jaume Bernardi, Elia Ernesto Stellin],
   [#issue(124)],
 
-  [Definire use cases con simulatore Gateway come sistema],
-  [Alessandro Dinato, Riccardo Graziani],
-  [#issue(125)],
+  [Definire use cases con simulatore Gateway come sistema], [Alessandro Dinato, Riccardo Graziani], [#issue(125)],
 
-  [Definire use cases sensore-gateway],
-  [Jaume Bernardi, Elia Ernesto Stellin],
-  [#issue(126)],
+  [Definire use cases sensore-gateway], [Jaume Bernardi, Elia Ernesto Stellin], [#issue(126)],
 
-  
   [Scrittura dei requisiti e relativi Test di Sistema (nel PdQ)],
   [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
   [#issue(127), #issue(128)],
