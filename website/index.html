@@ -27,13 +27,13 @@
                 </button>
 
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="./pdf/glossary.pdf" target="_blank">Glossario</a></li>
+                    <li><a href="#rtb">RTB</a></li>
                     <li><a href="#candidatura">Candidatura</a></li>
-                    <li class="nascondi"><a href="#rtb">RTB</a></li>
                     <li class="nascondi"><a href="#pb">PB</a></li>
                     <li class="nascondi"><a href="#Diapositive">Diapositive</a></li>
                     <li><a href="#chisiamo">Chi siamo</a></li>
                     <li><a href="#contatti">Contatti</a></li>
+                    <li><a href="./pdf/glossary.pdf" target="_blank">Glossario</a></li>
                 </ul>
             </div>
         </nav>
@@ -49,7 +49,7 @@
     </header>
 
     <div class="container">
-        <details id="candidatura" open>
+        <details id="candidatura">
             <summary>
                 <h2>Candidatura</h2>
             </summary>
@@ -61,15 +61,8 @@
                     </ul>
                 </section>
             </div>
-            
+
             <div class="liste">
-                <div>
-                    <section>
-                        <p>Verbali interni</p>
-                        <ul id="Candidatura-VerbaliInterni">
-                        </ul>
-                    </section>
-                </div>
 
                 <div>
                     <section>
@@ -78,18 +71,44 @@
                         </ul>
                     </section>
                 </div>
-            </div>
-        </details>
 
-        <details id="rtb" class="nascondi">
-            <summary>
-                <h2>RTB</h2>
-            </summary>
-            <div class="liste">
                 <div>
                     <section>
                         <p>Verbali interni</p>
-                        <ul id="RTB-VerbaliInterni">
+                        <ul id="Candidatura-VerbaliInterni">
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+        </details>
+
+        <details id="rtb" open>
+            <summary>
+                <h2>RTB</h2>
+            </summary>
+
+            <div>
+                <section>
+                    <ul id="RTB-Generale">
+                    </ul>
+                </section>
+            </div>
+
+            <div class="liste">
+
+                <div>
+                    <section>
+                        <p>Documenti esterni</p>
+                        <ul id="RTB-DocumentiEsterni">
+                        </ul>
+                    </section>
+                </div>
+
+                <div>
+                    <section>
+                        <p>Documenti interni</p>
+                        <ul id="RTB-DocumentiInterni">
                         </ul>
                     </section>
                 </div>
@@ -101,6 +120,15 @@
                         </ul>
                     </section>
                 </div>
+
+                <div>
+                    <section>
+                        <p>Verbali interni</p>
+                        <ul id="RTB-VerbaliInterni">
+                        </ul>
+                    </section>
+                </div>
+
             </div>
         </details>
 
