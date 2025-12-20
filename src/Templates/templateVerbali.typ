@@ -10,7 +10,7 @@
 #let report(
   titolo: none,
   stato: none,
-  versione: none,
+  versione: none, // Parametro mantenuto per retrocompatibilità
   partecipanti: none,
   distribuzione: none,
   htmlId: none,
@@ -49,6 +49,8 @@
     spacing: 1.2em,
   )
 
+  #let versione-auto = if registro-modifiche.first(default: none) != none {registro-modifiche.first().at(0)} else {""}
+
   #show: hwr.with(
     language: "it",
     main-font: "PT Sans",
@@ -56,7 +58,7 @@
     metadata: (
       title: titolo,
       odg: odg,
-      version: "Versione " + text(weight: "bold")[#versione],
+      version: "Versione " + text(weight: "bold")[#versione-auto],
       company-logo: image("../assets/loghi/GlitchHub-Team_LogoG.png", width: 75%),
       uni-logo: image("../assets/loghi/logo_unipd_scritta.jpg", width: 51%),
     ),
