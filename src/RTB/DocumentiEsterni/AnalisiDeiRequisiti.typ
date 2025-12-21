@@ -3,8 +3,15 @@
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
-  versione: "0.8.0",
+  versione: "0.9.0",
   registro-modifiche: (
+    (
+      "0.9.0",
+      "21/12/2025",
+      "Alessandro Dinato",
+      "-",
+      [Aggiunta Use Case con sistema Gateway],
+    ),
     (
       "0.8.0",
       "20/12/2025",
