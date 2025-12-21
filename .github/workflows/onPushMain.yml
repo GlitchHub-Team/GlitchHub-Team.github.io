@@ -25,7 +25,12 @@ jobs:
         uses: typst-community/setup-typst@v4
         with:
           typst-version: '0.13.1'
-          
+
+      # --- AGGIUNTA QUI ---
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
       - name: Run bash
         run: | 
           chmod +x compile.sh
@@ -49,6 +54,7 @@ jobs:
       steps:
         - name: Checkout
           uses: actions/checkout@v4
+        
         - name: Download website files and PDFs artifact
           uses: actions/download-artifact@v4
           with:
@@ -58,7 +64,7 @@ jobs:
         - name: Setup Go
           uses: actions/setup-go@v5
           with:
-            go-version: '1.24.3'
+            go-version: '1.23' 
 
         - name: Install Go dependencies
           run: go mod tidy
