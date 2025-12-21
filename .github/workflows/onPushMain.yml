@@ -26,25 +26,14 @@ jobs:
         with:
           typst-version: '0.13.1'
 
-      # --- AGGIUNTA QUI ---
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.23'
       - name: Run bash
         run: | 
-         
-          if [ -f "$GITHUB_PATH" ]; then
-            export PATH="$PATH:$(cat $GITHUB_PATH)"
-          fi
-
-          echo "->"
-          which go
-          go version
-          
           chmod +x compile.sh
-          
-          env PATH="$PATH" ./compile.sh
+          ./compile.sh
 
       - name: Check Git status
         run: git status
