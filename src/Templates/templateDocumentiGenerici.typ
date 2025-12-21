@@ -46,7 +46,11 @@
     spacing: 1.2em,
   )
 
-  #let versione-auto = if registro-modifiche.first(default: none) != none {registro-modifiche.first().at(0)} else {""}
+  #let versione-auto = if registro-modifiche.len() > 0 {
+  registro-modifiche.first().at(0)
+} else {
+  ""
+}
 
   #show: hwr.with(
     language: "it",
