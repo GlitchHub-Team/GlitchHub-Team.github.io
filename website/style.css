@@ -619,6 +619,8 @@ footer div{
 }
 
 .version-tag {
+    display: inline-block;
+    width: max-content;
     margin-left: 1em;
     border: 1px solid #ccc;
     color: #555;
@@ -630,4 +632,12 @@ footer div{
 
 details>div {
     padding-left: 1.5em;
+}
+
+.nascondi{
+    display: none;
+}
+
+#rtb{
+    order: -1;
 }

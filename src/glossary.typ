@@ -80,6 +80,10 @@
     definition: [Piattaforma online basata su *Git* per archiviare *repository*, collaborare sul codice e gestire progetti software.],
   ),
   (
+      term: "GitHub Issues",
+      definition: [Strumento di *GitHub* per tracciare bug, funzionalità e attività di progetto tramite ticket assegnabili e commentabili.],
+    ),
+  (
     term: "GitHub Actions",
     definition: [Sistema di automazione integrato in *GitHub* che esegue pipeline *CI/CD*, test, build e deploy al verificarsi di eventi.],
   ),

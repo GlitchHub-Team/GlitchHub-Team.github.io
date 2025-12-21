@@ -4,6 +4,8 @@
 #let secondary = rgb("#000")
 #let gray-dark = rgb("#2c3e50")
 
+#let gloss(content) = [*#content#sub[G]*]
+
 #let report(
   titolo: none,
   stato: none,
@@ -11,6 +13,7 @@
   partecipanti: none,
   distribuzione: none,
   htmlId: none,
+  index: "0",
   odg: none,
   registro-modifiche: (),
   verificatore-interno: "",
@@ -20,11 +23,11 @@
   tipo-verbale: "Interno",
   body,
 ) = [
-
+  #show link: underline
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-    keywords: (htmlId, versione),
+    keywords: (htmlId, versione, index),
   )
 
   #set page(
@@ -149,7 +152,7 @@
   #pagebreak()
 
   #v(1em)
-  #outline()
+  #outline(indent: 1em)
 
   #pagebreak()
 
