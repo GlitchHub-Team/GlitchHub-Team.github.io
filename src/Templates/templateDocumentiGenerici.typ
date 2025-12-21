@@ -138,7 +138,7 @@
   #pagebreak()
 
   #v(1em)
-  #outline(indent: 1em)
+  #outline(indent: 0.8em)
 
   #pagebreak()
 
