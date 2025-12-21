@@ -10,7 +10,7 @@
 #let report(
   titolo: none,
   stato: none,
-  versione: none, // Parametro mantenuto per retrocompatibilità
+  versione: none,
   partecipanti: none,
   distribuzione: none,
   htmlId: none,
@@ -49,12 +49,15 @@
     spacing: 1.2em,
   )
 
+<<<<<<< HEAD
   #let versione-auto = if registro-modifiche.len() > 0 {
   registro-modifiche.first().at(0)
 } else {
   ""
 }
 
+=======
+>>>>>>> parent of f7e7ab9 (Versionamento automatico template Typst)
   #show: hwr.with(
     language: "it",
     main-font: "PT Sans",
@@ -62,7 +65,7 @@
     metadata: (
       title: titolo,
       odg: odg,
-      version: "Versione " + text(weight: "bold")[#versione-auto],
+      version: "Versione " + text(weight: "bold")[#versione],
       company-logo: image("../assets/loghi/GlitchHub-Team_LogoG.png", width: 75%),
       uni-logo: image("../assets/loghi/logo_unipd_scritta.jpg", width: 51%),
     ),
