@@ -10,7 +10,7 @@
       "20/12/2025",
       "Elia Ernesto Stellin",
       "-",
-      [Aggiunta tabella degli attori (@lista-attori); modifica formattazione interna; sistemate estensioni degli UC]
+      [Aggiunta tabella degli attori (@lista-attori); modifica formattazione interna; sistemate estensioni degli UC],
     ),
     (
       "0.7.1",
@@ -109,9 +109,8 @@
           let head-label = head.at("label", default: none)
           if head-label != none and uc-counter.at(head-label).first() != 0 {
             (uc-counter.at(head-label), str(head.label))
-          }
-          else { none }
-        }      
+          } else { none }
+        },
       )
       .filter(x => x != none)
       .enumerate()
@@ -119,13 +118,13 @@
         let (index, rest) = value
         (index, ..rest)
       })
-    
+
     // Cerca uc-label in questa lista
     let (prev-index, _prev-uc-id, actual-uc-label) = head-query.find(
       x => {
         let (_index, _counter, row-label) = x
         return row-label == str(uc-label)
-      }
+      },
     )
 
     // Trova l'ID dell'UC successivo
@@ -133,17 +132,16 @@
       if prev-index < head-query.len() - 1 {
         head-query.find(x => {
           let (index, ..other) = x
-          return index == prev-index +1
+          return index == prev-index + 1
         })
-      }
-      else {
+      } else {
         return (none, uc-counter.final(), none)
       }
     )
 
     // Mostra il codice dell'UC effettivo
-    let uc-number = "UC"+actual-uc-id.map(str).join(".")
-    
+    let uc-number = "UC" + actual-uc-id.map(str).join(".")
+
     // Calcola il codice della Sezione
     let section-number = counter(heading).at(uc-label)
     let section-id = numbering(
@@ -197,8 +195,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   columns: (4fr, 4fr),
   table.header([Attore], [Descrizione]),
 
-  [Utente non autenticato],
-  [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
+  [Utente non autenticato], [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
 
   [Utente autenticato],
   [Un qualunque utente che abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione di *Tenant User*, *Tenant Admin* e *Super Admin*],
@@ -209,23 +206,21 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   [Tenant Admin],
   [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant],
 
-  [Super Admin],
-  [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud],
+  [Super Admin], [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud],
 
   [Amministratore generico],
   [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*],
 
-  [REST Client],
-  [Un qualunque client REST che possa accedere all'API pubblica esposta dal sistema cloud.],
+  [REST Client], [Un qualunque client REST che possa accedere all'API pubblica esposta dal sistema cloud.],
 
   [Gateway simulato],
   [Un Gateway simulato che interloquisce con l'infrastruttura cloud per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
 
   [Infrastruttura Cloud],
-  [L'infrastruttura Cloud che riceve i dati normalizzati dal Gateway, rendendoli visibili ai *Tenant User*.]
+  [L'infrastruttura Cloud che riceve i dati normalizzati dal Gateway, rendendoli visibili ai *Tenant User*.],
 )
 
-== Lista dei casi d'uso
+== Sistema Cloud - Lista dei casi d'uso
 Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
 
 === Attore principale - Utente
@@ -1515,7 +1510,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
 
 // TODO: è giusto metterlo?
-==== #uc() - Visualizzazione log di attività di un tenant <Visualizzazione-log-attivita-tenant> 
+==== #uc() - Visualizzazione log di attività di un tenant <Visualizzazione-log-attivita-tenant>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole consultare i log di attività di un tenant specifico
 - *Pre-condizioni*:
@@ -2209,4 +2204,189 @@ Le informazioni di autenticazione di commissioning risultano assenti o corrotte
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
   - Il Sistema verifica le credenziali inviate dal REST Client e rileva che le credenziali sono scadute
+
+== Sistema Gateway - Lista dei casi d'uso
+Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e raggiungibile.
+
+=== Attore principale - Sensore simulato
+
+==== #uc() - Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
+- *Attore principale*: Sensore simulato
+- *Pre-condizioni*:
+  - Il Sensore è configurato correttamente con il Sistema Gateway
+- *Post-condizioni*
+  - Il Sistema riceve un nuovo dato dal Sensore
+  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
+- *Scenario principale*:
+  - Il Sensore genera un nuovo dato simulato
+  - Il Sensore invia il dato al Sistema Gateway
+
+=== Attore principale - Cloud
+
+==== #uc() - Conferma autenticazione Gateway <Conferma-autenticazione-gateway>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud d
+  - Il Sistema è stato autenticato con successo
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma di autenticazione del Gateway
+  - Il Sistema attende di essere associato ad un tenant
+- *Scenario principale*:
+  - Il Cloud invia la conferma di autenticazione al Gateway
+
+==== #uc() - Rifiuto autenticazione Gateway <Rifiuto-autenticazione-gateway>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud
+  - Il Sistema non è stato autenticato con successo
+- *Post-condizioni*:
+  - Il Sistema riceve il rifiuto di autenticazione del Gateway
+  - Il Sistema entra in stato di errore
+- *Scenario principale*:
+  - Il Cloud invia il rifiuto di autenticazione al Gateway
+
+==== #uc() - Assegnazione tenant al Gateway <Assegnazione-tenant-gateway>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema è autenticato
+  - Il Sistema non è ancora associato ad un tenant
+  - Il Tenant assegnato è valido
+- *Post-condizioni*:
+  - Il Sistema riceve l'assegnazione del tenant
+  - Il Sistema è pronto per inviare dati crittografati
+- *Scenario principale*:
+  - Il Cloud invia l'assegnazione del tenant al Sistema
+  - Il Cloud invia la chiave per la cifratura dei dati
+- *Inclusioni*:
+  - #ref-uc(<Invio-tenant-associato-gateway>)
+  - #ref-uc(<Invio-chiave-cifratura-dati>)
+
+===== #sub-uc() - Invio tenant associato al Gateway <Invio-tenant-associato-gateway>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema è autenticato
+  - Il Sistema non è ancora associato ad un tenant
+  - Il Tenant assegnato è valido
+- *Post-condizioni*:
+  - Il Sistema riceve e salva l'assegnazione del tenant
+- *Scenario principale*:
+  - Il Cloud invia l'assegnazione del tenant al Sistema
+
+===== #sub-uc() - Invio chiave per la cifratura dei dati <Invio-chiave-cifratura-dati>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema è autenticato
+  - Il Sistema non è ancora associato ad un tenant
+  - Il Tenant assegnato è valido
+- *Post-condizioni*:
+  - Il Sistema riceve e salva la chiave per la cifratura dei dati
+- *Scenario principale*:
+  - Il Cloud invia la chiave pubblica per la cifratura dei dati al Sistema
+
+==== #uc() - Riattivazione sensore simulato <Riattivazione-sensore-simulato>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sensore simulato è configurato nel Sistema Gateway
+  - Il Sensore simulato è disattivato, il Sistema non invia dati da quel Sensore
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di riattivazione del Sensore simulato
+  - Il Sistema ricomincia a inviare dati dal Sensore simulato
+- *Scenario principale*:
+  - Il Cloud invia il comando di riattivazione del Sensore simulato al Sistema Gateway
+
+==== #uc() - Disattivazione sensore simulato <Disattivazione-sensore-simulato>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sensore simulato è configurato nel Sistema Gateway
+  - Il Sensore simulato è attivato, il Sistema invia dati da quel Sensore
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di disattivazione del Sensore simulato
+  - Il Sistema smette di inviare dati dal Sensore simulato
+- *Scenario principale*:
+  - Il Cloud invia il comando di disattivazione del Sensore simulato al Sistema Gateway
+
+==== #uc() - Riattivazione Gateway <Riattivazione-gateway>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema Gateway è in stato di disattivazione, non invia dati dei propri sensori
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di riattivazione
+  - Il Sistema ricomincia l'invio di dati dei propri sensori
+- *Scenario principale*:
+  - Il Cloud invia il comando di riattivazione al Sistema Gateway
+
+==== #uc() - Disattivazione Gateway <Invio-comando-sospensione-gateway>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema Gateway è attivo, invia dati dei propri sensori
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di disattivazione
+  - Il Sistema smette di inviare dati dei propri sensori
+- *Scenario principale*:
+  - Il Cloud invia il comando di disattivazione al Sistema Gateway
+
+==== #uc() - Riavvio Gateway <Riavvio-gateway-cloud>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - ?
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di riavvio
+  - Il Sistema si spegne e si riaccende, mantenendo le configurazioni e i dati salvati localmente
+- *Scenario principale*:
+  - Il Cloud invia il comando di riavvio al Sistema Gateway
+
+==== #uc() - Modifica finestra Rolling Average <Modifica-finestra-rolling-average>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema Gateway è associato ad un tenant
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di modifica della finestra di Rolling Average
+  - Il Sistema aggiorna la configurazione della finestra di Rolling Average per i dati inviati
+- *Scenario principale*:
+  - Il Cloud invia il comando di modifica della finestra di Rolling Average al Sistema Gateway
+
+==== #uc() - Decommissioning Gateway <Decommissioning-gateway-cloud>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema Gateway è associato ad un tenant
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di decommissioning
+  - Il Sistema cancella l'associazione al tenant
+  - Il Sistema cancella tutte le configurazioni e i dati salvati localmente
+- *Scenario principale*:
+  - Il Cloud invia il comando di decommissioning al Sistema Gateway
+- *Inclusioni*:
+  - #ref-uc(<Reset-gateway-cloud>)
+  - #ref-uc(<Disassociazione-tenant-gateway>)
+
+===== #sub-uc() - Disassociazione tenant Gateway <Disassociazione-tenant-gateway>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - Il Sistema Gateway è associato ad un tenant
+- *Post-condizioni*:
+  - Il Sistema cancella l'associazione al tenant
+  - Il Sistema cancella la chiave per la cifratura dei dati
+- *Scenario principale*:
+  - Il Cloud invia il comando di disassociazione del tenant al Sistema Gateway
+
+==== #uc() - Reset Gateway <Reset-gateway-cloud>
+- *Attore principale*: Cloud
+- *Pre-condizioni*:
+  - ?
+- *Post-condizioni*:
+  - Il Sistema riceve il comando di reset
+  - Il Sistema cancella tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica
+- *Scenario principale*:
+  - Il Cloud invia il comando di reset al Sistema Gateway
+
+
+
+
+
+
+
+
+
+
+
 
