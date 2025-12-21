@@ -15,35 +15,40 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+      
       - name: Install Typst
         uses: typst-community/setup-typst@v4
         with:
           typst-version: '0.13.1'
-          
+      
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.3'
+      
+      - name: Install Go dependencies
+        run: go mod tidy
+        working-directory: script/
+      
       - name: Pull latest changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config pull.rebase false
           git pull origin ${{ github.ref_name }}
-          
+      
       - name: Run bash
         run: | 
-          export PATH="$PATH:$(cat $GITHUB_PATH)"
-          echo "Path corrente: $PATH"
-          which go
-          go version
           chmod +x compile.sh
           ./compile.sh
-          
+      
       - name: Check Git status
         run: git status
-        
+      
       - name: Upload website and PDFs as artifact
         uses: actions/upload-artifact@v4
-        if-no-files-found: error
         with:
           name: website-pdf-files
           path: website/
           retention-days: 1
+          if-no-files-found: error
