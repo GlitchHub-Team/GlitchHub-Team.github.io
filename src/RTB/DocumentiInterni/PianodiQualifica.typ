@@ -3,7 +3,7 @@
 
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
-  titolo: "Norme di Progetto",
+  titolo: "Piano di Qualifica",
   stato: "Bozza",
   versione: "0.0.1",
   registro-modifiche: (
