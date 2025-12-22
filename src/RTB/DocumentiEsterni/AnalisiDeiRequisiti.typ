@@ -52,7 +52,7 @@
       "8/12/2025",
       "Alessandro Dinato",
       "-",
-      "Stesura Use Case relativi a Utente, Tenant User e REST Client",
+      "Stesura Use Case relativi a Utente, Tenant User e API Client",
     ),
     ("0.3.0", "16/11/2025", "Hossam Ezzemouri", "-", "Stesura degli Use Case 3, 3.1, 3.2, 3.3, 4, 5 e 6"),
     (
@@ -218,7 +218,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   [Amministratore generico],
   [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*],
 
-  [REST Client], [Un qualunque client REST che possa accedere all'API pubblica esposta dal sistema cloud.],
+  [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
 
   [Gateway simulato],
   [Un Gateway simulato che interloquisce con l'infrastruttura cloud per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
@@ -245,10 +245,13 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente inserisce l'indirizzo email associato al proprio account
   - L'Utente inserisce la password
 - *Scenari alternativi*:
+  - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
+  - L'Utente prova ad autenticarsi con un account sospeso
   - L'Utente inserisce email o password errati
 - *Estensioni*:
   - #ref-uc(<Autenticazione-non-riuscita>)
   - #ref-uc(<Account-sospeso>)
+  - #ref-uc(<Invio-codice-2FA>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-email-auth>)
   - #ref-uc(<Inserimento-password>)
@@ -273,7 +276,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce la password
 
-
 ==== #uc() - Autenticazione non riuscita <Autenticazione-non-riuscita>
 - *Attore principale*: Utente
 - *Trigger*: L'Utente inserisce email o password errati
@@ -297,6 +299,92 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - Il Sistema verifica lo stato dell'account dell'Utente e rileva che l'account è sospeso
+
+==== #sub-uc() - Invio codice 2FA <Invio-codice-2FA>
+- *Attore principale*: Utente
+- *Attore secondario*: Client email
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha eseguito il login con successo
+  - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
+- *Post-condizioni*:
+  - Il Sistema invia un'email all'Utente con il codice 2FA
+- *Scenario principale*:
+  - L'Utente riceve il codice 2FA via email
+
+
+==== #uc() - Re-invio codice 2FA <Re-invio-codice-2FA>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha eseguito il login con successo
+  - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
+- *Post-condizioni*:
+  - Il Sistema invia nuovamente un'email all'Utente con il codice 2FA
+- *Scenario principale*:
+  - L'Utente richiede il re-invio del codice 2FA
+  - L'Utente riceve nuovamente il codice 2FA via email
+
+==== #uc() - Autenticazione 2FA <Autenticazione-2FA>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha eseguito il login con successo
+  - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
+- *Post-condizioni*:
+  - Il Sistema verifica il codice 2FA inserito dall'Utente
+  - Il Sistema autentica l'Utente
+- *Scenario principale*:
+  - L'Utente riceve il codice 2FA via email
+  - L'Utente inserisce il codice 2FA ricevuto
+- *Scenari alternativi*:
+  - L'Utente inserisce un codice 2FA errato
+  - LUtente inserisce un codice 2FA scaduto
+- *Estensioni*:
+  - #ref-uc(<Codice-2FA-errato>)
+  - #ref-uc(<Codice-2FA-scaduto>)
+- *Inclusioni*:
+  - #ref-uc(<Inserimento-codice-2FA>)
+
+===== #sub-uc() - Inserimento codice 2FA <Inserimento-codice-2FA>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha eseguito il login con successo
+  - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
+  - L'Utente ha ricevuto il codice 2FA via email
+- *Post-condizioni*:
+  - Il Sistema riceve il codice 2FA inserito dall'Utente
+- *Scenario principale*:
+  - L'Utente inserisce il codice 2FA ricevuto via email
+
+==== #uc() - Codice 2FA errato <Codice-2FA-errato>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha eseguito il login con successo
+  - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
+  - L'Utente ha inserito un codice 2FA errato
+- *Post-condizioni*:
+  - Il Sistema non autentica l'Utente
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - L'Utente inserisce un codice 2FA errato
+  - L'Utente visualizza un messaggio di errore
+
+==== #uc() - Codice 2FA scaduto <Codice-2FA-scaduto>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha eseguito il login con successo
+  - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
+  - L'Utente ha inserito un codice 2FA scaduto
+- *Post-condizioni*:
+  - Il Sistema non autentica l'Utente
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - L'Utente inserisce un codice 2FA scaduto
+  - L'Utente visualizza un messaggio di errore
 
 
 ==== #uc() - Logout <Logout>
@@ -430,6 +518,48 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica la nuova password inserita dall'Utente e rileva l'errore
 
+==== #uc() - Modifica password <Modifica-password>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+- *Post-condizioni*:
+  - La password dell'Utente viene modificata
+- *Scenario principale*:
+  - L'Utente inserisce la vecchia password
+  - L'Utente inserisce la nuova password
+  - L'Utente inserisce la conferma della nuova password
+- *Scenari alternativi*:
+  - La vecchia password inserita non è corretta
+  - La nuova password non rispetta i criteri di sicurezza
+  - La nuova password e la conferma non coincidono
+- *Estensioni*:
+  - #ref-uc(<Password-non-coincidenti>)
+  - #ref-uc(<Password-non-conforme-criteri-sicurezza>)
+  - #ref-uc(<Vecchia-password-non-corretta>)
+- *Inclusioni*:
+  - #ref-uc(<Inserimento-vecchia-password>)
+  - #ref-uc(<Inserimento-nuova-password>)
+  - #ref-uc(<Conferma-password>)
+
+===== #sub-uc() - Inserimento vecchia password <Inserimento-vecchia-password>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la vecchia password inserita dall'Utente
+- *Scenario principale*:
+  - L'Utente inserisce la vecchia password
+
+==== #uc() - Vecchia password non corretta <Vecchia-password-non-corretta>
+- *Attore principale*: Utente
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+  - L'Utente ha inserito una vecchia password non corretta
+- *Post-condizioni*:
+  - Il Sistema annulla la modifica della password
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema verifica la vecchia password inserita dall'Utente e rileva l'errore
 
 === Attore principale - Tenant User
 
@@ -1806,7 +1936,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 // UC relativi alle azioni del super-admin sul simulatore
 
-// Se avete idee extra aggiungete 
+// Se avete idee extra aggiungete
 ==== #uc() - Creazione gateway simulato <Creazione-gateway-simulato>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole creare un gateway simulato
@@ -1832,8 +1962,8 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin inserisce il nome del nuovo gateway simulato
 
 // Che campi mettere per il sensore?
-// gateway da associare, tipologia, 
-// Se avete idee extra aggiungete 
+// gateway da associare, tipologia,
+// Se avete idee extra aggiungete
 ==== #uc() - Creazione sensore simulato <Creazione-sensore-simulato-1> // Label in conflitto con un uc del gateway
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole creare un sensore simulato
@@ -1907,7 +2037,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il gateway simulato viene eliminato dal Sistema
 - *Scenario principale*:
   - Il Super-admin conferma l'eliminazione del gateway simulato selezionato
-  
+
 ==== #uc() - Eliminazione sensore simulato <Eliminazione-sensore-simulato>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare un sensore simulato
@@ -1952,10 +2082,10 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== Monitoraggio metriche di sistema
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super Admin vuole monitorare le prestazioni del Sistema
-- *Pre-condizioni*: 
+- *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - L'esportatore di metriche sta inviando dati
-- *Post-condizioni*: 
+- *Post-condizioni*:
   - Il Super-admin visualizza la dashboard delle performance di sistema
 - *Scenario principale*:
   - Il Super-admin accede alla sezione di analisi del sistema
@@ -1996,367 +2126,161 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 
 === Attore principale - Gateway
-==== #uc() - Gestione persistenza dati di commissioning <Gestione-persistenza-dati-commissioning>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Avvio o riavvio del gateway
-- *Pre-condizione*: I dati di commissioning sono stati inviati e salvati precedentemente
-- *Post-condizione*: Le informazioni di commissioning sono caricate in memoria e garantiscono consistenza per i successivi flussi di lavoro
-- *Scenario principale*:
-  - Il gateway si avvia
-  - Il gateway carica le informazioni persistenti dalla sua memoria locale
-  - Le informazioni sono rese disponibili ai moduli interni per garantire la consistenza
-- *Scenari alternativi*:
-Le informazioni di autenticazione di commissioning risultano assenti o corrotte
-- *Estensioni*:
-  - #ref-uc(<Dati-commissioning-assenti-corrotti>)
-- *Inclusioni*:
-  - #ref-uc(<Autenticazione-provisioning>)
-
-
-==== #uc() - Dati di Commissioning Assenti/Corrotti <Dati-commissioning-assenti-corrotti>
-- *Attore primario*:  Gateway (simulato)
-- *Trigger*: La verifica dell'integrità e della validità delle informazioni di commissioning fallisce
-- *Pre-condizione*: Il gateway ha tentato di caricare le informazioni di commissioning dalla memoria locale ma i dati risultano assenti, illeggibili o non superano il controllo dal Cloud
-- *Post-condizione*: Il gateway è in uno stato di errore e non può proseguire il flusso di lavoro
-- *Scenario principale*:
-  - Il processo di verifica delle informazioni di commissioning fallisce
-  - Il gateway entra in uno stato di errore e blocca i flussi di lavoro
-  - Il gateway attende comandi o un riavvio
-- *Estensioni*:
-- *Inclusioni*:
-
-==== #uc() - Autenticazione e provisioning <Autenticazione-provisioning>
-- *Attore primario*:  Gateway (simulatore)
-- *Trigger*: Il gateway si avvia per la prima volta
-- *Pre-condizione*:
-  - Il gateway è avviato
-  - Il gateway possiede i parametri di connessione al Cloud e le credenziali iniziali
-- *Post-condizione*:
-  - Il Gateway è autenticato, è associato in modo univoco
-  - Le informazioni di commissioning sono persistenti
-- *Scenario principale*:
-  - Il Gateway presenta i certificati/chiavi d'accesso per l'autenticazione
-  - Il Sistema valida le credenziali e associa il Gateway ad un tenant
-  - Il Gateway riceve conferma del provisioning andato a buon fine
-- *Estensioni*:
-- *Inclusioni*:
-
-==== #sub-uc() - Gestione Autenticazione Fallita <Gestione-autenticazione-fallita>
-- *Attore primario*:  Gateway (simulato)
-- *Trigger*: Le credenziali fornite al Sistema non sono valide
-- *Pre-condizione*:
-  - Il gateway ha tentato la connessione con il Sistema
-- *Post-condizione*:
-  - il Sistema rifiuta la connessione
-  - Il Gateway è in stato di errore (e interrompe i tentativi di invio dati)
-- *Scenario principale*:
-  - Il Sistema respinge la richiesta di connessione dal Gateway
-  - il Sistema invia un messaggio di errore al Gateway
-  - il Gateway registra l'errore di autenticazione e sospende i tentativi di connessione
-  - Il Gateway attende il riavvio o un intervento di uno user
-- *Estensioni*:
-- *Inclusioni*:
-
-==== #uc() - Trasmissione sicura e cifrata dati al Sistema <Trasmissione-sicura-cifrata-dati-sistema>
-- *Attore primario*:  Gateway (simulato)
-- *Trigger*: Sono disponibili nuovi dati da mandare al Sistema
-- *Pre-condizione*:
-  - Il Gateway è autenticato, autorizzato e dispone delle chiavi necessarie per la cifratura
-  - I dati in un formato standardizzato interno sono disponibili
-  - Il Gateway è raggiungibile dal Cloud
-- *Post-condizione*:
-  - La comunicazione tra Gateway e Sistema è stabilita su un canale cifrato
-  - I dati sono stati inviati al Sistema con protocolli sicuri e la trasmissione è stata confermata
-- *Scenario principale*:
-  - Il Gateway prepara i dati da inviare
-  - Il Gateway avvia la connessione con il Sistema e negozia il protocollo di cifratura
-  - La connessione sicura con il Sistema viene stabilita
-  - Il Gateway invia i dati al Sistema in modo cifrato
-  - Il Gateway riceve conferma di ricezione dal Sistema
-- *Estensioni*:
-  //- #ref-uc(<Salvataggio-buffer-dati-disconnessione>)
-- *Inclusioni*:
-
-/*
-// gateway salva dati in buffer e li sputa subito
-==== #uc() - Salvataggio (buffer) dati per disconnessione <Salvataggio-buffer-dati-disconnessione>
-- *Attore primario*:  Gateway (simulato)
-- *Trigger*: Tentativo fallito di invio dati al cloud
-- *Pre-condizione*:
-  - Il gateway ha dati da inviare
-  - La connessione al Cloud si è interrotta o non è disponibile
-- *Post-condizione*:
-  - I dati da inviare sono salvati in un buffer locale
-- *Scenario principale*:
-  - Il tentativo di invio dati fallisce
-  - Il gateway memorizza i dati non inviati nel suo buffer locale
-- *Scenari alternativi*:
-  - Se il buffer raggiungere la capacità massima, i dati più vecchi vengono eliminati per scartati per aggiungere i nuovi
-  - Se il cloud ritorna raggiungibile il gateway invia i dati salvati nel buffer
-- *Estensioni*:
-  - #ref-uc(<Invio-dati-buffer-locale-al-cloud>)
-- *Inclusioni*:
-// TODO: DA SVILUPPARE i due scenari alternativi
-*/
-
-==== #uc() - Invio dati buffer locale al cloud <Invio-dati-buffer-locale-al-cloud>
-- *Attore primario*:  Gateway (simulato)
-- *Pre-condizione*:
-  - Il gateway ha dati memorizzati nel buffer da inviare
-- *Post-condizione*:
-  - Il Sistema riceve i dati provenienti dal buffer locale del gateway
-- *Scenario principale*:
-  - Il gateway rileva di avere dei dati nel proprio buffer
-  - Il gateway invia al Cloud i dati contenuti nel buffer
-
-/*
-==== #uc() - Normalizzazione e Formattazione interna dei dati <Normalizzazione-formattazione-interna-dati>
-- *Attore primario*:  Gateway (simulato)
-- *Trigger*: Sono pronti dati grezzi da normalizzare
-- *Pre-condizione*: I dati grezzi sono stati acquisiti con successo dai sensori simulati
-- *Post-condizione*: I dati sono stati convertiti in un formato interno standardizzato
-- *Scenario principale*:
-  - Il gateway riceve i dati grezzi
-  - Il gateway applica la logica di normalizzazione dei dati
-  - I dati risultano uniformati in un formato interno standardizzato
-- *Estensioni*:
-- *Inclusioni*:
-*/
-
-//Dina: secondo me non ha senso che il certificato scada, al massimo è il super-admin che lo cambia
-//o invia comando di rinnovo al gateway, se lo vuole far scadere rimuove il certificato
-==== #uc() - Aggiornamento sicuro delle credenziali di autenticazione <Aggiornamento-sicuro-credenziali-auth>
-- *Attore primario*:  Gateway (simulato)
-- *Trigger*: Il certificato di autenticazione sta scadendo
-- *Pre-condizione*: Le credenziali attuali (certificati) sono in scadenza
-- *Post-condizione*: Le nuove credenziali di autenticazione sono state generate, acquisite e persistono nel gateway
-- *Scenario principale*:
-  - Il gateway rileva che le credenziali attuali sono in scadenza o non valide
-  - Il gateway avvia un processo di rinnovo automatico/manuale con il cloud
-  - Il gateway riceve le nuove credenziali tramite una sessione sicura
-  - Il gateway si salva le nuove informazioni e tenta l'autenticazione con le nuove credenziali
-- *Inclusioni*:
-  - Autenticazione e Provisioning (UC2)
-  - Gestione persistenza dati di commissioning (UC1)
-- *Estensioni*:
-
-
-==== #uc() - Ricezione e risposta a messaggi dal Cloud <Ricezione-risposta-messaggi-da-cloud>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di un messaggio di controllo del Cloud
-- *Pre-condizione*: il gateway è connesso e autenticato con il cloud, il gateway ha la possibilità di rispondere ai messaggi del Cloud
-- *Post-condizione*: il messaggio è stato elaborato, il gateway manda una risposta coerente
-- *Scenario principale*:
-  - Il gateway riceve un messaggio dal Cloud
-  - Il gateway elabora la richiesta, se possibile, come la modifica di parametri
-  - Il gateway invia una risposta adatta al Cloud
-- *Estensioni*:
-  - (UC06.1) Comando del Cloud fallito
-  - (UC06.2) Creazione sensore simulato
-  - (UC06.3) Cancellazione sensore simulato
-  - (UC06.4) Modifica parametri sensore simulato
-  - (UC06.5) Avvio simulazione di specifico sensore
-  - (UC06.6) Stop simulazione di specifico sensore
-
-==== #sub-uc() - Comando del Cloud fallito <Comando-cloud-fallito>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Non è possibile soddisfare il comando ricevuto dal Cloud
-- *Pre-condizione*: il gateway è connesso e autenticato con il cloud, il gateway ha la possibilità di rispondere ai messaggi del Cloud
-- *Post-condizione*: il gateway informa il Cloud che la sua richiesta non è andata a buon fine
-- *Scenario principale*:
-  - Il gateway non riesce a soddisfare la richiesta del Cloud
-  - Il gateway invia un messaggio di errore al Cloud
-
-==== #sub-uc() - Creazione sensore simulato <Creazione-sensore-simulato>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richiesta relativa del Cloud
-- *Pre-condizione*:
-  - Il gateway è connesso e autenticato con il Cloud.
-  - Non esiste già un sensore con lo stesso identificativo.
-  - Il gateway ha risorse disponibili per ospitare un nuovo sensore (memoria, slot liberi).
-- *Post-condizione*: Un nuovo sensore simulato è registrato nel gateway.
-- *Scenario principale*:
-  - Il gateway riceve dal Cloud il comando di creazione.
-  - Il gateway verifica che non esista già un sensore con lo stesso ID.
-  - Il gateway crea il sensore simulato con i parametri di default.
-  - Il gateway invia conferma al Cloud.
-
-==== #sub-uc() - Cancellazione sensore simulato <Cancellazione-sensore-simulato>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richiesta relativa del Cloud
-- *Pre-condizione*:
-  - Il gateway è connesso e autenticato con il Cloud.
-  - Il sensore da cancellare esiste ed è registrato nel gateway.
-- *Post-condizione*: Il sensore simulato selezionato è rimosso dal gateway.
-- *Scenario principale*:
-  - Il gateway riceve dal Cloud il comando di cancellazione.
-  - Il gateway verifica che il sensore esista.
-  - Il gateway interrompe eventuale simulazione attiva.
-  - Il gateway elimina il sensore simulato.
-  - Il gateway invia conferma al Cloud.
-- *Inclusioni*:
-  - (UC06.6) Stop simulazione di specifico sensore
-
-==== #sub-uc() - Modifica parametri sensore simulato <Modifica-parametri-sensore-simulato>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richiesta relativa del Cloud
-- *Pre-condizione*:
-  - Il gateway è connesso e autenticato con il Cloud.
-  - Il sensore da modificare esiste ed è attivo o configurabile.
-  - I nuovi parametri sono validi.
-- *Post-condizione*: I parametri del sensore simulato sono aggiornati nel gateway.
-- *Scenario principale*:
-  - Il gateway riceve dal Cloud il comando di modifica.
-  - Il gateway verifica che il sensore esista.
-  - Il gateway controlla la validità dei nuovi parametri.
-  - Il gateway aggiorna la configurazione del sensore.
-  - Il gateway invia conferma al Cloud.
-
-==== #sub-uc() - Avvio simulazione di specifico sensore <Avvio-simulazione-sensore-specifico>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richiesta relativa del Cloud
-- *Pre-condizione*:
-  - Il gateway è connesso e autenticato con il Cloud.
-  - Il sensore simulato esiste.
-  - Il sensore non è già in stato di simulazione attiva.
-- *Post-condizione*: Il gateway inizia a generare dati con quel sensore simulato.
-- *Scenario principale*:
-  - Il gateway riceve dal Cloud il comando di avvio simulazione.
-  - Il gateway inizia a produrre dati simulati.
-  - Il gateway invia conferma al Cloud.
-
-==== #sub-uc() - Stop simulazione di specifico sensore <Stop-simulazione-sensore-specifico>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Ricezione di richiesta relativa del Cloud
-- *Pre-condizione*:
-  - Il gateway è connesso e autenticato con il Cloud.
-  - Il sensore simulato esiste.
-  - Il sensore è in stato di simulazione attiva.
-- *Post-condizione*: Il gateway smette a generare dati con quel sensore simulato.
-- *Scenario principale*:
-  - Il gateway riceve dal Cloud il comando di stop simulazione.
-  - Il gateway smette di produrre dati simulati.
-  - Il gateway invia conferma al Cloud.
-
-==== #uc() - Invio conferma comando di riattivazione <Invio-conferma-comando-di-riattivazione>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Il Cloud vuole riattivare il Gateway
+==== #uc() - Conferma esecuzione commissioning <Conferma-comando-commissioning>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso e autenticato con il Cloud
-  - Il Gateway oggetto del messaggio esiste 
-  - Il Gateway oggetto del messaggio è disattivato
-- *Post-condizioni*: 
-  - Il Sistema riceve un messaggio di conferma da parte del Gateway
-  - Il Gateway ricomincia a inviare dati al Sistema
+  - Il Gateway ha ricevuto un comando di commissioning dal Sistema
+  - Il Gateway è autenticato e associato ad un tenant
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma di esecuzione del commissioning dal Gateway
+  - Il Sistema comincia a ricevere i dati dei sensori associati al Gateway
 - *Scenario principale*:
-  - Il Gateway riceve un comando di riattivazione 
-  - Il Gateway esegue il comando ricevuto e si riattiva
-  - Il Gateway invia un comando di conferma al Cloud
+  - Il Gateway esegue il commissioning in base alle istruzioni ricevute
+  - Il Gateway invia la conferma di esecuzione del commissioning al Sistema
 
-==== #uc() - Invio conferma comando di disattivazione sensore <Invio-conferma-comando-di-disattivazione-sensore>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Il Cloud vuole disattivare un sensore
+==== #uc() - Errore nel commissioning <Errore-commissioning>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso e autenticato con il Cloud
-  - Il sensore oggetto del messaggio esiste 
-  - Il sensore oggetto del messaggio è attivo
-- *Post-condizioni*: 
-  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+  - Il Gateway ha ricevuto un comando di commissioning dal Sistema
+  - Il Gateway durante l'esecuzione del commissioning ha riscontrato un errore
+- *Post-condizioni*:
+  - Il Sistema riceve la segnalazione di errore dal Gateway
+  - Il Sistema notifica il Super-admin dell'errore riscontrato
+  - Il Sistema annulla il commissioning del Gateway
 - *Scenario principale*:
-  - Il Gateway riceve un comando di disattivazione di un determinato sensore
-  - Il Gateway esegue il comando ricevuto e disattiva il sensore
-  - Il Gateway invia un comando di conferma al Cloud
+  - Il Gateway riscontra un errore durante l'esecuzione del commissioning
+  - Il Gateway invia la segnalazione di errore al Sistema
 
-==== #uc() - Invio conferma comando di riattivazione sensore <Invio-conferma-comando-di-riattivazione-sensore>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Il Cloud vuole riattivare un sensore
+==== #uc() - Conferma esecuzione decommissioning <Conferma-comando-decommissioning>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso e autenticato con il Cloud
-  - Il sensore oggetto del messaggio esiste 
-  - Il sensore oggetto del messaggio è disattivato
-- *Post-condizioni*: 
-  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+  - Il Gateway ha ricevuto un comando di decommissioning dal Sistema
+  - Il Gateway non è più associato ad alcun tenant
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma di esecuzione del decommissioning dal Gateway
+  - Il Sistema smette di ricevere i dati dei sensori associati al Gateway
+  - Il Sistema rimuove l'associazione del Gateway dal tenant
+  - Il Sistema rende possibile un nuovo commissioning del Gateway
 - *Scenario principale*:
-  - Il Gateway riceve un comando di riattivazione di un determinato sensore
-  - Il Gateway esegue il comando ricevuto e riattiva il sensore
-  - Il Gateway invia un comando di conferma al Cloud
+  - Il Gateway esegue il decommissioning in base alle istruzioni ricevute
+  - Il Gateway invia la conferma di esecuzione del decommissioning al Sistema
 
-==== #uc() - Invio conferma comando di modifica rolling average <Invio-conferma-comando-di-modifica-rolling-average>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Il Cloud vuole modificare il parametro di rolling average
+==== #uc() - Errore nel decommissioning <Errore-decommissioning>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso e autenticato con il Cloud
-  - Il Gateway oggetto del messaggio esiste 
-  - Il Gateway oggetto del messaggio ha impostato il rolling average
-- *Post-condizioni*: 
-  - Il Sistema riceve un messaggio di conferma da parte del Gateway 
+  - Il Gateway ha ricevuto un comando di decommissioning dal Sistema
+  - Il Gateway durante l'esecuzione del decommissioning ha riscontrato un errore
+- *Post-condizioni*:
+  - Il Sistema riceve la segnalazione di errore dal Gateway
+  - Il Sistema notifica il Super-admin dell'errore riscontrato
+  - Il Sistema annulla il decommissioning del Gateway
 - *Scenario principale*:
-  - Il Gateway riceve un comando di modifica del rolling average
-  - Il Gateway esegue il comando ricevuto e modifica il valore del parametro di rolling average
-  - Il Gateway invia un comando di conferma al Cloud
+  - Il Gateway riscontra un errore durante l'esecuzione del decommissioning
+  - Il Gateway invia la segnalazione di errore al Sistema
 
-==== #uc() - Invio comando di hello <Invio-comando-di-hello>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Il Gateway vuole farsi conoscere dal Cloud
+==== #uc() - Conferma riavvio <Conferma-comando-riavvio>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - ?
-- *Post-condizioni*: 
-  - Il Sistema riceve un messaggio di hello dal Gateway
+  - Il Gateway ha ricevuto un comando di riavvio dal Sistema
+  - Il Gateway si è riavviato correttamente
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma di riavvio dal Gateway
+  - Il Sistema considera il Gateway nuovamente raggiungibile
 - *Scenario principale*:
-  - Il Gateway invia un messaggio di hello verso il Cloud
+  - Il Gateway si spegne e si riaccende
+  - Il Gateway invia la conferma di riavvio al Sistema
 
-// TODO: Da espandere
-==== #uc() - Invio dati crittografati <Invio-dati-crittografati>
-- *Attore primario*: Gateway (simulato)
-- *Trigger*: Il Gateway vuole inviare i dati raccolti al Cloud
+==== #uc() - Errore nel riavvio <Errore-riavvio>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso e autenticato con il Cloud
-- *Post-condizioni*: 
-  - Il Sistema riceve i dati da parte del Gateway
+  - Il Gateway ha ricevuto un comando di riavvio dal Sistema
+  - Il Gateway non si è riavviato correttamente
+- *Post-condizioni*:
+  - Il Sistema nota che il gateway non è più raggiungibile
+  - Il Sistema mette in stato di errore il Gateway
 - *Scenario principale*:
-  - Il Gateway applica l'algoritmo di criptazione ai dati raccolti
-  - Il Gateway invia i dati crittografati al Cloud
+  - Il Gateway riscontra un errore durante il riavvio
+  - Il Gateway non riesce a comunicare con il Sistema dopo il riavvio
 
-=== Attore principale - REST Client
-// REST Client autenticato significa che ha un token valido per un tenant specifico
+==== #uc() - Conferma reset <Conferma-comando-reset>
+- *Attore principale*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway ha ricevuto un comando di reset dal Sistema
+  - Il Gateway ha reimpostato la configurazione di fabbrica
+  - Il Gateway ha mantenuto le informazioni di commissioning
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma di reset dal Gateway
+- *Scenario principale*:
+  - Il Gateway si reimposta alle impostazioni di fabbrica
+  - Il Gateway invia la conferma di reset al Sistema
+
+==== #uc() - Conferma autenticazione <Conferma-comando-autenticazione>
+- *Attore principale*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway ha ricevuto una notifica di autenticazione avvenuta dal Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma ricezione dal Gateway
+  - Il Gateway è autenticato nel Sistema
+  - Il Sistema rende possibile il commissioning del Gateway
+- *Scenario principale*:
+  - Il Gateway riceve la conferma di autenticazione da parte del Sistema
+  - Il Gateway memorizza lo stato di autenticazione
+  - Il Gateway invia la conferma di ricezione al Sistema
+
+==== #uc() - Conferma disattivazione <Conferma-comando-disattivazione>
+- *Attore principale*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway ha ricevuto un comando di disattivazione dal Sistema
+  - Il Gateway ha sospeso l'invio dei dati dei sensori al Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma di disattivazione dal Gateway
+  - Il Sistema aggiorna lo stato del Gateway come disattivato
+  - Il Sistema non riceve più i dati dei sensori associati al Gateway
+- *Scenario principale*:
+  - Il Gateway sospende l'invio dei dati dei sensori al Sistema
+  - Il Gateway invia la conferma di disattivazione al Sistema
+
+
+=== Attore principale - API Client
+// API Client autenticato significa che ha un token valido per un tenant specifico
 ==== #uc() - Richiesta dati real-time sensore <Richiesta-dati-real-time-sensore>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client vuole richiedere i dati real-time di un sensore
+- *Attore principale*: API Client
+- *Trigger*: Il API Client vuole richiedere i dati real-time di un sensore
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
+  - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
-  - Il REST Client richiede i dati real-time del sensore specificato
-  - Il Sistema verifica che il sensore richiesto appartenga al tenant del REST Client
+  - Il API Client richiede i dati real-time del sensore specificato
+  - Il Sistema verifica che il sensore richiesto appartenga al tenant del API Client
 - *Scenari alternativi*:
   - Sensore non trovato (#ref-uc(<Sensore-non-trovato>))
   - Nessun dato disponibile per il sensore richiesto (#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>))
-  - Sensore non associato al tenant del REST Client (#ref-uc(<Sensore-non-associato-tenant-REST-Client>))
+  - Sensore non associato al tenant del API Client (#ref-uc(<Sensore-non-associato-tenant-API-Client>))
 - *Estensioni*:
   - #ref-uc(<Sensore-non-trovato>)
   - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
-  - #ref-uc(<Sensore-non-associato-tenant-REST-Client>)
+  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
 - *Inclusioni*:
   - #ref-uc(<Verifica-sensore>)
   - #ref-uc(<Restituzione-dati-real-time-sensore>)
 
 ===== #sub-uc() - Verifica sensore <Verifica-sensore>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client ha richiesto i dati di un sensore
+- *Attore principale*: API Client
+- *Trigger*: Il API Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
+  - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene verificata la validità del sensore richiesto e la sua associazione al tenant del REST Client
+  - Viene verificata la validità del sensore richiesto e la sua associazione al tenant del API Client
 - *Scenario principale*:
-  - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del REST Client
+  - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del API Client
 
 ===== #sub-uc() - Restituzione dati real-time sensore <Restituzione-dati-real-time-sensore>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client ha richiesto i dati di un sensore
+- *Attore principale*: API Client
+- *Trigger*: Il API Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
-  - Il sensore richiesto esiste ed appartiene al tenant del REST Client
+  - Il API Client è autenticato nel Sistema
+  - Il sensore richiesto esiste ed appartiene al tenant del API Client
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
@@ -2364,11 +2288,11 @@ Le informazioni di autenticazione di commissioning risultano assenti o corrotte
 
 
 ==== #uc() - Sensore non trovato <Sensore-non-trovato>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client richiede i dati di un sensore non esistente
+- *Attore principale*: API Client
+- *Trigger*: Il API Client richiede i dati di un sensore non esistente
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
-  - Il REST Client ha richiesto i dati di un sensore non esistente
+  - Il API Client è autenticato nel Sistema
+  - Il API Client ha richiesto i dati di un sensore non esistente
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
@@ -2376,101 +2300,101 @@ Le informazioni di autenticazione di commissioning risultano assenti o corrotte
 
 
 ==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client seleziona un sensore per il quale non sono disponibili dati
+- *Attore principale*: API Client
+- *Trigger*: Il API Client seleziona un sensore per il quale non sono disponibili dati
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
+  - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
 
 
-==== #uc() - Sensore non associato al tenant del REST Client <Sensore-non-associato-tenant-REST-Client>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client richiede i dati di un sensore non associato al proprio tenant
+==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
+- *Attore principale*: API Client
+- *Trigger*: Il API Client richiede i dati di un sensore non associato al proprio tenant
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
+  - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema rileva che il sensore richiesto non appartiene al tenant del REST Client
+  - Il Sistema rileva che il sensore richiesto non appartiene al tenant del API Client
 
 
 ==== #uc() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client vuole richiedere lo storico dei dati di un sensore
+- *Attore principale*: API Client
+- *Trigger*: Il API Client vuole richiedere lo storico dei dati di un sensore
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
+  - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene restituito lo storico dei dati del sensore richiesto
 - *Scenario principale*:
-  - Il REST Client richiede lo storico dei dati del sensore specificato
-  - Il Sistema verifica che il sensore richiesto appartenga al tenant del REST Client
+  - Il API Client richiede lo storico dei dati del sensore specificato
+  - Il Sistema verifica che il sensore richiesto appartenga al tenant del API Client
 - *Scenari alternativi*:
   - Sensore non trovato
   - Nessun dato storico disponibile per il sensore richiesto
-  - Sensore non associato al tenant del REST Client
+  - Sensore non associato al tenant del API Client
 - *Estensioni*:
   - #ref-uc(<Sensore-non-trovato>)
   - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
-  - #ref-uc(<Sensore-non-associato-tenant-REST-Client>)
+  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
 - *Inclusioni*:
-  - #ref-uc(<Autenticazione-REST-Client>)
+  - #ref-uc(<Autenticazione-API-Client>)
   - #ref-uc(<Verifica-sensore>)
   - #ref-uc(<Restituzione-storico-dati-sensore>)
 
 ===== #sub-uc() - Restituzione storico dati sensore <Restituzione-storico-dati-sensore>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client ha richiesto lo storico dei dati di un sensore
+- *Attore principale*: API Client
+- *Trigger*: Il API Client ha richiesto lo storico dei dati di un sensore
 - *Pre-condizioni*:
-  - Il REST Client è autenticato nel Sistema
-  - Il sensore richiesto esiste ed appartiene al tenant del REST Client
+  - Il API Client è autenticato nel Sistema
+  - Il sensore richiesto esiste ed appartiene al tenant del API Client
 - *Post-condizioni*:
   - Viene restituito lo storico dei dati del sensore richiesto
 - *Scenario principale*:
   - Il Sistema recupera e restituisce lo storico dei dati del sensore richiesto, eventualmente filtrati per intervallo temporale
 
 
-==== #uc() - Autenticazione REST Client <Autenticazione-REST-Client>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client vuole autenticarsi nel Sistema
+==== #uc() - Autenticazione API Client <Autenticazione-API-Client>
+- *Attore principale*: API Client
+- *Trigger*: Il API Client vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
-  - Il REST Client possiede delle credenziali di accesso
+  - Il API Client possiede delle credenziali di accesso
 - *Post-condizioni*:
-  - Il REST Client è autenticato nel Sistema
+  - Il API Client è autenticato nel Sistema
 - *Scenario principale*:
-  - Il REST Client invia le credenziali di autenticazione al Sistema
+  - Il API Client invia le credenziali di autenticazione al Sistema
   - Il Sistema verifica le credenziali
-  - Il Sistema autentica il REST Client
+  - Il Sistema autentica il API Client
 - *Scenari alternativi*:
   - Credenziali non valide
   - Credenziali scadute
 - *Estensioni*:
-  - #ref-uc(<Credenziali-REST-Client-errate>)
-  - #ref-uc(<Credenziali-REST-Client-scadute>)
+  - #ref-uc(<Credenziali-API-Client-errate>)
+  - #ref-uc(<Credenziali-API-Client-scadute>)
 
 // TODO: potenziale generalizzazione dell'errore
 // [Elia]: secondo me la generalizzazione ha senso solo se serve a qualcosa (ad es. collegarla a qualche altro UC)
-==== #uc() - Credenziali REST Client errate <Credenziali-REST-Client-errate>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client invia delle credenziali errate al Sistema
+==== #uc() - Credenziali API Client errate <Credenziali-API-Client-errate>
+- *Attore principale*: API Client
+- *Trigger*: Il API Client invia delle credenziali errate al Sistema
 - *Pre-condizioni*:
-  - Il REST Client ha inviato credenziali errate
+  - Il API Client ha inviato credenziali errate
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica le credenziali inviate dal REST Client e rileva l'errore nelle credenziali
+  - Il Sistema verifica le credenziali inviate dal API Client e rileva l'errore nelle credenziali
 
-==== #uc() - Credenziali REST Client scadute <Credenziali-REST-Client-scadute>
-- *Attore principale*: REST Client
-- *Trigger*: Il REST Client invia delle credenziali scadute al Sistema
+==== #uc() - Credenziali API Client scadute <Credenziali-API-Client-scadute>
+- *Attore principale*: API Client
+- *Trigger*: Il API Client invia delle credenziali scadute al Sistema
 - *Pre-condizioni*:
-  - Il REST Client ha inviato credenziali scadute
+  - Il API Client ha inviato credenziali scadute
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica le credenziali inviate dal REST Client e rileva che le credenziali sono scadute
+  - Il Sistema verifica le credenziali inviate dal API Client e rileva che le credenziali sono scadute
 
 == Sistema Gateway - Lista dei casi d'uso
 Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e raggiungibile.
@@ -2485,7 +2409,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Post-condizioni*
   - Il Sistema riceve un nuovo dato dal Sensore
   - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno 
+  - Il Sistema salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato simulato
   - Il Sensore invia il dato al Sistema Gateway
@@ -2494,11 +2418,11 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 ==== #uc() - Gestione buffer locale pieno <Gestione-buffer-locale-pieno>
 - *Attore primario*: Sensore simulato
 - *Pre-condizione*:
-  - Il Sensore è configurato correttamente con il Sistema Gateway 
+  - Il Sensore è configurato correttamente con il Sistema Gateway
 - *Post-condizione*:
   - Il Sistema riceve un nuovo dato dal Sensore
   - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
-  - Il dato cronologicamente più vecchio viene eliminato 
+  - Il dato cronologicamente più vecchio viene eliminato
   - Il Sistema salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sistema Gateway ha ricevuto un nuovo dato
