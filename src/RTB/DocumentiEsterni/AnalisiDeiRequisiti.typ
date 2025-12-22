@@ -6,6 +6,13 @@
   versione: "0.9.0",
   registro-modifiche: (
     (
+      "0.10.0",
+      "22/12/2025",
+      "Alessandro Dinato, Riccardo Graziani",
+      "-",
+      [Aggiunta Use Case Gateway simulato],
+    ),
+    (
       "0.9.0",
       "21/12/2025",
       "Alessandro Dinato",
@@ -1590,22 +1597,24 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Autenticazione Gateway <Autenticazione-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin vuole autenticare un Gateway registrato nel Sistema
 - *Precondizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Gateway è registrato nel Sistema ma non ancora autenticato //registrato significa che comunica con il sistema da non autenticato
+  - L'Utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
+  - Il Sistema riceve l'identificativo del Gateway
+  - Il Sistema riceve il certificato di autenticazione del Gateway
   - Il Sistema autentica il Gateway
 - *Scenario principale*:
   - Il Super-admin seleziona il Gateway da autenticare
+  - Il Super-admin fornisce l'identificativo del Gateway
   - Il Super-admin fornisce il certificato di autenticazione
 - *Scenario alternativo*:
   - Il Gateway non è raggiungibile perciò l'autenticazione non può essere completata
   - Il certificato fornito non è valido per il Gateway selezionato
+  - L'identificativo è già utilizzato da un altro Gateway
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
   - #ref-uc(<Certificato-non-valido>)
-
+  - #ref-uc(<Identificativo-gateway-gia-utilizzato>)
 
 ==== #uc() - Certificato non valido <Certificato-non-valido>
 - *Attore principale*: Super-admin
@@ -1617,6 +1626,19 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Sistema mostra un messaggio di errore e non autentica il Gateway
 - *Scenario principale*:
   - Il Super-admin fornisce un certificato non valido per l'autenticazione del Gateway selezionato
+
+==== #uc() - Identificativo Gateway già utilizzato <Identificativo-gateway-gia-utilizzato>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Gateway è registrato nel Sistema ma non ancora autenticato
+  - L'identificativo fornito è già associato ad un altro Gateway
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore e non autentica il Gateway
+  - Il Sistema interrompe l'autenticazione del Gateway
+- *Scenario principale*:
+  - Il Super-admin fornisce un identificativo già utilizzato per l'autenticazione del Gateway selezionato
+  - Il Super-admin visualizza un messaggio di errore
 
 
 ==== #uc() - Gestione richiesta fornitura Gateway <Gestione-richiesta-fornitura-gateway>
@@ -1936,24 +1958,25 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 // UC relativi alle azioni del super-admin sul simulatore
 
-// Se avete idee extra aggiungete
 ==== #uc() - Creazione gateway simulato <Creazione-gateway-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un gateway simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
-  - Il Sistema crea correttamente un nuovo gateway simulato
+  - Il Sistema assegna un ID univoco al gateway simulato
+  - Il Sistema crea correttamente un nuovo gateway simulato con i parametri specificati
+  - Il Sistema genera dei certificati di autenticazione per il gateway simulato
 - *Scenario principale*:
   - Il Super-admin seleziona l'opzione di creazione di un gateway simulato
   - Il Super-admin imposta il nome del gateway simulato
+  - Il Super-admin imposta la dimensione in byte del buffer del gateway simulato
   - Il Sistema genera un ID univoco al gateway simulato
 - *Inclusioni*:
   - #ref-uc(<Inserimento-nome-gateway-simulato>)
+  - #ref-uc(<Inserimento-dimensione-buffer-gateway-simulato>)
 
 ===== #sub-uc() - Inserimento nome gateway simulato <Inserimento-nome-gateway-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un gateway simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
@@ -1961,10 +1984,19 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenario principale*:
   - Il Super-admin inserisce il nome del nuovo gateway simulato
 
+===== #sub-uc() - Inserimento dimensione buffer gateway simulato <Inserimento-dimensione-buffer-gateway-simulato>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Sistema riceve la dimensione in byte del buffer del nuovo gateway simulato
+- *Scenario principale*:
+  - Il Super-admin inserisce la dimensione in byte del buffer del nuovo gateway simulato
+
 // Che campi mettere per il sensore?
 // gateway da associare, tipologia,
 // Se avete idee extra aggiungete
-==== #uc() - Creazione sensore simulato <Creazione-sensore-simulato-1> // Label in conflitto con un uc del gateway
+==== #uc() - Creazione sensore simulato <Creazione-sensore-simulato>
 - *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole creare un sensore simulato
 - *Pre-condizioni*:
@@ -2129,6 +2161,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Conferma esecuzione commissioning <Conferma-comando-commissioning>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di commissioning dal Sistema
   - Il Gateway è autenticato e associato ad un tenant
 - *Post-condizioni*:
@@ -2141,6 +2174,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Errore nel commissioning <Errore-commissioning>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di commissioning dal Sistema
   - Il Gateway durante l'esecuzione del commissioning ha riscontrato un errore
 - *Post-condizioni*:
@@ -2154,6 +2188,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Conferma esecuzione decommissioning <Conferma-comando-decommissioning>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di decommissioning dal Sistema
   - Il Gateway non è più associato ad alcun tenant
 - *Post-condizioni*:
@@ -2168,6 +2203,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Errore nel decommissioning <Errore-decommissioning>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di decommissioning dal Sistema
   - Il Gateway durante l'esecuzione del decommissioning ha riscontrato un errore
 - *Post-condizioni*:
@@ -2181,6 +2217,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Conferma riavvio <Conferma-comando-riavvio>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso con il Cloud
   - Il Gateway ha ricevuto un comando di riavvio dal Sistema
   - Il Gateway si è riavviato correttamente
 - *Post-condizioni*:
@@ -2193,6 +2230,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Errore nel riavvio <Errore-riavvio>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso con il Cloud
   - Il Gateway ha ricevuto un comando di riavvio dal Sistema
   - Il Gateway non si è riavviato correttamente
 - *Post-condizioni*:
@@ -2205,6 +2243,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Conferma reset <Conferma-comando-reset>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso con il Cloud
   - Il Gateway ha ricevuto un comando di reset dal Sistema
   - Il Gateway ha reimpostato la configurazione di fabbrica
   - Il Gateway ha mantenuto le informazioni di commissioning
@@ -2214,6 +2253,8 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Gateway si reimposta alle impostazioni di fabbrica
   - Il Gateway invia la conferma di reset al Sistema
 
+/*
+Non serve che il gateway confermi l'autenticazione, è il sistema che notifica il gateway
 ==== #uc() - Conferma autenticazione <Conferma-comando-autenticazione>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
@@ -2226,12 +2267,15 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Gateway riceve la conferma di autenticazione da parte del Sistema
   - Il Gateway memorizza lo stato di autenticazione
   - Il Gateway invia la conferma di ricezione al Sistema
+*/
 
 ==== #uc() - Conferma disattivazione <Conferma-comando-disattivazione>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di disattivazione dal Sistema
   - Il Gateway ha sospeso l'invio dei dati dei sensori al Sistema
+  - Il Gateway in questione è disattivato
 - *Post-condizioni*:
   - Il Sistema riceve la conferma di disattivazione dal Gateway
   - Il Sistema aggiorna lo stato del Gateway come disattivato
@@ -2239,6 +2283,129 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenario principale*:
   - Il Gateway sospende l'invio dei dati dei sensori al Sistema
   - Il Gateway invia la conferma di disattivazione al Sistema
+
+  ==== #uc() - Conferma riattivazione <Conferma-comando-riattivazione>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway ha ricevuto un comando di riattivazione dal Sistema
+  - Il Gateway in questione è ritornato attivo
+  - Il Gateway ha ricominciato ad inviare i dati dei sensori al Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+  - Il Sistema ricomincia a ricevere i dati dei sensori associati al Gateway
+- *Scenario principale*:
+  - Il Gateway riceve un comando di riattivazione
+  - Il Gateway esegue il comando ricevuto e si riattiva
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Conferma disattivazione sensore <Conferma-comando-disattivazione-sensore>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway ha ricevuto un comando di disattivazione di un determinato sensore dal Sistema
+  - Il Gateway ha sospeso l'invio dei dati del sensore in questione al Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+  - Il Sistema non riceve più i dati del sensore disattivato
+- *Scenario principale*:
+  - Il Gateway riceve un comando di disattivazione di un determinato sensore
+  - Il Gateway esegue il comando ricevuto e disattiva il sensore specificato
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Conferma riattivazione sensore <Conferma-comando-riattivazione-sensore>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway ha ricevuto un comando di riattivazione di un determinato sensore dal Sistema
+  - Il Gateway ha ricominciato ad inviare i dati del sensore in questione al Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+  - Il Sistema ricomincia a ricevere i dati del sensore riattivato
+- *Scenario principale*:
+  - Il Gateway riceve un comando di riattivazione di un determinato sensore
+  - Il Gateway esegue il comando ricevuto e riattiva il sensore
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Conferma modifica parametro di rolling average <conferma-comando-modifica-rolling-average>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway ha ricevuto un comando di modifica del parametro di rolling average dal Sistema
+  - Il Gateway ha modificato il valore del parametro di rolling average
+- *Post-condizioni*:
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+- *Scenario principale*:
+  - Il Gateway riceve un comando di modifica del parametro di rolling average
+  - Il Gateway esegue il comando ricevuto e modifica il valore del parametro di rolling average
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Invio comando di hello <Invio-comando-hello>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso al Cloud
+  - Il Gateway si è avviato e si è connesso per la prima volta al Cloud
+  - Il Gateway possiede delle credenziali per l'autenticazione
+  - Il Gateway possiede un identificativo
+- *Post-condizioni*:
+  - Il Sistema riceve un messaggio di hello dal Gateway
+  - Il Sistema autentica il Gateway
+- *Scenario principale*:
+  - Il Gateway invia un messaggio di hello verso il Cloud contenente il proprio identificativo
+- *Scenari alternativi*:
+  - Il Sistema fallisce nell'autenticare il Gateway
+- *Estensioni*:
+  - #ref-uc(<Autenticazione-gateway-fallita>)
+  - #ref-uc(<Identificativo-gateway-non-trovato>)
+
+==== #uc() - Autenticazione Gateway fallita <Autenticazione-gateway-fallita>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway ha inviato un messaggio di hello al Cloud
+  - Il Sistema non riesce ad autenticare il Gateway
+- *Post-condizioni*:
+  - Il Sistema rifiuta la connessione con il Gateway
+- *Scenario principale*:
+  - Il Gateway riceve il messaggio di autenticazione fallita dal Sistema
+
+==== #uc() - Identificativo Gateway non trovato <Identificativo-gateway-non-trovato>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway ha inviato un messaggio di hello al Cloud
+  - Il Sistema non riesce a trovare l'identificativo del Gateway
+- *Post-condizioni*:
+  - Il Sistema rifiuta la connessione con il Gateway
+- *Scenario principale*:
+  - Il Gateway riceve il messaggio di identificativo non trovato dal Sistema
+
+==== #uc() - Invio dati crittografati <Invio-dati-crittografati>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway ha completato la fase di commissioning, perciò è associato ad un tenant
+  - Il Gateway ha a disposizione dati raccolti dai sensori associati
+- *Post-condizioni*:
+  - Il Sistema riceve i dati crittografati da parte del Gateway
+- *Scenario principale*:
+  - Il Gateway raccoglie i dati dal proprio buffer interno
+  - Il Gateway utilizza la propria chiave per crittografare i dati raccolti dai sensori
+  - Il Gateway invia i dati crittografati al Sistema
+- *Scenari alternativi*:
+  - Il Sistema Cloud non è raggiungibile
+- *Estensioni*:
+  - #ref-uc(<Sistema-cloud-non-raggiungibile>)
+
+==== #uc() - Sistema Cloud non raggiungibile <Sistema-cloud-non-raggiungibile>
+- *Attore primario*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway tenta di inviare dati crittografati al Sistema Cloud
+  - Il Sistema Cloud non è raggiungibile
+- *Post-condizioni*:
+  - Il Sistema non riceve i dati crittografati dal Gateway perché non è raggiungibile
+- *Scenario principale*:
+  - Il Gateway rileva che il Sistema Cloud non è raggiungibile
+  - Il Gateway memorizza i dati nel proprio buffer interno per un invio successivo
+  - Il Gateway elimina i dati più vecchi se il buffer è pieno
 
 
 === Attore principale - API Client
@@ -2401,7 +2568,6 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 === Attore principale - Sensore simulato
 
-// come cazzo si fa?
 ==== #uc() - Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2414,27 +2580,24 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera un nuovo dato simulato
   - Il Sensore invia il dato al Sistema Gateway
 
-// come cazzo si fa pt.2?
-==== #uc() - Gestione buffer locale pieno <Gestione-buffer-locale-pieno>
-- *Attore primario*: Sensore simulato
-- *Pre-condizione*:
+//??????ho chiesto a cardin se ha senso
+==== #uc() - Invio di dati eccessivi al Gateway <Invio-dati-eccessivi-gateway>
+- *Attore principale*: Sensore simulato
+- *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
-- *Post-condizione*:
-  - Il Sistema riceve un nuovo dato dal Sensore
-  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
-  - Il dato cronologicamente più vecchio viene eliminato
-  - Il Sistema salva i dati in un buffer interno
+- *Post-condizioni*:
+  - Il Sistema riceve più dati di quanti ne possa inviare al Cloud
+  - Il Sistema salva i dati più recenti nel buffer interno
+  - Il Sistema elimina i dati più vecchi per fare spazio ai nuovi dati
 - *Scenario principale*:
-  - Il Sistema Gateway ha ricevuto un nuovo dato
-  - Il buffer del Sistema Gateway è pieno
-  - Il Sistema elimina il dato cronologicamente più vecchio per far spazio a quello nuovo
+  - Il Sensore invia una quantità di dati superiore alla capacità di invio del Sistema Gateway
 
 === Attore principale - Cloud
 
 ==== #uc() - Conferma autenticazione Gateway <Conferma-autenticazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud d
+  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud
   - Il Sistema è stato autenticato con successo
 - *Post-condizioni*:
   - Il Sistema riceve la conferma di autenticazione del Gateway
