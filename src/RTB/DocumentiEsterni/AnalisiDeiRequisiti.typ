@@ -1793,7 +1793,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin seleziona il Tenant-admin da eliminare
 
 ===== #sub-uc() - Conferma eliminazione account Tenant-admin <Conferma-eliminazione-account-tenant-admin>
-- *Attore principale*: Super-admin4
+- *Attore principale*: Super-admin
 - *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -1803,6 +1803,171 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - L'account del Tenant-admin viene eliminato dal Sistema
 - *Scenario principale*:
   - Il Super-admin conferma l'eliminazione dell'account del Tenant-admin selezionato
+
+// UC relativi alle azioni del super-admin sul simulatore
+
+// Se avete idee extra aggiungete 
+==== #uc() - Creazione gateway simulato <Creazione-gateway-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole creare un gateway simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Sistema crea correttamente un nuovo gateway simulato
+- *Scenario principale*:
+  - Il Super-admin seleziona l'opzione di creazione di un gateway simulato
+  - Il Super-admin imposta il nome del gateway simulato
+  - Il Sistema genera un ID univoco al gateway simulato
+- *Inclusioni*:
+  - #ref-uc(<Inserimento-nome-gateway-simulato>)
+
+===== #sub-uc() - Inserimento nome gateway simulato <Inserimento-nome-gateway-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole creare un gateway simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Sistema riceve il nome del nuovo gateway simulato
+- *Scenario principale*:
+  - Il Super-admin inserisce il nome del nuovo gateway simulato
+
+// Che campi mettere per il sensore?
+// gateway da associare, tipologia, 
+// Se avete idee extra aggiungete 
+==== #uc() - Creazione sensore simulato <Creazione-sensore-simulato-1> // Label in conflitto con un uc del gateway
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole creare un sensore simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Esiste almeno un gateway simulato
+- *Post-condizioni*:
+  - Il Sistema crea correttamente il nuovo sensore simulato e lo associa al gateway
+- *Scenario principale*:
+  - Il Super-admin seleziona l'opzione di creazione di un sensore simulato
+  - Il Super-admin ...
+  - Il Super-admin imposta il tipo del sensore simulato
+  - Il Super-admin seleziona il gateway simulato a cui associare il sensore simulato
+- *Inclusioni*:
+  - #ref-uc(<Inserimento-tipologia-sensore-simulato>)
+  - #ref-uc(<Inserimento-associazione-gateway-simulato>)
+
+===== #sub-uc() - Inserimento tipologia sensore simulato <Inserimento-tipologia-sensore-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole creare un sensore simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Sistema riceve la tipologia del nuovo sensore simulato
+- *Scenario principale*:
+  - Il Super-admin inserisce la tipologia del nuovo sensore simulato
+
+===== #sub-uc() - Inserimento associazione gateway simulato <Inserimento-associazione-gateway-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole creare un sensore simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Sistema riceve l'identificativo del gateway simulato a cui associare il sensore simulato
+- *Scenario principale*:
+  - Il Super-admin inserisce l'identificativo del gateway simulato
+
+==== #uc() - Eliminazione gateway simulato <Eliminazione-gateway-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un gateway simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il gateway simulato deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema elimina correttamente il gateway simulato
+- *Scenario principale*:
+  - Il Super-admin seleziona il gateway simulato da eliminare
+  - Il Super-admin conferma l'eliminazione del gateway simulato
+- *Inclusioni*:
+  - #ref-uc(<Seleziona-gateway-simulato-da-eliminare>)
+  - #ref-uc(<Conferma-eliminazione-gateway-simulato>)
+
+===== #sub-uc() - Seleziona gateway simulato da eliminare <Seleziona-gateway-simulato-da-eliminare>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un gateway simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il gateway simulato deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del gateway simulato da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il gateway simulato da eliminare
+
+===== #sub-uc() - Conferma eliminazione gateway simulato <Conferma-eliminazione-gateway-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un gateway simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il gateway simulato deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il gateway simulato viene eliminato dal Sistema
+- *Scenario principale*:
+  - Il Super-admin conferma l'eliminazione del gateway simulato selezionato
+  
+==== #uc() - Eliminazione sensore simulato <Eliminazione-sensore-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un sensore simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il sensore simulato deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema elimina correttamente il sensore simulato
+- *Scenario principale*:
+  - Il Super-admin seleziona il sensore simulato da eliminare
+  - Il Super-admin conferma l'eliminazione del sensore simulato
+- *Inclusioni*:
+  - #ref-uc(<Seleziona-sensore-simulato-da-eliminare>)
+  - #ref-uc(<Conferma-eliminazione-sensore-simulato>)
+
+===== #sub-uc() - Seleziona sensore simulato da eliminare <Seleziona-sensore-simulato-da-eliminare>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un sensore simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il sensore simulato deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve la selezione del sensore simulato da parte del Super-admin
+- *Scenario principale*:
+  - Il Super-admin seleziona il sensore simulato da eliminare
+
+===== #sub-uc() - Conferma eliminazione sensore simulato <Conferma-eliminazione-sensore-simulato>
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super-admin vuole eliminare un sensore simulato
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il sensore simulato deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il sensore simulato viene eliminato dal Sistema
+- *Scenario principale*:
+  - Il Super-admin conferma l'eliminazione del sensore simulato selezionato
+
+// TODO: Uno UC relativo alla visualizzazione delle metriche di health del sistema su grafana? Ad esempio:
+
+// Se usiamo un identity provider Grafana non richiede ulteriore accesso
+/*
+==== Monitoraggio metriche di sistema
+- *Attore principale*: Super-admin
+- *Trigger*: Il Super Admin vuole monitorare le prestazioni del Sistema
+- *Pre-condizioni*: 
+  - L'utente è autenticato con il ruolo di Super-admin
+  - L'esportatore di metriche sta inviando dati
+- *Post-condizioni*: 
+  - Il Super-admin visualizza la dashboard delle performance di sistema
+- *Scenario principale*:
+  - Il Super-admin accede alla sezione di analisi del sistema
+  - Il Sistema fornisce l'accesso alla dashboard di visualizzazione delle metriche
+  - // TODO: espandere con ad esempio set di filtri?
+- *Scenari alternativi*:
+  - Mancata ricezione dei dati (esportatore down)
+- *Estensioni*:
+  - // UC per esportatore di metriche down
+- *Inclusioni*:
+  - // Eventuale UC per il SSO
+*/
 
 /*
 ==== Configurazione alert globali
@@ -1909,9 +2074,11 @@ Le informazioni di autenticazione di commissioning risultano assenti o corrotte
   - Il Gateway invia i dati al Sistema in modo cifrato
   - Il Gateway riceve conferma di ricezione dal Sistema
 - *Estensioni*:
-  - #ref-uc(<Salvataggio-buffer-dati-disconnessione>)
+  //- #ref-uc(<Salvataggio-buffer-dati-disconnessione>)
 - *Inclusioni*:
 
+/*
+// gateway salva dati in buffer e li sputa subito
 ==== #uc() - Salvataggio (buffer) dati per disconnessione <Salvataggio-buffer-dati-disconnessione>
 - *Attore primario*:  Gateway (simulato)
 - *Trigger*: Tentativo fallito di invio dati al cloud
@@ -1925,11 +2092,24 @@ Le informazioni di autenticazione di commissioning risultano assenti o corrotte
   - Il gateway memorizza i dati non inviati nel suo buffer locale
 - *Scenari alternativi*:
   - Se il buffer raggiungere la capacità massima, i dati più vecchi vengono eliminati per scartati per aggiungere i nuovi
-  - Se il cloud ritorna raggiungibile il invia i dati salvati nel buffer
+  - Se il cloud ritorna raggiungibile il gateway invia i dati salvati nel buffer
 - *Estensioni*:
+  - #ref-uc(<Invio-dati-buffer-locale-al-cloud>)
 - *Inclusioni*:
 // TODO: DA SVILUPPARE i due scenari alternativi
+*/
 
+==== #uc() - Invio dati buffer locale al cloud <Invio-dati-buffer-locale-al-cloud>
+- *Attore primario*:  Gateway (simulato)
+- *Pre-condizione*:
+  - Il gateway ha dati memorizzati nel buffer da inviare
+- *Post-condizione*:
+  - Il Sistema riceve i dati provenienti dal buffer locale del gateway
+- *Scenario principale*:
+  - Il gateway rileva di avere dei dati nel proprio buffer
+  - Il gateway invia al Cloud i dati contenuti nel buffer
+
+/*
 ==== #uc() - Normalizzazione e Formattazione interna dei dati <Normalizzazione-formattazione-interna-dati>
 - *Attore primario*:  Gateway (simulato)
 - *Trigger*: Sono pronti dati grezzi da normalizzare
@@ -1941,6 +2121,7 @@ Le informazioni di autenticazione di commissioning risultano assenti o corrotte
   - I dati risultano uniformati in un formato interno standardizzato
 - *Estensioni*:
 - *Inclusioni*:
+*/
 
 //Dina: secondo me non ha senso che il certificato scada, al massimo è il super-admin che lo cambia
 //o invia comando di rinnovo al gateway, se lo vuole far scadere rimuove il certificato
@@ -2056,6 +2237,85 @@ Le informazioni di autenticazione di commissioning risultano assenti o corrotte
   - Il gateway riceve dal Cloud il comando di stop simulazione.
   - Il gateway smette di produrre dati simulati.
   - Il gateway invia conferma al Cloud.
+
+==== #uc() - Invio conferma comando di riattivazione <Invio-conferma-comando-di-riattivazione>
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Il Cloud vuole riattivare il Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway oggetto del messaggio esiste 
+  - Il Gateway oggetto del messaggio è disattivato
+- *Post-condizioni*: 
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+  - Il Gateway ricomincia a inviare dati al Sistema
+- *Scenario principale*:
+  - Il Gateway riceve un comando di riattivazione 
+  - Il Gateway esegue il comando ricevuto e si riattiva
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Invio conferma comando di disattivazione sensore <Invio-conferma-comando-di-disattivazione-sensore>
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Il Cloud vuole disattivare un sensore
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il sensore oggetto del messaggio esiste 
+  - Il sensore oggetto del messaggio è attivo
+- *Post-condizioni*: 
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+- *Scenario principale*:
+  - Il Gateway riceve un comando di disattivazione di un determinato sensore
+  - Il Gateway esegue il comando ricevuto e disattiva il sensore
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Invio conferma comando di riattivazione sensore <Invio-conferma-comando-di-riattivazione-sensore>
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Il Cloud vuole riattivare un sensore
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il sensore oggetto del messaggio esiste 
+  - Il sensore oggetto del messaggio è disattivato
+- *Post-condizioni*: 
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway
+- *Scenario principale*:
+  - Il Gateway riceve un comando di riattivazione di un determinato sensore
+  - Il Gateway esegue il comando ricevuto e riattiva il sensore
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Invio conferma comando di modifica rolling average <Invio-conferma-comando-di-modifica-rolling-average>
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Il Cloud vuole modificare il parametro di rolling average
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway oggetto del messaggio esiste 
+  - Il Gateway oggetto del messaggio ha impostato il rolling average
+- *Post-condizioni*: 
+  - Il Sistema riceve un messaggio di conferma da parte del Gateway 
+- *Scenario principale*:
+  - Il Gateway riceve un comando di modifica del rolling average
+  - Il Gateway esegue il comando ricevuto e modifica il valore del parametro di rolling average
+  - Il Gateway invia un comando di conferma al Cloud
+
+==== #uc() - Invio comando di hello <Invio-comando-di-hello>
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Il Gateway vuole farsi conoscere dal Cloud
+- *Pre-condizioni*:
+  - ?
+- *Post-condizioni*: 
+  - Il Sistema riceve un messaggio di hello dal Gateway
+- *Scenario principale*:
+  - Il Gateway invia un messaggio di hello verso il Cloud
+
+// TODO: Da espandere
+==== #uc() - Invio dati crittografati <Invio-dati-crittografati>
+- *Attore primario*: Gateway (simulato)
+- *Trigger*: Il Gateway vuole inviare i dati raccolti al Cloud
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+- *Post-condizioni*: 
+  - Il Sistema riceve i dati da parte del Gateway
+- *Scenario principale*:
+  - Il Gateway applica l'algoritmo di criptazione ai dati raccolti
+  - Il Gateway invia i dati crittografati al Cloud
 
 === Attore principale - REST Client
 // REST Client autenticato significa che ha un token valido per un tenant specifico
@@ -2217,6 +2477,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 === Attore principale - Sensore simulato
 
+// come cazzo si fa?
 ==== #uc() - Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2224,9 +2485,25 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Post-condizioni*
   - Il Sistema riceve un nuovo dato dal Sensore
   - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
+  - Il Sistema salva i dati in un buffer interno 
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato simulato
   - Il Sensore invia il dato al Sistema Gateway
+
+// come cazzo si fa pt.2?
+==== #uc() - Gestione buffer locale pieno <Gestione-buffer-locale-pieno>
+- *Attore primario*: Sensore simulato
+- *Pre-condizione*:
+  - Il Sensore è configurato correttamente con il Sistema Gateway 
+- *Post-condizione*:
+  - Il Sistema riceve un nuovo dato dal Sensore
+  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
+  - Il dato cronologicamente più vecchio viene eliminato 
+  - Il Sistema salva i dati in un buffer interno
+- *Scenario principale*:
+  - Il Sistema Gateway ha ricevuto un nuovo dato
+  - Il buffer del Sistema Gateway è pieno
+  - Il Sistema elimina il dato cronologicamente più vecchio per far spazio a quello nuovo
 
 === Attore principale - Cloud
 
