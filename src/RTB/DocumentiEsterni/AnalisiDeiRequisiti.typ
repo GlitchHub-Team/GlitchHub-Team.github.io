@@ -240,6 +240,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
   - L'Utente ha eseguito l'accesso al Sistema ed è stato riconosciuto come _Tenant User_, _Tenant Admin_ o _Super Admin_
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente seleziona la funzionalità di login
   - L'Utente inserisce l'indirizzo email associato al proprio account
@@ -285,6 +286,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Post-condizioni*:
   - L'Utente non viene autenticato nel Sistema
   - Viene mostrato un messaggio di errore
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Sistema verifica le credenziali inserite dall'Utente e rileva l'errore
 
@@ -297,6 +299,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Post-condizioni*:
   - L'Utente non viene autenticato nel Sistema
   - Viene mostrato un messaggio di errore
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Sistema verifica lo stato dell'account dell'Utente e rileva che l'account è sospeso
 
@@ -309,6 +312,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
 - *Post-condizioni*:
   - Il Sistema invia un'email all'Utente con il codice 2FA
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente riceve il codice 2FA via email
 
@@ -321,6 +325,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
 - *Post-condizioni*:
   - Il Sistema invia nuovamente un'email all'Utente con il codice 2FA
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente richiede il re-invio del codice 2FA
   - L'Utente riceve nuovamente il codice 2FA via email
@@ -334,6 +339,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Post-condizioni*:
   - Il Sistema verifica il codice 2FA inserito dall'Utente
   - Il Sistema autentica l'Utente
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente riceve il codice 2FA via email
   - L'Utente inserisce il codice 2FA ricevuto
@@ -368,6 +374,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Post-condizioni*:
   - Il Sistema non autentica l'Utente
   - Viene mostrato un messaggio di errore
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente inserisce un codice 2FA errato
   - L'Utente visualizza un messaggio di errore
@@ -382,6 +389,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Post-condizioni*:
   - Il Sistema non autentica l'Utente
   - Viene mostrato un messaggio di errore
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente inserisce un codice 2FA scaduto
   - L'Utente visualizza un messaggio di errore
@@ -394,6 +402,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente è autenticato nel Sistema
 - *Post-condizioni*:
   - L'Utente viene disconnesso dal Sistema
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente seleziona la funzionalità di logout
 
@@ -815,6 +824,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Post-condizioni*:
   - Il Sistema registra correttamente il nuovo Tenant User nel tenant associato al Tenant Admin
   - Il Sistema invia una email al nuovo Tenant-User con un link per impostare la password dell'account appena creato
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin inserisce l'indirizzo email del nuovo Tenant User
 - *Scenari alternativi*:
@@ -886,6 +896,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant User in questione appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Tenant User non può più accedere al Sistema
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin sceglie il Tenant User che vuole sospendere
   - Il Tenant Admin conferma la sospensione
@@ -912,6 +923,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant User in questione appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Tenant User può accedere nuovamente al Sistema
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin sceglie il Tenant User che vuole riattivare
   - Il Tenant Admin conferma la riattivazione dell'account
@@ -938,6 +950,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant User in questione appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema elimina il Tenant User
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin sceglie il Tenant User che vuole rimuovere
   - Il Tenant Admin conferma l'eliminazione del Tenant User
@@ -1016,6 +1029,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il sensore non è già disattivato
 - *Post-condizioni*:
   - Il Sistema invia un comando al gateway per ignorare i dati provenienti dal sensore specificato
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin seleziona il sensore che vuole disattivare
 - *Scenari alternativi*:
@@ -1034,6 +1048,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il sensore è disattivato
 - *Post-condizioni*:
   - Il Sistema invia un comando al gateway per riprendere la raccolta dei dati provenienti dal sensore specificato
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin seleziona il sensore che vuole riattivare
 - *Scenari alternativi*:
@@ -1050,6 +1065,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema genera una nuova API key associata al tenant del Tenant Admin
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin inserisce il nome della API key
   - Il Tenant Admin inserisce la scadenza della API key
@@ -1152,6 +1168,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - La API key selezionata appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema elimina la API key selezionata
+  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin seleziona una API key associata al proprio tenant
   - Il Tenant Admin conferma l'eliminazione della API key selezionata
@@ -1243,7 +1260,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Tenant Admin riattiva il gateway
 */
 
-
+// Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
 ==== #uc() - Visualizzazione audit log <Visualizzazione-audit-log>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
@@ -1252,12 +1269,75 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Vengono visualizzate le informazioni degli audit log
 - *Scenario principale*:
   - Il Tenant Admin seleziona l'opzione di visualizzazione degli audit log
+  - Il Sistema recupera i dati relativi agli audit log e li mostra in una tabella 
 - *Estensioni*:
+  - #ref-uc(<Filtraggio-log-per-tipologia>)
+  - #ref-uc(<Filtraggio-log-per-intervallo-temporale>)
+  - #ref-uc(<Filtraggio-log-per-utente>)
   - #ref-uc(<Esportazione-log>)
+
+// AUDIT LOG:
+/*
+  --- GESTIONE UTENTI
+  - Creazione Tenant User
+  - Sospensione Tenant User
+  - Riattivazione Tenant User
+  - Eliminazione Tenant User
+  --- GESTIONE API KEY
+  - Creazione API Key
+  - Eliminazione API Key
+  --- GESTIONE ACCESSI
+  - Login
+  - Logout
+  - Generazione 2FA
+  - Accesso fallito (user/pswd)
+  - Accesso fallito (2FA)
+  - Accesso fallito (Tenant User sospeso)
+  - Richiesta reimpostazione password
+  --- GESTIONE SENSORI E GATEWAY
+  - Richiesta fornitura gateway
+  - Disattivazione sensore
+  - Riattivazione sensore
+*/
 
 // DA SVILUPPARE TUTTI I TIPI DI AUDIT LOG, es: creazione utente, eliminazione utente, login, logout, creazione api key, eliminazione api key, ecc.
 // DA SVILUPPARE FILTRI
+// DA MODIFICARE TUTTI GLI UC INERENTI INSERENDO: IL SISTEMA REGISTRA L'EVENTO NELL'AUDIT LOG, INCLUDENDO TIMESTAMP E IP
 
+===== #uc() - Filtraggio log per tipologia <Filtraggio-log-per-tipologia>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema ha recuperato i dati di log
+- *Post-condizioni*
+  - Il Sistema mostra i dati di log filtrati secondo la tipolgia desiderata
+- *Scenario principale*
+  - Il Tenant Admin seleziona una o più tipologie di log che desidera vedere
+  - Il Tenant Admin visualizza gli audit log filtrati per le tipologie desiderate
+
+===== #uc() - Filtraggio log per intervallo temporale <Filtraggio-log-per-intervallo-temporale>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema ha recuperato i dati di log
+- *Post-condizioni*
+  - Il Sistema mostra i dati di log filtrati secondo l'intervallo temporale indicato
+- *Scenario principale*
+  - Il Tenant Admin specifica un intervallo temporale desiderato 
+  - Il Tenant Admin visualizza gli audit log filtrati secondo l'intervallo specificato
+
+===== #uc() - Filtraggio log per utente <Filtraggio-log-per-utente>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema ha recuperato i dati di log
+- *Post-condizioni*
+  - Il Sistema mostra i dati di log relativi ai Tenant User specificati
+- *Scenario principale*
+  - Il Tenant Admin specifica uno o più Tenant User di cui vuole consultare l'attività 
+  - Il Tenant Admin visualizza gli audit log filtrati in base ai Tenant User scelti
+
+// Da rifinire
 ===== #uc() - Esportazione log <Esportazione-log>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
