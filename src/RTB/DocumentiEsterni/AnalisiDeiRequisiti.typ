@@ -3,8 +3,15 @@
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
-  versione: "0.9.0",
+  versione: "0.12.0",
   registro-modifiche: (
+    (
+      "0.12.0",
+      "23/12/2025",
+      "Elia Ernesto Stellin",
+      "-",
+      [Modificati use case per *utente non autenticato*, *utente autenticato* e *Tenant User*]
+    ),
     (
       "0.11.0",
       "23/12/2025",
@@ -156,7 +163,7 @@
           return index == prev-index + 1
         })
       } else {
-        return (none, uc-counter.final(), none)
+        (none, uc-counter.final(), none)
       }
     )
 
@@ -173,6 +180,7 @@
     [#link(uc-label, [#uc-number \[Sezione #section-id\]])]
   }
 }
+
 
 /*
 NOTE: quando si scrive che super admin impersona tenant admin, si segna come precondizione che il tenant admin ha accettato la clausola d'impersonificazione del contratto
@@ -211,8 +219,8 @@ I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione s
 Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
 
 #table(
-  align: (center, center),
-  columns: (4fr, 4fr),
+  // align: (left, left),
+  columns: (1fr, 2.5fr),
   table.header([Attore], [Descrizione]),
 
   [Utente non autenticato], [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
@@ -221,20 +229,20 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
   [Un qualunque utente che abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione di *Tenant User*, *Tenant Admin* e *Super Admin*],
 
   [Tenant User],
-  [Un utente autenticato appartenente a uno specifico tenant che ha facoltà di visualizzare i dati dei sensori ricevuti dal Gateway],
+  [Un utente autenticato appartenente a uno specifico tenant che ha facoltà di visualizzare i dati dei sensori ricevuti dai *Gateway*],
 
   [Tenant Admin],
   [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant],
 
   [Super Admin], [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud],
 
-  [Amministratore generico],
+  [Amministratore],
   [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*],
 
   [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
 
   [Gateway simulato],
-  [Un Gateway simulato che interloquisce con l'infrastruttura cloud per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
+  [Un Gateway simulato che interloquisce con l'*Infrastruttura Cloud* per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
 
   [Infrastruttura Cloud],
   [L'infrastruttura Cloud che riceve i dati normalizzati dal Gateway, rendendoli visibili ai *Tenant User*.],
@@ -243,10 +251,10 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 == Sistema Cloud - Lista dei casi d'uso
 Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
 
-=== Attore principale - Utente
-Utente è l'utente generico che tenta di accedere al sistema.
+=== Attore principale - Utente non autenticato
+L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
 
-==== #uc() -- Autenticazione Utente <Autenticazione-Utente>
+==== #uc() - Autenticazione Utente <Autenticazione-Utente>
 - *Attore principale*: Utente
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -270,7 +278,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - #ref-uc(<Inserimento-password>)
 
 ===== #sub-uc() - Inserimento email autenticazione <Inserimento-email-auth>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -279,16 +287,17 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente inserisce l'indirizzo email associato al proprio account
 
 ===== #sub-uc() - Inserimento password <Inserimento-password>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
-  - L'Utente non è autenticato nel Sistema
+  - L'utente non è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema riceve la password inserita dall'Utente
 - *Scenario principale*:
   - L'Utente inserisce la password
 
+
 ==== #uc() - Autenticazione non riuscita <Autenticazione-non-riuscita>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha inserito un'email che non corrisponde ad un utente registrato o ha inserito una password errata
@@ -301,7 +310,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 
 ==== #uc() - Account sospeso <Account-sospeso>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -311,8 +320,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica lo stato dell'account dell'Utente e rileva che l'account è sospeso
 
-==== #sub-uc() - Invio codice 2FA <Invio-codice-2FA>
-- *Attore principale*: Utente
+
+==== #uc() - Invio codice 2FA <Invio-codice-2FA>
+- *Attore principale*: Utente non autenticato
 - *Attore secondario*: Client email
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -326,7 +336,8 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 
 ==== #uc() - Re-invio codice 2FA <Re-invio-codice-2FA>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
+- *Attore secondario*: Client email
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha eseguito il login con successo
@@ -338,22 +349,23 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente richiede il re-invio del codice 2FA
   - L'Utente riceve nuovamente il codice 2FA via email
 
+
 ==== #uc() - Autenticazione 2FA <Autenticazione-2FA>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha eseguito il login con successo
   - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
 - *Post-condizioni*:
   - Il Sistema verifica il codice 2FA inserito dall'Utente
-  - Il Sistema autentica l'Utente
+  - Il Sistema autentica l'Utente, il quale è ora un *Utente autenticato*
   - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente riceve il codice 2FA via email
   - L'Utente inserisce il codice 2FA ricevuto
 - *Scenari alternativi*:
-  - L'Utente inserisce un codice 2FA errato
-  - LUtente inserisce un codice 2FA scaduto
+  - L'Utente inserisce un codice 2FA errato, non proseguendo con l'autenticazione
+  - L'Utente inserisce un codice 2FA scaduto, non proseguendo con l'autenticazione
 - *Estensioni*:
   - #ref-uc(<Codice-2FA-errato>)
   - #ref-uc(<Codice-2FA-scaduto>)
@@ -361,7 +373,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - #ref-uc(<Inserimento-codice-2FA>)
 
 ===== #sub-uc() - Inserimento codice 2FA <Inserimento-codice-2FA>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha eseguito il login con successo
@@ -372,8 +384,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce il codice 2FA ricevuto via email
 
+
 ==== #uc() - Codice 2FA errato <Codice-2FA-errato>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha eseguito il login con successo
@@ -387,8 +400,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente inserisce un codice 2FA errato
   - L'Utente visualizza un messaggio di errore
 
+
 ==== #uc() - Codice 2FA scaduto <Codice-2FA-scaduto>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha eseguito il login con successo
@@ -401,17 +415,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce un codice 2FA scaduto
   - L'Utente visualizza un messaggio di errore
-
-
-==== #uc() - Logout <Logout>
-- *Attore principale*: Utente
-- *Pre-condizioni*:
-  - L'Utente è autenticato nel Sistema
-- *Post-condizioni*:
-  - L'Utente viene disconnesso dal Sistema
-  - Il Sistema registra l'evento negli audit log
-- *Scenario principale*:
-  - L'Utente seleziona la funzionalità di logout
 
 
 ==== #uc() - Password dimenticata <Password-dimenticata>
@@ -463,10 +466,11 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica l'indirizzo email inserito dall'Utente e rileva l'errore
 
-
-==== #uc() - Reimpostazione password <Reimpostazione-password>
-- *Attore principale*: Utente
+// TODO: il workflow <Reimpostazione-password-dimenticata> e <Modifica-password> dovrebbero essere unificati!
+==== #uc() - Reimpostazione password dimenticata <Reimpostazione-password-dimenticata>
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
   - L'Utente ha ricevuto l'email di reimpostazione password
 - *Post-condizioni*:
   - La password dell'Utente viene reimpostata
@@ -485,7 +489,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - #ref-uc(<Conferma-password>)
 
 ===== #sub-uc() - Inserimento nuova password <Inserimento-nuova-password>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha ricevuto l'email di impostazione password
@@ -495,7 +499,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - L'Utente inserisce la nuova password
 
 ===== #sub-uc() - Conferma password <Conferma-password>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha ricevuto l'email di impostazione password
@@ -516,6 +520,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente visualizza un messaggio di errore dopo aver inserito la conferma password non coincidente con la nuova password
 
+
 ==== #uc() - Password non conforme ai criteri di sicurezza <Password-non-conforme-criteri-sicurezza>
 - *Attore principale*: Utente
 - *Pre-condizioni*:
@@ -527,12 +532,30 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica la nuova password inserita dall'Utente e rileva l'errore
 
-==== #uc() - Modifica password <Modifica-password>
-- *Attore principale*: Utente
+
+///// UTENTE AUTENTICATO //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+=== Attore principale - Utente autenticato
+L'utente autenticato è chiunque abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione degli attori *Tenant User*, *Tenant Admin*, *Super Admin*.
+
+Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assume che questi stia impersonando un *Tenant User* o un *Tenant Admin*, ovvero venga temporaneamente riconosciuto dal sistema come tale.
+
+==== #uc() - Logout <Logout>
+- *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
 - *Post-condizioni*:
-  - La password dell'Utente viene modificata
+  - L'Utente viene disconnesso dal Sistema
+  - Il Sistema registra l'evento negli audit log
+- *Scenario principale*:
+  - L'Utente seleziona la funzionalità di logout
+
+
+==== #uc() - Modifica password <Modifica-password>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+- *Post-condizioni*:
+  - La password dell'Utente viene modificata nella nuova password specificata dall'utente
 - *Scenario principale*:
   - L'Utente inserisce la vecchia password
   - L'Utente inserisce la nuova password
@@ -551,7 +574,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - #ref-uc(<Conferma-password>)
 
 ===== #sub-uc() - Inserimento vecchia password <Inserimento-vecchia-password>
-- *Attore principale*: Utente
+- *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
 - *Post-condizioni*:
@@ -559,8 +582,9 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente inserisce la vecchia password
 
+
 ==== #uc() - Vecchia password non corretta <Vecchia-password-non-corretta>
-- *Attore principale*: Utente
+- *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
   - L'Utente ha inserito una vecchia password non corretta
@@ -570,8 +594,136 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Sistema verifica la vecchia password inserita dall'Utente e rileva l'errore
 
+
+
+// Visualizzazione dati -----------------------------------------------------------------------------------------------------
+==== #uc() - Selezione sensore <Selezione-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
+- *Post-condizioni*:
+  - Il Sistema riceve l'identificativo del sensore selezionato
+- *Scenario principale*:
+  - Il Tenant User seleziona un sensore associato al proprio tenant
+
+
+==== #uc() - Visualizzazione in tempo reale dei dati del sensore <Visualizzazione-dati-real-time-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Esistono sensori associati al tenant dell'utente autenticato
+- *Post-condizioni*:
+  - Vengono visualizzati i dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento specifico
+  - Il grafico visualizzato si aggiorna in *tempo reale* (_real-time_), appena il Cloud riceve dati nuovi dal Gateway
+- *Scenario principale*:
+  - L'utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
+  - Vengono mostrati i dati real-time del sensore selezionato tramite il grafico descritto sopra
+- *Scenari alternativi*:
+  - Nessun dato disponibile per il sensore selezionato
+- *Estensioni*:
+  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
+- *Inclusioni*:
+  - #ref-uc(<Selezione-sensore>)
+  // - #ref-uc(<Visualizzazione-grafico-ts-dati-real-time>)
+  // - #ref-uc(<Visualizzazione-testuale-dati-real-time>)
+
+
+==== #uc() - Visualizzazione dello storico dei dati del sensore <Visualizzazione-storico-dati-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Esistono sensori associati al tenant dell'utente autenticato
+- *Post-condizioni*:
+  - Viene visualizzato lo storico dei dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento specifico
+- *Scenario principale*:
+  - L'utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
+  - Viene mostrato lo storico dei dati del sensore selezionato tramite il grafico descritto sopra, con la possibilità di filtrare per intervallo temporale e intervallo di valore
+- *Scenari alternativi*:
+  - Nessun dato storico disponibile per il sensore selezionato
+- *Estensioni*:
+  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
+- *Inclusioni*:
+  - #ref-uc(<Selezione-sensore>)
+
+
+// TODO: finisci di sostituire tenant user con utente autenticato
+==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Esistono sensori associati al tenant dell'utente autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra lo storico dei dati del sensore selezionato filtrato per intervallo temporale
+- *Scenario principale*:
+  - L'utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
+  - L'utente autenticato specifica l'intervallo temporale desiderato
+  - L'utente autenticato visualizza lo storico dei dati del sensore selezionato filtrato per l'intervallo temporale specificato
+- *Scenari alternativi*:
+  - Nessun dato storico disponibile per il sensore selezionato nell'intervallo temporale specificato
+  - L'intervallo temporale specificato non è valido
+- *Estensioni*:
+  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
+  - #ref-uc(<Intervallo-temporale-non-valido>)
+- *Inclusioni*:
+  - #ref-uc(<Selezione-sensore>)
+
+
+==== #uc() - Intervallo temporale non valido <Intervallo-temporale-non-valido>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Esistono sensori associati al tenant dell'utente autenticato
+  - L'utente autenticato ha specificato un intervallo temporale non valido, ovvero un intervallo che comprende dei momenti temporali futuri o precedenti al primo momento temporale salvato nello storico del sensore considerato.
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore
+- *Scenario principale*:
+  - L'utente autenticato specifica un intervallo temporale non valido
+  - L'utente autenticato visualizza un messaggio di errore
+
+
+==== #uc() - Filtraggio dati del sensore per intervallo di valori <Filtraggio-dati-sensore-intervallo-valori>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Esistono sensori associati al tenant dell'utente autenticato
+  - I valori delle misurazioni dei sensori sono numerici
+- *Post-condizioni*:
+  - Il Sistema mostra lo storico dei dati del sensore selezionato per la quale le misurazioni rientrano nell'intervallo di valori specificato
+- *Scenario principale*:
+  - L'utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
+  - L'utente autenticato specifica l'intervallo di valori desiderato
+  - L'utente autenticato visualizza lo storico dei dati del sensore selezionato per la quale le misurazioni rientrano nell'intervallo di valori specificato
+- *Scenari alternativi*:
+  - Nessun dato storico disponibile per il sensore selezionato nell'intervallo di valori specificato
+  - L'intervallo di valori specificato non è valido
+- *Estensioni*:
+  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
+  - #ref-uc(<Intervallo-di-valori-non-valido>)
+- *Inclusioni*:
+  - #ref-uc(<Selezione-sensore>)
+
+
+==== #uc() - Intervallo di valori non valido <Intervallo-di-valori-non-valido>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Esistono sensori associati al tenant dell'utente autenticato
+  - L'utente autenticato ha specificato un intervallo di valori non valido
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore
+- *Scenario principale*:
+  - L'utente autenticato specifica un intervallo di valori non valido
+  - L'utente autenticato visualizza un messaggio di errore
+
+
+==== #uc() - Dati non disponibili per il sensore selezionato <Dati-non-disponibili-sensore-selezionato>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - Esistono sensori associati al tenant dell'utente autenticato
+  - L'utente autenticato ha selezionato un sensore per il quale non sono disponibili dati
+- *Post-condizioni*:
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
+
+
 === Attore principale - Tenant User
 
+// Dashboard ----------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione dashboard Tenant User <Visualizzazione-dashboard-tenant-user>
 - *Attore principale*: Tenant User
 - *Pre-condizioni*:
@@ -643,171 +795,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
   - Viene mostrata la lista dei sensori associati al tenant del Tenant User
 
 
-==== #uc() - Visualizzazione dati real-time sensore <Visualizzazione-dati-real-time-sensore>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Esistono sensori associati al tenant del Tenant User
-- *Post-condizioni*:
-  - Vengono visualizzati i dati real-time del sensore selezionato
-- *Scenario principale*:
-  - Il Tenant User seleziona un sensore dalla lista dei sensori associati al proprio tenant
-  - Vengono mostrati i dati real-time del sensore selezionato in formato testuale e grafico
-- *Scenari alternativi*:
-  - Nessun dato disponibile per il sensore selezionato
-- *Estensioni*:
-  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
-- *Inclusioni*:
-  - #ref-uc(<Selezione-sensore>)
-  - #ref-uc(<Visualizzazione-grafico-ts-dati-real-time>)
-  - #ref-uc(<Visualizzazione-testuale-dati-real-time>)
-
-===== #sub-uc() - Visualizzazione grafico Time Series dati real-time <Visualizzazione-grafico-ts-dati-real-time>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Il sensore selezionato appartiene al tenant del Tenant User
-- *Post-condizioni*:
-  - Vengono visualizzati i dati real-time del sensore selezionato in forma di grafico Time Series
-- *Scenario principale*:
-  - Il Tenant User visualizza i dati real-time del sensore selezionato in forma di grafico Time Series
-  - Visualizza nell'asse Y i valori rilevati dal sensore
-  - Visualizza nell'asse X il tempo di rilevazione dei valori
-
-===== #sub-uc() - Visualizzazione testuale dati real-time <Visualizzazione-testuale-dati-real-time>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Il sensore selezionato appartiene al tenant del Tenant User
-- *Post-condizioni*:
-  - Il Sistema mostra i dati real-time del sensore selezionato in forma testuale
-- *Scenario principale*:
-  - Il Tenant User visualizza i dati real-time del sensore selezionato in forma testuale
-- *Inclusioni*
-  - #ref-uc(<Forma-testuale-dati-real-time>)
-
-// TODO [Elia]: ha senso questo use case?
-====== #subsub-uc() - Forma testuale dati real-time <Forma-testuale-dati-real-time>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Il sensore selezionato appartiene al tenant del Tenant User
-- *Post-condizioni*:
-  - Il Sistema mostra i dati real-time rappresentati come una lista di coppie (timestamp, misurazione associata)
-- *Scenario principale*:
-  - Il Tenant User visualizza i dati real-time del sensore selezionato come una lista ordinata di misurazione con il rispettivo timestamp di rilevazione.
-  - Il Tenant User visualizza le misurazioni in ordine decrescente di timestamp (dalla più recente alla meno recente).
-
-
-==== #uc() - Dati non disponibili per il sensore selezionato <Dati-non-disponibili-sensore-selezionato>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Esistono sensori associati al tenant del Tenant User
-  - Il Tenant User ha selezionato un sensore per il quale non sono disponibili dati
-- *Post-condizioni*:
-  - Viene mostrato un messaggio di errore
-- *Scenario principale*:
-  - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
-
-
-==== #uc() - Selezione sensore <Selezione-sensore>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Il sensore selezionato appartiene al tenant del Tenant User
-- *Post-condizioni*:
-  - Il Sistema riceve l'identificativo del sensore selezionato
-- *Scenario principale*:
-  - Il Tenant User seleziona un sensore associato al proprio tenant
-
-
-==== #uc() - Visualizzazione storico dati sensore <Visualizzazione-storico-dati-sensore>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Esistono sensori associati al tenant del Tenant User
-- *Post-condizioni*:
-  - Viene visualizzato lo storico dei dati del sensore selezionato
-- *Scenario principale*:
-  - Il Tenant User seleziona un sensore dalla lista dei sensori associati al proprio tenant
-  - Viene mostrato lo storico dei dati del sensore selezionato, con la possibilità di filtrare per intervallo temporale
-- *Scenari alternativi*:
-  - Nessun dato storico disponibile per il sensore selezionato
-- *Estensioni*:
-  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
-- *Inclusioni*:
-  - #ref-uc(<Selezione-sensore>)
-
-
-==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Esistono sensori associati al tenant del Tenant User
-- *Post-condizioni*:
-  - Il Sistema mostra lo storico dei dati del sensore selezionato filtrato per intervallo temporale
-- *Scenario principale*:
-  - Il Tenant User seleziona un sensore dalla lista dei sensori associati al proprio tenant
-  - Il Tenant User specifica l'intervallo temporale desiderato
-  - Il Tenant User visualizza lo storico dei dati del sensore selezionato filtrato per l'intervallo temporale specificato
-- *Scenari alternativi*:
-  - Nessun dato storico disponibile per il sensore selezionato nell'intervallo temporale specificato
-  - L'intervallo temporale specificato non è valido
-- *Estensioni*:
-  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
-  - #ref-uc(<Intervallo-temporale-non-valido>)
-- *Inclusioni*:
-  - #ref-uc(<Selezione-sensore>)
-
-
-==== #uc() - Intervallo temporale non valido <Intervallo-temporale-non-valido>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Esistono sensori associati al tenant del Tenant User
-  - Il Tenant User ha specificato un intervallo temporale non valido
-- *Post-condizioni*:
-  - Il Sistema mostra un messaggio di errore
-- *Scenario principale*:
-  - Il Tenant User specifica un intervallo temporale non valido
-  - Il Tenant User visualizza un messaggio di errore
-
-
-==== #uc() - Filtraggio dati del sensore per intervallo di valori <Filtraggio-dati-sensore-intervallo-valori>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Esistono sensori associati al tenant del Tenant User
-  - I valori delle misurazioni dei sensori sono numerici
-- *Post-condizioni*:
-  - Il Sistema mostra lo storico dei dati del sensore selezionato per la quale le misurazioni rientrano nell'intervallo di valori specificato
-- *Scenario principale*:
-  - Il Tenant User seleziona un sensore dalla lista dei sensori associati al proprio tenant
-  - Il Tenant User specifica l'intervallo di valori desiderato
-  - Il Tenant User visualizza lo storico dei dati del sensore selezionato per la quale le misurazioni rientrano nell'intervallo di valori specificato
-- *Scenari alternativi*:
-  - Nessun dato storico disponibile per il sensore selezionato nell'intervallo di valori specificato
-  - L'intervallo di valori specificato non è valido
-- *Estensioni*:
-  - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
-  - #ref-uc(<Intervallo-di-valori-non-valido>)
-- *Inclusioni*:
-  - #ref-uc(<Selezione-sensore>)
-
-
-==== #uc() - Intervallo di valori non valido <Intervallo-di-valori-non-valido>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - Esistono sensori associati al tenant del Tenant User
-  - Il Tenant User ha specificato un intervallo di valori non valido
-- *Post-condizioni*:
-  - Il Sistema mostra un messaggio di errore
-- *Scenario principale*:
-  - Il Tenant User specifica un intervallo di valori non valido
-  - Il Tenant User visualizza un messaggio di errore
-
 
 === Attore principale - Tenant Admin
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
@@ -860,7 +847,7 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - Il Tenant Admin visualizza un messaggio di errore
 
-
+// TODO: non andrebbe spostato nella sezione Utente?
 ==== #uc() - Impostazione password <Impostazione-password>
 - *Attore principale*: Utente
 - *Pre-condizioni*:
@@ -880,7 +867,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Inclusioni*:
   - #ref-uc(<Inserimento-nuova-password>)
   - #ref-uc(<Conferma-password>)
-
 
 ==== #uc() - Sospensione Tenant User <Sospensione-Tenant-User>
 - *Attore principale*: Tenant Admin
@@ -1331,7 +1317,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Tenant Admin visualizza gli audit log filtrati in base ai Tenant User scelti
 
 // Da rifinire
-===== #uc() - Esportazione log <Esportazione-log>
+==== #uc() - Esportazione log <Esportazione-log>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
