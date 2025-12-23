@@ -6,6 +6,13 @@
   versione: "0.9.0",
   registro-modifiche: (
     (
+      "0.11.0",
+      "23/12/2025",
+      "Alessandro Dinato",
+      "-",
+      [Aggiunta Use Case dashboard metriche e aggiunta servizi GATT per sensori simulati],
+    ),
+    (
       "0.10.0",
       "22/12/2025",
       "Alessandro Dinato, Riccardo Graziani",
@@ -199,7 +206,6 @@ I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione s
 - *Scenario secondario*: deviazioni dal flusso principale che si verificano quando l'attore compie una scelta alternativa o si verificano condizioni particolari previste dal caso d'uso;
 - *Inclusioni*: riferimenti a casi d'uso che l'attore deve completare per poter portare a termine il caso d'uso corrente;
 - *Estensioni*: riferimenti a casi d'uso che posso verificarsi durante il flusso principale del caso d'uso;
-- *Trigger*: descrizione dell'evento o condizione che dà avvio al caso d'uso;
 
 == Attori <lista-attori>
 Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
@@ -242,7 +248,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() -- Autenticazione Utente <Autenticazione-Utente>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -265,7 +270,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== #sub-uc() - Inserimento email autenticazione <Inserimento-email-auth>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -275,7 +279,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== #sub-uc() - Inserimento password <Inserimento-password>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -285,7 +288,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Autenticazione non riuscita <Autenticazione-non-riuscita>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce email o password errati
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha inserito un'email che non corrisponde ad un utente registrato o ha inserito una password errata
@@ -298,7 +300,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Account sospeso <Account-sospeso>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente prova ad autenticarsi con un account sospeso
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -396,7 +397,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Logout <Logout>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente vuole effettuare il logout dal Sistema
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
 - *Post-condizioni*:
@@ -408,7 +408,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 ==== #uc() - Password dimenticata <Password-dimenticata>
 - *Attore principale*: Utente
 - *Attore secondario*: Client email
-- *Trigger*: L'Utente ha dimenticato la password e vuole reimpostarla
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -426,7 +425,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== #sub-uc() - Inserimento indirizzo email <Inserimento-indirizzo-email>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -437,7 +435,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 ===== #sub-uc() - Invio email di reimpostazione password <Invio-email-reimpostazione-password>
 - *Attore principale*: Utente
 - *Attore secondario*: Client email
-- *Trigger*: L'Utente ha inserito l'indirizzo email associato al proprio account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha inserito l'indirizzo email associato al proprio account
@@ -449,7 +446,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Indirizzo email non associato ad alcun account <Indirizzo-email-non-associato-account>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce un indirizzo email non associato ad alcun account
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha inserito un indirizzo email non associato ad alcun account
@@ -511,11 +507,8 @@ Utente è l'utente generico che tenta di accedere al sistema.
 - *Scenario principale*:
   - L'Utente visualizza un messaggio di errore dopo aver inserito la conferma password non coincidente con la nuova password
 
-//inserimento conferma password, UC#sub-uc-number().3
-
 ==== #uc() - Password non conforme ai criteri di sicurezza <Password-non-conforme-criteri-sicurezza>
 - *Attore principale*: Utente
-- *Trigger*: L'Utente inserisce una nuova password non conforme ai criteri di sicurezza
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha cliccato sul link di impostazione password nell'email
@@ -572,7 +565,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Visualizzazione dashboard Tenant User <Visualizzazione-dashboard-tenant-user>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
@@ -589,7 +581,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== #sub-uc() - Visualizzazione numero di sensori attivi e non attivi <Visualizzazione-numero-sensori-attivi-non-attivi>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
@@ -600,7 +591,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ===== #sub-uc() - Visualizzazione numero di gateway attivi e non attivi <Visualizzazione-numero-gateway-attivi-non-attivi>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole visualizzare la dashboard del proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
@@ -635,7 +625,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Visualizzazione sensori collegati al tenant <Visualizzazione-sensori-collegati-tenant>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole visualizzare i sensori collegati al proprio tenant
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
@@ -647,7 +636,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Visualizzazione dati real-time sensore <Visualizzazione-dati-real-time-sensore>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User vuole visualizzare i dati real-time di un sensore
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
   - Esistono sensori associati al tenant del Tenant User
@@ -704,7 +692,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Dati non disponibili per il sensore selezionato <Dati-non-disponibili-sensore-selezionato>
 - *Attore principale*: Tenant User
-- *Trigger*: Il Tenant User seleziona un sensore per il quale non sono disponibili dati
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
   - Esistono sensori associati al tenant del Tenant User
@@ -1104,7 +1091,6 @@ Utente è l'utente generico che tenta di accedere al sistema.
 
 ==== #uc() - Scadenza API key in data passata <Scadenza-api-key-data-passata>
 - *Attore principale*: Tenant Admin
-- *Trigger*: Il Tenant Admin inserisce una scadenza in data passata per la nuova API key
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - Il Tenant Admin ha inserito una scadenza in data passata per la nuova API key
@@ -1274,8 +1260,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenario principale*:
   - Il Tenant Admin seleziona l'opzione di esportazione degli audit log
 
-//DINA WAS HERE
-
 === Attore principale - Super Admin
 ==== #uc() - Creazione Tenant <Creazione-tenant>
 - *Attore principale*: Super-admin
@@ -1293,7 +1277,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #sub-uc() - Nome del tenant già utilizzato <Nome-tenant-gia-utilizzato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin ha inserito un nome di tenant già esistente
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il nome del tenant inserito esiste già nel Sistema
@@ -1304,7 +1287,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Eliminazione Tenant <Eliminazione-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un tenant esistente
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1332,7 +1314,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Selezione e conferma tenant da eliminare <Selezione-e-conferma-tenant-da-eliminare>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1345,7 +1326,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ===== #sub-uc() - Esecuzione decommissioning Gateway associati al tenant <Esecuzione-decommissioning-gateway-associati-tenant>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1360,7 +1340,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Eliminazione dati e utenti associati al tenant <Eliminazione-dati-utenti-associati-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel sistema
@@ -1373,7 +1352,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Eliminazione tenant <Esecuzione-eliminazione-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1385,7 +1363,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Decommissioning Gateway fallito <Decommissioning-gateway-fallito>
 - *Attore principale*: Super-admin
-- *Trigger*: Durante l'eliminazione del tenant, il decommissioning di uno o più Gateway associati fallisce
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1399,7 +1376,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Visualizzazione dashboard Super-admin <Visualizzazione-dashboard-super-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole accedere alla dashboard
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
@@ -1411,7 +1387,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Visualizzazione lista Gateway <Visualizzazione-lista-gateway-super-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare tutti i Gateway registrati nel Sistema
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
@@ -1423,7 +1398,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Visualizzazione Gateway <Visualizzazione-gateway-super-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare i dettagli di un Gateway specifico
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1438,7 +1412,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Associazione Gateway-tenant <Associazione-gateway-tenant> //è corretto considerare il Gateway come attore secondario?
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1447,7 +1420,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Post-condizioni*:
   - Il Gateway viene associato al tenant selezionato
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway da associare//possibili sotto use cases
+  - Il Super-admin seleziona il Gateway da associare
   - Il Super-admin seleziona il tenant a cui associare il Gateway
   - Il Super-admin esegue la configurazione del Gateway per il tenant selezionato
 - *Inclusioni*:
@@ -1457,7 +1430,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Selezione Gateway <Selezione-gateway-super-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1469,7 +1441,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Selezione tenant <Selezione-tenant-super-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole associare un Gateway ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1481,7 +1452,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Configurazione Gateway <Configurazione-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin applica la nuova configurazione al Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1500,7 +1470,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Gateway non raggiungibile <Gateway-non-raggiungibile>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin tenta di configurare un Gateway non raggiungibile
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1512,7 +1481,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Configurazione Gateway non valida <Configurazione-gateway-non-valida>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin fornisce una configurazione non valida per il Gateway selezionato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1525,7 +1493,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Decommissioning Gateway <Decommissioning-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1548,7 +1515,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ===== #sub-uc() - Disassociazione Gateway dal tenant <Disassociazione-gateway-dal-tenant>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin vuole eseguire il decommissioning di un Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1562,7 +1528,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Reset Gateway <Reset-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin vuole resettare un Gateway alle impostazioni di fabbrica
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1579,7 +1544,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Riavvio Gateway <Riavvio-gateway>
 - *Attore principale*: Super-admin
 //- *Attore secondario*: Gateway
-- *Trigger*: Il Super-admin vuole riavviare un Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
@@ -1618,7 +1582,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Certificato non valido <Certificato-non-valido>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin fornisce un certificato non valido per l'autenticazione del Gateway
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Gateway è registrato nel Sistema ma non ancora autenticato
@@ -1641,37 +1604,49 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza un messaggio di errore
 
 
-==== #uc() - Gestione richiesta fornitura Gateway <Gestione-richiesta-fornitura-gateway>
+==== #uc() - Accettazione fornitura Gateway <Accettazione-richiesta-fornitura-gateway>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole accettare o rifiutare una richiesta di fornitura Gateway da parte di un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Esiste una richiesta di fornitura Gateway da parte di un tenant
 - *Post-condizioni*:
-  - La richiesta di fornitura Gateway viene accettata o rifiutata
+  - La richiesta di fornitura Gateway viene accettata
 - *Scenario principale*:
   - Il Super-admin visualizza la richiesta di fornitura Gateway da parte di un tenant
-  - Il Super-admin accetta o rifiuta la richiesta
-- *Scenari alternativi*:
-  - Viene fornita una motivazione per il rifiuto della richiesta
-- *Estensioni*:
-  - #ref-uc(<Motivazione-rifiuto-richiesta>)
+  - Il Super-admin accetta la richiesta di fornitura Gateway
 
-// TODO: Siamo sicuri che questo sia un'estensione?
-===== #sub-uc() - Motivazione rifiuto richiesta <Motivazione-rifiuto-richiesta>
+==== #uc() - Rifiuto fornitura Gateway <Rifiuto-richiesta-fornitura-gateway>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin rifiuta una richiesta di fornitura Gateway da parte di un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
+  - Esiste una richiesta di fornitura Gateway da parte di un tenant
 - *Post-condizioni*:
-  - Viene fornita una motivazione per il rifiuto della richiesta
+  - Il Sistema riceve una motivazione per il rifiuto della richiesta
+  - La richiesta di fornitura Gateway viene rifiutata
+- *Scenario principale*:
+  - Il Super-admin visualizza la richiesta di fornitura Gateway da parte di un tenant
+  - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
+  - Il Super-admin rifiuta la richiesta di fornitura Gateway
+
+/* non avrebbe aggiunta informazioni rispetto allo scenario principale
+- *Inclusioni*:
+  - #ref-uc(<Motivazione-rifiuto-richiesta>)
+
+===== #sub-uc() - Motivazione rifiuto richiesta <Motivazione-rifiuto-richiesta>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Esiste una richiesta di fornitura Gateway da parte di un tenant
+  - Il Super-admin ha deciso di rifiutare la richiesta di fornitura Gateway
+- *Post-condizioni*:
+  - Il Sistema riceve una motivazione per il rifiuto della richiesta
 - *Scenario principale*:
   - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
+  */
 
 // TODO: è giusto metterlo?
 ==== #uc() - Visualizzazione log di attività di un tenant <Visualizzazione-log-attivita-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare i log di attività di un tenant specifico
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1683,7 +1658,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Visualizzazione lista tenant <Visualizzazione-lista-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare tutti i tenant registrati nel Sistema
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
@@ -1694,7 +1668,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Visualizzazione tenant <Visualizzazione-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve essere registrato nel Sistema
@@ -1708,9 +1681,8 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - #ref-uc(<Visualizzazione-lista-gateway-associati-tenant>)
   - #ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)
 
-===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant> // troppo specifico??????
+===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve essere registrato nel Sistema
@@ -1721,7 +1693,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Visualizzazione lista utenti associati al tenant <Visualizzazione-lista-utenti-associati-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve essere registrato nel Sistema
@@ -1732,7 +1703,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Visualizzazione lista Gateway associati al tenant <Visualizzazione-lista-gateway-associati-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve essere registrato nel Sistema
@@ -1743,7 +1713,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare i dettagli di un tenant specifico
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve essere registrato nel Sistema
@@ -1755,7 +1724,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Visualizzazione richieste di fornitura Gateway <Visualizzazione-richieste-fornitura-gateway>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole consultare tutte le richieste di fornitura Gateway di tutti i tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
@@ -1767,7 +1735,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ==== #uc() - Creazione utente Tenant-admin <Creazione-utente-tenant-admin>
 - *Attore principale*: Super-admin
 - *Attore secondario*: Client email
-- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1789,7 +1756,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Selezione tenant <Selezione-tenant>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1800,7 +1766,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Inserimento email nuovo Tenant-admin <Inserimento-email-nuovo-tenant-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1812,7 +1777,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 ===== #sub-uc() - Invio credenziali di accesso nuovo Tenant-admin <Invio-credenziali-accesso-nuovo-tenant-admin>
 - *Attore principale*: Super-admin
 - *Attore secondario*: Client email
-- *Trigger*: Il Super-admin vuole creare un nuovo Tenant-admin associato ad un tenant
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1823,10 +1787,9 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
 
 
-// TODO: non è uguale a <Email-gia-utilizzata>?
+// TODO: non è uguale a <Email-gia-utilizzata>?si serve generalizzazione
 ==== #uc() - Email già in uso <Email-gia-in-uso>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin inserisce un'email già in uso da un altro utente
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
@@ -1837,7 +1800,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Sospensione account Tenant-admin <Sospensione-account-tenant-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1853,7 +1815,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Selezione Tenant-admin da sospendere <Selezione-tenant-admin-da-sospendere>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1865,7 +1826,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Conferma sospensione account Tenant-admin <Conferma-sospensione-account-tenant-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole sospendere l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1878,7 +1838,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Riattivazione account Tenant-admin <Riattivazione-account-tenant-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1894,7 +1853,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Selezione Tenant-admin da riattivare <Selezione-tenant-admin-da-riattivare>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1906,7 +1864,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Conferma riattivazione account Tenant-admin <Conferma-riattivazione-account-tenant-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole riattivare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1918,7 +1875,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Eliminazione account Tenant-admin <Eliminazione-account-tenant-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1934,7 +1890,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Selezione Tenant-admin da eliminare <Selezione-tenant-admin-da-eliminare>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1946,7 +1901,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Conferma eliminazione account Tenant-admin <Conferma-eliminazione-account-tenant-admin>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare l'account di un Tenant-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il Tenant-admin deve esistere nel Sistema
@@ -1967,7 +1921,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Sistema crea correttamente un nuovo gateway simulato con i parametri specificati
   - Il Sistema genera dei certificati di autenticazione per il gateway simulato
 - *Scenario principale*:
-  - Il Super-admin seleziona l'opzione di creazione di un gateway simulato
   - Il Super-admin imposta il nome del gateway simulato
   - Il Super-admin imposta la dimensione in byte del buffer del gateway simulato
   - Il Sistema genera un ID univoco al gateway simulato
@@ -1993,39 +1946,37 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenario principale*:
   - Il Super-admin inserisce la dimensione in byte del buffer del nuovo gateway simulato
 
-// Che campi mettere per il sensore?
-// gateway da associare, tipologia,
-// Se avete idee extra aggiungete
 ==== #uc() - Creazione sensore simulato <Creazione-sensore-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un sensore simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Esiste almeno un gateway simulato
 - *Post-condizioni*:
   - Il Sistema crea correttamente il nuovo sensore simulato e lo associa al gateway
 - *Scenario principale*:
-  - Il Super-admin seleziona l'opzione di creazione di un sensore simulato
-  - Il Super-admin ...
-  - Il Super-admin imposta il tipo del sensore simulato
+  - Il Super-admin imposta i servizi GATT del sensore simulato
   - Il Super-admin seleziona il gateway simulato a cui associare il sensore simulato
 - *Inclusioni*:
-  - #ref-uc(<Inserimento-tipologia-sensore-simulato>)
+  - #ref-uc(<Selezione-servizi-sensore-simulato>)
   - #ref-uc(<Inserimento-associazione-gateway-simulato>)
 
-===== #sub-uc() - Inserimento tipologia sensore simulato <Inserimento-tipologia-sensore-simulato>
+===== #sub-uc() - Inserimento tipologia sensore simulato <Selezione-servizi-sensore-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un sensore simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
-  - Il Sistema riceve la tipologia del nuovo sensore simulato
+  - Il Sistema riceve i servizi GATT offerti dal nuovo sensore simulato
 - *Scenario principale*:
-  - Il Super-admin inserisce la tipologia del nuovo sensore simulato
+  - Il Super-admin può scegliere tra i seguenti servizi:
+    - Heart Rate Service (HRS)
+    - Pulse Oximeter Service (POS)
+    - Servizio custom per la misurazione dell'ECG
+    - Health Thermometer Service (HTS)
+    - Environmental Sensing Service (ESS)
+  - Il Super-admin sceglie i servizi GATT simulati dal nuovo sensore simulato
 
 ===== #sub-uc() - Inserimento associazione gateway simulato <Inserimento-associazione-gateway-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole creare un sensore simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
 - *Post-condizioni*:
@@ -2035,7 +1986,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Eliminazione gateway simulato <Eliminazione-gateway-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un gateway simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il gateway simulato deve esistere nel Sistema
@@ -2050,7 +2000,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Seleziona gateway simulato da eliminare <Seleziona-gateway-simulato-da-eliminare>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un gateway simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il gateway simulato deve esistere nel Sistema
@@ -2061,7 +2010,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Conferma eliminazione gateway simulato <Conferma-eliminazione-gateway-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un gateway simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il gateway simulato deve esistere nel Sistema
@@ -2072,7 +2020,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ==== #uc() - Eliminazione sensore simulato <Eliminazione-sensore-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un sensore simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il sensore simulato deve esistere nel Sistema
@@ -2087,7 +2034,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Seleziona sensore simulato da eliminare <Seleziona-sensore-simulato-da-eliminare>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un sensore simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il sensore simulato deve esistere nel Sistema
@@ -2098,7 +2044,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 
 ===== #sub-uc() - Conferma eliminazione sensore simulato <Conferma-eliminazione-sensore-simulato>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole eliminare un sensore simulato
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il sensore simulato deve esistere nel Sistema
@@ -2107,54 +2052,110 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenario principale*:
   - Il Super-admin conferma l'eliminazione del sensore simulato selezionato
 
-// TODO: Uno UC relativo alla visualizzazione delle metriche di health del sistema su grafana? Ad esempio:
 
-// Se usiamo un identity provider Grafana non richiede ulteriore accesso
-/*
-==== Monitoraggio metriche di sistema
+==== #uc() Monitoraggio metriche di sistema
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super Admin vuole monitorare le prestazioni del Sistema
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
-  - L'esportatore di metriche sta inviando dati
+  - Le metriche di sistema sono raccolte e disponibili per la visualizzazione
 - *Post-condizioni*:
-  - Il Super-admin visualizza la dashboard delle performance di sistema
+  - Il Sistema mostra la dashboard di visualizzazione delle metriche
 - *Scenario principale*:
-  - Il Super-admin accede alla sezione di analisi del sistema
-  - Il Sistema fornisce l'accesso alla dashboard di visualizzazione delle metriche
-  - // TODO: espandere con ad esempio set di filtri?
-- *Scenari alternativi*:
-  - Mancata ricezione dei dati (esportatore down)
-- *Estensioni*:
-  - // UC per esportatore di metriche down
+  - Il Super-admin visualizza la dashboard delle metriche di sistema
 - *Inclusioni*:
-  - // Eventuale UC per il SSO
-*/
+  - #ref-uc(<Visualizzazione-gateway-offline-online>)
+  - #ref-uc(<Visualizzazione-throughput-dati>)
+  - #ref-uc(<Visualizzazione-utilizzo-risorse-nodi-cloud>)
+  - #ref-uc(<Visualizzazione-frequenza-disconnessioni-gateway>)
+  - #ref-uc(<Visualizzazione-dimensioni-payload-pacchetti>)
+  - #ref-uc(<Visualizzazione-data-staleness>)
+  - #ref-uc(<Visualizzazione-valori-out-of-range>)
 
-/*
-==== Configurazione alert globali
+=== #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole impostare degli alert
-- *Precondizioni*:
-  - Super-admin autenticato
-
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - La metrica dei gateway offline/online è disponibile
 - *Post-condizioni*:
-  - Un nuovo alert è configurato e attivo
-- *Scenari alternativi*:
-  - Alert già esistente con gli stessi criteri
+  - Il Sistema mostra quanti gateway sono attualmente offline e online
+  - Il Sistema rappresenta la metrica con un grafico a torta
+- *Scenario principale*:
+  - Il Super-admin visualizza il numero di gateway offline e online
+  - Il Super-admin visualizza il grafico a torta rappresentante la metrica
 
-==== Configurazione limiti di utilizzo
+=== #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
 - *Attore principale*: Super-admin
-- *Trigger*: Il Super-admin vuole impostare limiti (max Gateway per tenant, storage buffer ecc...)
-- *Precondizioni*:
-  - Super-admin autenticato
-  - Tenant esistente
-
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - La metrica del throughput dati è disponibile
 - *Post-condizioni*:
-  - I limiti del tenant sono aggiornati
-- *Scenari alternativi*:
-  - Tentativo di impostare limiti già inferiori a quelli in uso
-*/
+  - Il Sistema mostra il numero di dati inviati al secondo al Sistema Cloud dai gateway
+  - Il Sistema rappresenta la metrica con un grafico Time Series
+- *Scenario principale*:
+  - Il Super-admin visualizza il throughput dati
+  - Il Super-admin visualizza il grafico Time Series rappresentante la metrica
+
+=== #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - La metrica dell'utilizzo delle risorse dei nodi cloud è disponibile
+- *Post-condizioni*:
+  - Il Sistema mostra l'utilizzo di CPU e RAM delle diverse istanze Cloud
+  - Il Sistema rappresenta la metrica con uno Stat Panel
+  - Il Sistema mostra per ogni istanza Cloud l'andamento temporale dell'utilizzo di CPU e RAM
+- *Scenario principale*:
+  - Il Super-admin visualizza l'utilizzo di CPU e RAM delle diverse istanze Cloud
+  - Il Super-admin visualizza lo Stat Panel rappresentante le metriche
+  - Il Super-admin visualizza il grafico Time Series rappresentante l'andamento temporale delle metriche
+
+=== #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - La metrica della frequenza di disconnessione dei gateway è disponibile
+- *Post-condizioni*:
+  - Il Sistema mostra il numero di disconnessioni per ogni gateway in un intervallo di tempo specificato
+  - Il Sistema rappresenta la metrica con un grafico a barre
+- *Scenario principale*:
+  - Il Super-admin visualizza la frequenza di disconnessione dei gateway
+  - Il Super-admin visualizza il grafico a barre rappresentante le disconnessioni rilevate per ogni gateway
+
+=== #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - La metrica delle dimensioni dei payload dei pacchetti è disponibile
+- *Post-condizioni*:
+  - Il Sistema mostra le dimensioni medie, minime e massime dei payload dei pacchetti inviati dai gateway
+  - Il Sistema rappresenta la metrica con un grafico a 3 barre per gateway, una per ogni tipo di dimensione
+- *Scenario principale*:
+  - Il Super-admin visualizza le dimensioni dei payload dei pacchetti inviati dai gateway
+  - Il Super-admin visualizza il grafico a barre rappresentante le dimensioni medie, minime e massime dei payload
+
+=== #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - La metrica della data staleness è disponibile
+- *Post-condizioni*:
+  - Il Sistema mostra il tempo dall'ultimo messaggio inviato per ogni sensore
+  - Il Sistema rappresenta la metrica con un'alert list, evidenziando i sensori con data staleness superiore ad una soglia predefinita
+- *Scenario principale*:
+  - Il Super-admin visualizza la data staleness dei sensori
+  - Il Super-admin visualizza l'alert list rappresentante la data staleness di ogni sensore
+
+=== #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - La metrica dei valori out-of-range è disponibile
+- *Post-condizioni*:
+  - Il Sistema mostra il numero di valori out-of-range rilevati per ogni sensore
+  - Il Sistema rappresenta la metrica con un grafico a barre
+- *Scenario principale*:
+  - Il Super-admin visualizza il numero di valori out-of-range rilevati per ogni sensore
+  - Il Super-admin visualizza il grafico a barre rappresentante il numero di valori out-of-range rilevati per ogni sensore
 
 
 === Attore principale - Gateway
@@ -2412,7 +2413,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 // API Client autenticato significa che ha un token valido per un tenant specifico
 ==== #uc() - Richiesta dati real-time sensore <Richiesta-dati-real-time-sensore>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client vuole richiedere i dati real-time di un sensore
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
@@ -2434,7 +2434,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ===== #sub-uc() - Verifica sensore <Verifica-sensore>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
@@ -2444,7 +2443,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ===== #sub-uc() - Restituzione dati real-time sensore <Restituzione-dati-real-time-sensore>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client ha richiesto i dati di un sensore
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
   - Il sensore richiesto esiste ed appartiene al tenant del API Client
@@ -2456,7 +2454,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc() - Sensore non trovato <Sensore-non-trovato>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client richiede i dati di un sensore non esistente
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
   - Il API Client ha richiesto i dati di un sensore non esistente
@@ -2468,7 +2465,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client seleziona un sensore per il quale non sono disponibili dati
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
@@ -2479,7 +2475,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client richiede i dati di un sensore non associato al proprio tenant
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
@@ -2490,7 +2485,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client vuole richiedere lo storico dei dati di un sensore
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
 - *Post-condizioni*:
@@ -2513,7 +2507,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ===== #sub-uc() - Restituzione storico dati sensore <Restituzione-storico-dati-sensore>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client ha richiesto lo storico dei dati di un sensore
 - *Pre-condizioni*:
   - Il API Client è autenticato nel Sistema
   - Il sensore richiesto esiste ed appartiene al tenant del API Client
@@ -2525,7 +2518,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc() - Autenticazione API Client <Autenticazione-API-Client>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client vuole autenticarsi nel Sistema
 - *Pre-condizioni*:
   - Il API Client possiede delle credenziali di accesso
 - *Post-condizioni*:
@@ -2541,11 +2533,8 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - #ref-uc(<Credenziali-API-Client-errate>)
   - #ref-uc(<Credenziali-API-Client-scadute>)
 
-// TODO: potenziale generalizzazione dell'errore
-// [Elia]: secondo me la generalizzazione ha senso solo se serve a qualcosa (ad es. collegarla a qualche altro UC)
 ==== #uc() - Credenziali API Client errate <Credenziali-API-Client-errate>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client invia delle credenziali errate al Sistema
 - *Pre-condizioni*:
   - Il API Client ha inviato credenziali errate
 - *Post-condizioni*:
@@ -2555,7 +2544,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc() - Credenziali API Client scadute <Credenziali-API-Client-scadute>
 - *Attore principale*: API Client
-- *Trigger*: Il API Client invia delle credenziali scadute al Sistema
 - *Pre-condizioni*:
   - Il API Client ha inviato credenziali scadute
 - *Post-condizioni*:
@@ -2580,6 +2568,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera un nuovo dato simulato
   - Il Sensore invia il dato al Sistema Gateway
 
+
 //??????ho chiesto a cardin se ha senso
 ==== #uc() - Invio di dati eccessivi al Gateway <Invio-dati-eccessivi-gateway>
 - *Attore principale*: Sensore simulato
@@ -2591,6 +2580,71 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sistema elimina i dati più vecchi per fare spazio ai nuovi dati
 - *Scenario principale*:
   - Il Sensore invia una quantità di dati superiore alla capacità di invio del Sistema Gateway
+
+==== #uc() - Invio di dato simulando Heart Rate Service <Invio-dato-heart-rate-service>
+- *Attore principale*: Sensore simulato
+- *Pre-condizioni*:
+  - Il Sensore è configurato correttamente con il Sistema Gateway
+  - Il Sensore ha implementato il servizio Heart Rate Service (GATT)
+- *Post-condizioni*:
+  - Il Sistema riceve un nuovo dato di frequenza cardiaca dal Sensore
+  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
+  - Il Sistema salva i dati in un buffer interno
+- *Scenario principale*:
+  - Il Sensore genera un nuovo dato di frequenza cardiaca simulato
+  - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
+==== #uc() - Invio di dato simulando Pulse Oximeter Service <Invio-dato-pulse-oximeter-service>
+- *Attore principale*: Sensore simulato
+- *Pre-condizioni*:
+  - Il Sensore è configurato correttamente con il Sistema Gateway
+  - Il Sensore ha implementato il servizio Pulse Oximeter Service (GATT)
+- *Post-condizioni*:
+  - Il Sistema riceve le nuove misurazioni di saturazione di ossigeno nel sangue e frequenza del polso
+  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema salva i dati in un buffer interno
+- *Scenario principale*:
+  - Il Sensore genera nuovi valori simulati di saturazione di ossigeno nel sangue e frequenza del polso
+  - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
+==== #uc() - Invio di dato simulando ECG Custom Profile <Invio-dato-ecg-custom>
+- *Attore principale*: Sensore simulato
+- *Pre-condizioni*:
+  - Il Sensore è configurato correttamente con il Sistema Gateway
+  - Il Sensore ha implementato un profilo custom per invio di dati per l'elettrocardiogramma (ECG)
+- *Post-condizioni*:
+  - Il Sistema riceve i dati grezzi dell'ECG
+  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema salva i dati in un buffer interno
+- *Scenario principale*:
+  - Il Sensore genera una sequenza di valori che simulano l'ECG
+  - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
+==== #uc() - Invio di dato simulando Health Thermometer Service <Invio-dato-health-thermometer-service>
+- *Attore principale*: Sensore simulato
+- *Pre-condizioni*:
+  - Il Sensore è configurato correttamente con il Sistema Gateway
+  - Il Sensore ha implementato il servizio Health Thermometer Service (GATT)
+- *Post-condizioni*:
+  - Il Sistema riceve il valore della temperatura corporea
+  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema salva i dati in un buffer interno
+- *Scenario principale*:
+  - Il Sensore genera un nuovo dato di temperatura corporea
+  - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
+==== #uc() - Invio di dati simulando Environmental Sensing Service <Invio-dato-environmental-sensing-service>
+- *Attore principale*: Sensore simulato
+- *Pre-condizioni*:
+  - Il Sensore è configurato correttamente con il Sistema Gateway
+  - Il Sensore ha implementato il servizio Environmental Sensing Service (GATT)
+- *Post-condizioni*:
+  - Il Sistema riceve i dati di temperatura ambientale e umidità
+  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema salva i dati nel buffer ambientale
+- *Scenario principale*:
+  - Il Sensore genera nuovi valori per la temperatura (UUID 0x2A6E) e l'umidità (UUID 0x2A6F)
+  - Il Sensore invia due notifiche GATT distinte al Sistema Gateway, una per la temperatura e una per l'umidità
 
 === Attore principale - Cloud
 
