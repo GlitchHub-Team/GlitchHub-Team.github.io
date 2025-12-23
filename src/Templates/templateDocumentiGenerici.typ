@@ -46,15 +46,12 @@
     spacing: 1.2em,
   )
 
-<<<<<<< HEAD
   #let versione-auto = if registro-modifiche.len() > 0 {
   registro-modifiche.first().at(0)
 } else {
   ""
 }
 
-=======
->>>>>>> parent of f7e7ab9 (Versionamento automatico template Typst)
   #show: hwr.with(
     language: "it",
     main-font: "PT Sans",
