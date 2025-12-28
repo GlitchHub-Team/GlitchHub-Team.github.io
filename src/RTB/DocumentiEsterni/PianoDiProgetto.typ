@@ -7,8 +7,15 @@
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Da verificare",
-  versione: "0.6.0",
+  versione: "0.6.1",
   registro-modifiche: (
+    (
+      "0.6.1",
+      "28/12/2025",
+      "Elia Ernesto Stellin",
+      "-",
+      [Stesura CdP sprint 5 (@sprint-5-cdp); stesura PaF sprint 6 (@sprint-6-paf)]
+    ),
     (
       "0.6.0",
       "22/12/2025",
@@ -1296,7 +1303,7 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint5)
 
-=== Consuntivo di periodo
+=== Consuntivo di periodo <sprint-5-cdp>
 
 ==== Attività svolte
 Il gruppo ha svolto con successo le seguenti attività:
@@ -1393,45 +1400,48 @@ Fine: 31/12/2025 \
 
 Il presente sprint ha lo scopo di raggiungere una versione stabile per i documenti di #gloss[Analisi dei requisiti] e #gloss[Piano di Qualifica], fissando la fine dello sprint (*31/12/2025*) come #gloss[milestone] interna pre-sessione invernale di studi.
 
-=== Preventivo a finire
+=== Preventivo a finire <sprint-6-paf>
 ==== Attività da svolgere
-Il gruppo ha individuato le seguenti attività da svolgere:
+Poiché le attività da svolgere riguardano la redazione di due documenti diversi, *Analisi dei Requisiti* e *Piano di Qualifica*, il gruppo ha deciso di dividersi in due sottogruppi, ciascuno dei quali dovrà lavorare su uno dei documenti descritti sopra.
+
+Il gruppo di lavoro per l'*Analisi dei Requisiti* ha individuato le seguenti attività da svolgere:
 - Approfondire gli use cases scritti finora (#issue(123))
 - Espandere gli use cases troppo generici (#issue(124))
 - Definire gli use cases con cloud come *attore* e #gloss[gateway simulato] come *sistema* (#issue(125))
 - Definire gli use cases con sensore come *attore* e #gloss[gateway simulato] come *sistema* (#issue(126))
 - Approfondire i metodi di normalizzazione dati da sensori BLE e approfondire gli strumenti Grafana+Prometheus (risp. #issue(133) e #issue(144))
+
+Il gruppo di lavoro per il *Piano di Qualifica* ha individuato le seguenti attività da svolgere:
 - Definire le metriche da usare nel #gloss[Piano di Qualifica] (#issue(120))
 - Definire la struttura del #gloss[Piano di Qualifica] (#issue(121))
 - Creare foglio Google e relative automazioni per il cruscotto (#issue(122))
 
 ==== Rischi attesi
-Descrivere i rischi attesi
-
-- *RO1* (@RO1): mancato rispetto delle scadenze prefissate 
-- *RO2* (@RO2): errata organizzazione e distribuzione risorse
-
-
+- *RO1* (@RO1): il mancato rispetto delle scadenze prefissate potrebbe ritardare notevolmente gli sviluppi dell'*Analisi dei Requisiti*, la cui redazione sarà ulteriormente rallentata nel periodo di sessione di studi invernale, fissata dal *19 gennaio 2026* al *21 febbraio 2026*;
+- *RO2* (@RO2): l'errata organizzazione e distribuzione delle risorse del gruppo può portare a uno sbilanciamento nel carico di lavoro tra i due sottogruppi formati per lo sprint corrente.
 
 ==== Preventivo risorse da utilizzare
-#table(
-  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-  align: left,
-  stroke: (x, y) => (
-    top: if y == 0 { 0pt } else { 0.5pt + black },
-    left: if x == 0 { 0pt } else { 0.5pt + black },
-  ),
-  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-  "Jaume Bernardi",        "-", "-", "-", "-", "-", "-", [*0*],
-  "Alessandro Dinato",     "-", "-", "-", "-", "-", "-", [*0*],
-  "Michele Dioli",         "-", "-", "-", "-", "-", "-", [*0*],
-  "Hossam Ezzemouri",      "-", "-", "-", "-", "-", "-", [*0*],
-  "Riccardo Graziani",     "-", "-", "-", "-", "-", "-", [*0*],
-  "Siria Salvalaio",       "-", "-", "-", "-", "-", "-", [*0*],
-  "Elia Ernesto Stellin",  "-", "-", "-", "-", "-", "-", [*0*],
-  table.footer([*Totale*], [*0*], [*0*], [*0*], [*0*], [*0*], [*0*], [*0*]),
-)
+Da determinare
+// #table(
+//   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+//   align: left,
+//   stroke: (x, y) => (
+//     top: if y == 0 { 0pt } else { 0.5pt + black },
+//     left: if x == 0 { 0pt } else { 0.5pt + black },
+//   ),
+//   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+//   "Jaume Bernardi",        "-", "-", "-", "-", "-", "-", [*0*],
+//   "Alessandro Dinato",     "-", "-", "-", "-", "-", "-", [*0*],
+//   "Michele Dioli",         "-", "-", "-", "-", "-", "-", [*0*],
+//   "Hossam Ezzemouri",      "-", "-", "-", "-", "-", "-", [*0*],
+//   "Riccardo Graziani",     "-", "-", "-", "-", "-", "-", [*0*],
+//   "Siria Salvalaio",       "-", "-", "-", "-", "-", "-", [*0*],
+//   "Elia Ernesto Stellin",  "-", "-", "-", "-", "-", "-", [*0*],
+//   table.footer([*Totale*], [*0*], [*0*], [*0*], [*0*], [*0*], [*0*], [*0*]),
+// )
+
 ==== Grafico a torta della suddivisione oraria prevista
+Da determinare
 
 // #let orePrevSprint6 = (
   
