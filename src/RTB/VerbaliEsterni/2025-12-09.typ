@@ -2,11 +2,19 @@
 
 #show: report.with(
   titolo: "Verbale esterno 09/12/2025 (M31)",
+<<<<<<< HEAD
   stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
     ("1.0.0", "09/12/2025", "Alessandro Dinato", "Riccardo Graziani", "Versione stabile verbale esterno"),
     ("0.1.0", "09/12/2025", "Alessandro Dinato", "Riccardo Graziani", "Prima stesura verbale esterno del 09/12/2025"),
+=======
+  stato: "Da verificare",
+  versione: "0.1.0",
+  registro-modifiche: (
+    ("0.1.0", "09/12/2025", "Alessandro Dinato", "-", "Prima stesura verbale esterno del 09/12/2025"),
+    ("0.0.1", "09/12/2025", "Riccardo Graziani", "-", "Appunti incontro con il proponente"),
+>>>>>>> Documentation
   ),
   partecipanti: (
     "Jaume Bernardi",
@@ -20,10 +28,17 @@
     "Organizzazione prossimi incontri",
   ),
   htmlId: "RTB-VerbaliEsterni",
+<<<<<<< HEAD
   verificatore-interno: "Riccardo Graziani",
   left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   verificatore-esterno: "Cristian Pirlog",
   right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
+=======
+  verificatore-interno: "",
+  left-signature: "",
+  verificatore-esterno: "",
+  right-signature: "",
+>>>>>>> Documentation
   tipo-verbale: "Esterno",
 )
 
@@ -82,8 +97,12 @@ Come prestabilito, è stato fissato il prossimo incontro per il *16 dicembre 202
   align: center + horizon,
   [*Task*], [*Responsabile*], [*Issue*],
 
+<<<<<<< HEAD
   [Redazione use cases Super Admin], [Michele Dioli, Alessandro Dinato], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/97")[*\#97*]],
   [Redazione use cases Tenant Admin], [Elia Ernesto Stellin, Riccardo Graziani], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/98")[*\#98*]],
   [Redazione use cases Gateway], [Alessandro Dinato, Jaume Bernardi, Siria Salvalaio], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/99")[*\#99*]],
+=======
+  [-], [-], [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/77")[*\#77*]],
+>>>>>>> Documentation
 )
 
