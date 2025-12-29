@@ -1209,14 +1209,14 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin visualizza la lista dei sensori collegati al gateway selezionato
 
 ==== #uc() - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
-- *Attore principale*: Tenant-admin
+- *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Tenant-admin
-  - I sensori sono associati al tenant del Tenant-admin
+  - L'utente è autenticato con il ruolo di Tenant Admin
+  - I sensori sono associati al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Il Sistema mostra la lista dei sensori associati al tenant del Tenant-admin
+  - Il Sistema mostra la lista dei sensori associati al tenant del Tenant Admin
 - *Scenario principale*:
-  - Il Tenant-admin visualizza la lista dei sensori associati al tenant
+  - Il Tenant Admin visualizza la lista dei sensori associati al tenant
 
 ==== #uc() - Disattivazione gateway <Disattivazione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
@@ -1246,10 +1246,10 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Vengono visualizzate le informazioni degli audit log
+  - Il Sistema mostra le informazioni relative agli audit log
 - *Scenario principale*:
   - Il Tenant Admin seleziona l'opzione di visualizzazione degli audit log
-  - Il Sistema recupera i dati relativi agli audit log e li mostra in una tabella
+  - Il Sistema recupera i dati relativi agli audit log 
 - *Estensioni*:
   - #ref-uc(<Filtraggio-log-per-tipologia>)
   - #ref-uc(<Filtraggio-log-per-intervallo-temporale>)
@@ -1280,10 +1280,6 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Disattivazione sensore
   - Riattivazione sensore
 */
-
-// DA SVILUPPARE TUTTI I TIPI DI AUDIT LOG, es: creazione utente, eliminazione utente, login, logout, creazione api key, eliminazione api key, ecc.
-// DA SVILUPPARE FILTRI
-// DA MODIFICARE TUTTI GLI UC INERENTI INSERENDO: IL SISTEMA REGISTRA L'EVENTO NELL'AUDIT LOG, INCLUDENDO TIMESTAMP E IP
 
 ===== #uc() - Filtraggio log per tipologia <Filtraggio-log-per-tipologia>
 - *Attore principale*: Tenant Admin
@@ -1318,7 +1314,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin specifica uno o più Tenant User di cui vuole consultare l'attività
   - Il Tenant Admin visualizza gli audit log filtrati in base ai Tenant User scelti
 
-// Da rifinire
+// TODO: Da rifinire nei dettagli? O va bene così?
 ==== #uc() - Esportazione log <Esportazione-log>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
@@ -1330,15 +1326,14 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 
 === Attore principale - Super Admin
 ==== #uc() - Creazione Tenant <Creazione-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
-  - Il nuovo tenant è registrato nel Sistema
+  - Il Sistema registra il nuovo tenant nel Sistema
 - *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di creazione tenant
-  - Il Super-admin inserisce il nome del nuovo tenant
-  - Il Super-admin inserisce l'accettazione o meno della clausola di impersonificazione
+  - Il Super Admin inserisce il nome del nuovo tenant
+  - Il Super Admin inserisce l'accettazione o meno della clausola di impersonificazione
 - *Scenari alternativi*:
   - Il nome del tenant è già in uso da un altro tenant
 - *Estensioni*:
@@ -1347,37 +1342,37 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Clausola-impersonificazione>)
 
 ===== #sub-uc() - Clausola impersonificazione <Clausola-impersonificazione>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema riceve l'accettazione o meno della clausola
 - *Scenario principale*:
-  - Il Super-admin inserisce l'accettazione o meno della clausola di impersonificazione
+  - Il Super Admin inserisce l'accettazione o meno della clausola di impersonificazione
 
 ==== #uc() - Nome del tenant già utilizzato <Nome-tenant-gia-utilizzato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il nome del tenant inserito esiste già nel Sistema
 - *Post-condizioni*:
-  - Il Sistema visualizza un messaggio di errore
+  - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
-  - Il Super-admin ha inserito il nome del nuovo tenant ma è già in uso
+  - Il Super Admin ha inserito il nome del nuovo tenant ma è già in uso
 
 ==== #uc() - Eliminazione Tenant <Eliminazione-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
-  - I Gateway associati subiscono un azione di decommissioning
+  - I Gateway associati subiscono un'azione di decommissioning
   - I dati associati al tenant vengono eliminati
   - Gli utenti associati al tenant vengono eliminati
   - Il tenant viene rimosso dal Sistema
 - *Scenario principale*:
-  - Il Super-admin seleziona il tenant da eliminare
-  - Il Super-admin conferma l'eliminazione del tenant
+  - Il Super Admin seleziona il tenant da eliminare
+  - Il Super Admin conferma l'eliminazione del tenant
   - Il Sistema esegue il decommissioning dei Gateway associati
   - Il Sistema elimina i dati e gli utenti associati al tenant
   - Il Sistema elimina gli utenti associati al tenant
@@ -1393,24 +1388,24 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Esecuzione-eliminazione-tenant>)
 
 ===== #sub-uc() - Selezione e conferma tenant da eliminare <Selezione-e-conferma-tenant-da-eliminare>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
   - Il Sistema riceve la selezione e la conferma del tenant da eliminare
 - *Scenario principale*:
-  - Il Super-admin seleziona il tenant da eliminare
-  - Il Super-admin conferma l'eliminazione del tenant
+  - Il Super Admin seleziona il tenant da eliminare
+  - Il Super Admin conferma l'eliminazione del tenant
 
 ===== #sub-uc() - Esecuzione decommissioning Gateway associati al tenant <Esecuzione-decommissioning-gateway-associati-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
-  - I Gateway associati al tenant subiscono un azione di decommissioning
+  - I Gateway associati al tenant subiscono un'azione di decommissioning
 - *Scenario principale*:
   - Il Sistema invia il comando di decommissioning a tutti i Gateway associati al tenant
 - *Scenari alternativi*:
@@ -1419,9 +1414,9 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 ===== #sub-uc() - Eliminazione dati e utenti associati al tenant <Eliminazione-dati-utenti-associati-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel sistema
 - *Post-condizioni*:
   - I dati associati al tenant vengono eliminati
@@ -1431,114 +1426,109 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Sistema elimina tutti gli utenti associati al tenant
 
 ===== #sub-uc() - Eliminazione tenant <Esecuzione-eliminazione-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
   - Il tenant viene rimosso dal Sistema
 - *Scenario principale*:
   - Il Sistema elimina il tenant selezionato
 
-
 ==== #uc() - Decommissioning Gateway fallito <Decommissioning-gateway-fallito>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
   - Il decommissioning del o dei Gateway non viene completato
   - Il tenant non viene eliminato
-  - Il Sistema visualizza un messaggio di errore
+  - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
   - Il decommissioning di uno o più Gateway associati fallisce durante l'eliminazione del tenant
 
-
-==== #uc() - Visualizzazione dashboard Super-admin <Visualizzazione-dashboard-super-admin>
-- *Attore principale*: Super-admin
+==== #uc() - Visualizzazione dashboard Super Admin <Visualizzazione-dashboard-super-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
-  - Il Super-admin visualizza la dashboard con le informazioni sui tenant e sui Gateway
+  - Il Sistema mostra la dashboard con le informazioni sui tenant e sui Gateway
 - *Scenario principale*:
-  - Il Super-admin visualizza le informazioni aggregate sui tenant
-  - Il Super-admin visualizza le informazioni aggregate sui Gateway
-
+  - Il Super Admin visualizza le informazioni aggregate sui tenant
+  - Il Super Admin visualizza le informazioni aggregate sui Gateway
 
 ==== #uc() - Visualizzazione lista Gateway <Visualizzazione-lista-gateway-super-admin>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
-  - Viene mostrata la lista di tutti i Gateway registrati nel Sistema
+  - Il Sistema mostra la lista di tutti i Gateway registrati
 - *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di visualizzazione lista Gateway
-  - Il sistema mostra la lista di tutti i Gateway registrati
-
+  - Il Super Admin seleziona la funzionalità di visualizzazione lista Gateway
+  - Il Super Admin visualizza la lista di tutti i Gateway registrati nel Sistema
 
 ==== #uc() - Visualizzazione Gateway <Visualizzazione-gateway-super-admin>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
 - *Post-condizioni*:
-  - Vengono mostrati i dettagli del Gateway selezionato
+  - Il Sistema mostra i dettagli del Gateway selezionato
 - *Scenario principale*:
-  - Il Super-admin visualizza i dettagli del Gateway selezionato
-
+  - Il Super Admin visualizza i dettagli del Gateway selezionato
 
 // AZIONI SUPER-ADMIN SUI GATEWAY
 
 ==== #uc() - Associazione Gateway-tenant <Associazione-gateway-tenant> //è corretto considerare il Gateway come attore secondario?
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
   - Il Gateway non deve essere già associato ad un altro tenant
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Gateway viene associato al tenant selezionato
+  - Il Sistema associa il Gateway al tenant selezionato
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway da associare
-  - Il Super-admin seleziona il tenant a cui associare il Gateway
-  - Il Super-admin esegue la configurazione del Gateway per il tenant selezionato
+  - Il Super Admin seleziona il Gateway da associare
+  - Il Super Admin seleziona il tenant a cui associare il Gateway
+  - Il Super Admin esegue la configurazione del Gateway per il tenant selezionato
 - *Inclusioni*:
   - #ref-uc(<Selezione-gateway-super-admin>)
   - #ref-uc(<Selezione-tenant-super-admin>)
   - #ref-uc(<Configurazione-gateway>)
 
 ===== #sub-uc() - Selezione Gateway <Selezione-gateway-super-admin>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
   - Il Gateway non deve essere già associato ad un altro tenant
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del Gateway da parte del Super-admin
+  - Il Sistema riceve la selezione del Gateway da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway da associare
+  - Il Super Admin seleziona il Gateway da associare
 
 ==== #uc() - Selezione tenant <Selezione-tenant-super-admin>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del tenant da parte del Super-admin
+  - Il Sistema riceve la selezione del tenant da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il tenant a cui associare il Gateway
+  - Il Super Admin seleziona il tenant a cui associare il Gateway
 
 ==== #uc() - Configurazione Gateway <Configurazione-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
 - *Post-condizioni*:
-  - La configurazione del Gateway è applicata correttamente
+  - La configurazione del Gateway viene applicata correttamente
 - *Scenario principale*:
-  - Il Super-admin inserisce la nuova configurazione per il Gateway selezionato
+  - Il Super Admin inserisce la nuova configurazione per il Gateway selezionato
   - Il Sistema invia le informazioni di configurazione al Gateway
 - *Scenari alternativi*:
   - Il Gateway non è raggiungibile perciò la configurazione non può essere completata
@@ -1547,41 +1537,38 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Gateway-non-raggiungibile>)
   - #ref-uc(<Configurazione-gateway-non-valida>)
 
-
 ==== #uc() - Gateway non raggiungibile <Gateway-non-raggiungibile>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
-  - Il Super-admin tenta di configurare il Gateway ma non è raggiungibile
-
+  - Il Super Admin tenta di configurare il Gateway ma non è raggiungibile
 
 ==== #uc() - Configurazione Gateway non valida <Configurazione-gateway-non-valida>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema mostra un messaggio di errore e non applica la configurazione al Gateway
 - *Scenario principale*:
-  - Il Super-admin inserisce una configurazione non valida per il Gateway selezionato
-
+  - Il Super Admin inserisce una configurazione non valida per il Gateway selezionato
 
 ==== #uc() - Decommissioning Gateway <Decommissioning-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
   - Il Gateway deve essere associato ad un tenant
 - *Post-condizioni*:
   - Il Gateway viene disassociato dal tenant
   - Il Gateway viene resettato alle impostazioni di fabbrica
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway su cui eseguire il decommissioning
+  - Il Super Admin seleziona il Gateway su cui eseguire il decommissioning
   - Il Sistema invia il comando di disassociazione al Gateway
   - Il Sistema invia il comando di reset al Gateway
 - *Scenari alternativi*:
@@ -1593,28 +1580,28 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Reset-gateway>)
 
 ===== #sub-uc() - Disassociazione Gateway dal tenant <Disassociazione-gateway-dal-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
   - Il Gateway deve essere associato ad un tenant
 - *Post-condizioni*:
   - Il Gateway viene disassociato dal tenant a livello di Sistema
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway da disassociare
+  - Il Super Admin seleziona il Gateway da disassociare
   - Il Sistema invia il comando di disassociazione al Gateway
 
 ==== #uc() - Reset Gateway <Reset-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
 - *Post-condizioni*:
   - Il Gateway viene resettato alle impostazioni di fabbrica
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway da resettare
+  - Il Super Admin seleziona il Gateway da resettare
   - Il Sistema invia il comando di reset al Gateway
 - *Scenari alternativi*:
   - Il Gateway non è raggiungibile perciò il reset non può essere completato
@@ -1622,35 +1609,34 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 ==== #uc() - Riavvio Gateway <Riavvio-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway deve essere registrato e autenticato nel Sistema
 - *Post-condizioni*:
   - Il Gateway viene riavviato correttamente
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway da riavviare
+  - Il Super Admin seleziona il Gateway da riavviare
   - Il Sistema invia il comando di riavvio al Gateway
 - *Scenari alternativi*:
   - Il Gateway non è raggiungibile perciò il riavvio non può essere completato
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
-
 ==== #uc() - Autenticazione Gateway <Autenticazione-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Precondizioni*:
-  - L'Utente è autenticato con il ruolo di Super-admin
+  - L'Utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema riceve l'identificativo del Gateway
   - Il Sistema riceve il certificato di autenticazione del Gateway
   - Il Sistema autentica il Gateway
 - *Scenario principale*:
-  - Il Super-admin seleziona il Gateway da autenticare
-  - Il Super-admin fornisce l'identificativo del Gateway
-  - Il Super-admin fornisce il certificato di autenticazione
+  - Il Super Admin seleziona il Gateway da autenticare
+  - Il Super Admin fornisce l'identificativo del Gateway
+  - Il Super Admin fornisce il certificato di autenticazione
 - *Scenario alternativo*:
   - Il Gateway non è raggiungibile perciò l'autenticazione non può essere completata
   - Il certificato fornito non è valido per il Gateway selezionato
@@ -1661,19 +1647,20 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Identificativo-gateway-gia-utilizzato>)
 
 ==== #uc() - Certificato non valido <Certificato-non-valido>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway è registrato nel Sistema ma non ancora autenticato
 - *Post-condizioni*:
   - Il Sistema mostra un messaggio di errore e non autentica il Gateway
 - *Scenario principale*:
-  - Il Super-admin fornisce un certificato non valido per l'autenticazione del Gateway selezionato
+  - Il Super Admin fornisce un certificato non valido per l'autenticazione del Gateway selezionato
+  - Il Super Admin visualizza un messaggio di errore
 
 ==== #uc() - Identificativo Gateway già utilizzato <Identificativo-gateway-gia-utilizzato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il Gateway è registrato nel Sistema ma non ancora autenticato
   - L'identificativo fornito è già associato ad un altro Gateway
 - *Post-condizioni*:
@@ -1681,117 +1668,96 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Sistema interrompe l'autenticazione del Gateway
 - *Scenario principale*:
   - Il Super-admin fornisce un identificativo già utilizzato per l'autenticazione del Gateway selezionato
-  - Il Super-admin visualizza un messaggio di errore
-
+  - Il Super Admin visualizza un messaggio di errore
 
 ==== #uc() - Accettazione fornitura Gateway <Accettazione-richiesta-fornitura-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Esiste una richiesta di fornitura Gateway da parte di un tenant
 - *Post-condizioni*:
   - La richiesta di fornitura Gateway viene accettata
 - *Scenario principale*:
-  - Il Super-admin visualizza la richiesta di fornitura Gateway da parte di un tenant
-  - Il Super-admin accetta la richiesta di fornitura Gateway
+  - Il Super Admin visualizza la richiesta di fornitura Gateway da parte di un tenant
+  - Il Super Admin accetta la richiesta di fornitura Gateway
 
 ==== #uc() - Rifiuto fornitura Gateway <Rifiuto-richiesta-fornitura-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Esiste una richiesta di fornitura Gateway da parte di un tenant
 - *Post-condizioni*:
   - Il Sistema riceve una motivazione per il rifiuto della richiesta
   - La richiesta di fornitura Gateway viene rifiutata
 - *Scenario principale*:
-  - Il Super-admin visualizza la richiesta di fornitura Gateway da parte di un tenant
-  - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
-  - Il Super-admin rifiuta la richiesta di fornitura Gateway
-
-/* non avrebbe aggiunta informazioni rispetto allo scenario principale
-- *Inclusioni*:
-  - #ref-uc(<Motivazione-rifiuto-richiesta>)
-
-===== #sub-uc() - Motivazione rifiuto richiesta <Motivazione-rifiuto-richiesta>
-- *Attore principale*: Super-admin
-- *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Esiste una richiesta di fornitura Gateway da parte di un tenant
-  - Il Super-admin ha deciso di rifiutare la richiesta di fornitura Gateway
-- *Post-condizioni*:
-  - Il Sistema riceve una motivazione per il rifiuto della richiesta
-- *Scenario principale*:
-  - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
-  */
-
+  - Il Super Admin visualizza la richiesta di fornitura Gateway da parte di un tenant
+  - Il Super Admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
+  - Il Super Admin rifiuta la richiesta di fornitura Gateway
 
 ==== #uc() - Visualizzazione lista tenant <Visualizzazione-lista-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
-  - Viene mostrata la lista di tutti i tenant registrati nel Sistema
+  - Il Sistema mostra la lista di tutti i tenant registrati nel Sistema
 - *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di visualizzazione lista tenant
+  - Il Super Admin seleziona la funzionalità di visualizzazione lista tenant
 
 ==== #uc() - Impersonificazione tenant <Impersonificazione-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve essere registrato nel Sistema
   - Il tenant ha la clausola di impersonificazione accettata
 - *Post-condizioni*:
-  - Il Sistema permette al Super-admin di agire come un Tenant-admin all'interno del tenant selezionato
+  - Il Sistema permette al Super Admin di agire come un Tenant Admin all'interno del tenant selezionato
 - *Scenario principale*:
-  - Il Super-admin seleziona il tenant da impersonificare
-  - Il Super-admin agisce come un Tenant-admin all'interno del tenant selezionato
+  - Il Super Admin seleziona il tenant da impersonificare
+  - Il Super Admin agisce come un Tenant Admin all'interno del tenant selezionato
 
 ==== #uc() - Visualizzazione tenant <Visualizzazione-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve essere registrato nel Sistema
 - *Post-condizioni*:
-  - Vengono mostrati i dettagli del tenant selezionato
+  - Il Sistema mostra i dettagli del tenant selezionato
 - *Scenario principale*:
-  - Il Super-admin visualizza i dettagli del tenant selezionato
+  - Il Super Admin visualizza i dettagli del tenant selezionato
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-identificativo-tenant>)
 
 ===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve essere registrato nel Sistema
 - *Post-condizioni*:
-  - Viene mostrato l'identificativo del tenant selezionato
+  - Il Sistema mostra l'identificativo del tenant selezionato
 - *Scenario principale*:
-  - Il Super-admin visualizza l'identificativo del tenant selezionato
-
+  - Il Super Admin visualizza l'identificativo del tenant selezionato
 
 ==== #uc() - Visualizzazione richieste di fornitura Gateway <Visualizzazione-richieste-fornitura-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
-  - Viene mostrata la lista di tutte le richieste di fornitura Gateway di tutti i tenant
+  - Il Sistema mostra la lista di tutte le richieste di fornitura Gateway di tutti i tenant
 - *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di visualizzazione lista richieste di fornitura Gateway
+  - Il Super Admin seleziona la funzionalità di visualizzazione lista richieste di fornitura Gateway
 
-
-==== #uc() - Creazione utente Tenant-admin <Creazione-utente-tenant-admin>
-- *Attore principale*: Super-admin
-- *Attore secondario*: Client email
+==== #uc() - Creazione utente Tenant Admin <Creazione-utente-tenant-admin>
+- *Attore principale*: Super Admin
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il nuovo Tenant-admin è registrato nel Sistema e associato al tenant selezionato
+  - Il nuovo Tenant Admin è registrato nel Sistema e associato al tenant selezionato
 - *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di creazione nuovo Tenant-admin
-  - Il Super-admin seleziona il tenant a cui associare il nuovo Tenant-admin
-  - Il Super-admin inserisce l'email del nuovo Tenant-admin
-  - Il Tenant-admin riceve una email con le credenziali di accesso
+  - Il Super Admin seleziona il tenant a cui associare il nuovo Tenant Admin
+  - Il Super Admin inserisce l'email del nuovo Tenant Admin
+  - Il Email client riceve una email con le credenziali di accesso
 - *Scenari alternativi*:
   - L'email inserita è già in uso da un altro utente nel Sistema
 - *Estensioni*:
@@ -1802,37 +1768,36 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Invio-credenziali-accesso-nuovo-tenant-admin>)
 
 ===== #sub-uc() - Selezione tenant <Selezione-tenant>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del tenant da parte del Super-admin
+  - Il Sistema riceve la selezione del tenant da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il tenant a cui associare il nuovo Tenant-admin
+  - Il Super Admin seleziona il tenant a cui associare il nuovo Tenant Admin
 
-===== #sub-uc() - Inserimento email nuovo Tenant-admin <Inserimento-email-nuovo-tenant-admin>
-- *Attore principale*: Super-admin
+===== #sub-uc() - Inserimento email nuovo Tenant Admin <Inserimento-email-nuovo-tenant-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve l'email del nuovo Tenant-admin da parte del Super-admin
+  - Il Sistema riceve l'email del nuovo Tenant Admin da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin inserisce l'email del nuovo Tenant-admin
+  - Il Super Admin inserisce l'email del nuovo Tenant Admin
 
-===== #sub-uc() - Invio credenziali di accesso nuovo Tenant-admin <Invio-credenziali-accesso-nuovo-tenant-admin>
-- *Attore principale*: Super-admin
-- *Attore secondario*: Client email
+===== #sub-uc() - Invio credenziali di accesso nuovo Tenant Admin <Invio-credenziali-accesso-nuovo-tenant-admin>
+- *Attore principale*: Super Admin
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
-  - L'email del nuovo Tenant-admin è valida
+  - L'email del nuovo Tenant Admin è valida
 - *Post-condizioni*:
-  - Il Tenant-admin riceve una email con le credenziali di accesso
+  - Il Email client riceve una email con le credenziali di accesso
 - *Scenario principale*:
-  - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
-
+  - Il Sistema invia una email al nuovo Tenant Admin con le credenziali di accesso
 
 ==== #uc() - Email già utilizzata <Email-gia-utilizzata-super-admin>
 - *Attore principale*: Super Admin
@@ -1844,271 +1809,268 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Scenario principale*:
   - Il Super Admin visualizza un messaggio di errore
 
-
-==== #uc() - Sospensione account Tenant-admin <Sospensione-account-tenant-admin>
-- *Attore principale*: Super-admin
+==== #uc() - Sospensione account Tenant Admin <Sospensione-account-tenant-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin non deve essere già sospeso
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin non deve essere già sospeso
 - *Post-condizioni*:
-  - L'account del Tenant-admin viene sospeso
+  - Il Sistema sospende l'account del Tenant Admin 
 - *Scenario principale*:
-  - Il Super-admin seleziona il Tenant-admin da sospendere
-  - Il Super-admin conferma la sospensione dell'account
+  - Il Super Admin seleziona il Tenant Admin da sospendere
+  - Il Super Admin conferma la sospensione dell'account
 - *Inclusioni*:
   - #ref-uc(<Selezione-tenant-admin-da-sospendere>)
   - #ref-uc(<Conferma-sospensione-account-tenant-admin>)
 
-===== #sub-uc() - Selezione Tenant-admin da sospendere <Selezione-tenant-admin-da-sospendere>
+===== #sub-uc() - Selezione Tenant Admin da sospendere <Selezione-tenant-admin-da-sospendere>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin non deve essere già sospeso
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin non deve essere già sospeso
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del Tenant-admin da parte del Super-admin
+  - Il Sistema riceve la selezione del Tenant Admin da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il Tenant-admin da sospendere
+  - Il Super Admin seleziona il Tenant Admin da sospendere
 
-===== #sub-uc() - Conferma sospensione account Tenant-admin <Conferma-sospensione-account-tenant-admin>
+===== #sub-uc() - Conferma sospensione account Tenant Admin <Conferma-sospensione-account-tenant-admin>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin non deve essere già sospeso
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin non deve essere già sospeso
 - *Post-condizioni*:
-  - L'account del Tenant-admin viene sospeso
+  - Il Sistema riceve la conferma della sospensione del Tenant Admin
 - *Scenario principale*:
-  - Il Super-admin conferma la sospensione dell'account del Tenant-admin selezionato
+  - Il Super Admin conferma la sospensione dell'account del Tenant Admin selezionato
 
-
-==== #uc() - Riattivazione account Tenant-admin <Riattivazione-account-tenant-admin>
-- *Attore principale*: Super-admin
+==== #uc() - Riattivazione account Tenant Admin <Riattivazione-account-tenant-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin deve essere sospeso
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin deve essere sospeso
 - *Post-condizioni*:
-  - L'account del Tenant-admin viene riattivato, annullando la sospensione
+  - Il Sistema riattiva l'account del Tenant Admin, annullando la sospensione
 - *Scenario principale*:
-  - Il Super-admin seleziona il Tenant-admin da riattivare
-  - Il Super-admin conferma la riattivazione dell'account
+  - Il Super Admin seleziona il Tenant Admin da riattivare
+  - Il Super Admin conferma la riattivazione dell'account
 - *Inclusioni*:
   - #ref-uc(<Selezione-tenant-admin-da-riattivare>)
   - #ref-uc(<Conferma-riattivazione-account-tenant-admin>)
 
-===== #sub-uc() - Selezione Tenant-admin da riattivare <Selezione-tenant-admin-da-riattivare>
-- *Attore principale*: Super-admin
+===== #sub-uc() - Selezione Tenant Admin da riattivare <Selezione-tenant-admin-da-riattivare>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin deve essere sospeso
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin deve essere sospeso
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del Tenant-admin da parte del Super-admin
+  - Il Sistema riceve la selezione del Tenant Admin da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il Tenant-admin da riattivare
+  - Il Super Admin seleziona il Tenant Admin da riattivare
 
-===== #sub-uc() - Conferma riattivazione account Tenant-admin <Conferma-riattivazione-account-tenant-admin>
-- *Attore principale*: Super-admin
+===== #sub-uc() - Conferma riattivazione account Tenant Admin <Conferma-riattivazione-account-tenant-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin deve essere sospeso
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin deve essere sospeso
 - *Post-condizioni*:
-  - L'account del Tenant-admin viene riattivato, annullando la sospensione
+  - Il Sistema riceve la conferma della riattivazione del Tenant Admin
 - *Scenario principale*:
-  - Il Super-admin conferma la riattivazione dell'account del Tenant-admin selezionato
+  - Il Super Admin conferma la riattivazione dell'account del Tenant Admin selezionato
 
-==== #uc() - Eliminazione account Tenant-admin <Eliminazione-account-tenant-admin>
-- *Attore principale*: Super-admin
+==== #uc() - Eliminazione account Tenant Admin <Eliminazione-account-tenant-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin non deve essere l'unico Tenant-admin nel tenant
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin non deve essere l'unico Tenant Admin nel tenant
 - *Post-condizioni*:
-  - L'account del Tenant-admin viene eliminato dal Sistema
+  - Il Sistema elimina l'account del Tenant Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il Tenant-admin da eliminare
-  - Il Super-admin conferma l'eliminazione dell'account
+  - Il Super admin seleziona il Tenant Admin da eliminare
+  - Il Super Admin conferma l'eliminazione dell'account
 - *Inclusioni*:
   - #ref-uc(<Selezione-tenant-admin-da-eliminare>)
   - #ref-uc(<Conferma-eliminazione-account-tenant-admin>)
 
-===== #sub-uc() - Selezione Tenant-admin da eliminare <Selezione-tenant-admin-da-eliminare>
-- *Attore principale*: Super-admin
+===== #sub-uc() - Selezione Tenant Admin da eliminare <Selezione-tenant-admin-da-eliminare>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin non deve essere l'unico Tenant-admin nel tenant
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin non deve essere l'unico Tenant Admin nel tenant
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del Tenant-admin da parte del Super-admin
+  - Il Sistema riceve la selezione del Tenant Admin da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il Tenant-admin da eliminare
+  - Il Super Admin seleziona il Tenant Admin da eliminare
 
-===== #sub-uc() - Conferma eliminazione account Tenant-admin <Conferma-eliminazione-account-tenant-admin>
-- *Attore principale*: Super-admin
+===== #sub-uc() - Conferma eliminazione account Tenant Admin <Conferma-eliminazione-account-tenant-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il Tenant-admin deve esistere nel Sistema
-  - Il Tenant-admin non deve essere l'unico Tenant-admin nel tenant
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il Tenant Admin deve esistere nel Sistema
+  - Il Tenant Admin non deve essere l'unico Tenant Admin nel tenant
 - *Post-condizioni*:
-  - L'account del Tenant-admin viene eliminato dal Sistema
+  - Il Sistema riceve la conferma di eliminazione dell'account del Tenant Admin
 - *Scenario principale*:
-  - Il Super-admin conferma l'eliminazione dell'account del Tenant-admin selezionato
+  - Il Super Admin conferma l'eliminazione dell'account del Tenant Admin selezionato
 
 // UC relativi alle azioni del super-admin sul simulatore
 
 ==== #uc() - Creazione gateway simulato <Creazione-gateway-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema assegna un ID univoco al gateway simulato
   - Il Sistema crea correttamente un nuovo gateway simulato con i parametri specificati
   - Il Sistema genera dei certificati di autenticazione per il gateway simulato
 - *Scenario principale*:
-  - Il Super-admin imposta il nome del gateway simulato
-  - Il Super-admin imposta la dimensione in byte del buffer del gateway simulato
+  - Il Super Admin imposta il nome del gateway simulato
+  - Il Super Admin imposta la dimensione in byte del buffer del gateway simulato
   - Il Sistema genera un ID univoco al gateway simulato
 - *Inclusioni*:
   - #ref-uc(<Inserimento-nome-gateway-simulato>)
   - #ref-uc(<Inserimento-dimensione-buffer-gateway-simulato>)
 
 ===== #sub-uc() - Inserimento nome gateway simulato <Inserimento-nome-gateway-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema riceve il nome del nuovo gateway simulato
 - *Scenario principale*:
-  - Il Super-admin inserisce il nome del nuovo gateway simulato
+  - Il Super Admin inserisce il nome del nuovo gateway simulato
 
 ===== #sub-uc() - Inserimento dimensione buffer gateway simulato <Inserimento-dimensione-buffer-gateway-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema riceve la dimensione in byte del buffer del nuovo gateway simulato
 - *Scenario principale*:
-  - Il Super-admin inserisce la dimensione in byte del buffer del nuovo gateway simulato
+  - Il Super Admin inserisce la dimensione in byte del buffer del nuovo gateway simulato
 
 ==== #uc() - Creazione sensore simulato <Creazione-sensore-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Esiste almeno un gateway simulato
 - *Post-condizioni*:
   - Il Sistema crea correttamente il nuovo sensore simulato e lo associa al gateway
 - *Scenario principale*:
-  - Il Super-admin imposta i servizi GATT del sensore simulato
-  - Il Super-admin seleziona il gateway simulato a cui associare il sensore simulato
+  - Il Super Admin imposta i servizi GATT del sensore simulato
+  - Il Super Admin seleziona il gateway simulato a cui associare il sensore simulato
 - *Inclusioni*:
   - #ref-uc(<Selezione-servizi-sensore-simulato>)
   - #ref-uc(<Inserimento-associazione-gateway-simulato>)
 
 ===== #sub-uc() - Inserimento tipologia sensore simulato <Selezione-servizi-sensore-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema riceve i servizi GATT offerti dal nuovo sensore simulato
 - *Scenario principale*:
-  - Il Super-admin può scegliere tra i seguenti servizi:
+  - Il Super Admin può scegliere tra i seguenti servizi:
     - Heart Rate Service (HRS)
     - Pulse Oximeter Service (POS)
     - Servizio custom per la misurazione dell'ECG
     - Health Thermometer Service (HTS)
     - Environmental Sensing Service (ESS)
-  - Il Super-admin sceglie i servizi GATT simulati dal nuovo sensore simulato
+  - Il Super Admin sceglie i servizi GATT simulati dal nuovo sensore simulato
 
 ===== #sub-uc() - Inserimento associazione gateway simulato <Inserimento-associazione-gateway-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema riceve l'identificativo del gateway simulato a cui associare il sensore simulato
 - *Scenario principale*:
-  - Il Super-admin inserisce l'identificativo del gateway simulato
+  - Il Super Admin inserisce l'identificativo del gateway simulato
 
 ==== #uc() - Eliminazione gateway simulato <Eliminazione-gateway-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il gateway simulato deve esistere nel Sistema
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il gateway simulato esiste nel Sistema
 - *Post-condizioni*:
   - Il Sistema elimina correttamente il gateway simulato
 - *Scenario principale*:
-  - Il Super-admin seleziona il gateway simulato da eliminare
-  - Il Super-admin conferma l'eliminazione del gateway simulato
+  - Il Super Admin seleziona il gateway simulato da eliminare
+  - Il Super Admin conferma l'eliminazione del gateway simulato
 - *Inclusioni*:
   - #ref-uc(<Seleziona-gateway-simulato-da-eliminare>)
   - #ref-uc(<Conferma-eliminazione-gateway-simulato>)
 
 ===== #sub-uc() - Seleziona gateway simulato da eliminare <Seleziona-gateway-simulato-da-eliminare>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il gateway simulato deve esistere nel Sistema
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il gateway simulato esiste nel Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del gateway simulato da parte del Super-admin
+  - Il Sistema riceve la selezione del gateway simulato da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il gateway simulato da eliminare
+  - Il Super Admin seleziona il gateway simulato da eliminare
 
 ===== #sub-uc() - Conferma eliminazione gateway simulato <Conferma-eliminazione-gateway-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il gateway simulato deve esistere nel Sistema
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il gateway simulato esiste nel Sistema
 - *Post-condizioni*:
-  - Il gateway simulato viene eliminato dal Sistema
+  - Il Sistema riceve la conferma dell'eliminazione del gateway simulato
 - *Scenario principale*:
-  - Il Super-admin conferma l'eliminazione del gateway simulato selezionato
+  - Il Super Admin conferma l'eliminazione del gateway simulato selezionato
 
 ==== #uc() - Eliminazione sensore simulato <Eliminazione-sensore-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il sensore simulato deve esistere nel Sistema
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il sensore simulato esiste nel Sistema
 - *Post-condizioni*:
   - Il Sistema elimina correttamente il sensore simulato
 - *Scenario principale*:
-  - Il Super-admin seleziona il sensore simulato da eliminare
-  - Il Super-admin conferma l'eliminazione del sensore simulato
+  - Il Super Admin seleziona il sensore simulato da eliminare
+  - Il Super Admin conferma l'eliminazione del sensore simulato
 - *Inclusioni*:
   - #ref-uc(<Seleziona-sensore-simulato-da-eliminare>)
   - #ref-uc(<Conferma-eliminazione-sensore-simulato>)
 
 ===== #sub-uc() - Seleziona sensore simulato da eliminare <Seleziona-sensore-simulato-da-eliminare>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il sensore simulato deve esistere nel Sistema
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il sensore simulato esiste nel Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve la selezione del sensore simulato da parte del Super-admin
+  - Il Sistema riceve la selezione del sensore simulato da parte del Super Admin
 - *Scenario principale*:
-  - Il Super-admin seleziona il sensore simulato da eliminare
+  - Il Super Admin seleziona il sensore simulato da eliminare
 
 ===== #sub-uc() - Conferma eliminazione sensore simulato <Conferma-eliminazione-sensore-simulato>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il sensore simulato deve esistere nel Sistema
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il sensore simulato esiste nel Sistema
 - *Post-condizioni*:
-  - Il sensore simulato viene eliminato dal Sistema
+  - Il Sistema riceve la conferma dell'eliminazione del sensore simulato
 - *Scenario principale*:
-  - Il Super-admin conferma l'eliminazione del sensore simulato selezionato
-
+  - Il Super Admin conferma l'eliminazione del sensore simulato selezionato
 
 ==== #uc() Monitoraggio metriche di sistema
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - Le metriche di sistema sono raccolte e disponibili per la visualizzazione
 - *Post-condizioni*:
   - Il Sistema mostra la dashboard di visualizzazione delle metriche
 - *Scenario principale*:
-  - Il Super-admin visualizza la dashboard delle metriche di sistema
+  - Il Super Admin visualizza la dashboard delle metriche di sistema
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-gateway-offline-online>)
   - #ref-uc(<Visualizzazione-throughput-dati>)
@@ -2119,91 +2081,90 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Visualizzazione-valori-out-of-range>)
 
 === #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - La metrica dei gateway offline/online è disponibile
 - *Post-condizioni*:
   - Il Sistema mostra quanti gateway sono attualmente offline e online
   - Il Sistema rappresenta la metrica con un grafico a torta
 - *Scenario principale*:
-  - Il Super-admin visualizza il numero di gateway offline e online
-  - Il Super-admin visualizza il grafico a torta rappresentante la metrica
+  - Il Super Admin visualizza il numero di gateway offline e online
+  - Il Super Admin visualizza il grafico a torta rappresentante la metrica
 
 === #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - La metrica del throughput dati è disponibile
 - *Post-condizioni*:
   - Il Sistema mostra il numero di dati inviati al secondo al Sistema Cloud dai gateway
   - Il Sistema rappresenta la metrica con un grafico Time Series
 - *Scenario principale*:
-  - Il Super-admin visualizza il throughput dati
-  - Il Super-admin visualizza il grafico Time Series rappresentante la metrica
+  - Il Super Admin visualizza il throughput dati
+  - Il Super Admin visualizza il grafico Time Series rappresentante la metrica
 
 === #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - La metrica dell'utilizzo delle risorse dei nodi cloud è disponibile
 - *Post-condizioni*:
   - Il Sistema mostra l'utilizzo di CPU e RAM delle diverse istanze Cloud
   - Il Sistema rappresenta la metrica con uno Stat Panel
   - Il Sistema mostra per ogni istanza Cloud l'andamento temporale dell'utilizzo di CPU e RAM
 - *Scenario principale*:
-  - Il Super-admin visualizza l'utilizzo di CPU e RAM delle diverse istanze Cloud
-  - Il Super-admin visualizza lo Stat Panel rappresentante le metriche
-  - Il Super-admin visualizza il grafico Time Series rappresentante l'andamento temporale delle metriche
+  - Il Super Admin visualizza l'utilizzo di CPU e RAM delle diverse istanze Cloud
+  - Il Super Admin visualizza lo Stat Panel rappresentante le metriche
+  - Il Super Admin visualizza il grafico Time Series rappresentante l'andamento temporale delle metriche
 
 === #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - La metrica della frequenza di disconnessione dei gateway è disponibile
 - *Post-condizioni*:
   - Il Sistema mostra il numero di disconnessioni per ogni gateway in un intervallo di tempo specificato
   - Il Sistema rappresenta la metrica con un grafico a barre
 - *Scenario principale*:
-  - Il Super-admin visualizza la frequenza di disconnessione dei gateway
-  - Il Super-admin visualizza il grafico a barre rappresentante le disconnessioni rilevate per ogni gateway
+  - Il Super Admin visualizza la frequenza di disconnessione dei gateway
+  - Il Super Admin visualizza il grafico a barre rappresentante le disconnessioni rilevate per ogni gateway
 
 === #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - La metrica delle dimensioni dei payload dei pacchetti è disponibile
 - *Post-condizioni*:
   - Il Sistema mostra le dimensioni medie, minime e massime dei payload dei pacchetti inviati dai gateway
   - Il Sistema rappresenta la metrica con un grafico a 3 barre per gateway, una per ogni tipo di dimensione
 - *Scenario principale*:
-  - Il Super-admin visualizza le dimensioni dei payload dei pacchetti inviati dai gateway
-  - Il Super-admin visualizza il grafico a barre rappresentante le dimensioni medie, minime e massime dei payload
+  - Il Super Admin visualizza le dimensioni dei payload dei pacchetti inviati dai gateway
+  - Il Super Admin visualizza il grafico a barre rappresentante le dimensioni medie, minime e massime dei payload
 
 === #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - La metrica della data staleness è disponibile
 - *Post-condizioni*:
   - Il Sistema mostra il tempo dall'ultimo messaggio inviato per ogni sensore
   - Il Sistema rappresenta la metrica con un'alert list, evidenziando i sensori con data staleness superiore ad una soglia predefinita
 - *Scenario principale*:
-  - Il Super-admin visualizza la data staleness dei sensori
-  - Il Super-admin visualizza l'alert list rappresentante la data staleness di ogni sensore
+  - Il Super Admin visualizza la data staleness dei sensori
+  - Il Super Admin visualizza l'alert list rappresentante la data staleness di ogni sensore
 
 === #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
-- *Attore principale*: Super-admin
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - L'utente è autenticato con il ruolo di Super Admin
   - La metrica dei valori out-of-range è disponibile
 - *Post-condizioni*:
   - Il Sistema mostra il numero di valori out-of-range rilevati per ogni sensore
   - Il Sistema rappresenta la metrica con un grafico a barre
 - *Scenario principale*:
-  - Il Super-admin visualizza il numero di valori out-of-range rilevati per ogni sensore
-  - Il Super-admin visualizza il grafico a barre rappresentante il numero di valori out-of-range rilevati per ogni sensore
-
+  - Il Super Admin visualizza il numero di valori out-of-range rilevati per ogni sensore
+  - Il Super Admin visualizza il grafico a barre rappresentante il numero di valori out-of-range rilevati per ogni sensore
 
 === Attore principale - Gateway
 ==== #uc() - Conferma esecuzione commissioning <Conferma-comando-commissioning>
