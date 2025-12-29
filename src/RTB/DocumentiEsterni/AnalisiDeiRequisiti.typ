@@ -781,6 +781,11 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
 - *Scenario principale*:
   - Il Tenant User visualizza il titolo e la descrizione dell'alert selezionato
 
+// TODO: AGGIUNGERE TIPI DI ALERT VISUALIZZATI
+// - mancata ricezione dati da GATEWAY (l'alert non si mostra se il gateway è stato disattivato)
+// - mancata ricezione dati da SENSORE SPECIFICO (l'alert non si mostra se il sensore è stato disattivato
+
+
 // TODO: DA AGGIUNGERE EVENTUALI INFORMAZIONI DA AGGIUNGERE ALLA DASHBOARD
 
 ==== #uc() - Visualizzazione sensori collegati al tenant <Visualizzazione-sensori-collegati-tenant>
@@ -2280,10 +2285,11 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Gateway riscontra un errore durante l'esecuzione del decommissioning
   - Il Gateway invia la segnalazione di errore al Sistema
 
+// TODO: --- (DA CHIEDERE A M31) serve un log di sistema dove mettere cose come conferma/ricezione di comandi, errori nei comandi, etc...?
 ==== #uc() - Conferma riavvio <Conferma-comando-riavvio>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso con il Cloud
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di riavvio dal Sistema
   - Il Gateway si è riavviato correttamente
 - *Post-condizioni*:
@@ -2293,23 +2299,25 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Gateway si spegne e si riaccende
   - Il Gateway invia la conferma di riavvio al Sistema
 
+
 ==== #uc() - Errore nel riavvio <Errore-riavvio>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso con il Cloud
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di riavvio dal Sistema
-  - Il Gateway non si è riavviato correttamente
+  - Il Gateway non ha inviato al Cloud la conferma di riavvio entro un _timeout_ specifico
 - *Post-condizioni*:
-  - Il Sistema nota che il gateway non è più raggiungibile
-  - Il Sistema mette in stato di errore il Gateway
+  - Il Sistema considera il Gateway come in stato d'errore, finché non riceve il comando di conferma di riavvio dal Gateway
+  - Il Sistema notifica il tenant admin del fatto che il Gateway è in stato d'errore
 - *Scenario principale*:
   - Il Gateway riscontra un errore durante il riavvio
   - Il Gateway non riesce a comunicare con il Sistema dopo il riavvio
 
+
 ==== #uc() - Conferma reset <Conferma-comando-reset>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
-  - Il Gateway è connesso con il Cloud
+  - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di reset dal Sistema
   - Il Gateway ha reimpostato la configurazione di fabbrica
   - Il Gateway ha mantenuto le informazioni di commissioning
@@ -2335,31 +2343,31 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway invia la conferma di ricezione al Sistema
 */
 
-==== #uc() - Conferma disattivazione <Conferma-comando-disattivazione>
+==== #uc() - Conferma disattivazione invio dati gateway <Conferma-comando-disattivazione-invio-dati>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
-  - Il Gateway ha ricevuto un comando di disattivazione dal Sistema
+  - Il Gateway ha ricevuto un comando di disattivazione invio dati dal Sistema
   - Il Gateway ha sospeso l'invio dei dati dei sensori al Sistema
-  - Il Gateway in questione è disattivato
 - *Post-condizioni*:
-  - Il Sistema riceve la conferma di disattivazione dal Gateway
-  - Il Sistema aggiorna lo stato del Gateway come disattivato
-  - Il Sistema non riceve più i dati dei sensori associati al Gateway
+  - Il Sistema riceve la conferma di disattivazione invio dati dal Gateway
+  - Il Sistema aggiorna lo stato del Gateway come "disattivato"
+  - Il Sistema non è più "in ascolto" per i dati dei sensori associati al Gateway
+  - Il Sistema non esegue più eventuali alert di mancata ricezione dei dati dal Gateway
 - *Scenario principale*:
   - Il Gateway sospende l'invio dei dati dei sensori al Sistema
   - Il Gateway invia la conferma di disattivazione al Sistema
 
-  ==== #uc() - Conferma riattivazione <Conferma-comando-riattivazione>
+==== #uc() - Conferma riattivazione invio dati gateway  <Conferma-comando-riattivazione-invio-dati>
 - *Attore primario*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
-  - Il Gateway ha ricevuto un comando di riattivazione dal Sistema
-  - Il Gateway in questione è ritornato attivo
+  - Il Gateway ha ricevuto un comando di riattivazione invio dati dal Sistema
   - Il Gateway ha ricominciato ad inviare i dati dei sensori al Sistema
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di conferma da parte del Gateway
-  - Il Sistema ricomincia a ricevere i dati dei sensori associati al Gateway
+  - Il Sistema ricomincia ad essere "in ascolto" per i dati dei sensori associati al Gateway
+  - Il Sistema riprende ad eseguire eventuali alert di mancata ricezione dei dati dal Gateway, in caso quest'ultimo interrompa la comunicazione con l'infrastruttura Cloud
 - *Scenario principale*:
   - Il Gateway riceve un comando di riattivazione
   - Il Gateway esegue il comando ricevuto e si riattiva
@@ -2373,10 +2381,11 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway ha sospeso l'invio dei dati del sensore in questione al Sistema
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di conferma da parte del Gateway
-  - Il Sistema non riceve più i dati del sensore disattivato
+  - Il Sistema non è più "in ascolto" per i dati del sensore disattivato
+  - Il Sistema non esegue più eventuali alert di mancata ricezione dei dati dal sensore
 - *Scenario principale*:
   - Il Gateway riceve un comando di disattivazione di un determinato sensore
-  - Il Gateway esegue il comando ricevuto e disattiva il sensore specificato
+  - Il Gateway esegue il comando ricevuto e disattiva il sensore specificato, interrompendo l'invio dei dati ricevuti da esso al Cloud
   - Il Gateway invia un comando di conferma al Cloud
 
 ==== #uc() - Conferma riattivazione sensore <Conferma-comando-riattivazione-sensore>
@@ -2388,11 +2397,14 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di conferma da parte del Gateway
   - Il Sistema ricomincia a ricevere i dati del sensore riattivato
+  - Il Sistema riprende a eseguire eventuali alert di mancata ricezione dei dati dal sensore
 - *Scenario principale*:
   - Il Gateway riceve un comando di riattivazione di un determinato sensore
-  - Il Gateway esegue il comando ricevuto e riattiva il sensore
+  - Il Gateway esegue il comando ricevuto e riattiva il sensore, riprendendo l'invio dei dati ricevuti da esso al Cloud
   - Il Gateway invia un comando di conferma al Cloud
 
+// TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"? 
+// TODO: Sarebbe bene considerare il parametro di FREQUENZA D'INVIO DEI DATI? CHIEDIAMO A M31 
 ==== #uc() - Conferma modifica parametro di rolling average <conferma-comando-modifica-rolling-average>
 - *Attore primario*: Gateway
 - *Pre-condizioni*:
@@ -2406,20 +2418,22 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway esegue il comando ricevuto e modifica il valore del parametro di rolling average
   - Il Gateway invia un comando di conferma al Cloud
 
+
 ==== #uc() - Invio comando di hello <Invio-comando-hello>
 - *Attore primario*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso al Cloud
   - Il Gateway si è avviato e si è connesso per la prima volta al Cloud
   - Il Gateway possiede delle credenziali per l'autenticazione
-  - Il Gateway possiede un identificativo
+  - Il Gateway possiede un identificativo  // TODO: qual è differenza tra credenziali di auth e identificativo?
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di hello dal Gateway
-  - Il Sistema autentica il Gateway
+  - Il Sistema autentica il Gateway, associandolo all'identificativo ricevuto
 - *Scenario principale*:
-  - Il Gateway invia un messaggio di hello verso il Cloud contenente il proprio identificativo
+  - Il Gateway invia un messaggio di "hello" verso il Cloud contenente il proprio identificativo
 - *Scenari alternativi*:
   - Il Sistema fallisce nell'autenticare il Gateway
+  - Il Sistema non riconosce l'identificativo del Gateway ricevuto
 - *Estensioni*:
   - #ref-uc(<Autenticazione-gateway-fallita>)
   - #ref-uc(<Identificativo-gateway-non-trovato>)
@@ -2433,6 +2447,8 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Sistema rifiuta la connessione con il Gateway
 - *Scenario principale*:
   - Il Gateway riceve il messaggio di autenticazione fallita dal Sistema
+
+// TODO: CONTINUA REVIEW DA QUA ----
 
 ==== #uc() - Identificativo Gateway non trovato <Identificativo-gateway-non-trovato>
 - *Attore primario*: Gateway
@@ -2475,15 +2491,16 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 
 === Attore principale - API Client
-// API Client autenticato significa che ha un token valido per un tenant specifico
+Di seguito sono riportati tutti gli use cases in cui l'attore principale è un generico API Client, ovvero un client che accede all'API esposta tramite una API Key di autenticazione prodotta da un super admin.
+
 ==== #uc() - Richiesta dati real-time sensore <Richiesta-dati-real-time-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
-  - Il API Client richiede i dati real-time del sensore specificato
+  - L'API Client richiede i dati real-time del sensore specificato
   - Il Sistema verifica che il sensore richiesto appartenga al tenant del API Client
 - *Scenari alternativi*:
   - Sensore non trovato (#ref-uc(<Sensore-non-trovato>))
@@ -2500,7 +2517,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ===== #sub-uc() - Verifica sensore <Verifica-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene verificata la validità del sensore richiesto e la sua associazione al tenant del API Client
 - *Scenario principale*:
@@ -2509,7 +2526,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ===== #sub-uc() - Restituzione dati real-time sensore <Restituzione-dati-real-time-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
   - Il sensore richiesto esiste ed appartiene al tenant del API Client
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
@@ -2520,8 +2537,8 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ==== #uc() - Sensore non trovato <Sensore-non-trovato>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
-  - Il API Client ha richiesto i dati di un sensore non esistente
+  - L'API Client è autenticato nel Sistema
+  - L'API Client ha richiesto i dati di un sensore non esistente
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
@@ -2531,7 +2548,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
@@ -2541,7 +2558,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
@@ -2551,11 +2568,11 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ==== #uc() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene restituito lo storico dei dati del sensore richiesto
 - *Scenario principale*:
-  - Il API Client richiede lo storico dei dati del sensore specificato
+  - L'API Client richiede lo storico dei dati del sensore specificato
   - Il Sistema verifica che il sensore richiesto appartenga al tenant del API Client
 - *Scenari alternativi*:
   - Sensore non trovato
@@ -2573,7 +2590,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ===== #sub-uc() - Restituzione storico dati sensore <Restituzione-storico-dati-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
   - Il sensore richiesto esiste ed appartiene al tenant del API Client
 - *Post-condizioni*:
   - Viene restituito lo storico dei dati del sensore richiesto
@@ -2584,13 +2601,13 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ==== #uc() - Autenticazione API Client <Autenticazione-API-Client>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client possiede delle credenziali di accesso
+  - L'API Client possiede delle credenziali di accesso
 - *Post-condizioni*:
-  - Il API Client è autenticato nel Sistema
+  - L'API Client è autenticato nel Sistema
 - *Scenario principale*:
-  - Il API Client invia le credenziali di autenticazione al Sistema
+  - L'API Client invia le credenziali di autenticazione al Sistema
   - Il Sistema verifica le credenziali
-  - Il Sistema autentica il API Client
+  - Il Sistema autentica L'API Client
 - *Scenari alternativi*:
   - Credenziali non valide
   - Credenziali scadute
@@ -2601,7 +2618,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ==== #uc() - Credenziali API Client errate <Credenziali-API-Client-errate>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client ha inviato credenziali errate
+  - L'API Client ha inviato credenziali errate
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
@@ -2610,7 +2627,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 ==== #uc() - Credenziali API Client scadute <Credenziali-API-Client-scadute>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
-  - Il API Client ha inviato credenziali scadute
+  - L'API Client ha inviato credenziali scadute
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
