@@ -644,7 +644,6 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
   - #ref-uc(<Selezione-sensore>)
 
 
-// TODO: finisci di sostituire tenant user con utente autenticato
 ==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
