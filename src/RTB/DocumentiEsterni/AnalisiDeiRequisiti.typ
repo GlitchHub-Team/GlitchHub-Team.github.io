@@ -259,10 +259,9 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
-  - L'Utente ha eseguito l'accesso al Sistema ed è stato riconosciuto come _Tenant User_, _Tenant Admin_ o _Super Admin_
+  - Il Sistema ha riconosciuto l'utente e l'ha autenticato con il ruolo di _Tenant User_, _Tenant Admin_ o _Super Admin_
   - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
-  - L'Utente seleziona la funzionalità di login
   - L'Utente inserisce l'indirizzo email associato al proprio account
   - L'Utente inserisce la password
 - *Scenari alternativi*:
@@ -302,52 +301,52 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha inserito un'email che non corrisponde ad un utente registrato o ha inserito una password errata
 - *Post-condizioni*:
-  - L'Utente non viene autenticato nel Sistema
+  - Il Sistema non autentica l'utente
   - Viene mostrato un messaggio di errore
-  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
-  - Il Sistema verifica le credenziali inserite dall'Utente e rileva l'errore
+  - L'Utente inserisce un'email o una password errati
+  - L'Utente visualizza un messaggio di errore
 
 
 ==== #uc() - Account sospeso <Account-sospeso>
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
+  - L'Utente ha inserito le credenziali di un account sospeso
 - *Post-condizioni*:
-  - L'Utente non viene autenticato nel Sistema
+  - Il Sistema non autentica l'utente
   - Viene mostrato un messaggio di errore
-  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
-  - Il Sistema verifica lo stato dell'account dell'Utente e rileva che l'account è sospeso
+  - L'utente prova ad autenticarsi con un account sospeso
 
 
 ==== #uc() - Invio codice 2FA <Invio-codice-2FA>
 - *Attore principale*: Utente non autenticato
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha eseguito il login con successo
   - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
 - *Post-condizioni*:
-  - Il Sistema invia un'email all'Utente con il codice 2FA
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema genera il codice 2FA
+  - Il Sistema invia un'email con il codice 2FA
 - *Scenario principale*:
-  - L'Utente riceve il codice 2FA via email
+  - L'Email client riceve l'email con il codice 2FA
 
 
 ==== #uc() - Re-invio codice 2FA <Re-invio-codice-2FA>
 - *Attore principale*: Utente non autenticato
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha eseguito il login con successo
   - L'Utente ha abilitato l'autenticazione a due fattori (2FA) per l'account a cui sta accedendo
 - *Post-condizioni*:
-  - Il Sistema invia nuovamente un'email all'Utente con il codice 2FA
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema genera il codice 2FA
+  - Il Sistema invia nuovamente un'email con il codice 2FA
 - *Scenario principale*:
   - L'Utente richiede il re-invio del codice 2FA
-  - L'Utente riceve nuovamente il codice 2FA via email
+  - L'Email client riceve l'email con il codice 2FA
 
 
 ==== #uc() - Autenticazione 2FA <Autenticazione-2FA>
@@ -395,7 +394,6 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Post-condizioni*:
   - Il Sistema non autentica l'Utente
   - Viene mostrato un messaggio di errore
-  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente inserisce un codice 2FA errato
   - L'Utente visualizza un messaggio di errore
@@ -411,7 +409,6 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Post-condizioni*:
   - Il Sistema non autentica l'Utente
   - Viene mostrato un messaggio di errore
-  - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - L'Utente inserisce un codice 2FA scaduto
   - L'Utente visualizza un messaggio di errore
@@ -419,9 +416,11 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 ==== #uc() - Impostazione password <Impostazione-password>
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
   - L'Utente ha ricevuto l'email di impostazione della prima password
 - *Post-condizioni*:
-  - La password dell'Utente viene impostata
+  - Il Sistema riceve la password inserita dall'utente
+  - Il Sistema registra la password dell'Utente
 - *Scenario principale*:
   - L'Utente clicca sul link di impostazione password nell'email
   - L'Utente inserisce la nuova password
@@ -439,14 +438,14 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 ==== #uc() - Password dimenticata <Password-dimenticata>
 - *Attore principale*: Utente non autenticato
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene inviata un'email all'Utente con le istruzioni per reimpostare la password
+  - Il Sistema invia un'email con il link di reimpostazione password
 - *Scenario principale*:
-  - L'Utente seleziona la funzionalità "Password dimenticata"
   - L'Utente inserisce l'indirizzo email associato al proprio account
+  - L'Email client riceve l'email di reimpostazione password
 - *Scenari alternativi*:
   - L'Utente inserisce un indirizzo email non associato ad alcun account
 - *Estensioni*:
@@ -466,15 +465,14 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 ===== #sub-uc() - Invio email di reimpostazione password <Invio-email-reimpostazione-password>
 - *Attore principale*: Utente non autenticato
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha inserito l'indirizzo email associato al proprio account
 - *Post-condizioni*:
-  - Viene inviata un'email all'Utente con le istruzioni per reimpostare la password
+  - Il Sistema invia un'email con il link per reimpostare la password
 - *Scenario principale*:
-  - Il Sistema verifica l'indirizzo email inserito dall'Utente ed invia l'email di reimpostazione password
-
+  - L'Email client riceve l'email di reimpostazione password inviata dal Sistema
 
 ==== #uc() - Indirizzo email non associato ad alcun account <Indirizzo-email-non-associato-account>
 - *Attore principale*: Utente non autenticato
@@ -484,7 +482,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica l'indirizzo email inserito dall'Utente e rileva l'errore
+  - L'Utente inserisce un indirizzo email non associato ad alcun account
 
 ==== #uc() - Reimpostazione password dimenticata <Reimpostazione-password-dimenticata>
 - *Attore principale*: Utente non autenticato
@@ -549,7 +547,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica la nuova password inserita dall'Utente e rileva l'errore
+  - L'Utente visualizza un messaggio di errore dopo aver inserito una nuova password non conforme ai criteri di sicurezza
 
 
 ///// UTENTE AUTENTICATO //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -562,11 +560,10 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
 - *Post-condizioni*:
-  - L'Utente viene disconnesso dal Sistema
+  - Il Sistema disconnette l'Utente
   - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
-  - L'Utente seleziona la funzionalità di logout
-
+  - L'Utente esegue il logout dal Sistema
 
 ==== #uc() - Modifica password <Modifica-password>
 - *Attore principale*: Utente autenticato
@@ -610,14 +607,14 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Sistema annulla la modifica della password
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica la vecchia password inserita dall'Utente e rileva l'errore
-
+  - L'Utente inserisce una password che non corrisponde con quella associata al suo account
 
 
 // Visualizzazione dati -----------------------------------------------------------------------------------------------------
 ==== #uc() - Selezione sensore <Selezione-sensore>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
   - Il sensore selezionato appartiene al tenant dell'utente autenticato
 - *Post-condizioni*:
   - Il Sistema riceve l'identificativo del sensore selezionato
@@ -628,7 +625,8 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 ==== #uc() - Visualizzazione in tempo reale dei dati del sensore <Visualizzazione-dati-real-time-sensore>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
-  - Esistono sensori associati al tenant dell'utente autenticato
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
 - *Post-condizioni*:
   - Vengono visualizzati i dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento specifico
   - Il grafico visualizzato si aggiorna in *tempo reale* (_real-time_), appena il Cloud riceve dati nuovi dal Gateway
@@ -641,14 +639,13 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
-// - #ref-uc(<Visualizzazione-grafico-ts-dati-real-time>)
-// - #ref-uc(<Visualizzazione-testuale-dati-real-time>)
 
 
 ==== #uc() - Visualizzazione dello storico dei dati del sensore <Visualizzazione-storico-dati-sensore>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
-  - Esistono sensori associati al tenant dell'utente autenticato
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
 - *Post-condizioni*:
   - Viene visualizzato lo storico dei dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento specifico
 - *Scenario principale*:
@@ -665,13 +662,14 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 ==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
-  - Esistono sensori associati al tenant dell'utente autenticato
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
 - *Post-condizioni*:
   - Il Sistema mostra lo storico dei dati del sensore selezionato filtrato per intervallo temporale
 - *Scenario principale*:
-  - L'utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
-  - L'utente autenticato specifica l'intervallo temporale desiderato
-  - L'utente autenticato visualizza lo storico dei dati del sensore selezionato filtrato per l'intervallo temporale specificato
+  - L'Utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
+  - L'Utente autenticato specifica l'intervallo temporale desiderato
+  - L'Utente autenticato visualizza lo storico dei dati del sensore selezionato filtrato per l'intervallo temporale specificato
 - *Scenari alternativi*:
   - Nessun dato storico disponibile per il sensore selezionato nell'intervallo temporale specificato
   - L'intervallo temporale specificato non è valido
@@ -685,26 +683,27 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 ==== #uc() - Intervallo temporale non valido <Intervallo-temporale-non-valido>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
-  - Esistono sensori associati al tenant dell'utente autenticato
-  - L'utente autenticato ha specificato un intervallo temporale non valido, ovvero un intervallo che comprende dei momenti temporali futuri o precedenti al primo momento temporale salvato nello storico del sensore considerato.
+  - Il sensore selezionato appartiene al tenant dell'Utente autenticato
+  - L'Utente autenticato ha specificato un intervallo temporale non valido, ovvero un intervallo che comprende dei momenti temporali futuri o precedenti al primo momento temporale salvato nello storico del sensore considerato.
 - *Post-condizioni*:
   - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
-  - L'utente autenticato specifica un intervallo temporale non valido
-  - L'utente autenticato visualizza un messaggio di errore
+  - L'Utente autenticato specifica un intervallo temporale non valido
+  - L'Utente autenticato visualizza un messaggio di errore
 
 
 ==== #uc() - Filtraggio dati del sensore per intervallo di valori <Filtraggio-dati-sensore-intervallo-valori>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
-  - Esistono sensori associati al tenant dell'utente autenticato
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'Utente autenticato
   - I valori delle misurazioni dei sensori sono numerici
 - *Post-condizioni*:
   - Il Sistema mostra lo storico dei dati del sensore selezionato per la quale le misurazioni rientrano nell'intervallo di valori specificato
 - *Scenario principale*:
-  - L'utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
-  - L'utente autenticato specifica l'intervallo di valori desiderato
-  - L'utente autenticato visualizza lo storico dei dati del sensore selezionato per la quale le misurazioni rientrano nell'intervallo di valori specificato
+  - L'Utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
+  - L'Utente autenticato specifica l'intervallo di valori desiderato
+  - L'Utente autenticato visualizza lo storico dei dati del sensore selezionato per la quale le misurazioni rientrano nell'intervallo di valori specificato
 - *Scenari alternativi*:
   - Nessun dato storico disponibile per il sensore selezionato nell'intervallo di valori specificato
   - L'intervallo di valori specificato non è valido
@@ -718,20 +717,20 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 ==== #uc() - Intervallo di valori non valido <Intervallo-di-valori-non-valido>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
-  - Esistono sensori associati al tenant dell'utente autenticato
-  - L'utente autenticato ha specificato un intervallo di valori non valido
+  - L'Utente autenticato ha specificato un intervallo di valori non valido
 - *Post-condizioni*:
   - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
-  - L'utente autenticato specifica un intervallo di valori non valido
-  - L'utente autenticato visualizza un messaggio di errore
+  - L'Utente autenticato specifica un intervallo di valori non valido
+  - L'Utente autenticato visualizza un messaggio di errore
 
 
 ==== #uc() - Dati non disponibili per il sensore selezionato <Dati-non-disponibili-sensore-selezionato>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
-  - Esistono sensori associati al tenant dell'utente autenticato
-  - L'utente autenticato ha selezionato un sensore per il quale non sono disponibili dati
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'Utente autenticato
+  - L'Utente autenticato ha selezionato un sensore per il quale non sono disponibili dati
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
@@ -762,7 +761,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene visualizzato il numero di sensori attivi e non attivi in forma testuale e di grafico a torta
+  - Il Sistema mostra il numero di sensori attivi e non attivi in forma testuale e di grafico a torta
 - *Scenario principale*:
   - Il Tenant User visualizza il numero di sensori attivi e non attivi
   - Il Tenant User visualizza le informazioni in forma testuale e di grafico a torta.
@@ -772,7 +771,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene visualizzato il numero di gateway attivi e non attivi in forma testuale e di grafico a torta
+  - Il Sistema mostra il numero di gateway attivi e non attivi in forma testuale e di grafico a torta
 - *Scenario principale*:
   - Il Tenant User visualizza il numero di gateway attivi e non attivi
   - Il Tenant User visualizza le informazioni in forma testuale e di grafico a torta.
@@ -804,23 +803,24 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene visualizzata la lista dei sensori associati al tenant del Tenant User
+  - Il Sistema mostra la lista dei sensori associati al tenant del Tenant User
 - *Scenario principale*:
   - Il Tenant User seleziona la funzionalità di visualizzazione sensori
-  - Viene mostrata la lista dei sensori associati al tenant del Tenant User
+  - Il Tenant User visualizza la lista dei sensori associati al tenant del Tenant User
 
 === Attore principale - Tenant Admin
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
 - *Attore principale*: Tenant Admin
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema registra correttamente il nuovo Tenant User nel tenant associato al Tenant Admin
-  - Il Sistema invia una email al nuovo Tenant-User con un link per impostare la password dell'account appena creato
+  - Il Sistema invia una email con un link per impostare la password dell'account appena creato
   - Il Sistema registra l'evento negli audit log
 - *Scenario principale*:
   - Il Tenant Admin inserisce l'indirizzo email del nuovo Tenant User
+  - L'Email client riceve la mail di impostazione password
 - *Scenari alternativi*:
   - L'email è già associata ad un altro utente all'interno del Sistema
 - *Estensioni*:
@@ -840,15 +840,14 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 
 ===== #sub-uc() - Invio email impostazione password al nuovo Tenant-User <Invio-email-impostazione-password>
 - *Attore principale*: Tenant-admin
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Tenant-admin
   - L'email del nuovo Tenant-user è valida
 - *Post-condizioni*:
-  - Il Sistema invia una email al nuovo Tenant-user con il link per l'impostazione della nuova password
+  - Il Sistema invia una email con il link per l'impostazione della nuova password
 - *Scenario principale*:
-  - Il Tenant-user riceve una email con le credenziali di accesso
-
+  - L'Email client riceve una email con il link per l'impostazione della nuova password
 
 ==== #uc() - Email già utilizzata <Email-gia-utilizzata-tenant-admin>
 - *Attore principale*: Tenant Admin
@@ -885,7 +884,6 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Sistema riceve la conferma della sospensione del Tenant User
 - *Scenario principale*:
   - Il Tenant Admin conferma la sospensione del Tenant User
-
 
 ==== #uc() - Riattivazione Tenant User <Riattivazione-Tenant-User>
 - *Attore principale*: Tenant Admin
@@ -1045,6 +1043,9 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Inclusioni*:
   - #ref-uc(<Inserimento-nome-api-key>)
   - #ref-uc(<Inserimento-scadenza-api-key>)
+- *Estensioni*:
+  - #ref-uc(<Nome-api-key-gia-utilizzato>)
+  - #ref-uc(<Scadenza-api-key-data-passata>)
 
 ===== #sub-uc() - Inserimento nome API key <Inserimento-nome-api-key>
 - *Attore principale*: Tenant Admin
@@ -1056,8 +1057,6 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin inserisce il nome della nuova API key
 - *Scenari alternativi*:
   - Il nome inserito è già utilizzato da un'altra API key all'interno del tenant
-- *Estensioni*:
-  - #ref-uc(<Nome-api-key-gia-utilizzato>)
 
 ===== #sub-uc() - Inserimento scadenza API key <Inserimento-scadenza-api-key>
 - *Attore principale*: Tenant Admin
@@ -1069,8 +1068,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin inserisce la scadenza della nuova API key
 - *Scenari alternativi*:
   - La scadenza inserita non è valida
-- *Estensioni*:
-  - #ref-uc(<Scadenza-api-key-data-passata>)
+
 
 
 ==== #uc() - Nome API key già utilizzato <Nome-api-key-gia-utilizzato>
@@ -1080,6 +1078,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin ha inserito un nome già utilizzato per la nuova API key all'interno del proprio tenant
 - *Post-condizioni*:
   - L'operazione di registrazione della nuova API key viene interrotta
+  - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - Il Tenant Admin visualizza un messaggio di errore dopo aver inserito il nome già utilizzato
 
@@ -1781,7 +1780,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 
 ==== #uc() - Creazione utente Tenant-admin <Creazione-utente-tenant-admin>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
@@ -1791,7 +1790,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super-admin seleziona la funzionalità di creazione nuovo Tenant-admin
   - Il Super-admin seleziona il tenant a cui associare il nuovo Tenant-admin
   - Il Super-admin inserisce l'email del nuovo Tenant-admin
-  - Il Tenant-admin riceve una email con le credenziali di accesso
+  - L'Email client riceve la mail di impostazione password
 - *Scenari alternativi*:
   - L'email inserita è già in uso da un altro utente nel Sistema
 - *Estensioni*:
@@ -1799,7 +1798,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Inclusioni*:
   - #ref-uc(<Selezione-tenant>)
   - #ref-uc(<Inserimento-email-nuovo-tenant-admin>)
-  - #ref-uc(<Invio-credenziali-accesso-nuovo-tenant-admin>)
+  - #ref-uc(<Invio-email-impostazione-password-nuovo-tenant-admin>)
 
 ===== #sub-uc() - Selezione tenant <Selezione-tenant>
 - *Attore principale*: Super-admin
@@ -1821,17 +1820,17 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Scenario principale*:
   - Il Super-admin inserisce l'email del nuovo Tenant-admin
 
-===== #sub-uc() - Invio credenziali di accesso nuovo Tenant-admin <Invio-credenziali-accesso-nuovo-tenant-admin>
+===== #sub-uc() - Invio email impostazione password nuovo Tenant-admin <Invio-email-impostazione-password-nuovo-tenant-admin>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
   - Il tenant deve esistere nel Sistema
   - L'email del nuovo Tenant-admin è valida
 - *Post-condizioni*:
-  - Il Tenant-admin riceve una email con le credenziali di accesso
-- *Scenario principale*:
   - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
+- *Scenario principale*:
+  - L'Email client riceve una email con il link per l'impostazione della nuova password
 
 
 ==== #uc() - Email già utilizzata <Email-gia-utilizzata-super-admin>
