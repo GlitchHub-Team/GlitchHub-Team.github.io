@@ -10,7 +10,7 @@
       "23/12/2025",
       "Elia Ernesto Stellin",
       "-",
-      [Modificati use case per *utente non autenticato*, *utente autenticato* e *Tenant User*]
+      [Modificati use case per *utente non autenticato*, *utente autenticato* e *Tenant User*],
     ),
     (
       "0.11.0",
@@ -255,7 +255,7 @@ Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funz
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
 
 ==== #uc() - Autenticazione Utente <Autenticazione-Utente>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -416,9 +416,29 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente inserisce un codice 2FA scaduto
   - L'Utente visualizza un messaggio di errore
 
+==== #uc() - Impostazione password <Impostazione-password>
+- *Attore principale*: Utente non autenticato
+- *Pre-condizioni*:
+  - L'Utente ha ricevuto l'email di impostazione della prima password
+- *Post-condizioni*:
+  - La password dell'Utente viene impostata
+- *Scenario principale*:
+  - L'Utente clicca sul link di impostazione password nell'email
+  - L'Utente inserisce la nuova password
+  - L'Utente inserisce la conferma della nuova password
+- *Scenari alternativi*:
+  - La nuova password non rispetta i criteri di sicurezza
+  - La nuova password e la conferma non coincidono
+- *Estensioni*:
+  - #ref-uc(<Password-non-conforme-criteri-sicurezza>)
+  - #ref-uc(<Password-non-coincidenti>)
+- *Inclusioni*:
+  - #ref-uc(<Inserimento-nuova-password>)
+  - #ref-uc(<Conferma-password>)
+
 
 ==== #uc() - Password dimenticata <Password-dimenticata>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Attore secondario*: Client email
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -436,7 +456,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - #ref-uc(<Invio-email-reimpostazione-password>)
 
 ===== #sub-uc() - Inserimento indirizzo email <Inserimento-indirizzo-email>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
@@ -445,7 +465,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente inserisce l'indirizzo email associato al proprio account
 
 ===== #sub-uc() - Invio email di reimpostazione password <Invio-email-reimpostazione-password>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Attore secondario*: Client email
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -457,7 +477,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 
 ==== #uc() - Indirizzo email non associato ad alcun account <Indirizzo-email-non-associato-account>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha inserito un indirizzo email non associato ad alcun account
@@ -466,7 +486,6 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Scenario principale*:
   - Il Sistema verifica l'indirizzo email inserito dall'Utente e rileva l'errore
 
-// TODO: il workflow <Reimpostazione-password-dimenticata> e <Modifica-password> dovrebbero essere unificati!
 ==== #uc() - Reimpostazione password dimenticata <Reimpostazione-password-dimenticata>
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
@@ -510,7 +529,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 
 ==== #uc() - Password non coincidenti <Password-non-coincidenti>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha ricevuto l'email di impostazione password
@@ -522,7 +541,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 
 ==== #uc() - Password non conforme ai criteri di sicurezza <Password-non-conforme-criteri-sicurezza>
-- *Attore principale*: Utente
+- *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
   - L'Utente ha cliccato sul link di impostazione password nell'email
@@ -536,8 +555,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 ///// UTENTE AUTENTICATO //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 === Attore principale - Utente autenticato
 L'utente autenticato è chiunque abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione degli attori *Tenant User*, *Tenant Admin*, *Super Admin*.
-
-Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assume che questi stia impersonando un *Tenant User* o un *Tenant Admin*, ovvero venga temporaneamente riconosciuto dal sistema come tale.
+Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un tenant specifico, quest'ultimo deve aver accettato la clausola di impersonificazione, la quale permette l'accesso ai dati del tenant da parte del Super Admin.
 
 ==== #uc() - Logout <Logout>
 - *Attore principale*: Utente autenticato
@@ -623,8 +641,8 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
   - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
-  // - #ref-uc(<Visualizzazione-grafico-ts-dati-real-time>)
-  // - #ref-uc(<Visualizzazione-testuale-dati-real-time>)
+// - #ref-uc(<Visualizzazione-grafico-ts-dati-real-time>)
+// - #ref-uc(<Visualizzazione-testuale-dati-real-time>)
 
 
 ==== #uc() - Visualizzazione dello storico dei dati del sensore <Visualizzazione-storico-dati-sensore>
@@ -781,8 +799,6 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
 - *Scenario principale*:
   - Il Tenant User visualizza il titolo e la descrizione dell'alert selezionato
 
-// TODO: DA AGGIUNGERE EVENTUALI INFORMAZIONI DA AGGIUNGERE ALLA DASHBOARD
-
 ==== #uc() - Visualizzazione sensori collegati al tenant <Visualizzazione-sensori-collegati-tenant>
 - *Attore principale*: Tenant User
 - *Pre-condizioni*:
@@ -792,8 +808,6 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
 - *Scenario principale*:
   - Il Tenant User seleziona la funzionalità di visualizzazione sensori
   - Viene mostrata la lista dei sensori associati al tenant del Tenant User
-
-
 
 === Attore principale - Tenant Admin
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
@@ -810,7 +824,7 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
 - *Scenari alternativi*:
   - L'email è già associata ad un altro utente all'interno del Sistema
 - *Estensioni*:
-  - #ref-uc(<Email-gia-utilizzata>)
+  - #ref-uc(<Email-gia-utilizzata-tenant-admin>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-email>)
   - #ref-uc(<Invio-email-impostazione-password>)
@@ -836,7 +850,7 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
   - Il Tenant-user riceve una email con le credenziali di accesso
 
 
-==== #uc() - Email già utilizzata <Email-gia-utilizzata>
+==== #uc() - Email già utilizzata <Email-gia-utilizzata-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel sistema
@@ -845,27 +859,6 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
   - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
   - Il Tenant Admin visualizza un messaggio di errore
-
-// TODO: non andrebbe spostato nella sezione Utente?
-==== #uc() - Impostazione password <Impostazione-password>
-- *Attore principale*: Utente
-- *Pre-condizioni*:
-  - L'Utente ha ricevuto l'email di impostazione della prima password
-- *Post-condizioni*:
-  - La password dell'Utente viene reimpostata
-- *Scenario principale*:
-  - L'Utente clicca sul link di impostazione password nell'email
-  - L'Utente inserisce la nuova password
-  - L'Utente inserisce la conferma della nuova password
-- *Scenari alternativi*:
-  - La nuova password non rispetta i criteri di sicurezza
-  - La nuova password e la conferma non coincidono
-- *Estensioni*:
-  - #ref-uc(<Password-non-conforme-criteri-sicurezza>)
-  - #ref-uc(<Password-non-coincidenti>)
-- *Inclusioni*:
-  - #ref-uc(<Inserimento-nuova-password>)
-  - #ref-uc(<Conferma-password>)
 
 ==== #uc() - Sospensione Tenant User <Sospensione-Tenant-User>
 - *Attore principale*: Tenant Admin
@@ -990,14 +983,15 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
   - Il Tenant Admin visualizza le richieste in forma di lista ordinata in ordine cronologico decrescente (dalla più recente alla meno recente).
 
 
-==== #uc() - Visualizzazione lista Tenant User <Visualizzazione-lista-tenant-user>
+==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
+  - Gli utenti appartengono al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Il Sistema mostra la lista dei Tenant User registrati nel tenant
+  - Il Sistema mostra la lista degli utenti registrati nel tenant del Tenant Admin
 - *Scenario principale*:
-  - Il Tenant Admin visualizza la lista dei Tenant User registrati nel tenant
+  - Il Tenant Admin visualizza la lista degli utenti registrati nel proprio tenant
 
 
 ==== #uc() - Disattivazione sensore <Disattivazione-sensore>
@@ -1214,9 +1208,17 @@ Si noti che in caso l'*Utente autenticato* rappresenti un *Super Admin*, si assu
 - *Scenario principale*:
   - Il Tenant Admin visualizza la lista dei sensori collegati al gateway selezionato
 
-/*
-Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in caso
-===== #uc() - Disattivazione gateway <Disattivazione-gateway>
+==== #uc() - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
+- *Attore principale*: Tenant-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Tenant-admin
+  - I sensori sono associati al tenant del Tenant-admin
+- *Post-condizioni*:
+  - Il Sistema mostra la lista dei sensori associati al tenant del Tenant-admin
+- *Scenario principale*:
+  - Il Tenant-admin visualizza la lista dei sensori associati al tenant
+
+==== #uc() - Disattivazione gateway <Disattivazione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1224,9 +1226,10 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Post-condizioni*:
   - Il Sistema invia il comando di disattivazione al gateway e sospende la ricezione dei suoi dati
 - *Scenario principale*:
+  - Il Tenant Admin seleziona un gateway attivo associato al proprio tenant
   - Il Tenant Admin disattiva il gateway
 
-==== #uc() - Riattivazione gateway <Riattivazione-gateway>
+==== #uc() - Riattivazione gateway <Riattivazione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1234,9 +1237,8 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Post-condizioni*:
   - Il Sistema riattiva il gateway e riprende la ricezione dei suoi dati
 - *Scenario principale*:
-  - Il Tenant Admin seleziona un gateway associato al proprio tenant
+  - Il Tenant Admin seleziona un gateway disattivato associato al proprio tenant
   - Il Tenant Admin riattiva il gateway
-*/
 
 // Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
 ==== #uc() - Visualizzazione audit log <Visualizzazione-audit-log>
@@ -1247,13 +1249,14 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Vengono visualizzate le informazioni degli audit log
 - *Scenario principale*:
   - Il Tenant Admin seleziona l'opzione di visualizzazione degli audit log
-  - Il Sistema recupera i dati relativi agli audit log e li mostra in una tabella 
+  - Il Sistema recupera i dati relativi agli audit log e li mostra in una tabella
 - *Estensioni*:
   - #ref-uc(<Filtraggio-log-per-tipologia>)
   - #ref-uc(<Filtraggio-log-per-intervallo-temporale>)
   - #ref-uc(<Filtraggio-log-per-utente>)
   - #ref-uc(<Esportazione-log>)
 
+// TODO: definire nelle varie post condizioni i valori dei singoli log: chi?che ruolo?cosa ha fatto?quando?
 // AUDIT LOG:
 /*
   --- GESTIONE UTENTI
@@ -1288,7 +1291,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Tenant Admin è autenticato nel Sistema
   - Il Sistema ha recuperato i dati di log
 - *Post-condizioni*
-  - Il Sistema mostra i dati di log filtrati secondo la tipolgia desiderata
+  - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
 - *Scenario principale*
   - Il Tenant Admin seleziona una o più tipologie di log che desidera vedere
   - Il Tenant Admin visualizza gli audit log filtrati per le tipologie desiderate
@@ -1301,7 +1304,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Post-condizioni*
   - Il Sistema mostra i dati di log filtrati secondo l'intervallo temporale indicato
 - *Scenario principale*
-  - Il Tenant Admin specifica un intervallo temporale desiderato 
+  - Il Tenant Admin specifica un intervallo temporale desiderato
   - Il Tenant Admin visualizza gli audit log filtrati secondo l'intervallo specificato
 
 ===== #uc() - Filtraggio log per utente <Filtraggio-log-per-utente>
@@ -1312,7 +1315,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Post-condizioni*
   - Il Sistema mostra i dati di log relativi ai Tenant User specificati
 - *Scenario principale*
-  - Il Tenant Admin specifica uno o più Tenant User di cui vuole consultare l'attività 
+  - Il Tenant Admin specifica uno o più Tenant User di cui vuole consultare l'attività
   - Il Tenant Admin visualizza gli audit log filtrati in base ai Tenant User scelti
 
 // Da rifinire
@@ -1335,12 +1338,24 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di creazione tenant
   - Il Super-admin inserisce il nome del nuovo tenant
+  - Il Super-admin inserisce l'accettazione o meno della clausola di impersonificazione
 - *Scenari alternativi*:
   - Il nome del tenant è già in uso da un altro tenant
 - *Estensioni*:
   - #ref-uc(<Nome-tenant-gia-utilizzato>)
+- *Inclusioni*:
+  - #ref-uc(<Clausola-impersonificazione>)
 
-==== #sub-uc() - Nome del tenant già utilizzato <Nome-tenant-gia-utilizzato>
+===== #sub-uc() - Clausola impersonificazione <Clausola-impersonificazione>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+- *Post-condizioni*:
+  - Il Sistema riceve l'accettazione o meno della clausola
+- *Scenario principale*:
+  - Il Super-admin inserisce l'accettazione o meno della clausola di impersonificazione
+
+==== #uc() - Nome del tenant già utilizzato <Nome-tenant-gia-utilizzato>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -1709,17 +1724,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin fornisce una motivazione per il rifiuto della richiesta di fornitura Gateway
   */
 
-// TODO: è giusto metterlo?
-==== #uc() - Visualizzazione log di attività di un tenant <Visualizzazione-log-attivita-tenant>
-- *Attore principale*: Super-admin
-- *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il tenant deve esistere nel Sistema
-- *Post-condizioni*:
-  - Vengono mostrati i log di attività del tenant selezionato
-- *Scenario principale*:
-  - Il Super-admin seleziona il tenant di cui vuole visualizzare i log di attività
-
 
 ==== #uc() - Visualizzazione lista tenant <Visualizzazione-lista-tenant>
 - *Attore principale*: Super-admin
@@ -1730,6 +1734,17 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenario principale*:
   - Il Super-admin seleziona la funzionalità di visualizzazione lista tenant
 
+==== #uc() - Impersonificazione tenant <Impersonificazione-tenant>
+- *Attore principale*: Super-admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super-admin
+  - Il tenant deve essere registrato nel Sistema
+  - Il tenant ha la clausola di impersonificazione accettata
+- *Post-condizioni*:
+  - Il Sistema permette al Super-admin di agire come un Tenant-admin all'interno del tenant selezionato
+- *Scenario principale*:
+  - Il Super-admin seleziona il tenant da impersonificare
+  - Il Super-admin agisce come un Tenant-admin all'interno del tenant selezionato
 
 ==== #uc() - Visualizzazione tenant <Visualizzazione-tenant>
 - *Attore principale*: Super-admin
@@ -1742,9 +1757,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza i dettagli del tenant selezionato
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-identificativo-tenant>)
-  - #ref-uc(<Visualizzazione-lista-utenti-associati-tenant>)
-  - #ref-uc(<Visualizzazione-lista-gateway-associati-tenant>)
-  - #ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)
 
 ===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant>
 - *Attore principale*: Super-admin
@@ -1755,36 +1767,6 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Viene mostrato l'identificativo del tenant selezionato
 - *Scenario principale*:
   - Il Super-admin visualizza l'identificativo del tenant selezionato
-
-===== #sub-uc() - Visualizzazione lista utenti associati al tenant <Visualizzazione-lista-utenti-associati-tenant>
-- *Attore principale*: Super-admin
-- *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il tenant deve essere registrato nel Sistema
-- *Post-condizioni*:
-  - Viene mostrata la lista degli utenti associati al tenant selezionato
-- *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di visualizzazione lista utenti associati al tenant
-
-===== #sub-uc() - Visualizzazione lista Gateway associati al tenant <Visualizzazione-lista-gateway-associati-tenant>
-- *Attore principale*: Super-admin
-- *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il tenant deve essere registrato nel Sistema
-- *Post-condizioni*:
-  - Viene mostrata la lista dei Gateway associati al tenant selezionato
-- *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di visualizzazione lista Gateway associati al tenant
-
-===== #sub-uc() - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
-- *Attore principale*: Super-admin
-- *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
-  - Il tenant deve essere registrato nel Sistema
-- *Post-condizioni*:
-  - Viene mostrata la lista dei sensori associati al tenant selezionato
-- *Scenario principale*:
-  - Il Super-admin seleziona la funzionalità di visualizzazione lista sensori associati al tenant
 
 
 ==== #uc() - Visualizzazione richieste di fornitura Gateway <Visualizzazione-richieste-fornitura-gateway>
@@ -1813,7 +1795,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Scenari alternativi*:
   - L'email inserita è già in uso da un altro utente nel Sistema
 - *Estensioni*:
-  - #ref-uc(<Email-gia-in-uso>)
+  - #ref-uc(<Email-gia-utilizzata-super-admin>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-tenant>)
   - #ref-uc(<Inserimento-email-nuovo-tenant-admin>)
@@ -1852,15 +1834,15 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
 
 
-// TODO: non è uguale a <Email-gia-utilizzata>?si serve generalizzazione
-==== #uc() - Email già in uso <Email-gia-in-uso>
-- *Attore principale*: Super-admin
+==== #uc() - Email già utilizzata <Email-gia-utilizzata-super-admin>
+- *Attore principale*: Super Admin
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Super-admin
+  - Il Super Admin è autenticato nel Sistema
+  - Il Super Admin ha inserito un'email già associata ad un altro utente all'interno del Sistema
 - *Post-condizioni*:
-  - Il Sistema visualizza un messaggio di errore
+  - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
-  - L'email inserita è già in uso da un altro utente nel Sistema
+  - Il Super Admin visualizza un messaggio di errore
 
 
 ==== #uc() - Sospensione account Tenant-admin <Sospensione-account-tenant-admin>
