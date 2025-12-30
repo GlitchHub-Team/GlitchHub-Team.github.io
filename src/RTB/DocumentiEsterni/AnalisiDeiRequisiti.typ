@@ -228,9 +228,9 @@ I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione s
 - *Attori primari*: indicano gli attori che interagiscono attivamente con il sistema e che avviano o guidano il flusso principale del caso d'uso;
 - *Attori secondari*: rappresentano gli attori che intervengono in modo indiretto o passivo;
 - *Pre-condizioni*: descrizione delle condizioni che devono essere vere affinchè l'attore possa avviare il caso d'uso;
-- *Post-condizioni*: descrizione dello stato interno del sistema al completamento del caso d'uso;
+- *Post-condizioni*: descrizione delle condizioni che devono essere vere al termine del caso d'uso, indicando lo stato del sistema dopo l'esecuzione;
 - *Scenario principale*: sequenza ordinata di passi che descrive il flusso di interazione tra attori e sistema in assenza di errori o di situazioni eccezionali;
-- *Scenario secondario*: deviazioni dal flusso principale che si verificano quando l'attore compie una scelta alternativa o si verificano condizioni particolari previste dal caso d'uso;
+- *Scenario alternativo*: interruzioni del flusso principale che si verificano quando l'attore compie una scelta alternativa o si verificano condizioni particolari previste dal caso d'uso. Quando uno scenario alternativo si verifica, le post-condizioni del caso d'uso principale devono essere diverse;
 - *Inclusioni*: riferimenti a casi d'uso che l'attore deve completare per poter portare a termine il caso d'uso corrente;
 - *Estensioni*: riferimenti a casi d'uso che posso verificarsi durante il flusso principale del caso d'uso;
 
@@ -450,6 +450,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Estensioni*:
   - #ref-uc(<Password-non-conforme-criteri-sicurezza>)
   - #ref-uc(<Password-non-coincidenti>)
+  - #ref-uc(<Link-impostazione-password-scaduto>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-nuova-password>)
   - #ref-uc(<Conferma-password>)
@@ -567,6 +568,18 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - L'Utente visualizza un messaggio di errore dopo aver inserito una nuova password non conforme ai criteri di sicurezza
+
+==== #uc() - Link di impostazione password scaduto <Link-impostazione-password-scaduto>
+- *Attore principale*: Utente non autenticato
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha ricevuto l'email di impostazione o reimpostazione password
+  - Il link di impostazione o reimpostazione password è scaduto
+- *Post-condizioni*:
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - L'Utente clicca sul link di impostazione o reimpostazione password scaduto
+  - L'Utente visualizza un messaggio di errore
 
 
 ///// UTENTE AUTENTICATO //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2856,6 +2869,111 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 
+= Requisiti
+I requisiti seguenti dovranno essere implementati entro il *27 marzo 2026*.
+La nomenclatura adottata per i requisiti è la seguente: *R[Tipo]-[Numero progressivo]-[Rilevanza]*, dove:
+- *Tipo*: indica la tipologia del requisito, può essere:
+  - *F*: Funzionale
+  - *NF*: Non funzionale
+  - *D*: Dominio
+  - *V*: Vincolo
+- *Numero progressivo*: è un numero univoco che identifica il requisito all'interno della sua tipologia;
+- *Rilevanza*: indica l'importanza del requisito, può essere:
+  - *Obb*: obbligatorio
+  - *Des*: desiderabile
+  - *Opt*: opzionale
+== Definizione requisito
+Un requisito è la capacità necessaria ad un *Utente* per raggiungere un obiettivo specifico(_lato bisogno_) o la capacità necessaria ad un *Sistema* per rispondere ad un'aspettativa(_lato soluzione_). I requisiti sono classificati in:
+- *Funzionali*: descrivono le funzionalità che il *Sistema* deve fornire per soddisfare le aspettative;
+- *Non funzionali*: descrivono com il *Sistema* deve comportarsi, non riguardano una funzionalità specifica ma le proprietà del *Sistema*;
+- *Dominio*: descrivono le regole e le politiche specifiche del dominio applicativo in cui il *Sistema* opera;
+- *Vincoli*: descrivono le limitazioni imposte al *Sistema* durante lo sviluppo.
+
+Inoltre un buon requisito deve essere *SMART*:
+- *Specifico*: il requisito deve essere chiaro e preciso, evitando ambiguità;
+- *Misurabile*: il requisito deve essere quantificabile o facilmente verificabile attraverso test o misurazioni;
+- *Achievable* (Raggiungibile): il requisito deve essere realistico e fattibile entro i vincoli di tempo, risorse e tecnologie disponibili;
+- *Rilevante*: il requisito deve essere importante per gli stakeholder e contribuire agli obiettivi del progetto;
+- *Tracciabile nel tempo*: il requisito deve avere una scadenza o un periodo di validità
+
+== Requisiti funzionali
+#table(
+  columns: (0.20fr, 0.60fr, 0.20fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  [], [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema], [@Autenticazione-Utente],
+  [],
+  [L'Utente non autenticato deve inserire la propria email per autenticarsi],
+  [@Autenticazione-Utente @Inserimento-email-auth],
+
+  [],
+  [L'Utente non autenticato deve inserire la propria password per autenticarsi],
+  [@Autenticazione-Utente  @Inserimento-password],
+
+  [],
+  [L'Utente non autenticato deve ricevere un messaggio di errore in caso di inserimento di credenziali errate],
+  [@Autenticazione-non-riuscita],
+
+  [],
+  [L'Utente non autenticato deve ricevere un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso],
+  [@Account-sospeso],
+
+  [],
+  [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve riceve una mail con il codice di verifica],
+  [@Invio-codice-2FA],
+
+  [],
+  [L'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, deve poter richiedere il re-invio del codice di verifica nel caso in cui non lo abbia ricevuto o sia scaduto],
+  [@Re-invio-codice-2FA],
+
+  [],
+  [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve poter completare l'autenticazione a due fattori per autenticarsi nel Sistema],
+  [@Autenticazione-2FA],
+
+  [],
+  [L'Utente non autenticato deve poter inserire il codice di verifica ricevuto via mail per completare l'autenticazione, in caso sia richiesta la 2FA],
+  [@Inserimento-codice-2FA],
+
+  [],
+  [L'Utente non autenticato deve ricevere un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto],
+  [@Codice-2FA-errato @Codice-2FA-scaduto],
+
+  [],
+  [L'Utente non autenticato deve poter impostare la sua prima password, in seguito alla ricezione della mail contenente il link per la creazione della prima password],
+  [@Impostazione-password],
+
+  [],
+  [L'Utente non autenticato deve poter richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata],
+  [@Password-dimenticata],
+
+  [],
+  [L'Utente non autenticato deve poter inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password],
+  [@Inserimento-indirizzo-email],
+
+  [],
+  [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
+  [@Invio-email-reimpostazione-password],
+
+  [],
+  [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
+  [@Invio-email-reimpostazione-password],
+)
+
+== Requisiti non funzionali
+#table(
+  columns: (0.20fr, 0.60fr, 0.20fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  [], [], [],
+)
+
+== Requisiti di dominio
+#table(
+  columns: (0.20fr, 0.60fr, 0.20fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  [], [], [],
+)
 
 
 
