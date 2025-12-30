@@ -260,6 +260,8 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 
   [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
 
+  [Sensore simulato], [Un qualunque sensore BLE che venga simulato dal Simulatore di Gateway sviluppato],
+
   [Gateway simulato],
   [Un Gateway simulato che interloquisce con l'*Infrastruttura Cloud* per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
 
@@ -1325,6 +1327,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin è autenticato nel Sistema
   - Il Sistema ha recuperato i dati di log
 - *Post-condizioni*
+  - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
   - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
 - *Scenario principale*
   - Il Tenant Admin seleziona una o più tipologie di log che desidera vedere
@@ -2461,6 +2464,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Sistema Cloud non è raggiungibile
 - *Post-condizioni*:
   - Il Sistema non riceve i dati crittografati dal Gateway perché non è raggiungibile
+  - Il Gateway ritenterà l'invio dei dati dopo un dato intervallo di tempo
 - *Scenario principale*:
   - Il Gateway rileva che il Sistema Cloud non è raggiungibile
   - Il Gateway memorizza i dati nel proprio buffer interno per un invio successivo
@@ -2474,31 +2478,15 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
+  - L'API Client ha richiesto i dati real-time per uno specifico sensore, associato a un tenant specifico
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
   - L'API Client richiede i dati real-time del sensore specificato
-  - Il Sistema verifica che il sensore richiesto appartenga al tenant del API Client
-- *Scenari alternativi*:
-  - Sensore non trovato (#ref-uc(<Sensore-non-trovato>))
-  - Nessun dato disponibile per il sensore richiesto (#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>))
-  - Sensore non associato al tenant del API Client (#ref-uc(<Sensore-non-associato-tenant-API-Client>))
-- *Estensioni*:
-  - #ref-uc(<Sensore-non-trovato>)
-  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
-  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
+  - Il Sistema verifica che il sensore richiesto appartenga al tenant dell'API Client
 - *Inclusioni*:
   - #ref-uc(<Verifica-sensore>)
   - #ref-uc(<Restituzione-dati-real-time-sensore>)
-
-===== #sub-uc() - Verifica sensore <Verifica-sensore>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-- *Post-condizioni*:
-  - Viene verificata la validità del sensore richiesto e la sua associazione al tenant del API Client
-- *Scenario principale*:
-  - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del API Client
 
 ===== #sub-uc() - Restituzione dati real-time sensore <Restituzione-dati-real-time-sensore>
 - *Attore principale*: API Client
@@ -2509,37 +2497,6 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
   - Il Sistema recupera e restituisce i dati real-time del sensore richiesto
-
-
-==== #uc() - Sensore non trovato <Sensore-non-trovato>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-  - L'API Client ha richiesto i dati di un sensore non esistente
-- *Post-condizioni*:
-  - Viene restituito un messaggio di errore
-- *Scenario principale*:
-  - Il Sistema rileva che il sensore richiesto non esiste
-
-
-==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-- *Post-condizioni*:
-  - Viene mostrato un messaggio di errore
-- *Scenario principale*:
-  - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
-
-
-==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-- *Post-condizioni*:
-  - Viene restituito un messaggio di errore
-- *Scenario principale*:
-  - Il Sistema rileva che il sensore richiesto non appartiene al tenant del API Client
 
 
 ==== #uc() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
@@ -2555,12 +2512,7 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Sensore non trovato
   - Nessun dato storico disponibile per il sensore richiesto
   - Sensore non associato al tenant del API Client
-- *Estensioni*:
-  - #ref-uc(<Sensore-non-trovato>)
-  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
-  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
 - *Inclusioni*:
-  - #ref-uc(<Autenticazione-API-Client>)
   - #ref-uc(<Verifica-sensore>)
   - #ref-uc(<Restituzione-storico-dati-sensore>)
 
@@ -2575,6 +2527,56 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Il Sistema recupera e restituisce lo storico dei dati del sensore richiesto, eventualmente filtrati per intervallo temporale
 
 
+==== #uc() - Verifica sensore <Verifica-sensore>
+- *Attore principale*: API Client
+- *Pre-condizioni*:
+  - L'API Client è autenticato nel Sistema
+  - Il sensore richiesto esiste ed è associato al tenant dell'API Client
+- *Post-condizioni*:
+  - Il sensore richiesto e la sua associazione al tenant dell'API Client sono validi
+- *Scenario principale*:
+  - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del API Client
+- *Scenari alternativi*:
+  - Il sensore richiesto non è stato trovato tra i sensori associati al tenant dell'API Client (#ref-uc(<Sensore-non-trovato>))
+  - Non vi sono dati disponibili per il sensore richiesto (#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>))
+- *Estensioni*:
+  - #ref-uc(<Sensore-non-trovato>)
+  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
+
+
+==== #uc() - Sensore non trovato <Sensore-non-trovato>
+- *Attore principale*: API Client
+- *Pre-condizioni*:
+  - L'API Client è autenticato nel Sistema
+  - L'API Client ha richiesto i dati di un sensore che non appartiene alla lista dei sensori associati al tenant del client. #footnote[
+      Questo include anche il caso in cui il sensore non esista. Si ha un errore unico per dare meno informazioni possibili riguardo ai sensori degli altri tenant.
+    ]
+- *Post-condizioni*:
+  - Viene restituito un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema rileva che il sensore richiesto non esiste oppure che il sensore richiesto non è associato al tenant dell'API Client
+
+
+==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
+- *Attore principale*: API Client
+- *Pre-condizioni*:
+  - L'API Client è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
+
+
+// ==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
+// - *Attore principale*: API Client
+// - *Pre-condizioni*:
+//   - L'API Client è autenticato nel Sistema
+// - *Post-condizioni*:
+//   - Viene restituito un messaggio di errore
+// - *Scenario principale*:
+//   - Il Sistema rileva che il sensore richiesto non appartiene al tenant del API Client
+
+
 ==== #uc() - Autenticazione API Client <Autenticazione-API-Client>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
@@ -2586,8 +2588,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Il Sistema verifica le credenziali
   - Il Sistema autentica L'API Client
 - *Scenari alternativi*:
-  - Credenziali non valide
-  - Credenziali scadute
+  - Le credenziali inviate dall'API Client non sono valide
+  - Le credenziali inviate dall'API Client sono scadute
 - *Estensioni*:
   - #ref-uc(<Credenziali-API-Client-errate>)
   - #ref-uc(<Credenziali-API-Client-scadute>)
@@ -2610,6 +2612,7 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Scenario principale*:
   - Il Sistema verifica le credenziali inviate dal API Client e rileva che le credenziali sono scadute
 
+
 == Sistema Gateway - Lista dei casi d'uso
 Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e raggiungibile.
 
@@ -2629,6 +2632,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 //??????ho chiesto a cardin se ha senso
+// TODO: che ha detto cardin?
 ==== #uc() - Invio di dati eccessivi al Gateway <Invio-dati-eccessivi-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2640,6 +2644,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Sensore invia una quantità di dati superiore alla capacità di invio del Sistema Gateway
 
+// TODO: dettagli implementativi?
 ==== #uc() - Invio di dato simulando Heart Rate Service <Invio-dato-heart-rate-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2653,6 +2658,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera un nuovo dato di frequenza cardiaca simulato
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
+// TODO: dettagli implementativi?
 ==== #uc() - Invio di dato simulando Pulse Oximeter Service <Invio-dato-pulse-oximeter-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2666,6 +2672,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera nuovi valori simulati di saturazione di ossigeno nel sangue e frequenza del polso
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
+// TODO: dettagli implementativi?
 ==== #uc() - Invio di dato simulando ECG Custom Profile <Invio-dato-ecg-custom>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2679,6 +2686,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera una sequenza di valori che simulano l'ECG
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
+// TODO: dettagli implementativi?
 ==== #uc() - Invio di dato simulando Health Thermometer Service <Invio-dato-health-thermometer-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2692,6 +2700,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera un nuovo dato di temperatura corporea
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
+// TODO: dettagli implementativi?
 ==== #uc() - Invio di dati simulando Environmental Sensing Service <Invio-dato-environmental-sensing-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2704,6 +2713,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Sensore genera nuovi valori per la temperatura (UUID 0x2A6E) e l'umidità (UUID 0x2A6F)
   - Il Sensore invia due notifiche GATT distinte al Sistema Gateway, una per la temperatura e una per l'umidità
+
+// TODO: ----- RIPRENDI VERIFICA DA QUA -----
 
 === Attore principale - Cloud
 
