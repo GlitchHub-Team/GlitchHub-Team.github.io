@@ -6,6 +6,13 @@
   versione: "0.12.0",
   registro-modifiche: (
     (
+      "0.13.0",
+      "29/12/2025",
+      "Elia Ernesto Stellin, Alessandro Dinato, Riccardo Graziani",
+      "-",
+      [Verifica Use Case attuali],
+    ),
+    (
       "0.12.0",
       "23/12/2025",
       "Elia Ernesto Stellin",
