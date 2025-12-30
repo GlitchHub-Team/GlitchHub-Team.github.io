@@ -6,37 +6,37 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Da verificare",
+  stato: "Verificato",
   versione: "0.6.1",
   registro-modifiche: (
     (
       "0.6.1",
       "28/12/2025",
       "Elia Ernesto Stellin",
-      "-",
-      [Stesura CdP sprint 5 (@sprint-5-cdp); stesura PaF sprint 6 (@sprint-6-paf)]
+      "Alessandro Dinato",
+      [Stesura CdP sprint 5 (@sprint-5-cdp); stesura PaF sprint 6 (@sprint-6-paf)],
     ),
     (
       "0.6.0",
       "22/12/2025",
       "Elia Ernesto Stellin",
-      "-",
-      [Bozza sprint 5-6]
+      "Alessandro Dinato",
+      [Bozza sprint 5-6],
     ),
     (
       "0.5.1",
       "15/12/2025",
       "Elia Ernesto Stellin",
-      "-",
+      "Alessandro Dinato",
       [Aggiunta data consegna RTB in @calendario-progetto; Stesura CdP sprint 4 (@sprint-4-cdp);
-      Stesura PaF sprint 5 (@sprint-5-paf)]
+        Stesura PaF sprint 5 (@sprint-5-paf)],
     ),
     (
       "0.5.0",
       "11/12/2025",
       "Elia Ernesto Stellin",
-      "-",
-      [Stesura dati CdP sprint 4 (@sprint-4-cdp)]
+      "Alessandro Dinato",
+      [Stesura dati CdP sprint 4 (@sprint-4-cdp)],
     ),
     (
       "0.4.0",
@@ -85,7 +85,7 @@
       "17/11/2025",
       "Alessandro Dinato",
       "Siria Salvalaio",
-      "Bozza Piano di Progetto"
+      "Bozza Piano di Progetto",
     ),
   ),
   distribuzione: (
@@ -95,8 +95,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -1120,11 +1120,11 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
 
 ==== Preventivo risorse da utilizzare
 #table(
-	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
-		top: if y == 0 { 0pt } else { 0.5pt + black },
-		left: if x == 0 { 0pt } else { 0.5pt + black },
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "-", "-", "2", "-", "-", "-", [*2*],
@@ -1145,7 +1145,6 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
   ("Progettista", 0),
   ("Programmatore", 0),
   ("Verificatore", 0),
-
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint4)
 
@@ -1218,8 +1217,8 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
-  top: if y == 0 { 0pt } else { 0.5pt + black },
-  left: if x == 0 { 0pt } else { 0.5pt + black },
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "8", "7", "9 (-1)", "21", "24", "21", [*90*],
@@ -1241,12 +1240,12 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
-  "Responsabile", "44 (-3)" ,"30 €/h", "1320 € (-90 €)",
-  "Amministratore", "53 " ,"20 €/h", "1060 € ",
-  "Analista", "38 (-13)" ,"25 €/h", "950 € (-325 €)",
-  "Progettista", "145 " ,"25 €/h", "3625 € ",
-  "Programmatore", "165 " ,"15 €/h", "2475 € ",
-  "Verificatore", "160 " ,"15 €/h", "2400 € ",
+  "Responsabile", "44 (-3)", "30 €/h", "1320 € (-90 €)",
+  "Amministratore", "53 ", "20 €/h", "1060 € ",
+  "Analista", "38 (-13)", "25 €/h", "950 € (-325 €)",
+  "Progettista", "145 ", "25 €/h", "3625 € ",
+  "Programmatore", "165 ", "15 €/h", "2475 € ",
+  "Verificatore", "160 ", "15 €/h", "2400 € ",
   table.footer([*Totale*], [*605*], [-], [*11830 €*]),
 )
 
@@ -1255,7 +1254,7 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
 Inizio: 11/12/2025 \
 Fine: 17/12/2025 \
 
-Il presente sprint ha lo scopo di sviluppare ulteriormente i casi d'uso in vista dell'incontro con la proponente del 15/12/2025, in cui il gruppo presenterà gli use cases prodotti all'azienda e riceverà feedback utile alla produzione dell'#gloss[analisi dei requisiti].
+Il presente sprint ha lo scopo di sviluppare ulteriormente i casi d'uso in vista dell'incontro con l'azienda proponente del 15/12/2025, in cui il gruppo presenterà gli use cases prodotti all'azienda e riceverà feedback utili alla produzione dell'#gloss[analisi dei requisiti].
 
 Inoltre, secondo quanto detto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[*verbale interno dell'11 dicembre 2025*], è sorta la necessità di creare degli *Issue Form* e delle automazioni per le #gloss[GitHub Issues] per aumentare la produttività del gruppo.
 
@@ -1275,13 +1274,13 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
 ==== Preventivo risorse da utilizzare
 #table(
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-	align: left,
-	stroke: (x, y) => (
+  align: left,
+  stroke: (x, y) => (
     top: if y == 0 { 0pt } else { 0.5pt + black },
     left: if x == 0 { 0pt } else { 0.5pt + black },
-	),
-	table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-	"Jaume Bernardi", "-", "-", "1", "-", "-", "-", [*1*],
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "1", "-", "-", "-", [*1*],
   "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
   "Michele Dioli", "-", "-", "2", "-", "-", "-", [*2*],
   "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
@@ -1296,10 +1295,9 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
   ("Responsabile", 2),
   ("Amministratore", 1),
   ("Analista", 11),
-	("Progettista", 0),
-	("Programmatore", 0),
-	("Verificatore", 0),
-
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint5)
 
@@ -1321,21 +1319,21 @@ Inoltre, la task "Creazione di *Issue Form* e automazioni per #gloss[GitHub Issu
 
 ==== Risorse utilizzate
 #table(
-		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-	align: left,
-	stroke: (x, y) => (
-	top: if y == 0 { 0pt } else { 0.5pt + black },
-	left: if x == 0 { 0pt } else { 0.5pt + black },
-	),
-	table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-	"Jaume Bernardi",     "-", "-", "1", "-", "-", "-", [*1*],
-  "Alessandro Dinato",    "-", "-", "2", "-", "-", "-", [*2*],
-  "Michele Dioli",        "-", "-", "2", "-", "-", "-", [*2*],
-  "Hossam Ezzemouri",     "-", "-", "-", "-", "-", "-", [*0*],
-  "Riccardo Graziani",    "-", "-", "1", "-", "-", "-", [*1*],
-  "Siria Salvalaio",      "-", "-", "1", "-", "-", "-", [*1*],
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "1", "-", "-", "-", [*1*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "-", "2", "-", "-", "-", [*2*],
+  "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+  "Riccardo Graziani", "-", "-", "1", "-", "-", "-", [*1*],
+  "Siria Salvalaio", "-", "-", "1", "-", "-", "-", [*1*],
   "Elia Ernesto Stellin", "1 (-1)", "5 (+3)", "0 (-1)", "-", "-", "-", [*7*],
-  table.footer([*Totale*], [*1*], [*5*], [*7*], [*0*], [*0*], [*0*], [*14*]), 
+  table.footer([*Totale*], [*1*], [*5*], [*7*], [*0*], [*0*], [*0*], [*14*]),
 )
 ==== Grafico a torta della suddivisione oraria prevista
 
@@ -1343,13 +1341,13 @@ Inoltre, la task "Creazione di *Issue Form* e automazioni per #gloss[GitHub Issu
   ("Responsabile", 1),
   ("Amministratore", 5),
   ("Analista", 7),
-	("Progettista", 0),
-	("Programmatore", 0),
-	("Verificatore", 0),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
 )
 #graficoTorta(
-"Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
-oreEffettiveSprint5,
+  "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint5,
 )
 
 ==== Rischi occorsi
@@ -1358,39 +1356,39 @@ Il gruppo ha riscontrato principalmente i seguenti rischi:
 
 ==== Aggiornamento ore rimanenti
 #table(
-		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-	align: left,
-	stroke: (x, y) => (
-	top: if y == 0 { 0pt } else { 0.5pt + black },
-	left: if x == 0 { 0pt } else { 0.5pt + black },
-	),
-	table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-	"Jaume Bernardi",     "8", "7", "8 (-1)", "21", "24", "21", [*89*],
-"Alessandro Dinato",    "1", "7", "1 (-2)", "21", "23", "24", [*77*],
-"Michele Dioli",        "4", "7", "6 (-2)", "21", "24", "23", [*85*],
-"Hossam Ezzemouri",     "7", "8", "4", "20", "24", "23", [*86*],
-"Riccardo Graziani",    "8", "8", "3 (-1)", "20", "23", "24", [*86*],
-"Siria Salvalaio",      "8", "8", "6 (-1)", "21", "24", "21", [*88*],
-"Elia Ernesto Stellin", "7 (-1)", "3 (-5)", "3", "21", "23", "24", [*80*],
-table.footer([*Totale*], [*43*], [*48*], [*31*], [*145*], [*165*], [*160*], [*591*]),
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "8 (-1)", "21", "24", "21", [*89*],
+  "Alessandro Dinato", "1", "7", "1 (-2)", "21", "23", "24", [*77*],
+  "Michele Dioli", "4", "7", "6 (-2)", "21", "24", "23", [*85*],
+  "Hossam Ezzemouri", "7", "8", "4", "20", "24", "23", [*86*],
+  "Riccardo Graziani", "8", "8", "3 (-1)", "20", "23", "24", [*86*],
+  "Siria Salvalaio", "8", "8", "6 (-1)", "21", "24", "21", [*88*],
+  "Elia Ernesto Stellin", "7 (-1)", "3 (-5)", "3", "21", "23", "24", [*80*],
+  table.footer([*Totale*], [*43*], [*48*], [*31*], [*145*], [*165*], [*160*], [*591*]),
 )
 
 ==== Aggiornamento costi
 #table(
-	columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
-	align: left,
-	stroke: (x, y) => (
-		top: if y == 0 { 0pt } else { 0.5pt + black },
-		left: if x == 0 { 0pt } else { 0.5pt + black },
-	),
-	table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
-	"Responsabile",   "43 (-1)" ,"30 €/h", "1290 € (-30 €)",
-  "Amministratore", "48 (-5)" ,"20 €/h", "960 € (-100 €)",
-  "Analista",       "31 (-7)" ,"25 €/h", "775 € (-175 €)",
-  "Progettista",    "145"     ,"25 €/h", "3625 € ",
-  "Programmatore",  "165"     ,"15 €/h", "2475 € ",
-  "Verificatore",   "160"     ,"15 €/h", "2400 € ",
-table.footer([*Totale*], [*592*], [-], [*11525 €*]),
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "43 (-1)", "30 €/h", "1290 € (-30 €)",
+  "Amministratore", "48 (-5)", "20 €/h", "960 € (-100 €)",
+  "Analista", "31 (-7)", "25 €/h", "775 € (-175 €)",
+  "Progettista", "145", "25 €/h", "3625 € ",
+  "Programmatore", "165", "15 €/h", "2475 € ",
+  "Verificatore", "160", "15 €/h", "2400 € ",
+  table.footer([*Totale*], [*592*], [-], [*11525 €*]),
 )
 
 //// SPRINT 6 /////////////////////////////////////////////////////////////////
@@ -1409,7 +1407,7 @@ Il gruppo di lavoro per l'*Analisi dei Requisiti* ha individuato le seguenti att
 - Espandere gli use cases troppo generici (#issue(124))
 - Definire gli use cases con cloud come *attore* e #gloss[gateway simulato] come *sistema* (#issue(125))
 - Definire gli use cases con sensore come *attore* e #gloss[gateway simulato] come *sistema* (#issue(126))
-- Approfondire i metodi di normalizzazione dati da sensori BLE e approfondire gli strumenti Grafana+Prometheus (risp. #issue(133) e #issue(144))
+- Approfondire i metodi di normalizzazione dati da sensori BLE e approfondire gli strumenti Grafana+Prometheus (risp. #issue(133) e #issue(134))
 
 Il gruppo di lavoro per il *Piano di Qualifica* ha individuato le seguenti attività da svolgere:
 - Definire le metriche da usare nel #gloss[Piano di Qualifica] (#issue(120))
@@ -1444,7 +1442,7 @@ Da determinare
 Da determinare
 
 // #let orePrevSprint6 = (
-  
+
 // ("Responsabile", 0),
 // ("Amministratore", 0),
 // ("Analista", 0),
