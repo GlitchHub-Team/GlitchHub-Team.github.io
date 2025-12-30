@@ -1793,17 +1793,17 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Scenario principale*:
   - Il Super Admin inserisce l'email del nuovo Tenant Admin
 
-===== #sub-uc() - Invio credenziali di accesso nuovo Tenant-admin <Invio-credenziali-accesso-nuovo-tenant-admin>
+===== #sub-uc() - Invio email impostazione password nuovo Tenant-admin <Invio-email-impostazione-password-nuovo-tenant-admin>
 - *Attore principale*: Super-admin
-- *Attore secondario*: Client email
+- *Attore secondario*: Email client
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
   - Il tenant deve esistere nel Sistema
   - L'email del nuovo Tenant Admin è valida
 - *Post-condizioni*:
-  - Il Tenant-admin riceve una email con le credenziali di accesso
-- *Scenario principale*:
   - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
+- *Scenario principale*:
+  - L'Email client riceve una email con il link per l'impostazione della nuova password
 
 
 ==== #uc() - Email già utilizzata <Email-gia-utilizzata-super-admin>
