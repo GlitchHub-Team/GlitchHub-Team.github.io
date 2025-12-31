@@ -817,23 +817,43 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Scenario principale*:
   - Il Tenant User visualizza il titolo e la descrizione dell'alert selezionato
 
+==== #sub-uc() - Alert mancata ricezione dati da Gateway <Mancata-ricezione-gateway>
+- *Specializza*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
+- *Pre-condizioni*:
+  - Come in #ref-uc(<Visualizzazione-alert>)
+  - Il Gateway in questione è attivo
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Scenario principale*:
+  - Il Tenant User visualizza l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+
+==== #sub-uc() - Alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
+- *Specializza*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
+- *Pre-condizioni*:
+  - Come in #ref-uc(<Visualizzazione-alert>)
+  - Il Sensore in questione è attivo
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Scenario principale*:
+  - Il Tenant User visualizza l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+
+==== #sub-uc() - Alert ricezione valore out-of-range <Ricezione-valore-out-of-range>
+- *Specializza*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
+- *Pre-condizioni*:
+  - Come in #ref-uc(<Visualizzazione-alert>)
+- *Post-condizioni*:
+  - Il Sistema mostra il valore ricevuto e lo confronta con la soglia di alert
+- *Scenario principale*:
+  - Il Tenant User visualizza il valore ricevuto e la soglia di alert
+
 // TODO: AGGIUNGERE TIPI DI ALERT VISUALIZZATI
 // - mancata ricezione dati da GATEWAY (l'alert non si mostra se il gateway è stato disattivato)
 // - mancata ricezione dati da SENSORE SPECIFICO (l'alert non si mostra se il sensore è stato disattivato
 // - dati sensore out-of-range
 // - autenticazione gateway fallita (?)
-// 
-
-
-//
-//
-// 
-// 
-// 
-// 
-// 
-// 
-
 
 // TODO: DA AGGIUNGERE EVENTUALI INFORMAZIONI DA AGGIUNGERE ALLA DASHBOARD
 
