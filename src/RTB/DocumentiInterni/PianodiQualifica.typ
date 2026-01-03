@@ -7,6 +7,7 @@
   stato: "Bozza",
   versione: "0.0.1",
   registro-modifiche: (
+    ("0.0.3","3/01/2026", "Hossam Ezzemouri", "-", "Aggiunta di metriche"),
     ("0.0.2", "29/12/2025", "-", "Siria Salvalaio", "Stesura metriche"),
     ("0.0.1", "21/12/2025", "-", "Siria Salvalaio", "Bozza prime metriche e struttura documento"),
   ),
@@ -70,6 +71,10 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
   Differenza tra valore guadagnato e costo reale (*EV*-*AC*).
 - *MPC-SV (Schedule Variance)* \
   Differenza tra lavoro fatto e lavoro pianificato (*EV*-*PV*).
+- *MPC-TCR (Task Completion Rate)* \
+  Percentuale di task completate rispetto a quelle pianificate per uno sprint.
+- *MPC-TS (Task Slippage)* \
+  Percentuale di task slittate allo sprint successivo rispetto alle task totali.
 
 #figure(
   table(
@@ -86,6 +91,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     [MPC-ETC], [Estimated To Complete], [$"(valore da definire)"$], [$$],
     [MPC-CV], [Cost Variance], [$>= 0$], [$> 0$],
     [MPC-SV], [Schedule Variance], [$>= 0$], [$> 0$],
+    [MPC-TCR],[Task Completion Rate], [$"(da definire)"$],[$100%$],
+    [MPC-TS], [Task Slippage], [$"(da definire)"$], [$0%$]
+
   ),
   caption: [Valori per misurare la qualità della fornitura.],
   kind: table,
@@ -169,6 +177,10 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
   Rapporto tra i costi di prevenzione/test e il costo totale.
 - *MPC-TE (Time efficiency)* \
   Rapporto tra tempo di produzione effettivo e tempo totale di lavoro.
+- *MPC-WD (Work Distribution)* \
+  Misura la distribuzione in percentuale delle task tra i membri del team per garantire un carico di lavoro equilibrato.
+- *MPC-SPF (Single Point of Failure Risk)* \
+  Indice che valuta la concentrazione di task critiche su un numero limitato di membri del team, al fine di ridurre il rischio di dipendenza da un singolo componente del gruppo.
 
 #figure(
   table(
@@ -180,6 +192,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     [MPC-QMS], [Quality Metrics Satisfied], [$>= 80%$], [$= 100%$],
     [MPC-CQ], [Cost of Quality], [$15%-25%$], [$<=15%$],
     [MPC-TE], [Time efficiency], [$>= 0.8$], [$>= 0.95$],
+    [MPC-WD],[Work Distribution], [$"(da definire)"$], [$"(da definire)"$],
+    [MPC-SPF],[Single Point of Failure Risk], [$"(da definire)"$], [$"(da definire)"$]
+
   ),
   caption: [Valori per misurare la qualità della qualità e dei processi.],
   kind: table,
@@ -196,6 +211,10 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
   Percentuale di requisiti obbligatori implementati.
 - *MPD-CRP (Copertura Requisiti Opzionali)* \
   Percentuale di requisiti opzionali implementati.
+- *MPD-AD (API Documentation)*
+  Presenza e completezza della documentazione delle API.
+- *MPD-DL (Data Loss)*
+  Percentuale di messaggi persi durante la trasmissione dei dati dal gateway al cloud. (messaggi inviati-messaggi ricevuti)/messaggi inviati
 
 #figure(
   table(
@@ -206,6 +225,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     
     [MPD-CRO], [Copertura Requisiti Obbligatori], [$= 100%$], [$= 100%$],
     [MPD-CRP], [Copertura Requisiti Opzionali], [$>= 0$], [$>=70%$],
+    [MPD-AD],[API Documentation], [$"(da definire)"$], [$"(da definire)"$],
+    [MPD-DL],[Data Loss], [$"(da definire)"$], [$0%$]
   ),
   caption: [Valori per misurare la qualità delle funzionalità.],
   kind: table,
@@ -330,7 +351,32 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 = Metriche di Testing
+La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
+Le attivita di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del perodotto discusse in questo documento.
+
+== Copertura del codice
+La copertura del codice (detta anche *Code Coverage*) misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici. Tale metrica consente di valutare il grado di verifica del software ed è direttamente collegata alla metrica *MPC-CC (Code Coverage)*.
+
+Il valore minimo accettabile è fissato al 75%
+
+== Test Unitari
+I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta aalle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate.
+L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
+
+== Test di Integrazione
+I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura,
+tali test risultano fondamentali per il raggiungimento di un solido risultato.
+
+== Test di Regressione
+I test di regressione vengono eseguiti in seguito all'implementazione di nuove funzionalità o modifiche al sistema, in modo da accertarsi che il corretto comportamento precedente non sia 
+stato compromesso.
+Essi consistono nella riesecuzione dei test unitari e di integrazione già esistenti. Un aumento del numero di test di regressione falliti
+rappresenta un indicatore di instabilità e deve essere strettamente monitorato per evitare regressioni funzionali.
+
+== Test di Sistema
+I test di sistema verificano il corretto comportamento complessivo dell' applicazione in un ambiente il più possibile simile a quello di utilizzo reale.
+Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
 = Cruscotto di Valutazione
 
 = Iniziative di miglioramento
