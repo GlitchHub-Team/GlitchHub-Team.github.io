@@ -287,7 +287,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente non è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema ha riconosciuto l'utente e l'ha autenticato con il ruolo di _Tenant User_, _Tenant Admin_ o _Super Admin_
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Utente, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - L'Utente inserisce l'indirizzo email associato al proprio account
   - L'Utente inserisce la password
@@ -385,7 +385,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Post-condizioni*:
   - Il Sistema verifica il codice 2FA inserito dall'Utente
   - Il Sistema autentica l'Utente, il quale è ora un *Utente autenticato*
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Utente, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - L'Utente riceve il codice 2FA via email
   - L'Utente inserisce il codice 2FA ricevuto
@@ -601,7 +601,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - L'Utente è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema disconnette l'Utente
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Utente, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - L'Utente esegue il logout dal Sistema
 
@@ -838,10 +838,43 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Scenario principale*:
   - Il Tenant User visualizza il titolo e la descrizione dell'alert selezionato
 
+==== #sub-uc() - Alert mancata ricezione dati da Gateway <Mancata-ricezione-gateway>
+- *Specializza*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
+- *Pre-condizioni*:
+  - Come in #ref-uc(<Visualizzazione-alert>)
+  - Il Gateway in questione è attivo
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Scenario principale*:
+  - Il Tenant User visualizza l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+
+==== #sub-uc() - Alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
+- *Specializza*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
+- *Pre-condizioni*:
+  - Come in #ref-uc(<Visualizzazione-alert>)
+  - Il Sensore in questione è attivo
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Scenario principale*:
+  - Il Tenant User visualizza l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+
+==== #sub-uc() - Alert ricezione valore out-of-range <Ricezione-valore-out-of-range>
+- *Specializza*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
+- *Pre-condizioni*:
+  - Come in #ref-uc(<Visualizzazione-alert>)
+- *Post-condizioni*:
+  - Il Sistema mostra il valore ricevuto e lo confronta con la soglia di alert
+- *Scenario principale*:
+  - Il Tenant User visualizza il valore ricevuto e la soglia di alert
+
 // TODO: AGGIUNGERE TIPI DI ALERT VISUALIZZATI
 // - mancata ricezione dati da GATEWAY (l'alert non si mostra se il gateway è stato disattivato)
 // - mancata ricezione dati da SENSORE SPECIFICO (l'alert non si mostra se il sensore è stato disattivato
-
+// - dati sensore out-of-range
+// - autenticazione gateway fallita (?)
 
 // TODO: DA AGGIUNGERE EVENTUALI INFORMAZIONI DA AGGIUNGERE ALLA DASHBOARD
 
@@ -864,7 +897,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Post-condizioni*:
   - Il Sistema registra correttamente il nuovo Tenant User nel tenant associato al Tenant Admin
   - Il Sistema invia una email con un link per impostare la password dell'account appena creato
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin inserisce l'indirizzo email del nuovo Tenant User
   - L'Email client riceve la mail di impostazione password
@@ -914,7 +947,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant User in questione appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Tenant User non può più accedere al Sistema
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin sceglie il Tenant User che vuole sospendere
   - Il Tenant Admin conferma la sospensione
@@ -940,7 +973,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant User in questione appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Tenant User può accedere nuovamente al Sistema
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin sceglie il Tenant User che vuole riattivare
   - Il Tenant Admin conferma la riattivazione dell'account
@@ -967,7 +1000,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant User in questione appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema elimina il Tenant User
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin sceglie il Tenant User che vuole rimuovere
   - Il Tenant Admin conferma l'eliminazione del Tenant User
@@ -1047,7 +1080,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il sensore non è già disattivato
 - *Post-condizioni*:
   - Il Sistema invia un comando al gateway per ignorare i dati provenienti dal sensore specificato
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin seleziona il sensore che vuole disattivare
 - *Scenari alternativi*:
@@ -1066,7 +1099,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il sensore è disattivato
 - *Post-condizioni*:
   - Il Sistema invia un comando al gateway per riprendere la raccolta dei dati provenienti dal sensore specificato
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin seleziona il sensore che vuole riattivare
 - *Scenari alternativi*:
@@ -1083,7 +1116,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema genera una nuova API key associata al tenant del Tenant Admin
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin inserisce il nome della API key
   - Il Tenant Admin inserisce la scadenza della API key
@@ -1186,7 +1219,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - La API key selezionata appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema elimina la API key selezionata
-  - Il Sistema registra l'evento negli audit log
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin seleziona una API key associata al proprio tenant
   - Il Tenant Admin conferma l'eliminazione della API key selezionata
