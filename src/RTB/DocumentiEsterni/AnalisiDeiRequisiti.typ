@@ -3,7 +3,6 @@
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
-  versione: "0.13.1",
   registro-modifiche: (
     (
       "0.13.1",
