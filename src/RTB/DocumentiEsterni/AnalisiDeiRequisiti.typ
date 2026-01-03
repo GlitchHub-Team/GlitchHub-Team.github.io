@@ -228,9 +228,9 @@ I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione s
 - *Attori primari*: indicano gli attori che interagiscono attivamente con il sistema e che avviano o guidano il flusso principale del caso d'uso;
 - *Attori secondari*: rappresentano gli attori che intervengono in modo indiretto o passivo;
 - *Pre-condizioni*: descrizione delle condizioni che devono essere vere affinchè l'attore possa avviare il caso d'uso;
-- *Post-condizioni*: descrizione dello stato interno del sistema al completamento del caso d'uso;
+- *Post-condizioni*: descrizione delle condizioni che devono essere vere al termine del caso d'uso, indicando lo stato del sistema dopo l'esecuzione;
 - *Scenario principale*: sequenza ordinata di passi che descrive il flusso di interazione tra attori e sistema in assenza di errori o di situazioni eccezionali;
-- *Scenario secondario*: deviazioni dal flusso principale che si verificano quando l'attore compie una scelta alternativa o si verificano condizioni particolari previste dal caso d'uso;
+- *Scenario alternativo*: interruzioni del flusso principale che si verificano quando l'attore compie una scelta alternativa o si verificano condizioni particolari previste dal caso d'uso. Quando uno scenario alternativo si verifica, le post-condizioni del caso d'uso principale devono essere diverse;
 - *Inclusioni*: riferimenti a casi d'uso che l'attore deve completare per poter portare a termine il caso d'uso corrente;
 - *Estensioni*: riferimenti a casi d'uso che posso verificarsi durante il flusso principale del caso d'uso;
 
@@ -260,6 +260,8 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 
   [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
 
+  [Sensore simulato], [Un qualunque sensore BLE che venga simulato dal Simulatore di Gateway sviluppato],
+
   [Gateway simulato],
   [Un Gateway simulato che interloquisce con l'*Infrastruttura Cloud* per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
 
@@ -268,7 +270,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 )
 
 == Sistema Cloud - Lista dei casi d'uso
-Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
+In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud. Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
 
 === Attore principale - Utente non autenticato
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
@@ -450,6 +452,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Estensioni*:
   - #ref-uc(<Password-non-conforme-criteri-sicurezza>)
   - #ref-uc(<Password-non-coincidenti>)
+  - #ref-uc(<Link-impostazione-password-scaduto>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-nuova-password>)
   - #ref-uc(<Conferma-password>)
@@ -567,6 +570,18 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - L'Utente visualizza un messaggio di errore dopo aver inserito una nuova password non conforme ai criteri di sicurezza
+
+==== #uc() - Link di impostazione password scaduto <Link-impostazione-password-scaduto>
+- *Attore principale*: Utente non autenticato
+- *Pre-condizioni*:
+  - L'Utente non è autenticato nel Sistema
+  - L'Utente ha ricevuto l'email di impostazione o reimpostazione password
+  - Il link di impostazione o reimpostazione password è scaduto
+- *Post-condizioni*:
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - L'Utente clicca sul link di impostazione o reimpostazione password scaduto
+  - L'Utente visualizza un messaggio di errore
 
 
 ///// UTENTE AUTENTICATO //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1345,6 +1360,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin è autenticato nel Sistema
   - Il Sistema ha recuperato i dati di log
 - *Post-condizioni*
+  - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
   - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
 - *Scenario principale*
   - Il Tenant Admin seleziona una o più tipologie di log che desidera vedere
@@ -2139,7 +2155,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Visualizzazione-data-staleness>)
   - #ref-uc(<Visualizzazione-valori-out-of-range>)
 
-=== #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
+===== #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2151,7 +2167,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza il numero di gateway offline e online
   - Il Super Admin visualizza il grafico a torta rappresentante la metrica
 
-=== #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
+===== #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2163,7 +2179,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza il throughput dati
   - Il Super Admin visualizza il grafico Time Series rappresentante la metrica
 
-=== #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
+===== #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2177,7 +2193,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza lo Stat Panel rappresentante le metriche
   - Il Super Admin visualizza il grafico Time Series rappresentante l'andamento temporale delle metriche
 
-=== #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
+===== #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2189,7 +2205,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza la frequenza di disconnessione dei gateway
   - Il Super Admin visualizza il grafico a barre rappresentante le disconnessioni rilevate per ogni gateway
 
-=== #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
+===== #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2201,7 +2217,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza le dimensioni dei payload dei pacchetti inviati dai gateway
   - Il Super Admin visualizza il grafico a barre rappresentante le dimensioni medie, minime e massime dei payload
 
-=== #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
+===== #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2213,7 +2229,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza la data staleness dei sensori
   - Il Super Admin visualizza l'alert list rappresentante la data staleness di ogni sensore
 
-=== #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
+===== #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2422,7 +2438,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway è connesso al Cloud
   - Il Gateway si è avviato e si è connesso per la prima volta al Cloud
   - Il Gateway possiede delle credenziali per l'autenticazione
-  - Il Gateway possiede un identificativo  // TODO: qual è differenza tra credenziali di auth e identificativo?
+  - Il Gateway possiede un identificativo univoco
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di hello dal Gateway
   - Il Sistema autentica il Gateway, associandolo all'identificativo ricevuto
@@ -2445,7 +2461,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 - *Scenario principale*:
   - Il Gateway riceve il messaggio di autenticazione fallita dal Sistema
 
-// TODO: CONTINUA REVIEW DA QUA ----
 
 ==== #uc() - Identificativo Gateway non trovato <Identificativo-gateway-non-trovato>
 - *Attore primario*: Gateway
@@ -2481,6 +2496,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Sistema Cloud non è raggiungibile
 - *Post-condizioni*:
   - Il Sistema non riceve i dati crittografati dal Gateway perché non è raggiungibile
+  - Il Gateway ritenterà l'invio dei dati dopo un dato intervallo di tempo
 - *Scenario principale*:
   - Il Gateway rileva che il Sistema Cloud non è raggiungibile
   - Il Gateway memorizza i dati nel proprio buffer interno per un invio successivo
@@ -2494,31 +2510,15 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
+  - L'API Client ha richiesto i dati real-time per uno specifico sensore, associato a un tenant specifico
 - *Post-condizioni*:
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
   - L'API Client richiede i dati real-time del sensore specificato
-  - Il Sistema verifica che il sensore richiesto appartenga al tenant del API Client
-- *Scenari alternativi*:
-  - Sensore non trovato (#ref-uc(<Sensore-non-trovato>))
-  - Nessun dato disponibile per il sensore richiesto (#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>))
-  - Sensore non associato al tenant del API Client (#ref-uc(<Sensore-non-associato-tenant-API-Client>))
-- *Estensioni*:
-  - #ref-uc(<Sensore-non-trovato>)
-  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
-  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
+  - Il Sistema verifica che il sensore richiesto appartenga al tenant dell'API Client
 - *Inclusioni*:
   - #ref-uc(<Verifica-sensore>)
   - #ref-uc(<Restituzione-dati-real-time-sensore>)
-
-===== #sub-uc() - Verifica sensore <Verifica-sensore>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-- *Post-condizioni*:
-  - Viene verificata la validità del sensore richiesto e la sua associazione al tenant del API Client
-- *Scenario principale*:
-  - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del API Client
 
 ===== #sub-uc() - Restituzione dati real-time sensore <Restituzione-dati-real-time-sensore>
 - *Attore principale*: API Client
@@ -2529,37 +2529,6 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Vengono restituiti i dati real-time del sensore richiesto
 - *Scenario principale*:
   - Il Sistema recupera e restituisce i dati real-time del sensore richiesto
-
-
-==== #uc() - Sensore non trovato <Sensore-non-trovato>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-  - L'API Client ha richiesto i dati di un sensore non esistente
-- *Post-condizioni*:
-  - Viene restituito un messaggio di errore
-- *Scenario principale*:
-  - Il Sistema rileva che il sensore richiesto non esiste
-
-
-==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-- *Post-condizioni*:
-  - Viene mostrato un messaggio di errore
-- *Scenario principale*:
-  - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
-
-
-==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-- *Post-condizioni*:
-  - Viene restituito un messaggio di errore
-- *Scenario principale*:
-  - Il Sistema rileva che il sensore richiesto non appartiene al tenant del API Client
 
 
 ==== #uc() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
@@ -2575,12 +2544,7 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Sensore non trovato
   - Nessun dato storico disponibile per il sensore richiesto
   - Sensore non associato al tenant del API Client
-- *Estensioni*:
-  - #ref-uc(<Sensore-non-trovato>)
-  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
-  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
 - *Inclusioni*:
-  - #ref-uc(<Autenticazione-API-Client>)
   - #ref-uc(<Verifica-sensore>)
   - #ref-uc(<Restituzione-storico-dati-sensore>)
 
@@ -2595,6 +2559,56 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Il Sistema recupera e restituisce lo storico dei dati del sensore richiesto, eventualmente filtrati per intervallo temporale
 
 
+==== #uc() - Verifica sensore <Verifica-sensore>
+- *Attore principale*: API Client
+- *Pre-condizioni*:
+  - L'API Client è autenticato nel Sistema
+  - Il sensore richiesto esiste ed è associato al tenant dell'API Client
+- *Post-condizioni*:
+  - Il sensore richiesto e la sua associazione al tenant dell'API Client sono validi
+- *Scenario principale*:
+  - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del API Client
+- *Scenari alternativi*:
+  - Il sensore richiesto non è stato trovato tra i sensori associati al tenant dell'API Client (#ref-uc(<Sensore-non-trovato>))
+  - Non vi sono dati disponibili per il sensore richiesto (#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>))
+- *Estensioni*:
+  - #ref-uc(<Sensore-non-trovato>)
+  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
+
+
+==== #uc() - Sensore non trovato <Sensore-non-trovato>
+- *Attore principale*: API Client
+- *Pre-condizioni*:
+  - L'API Client è autenticato nel Sistema
+  - L'API Client ha richiesto i dati di un sensore che non appartiene alla lista dei sensori associati al tenant del client. #footnote[
+      Questo include anche il caso in cui il sensore non esista. Si ha un errore unico per dare meno informazioni possibili riguardo ai sensori degli altri tenant.
+    ]
+- *Post-condizioni*:
+  - Viene restituito un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema rileva che il sensore richiesto non esiste oppure che il sensore richiesto non è associato al tenant dell'API Client
+
+
+==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
+- *Attore principale*: API Client
+- *Pre-condizioni*:
+  - L'API Client è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
+
+
+// ==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
+// - *Attore principale*: API Client
+// - *Pre-condizioni*:
+//   - L'API Client è autenticato nel Sistema
+// - *Post-condizioni*:
+//   - Viene restituito un messaggio di errore
+// - *Scenario principale*:
+//   - Il Sistema rileva che il sensore richiesto non appartiene al tenant del API Client
+
+
 ==== #uc() - Autenticazione API Client <Autenticazione-API-Client>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
@@ -2606,8 +2620,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - Il Sistema verifica le credenziali
   - Il Sistema autentica L'API Client
 - *Scenari alternativi*:
-  - Credenziali non valide
-  - Credenziali scadute
+  - Le credenziali inviate dall'API Client non sono valide
+  - Le credenziali inviate dall'API Client sono scadute
 - *Estensioni*:
   - #ref-uc(<Credenziali-API-Client-errate>)
   - #ref-uc(<Credenziali-API-Client-scadute>)
@@ -2630,6 +2644,7 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Scenario principale*:
   - Il Sistema verifica le credenziali inviate dal API Client e rileva che le credenziali sono scadute
 
+
 == Sistema Gateway - Lista dei casi d'uso
 Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e raggiungibile.
 
@@ -2640,25 +2655,26 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
 - *Post-condizioni*
-  - Il Sistema riceve un nuovo dato dal Sensore
-  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve un nuovo dato dal Sensore
+  - Il Sistema Gateway normalizza e formatta il dato in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato simulato
   - Il Sensore invia il dato al Sistema Gateway
 
 
-//??????ho chiesto a cardin se ha senso
+// TODO: rivedere secondo email di cardin
 ==== #uc() - Invio di dati eccessivi al Gateway <Invio-dati-eccessivi-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
 - *Post-condizioni*:
-  - Il Sistema riceve più dati di quanti ne possa inviare al Cloud
-  - Il Sistema salva i dati più recenti nel buffer interno
-  - Il Sistema elimina i dati più vecchi per fare spazio ai nuovi dati
+  - Il Sistema Gateway riceve più dati di quanti ne possa inviare al Cloud
+  - Il Sistema Gateway salva i dati più recenti nel buffer interno
+  - Il Sistema Gateway elimina i dati più vecchi per fare spazio ai nuovi dati
 - *Scenario principale*:
   - Il Sensore invia una quantità di dati superiore alla capacità di invio del Sistema Gateway
+
 
 ==== #uc() - Invio di dato simulando Heart Rate Service <Invio-dato-heart-rate-service>
 - *Attore principale*: Sensore simulato
@@ -2666,12 +2682,13 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato il servizio Heart Rate Service (GATT)
 - *Post-condizioni*:
-  - Il Sistema riceve un nuovo dato di frequenza cardiaca dal Sensore
-  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve un nuovo dato di frequenza cardiaca dal Sensore
+  - Il Sistema Gateway normalizza e formatta il dato in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato di frequenza cardiaca simulato
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
 
 ==== #uc() - Invio di dato simulando Pulse Oximeter Service <Invio-dato-pulse-oximeter-service>
 - *Attore principale*: Sensore simulato
@@ -2679,12 +2696,13 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato il servizio Pulse Oximeter Service (GATT)
 - *Post-condizioni*:
-  - Il Sistema riceve le nuove misurazioni di saturazione di ossigeno nel sangue e frequenza del polso
-  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve le nuove misurazioni di saturazione di ossigeno nel sangue e frequenza del polso
+  - Il Sistema Gateway normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera nuovi valori simulati di saturazione di ossigeno nel sangue e frequenza del polso
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
 
 ==== #uc() - Invio di dato simulando ECG Custom Profile <Invio-dato-ecg-custom>
 - *Attore principale*: Sensore simulato
@@ -2692,12 +2710,13 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato un profilo custom per invio di dati per l'elettrocardiogramma (ECG)
 - *Post-condizioni*:
-  - Il Sistema riceve i dati grezzi dell'ECG
-  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve i dati grezzi dell'ECG
+  - Il Sistema Gateway normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera una sequenza di valori che simulano l'ECG
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
 
 ==== #uc() - Invio di dato simulando Health Thermometer Service <Invio-dato-health-thermometer-service>
 - *Attore principale*: Sensore simulato
@@ -2705,12 +2724,13 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato il servizio Health Thermometer Service (GATT)
 - *Post-condizioni*:
-  - Il Sistema riceve il valore della temperatura corporea
-  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve il valore della temperatura corporea
+  - Il Sistema Gateway normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato di temperatura corporea
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
+
 
 ==== #uc() - Invio di dati simulando Environmental Sensing Service <Invio-dato-environmental-sensing-service>
 - *Attore principale*: Sensore simulato
@@ -2725,39 +2745,42 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera nuovi valori per la temperatura (UUID 0x2A6E) e l'umidità (UUID 0x2A6F)
   - Il Sensore invia due notifiche GATT distinte al Sistema Gateway, una per la temperatura e una per l'umidità
 
+
 === Attore principale - Cloud
 
 ==== #uc() - Conferma autenticazione Gateway <Conferma-autenticazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud
-  - Il Sistema è stato autenticato con successo
+  - Il Cloud ha ricevuto un messaggio di Hello dal Sistema
+  - Il Cloud ha autenticato con successo il Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve la conferma di autenticazione del Gateway
+  - Il Sistema riceve la conferma di autenticazione da parte del Cloud
   - Il Sistema attende di essere associato ad un tenant
 - *Scenario principale*:
   - Il Cloud invia la conferma di autenticazione al Gateway
 
+
 ==== #uc() - Rifiuto autenticazione Gateway <Rifiuto-autenticazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud
-  - Il Sistema non è stato autenticato con successo
+  - Il Cloud ha ricevuto un messaggio di Hello dal Sistema
+  - Il Cloud non ha autenticato il Sistema con successo
 - *Post-condizioni*:
-  - Il Sistema riceve il rifiuto di autenticazione del Gateway
-  - Il Sistema entra in stato di errore
+  - Il Sistema Gateway riceve il rifiuto di autenticazione da parte del Cloud
+  - Il Sistema Gateway entra in stato di errore
 - *Scenario principale*:
   - Il Cloud invia il rifiuto di autenticazione al Gateway
+
 
 ==== #uc() - Assegnazione tenant al Gateway <Assegnazione-tenant-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema è autenticato
-  - Il Sistema non è ancora associato ad un tenant
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway non è ancora associato ad un tenant
   - Il Tenant assegnato è valido
 - *Post-condizioni*:
-  - Il Sistema riceve l'assegnazione del tenant
-  - Il Sistema è pronto per inviare dati crittografati
+  - Il Sistema Gateway riceve l'assegnazione del tenant
+  - Il Sistema Gateway è pronto per inviare dati crittografati
 - *Scenario principale*:
   - Il Cloud invia l'assegnazione del tenant al Sistema
   - Il Cloud invia la chiave per la cifratura dei dati
@@ -2768,8 +2791,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 ===== #sub-uc() - Invio tenant associato al Gateway <Invio-tenant-associato-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema è autenticato
-  - Il Sistema non è ancora associato ad un tenant
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway non è ancora associato ad un tenant
   - Il Tenant assegnato è valido
 - *Post-condizioni*:
   - Il Sistema riceve e salva l'assegnazione del tenant
@@ -2779,7 +2802,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 ===== #sub-uc() - Invio chiave per la cifratura dei dati <Invio-chiave-cifratura-dati>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema è autenticato
+  - Il Sistema è autenticato nel Cloud
   - Il Sistema non è ancora associato ad un tenant
   - Il Tenant assegnato è valido
 - *Post-condizioni*:
@@ -2787,76 +2810,89 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia la chiave pubblica per la cifratura dei dati al Sistema
 
+
 ==== #uc() - Riattivazione sensore simulato <Riattivazione-sensore-simulato>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sensore simulato è configurato nel Sistema Gateway
-  - Il Sensore simulato è disattivato, il Sistema non invia dati da quel Sensore
+  - Il Sensore simulato è disattivato, ovvero il Sistema Gateway non invia al Cloud i dati relativi a tale Sensore
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di riattivazione del Sensore simulato
-  - Il Sistema ricomincia a inviare dati dal Sensore simulato
+  - Il Sistema Gateway riceve il comando di riattivazione del Sensore simulato dal Cloud
+  - Il Sistema Gateway ricomincia a inviare al Cloud i dati relativi a tale Sensore
 - *Scenario principale*:
   - Il Cloud invia il comando di riattivazione del Sensore simulato al Sistema Gateway
+
 
 ==== #uc() - Disattivazione sensore simulato <Disattivazione-sensore-simulato>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sensore simulato è configurato nel Sistema Gateway
   - Il Sensore simulato è attivato, il Sistema invia dati da quel Sensore
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di disattivazione del Sensore simulato
-  - Il Sistema smette di inviare dati dal Sensore simulato
+  - Il Sistema Gateway riceve il comando di disattivazione del Sensore simulato dal Cloud
+  - Il Sistema Gateway smette di inviare al Cloud i dati relativi a tale Sensore
 - *Scenario principale*:
   - Il Cloud invia il comando di disattivazione del Sensore simulato al Sistema Gateway
+
 
 ==== #uc() - Riattivazione Gateway <Riattivazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema Gateway è in stato di disattivazione, non invia dati dei propri sensori
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway è in stato di disattivazione, ovvero non invia i dati dei propri sensori al Cloud
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di riattivazione
-  - Il Sistema ricomincia l'invio di dati dei propri sensori
+  - Il Sistema Gateway riceve il comando di riattivazione dal Cloud
+  - Il Sistema Gateway ricomincia l'invio dei dati di tutti i propri sensori al Cloud
 - *Scenario principale*:
   - Il Cloud invia il comando di riattivazione al Sistema Gateway
+
 
 ==== #uc() - Disattivazione Gateway <Invio-comando-sospensione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema Gateway è attivo, invia dati dei propri sensori
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway è attivo, ovvero invia dati dei propri sensori
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di disattivazione
-  - Il Sistema smette di inviare dati dei propri sensori
+  - Il Sistema Gateway riceve il comando di disattivazione dal Cloud
+  - Il Sistema Gateway smette di inviare i dati di tutti i propri sensori al Cloud
 - *Scenario principale*:
   - Il Cloud invia il comando di disattivazione al Sistema Gateway
+
 
 ==== #uc() - Riavvio Gateway <Riavvio-gateway-cloud>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - ?
+  - Il Sistema Gateway è autenticato nel Cloud
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di riavvio
-  - Il Sistema si spegne e si riaccende, mantenendo le configurazioni e i dati salvati localmente
+  - Il Sistema Gateway riceve il comando di riavvio dal Cloud
+  - Il Sistema Gateway si spegne e si riaccende, mantenendo le configurazioni e i dati salvati localmente
 - *Scenario principale*:
   - Il Cloud invia il comando di riavvio al Sistema Gateway
+
 
 ==== #uc() - Modifica finestra Rolling Average <Modifica-finestra-rolling-average>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di modifica della finestra di Rolling Average
-  - Il Sistema aggiorna la configurazione della finestra di Rolling Average per i dati inviati
+  - Il Sistema Gateway riceve il comando di modifica della finestra di Rolling Average dal Cloud
+  - Il Sistema Gateway aggiorna la configurazione della finestra di Rolling Average per i dati inviati al Cloud
 - *Scenario principale*:
   - Il Cloud invia il comando di modifica della finestra di Rolling Average al Sistema Gateway
+
 
 ==== #uc() - Decommissioning Gateway <Decommissioning-gateway-cloud>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di decommissioning
-  - Il Sistema cancella l'associazione al tenant
-  - Il Sistema cancella tutte le configurazioni e i dati salvati localmente
+  - Il Sistema Gateway riceve il comando di decommissioning dal Cloud
+  - Il Sistema Gateway cancella l'associazione al tenant
+  - Il Sistema Gateway cancella tutte le configurazioni e i dati salvati localmente
 - *Scenario principale*:
   - Il Cloud invia il comando di decommissioning al Sistema Gateway
 - *Inclusioni*:
@@ -2866,6 +2902,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 ===== #sub-uc() - Disassociazione tenant Gateway <Disassociazione-tenant-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
   - Il Sistema cancella l'associazione al tenant
@@ -2873,10 +2910,11 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia il comando di disassociazione del tenant al Sistema Gateway
 
+
 ==== #uc() - Reset Gateway <Reset-gateway-cloud>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - ?
+  - Il Sistema Gateway è autenticato nel Cloud
 - *Post-condizioni*:
   - Il Sistema riceve il comando di reset
   - Il Sistema cancella tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica
@@ -2889,6 +2927,111 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 
+= Requisiti
+I requisiti seguenti dovranno essere implementati entro il *27 marzo 2026*.
+La nomenclatura adottata per i requisiti è la seguente: *R[Tipo]-[Numero progressivo]-[Rilevanza]*, dove:
+- *Tipo*: indica la tipologia del requisito, può essere:
+  - *F*: Funzionale
+  - *NF*: Non funzionale
+  - *D*: Dominio
+  - *V*: Vincolo
+- *Numero progressivo*: è un numero univoco che identifica il requisito all'interno della sua tipologia;
+- *Rilevanza*: indica l'importanza del requisito, può essere:
+  - *Obb*: obbligatorio
+  - *Des*: desiderabile
+  - *Opt*: opzionale
+== Definizione requisito
+Un requisito è la capacità necessaria ad un *Utente* per raggiungere un obiettivo specifico(_lato bisogno_) o la capacità necessaria ad un *Sistema* per rispondere ad un'aspettativa(_lato soluzione_). I requisiti sono classificati in:
+- *Funzionali*: descrivono le funzionalità che il *Sistema* deve fornire per soddisfare le aspettative;
+- *Non funzionali*: descrivono com il *Sistema* deve comportarsi, non riguardano una funzionalità specifica ma le proprietà del *Sistema*;
+- *Dominio*: descrivono le regole e le politiche specifiche del dominio applicativo in cui il *Sistema* opera;
+- *Vincoli*: descrivono le limitazioni imposte al *Sistema* durante lo sviluppo.
+
+Inoltre un buon requisito deve essere *SMART*:
+- *Specifico*: il requisito deve essere chiaro e preciso, evitando ambiguità;
+- *Misurabile*: il requisito deve essere quantificabile o facilmente verificabile attraverso test o misurazioni;
+- *Achievable* (Raggiungibile): il requisito deve essere realistico e fattibile entro i vincoli di tempo, risorse e tecnologie disponibili;
+- *Rilevante*: il requisito deve essere importante per gli stakeholder e contribuire agli obiettivi del progetto;
+- *Tracciabile nel tempo*: il requisito deve avere una scadenza o un periodo di validità
+
+== Requisiti funzionali
+#table(
+  columns: (0.20fr, 0.60fr, 0.20fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  [], [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema], [@Autenticazione-Utente],
+  [],
+  [L'Utente non autenticato deve inserire la propria email per autenticarsi],
+  [@Autenticazione-Utente @Inserimento-email-auth],
+
+  [],
+  [L'Utente non autenticato deve inserire la propria password per autenticarsi],
+  [@Autenticazione-Utente  @Inserimento-password],
+
+  [],
+  [L'Utente non autenticato deve ricevere un messaggio di errore in caso di inserimento di credenziali errate],
+  [@Autenticazione-non-riuscita],
+
+  [],
+  [L'Utente non autenticato deve ricevere un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso],
+  [@Account-sospeso],
+
+  [],
+  [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve riceve una mail con il codice di verifica],
+  [@Invio-codice-2FA],
+
+  [],
+  [L'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, deve poter richiedere il re-invio del codice di verifica nel caso in cui non lo abbia ricevuto o sia scaduto],
+  [@Re-invio-codice-2FA],
+
+  [],
+  [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve poter completare l'autenticazione a due fattori per autenticarsi nel Sistema],
+  [@Autenticazione-2FA],
+
+  [],
+  [L'Utente non autenticato deve poter inserire il codice di verifica ricevuto via mail per completare l'autenticazione, in caso sia richiesta la 2FA],
+  [@Inserimento-codice-2FA],
+
+  [],
+  [L'Utente non autenticato deve ricevere un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto],
+  [@Codice-2FA-errato @Codice-2FA-scaduto],
+
+  [],
+  [L'Utente non autenticato deve poter impostare la sua prima password, in seguito alla ricezione della mail contenente il link per la creazione della prima password],
+  [@Impostazione-password],
+
+  [],
+  [L'Utente non autenticato deve poter richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata],
+  [@Password-dimenticata],
+
+  [],
+  [L'Utente non autenticato deve poter inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password],
+  [@Inserimento-indirizzo-email],
+
+  [],
+  [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
+  [@Invio-email-reimpostazione-password],
+
+  [],
+  [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
+  [@Invio-email-reimpostazione-password],
+)
+
+== Requisiti non funzionali
+#table(
+  columns: (0.20fr, 0.60fr, 0.20fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  [], [], [],
+)
+
+== Requisiti di dominio
+#table(
+  columns: (0.20fr, 0.60fr, 0.20fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  [], [], [],
+)
 
 
 
