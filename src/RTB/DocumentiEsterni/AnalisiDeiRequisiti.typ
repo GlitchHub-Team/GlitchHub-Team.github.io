@@ -5,11 +5,18 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.14.0",
+      "03/01/2025",
+      "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
+      "-",
+      [Aggiunta use case relativi agli alert e la loro generazione], //TODO aggiungere timeout per sensore/gateway
+    ),
+    (
       "0.13.1",
       "03/01/2025",
       "Elia Ernesto Stellin",
       "-",
-      [Modifiche di formattazione]
+      [Modifiche di formattazione],
     ),
     (
       "0.13.0",
@@ -594,6 +601,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 === Attore principale - Utente autenticato
 L'utente autenticato è chiunque abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione degli attori *Tenant User*, *Tenant Admin*, *Super Admin*.
 Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un tenant specifico, quest'ultimo deve aver accettato la clausola di impersonificazione, la quale permette l'accesso ai dati del tenant da parte del Super Admin.
+Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azioni di un Tenant Admin all'interno del proprio Tenant.
 
 ==== #uc() - Logout <Logout>
 - *Attore principale*: Utente autenticato
@@ -648,6 +656,52 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
   - L'Utente inserisce una password che non corrisponde con quella associata al suo account
+
+// ALERT -----------------------------------------------------------------------------------------------------
+==== #uc() - Visualizzazione lista alert <Visualizzazione-lista-alert>
+- *Attore principale*: Tenant User
+- *Pre-condizioni*:
+  - Il Tenant User è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra la lista degli alert riguardanti eventi anomali all'interno del tenant
+- *Scenario principale*:
+  - Il Tenant User visualizza gli alert riguardanti eventi anomali nel proprio tenant
+  - Il Tenant User visualizza gli alert in forma di lista ordinata in ordine cronologico decrescente (dal più recente al meno recente).
+
+
+==== #uc() - Visualizzazione alert <Visualizzazione-alert>
+- *Attore principale*: Utente Autenticato
+- *Pre-condizioni*:
+  - L'Utente Autenticato è autenticato nel Sistema
+  - L'alert esiste ed è associato al tenant dell'Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra il titolo e la descrizione dell'alert selezionato
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza il titolo e la descrizione dell'alert selezionato
+
+==== #uc() - Visualizzazione alert mancata ricezione dati da Gateway <Mancata-ricezione-gateway>
+- *Specializzazione*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Utente Autenticato
+- *Pre-condizioni*:
+  - L'Utente Autenticato è autenticato nel Sistema
+  - L'alert esiste ed è associato al tenant dell'Utente Autenticato
+  - Il Gateway in questione non è stato sospeso
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+
+==== #uc() - Visualizzazione alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
+- *Specializzazione*: #ref-uc(<Visualizzazione-alert>)
+- *Attore principale*: Utente Autenticato
+- *Pre-condizioni*:
+  - L'Utente Autenticato è autenticato nel Sistema
+  - L'alert esiste ed è associato al tenant dell'Utente Autenticato
+  - Il Sensore in questione non è stato sospeso
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
 
 
 // Visualizzazione dati -----------------------------------------------------------------------------------------------------
@@ -815,68 +869,6 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Scenario principale*:
   - Il Tenant User visualizza il numero di gateway attivi e non attivi
   - Il Tenant User visualizza le informazioni in forma testuale e di grafico a torta.
-
-
-==== #uc() - Visualizzazione lista alert <Visualizzazione-lista-alert>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema mostra la lista degli alert riguardanti eventi anomali all'interno del tenant
-- *Scenario principale*:
-  - Il Tenant User visualizza gli alert riguardanti eventi anomali nel proprio tenant
-  - Il Tenant User visualizza gli alert in forma di lista ordinata in ordine cronologico decrescente (dal più recente al meno recente).
-
-
-==== #uc() - Visualizzazione alert <Visualizzazione-alert>
-- *Attore principale*: Tenant User
-- *Pre-condizioni*:
-  - Il Tenant User è autenticato nel Sistema
-  - L'alert esiste ed è associato al tenant del Tenant User
-- *Post-condizioni*:
-  - Il Sistema mostra il titolo e la descrizione dell'alert selezionato
-- *Scenario principale*:
-  - Il Tenant User visualizza il titolo e la descrizione dell'alert selezionato
-
-==== #sub-uc() - Alert mancata ricezione dati da Gateway <Mancata-ricezione-gateway>
-- *Specializza*: #ref-uc(<Visualizzazione-alert>)
-- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
-- *Pre-condizioni*:
-  - Come in #ref-uc(<Visualizzazione-alert>)
-  - Il Gateway in questione è attivo
-- *Post-condizioni*:
-  - Il Sistema mostra l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
-- *Scenario principale*:
-  - Il Tenant User visualizza l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
-
-==== #sub-uc() - Alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
-- *Specializza*: #ref-uc(<Visualizzazione-alert>)
-- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
-- *Pre-condizioni*:
-  - Come in #ref-uc(<Visualizzazione-alert>)
-  - Il Sensore in questione è attivo
-- *Post-condizioni*:
-  - Il Sistema mostra l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
-- *Scenario principale*:
-  - Il Tenant User visualizza l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
-
-==== #sub-uc() - Alert ricezione valore out-of-range <Ricezione-valore-out-of-range>
-- *Specializza*: #ref-uc(<Visualizzazione-alert>)
-- *Attore principale*: Come in #ref-uc(<Visualizzazione-alert>)
-- *Pre-condizioni*:
-  - Come in #ref-uc(<Visualizzazione-alert>)
-- *Post-condizioni*:
-  - Il Sistema mostra il valore ricevuto e lo confronta con la soglia di alert
-- *Scenario principale*:
-  - Il Tenant User visualizza il valore ricevuto e la soglia di alert
-
-// TODO: AGGIUNGERE TIPI DI ALERT VISUALIZZATI
-// - mancata ricezione dati da GATEWAY (l'alert non si mostra se il gateway è stato disattivato)
-// - mancata ricezione dati da SENSORE SPECIFICO (l'alert non si mostra se il sensore è stato disattivato
-// - dati sensore out-of-range
-// - autenticazione gateway fallita (?)
-
-// TODO: DA AGGIUNGERE EVENTUALI INFORMAZIONI DA AGGIUNGERE ALLA DASHBOARD
 
 ==== #uc() - Visualizzazione sensori collegati al tenant <Visualizzazione-sensori-collegati-tenant>
 - *Attore principale*: Tenant User
@@ -1072,17 +1064,17 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Tenant Admin visualizza la lista degli utenti registrati nel proprio tenant
 
 
-==== #uc() - Disattivazione sensore <Disattivazione-sensore>
+==== #uc() - Sospensione sensore <Sospensione-sensore>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - Il sensore è associato ad un gateway registrato nel tenant del Tenant Admin
-  - Il sensore non è già disattivato
+  - Il sensore non è già sospeso
 - *Post-condizioni*:
   - Il Sistema invia un comando al gateway per ignorare i dati provenienti dal sensore specificato
   - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
-  - Il Tenant Admin seleziona il sensore che vuole disattivare
+  - Il Tenant Admin seleziona il sensore che vuole sospendere
 - *Scenari alternativi*:
   - Il gateway associato al sensore non è raggiungibile
 - *Estensioni*:
@@ -1096,7 +1088,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - Il sensore è associato ad un gateway registrato nel tenant del Tenant Admin
-  - Il sensore è disattivato
+  - Il sensore è sospeso
 - *Post-condizioni*:
   - Il Sistema invia un comando al gateway per riprendere la raccolta dei dati provenienti dal sensore specificato
   - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
@@ -1297,16 +1289,16 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Scenario principale*:
   - Il Tenant Admin visualizza la lista dei sensori associati al tenant
 
-==== #uc() - Disattivazione gateway <Disattivazione-gateway-tenant-admin>
+==== #uc() - Sospensione gateway <Sospensione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Il Sistema invia il comando di disattivazione al gateway e sospende la ricezione dei suoi dati
+  - Il Sistema invia il comando di sospensione al gateway e sospende la ricezione dei suoi dati
 - *Scenario principale*:
   - Il Tenant Admin seleziona un gateway attivo associato al proprio tenant
-  - Il Tenant Admin disattiva il gateway
+  - Il Tenant Admin sospende il gateway
 
 ==== #uc() - Riattivazione gateway <Riattivazione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
@@ -1316,7 +1308,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
 - *Post-condizioni*:
   - Il Sistema riattiva il gateway e riprende la ricezione dei suoi dati
 - *Scenario principale*:
-  - Il Tenant Admin seleziona un gateway disattivato associato al proprio tenant
+  - Il Tenant Admin seleziona un gateway sospeso associato al proprio tenant
   - Il Tenant Admin riattiva il gateway
 
 // Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
@@ -1356,7 +1348,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Richiesta reimpostazione password
   --- GESTIONE SENSORI E GATEWAY
   - Richiesta fornitura gateway
-  - Disattivazione sensore
+  - Sospensione sensore
   - Riattivazione sensore
 */
 
@@ -2362,23 +2354,23 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway invia la conferma di ricezione al Sistema
 */
 
-==== #uc() - Conferma disattivazione invio dati gateway <Conferma-comando-disattivazione-invio-dati>
+==== #uc() - Conferma sospensione invio dati gateway <Conferma-comando-sospensione-invio-dati>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
-  - Il Gateway ha ricevuto un comando di disattivazione invio dati dal Sistema
+  - Il Gateway ha ricevuto un comando di sospensione invio dati dal Sistema
   - Il Gateway ha sospeso l'invio dei dati dei sensori al Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve la conferma di disattivazione invio dati dal Gateway
-  - Il Sistema aggiorna lo stato del Gateway come "disattivato"
+  - Il Sistema riceve la conferma di sospensione invio dati dal Gateway
+  - Il Sistema aggiorna lo stato del Gateway come "sospeso"
   - Il Sistema non è più "in ascolto" per i dati dei sensori associati al Gateway
   - Il Sistema non esegue più eventuali alert di mancata ricezione dei dati dal Gateway
 - *Scenario principale*:
   - Il Gateway sospende l'invio dei dati dei sensori al Sistema
-  - Il Gateway invia la conferma di disattivazione al Sistema
+  - Il Gateway invia la conferma di sospensione al Sistema
 
 ==== #uc() - Conferma riattivazione invio dati gateway  <Conferma-comando-riattivazione-invio-dati>
-- *Attore primario*: Gateway
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di riattivazione invio dati dal Sistema
@@ -2392,23 +2384,23 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway esegue il comando ricevuto e si riattiva
   - Il Gateway invia un comando di conferma al Cloud
 
-==== #uc() - Conferma disattivazione sensore <Conferma-comando-disattivazione-sensore>
-- *Attore primario*: Gateway
+==== #uc() - Conferma sospensione sensore <Conferma-comando-sospensione-sensore>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
-  - Il Gateway ha ricevuto un comando di disattivazione di un determinato sensore dal Sistema
+  - Il Gateway ha ricevuto un comando di sospensione di un determinato sensore dal Sistema
   - Il Gateway ha sospeso l'invio dei dati del sensore in questione al Sistema
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di conferma da parte del Gateway
-  - Il Sistema non è più "in ascolto" per i dati del sensore disattivato
+  - Il Sistema non è più "in ascolto" per i dati del sensore sospeso
   - Il Sistema non esegue più eventuali alert di mancata ricezione dei dati dal sensore
 - *Scenario principale*:
-  - Il Gateway riceve un comando di disattivazione di un determinato sensore
-  - Il Gateway esegue il comando ricevuto e disattiva il sensore specificato, interrompendo l'invio dei dati ricevuti da esso al Cloud
+  - Il Gateway riceve un comando di sospensione di un determinato sensore
+  - Il Gateway esegue il comando ricevuto e sospende il sensore specificato, interrompendo l'invio dei dati ricevuti da esso al Cloud
   - Il Gateway invia un comando di conferma al Cloud
 
 ==== #uc() - Conferma riattivazione sensore <Conferma-comando-riattivazione-sensore>
-- *Attore primario*: Gateway
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di riattivazione di un determinato sensore dal Sistema
@@ -2425,7 +2417,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 // TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"?
 // TODO: Sarebbe bene considerare il parametro di FREQUENZA D'INVIO DEI DATI? CHIEDIAMO A M31
 ==== #uc() - Conferma modifica parametro di rolling average <conferma-comando-modifica-rolling-average>
-- *Attore primario*: Gateway
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha ricevuto un comando di modifica del parametro di rolling average dal Sistema
@@ -2439,7 +2431,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 
 ==== #uc() - Invio comando di hello <Invio-comando-hello>
-- *Attore primario*: Gateway
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso al Cloud
   - Il Gateway si è avviato e si è connesso per la prima volta al Cloud
@@ -2458,7 +2450,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - #ref-uc(<Identificativo-gateway-non-trovato>)
 
 ==== #uc() - Autenticazione Gateway fallita <Autenticazione-gateway-fallita>
-- *Attore primario*: Gateway
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway ha inviato un messaggio di hello al Cloud
   - Il Sistema non riesce ad autenticare il Gateway
@@ -2469,7 +2461,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 
 ==== #uc() - Identificativo Gateway non trovato <Identificativo-gateway-non-trovato>
-- *Attore primario*: Gateway
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway ha inviato un messaggio di hello al Cloud
   - Il Sistema non riesce a trovare l'identificativo del Gateway
@@ -2479,35 +2471,50 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway riceve il messaggio di identificativo non trovato dal Sistema
 
 ==== #uc() - Invio dati crittografati <Invio-dati-crittografati>
-- *Attore primario*: Gateway
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
   - Il Gateway ha completato la fase di commissioning, perciò è associato ad un tenant
   - Il Gateway ha a disposizione dati raccolti dai sensori associati
 - *Post-condizioni*:
   - Il Sistema riceve i dati crittografati da parte del Gateway
+  - Il Sistema aggiorna il timestamp di ultima ricezione dati per il Gateway specifico e per i sensori coinvolti
 - *Scenario principale*:
   - Il Gateway raccoglie i dati dal proprio buffer interno
   - Il Gateway utilizza la propria chiave per crittografare i dati raccolti dai sensori
   - Il Gateway invia i dati crittografati al Sistema
 - *Scenari alternativi*:
-  - Il Sistema Cloud non è raggiungibile
+  - L'invio dei dati crittografati fallisce
 - *Estensioni*:
-  - #ref-uc(<Sistema-cloud-non-raggiungibile>)
+  - #ref-uc(<Invio-dati-fallito>)
 
-==== #uc() - Sistema Cloud non raggiungibile <Sistema-cloud-non-raggiungibile>
-- *Attore primario*: Gateway
+==== #uc() - Invio dati fallito <Invio-dati-fallito>
+- *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway tenta di inviare dati crittografati al Sistema Cloud
-  - Il Sistema Cloud non è raggiungibile
+  - Il Sistema Cloud non è raggiungibile dal Gateway
 - *Post-condizioni*:
-  - Il Sistema non riceve i dati crittografati dal Gateway perché non è raggiungibile
-  - Il Gateway ritenterà l'invio dei dati dopo un dato intervallo di tempo
+  - Il Sistema Cloud non riceve i dati crittografati dal Gateway perché non è raggiungibile
+  - Il Sistema Cloud, dopo un timeout predefinito, considera il Gateway come in stato di errore
+  - Il Sistema Cloud, dopo un timeout predefinito, crea un alert per gli utenti del tenant a cui è associato il Gateway
 - *Scenario principale*:
   - Il Gateway rileva che il Sistema Cloud non è raggiungibile
+  - Il Gateway ritenta l'invio dei dati dopo un dato intervallo di tempo
   - Il Gateway memorizza i dati nel proprio buffer interno per un invio successivo
   - Il Gateway elimina i dati più vecchi se il buffer è pieno
 
+//TODO: è un estensione di invio dati???????
+==== #uc() - Assenza prolungata dati da sensori <Assenza-prolungata-dati-sensori>
+- *Attore principale*: Gateway
+- *Pre-condizioni*:
+  - Il Gateway è connesso e autenticato con il Cloud
+  - Il Gateway non riceve dati da uno o più sensori associati per un intervallo di tempo superiore ad una soglia predefinita nel Cloud
+- *Post-condizioni*:
+  - Il Sistema rileva l'assenza di ricezione dati da parte di uno o più sensori
+  - Il Sistema crea un alert per gli utenti del tenant a cui è associato il Gateway
+- *Scenario principale*:
+  - Il Gateway non riceve dati da uno o più sensori associati per un intervallo di tempo superiore ad una soglia predefinita
+  - Il Gateway invia normalmente i dati crittografati al Sistema, con l'assenza di dati da sensori specifici
 
 === Attore principale - API Client
 Di seguito sono riportati tutti gli use cases in cui l'attore principale è un generico API Client, ovvero un client che accede all'API esposta tramite una API Key di autenticazione prodotta da un super admin.
@@ -2667,9 +2674,11 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato simulato
   - Il Sensore invia il dato al Sistema Gateway
+- *Scenario alternativo*:
+  - Il sensore invia una quantità eccessiva di dati al Gateway
+- *Estensioni*:
+  - #ref-uc(<Invio-dati-eccessivi-gateway>)
 
-
-// TODO: rivedere secondo email di cardin
 ==== #uc() - Invio di dati eccessivi al Gateway <Invio-dati-eccessivi-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2753,7 +2762,6 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 === Attore principale - Cloud
-
 ==== #uc() - Conferma autenticazione Gateway <Conferma-autenticazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
@@ -2776,7 +2784,6 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sistema Gateway entra in stato di errore
 - *Scenario principale*:
   - Il Cloud invia il rifiuto di autenticazione al Gateway
-
 
 ==== #uc() - Assegnazione tenant al Gateway <Assegnazione-tenant-gateway>
 - *Attore principale*: Cloud
@@ -2822,7 +2829,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
   - Il Sensore simulato è configurato nel Sistema Gateway
-  - Il Sensore simulato è disattivato, ovvero il Sistema Gateway non invia al Cloud i dati relativi a tale Sensore
+  - Il Sensore simulato è sospeso, ovvero il Sistema Gateway non invia al Cloud i dati relativi a tale Sensore
 - *Post-condizioni*:
   - Il Sistema Gateway riceve il comando di riattivazione del Sensore simulato dal Cloud
   - Il Sistema Gateway ricomincia a inviare al Cloud i dati relativi a tale Sensore
@@ -2830,24 +2837,24 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Cloud invia il comando di riattivazione del Sensore simulato al Sistema Gateway
 
 
-==== #uc() - Disattivazione sensore simulato <Disattivazione-sensore-simulato>
+==== #uc() - Sospensione sensore simulato <Sospensione-sensore-simulato>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
   - Il Sensore simulato è configurato nel Sistema Gateway
   - Il Sensore simulato è attivato, il Sistema invia dati da quel Sensore
 - *Post-condizioni*:
-  - Il Sistema Gateway riceve il comando di disattivazione del Sensore simulato dal Cloud
+  - Il Sistema Gateway riceve il comando di sospensione del Sensore simulato dal Cloud
   - Il Sistema Gateway smette di inviare al Cloud i dati relativi a tale Sensore
 - *Scenario principale*:
-  - Il Cloud invia il comando di disattivazione del Sensore simulato al Sistema Gateway
+  - Il Cloud invia il comando di sospensione del Sensore simulato al Sistema Gateway
 
 
 ==== #uc() - Riattivazione Gateway <Riattivazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
-  - Il Sistema Gateway è in stato di disattivazione, ovvero non invia i dati dei propri sensori al Cloud
+  - Il Sistema Gateway è in stato di sospensione, ovvero non invia i dati dei propri sensori al Cloud
 - *Post-condizioni*:
   - Il Sistema Gateway riceve il comando di riattivazione dal Cloud
   - Il Sistema Gateway ricomincia l'invio dei dati di tutti i propri sensori al Cloud
@@ -2855,16 +2862,16 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Cloud invia il comando di riattivazione al Sistema Gateway
 
 
-==== #uc() - Disattivazione Gateway <Invio-comando-sospensione-gateway>
+==== #uc() - Sospensione Gateway <Invio-comando-sospensione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è attivo, ovvero invia dati dei propri sensori
 - *Post-condizioni*:
-  - Il Sistema Gateway riceve il comando di disattivazione dal Cloud
+  - Il Sistema Gateway riceve il comando di sospensione dal Cloud
   - Il Sistema Gateway smette di inviare i dati di tutti i propri sensori al Cloud
 - *Scenario principale*:
-  - Il Cloud invia il comando di disattivazione al Sistema Gateway
+  - Il Cloud invia il comando di sospensione al Sistema Gateway
 
 
 ==== #uc() - Riavvio Gateway <Riavvio-gateway-cloud>
