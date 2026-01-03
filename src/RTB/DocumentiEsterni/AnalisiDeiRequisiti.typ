@@ -270,7 +270,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 )
 
 == Sistema Cloud - Lista dei casi d'uso
-Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
+In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud. Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
 
 === Attore principale - Utente non autenticato
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
@@ -2122,7 +2122,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - #ref-uc(<Visualizzazione-data-staleness>)
   - #ref-uc(<Visualizzazione-valori-out-of-range>)
 
-=== #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
+===== #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2134,7 +2134,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza il numero di gateway offline e online
   - Il Super Admin visualizza il grafico a torta rappresentante la metrica
 
-=== #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
+===== #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2146,7 +2146,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza il throughput dati
   - Il Super Admin visualizza il grafico Time Series rappresentante la metrica
 
-=== #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
+===== #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2160,7 +2160,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza lo Stat Panel rappresentante le metriche
   - Il Super Admin visualizza il grafico Time Series rappresentante l'andamento temporale delle metriche
 
-=== #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
+===== #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2172,7 +2172,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza la frequenza di disconnessione dei gateway
   - Il Super Admin visualizza il grafico a barre rappresentante le disconnessioni rilevate per ogni gateway
 
-=== #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
+===== #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2184,7 +2184,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza le dimensioni dei payload dei pacchetti inviati dai gateway
   - Il Super Admin visualizza il grafico a barre rappresentante le dimensioni medie, minime e massime dei payload
 
-=== #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
+===== #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2196,7 +2196,7 @@ Nel caso in cui l'utente autenticato sia il Super Admin e acceda a dati di un te
   - Il Super Admin visualizza la data staleness dei sensori
   - Il Super Admin visualizza l'alert list rappresentante la data staleness di ogni sensore
 
-=== #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
+===== #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
@@ -2405,7 +2405,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway è connesso al Cloud
   - Il Gateway si è avviato e si è connesso per la prima volta al Cloud
   - Il Gateway possiede delle credenziali per l'autenticazione
-  - Il Gateway possiede un identificativo  // TODO: qual è differenza tra credenziali di auth e identificativo?
+  - Il Gateway possiede un identificativo univoco
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di hello dal Gateway
   - Il Sistema autentica il Gateway, associandolo all'identificativo ricevuto
@@ -2428,7 +2428,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 - *Scenario principale*:
   - Il Gateway riceve il messaggio di autenticazione fallita dal Sistema
 
-// TODO: CONTINUA REVIEW DA QUA ----
 
 ==== #uc() - Identificativo Gateway non trovato <Identificativo-gateway-non-trovato>
 - *Attore primario*: Gateway
@@ -2623,84 +2622,83 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
 - *Post-condizioni*
-  - Il Sistema riceve un nuovo dato dal Sensore
-  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve un nuovo dato dal Sensore
+  - Il Sistema Gateway normalizza e formatta il dato in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato simulato
   - Il Sensore invia il dato al Sistema Gateway
 
 
-//??????ho chiesto a cardin se ha senso
-// TODO: che ha detto cardin?
+// TODO: rivedere secondo email di cardin
 ==== #uc() - Invio di dati eccessivi al Gateway <Invio-dati-eccessivi-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
 - *Post-condizioni*:
-  - Il Sistema riceve più dati di quanti ne possa inviare al Cloud
-  - Il Sistema salva i dati più recenti nel buffer interno
-  - Il Sistema elimina i dati più vecchi per fare spazio ai nuovi dati
+  - Il Sistema Gateway riceve più dati di quanti ne possa inviare al Cloud
+  - Il Sistema Gateway salva i dati più recenti nel buffer interno
+  - Il Sistema Gateway elimina i dati più vecchi per fare spazio ai nuovi dati
 - *Scenario principale*:
   - Il Sensore invia una quantità di dati superiore alla capacità di invio del Sistema Gateway
 
-// TODO: dettagli implementativi?
+
 ==== #uc() - Invio di dato simulando Heart Rate Service <Invio-dato-heart-rate-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato il servizio Heart Rate Service (GATT)
 - *Post-condizioni*:
-  - Il Sistema riceve un nuovo dato di frequenza cardiaca dal Sensore
-  - Il Sistema normalizza e formatta il dato in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve un nuovo dato di frequenza cardiaca dal Sensore
+  - Il Sistema Gateway normalizza e formatta il dato in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato di frequenza cardiaca simulato
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
-// TODO: dettagli implementativi?
+
 ==== #uc() - Invio di dato simulando Pulse Oximeter Service <Invio-dato-pulse-oximeter-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato il servizio Pulse Oximeter Service (GATT)
 - *Post-condizioni*:
-  - Il Sistema riceve le nuove misurazioni di saturazione di ossigeno nel sangue e frequenza del polso
-  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve le nuove misurazioni di saturazione di ossigeno nel sangue e frequenza del polso
+  - Il Sistema Gateway normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera nuovi valori simulati di saturazione di ossigeno nel sangue e frequenza del polso
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
-// TODO: dettagli implementativi?
+
 ==== #uc() - Invio di dato simulando ECG Custom Profile <Invio-dato-ecg-custom>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato un profilo custom per invio di dati per l'elettrocardiogramma (ECG)
 - *Post-condizioni*:
-  - Il Sistema riceve i dati grezzi dell'ECG
-  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve i dati grezzi dell'ECG
+  - Il Sistema Gateway normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera una sequenza di valori che simulano l'ECG
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
-// TODO: dettagli implementativi?
+
 ==== #uc() - Invio di dato simulando Health Thermometer Service <Invio-dato-health-thermometer-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
   - Il Sensore ha implementato il servizio Health Thermometer Service (GATT)
 - *Post-condizioni*:
-  - Il Sistema riceve il valore della temperatura corporea
-  - Il Sistema normalizza e formatta i dati in un formato interno standardizzato
-  - Il Sistema salva i dati in un buffer interno
+  - Il Sistema Gateway riceve il valore della temperatura corporea
+  - Il Sistema Gateway normalizza e formatta i dati in un formato interno standardizzato
+  - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
   - Il Sensore genera un nuovo dato di temperatura corporea
   - Il Sensore invia il pacchetto dati simulando una notifica GATT al Sistema Gateway
 
-// TODO: dettagli implementativi?
+
 ==== #uc() - Invio di dati simulando Environmental Sensing Service <Invio-dato-environmental-sensing-service>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
@@ -2714,41 +2712,42 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sensore genera nuovi valori per la temperatura (UUID 0x2A6E) e l'umidità (UUID 0x2A6F)
   - Il Sensore invia due notifiche GATT distinte al Sistema Gateway, una per la temperatura e una per l'umidità
 
-// TODO: ----- RIPRENDI VERIFICA DA QUA -----
 
 === Attore principale - Cloud
 
 ==== #uc() - Conferma autenticazione Gateway <Conferma-autenticazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud
-  - Il Sistema è stato autenticato con successo
+  - Il Cloud ha ricevuto un messaggio di Hello dal Sistema
+  - Il Cloud ha autenticato con successo il Sistema
 - *Post-condizioni*:
-  - Il Sistema riceve la conferma di autenticazione del Gateway
+  - Il Sistema riceve la conferma di autenticazione da parte del Cloud
   - Il Sistema attende di essere associato ad un tenant
 - *Scenario principale*:
   - Il Cloud invia la conferma di autenticazione al Gateway
 
+
 ==== #uc() - Rifiuto autenticazione Gateway <Rifiuto-autenticazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema ha precedentemente inviato un messaggio di Hello al Cloud
-  - Il Sistema non è stato autenticato con successo
+  - Il Cloud ha ricevuto un messaggio di Hello dal Sistema
+  - Il Cloud non ha autenticato il Sistema con successo
 - *Post-condizioni*:
-  - Il Sistema riceve il rifiuto di autenticazione del Gateway
-  - Il Sistema entra in stato di errore
+  - Il Sistema Gateway riceve il rifiuto di autenticazione da parte del Cloud
+  - Il Sistema Gateway entra in stato di errore
 - *Scenario principale*:
   - Il Cloud invia il rifiuto di autenticazione al Gateway
+
 
 ==== #uc() - Assegnazione tenant al Gateway <Assegnazione-tenant-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema è autenticato
-  - Il Sistema non è ancora associato ad un tenant
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway non è ancora associato ad un tenant
   - Il Tenant assegnato è valido
 - *Post-condizioni*:
-  - Il Sistema riceve l'assegnazione del tenant
-  - Il Sistema è pronto per inviare dati crittografati
+  - Il Sistema Gateway riceve l'assegnazione del tenant
+  - Il Sistema Gateway è pronto per inviare dati crittografati
 - *Scenario principale*:
   - Il Cloud invia l'assegnazione del tenant al Sistema
   - Il Cloud invia la chiave per la cifratura dei dati
@@ -2759,8 +2758,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 ===== #sub-uc() - Invio tenant associato al Gateway <Invio-tenant-associato-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema è autenticato
-  - Il Sistema non è ancora associato ad un tenant
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway non è ancora associato ad un tenant
   - Il Tenant assegnato è valido
 - *Post-condizioni*:
   - Il Sistema riceve e salva l'assegnazione del tenant
@@ -2770,7 +2769,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 ===== #sub-uc() - Invio chiave per la cifratura dei dati <Invio-chiave-cifratura-dati>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema è autenticato
+  - Il Sistema è autenticato nel Cloud
   - Il Sistema non è ancora associato ad un tenant
   - Il Tenant assegnato è valido
 - *Post-condizioni*:
@@ -2778,76 +2777,89 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia la chiave pubblica per la cifratura dei dati al Sistema
 
+
 ==== #uc() - Riattivazione sensore simulato <Riattivazione-sensore-simulato>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sensore simulato è configurato nel Sistema Gateway
-  - Il Sensore simulato è disattivato, il Sistema non invia dati da quel Sensore
+  - Il Sensore simulato è disattivato, ovvero il Sistema Gateway non invia al Cloud i dati relativi a tale Sensore
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di riattivazione del Sensore simulato
-  - Il Sistema ricomincia a inviare dati dal Sensore simulato
+  - Il Sistema Gateway riceve il comando di riattivazione del Sensore simulato dal Cloud
+  - Il Sistema Gateway ricomincia a inviare al Cloud i dati relativi a tale Sensore
 - *Scenario principale*:
   - Il Cloud invia il comando di riattivazione del Sensore simulato al Sistema Gateway
+
 
 ==== #uc() - Disattivazione sensore simulato <Disattivazione-sensore-simulato>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sensore simulato è configurato nel Sistema Gateway
   - Il Sensore simulato è attivato, il Sistema invia dati da quel Sensore
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di disattivazione del Sensore simulato
-  - Il Sistema smette di inviare dati dal Sensore simulato
+  - Il Sistema Gateway riceve il comando di disattivazione del Sensore simulato dal Cloud
+  - Il Sistema Gateway smette di inviare al Cloud i dati relativi a tale Sensore
 - *Scenario principale*:
   - Il Cloud invia il comando di disattivazione del Sensore simulato al Sistema Gateway
+
 
 ==== #uc() - Riattivazione Gateway <Riattivazione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema Gateway è in stato di disattivazione, non invia dati dei propri sensori
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway è in stato di disattivazione, ovvero non invia i dati dei propri sensori al Cloud
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di riattivazione
-  - Il Sistema ricomincia l'invio di dati dei propri sensori
+  - Il Sistema Gateway riceve il comando di riattivazione dal Cloud
+  - Il Sistema Gateway ricomincia l'invio dei dati di tutti i propri sensori al Cloud
 - *Scenario principale*:
   - Il Cloud invia il comando di riattivazione al Sistema Gateway
+
 
 ==== #uc() - Disattivazione Gateway <Invio-comando-sospensione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - Il Sistema Gateway è attivo, invia dati dei propri sensori
+  - Il Sistema Gateway è autenticato nel Cloud
+  - Il Sistema Gateway è attivo, ovvero invia dati dei propri sensori
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di disattivazione
-  - Il Sistema smette di inviare dati dei propri sensori
+  - Il Sistema Gateway riceve il comando di disattivazione dal Cloud
+  - Il Sistema Gateway smette di inviare i dati di tutti i propri sensori al Cloud
 - *Scenario principale*:
   - Il Cloud invia il comando di disattivazione al Sistema Gateway
+
 
 ==== #uc() - Riavvio Gateway <Riavvio-gateway-cloud>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - ?
+  - Il Sistema Gateway è autenticato nel Cloud
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di riavvio
-  - Il Sistema si spegne e si riaccende, mantenendo le configurazioni e i dati salvati localmente
+  - Il Sistema Gateway riceve il comando di riavvio dal Cloud
+  - Il Sistema Gateway si spegne e si riaccende, mantenendo le configurazioni e i dati salvati localmente
 - *Scenario principale*:
   - Il Cloud invia il comando di riavvio al Sistema Gateway
+
 
 ==== #uc() - Modifica finestra Rolling Average <Modifica-finestra-rolling-average>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di modifica della finestra di Rolling Average
-  - Il Sistema aggiorna la configurazione della finestra di Rolling Average per i dati inviati
+  - Il Sistema Gateway riceve il comando di modifica della finestra di Rolling Average dal Cloud
+  - Il Sistema Gateway aggiorna la configurazione della finestra di Rolling Average per i dati inviati al Cloud
 - *Scenario principale*:
   - Il Cloud invia il comando di modifica della finestra di Rolling Average al Sistema Gateway
+
 
 ==== #uc() - Decommissioning Gateway <Decommissioning-gateway-cloud>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
-  - Il Sistema riceve il comando di decommissioning
-  - Il Sistema cancella l'associazione al tenant
-  - Il Sistema cancella tutte le configurazioni e i dati salvati localmente
+  - Il Sistema Gateway riceve il comando di decommissioning dal Cloud
+  - Il Sistema Gateway cancella l'associazione al tenant
+  - Il Sistema Gateway cancella tutte le configurazioni e i dati salvati localmente
 - *Scenario principale*:
   - Il Cloud invia il comando di decommissioning al Sistema Gateway
 - *Inclusioni*:
@@ -2857,6 +2869,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 ===== #sub-uc() - Disassociazione tenant Gateway <Disassociazione-tenant-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
+  - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
   - Il Sistema cancella l'associazione al tenant
@@ -2864,10 +2877,11 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia il comando di disassociazione del tenant al Sistema Gateway
 
+
 ==== #uc() - Reset Gateway <Reset-gateway-cloud>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
-  - ?
+  - Il Sistema Gateway è autenticato nel Cloud
 - *Post-condizioni*:
   - Il Sistema riceve il comando di reset
   - Il Sistema cancella tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica
