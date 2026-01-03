@@ -253,7 +253,7 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 )
 
 == Sistema Cloud - Lista dei casi d'uso
-Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
+In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud. Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
 
 === Attore principale - Utente non autenticato
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
@@ -1349,7 +1349,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
 - *Estensioni*:
   - #ref-uc(<Nome-tenant-gia-utilizzato>)
 
-==== #sub-uc() - Nome del tenant già utilizzato <Nome-tenant-gia-utilizzato>
+===== #sub-uc() - Nome del tenant già utilizzato <Nome-tenant-gia-utilizzato>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2145,7 +2145,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - #ref-uc(<Visualizzazione-data-staleness>)
   - #ref-uc(<Visualizzazione-valori-out-of-range>)
 
-=== #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
+===== #sub-uc() - Visualizzazione gateway offline/online <Visualizzazione-gateway-offline-online>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2157,7 +2157,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza il numero di gateway offline e online
   - Il Super-admin visualizza il grafico a torta rappresentante la metrica
 
-=== #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
+===== #sub-uc() - Visualizzazione throughput dati <Visualizzazione-throughput-dati>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2169,7 +2169,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza il throughput dati
   - Il Super-admin visualizza il grafico Time Series rappresentante la metrica
 
-=== #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
+===== #sub-uc() - Visualizzazione utilizzo risorse nodi cloud <Visualizzazione-utilizzo-risorse-nodi-cloud>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2183,7 +2183,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza lo Stat Panel rappresentante le metriche
   - Il Super-admin visualizza il grafico Time Series rappresentante l'andamento temporale delle metriche
 
-=== #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
+===== #sub-uc() - Visualizzazione frequenza disconnessioni gateway <Visualizzazione-frequenza-disconnessioni-gateway>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2195,7 +2195,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza la frequenza di disconnessione dei gateway
   - Il Super-admin visualizza il grafico a barre rappresentante le disconnessioni rilevate per ogni gateway
 
-=== #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
+===== #sub-uc() - Visualizzazione dimensioni payload pacchetti <Visualizzazione-dimensioni-payload-pacchetti>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2207,7 +2207,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza le dimensioni dei payload dei pacchetti inviati dai gateway
   - Il Super-admin visualizza il grafico a barre rappresentante le dimensioni medie, minime e massime dei payload
 
-=== #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
+===== #sub-uc() - Visualizzazione data staleness <Visualizzazione-data-staleness>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2219,7 +2219,7 @@ Dina: per me sono useless, il tenant admin spegne il gateway o lo accende in cas
   - Il Super-admin visualizza la data staleness dei sensori
   - Il Super-admin visualizza l'alert list rappresentante la data staleness di ogni sensore
 
-=== #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
+===== #sub-uc() - Visualizzazione valori out-of-range <Visualizzazione-valori-out-of-range>
 - *Attore principale*: Super-admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super-admin
@@ -2429,7 +2429,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway è connesso al Cloud
   - Il Gateway si è avviato e si è connesso per la prima volta al Cloud
   - Il Gateway possiede delle credenziali per l'autenticazione
-  - Il Gateway possiede un identificativo  // TODO: qual è differenza tra credenziali di auth e identificativo?
+  - Il Gateway possiede un identificativo univoco
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di hello dal Gateway
   - Il Sistema autentica il Gateway, associandolo all'identificativo ricevuto
@@ -2452,7 +2452,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 - *Scenario principale*:
   - Il Gateway riceve il messaggio di autenticazione fallita dal Sistema
 
-// TODO: CONTINUA REVIEW DA QUA ----
 
 ==== #uc() - Identificativo Gateway non trovato <Identificativo-gateway-non-trovato>
 - *Attore primario*: Gateway
@@ -2897,15 +2896,3 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sistema cancella tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica
 - *Scenario principale*:
   - Il Cloud invia il comando di reset al Sistema Gateway
-
-
-
-
-
-
-
-
-
-
-
-
