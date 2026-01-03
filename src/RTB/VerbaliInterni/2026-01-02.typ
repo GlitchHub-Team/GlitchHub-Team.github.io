@@ -82,5 +82,4 @@ In seguito all'analisi dello stato di avanzamento attuale, si è deciso di piani
 
 == Assegnazione ruoli per le prossime due settimane
 - *Responsabile*: Hossam Ezzemouri
-- *Amministratore*: Hossam Ezzemouri
 - *Analista*: Alessandro Dinato, Riccardo Graziani, Jaume Bernardi, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin
