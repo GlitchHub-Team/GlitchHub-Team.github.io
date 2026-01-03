@@ -3,8 +3,15 @@
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
-  versione: "0.12.0",
+  versione: "0.13.1",
   registro-modifiche: (
+    (
+      "0.13.1",
+      "03/01/2025",
+      "Elia Ernesto Stellin",
+      "-",
+      [Modifiche di formattazione]
+    ),
     (
       "0.13.0",
       "29/12/2025",
