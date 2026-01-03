@@ -10,7 +10,7 @@
 #let report(
   titolo: none,
   stato: none,
-  versione: none,
+  versione: none, // Tenuto per retro-compatibilità
   distribuzione: none,
   htmlId: none,
   registro-modifiche: (),
@@ -22,10 +22,16 @@
 ) = [
   #show link: underline
 
+  #let versione-auto = if registro-modifiche.len() > 0 {
+    registro-modifiche.first().at(0)
+  } else {
+    ""
+  }
+
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-    keywords: (htmlId, versione, index),
+    keywords: (htmlId, versione-auto, index),
   )
 
   #set page(
@@ -46,19 +52,13 @@
     spacing: 1.2em,
   )
 
-  #let versione-auto = if registro-modifiche.len() > 0 {
-  registro-modifiche.first().at(0)
-} else {
-  ""
-}
-
   #show: hwr.with(
     language: "it",
     main-font: "PT Sans",
 
     metadata: (
       title: titolo,
-      version: "Versione " + text(weight: "bold")[#versione],
+      version: "Versione " + text(weight: "bold")[#versione-auto],
       company-logo: image("../assets/loghi/GlitchHub-Team_LogoG.png", width: 75%),
       uni-logo: image("../assets/loghi/logo_unipd_scritta.jpg", width: 51%),
     ),
