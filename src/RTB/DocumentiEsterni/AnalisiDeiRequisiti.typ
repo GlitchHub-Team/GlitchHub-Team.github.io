@@ -9,7 +9,7 @@
       "03/01/2025",
       "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
       "-",
-      [Aggiunta use case relativi agli alert e la loro generazione], //TODO aggiungere timeout per sensore/gateway
+      [Aggiunta use case relativi agli alert e la loro generazione],
     ),
     (
       "0.13.1",
@@ -881,6 +881,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Tenant User seleziona la funzionalità di visualizzazione sensori
   - Il Tenant User visualizza la lista dei sensori associati al tenant del Tenant User
 
+//TODO creazione richieste fornitura
+
 === Attore principale - Tenant Admin
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
 - *Attore principale*: Tenant Admin
@@ -1336,7 +1338,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   --- GESTIONE UTENTI
   - Creazione Tenant User SI
   - Sospensione Tenant User SI
-  - Riattivazione Tenant User SI 
+  - Riattivazione Tenant User SI
   - Eliminazione Tenant User SI
   --- GESTIONE API KEY
   - Creazione API Key SI
@@ -1349,7 +1351,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   --- GESTIONE SENSORI E GATEWAY
   - Sospensione sensore SI
   - Riattivazione sensore SI
-  - Sospensione gateway SI 
+  - Sospensione gateway SI
   - Riattivazione gateway SI
 */
 
@@ -1872,7 +1874,6 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - L'Email client riceve una email con il link per l'impostazione della nuova password
 
-
 ==== #uc() - Email già utilizzata <Email-gia-utilizzata-super-admin>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -2006,10 +2007,12 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema genera dei certificati di autenticazione per il gateway simulato
 - *Scenario principale*:
   - Il Super Admin imposta il nome del gateway simulato
+  - Il Super Admin inserisce il timeout di inattività del gateway simulato
   - Il Super Admin imposta la dimensione in byte del buffer del gateway simulato
   - Il Sistema genera un ID univoco al gateway simulato
 - *Inclusioni*:
   - #ref-uc(<Inserimento-nome-gateway-simulato>)
+  - #ref-uc(<Inserimento-timeout-inattivita-gateway-simulato>)
   - #ref-uc(<Inserimento-dimensione-buffer-gateway-simulato>)
 
 ===== #sub-uc() - Inserimento nome gateway simulato <Inserimento-nome-gateway-simulato>
@@ -2020,6 +2023,16 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema riceve il nome del nuovo gateway simulato
 - *Scenario principale*:
   - Il Super Admin inserisce il nome del nuovo gateway simulato
+
+===== #sub-uc() - Inserimento timeout inattività gateway simulato <Inserimento-timeout-inattivita-gateway-simulato>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il timeout deve essere un valore positivo in millisecondi
+- *Post-condizioni*:
+  - Il Sistema riceve il valore del timeout di inattività del nuovo gateway simulato
+- *Scenario principale*:
+  - Il Super Admin inserisce il valore del timeout in millisecondi che rappresenta il periodo di tempo di inattività del gateway simulato prima di considerarlo non più attivo ed inviare l'alert
 
 ===== #sub-uc() - Inserimento dimensione buffer gateway simulato <Inserimento-dimensione-buffer-gateway-simulato>
 - *Attore principale*: Super Admin
@@ -2039,25 +2052,37 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema crea correttamente il nuovo sensore simulato e lo associa al gateway
 - *Scenario principale*:
   - Il Super Admin imposta i servizi GATT del sensore simulato
+  - Il Super Admin inserisce il timeout per l'invio dell'alert in caso di inattività del sensore
   - Il Super Admin seleziona il gateway simulato a cui associare il sensore simulato
 - *Inclusioni*:
   - #ref-uc(<Selezione-servizi-sensore-simulato>)
+  - #ref-uc(<Inserimento-timeout-alert-sensore-simulato>)
   - #ref-uc(<Inserimento-associazione-gateway-simulato>)
 
-===== #sub-uc() - Inserimento tipologia sensore simulato <Selezione-servizi-sensore-simulato>
+===== #sub-uc() - Selezione servizi sensore simulato <Selezione-servizi-sensore-simulato>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - L'utente è autenticato con il ruolo di Super Admin
 - *Post-condizioni*:
   - Il Sistema riceve i servizi GATT offerti dal nuovo sensore simulato
 - *Scenario principale*:
-  - Il Super Admin può scegliere tra i seguenti servizi:
+  - Il Super Admin può scegliere tra uno o più dei seguenti servizi:
     - Heart Rate Service (HRS)
     - Pulse Oximeter Service (POS)
     - Servizio custom per la misurazione dell'ECG
     - Health Thermometer Service (HTS)
     - Environmental Sensing Service (ESS)
   - Il Super Admin sceglie i servizi GATT simulati dal nuovo sensore simulato
+
+===== #sub-uc() - Inserimento timeout alert sensore simulato <Inserimento-timeout-alert-sensore-simulato>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - L'utente è autenticato con il ruolo di Super Admin
+  - Il timeout deve essere un valore positivo in millisecondi
+- *Post-condizioni*:
+  - Il Sistema riceve il valore del timeout per l'invio dell'alert in caso di inattività del sensore simulato
+- *Scenario principale*:
+  - Il Super Admin inserisce il valore del timeout in millisecondi che rappresenta il periodo di tempo di inattività del sensore simulato prima di inviare un alert
 
 ===== #sub-uc() - Inserimento associazione gateway simulato <Inserimento-associazione-gateway-simulato>
 - *Attore principale*: Super Admin
