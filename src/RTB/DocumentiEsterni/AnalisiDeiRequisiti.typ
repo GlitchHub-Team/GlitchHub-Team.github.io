@@ -526,6 +526,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente ha ricevuto l'email di reimpostazione password
 - *Post-condizioni*:
   - La password dell'Utente viene reimpostata
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'utente, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - L'Utente clicca sul link di reimpostazione password nell'email
   - L'Utente inserisce la nuova password
@@ -1331,25 +1332,22 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 // AUDIT LOG:
 /*
   --- GESTIONE UTENTI
-  - Creazione Tenant User
-  - Sospensione Tenant User
-  - Riattivazione Tenant User
-  - Eliminazione Tenant User
+  - Creazione Tenant User SI
+  - Sospensione Tenant User SI
+  - Riattivazione Tenant User SI 
+  - Eliminazione Tenant User SI
   --- GESTIONE API KEY
-  - Creazione API Key
-  - Eliminazione API Key
+  - Creazione API Key SI
+  - Eliminazione API Key SI
   --- GESTIONE ACCESSI
-  - Login
-  - Logout
-  - Generazione 2FA
-  - Accesso fallito (user/pswd)
-  - Accesso fallito (2FA)
-  - Accesso fallito (Tenant User sospeso)
-  - Richiesta reimpostazione password
+  - Login SI
+  - Logout SI
+  - Generazione 2FA SI
+  - Richiesta reimpostazione password SI
   --- GESTIONE SENSORI E GATEWAY
   - Richiesta fornitura gateway
-  - Sospensione sensore
-  - Riattivazione sensore
+  - Sospensione sensore SI
+  - Riattivazione sensore SI
 */
 
 ===== #uc() - Filtraggio log per tipologia <Filtraggio-log-per-tipologia>
@@ -1818,7 +1816,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista richieste di fornitura Gateway
 
-==== #uc() - Creazione utente Tenant-admin <Creazione-utente-tenant-admin>
+==== #uc() - Creazione utente Tenant Admin <Creazione-utente-tenant-admin>
 - *Attore principale*: Super Admin
 - *Attore secondario*: Client email
 - *Pre-condizioni*:
