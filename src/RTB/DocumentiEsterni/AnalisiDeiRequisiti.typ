@@ -1013,6 +1013,19 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - Il Tenant Admin conferma l'eliminazione del Tenant User
 
+==== #uc() - Creazione richiesta di commissioning gateway <Creazione-richiesta-commissioning-gateway>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema crea una richiesta di commissioning di gateway, la quale potrà essere accettata o rifiutata dal Super Admin
+- *Scenario principale*:
+  - Il Tenant Admin inserisce il numero di nuovi gateway da associare al proprio Tenant
+  - Il Tenant Admin inserisce una descrizione della richiesta per specificare ulteriori dettagli
+
+==== #uc() - Creazione richiesta di decommissioning gateway <Creazione-richiesta-decommissioning-gateway>
+
+
 
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 - *Attore principale*: Tenant Admin
@@ -1043,7 +1056,6 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - Il Tenant Admin visualizza il numero di API key valide e scadute nel tenant
   - Il Tenant Admin visualizza le informazioni in forma testuale e di grafico a torta.
-
 
 ==== #uc() - Visualizzazione stato delle richieste di commissioning e decommissioning di gateway <Visualizzazione-stato-richieste-commissioning-decommissioning-gateway>
 - *Attore principale*: Tenant Admin
@@ -1104,7 +1116,6 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
 
-
 ==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
@@ -1143,8 +1154,6 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Tenant Admin inserisce la scadenza della nuova API key
 - *Scenari alternativi*:
   - La scadenza inserita non è valida
-
-
 
 ==== #uc() - Nome API key già utilizzato <Nome-api-key-gia-utilizzato>
 - *Attore principale*: Tenant Admin
@@ -1347,7 +1356,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Login SI
   - Logout SI
   - Generazione 2FA SI
-  - Richiesta reimpostazione password SI
+  - Reimpostazione password SI
   --- GESTIONE SENSORI E GATEWAY
   - Sospensione sensore SI
   - Riattivazione sensore SI
