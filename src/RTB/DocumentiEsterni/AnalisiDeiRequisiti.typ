@@ -1297,6 +1297,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema invia il comando di sospensione al gateway e sospende la ricezione dei suoi dati
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin seleziona un gateway attivo associato al proprio tenant
   - Il Tenant Admin sospende il gateway
@@ -1308,6 +1309,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il gateway selezionato appartiene al tenant del Tenant Admin
 - *Post-condizioni*:
   - Il Sistema riattiva il gateway e riprende la ricezione dei suoi dati
+  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
   - Il Tenant Admin seleziona un gateway sospeso associato al proprio tenant
   - Il Tenant Admin riattiva il gateway
@@ -1345,9 +1347,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Generazione 2FA SI
   - Richiesta reimpostazione password SI
   --- GESTIONE SENSORI E GATEWAY
-  - Richiesta fornitura gateway
   - Sospensione sensore SI
   - Riattivazione sensore SI
+  - Sospensione gateway SI 
+  - Riattivazione gateway SI
 */
 
 ===== #uc() - Filtraggio log per tipologia <Filtraggio-log-per-tipologia>
