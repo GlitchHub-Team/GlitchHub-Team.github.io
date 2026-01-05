@@ -5,6 +5,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.15.0",
+      "05/01/2025",
+      "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
+      "-",
+      [Modifiche di formattazione; Migliorata descrizione dei casi d'uso (@casi-d-uso-introduzione); Aggiunti use case mancanti relativi a invio di comandi al gateway; Impostati contatori dei requisiti]
+    ),
+    (
       "0.14.0",
       "03/01/2025",
       "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
@@ -288,7 +295,7 @@ L'architettura prevista si articola in tre principali livelli che collaborano pe
 I sensori svolgono la funzione di acquisizione locale mentre i Gateway aggregano e inoltrano i dati verso il cloud, che rappresenta il core del sistema. Quest'ultimo si occupa di archiviazione, gestione dei tenant, esposizione delle API e monitoraggio tramite dashboard.
 
 = Casi d'uso
-== Introduzione
+== Introduzione <casi-d-uso-introduzione>
 La definizione dei casi d'uso rappresenta una fase fondamentale nell'analisi dei requisiti di sistema previsto dal capitolato M31. I casi d'uso permettono di descrivere in maniera chiara e strutturata come gli *attori* interagiscono con il *sistema* specificato per raggiungere un determinato obiettivo.
 
 In questo documento, con il termine *"Attore"* si intende una qualunque entità esterna al *Sistema* considerato che interagisce con lo stato di quest'ultima, in lettura e/o in scrittura.
