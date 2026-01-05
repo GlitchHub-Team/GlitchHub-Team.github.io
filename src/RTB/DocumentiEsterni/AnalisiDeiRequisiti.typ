@@ -150,16 +150,16 @@
   Crea un riferimento allo UC relativo a un certo label.
 
   = Esempio
-  Se da qualche parte ho un titolo con label `<Autenticazione-Utente>`
+  Se da qualche parte ho un titolo con label `<Autenticazione-utente>`
   che corrisponde allo UC1.2,
-  posso scrivere `#ref-uc(<Autenticazione-Utente>)` per avere un link
+  posso scrivere `#ref-uc(<Autenticazione-utente>)` per avere un link
   automatico a quella sezione che verrà fuori tipo "UC1.2 [Sezione x.y.z]"
 
   = Parametri
   == uc-label
   Tipo: label
 */
-#let ref-uc = uc-label => {
+#let ref-uc = (uc-label, section-prefix: "Sezione ") => {
   context {
     // Per ogni titolo di UC con label, crea array dove ogni riga è
     // (indice, codice UC, stringa con nome del label)
@@ -169,7 +169,8 @@
           let head-label = head.at("label", default: none)
           if head-label != none and uc-counter.at(head-label).first() != 0 {
             (uc-counter.at(head-label), str(head.label))
-          } else { none }
+          }
+          else { none }
         },
       )
       .filter(x => x != none)
@@ -180,16 +181,24 @@
       })
 
     // Cerca uc-label in questa lista
-    let (prev-index, _prev-uc-id, actual-uc-label) = head-query.find(
-      x => {
-        let (_index, _counter, row-label) = x
-        return row-label == str(uc-label)
-      },
+    let query-result = head-query.find(
+        x => {
+          let (_index, _counter, row-label) = x
+          return row-label == str(uc-label)
+        },
+      )
+    
+    let (prev-index, _prev-uc-id, actual-uc-label) = (
+      if query-result != none {query-result}
+      else {(none, none, uc-counter.at(uc-label))}
     )
 
     // Trova l'ID dell'UC successivo
     let (_next-index, actual-uc-id, _next-uc-label) = (
-      if prev-index < head-query.len() - 1 {
+      if prev-index == none {
+        (none, head-query.at(0).at(1), none)
+      }
+      else if prev-index < head-query.len() - 1 {
         head-query.find(x => {
           let (index, ..other) = x
           return index == prev-index + 1
@@ -198,7 +207,7 @@
         (none, uc-counter.final(), none)
       }
     )
-
+    
     // Mostra il codice dell'UC effettivo
     let uc-number = "UC" + actual-uc-id.map(str).join(".")
 
@@ -209,10 +218,55 @@
       ..section-number,
     )
 
-    [#link(uc-label, [#uc-number \[Sezione #section-id\]])]
+    [#link(uc-label, [#uc-number \[#section-prefix#section-id\]])]
   }
 }
 
+
+#let rf-counter = counter("rf-counter")
+#let rnf-counter = counter("rnf-counter")
+#let rd-counter = counter("rd-counter")
+#let rv-counter = counter("rv-counter")
+
+#rf-counter.update(0)
+#rnf-counter.update(0)
+#rd-counter.update(0)
+#rv-counter.update(0)
+
+#context uc-counter.get()
+
+#context uc-counter.at(
+  locate(selector(<Autenticazione-utente>).before(<Inserimento-email-auth>))
+)
+
+#let rf  = (..args) => { 
+  rf-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  context rf-counter.display(value => {
+    [*RF\-#value\-#rilevanza*]
+  })
+}
+#let rnf = (..args) => { 
+  rf-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  context rnf-counter.display(value => {
+    [*RNF\-#value\-#rilevanza*]
+  })
+}
+#let rd  = (..args) => { 
+  rd-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  context rd-counter.display(value => {
+    [*RD\-#value\-#rilevanza*]
+  })
+}
+#let rv  = (..args) => { 
+  rv-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  context rv-counter.display(value => {
+    [*RV\-#value\-#rilevanza*]
+  })
+}
 
 /*
 NOTE: quando si scrive che super admin impersona tenant admin, si segna come precondizione che il tenant admin ha accettato la clausola d'impersonificazione del contratto
@@ -3003,66 +3057,77 @@ Inoltre un buon requisito deve essere *SMART*:
 - *Tracciabile nel tempo*: il requisito deve avere una scadenza o un periodo di validità
 
 == Requisiti funzionali
+
+#set par(justify: false)
+#set table.cell(breakable: false)
+
+// (https://forum.typst.app/t/how-to-apply-set-rules-to-custom-functions/1657)
+// Cambia il parametro di default di ref-uc da qui in poi
+#let ref-uc = ref-uc.with(section-prefix: "§")
+
 #table(
-  columns: (0.20fr, 0.60fr, 0.20fr),
+  columns: (1fr, 4fr, 1.5fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  [], [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema], [@Autenticazione-Utente],
-  [],
+  [#rf()],
+  [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema], 
+  [#ref-uc(<Autenticazione-utente>)],
+
+  [#rf()],
   [L'Utente non autenticato deve inserire la propria email per autenticarsi],
-  [@Autenticazione-Utente @Inserimento-email-auth],
+  [#ref-uc(<Inserimento-email-auth>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve inserire la propria password per autenticarsi],
-  [@Autenticazione-Utente  @Inserimento-password],
+  [#ref-uc(<Autenticazione-utente>) \ #ref-uc(<Inserimento-password>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore in caso di inserimento di credenziali errate],
-  [@Autenticazione-non-riuscita],
+  [#ref-uc(<Autenticazione-non-riuscita>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso],
-  [@Account-sospeso],
+  [#ref-uc(<Account-sospeso>)],
 
-  [],
+  [#rf[?]],
   [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve riceve una mail con il codice di verifica],
-  [@Invio-codice-2FA],
+  [#ref-uc(<Invio-codice-2FA>)],
 
-  [],
+  [#rf[?]],
   [L'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, deve poter richiedere il re-invio del codice di verifica nel caso in cui non lo abbia ricevuto o sia scaduto],
-  [@Re-invio-codice-2FA],
+  [#ref-uc(<Re-invio-codice-2FA>)],
 
-  [],
+  [#rf[?]],
   [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve poter completare l'autenticazione a due fattori per autenticarsi nel Sistema],
-  [@Autenticazione-2FA],
+  [#ref-uc(<Autenticazione-2FA>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve poter inserire il codice di verifica ricevuto via mail per completare l'autenticazione, in caso sia richiesta la 2FA],
-  [@Inserimento-codice-2FA],
+  [#ref-uc(<Inserimento-codice-2FA>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto],
-  [@Codice-2FA-errato @Codice-2FA-scaduto],
+  [#ref-uc(<Codice-2FA-errato>)\ #ref-uc(<Codice-2FA-scaduto>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve poter impostare la sua prima password, in seguito alla ricezione della mail contenente il link per la creazione della prima password],
-  [@Impostazione-password],
+  [#ref-uc(<Impostazione-password>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve poter richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata],
-  [@Password-dimenticata],
+  [#ref-uc(<Password-dimenticata>)],
 
-  [],
+  [#rf()],
   [L'Utente non autenticato deve poter inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password],
-  [@Inserimento-indirizzo-email],
+  [#ref-uc(<Inserimento-indirizzo-email>)],
 
-  [],
+  [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
-  [@Invio-email-reimpostazione-password],
+  [#ref-uc(<Invio-email-reimpostazione-password>)],
 
-  [],
+  [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
-  [@Invio-email-reimpostazione-password],
+  [#ref-uc(<Invio-email-reimpostazione-password>)],
 )
 
 == Requisiti non funzionali
