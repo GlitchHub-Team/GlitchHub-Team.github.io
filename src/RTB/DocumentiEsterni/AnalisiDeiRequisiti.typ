@@ -289,51 +289,63 @@ I sensori svolgono la funzione di acquisizione locale mentre i Gateway aggregano
 
 = Casi d'uso
 == Introduzione
-La definizione dei casi d'uso rappresenta una fase fondamentale nell'analisi dei requisiti di sistema previsto dal capitolato M31. I casi d'uso permettono di descrivere in maniera chiara e strutturata come gli *attori* interagiscono con il sistema per raggiungere un determinato obiettivo.
+La definizione dei casi d'uso rappresenta una fase fondamentale nell'analisi dei requisiti di sistema previsto dal capitolato M31. I casi d'uso permettono di descrivere in maniera chiara e strutturata come gli *attori* interagiscono con il *sistema* specificato per raggiungere un determinato obiettivo.
+
+In questo documento, con il termine *"Attore"* si intende una qualunque entità esterna al *Sistema* considerato che interagisce con lo stato di quest'ultima, in lettura e/o in scrittura.
+Con *"Sistema"* invece si intende la parte del prodotto presa in considerazione dallo use case. Si noti che questo documento considera due principali "sistemi": la *piattaforma Cloud*, accessibile al gateway e agli utenti, e il *simulatore di gateway*, accessibile solamente dai sensori simulati e dalla piattaforma Cloud stessa.
 
 I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione sintetica delle relazioni tra attori e funzionalità, e di una descrizione testuale dettagliata. Quest'ultima specifica gli elementi principali del comportamento del sistema attraverso i seguenti punti:
-- *Attori primari*: indicano gli attori che interagiscono attivamente con il sistema e che avviano o guidano il flusso principale del caso d'uso;
-- *Attori secondari*: rappresentano gli attori che intervengono in modo indiretto o passivo;
-- *Pre-condizioni*: descrizione delle condizioni che devono essere vere affinchè l'attore possa avviare il caso d'uso;
+- *Attori primari*: indicano gli attori che interagiscono attivamente con il sistema considerato, avviando il flusso principale del caso d'uso;
+- *Attori secondari*: rappresentano gli attori che intervengono in modo indiretto o passivo, ma comunque rilevante per il caso d'uso;
+- *Pre-condizioni*: descrizione delle condizioni che devono essere vere all'interno dello stato del sistema affinché l'attore possa avviare il caso d'uso;
 - *Post-condizioni*: descrizione delle condizioni che devono essere vere al termine del caso d'uso, indicando lo stato del sistema dopo l'esecuzione;
 - *Scenario principale*: sequenza ordinata di passi che descrive il flusso di interazione tra attori e sistema in assenza di errori o di situazioni eccezionali;
 - *Scenario alternativo*: interruzioni del flusso principale che si verificano quando l'attore compie una scelta alternativa o si verificano condizioni particolari previste dal caso d'uso. Quando uno scenario alternativo si verifica, le post-condizioni del caso d'uso principale devono essere diverse;
-- *Inclusioni*: riferimenti a casi d'uso che l'attore deve completare per poter portare a termine il caso d'uso corrente;
-- *Estensioni*: riferimenti a casi d'uso che posso verificarsi durante il flusso principale del caso d'uso;
+- *Inclusioni*: riferimenti a casi d'uso che l'attore deve necessariamente completare per poter portare a termine il caso d'uso corrente;
+- *Estensioni*: riferimenti ai casi d'uso esterni che descrivono gli scenari alternativi che si possono incontrare durante il flusso principale del caso d'uso;
+
 
 == Attori <lista-attori>
-Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
+Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema preso in considerazione, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
 
+Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel documento e una breve descrizione per ognuno di essi.
 #table(
   // align: (left, left),
   columns: (1fr, 2.5fr),
   table.header([Attore], [Descrizione]),
 
-  [Utente non autenticato], [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
+  [Utente non autenticato], 
+  [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
 
   [Utente autenticato],
   [Un qualunque utente che abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione di *Tenant User*, *Tenant Admin* e *Super Admin*],
 
   [Tenant User],
-  [Un utente autenticato appartenente a uno specifico tenant che ha facoltà di visualizzare i dati dei sensori ricevuti dai *Gateway*],
+  [Un utente autenticato appartenente a uno specifico tenant che ha facoltà di visualizzare i dati dei sensori ricevuti dai *Gateway*.],
 
   [Tenant Admin],
-  [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant],
+  [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant.],
 
-  [Super Admin], [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud],
+  [Super Admin], 
+  [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud.],
 
-  [Amministratore],
-  [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*],
+  [Admin Generico],
+  [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.],
 
-  [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
+  [API Client], 
+  [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
 
-  [Sensore simulato], [Un qualunque sensore BLE che venga simulato dal Simulatore di Gateway sviluppato],
+  [Sensore simulato], 
+  [Un qualunque sensore BLE che venga simulato dal *Gateway simulato* sviluppato.],
 
   [Gateway simulato],
   [Un Gateway simulato che interloquisce con l'*Infrastruttura Cloud* per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
 
   [Infrastruttura Cloud],
   [L'infrastruttura Cloud che riceve i dati normalizzati dal Gateway, rendendoli visibili ai *Tenant User*.],
+
+  [Email Client],
+  [Rappresenta un client di posta elettronica usato dagli utenti. Si noti che quest'ultimo può essere solo un attore secondario, in quanto non è in grado di compiere azioni diverse dal ricevere email.]
 )
 
 == Sistema Cloud - Lista dei casi d'uso
