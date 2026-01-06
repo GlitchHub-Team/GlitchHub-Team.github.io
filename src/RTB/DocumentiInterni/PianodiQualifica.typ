@@ -7,9 +7,9 @@
   stato: "Bozza",
   versione: "0.0.1",
   registro-modifiche: (
-    ("0.0.3","3/01/2026", "Hossam Ezzemouri", "-", "Aggiunta di metriche"),
-    ("0.0.2", "29/12/2025", "-", "Siria Salvalaio", "Stesura metriche"),
-    ("0.0.1", "21/12/2025", "-", "Siria Salvalaio", "Bozza prime metriche e struttura documento"),
+    ("0.0.3","3/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
+    ("0.0.2", "29/12/2025", "Siria Salvalaio", "-", "Stesura metriche"),
+    ("0.0.1", "21/12/2025", "Siria Salvalaio", "-", "Bozza prime metriche e struttura documento"),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
@@ -23,7 +23,7 @@
 == Finalità del documento
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
 Il Piano di qualifica determina 3 elementi essenziali:
-- Il *Piano di Qualità*, cioò l'insieme delle attività e obiettivi di qualità
+- Il *Piano di Qualità*, ciò l'insieme delle attività e obiettivi di qualità
 - Le attività di *Controllo di qualità*
 - Le iniziative di *Miglioramento continuo*
 
@@ -32,7 +32,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 // Norme di Progetto?
 - *Norme di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf
-- *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori* \
+- *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
 - *Piano di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf
@@ -52,7 +52,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 = Metriche di Qualità del Processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
 
-In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Metriche di processo e controllo). Questo identificatio permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
+In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Metriche di processo e controllo). Questo identificato permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
 
 == Fornitura
 - *MPC-PV (Planned Value)* \
@@ -72,9 +72,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 - *MPC-SV (Schedule Variance)* \
   Differenza tra lavoro fatto e lavoro pianificato (*EV*-*PV*).
 - *MPC-TCR (Task Completion Rate)* \
-  Percentuale di task completate rispetto a quelle pianificate per uno sprint.
+  Percentuale di attività (task) completate rispetto a quelle pianificate per uno sprint.
 - *MPC-TS (Task Slippage)* \
-  Percentuale di task slittate allo sprint successivo rispetto alle task totali.
+  Percentuale di task che non sono state portate a termine entro la fine dello sprint e che vengono posticipate a quello successivo.
 
 #figure(
   table(
@@ -91,8 +91,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     [MPC-ETC], [Estimated To Complete], [$"(valore da definire)"$], [$$],
     [MPC-CV], [Cost Variance], [$>= 0$], [$> 0$],
     [MPC-SV], [Schedule Variance], [$>= 0$], [$> 0$],
-    [MPC-TCR],[Task Completion Rate], [$"(da definire)"$],[$100%$],
-    [MPC-TS], [Task Slippage], [$"(da definire)"$], [$0%$]
+    [MPC-TCR],[Task Completion Rate], [$>=85%$],[$100%$],
+    [MPC-TS], [Task Slippage], [$<= 15%$], [$0%$]
 
   ),
   caption: [Valori per misurare la qualità della fornitura.],
@@ -178,9 +178,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 - *MPC-TE (Time efficiency)* \
   Rapporto tra tempo di produzione effettivo e tempo totale di lavoro.
 - *MPC-WD (Work Distribution)* \
-  Misura la distribuzione in percentuale delle task tra i membri del team per garantire un carico di lavoro equilibrato.
+  Misura la distribuzione in percentuale delle attività (task) tra i membri del team per garantire un carico di lavoro equilibrato.
 - *MPC-SPF (Single Point of Failure Risk)* \
-  Indice che valuta la concentrazione di task critiche su un numero limitato di membri del team, al fine di ridurre il rischio di dipendenza da un singolo componente del gruppo.
+  Indice che valuta la concentrazione di attività (task) critiche su un numero limitato di membri del team, al fine di ridurre il rischio di dipendenza da un singolo componente del gruppo.
 
 #figure(
   table(
@@ -192,8 +192,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     [MPC-QMS], [Quality Metrics Satisfied], [$>= 80%$], [$= 100%$],
     [MPC-CQ], [Cost of Quality], [$15%-25%$], [$<=15%$],
     [MPC-TE], [Time efficiency], [$>= 0.8$], [$>= 0.95$],
-    [MPC-WD],[Work Distribution], [$"(da definire)"$], [$"(da definire)"$],
-    [MPC-SPF],[Single Point of Failure Risk], [$"(da definire)"$], [$"(da definire)"$]
+    [MPC-WD],[Work Distribution], [$20%$], [$<10%$],
+    [MPC-SPF],[Single Point of Failure Risk], [$15%$], [$<10%$]
 
   ),
   caption: [Valori per misurare la qualità della qualità e dei processi.],
@@ -212,7 +212,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 - *MPD-CRP (Copertura Requisiti Opzionali)* \
   Percentuale di requisiti opzionali implementati.
 - *MPD-AD (API Documentation)*
-  Presenza e completezza della documentazione delle API.
+  Misura il grado di copertura, accuratezza e aggiornamento della documentazione delle API.
 - *MPD-DL (Data Loss)*
   Percentuale di messaggi persi durante la trasmissione dei dati dal gateway al cloud. (messaggi inviati-messaggi ricevuti)/messaggi inviati
 
@@ -225,8 +225,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     
     [MPD-CRO], [Copertura Requisiti Obbligatori], [$= 100%$], [$= 100%$],
     [MPD-CRP], [Copertura Requisiti Opzionali], [$>= 0$], [$>=70%$],
-    [MPD-AD],[API Documentation], [$"(da definire)"$], [$"(da definire)"$],
-    [MPD-DL],[Data Loss], [$"(da definire)"$], [$0%$]
+    [MPD-AD],[API Documentation], [$>=90%$], [$100%$],
+    [MPD-DL],[Data Loss], [$0,1%-1%$], [$<0,01%$]
   ),
   caption: [Valori per misurare la qualità delle funzionalità.],
   kind: table,
@@ -238,7 +238,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
   Capacità del sistema di resistere a guasti senza bloccarsi.
 - *MPD-FF (Failure Frequency)* \
   Frequenza con cui si presentano malfunzionamenti in funzionamento.
-- *MPD-MTBF (Mean Time Beetween Failures)* \
+- *MPD-MTBF (Mean Time Between Failures)* \
   Tempo medio di funzionamento tra un guasto e l'altro.
 - *MPD-MTTR (Mean Time To Restoration)* \
   Tempo medio necessario per ripristinare il servizio dopo un errore.
@@ -252,7 +252,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     
     [MPD-FT], [Failure Tolerance], [$>= 80%$], [$= 100%$],
     [MPD-FF], [Failure Frequency], [$<= "2 al mese"$], [$=0$],
-    [MPD-MRBF], [Mean Time Beetween Failures], [$>= "4 giorni"$], [$>= "7 giorni"$],
+    [MPD-MRBF], [Mean Time Between Failures], [$>= "4 giorni"$], [$>= "7 giorni"$],
     [MPD-MTTR], [Mean Time To Restoration], [$<= "4 ore"$], [$<= "1 ora"$],
   ),
   caption: [Valori per misurare la qualità dell'affidabilità.],
@@ -353,29 +353,26 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 = Metriche di Testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
-Le attivita di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del perodotto discusse in questo documento.
+Le attivita di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del prodotto discusse in questo documento.
 
 == Copertura del codice
 La copertura del codice (detta anche *Code Coverage*) misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici. Tale metrica consente di valutare il grado di verifica del software ed è direttamente collegata alla metrica *MPC-CC (Code Coverage)*.
 
-Il valore minimo accettabile è fissato al 75%
+Il valore minimo accettabile è fissato al 80%
 
 == Test Unitari
-I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta aalle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate.
-L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
+I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate. \
+L' esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
 
 == Test di Integrazione
-I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura,
-tali test risultano fondamentali per il raggiungimento di un solido risultato.
+I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
 
 == Test di Regressione
-I test di regressione vengono eseguiti in seguito all'implementazione di nuove funzionalità o modifiche al sistema, in modo da accertarsi che il corretto comportamento precedente non sia 
-stato compromesso.
-Essi consistono nella riesecuzione dei test unitari e di integrazione già esistenti. Un aumento del numero di test di regressione falliti
-rappresenta un indicatore di instabilità e deve essere strettamente monitorato per evitare regressioni funzionali.
+I test di regressione vengono eseguiti in seguito all'implementazione di nuove funzionalità o modifiche al sistema, in modo da accertarsi che il corretto comportamento precedente non sia stato compromesso.
+Essi consistono nella riesecuzione dei test unitari e di integrazione già esistenti. Un aumento del numero di test di regressione falliti rappresenta un indicatore di instabilità e deve essere strettamente monitorato per evitare regressioni funzionali.
 
 == Test di Sistema
-I test di sistema verificano il corretto comportamento complessivo dell' applicazione in un ambiente il più possibile simile a quello di utilizzo reale.
+I test di sistema verificano il corretto comportamento complessivo dell' applicazione in un ambiente il più possibile simile a quello di utilizzo reale. \
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
 = Cruscotto di Valutazione
 
