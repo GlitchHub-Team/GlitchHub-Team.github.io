@@ -52,7 +52,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 = Metriche di Qualità del Processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
 
-In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Metriche di processo e controllo). Questo identificato permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
+In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Metriche di processo e controllo). Questo identificativo permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
 
 == Fornitura
 - *MPC-PV (Planned Value)* \
@@ -252,7 +252,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     
     [MPD-FT], [Failure Tolerance], [$>= 80%$], [$= 100%$],
     [MPD-FF], [Failure Frequency], [$<= "2 al mese"$], [$=0$],
-    [MPD-MRBF], [Mean Time Between Failures], [$>= "4 giorni"$], [$>= "7 giorni"$],
+    [MPD-MTBF], [Mean Time Between Failures], [$>= "4 giorni"$], [$>= "7 giorni"$],
     [MPD-MTTR], [Mean Time To Restoration], [$<= "4 ore"$], [$<= "1 ora"$],
   ),
   caption: [Valori per misurare la qualità dell'affidabilità.],
@@ -266,7 +266,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 - *MPD-MUM (Mistakes User Makes)* \
   Numero medio di errori commessi dall'utente nell'uso del software.
 - *MPD-TSR (Task Success Rate)* \
-  Percentuale di compiti portate a termine con successo dall'utente.
+  Percentuale di compiti portati a termine con successo dall'utente.
 
 #figure(
   table(
@@ -353,16 +353,16 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 = Metriche di Testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
-Le attivita di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del prodotto discusse in questo documento.
+Le attività di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del prodotto discusse in questo documento.
 
 == Copertura del codice
 La copertura del codice (detta anche *Code Coverage*) misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici. Tale metrica consente di valutare il grado di verifica del software ed è direttamente collegata alla metrica *MPC-CC (Code Coverage)*.
 
-Il valore minimo accettabile è fissato al 80%
+Il valore minimo accettabile è fissato all' 80%
 
 == Test Unitari
 I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate. \
-L' esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
+L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
 
 == Test di Integrazione
 I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
@@ -372,7 +372,7 @@ I test di regressione vengono eseguiti in seguito all'implementazione di nuove f
 Essi consistono nella riesecuzione dei test unitari e di integrazione già esistenti. Un aumento del numero di test di regressione falliti rappresenta un indicatore di instabilità e deve essere strettamente monitorato per evitare regressioni funzionali.
 
 == Test di Sistema
-I test di sistema verificano il corretto comportamento complessivo dell' applicazione in un ambiente il più possibile simile a quello di utilizzo reale. \
+I test di sistema verificano il corretto comportamento complessivo dell'applicazione in un ambiente il più possibile simile a quello di utilizzo reale. \
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
 = Cruscotto di Valutazione
 
