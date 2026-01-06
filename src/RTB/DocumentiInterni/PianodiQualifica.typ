@@ -8,8 +8,8 @@
   versione: "0.0.1",
   registro-modifiche: (
     ("0.0.3","3/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
-    ("0.0.2", "29/12/2025", "Siria Salvalaio", "-", "Stesura metriche"),
-    ("0.0.1", "21/12/2025", "Siria Salvalaio", "-", "Bozza prime metriche e struttura documento"),
+    ("0.0.2", "29/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Stesura metriche"),
+    ("0.0.1", "21/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Bozza prime metriche e struttura documento"),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
