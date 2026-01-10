@@ -254,7 +254,7 @@
   })
 }
 #let rnf = (..args) => { 
-  rf-counter.step()
+  rnf-counter.step()
   let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
   context rnf-counter.display(value => {
     [*RNF\-#value\-#rilevanza*]
