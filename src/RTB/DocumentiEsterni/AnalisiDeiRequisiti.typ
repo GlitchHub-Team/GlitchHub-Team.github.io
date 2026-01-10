@@ -741,6 +741,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - Il Tenant User visualizza gli alert riguardanti eventi anomali nel proprio tenant
   - Il Tenant User visualizza gli alert in forma di lista ordinata in ordine cronologico decrescente (dal più recente al meno recente).
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-alert>)
 
 
 ==== #uc() - Visualizzazione alert <Visualizzazione-alert>
