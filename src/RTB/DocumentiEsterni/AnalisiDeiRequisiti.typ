@@ -9,7 +9,7 @@
       "05/01/2025",
       "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
       "-",
-      [Modifiche di formattazione; Migliorata descrizione dei casi d'uso (@casi-d-uso-introduzione); Aggiunti use case mancanti relativi a invio di comandi al gateway; Impostati contatori dei requisiti]
+      [Modifiche di formattazione; Migliorata descrizione dei casi d'uso (@casi-d-uso-introduzione); Aggiunti use case mancanti relativi a invio di comandi al gateway; Impostati contatori dei requisiti],
     ),
     (
       "0.14.0",
@@ -176,8 +176,7 @@
           let head-label = head.at("label", default: none)
           if head-label != none and uc-counter.at(head-label).first() != 0 {
             (uc-counter.at(head-label), str(head.label))
-          }
-          else { none }
+          } else { none }
         },
       )
       .filter(x => x != none)
@@ -189,23 +188,21 @@
 
     // Cerca uc-label in questa lista
     let query-result = head-query.find(
-        x => {
-          let (_index, _counter, row-label) = x
-          return row-label == str(uc-label)
-        },
-      )
-    
+      x => {
+        let (_index, _counter, row-label) = x
+        return row-label == str(uc-label)
+      },
+    )
+
     let (prev-index, _prev-uc-id, actual-uc-label) = (
-      if query-result != none {query-result}
-      else {(none, none, uc-counter.at(uc-label))}
+      if query-result != none { query-result } else { (none, none, uc-counter.at(uc-label)) }
     )
 
     // Trova l'ID dell'UC successivo
     let (_next-index, actual-uc-id, _next-uc-label) = (
       if prev-index == none {
         (none, head-query.at(0).at(1), none)
-      }
-      else if prev-index < head-query.len() - 1 {
+      } else if prev-index < head-query.len() - 1 {
         head-query.find(x => {
           let (index, ..other) = x
           return index == prev-index + 1
@@ -214,7 +211,7 @@
         (none, uc-counter.final(), none)
       }
     )
-    
+
     // Mostra il codice dell'UC effettivo
     let uc-number = "UC" + actual-uc-id.map(str).join(".")
 
@@ -243,33 +240,33 @@
 #context uc-counter.get()
 
 #context uc-counter.at(
-  locate(selector(<Autenticazione-utente>).before(<Inserimento-email-auth>))
+  locate(selector(<Autenticazione-utente>).before(<Inserimento-email-auth>)),
 )
 
-#let rf  = (..args) => { 
+#let rf = (..args) => {
   rf-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
   context rf-counter.display(value => {
     [*RF\-#value\-#rilevanza*]
   })
 }
 #let rnf = (..args) => { 
-  rf-counter.step()
+  rnf-counter.step()
   let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
   context rnf-counter.display(value => {
     [*RNF\-#value\-#rilevanza*]
   })
 }
-#let rd  = (..args) => { 
+#let rd = (..args) => {
   rd-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
   context rd-counter.display(value => {
     [*RD\-#value\-#rilevanza*]
   })
 }
-#let rv  = (..args) => { 
+#let rv = (..args) => {
   rv-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
   context rv-counter.display(value => {
     [*RV\-#value\-#rilevanza*]
   })
@@ -321,8 +318,7 @@ Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel 
   columns: (1fr, 2.5fr),
   table.header([Attore], [Descrizione]),
 
-  [Utente non autenticato], 
-  [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
+  [Utente non autenticato], [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
 
   [Utente autenticato],
   [Un qualunque utente che abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione di *Tenant User*, *Tenant Admin* e *Super Admin*],
@@ -333,17 +329,14 @@ Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel 
   [Tenant Admin],
   [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant.],
 
-  [Super Admin], 
-  [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud.],
+  [Super Admin], [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud.],
 
   [Admin Generico],
   [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.],
 
-  [API Client], 
-  [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
+  [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
 
-  [Sensore simulato], 
-  [Un qualunque sensore BLE che venga simulato dal *Gateway simulato* sviluppato.],
+  [Sensore simulato], [Un qualunque sensore BLE che venga simulato dal *Gateway simulato* sviluppato.],
 
   [Gateway simulato],
   [Un Gateway simulato che interloquisce con l'*Infrastruttura Cloud* per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
@@ -352,7 +345,7 @@ Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel 
   [L'infrastruttura Cloud che riceve i dati normalizzati dal Gateway, rendendoli visibili ai *Tenant User*.],
 
   [Email Client],
-  [Rappresenta un client di posta elettronica usato dagli utenti. Si noti che quest'ultimo può essere solo un attore secondario, in quanto non è in grado di compiere azioni diverse dal ricevere email.]
+  [Rappresenta un client di posta elettronica usato dagli utenti. Si noti che quest'ultimo può essere solo un attore secondario, in quanto non è in grado di compiere azioni diverse dal ricevere email.],
 )
 
 == Sistema Cloud - Lista dei casi d'uso
@@ -754,6 +747,23 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema mostra il titolo e la descrizione dell'alert selezionato
 - *Scenario principale*:
   - L'Utente Autenticato visualizza il titolo e la descrizione dell'alert selezionato
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-titolo-alert>)
+  - #ref-uc(<Visualizzazione-descrizione-alert>)
+
+===== #sub-uc() - Visualizzazione titolo alert <Visualizzazione-titolo-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra il titolo dell'alert selezionato
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza il titolo dell'alert selezionato
+
+===== #sub-uc() - Visualizzazione descrizione alert <Visualizzazione-descrizione-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra la descrizione dell'alert selezionato
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza la descrizione dell'alert selezionato
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da Gateway <Mancata-ricezione-gateway>
 - *Specializzazione*: #ref-uc(<Visualizzazione-alert>)
@@ -766,6 +776,31 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema mostra l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
 - *Scenario principale*:
   - L'Utente Autenticato visualizza l'identificativo del gateway, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-id-gateway-alert>)
+  - #ref-uc(<Visualizzazione-timestamp-ultimo-dato-gateway-alert>)
+  - #ref-uc(<Visualizzazione-tempo-inattivita-gateway-alert>)
+
+===== #sub-uc() - Visualizzazione identificativo gateway alert <Visualizzazione-id-gateway-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del gateway interessato nell'alert
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza l'identificativo del gateway interessato nell'alert
+
+===== #sub-uc() - Visualizzazione timestamp ultimo dato gateway alert <Visualizzazione-timestamp-ultimo-dato-gateway-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra il timestamp dell'ultimo dato ricevuto dal gateway interessato nell'alert, ovvero il datetime preciso in cui è stato inviato l'ultimo dato
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza il timestamp dell'ultimo dato ricevuto dal gateway interessato nell'alert
+
+===== #sub-uc() - Visualizzazione tempo inattività gateway alert <Visualizzazione-tempo-inattivita-gateway-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra il tempo di inattività del gateway interessato nell'alert, ovvero il tempo dall'ultimo dato ricevuto.
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza il tempo di inattività del gateway interessato nell'alert
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
 - *Specializzazione*: #ref-uc(<Visualizzazione-alert>)
@@ -778,6 +813,31 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema mostra l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
 - *Scenario principale*:
   - L'Utente Autenticato visualizza l'identificativo del sensore, il timestamp dell'ultimo dato ricevuto e il tempo di inattività
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-id-sensore-alert>)
+  - #ref-uc(<Visualizzazione-timestamp-ultimo-dato-sensore-alert>)
+  - #ref-uc(<Visualizzazione-tempo-inattivita-sensore-alert>)
+
+===== #sub-uc() - Visualizzazione identificativo sensore alert <Visualizzazione-id-sensore-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del sensore interessato nell'alert
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza l'identificativo del sensore interessato nell'alert
+
+===== #sub-uc() - Visualizzazione timestamp ultimo dato sensore alert <Visualizzazione-timestamp-ultimo-dato-sensore-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra il timestamp dell'ultimo dato ricevuto dal gateway relativo al sensore in questione, ovvero il datetime preciso in cui è stato inviato l'ultimo dato dal sensore e correttamente inviato al Cloud.
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza il timestamp dell'ultimo dato ricevuto dal gateway relativo al sensore in questione
+
+===== #sub-uc() - Visualizzazione tempo inattività sensore alert <Visualizzazione-tempo-inattivita-sensore-alert>
+- *Attore principale*: Utente Autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra il tempo di inattività del sensore interessato nell'alert, ovvero il tempo dall'ultimo dato ricevuto dal gateway relativo al sensore in questione.
+- *Scenario principale*:
+  - L'Utente Autenticato visualizza il tempo di inattività del sensore interessato nell'alert
 
 
 // Visualizzazione dati -----------------------------------------------------------------------------------------------------
@@ -798,18 +858,30 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente è autenticato nel Sistema
   - Il sensore selezionato appartiene al tenant dell'utente autenticato
 - *Post-condizioni*:
-  - Vengono visualizzati i dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento specifico
-  - Il grafico visualizzato si aggiorna in *tempo reale* (_real-time_), appena il Cloud riceve dati nuovi dal Gateway
+  - Viene mostrato il grafico *time-series* dei dati relativi al sensore selezionato
 - *Scenario principale*:
-  - L'utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
-  - Vengono mostrati i dati real-time del sensore selezionato tramite il grafico descritto sopra
+  - L'Utente autenticato seleziona un sensore dalla lista dei sensori associati al proprio tenant
+  - L'Utente visualizza i dati attraverso un grafico *time-series*
+  - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled
 - *Scenari alternativi*:
   - Nessun dato disponibile per il sensore selezionato
 - *Estensioni*:
   - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
+  - #ref-uc(<Visualizzazione-grafico-real-time-sensore>)
 
+===== #sub-uc() - Visualizzazione grafico dei dati real-time del sensore <Visualizzazione-grafico-real-time-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
+- *Post-condizioni*:
+  - Vengono visualizzati i dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento specifico
+  - Il grafico visualizzato si aggiorna in *tempo reale* (_real-time_), appena il Cloud riceve dati nuovi dal Gateway
+- *Scenario principale*:
+  - L'Utente visualizza il grafico relativo ai dati real-time del sensore selezionato
+  - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
 
 ==== #uc() - Visualizzazione dello storico dei dati del sensore <Visualizzazione-storico-dati-sensore>
 - *Attore principale*: Utente autenticato
@@ -827,6 +899,18 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - #ref-uc(<Dati-non-disponibili-sensore-selezionato>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
+  - #ref-uc(<Visualizzazione-grafico-storico-sensore>)
+
+===== #sub-uc() - Visualizzazione grafico storico dei dati del sensore <Visualizzazione-grafico-storico-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
+- *Post-condizioni*:
+  - Il Sistema mostra lo storico dei dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento passato specifico
+- *Scenario principale*
+  - L'Utente visualizza il grafico relativo allo storico dei dati del sensore selezionato
+  - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
 
 
 ==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
@@ -848,6 +932,21 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - #ref-uc(<Intervallo-temporale-non-valido>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
+  - #ref-uc(<Visualizzazione-grafico-filtrato-temporale-sensore>)
+
+
+===== #sub-uc() - Visualizzazione grafico dati sensore filtrato per intervallo temporale <Visualizzazione-grafico-filtrato-temporale-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
+  - Il filtro temporale è valido
+- *Post-condizioni*:
+  - Il Sistema mostra i dati storici del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento passato specifico, filtrati per intervallo temporale
+- *Scenario principale*
+  - L'Utente visualizza il grafico relativo allo storico dei dati del sensore selezionato
+  - L'Utente visualizza il grafico filtrato per intervallo temporale
+  - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
 
 
 ==== #uc() - Intervallo temporale non valido <Intervallo-temporale-non-valido>
@@ -882,6 +981,20 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - #ref-uc(<Intervallo-di-valori-non-valido>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
+  - #ref-uc(<Visualizzazione-grafico-filtrato-valori-sensore>)
+
+===== #sub-uc() - Visualizzazione grafico dati sensore filtrato per intervallo di valori <Visualizzazione-grafico-filtrato-valori-sensore>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+  - Il sensore selezionato appartiene al tenant dell'utente autenticato
+  - Il filtro per valore è valido
+- *Post-condizioni*:
+  - Il Sistema mostra i dati storici del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento passato specifico, filtrati per intervallo di valori
+- *Scenario principale*
+  - L'Utente visualizza il grafico relativo allo storico dei dati del sensore selezionato
+  - L'Utente visualizza il grafico filtrato per intervallo di valori
+  - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
 
 
 ==== #uc() - Intervallo di valori non valido <Intervallo-di-valori-non-valido>
@@ -1535,7 +1648,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin seleziona il Gateway da riavviare
   - Il Sistema invia il comando di riavvio al Gateway
 - *Scenari alternativi*:
-  - Il Gateway non è raggiungibile perciò il riavvio non può essere 
+  - Il Gateway non è raggiungibile perciò il riavvio non può essere
 - *Inclusioni*:
   - #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)
 - *Estensioni*:
@@ -1812,7 +1925,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Post-condizioni*:
   - Il Sistema mostra in forma di grafico a torta il numero di gateway associati a un qualunque tenant e non
 - *Scenario principale*:
-  - Il Super Admin visualizza il grafico descritto sopra 
+  - Il Super Admin visualizza il grafico descritto sopra
 
 ===== #sub-uc() - Visualizzazione numero di tenant <Visualizzazione-numero-di-tenant>
 - *Attore principale*: Super Admin
@@ -3478,7 +3591,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 //////////////////////////////////////////////////////////////////////////
 //----------------------------    REQUISITI    -------------------------//
-////////////////////////////////////////////////////////////////////////// 
+//////////////////////////////////////////////////////////////////////////
 = Requisiti
 I requisiti seguenti dovranno essere implementati entro il *27 marzo 2026*.
 La nomenclatura adottata per i requisiti è la seguente: *R[Tipo]-[Numero progressivo]-[Rilevanza]*, dove:
@@ -3520,7 +3633,7 @@ Inoltre un buon requisito deve essere *SMART*:
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
   [#rf()],
-  [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema], 
+  [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema],
   [#ref-uc(<Autenticazione-utente>)],
 
   [#rf()],
