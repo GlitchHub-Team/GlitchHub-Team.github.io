@@ -5,22 +5,29 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.16.0",
+      "11/01/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Riempita sezione "Admin Generico" e modifiche a inclusioni di use case contenuti in essa; Sistemato registro modifiche; Ottimizzazione compilazione del documento]
+    ),
+    (
       "0.15.0",
-      "05/01/2025",
+      "05/01/2026",
       "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
       "-",
       [Modifiche di formattazione; Migliorata descrizione dei casi d'uso (@casi-d-uso-introduzione); Aggiunti use case mancanti relativi a invio di comandi al gateway; Impostati contatori dei requisiti],
     ),
     (
       "0.14.0",
-      "03/01/2025",
+      "03/01/2026",
       "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
       "-",
       [Aggiunta use case relativi agli alert e la loro generazione],
     ),
     (
       "0.13.1",
-      "03/01/2025",
+      "03/01/2026",
       "Elia Ernesto Stellin",
       "-",
       [Modifiche di formattazione],
@@ -236,12 +243,6 @@
 #rnf-counter.update(0)
 #rd-counter.update(0)
 #rv-counter.update(0)
-
-#context uc-counter.get()
-
-#context uc-counter.at(
-  locate(selector(<Autenticazione-utente>).before(<Inserimento-email-auth>)),
-)
 
 #let rf = (..args) => {
   rf-counter.step()
