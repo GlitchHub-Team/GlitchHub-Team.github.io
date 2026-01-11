@@ -1044,6 +1044,9 @@ Le funzionalità del *Tenant User* sono un sottoinsieme stretto delle funzionali
 === Attore principale - Admin Generico
 L'attore *Admin Generico* corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.
 
+Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effettivo oppure un *Super Admin* in fase d'*impersonazione*, ovvero un Super Admin che viene riconosciuto temporaneamente dal Sistema Cloud come *Tenant Admin* di un specifico Tenant che abbia accettato la clausola d'impersonazione.
+// TODO: magari metti un riferimento agli UC di impersonazione
+
 // - #ref-uc(<Registrazione-nuovo-tenant-user>) - #ref-uc(<Eliminazione-Tenant-User>)
 // - #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>) - #ref-uc(<Visualizzazione-lista-utenti-tenant>)
 // - #ref-uc(<Registrazione-nuova-api-key>) - #ref-uc(<Visualizzazione-gateway-tenant-admin>)
@@ -1063,232 +1066,446 @@ L'attore *Admin Generico* corrisponde alla generalizzazione di *Tenant Admin* e 
 ==== #uc() - Gateway non raggiungibile <Gateway-non-raggiungibile>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Tenant Admin o Super Admin
+  - L'Admin è autenticato nel Sistema
   - Il Gateway deve essere registrato e autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema mostra un messaggio di errore
 - *Scenario principale*:
   - L'Admin tenta di inviare un comando di configurazione al Gateway, ma esso non è raggiungibile
 
+==== #uc() - Email già utilizzata <Email-gia-utilizzata>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel sistema
+  - L'Admin ha inserito un'email già associata ad un altro utente all'interno del Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore
+- *Scenario principale*:
+  - L'Admin visualizza un messaggio di errore
 
-=== Attore principale - Tenant Admin
-// TODO: questa sezione è una copia di quello che c'è scritto in sezione Tenant User. lo tengo oppure no?
-Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto delle funzionalità del *Tenant Admin* e *Super Admin* impersonante quest'ultimo, ovvero tutto ciò che può essere compiuto da un *Tenant User*, può essere compiuto anche da un *Tenant Admin*\/*Super Admin*.
-// Gestione Tenant User -----------------------------------------------------------------------------------------------------
+// Gestione Tenant User -------------------------------------------------------------------------------------------------
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Attore secondario*: Email client
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
+  - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema registra correttamente il nuovo Tenant User nel tenant associato al Tenant Admin
+  - Il Sistema registra correttamente il nuovo Tenant User nel tenant associato all'Admin
   - Il Sistema invia una email con un link per impostare la password dell'account appena creato
-  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
-  - Il Tenant Admin inserisce l'indirizzo email del nuovo Tenant User
+  - L'Admin inserisce l'indirizzo email del nuovo Tenant User
   - L'Email client riceve la mail di impostazione password
 - *Scenari alternativi*:
   - L'email è già associata ad un altro utente all'interno del Sistema
 - *Estensioni*:
-  - #ref-uc(<Email-gia-utilizzata-tenant-admin>)
+  - #ref-uc(<Email-gia-utilizzata>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-email>)
   - #ref-uc(<Invio-email-impostazione-password>)
 
 ===== #sub-uc() - Inserimento email <Inserimento-email>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel sistema
+  - L'Admin è autenticato nel sistema
 - *Post-condizioni*:
   - Il Sistema riceve l'indirizzo email inserito
 - *Scenario principale*:
-  - Il Tenant Admin inserisce l'indirizzo email
+  - L'Admin inserisce l'indirizzo email
 
-===== #sub-uc() - Invio email impostazione password al nuovo Tenant-User <Invio-email-impostazione-password>
-- *Attore principale*: Tenant-admin
+===== #sub-uc() - Invio email impostazione password al nuovo Tenant User <Invio-email-impostazione-password>
+- *Attore principale*: Admin Generico
 - *Attore secondario*: Email client
 - *Pre-condizioni*:
-  - L'utente è autenticato con il ruolo di Tenant-admin
-  - L'email del nuovo Tenant-user è valida
+  - L'Admin è autenticato nel sistema
+  - L'email del nuovo Tenant User è valida
 - *Post-condizioni*:
   - Il Sistema invia una email con il link per l'impostazione della nuova password
 - *Scenario principale*:
   - L'Email client riceve una email con il link per l'impostazione della nuova password
 
-==== #uc() - Email già utilizzata <Email-gia-utilizzata-tenant-admin>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel sistema
-  - Il Tenant Admin ha inserito un'email già associata ad un altro utente all'interno del Sistema
-- *Post-condizioni*:
-  - Il Sistema mostra un messaggio di errore
-- *Scenario principale*:
-  - Il Tenant Admin visualizza un messaggio di errore
 
 ==== #uc() - Sospensione Tenant User <Sospensione-Tenant-User>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Tenant User è registrato nel Sistema
-  - Il Tenant User in questione appartiene al tenant del Tenant Admin
+  - L'Admin è autenticato nel Sistema
+  - Il Tenant User scelto è registrato nel Sistema
+  - Il Tenant User scelto in questione appartiene al tenant dell'Admin
 - *Post-condizioni*:
   - Il Tenant User non può più accedere al Sistema
-  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
-  - Il Tenant Admin sceglie il Tenant User che vuole sospendere
-  - Il Tenant Admin conferma la sospensione
+  - L'Admin sceglie il Tenant User che vuole sospendere
+  - L'Admin conferma la sospensione
 - *Inclusioni*
   - #ref-uc(<Conferma-sospensione-tenant-user>)
 
 ===== #sub-uc() - Conferma sospensione Tenant User <Conferma-sospensione-tenant-user>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Tenant User è registrato e non sospeso nel Sistema
-  - Il Tenant User in questione appartiene al tenant del Tenant Admin
+  - L'Admin è autenticato nel Sistema
+  - Il Tenant User scelto è registrato e non sospeso nel Sistema
+  - Il Tenant User scelto in questione appartiene al tenant dell'Admin
 - *Post-condizioni*:
   - Il Sistema riceve la conferma della sospensione del Tenant User
 - *Scenario principale*:
-  - Il Tenant Admin conferma la sospensione del Tenant User
+  - L'Admin conferma la sospensione del Tenant User
 
 ==== #uc() - Riattivazione Tenant User <Riattivazione-Tenant-User>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
+  - L'Admin è autenticato nel Sistema
   - Il Tenant User è registrato e sospeso nel Sistema
-  - Il Tenant User in questione appartiene al tenant del Tenant Admin
+  - Il Tenant User in questione appartiene al tenant dell'Admin
 - *Post-condizioni*:
   - Il Tenant User può accedere nuovamente al Sistema
-  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
-  - Il Tenant Admin sceglie il Tenant User che vuole riattivare
-  - Il Tenant Admin conferma la riattivazione dell'account
+  - L'Admin sceglie il Tenant User che vuole riattivare
+  - L'Admin conferma la riattivazione dell'account
 - *Inclusioni*
   - #ref-uc(<Conferma-riattivazione-tenant-user>)
 
 ===== #sub-uc() - Conferma riattivazione Tenant User <Conferma-riattivazione-tenant-user>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
+  - L'Admin è autenticato nel Sistema
   - Il Tenant User è registrato e sospeso nel Sistema
-  - Il Tenant User in questione appartiene al tenant del Tenant Admin
+  - Il Tenant User in questione appartiene al tenant dell'Admin
 - *Post-condizioni*:
   - Il Sistema riceve la conferma della riattivazione del Tenant User
 - *Scenario principale*:
-  - Il Tenant Admin conferma la riattivazione del Tenant User
+  - L'Admin conferma la riattivazione del Tenant User
 
 
 ==== #uc() - Eliminazione Tenant User <Eliminazione-Tenant-User>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel sistema
+  - L'Admin è autenticato nel sistema
   - Il Tenant User che si vuole eliminare esiste
-  - Il Tenant User in questione appartiene al tenant del Tenant Admin
+  - Il Tenant User in questione appartiene al tenant dell'Admin
 - *Post-condizioni*:
   - Il Sistema elimina il Tenant User
-  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Admin, il timestamp e l'azione eseguita
 - *Scenario principale*:
-  - Il Tenant Admin sceglie il Tenant User che vuole rimuovere
-  - Il Tenant Admin conferma l'eliminazione del Tenant User
+  - L'Admin sceglie il Tenant User che vuole rimuovere
+  - L'Admin conferma l'eliminazione del Tenant User
 - *Inclusioni*:
   - #ref-uc(<Conferma-eliminazione-tenant-user>)
 
 ===== #sub-uc() - Conferma eliminazione Tenant User <Conferma-eliminazione-tenant-user>
-- *Attore principale*: Tenant Admin
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel sistema
+  - L'Admin è autenticato nel sistema
   - Il Tenant User che si vuole eliminare esiste
-  - Il Tenant User in questione appartiene al tenant del Tenant Admin
+  - Il Tenant User in questione appartiene al tenant dell'Admin
 - *Post-condizioni*:
   - Il Sistema riceve la conferma dell'eliminazione del Tenant User
 - *Scenario principale*:
-  - Il Tenant Admin conferma l'eliminazione del Tenant User
+  - L'Admin conferma l'eliminazione del Tenant User
 
-// COMMISSIONING/DECOMMISSIONING ------------------------------------------------------------------------------------------------------------------------------
-==== #uc() - Visualizzazione lista delle richieste di commissioning e decommissioning di gateway <Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
-- *Attore principale*: Tenant Admin
+// Commissioning / Decommissioning ------------------------------------------------------------------------------------------------------------
+==== #uc() - Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant <Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
+  - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Viene visualizzato la lista di tutte le richieste di commissioning e decommissioning di gateway del tenant, ordinata in ordine cronologico decrescente
   - Per ogni elemento della lista, viene visualizzato lo stato delle richieste di commissioning e decommissioning di gateway, ovvero se tale richiesta è *in corso* o se è stata *accettata/rifiutata* da un Super Admin.
 - *Scenario principale*:
-  - Il Tenant Admin visualizza le richieste in forma di lista ordinata in ordine cronologico decrescente (dalla più recente alla meno recente).
-  - Per ogni elemento della lista, il Tenant Admin visualizza lo stato delle richieste di commissioning e decommissioning di gateway
+  - L'Admin visualizza le richieste in forma di lista ordinata in ordine cronologico decrescente (dalla più recente alla meno recente).
+  - Per ogni elemento della lista, l'Admin visualizza lo stato delle richieste di commissioning e decommissioning di gateway
 
 
-==== #uc() - Creazione richiesta di commissioning gateway <Creazione-richiesta-commissioning-gateway>
-- *Attore principale*: Tenant Admin
+
+// Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
+==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
+  - L'Admin è autenticato nel Sistema
+  - Gli utenti appartengono al tenant dell'Admin
 - *Post-condizioni*:
-  - Il Sistema crea una richiesta di commissioning di gateway, la quale potrà essere accettata o rifiutata dal Super Admin
-  - Il Sistema registra l'evento nell'audit log
+  - Il Sistema mostra la lista degli utenti registrati nel tenant dell'Admin
 - *Scenario principale*:
-  - Il Tenant Admin inserisce il numero di nuovi gateway da associare al proprio Tenant
-  - Il Tenant Admin inserisce una descrizione della richiesta per specificare ulteriori dettagli
+  - L'Admin visualizza la lista degli utenti registrati nel proprio tenant
 
-
-==== #uc() - Creazione richiesta di decommissioning gateway <Creazione-richiesta-decommissioning-gateway>
-- *Attore principale*: Tenant Admin
+// Visualizzazione Gateway/Sensori --------------------------------------------------------------------------------------------------------------
+==== #uc() - Visualizzazione lista di gateway associati a tenant <Visualizzazione-lista-gateway-associati>
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
+  - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema crea una richiesta di decommissioning di gateway per il gateway specificato, la quale potrà essere accettata o rifiutata dal Super Admin
-  - Il Sistema registra l'evento nell'audit log
+  - Il Sistema mostra la lista dei gateway associati al tenant dell'Admin
 - *Scenario principale*:
-  - Il Tenant Admin seleziona i/il Gateway per il decommissioning
-  - Il Tenant Admin ultima la richiesta di decommissioning
+  - L'Admin visualizza la lista dei gateway associati al tenant
+
+// TODO: separa tra visualizzazione elemento di lista e visualizzazione dettaglio gateway
+==== #uc() - Visualizzazione gateway associato a tenant <Visualizzazione-gateway-associato>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni dettagliate del gateway selezionato
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni del gateway selezionato, tra cui:
+    - Nome del gateway
+    - Stato: attivo, non raggiungibile, non associato, non autenticato
+    - Sensori collegati al gateway
 - *Inclusioni*:
-  - #ref-uc(<Selezione-gateway-decommissioning-tenant-admin>)
+  - #ref-uc(<Visualizzazione-stato-gateway-associato>)
+  - #ref-uc(<Visualizzazione-sensori-collegati-gateway-associato>)
 
-===== #sub-uc() - Selezione Gateway per decommissioning <Selezione-gateway-decommissioning-tenant-admin>
-- *Attore principale*: Tenant Admin
+===== #sub-uc() - Visualizzazione stato gateway associato a tenant <Visualizzazione-stato-gateway-associato>
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - I gateway selezionati dal Tenant Admin sono associati al suo Tenant
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
 - *Post-condizioni*:
-  - Il Sistema associa i gateway selezionati alla richiesta di decommissioning corrente
+  - Il Sistema mostra lo stato del gateway selezionato
 - *Scenario principale*:
-  - Il Tenant Admin visualizza la lista dei soli gateway associati al proprio Tenant
-  - Il Tenant Admin seleziona da tale lista uno o più Gateway
-  - Il Tenant Admin conferma la selezione
+  - L'Admin visualizza lo stato del gateway selezionato, che può essere:
+    - Attivo
+    - Non raggiungibile
+    - Non associato
+    - Non autenticato
 
-
-==== #uc() - Eliminazione richiesta di commissioning/decommissioning gateway <Eliminazione-richiesta-commissioning-decommissioning-gateway>
-- *Attore principale*: Tenant Admin
+===== #sub-uc() - Visualizzazione sensori collegati al gateway associato a tenant <Visualizzazione-sensori-collegati-gateway-associato>
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Ci sono richieste di commissioning o decommissioning di gateway del Tenant Admin in corso
-  - La richiesta dev'essere ancora in corso e non dev'essere già stata accettata o rifiutata da un Super Admin o già eliminata dallo stesso utente
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+  - Il gateway ha sensori collegati
 - *Post-condizioni*:
-  - Il Sistema rimuove la richiesta selezionata, non rendendola più visibile ai Super Admin
-  - Il Sistema registra l'evento nell'audit log, specificando se la richiesta eliminata è una richiesta di commissioning o decommissioning e i dati specifici della richiesta
+  - Il Sistema mostra la lista dei sensori collegati al gateway selezionato
 - *Scenario principale*:
-  - Il Tenant Admin seleziona una richiesta di commissioning o decommissioning dalla lista delle proprie richieste
-  - Il Tenant Admin visualizza i dati della specifica richiesta
-  - Il Tenant Admin conferma l'eliminazione della richiesta
+  - L'Admin visualizza la lista dei sensori collegati al gateway selezionato
+
+
+// Gestione API Keys ------------------------------------------------------------------------------------------------------------------
+==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema genera una nuova API key associata al tenant dell'Admin
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Admin, il timestamp e l'azione eseguita
+- *Scenario principale*:
+  - L'Admin inserisce il nome della API key
+  - L'Admin inserisce la scadenza della API key
+- *Inclusioni*:
+  - #ref-uc(<Inserimento-nome-api-key>)
+  - #ref-uc(<Inserimento-scadenza-api-key>)
+- *Estensioni*:
+  - #ref-uc(<Nome-api-key-gia-utilizzato>)
+  - #ref-uc(<Scadenza-api-key-data-passata>)
+
+===== #sub-uc() - Inserimento nome API key <Inserimento-nome-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema riceve il nome inserito per la nuova API key
+- *Scenario principale*:
+  - L'Admin inserisce il nome della nuova API key
 - *Scenari alternativi*:
-  - Il Tenant Admin, dopo aver visualizzato i dati della richiesta, annulla la sua eliminazione
-- *Inclusioni*:
-  - #ref-uc(<Conferma-eliminazione-richiesta-commissioning-decommissioning>)
+  - Il nome inserito è già utilizzato da un'altra API key all'interno del tenant
 
-===== #sub-uc() - Conferma eliminazione richiesta <Conferma-eliminazione-richiesta-commissioning-decommissioning>
-- *Attore principale*: Tenant Admin
+===== #sub-uc() - Inserimento scadenza API key <Inserimento-scadenza-api-key>
+- *Attore principale*: Admin Generico
 - *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema ha mostrato al Tenant Admin i dati relativi alla richiesta da eliminare
+  - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema conferma l'eliminazione della richiesta selezionata
-  - Il Sistema mostra al Tenant Admin un messaggio di conferma dell'eliminazione
+  - Il Sistema riceve la scadenza inserita per la nuova API key
+- *Scenario principale*:
+  - L'Admin inserisce la scadenza della nuova API key
+- *Scenari alternativi*:
+  - La scadenza inserita non è valida
+
+==== #uc() - Nome API key già utilizzato <Nome-api-key-gia-utilizzato>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - L'Admin ha inserito un nome già utilizzato per la nuova API key all'interno del proprio tenant
+- *Post-condizioni*:
+  - L'operazione di registrazione della nuova API key viene interrotta
+  - Viene mostrato un messaggio di errore
+- *Scenario principale*:
+  - L'Admin visualizza un messaggio di errore dopo aver inserito il nome già utilizzato
+
+
+==== #uc() - Scadenza API key in data passata <Scadenza-api-key-data-passata>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - L'Admin ha inserito una scadenza in data passata per la nuova API key
+- *Post-condizioni*:
+  - Il Sistema mostra un messaggio di errore
+- *Scenario principale*:
+  - L'Admin visualizza un messaggio di errore dopo aver inserito una scadenza in data passata
+
+
+==== #uc() - Visualizzazione lista API key <Visualizzazione-lista-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra la lista delle API key associate al tenant
+- *Scenario principale*:
+  - L'Admin visualizza la lista delle API key associate al tenant
+  - Sono visualizzati per ogni API key il nome, la data di creazione e la data di scadenza
+
+
+==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - La API key selezionata esiste e appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Vengono visualizzati i dettagli della API key selezionata
+- *Scenario principale*:
+  - L'Admin visualizza il nome della API key
+  - L'Admin visualizza la data di creazione
+  - L'Admin visualizza la data di scadenza
+  - L'Admin visualizza il grafico di utilizzo della API key
+- *Inclusioni*:
+  - #ref-uc(<Grafico-utilizzo-api-key>)
+
+===== #sub-uc() - Grafico utilizzo API key <Grafico-utilizzo-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - La API key selezionata esiste e appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra il grafico Time Series di utilizzo della API key selezionata
+- *Scenario principale*:
+  - L'Admin visualizza il grafico Time Series di utilizzo della API key selezionata
+  - Visualizza nell'asse Y il numero di richieste effettuate con la API key
+  - Visualizza nell'asse X il tempo
+
+==== #uc() - Eliminazione API key <Eliminazione-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - La API key selezionata appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema elimina la API key selezionata
+  - Il Sistema registra l'evento negli audit log, salvando il nome dell'Admin, il timestamp e l'azione eseguita
+- *Scenario principale*:
+  - L'Admin seleziona una API key associata al proprio tenant
+  - L'Admin conferma l'eliminazione della API key selezionata
+  - L'Admin elimina la API key selezionata
+- *Inclusioni*:
+  - #ref-uc(<Conferma-eliminazione-api-key>)
+
+===== #sub-uc() - Conferma eliminazione API key <Conferma-eliminazione-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - La API key selezionata appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema riceve la conferma dell'eliminazione della API key selezionata
+- *Scenario principale*:
+  - L'Admin conferma l'eliminazione della API key selezionata
+
+// Visualizzazione audit log -----------------------------------------------------------------------------------------------------------------------------
+
+// TODO: Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
+// -> rifinire l'audit log secondo il pattern per visualizzazione lista di elementi
+==== #uc() - Visualizzazione audit log del tenant <Visualizzazione-audit-log>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni relative agli audit log del tenant a cui appartiene l'Admin
+- *Scenario principale*:
+  - L'Admin seleziona l'opzione di visualizzazione degli audit log
+  - Il Sistema recupera i dati relativi agli audit log
+// - *Estensioni*:
+//   - #ref-uc(<Filtraggio-log-per-tipologia>)
+//   - #ref-uc(<Filtraggio-log-per-intervallo-temporale>)
+//   - #ref-uc(<Filtraggio-log-per-utente>)
+//   - #ref-uc(<Esportazione-log>)
+
+// AUDIT LOG:
+/*
+  --- GESTIONE UTENTI
+  - Creazione Tenant User SI
+  - Sospensione Tenant User SI
+  - Riattivazione Tenant User SI
+  - Eliminazione Tenant User SI
+  --- GESTIONE API KEY
+  - Creazione API Key SI
+  - Eliminazione API Key SI
+  --- GESTIONE ACCESSI
+  - Login SI
+  - Logout SI
+  - Generazione 2FA SI
+  - Reimpostazione password SI
+  --- GESTIONE SENSORI E GATEWAY
+  - Sospensione sensore SI
+  - Riattivazione sensore SI
+  - Sospensione gateway SI
+  - Riattivazione gateway SI
+  --- GESTIONE RICHIESTE (DE)COMMISSIONING
+  - Creazione commissioning
+  - Creazione decommissioning
+  - Rimozione
+
+*/
+
+==== #uc() - Filtraggio log per tipologia <Filtraggio-log-per-tipologia>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il Sistema ha recuperato i dati di log
+- *Post-condizioni*
+  - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
 - *Scenario principale*
-  - Il Tenant Admin visualizza i dati della richiesta selezionata
-  - Il Tenant Admin conferma l'eliminazione
-  - Il Tenant Admin non visualizza più la richiesta nella lista di richieste in corso
+  - L'Admin seleziona una o più tipologie di log che desidera vedere
+  - L'Admin visualizza gli audit log filtrati per le tipologie desiderate
+
+==== #uc() - Filtraggio log per intervallo temporale <Filtraggio-log-per-intervallo-temporale>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il Sistema ha recuperato i dati di log
+- *Post-condizioni*
+  - Il Sistema mostra i dati di log filtrati secondo l'intervallo temporale indicato
+- *Scenario principale*
+  - L'Admin specifica un intervallo temporale desiderato
+  - L'Admin visualizza gli audit log filtrati secondo l'intervallo specificato
+
+
+==== #uc() - Filtraggio log per utente <Filtraggio-log-per-utente>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il Sistema ha recuperato i dati di log
+- *Post-condizioni*
+  - Il Sistema mostra i dati di log relativi ai Tenant User specificati
+- *Scenario principale*
+  - L'Admin specifica uno o più Tenant User di cui vuole consultare l'attività
+  - L'Admin visualizza gli audit log filtrati in base ai Tenant User scelti
+
+
+==== #uc() - Esportazione log <Esportazione-log>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema fornisce i log in un file testuale scaricabile
+- *Scenario principale*:
+  - L'Admin seleziona l'opzione di esportazione degli audit log
+
+
+
+=== Attore principale - Tenant Admin
+// TODO: questa sezione è una copia di quello che c'è scritto in sezione Tenant User. lo tengo oppure no?
+Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto delle funzionalità del *Tenant Admin* e *Super Admin* impersonante quest'ultimo, ovvero tutto ciò che può essere compiuto da un *Tenant User*, può essere compiuto anche da un *Tenant Admin*\/*Super Admin*.
 
 
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
-
 // TODO: nel diagramma di questo UC ci potrebbe stare mostrare anche <Visualizzazione-dashboard-generica>
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 - *Specializzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
@@ -1340,17 +1557,77 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Tenant Admin visualizza il grafico a torta sopra descritto
 
-==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
+// Comm./decomm. --------------------------------------------------------
+==== #uc() - Creazione richiesta di commissioning gateway <Creazione-richiesta-commissioning-gateway>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - Gli utenti appartengono al tenant del Tenant Admin
 - *Post-condizioni*:
-  - Il Sistema mostra la lista degli utenti registrati nel tenant del Tenant Admin
+  - Il Sistema crea una richiesta di commissioning di gateway, la quale potrà essere accettata o rifiutata dal Super Admin
+  - Il Sistema registra l'evento nell'audit log
 - *Scenario principale*:
-  - Il Tenant Admin visualizza la lista degli utenti registrati nel proprio tenant
+  - Il Tenant ADmin inserisce il numero di nuovi gateway da associare al proprio Tenant
+  - Il Tenant ADmin inserisce una descrizione della richiesta per specificare ulteriori dettagli
 
 
+==== #uc() - Creazione richiesta di decommissioning gateway <Creazione-richiesta-decommissioning-gateway>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema crea una richiesta di decommissioning di gateway per il gateway specificato, la quale potrà essere accettata o rifiutata dal Super Admin
+  - Il Sistema registra l'evento nell'audit log
+- *Scenario principale*:
+  - Il Tenant Admin seleziona i/il Gateway per il decommissioning
+  - Il Tenant Admin ultima la richiesta di decommissioning
+- *Inclusioni*:
+  - #ref-uc(<Selezione-gateway-decommissioning-tenant-admin>)
+
+===== #sub-uc() - Selezione Gateway per decommissioning <Selezione-gateway-decommissioning-tenant-admin>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - I gateway selezionati dal Tenant ADmin sono associati al suo Tenant
+- *Post-condizioni*:
+  - Il Sistema associa i gateway selezionati alla richiesta di decommissioning corrente
+- *Scenario principale*:
+  - Il Tenant Admin visualizza la lista dei soli gateway associati al proprio Tenant
+  - Il Tenant Admin seleziona da tale lista uno o più Gateway
+  - Il Tenant Admin conferma la selezione
+
+
+==== #uc() - Eliminazione richiesta di commissioning/decommissioning gateway <Eliminazione-richiesta-commissioning-decommissioning-gateway>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Ci sono richieste di commissioning o decommissioning di gateway dell'Admin in corso
+  - La richiesta dev'essere ancora in corso e non dev'essere già stata accettata o rifiutata da un Super Admin o già eliminata dallo stesso utente
+- *Post-condizioni*:
+  - Il Sistema rimuove la richiesta selezionata, non rendendola più visibile ai Super Admin
+  - Il Sistema registra l'evento nell'audit log, specificando se la richiesta eliminata è una richiesta di commissioning o decommissioning e i dati specifici della richiesta
+- *Scenario principale*:
+  - Il Tenant Admin seleziona una richiesta di commissioning o decommissioning dalla lista delle proprie richieste
+  - Il Tenant Admin visualizza i dati della specifica richiesta
+  - Il Tenant Admin conferma l'eliminazione della richiesta
+- *Scenari alternativi*:
+  - Il Tenant Admin, dopo aver visualizzato i dati della richiesta, annulla la sua eliminazione
+- *Inclusioni*:
+  - #ref-uc(<Conferma-eliminazione-richiesta-commissioning-decommissioning>)
+
+===== #sub-uc() - Conferma eliminazione richiesta <Conferma-eliminazione-richiesta-commissioning-decommissioning>
+- *Attore principale*: Tenant Admin
+- *Pre-condizioni*:
+  - Il Tenant Admin è autenticato nel Sistema
+  - Il Sistema ha mostrato al Tenant Admin i dati relativi alla richiesta da eliminare
+- *Post-condizioni*:
+  - Il Sistema conferma l'eliminazione della richiesta selezionata
+  - Il Sistema mostra all'Admin un messaggio di conferma dell'eliminazione
+- *Scenario principale*
+  - Il Tenant Admin visualizza i dati della richiesta selezionata
+  - Il Tenant Admin conferma l'eliminazione
+  - Il Tenant Admin non visualizza più la richiesta nella lista di richieste in corso
+
+// Comandi ----------------------------------------------------------------------------------------------------------------------------------------------
 ==== #uc() - Sospensione sensore del tenant <Sospensione-sensore-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
@@ -1370,7 +1647,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Selezione-sensore>)
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
-
 
 
 ==== #uc() - Riattivazione sensore del tenant <Riattivazione-sensore-tenant-admin>
@@ -1393,184 +1669,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Selezione-sensore>)
 
-==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema genera una nuova API key associata al tenant del Tenant Admin
-  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
-- *Scenario principale*:
-  - Il Tenant Admin inserisce il nome della API key
-  - Il Tenant Admin inserisce la scadenza della API key
-- *Inclusioni*:
-  - #ref-uc(<Inserimento-nome-api-key>)
-  - #ref-uc(<Inserimento-scadenza-api-key>)
-- *Estensioni*:
-  - #ref-uc(<Nome-api-key-gia-utilizzato>)
-  - #ref-uc(<Scadenza-api-key-data-passata>)
 
-===== #sub-uc() - Inserimento nome API key <Inserimento-nome-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema riceve il nome inserito per la nuova API key
-- *Scenario principale*:
-  - Il Tenant Admin inserisce il nome della nuova API key
-- *Scenari alternativi*:
-  - Il nome inserito è già utilizzato da un'altra API key all'interno del tenant
-
-===== #sub-uc() - Inserimento scadenza API key <Inserimento-scadenza-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema riceve la scadenza inserita per la nuova API key
-- *Scenario principale*:
-  - Il Tenant Admin inserisce la scadenza della nuova API key
-- *Scenari alternativi*:
-  - La scadenza inserita non è valida
-
-==== #uc() - Nome API key già utilizzato <Nome-api-key-gia-utilizzato>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Tenant Admin ha inserito un nome già utilizzato per la nuova API key all'interno del proprio tenant
-- *Post-condizioni*:
-  - L'operazione di registrazione della nuova API key viene interrotta
-  - Viene mostrato un messaggio di errore
-- *Scenario principale*:
-  - Il Tenant Admin visualizza un messaggio di errore dopo aver inserito il nome già utilizzato
-
-
-==== #uc() - Scadenza API key in data passata <Scadenza-api-key-data-passata>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Tenant Admin ha inserito una scadenza in data passata per la nuova API key
-- *Post-condizioni*:
-  - Il Sistema mostra un messaggio di errore
-- *Scenario principale*:
-  - Il Tenant Admin visualizza un messaggio di errore dopo aver inserito una scadenza in data passata
-
-
-==== #uc() - Visualizzazione lista API key <Visualizzazione-lista-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema mostra la lista delle API key associate al tenant
-- *Scenario principale*:
-  - Il Tenant Admin visualizza la lista delle API key associate al tenant
-  - Sono visualizzati per ogni API key il nome, la data di creazione e la data di scadenza
-
-
-==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - La API key selezionata esiste e appartiene al tenant del Tenant Admin
-- *Post-condizioni*:
-  - Vengono visualizzati i dettagli della API key selezionata
-- *Scenario principale*:
-  - Il Tenant Admin visualizza il nome della API key
-  - Il Tenant Admin visualizza la data di creazione
-  - Il Tenant Admin visualizza la data di scadenza
-  - Il Tenant Admin visualizza il grafico di utilizzo della API key
-- *Inclusioni*:
-  - #ref-uc(<Grafico-utilizzo-api-key>)
-
-===== #sub-uc() - Grafico utilizzo API key <Grafico-utilizzo-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - La API key selezionata esiste e appartiene al tenant del Tenant Admin
-- *Post-condizioni*:
-  - Il Sistema mostra il grafico Time Series di utilizzo della API key selezionata
-- *Scenario principale*:
-  - Il Tenant Admin visualizza il grafico Time Series di utilizzo della API key selezionata
-  - Visualizza nell'asse Y il numero di richieste effettuate con la API key
-  - Visualizza nell'asse X il tempo
-
-==== #uc() - Eliminazione API key <Eliminazione-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - La API key selezionata appartiene al tenant del Tenant Admin
-- *Post-condizioni*:
-  - Il Sistema elimina la API key selezionata
-  - Il Sistema registra l'evento negli audit log, salvando il nome del Tenant Admin, il timestamp e l'azione eseguita
-- *Scenario principale*:
-  - Il Tenant Admin seleziona una API key associata al proprio tenant
-  - Il Tenant Admin conferma l'eliminazione della API key selezionata
-  - Il Tenant Admin elimina la API key selezionata
-- *Inclusioni*:
-  - #ref-uc(<Conferma-eliminazione-api-key>)
-
-===== #sub-uc() - Conferma eliminazione API key <Conferma-eliminazione-api-key>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - La API key selezionata appartiene al tenant del Tenant Admin
-- *Post-condizioni*:
-  - Il Sistema riceve la conferma dell'eliminazione della API key selezionata
-- *Scenario principale*:
-  - Il Tenant Admin conferma l'eliminazione della API key selezionata
-
-==== #uc() - Visualizzazione lista di gateway del tenant <Visualizzazione-lista-gateway-tenant-admin>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema mostra la lista dei gateway associati al tenant del Tenant Admin
-- *Scenario principale*:
-  - Il Tenant Admin visualizza la lista dei gateway associati al tenant
-
-// TODO: separa tra visualizzazione elemento di lista e visualizzazione dettaglio gateway
-==== #uc() - Visualizzazione gateway del tenant <Visualizzazione-gateway-tenant-admin>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il gateway è associato al tenant del Tenant Admin
-- *Post-condizioni*:
-  - Il Sistema mostra le informazioni dettagliate del gateway selezionato
-- *Scenario principale*:
-  - Il Tenant Admin visualizza le informazioni del gateway selezionato, tra cui:
-    - Nome del gateway
-    - Stato: attivo, non raggiungibile, non associato, non autenticato
-    - Sensori collegati al gateway
-- *Inclusioni*:
-  - #ref-uc(<Visualizzazione-stato-gateway>)
-  - #ref-uc(<Visualizzazione-sensori-collegati-gateway>)
-
-===== #sub-uc() - Visualizzazione stato gateway del tenant <Visualizzazione-stato-gateway>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il gateway è associato al tenant del Tenant Admin
-- *Post-condizioni*:
-  - Il Sistema mostra lo stato del gateway selezionato
-- *Scenario principale*:
-  - Il Tenant Admin visualizza lo stato del gateway selezionato, che può essere:
-    - Attivo
-    - Non raggiungibile
-    - Non associato
-    - Non autenticato
-
-===== #sub-uc() - Visualizzazione sensori collegati al gateway del tenant <Visualizzazione-sensori-collegati-gateway>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il gateway è associato al tenant del Tenant Admin
-  - Il gateway ha sensori collegati
-- *Post-condizioni*:
-  - Il Sistema mostra la lista dei sensori collegati al gateway selezionato
-- *Scenario principale*:
-  - Il Tenant Admin visualizza la lista dei sensori collegati al gateway selezionato
-
-
-==== #uc() - Sospensione gateway del tenant <Sospensione-gateway-tenant-admin>
+==== #uc() - Sospensione gateway associato a tenant <Sospensione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1591,7 +1691,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
-==== #uc() - Riattivazione gateway del tenant <Riattivazione-gateway-tenant-admin>
+
+==== #uc() - Riattivazione gateway associato a tenant <Riattivazione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1612,7 +1713,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
-==== #uc() - Riavvio gateway del tenant <Riavvio-gateway-tenant-admin>
+==== #uc() - Riavvio gateway associato a tenant <Riavvio-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1632,7 +1733,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 // TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"? IN CASO, DA INSERIRE UN INCLUDE "Seleziona parametro di rolling average / invio frequenza" a seconda di quello che ci dicono
-==== #uc() - Modifica parametro rolling average di gateway del tenant <Modifica-parametro-rolling-average-tenant-admin>
+==== #uc() - Modifica parametro rolling average di gateway associato a tenant <Modifica-parametro-rolling-average-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1666,93 +1767,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin visualizza la lista di Gateway associati al proprio tenant
   - Il Tenant Admin seleziona il Gateway specifico a cui inviare il comando
 
-
-// Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
-==== #uc() - Visualizzazione audit log <Visualizzazione-audit-log>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema mostra le informazioni relative agli audit log
-- *Scenario principale*:
-  - Il Tenant Admin seleziona l'opzione di visualizzazione degli audit log
-  - Il Sistema recupera i dati relativi agli audit log
-// - *Estensioni*:
-//   - #ref-uc(<Filtraggio-log-per-tipologia>)
-//   - #ref-uc(<Filtraggio-log-per-intervallo-temporale>)
-//   - #ref-uc(<Filtraggio-log-per-utente>)
-//   - #ref-uc(<Esportazione-log>)
-
-// AUDIT LOG:
-/*
-  --- GESTIONE UTENTI
-  - Creazione Tenant User SI
-  - Sospensione Tenant User SI
-  - Riattivazione Tenant User SI
-  - Eliminazione Tenant User SI
-  --- GESTIONE API KEY
-  - Creazione API Key SI
-  - Eliminazione API Key SI
-  --- GESTIONE ACCESSI
-  - Login SI
-  - Logout SI
-  - Generazione 2FA SI
-  - Reimpostazione password SI
-  --- GESTIONE SENSORI E GATEWAY
-  - Sospensione sensore SI
-  - Riattivazione sensore SI
-  - Sospensione gateway SI
-  - Riattivazione gateway SI
-  --- GESTIONE RICHIESTE (DE)COMMISSIONING
-  - Creazione commissioning
-  - Creazione decomm.
-  - Rimozione
-
-*/
-
-==== #uc() - Filtraggio log per tipologia <Filtraggio-log-per-tipologia>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema ha recuperato i dati di log
-- *Post-condizioni*
-  - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
-- *Scenario principale*
-  - Il Tenant Admin seleziona una o più tipologie di log che desidera vedere
-  - Il Tenant Admin visualizza gli audit log filtrati per le tipologie desiderate
-
-==== #uc() - Filtraggio log per intervallo temporale <Filtraggio-log-per-intervallo-temporale>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema ha recuperato i dati di log
-- *Post-condizioni*
-  - Il Sistema mostra i dati di log filtrati secondo l'intervallo temporale indicato
-- *Scenario principale*
-  - Il Tenant Admin specifica un intervallo temporale desiderato
-  - Il Tenant Admin visualizza gli audit log filtrati secondo l'intervallo specificato
-
-
-==== #uc() - Filtraggio log per utente <Filtraggio-log-per-utente>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-  - Il Sistema ha recuperato i dati di log
-- *Post-condizioni*
-  - Il Sistema mostra i dati di log relativi ai Tenant User specificati
-- *Scenario principale*
-  - Il Tenant Admin specifica uno o più Tenant User di cui vuole consultare l'attività
-  - Il Tenant Admin visualizza gli audit log filtrati in base ai Tenant User scelti
-
-
-==== #uc() - Esportazione log <Esportazione-log>
-- *Attore principale*: Tenant Admin
-- *Pre-condizioni*:
-  - Il Tenant Admin è autenticato nel Sistema
-- *Post-condizioni*:
-  - Il Sistema fornisce i log in un file testuale scaricabile
-- *Scenario principale*:
-  - Il Tenant Admin seleziona l'opzione di esportazione degli audit log
 
 === Attore principale - Super Admin
 // GESTIONE TENANT ------------------------------------------------------------------------
@@ -2415,7 +2429,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenari alternativi*:
   - L'email inserita è già in uso da un altro utente nel Sistema
 - *Estensioni*:
-  - #ref-uc(<Email-gia-utilizzata-super-admin>)
+  - #ref-uc(<Email-gia-utilizzata>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-tenant>)
   - #ref-uc(<Inserimento-email-nuovo-tenant-admin>)
@@ -2452,16 +2466,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema invia una email al nuovo Tenant-admin con le credenziali di accesso
 - *Scenario principale*:
   - L'Email client riceve una email con il link per l'impostazione della nuova password
-
-==== #uc() - Email già utilizzata <Email-gia-utilizzata-super-admin>
-- *Attore principale*: Super Admin
-- *Pre-condizioni*:
-  - Il Super Admin è autenticato nel Sistema
-  - Il Super Admin ha inserito un'email già associata ad un altro utente all'interno del Sistema
-- *Post-condizioni*:
-  - Il Sistema mostra un messaggio di errore
-- *Scenario principale*:
-  - Il Super Admin visualizza un messaggio di errore
 
 ==== #uc() - Sospensione account Tenant Admin <Sospensione-account-tenant-admin>
 - *Attore principale*: Super Admin
