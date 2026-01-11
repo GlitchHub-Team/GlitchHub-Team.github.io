@@ -1086,6 +1086,22 @@ Le funzionalità del *Tenant User* sono un sottoinsieme stretto delle funzionali
 === Attore principale - Admin Generico
 L'attore *Admin Generico* corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.
 
+// - #ref-uc(<Registrazione-nuovo-tenant-user>) - #ref-uc(<Eliminazione-Tenant-User>)
+// - #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>) - #ref-uc(<Visualizzazione-lista-utenti-tenant>)
+// - #ref-uc(<Registrazione-nuova-api-key>) - #ref-uc(<Visualizzazione-gateway-tenant-admin>)
+//   - *[SA]* Visualizzazione lista gateway
+//     - Visualizzazione singolo gateway in lista
+//       - Visualizzazione identificativo
+//       - Visualizzazione nome tenant di appartenenza
+  
+//   - *[SA]* Visualizzazione dettaglio gateway
+//     - Dev'essere gateway auth. in sistema
+
+//   - *[TA]* Visualizzazione dettaglio gateway del tenant
+//     - Dev'essere gateway auth. in sistema
+//     - Dev'essere gateway associato a *tenant*
+
+
 ==== #uc() - Gateway non raggiungibile <Gateway-non-raggiungibile>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1314,6 +1330,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
+
+// TODO: nel diagramma di questo UC ci potrebbe stare mostrare anche <Visualizzazione-dashboard-generica>
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 - *Specializzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
 - *Attore principale*: Tenant Admin
@@ -1375,7 +1393,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin visualizza la lista degli utenti registrati nel proprio tenant
 
 
-==== #uc() - Sospensione sensore <Sospensione-sensore-tenant-admin>
+==== #uc() - Sospensione sensore del tenant <Sospensione-sensore-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1397,7 +1415,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 
-==== #uc() - Riattivazione sensore <Riattivazione-sensore-tenant-admin>
+==== #uc() - Riattivazione sensore del tenant <Riattivazione-sensore-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1542,7 +1560,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Tenant Admin conferma l'eliminazione della API key selezionata
 
-==== #uc() - Visualizzazione lista di gateway <Visualizzazione-lista-gateway-tenant-admin>
+==== #uc() - Visualizzazione lista di gateway del tenant <Visualizzazione-lista-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1551,7 +1569,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Tenant Admin visualizza la lista dei gateway associati al tenant
 
-==== #uc() - Visualizzazione gateway <Visualizzazione-gateway-tenant-admin>
+// TODO: separa tra visualizzazione elemento di lista e visualizzazione dettaglio gateway
+==== #uc() - Visualizzazione gateway del tenant <Visualizzazione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1567,7 +1586,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-stato-gateway>)
   - #ref-uc(<Visualizzazione-sensori-collegati-gateway>)
 
-===== #sub-uc() - Visualizzazione stato gateway <Visualizzazione-stato-gateway>
+===== #sub-uc() - Visualizzazione stato gateway del tenant <Visualizzazione-stato-gateway>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1581,7 +1600,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
     - Non associato
     - Non autenticato
 
-===== #sub-uc() - Visualizzazione sensori collegati al gateway <Visualizzazione-sensori-collegati-gateway>
+===== #sub-uc() - Visualizzazione sensori collegati al gateway del tenant <Visualizzazione-sensori-collegati-gateway>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1593,7 +1612,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin visualizza la lista dei sensori collegati al gateway selezionato
 
 
-==== #uc() - Sospensione gateway <Sospensione-gateway-tenant-admin>
+==== #uc() - Sospensione gateway del tenant <Sospensione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1614,7 +1633,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
-==== #uc() - Riattivazione gateway <Riattivazione-gateway-tenant-admin>
+==== #uc() - Riattivazione gateway del tenant <Riattivazione-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1635,7 +1654,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
-==== #uc() - Riavvio gateway <Riavvio-gateway-tenant-admin>
+==== #uc() - Riavvio gateway del tenant <Riavvio-gateway-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -1655,7 +1674,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 // TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"? IN CASO, DA INSERIRE UN INCLUDE "Seleziona parametro di rolling average / invio frequenza" a seconda di quello che ci dicono
-==== #uc() - Modifica parametro rolling average da Tenant Admin <Modifica-parametro-rolling-average-tenant-admin>
+==== #uc() - Modifica parametro rolling average di gateway del tenant <Modifica-parametro-rolling-average-tenant-admin>
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
