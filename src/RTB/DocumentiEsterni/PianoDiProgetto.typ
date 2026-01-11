@@ -10,6 +10,14 @@
   versione: "0.6.1",
   registro-modifiche: (
     (
+      "0.7.0",
+      "11/01/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Bozza sprint 7]
+    )
+    ,
+    (
       "0.6.1",
       "28/12/2025",
       "Elia Ernesto Stellin",
@@ -1452,3 +1460,23 @@ Da determinare
 
 // )
 // #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint6)
+
+//// SPRINT 7 /////////////////////////////////////////////////////////////////
+== Sprint 7
+Inizio: 31/12/2025 \
+Fine: 14/01/2025 \
+
+In questo sprint si è discusso di avere come obiettivi principali quelli di raggiungere una versiona stabile del  #gloss("Piano di Qualifica"), la stesura dei requisiti degli Use Case dell'#gloss("Analisi dei requisiti") e terminare il sistema di automazione relativo al cruscotto di Google Sheet.
+
+In seguito sono mostrate le attività identificate:
+- Stabilizzazione del Piano di Qualifica (#issue(149))
+- Creazione foglio Google Sheet e realizzazione delle automazioni per il cruscotto (#issue(150))
+- Completamento creazione Use Case (#issue(151))
+- Stesura dei requisiti degli Use Case (#issue(152))
+- Scrittura dei Test di Sistema (#issue(153))
+- Studio iniziale del Proof of Concept (#issue(154))
+
+=== Rischi attesi
+- *RP1* (@RP1): trovandoci in prossimità della sessione invernale di esami la disponibilità temporale dei membri del gruppo potrebbe risultare ridotta a causa degli impegni accademici in concomitanza
+- *RO1* (@RO1): dalla la possibilità che RP1 si verifichi potrebbe avvenire ritardi nel completamento delle task assegnate 
+
