@@ -173,66 +173,23 @@
   == uc-label
   Tipo: label
 */
-#let ref-uc = (uc-label, section-prefix: "Sezione ") => {
-  context {
-    // Per ogni titolo di UC con label, crea array dove ogni riga è
-    // (indice, codice UC, stringa con nome del label)
-    let head-query = query(heading)
-      .map(
-        head => {
-          let head-label = head.at("label", default: none)
-          if head-label != none and uc-counter.at(head-label).first() != 0 {
-            (uc-counter.at(head-label), str(head.label))
-          } else { none }
-        },
-      )
-      .filter(x => x != none)
-      .enumerate()
-      .map(value => {
-        let (index, rest) = value
-        (index, ..rest)
-      })
-
-    // Cerca uc-label in questa lista
-    let query-result = head-query.find(
-      x => {
-        let (_index, _counter, row-label) = x
-        return row-label == str(uc-label)
-      },
-    )
-
-    let (prev-index, _prev-uc-id, actual-uc-label) = (
-      if query-result != none { query-result } else { (none, none, uc-counter.at(uc-label)) }
-    )
-
-    // Trova l'ID dell'UC successivo
-    let (_next-index, actual-uc-id, _next-uc-label) = (
-      if prev-index == none {
-        (none, head-query.at(0).at(1), none)
-      } else if prev-index < head-query.len() - 1 {
-        head-query.find(x => {
-          let (index, ..other) = x
-          return index == prev-index + 1
-        })
-      } else {
-        (none, uc-counter.final(), none)
-      }
-    )
-
-    // Mostra il codice dell'UC effettivo
-    let uc-number = "UC" + actual-uc-id.map(str).join(".")
-
-    // Calcola il codice della Sezione
-    let section-number = counter(heading).at(uc-label)
-    let section-id = numbering(
-      (..numbers) => numbers.pos().map(str).join("."),
-      ..section-number,
-    )
-
-    [#link(uc-label, [#uc-number \[#section-prefix#section-id\]])]
+#let ref-uc = (lbl, section-prefix:"Sezione ") => context {
+  if query(lbl) == () {
+    panic("Il label <" + str(lbl) + "> non esiste. Assicurati di averlo scritto correttamente.")
   }
-}
 
+  let label-locs = query(selector(heading).after(lbl))
+  let label-loc = label-locs.at(0).location()
+
+  let uc-counter-value = if label-locs.len() > 1 {
+    uc-counter.at(label-locs.at(1).location()) 
+  } else { uc-counter.final() }
+
+  let uc-id = "UC" + uc-counter-value.map(str).join(".")
+  let section-id = counter(heading).at(label-loc).map(str).join(".")
+  
+  link(label-loc, [#uc-id \[#section-prefix#section-id\]])
+}
 
 #let rf-counter = counter("rf-counter")
 #let rnf-counter = counter("rnf-counter")
