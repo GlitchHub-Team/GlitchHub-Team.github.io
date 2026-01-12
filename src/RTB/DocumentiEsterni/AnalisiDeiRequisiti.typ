@@ -977,7 +977,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
 
-
+// TODO: Come espandere secondo il pattern di visualizzazione lista?
 ==== #uc() - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
@@ -1214,11 +1214,39 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - Per ogni elemento della lista, viene visualizzato lo stato delle richieste di commissioning e decommissioning di gateway, ovvero se tale richiesta è *in corso* o se è stata *accettata/rifiutata* da un Super Admin.
 - *Scenario principale*:
   - L'Admin visualizza le richieste in forma di lista ordinata in ordine cronologico decrescente (dalla più recente alla meno recente).
-  - Per ogni elemento della lista, l'Admin visualizza lo stato delle richieste di commissioning e decommissioning di gateway
+- *Inclusioni*:
+    - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
 
+==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant 
+<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin generico è autenticato nel Sistema
+  - La richiesta di commissioning o decommissioning esiste ed è associata al tenant
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni dettagliate della richiesta di commissioning o decommissioning
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni dettagliate della richiesta di commissioning o decommissioning, tra cui:
+    - Stato della richiesta: in corso, accettata, rifiutata
+  - *Inclusioni*:
+    - #ref-uc(<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>)
 
+===== #sub-uc() - Visualizzazione stato richiesta di commissioning e decommissioning di gateway 
+<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin generico è autenticato nel Sistema
+  - La richiesta di commissioning o decommissioning esiste ed è associata al tenant
+- *Post-condizioni*:
+  - Il Sistema mostra lo stato della richiesta di commissioning o decommissioning
+- *Scenario principale*:
+  - L'Admin generico visualizza lo stato della richiesta di commissioning o decommissioning, che può essere:
+    - In corso
+    - Accettata 
+    - Rifiutata
 
 // Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
+// TODO: Come espandere secondo il pattern?
 ==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1238,8 +1266,44 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - Il Sistema mostra la lista dei gateway associati al tenant dell'Admin
 - *Scenario principale*:
   - L'Admin visualizza la lista dei gateway associati al tenant
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singolo-gateway-in-lista>)
 
-// TODO: separa tra visualizzazione elemento di lista e visualizzazione dettaglio gateway
+==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni sintetiche del gateway nella lista, tra cui:
+    - Nome del gateway
+    - Stato: attivo, non raggiungibile, non associato, non autenticato
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni sintetiche del gateway nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-nome-gateway-lista>)
+  - #ref-uc(<Visualizzazione-stato-gateway-lista>)
+
+===== #sub-uc() - Visualizzazione nome singolo gateway in lista <Visualizzazione-nome-gateway-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra il nome del singolo gateway nella lista 
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni sintetiche del gateway nella lista
+
+===== #sub-uc() - Visualizzazione stato singolo gateway in lista <Visualizzazione-stato-gateway-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra lo stato del singolo gateway nella lista 
+- *Scenario principale*:
+  - L'Admin visualizza lo stato del singolo gateway nella lista 
+
 ==== #uc() - Visualizzazione gateway associato a tenant <Visualizzazione-gateway-associato>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1253,8 +1317,19 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Stato: attivo, non raggiungibile, non associato, non autenticato
     - Sensori collegati al gateway
 - *Inclusioni*:
+  - #ref-uc(<Visualizzazione-nome-gateway-associato>)
   - #ref-uc(<Visualizzazione-stato-gateway-associato>)
   - #ref-uc(<Visualizzazione-sensori-collegati-gateway-associato>)
+
+===== #sub-uc() - Visualizzazione nome gateway associato a tenant <Visualizzazione-nome-gateway-associato>
+- *Attore principale*: Admin generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra il nome del gateway selezionato
+- *Scenario principale*:
+  - L'Admin visualizza il nome del gateway selezionato
 
 ===== #sub-uc() - Visualizzazione stato gateway associato a tenant <Visualizzazione-stato-gateway-associato>
 - *Attore principale*: Admin Generico
@@ -1269,7 +1344,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Non raggiungibile
     - Non associato
     - Non autenticato
-
+// TODO: Anche questo da espandere secondo il pattern?
 ===== #sub-uc() - Visualizzazione sensori collegati al gateway associato a tenant <Visualizzazione-sensori-collegati-gateway-associato>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1354,8 +1429,53 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza la lista delle API key associate al tenant
   - Sono visualizzati per ogni API key il nome, la data di creazione e la data di scadenza
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singola-api-key-lista>)
 
+==== #uc() - Visualizzazione singola API Key in lista <Visualizzazione-singola-api-key-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni sintetiche della API key selezionata nella lista, tra cui:
+    - Nome della API key
+    - Data di creazione
+    - Data di scadenza
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni sintetiche della API key selezionata nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)
+  - #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)
+  - #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)
 
+===== #sub-uc() - Visualizzazione nome singola API key lista <Visualizzazione-nome-singola-api-key-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il nome della API key selezionata nella lista
+- *Scenario principale*:
+  - L'Admin visualizza il nome della API key selezionata nella lista
+
+===== #sub-uc() - Visualizzazione data di creazione singola API key lista <Visualizzazione-data-creazione-singola-api-key-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra la data di creazione della API key selezionata nella lista
+- *Scenario principale*:
+  - L'Admin visualizza la data di creazione della API key selezionata nella
+
+===== #sub-uc() - Visualizzazione data di scadenza singola API key lista <Visualizzazione-data-scadenza-singola-api-key-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*: 
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra la data di scadenza della API key selezionata nella lista
+- *Scenario principale*:
+  - L'Admin visualizza la data di scadenza della API key selezionata
+
+// TODO: Singoli uc pure per i dettagli qui?
 ==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1369,7 +1489,40 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin visualizza la data di scadenza
   - L'Admin visualizza il grafico di utilizzo della API key
 - *Inclusioni*:
+  - #ref-uc(<Visualizzazione-nome-api-key>)
+  - #ref-uc(<Visualizzazione-data-creazione-api-key>)
+  - #ref-uc(<Visualizzazione-data-scadenza-api-key>)
   - #ref-uc(<Grafico-utilizzo-api-key>)
+
+===== #sub-uc() - Visualizzazione nome API key <Visualizzazione-nome-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - La API key selezionata esiste e appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra il nome della API key selezionata
+- *Scenario principale*:
+  - L'Admin visualizza il nome della API key selezionata
+
+===== #sub-uc() - Visualizzazione data di creazione API key <Visualizzazione-data-creazione-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*: 
+  - L'Admin è autenticato nel Sistema
+  - La API key selezionata esiste e appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra la data di creazione della API key selezionata
+- *Scenario principale*:
+  - L'Admin visualizza la data di creazione della API key selezionata
+
+===== #sub-uc() - Visualizzazione data di scadenza API key <Visualizzazione-data-scadenza-api-key>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*: 
+  - L'Admin è autenticato nel Sistema
+  - La API key selezionata esiste e appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra la data di scadenza della API key selezionata
+- *Scenario principale*:
+  - L'Admin visualizza la data di scadenza della API key selezionata 
 
 ===== #sub-uc() - Grafico utilizzo API key <Grafico-utilizzo-api-key>
 - *Attore principale*: Admin Generico
@@ -1412,20 +1565,61 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // TODO: Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
 // -> rifinire l'audit log secondo il pattern per visualizzazione lista di elementi
-==== #uc() - Visualizzazione audit log del tenant <Visualizzazione-audit-log>
+==== #uc() - Visualizzazione lista audit log del tenant <Visualizzazione-audit-log>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra le informazioni relative agli audit log del tenant a cui appartiene l'Admin
+  - Il Sistema mostra la lista degli audit log del tenant del tenant a cui appartiene l'Admin
 - *Scenario principale*:
   - L'Admin seleziona l'opzione di visualizzazione degli audit log
   - Il Sistema recupera i dati relativi agli audit log
-// - *Estensioni*:
-//   - #ref-uc(<Filtraggio-log-per-tipologia>)
-//   - #ref-uc(<Filtraggio-log-per-intervallo-temporale>)
-//   - #ref-uc(<Filtraggio-log-per-utente>)
-//   - #ref-uc(<Esportazione-log>)
+  - L'Admin visualizza la lista degli audit log del tenant
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singolo-audit-log>)
+
+==== #uc() - Visualizzazione singolo audit log in lista <Visualizzazione-singolo-audit-log>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni sintetiche dell'audit log 
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni sintetiche dell'audit log, quali:
+    - Nome utente che ha eseguito l'azione
+    - Tipo di azione eseguita
+    - Timestamp dell'azione eseguita
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-nome-utente-audit-log>)
+  - #ref-uc(<Visualizzazione-tipo-azione-audit-log>)
+  - #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)
+
+===== #sub-uc() - Visualizzazione nome utente audit log <Visualizzazione-nome-utente-audit-log>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il nome dell'utente che ha eseguito l'azione registrata nell'audit log
+- *Scenario principale*:
+  - L'Admin visualizza il nome dell'utente che ha eseguito l'azione registrata nell'audit log
+
+===== #sub-uc() - Visualizzazione tipo azione audit log <Visualizzazione-tipo-azione-audit-log>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*: 
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il tipo di azione eseguita registrata nell'audit log
+- *Scenario principale*:
+  - L'Admin visualizza il tipo di azione eseguita registrata nell'audit log
+
+===== #sub-uc() - Visualizzazione timestamp azione audit log <Visualizzazione-timestamp-azione-audit-log>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*: 
+  - L'Admin è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il timestamp dell'azione eseguita registrata nell'audit log
+- *Scenario principale*:
+  - L'Admin visualizza il timestamp dell'azione eseguita registrata nell'audit log
 
 // AUDIT LOG:
 /*
@@ -1462,7 +1656,12 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Post-condizioni*
   - Il Sistema mostra i dati di log filtrati secondo la tipologia desiderata
 - *Scenario principale*
-  - L'Admin seleziona una o più tipologie di log che desidera vedere
+  - L'Admin seleziona una o più tipologie di log che desidera vedere, tra cui:
+    - Gestione utenti
+    - Gestione API Key
+    - Gestione accessi
+    - Gestione sensori e gateway
+    - Gestione richieste commissioning e decommissioning
   - L'Admin visualizza gli audit log filtrati per le tipologie desiderate
 
 ==== #uc() - Filtraggio log per intervallo temporale <Filtraggio-log-per-intervallo-temporale>
@@ -1937,6 +2136,68 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista Gateway
   - Il Super Admin visualizza la lista di tutti i Gateway registrati nel Sistema
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singolo-gateway-in-lista>)
+
+// TODO: Può avere senso come visualizzazione singolo elemento?
+==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutti i Gateway registrati
+- *Post-condizioni*:
+  - Il Sistema mostra per ogni Gateway nella lista le seguenti informazioni:
+    - Identificativo univoco
+    - Stato di autenticazione (autenticato / non autenticato)
+    - Stato operativo (attivo / non attivo)
+    - Tenant associato (se presente)
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni Gateway nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-identificativo-univoco-gateway>)
+  - #ref-uc(<Visualizzazione-stato-autenticazione-gateway>)
+  - #ref-uc(<Visualizzazione-stato-operativo-gateway>)
+  - #ref-uc(<Visualizzazione-tenant-associato-gateway>)
+
+===== #sub-uc() - Visualizzazione identificativo univoco del gateway <Visualizzazione-identificativo-univoco-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutti i Gateway registrati
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo univoco del gateway
+- *Scenario principale*:
+  - Il Super Admin visualizza l'identificativo univoco del gateway
+
+===== #sub-uc() - Visualizzazione stato di autenticazione del gateway <Visualizzazione-stato-autenticazione-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*: 
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutti i Gateway registrati
+- *Post-condizioni*:
+  - Il Sistema mostra lo stato di autenticazione (autenticato / non autenticato) del gateway
+- *Scenario principale*:
+  - Il Super Admin visualizza lo stato di autenticazione (autenticato / non autenticato)
+
+===== #sub-uc() - Visualizzazione stato operativo del gateway <Visualizzazione-stato-operativo-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutti i Gateway registrati
+- *Post-condizioni*:
+  - Il Sistema mostra lo stato operativo (attivo / non attivo) del gateway
+- *Scenario principale*:
+  - Il Super Admin visualizza lo stato operativo (attivo / non attivo) del gateway
+
+===== #sub-uc() - Visualizzazione tenant associato al gateway <Visualizzazione-tenant-associato-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutti i Gateway registrati
+- *Post-condizioni*:
+  - Il Sistema mostra il tenant associato (se presente) del gateway
+- *Scenario principale*:
+  - Il Super Admin visualizza il tenant associato (se presente) del gateway
 
 ==== #uc() - Visualizzazione Gateway <Visualizzazione-gateway-super-admin>
 - *Attore principale*: Super Admin
@@ -2285,7 +2546,31 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema mostra la lista di tutti i tenant registrati nel Sistema
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista tenant
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singolo-tenant-lista>)
 
+// TODO: Aggiungere più campi visualizzati???
+==== #uc() - Visualizzazione singolo tenat in lista <Visualizzazione-singolo-tenant-lista>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutti i tenant registrati nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra per ogni tenant nella lista le seguenti informazioni:
+    - Identificativo del tenant
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni tenant nella lista
+- *Inclusioni*:
+
+===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il tenant deve essere registrato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del tenant in lista
+- *Scenario principale*:
+  - Il Super Admin visualizza l'identificativo del tenant in lista
 
 ==== #uc() - Impersonificazione tenant <Impersonificazione-tenant>
 - *Attore principale*: Super Admin
@@ -2329,10 +2614,57 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
 - *Post-condizioni*:
   - Il Sistema mostra la lista di tutte le richieste di commissioning di Gateway in corso da parte di tutti i tenant
-  - Per ogni elemento della lista, si mostrano data e ora della richiesta, il tenant richiedente, il numero di gateway richiesti
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista richieste di commissioning Gateway
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>)
 
+==== #uc() - Visualizzazione singola richiesta di commissioning in lista <Visualizzazione-singola-richiesta-commissioning-in-lista>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutte le richieste di commissioning di Gateway in corso da parte di tutti i tenant
+- *Post-condizioni*:
+  - Il Sistema mostra per ogni richiesta nella lista le seguenti informazioni:
+    - Data e ora della richiesta
+    - Tenant richiedente
+    - Numero di gateway richiesti
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni richiesta nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)
+  - #ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)
+  - #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)
+
+===== #sub-uc() - Visualizzazione data e ora della richiesta di commissioning <Visualizzazione-data-ora-richiesta-commissioning>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di commissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra la data e l'ora della richiesta di commissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza la data e l'ora della richiesta di commissioning in lista 
+  
+===== #sub-uc() - Visualizzazione tenant della richiesta di commissioning <Visualizzazione-tenant-richiesta-commissioning>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di commissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il tenant della richiesta di commissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza il tenant della richiesta di commissioning in lista 
+
+===== #sub-uc() - Visualizzazione numero gateway della richiesta di commissioning <Visualizzazione-numero-gateway-richiesta-commissioning> 
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di commissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il numero di gateway della richiesta di commissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza il numero di gateway della richiesta di commissioning in lista
 
 ==== #uc() - Visualizzazione lista richieste in corso di decommissioning Gateway <Visualizzazione-lista-richieste-in-corso-decommissioning-gateway>
 - *Attore principale*: Super Admin
@@ -2340,10 +2672,69 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
 - *Post-condizioni*:
   - Il Sistema mostra la lista di tutte le richieste di decommissioning di Gateway in corso da parte di tutti i tenant
-  - Per ogni elemento della lista, si mostrano data e ora della richiesta, il tenant richiedente, il numero di gateway per cui fare il decommissioning e lo stato della richiesta
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista richieste di decommissioning Gateway
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singola-richiesta-decommissioning-in-lista>)
 
+==== #uc() - Visualizzazione singola richiesta di decommissioning in lista <Visualizzazione-singola-richiesta-decommissioning-in-lista>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato la lista di tutte le richieste di decommissioning di Gateway in corso da parte di tutti i tenant
+- *Post-condizioni*:
+  - Il Sistema mostra per ogni richiesta nella lista le seguenti informazioni:
+    - Data e ora della richiesta
+    - Tenant richiedente
+    - Numero di gateway richiesti
+    - Stato della richiesta
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni richiesta nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-data-ora-richiesta-decommissioning>)
+  - #ref-uc(<Visualizzazione-tenant-richiesta-decommissioning>)
+  - #ref-uc(<Visualizzazione-numero-gateway-richiesta-decommissioning>)
+  - #ref-uc(<Visualizzazione-stato-richiesta-decommissioning>)
+
+===== #sub-uc() - Visualizzazione data e ora della richiesta di decommissioning <Visualizzazione-data-ora-richiesta-decommissioning>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di decommissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra la data e l'ora della richiesta di decommissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza la data e l'ora della richiesta di decommissioning in lista 
+  
+===== #sub-uc() - Visualizzazione tenant della richiesta di decommissioning <Visualizzazione-tenant-richiesta-decommissioning>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di decommissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il tenant della richiesta di decommissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza il tenant della richiesta di decommissioning in lista 
+
+===== #sub-uc() - Visualizzazione numero gateway della richiesta di decommissioning <Visualizzazione-numero-gateway-richiesta-decommissioning> 
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di decommissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il numero di gateway della richiesta di decommissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza il numero di gateway della richiesta di decommissioning in lista
+
+===== #sub-uc() - Visualizzazione stato della richiesta di decommissioning <Visualizzazione-stato-richiesta-decommissioning>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di decommissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra lo stato della richiesta di decommissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza lo stato della richiesta di decommissioning in lista
 
 ==== #uc() - Visualizzazione storico richieste di commissioning Gateway <Visualizzazione-storico-richieste-commissioning-gateway>
 - *Attore principale*: Super Admin
@@ -2351,10 +2742,40 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
 - *Post-condizioni*:
   - Il Sistema mostra lo storico di tutte le richieste di commissioning di Gateway da parte di tutti i tenant
-  - Per ogni elemento della lista, si mostrano data e ora della richiesta, il tenant richiedente, il numero di gateway richiesti e lo stato della richiesta ("accettata", "rifiutata" o "in corso")
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista richieste di commissioning Gateway
+- *Inclusioni*: 
+  - #ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>)
 
+// TODO: Ho riutilizzato alcuni sub uc altrimenti diventa un circo questa sezione
+==== #uc() - Visualizzazione singola richiesta lista storico commissioning <Visualizzazione-singola-richiesta-storico-commissioning-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato lo storico di tutte le richieste di commissioning di Gateway da parte di tutti i tenant
+- *Post-condizioni*:
+  - Il Sistema mostra per ogni richiesta nella lista le seguenti informazioni:
+    - Data e ora della richiesta
+    - Tenant richiedente
+    - Numero di gateway richiesti
+    - Stato della richiesta ("accettata", "rifiutata" o "in corso")
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni richiesta nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)
+  - #ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)
+  - #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)
+  - #ref-uc(<Visualizzazione-stato-richiesta-storico-commissioning>)
+
+===== #sub-uc() - Visualizzazione stato richiesta dello storico commissioning <Visualizzazione-stato-richiesta-storico-commissioning> 
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta di commissioning deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra lo stato della richiesta di commissioning in lista 
+- *Scenario principale*:
+  - Il Super Admin visualizza lo stato della richiesta di commissioning in lista
 
 ==== #uc() - Visualizzazione storico richieste di decommissioning Gateway <Visualizzazione-storico-richieste-decommissioning-gateway>
 - *Attore principale*: Super Admin
@@ -2362,10 +2783,29 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
 - *Post-condizioni*:
   - Il Sistema mostra lo storico di tutte le richieste di decommissioning di Gateway da parte di tutti i tenant
-  - Per ogni elemento della lista, si mostrano data e ora della richiesta, il tenant richiedente, il numero di gateway per cui fare il decommissioning e lo stato della richiesta ("accettata", "rifiutata" o "in corso")
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista richieste di decommissioning Gateway
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singola-richiesta-storico-decommissioning-gateway>)
 
+==== #uc() - Visualizzazione singola richiesta lista storico decommissioning <Visualizzazione-singola-richiesta-storico-decommissioning-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sistema ha recuperato lo storico di tutte le richieste di decommissioning di Gateway da parte di tutti i tenant
+- *Post-condizioni*:
+  - Il Sistema mostra per ogni richiesta nella lista le seguenti informazioni:
+    - Data e ora della richiesta
+    - Tenant richiedente
+    - Numero di gateway richiesti
+    - Stato della richiesta ("accettata", "rifiutata" o "in corso")
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni richiesta nella lista
+- *Inclusioni*:  
+  - #ref-uc(<Visualizzazione-data-ora-richiesta-decommissioning>)
+  - #ref-uc(<Visualizzazione-tenant-richiesta-decommissioning>)
+  - #ref-uc(<Visualizzazione-numero-gateway-richiesta-decommissioning>)
+  - #ref-uc(<Visualizzazione-stato-richiesta-decommissioning>)
 
 ==== #uc() - Visualizzazione richiesta di commissioning Gateway <Visualizzazione-richiesta-commissioning-gateway>
 - *Attore principale*: Super Admin
@@ -2375,7 +2815,42 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema mostra la data e l'ora della richiesta
   - Il Sistema mostra il tenant richiedente
   - Il Sistema mostra il numero di gateway richiesti
+- *Scenario principale*:
+  - Il Super Admin visualizza la richiesta di commissioning Gateway da parte di un tenant
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-data-ora-richiesta>)
+  - #ref-uc(<Visualizzazione-tenant-richiedente-richiesta>)
+  - #ref-uc(<Visualizzazione-numero-gateway-richiesti>)
 
+===== #sub-uc() - Visualizzazione data e ora richiesta <Visualizzazione-data-ora-richiesta> 
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra la data e l'ora della richiesta
+- *Scenario principale*:
+  - Il Super Admin visualizza la data e l'ora della richiesta
+
+===== #sub-uc() - Visualizzazione tenant richiedente della richiesta <Visualizzazione-tenant-richiedente-richiesta>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il tenant richiedente della richiesta
+- *Scenario principale*:
+  - Il Super Admin visualizza il tenant richiedente della richiesta
+
+===== #sub-uc() - Visualizzazione numero di gateway richiesti <Visualizzazione-numero-gateway-richiesti>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il numero di gateway richiesti nella richiesta
+- *Scenario principale*:
+  - Il Super Admin visualizza il numero di gateway richiesti nella richiesta
 
 ==== #uc() - Visualizzazione richiesta di decommissioning Gateway <Visualizzazione-richiesta-decommissioning-gateway>
 - *Attore principale*: Super Admin
@@ -2385,7 +2860,22 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema mostra la data e l'ora della richiesta
   - Il Sistema mostra il tenant richiedente
   - Il Sistema mostra per quali gateway è richiesto il decommissioning
+- *Scenario principale*:
+  - Il Super Admin visualizza la richiesta di decommissioning Gateway da parte di un tenant
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-data-ora-richiesta>)
+  - #ref-uc(<Visualizzazione-tenant-richiedente-richiesta>)
+  - #ref-uc(<Visualizzazione-gateway-da-decommissioning>)
 
+===== #sub-uc() - Visualizzazione gateway su cui effettuare decommissioning <Visualizzazione-gateway-da-decommissioning> 
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - La richiesta deve esistere nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra i gateway su cui effettuare il decommissioning
+- *Scenario principale*:
+  - Il Super Admin visualizza i gateway su cui effettuare il decommissioning
 
 ==== #uc() - Accettazione richiesta di commissioning/decommissioning Gateway <Accettazione-richiesta-fornitura-gateway>
 - *Attore principale*: Super Admin
@@ -2848,18 +3338,54 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il numero di valori out-of-range rilevati per ogni sensore
   - Il Super Admin visualizza il grafico a barre rappresentante il numero di valori out-of-range rilevati per ogni sensore
 
-
+// TODO: Vieni qui ad ampliare la roba 
+// dc
+// dc
 ==== #uc() - Visualizzazione storico dei Tenant possessori di sensore <Visualizzazione-storico-possessori-sensore>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
   - Il Sensore specificato esiste
 - *Post-condizioni*:
-  - Il Sistema mostra la lista di Tenant a cui è stato associato il sensore specificato e il periodo di associazione
+  - Il Sistema mostra la lista di Tenant che hanno posseduto il sensore specificato
 - *Scenario principale*:
   - Il Super Admin seleziona il sensore di cui visualizzare la lista di possessori
   - Il Super Admin visualizza la lista di Tenant possessori del sensore
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singolo-tenant-possessore-sensore>)
 
+==== #uc() - Visualizzazione singolo Tenant possessore del sensore <Visualizzazione-singolo-tenant-possessore-sensore>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sensore specificato esiste
+- *Post-condizioni*:
+  - Il Sistema mostra il Tenant attualmente associato al sensore specificato e il periodo di associazione
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni elemento della lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-tenant-possessore-sensore>)
+  - #ref-uc(<Visualizzazione-periodo-associazione-sensore>)
+
+===== #sub-uc() - Visualizzazione Tenant possessore del sensore <Visualizzazione-tenant-possessore-sensore>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sensore specificato esiste
+- *Post-condizioni*:
+  - Il Sistema mostra il Tenant attualmente associato al sensore specificato
+- *Scenario principale*:
+  - Il Super Admin visualizza il Tenant attualmente associato al sensore specificato 
+
+===== #sub-uc() - Visualizzazione periodo di associazione sensore <Visualizzazione-periodo-associazione-sensore>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Sensore specificato esiste
+- *Post-condizioni*:
+  - Il Sistema mostra il periodo di associazione del sensore specificato al Tenant
+- *Scenario principale*:
+  - Il Super Admin visualizza il periodo di associazione del sensore specificato al Tenant
 
 ==== #uc() - Visualizzazione storico dei Tenant possessori di gateway <Visualizzazione-storico-possessori-gateway>
 - *Attore principale*: Super Admin
@@ -2867,11 +3393,45 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
   - Il Gateway specificato esiste ed è registrato e autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra la lista di Tenant a cui è stato associato il gateway specificato e il periodo di associazione
+  - Il Sistema mostra la lista di Tenant a cui è stato associato il gateway specificato 
 - *Scenario principale*:
   - Il Super Admin seleziona il gateway di cui visualizzare la lista di possessori
   - Il Super Admin visualizza la lista di Tenant possessori del gateway
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>)
 
+==== #uc() - Visualizzazione singolo Tenant possessore del gateway <Visualizzazione-singolo-tenant-possessore-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Gateway specificato esiste ed è registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il Tenant attualmente associato al gateway specificato e il periodo di associazione
+- *Scenario principale*:
+  - Il Super Admin visualizza le informazioni elencate sopra per ogni elemento della lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-tenant-possessore-gateway>)
+  - #ref-uc(<Visualizzazione-periodo-associazione-gateway>)
+
+===== #sub-uc() - Visualizzazione Tenant possessore del gateway <Visualizzazione-tenant-possessore-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Gateway specificato esiste ed è registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il Tenant attualmente associato al gateway specificato
+- *Scenario principale*:
+  - Il Super Admin visualizza il Tenant attualmente associato al gateway specificato
+
+===== #sub-uc() - Visualizzazione periodo di associazione gateway <Visualizzazione-periodo-associazione-gateway>
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+  - Il Gateway specificato esiste ed è registrato e autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra il periodo di associazione del gateway specificato al Tenant
+- *Scenario principale*:
+  - Il Super Admin visualizza il periodo di associazione del gateway specificato al Tenant
 
 === Attore principale - Gateway
 ==== #uc() - Conferma esecuzione commissioning <Conferma-comando-commissioning>
