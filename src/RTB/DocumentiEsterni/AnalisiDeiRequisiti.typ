@@ -1772,8 +1772,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema crea una richiesta di commissioning di gateway, la quale potrà essere accettata o rifiutata dal Super Admin
   - Il Sistema registra l'evento nell'audit log
 - *Scenario principale*:
-  - Il Tenant ADmin inserisce il numero di nuovi gateway da associare al proprio Tenant
-  - Il Tenant ADmin inserisce una descrizione della richiesta per specificare ulteriori dettagli
+  - Il Tenant Admin inserisce il numero di nuovi gateway da associare al proprio Tenant
+  - Il Tenant Admin inserisce una descrizione della richiesta per specificare ulteriori dettagli
 
 
 ==== #uc() - Creazione richiesta di decommissioning gateway <Creazione-richiesta-decommissioning-gateway>
@@ -1793,7 +1793,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
-  - I gateway selezionati dal Tenant ADmin sono associati al suo Tenant
+  - I gateway selezionati dal Tenant Admin sono associati al suo Tenant
 - *Post-condizioni*:
   - Il Sistema associa i gateway selezionati alla richiesta di decommissioning corrente
 - *Scenario principale*:
