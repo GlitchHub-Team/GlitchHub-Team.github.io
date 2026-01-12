@@ -5,6 +5,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.17.0",
+      "12/01/2026",
+      "Riccardo Graziani",
+      "-",
+      [Approfonditi use case di visualizzazione liste e visualizzazione in dettaglio di alcuni elementi (API Key, Gateway)]
+    ),
+    (
       "0.16.0",
       "11/01/2026",
       "Elia Ernesto Stellin",
