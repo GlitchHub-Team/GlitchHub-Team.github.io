@@ -1139,7 +1139,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Email client riceve una email con il link per l'impostazione della nuova password
 
 
-==== #uc() - Sospensione Tenant User <Sospensione-Tenant-User>
+==== #uc() - Sospensione Tenant User <Sospensione-tenant-user>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1165,7 +1165,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin conferma la sospensione del Tenant User
 
-==== #uc() - Riattivazione Tenant User <Riattivazione-Tenant-User>
+==== #uc() - Riattivazione Tenant User <Riattivazione-tenant-user>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1192,7 +1192,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin conferma la riattivazione del Tenant User
 
 
-==== #uc() - Eliminazione Tenant User <Eliminazione-Tenant-User>
+==== #uc() - Eliminazione Tenant User <Eliminazione-tenant-user>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel sistema
@@ -1260,7 +1260,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Rifiutata
 
 // Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
-// TODO: Come espandere secondo il pattern?
+// TODO: Come espandere secondo il pattern di visualizzazione lista?
 ==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1358,7 +1358,8 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Non raggiungibile
     - Non associato
     - Non autenticato
-// TODO: Anche questo da espandere secondo il pattern?
+
+// TODO: Come espandere secondo il pattern di visualizzazione lista?
 ===== #sub-uc() - Visualizzazione sensori collegati al gateway associato a tenant <Visualizzazione-sensori-collegati-gateway-associato>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -4241,6 +4242,198 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
   [#ref-uc(<Invio-email-reimpostazione-password>)],
+
+  [#rf()],
+  [L'Utente autenticato deve poter visualizzare la sua dashboard personale, visualizzando in essa il numero di sensori e gateway attivi e non e la lista degli alert relativi al proprio tenant],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-lista-alert>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+
+  // Gli UC di errore, vedi UC33, UC34, vanno specificati come requisiti a se stanti? 
+  // Da mettere UC31, UC33, UC34
+  [#rf()],
+  [L'Admin generico deve poter registrare un nuovo Tenant User all'interno del Sistema],
+  [#ref-uc(<Registrazione-nuovo-tenant-user>)],
+
+  [#rf()],
+  [L'Admin generico, registrando un nuovo utente, deve inserire l'indirizzo email associato al nuovo Tenant User],
+  [#ref-uc(<Inserimento-email>)],
+
+  [#rf()],
+  [Il Sistema deve inviare una mail al nuovo Tenant User contenente il link per impostare la propria password iniziale dopo la registrazione effettuata dall'Admin generico],
+  [#ref-uc(<Invio-email-impostazione-password>)],
+  
+  [#rf()],
+  [L'Admin generico deve poter sospendere l'accesso di un Tenant User al Sistema],
+  [#ref-uc(<Sospensione-tenant-user>)],
+  
+  [#rf()],
+  [Il Sistema deve richiedere conferma all'Admin generico prima di sospendere l'accesso di un Tenant User al Sistema],
+  [#ref-uc(<Conferma-sospensione-tenant-user>)],
+
+  [#rf()],
+  [L'Admin generico deve poter riattivare l'accesso di un Tenant User al Sistema],
+  [#ref-uc(<Riattivazione-tenant-user>)],
+
+  [#rf()],
+  [Il Sistema deve richiedere conferma all'Admin generico prima di riattivare l'accesso di un Tenant User al Sistema],
+  [#ref-uc(<Conferma-riattivazione-tenant-user>)],
+
+  [#rf()],
+  [L'Admin generico deve poter eliminare un Tenant User al Sistema],
+  [#ref-uc(<Eliminazione-tenant-user>)],
+
+  [#rf()],
+  [Il Sistema deve richiedere conferma all'Admin generico prima di eliminare un Tenant User al Sistema],
+  [#ref-uc(<Conferma-eliminazione-tenant-user>)],
+
+  // Da mettere UC39, UC40, UC41, UC42, UC43, UC44
+  [#rf[?]],
+  [L'Admin generico deve poter registrare una nuova API key associata al proprio Tenant],
+  [#ref-uc(<Registrazione-nuova-api-key>)],
+  
+  [#rf[?]],
+  [L'Admin generico, registrando una nuova API key, deve inserire un nome identificativo per la chiave],
+  [#ref-uc(<Inserimento-nome-api-key>)],
+
+  [#rf[?]],
+  [L'Admin generico, registrando una nuova API key, deve inserire la data di scadenza della chiave],
+  [#ref-uc(<Inserimento-scadenza-api-key>)],
+
+  [#rf[?]],
+  [Il Sistema deve mostrare un messaggio di errore se l'Admin generico inserisce un nome identificativo già esistente per una API key durante la registrazione di una nuova chiave],
+  [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-nome-api-key>), #ref-uc(<Nome-api-key-gia-utilizzato>)],
+
+  [#rf[?]],
+  [Il Sistema deve mostrare un messaggio di errore se l'Admin generico inserisce una data di scadenza già passata durante la registrazione di una nuova API key],
+  [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-nome-api-key>), #ref-uc(<Scadenza-api-key-data-passata>)],
+
+  [#rf[?]],
+  [L'Admin generico deve poter visualizzare la lista di tutte le API key associate al proprio Tenant],
+  [#ref-uc(<Visualizzazione-lista-api-key>)],
+
+  [#rf[?]],
+  [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere il nome dell'API key],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
+
+  [#rf[?]],
+  [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di creazione dell'API key],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)],
+
+  [#rf[?]],
+  [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di scadenza dell'API key],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)],
+
+  [#rf[?]],
+  [L'Admin generico deve poter visualizzare una API key associata al proprio Tenant nel dettaglio],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>)],
+
+  [#rf[?]],
+  [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare il nome dell'API key],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-nome-api-key>)],
+
+  [#rf[?]],
+  [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare la data di creazione dell'API key],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-data-creazione-api-key>)],
+
+  [#rf[?]],
+  [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare la data di scadenza dell'API key],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-data-scadenza-api-key>)],
+
+  [#rf[?]],
+  [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare un grafico che mostri l'utilizzo dell'API key],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Grafico-utilizzo-api-key>)],
+
+  [#rf[?]],
+  [L'Admin generico deve poter eliminare una API key associata al proprio Tenant],
+  [#ref-uc(<Eliminazione-api-key>)],
+
+  [#rf[?]],
+  [Il Sistema deve richiedere conferma all'Admin generico prima di eliminare una API key associata al proprio Tenant],
+  [#ref-uc(<Eliminazione-api-key>), #ref-uc(<Conferma-eliminazione-api-key>)],
+
+  [#rf()],
+  [L'Admin generico deve poter visualizzare la lista di tutti gli audit log relativi al proprio Tenant],
+  [#ref-uc(<Visualizzazione-audit-log>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il nome dell'utente che ha generato l'evento],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il timestamp dell'evento],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
+
+  [#rf()],
+  [L'Admin generico deve poter filtrare gli audit log in base al tipo di azione eseguita],
+  [#ref-uc(<Filtraggio-log-per-tipologia>)],
+
+  [#rf()],
+  [L'Admin generico deve poter filtrare gli audit log in base ad un intervallo temporale],
+  [#ref-uc(<Filtraggio-log-per-intervallo-temporale>)],
+
+  [#rf()],
+  [L'Admin generico deve poter filtrare gli audit log in base all'utente che ha generato l'evento],
+  [#ref-uc(<Filtraggio-log-per-utente>)],
+
+  [#rf()],
+  [L'Admin generico deve poter esportare gli audit log in un file testuale scaricabile],
+  [#ref-uc(<Esportazione-log>)],
+
+  // Da mettere: UC58
+  [#rf()],
+  [Il Tenant Admin deve poter creare una nuova richiesta di commissioning gateway],
+  [#ref-uc(<Creazione-richiesta-commissioning-gateway>)],
+
+  [#rf()],
+  [Il Tenant Admin deve poter creare una nuova richiesta di decommissioning gateway],
+  [#ref-uc(<Creazione-richiesta-decommissioning-gateway>), #ref-uc(<Selezione-gateway-decommissioning-tenant-admin>)],
+  
+  [#rf()],
+  [Il Tenant Admin deve poter eliminare una richiesta di commissioning o decommissioning gateway precedentemente creata, purché essa non sia stata ancora evasa],
+  [#ref-uc(<Eliminazione-richiesta-commissioning-decommissioning-gateway>)],
+
+  [#rf()],
+  [Il Sistema deve richiedere conferma al Tenant Admin prima di eliminare una richiesta di commissioning o decommissioning gateway],
+  [#ref-uc(<Eliminazione-richiesta-commissioning-decommissioning-gateway>), #ref-uc(<Conferma-eliminazione-richiesta-commissioning-decommissioning>)],
+
+  [#rf()],
+  [Il Tenant Admin deve poter sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant],
+  [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
+
+  [#rf()],
+  [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del sensore selezionato poichè il gateway a cui esso è associato è in stato di errore],
+  [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [Il Tenant Admin deve poter riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant],
+  [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
+
+  [#rf()],
+  [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del sensore selezionato poichè il gateway a cui esso è associato è in stato di errore],
+  [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [Il Tenant Admin deve poter sospendere l'invio di dati da parte di un gateway appartenente al proprio Tenant],
+  [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
+
+  [#rf()],
+  [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del gateway selezionato poichè esso è in stato di errore],
+  [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [Il Tenant Admin deve poter riattivare l'invio di dati da parte di un gateway appartenente al proprio Tenant],
+  [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
+
+  [#rf()],
+  [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del gateway selezionato poichè esso è in stato di errore],
+  [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [Il Tenant Admin deve poter riavviare un gateway appartenente al proprio Tenant],
+  [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
+
+  [#rf()],
+  [Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poichè esso è in stato di errore],
+  [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
   //Attore: Gateway, Sistema: Cloud
   //TODO: controllare che requisiti siano atomici
