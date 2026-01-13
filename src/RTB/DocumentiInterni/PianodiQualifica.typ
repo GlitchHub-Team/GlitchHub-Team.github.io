@@ -5,9 +5,10 @@
 #show: report.with(
   titolo: "Piano di Qualifica",
   stato: "Bozza",
-  versione: "0.0.1",
+  versione: "0.0.4",
   registro-modifiche: (
-    ("0.0.3","3/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
+    ("0.0.4", "13/01/2026", "Siria Salvalaio", "-", "Inizio stesura iniziative di miglioramento (bozza)"),
+    ("0.0.3", "03/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
     ("0.0.2", "29/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Stesura metriche"),
     ("0.0.1", "21/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Bozza prime metriche e struttura documento"),
   ),
@@ -377,3 +378,58 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA CO
 = Cruscotto di Valutazione
 
 = Iniziative di miglioramento
+Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \
+
+== Valutazione sull'organizzazione
+#figure(
+  table(
+    columns: (1.4fr, 2fr, 2fr),
+    align: center + horizon,
+    inset: 8pt,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Problema*], [*Descrizione*], [*Azioni di correzione*],
+    
+    [Pianificazione temporale e scadenze], [Difficoltà nel definire la durata degli sprint e stabilire scadenze equilibrate per le task], [Adozione di sprint a durata fissa (due settimane, posso essere fatte eccezioni) e ???],
+    [Coordinamento del gruppo], [], [],
+    [Interpretazione normativa], [Difficoltà nel comprendere appieno alcuni documenti da redigere], [Sessioni di riallineamento interno e revisione collettiva dei documenti normativi per garantire una visione comune],
+  ),
+  caption: [Azioni adottate per migliorare l'organizzazione.],
+  kind: table,
+  supplement: [Tabella]
+)
+
+== Valutazione sui ruoli
+#figure(
+  table(
+    columns: (1.4fr, 2fr, 2fr),
+    align: center + horizon,
+    inset: 8pt,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Problema*], [*Descrizione*], [*Azioni di correzione*],
+    
+    [Gestione e rotazione dei ruoli], [Difficoltà nell'assegnare i ruoli nel breve periodo e scegliere la cadenza per il cambio], [Definizione di una tabella di rotazione che garantisca a tutti di ricoprire ogni ruolo, con cambi programmati a fine Sprint],
+    [Allocazione delle risorse], [Complessità nello stabilire a quanti membri assegnare ogni attività], [Valutazione della criticità della task; assegnazione di almeno due persone per le task complesse per favorire il pair word e ridurre il rischio di stallo e/o di ritardi],
+    [Efficienza comunicativa intra-task], [Scambio di informazioni non sempre ottimale tra membri che lavorano allo stesso compito], [Creazione di sotto-canali di comunicazione specifici e utilizzo di commenti dettagliati, discussi in riunione, sulle issue di Github],
+  ),
+  caption: [Azioni adottate per migliorare la gestione dei ruoli.],
+  kind: table,
+  supplement: [Tabella]
+)
+
+== Valutazione sugli strumenti
+#figure(
+  table(
+    columns: (1.5fr, 2fr, 2fr),
+    align: center + horizon,
+    inset: 8pt,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Problema*], [*Descrizione*], [*Azioni di correzione*],
+
+    [Creare use case adeguati?], [], [],
+    [Definire le metriche?], [], [-> riunione straordinaria di brainstorming],
+    [?], [], [],
+  ),
+  caption: [Azioni adottate per migliorare l'uso degli strumenti.],
+  kind: table,
+  supplement: [Tabella]
+)
