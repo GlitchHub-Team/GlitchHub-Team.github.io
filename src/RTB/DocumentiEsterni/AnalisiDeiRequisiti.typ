@@ -5,18 +5,25 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.18.0",
+      "13/01/2026",
+      "Alessandro Dinato",
+      "-",
+      [Creazione requisiti attore Gateway con Sistema Cloud e tutti attori relativi al Sistema Gateway],
+    ),
+    (
       "0.17.0",
       "12/01/2026",
       "Riccardo Graziani",
       "-",
-      [Approfonditi use case di visualizzazione liste e visualizzazione in dettaglio di alcuni elementi (API Key, Gateway)]
+      [Approfonditi use case di visualizzazione liste e visualizzazione in dettaglio di alcuni elementi (API Key, Gateway)],
     ),
     (
       "0.16.0",
       "11/01/2026",
       "Elia Ernesto Stellin",
       "-",
-      [Riempita sezione "Admin Generico" e modifiche a inclusioni di use case contenuti in essa; Sistemato registro modifiche; Ottimizzazione compilazione del documento]
+      [Riempita sezione "Admin Generico" e modifiche a inclusioni di use case contenuti in essa; Sistemato registro modifiche; Ottimizzazione compilazione del documento],
     ),
     (
       "0.15.0",
@@ -180,7 +187,7 @@
   == uc-label
   Tipo: label
 */
-#let ref-uc = (lbl, section-prefix:"Sezione ") => context {
+#let ref-uc = (lbl, section-prefix: "Sezione ") => context {
   if query(lbl) == () {
     panic("Il label <" + str(lbl) + "> non esiste. Assicurati di averlo scritto correttamente.")
   }
@@ -189,12 +196,12 @@
   let label-loc = label-locs.at(0).location()
 
   let uc-counter-value = if label-locs.len() > 1 {
-    uc-counter.at(label-locs.at(1).location()) 
+    uc-counter.at(label-locs.at(1).location())
   } else { uc-counter.final() }
 
   let uc-id = "UC" + uc-counter-value.map(str).join(".")
   let section-id = counter(heading).at(label-loc).map(str).join(".")
-  
+
   link(label-loc, [#uc-id \[#section-prefix#section-id\]])
 }
 
@@ -215,9 +222,9 @@
     [*RF\-#value\-#rilevanza*]
   })
 }
-#let rnf = (..args) => { 
+#let rnf = (..args) => {
   rnf-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else {"Obb"}
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
   context rnf-counter.display(value => {
     [*RNF\-#value\-#rilevanza*]
   })
@@ -731,7 +738,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente Autenticato visualizza la descrizione dell'alert selezionato
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da Gateway <Mancata-ricezione-gateway>
-- *Specializzazione*: #ref-uc(<Visualizzazione-alert>)
+- *Generalizzazione*: #ref-uc(<Visualizzazione-alert>)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
   - L'Utente Autenticato è autenticato nel Sistema
@@ -768,7 +775,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente Autenticato visualizza il tempo di inattività del gateway interessato nell'alert
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
-- *Specializzazione*: #ref-uc(<Visualizzazione-alert>)
+- *Generalizzazione*: #ref-uc(<Visualizzazione-alert>)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
   - L'Utente Autenticato è autenticato nel Sistema
@@ -1061,7 +1068,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 //     - Visualizzazione singolo gateway in lista
 //       - Visualizzazione identificativo
 //       - Visualizzazione nome tenant di appartenenza
-  
+
 //   - *[SA]* Visualizzazione dettaglio gateway
 //     - Dev'essere gateway auth. in sistema
 
@@ -1222,9 +1229,9 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza le richieste in forma di lista ordinata in ordine cronologico decrescente (dalla più recente alla meno recente).
 - *Inclusioni*:
-    - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
+  - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
 
-==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant 
+==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant
 <Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1238,7 +1245,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - *Inclusioni*:
     - #ref-uc(<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>)
 
-===== #sub-uc() - Visualizzazione stato richiesta di commissioning e decommissioning di gateway 
+===== #sub-uc() - Visualizzazione stato richiesta di commissioning e decommissioning di gateway
 <Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1249,7 +1256,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin generico visualizza lo stato della richiesta di commissioning o decommissioning, che può essere:
     - In corso
-    - Accettata 
+    - Accettata
     - Rifiutata
 
 // Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
@@ -1297,7 +1304,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin è autenticato nel Sistema
   - Il gateway è associato al tenant dell'Admin
 - *Post-condizioni*:
-  - Il Sistema mostra il nome del singolo gateway nella lista 
+  - Il Sistema mostra il nome del singolo gateway nella lista
 - *Scenario principale*:
   - L'Admin visualizza le informazioni sintetiche del gateway nella lista
 
@@ -1307,9 +1314,9 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin è autenticato nel Sistema
   - Il gateway è associato al tenant dell'Admin
 - *Post-condizioni*:
-  - Il Sistema mostra lo stato del singolo gateway nella lista 
+  - Il Sistema mostra lo stato del singolo gateway nella lista
 - *Scenario principale*:
-  - L'Admin visualizza lo stato del singolo gateway nella lista 
+  - L'Admin visualizza lo stato del singolo gateway nella lista
 
 ==== #uc() - Visualizzazione gateway associato a tenant <Visualizzazione-gateway-associato>
 - *Attore principale*: Admin Generico
@@ -1475,7 +1482,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 ===== #sub-uc() - Visualizzazione data di scadenza singola API key lista <Visualizzazione-data-scadenza-singola-api-key-lista>
 - *Attore principale*: Admin Generico
-- *Pre-condizioni*: 
+- *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema mostra la data di scadenza della API key selezionata nella lista
@@ -1513,7 +1520,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 ===== #sub-uc() - Visualizzazione data di creazione API key <Visualizzazione-data-creazione-api-key>
 - *Attore principale*: Admin Generico
-- *Pre-condizioni*: 
+- *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
   - La API key selezionata esiste e appartiene al tenant dell'Admin
 - *Post-condizioni*:
@@ -1523,13 +1530,13 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 ===== #sub-uc() - Visualizzazione data di scadenza API key <Visualizzazione-data-scadenza-api-key>
 - *Attore principale*: Admin Generico
-- *Pre-condizioni*: 
+- *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
   - La API key selezionata esiste e appartiene al tenant dell'Admin
 - *Post-condizioni*:
   - Il Sistema mostra la data di scadenza della API key selezionata
 - *Scenario principale*:
-  - L'Admin visualizza la data di scadenza della API key selezionata 
+  - L'Admin visualizza la data di scadenza della API key selezionata
 
 ===== #sub-uc() - Grafico utilizzo API key <Grafico-utilizzo-api-key>
 - *Attore principale*: Admin Generico
@@ -1590,7 +1597,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra le informazioni sintetiche dell'audit log 
+  - Il Sistema mostra le informazioni sintetiche dell'audit log
 - *Scenario principale*:
   - L'Admin visualizza le informazioni sintetiche dell'audit log, quali:
     - Nome utente che ha eseguito l'azione
@@ -1612,7 +1619,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 ===== #sub-uc() - Visualizzazione tipo azione audit log <Visualizzazione-tipo-azione-audit-log>
 - *Attore principale*: Admin Generico
-- *Pre-condizioni*: 
+- *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema mostra il tipo di azione eseguita registrata nell'audit log
@@ -1621,7 +1628,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 ===== #sub-uc() - Visualizzazione timestamp azione audit log <Visualizzazione-timestamp-azione-audit-log>
 - *Attore principale*: Admin Generico
-- *Pre-condizioni*: 
+- *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema mostra il timestamp dell'azione eseguita registrata nell'audit log
@@ -1714,7 +1721,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
 // TODO: nel diagramma di questo UC ci potrebbe stare mostrare anche <Visualizzazione-dashboard-generica>
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
-- *Specializzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
+- *Generalizzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -2178,7 +2185,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ===== #sub-uc() - Visualizzazione stato di autenticazione del gateway <Visualizzazione-stato-autenticazione-gateway>
 - *Attore principale*: Super Admin
-- *Pre-condizioni*: 
+- *Pre-condizioni*:
   - Il Super Admin è autenticato
   - Il Sistema ha recuperato la lista di tutti i Gateway registrati
 - *Post-condizioni*:
@@ -2649,27 +2656,27 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
   - La richiesta di commissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra la data e l'ora della richiesta di commissioning in lista 
+  - Il Sistema mostra la data e l'ora della richiesta di commissioning in lista
 - *Scenario principale*:
-  - Il Super Admin visualizza la data e l'ora della richiesta di commissioning in lista 
-  
+  - Il Super Admin visualizza la data e l'ora della richiesta di commissioning in lista
+
 ===== #sub-uc() - Visualizzazione tenant della richiesta di commissioning <Visualizzazione-tenant-richiesta-commissioning>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
   - La richiesta di commissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra il tenant della richiesta di commissioning in lista 
+  - Il Sistema mostra il tenant della richiesta di commissioning in lista
 - *Scenario principale*:
-  - Il Super Admin visualizza il tenant della richiesta di commissioning in lista 
+  - Il Super Admin visualizza il tenant della richiesta di commissioning in lista
 
-===== #sub-uc() - Visualizzazione numero gateway della richiesta di commissioning <Visualizzazione-numero-gateway-richiesta-commissioning> 
+===== #sub-uc() - Visualizzazione numero gateway della richiesta di commissioning <Visualizzazione-numero-gateway-richiesta-commissioning>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
   - La richiesta di commissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra il numero di gateway della richiesta di commissioning in lista 
+  - Il Sistema mostra il numero di gateway della richiesta di commissioning in lista
 - *Scenario principale*:
   - Il Super Admin visualizza il numero di gateway della richiesta di commissioning in lista
 
@@ -2709,27 +2716,27 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
   - La richiesta di decommissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra la data e l'ora della richiesta di decommissioning in lista 
+  - Il Sistema mostra la data e l'ora della richiesta di decommissioning in lista
 - *Scenario principale*:
-  - Il Super Admin visualizza la data e l'ora della richiesta di decommissioning in lista 
-  
+  - Il Super Admin visualizza la data e l'ora della richiesta di decommissioning in lista
+
 ===== #sub-uc() - Visualizzazione tenant della richiesta di decommissioning <Visualizzazione-tenant-richiesta-decommissioning>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
   - La richiesta di decommissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra il tenant della richiesta di decommissioning in lista 
+  - Il Sistema mostra il tenant della richiesta di decommissioning in lista
 - *Scenario principale*:
-  - Il Super Admin visualizza il tenant della richiesta di decommissioning in lista 
+  - Il Super Admin visualizza il tenant della richiesta di decommissioning in lista
 
-===== #sub-uc() - Visualizzazione numero gateway della richiesta di decommissioning <Visualizzazione-numero-gateway-richiesta-decommissioning> 
+===== #sub-uc() - Visualizzazione numero gateway della richiesta di decommissioning <Visualizzazione-numero-gateway-richiesta-decommissioning>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
   - La richiesta di decommissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra il numero di gateway della richiesta di decommissioning in lista 
+  - Il Sistema mostra il numero di gateway della richiesta di decommissioning in lista
 - *Scenario principale*:
   - Il Super Admin visualizza il numero di gateway della richiesta di decommissioning in lista
 
@@ -2739,7 +2746,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
   - La richiesta di decommissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra lo stato della richiesta di decommissioning in lista 
+  - Il Sistema mostra lo stato della richiesta di decommissioning in lista
 - *Scenario principale*:
   - Il Super Admin visualizza lo stato della richiesta di decommissioning in lista
 
@@ -2751,7 +2758,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema mostra lo storico di tutte le richieste di commissioning di Gateway da parte di tutti i tenant
 - *Scenario principale*:
   - Il Super Admin seleziona la funzionalità di visualizzazione lista richieste di commissioning Gateway
-- *Inclusioni*: 
+- *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>)
 
 // TODO: Ho riutilizzato alcuni sub uc altrimenti diventa un circo questa sezione
@@ -2774,13 +2781,13 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)
   - #ref-uc(<Visualizzazione-stato-richiesta-storico-commissioning>)
 
-===== #sub-uc() - Visualizzazione stato richiesta dello storico commissioning <Visualizzazione-stato-richiesta-storico-commissioning> 
+===== #sub-uc() - Visualizzazione stato richiesta dello storico commissioning <Visualizzazione-stato-richiesta-storico-commissioning>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
   - La richiesta di commissioning deve esistere nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra lo stato della richiesta di commissioning in lista 
+  - Il Sistema mostra lo stato della richiesta di commissioning in lista
 - *Scenario principale*:
   - Il Super Admin visualizza lo stato della richiesta di commissioning in lista
 
@@ -2808,7 +2815,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
     - Stato della richiesta ("accettata", "rifiutata" o "in corso")
 - *Scenario principale*:
   - Il Super Admin visualizza le informazioni elencate sopra per ogni richiesta nella lista
-- *Inclusioni*:  
+- *Inclusioni*:
   - #ref-uc(<Visualizzazione-data-ora-richiesta-decommissioning>)
   - #ref-uc(<Visualizzazione-tenant-richiesta-decommissioning>)
   - #ref-uc(<Visualizzazione-numero-gateway-richiesta-decommissioning>)
@@ -2829,7 +2836,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-tenant-richiedente-richiesta>)
   - #ref-uc(<Visualizzazione-numero-gateway-richiesti>)
 
-===== #sub-uc() - Visualizzazione data e ora richiesta <Visualizzazione-data-ora-richiesta> 
+===== #sub-uc() - Visualizzazione data e ora richiesta <Visualizzazione-data-ora-richiesta>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2874,7 +2881,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-tenant-richiedente-richiesta>)
   - #ref-uc(<Visualizzazione-gateway-da-decommissioning>)
 
-===== #sub-uc() - Visualizzazione gateway su cui effettuare decommissioning <Visualizzazione-gateway-da-decommissioning> 
+===== #sub-uc() - Visualizzazione gateway su cui effettuare decommissioning <Visualizzazione-gateway-da-decommissioning>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3345,7 +3352,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il numero di valori out-of-range rilevati per ogni sensore
   - Il Super Admin visualizza il grafico a barre rappresentante il numero di valori out-of-range rilevati per ogni sensore
 
-// TODO: Vieni qui ad ampliare la roba 
+// TODO: Vieni qui ad ampliare la roba
 // dc
 // dc
 ==== #uc() - Visualizzazione storico dei Tenant possessori di sensore <Visualizzazione-storico-possessori-sensore>
@@ -3382,7 +3389,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Post-condizioni*:
   - Il Sistema mostra il Tenant attualmente associato al sensore specificato
 - *Scenario principale*:
-  - Il Super Admin visualizza il Tenant attualmente associato al sensore specificato 
+  - Il Super Admin visualizza il Tenant attualmente associato al sensore specificato
 
 ===== #sub-uc() - Visualizzazione periodo di associazione sensore <Visualizzazione-periodo-associazione-sensore>
 - *Attore principale*: Super Admin
@@ -3400,7 +3407,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin è autenticato
   - Il Gateway specificato esiste ed è registrato e autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema mostra la lista di Tenant a cui è stato associato il gateway specificato 
+  - Il Sistema mostra la lista di Tenant a cui è stato associato il gateway specificato
 - *Scenario principale*:
   - Il Super Admin seleziona il gateway di cui visualizzare la lista di possessori
   - Il Super Admin visualizza la lista di Tenant possessori del gateway
@@ -3453,6 +3460,11 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Gateway esegue il commissioning in base alle istruzioni ricevute
   - Il Gateway invia la conferma di esecuzione del commissioning al Sistema
+  - Il Gateway comincia l'invio dei dati dei sensori associati al Sistema
+- *Estensioni*:
+  - #ref-uc(<Errore-commissioning>)
+- *Inclusioni*:
+  - #ref-uc(<Invio-dati-crittografati>)
 
 ==== #uc() - Errore nel commissioning <Errore-commissioning>
 - *Attore principale*: Gateway
@@ -3615,20 +3627,18 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway esegue il comando ricevuto e riattiva il sensore, riprendendo l'invio dei dati ricevuti da esso al Cloud
   - Il Gateway invia un comando di conferma al Cloud
 
-// TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"?   Sarebbe bene considerare il parametro di FREQUENZA D'INVIO DEI DATI? CHIEDIAMO A M31
-==== #uc() - Conferma modifica parametro di rolling average <conferma-comando-modifica-rolling-average>
+==== #uc() - Conferma modifica frequenza di invio dati <Conferma-comando-modifica-frequenza-invio-dati>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il Gateway è connesso e autenticato con il Cloud
-  - Il Gateway ha ricevuto un comando di modifica del parametro di rolling average dal Sistema
-  - Il Gateway ha modificato il valore del parametro di rolling average
+  - Il Gateway ha ricevuto un comando di modifica della frequenza di invio dati dal Sistema
+  - Il Gateway ha modificato il valore del parametro di frequenza di invio dati
 - *Post-condizioni*:
   - Il Sistema riceve un messaggio di conferma da parte del Gateway
 - *Scenario principale*:
-  - Il Gateway riceve un comando di modifica del parametro di rolling average
-  - Il Gateway esegue il comando ricevuto e modifica il valore del parametro di rolling average
+  - Il Gateway riceve un comando di modifica del parametro di frequenza di invio dati
+  - Il Gateway esegue il comando ricevuto e modifica il valore del parametro di frequenza di invio dati
   - Il Gateway invia un comando di conferma al Cloud
-
 
 ==== #uc() - Invio comando di hello <Invio-comando-hello>
 - *Attore principale*: Gateway
@@ -3699,11 +3709,10 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Sistema Cloud, dopo un timeout predefinito, crea un alert per gli utenti del tenant a cui è associato il Gateway
 - *Scenario principale*:
   - Il Gateway rileva che il Sistema Cloud non è raggiungibile
-  - Il Gateway ritenta l'invio dei dati dopo un dato intervallo di tempo
   - Il Gateway memorizza i dati nel proprio buffer interno per un invio successivo
+  - Il Gateway ritenta l'invio dei dati dopo un dato intervallo di tempo
   - Il Gateway elimina i dati più vecchi se il buffer è pieno
 
-//TODO: è un estensione di invio dati???????
 ==== #uc() - Assenza prolungata dati da sensori <Assenza-prolungata-dati-sensori>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
@@ -3717,31 +3726,36 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Gateway invia normalmente i dati crittografati al Sistema, con l'assenza di dati da sensori specifici
 
 === Attore principale - API Client
-Di seguito sono riportati tutti gli use cases in cui l'attore principale è un generico API Client, ovvero un client che accede all'API esposta tramite una API Key di autenticazione prodotta da un super admin.
+Di seguito sono riportati tutti gli use cases in cui l'attore principale è un generico API Client, ovvero un client che accede all'API esposta tramite una API Key di autenticazione prodotta da un Super Admin o un Tenant Admin.
 
 ==== #uc() - Richiesta dati real-time sensore <Richiesta-dati-real-time-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
-  - L'API Client ha richiesto i dati real-time per uno specifico sensore, associato a un tenant specifico
 - *Post-condizioni*:
-  - Vengono restituiti i dati real-time del sensore richiesto
+  - Il Sistema restituisce dati real-time del sensore richiesto
 - *Scenario principale*:
-  - L'API Client richiede i dati real-time del sensore specificato
-  - Il Sistema verifica che il sensore richiesto appartenga al tenant dell'API Client
+  - L'API Client richiede e riceve dati real-time del sensore specificato
+- *Scenari alternativi*:
+  - Sensore non trovato
+  - Nessun dato storico disponibile per il sensore richiesto
+  - Sensore non associato al tenant del API Client
 - *Inclusioni*:
-  - #ref-uc(<Verifica-sensore>)
-  - #ref-uc(<Restituzione-dati-real-time-sensore>)
+  - #ref-uc(<Ricezione-dati-real-time-sensore>)
+- *Estensioni*:
+  - #ref-uc(<Sensore-non-trovato>)
+  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
+  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
 
-===== #sub-uc() - Restituzione dati real-time sensore <Restituzione-dati-real-time-sensore>
+===== #sub-uc() - Ricezione dati real-time sensore <Ricezione-dati-real-time-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
   - Il sensore richiesto esiste ed appartiene al tenant del API Client
 - *Post-condizioni*:
-  - Vengono restituiti i dati real-time del sensore richiesto
+  - Il Sistema recupera e restituisce i dati real-time del sensore richiesto come coppia valore-timestamp
 - *Scenario principale*:
-  - Il Sistema recupera e restituisce i dati real-time del sensore richiesto
+  - L'API Client riceve dati real-time del sensore richiesto come coppia valore-timestamp
 
 
 ==== #uc() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
@@ -3749,57 +3763,40 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
-  - Viene restituito lo storico dei dati del sensore richiesto
+  - Il Sistema restituisce lo storico dei dati del sensore specificato
 - *Scenario principale*:
   - L'API Client richiede lo storico dei dati del sensore specificato
-  - Il Sistema verifica che il sensore richiesto appartenga al tenant del API Client
 - *Scenari alternativi*:
   - Sensore non trovato
   - Nessun dato storico disponibile per il sensore richiesto
   - Sensore non associato al tenant del API Client
 - *Inclusioni*:
-  - #ref-uc(<Verifica-sensore>)
-  - #ref-uc(<Restituzione-storico-dati-sensore>)
+  - #ref-uc(<Ricezione-storico-dati-sensore>)
+- *Estensioni*:
+  - #ref-uc(<Sensore-non-trovato>)
+  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
+  - #ref-uc(<Sensore-non-associato-tenant-API-Client>)
 
-===== #sub-uc() - Restituzione storico dati sensore <Restituzione-storico-dati-sensore>
+===== #sub-uc() - Ricezione storico dati sensore <Ricezione-storico-dati-sensore>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
   - Il sensore richiesto esiste ed appartiene al tenant del API Client
 - *Post-condizioni*:
+  - Il Sistema recupera e restituisce lo storico dei dati del sensore richiesto
+- *Scenario principale*:
   - Viene restituito lo storico dei dati del sensore richiesto
-- *Scenario principale*:
-  - Il Sistema recupera e restituisce lo storico dei dati del sensore richiesto, eventualmente filtrati per intervallo temporale
-
-
-==== #uc() - Verifica sensore <Verifica-sensore>
-- *Attore principale*: API Client
-- *Pre-condizioni*:
-  - L'API Client è autenticato nel Sistema
-  - Il sensore richiesto esiste ed è associato al tenant dell'API Client
-- *Post-condizioni*:
-  - Il sensore richiesto e la sua associazione al tenant dell'API Client sono validi
-- *Scenario principale*:
-  - Il Sistema verifica la validità del sensore richiesto e la sua associazione al tenant del API Client
-- *Scenari alternativi*:
-  - Il sensore richiesto non è stato trovato tra i sensori associati al tenant dell'API Client (#ref-uc(<Sensore-non-trovato>))
-  - Non vi sono dati disponibili per il sensore richiesto (#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>))
-- *Estensioni*:
-  - #ref-uc(<Sensore-non-trovato>)
-  - #ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)
 
 
 ==== #uc() - Sensore non trovato <Sensore-non-trovato>
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
-  - L'API Client ha richiesto i dati di un sensore che non appartiene alla lista dei sensori associati al tenant del client. #footnote[
-      Questo include anche il caso in cui il sensore non esista. Si ha un errore unico per dare meno informazioni possibili riguardo ai sensori degli altri tenant.
-    ]
+  - L'API Client ha richiesto i dati di un sensore che non esiste all'interno del Sistema
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema rileva che il sensore richiesto non esiste oppure che il sensore richiesto non è associato al tenant dell'API Client
+  - L'API Client richiede i dati di un sensore non esistente
 
 
 ==== #uc() - Nessun dato disponibile per il sensore richiesto <Nessun-dato-disponibile-sensore-richiesto>
@@ -3809,17 +3806,17 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Post-condizioni*:
   - Viene mostrato un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
+  - L'API Client richiede dati di un sensore per cui non sono salvati o disponibili i dati real-time
 
 
-// ==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
-// - *Attore principale*: API Client
-// - *Pre-condizioni*:
-//   - L'API Client è autenticato nel Sistema
-// - *Post-condizioni*:
-//   - Viene restituito un messaggio di errore
-// - *Scenario principale*:
-//   - Il Sistema rileva che il sensore richiesto non appartiene al tenant del API Client
+==== #uc() - Sensore non associato al tenant del API Client <Sensore-non-associato-tenant-API-Client>
+- *Attore principale*: API Client
+- *Pre-condizioni*:
+  - L'API Client è autenticato nel Sistema
+- *Post-condizioni*:
+  - Viene restituito un messaggio di errore
+- *Scenario principale*:
+  - L'API Client richiede i dati di un sensore non associato al proprio tenant
 
 
 ==== #uc() - Autenticazione API Client <Autenticazione-API-Client>
@@ -3827,11 +3824,10 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Pre-condizioni*:
   - L'API Client possiede delle credenziali di accesso
 - *Post-condizioni*:
-  - L'API Client è autenticato nel Sistema
+  - Il Sistema autentica l'API Client
 - *Scenario principale*:
   - L'API Client invia le credenziali di autenticazione al Sistema
-  - Il Sistema verifica le credenziali
-  - Il Sistema autentica L'API Client
+  - L'API Client riceve la conferma di autenticazione
 - *Scenari alternativi*:
   - Le credenziali inviate dall'API Client non sono valide
   - Le credenziali inviate dall'API Client sono scadute
@@ -3846,7 +3842,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica le credenziali inviate dal API Client e rileva l'errore nelle credenziali
+  - L'API Client invia delle credenziali non valide
+  - L'API Client riceve l'errore che comunica l'invalidità delle credenziali
 
 ==== #uc() - Credenziali API Client scadute <Credenziali-API-Client-scadute>
 - *Attore principale*: API Client
@@ -3855,8 +3852,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Post-condizioni*:
   - Viene restituito un messaggio di errore
 - *Scenario principale*:
-  - Il Sistema verifica le credenziali inviate dal API Client e rileva che le credenziali sono scadute
-
+  - L'API Client invia delle credenziali scadute
+  - L'API Client riceve l'errore che comunica il fatto che le credenziali sono scadute
 
 == Sistema Gateway - Lista dei casi d'uso
 Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e raggiungibile.
@@ -3892,6 +3889,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 ==== #uc() - Invio di dato simulando Heart Rate Service <Invio-dato-heart-rate-service>
+- *Generalizzazione*: Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
@@ -3906,6 +3904,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 ==== #uc() - Invio di dato simulando Pulse Oximeter Service <Invio-dato-pulse-oximeter-service>
+- *Generalizzazione*: Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
@@ -3920,6 +3919,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 ==== #uc() - Invio di dato simulando ECG Custom Profile <Invio-dato-ecg-custom>
+- *Generalizzazione*: Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
@@ -3934,6 +3934,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 ==== #uc() - Invio di dato simulando Health Thermometer Service <Invio-dato-health-thermometer-service>
+- *Generalizzazione*: Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
@@ -3948,6 +3949,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 ==== #uc() - Invio di dati simulando Environmental Sensing Service <Invio-dato-environmental-sensing-service>
+- *Generalizzazione*: Invio nuovo dato al Gateway <Invio-nuovo-dato-gateway>
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
@@ -4062,7 +4064,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Cloud invia il comando di riattivazione al Sistema Gateway
 
 
-==== #uc() - Sospensione Gateway <Invio-comando-sospensione-gateway>
+==== #uc() - Sospensione Gateway <Sospensione-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
@@ -4084,17 +4086,17 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia il comando di riavvio al Sistema Gateway
 
-// TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"?
-==== #uc() - Modifica finestra Rolling Average <Modifica-finestra-rolling-average>
+
+==== #uc() - Modifica frequenza di invio dati Gateway <Modifica-frequenza-invio-dati-gateway>
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
-  - Il Sistema Gateway riceve il comando di modifica della finestra di Rolling Average dal Cloud
-  - Il Sistema Gateway aggiorna la configurazione della finestra di Rolling Average per i dati inviati al Cloud
+  - Il Sistema Gateway riceve il comando di modifica della frequenza di invio dati dal Cloud
+  - Il Sistema Gateway aggiorna la configurazione della frequenza di invio dati per i dati inviati al Cloud
 - *Scenario principale*:
-  - Il Cloud invia il comando di modifica della finestra di Rolling Average al Sistema Gateway
+  - Il Cloud invia il comando di modifica della frequenza di invio dati al Sistema Gateway
 
 
 ==== #uc() - Decommissioning Gateway <Decommissioning-gateway-cloud>
@@ -4239,8 +4241,228 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
   [#ref-uc(<Invio-email-reimpostazione-password>)],
-)
 
+  //Attore: Gateway, Sistema: Cloud
+  //TODO: controllare che requisiti siano atomici
+  [#rf()],
+  [Il Gateway simulato deve poter confermare al Cloud che il processo di commissioning è stato completato con successo],
+  [#ref-uc(<Conferma-comando-commissioning>)],
+
+  [#rf()],
+  [Il Gateway simulato deve cominciare ad inviare i dati una volta completato il processo di commissioning],
+  [#ref-uc(<Conferma-comando-commissioning>)],
+
+  [#rf()],
+  [Il Gateway simulato deve inviare al Cloud la presenza di errori durante il processo di commissioning],
+  [#ref-uc(<Errore-commissioning>)],
+
+  [#rf()],
+  [Il Gateway simulato deve poter confermare al Cloud che il processo di decommissioning è stato completato con successo],
+  [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [Il Gateway simulato, dopo aver eseguito il decommissioning, deve rimuovere l'associazione con il tenant, la chiave di cifratura e interrompere l'invio dei dati IoT al Cloud],
+  [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [Il Gateway simulato, dopo aver eseguito il decommissioning, deve ammettere un nuovo commissioning],
+  [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [Il Gateway simulato deve confermare al Cloud la corretta esecuzione del riavvio in seguito al comando ricevuto dallo stesso],
+  [#ref-uc(<Conferma-comando-riavvio>)],
+
+  [#rf()],
+  [Il Cloud deve accorgersi se dopo un comando di riavvio presso un Gateway simulato egli non risponde dopo un timeout specifico. Di conseguenza deve considerare il Gateway in stato di errore e notificare gli utenti del tenant associato],
+  [#ref-uc(<Errore-riavvio>)],
+
+  [#rf()],
+  [Il Gateway simulato deve inviare la conferma di reset avvenuto con successo al Cloud, dopo aver reimpostato correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica],
+  [#ref-uc(<Conferma-comando-reset>)],
+
+  [#rf()],
+  [Il Gateway simulato deve poter confermare la sospensione di invio dei dati al Cloud in seguito al comando di sospensione ricevuto dallo stesso],
+  [#ref-uc(<Conferma-comando-sospensione-invio-dati>)],
+
+  [#rf()],
+  [Il Gateway simulato deve poter confermare la riattivazione dell'invio dei dati al Cloud in seguito al comando di riattivazione ricevuto dallo stesso],
+  [#ref-uc(<Conferma-comando-riattivazione-invio-dati>)],
+
+  [#rf()],
+  [Il Gateway simulato deve poter confermare la sospensione dell'invio dei dati di un sensore simulato specifico in seguito al comando di sospensione ricevuto dal Cloud],
+  [#ref-uc(<Conferma-comando-sospensione-sensore>)],
+
+  [#rf()],
+  [Il Gateway simulato deve poter confermare la riattivazione dell'invio dei dati di un sensore simulato specifico in seguito al comando di riattivazione ricevuto dal Cloud],
+  [#ref-uc(<Conferma-comando-riattivazione-sensore>)],
+
+  [#rf()],
+  [Il Gateway simulato deve poter inviare la conferma del cambiamento della frequenza di invio dati al Cloud in seguito al comando di modifica ricevuto dallo stesso],
+  [#ref-uc(<Conferma-comando-modifica-frequenza-invio-dati>)],
+
+  [#rf()],
+  [Il Gateway simulato, all'avvio, deve inviare un comando di hello al Cloud per autenticarsi. Il comando deve contenere il proprio ID univoco],
+  [#ref-uc(<Invio-comando-hello>)],
+
+  [#rf()],
+  [Il Cloud deve rifiutare l'autenticazione del Gateway in caso quest'ultimo invii credenziali errate],
+  [#ref-uc(<Autenticazione-gateway-fallita>)],
+
+  [#rf()],
+  [Il Cloud deve rifiutare l'autenticazione del Gateway in caso l'ID univoco inviato dal Gateway non sia presente nel proprio database],
+  [#ref-uc(<Identificativo-gateway-non-trovato>)],
+
+  [#rf()],
+  [Il Gateway simulato deve poter inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud durante l'assegnazione del tenant],
+  [#ref-uc(<Invio-dati-crittografati>)],
+
+  [#rf()],
+  [Il Gateway simulato deve raccogliere i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud ed eliminare i dati più vecchi in caso di overflow del buffer],
+  [#ref-uc(<Invio-dati-crittografati>)],
+
+  [#rf()],
+  [Il Gateway simulato deve ritentare l'invio dei dati al Cloud in caso non sia raggiungibile, mantenendo i dati nel buffer fino al successo dell'invio],
+  [#ref-uc(<Invio-dati-fallito>)],
+
+  [#rf()],
+  [Il Cloud deve considerare il Gateway in stato di errore nel caso in cui non riceva dati da esso per un periodo di tempo superiore ad una soglia predefinita, notificando gli utenti del tenant associato],
+  [#ref-uc(<Invio-dati-fallito>)],
+
+  [#rf()],
+  [Il Cloud deve rilevare l'assenza di dati da un sensore specifico di un Gateway simulato allo scadere di un timeout predefinito e notificare gli utenti del tenant associato],
+  [#ref-uc(<Assenza-prolungata-dati-sensori>)],
+
+  //Attore: API Client, Sistema: Cloud
+  [#rf()],
+  [L'API Client deve poter richiedere i dati real-time di un sensore specifico associato al proprio tenant],
+  [#ref-uc(<Richiesta-dati-real-time-sensore>)],
+
+  [#rf()],
+  [L'API Client dopo aver richiesto i dati real-time di un sensore specifico deve poter ricevere tali dati in forma coppia valore-timestamp],
+  [#ref-uc(<Ricezione-dati-real-time-sensore>)],
+
+  [#rf()],
+  [L'API Client deve poter richiedere lo storico dei dati di un sensore appartenente al proprio tenant],
+  [#ref-uc(<Richiesta-storico-dati-sensore>)],
+
+  [#rf()],
+  [L'API Client dopo aver richiesto lo storico dei dati di un sensore specifico deve poter ricevere tali dati in forma coppia valore-timestamp],
+  [#ref-uc(<Ricezione-storico-dati-sensore>)],
+
+  [#rf()],
+  [L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non esistente],
+  [#ref-uc(<Sensore-non-trovato>)],
+
+  [#rf()],
+  [L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore per cui non sono disponibili dati],
+  [#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)],
+
+  [#rf()],
+  [L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non associato al proprio tenant],
+  [#ref-uc(<Sensore-non-associato-tenant-API-Client>)],
+
+  [#rf()],
+  [L'API Client deve potersi autenticare nel Sistema utilizzando un'API Key valida],
+  [#ref-uc(<Autenticazione-API-Client>)],
+
+  [#rf()],
+  [L'API Client deve ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione non siano valide],
+  [#ref-uc(<Credenziali-API-Client-errate>)],
+
+  [#rf()],
+  [L'API Client deve ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione siano scadute],
+  [#ref-uc(<Credenziali-API-Client-scadute>)],
+
+  //Attore: Sensore simulato, Sistema: Gateway
+  [#rf()],
+  [Il Sensore simulato deve inviare i dati rilevati al Gateway a cui è collegato],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [Il Sistema Gateway alla ricezione dei dati dei sensori deve normalizzarli],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [Il Sistema Gateway alla ricezione dei dati dei sensori deve formattarli secondo un formato interno standardizzato],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [Il Sistema Gateway alla ricezione dei dati dei sensori deve salvarli in un buffer interno prima di inviarli al Cloud],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [In caso un o più Sensori simulati inviino una quantità di dati superiore alla capacità di invio del Gateway verso il Cloud, il Gateway deve salvare i dati più recenti nel buffer interno eliminando i dati più vecchi per fare spazio ai nuovi dati],
+  [#ref-uc(<Invio-dati-eccessivi-gateway>)],
+
+  [#rf()],
+  [Il Sensore simulato deve poter inviare al Gateway i dati relativi al servizio Heart Rate Service (GATT)],
+  [#ref-uc(<Invio-dato-heart-rate-service>)],
+
+  [#rf()],
+  [Il Sensore simulato deve poter inviare al Gateway i dati relativi al servizio Pulse Oximeter Service (GATT)],
+  [#ref-uc(<Invio-dato-pulse-oximeter-service>)],
+
+  [#rf()],
+  [Il Sensore simulato deve poter inviare al Gateway i dati relativi ad un profilo custom per l'elettrocardiogramma (ECG)],
+  [#ref-uc(<Invio-dato-ecg-custom>)],
+
+  [#rf()],
+  [Il Sensore simulato deve poter inviare al Gateway i dati relativi al servizio Health Thermometer Service (GATT)],
+  [#ref-uc(<Invio-dato-health-thermometer-service>)],
+
+  [#rf()],
+  [Il Sensore simulato deve poter inviare al Gateway i dati relativi al servizio Environmental Sensing Service (GATT)],
+  [#ref-uc(<Invio-dato-environmental-sensing-service>)],
+
+  //Attore: Cloud, Sistema: Gateway
+  [#rf()],
+  [Il Cloud deve poter inviare la conferma di autenticazione avvenuta correttamente al Gateway, in seguito ad un tentativo di autenticazione andato a buon fine],
+  [#ref-uc(<Conferma-autenticazione-gateway>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare il rifiuto di autenticazione al Gateway, in seguito ad un tentativo di autenticazione fallito],
+  [#ref-uc(<Rifiuto-autenticazione-gateway>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref(<Invio-tenant-associato-gateway>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-chiave-cifratura-dati>), #ref(<Invio-tenant-associato-gateway>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il Gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
+  [#ref-uc(<Riattivazione-sensore-simulato>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway il comando di sospensione di un Sensore simulato non sospeso specifico. In seguito alla ricezione del comandi il Gateway deve interrompere l'invio di dati IoT crittografati relativi a tale Sensore],
+  [#ref-uc(<Sospensione-sensore-simulato>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare, al Gateway sospeso, il comando di riattivazione. In seguito alla ricezione del comando il Gateway deve ricominciare l'invio di tutti i dati IoT crittografati],
+  [#ref-uc(<Riattivazione-gateway>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare, al Gateway attivo, il comando di sospensione. In seguito alla ricezione del comando il Gateway deve interrompere l'invio di tutti i dati IoT crittografati],
+  [#ref-uc(<Sospensione-gateway>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway il comando di riavvio. In seguito alla ricezione del comando il Gateway deve spegnersi e riaccendersi, mantenendo le configurazioni e i dati salvati localmente],
+  [#ref-uc(<Riavvio-gateway-cloud>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway il comando di modifica della frequenza di invio dati. In seguito alla ricezione del comando il Gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud, così da inviare un dato ogni intervallo di tempo specificato nel comando],
+  [#ref-uc(<Modifica-frequenza-invio-dati-gateway>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway il comando di decommissioning. In seguito alla ricezione del comando il Gateway deve cancellare l'associazione al tenant, la chiave di cifratura e deve eseguire un reset. Dopo aver eseguito il decommissioning il Gateway deve ammettere un nuovo commissioning],
+  [#ref-uc(<Decommissioning-gateway-cloud>) #ref-uc(<Disassociazione-tenant-gateway>) #ref-uc(<Reset-gateway-cloud>)],
+
+  [#rf()],
+  [Il Cloud deve poter inviare al Gateway il comando di reset. In seguito alla ricezione del comando il Gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica],
+  [#ref-uc(<Reset-gateway-cloud>)],
+)
 == Requisiti non funzionali
 #table(
   columns: (0.20fr, 0.60fr, 0.20fr),
