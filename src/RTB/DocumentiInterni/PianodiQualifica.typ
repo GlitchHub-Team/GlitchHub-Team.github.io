@@ -39,7 +39,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf
 
 === Riferimenti informativi
-- *Glossario*
+- *Glossario* \
   https://glitchhub-team.github.io/pdf/glossary.pdf
 - *Slide T07 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf
@@ -47,7 +47,8 @@ Il Piano di qualifica determina 3 elementi essenziali:
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf
 - *ISO/IEC 25010* \
   https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
-- *Metrica software - wikipedia*
+- *Metrica software - wikipedia* \ 
+//scrivi ultima data per file esterni, versione per quelli interni 
   https://it.wikipedia.org/wiki/Metrica_software
 
 = Metriche di Qualità del Processo
@@ -61,9 +62,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 - *MPC-AC (Actual Cost)* \
   Costo effettivamente sostenuto per il lavoro svolto.
 - *MPC-EV (Earned Value)* \
-  Valore del lavoro effettivamente completato rispetto al budget totale.
+  Valore del lavoro effettivamente completato rispetto al budget totale. [Planned Value / (Ore preventivate x Ore sostenute)]
 - *MPC-BAC (Budget At Completion)* \
-  Budget totale preventivato per l'intero Progetto.
+  Budget totale preventivato per l'intero progetto.
 - *MPC-EAC (Estimated At Completion)* \
   Stima del costo totale finale basata sulla performance attuale.
 - *MPC-ETC (Estimated To Complete)* \
@@ -84,13 +85,13 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
-    [MPC-PV], [Planned Value], [$>= 0$], [$= "Pianificato"$],
-    [MPC-AC], [Actual Cost], [$>= 0$], [$<= "EAC"$],
-    [MPC-EV], [Earned Value], [$>= 0$], [$> "PV"$],
-    [MPC-BAC], [Budget At Completion], [$"(valore già fissato)"$], [$$],
-    [MPC-EAC], [Estimated At Completion], [$<= "BAC"* 1.05$], [$< "BAC"$],
-    [MPC-ETC], [Estimated To Complete], [$"(valore da definire)"$], [$$],
-    [MPC-CV], [Cost Variance], [$>= 0$], [$> 0$],
+    [MPC-PV], [Planned Value], [$> 0€$], [$= "Pianificato"$],
+    [MPC-AC], [Actual Cost], [$> 0€$], [$<= "EAC"$],
+    [MPC-EV], [Earned Value], [$> 0€$], [$> "PV"$],
+    [MPC-BAC], [Budget At Completion], [$"=(valore già fissato)"$], [$$],
+    [MPC-EAC], [Estimated At Completion], [$>= "BAC"* 0.95$], [$= "BAC"$],
+    [MPC-ETC], [Estimated To Complete], [$>=0$], [$>=0$],
+    [MPC-CV], [Cost Variance], [$> 0$], [$= 0$],
     [MPC-SV], [Schedule Variance], [$>= 0$], [$> 0$],
     [MPC-TCR],[Task Completion Rate], [$>=85%$],[$100%$],
     [MPC-TS], [Task Slippage], [$<= 15%$], [$0%$]
@@ -127,9 +128,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 - *MPC-IG (Indice di Gulpease)* \
   Valutazione automatica della leggibilità dei testi (in italiano).
 - *MPC-CO (Correttezza Ortografica)* \
-  Percentuale di errori ortografici rilevati nei documenti.
-- *MPC-CD (Completezza Documentazione)* \
-  Rapporto tra funzionalità software e sezione documentate.
+  Numero di errori ortografici rilevati nei documenti.
 
 #figure(
   table(
@@ -139,8 +138,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
     [MPC-IG], [Indice di Gulpease], [$>= 40$], [$>= 60$],
-    [MPC-CO], [Correttezza Ortografica], [$= 100%$], [$= 100%$],
-    [MPC-CD], [Completezza Documentazione], [$= 100%$], [$= 100%$],
+    [MPC-CO], [Correttezza Ortografica], [$0$], [$0$],
   ),
   caption: [Valori per misurare la qualità della documentazione.],
   kind: table,
@@ -175,11 +173,11 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 - *MPC-QMS (Quality Metrics Satisfied)* \
   Percentuale di metriche di qualità che rientrano nel range accettabile.
 - *MPC-CQ (Cost of Quality)* \
-  Rapporto tra i costi di prevenzione/test e il costo totale.
+  Rapporto tra i costi di test e il costo totale.
 - *MPC-TE (Time efficiency)* \
-  Rapporto tra tempo di produzione effettivo e tempo totale di lavoro.
+  Rapporto tra tempo di produzione effettivo e tempo totale di lavoro. (numero ore lavoro/(ore palestra+lavoro))
 - *MPC-WD (Work Distribution)* \
-  Misura la distribuzione in percentuale delle attività (task) tra i membri del team per garantire un carico di lavoro equilibrato.
+  Misura la distribuzione in percentuale delle attività (task) tra i membri del team per garantire un carico di lavoro equilibrato. (numero totale task/ numero task per persona -> varianza)
 - *MPC-SPF (Single Point of Failure Risk)* \
   Indice che valuta la concentrazione di attività (task) critiche su un numero limitato di membri del team, al fine di ridurre il rischio di dipendenza da un singolo componente del gruppo.
 
@@ -192,8 +190,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     
     [MPC-QMS], [Quality Metrics Satisfied], [$>= 80%$], [$= 100%$],
     [MPC-CQ], [Cost of Quality], [$15%-25%$], [$<=15%$],
-    [MPC-TE], [Time efficiency], [$>= 0.8$], [$>= 0.95$],
-    [MPC-WD],[Work Distribution], [$20%$], [$<10%$],
+    [MPC-TE], [Time efficiency], [$>= 50%$], [$>= 90%$],
+    [MPC-WD],[Work Distribution], [$$], [$$],
     [MPC-SPF],[Single Point of Failure Risk], [$15%$], [$<10%$]
 
   ),
@@ -210,6 +208,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 == Funzionalità
 - *MPD-CRO (Copertura Requisiti Obbligatori)* \
   Percentuale di requisiti obbligatori implementati.
+//aggiungere desiderabili
 - *MPD-CRP (Copertura Requisiti Opzionali)* \
   Percentuale di requisiti opzionali implementati.
 - *MPD-AD (API Documentation)*
@@ -235,14 +234,11 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 == Affidabilità
-- *MPD-FT (Failure Tolerance)* \
-  Capacità del sistema di resistere a guasti senza bloccarsi.
-- *MPD-FF (Failure Frequency)* \
-  Frequenza con cui si presentano malfunzionamenti in funzionamento.
-- *MPD-MTBF (Mean Time Between Failures)* \
-  Tempo medio di funzionamento tra un guasto e l'altro.
-- *MPD-MTTR (Mean Time To Restoration)* \
-  Tempo medio necessario per ripristinare il servizio dopo un errore.
+//rivedere se ha senso sennò togliere (branch per sprint e statement (test) coverage)
+- *MPD-* \
+  
+- *MPD-* \
+  
 
 #figure(
   table(
@@ -251,10 +247,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
-    [MPD-FT], [Failure Tolerance], [$>= 80%$], [$= 100%$],
-    [MPD-FF], [Failure Frequency], [$<= "2 al mese"$], [$=0$],
-    [MPD-MTBF], [Mean Time Between Failures], [$>= "4 giorni"$], [$>= "7 giorni"$],
-    [MPD-MTTR], [Mean Time To Restoration], [$<= "4 ore"$], [$<= "1 ora"$],
+    [MPD-], [Failure Frequency], [$<= "1 settimana"$], [$=0$],
+    [MPD-], [Mean Time Between Failures], [$>= "4 giorni"$], [$>= "7 giorni"$],
   ),
   caption: [Valori per misurare la qualità dell'affidabilità.],
   kind: table,
@@ -262,12 +256,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 == Usabilità
-- *MPD-LT (Learning Time)* \
+- *MPD-LT (Learning Time)* \ //time on task
   Tempo necessario a un utente per imparare a usare una funzione.
-- *MPD-MUM (Mistakes User Makes)* \
-  Numero medio di errori commessi dall'utente nell'uso del software.
-- *MPD-TSR (Task Success Rate)* \
-  Percentuale di compiti portati a termine con successo dall'utente.
+//numero di click per massimo 7 e accettabile 5?
 
 #figure(
   table(
@@ -277,8 +268,6 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
     [MPD-LT], [Learning Time], [$<= "30 min"$], [$<= "10 min"$],
-    [MPD-MUM], [Mistakes User Makes], [$<= "3 per task"$], [$<= "1 per task"$],
-    [MPD-TSR], [Task Success Rate], [$>= 90%$], [$= 100%$],
   ),
   caption: [Valori per misurare la qualità dell'usabilità.],
   kind: table,
@@ -309,10 +298,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 == Manutenibilità
 - *MPD-AN (Analyzability)*\
   Facilità di identificare la causa di un errore osservando il log e il codice.
-- *MPD-MO (Modifiability)* \
-  Facilità con cui è possibile modificare il codice senza causare "effetti collaterali".
-- *MPD-TE (Testability)* \
-  Semplicità con cui il software può essere sottoposto a nuovi test.
+  //coefficient of coupling
+  //cyclomatic complexity
 
 #figure(
   table(
@@ -323,7 +310,6 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     
     [MPD-AN], [Analyzability], [$<= "2 ore"$], [$<= "30 min"$],
     [MPD-MO], [Modifiability], [$<= "8 ore/feature"$], [$<= "3 ore/feature"$],
-    [MPD-TE], [Testability], [$>= 70%$], [$>= 90%$],
   ),
   caption: [Valori per misurare la qualità della manutenibilità.],
   kind: table,
@@ -331,8 +317,6 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 == Sicurezza
-- *MPD-AFR (Authentication Failure Rate)* \
-  Tasso di fallimento dei tentativi di login (per rilevare attacchi).
 - *MPD-DE (Data encryption)* \
   Livello di copertura della cifratura sui dati sensibili.
 
@@ -343,7 +327,6 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
-    [MPD-AFR], [Authentication Failure Rate], [$<= 5%$], [$<= 1%$],
     [MPD-DE], [Data encryption], [$"100% dati sensibili"$], [$"100% dati sensibili"$],
   ),
   caption: [Valori per misurare la qualità della sicurezza.],
@@ -377,7 +360,7 @@ I test di sistema verificano il corretto comportamento complessivo dell'applicaz
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
 = Cruscotto di Valutazione
 
-= Iniziative di miglioramento
+= Iniziative di miglioramento //guarda pdq
 Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \
 
 == Valutazione sull'organizzazione
