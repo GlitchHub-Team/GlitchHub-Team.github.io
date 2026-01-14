@@ -4246,9 +4246,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [L'Utente autenticato deve poter visualizzare la sua dashboard personale, visualizzando in essa il numero di sensori e gateway attivi e non e la lista degli alert relativi al proprio tenant],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-lista-alert>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
-
-  // Gli UC di errore, vedi UC33, UC34, vanno specificati come requisiti a se stanti? 
-  // Da mettere UC31, UC33, UC34
+  
+  // TODO: Risolvere questioni commentate
+  // // Gli UC di errore, vedi UC33, UC34, vanno specificati come requisiti a se stanti? 
+  // Se nelle post-condizioni viene indicato la registrazione di un audit log, questo genera un requisito?
+  // Da mettere UC31 (visualizzazione lista sensori da Utente autenticato), UC33, UC34 
   [#rf()],
   [L'Admin generico deve poter registrare un nuovo Tenant User all'interno del Sistema],
   [#ref-uc(<Registrazione-nuovo-tenant-user>)],
@@ -4285,7 +4287,44 @@ Inoltre un buon requisito deve essere *SMART*:
   [Il Sistema deve richiedere conferma all'Admin generico prima di eliminare un Tenant User al Sistema],
   [#ref-uc(<Conferma-eliminazione-tenant-user>)],
 
-  // Da mettere UC39, UC40, UC41, UC42, UC43, UC44
+  [#rf()],
+  [L'Admin generico deve poter visualizzare la lista di tutte le richieste di commissioning e decommissioning di gateway associate al proprio Tenant],
+  [#ref-uc(<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista di tutte le richieste di commissioning e decommissioning di gateway, deve poter visualizzare lo stato della richiesta],
+  [#ref-uc(<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>)],
+
+  // Da mettere UC41 (lista tenant visibile da Admin Generico)
+  [#rf()],
+  [L'Admin generico deve poter visualizzare la lista dei gateway associati al proprio Tenant],
+  [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare il nome del gateway nella lista],
+  [#ref-uc(<Visualizzazione-nome-gateway-lista>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare lo stato del gateway nella lista],
+  [#ref-uc(<Visualizzazione-stato-gateway-lista>)],
+
+  [#rf()],
+  [L'Admin generico deve poter visualizzare un gateway associato al proprio Tenant nel dettaglio],
+  [#ref-uc(<Visualizzazione-gateway-associato>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare il nome del gateway],
+  [#ref-uc(<Visualizzazione-nome-gateway-associato>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare lo stato del gateway],
+  [#ref-uc(<Visualizzazione-stato-gateway-associato>)],
+
+  // Eventualmente da mettere l'espansione di questo sotto uc per spiegare cosa si vede della lista dei sensori
+  [#rf()],
+  [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare i sensori collegati al gateway],
+  [#ref-uc(<Visualizzazione-sensori-collegati-gateway-associato>)],
+
   [#rf[?]],
   [L'Admin generico deve poter registrare una nuova API key associata al proprio Tenant],
   [#ref-uc(<Registrazione-nuova-api-key>)],
@@ -4304,7 +4343,7 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [#rf[?]],
   [Il Sistema deve mostrare un messaggio di errore se l'Admin generico inserisce una data di scadenza già passata durante la registrazione di una nuova API key],
-  [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-nome-api-key>), #ref-uc(<Scadenza-api-key-data-passata>)],
+  [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-scadenza-api-key>), #ref-uc(<Scadenza-api-key-data-passata>)],
 
   [#rf[?]],
   [L'Admin generico deve poter visualizzare la lista di tutte le API key associate al proprio Tenant],
@@ -4359,6 +4398,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
 
   [#rf()],
+  [L'Admin generico, visualizzando la lista degli audit log, deve poter vedere il tipo di azione eseguita in ogni evento],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-tipo-azione-audit-log>)],
+
+  [#rf()],
   [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il timestamp dell'evento],
   [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
 
@@ -4378,7 +4421,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [L'Admin generico deve poter esportare gli audit log in un file testuale scaricabile],
   [#ref-uc(<Esportazione-log>)],
 
-  // Da mettere: UC58
+  // Da mettere: UC58 (dashboard Tenant Admin)
   [#rf()],
   [Il Tenant Admin deve poter creare una nuova richiesta di commissioning gateway],
   [#ref-uc(<Creazione-richiesta-commissioning-gateway>)],
