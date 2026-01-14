@@ -5,6 +5,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.19.0",
+      "13/01/2026",
+      "Alessandro Dinato",
+      "-",
+      [Creazione requisiti dashboard Utente autenticato e Tenant Admin],
+    ),
+    (
       "0.18.0",
       "13/01/2026",
       "Alessandro Dinato",
@@ -1001,6 +1008,25 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - L'utente autenticato visualizza la lista dei sensori associati al proprio tenant
 
+==== #uc() - Visualizzazione singolo sensore associato al tenant in lista <Visualizzazione-singolo-sensore-associato-tenant-in-lista>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni del singolo sensore associato al tenant dell'utente in lista
+- *Scenario principale*:
+  - L'utente autenticato visualizza le informazioni del singolo sensore associato al proprio tenant in lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)
+
+===== #sub-uc() - Visualizzazione identificativo sensore in lista <Visualizzazione-identificativo-sensore-in-lista>
+- *Attore principale*: Utente autenticato
+- *Pre-condizioni*:
+  - L'Utente è autenticato nel Sistema
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del singolo sensore associato al tenant dell'utente in lista
+- *Scenario principale*:
+  - L'utente autenticato visualizza l'identificativo del singolo sensore associato al proprio tenant in lista
 
 // Dashboard ----------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione dashboard generica <Visualizzazione-dashboard-generica>
@@ -1271,6 +1297,41 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza la lista degli utenti registrati nel proprio tenant
 
+==== #uc() - Visualizzazione singolo utente in lista <Visualizzazione-singolo-utente-in-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - L'utente appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni sintetiche dell'utente nella lista, tra cui:
+    - Indirizzo email
+    - Stato: attivo, sospeso  
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni sintetiche dell'utente nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-email-utente-lista>)
+  - #ref-uc(<Visualizzazione-stato-utente-lista>)
+
+===== #sub-uc() - Visualizzazione email singolo utente in lista <Visualizzazione-email-utente-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema 
+  - L'utente appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra l'indirizzo email del singolo utente nella lista
+- *Scenario principale*:
+  - L'Admin visualizza l'indirizzo email del singolo utente nella lista
+
+===== #sub-uc() - Visualizzazione stato singolo utente in lista <Visualizzazione-stato-utente-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - L'utente appartiene al tenant dell'Admin
+- *Post-condizioni*:
+  - Il Sistema mostra lo stato del singolo utente nella lista
+- *Scenario principale*:
+  - L'Admin visualizza lo stato del singolo utente nella lista
+
 // Visualizzazione Gateway/Sensori --------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista di gateway associati a tenant <Visualizzazione-lista-gateway-associati>
 - *Attore principale*: Admin Generico
@@ -1371,6 +1432,31 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza la lista dei sensori collegati al gateway selezionato
 
+==== #uc() - Visualizza singolo sensore collegato al gateway associato al tenant in lista
+<Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+  - Il gateway ha sensori collegati
+- *Post-condizioni*:
+  - Il Sistema mostra le informazioni sintetiche del singolo sensore collegato al gateway selezionato nella lista, tra cui:
+    - Identificativo del sensore
+- *Scenario principale*:
+  - L'Admin visualizza le informazioni sintetiche del singolo sensore collegato al gateway selezionato nella lista
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>)
+
+===== #sub-uc() - Visualizzazione identificativo sensore collegato al gateway associato a tenant in lista <Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>
+- *Attore principale*: Admin Generico
+- *Pre-condizioni*:
+  - L'Admin è autenticato nel Sistema
+  - Il gateway è associato al tenant dell'Admin
+  - Il gateway ha sensori collegati
+- *Post-condizioni*:
+  - Il Sistema mostra l'identificativo del singolo sensore collegato al gateway selezionato nella lista
+- *Scenario principale*:
+  - L'Admin visualizza l'identificativo del singolo sensore collegato al gateway selezionato nella lista
 
 // Gestione API Keys ------------------------------------------------------------------------------------------------------------------
 ==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
@@ -4244,13 +4330,38 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Invio-email-reimpostazione-password>)],
 
   [#rf()],
-  [L'Utente autenticato deve poter visualizzare la sua dashboard personale, visualizzando in essa il numero di sensori e gateway attivi e non e la lista degli alert relativi al proprio tenant],
-  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-lista-alert>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+  [L'Utente autenticato deve poter visualizzare la lista dei sensori associati al proprio tenant],
+  [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
+
+  [#rf()],
+  [L'Utente autenticato visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare l'identificativo di ciascun sensore nella lista],
+  [#ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
+
+  // TODO: Da migliorare questo requisito sulla dashboard.
+  [#rf()],
+  [L'Utente autenticato deve poter visualizzare la sua dashboard personale],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+
+  [#rf()],
+  [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-lista-alert>)],
+
+  [#rf()],
+  [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei sensori attivi e non attivi associati al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
+
+  [#rf()],
+  [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei gateway attivi e non attivi associati al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+
+  [#rf()],
+  [Il Sistema deve notificare l'Admin generico nel caso in cui il gateway a cui ha inviato dei comandi non sia raggiungibile],
+  [#ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [Il Sistema deve mostrare un messaggio di errore all'Admin generico nel caso in cui venga inserita un'email già associata ad un altro Tenant User durante la registrazione di un nuovo Tenant User],
+  [#ref-uc(<Email-gia-utilizzata>)],
   
-  // TODO: Risolvere questioni commentate
-  // // Gli UC di errore, vedi UC33, UC34, vanno specificati come requisiti a se stanti? 
-  // Se nelle post-condizioni viene indicato la registrazione di un audit log, questo genera un requisito?
-  // Da mettere UC31 (visualizzazione lista sensori da Utente autenticato), UC33, UC34 
   [#rf()],
   [L'Admin generico deve poter registrare un nuovo Tenant User all'interno del Sistema],
   [#ref-uc(<Registrazione-nuovo-tenant-user>)],
@@ -4295,7 +4406,18 @@ Inoltre un buon requisito deve essere *SMART*:
   [L'Admin generico, visualizzando la lista di tutte le richieste di commissioning e decommissioning di gateway, deve poter visualizzare lo stato della richiesta],
   [#ref-uc(<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>)],
 
-  // Da mettere UC41 (lista tenant visibile da Admin Generico)
+  [#rf()],
+  [L'Admin generico deve poter visualizzare la lista di tutti gli utenti associati al proprio Tenant],
+  [#ref-uc(<Visualizzazione-lista-utenti-tenant>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere l'email di ciascun utente nella lista],
+  [#ref-uc(<Visualizzazione-email-utente-lista>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere lo stato (attivo/sospeso) di ciascun utente nella lista],
+  [#ref-uc(<Visualizzazione-stato-utente-lista>)], 
+
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista dei gateway associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
@@ -4320,11 +4442,15 @@ Inoltre un buon requisito deve essere *SMART*:
   [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare lo stato del gateway],
   [#ref-uc(<Visualizzazione-stato-gateway-associato>)],
 
-  // Eventualmente da mettere l'espansione di questo sotto uc per spiegare cosa si vede della lista dei sensori
   [#rf()],
   [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare i sensori collegati al gateway],
   [#ref-uc(<Visualizzazione-sensori-collegati-gateway-associato>)],
 
+  [#rf()],
+  [L'Admin generico, visualizzando la lista dei sensori collegati al gateway, deve poter visualizzare per ogni sensore l'identificativo],
+  [#ref-uc(<Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>)],
+
+  // TODO: Creare API key dovrebbe essere req. obb? 
   [#rf[?]],
   [L'Admin generico deve poter registrare una nuova API key associata al proprio Tenant],
   [#ref-uc(<Registrazione-nuova-api-key>)],
@@ -4421,7 +4547,35 @@ Inoltre un buon requisito deve essere *SMART*:
   [L'Admin generico deve poter esportare gli audit log in un file testuale scaricabile],
   [#ref-uc(<Esportazione-log>)],
 
-  // Da mettere: UC58 (dashboard Tenant Admin)
+  // TODO: Da migliorare questi requisiti sulla dashboard.
+  [#rf()],
+  [Il Tenant Admin deve poter visualizzare la sua dashboard personale], 
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>)],
+
+  [#rf()],
+  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di sensori attivi e non associati al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
+
+  [#rf()],
+  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di gateway attivi e non associati al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+
+  [#rf()],
+  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-lista-alert>)],
+
+  [#rf()],
+  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di API key valide e scadute],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-api-key-valide-scadute>)],
+
+  [#rf()],
+  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare lo stato delle richieste di commissioning gateway associate al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-commissioning-gateway>)],
+
+  [#rf()],
+  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare lo stato delle richieste di decommissioning gateway associate al proprio Tenant],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-decommissioning-gateway>)],
+
   [#rf()],
   [Il Tenant Admin deve poter creare una nuova richiesta di commissioning gateway],
   [#ref-uc(<Creazione-richiesta-commissioning-gateway>)],
