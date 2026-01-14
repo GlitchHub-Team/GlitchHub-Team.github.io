@@ -6,8 +6,8 @@
   registro-modifiche: (
     (
       "0.19.0",
-      "13/01/2026",
-      "Alessandro Dinato",
+      "14/01/2026",
+      "Riccardo Graziani",
       "-",
       [Creazione requisiti dashboard Utente autenticato e Tenant Admin],
     ),
