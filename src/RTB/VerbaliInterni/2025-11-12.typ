@@ -56,11 +56,7 @@
 
 = Introduzione
 Il presente documento attesta che, in data *12 novembre 2025* dalle ore 16:00 alle ore 17:30, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*. \
-<<<<<<< HEAD
 L’incontro settimanale di #gloss[sprint retrospective] si è svolto come previsto, ma è stato utilizzato non come #gloss[retrospettiva] bensì come momento di pianificazione.
-=======
-L’incontro settimanale di sprint retrospective si è svolto come previsto, ma è stato utilizzato non come retrospettiva bensì come momento di pianificazione.
->>>>>>> Documentation
 
 = Resoconto della riunione
 
@@ -73,7 +69,6 @@ I ruoli verranno ruotati tra due settimane a partire dalla data dell’incontro.
 
 Durante l’incontro sono emerse alcune divergenze riguardo ai compiti di determinati ruoli.
 È stato quindi dedicato del tempo per chiarire le responsabilità e allineare tutti i membri del team.
-<<<<<<< HEAD
 È stato discusso il ruolo del verificatore, che dovrà leggere tutti i documenti in fase di #gloss[verifica] e lasciare commenti all’autore con i suggerimenti sulle modifiche da apportare; non interverrà quindi direttamente al documento.\
 La stesura dei documenti è affidata agli analisti, che per questa fase di progetto si concentreranno sull’impostazione dei documenti e dei casi d’uso.
 Inoltre è stato stimato il monte ore di ciascun ruolo per lo #gloss[sprint] avviato.
@@ -82,25 +77,11 @@ Inoltre è stato stimato il monte ore di ciascun ruolo per lo #gloss[sprint] avv
 
 Con l’inizio della #gloss[RTB] è stato deciso che gli analisti si occuperanno principalmente della redazione dei documenti, suddividendo il carico tra #gloss[Norme di Progetto], #gloss[Analisi dei Requisiti] e #gloss[Piano di Progetto].
 Poichè #gloss[ci] si trova nelle fasi iniziali, il lavoro sarà principalmente una fase di allenamento, soprattutto per quanto riguarda l’#gloss[Analisi dei Requisiti], che richiede la scrittura e la comprensione dei casi d’uso.\
-=======
-È stato discusso il ruolo del verificatore, che dovrà leggere tutti i documenti in fase di verifica e lasciare commenti all’autore con i suggerimenti sulle modifiche da apportare; non interverrà quindi direttamente al documento.\
-La stesura dei documenti è affidata agli analisti, che per questa fase di progetto si concentreranno sull’impostazione dei documenti e dei casi d’uso.
-Inoltre è stato stimato il monte ore di ciascun ruolo per lo sprint avviato.
-
-== Suddivisione dei documenti da iniziare
-
-Con l’inizio della RTB è stato deciso che gli analisti si occuperanno principalmente della redazione dei documenti, suddividendo il carico tra Norme di Progetto, Analisi dei Requisiti e Piano di Progetto.
-Poichè ci si trova nelle fasi iniziali, il lavoro sarà principalmente una fase di allenamento, soprattutto per quanto riguarda l’Analisi dei Requisiti, che richiede la scrittura e la comprensione dei casi d’uso.\
->>>>>>> Documentation
 I componenti del team responsabili della redazione dei documenti si sono organizzati per rendere il lavoro di scrittura più agevole ed evitare conflitti, preferendo una modalità di lavoro asincrona.
 
 == Preparazione per l’incontro formale con M31
 Si è deciso di comunicare all’azienda l’avvenuta candidatura e quindi l’inizio del progetto didattico. Inoltre, si richiederà un primo incontro formale per allinearsi sulle attività da svolgere.\
-<<<<<<< HEAD
 In vista di questo incontro in presenza con l’azienda #gloss[proponente], il gruppo ha scelto di riflettere su alcune domande da porre, al fine di chiarire i dubbi iniziali emersi dopo la candidatura.\
-=======
-In vista di questo incontro in presenza con l’azienda proponente, il gruppo ha scelto di riflettere su alcune domande da porre, al fine di chiarire i dubbi iniziali emersi dopo la candidatura.\
->>>>>>> Documentation
 Principalmente si chiederà all’azienda di predisporre un canale di comunicazione rapido e di fornire alcuni consigli operativi, dato che ha già maturato esperienza nel tutoraggio di gruppi negli anni precedenti.\
 Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato nel capitolato dell’azienda, così da rendere l’incontro il più produttivo possibile.
 
@@ -111,7 +92,6 @@ Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato
   [*Task*], [*Responsabile*], [*Issue*],
   [Scrittura Verbale Interno 2025-11-12],
   [Michele Dioli],
-<<<<<<< HEAD
   [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/56")[*\#56*] ],
 
   [#gloss[Verifica] Verbale Interno 2025-11-12],
@@ -141,36 +121,5 @@ Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato
 
 = Conclusioni
 Il gruppo ha come prossima data di incontro il 19 novembre 2025, in cui è stata fissata la #gloss[sprint retrospective].
-=======
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/56")[*\#56*] ],
-
-  [Verifica Verbale Interno 2025-11-12],
-  [Siria Salvalaio],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/34")[*\#34*] ],
-
-  [Scrittura Verbale Esterno 2025-11-13],
-  [Riccardo Graziani],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/55")[*\#55*] ],
-
-  [Verifica Verbale Esterno 2025-11-13],
-  [Jaume Bernardi],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/36")[*\#36*] ],
-
-  [Stesura Piano di Progetto],
-  [Alessandro Dinato],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/45")[*\#45*]],
-
-  [Stesura Norme di Progetto],
-  [Elia Stellin],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/49")[*\#49*]],
-
-  [Stesura analisi dei requisiti],
-  [Hossam Ezzemouri, Riccardo Graziani],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/59")[*\#59*]],
-)
-
-= Conclusioni
-Il gruppo ha come prossima data di incontro il 19 novembre 2025, in cui è stata fissata la sprint retrospective.
->>>>>>> Documentation
 La data potrà comunque essere confermata o modificata in base agli impegni lavorativi dei membri del gruppo.\
 In generale c’è un clima collaborativo; tuttavia il gruppo si trova in leggera difficoltà riguardo al da farsi, con alcuni dubbi che si spera possano essere chiariti il prima possibile.

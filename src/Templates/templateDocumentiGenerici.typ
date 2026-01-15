@@ -5,11 +5,7 @@
 #let secondary = rgb("#000")
 #let gray-dark = rgb("#2c3e50")
 
-<<<<<<< HEAD
-#let gloss(content) = [*#content#sub[G]*]
-=======
 #let gloss(term) = [*#term#sub[G]*]
->>>>>>> Documentation
 
 #let report(
   titolo: none,
@@ -25,24 +21,17 @@
   body,
 ) = [
   #show link: underline
-<<<<<<< HEAD
-=======
 
   #let versione-auto = if registro-modifiche.len() > 0 {
     registro-modifiche.first().at(0)
   } else {
     ""
   }
->>>>>>> Documentation
 
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-<<<<<<< HEAD
-    keywords: (htmlId, versione, index),
-=======
     keywords: (htmlId, versione-auto, index),
->>>>>>> Documentation
   )
 
   #set page(
@@ -156,11 +145,7 @@
   #pagebreak()
 
   #v(1em)
-<<<<<<< HEAD
-  #outline(indent: 0.8em)
-=======
   #outline(indent: 1em)
->>>>>>> Documentation
 
   #pagebreak()
 
