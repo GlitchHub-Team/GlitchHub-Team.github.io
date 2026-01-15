@@ -1,11 +1,17 @@
-#import "./Templates/templateDocumentiGenerici.typ": report
+#import "./Templates/templateDocumentiGenerici.typ": *
 
 #show link: underline
 #show: report.with(
   titolo: "Glossario",
   stato: "Da verificare",
-  versione: "0.1.2",
   registro-modifiche: (
+    (
+      "0.2.0",
+      "15/01/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Aggiunti termini relativi a GitHub, termini relativi a UC / Attori, termini relativi a gateway e termini relativi a sensori; Impostati link intra-documento]
+    ),
     (
       "0.1.3",
       "28/11/2025",
@@ -58,6 +64,17 @@
   tipo-documento: "Glossario",
 )
 
+/**
+ * Crea un link intra-documento a un altro termine del glossario.
+ * Parametri:
+ *   term: il termine com'è scritto nella definizione del termine, case INSENSITIVE
+ *   display: cosa mostrare al posto del termine esatto (può essere utile in caso di plurali o di leggere declinazioni della parola)
+*/
+#let ref-term = (term, display: none) => {
+  if display == none { display = term }
+  link(label(lower(term)), [*#display*])
+}
+
 #let glossary_terms = (
   (
     term: "IoT",
@@ -77,15 +94,15 @@
   ),
   (
     term: "GitHub",
-    definition: [Piattaforma online basata su *Git* per archiviare *repository*, collaborare sul codice e gestire progetti software.],
+    definition: [Piattaforma online basata su #ref-term("Git") per archiviare #ref-term("repository"), collaborare sul codice e gestire progetti software.],
   ),
   (
-      term: "GitHub Issues",
-      definition: [Strumento di *GitHub* per tracciare bug, funzionalità e attività di progetto tramite ticket assegnabili e commentabili.],
-    ),
+    term: "GitHub Issue",
+    definition: [Strumento di #ref-term("GitHub") per tracciare bug, funzionalità e attività di progetto tramite ticket assegnabili e commentabili.],
+  ),
   (
-    term: "GitHub Actions",
-    definition: [Sistema di automazione integrato in *GitHub* che esegue pipeline *CI/CD*, test, build e deploy al verificarsi di eventi.],
+    term: "GitHub Action",
+    definition: [Sistema di automazione integrato in #ref-term("GitHub") che esegue pipeline *CI/CD*, test, build e deploy al verificarsi di eventi.],
   ),
   (
     term: "LLM",
@@ -93,15 +110,15 @@
   ),
   (
     term: "Bluetooth Low Energy (BLE)",
-    definition: [Versione a basso consumo del Bluetooth, progettata per sensori e dispositivi *IoT* che richiedono comunicazioni energeticamente efficienti.],
+    definition: [Versione a basso consumo del Bluetooth, progettata per sensori e dispositivi #ref-term("IoT") che richiedono comunicazioni energeticamente efficienti.],
   ),
   (
     term: "Tenant",
     definition: [In un sistema multi-tenant, è un cliente o gruppo di utenti che condivide la stessa piattaforma, ma con dati e accessi isolati dagli altri.],
   ),
   (
-    term: "IoT Gateway",
-    definition: [Sono hub a cui si collegano i dispositivi *IoT* per centralizzare le comunicazioni. Hanno il ruolo di comunicare con il cloud, pre-elaborare i dati, garantire sicurezza e integrità.],
+    term: "Gateway",
+    definition: [Sono hub a cui si collegano i dispositivi #ref-term("IoT") per centralizzare le comunicazioni. Hanno il ruolo di comunicare con il #ref-term("Cloud"), pre-elaborare i dati, garantire sicurezza e integrità.],
   ),
   (
     term: "API",
@@ -109,15 +126,15 @@
   ),
   (
     term: "Google Cloud Platform",
-    definition: [Piattaforma *cloud* di Google che fornisce servizi di computing, database, storage, machine learning, networking e molto altro.],
+    definition: [Piattaforma #ref-term("Cloud") di Google che fornisce servizi di computing, database, storage, machine learning, networking e molto altro.],
   ),
   (
     term: "Go",
-    definition: [Linguaggio di programmazione ad alto livello, compilato e tipizzato staticamente. È utilizzato per applicazioni *back-end*, sistemi distribuiti e applicazioni ad alta concorrenza.],
+    definition: [Linguaggio di programmazione ad alto livello, compilato e tipizzato staticamente. È utilizzato per applicazioni #ref-term("back-end"), sistemi distribuiti e applicazioni ad alta concorrenza.],
   ),
   (
     term: "NATS",
-    definition: [Sistema di messaggistica publish-subscribe ad alte prestazioni, leggero e distribuito, progettato per la comunicazione asincrona tra micro-servizi, applicazioni cloud-native e dispositivi IoT.],
+    definition: [Sistema di messaggistica publish-subscribe ad alte prestazioni, leggero e distribuito, progettato per la comunicazione asincrona tra micro-servizi, applicazioni #ref-term("Cloud")-native e dispositivi #ref-term("IoT").],
   ),
   (
     term: "Apache Kafka",
@@ -133,11 +150,11 @@
   ),
   (
     term: "Requisito utente",
-    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_ (lato bisogno). Il capitolato specifica le aspettative del *proponente* fissate nella fase di studio del problema.],
+    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_ (lato bisogno). Il capitolato specifica le aspettative del #ref-term("proponente") fissate nella fase di studio del problema.],
   ),
   (
     term: "Requisito software",
-    definition: [Una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_ (lato soluzione). L'*analisi dei requisiti* esplora il punto di vista lato soluzione, ovvero ciò che il prodotto deve fare per soddisfare i bisogni.],
+    definition: [Una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_ (lato soluzione). L'#ref-term("analisi dei requisiti") esplora il punto di vista lato soluzione, ovvero ciò che il prodotto deve fare per soddisfare i bisogni.],
   ),
   (
     term: "Committente",
@@ -145,27 +162,27 @@
   ),
   (
     term: "Proponente",
-    definition: [È l'azienda che presenta un capitolato e richiede lo sviluppo di un prodotto software. Definisce aspettative, requisiti, e funzionalità. Segue e aiuta nel processo di sviluppo (offre chiarimenti, supporto tecnico e feedback).],
+    definition: [È l'azienda che presenta un capitolato e richiede lo sviluppo di un prodotto software. Definisce aspettative, #ref-term("requisito", display: "requisiti"), e funzionalità. Segue e aiuta nel processo di sviluppo (offre chiarimenti, supporto tecnico e feedback).],
   ),
   (
     term: "Fornitore",
-    definition: [È il singolo gruppo che si aggiudica il capitolato. Il suo obiettivo è rispettare vincoli e aspettative del progetto producendo la documentazione necessaria e il prodotto software richiesto dal *proponente*.],
+    definition: [È il singolo gruppo che si aggiudica il capitolato. Il suo obiettivo è rispettare vincoli e aspettative del progetto producendo la documentazione necessaria e il prodotto software richiesto dal #ref-term("proponente").],
   ),
   (
     term: "Dichiarazione degli impegni",
-    definition: [Documento redatto in fase di candidatura del gruppo presso un *capitolato d'appalto*. Contiene l'analisi dei ruoli e dei rischi, la divisione delle risorse e il preventivo costi.],
+    definition: [Documento redatto in fase di candidatura del gruppo presso un #ref-term("capitolato d'appalto"). Contiene l'analisi dei ruoli e dei rischi, la divisione delle risorse e il preventivo costi.],
   ),
   (
     term: "Lettera di candidatura",
-    definition: [Lettera formale rivolta ai committenti, in cui il gruppo dichiara ufficialmente la candidatura verso un *capitolato d'appalto* specifico.],
+    definition: [Lettera formale rivolta ai committenti, in cui il gruppo dichiara ufficialmente la candidatura verso un #ref-term("capitolato d'appalto") specifico.],
   ),
   (
     term: "Valutazione capitolati",
-    definition: [Documento in cui il gruppo, secondo i pareri dei diversi componenti, elabora un pensiero comune riguardo ogni *capitolato d'appalto*],
+    definition: [Documento in cui il gruppo, secondo i pareri dei diversi componenti, elabora un pensiero comune riguardo ogni #ref-term("capitolato d'appalto")],
   ),
   (
     term: "Capitolato d'appalto",
-    definition: [Documento redatto dai *proponenti* con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative (*requisiti utente*)],
+    definition: [Documento redatto dalla #ref-term("proponente") con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative (#ref-term("requisito utente", display:"requisiti utente"))],
   ),
   (
     term: "Way of working",
@@ -184,16 +201,16 @@
     definition: [Strumento di project management che consente di organizzare task, documenti, obiettivi e comunicazione del team.],
   ),
   (
-    term: "SemanticVersioning",
+    term: "Semantic Versioning",
     definition: [Schema di versionamento software basato su tre numeri _MAJOR.MINOR.PATCH_ che indicano rispettivamente cambiamenti incompatibili, nuove funzionalità e correzioni di bug.],
   ),
   (
     term: "Pull Request",
-    definition: [Richiesta formale di unire codice da un branch ad un altro in una repository *Git*, a seguito di una revisione.],
+    definition: [Nella piattaforma #ref-term("GitHub"), è una richiesta formale di unire codice da un branch a un altro (operazione di _"merge"_) in una #ref-term("repository"), a seguito di una revisione.],
   ),
   (
-    term: "GitHub Pages",
-    definition: [Servizio di *GitHub* che permette di pubblicare siti web statici direttamente da una repository.],
+    term: "GitHub Page",
+    definition: [Servizio di #ref-term("GitHub") che permette di pubblicare siti web statici direttamente da una repository.],
   ),
   (
     term: "HTML",
@@ -205,31 +222,31 @@
   ),
   (
     term: "Scrum",
-    definition: [Framework *Agile* che organizza il lavoro in *Sprint* e definisce ruoli ed eventi per migliorare la produttività del team.],
+    definition: [Framework #ref-term("Agile") che organizza il lavoro in #ref-term("Sprint") e definisce ruoli ed eventi per migliorare la produttività del team.],
   ),
   (
     term: "Sprint",
-    definition: [Periodo breve e definito a monte (solitamente 1-2 settimane) in cui il team sviluppa un incremento di prodotto, cercando di svuotare lo *Sprint Backlog*.],
+    definition: [Periodo breve e definito a monte (solitamente 1-2 settimane) in cui il team sviluppa un incremento di prodotto, cercando di svuotare lo #ref-term("Sprint Backlog").],
   ),
   (
     term: "Sprint Backlog",
-    definition: [Insieme di attività selezionate dal *Product Backlog* e pianificate per uno specifico *Sprint*.],
+    definition: [Insieme di attività selezionate dal #ref-term("Product Backlog") e pianificate per uno specifico #ref-term("Sprint").],
   ),
   (
     term: "Product Backlog",
-    definition: [Lista ordinata delle funzionalità, requisiti e migliorie da implementare nel prodotto.],
+    definition: [Lista ordinata delle funzionalità, #ref-term("requisito", display: "requisiti") e migliorie da implementare nel prodotto.],
   ),
   (
     term: "Sprint Planning",
-    definition: [Riunione di inizio *Sprint* nella quale il team pianifica il lavoro da svolgere e gli obiettivi da raggiungere.],
+    definition: [Riunione di inizio #ref-term("Sprint") nella quale il team pianifica il lavoro da svolgere e gli obiettivi da raggiungere.],
   ),
   (
     term: "Sprint Review",
-    definition: [Riunione di fine *Sprint* in cui il team mostra il lavoro svolto agli *stakeholder* e raccoglie feedback.],
+    definition: [Riunione di fine #ref-term("Sprint") in cui il team mostra il lavoro svolto agli #ref-term("stakeholder") e raccoglie feedback.],
   ),
   (
     term: "Sprint Retrospective",
-    definition: [Riunione interna del team volta a migliorare il *way of working*. Durante l'incontro si analizza cosa non ha funzionato nello *Sprint* appena concluso e si discutono possibili azioni per migliorare il processo nei successivi.],
+    definition: [Riunione interna del team volta a migliorare il #ref-term("way of working"). Durante l'incontro si analizza cosa non ha funzionato nello #ref-term("Sprint") appena concluso e si discutono possibili azioni per migliorare il processo nei successivi.],
   ),
   (
     term: "Daily Scrum",
@@ -245,19 +262,19 @@
   ),
   (
     term: "MVP",
-    definition: [Il _Minimum Viable Product_ è un'approssimazione del prodotto atteso dal *proponente*, dotata di funzionalità minime ma sufficienti a essere testata e valutare la bontà della visione iniziale.],
+    definition: [Il _Minimum Viable Product_ è un'approssimazione del prodotto atteso dal #ref-term("proponente"), dotata di funzionalità minime ma sufficienti a essere testata e valutare la bontà della visione iniziale.],
   ),
   (
     term: "RTB",
-    definition: [La _Requirements and Technology Baseline_ è una fase del *Progetto Didattico* che fissa in modo stabile i requisiti da soddisfare, concordati con il proponente, e motiva le tecnologie, i framework e le librerie scelti. È supportata dal *Proof of Concept*.],
+    definition: [La _Requirements and Technology Baseline_ è una fase del #ref-term("Progetto Didattico") che fissa in modo stabile i #ref-term("requisito", display: "requisiti") da soddisfare, concordati con il proponente, e motiva le tecnologie, i framework e le librerie scelti. È supportata dal #ref-term("Proof of Concept").],
   ),
   (
     term: "PB",
-    definition: [La _Product Baseline_ valuta la maturità della baseline architetturale del software e la sua realizzazione, includendo il design definitivo nel documento di *Specifica Tecnica*. È presente un avanzamento sostanziale del prodotto software che viene sottoposto al proponente(come *MVP*) per valutarne qualità e adeguatezza.],
+    definition: [La _Product Baseline_ valuta la maturità della baseline architetturale del software e la sua realizzazione, includendo il design definitivo nel documento di #ref-term("Specifica Tecnica"). È presente un avanzamento sostanziale del prodotto software che viene sottoposto al proponente(come #ref-term("MVP")) per valutarne qualità e adeguatezza.],
   ),
   (
     term: "Repository",
-    definition: [Archivio di progetto che contiene codice, file e cronologia delle versioni, può essere gestito tramite un sistema di controllo versione come *Git*.],
+    definition: [Archivio di progetto che contiene codice, file e cronologia delle versioni, può essere gestito tramite un sistema di controllo versione come #ref-term("Git").],
   ),
   (
     term: "UI",
@@ -277,7 +294,7 @@
   ),
   (
     term: "Architettura serverless",
-    definition: [Modello di progettazione cloud in cui l'infrastruttura sottostante è completamente gestita dal provider. Permette esecuzione di funzioni on-demand, scalabilità automatica e fatturazione _pay-as-you-go_.],
+    definition: [Modello di progettazione #ref-term("Cloud") in cui l'infrastruttura sottostante è completamente gestita dal provider. Permette esecuzione di funzioni on-demand, scalabilità automatica e fatturazione _pay-as-you-go_.],
   ),
   (
     term: "Requisiti funzionali",
@@ -297,11 +314,11 @@
   ),
   (
     term: "MQTT",
-    definition: [Protocollo di messaggistica leggero basato su publish-subscribe, ottimizzato per dispositivi *IoT* e reti con larghezza di banda limitata o instabili, con meccanismi di qualità del servizio (_QoS_) e mantenimento della connessione persistente.],
+    definition: [Protocollo di messaggistica leggero basato su publish-subscribe, ottimizzato per dispositivi #ref-term("IoT") e reti con larghezza di banda limitata o instabili, con meccanismi di qualità del servizio (_QoS_) e mantenimento della connessione persistente.],
   ),
   (
     term: "SSL",
-    definition: [Protocollo crittografico progettato per proteggere le comunicazioni online, oggi rimpiazzato dal *TLS*.],
+    definition: [Protocollo crittografico progettato per proteggere le comunicazioni online, oggi rimpiazzato dal #ref-term("TLS").],
   ),
   (
     term: "TLS",
@@ -309,11 +326,11 @@
   ),
   (
     term: "GraphQL",
-    definition: [Linguaggio di query per *API* che permette ai client di richiedere esattamente i dati necessari e ridurre l'_over-fetching_, ovvero la ricezione di dati non necessari],
+    definition: [Linguaggio di query per #ref-term("API") che permette ai client di richiedere esattamente i dati necessari e ridurre l'_over-fetching_, ovvero la ricezione di dati non necessari],
   ),
   (
     term: "Node.js",
-    definition: [Ambiente runtime *JavaScript* lato server, ottimizzato per applicazioni scalabili, event-driven e in tempo reale.],
+    definition: [Ambiente runtime #ref-term("JavaScript") lato server, ottimizzato per applicazioni scalabili, event-driven e in tempo reale.],
   ),
   (
     term: "Nest.js",
@@ -321,11 +338,11 @@
   ),
   (
     term: "Typescript",
-    definition: [Linguaggio basato su *JavaScript* con tipizzazione statica, utile per ridurre errori e migliorare manutenzione del codice.],
+    definition: [Linguaggio basato su #ref-term("JavaScript") con tipizzazione statica, utile per ridurre errori e migliorare manutenzione del codice.],
   ),
   (
     term: "MongoDB",
-    definition: [Database *NoSQL* orientato ai documenti, flessibile e adatto a grandi quantità di dati non strutturati.],
+    definition: [Database #ref-term("NoSQL") orientato ai documenti, flessibile e adatto a grandi quantità di dati non strutturati.],
   ),
   (
     term: "PostgreSQL",
@@ -345,7 +362,7 @@
   ),
   (
     term: "Micro-servizio",
-    definition: [Architettura in cui un'applicazione è suddivisa in servizi indipendenti che comunicano tramite *API* o messaggi.],
+    definition: [Architettura in cui un'applicazione è suddivisa in servizi indipendenti che comunicano tramite #ref-term("API") o messaggi.],
   ),
   (
     term: "Test di integrazione",
@@ -353,7 +370,7 @@
   ),
   (
     term: "Test multi-tenant",
-    definition: [Test che verificano isolamento dei dati e corretto funzionamento di un sistema con più tenant.],
+    definition: [Test che verificano isolamento dei dati e corretto funzionamento di un sistema con più #ref-term("tenant").],
   ),
   (
     term: "Test di sicurezza",
@@ -365,7 +382,7 @@
   ),
   (
     term: "Test di sincronizzazione cloud",
-    definition: [Controllano che i dati rimangano coerenti tra dispositivi, server e servizi cloud.],
+    definition: [Controllano che i dati rimangano coerenti tra dispositivi, server e servizi #ref-term("Cloud").],
   ),
   (term: "Unit test", definition: [Test che verificano singole funzioni o componenti in modo isolato.]),
   (
@@ -378,11 +395,11 @@
   ),
   (
     term: "Piano di progetto",
-    definition: [Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando *preventivo* e *consuntivo*, e a ricalibrare le attività in corso d'opera.],
+    definition: [Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint, #ref-term("preventivo a finire") e #ref-term("consuntivo di periodo"), in modo tale da ricalibrare le attività in corso d'opera.],
   ),
   (
     term: "Piano di qualifica",
-    definition: [Documento gestionale che descrive come verranno svolte *Verifica* e *Validazione*, fissando gli obiettivi di qualità, le metriche e gli strumenti di controllo.],
+    definition: [Documento gestionale che descrive come verranno svolte #ref-term("Verifica") e #ref-term("Validazione"), fissando gli obiettivi di qualità, le metriche e gli strumenti di controllo.],
   ),
   (
     term: "Architettura/Design",
@@ -390,7 +407,7 @@
   ),
   (
     term: "Stakeholder",
-    definition: [Chiunque abbia interesse nel progetto: committente, proponente, utenti finali, fornitore e figure che influenzano requisiti e valutazioni.],
+    definition: [Chiunque abbia interesse nel progetto: committente, proponente, utenti finali, fornitore e figure che influenzano #ref-term("requisito", display: "requisiti") e valutazioni.],
   ),
   (
     term: "Efficacia",
@@ -402,7 +419,7 @@
   ),
   (
     term: "Economicità",
-    definition: [È la combinazione tra *efficacia* e *efficienza*, ovvero l'equilibrio tra costi sostenuti, risorse impiegate e risultati ottenuti, con l'obiettivo di minimizzare sprechi o spese inutili.],
+    definition: [È la combinazione tra #ref-term("efficacia") e #ref-term("efficienza"), ovvero l'equilibrio tra costi sostenuti, risorse impiegate e risultati ottenuti, con l'obiettivo di minimizzare sprechi o spese inutili.],
   ),
   (
     term: "Ciclo di vita",
@@ -454,7 +471,7 @@
   ),
   (
     term: "Milestone",
-    definition: [Traguardo intermedio o punto di controllo in un progetto, che segna il completamento di una fase importante del lavoro. Il raggiungimento di una _milestone_ è generalmente associato alla realizzazione di una *baseline* che soddisfa i requisiti previsti fino a quel punto.],
+    definition: [Traguardo intermedio o punto di controllo in un progetto, che segna il completamento di una fase importante del lavoro. Il raggiungimento di una _milestone_ è generalmente associato alla realizzazione di una #ref-term("baseline") che soddisfa i #ref-term("requisito", display: "requisiti") previsti fino a quel punto.],
   ),
   (
     term: "Baseline",
@@ -463,7 +480,7 @@
   (
     term: "Consuntivo di periodo",
     definition: [
-      È una sezione nel *Piano di Progetto* nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
+      È una sezione nel #ref-term("Piano di Progetto") nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
       L'analisi generica dello sprint appena svolto si chiama *retrospettiva di periodo*.
     ],
   ),
@@ -475,7 +492,7 @@
   ),
   (
     term: "Preventivo a finire",
-    definition: [È una sezione del *Piano di Progetto* nel quale si descrivono le attività pianificate per lo sprint successivo e la stima delle risorse necessarie.],
+    definition: [È una sezione del #ref-term("Piano di Progetto") nel quale si descrivono le attività pianificate per lo sprint successivo e la stima delle risorse necessarie.],
   ),
   (
     term: "Slack time",
@@ -495,14 +512,14 @@
   ),
   (
     term: "Verifica",
-    definition: [Accertamento che lo sviluppo non introduca errori e rispetti i *requisiti software*. Pratica che si svolge lungo tutto il periodo di progetto.],
+    definition: [Accertamento che lo sviluppo non introduca errori e rispetti i #ref-term("requisito software", display:"requisiti software"). Pratica che si svolge lungo tutto il periodo di progetto.],
   ),
   (
     term: "Validazione",
-    definition: [Accertamento che il prodotto finale soddisfi le attese degli *stakeholder*. Il fornitore dimostra che tutti i *requisiti utente* siano soddisfatti con il collaudo del prodotto.],
+    definition: [Accertamento che il prodotto finale soddisfi le attese degli #ref-term("stakeholder"). Il fornitore dimostra che tutti i #ref-term("requisito utente", display:"requisiti utente") siano soddisfatti con il collaudo del prodotto.],
   ),
   (
-    term: "Norme di progetto",
+    term: "Norme di Progetto",
     definition: [Documento esecutivo interno al gruppo che definisce procedure, regole e strumenti per organizzare il lavoro in modo professionale e ripetibile.],
   ),
   (
@@ -531,9 +548,166 @@
   ),
   (
     term: "Documento incrementale",
-    definition: [Documento che viene redatto e aggiornato progressivamente insieme all'avanzamento del progetto. Può contenere inizialmente sezioni vuote e incomplete e ogni versione stabile include solo le parti effettivamente compilate e verificate. Viene pubblicato man mano tramite versioni aggiornate],
+    definition: [Documento che viene redatto e aggiornato progressivamente insieme all'avanzamento del progetto. Può contenere inizialmente sezioni vuote e incomplete e ogni versione stabile include solo le parti effettivamente compilate e verificate. Viene pubblicato man mano tramite versioni aggiornate.],
   ),
+  (
+    term: "Issue Form",
+    definition: [Strumento messo a disposizione da #ref-term("GitHub") per semplificare la creazione di #ref-term("GitHub Issue", display: "GitHub Issues") che presentano campi simili. Permettono a chi crea l'_issue_ di selezionare da una lista di template precompilati.]
+  ),
+  (
+    term: "Caso d'uso",
+    definition: [
+      La descrizione di una o più funzionalità del prodotto dal lato degli _user needs_, ovvero delle necessità dell'utente, tramite il linguaggio visivo UML e un'aggiuntiva descrizione testuale. I casi d'uso sono descritti nell'#ref-term("Analisi dei requisiti").
+    ]
+  ),
+  (
+    term: "Use case",
+    definition: [Vd. #ref-term("Caso d'uso").]
+  ),
+  (
+    term: "Attore",
+    definition: [
+      Nel contesto di un #ref-term("caso d'uso"), è un'entità esterna al #ref-term("sistema") preso in considerazione che interagisce con lo stato di quest'ultima in lettura e/o scrittura. Può corrispondere a un essere umano o a un agente automatizzato che compie un'azione specifica.
+    ]
+  ),
+  (
+    term: "Sistema",
+    definition: [
+      La parte del prodotto che si prende in considerazione nel contesto di un #ref-term("caso d'uso") specifico. Si noti che il sistema di un caso d'uso può corrispondere all'#ref-term("attore") di un altro caso, a seconda della funzionalità che si intende descrivere.
+    ]
+  ),
+  (
+    term: "Tenant User",
+    definition: [
+      Utente autenticato senza privilegi appartenente a uno specifico #ref-term("tenant"). Ha solo il potere di visualizzare i dati dei sensori ricevuti dai #ref-term("gateway").
+    ]
+  ),
+  (
+    term: "Tenant Admin",
+    definition: [
+      Utente autenticato appartenente a un #ref-term("tenant") specifico con privilegi di amministrazione all'interno del proprio tenant e sui #ref-term("gateway") a esso associati.
+    ]
+  ),
+  (
+    term: "Super Admin",
+    definition: [Utente autenticato con poteri di amministrazione globali a tutti i #ref-term("tenant") associati alla piattaforma #ref-term("cloud")]
+  ),
+  (
+    term: "API Client",
+    definition: [Un qualunque client che possa accedere ai dati esposti dall'#ref-term("API") pubblica del sistema #ref-term("cloud").]
+  ),
+  (
+    term: "Simulatore di Gateway",
+    definition: [Programma che simula in software il funzionamento di un #ref-term("gateway"), senza richiedere hardware specializzato a tale scopo.]
+  ),
+  (
+    term: "Sensore simulato",
+    definition: [Entità logica che corrisponde a un sensore collegato al #ref-term("simulatore di gateway") simulato interamente in software che non utilizza le stesse tecnologie di un vero #ref-term("gateway") o di veri sensori #ref-term("bluetooth low energy (ble)", display: "BLE").]
+  ),
+  (
+    term: "Impersonificazione",
+    definition: [Vd. #ref-term("Impersonazione")]
+  ),
+  (
+    term: "Impersonazione",
+    definition: [Atto con cui un #ref-term("Super Admin") si fa temporaneamente riconoscere dal sistema #ref-term("cloud") come utente appartenente a uno specifico #ref-term("tenant"), attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un #ref-term("Tenant Admin"). Questo può avvenire soltanto se il #ref-term("tenant") impersonato ha precedentemente accettato un'apposita clausola contrattuale.]
+  ),
+  (
+    term: "Comando (gateway)",
+    definition: [Messaggio inviato a un #ref-term("Gateway") per modificarne lo stato o la configurazione attuale.]
+  ),
+  (
+    term: "Sospensione (gateway)",
+    definition: [#ref-term("comando (gateway)", display: "Comando") inviato a un #ref-term("gateway") per interrompere l'invio di tutti i suoi dati alla piattaforma #ref-term("Cloud"), ma non la ricezione di comandi da questa. Si noti che la sospensione non spegne completamente il gateway.]
+  ),
+  (
+    term: "Riattivazione (gateway)",
+    definition: [#ref-term("comando (gateway)", display: "Comando") inviato a un #ref-term("gateway") per riprendere l'invio di tutti i suoi dati alla piattaforma #ref-term("Cloud"), precedentemente interrotto.]
+  ),
+  (
+    term: "Sospensione (sensore)",
+    definition: [#ref-term("comando (gateway)", display: "Comando") inviato al #ref-term("gateway") associato a un sensore specifico, per interrompere l'invio dei dati da esso ricevuti alla piattaforma #ref-term("Cloud"). Si noti che la sospensione non spegne completamente il sensore interessato]
+  ),
+  (
+    term: "Riattivazione (sensore)",
+    definition: [#ref-term("comando (gateway)", display: "Comando") inviato al #ref-term("gateway") associato a un sensore specifico, per riprendere l'invio dei dati da esso ricevuti alla piattaforma #ref-term("Cloud").]
+  ),
+  (
+    term: "Riavvio (gateway)",
+    definition: [#ref-term("comando (gateway)", display: "Comando") inviato a un #ref-term("gateway") per spegnerlo e riaccenderlo da remoto, con lo scopo di risolvere eventuali errori di corruzione di memoria volatile. Il riavvio mantiene la #ref-term("configurazione (gateway)", display: "configurazione") del gateway.]
+  ),
+  (
+    term: "Reset (gateway)",
+    definition: [#ref-term("comando (gateway)", display: "Comando") inviato a un #ref-term("gateway") per reimpostarlo alla #ref-term("Configurazione di fabbrica (gateway)", display: "configurazione di fabbrica").]
+  ),
+  (
+    term: "Commissioning (gateway)",
+    definition: [Procedura di associazione di un #ref-term("gateway") a un #ref-term("tenant") specifico e di impostazione di una #ref-term("configurazione (gateway)", display: "configurazione") precisa.]
+  ),
+  (
+    term: "Decommissioning (gateway)",
+    definition: [Procedura di disassociazione di un #ref-term("gateway") al #ref-term("tenant") a cui è correntemente associato e di impostazione del gateway alla #ref-term("Configurazione di fabbrica (gateway)", display: "configurazione di fabbrica").]
+  ),
+  (
+    term: "Provisioning (gateway)",
+    definition: [Procedura di autenticazione e di associazione di un #ref-term("gateway") alla piattaforma #ref-term("Cloud"), in cui le due componenti si scambiano le informazioni di autenticazione e le chiavi necessarie per scambiarsi dati in maniera crittografata.]
+  ),
+  (
+    term: "Configurazione (gateway)",
+    definition: [Insieme di parametri associati a un #ref-term("gateway") che ne dettano le specifiche di funzionamento.]
+  ),
+  (
+    term: "Configurazione di fabbrica (gateway)",
+    definition: [#ref-term("configurazione (gateway)", display: "Configurazione") di un #ref-term("gateway") di default.]
+  ),
+  (
+    term: "Normalizzazione",
+    definition: [Procedura che trasforma dei dati eterogenei in un insieme di dati che condividono lo stesso formato e le stesse caratteristiche numeriche.]
+  ),
+  (
+    term: "Profilo BLE",
+    definition: [Specifica standardizzata che descrive i dettagli della comunicazione tra dispositivi #ref-term("bluetooth low energy (ble)", display: "BLE").]
+  ),
+  (
+    term: "Profilo GATT",
+    definition: [#ref-term("Profilo BLE") che definisce nello specifico come avviene lo scambio di dati tra due dispositivi #ref-term("bluetooth low energy (ble)", display: "BLE"), tramite un modello Server--Client. Un dispositivo BLE può essere associato a uno dei molteplici profili GATT standard.]
+  ),
+  (
+    term: "Schema",
+    definition: [Standard che descrive formalmente come strutturare un insieme di dati in uno specifico linguaggio di markup.]
+  ),
+  (
+    term: "Progetto Didattico",
+    definition: [Progetto svolto dal gruppo _GlitchHub Team_ per l'esame di Ingegneria del Software del Corso di Laurea Triennale in Informatica dell'Università del Padova, svoltosi nell'anno accademico 2025---2026.]
+  ),
+  (
+    term: "Heart Rate Service (Profilo GATT)",
+    definition: [#ref-term("Profilo GATT") usato per l'invio via #ref-term("bluetooth low energy (ble)", display: "BLE") di dati relativi a misurazioni di battito cardiaco.]
+  ),
+  (
+    term: "Pulse Oximeter Service (Profilo GATT)",
+    definition: [#ref-term("Profilo GATT") usato per l'invio via #ref-term("bluetooth low energy (ble)", display: "BLE") di dati relativi a misurazioni di saturazione di ossigeno (_pulsossimetria_).]
+  ),
+  (
+    term: "ECG Custom Profile (Profilo GATT)",
+    definition: [#ref-term("Profilo GATT") usato per l'invio via #ref-term("bluetooth low energy (ble)", display: "BLE") di dati relativi a misurazioni di elettrocardiogrammi.]
+  ),
+  (
+    term: "Health Thermometer Service (Profilo GATT)",
+    definition: [#ref-term("Profilo GATT") usato per l'invio via #ref-term("bluetooth low energy (ble)", display: "BLE") di dati relativi a misurazioni di temperatura utilizzate in ambito medico.]
+  ),
+  (
+    term: "Environmental Sensing Service (Profilo GATT)",
+    definition: [#ref-term("Profilo GATT") usato per l'invio via #ref-term("bluetooth low energy (ble)", display: "BLE") di dati relativi a misurazioni di temperatura e umidità ambientali.]
+  ),
+  
+  // TODO: descrivi cos'è specifica tecnica
+  (
+    term: "Specifica Tecnica",
+    definition: [_Ancora da definire_]
+  )
 )
+
 
 // Function to group terms by first letter
 #let group_by_letter(terms) = {
@@ -549,7 +723,7 @@
 
   // Sort terms within each group
   for (letter, group) in grouped {
-    grouped.at(letter) = group.sorted(key: t => t.term)
+    grouped.at(letter) = group.sorted(key: t => lower(t.term))
   }
 
   return grouped
@@ -569,7 +743,7 @@
       block(
         inset: (left: 1.5em, bottom: 0.8em),
         [
-          *#entry.term* \
+          #heading(entry.term, outlined: false, depth: 2, numbering: none) #label(lower(entry.term)) 
           #text(size: 10pt)[#entry.definition]
         ],
       )
