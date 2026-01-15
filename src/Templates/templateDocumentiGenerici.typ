@@ -1,15 +1,20 @@
 #import "../lib/libDocumentiGenerici.typ": *
+#import "../lib/libUtil.typ": *
 
 #let primary = rgb("#9948bc")
 #let secondary = rgb("#000")
 #let gray-dark = rgb("#2c3e50")
 
+<<<<<<< HEAD
 #let gloss(content) = [*#content#sub[G]*]
+=======
+#let gloss(term) = [*#term#sub[G]*]
+>>>>>>> Documentation
 
 #let report(
   titolo: none,
   stato: none,
-  versione: none,
+  versione: none, // Tenuto per retro-compatibilità
   distribuzione: none,
   htmlId: none,
   registro-modifiche: (),
@@ -20,11 +25,24 @@
   body,
 ) = [
   #show link: underline
+<<<<<<< HEAD
+=======
+
+  #let versione-auto = if registro-modifiche.len() > 0 {
+    registro-modifiche.first().at(0)
+  } else {
+    ""
+  }
+>>>>>>> Documentation
 
   #set document(
     title: titolo,
     author: "GlitchHub Team",
+<<<<<<< HEAD
     keywords: (htmlId, versione, index),
+=======
+    keywords: (htmlId, versione-auto, index),
+>>>>>>> Documentation
   )
 
   #set page(
@@ -51,7 +69,7 @@
 
     metadata: (
       title: titolo,
-      version: "Versione " + text(weight: "bold")[#versione],
+      version: "Versione " + text(weight: "bold")[#versione-auto],
       company-logo: image("../assets/loghi/GlitchHub-Team_LogoG.png", width: 75%),
       uni-logo: image("../assets/loghi/logo_unipd_scritta.jpg", width: 51%),
     ),
@@ -138,7 +156,11 @@
   #pagebreak()
 
   #v(1em)
+<<<<<<< HEAD
   #outline(indent: 0.8em)
+=======
+  #outline(indent: 1em)
+>>>>>>> Documentation
 
   #pagebreak()
 

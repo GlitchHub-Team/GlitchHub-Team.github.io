@@ -1,4 +1,5 @@
 #import "../../Templates/templateDocumentiGenerici.typ": *
+#import "../../Templates/templateDocumentiGenerici.typ": *
 #import "@preview/cetz:0.4.2"
 #import "@preview/cetz-plot:0.1.3": chart, plot
 
@@ -6,7 +7,19 @@
   titolo: "Dichiarazione impegni",
   stato: "Verificato",
   versione: "1.1.0",
+  versione: "1.1.0",
   registro-modifiche: (
+    ("1.1.0", "4/11/2025", "Alessandro Dinato", "Michele Dioli", "Aggiunta criteri di rotazione dei ruoli"),
+    ("1.0.0", "30/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Versione stabile del documento"),
+    ("0.0.7", "30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
+    ("0.0.6", "30/10/2025", "Hossam Ezzemouri", "Michele Dioli", "Revisione e correzioni del documento"),
+    (
+      "0.0.5",
+      "30/10/2025",
+      "Jaume Bernardi",
+      "Hossam Ezzemouri",
+      "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento",
+    ),
     ("1.1.0", "4/11/2025", "Alessandro Dinato", "Michele Dioli", "Aggiunta criteri di rotazione dei ruoli"),
     ("1.0.0", "30/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Versione stabile del documento"),
     ("0.0.7", "30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
@@ -28,10 +41,13 @@
   htmlId: "Candidatura-Generale",
   verificatore-interno: "Michele Dioli",
   left-signature: "../assets/firme/firma_Michele_Dioli.png",
+  verificatore-interno: "Michele Dioli",
+  left-signature: "../assets/firme/firma_Michele_Dioli.png",
   tipo-documento: "Dichiarazione impegni",
 )
 
 = Introduzione
+Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
 Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
 Con la presente dichiarazione i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
 
