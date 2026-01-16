@@ -148,16 +148,27 @@ M31 ha suggerito:
 
 = Attività conseguenti
 #table(
-  columns: (2fr, 2fr),
+  columns: (2fr, 2fr, 1fr),
   align: center + horizon,
-  [*Task*], [*Assegnatari*], 
+  [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Studio delle tecnologie suggerite],
+  [Studio tecnologie suggerite],
   [Alessandro Dinato, Riccardo Graziani],
-  
+  [#issue(165), #issue(169)],
 
-  [Revisione Use Cases],
-  [Elia Ernesto Stellin, Hossam Ezzemouri, Michele Dioli, Jaume Bernardi, Siria Salvalaio],
-  
+  [Stesura dei requisi e realizzazione diagrammi use case],
+  [Hossam Ezzemouri,Jaume Bernardi, Michele Dioli],
+  [#issue(166)],
 
+  [Conclusione use cases Visualizzazione],
+  [ Riccardo Graziani],
+  [#issue(170)],
+
+  [Approfondimento normalizzazione dati],
+  [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
+  [#issue(133)],
+
+  [Approfondimento Grafana+Prometheus],
+  [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
+  [#issue(134)]
 )
