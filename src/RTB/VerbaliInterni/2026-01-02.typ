@@ -3,7 +3,7 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 02/01/2026",
-  stato: "Bozza",
+  stato: "Verificato",
   versione: "1.0.0",
   registro-modifiche: (
     (
