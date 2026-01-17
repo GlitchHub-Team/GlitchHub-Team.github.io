@@ -10,6 +10,13 @@
   versione: "0.7.0",
   registro-modifiche: (
     (
+      "0.7.2",
+      "17/01/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Piccole modifiche riguardo CdP Sprint 6]
+    ),
+    (
       "0.7.1",
       "16/01/2026",
       "Hossam Ezzemouri",
@@ -1469,12 +1476,18 @@ table.footer([*Totale*], [*1*], [*0*], [*5*], [*0*], [*0*], [*0*], [*6*]),
 
 	==== Attività svolte
 	Il gruppo ha svolto con successo le seguenti attività: \
-	Issue relative a sprint 6: \
-	CLOSED: #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/146")[\#146], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/129")[\#129], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/130")[\#130], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/137")[\#137], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/139")[\#139], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/133")[\#133], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/123")[\#123], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/126")[\#126], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/125")[\#125], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/138")[\#138], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/134")[\#134], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/120")[\#120], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/132")[\#132], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/145")[\#145], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/144")[\#144], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/131")[\#131], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/124")[\#124], 
+	Issue relative a sprint 6: 
+  
 
-	- 
-	-
-	-
+- [AdR] UC per interfaccia utente #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/146")[\#146],
+- [UC] Studio metodi di normalizzazione dati da sensori BLE #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/133")[\#133],
+- [AdR] Approfondimento Use Cases attuali #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/123")[\#123],
+- [AdR] Definire UC Attore=Sensore Simulato, Sistema=Gateway Simulato #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/126")[\#126],
+- [AdR] Definire UC con Attore=Cloud, Sistema=Simulatore Gateway #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/125")[\#125],
+- [UC] Approfondimento Grafana+Prometheus #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/134")[\#134],
+- [PdQ] Trovare e definire metriche #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/120")[\#120],
+- Creazione script per automatizzare parole del glossario #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/144")[\#144],
+- [AdR] Divisione UC per intefaccia utente e UC generici#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/124")[\#124], 
 
 
 
