@@ -10,6 +10,13 @@
   versione: "0.7.0",
   registro-modifiche: (
     (
+      "0.7.3",
+      "17/01/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Correzioni riguardo CdP Sprint 6],
+    ),
+    (
       "0.7.2",
       "17/01/2026",
       "Hossam Ezzemouri",
@@ -1521,7 +1528,8 @@ Issue relative a sprint 6:
 
   ==== Rischi occorsi
 Il gruppo si è imbattuto in *R01* (@RO1) in quanto non è stato possibile realizzare il set di automazioni per il cruscotto relativo alle metriche del #gloss("Piano di Qualifica").
-//TODO: specificare anche impatto del rischio e come l'abbiamo mitigato(da guardare rischi precedenti)
+L'impatto del rischio è stato basso dato che l'assenza delle automazioni non ha interferito con le attività contemporanee.
+La task è stata di conseguenza posticipata allo sprint successivo dandole una priorità maggiore in modo da poter stabilizzare l'intero reparto inerente al *Piano di Qualifica*.
 
 ==== Aggiornamento ore rimanenti
 #table(
@@ -1564,8 +1572,9 @@ Il gruppo si è imbattuto in *R01* (@RO1) in quanto non è stato possibile reali
 Inizio: 02/01/2026 \
 Fine: 14/01/2026 \
 
-//TODO: riscrivere introduzione sprint 7, risulta poco fluida
-In questo sprint si è discusso di avere come obiettivi principali quelli di raggiungere una versione stabile del  #gloss("Piano di Qualifica"), la stesura dei requisiti degli Use Case dell'#gloss("Analisi dei Requisiti") e terminare il sistema di automazione relativo al cruscotto di valutazione delle metriche.
+In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura 
+dei requisiti relativi agli Use Cases dell'#gloss("Analisi dei Requisiti") e il completamento del sistema di automazione per il cruscotto
+di valutazione delle metriche.
 
 In seguito sono mostrate le attività identificate:
 - Stabilizzazione del Piano di Qualifica (#issue(149))
@@ -1697,4 +1706,3 @@ Descrivere i rischi occorsi
   "Verificatore", "160 ", "15 €/h", "2400 € ",
   table.footer([*Totale*], [*569*], [-], [*10935 €*]),
 )
-
