@@ -4,13 +4,20 @@
 #show: report.with(
   titolo: "Verbale interno 14/01/2026",
   stato: "Bozza",
-  versione: "0.0.1",
+  versione: "1.0.0",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "17/01/2026",
+      "Siria Salvalaio",
+      "Elia Ernesto Stellin",
+      "Versione stabile documento"
+    ),
     (
       "0.0.1",
       "16/01/2026",
       "Siria Salvalaio",
-      "-",
+      "Elia Ernesto Stellin",
       "Prima bozza documento",
     ),
   ),
@@ -35,8 +42,8 @@
     [Assegnazione ruoli],
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "-",
-  left-signature: "",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-verbale: "Interno",
 )
 
@@ -77,5 +84,4 @@ Si inizierà anche a dedicare del tempo all'approfondimento delle tecnologie nec
 
 == Assegnazione ruoli per le prossime due settimane
 - *Responsabile*: Siria Salvalaio
-- *Amministratore*:
 - *Analista*: Alessandro Dinato, Riccardo Graziani, Jaume Bernardi, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin, Michele Dioli
