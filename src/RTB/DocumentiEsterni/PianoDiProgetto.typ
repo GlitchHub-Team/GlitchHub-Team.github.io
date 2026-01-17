@@ -10,6 +10,13 @@
   versione: "0.7.0",
   registro-modifiche: (
     (
+      "0.7.4",
+      "17/01/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Aggiunto CdP Sprint 7],
+    ),
+    (
       "0.7.3",
       "17/01/2026",
       "Hossam Ezzemouri",
@@ -1625,14 +1632,22 @@ In seguito sono mostrate le attività identificate:
 ==== Attività svolte
 Il gruppo ha svolto con successo le seguenti attività: \
 Issue relative a sprint 7: \
-CLOSED: #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/149")[\#149], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/147")[\#147], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/160")[\#160], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/163")[\#163], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/162")[\#162], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/127")[\#127], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/150")[\#150], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/152")[\#152],
-
--
--
--
+- [PdQ] Stabilizzazione *Piano di Qualifica* #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/149")[\#149],
+- [AdR] Scrittura requisiti UC31 - UC60 #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/160")[\#160],
+- [AdR] Generalizzazione "Admin Generico" #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/163")[\#163], 
+- [AdR] Espansione UC di visualizzazione #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/162")[\#162], 
+- [AdR] Scrittura Requisiti #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/127")[\#127], 
+- Creazione Google Sheet per cruscotto con automazioni #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/150")[\#150], 
 
 ==== Retrospettiva
-Raccontare retrospettiva
+Durante lo Sprint 7 il gruppo è riuscito a realizzare una versione stabile del #gloss("Piano di Qualifica"),
+procedendo alla selezione e all'adattamento delle metriche precedentemente analizzate. Permangono alcune correzioni di lieve entità,la
+cui implementazione è pianificata per lo Sprint 8. \
+La realizzazione delle automazioni per il cruscotto di visualizzazione delle metriche è stata completata,
+anche in questo caso restano alcuni dettagli minori da rifinire, che verranno ultimati nello sprint successivo. \
+er quanto riguarda la stesura dei requisiti, è stato possibile completare esclusivamente la definizione degli use case dal 31 al 60.
+Di conseguenza, nello Sprint 8 verrà data maggiore priorità al completamento della documentazione dei requisiti relativi ai restanti use case.
+
 
 ==== Risorse utilizzate
 #table(
@@ -1668,7 +1683,11 @@ Raccontare retrospettiva
 )
 
 ==== Rischi occorsi
-Descrivere i rischi occorsi
+Il gruppo ha riscontrato il rischio R01 (@RO1), in quanto non è stato possibile completare integralmente la stesura dei requisiti relativi
+agli Use Case analizzati, ma solo una parte di essi.L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti")
+in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine,nello Sprint 8 questa attività verrà intensificata 
+per il suo completamento.
+
 
 ==== Aggiornamento ore rimanenti
 #table(
