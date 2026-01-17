@@ -377,6 +377,67 @@ I test di sistema verificano il corretto comportamento complessivo dell'applicaz
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
 = Cruscotto di Valutazione
 
+== Planned Value (PV)
+Il valore del lavoro pianificato fino a un certo punto. Rappresenta il costo previsto delle attività che avrebbero dovuto essere completate.
+
+$ "PV" = sum_(i=1)^(n) ("Ore Previste"_i times "Tariffa Oraria"_i) $
+
+== Actual Cost (AC)
+Il costo effettivo sostenuto per il lavoro svolto.
+
+$ "AC" = sum_(i=1)^(n) ("Ore Effettive"_i times "Tariffa Oraria"_i) $
+
+== Earned Value (EV)
+Il valore del lavoro effettivamente completato, misurato in termini di budget. Rappresenta quanto "valore" è stato prodotto.
+
+$ "EV" = "PV" times ("Ore Completate" / "Ore Pianificate") $
+
+== Budget at Completion (BAC)
+Il budget totale pianificato per il progetto.
+
+$ "BAC" = 12.975 € $
+
+== Estimate at Completion (EAC)
+Stima del costo totale a completamento del progetto, basata sulle performance attuali.
+
+$ "EAC" = "BAC" / "CPI" $
+
+*Interpretazione:*
+- $"EAC" < "BAC"$: Il progetto finirà *sotto budget*
+- $"EAC" = "BAC"$: Il progetto finirà *in linea* con il budget
+- $"EAC" > "BAC"$: Il progetto finirà *sopra budget*
+
+== Estimate to Complete (ETC)
+Stima del costo rimanente per completare il progetto.
+
+$ "ETC" = "EAC" - "AC"_"acc" $
+
+*Interpretazione:*
+Rappresenta quanto ancora si dovrà spendere per finire il progetto, considerando le performance attuali.
+
+== Cost Variance (CV)
+Misura la deviazione dal budget. Indica se il progetto è sotto o sopra budget.
+
+$ "CV" = "EV" - "AC" $
+
+== Schedule Variance (SV)
+Misura la deviazione dalla schedulazione. Indica se il progetto è in anticipo o in ritardo rispetto al piano.
+
+$ "SV" = "EV" - "PV" $
+
+== Task Completion Rate (TCR)
+Indica la percentuale di task completati rispetto a quelli chiusi in ritardo per un determinato periodo (es. Sprint).Rappresenta la capacità del team di completare il lavoro previsto.
+
+$"TCR" = ("Task Completati" / 
+("Task Completati" + "Task Ritardo")) times 100$
+
+== Indice di Gulpease
+Un indice di leggibilità calibrato specificamente per la lingua italiana. Valuta la complessità del testo in base alla lunghezza delle parole e delle frasi.
+
+$"Gulpease" = 89 + (300 times "Numero Frasi" - 10 times "Numero Lettere") / "Numero Parole"$
+
+== Correttezza Ortografica
+
 = Iniziative di miglioramento
 Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \
 
