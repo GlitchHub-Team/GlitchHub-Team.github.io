@@ -5,7 +5,7 @@
 #let secondary = rgb("#000")
 #let gray-dark = rgb("#2c3e50")
 
-#let gloss(content) = [*#content#sub[G]*]
+#let gloss(term) = [*#term#sub[G]*]
 
 #let report(
   titolo: none,
@@ -45,6 +45,12 @@
     leading: 0.75em,
     spacing: 1.2em,
   )
+
+  #let versione-auto = if registro-modifiche.len() > 0 {
+  registro-modifiche.first().at(0)
+} else {
+  ""
+}
 
   #show: hwr.with(
     language: "it",
@@ -139,7 +145,7 @@
   #pagebreak()
 
   #v(1em)
-  #outline()
+  #outline(indent: 1em)
 
   #pagebreak()
 

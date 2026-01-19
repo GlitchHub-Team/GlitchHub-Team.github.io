@@ -3,3 +3,5 @@ src/**/*.pdf
 pdf/**/*.tex
 .vscode
 website/pdf/
+.env
+.env.*

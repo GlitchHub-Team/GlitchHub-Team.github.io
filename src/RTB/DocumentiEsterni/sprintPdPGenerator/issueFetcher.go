@@ -21,6 +21,7 @@ type Issue struct {
 	CreatedAt           string
 	Author              string
 	Assignees           []string
+	Labels              []string
 	Priority            string
 	StartDate           time.Time
 	TargetDate          time.Time
@@ -82,6 +83,11 @@ type ProjectItem struct {
 				Login string `json:"login"`
 			} `json:"nodes"`
 		} `json:"assignees"`
+		Labels struct {
+			Nodes []struct {
+				Name string `json:"name"`
+			} `json:"nodes"`
+		} `json:"labels"`
 	} `json:"content"`
 }
 
@@ -181,6 +187,11 @@ func fetchProjectIssues(token, owner string, projectNumber int, isOrg bool, spri
 				// Assignees from issue
 				for _, a := range node.Content.Assignees.Nodes {
 					issue.Assignees = append(issue.Assignees, a.Login)
+				}
+
+				// Labels
+				for _, l := range node.Content.Labels.Nodes {
+					issue.Labels = append(issue.Labels, l.Name)
 				}
 
 				// Custom fields from project
@@ -295,6 +306,9 @@ func buildQuery(ownerType string) string {
 									author { login }
 									assignees(first: 10) {
 										nodes { login }
+									}
+									labels(first: 20) {
+										nodes { name }
 									}
 								}
 							}
