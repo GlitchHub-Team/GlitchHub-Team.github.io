@@ -7,41 +7,41 @@
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Verificato",
-  versione: "0.7.0",
+  versione: "0.7.4",
   registro-modifiche: (
     (
       "0.7.4",
       "17/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Aggiunto CdP Sprint 7],
     ),
     (
       "0.7.3",
       "17/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Correzioni riguardo CdP Sprint 6],
     ),
     (
       "0.7.2",
       "17/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Piccole modifiche riguardo CdP Sprint 6],
     ),
     (
       "0.7.1",
       "16/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Consuntivo di periodo Sprint 6],
     ),
     (
       "0.7.0",
       "11/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Bozza sprint 7],
     ),
     (
@@ -1535,7 +1535,7 @@ Issue relative a sprint 6:
 
   ==== Rischi occorsi
 Il gruppo si è imbattuto in *R01* (@RO1) in quanto non è stato possibile realizzare il set di automazioni per il cruscotto relativo alle metriche del #gloss("Piano di Qualifica").
-L'impatto del rischio è stato basso dato che l'assenza delle automazioni non ha interferito con le attività contemporanee.
+L'impatto del rischio è stato medio dato che l'assenza delle automazioni non ha interferito con le attività contemporanee, tuttavia ha bloccato la visualizzazione delle metriche in modo automatico.\
 La task è stata di conseguenza posticipata allo sprint successivo dandole una priorità maggiore in modo da poter stabilizzare l'intero reparto inerente al *Piano di Qualifica*.
 
 ==== Aggiornamento ore rimanenti
@@ -1579,7 +1579,7 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
 Inizio: 02/01/2026 \
 Fine: 14/01/2026 \
 
-In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura 
+In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura
 dei requisiti relativi agli Use Cases dell'#gloss("Analisi dei Requisiti") e il completamento del sistema di automazione per il cruscotto
 di valutazione delle metriche.
 
@@ -1594,8 +1594,6 @@ In seguito sono mostrate le attività identificate:
 === Rischi attesi
 - *RP1* (@RP1): trovandoci in prossimità della sessione invernale di esami la disponibilità temporale dei membri del gruppo potrebbe risultare ridotta a causa degli impegni accademici in concomitanza
 - *RO1* (@RO1): dalla la possibilità che RP1 si verifichi potrebbe avvenire ritardi nel completamento delle task assegnate
-
-//TODO: Fare consuntivo di periodo sprint 7
 
 ==== Preventivo risorse da utilizzare
 #table(
@@ -1634,10 +1632,10 @@ Il gruppo ha svolto con successo le seguenti attività: \
 Issue relative a sprint 7: \
 - [PdQ] Stabilizzazione *Piano di Qualifica* #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/149")[\#149],
 - [AdR] Scrittura requisiti UC31 - UC60 #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/160")[\#160],
-- [AdR] Generalizzazione "Admin Generico" #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/163")[\#163], 
-- [AdR] Espansione UC di visualizzazione #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/162")[\#162], 
-- [AdR] Scrittura Requisiti #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/127")[\#127], 
-- Creazione Google Sheet per cruscotto con automazioni #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/150")[\#150], 
+- [AdR] Generalizzazione "Admin Generico" #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/163")[\#163],
+- [AdR] Espansione UC di visualizzazione #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/162")[\#162],
+- [AdR] Scrittura Requisiti #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/127")[\#127],
+- Creazione Google Sheet per cruscotto con automazioni #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/150")[\#150],
 
 ==== Retrospettiva
 Durante lo Sprint 7 il gruppo è riuscito a realizzare una versione stabile del #gloss("Piano di Qualifica"),
@@ -1685,7 +1683,7 @@ Di conseguenza, nello Sprint 8 verrà data maggiore priorità al completamento d
 ==== Rischi occorsi
 Il gruppo ha riscontrato il rischio R01 (@RO1), in quanto non è stato possibile completare integralmente la stesura dei requisiti relativi
 agli Use Case analizzati, ma solo una parte di essi.L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti")
-in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine,nello Sprint 8 questa attività verrà intensificata 
+in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine,nello Sprint 8 questa attività verrà intensificata
 per il suo completamento.
 
 
