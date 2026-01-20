@@ -5,6 +5,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.20.0",
+      "20/01/2026",
+      "Michele Dioli",
+      "-",
+      [Creazione requisiti non funzionali e di dominio],
+    ),
+    (
       "0.19.0",
       "14/01/2026",
       "Riccardo Graziani",
@@ -4224,10 +4231,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Cloud invia il comando di reset al Sistema Gateway
 
 
-
-
 //////////////////////////////////////////////////////////////////////////
-//----------------------------    REQUISITI    -------------------------//
+//----------------------------    🫵REQUISITI🫵    -------------------------//
 //////////////////////////////////////////////////////////////////////////
 = Requisiti
 I requisiti seguenti dovranno essere implementati entro il *27 marzo 2026*.
@@ -4858,7 +4863,27 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  [], [], [],
+  [*RNF-1-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori, gateway, tenant senza degrado delle prestazioni.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali], // non so se bisogna dividerlo in 3
+  [*RNF-2-Obb*], [Devono essere presenti test unitari e test di integrazione.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-3-Obb*], [Deve essere presente un monitoraggio in tempo reale delle prestazioni del sistema.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-4-Obb*], [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-5-Obb*], [È necessario versionare il codice utilizzando Git.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-6-Obb*], [ È necessario gestire la bufferizzazione dei dati (gateway/cloud) per tollerare disconnessioni temporanee.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-7-Obb*], [È necessario il supporto allo streaming dei dati in tempo reale ], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+   [*RNF-8-Obb*], [È necessario il supporto alla gestione di più stream contemporanei.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-9Obb*], [È necessario l’uso di container], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)], //non sono sicuro sul orchestrazione
+  [*RNF-10-Obb*], [Deve essere garantita la cifratura dei dati], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-11-Obb*], [Deve essere garantita l’autenticazione dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-12-Obb*], [Deve essere garantito l isolamento dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-13-Des*], [Gradita la presenza di un sistema di eventi/alert],[Capitolato di progetto:
+  5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-14-Des*], [Gradita la presenza di audit log],[Capitolato di progetto:
+  5.4 – Requisiti di Sicurezza Opzionali],
 )
 
 == Requisiti di dominio
@@ -4866,10 +4891,517 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  [], [], [],
+  [*RD-1-Obb*], [Necessario l'uso di sensori BLE.], [Capitolato di progetto],
+
+  [*RD-2-Obb*], [I dati devono provenire da sensori Bluetooth Low Energy.], [Capitolato di progetto: 2.1 - Sensori BLE],
+
+  [*RD-3-Obb*], [La comunicazione deve essere basata su profili BLE standard.], [Capitolato di progetto: 2.2 - Gateway BLE-WiFi],
+
+  [*RD-4-Obb*], [È richiesto l’uso di un’architettura a tre livelli: sensori, gateway BLE–WiFi e cloud.], [Capitolato di progetto: 3 - Architettura],
+
+  [*RD-5-Obb*], [È necessario l’utilizzo di gateway come intermediari obbligatori: i sensori non devono comunicare direttamente con il cloud.], [Capitolato di progetto: 2.2 - Gateway BLE-WiFi],
+
+  [*RD-6-Obb*], [Il sistema deve supportare più clienti simultanei.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-7-Obb*], [I dati devono essere logicamente separati per tenant.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-8-Obb*], [I dati devono provenire da sensori differenti], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-9-Obb*], [I dati devono essere associati a un timestamp ed essere interrogabili per intervallo temporale.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-10-Obb*], [I dati devono essere associati a un timestamp ed essere interrogabili per sensore e per intervallo temporale.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-11-Obb*], [Gateway e sensori devono essere registrati, associati a un tenant e riconosciuti in modo persistente dal sistema.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-12-Obb*], [ Il dominio richiede l’accesso ai dati storici], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-13-Obb*], [ Il dominio richiede l’accesso ai dati in tempo reale tramite stream.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
 )
 
+#pagebreak()
+
+== Tracciamento
+
+\
+
+#align(center)[
+
+  #table(
+  columns: (auto, auto),
+  align: center,
+  table.header([*Requisito*], [*Fonti*]),
+
+  [#rf()],
+  [#ref-uc(<Autenticazione-utente>)],
+
+  [#rf()],
+  [#ref-uc(<Inserimento-email-auth>)],
+
+  [#rf()],
+  [#ref-uc(<Autenticazione-utente>) \ #ref-uc(<Inserimento-password>)],
+
+  [#rf()],
+  [#ref-uc(<Autenticazione-non-riuscita>)],
+
+  [#rf()],
+  [#ref-uc(<Account-sospeso>)],
+
+  [#rf[?]],
+  [#ref-uc(<Invio-codice-2FA>)],
+
+  [#rf[?]],
+  [#ref-uc(<Re-invio-codice-2FA>)],
+
+  [#rf[?]],
+  [#ref-uc(<Autenticazione-2FA>)],
+
+  [#rf()],
+  [#ref-uc(<Inserimento-codice-2FA>)],
+
+  [#rf()],
+  [#ref-uc(<Codice-2FA-errato>)\ #ref-uc(<Codice-2FA-scaduto>)],
+
+  [#rf()],
+  [#ref-uc(<Impostazione-password>)],
+
+  [#rf()],
+  [#ref-uc(<Password-dimenticata>)],
+
+  [#rf()],
+  [#ref-uc(<Inserimento-indirizzo-email>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-email-reimpostazione-password>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-email-reimpostazione-password>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
+
+  // TODO: Da migliorare questo requisito sulla dashboard.
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-lista-alert>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+
+  [#rf()],
+  [#ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [#ref-uc(<Email-gia-utilizzata>)],
+  
+  [#rf()],
+  [#ref-uc(<Registrazione-nuovo-tenant-user>)],
+
+  [#rf()],
+  [#ref-uc(<Inserimento-email>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-email-impostazione-password>)],
+  
+  [#rf()],
+  [#ref-uc(<Sospensione-tenant-user>)],
+  
+  [#rf()],
+  [#ref-uc(<Conferma-sospensione-tenant-user>)],
+
+  [#rf()],
+  [#ref-uc(<Riattivazione-tenant-user>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-riattivazione-tenant-user>)],
+
+  [#rf()],
+  [#ref-uc(<Eliminazione-tenant-user>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-eliminazione-tenant-user>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-lista-utenti-tenant>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-email-utente-lista>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-stato-utente-lista>)], 
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-nome-gateway-lista>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-stato-gateway-lista>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-gateway-associato>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-nome-gateway-associato>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-stato-gateway-associato>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-sensori-collegati-gateway-associato>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>)],
+
+  // TODO: Creare API key dovrebbe essere req. obb? 
+  [#rf[?]],
+  [#ref-uc(<Registrazione-nuova-api-key>)],
+  
+  [#rf[?]],
+  [#ref-uc(<Inserimento-nome-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Inserimento-scadenza-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-nome-api-key>), #ref-uc(<Nome-api-key-gia-utilizzato>)],
+
+  [#rf[?]],
+  [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-scadenza-api-key>), #ref-uc(<Scadenza-api-key-data-passata>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-lista-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-nome-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-data-creazione-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-data-scadenza-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Grafico-utilizzo-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Eliminazione-api-key>)],
+
+  [#rf[?]],
+  [#ref-uc(<Eliminazione-api-key>), #ref-uc(<Conferma-eliminazione-api-key>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-audit-log>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-tipo-azione-audit-log>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
+
+  [#rf()],
+  [#ref-uc(<Filtraggio-log-per-tipologia>)],
+
+  [#rf()],
+  [#ref-uc(<Filtraggio-log-per-intervallo-temporale>)],
+
+  [#rf()],
+  [#ref-uc(<Filtraggio-log-per-utente>)],
+
+  [#rf()],
+  [#ref-uc(<Esportazione-log>)],
+
+  // TODO: Da migliorare questi requisiti sulla dashboard.
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-lista-alert>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-api-key-valide-scadute>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-commissioning-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-decommissioning-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Creazione-richiesta-commissioning-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Creazione-richiesta-decommissioning-gateway>), #ref-uc(<Selezione-gateway-decommissioning-tenant-admin>)],
+  
+  [#rf()],
+  [#ref-uc(<Eliminazione-richiesta-commissioning-decommissioning-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Eliminazione-richiesta-commissioning-decommissioning-gateway>), #ref-uc(<Conferma-eliminazione-richiesta-commissioning-decommissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
+
+  [#rf()],
+  [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
+
+  [#rf()],
+  [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  [#rf()],
+  [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
+
+  [#rf()],
+  [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
+
+  //Attore: Gateway, Sistema: Cloud
+  //TODO: controllare che requisiti siano atomici
+  [#rf()],
+  [#ref-uc(<Conferma-comando-commissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-commissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Errore-commissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-riavvio>)],
+
+  [#rf()],
+  [#ref-uc(<Errore-riavvio>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-reset>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-sospensione-invio-dati>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-riattivazione-invio-dati>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-sospensione-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-riattivazione-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-comando-modifica-frequenza-invio-dati>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-comando-hello>)],
+
+  [#rf()],
+  [#ref-uc(<Autenticazione-gateway-fallita>)],
+
+  [#rf()],
+  [#ref-uc(<Identificativo-gateway-non-trovato>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dati-crittografati>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dati-crittografati>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dati-fallito>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dati-fallito>)],
+
+  [#rf()],
+  [#ref-uc(<Assenza-prolungata-dati-sensori>)],
+
+  //Attore: API Client, Sistema: Cloud
+  [#rf()],
+  [#ref-uc(<Richiesta-dati-real-time-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Ricezione-dati-real-time-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Richiesta-storico-dati-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Ricezione-storico-dati-sensore>)],
+
+  [#rf()],
+  [#ref-uc(<Sensore-non-trovato>)],
+
+  [#rf()],
+  [#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)],
+
+  [#rf()],
+  [#ref-uc(<Sensore-non-associato-tenant-API-Client>)],
+
+  [#rf()],
+  [#ref-uc(<Autenticazione-API-Client>)],
+
+  [#rf()],
+  [#ref-uc(<Credenziali-API-Client-errate>)],
+
+  [#rf()],
+  [#ref-uc(<Credenziali-API-Client-scadute>)],
+
+  //Attore: Sensore simulato, Sistema: Gateway
+  [#rf()],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-nuovo-dato-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dati-eccessivi-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dato-heart-rate-service>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dato-pulse-oximeter-service>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dato-ecg-custom>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dato-health-thermometer-service>)],
+
+  [#rf()],
+  [#ref-uc(<Invio-dato-environmental-sensing-service>)],
+
+  //Attore: Cloud, Sistema: Gateway
+  [#rf()],
+  [#ref-uc(<Conferma-autenticazione-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Rifiuto-autenticazione-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref(<Invio-tenant-associato-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-chiave-cifratura-dati>), #ref(<Invio-tenant-associato-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Riattivazione-sensore-simulato>)],
+
+  [#rf()],
+  [#ref-uc(<Sospensione-sensore-simulato>)],
+
+  [#rf()],
+  [#ref-uc(<Riattivazione-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Sospensione-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Riavvio-gateway-cloud>)],
+
+  [#rf()],
+  [#ref-uc(<Modifica-frequenza-invio-dati-gateway>)],
+
+  [#rf()],
+  [#ref-uc(<Decommissioning-gateway-cloud>) #ref-uc(<Disassociazione-tenant-gateway>) #ref-uc(<Reset-gateway-cloud>)],
+
+  [#rf()],
+  [#ref-uc(<Reset-gateway-cloud>)],
 
 
+  [*RNF-1-Obb*],[Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-2-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-3-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-4-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-5-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-6-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi],
+  [*RNF-7-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi],
+  [*RNF-8-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiF],
+  [*RNF-9-Obb*], [Capitolato di progetto: 3.3 - Cloud],
+  [*RNF-10-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-11-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-12-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-13-Des*], [Capitolato di progetto: 5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-14-Des*], [Capitolato di progetto: 5.4 – Requisiti di Sicurezza Opzionali],
 
+  [*RD-1-Obb*], [Capitolato di progetto],
+  [*RD-2-Obb*],[Capitolato di progetto: 2.1 - Sensori BLE],
+  [*RD-3-Obb*], [Capitolato di progetto: 2.2 - Gateway BLE-WiFi],
+  [*RD-4-Obb*], [Capitolato di progetto: 3 - Architettura],
+  [*RD-5-Obb*], [Capitolato di progetto: 2.2 - Gateway BLE-WiFi],
+  [*RD-6-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-7-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-8-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-9-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-10-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-11-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-12-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-13-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
+  )
+]
+  
