@@ -7,6 +7,7 @@
   stato: "Bozza",
   versione: "0.0.4",
   registro-modifiche: (
+    ("0.0.5", "17/01/2026", "Michele Dioli", "-", "Inizio stesura sezione del cruscotto"),
     ("0.0.4", "13/01/2026", "Siria Salvalaio", "-", "Inizio stesura iniziative di miglioramento (bozza)"),
     ("0.0.3", "03/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
     ("0.0.2", "29/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Stesura metriche"),
