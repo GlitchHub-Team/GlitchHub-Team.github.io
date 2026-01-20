@@ -9,7 +9,7 @@
       "14/01/2026",
       "Riccardo Graziani",
       "-",
-      [Creazione requisiti dashboard Utente autenticato e Tenant Admin],
+      [Creazione  requisiti dashboard Utente autenticato e Tenant Admin],
     ),
     (
       "0.18.0",
