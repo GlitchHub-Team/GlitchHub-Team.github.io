@@ -69,7 +69,7 @@ M31 ha chiarito che:
 - gli alert gestiti dal cloud devono essere principalmente di tipo infrastrutturale o gestionale.
 
 Sono stati ritenuti appropriati:
-- alert relativi a gateway offlne;
+- alert relativi a gateway offline;
 - alert relativi ai costi del tenant, con invio di una mail al superamento di una soglia (funzionalità opzionale).
 
 Gli alert proposti dal gruppo sono stati giudicati coerenti.
