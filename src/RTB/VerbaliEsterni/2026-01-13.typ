@@ -2,14 +2,22 @@
 
 #show: report.with(
   titolo: "Verbale esterno 13/01/2026 (M31)",
-  stato: "Bozza",
-  versione: "0.0.1",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
     (
-      "0.0.1", 
-      "13/01/2026", 
-      "Hossam Ezzemouri", "-", 
-      "Stesura verbale esterno del 13/01/2026"
+      "1.0.0",
+      "20/01/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      "Creazione versione stabile del verbale esterno del 13/01/2026",
+    ),
+    (
+      "0.0.1",
+      "13/01/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      "Stesura verbale esterno del 13/01/2026",
     ),
   ),
   partecipanti: (
@@ -18,7 +26,7 @@
     "Michele Dioli",
     "Riccardo Graziani",
     "Siria Salvalaio",
-    "Elia Ernesto Stellin"
+    "Elia Ernesto Stellin",
   ),
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Cardin Riccardo", "Prof. Vardanega Tullio"),
   odg: (
@@ -30,11 +38,11 @@
     "Configurazione dei gateway e gestione dei sensori",
     "Commissioning e decommissioning dei gateway",
     "Monitoraggio del sistema e requisiti non funzionali",
-    "Tecnologie suggerite"
+    "Tecnologie suggerite",
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
@@ -84,14 +92,14 @@ Il gruppo ha approfondito il tema dell'impersonificazione.
 
 M31 ha chiarito che:
 - impersonare un account significa assumerne completamente il ruolo;
-- l'impersonifcazione è usata dal Super Admin per risolvere problematiche operative;
-- l'operazione deve avvenire previo consenso del Tenant Admin.
+- l'impersonificazione è usata dal Super Admin per risolvere problematiche operative;
+- l'operazione deve avvenire nei Tenant che hanno accettato la suddetta clausola.
 
-È stato inoltr specificato che:
+È stato inoltre specificato che:
 - il Super-Admin deve poter accedere agli stessi dati del Tenant Admin anche senza impersonificazione, con esclusione delle informazioni più sensibili;
 - gli use cases possono essere ricondotti a un ruolo di Admin generico, considerando il Super Admin come utente fidato.
 
-È stata suggerita la tecnologia open source Keycloak per la gestione delle utenze e dell'impersonificazione.
+È stata suggerita la tecnologia open source *Keycloak* per la gestione delle utenze e dell'impersonificazione.
 
 == Audit log
 Il gruppo ha discusso la necessità di introdurre audit log.
@@ -107,7 +115,7 @@ M31 ha confermato che:
 È stata approfondita la gestione della frequenza di invio dei dati e delle tecniche di normalizzazione.
 
 M31 ha chiarito che:
-- il rolling average varia in base alla tipologia di sensore;
+- la frequenza di invio dati varia in base alla tipologia di sensore, ci sarà un parametro di default per ogni tipologia e successivamente ogni tenant potrà personalizzarlo;
 - il gateway può inviare dati atomici o in pacchetti;
 - è possibile definire limiti di invio a livello di gateway.
 
@@ -143,8 +151,7 @@ Per il Proof of Concept:
 == Tecnologie suggerite
 M31 ha suggerito:
 - NATS per la comunicazione;
-- NestJS per il backend;
-- Node.js per i servizi applicativi, favorendo JavaScript e TypeScript.
+- Node.js per i servizi applicativi, favorendo JavaScript o TypeScript lungo l'intero stack.
 
 = Attività conseguenti
 #table(
@@ -152,17 +159,13 @@ M31 ha suggerito:
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Studio tecnologie suggerite],
-  [Alessandro Dinato, Riccardo Graziani],
-  [#issue(165), #issue(169)],
+  [Studio tecnologie suggerite], [Alessandro Dinato, Riccardo Graziani], [#issue(165), #issue(169)],
 
   [Stesura dei requisi e realizzazione diagrammi use case],
   [Hossam Ezzemouri,Jaume Bernardi, Michele Dioli],
   [#issue(166)],
 
-  [Conclusione use cases Visualizzazione],
-  [ Riccardo Graziani],
-  [#issue(170)],
+  [Conclusione use cases Visualizzazione], [ Riccardo Graziani], [#issue(170)],
 
   [Approfondimento normalizzazione dati],
   [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
@@ -170,5 +173,5 @@ M31 ha suggerito:
 
   [Approfondimento Grafana+Prometheus],
   [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
-  [#issue(134)]
+  [#issue(134)],
 )
