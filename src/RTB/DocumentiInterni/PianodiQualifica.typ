@@ -5,7 +5,7 @@
 #show: report.with(
   titolo: "Piano di Qualifica",
   stato: "Bozza",
-  versione: "0.0.4",
+  versione: "0.0.5",
   registro-modifiche: (
     ("0.0.5", "17/01/2026", "Michele Dioli", "-", "Inizio stesura sezione del cruscotto"),
     ("0.0.4", "13/01/2026", "Siria Salvalaio", "-", "Inizio stesura iniziative di miglioramento (bozza)"),
