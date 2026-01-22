@@ -160,7 +160,7 @@ func processFile(path string, terms []string) {
 					searchStart--
 				}
 
-				if searchStart >= 0 && body[searchStart] == "@"
+				if searchStart >= 0 && body[searchStart] == "@"{
 					continue
 				}
 			}
