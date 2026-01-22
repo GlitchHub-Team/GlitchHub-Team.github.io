@@ -127,12 +127,9 @@ func processFile(path string, terms []string) {
 
 	for _, term := range terms {
 		escapedTerm := regexp.QuoteMeta(term)
-
-		
 		
 		pattern := fmt.Sprintf(`(?i)([_*\x60]*)(%s)([_*\x60]*)`, escapedTerm)
 		re := regexp.MustCompile(pattern)
-
 		
 		allMatches := re.FindAllStringSubmatchIndex(body, -1)
 		for _, loc := range allMatches {
@@ -140,8 +137,6 @@ func processFile(path string, terms []string) {
 			termEnd := loc[5]
 			matchStart := loc[0]
 			matchEnd := loc[1]
-
-			
 			
 			if matchStart > 0 {
 				prevChar := body[matchStart-1]
@@ -158,8 +153,9 @@ func processFile(path string, terms []string) {
 				}
 			}
 
-			
-			
+			if matchStart > 0 && body[matchStart-1] == '@' {
+			    continue
+			}
 			
 			if matchStart >= 5 {
 				prefixCheck := body[matchStart-5 : matchStart]
@@ -167,8 +163,6 @@ func processFile(path string, terms []string) {
 					continue
 				}
 			}
-			
-
 			
 			if !isInsideGloss(body, termStart) && !isInsideHeading(body, termStart) {
 				
@@ -196,11 +190,9 @@ func processFile(path string, terms []string) {
 	for i := 0; i < len(matches); i++ {
 		current := matches[i]
 
-		
 		if tagged[current.termStart] {
 			continue
 		}
-
 		
 		hasOverlap := false
 		for j := i + 1; j < len(matches) && matches[j].termStart < current.termEnd; j++ {
