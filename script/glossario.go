@@ -153,8 +153,16 @@ func processFile(path string, terms []string) {
 				}
 			}
 
-			if matchStart > 0 && body[matchStart-1] == '@' {
-			    continue
+			if matchStart > 0{
+				searchStart:= matchStart -1
+
+				for searchStart >=0 && (body[searchStart] == '-' || isWordChar(body[searchStart])){
+					searchStart--
+				}
+
+				if searchStart >= 0 && body[searchStart] == "@"
+					continue
+				}
 			}
 			
 			if matchStart >= 5 {
