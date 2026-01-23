@@ -6,23 +6,72 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Da verificare",
-  versione: "0.5.1",
+  stato: "Verificato",
+  versione: "0.7.4",
   registro-modifiche: (
+    (
+      "0.7.4",
+      "17/01/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Aggiunto CdP Sprint 7],
+    ),
+    (
+      "0.7.3",
+      "17/01/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Correzioni riguardo CdP Sprint 6],
+    ),
+    (
+      "0.7.2",
+      "17/01/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Piccole modifiche riguardo CdP Sprint 6],
+    ),
+    (
+      "0.7.1",
+      "16/01/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Consuntivo di periodo Sprint 6],
+    ),
+    (
+      "0.7.0",
+      "11/01/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Bozza sprint 7],
+    ),
+    (
+      "0.6.1",
+      "28/12/2025",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      [Stesura CdP sprint 5 (@sprint-5-cdp); stesura PaF sprint 6 (@sprint-6-paf)],
+    ),
+    (
+      "0.6.0",
+      "22/12/2025",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      [Bozza sprint 5-6],
+    ),
     (
       "0.5.1",
       "15/12/2025",
       "Elia Ernesto Stellin",
-      "-",
+      "Alessandro Dinato",
       [Aggiunta data consegna RTB in @calendario-progetto; Stesura CdP sprint 4 (@sprint-4-cdp);
-      Stesura PaF sprint 5 (@sprint-5-paf)]
+        Stesura PaF sprint 5 (@sprint-5-paf)],
     ),
     (
       "0.5.0",
       "11/12/2025",
       "Elia Ernesto Stellin",
-      "-",
-      [Stesura dati CdP sprint 4 (@sprint-4-cdp)]
+      "Alessandro Dinato",
+      [Stesura dati CdP sprint 4 (@sprint-4-cdp)],
     ),
     (
       "0.4.0",
@@ -71,7 +120,7 @@
       "17/11/2025",
       "Alessandro Dinato",
       "Siria Salvalaio",
-      "Bozza Piano di Progetto"
+      "Bozza Piano di Progetto",
     ),
   ),
   distribuzione: (
@@ -81,8 +130,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -443,8 +492,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 )
 
 = Calendario di massima del progetto <calendario-progetto>
-//ricordarsi di modificare la data
-Il gruppo si impegna a presentare la candidatura per la #gloss[Requirements and Technology Baseline] entro il 16/01/2025, con possibilità di deroga a seconda delle necessità del gruppo.
+Il gruppo si impegna a presentare la candidatura per la #gloss[Requirements and Technology Baseline] entro il 07/02/2025, con possibilità di deroga a seconda delle necessità del gruppo.
 
 Inoltre, come descritto nella #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni], _GlitchHub Team_ si impegna a terminare il progetto entro il giorno *27 marzo 2026*, senza alcuna possibilità di deroga.
 
@@ -1106,11 +1154,11 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
 
 ==== Preventivo risorse da utilizzare
 #table(
-	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
-		top: if y == 0 { 0pt } else { 0.5pt + black },
-		left: if x == 0 { 0pt } else { 0.5pt + black },
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "-", "-", "2", "-", "-", "-", [*2*],
@@ -1131,7 +1179,6 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
   ("Progettista", 0),
   ("Programmatore", 0),
   ("Verificatore", 0),
-
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint4)
 
@@ -1193,7 +1240,8 @@ Un ulteriore fattore di rallentamento nelle attività di gruppo è stata la diff
   oreEffettiveSprint4,
 )
 
-==== Rischi occorsi
+==== Rischi occorsi <sprint-4-rischi-occorsi>
+
 Durante lo *sprint 4*, sono occorsi i seguenti rischi:
 - *RO3* (@RO3): come previsto, lo studio dei requisiti del capitolato ha fatto sorgere numerosi dubbi relativamente ai casi d'utilizzo del prodotto bloccando lo sviluppo di certi use cases, soprattutto quelli relativi al simulatore di #gloss[Gateway]. Questo rischio ha avuto un impatto medio poiché, sebbene fosse stato previsto, ha comunque causato ritardi nello sviluppo degli use cases.
 - *RP1* (@RP1): gli impegni accademici o personali dei membri del gruppo hanno ostacolato il lavoro sincrono a gruppi di comprensione e studio degli use cases, rallentandone la produzione. Questo rischio ha avuto un impatto medio in quanto ha causato l'insorgere di dubbi verso la fine dello sprint.
@@ -1203,8 +1251,8 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
-  top: if y == 0 { 0pt } else { 0.5pt + black },
-  left: if x == 0 { 0pt } else { 0.5pt + black },
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "8", "7", "9 (-1)", "21", "24", "21", [*90*],
@@ -1226,66 +1274,452 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
-  "Responsabile", "44 (-3)" ,"30 €/h", "1320 € (-90 €)",
-  "Amministratore", "53 " ,"20 €/h", "1060 € ",
-  "Analista", "38 (-13)" ,"25 €/h", "950 € (-325 €)",
-  "Progettista", "145 " ,"25 €/h", "3625 € ",
-  "Programmatore", "165 " ,"15 €/h", "2475 € ",
-  "Verificatore", "160 " ,"15 €/h", "2400 € ",
+  "Responsabile", "44 (-3)", "30 €/h", "1320 € (-90 €)",
+  "Amministratore", "53 ", "20 €/h", "1060 € ",
+  "Analista", "38 (-13)", "25 €/h", "950 € (-325 €)",
+  "Progettista", "145 ", "25 €/h", "3625 € ",
+  "Programmatore", "165 ", "15 €/h", "2475 € ",
+  "Verificatore", "160 ", "15 €/h", "2400 € ",
   table.footer([*Totale*], [*605*], [-], [*11830 €*]),
 )
 
+//// SPRINT 5 /////////////////////////////////////////////////////////////////
 == Sprint 5 <sprint-5>
 Inizio: 11/12/2025 \
 Fine: 17/12/2025 \
 
-Il presente sprint ha lo scopo di sviluppare ulteriormente i casi d'uso in vista dell'incontro con la proponente del 15/12/2025, in cui il gruppo presenterà gli use cases prodotti all'azienda e riceverà feedback utile alla produzione dell'#gloss[analisi dei requisiti].
+Il presente sprint ha lo scopo di sviluppare ulteriormente i casi d'uso in vista dell'incontro con l'azienda proponente del 15/12/2025, in cui il gruppo presenterà gli use cases prodotti all'azienda e riceverà feedback utili alla produzione dell'#gloss[analisi dei requisiti].
+
+Inoltre, secondo quanto detto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[*verbale interno dell'11 dicembre 2025*], è sorta la necessità di creare degli *Issue Form* e delle automazioni per le #gloss[GitHub Issues] per aumentare la produttività del gruppo.
 
 === Preventivo a finire <sprint-5-paf>
 ==== Attività da svolgere
 Il gruppo ha individuato le seguenti attività da svolgere:
-- Use cases *Super Admin*
-- Use cases *Tenant Admin*
-- Use cases *Gateway*
+- Sviluppo degli use cases con attore *Super Admin*
+- Sviluppo degli use cases con attore *Tenant Admin*
+- Sviluppo degli use cases con attore *Gateway*
+- Creazione di *Issue Form* e automazioni per #gloss[Github Issues]
 
 ==== Rischi attesi <sprint-5-rischi-attesi>
 Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
-- *RO3*(@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-attesi), un ulteriore studio degli use cases può portare alla creazione di ulteriori dubbi che possono rallentare lo sviluppo degli use cases.
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali imprevisti, che possono rendere più difficile un lavoro sincrono di brainstorming e di studio.
+- *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-attesi), un ulteriore studio degli use cases può portare alla creazione di ulteriori dubbi che possono rallentare lo sviluppo degli use cases.
+- *RP1* (@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali imprevisti, che possono rendere più difficile un lavoro sincrono di brainstorming e di studio.
 
 ==== Preventivo risorse da utilizzare
 #table(
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-	align: left,
-	stroke: (x, y) => (
+  align: left,
+  stroke: (x, y) => (
     top: if y == 0 { 0pt } else { 0.5pt + black },
     left: if x == 0 { 0pt } else { 0.5pt + black },
-	),
-	table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-	"Jaume Bernardi",       "-", "-", "2", "-", "-", "-", [*0*],
-  "Alessandro Dinato",    "-", "-", "2", "-", "-", "-", [*0*],
-  "Michele Dioli",        "-", "-", "2", "-", "-", "-", [*0*],
-  "Hossam Ezzemouri",     "-", "-", "0", "-", "-", "-", [*0*],
-  "Riccardo Graziani",    "-", "-", "2", "-", "-", "-", [*0*],
-  "Siria Salvalaio",      "-", "-", "2", "-", "-", "-", [*0*],
-  "Elia Ernesto Stellin", "2", "1", "1", "-", "-", "-", [*0*],
-  table.footer([*Totale*], [*2*], [*1*], [*11*], [*0*], [*0*], [*0*], [*0*]),
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "1", "-", "-", "-", [*1*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "-", "2", "-", "-", "-", [*2*],
+  "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+  "Riccardo Graziani", "-", "-", "1", "-", "-", "-", [*1*],
+  "Siria Salvalaio", "-", "-", "1", "-", "-", "-", [*1*],
+  "Elia Ernesto Stellin", "2", "2", "1", "-", "-", "-", [*5*],
+  table.footer([*Totale*], [*2*], [*2*], [*8*], [*0*], [*0*], [*0*], [*12*]),
 )
-==== Grafico a torta della suddivisione oraria prevista
 
+==== Grafico a torta della suddivisione oraria prevista
 #let orePrevSprint5 = (
   ("Responsabile", 2),
   ("Amministratore", 1),
   ("Analista", 11),
-	("Progettista", 0),
-	("Programmatore", 0),
-	("Verificatore", 0),
-
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint5)
 
+=== Consuntivo di periodo <sprint-5-cdp>
+
+==== Attività svolte
+Il gruppo ha svolto con successo le seguenti attività:
+- Sviluppo degli use cases con attore *Super Admin* (#issue(97))
+- Sviluppo degli use cases con attore *Tenant Admin* (#issue(98))
+- Sviluppo degli use cases con attore *Gateway* (#issue(99))
+- Creazione di *Issue Form* e automazioni per #gloss[GitHub Issues] (#issue(104))
+
+==== Retrospettiva
+Durante lo *sprint 5*, il gruppo ha continuato la scrittura degli use cases del progetto i quali, però, non sono ancora stati completati, a causa di una serie di dubbi che hanno rallentato i lavori del gruppo per l'intero sprint.
+
+Per riuscire a scrivere il documento di #gloss[Analisi dei requisiti] in tempo utile, il gruppo si impegna a continuare la redazione degli use cases nello sprint successivo.
+
+Inoltre, la task "Creazione di *Issue Form* e automazioni per #gloss[GitHub Issues] (#issue(104))" ha impiegato molto più tempo da *Amministratore* del previsto, in quanto non si aveva previsto che le automazioni desiderate dal gruppo richiedessero uno studio delle API di GitHub, che utilizzano #gloss[GraphQL] per le richieste.
+
+==== Risorse utilizzate
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "1", "-", "-", "-", [*1*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "-", "2", "-", "-", "-", [*2*],
+  "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+  "Riccardo Graziani", "-", "-", "1", "-", "-", "-", [*1*],
+  "Siria Salvalaio", "-", "-", "1", "-", "-", "-", [*1*],
+  "Elia Ernesto Stellin", "1 (-1)", "5 (+3)", "0 (-1)", "-", "-", "-", [*7*],
+  table.footer([*Totale*], [*1*], [*5*], [*7*], [*0*], [*0*], [*0*], [*14*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let oreEffettiveSprint5 = (
+  ("Responsabile", 1),
+  ("Amministratore", 5),
+  ("Analista", 7),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+)
+#graficoTorta(
+  "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint5,
+)
+
+==== Rischi occorsi
+Il gruppo ha riscontrato principalmente i seguenti rischi:
+- *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-occorsi), i dubbi emersi durante lo sviluppo degli use cases ne hanno rallentato lo sviluppo
+
+==== Aggiornamento ore rimanenti
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "8 (-1)", "21", "24", "21", [*89*],
+  "Alessandro Dinato", "1", "7", "1 (-2)", "21", "23", "24", [*77*],
+  "Michele Dioli", "4", "7", "6 (-2)", "21", "24", "23", [*85*],
+  "Hossam Ezzemouri", "7", "8", "4", "20", "24", "23", [*86*],
+  "Riccardo Graziani", "8", "8", "3 (-1)", "20", "23", "24", [*86*],
+  "Siria Salvalaio", "8", "8", "6 (-1)", "21", "24", "21", [*88*],
+  "Elia Ernesto Stellin", "7 (-1)", "3 (-5)", "3", "21", "23", "24", [*80*],
+  table.footer([*Totale*], [*43*], [*48*], [*31*], [*145*], [*165*], [*160*], [*591*]),
+)
+
+==== Aggiornamento costi
+#table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "43 (-1)", "30 €/h", "1290 € (-30 €)",
+  "Amministratore", "48 (-5)", "20 €/h", "960 € (-100 €)",
+  "Analista", "31 (-7)", "25 €/h", "775 € (-175 €)",
+  "Progettista", "145", "25 €/h", "3625 € ",
+  "Programmatore", "165", "15 €/h", "2475 € ",
+  "Verificatore", "160", "15 €/h", "2400 € ",
+  table.footer([*Totale*], [*592*], [-], [*11525 €*]),
+)
+
+//// SPRINT 6 /////////////////////////////////////////////////////////////////
+== Sprint 6
+Inizio: 17/12/2025 \
+Fine: 31/12/2025 \
+
+Il presente sprint ha lo scopo di raggiungere una versione stabile per i documenti di #gloss[Analisi dei requisiti] e #gloss[Piano di Qualifica], fissando la fine dello sprint (*31/12/2025*) come #gloss[milestone] interna pre-sessione invernale di studi.
+
+=== Preventivo a finire <sprint-6-paf>
+==== Attività da svolgere
+Poiché le attività da svolgere riguardano la redazione di due documenti diversi, *Analisi dei Requisiti* e *Piano di Qualifica*, il gruppo ha deciso di dividersi in due sottogruppi, ciascuno dei quali dovrà lavorare su uno dei documenti descritti sopra.
+
+Il gruppo di lavoro per l'*Analisi dei Requisiti* ha individuato le seguenti attività da svolgere:
+- Approfondire gli use cases scritti finora (#issue(123))
+- Espandere gli use cases troppo generici (#issue(124))
+- Definire gli use cases con cloud come *attore* e #gloss[gateway simulato] come *sistema* (#issue(125))
+- Definire gli use cases con sensore come *attore* e #gloss[gateway simulato] come *sistema* (#issue(126))
+- Approfondire i metodi di normalizzazione dati da sensori BLE e approfondire gli strumenti Grafana+Prometheus (risp. #issue(133) e #issue(134))
+
+Il gruppo di lavoro per il *Piano di Qualifica* ha individuato le seguenti attività da svolgere:
+- Definire le metriche da usare nel #gloss[Piano di Qualifica] (#issue(120))
+- Definire la struttura del #gloss[Piano di Qualifica] (#issue(121))
+- Creare foglio Google e relative automazioni per il cruscotto (#issue(122))
+
+==== Rischi attesi
+- *RO1* (@RO1): il mancato rispetto delle scadenze prefissate potrebbe ritardare notevolmente gli sviluppi dell'*Analisi dei Requisiti*, la cui redazione sarà ulteriormente rallentata nel periodo di sessione di studi invernale, fissata dal *19 gennaio 2026* al *21 febbraio 2026*;
+- *RO2* (@RO2): l'errata organizzazione e distribuzione delle risorse del gruppo può portare a uno sbilanciamento nel carico di lavoro tra i due sottogruppi formati per lo sprint corrente.
+
+==== Preventivo risorse da utilizzare
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+  "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+  "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
+  "Siria Salvalaio", "-", "-", "-", "-", "-", "-", [*0*],
+  "Elia Ernesto Stellin", "1", "-", "1", "-", "-", "-", [*2*],
+  table.footer([*Totale*], [*1*], [*0*], [*5*], [*0*], [*0*], [*0*], [*6*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let orePrevSprint6 = (
+  ("Responsabile", 1),
+  ("Amministratore", 0),
+  ("Analista", 5),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint6)
+
+=== Consuntivo di periodo
+
+==== Attività svolte
+Il gruppo ha svolto con successo le seguenti attività: \
+Issue relative a sprint 6:
+
+
+- [AdR] UC per interfaccia utente #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/146")[\#146],
+- [UC] Studio metodi di normalizzazione dati da sensori BLE #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/133")[\#133],
+- [AdR] Approfondimento Use Cases attuali #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/123")[\#123],
+- [AdR] Definire UC Attore=Sensore Simulato, Sistema=Gateway Simulato #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/126")[\#126],
+- [AdR] Definire UC con Attore=Cloud, Sistema=Simulatore Gateway #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/125")[\#125],
+- [PdQ] Trovare e definire metriche #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/120")[\#120],
+- [Gloss] Creazione script per automatizzare parole del glossario #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/144")[\#144],
+- [AdR] Divisione UC per intefaccia utente e UC generici #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/124")[\#124],
 
 
 
+  ==== Risorse utilizzate
+  #table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+    "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+    "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+    "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+    "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
+    "Siria Salvalaio", "-", "-", "-", "-", "-", "-", [*0*],
+    "Elia Ernesto Stellin", "1", "-", "1", "-", "-", "-", [*2*],
+    table.footer([*Totale*], [*1*], [*0*], [*5*], [*0*], [*0*], [*0*], [*6*]),
+  )
+  ==== Grafico a torta della suddivisione oraria prevista
+
+  #let oreEffettiveSprint6 = (
+    ("Responsabile", 1),
+    ("Amministratore", 0),
+    ("Analista", 5),
+    ("Progettista", 0),
+    ("Programmatore", 0),
+    ("Verificatore", 0),
+  )
+  #graficoTorta(
+    "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+    oreEffettiveSprint6,
+  )
+
+  ==== Rischi occorsi
+Il gruppo si è imbattuto in *R01* (@RO1) in quanto non è stato possibile realizzare il set di automazioni per il cruscotto relativo alle metriche del #gloss("Piano di Qualifica").
+L'impatto del rischio è stato medio dato che l'assenza delle automazioni non ha interferito con le attività contemporanee, tuttavia ha bloccato la visualizzazione delle metriche in modo automatico.\
+La task è stata di conseguenza posticipata allo sprint successivo dandole una priorità maggiore in modo da poter stabilizzare l'intero reparto inerente al *Piano di Qualifica*.
+
+==== Aggiornamento ore rimanenti
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "8", "21", "24", "21", [*89*],
+  "Alessandro Dinato", "1", "7", "-1 (-2)", "21", "23", "24", [*75*],
+  "Michele Dioli", "4", "7", "6", "21", "24", "23", [*85*],
+  "Hossam Ezzemouri", "7", "8", "4", "20", "24", "23", [*86*],
+  "Riccardo Graziani", "8", "8", "1 (-2)", "20", "23", "24", [*84*],
+  "Siria Salvalaio", "8", "8", "6", "21", "24", "21", [*88*],
+  "Elia Ernesto Stellin", "6 (-1)", "3", "2 (-1)", "21", "23", "24", [*79*],
+  table.footer([*Totale*], [*42*], [*48*], [*26*], [*145*], [*165*], [*160*], [*586*]),
+)
+
+==== Aggiornamento costi
+#table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "42 (-1)", "30 €/h", "1260 € (-30 €)",
+  "Amministratore", "48 ", "20 €/h", "960 € ",
+  "Analista", "26 (-5)", "25 €/h", "650 € (-125 €)",
+  "Progettista", "145 ", "25 €/h", "3625 € ",
+  "Programmatore", "165 ", "15 €/h", "2475 € ",
+  "Verificatore", "160 ", "15 €/h", "2400 € ",
+  table.footer([*Totale*], [*586*], [-], [*11370 €*]),
+)
+
+== Sprint 7
+Inizio: 02/01/2026 \
+Fine: 14/01/2026 \
+
+In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura
+dei requisiti relativi agli Use Cases dell'#gloss("Analisi dei Requisiti") e il completamento del sistema di automazione per il cruscotto
+di valutazione delle metriche.
+
+In seguito sono mostrate le attività identificate:
+- Stabilizzazione del Piano di Qualifica (#issue(149))
+- Creazione foglio Google Sheet e realizzazione delle automazioni per il cruscotto (#issue(150))
+- Completamento creazione Use Case (#issue(151))
+- Stesura dei requisiti degli Use Case (#issue(152))
+- Scrittura dei Test di Sistema (#issue(153))
+- Studio iniziale del Proof of Concept (#issue(154))
+
+=== Rischi attesi
+- *RP1* (@RP1): trovandoci in prossimità della sessione invernale di esami la disponibilità temporale dei membri del gruppo potrebbe risultare ridotta a causa degli impegni accademici in concomitanza
+- *RO1* (@RO1): dalla la possibilità che RP1 si verifichi potrebbe avvenire ritardi nel completamento delle task assegnate
+
+==== Preventivo risorse da utilizzare
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+  "Hossam Ezzemouri", "2", "-", "3", "-", "-", "-", [*5*],
+  "Riccardo Graziani", "-", "-", "4", "-", "-", "-", [*4*],
+  "Siria Salvalaio", "-", "-", "3", "-", "-", "-", [*3*],
+  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-", [*3*],
+  table.footer([*Totale*], [*2*], [*0*], [*15*], [*0*], [*0*], [*0*], [*17*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let orePrevSprint7 = (
+  ("Responsabile", 2),
+  ("Amministratore", 0),
+  ("Analista", 15),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint7)
+
+=== Consuntivo di periodo
+
+==== Attività svolte
+Il gruppo ha svolto con successo le seguenti attività: \
+Issue relative a sprint 7: \
+- [PdQ] Stabilizzazione *Piano di Qualifica* #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/149")[\#149],
+- [AdR] Scrittura requisiti UC31 - UC60 #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/160")[\#160],
+- [AdR] Generalizzazione "Admin Generico" #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/163")[\#163],
+- [AdR] Espansione UC di visualizzazione #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/162")[\#162],
+- [AdR] Scrittura Requisiti #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/127")[\#127],
+- Creazione Google Sheet per cruscotto con automazioni #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/150")[\#150],
+
+==== Retrospettiva
+Durante lo Sprint 7 il gruppo è riuscito a realizzare una versione stabile del #gloss("Piano di Qualifica"),
+procedendo alla selezione e all'adattamento delle metriche precedentemente analizzate. Permangono alcune correzioni di lieve entità,la
+cui implementazione è pianificata per lo Sprint 8. \
+La realizzazione delle automazioni per il cruscotto di visualizzazione delle metriche è stata completata,
+anche in questo caso restano alcuni dettagli minori da rifinire, che verranno ultimati nello sprint successivo. \
+er quanto riguarda la stesura dei requisiti, è stato possibile completare esclusivamente la definizione degli use case dal 31 al 60.
+Di conseguenza, nello Sprint 8 verrà data maggiore priorità al completamento della documentazione dei requisiti relativi ai restanti use case.
 
 
+==== Risorse utilizzate
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+  "Hossam Ezzemouri", "2", "-", "3", "-", "-", "-", [*5*],
+  "Riccardo Graziani", "-", "-", "4", "-", "-", "-", [*4*],
+  "Siria Salvalaio", "-", "-", "3", "-", "-", "-", [*3*],
+  "Elia Ernesto Stellin", "-", "-", "3", "-", "-", "-", [*3*],
+  table.footer([*Totale*], [*2*], [*0*], [*15*], [*0*], [*0*], [*0*], [*17*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let oreEffettiveSprint7 = (
+  ("Responsabile", 2),
+  ("Amministratore", 0),
+  ("Analista", 15),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+)
+#graficoTorta(
+  "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint7,
+)
+
+==== Rischi occorsi
+Il gruppo ha riscontrato il rischio R01 (@RO1), in quanto non è stato possibile completare integralmente la stesura dei requisiti relativi
+agli Use Case analizzati, ma solo una parte di essi.L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti")
+in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine,nello Sprint 8 questa attività verrà intensificata
+per il suo completamento.
+
+
+==== Aggiornamento ore rimanenti
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "8", "21", "24", "21", [*89*],
+  "Alessandro Dinato", "1", "7", "-3 (-2)", "21", "23", "24", [*73*],
+  "Michele Dioli", "4", "7", "6", "21", "24", "23", [*85*],
+  "Hossam Ezzemouri", "5 (-2)", "8", "1 (-3)", "20", "24", "23", [*81*],
+  "Riccardo Graziani", "8", "8", "-3 (-4)", "20", "23", "24", [*80*],
+  "Siria Salvalaio", "8", "8", "3 (-3)", "21", "24", "21", [*85*],
+  "Elia Ernesto Stellin", "6", "3", "-1 (-3)", "21", "23", "24", [*76*],
+  table.footer([*Totale*], [*40*], [*48*], [*11*], [*145*], [*165*], [*160*], [*569*]),
+)
+
+==== Aggiornamento costi
+#table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "40 (-2)", "30 €/h", "1200 € (-60 €)",
+  "Amministratore", "48 ", "20 €/h", "960 € ",
+  "Analista", "11 (-15)", "25 €/h", "275 € (-375 €)",
+  "Progettista", "145 ", "25 €/h", "3625 € ",
+  "Programmatore", "165 ", "15 €/h", "2475 € ",
+  "Verificatore", "160 ", "15 €/h", "2400 € ",
+  table.footer([*Totale*], [*569*], [-], [*10935 €*]),
+)
