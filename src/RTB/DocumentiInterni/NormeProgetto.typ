@@ -98,8 +98,6 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - Link: https://glitchhub-team.github.io/pdf/glossary.pdf
   - Ultimo accesso: 24 novembre 2025
 
-// TODO: differenza tra riferimenti normativi e informativi
-
 
 = Processi primari <processi-primari>
 In questa sezione, verranno descritti i processi essenziali allo svolgimento del progetto didattico.
