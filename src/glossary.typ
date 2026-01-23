@@ -6,6 +6,13 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "0.2.1",
+      "23/01/2026",
+      "Elia Ernesto Stellin",
+      "-", 
+      [Sistemate alcune definizioni per compatibilità con automazione]
+    ),
+    (
       "0.2.0",
       "15/01/2026",
       "Elia Ernesto Stellin",
@@ -353,7 +360,7 @@
     definition: [Database in-memory ad alte prestazioni utilizzato per caching, gestione delle sessioni e code di messaggi.],
   ),
   (
-    term: "Angular",
+    term: "Angular.js",
     definition: [Framework front-end sviluppato da Google per creare applicazioni web complesse e modulari, è un framework opinionated.],
   ),
   (
