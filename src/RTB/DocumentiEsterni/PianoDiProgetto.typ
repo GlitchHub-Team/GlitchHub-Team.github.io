@@ -6,9 +6,16 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
-  versione: "0.7.4",
+  stato: "Da Verificare",
+  versione: "0.8.0",
   registro-modifiche: (
+      (
+      "0.8.0",
+      "24/01/2026",
+      "Siria Salvalaio",
+      "-",
+      [Bozza sprint 8],
+    ),
     (
       "0.7.4",
       "17/01/2026",
@@ -130,8 +137,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "",
+  left-signature: "",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -1723,3 +1730,72 @@ per il suo completamento.
   "Verificatore", "160 ", "15 €/h", "2400 € ",
   table.footer([*Totale*], [*569*], [-], [*10935 €*]),
 )
+
+
+== Sprint 8
+Inizio: 14/01/2026 \
+Fine: 28/01/2026 \
+
+Il presente sprint ha lo scopo di focalizzarsi prioritariamente sulla stesura dei requisiti e sulla modellazione dei diagrammi Use Case. In parallelo, il team avvierà lo studio e l’apprendimento di NATS e Angular.js in vista dell'imminente implementazione del #gloss("POC"), consolidando al contempo la documentazione normativa, il glossario e la definizione tecnica delle metriche.
+
+=== Preventivo a finire <sprint-8-paf>
+==== Attività da svolgere
+In seguito sono mostrate le attività identificate:
+- Studio di NATS per future implementazioni (#issue(165)
+- Scrittura diagrammi usa case (tramite STAR UML) e stesura dei requisiti (#issue(166))
+- Studio di Angular.js (#issue(169))
+- Completare le iniziative di miglioramento e definire meglio alcune metriche nel #gloss[Piano di Qualifica] (#issue(171))
+- Aggiornare il Glossario (#issue(172), #issue(173), #issue(174), #issue(175))
+
+==== Rischi attesi
+- *RT1* (@RT1): lo studio di nuove tecnologie potrebbe risultare più lunga di quanto previsto e/o più difficile di quanto valutato.
+- *RO1* (@RO1): si potrebbero verificare dei ritardi dato il periodo di studio intenso, legato al rischio *RP1* (@RP1).
+- *RO2* (@RO2): l'errata organizzazione e distribuzione delle risorse del gruppo può portare ad un carico di lavoro squilibrato fra il gruppo che deve scrivere i diagrammi degli use case e gli altri membri del gruppo.
+- *RP1* (@RP1): la *sessione invernale* potrebbe influire negativamente riguardo le scadenze prefissate.
+
+
+==== Preventivo risorse da utilizzare
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "2", "3", "-", "-", "-", [*5*],
+  "Alessandro Dinato", "-", "2", "-", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "1", "3", "-", "-", "-", [*4*],
+  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-", [*3*],
+  "Riccardo Graziani", "-", "2", "-", "-", "-", "-", [*2*],
+  "Siria Salvalaio", "2", "1", "-", "-", "-", "-", [*3*],
+  "Elia Ernesto Stellin", "-", "1", "1", "-", "-", "-", [*2*],
+  table.footer([*Totale*], [*2*], [*9*], [*10*], [*0*], [*0*], [*0*], [*21*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let orePrevSprint8 = (
+  ("Responsabile", 2),
+  ("Amministratore", 9),
+  ("Analista", 10),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint8)
+
+
+=== Consuntivo di periodo
+
+==== Attività svolte
+
+==== Retrospettiva
+
+==== Risorse utilizzate
+
+==== Grafico a torta della suddivisione oraria prevista
+
+==== Aggiornamento ore rimanenti
+
+==== Aggiornamento costi
+
