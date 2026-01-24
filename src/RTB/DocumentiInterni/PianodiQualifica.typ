@@ -4,10 +4,10 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "Bozza",
-  versione: "0.0.5",
+  stato: "Da Verificare",
+  versione: "0.0.6",
   registro-modifiche: (
-    ("0.0.6", "24/01/2026", "Siria Salvalaio", "-", "Miglioramento descrizione metriche e aggiunta formule"),
+    ("0.0.6", "24/01/2026", "Siria Salvalaio", "-", "Miglioramento descrizione metriche, aggiunta formule e migliorate le iniziative di miglioramento"),
     ("0.0.5", "17/01/2026", "Michele Dioli", "-", "Inizio stesura sezione del cruscotto"),
     ("0.0.4", "13/01/2026", "Siria Salvalaio", "-", "Inizio stesura iniziative di miglioramento (bozza)"),
     ("0.0.3", "03/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
@@ -425,9 +425,9 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
     
-    [Pianificazione temporale e scadenze], [Difficoltà nel definire la durata degli sprint e stabilire scadenze equilibrate per le task], [Adozione di sprint a durata fissa (due settimane, posso essere fatte eccezioni) e ???],
-    [Coordinamento del gruppo], [], [],
-    [Interpretazione normativa], [Difficoltà nel comprendere appieno alcuni documenti da redigere], [Sessioni di riallineamento interno e revisione collettiva dei documenti normativi per garantire una visione comune],
+    [Rispetto delle scadenze], [Ritardi nello svolgimento delle task che rischiano di bloccare le attività successive], [Comunicazione tempestiva dei ritardi per consentire una rapida riorganizzazione delle attività coinvolte],
+    [Pianificazione impegni], [Variazioni della disponibilità dei membri per motivi personali o accademici], [Previsione dei periodi di difficoltà e mantenimento di una comunicazione trasparente sulle variazioni],
+    [Gestione dei requisiti], [Incomprensione dei requisiti dovuta a un coinvolgimento insufficiente del cliente], [Incontri di review con M31 ogni due settimane e comunicazione costante per chiarire i dubbi],
   ),
   caption: [Azioni adottate per migliorare l'organizzazione.],
   kind: table,
@@ -443,9 +443,9 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
     
-    [Gestione e rotazione dei ruoli], [Difficoltà nell'assegnare i ruoli nel breve periodo e scegliere la cadenza per il cambio], [Definizione di una tabella di rotazione che garantisca a tutti di ricoprire ogni ruolo, con cambi programmati a fine Sprint],
-    [Allocazione delle risorse], [Complessità nello stabilire a quanti membri assegnare ogni attività], [Valutazione della criticità della task; assegnazione di almeno due persone per le task complesse per favorire il pair word e ridurre il rischio di stallo e/o di ritardi],
-    [Efficienza comunicativa intra-task], [Scambio di informazioni non sempre ottimale tra membri che lavorano allo stesso compito], [Creazione di sotto-canali di comunicazione specifici e utilizzo di commenti dettagliati, discussi in riunione, sulle issue di Github],
+  [Distribuzione del carico], [Sovraccarichi per alcuni membri a causa della suddivisione non omogenea del lavoro], [Adattamento tempestivo della pianificazione e ridefinizione chiara delle responsabilità],
+  [Flessibilità dei ruoli], [Necessità di adattare i carichi di lavoro alle esigenze variabili dei membri], [Assegnazione di ruoli e attività in modo flessibile, adattandoli ai carichi di ciascun membro],
+  [Gestione dei dissidi], [Tensioni emerse a causa di differenti personalità o approcci lavorativi], [Discussione privata e mirata con i diretti interessati per favorire un confronto sereno],
   ),
   caption: [Azioni adottate per migliorare la gestione dei ruoli.],
   kind: table,
@@ -461,9 +461,8 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
 
-    [Creare use case adeguati?], [], [],
-    [Definire le metriche?], [], [-> riunione straordinaria di brainstorming],
-    [?], [], [],
+  [Gestione del versionamento e documenti], [Rischio di incoerenza nella redazione dei documenti e perdita di modifiche], [Utilizzo di *GitHub* per il controllo di versione e di *Typst* per garantire una formattazione professionale e uniforme di tutti i file di progetto.],
+  [Inesperienza tecnologica], [Possibile difficoltà nell'apprendimento di nuovi strumenti ], [Studio individuale preventivo e condivisione di template/guide per standardizzare l'uso degli strumenti.]
   ),
   caption: [Azioni adottate per migliorare l'uso degli strumenti.],
   kind: table,
