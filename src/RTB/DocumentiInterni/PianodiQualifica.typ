@@ -35,23 +35,30 @@ Il Piano di qualifica determina 3 elementi essenziali:
 // Norme di Progetto?
 - *Norme di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf
+  *Ultimo accesso*: versione 0.2.1
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  *Ultimo accesso*: 29 Dicembre 2025
 - *Piano di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf
+  *Ultimo accesso*: versione 0.7.4
 
 === Riferimenti informativi
 - *Glossario* \
   https://glitchhub-team.github.io/pdf/glossary.pdf
+  *Ultimo accesso*: 29 Dicembre 2025
 - *Slide T07 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf
+  *Ultimo accesso*: 29 Dicembre 2025
 - *Slide T08 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf
+  *Ultimo accesso*: 29 Dicembre 2025
 - *ISO/IEC 25010* \
   https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
-- *Metrica software - wikipedia* \ 
-//scrivi ultima data per file esterni, versione per quelli interni 
+  *Ultimo accesso*: 29 Dicembre 2025
+- *Metrica software - wikipedia* \  
   https://it.wikipedia.org/wiki/Metrica_software
+  *Ultimo accesso*: 24 gennaio 2026
 
 = Metriche di Qualità del Processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
