@@ -7,8 +7,14 @@
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Verificato",
-  versione: "0.7.4",
   registro-modifiche: (
+    (
+      "0.8.0",
+      "24/01/2026",
+      "Siria Salvalaio",
+      "Alessandro Dinato",
+      [Bozza sprint 8],
+    ),
     (
       "0.7.4",
       "17/01/2026",
@@ -1497,6 +1503,7 @@ Issue relative a sprint 6:
 - [PdQ] Trovare e definire metriche #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/120")[\#120],
 - [Gloss] Creazione script per automatizzare parole del glossario #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/144")[\#144],
 - [AdR] Divisione UC per intefaccia utente e UC generici #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/124")[\#124],
+- Definire la struttura del #gloss[Piano di Qualifica] #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/121")[\#121],
 
 
 
@@ -1511,18 +1518,18 @@ Issue relative a sprint 6:
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
     "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
     "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
-    "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
-    "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+    "Michele Dioli", "-", "4", "-", "-", "-", "-", [*4*],
+    "Hossam Ezzemouri", "-", "4", "-", "-", "-", "-", [*4*],
     "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
-    "Siria Salvalaio", "-", "-", "-", "-", "-", "-", [*0*],
+    "Siria Salvalaio", "-", "5", "-", "-", "-", "-", [*5*],
     "Elia Ernesto Stellin", "1", "-", "1", "-", "-", "-", [*2*],
-    table.footer([*Totale*], [*1*], [*0*], [*5*], [*0*], [*0*], [*0*], [*6*]),
+    table.footer([*Totale*], [*1*], [*13*], [*5*], [*0*], [*0*], [*0*], [*19*]),
   )
   ==== Grafico a torta della suddivisione oraria prevista
 
   #let oreEffettiveSprint6 = (
     ("Responsabile", 1),
-    ("Amministratore", 0),
+    ("Amministratore", 13),
     ("Analista", 5),
     ("Progettista", 0),
     ("Programmatore", 0),
@@ -1549,12 +1556,12 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "8", "7", "8", "21", "24", "21", [*89*],
   "Alessandro Dinato", "1", "7", "-1 (-2)", "21", "23", "24", [*75*],
-  "Michele Dioli", "4", "7", "6", "21", "24", "23", [*85*],
-  "Hossam Ezzemouri", "7", "8", "4", "20", "24", "23", [*86*],
+  "Michele Dioli", "4", "3 (-4)", "6 ", "21", "24", "23", [*81*],
+  "Hossam Ezzemouri", "7", "4 (-4)", "4", "20", "24", "23", [*82*],
   "Riccardo Graziani", "8", "8", "1 (-2)", "20", "23", "24", [*84*],
-  "Siria Salvalaio", "8", "8", "6", "21", "24", "21", [*88*],
+  "Siria Salvalaio", "8", "3 (-5)", "6", "21", "24", "21", [*83*],
   "Elia Ernesto Stellin", "6 (-1)", "3", "2 (-1)", "21", "23", "24", [*79*],
-  table.footer([*Totale*], [*42*], [*48*], [*26*], [*145*], [*165*], [*160*], [*586*]),
+  table.footer([*Totale*], [*42*], [*35*], [*26*], [*145*], [*165*], [*160*], [*573*]),
 )
 
 ==== Aggiornamento costi
@@ -1567,12 +1574,12 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
   ),
   table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
   "Responsabile", "42 (-1)", "30 €/h", "1260 € (-30 €)",
-  "Amministratore", "48 ", "20 €/h", "960 € ",
+  "Amministratore", "35 (-13)", "20 €/h", "700 € (-260 €)",
   "Analista", "26 (-5)", "25 €/h", "650 € (-125 €)",
   "Progettista", "145 ", "25 €/h", "3625 € ",
   "Programmatore", "165 ", "15 €/h", "2475 € ",
   "Verificatore", "160 ", "15 €/h", "2400 € ",
-  table.footer([*Totale*], [*586*], [-], [*11370 €*]),
+  table.footer([*Totale*], [*573*], [-], [*11110 €*]),
 )
 
 == Sprint 7
@@ -1698,12 +1705,12 @@ per il suo completamento.
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "8", "7", "8", "21", "24", "21", [*89*],
   "Alessandro Dinato", "1", "7", "-3 (-2)", "21", "23", "24", [*73*],
-  "Michele Dioli", "4", "7", "6", "21", "24", "23", [*85*],
-  "Hossam Ezzemouri", "5 (-2)", "8", "1 (-3)", "20", "24", "23", [*81*],
+  "Michele Dioli", "4", "3", "6", "21", "24", "23", [*81*],
+  "Hossam Ezzemouri", "5 (-2)", "4", "1 (-3)", "20", "24", "23", [*77*],
   "Riccardo Graziani", "8", "8", "-3 (-4)", "20", "23", "24", [*80*],
-  "Siria Salvalaio", "8", "8", "3 (-3)", "21", "24", "21", [*85*],
+  "Siria Salvalaio", "8", "3", "3 (-3)", "21", "24", "21", [*80*],
   "Elia Ernesto Stellin", "6", "3", "-1 (-3)", "21", "23", "24", [*76*],
-  table.footer([*Totale*], [*40*], [*48*], [*11*], [*145*], [*165*], [*160*], [*569*]),
+  table.footer([*Totale*], [*40*], [*35*], [*11*], [*145*], [*165*], [*160*], [*569*]),
 )
 
 ==== Aggiornamento costi
@@ -1716,10 +1723,79 @@ per il suo completamento.
   ),
   table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
   "Responsabile", "40 (-2)", "30 €/h", "1200 € (-60 €)",
-  "Amministratore", "48 ", "20 €/h", "960 € ",
+  "Amministratore", "35 ", "20 €/h", "700 € ",
   "Analista", "11 (-15)", "25 €/h", "275 € (-375 €)",
   "Progettista", "145 ", "25 €/h", "3625 € ",
   "Programmatore", "165 ", "15 €/h", "2475 € ",
   "Verificatore", "160 ", "15 €/h", "2400 € ",
-  table.footer([*Totale*], [*569*], [-], [*10935 €*]),
+  table.footer([*Totale*], [*556*], [-], [*10675 €*]),
 )
+
+
+== Sprint 8
+Inizio: 14/01/2026 \
+Fine: 28/01/2026 \
+
+Il presente sprint ha lo scopo di focalizzarsi prioritariamente sulla stesura dei requisiti e sulla modellazione dei diagrammi Use Case. In parallelo, il team avvierà lo studio e l’apprendimento di NATS e Angular.js in vista dell'imminente implementazione del #gloss("POC"), consolidando al contempo la documentazione normativa, il glossario e la definizione tecnica delle metriche.
+
+=== Preventivo a finire <sprint-8-paf>
+==== Attività da svolgere
+In seguito sono mostrate le attività identificate:
+- Studio di NATS per future implementazioni (#issue(165)
+- Scrittura diagrammi usa case (tramite STAR UML) e stesura dei requisiti (#issue(166))
+- Studio di Angular.js (#issue(169))
+- Completare le iniziative di miglioramento e definire meglio alcune metriche nel #gloss[Piano di Qualifica] (#issue(171))
+- Aggiornare il Glossario (#issue(172), #issue(173), #issue(174), #issue(175))
+
+==== Rischi attesi
+- *RT1* (@RT1): lo studio di nuove tecnologie potrebbe risultare più lunga di quanto previsto e/o più difficile di quanto valutato.
+- *RO1* (@RO1): si potrebbero verificare dei ritardi dato il periodo di studio intenso, legato al rischio *RP1* (@RP1).
+- *RO2* (@RO2): l'errata organizzazione e distribuzione delle risorse del gruppo può portare ad un carico di lavoro squilibrato fra il gruppo che deve scrivere i diagrammi degli use case e gli altri membri del gruppo.
+- *RP1* (@RP1): la *sessione invernale* potrebbe influire negativamente riguardo le scadenze prefissate.
+
+
+==== Preventivo risorse da utilizzare
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "2", "3", "-", "-", "-", [*5*],
+  "Alessandro Dinato", "-", "2", "-", "-", "-", "-", [*2*],
+  "Michele Dioli", "-", "1", "3", "-", "-", "-", [*4*],
+  "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-", [*3*],
+  "Riccardo Graziani", "-", "2", "-", "-", "-", "-", [*2*],
+  "Siria Salvalaio", "2", "1", "-", "-", "-", "-", [*3*],
+  "Elia Ernesto Stellin", "-", "1", "1", "-", "-", "-", [*2*],
+  table.footer([*Totale*], [*2*], [*9*], [*10*], [*0*], [*0*], [*0*], [*21*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let orePrevSprint8 = (
+  ("Responsabile", 2),
+  ("Amministratore", 9),
+  ("Analista", 10),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint8)
+
+
+=== Consuntivo di periodo
+
+==== Attività svolte
+
+==== Retrospettiva
+
+==== Risorse utilizzate
+
+==== Grafico a torta della suddivisione oraria prevista
+
+==== Aggiornamento ore rimanenti
+
+==== Aggiornamento costi
+
