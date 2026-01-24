@@ -4,6 +4,13 @@
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
   registro-modifiche: (
+
+      ("0.21.0",
+      "23/01/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Creazione e aggiunta dei diagrammi degli UC dall'1 al 55],
+    ),
     (
       "0.20.0",
       "20/01/2026",
@@ -341,6 +348,7 @@ In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud.
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
 
 ==== #uc() - Autenticazione Utente <Autenticazione-utente>
+#image("../../assets/diagrammi/UC1.png", width: 80%)
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -436,6 +444,8 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 
 ==== #uc() - Autenticazione 2FA <Autenticazione-2FA>
+#image("../../assets/diagrammi/UC6.png", width: 80%)
+
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -500,6 +510,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente visualizza un messaggio di errore
 
 ==== #uc() - Impostazione password <Impostazione-password>
+#image("../../assets/diagrammi/UC9.png", width: 80%)
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -524,6 +535,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 
 ==== #uc() - Password dimenticata <Password-dimenticata>
+#image("../../assets/diagrammi/UC10.png", width: 80%)
 - *Attore principale*: Utente non autenticato
 - *Attore secondario*: Email client
 - *Pre-condizioni*:
@@ -572,6 +584,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente inserisce un indirizzo email non associato ad alcun account
 
 ==== #uc() - Reimpostazione password dimenticata <Reimpostazione-password-dimenticata>
+#image("../../assets/diagrammi/UC12.png", width: 80%)
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -667,6 +680,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente esegue il logout dal Sistema
 
 ==== #uc() - Modifica password <Modifica-password>
+#image("../../assets/diagrammi/UC17.png", width: 80%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -712,6 +726,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 // ALERT -----------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista alert <Visualizzazione-lista-alert>
+#image("../../assets/diagrammi/UC19.png", width: 80%)
+
 - *Attore principale*: Tenant User
 - *Pre-condizioni*:
   - Il Tenant User è autenticato nel Sistema
@@ -725,6 +741,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Visualizzazione alert <Visualizzazione-alert>
+#image("../../assets/diagrammi/UC20.png", width: 80%)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
   - L'Utente Autenticato è autenticato nel Sistema
@@ -752,6 +769,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente Autenticato visualizza la descrizione dell'alert selezionato
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da Gateway <Mancata-ricezione-gateway>
+#image("../../assets/diagrammi/UC21.png", width: 80%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-alert>)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
@@ -789,6 +807,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente Autenticato visualizza il tempo di inattività del gateway interessato nell'alert
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
+#image("../../assets/diagrammi/UC22.png", width: 80%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-alert>)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
@@ -839,6 +858,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Visualizzazione in tempo reale dei dati del sensore <Visualizzazione-dati-real-time-sensore>
+#image("../../assets/diagrammi/UC24.png", width: 80%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -870,6 +890,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
 
 ==== #uc() - Visualizzazione dello storico dei dati del sensore <Visualizzazione-storico-dati-sensore>
+#image("../../assets/diagrammi/UC25.png", width: 80%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -900,6 +921,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
+#image("../../assets/diagrammi/UC26.png", width: 80%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -948,6 +970,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Filtraggio dati del sensore per intervallo di valori <Filtraggio-dati-sensore-intervallo-valori>
+#image("../../assets/diagrammi/UC28.png", width: 80%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -1016,6 +1039,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'utente autenticato visualizza la lista dei sensori associati al proprio tenant
 
 ==== #uc() - Visualizzazione singolo sensore associato al tenant in lista <Visualizzazione-singolo-sensore-associato-tenant-in-lista>
+#image("../../assets/diagrammi/UC32.png", width: 80%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -1037,6 +1061,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 // Dashboard ----------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione dashboard generica <Visualizzazione-dashboard-generica>
+#image("../../assets/diagrammi/UC33.png", width: 80%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'utente è autenticato nel Sistema
@@ -1132,6 +1157,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Gestione Tenant User -------------------------------------------------------------------------------------------------
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
+#image("../../assets/diagrammi/UC36.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Attore secondario*: Email client
 - *Pre-condizioni*:
@@ -1173,6 +1199,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 ==== #uc() - Sospensione Tenant User <Sospensione-tenant-user>
+#image("../../assets/diagrammi/UC37.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1199,6 +1226,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin conferma la sospensione del Tenant User
 
 ==== #uc() - Riattivazione Tenant User <Riattivazione-tenant-user>
+#image("../../assets/diagrammi/UC38.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1226,6 +1254,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 ==== #uc() - Eliminazione Tenant User <Eliminazione-tenant-user>
+#image("../../assets/diagrammi/UC39.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel sistema
@@ -1252,7 +1281,8 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin conferma l'eliminazione del Tenant User
 
 // Commissioning / Decommissioning ------------------------------------------------------------------------------------------------------------
-==== #uc() - Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant <Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
+==== #uc() - Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant 
+#image("../../assets/diagrammi/UC40.png", width: 80%)<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1265,6 +1295,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
 
 ==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant
+#image("../../assets/diagrammi/UC41.png", width: 80%)
 <Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1305,6 +1336,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin visualizza la lista degli utenti registrati nel proprio tenant
 
 ==== #uc() - Visualizzazione singolo utente in lista <Visualizzazione-singolo-utente-in-lista>
+#image("../../assets/diagrammi/UC43.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1341,6 +1373,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Visualizzazione Gateway/Sensori --------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista di gateway associati a tenant <Visualizzazione-lista-gateway-associati>
+#image("../../assets/diagrammi/UC44.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1352,6 +1385,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-singolo-gateway-in-lista>)
 
 ==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
+#image("../../assets/diagrammi/UC45.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1387,6 +1421,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin visualizza lo stato del singolo gateway nella lista
 
 ==== #uc() - Visualizzazione gateway associato a tenant <Visualizzazione-gateway-associato>
+#image("../../assets/diagrammi/UC46.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1440,6 +1475,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin visualizza la lista dei sensori collegati al gateway selezionato
 
 ==== #uc() - Visualizza singolo sensore collegato al gateway associato al tenant in lista
+#image("../../assets/diagrammi/UC47.png", width: 80%)
 <Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1467,6 +1503,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Gestione API Keys ------------------------------------------------------------------------------------------------------------------
 ==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
+#image("../../assets/diagrammi/UC48.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1529,6 +1566,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 ==== #uc() - Visualizzazione lista API key <Visualizzazione-lista-api-key>
+#image("../../assets/diagrammi/UC51.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1541,6 +1579,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-singola-api-key-lista>)
 
 ==== #uc() - Visualizzazione singola API Key in lista <Visualizzazione-singola-api-key-lista>
+#image("../../assets/diagrammi/UC52.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1585,6 +1624,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // TODO: Singoli uc pure per i dettagli qui?
 ==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
+#image("../../assets/diagrammi/UC6.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1645,6 +1685,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - Visualizza nell'asse X il tempo
 
 ==== #uc() - Eliminazione API key <Eliminazione-api-key>
+#image("../../assets/diagrammi/UC54.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1674,6 +1715,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 // TODO: Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
 // -> rifinire l'audit log secondo il pattern per visualizzazione lista di elementi
 ==== #uc() - Visualizzazione lista audit log del tenant <Visualizzazione-audit-log>
+#image("../../assets/diagrammi/UC55.png", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
