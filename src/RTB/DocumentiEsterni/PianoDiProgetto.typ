@@ -6,14 +6,13 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Da Verificare",
-  versione: "0.8.0",
+  stato: "Verificato",
   registro-modifiche: (
-      (
+    (
       "0.8.0",
       "24/01/2026",
       "Siria Salvalaio",
-      "-",
+      "Alessandro Dinato",
       [Bozza sprint 8],
     ),
     (
@@ -137,8 +136,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Progetto",
 )
 
