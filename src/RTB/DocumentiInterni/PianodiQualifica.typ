@@ -4,12 +4,12 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "Da Verificare",
+  stato: "Verificato",
   versione: "0.0.6",
   registro-modifiche: (
-    ("0.0.6", "24/01/2026", "Siria Salvalaio", "-", "Miglioramento descrizione metriche, aggiunta formule e migliorate le iniziative di miglioramento"),
-    ("0.0.5", "17/01/2026", "Michele Dioli", "-", "Inizio stesura sezione del cruscotto"),
-    ("0.0.4", "13/01/2026", "Siria Salvalaio", "-", "Inizio stesura iniziative di miglioramento (bozza)"),
+    ("0.0.6", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", "Miglioramento descrizione metriche, aggiunta formule e migliorate le iniziative di miglioramento"),
+    ("0.0.5", "17/01/2026", "Michele Dioli", "Riccardo Graziani", "Inizio stesura sezione del cruscotto"),
+    ("0.0.4", "13/01/2026", "Siria Salvalaio", "Riccardo Graziani", "Inizio stesura iniziative di miglioramento (bozza)"),
     ("0.0.3", "03/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
     ("0.0.2", "29/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Stesura metriche"),
     ("0.0.1", "21/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Bozza prime metriche e struttura documento"),
@@ -17,16 +17,18 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Piano di Qualifica",
 )
+
+// TODO: sarebbe bene aggiungere un indice delle figure/tabelle automatico
 
 = Introduzione <introduzione>
 == Finalità del documento
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
 Il Piano di qualifica determina 3 elementi essenziali:
-- Il *Piano di Qualità*, ciò l'insieme delle attività e obiettivi di qualità
+- Il *Piano di Qualità*, cioè l'insieme delle attività e obiettivi di qualità
 - Le attività di *Controllo di qualità*
 - Le iniziative di *Miglioramento continuo*
 
@@ -285,13 +287,14 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
   supplement: [Tabella]
 )
 \
+// TODO: Da eliminare queste metriche?
 == Affidabilità
 //rivedere se ha senso sennò togliere (branch per sprint e statement (test) coverage)
 - *MPD-BC (Branch Coverage)* \
   
 - *MPD-SC (Statement Coverage)* \
   
-
+// TODO: metriche della tabella non compaiono nel testo
 #figure(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
@@ -349,6 +352,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
   Identifica "sintomi" nel codice che indicano una progettazione debole (es. metodi troppo lunghi, classi troppo grandi o duplicazione). Non sono errori bloccanti, ma rendono il sistema fragile.
   $ "CD" = ("Numero di Code Smell rilevati" / "CRG (Centinaia di Righe di Codice)") $
   
+  // TODO: non mettiamo la formula qui?
 - *MPD-COC (Coefficient of Coupling)*
   Misura il grado di interdipendenza tra i diversi moduli o classi del software. Un accoppiamento elevato significa che una modifica in una parte del codice rischia di rompere molte altre sezioni (effetto a catena).
 
@@ -394,6 +398,10 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
   supplement: [Tabella]
 )
 \
+
+// TODO: non dovrebbe essre Metodologie di testing? 
+// Inoltre forse ha più senso spostare la descrizione 
+// dei vari tipi di test nelle Norme di Progetto
 = Metriche di Testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
@@ -468,10 +476,10 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
 
-  [Gestione del versionamento e documenti], [Rischio di incoerenza nella redazione dei documenti e perdita di modifiche], [Utilizzo di *GitHub* per il controllo di versione e di *Typst* per garantire una formattazione professionale e uniforme di tutti i file di progetto.],
-  [Inesperienza tecnologica], [Possibile difficoltà nell'apprendimento di nuovi strumenti ], [Studio individuale preventivo e condivisione di template/guide per standardizzare l'uso degli strumenti.]
+  [Gestione del versionamento e dei documenti], [Rischio di incoerenza nella redazione dei documenti e perdita di modifiche], [Utilizzo di *GitHub* per il controllo di versione e di *Typst* per garantire una formattazione professionale e uniforme di tutti i file di progetto.],
+  [Inesperienza tecnologica], [Possibile difficoltà nell'apprendimento di nuovi strumenti ], [Studio individuale preventivo e condivisione di template/guide per standardizzare l'uso degli strumenti]
   ),
-  caption: [Azioni adottate per migliorare l'uso degli strumenti.],
+  caption: [Azioni adottate per migliorare l'uso degli strumenti],
   kind: table,
   supplement: [Tabella]
 )
