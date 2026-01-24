@@ -7,6 +7,7 @@
   stato: "Bozza",
   versione: "0.0.5",
   registro-modifiche: (
+    ("0.0.6", "24/01/2026", "Siria Salvalaio", "-", "Miglioramento descrizione metriche e aggiunta formule"),
     ("0.0.5", "17/01/2026", "Michele Dioli", "-", "Inizio stesura sezione del cruscotto"),
     ("0.0.4", "13/01/2026", "Siria Salvalaio", "-", "Inizio stesura iniziative di miglioramento (bozza)"),
     ("0.0.3", "03/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
@@ -59,24 +60,50 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 
 == Fornitura
 - *MPC-PV (Planned Value)* \
-  Valore del lavoro che si era pianificato di completare entro una certa data.
+  Valore economico del lavoro che si era pianificato di completare entro una certa data.
+  $ "PV" = sum_(i=1)^(n) ("Ore Previste"_i times "Tariffa Oraria"_i) $
+
 - *MPC-AC (Actual Cost)* \
-  Costo effettivamente sostenuto per il lavoro svolto.
+  Costo effettivamente sostenuto per le ore lavorate.
+  $ "AC" = sum_(i=1)^(n) ("Ore Effettive"_i times "Tariffa Oraria"_i) $
+
 - *MPC-EV (Earned Value)* \
-  Valore del lavoro effettivamente completato rispetto al budget totale. [Planned Value / (Ore preventivate x Ore sostenute)]
+  Valore del lavoro effettivamente completato, misurato rispetto al budget totale. 
+  $ "EV" = "PV" times ("Ore Completate" / "Ore Pianificate") $
+  
 - *MPC-BAC (Budget At Completion)* \
   Budget totale preventivato per l'intero progetto.
+  $ "BAC" = 12.975 € $
+
 - *MPC-EAC (Estimated At Completion)* \
-  Stima del costo totale finale basata sulla performance attuale.
+  Stima del costo totale finale a completamento del progetto, basata sulle performance attuali.
+  $ "EAC" = "BAC" / "CPI" $
+  
+  - *Interpretazione:* \
+    $"EAC" < "BAC"$: Il progetto finirà *sotto budget* \
+    $"EAC" = "BAC"$: Il progetto finirà *in linea* con il budget \
+    $"EAC" > "BAC"$: Il progetto finirà *sopra budget*
+
 - *MPC-ETC (Estimated To Complete)* \
-  Stima di quanto manca (in termini economici) per finire il progetto.
+  Stima del costo rimanente per completare il progetto.
+  $ "ETC" = "EAC" - "AC"_"acc" $
+
+  - *Interpretazione:* \
+    Rappresenta quanto ancora si dovrà spendere per finire il progetto, considerando le performance attuali.
+
 - *MPC-CV (Cost Variance)* \
-  Differenza tra valore guadagnato e costo reale (*EV*-*AC*).
+  Misura la deviazione dal budget. Indica se il progetto è sotto o sopra budget.
+  $ "CV" = "EV" - "AC" $
+
 - *MPC-SV (Schedule Variance)* \
-  Differenza tra lavoro fatto e lavoro pianificato (*EV*-*PV*).
+  Misura la deviazione dalla schedulazione. Indica se il progetto è in anticipo o in ritardo rispetto al piano.
+  $ "SV" = "EV" - "PV" $
+
 - *MPC-TCR (Task Completion Rate)* \
-  Percentuale di attività (task) completate rispetto a quelle pianificate per uno sprint.
-- *MPC-TS (Task Slippage)* \
+  Indica la percentuale di task completati rispetto a quelli chiusi in ritardo per un determinato periodo (es. Sprint). Rappresenta la capacità del team di completare il lavoro previsto.
+  $ "TCR" = ("Task Completati" / ("Task Completati" + "Task Ritardo")) times 100 $
+
+- *MPC-TS (Task Slippage)* \ //----------------------------------------
   Percentuale di task che non sono state portate a termine entro la fine dello sprint e che vengono posticipate a quello successivo.
 
 #figure(
@@ -105,9 +132,13 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 \
 == Sviluppo
 - *MPC-RSI (Requirements Stability Index)* \
-  Misura la stabilità dei requisiti; un valore basso indica troppi cambiamenti (instabilità).
+  Indica la stabilità dei requisiti nel tempo. Un valore elevato segnala che l'analisi iniziale è solida; un valore basso evidenzia frequenti cambiamenti che possono rallentare lo sviluppo.
+
+ $ "RSI" = (1-("Requisiti Modificati" + "Aggiunti" + "Rimossi")/"Totale Requisiti Iniziali") times 100 $
+
 - *MPC-PRCT (Pull Request Cycle Time)* \
-  Tempo medio per revisionare e integrare una modifica nel codice.
+  Misura il tempo medio che intercorre tra l'apertura di una Pull Request e la sua integrazione (merge) nel ramo principale. Monitora l'efficienza delle revisioni.
+  $ "PRCT" = "Data e Ora del Merge" - "Data e Ora dell'Apertura" $
 
 #figure(
   table(
@@ -127,9 +158,11 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 \
 == Documentazione
 - *MPC-IG (Indice di Gulpease)* \
-  Valutazione automatica della leggibilità dei testi (in italiano).
+  Indice di leggibilità calibrato specificamente per la lingua italiana. Valuta la complessità del testo in base alla lunghezza delle parole e delle frasi.
+  $ "Gulpease" = 89 + (300 times "Numero Frasi" - 10 times "Numero Lettere") / "Numero Parole" $
+
 - *MPC-CO (Correttezza Ortografica)* \
-  Numero di errori ortografici rilevati nei documenti.
+  Numero di errori grammaticali o di battitura rilevati nei documenti.
 
 #figure(
   table(
@@ -148,11 +181,16 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 \
 == Verifica
 - *MPC-CC (Code Coverage)* \
-  Percentuale di righe di codice coperte dai test.
+  Percentuale di righe di codice sorgente effettivamente eseguite durante i test automatici.
+  $ "CC" = ("Linee di Codice Testate" / "Linee di Codice Totali") times 100 $
+
 - *MPC-TSR (Test Success Rate)* \
   Percentuale di test passati con successo sul totale dei test eseguiti.
+  $ "TSR" = ("Test Superati" / "Test Eseguiti") times 100 $
+
 - *MPC-DD (Bug Density)* \
-  Numero di bug trovati durante i test per ogni centinaia di righe di codice (CRG).
+  Misura la qualità del codice calcolando quanti bug vengono trovati per ogni cento righe di codice (CRG).
+  $ "DD" = ("Numero di Bug Rilevati" / "Centinaia di Righe di Codice (CRG)") $
 
 #figure(
   table(
@@ -163,7 +201,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     
     [MPC-CC], [Code Coverage], [$>= 80%$], [$= 100%$],
     [MPC-TSR], [Test Success Rate], [$= 100%$], [$= 100%$],
-    [MPC-DD], [Bug Density], [$<= "5 per CRG"$], [$<= "1 per CRG"$],
+    [MPC-DD], [Bug Density], [$<= "2 per CRG"$], [$= "0 per CRG"$],
   ),
   caption: [Valori per misurare la qualità della verifica.],
   kind: table,
@@ -173,14 +211,18 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 == Gestione della qualità e processi
 - *MPC-QMS (Quality Metrics Satisfied)* \
   Percentuale di metriche di qualità che rientrano nel range accettabile.
-- *MPC-CQ (Cost of Quality)* \
-  Rapporto tra i costi di test e il costo totale.
+  $ "QMS" = ("Metriche in Range Accettabile" / "Totale Metriche Monitorate") times 100 $
+
 - *MPC-TE (Time efficiency)* \
-  Rapporto tra tempo di produzione effettivo e tempo totale di lavoro. (numero ore lavoro/(ore palestra+lavoro))
-- *MPC-WD (Work Distribution)* \
+  Rapporto tra tempo di produzione effettivo e tempo totale di lavoro.
+  $ "TE" = ("Ore Lavoro Effettive" / "Ore Totali Disponibili") times 100 $ 
+
+- *MPC-WD (Work Distribution)* \ //-----------------------
   Misura la distribuzione in percentuale delle attività (task) tra i membri del team per garantire un carico di lavoro equilibrato. (numero totale task/ numero task per persona -> varianza)
-- *MPC-SPF (Single Point of Failure Risk)* \
+
+- *MPC-SPF (Single Point of Failure Risk)* \ //-----------------------
   Indice che valuta la concentrazione di attività (task) critiche su un numero limitato di membri del team, al fine di ridurre il rischio di dipendenza da un singolo componente del gruppo.
+
 
 #figure(
   table(
@@ -190,7 +232,6 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
     [MPC-QMS], [Quality Metrics Satisfied], [$>= 80%$], [$= 100%$],
-    [MPC-CQ], [Cost of Quality], [$15%-25%$], [$<=15%$],
     [MPC-TE], [Time efficiency], [$>= 50%$], [$>= 90%$],
     [MPC-WD],[Work Distribution], [$$], [$$],
     [MPC-SPF],[Single Point of Failure Risk], [$15%$], [$<10%$]
@@ -209,14 +250,16 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 == Funzionalità
 - *MPD-CRO (Copertura Requisiti Obbligatori)* \
   Percentuale di requisiti obbligatori implementati.
-//aggiungere desiderabili
+- *MPD-CRP (Copertura Requisiti Desiderabili)* \
+  Percentuale di requisiti desiderabili implementati.
 - *MPD-CRP (Copertura Requisiti Opzionali)* \
   Percentuale di requisiti opzionali implementati.
-- *MPD-AD (API Documentation)*
+- *MPD-AD (API Documentation)* \ //-----------------------
   Misura il grado di copertura, accuratezza e aggiornamento della documentazione delle API.
-- *MPD-DL (Data Loss)*
-  Percentuale di messaggi persi durante la trasmissione dei dati dal gateway al cloud. (messaggi inviati-messaggi ricevuti)/messaggi inviati
-
+- *MPD-DL (Data Loss)* \
+  Misura l'affidabilità della trasmissione dati tra gateway e cloud.
+  $ "DL" = (( "Messaggi Inviati" - "Messaggi Ricevuti" ) / "Messaggi Inviati") times 100 $
+\
 #figure(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
@@ -225,6 +268,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
     [MPD-CRO], [Copertura Requisiti Obbligatori], [$= 100%$], [$= 100%$],
+    [MPD-CRP], [Copertura Requisiti Desiderabili], [$>= 0$], [$>=70%$],
     [MPD-CRP], [Copertura Requisiti Opzionali], [$>= 0$], [$>=70%$],
     [MPD-AD],[API Documentation], [$>=90%$], [$100%$],
     [MPD-DL],[Data Loss], [$0,1%-1%$], [$<0,01%$]
@@ -236,9 +280,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 \
 == Affidabilità
 //rivedere se ha senso sennò togliere (branch per sprint e statement (test) coverage)
-- *MPD-* \
+- *MPD-BC (Branch Coverage)* \
   
-- *MPD-* \
+- *MPD-SC (Statement Coverage)* \
   
 
 #figure(
@@ -257,9 +301,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 == Usabilità
-- *MPD-LT (Learning Time)* \ //time on task
+- *MPD-TT (Time on Task)* \ 
   Tempo necessario a un utente per imparare a usare una funzione.
-//numero di click per massimo 7 e accettabile 5?
 
 #figure(
   table(
@@ -277,9 +320,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 \
 == Efficienza
 - *MPD-RT (Response Time)* \
-  Tempo di risposta del sistema a un input dell'utente.
-- *MPD-UR (Use of Resources)* \
-  Consumo di risorse hardware (memoria).
+  Tempo di risposta del sistema ad un input dell'utente.
+  $ "RT" = "Ora Risposta" - "Ora Richiesta" $
 
 #figure(
   table(
@@ -289,7 +331,6 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
     [MPD-RT], [Response Time], [$<= "2 secondi"$], [$<= "0,5 secondi"$],
-    [MPD-UR], [Use of Resources], [$"da stabilire"$], [$"da stabilire"$],
   ),
   caption: [Valori per misurare la qualità dell'efficienza.],
   kind: table,
@@ -297,10 +338,20 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 == Manutenibilità
-- *MPD-AN (Analyzability)*\
-  Facilità di identificare la causa di un errore osservando il log e il codice.
-  //coefficient of coupling
-  //cyclomatic complexity
+- *MPD-CD (Code Smell)*\
+  Identifica "sintomi" nel codice che indicano una progettazione debole (es. metodi troppo lunghi, classi troppo grandi o duplicazione). Non sono errori bloccanti, ma rendono il sistema fragile.
+  $ "CD" = ("Numero di Code Smell rilevati" / "CRG (Centinaia di Righe di Codice)") $
+  
+- *MPD-COC (Coefficient of Coupling)*
+  Misura il grado di interdipendenza tra i diversi moduli o classi del software. Un accoppiamento elevato significa che una modifica in una parte del codice rischia di rompere molte altre sezioni (effetto a catena).
+
+- *MPD-CYC (Cyclomatic Complexity)*
+  Misura la complessità logica del codice contando il numero di percorsi linearmente indipendenti attraverso il flusso di controllo (if, switch, loop). Più è alta, più il codice è difficile da testare e comprendere.
+  $ "M" = "E" - "N" + "2P" $
+   - Dove:
+      - $"E"$ : numero di archi (collegamenti nel grafo di controllo);
+      - $"N"$ : numero di nodi (istruzioni);
+      - $"P"$ : numero di componenti connesse (solitamente 1).
 
 #figure(
   table(
@@ -309,8 +360,9 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
-    [MPD-AN], [Analyzability], [$<= "2 ore"$], [$<= "30 min"$],
-    [MPD-MO], [Modifiability], [$<= "8 ore/feature"$], [$<= "3 ore/feature"$],
+    [MPD-CD], [Code Smell], [$<= "3"$], [$<= "1"$],
+    [MPD-COC], [Coefficient of Coupling], [$<= "0.5"$], [$<= "0.2"$],
+    [MPD-CYC], [Cyclomatic Complexity], [$<= "15"$], [$<= "10"$]
   ),
   caption: [Valori per misurare la qualità della manutenibilità.],
   kind: table,
@@ -361,68 +413,7 @@ I test di sistema verificano il corretto comportamento complessivo dell'applicaz
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
 = Cruscotto di Valutazione
 
-== Planned Value (PV)
-Il valore del lavoro pianificato fino a un certo punto. Rappresenta il costo previsto delle attività che avrebbero dovuto essere completate.
-
-$ "PV" = sum_(i=1)^(n) ("Ore Previste"_i times "Tariffa Oraria"_i) $
-
-== Actual Cost (AC)
-Il costo effettivo sostenuto per il lavoro svolto.
-
-$ "AC" = sum_(i=1)^(n) ("Ore Effettive"_i times "Tariffa Oraria"_i) $
-
-== Earned Value (EV)
-Il valore del lavoro effettivamente completato, misurato in termini di budget. Rappresenta quanto "valore" è stato prodotto.
-
-$ "EV" = "PV" times ("Ore Completate" / "Ore Pianificate") $
-
-== Budget at Completion (BAC)
-Il budget totale pianificato per il progetto.
-
-$ "BAC" = 12.975 € $
-
-== Estimate at Completion (EAC)
-Stima del costo totale a completamento del progetto, basata sulle performance attuali.
-
-$ "EAC" = "BAC" / "CPI" $
-
-*Interpretazione:*
-- $"EAC" < "BAC"$: Il progetto finirà *sotto budget*
-- $"EAC" = "BAC"$: Il progetto finirà *in linea* con il budget
-- $"EAC" > "BAC"$: Il progetto finirà *sopra budget*
-
-== Estimate to Complete (ETC)
-Stima del costo rimanente per completare il progetto.
-
-$ "ETC" = "EAC" - "AC"_"acc" $
-
-*Interpretazione:*
-Rappresenta quanto ancora si dovrà spendere per finire il progetto, considerando le performance attuali.
-
-== Cost Variance (CV)
-Misura la deviazione dal budget. Indica se il progetto è sotto o sopra budget.
-
-$ "CV" = "EV" - "AC" $
-
-== Schedule Variance (SV)
-Misura la deviazione dalla schedulazione. Indica se il progetto è in anticipo o in ritardo rispetto al piano.
-
-$ "SV" = "EV" - "PV" $
-
-== Task Completion Rate (TCR)
-Indica la percentuale di task completati rispetto a quelli chiusi in ritardo per un determinato periodo (es. Sprint).Rappresenta la capacità del team di completare il lavoro previsto.
-
-$"TCR" = ("Task Completati" / 
-("Task Completati" + "Task Ritardo")) times 100$
-
-== Indice di Gulpease
-Un indice di leggibilità calibrato specificamente per la lingua italiana. Valuta la complessità del testo in base alla lunghezza delle parole e delle frasi.
-
-$"Gulpease" = 89 + (300 times "Numero Frasi" - 10 times "Numero Lettere") / "Numero Parole"$
-
-== Correttezza Ortografica
-
-= Iniziative di miglioramento
+= Iniziative di miglioramento //guarda pdq
 Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \
 
 == Valutazione sull'organizzazione
