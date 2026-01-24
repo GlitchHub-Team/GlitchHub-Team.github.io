@@ -1,15 +1,15 @@
 #import "../../Templates/templateDocumentiGenerici.typ": *
 #show ref: underline
 
-// NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "Verificato",
-  versione: "0.0.6",
+  stato: "Da verificare",
+  versione: "0.0.7",
   registro-modifiche: (
-    ("0.0.6", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", "Miglioramento descrizione metriche, aggiunta formule e migliorate le iniziative di miglioramento"),
-    ("0.0.5", "17/01/2026", "Michele Dioli", "Riccardo Graziani", "Inizio stesura sezione del cruscotto"),
-    ("0.0.4", "13/01/2026", "Siria Salvalaio", "Riccardo Graziani", "Inizio stesura iniziative di miglioramento (bozza)"),
+    ("0.0.7", "24/01/2026", "Siria Salvalaio", "-", "Piccole modifiche"),
+    ("0.0.6", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", [Miglioramento descrizione metriche, aggiunta formule e migliorate @iniziative-miglioramento]),
+    ("0.0.5", "17/01/2026", "Michele Dioli", "Riccardo Graziani", "Inizio stesura formule metriche"),
+    ("0.0.4", "13/01/2026", "Siria Salvalaio", "Riccardo Graziani", [Inizio stesura @iniziative-miglioramento (bozza)]),
     ("0.0.3", "03/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
     ("0.0.2", "29/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Stesura metriche"),
     ("0.0.1", "21/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Bozza prime metriche e struttura documento"),
@@ -22,7 +22,7 @@
   tipo-documento: "Piano di Qualifica",
 )
 
-// TODO: sarebbe bene aggiungere un indice delle figure/tabelle automatico
+// TODO: sarebbe bene aggiungere un indice delle figure/tabelle automatico -> avevo chiesto a Dina e aveva detto che era meglio non metterle
 
 = Introduzione <introduzione>
 == Finalità del documento
@@ -34,7 +34,6 @@ Il Piano di qualifica determina 3 elementi essenziali:
 
 == Riferimenti
 === Riferimenti normativi
-// Norme di Progetto?
 - *Norme di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf
   *Ultimo accesso*: versione 0.2.1
@@ -287,14 +286,15 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
   supplement: [Tabella]
 )
 \
-// TODO: Da eliminare queste metriche?
 == Affidabilità
-//rivedere se ha senso sennò togliere (branch per sprint e statement (test) coverage)
 - *MPD-BC (Branch Coverage)* \
-  
+  Misura la percentuale di rami decisionali (es. i rami true e false di un if) che sono stati eseguiti dai test. Garantisce che tutte le possibili direzioni del flusso logico siano state verificate.
+  $ "BC" = ("Rami Decisionali Eseguiti" / "Totale rami decisionali presenti") times 100 $
 - *MPD-SC (Statement Coverage)* \
+  Rappresenta la percentuale di singole istruzioni (statement) che sono state percorse durante l'esecuzione dei test. È una metrica importante per assicurarsi che non vi siano porzioni di codice completamente "oscure" ai test.
+  $ "SC" = ("Istruzioni eseguite" / "Totale istruzioni presenti") times 100 $
   
-// TODO: metriche della tabella non compaiono nel testo
+
 #figure(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
@@ -302,8 +302,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
     
-    [MPD-], [Failure Frequency], [$<= "1 settimana"$], [$=0$],
-    [MPD-], [Mean Time Between Failures], [$>= "4 giorni"$], [$>= "7 giorni"$],
+    [MPD-BC], [Branch Coverage], [$>= "60%"$], [$>= "80%"$],
+    [MPD-SC], [Statement Coverage], [$>= "70%"$], [$>= "90%"$],
   ),
   caption: [Valori per misurare la qualità dell'affidabilità.],
   kind: table,
@@ -352,7 +352,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
   Identifica "sintomi" nel codice che indicano una progettazione debole (es. metodi troppo lunghi, classi troppo grandi o duplicazione). Non sono errori bloccanti, ma rendono il sistema fragile.
   $ "CD" = ("Numero di Code Smell rilevati" / "CRG (Centinaia di Righe di Codice)") $
   
-  // TODO: non mettiamo la formula qui?
+  // Capire meglio che formula è
 - *MPD-COC (Coefficient of Coupling)*
   Misura il grado di interdipendenza tra i diversi moduli o classi del software. Un accoppiamento elevato significa che una modifica in una parte del codice rischia di rompere molte altre sezioni (effetto a catena).
 
@@ -399,10 +399,8 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 
-// TODO: non dovrebbe essre Metodologie di testing? 
-// Inoltre forse ha più senso spostare la descrizione 
-// dei vari tipi di test nelle Norme di Progetto
-= Metriche di Testing
+// Inoltre forse ha più senso spostare la descrizione dei vari tipi di test nelle Norme di Progetto -> da discutere con gli altri perché nei progetti degli anni scorsi erano qui (in teoria)
+= Metodi di Testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
 Le attività di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del prodotto discusse in questo documento.
@@ -428,7 +426,7 @@ I test di sistema verificano il corretto comportamento complessivo dell'applicaz
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
 = Cruscotto di Valutazione
 
-= Iniziative di miglioramento //guarda pdq
+= Iniziative di miglioramento <iniziative-miglioramento>
 Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \
 
 == Valutazione sull'organizzazione
