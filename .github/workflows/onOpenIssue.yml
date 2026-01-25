@@ -1,0 +1,33 @@
+name: "Edit opened issue's project fields"
+on:
+  issues:
+    types:
+      - opened
+
+permissions:
+  contents: read  # non so se serva
+  issues: write
+  repository-projects: write
+
+env:
+  GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
+
+jobs:
+  edit_issue:
+    runs-on: self-hosted
+    steps:
+      - name: Get issue data
+        env:
+          ORGANIZATION: "GlitchHub-Team"
+          PROJECT_NUMBER: 2
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
+        
+        run: automation/issues/get_issue_data.sh
+      
+      - name: Set sprint role
+        run: automation/issues/set_sprint_role.sh
+
+
+      - name: Set sprint iteration
+        run: automation/issues/set_sprint_iteration.sh
