@@ -3,10 +3,10 @@
 
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "Da verificare",
+  stato: "Verificato",
   versione: "0.0.7",
   registro-modifiche: (
-    ("0.0.7", "24/01/2026", "Siria Salvalaio", "-", "Piccole modifiche"),
+    ("0.0.7", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", "Piccole modifiche"),
     ("0.0.6", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", [Miglioramento descrizione metriche, aggiunta formule e migliorate @iniziative-miglioramento]),
     ("0.0.5", "17/01/2026", "Michele Dioli", "Riccardo Graziani", "Inizio stesura formule metriche"),
     ("0.0.4", "13/01/2026", "Siria Salvalaio", "Riccardo Graziani", [Inizio stesura @iniziative-miglioramento (bozza)]),
