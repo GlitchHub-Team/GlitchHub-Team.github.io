@@ -45,7 +45,6 @@
   tipo-documento: "Norme di Progetto",
 )
 
-// TODO: la struttura va capita meglio, intanto questa è una bozza molto grossolana
 = Introduzione <introduzione>
 
 == Scopo del documento
@@ -90,29 +89,57 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 
 - *Standard ISO/IEC 12207:1995*
   - Link: https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf
-  - Ultimo accesso: 24 novembre 2025
+  - Ultimo accesso: 25 gennaio 2026
   - Note: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
-- *Glossario v0.1.1*
+- *Glossario v0.2.1*
   - Link: https://glitchhub-team.github.io/pdf/glossary.pdf
-  - Ultimo accesso: 24 novembre 2025
+  - Ultimo accesso: 25 gennaio 2026
 
 
 = Processi primari <processi-primari>
 In questa sezione, verranno descritti i processi essenziali allo svolgimento del progetto didattico.
 
 Al momento della scrittura di questa versione delle Norme di Progetto, i processi di fornitura e sviluppo del prodotto non sono ancora iniziati, ma stanno venendo definite incrementalmente le Norme relative alla Documentazione (vd. @documentazione).
-/*
+
 == Fornitura
-// TODO: spiegare fornitura
+// TODO: (2.1) spiegare fornitura 
+// The Supply Process contains the activities and tasks of the suppli er. The process may be initiated either by a decision to prepare a proposal to answer an acquirer’s request for proposal or by sign ing and entering into a contract with the acquirer to provide the system, software product or software service. The process continues with the determination of procedures and resources needed to mana ge and assure the project, including development of project plans and execution of the plans through delivery of the system, software product or software service to the acquirer. 
+
+processo adottato dal fornitore
+- tratta del relazionarsi con la proponente -> analizzare e trattare sulle richieste
 
 === Strumenti a supporto
+// TODO: (2.1.1) def. strumenti a supporto per fornitura
 Per svolgere le attività di progetto, il gruppo utilizza i seguenti strumenti:
 
+=== Attività previste
+// TODO: (2.1.2) def. attività previste per fornitura
 
 == Sviluppo
-*/
+// TODO: (2.2) spiega sviluppo, quando effettivamente iniziamo lo sviluppo
+// The Development Process contains the activities and tasks of the developer. The process contains the activities for requirements analysis, design , coding , integration , testing, and installation and acceptance related to software products. It may contain system related activities if stipula ted in the contract. The developer performs or supports the activities in this process in accordance with the contract.
+
+=== Strumenti a supporto
+// TODO: (2.2.1) def. strumenti a supporto per sviluppo
+
+=== Attività previste
+// TODO: (2.2.2) traduci attività previste in italiano e tieni quelle effettivamente utili
+1. Process implementation;
+2. System requirements analysis;
+3. System architectural design;
+4. Software requirements analysis;
+5. Software architectural design;
+6. Software detailed design;
+7. Software coding and testing;
+8. Software integration;
+9. Software qualification testing;
+10. System integration;
+11. System qualification testing;
+12. Software installation;
+13. Software acceptance support.
+
 
 = Processi di supporto <processi-di-supporto>
 
@@ -311,6 +338,7 @@ I passaggi descritti sono i seguenti:
 4. Una volta terminata la prima stesura, si deve fare il _push_ delle proprie modifiche sul branch di lavoro e creare una nuova _Pull Request_ in modo tale da fare il _merge_ da `Documentation-[...]` a `main`, assegnando i verificatori scelti come Reviewer.
 
 ==== Verifica <doc-verifica>
+// TODO: (3.1.5.2) forse questo va spostato in qualifica?
 Ogni documento scritto deve essere verificato da un componente del gruppo diverso dallo scrittore originale, per evitare di travisare, intenzionalmente o meno, le decisioni e azioni prese dal gruppo.
 
 Le procedure di verifica sono riportate di seguito, come descritte nel #link("https://glitchhub-team.github.io/pdf/Candidatura/VerbaliInterni/2025-10-27.pdf")[*verbale interno del 27 ottobre 2025*] e nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-12.pdf")[*verbale interno del 12 novembre 2025*].
@@ -327,18 +355,31 @@ Si noti che nel caso di #gloss[documenti incrementali], la verifica deve avvenir
 
 Nel caso di questo documento, le versioni "intermedie" sono considerabili incomplete, poiché non tutte le sezioni sono presenti, ma le sezioni che sono già state scritte sono da considerarsi "stabili" e quindi da verificare.
 
+==== Pubblicazione <doc-pubblicazione>
+// TODO: (3.1.5.3) inserire descrizione di procedura GH action di pubblicazione sulla repo pubblica
+
 === Manutenzione <doc-manutenzione>
-// TODO: dobbiamo definire bene la procedura di manutenzione
+// TODO: (3.1.5.4) dobbiamo definire bene la procedura di manutenzione
 Un documento stabile non è da considerarsi finito e immutabile, poiché in seguito alla sua verifica potrebbero emergere errori che non sono stati rilevati né dallo scrittore che dal verificatore.
 //tolto l apostrofo da "qualcun'altro"
 In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente proporre una modifica, che contribuirà a creare una nuova versione del documento, la quale andrà successivamente verificata da qualcun altro.
 
 
 == Gestione delle configurazioni
+// TODO: (3.2) definire gestione delle configurazioni
+// The Configuration Management Process is a process of applying administrative and technical procedures through out the software life cycle to: identify, define, and baseline software items in a system; control modifications and releases of the items; record and report the status of the items and modification requests; ensure the completeness, consistency, and correctness of the items; and control storage, handling, and delivery of the items.
 
-// === Strumenti a supporto
+=== Strumenti a supporto
+// TODO: (3.2.1) def. strumenti per gestione config-.
 
-// === Attività previste
+=== Attività previste
+// TODO: (3.2.2) traduci attività previste gestione config. in italiano e prendi quelle che usiamo
+1. Process implementation;
+2. Configuration identification;
+3. Configuration control;
+4. Configuration status accounting;
+5. Configuration evaluation;
+6. Release management and delivery.
 
 // === Identificazione della configurazione
 
@@ -346,18 +387,89 @@ In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente 
 
 // === Registrazione dello stato di configurazione <registrazione-stato-configurazione>
 
-// == Accertamento qualità
 
-// == Qualifica
 
+== Accertamento qualità
+// TODO: (3.3) definire accertamento qualità
+// The Quality Assurance Process is a process for providing adequate assurance that the software products and processes in the project life cycle conform to their specified requirements and adhere to their established plans. To be unbiased, qual ity assurance needs to have organizational freedom and authority from persons directly responsible for developing the software product or executing the process in the project. Quality assurance may be internal or external depending on whether evidence of product or process quality is demonstrated to the management of the supp lier or the acqui rer. Quality assurance may make use of the results of other supporting processes, such as Verification, Validation, Joint Reviews, Audits, and Problem Resolution.
+
+== Qualifica
+// TODO: (3.4) definire qualifica in termini generici
+=== Verifica
+// TODO: (3.4.1) definisci verifica
+// The Verification Process is a process for determining whether the software products of an activity fulfill the requirements or condition s imposed on them in the previous activities. For cost and performance effectiveness, verification should be integrated, as early as possible, with the process (such as supply, development, ope ration, or maintenance) that employs it. This process may include analysis, review and test. This process may be executed with varying degrees of independence. The degree of independence may range from the same person or different person in the same organization to a person in a different organization with varying degrees of separation. In the case where the process is executed by an organization independent of the supplier, developer, operator, or maintain er, it is calle d Independent Verification Process
+// 
+==== Attività previste
+
+1. Implementazione processo
+2. Verifica
+
+=== Validazione
+// TODO: (3.4.2) definisci validazione, traducendo e prendendo quello che serve
+// The Validation Process is a process for determining whether the requirements and the final, as-built system or software product fulfills its specific intend ed use. Validation may be conducted in earlier stage s. This process may be conducted as a part of Software Acceptance Support. This process may be executed with varying degrees of independence. The degree of independence may range from the same person or different person in the same organization to a person in a different organization with varying degrees of separation. In the case where the process is executed by an organization independent of the supplier, developer, operator, or maintainer, it is called Independent Validation Process.
+
+==== Attività previste
+1. Implementazione processo
+2. Validazione
 
 = Processi organizzativi <processi-organizzativi>
-/*
+// TODO: (4) definire processi organizzativi
+// They are employed by an organization to establish and implement an underlying structure made up of associated life cycle processes and personnel and continuously improve the structure and processes.
+
 == Gestione dei processi
+// TODO: (4.1) definisci ed espandi gestione dei processi
+
+// qui può andare tutta la parte di gestione delle issues / workflow vari
+
+=== Strumenti a supporto
+
+=== Attività previste
+
+=== Ruoli (?)
+
+=== Coordinamento
 
 == Infrastruttura
+// TODO: (4.2) def. infrastruttura
+
+=== Strumenti a supporto
+// TODO: (4.2.1) impostare meglio gli strumenti a supporto per infrastruttura
+- *GH Issue*: convenzioni usate
+- *GH Pull Requests*
+- *GH Project*: convenzioni usate
+- *Git Branch*: le usiamo a caso
+- *Google Calendar*: gestione degli eventi
+- *ClickUp*: gestione appunti condivisi
+- *GH Actions*
+  - gestione automatica di campi project delle issue (elia)
+  - eseguite su un runner self-hosted messo a disposizione gentilmente da dina
+- *Template di Typst*
+- *Google Sheets*: gestione di cruscotto
+- *Script in Python / Go*: calcolo delle metriche / scrittura PDP
+
+=== Attività previste
+1. Implementazione dei processi
+2. Istituzione dell'infrastruttura
+3. Manutenzione dell'infrastruttura
+
+=== ...
+
 
 == Processo di miglioramento
+// TODO: (4.3) def. processi miglioramento
+
+=== Strumenti a supporto
+
+=== Attività previste
+
+=== ...
 
 == Processo di formazione
-*/
+// TODO: (4.4) def. processi di formazione
+// Al momento, si può solo dire che chi ha un ruolo deve trasmettere il proprio know how a chi viene dopo e si può parlare del materiale utilizzato per studiare le varie tecnologie
+
+// === Strumenti a supporto
+
+// === Attività previste
+
+// === ...
