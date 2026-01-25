@@ -1,4 +1,4 @@
-#import "../../Templates/templateVerbali.typ": report
+#import "../../Templates/templateVerbali.typ": *
 
 #show link: underline
 #show: report.with(
@@ -52,69 +52,69 @@
 
 = Introduzione
 Il presente documento attesta che, in data *4 novembre 2025*, dalle ore 14:30 alle ore 16:00, si è tenuta, in modalità virtuale, la riunione del gruppo *GlitchHub Team*. \
-L'incontro è stato organizzato con lo scopo di risolvere i problemi emersi durante l'assegnazione dei capitolati avvenuta nella mattinata, migliorare l'attuale _way of working_ e pianificare meglio i futuri incontri.
+L'incontro è stato organizzato con lo scopo di risolvere i problemi emersi durante l'assegnazione dei capitolati avvenuta nella mattinata, migliorare l'attuale _#gloss[way of working]_ e pianificare meglio i futuri incontri.
 
 = Resoconto della riunione
 == Organizzazione sprint settimanali
-Il gruppo, dopo aver valutato rispettivi impegni individuali e universitari, ha deciso di adottare un sistema di organizzazione temporale a _sprint_ settimanali in accordo con il modello di sviluppo _Agile_.
+Il gruppo, dopo aver valutato rispettivi impegni individuali e universitari, ha deciso di adottare un sistema di organizzazione temporale a _#gloss[sprint]_ settimanali in accordo con il modello di sviluppo _#gloss[Agile]_.
 
-Al termine di ogni sprint verrà svolta una cerimonia di _sprint retrospective_, fissata ogni mercoledì alle ore 14:30 in seguito a una votazione di gruppo, con lo scopo di analizzare il lavoro svolto, discutere insieme eventuali dubbi e/o problemi emersi durante la settimana e proporre soluzioni condivise. \
-Questa cerimonia avrà anche il ruolo di _sprint review_, dato che si analizzeranno i prodotti dello sprint. Una volta aggiudicato l'appalto, il gruppo procederà a separare le due cerimonie integrando l'azienda proponente nella _sprint review_.
+Al termine di ogni #gloss[sprint] verrà svolta una cerimonia di _#gloss[sprint retrospective]_, fissata ogni mercoledì alle ore 14:30 in seguito a una votazione di gruppo, con lo scopo di analizzare il lavoro svolto, discutere insieme eventuali dubbi e/o problemi emersi durante la settimana e proporre soluzioni condivise. \
+Questa cerimonia avrà anche il ruolo di _#gloss[sprint review]_, dato che si analizzeranno i prodotti dello #gloss[sprint]. Una volta aggiudicato l'appalto, il gruppo procederà a separare le due cerimonie integrando l'azienda #gloss[proponente] nella _#gloss[sprint review]_.
 
 == Organizzazione Issues e Projects
-Il gruppo ha deciso di utilizzare le GitHub Issues, che sono pubbliche a differenza delle issues di ClickUp, usate in precedenza, con l'obiettivo di centralizzare e semplificare il workflow. \
-La scelta delle GitHub Issues si è rivelata l'opzione più semplice, poiché si integrano nativamente con i commit, le pull request e i GitHub Projects, garantendo una tracciabilità diretta e automatica delle attività.
+Il gruppo ha deciso di utilizzare le #gloss[GitHub] Issues, che sono pubbliche a differenza delle issues di #gloss[ClickUp], usate in precedenza, con l'obiettivo di centralizzare e semplificare il workflow. \
+La scelta delle #gloss[GitHub] Issues si è rivelata l'opzione più semplice, poiché si integrano nativamente con i commit, le #gloss[pull request] e i #gloss[GitHub] Projects, garantendo una tracciabilità diretta e automatica delle attività.
 
-Per la gestione delle issues è stato deciso di utilizzare un GitHub Project in modalità Kanban, così da visualizzare facilmente lo stato di avanzamento delle attività. \
-Infine, per monitorare il progresso complessivo, verranno utilizzate le GitHub Milestones, in particolare ne è stata creata una per la seconda revisione della candidatura.
+Per la gestione delle issues è stato deciso di utilizzare un #gloss[GitHub] Project in modalità Kanban, così da visualizzare facilmente lo stato di avanzamento delle attività. \
+Infine, per monitorare il progresso complessivo, verranno utilizzate le #gloss[GitHub] Milestones, in particolare ne è stata creata una per la seconda revisione della candidatura.
 
 == Date indicative di RTB e PB
-Il gruppo ha fissato le deadline per le due _baseline_ principali del progetto in modo tale da poter creare le rispettive GitHub Milestones e avere un quadro di riferimento temporale
+Il gruppo ha fissato le deadline per le due _#gloss[baseline]_ principali del progetto in modo tale da poter creare le rispettive #gloss[GitHub] Milestones e avere un quadro di riferimento temporale
 
-Il *Requirements and Technology Baseline* (RTB) è previsto indicativamente a metà del periodo fissato dal gruppo ovvero nella settimana tra il 12 e il 18 gennaio, mentre il *Product Baseline* (PB), è pianificato per la fine del periodo, cioè nel mese di marzo.
+Il *Requirements and Technology #gloss[Baseline]* (#gloss[RTB]) è previsto indicativamente a metà del periodo fissato dal gruppo ovvero nella settimana tra il 12 e il 18 gennaio, mentre il *Product #gloss[Baseline]* (#gloss[PB]), è pianificato per la fine del periodo, cioè nel mese di marzo.
 
-Queste date sono molto approssimative e possono essere soggette a notevoli cambiamenti, a seconda dell'evoluzione delle necessità del gruppo e dell'azienda proponente.
+Queste date sono molto approssimative e possono essere soggette a notevoli cambiamenti, a seconda dell'evoluzione delle necessità del gruppo e dell'azienda #gloss[proponente].
 
 == Criteri di rotazione dei ruoli
-In seguito alla cerimonia di aggiudicazione degli appalti del *4 novembre 2025*, è emersa una criticità nella Dichiarazione degli Impegni consegnata alla candidatura del *31 ottobre 2025*, relativa alla mancata descrizione della rotazione dei ruoli durante lo svolgimento del progetto.
+In seguito alla cerimonia di aggiudicazione degli appalti del *4 novembre 2025*, è emersa una criticità nella #gloss[Dichiarazione degli Impegni] consegnata alla candidatura del *31 ottobre 2025*, relativa alla mancata descrizione della rotazione dei ruoli durante lo svolgimento del progetto.
 
-Per tale motivo, il gruppo ha deciso la frequenza e i criteri di rotazione dei ruoli, riportati anche nella Dichiarazione degli Impegni.
+Per tale motivo, il gruppo ha deciso la frequenza e i criteri di rotazione dei ruoli, riportati anche nella #gloss[Dichiarazione degli Impegni].
 
 Più nello specifico:
-- La rotazione dei ruoli avverrà ogni due settimane, per cui nel caso in cui la durata degli sprint sia di due settimane, la rotazione coinciderà con la fine di ogni sprint; se invece la durata dello sprint sarà di una settimana, la rotazione sarà effettuata ogni due sprint.
-- Al termine di ogni incarico, chi ha finito di svolgere un certo ruolo è tenuto a trasferire completamente al suo successore il _know-how_ e il _way of working_ appresi, garantendo la continuità e la correttezza del lavoro, nonché la condivisione delle conoscenze.
+- La rotazione dei ruoli avverrà ogni due settimane, per cui nel caso in cui la durata degli #gloss[sprint] sia di due settimane, la rotazione coinciderà con la fine di ogni #gloss[sprint]; se invece la durata dello #gloss[sprint] sarà di una settimana, la rotazione sarà effettuata ogni due #gloss[sprint].
+- Al termine di ogni incarico, chi ha finito di svolgere un certo ruolo è tenuto a trasferire completamente al suo successore il _know-how_ e il _#gloss[way of working]_ appresi, garantendo la continuità e la correttezza del lavoro, nonché la condivisione delle conoscenze.
 
 
 == Modifica dell'organizzazione della pagina web
 In seguito alla valutazione del professore, il gruppo ha deciso di riorganizzare la struttura del sito web riguardante la documentazione. \
-Inizialmente verrà visualizzata solo la sezione _Candidatura_, con l'avanzare delle attività saranno resi visibili i documenti relativi alla fase corrente (RTB, PB), mantenendo comunque disponibili i documenti delle fasi precedenti. \
+Inizialmente verrà visualizzata solo la sezione _Candidatura_, con l'avanzare delle attività saranno resi visibili i documenti relativi alla fase corrente (#gloss[RTB], #gloss[PB]), mantenendo comunque disponibili i documenti delle fasi precedenti. \
 Dopo una discussione si è deciso di mostrare come primo documento la _Lettera di Presentazione_, considerata il documento più importante della candidatura, in quanto presenta il gruppo e il progetto proposto. \
-Questa modifica comporta un aggiornamento delle automazioni di pubblicazione dei file PDF generati da sorgenti Typst, per assicurare che la nuova struttura venga gestita in modo corretto ed automatico.
+Questa modifica comporta un aggiornamento delle automazioni di pubblicazione dei file PDF generati da sorgenti #gloss[Typst], per assicurare che la nuova struttura venga gestita in modo corretto ed automatico.
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
   columns: 3,
   align: center + horizon,
   [*Task*], [*Responsabile*], [*Issue*],
-  [Scrittura Verbale Interno 2025-11-04 \ - Verifica  #footnote[
+  [Scrittura Verbale Interno 2025-11-04 \ - #gloss[Verifica]  #footnote[
       Le task segnate con il trattino "-" sono sub-issue delle principali indicate sopra
     ]],
   [Siria Salvalaio \ - Elia Ernesto Stellin],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/20")[*\#20*] \ - #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/28")[*\#28*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/20")[*\#20*] \ - #link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/28")[*\#28*]],
 
   [Inserire criteri di rotazione in Dichiarazione Impegni],
   [Michele Dioli e Alessandro Dinato],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/21")[*\#21*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/21")[*\#21*]],
 
   [Modificare organizzazione sito],
   [Michele Dioli],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/22")[*\#22*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/22")[*\#22*]],
 
   [Sistemare script pubblicazione PDF],
   [Alessandro Dinato],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/23")[*\#23*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/23")[*\#23*]],
 
-  [Modifica lettera di presentazione \ - Verifica ],
+  [Modifica lettera di presentazione \ - #gloss[Verifica] ],
   [Hossam Ezzemouri \ - Jaume Bernardi],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/24")[*\#24*]\ - #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/26")[*\#26*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/24")[*\#24*]\ - #link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/26")[*\#26*]],
 )
