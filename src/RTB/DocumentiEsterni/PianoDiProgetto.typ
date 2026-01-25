@@ -199,11 +199,11 @@ Il documento fornisce una visione complessiva e costantemente aggiornata dell'av
 Un aspetto fondamentale del documento è l'analisi dei rischi attesi, accompagnata dalle relative strategie di mitigazione, con l'obiettivo di ridurre l'incertezza e migliorare la capacità del gruppo di affrontare imprevisti tecnologici, organizzativi e/o personali.
 Il documento include inoltre il calendario di massima del progetto, la stima dei costi complessivi e l'impegno orario previsto per ogni ruolo, i quali sono stati definiti in fase di *Candidatura*.
 
-Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[Agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi e il #gloss[preventivo a finire] dello sprint successivo, i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
+Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[Agile], al termine di ogni #gloss[sprint] vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi e il #gloss[preventivo a finire] dello #gloss[sprint] successivo, i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
 Questo processo permette di rivedere costantemente la pianificazione delle attività, migliorare i processi tramite retrospettive periodiche e mantenere una stima realistica del completamento finale.
 
 == Glossario
-Il #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*glossario*] è un documento redatto dal gruppo e aggiornato nell'arco del progetto didattico, con lo scopo di fornire definizioni coerenti per i termini tecnici e quelli specifici relativi al corso di Ingegneria del Software.
+Il #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/glossary.pdf")[*glossario*] è un documento redatto dal gruppo e aggiornato nell'arco del progetto didattico, con lo scopo di fornire definizioni coerenti per i termini tecnici e quelli specifici relativi al corso di Ingegneria del Software.
 
 Questo documento è fondamentale per garantire una comprensione uniforme della documentazione prodotta ai lettori esterni dal gruppo e per definire un riferimento interno al gruppo, riducendo possibili ambiguità interpretative.
 
@@ -212,17 +212,17 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 
 == Riferimenti
 === Riferimenti normativi
-- Capitolato d'appalto C7: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf") \
+- #gloss[Capitolato d'appalto] C7: #link("#gloss[https]://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf") \
   *Ultimo accesso: 22/11/2025*
-//- Norme di Progetto: #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto] \
+//- #gloss[Norme di Progetto]: #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/#gloss[RTB]/DocumentiInterni/NormeProgetto.pdf")[#gloss[Norme di Progetto]] \
 // *Versione: 1.0.0*
 
 === Riferimenti informativi
-- Regolamento del Progetto Didattico: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf") \
+- Regolamento del Progetto Didattico: #link("#gloss[https]://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf") \
   *Ultimo accesso: 22/11/2025* //scriviamo ultimo accesso o ultima modifica?
-- Il ciclo di vita del Software: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf") \
+- Il #gloss[ciclo di vita] del Software: #link("#gloss[https]://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf") \
   *Ultimo accesso: 22/11/2025*
-- Gestione di progetto: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf") \
+- Gestione di progetto: #link("#gloss[https]://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf") \
   *Ultimo accesso: 22/11/2025*
 
 
@@ -251,7 +251,7 @@ Questa sezione analizza i potenziali rischi e le difficoltà che il gruppo potre
 Realizzare un'ottima analisi preventiva consente di evitare conflitti interni, ritardi nelle scadenze, aumento dei costi di produzione e, soprattutto, la realizzazione di un prodotto non conforme agli obiettivi.
 
 L'analisi dei rischi si articola in quattro fasi principali:
-- *Identificazione*: individuare i possibili rischi legati al progetto, al prodotto e al contesto di riferimento, riconoscendo tutto ciò che potrebbe compromettere lo sviluppo;
+- *Identificazione*: individuare i possibili rischi legati al progetto, al prodotto e al contesto di riferimento, riconoscendo tutto #gloss[ci]ò che potrebbe compromettere lo sviluppo;
 - *Analisi*: per ciascun rischio identificato si valuta la probabilità di occorrenza e l'impatto che potenziale sul lavoro del gruppo e sul prodotto finale;
 - *Pianificazione*: definizione delle strategie di prevenzione o mitigazione, stabilendo in anticipo le azioni da intraprendere in caso in cui il rischio si verifichi;
 - *Controllo*: monitoraggio continuo attraverso indicatori che segnalano eventuali problemi, l'attuazione delle strategie di mitigazione e il miglioramento costante del #gloss[way of working].
@@ -430,7 +430,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [*Misure di mitigazione*],
   [
     Il gruppo si impegna a confrontarsi in modo trasparente e costruttivo, con l'obiettivo di raggiungere soluzioni condivise. \
-    Qualora non fosse possibile trovare un accordo interno, si farà riferimento a un parere esterno del committente o del cliente.
+    Qualora non fosse possibile trovare un accordo interno, si farà riferimento a un parere esterno del #gloss[committente] o del cliente.
   ],
 
   [*Occorrenza*], [Media],
@@ -462,7 +462,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     - Prevedere adeguati buffer temporali nelle pianificazioni;
     - Mantenere una comunicazione trasparente riguardo a possibili variazioni di disponibilità;
     - Assegnare ruoli e attività in modo flessibile, adattandoli alle esigenze e ai carichi di ciascun membro. \
-    I dettagli relativi ai periodi di inattività, comprensivi di vacanze, sessioni di studio ed eventuali altri impegni rilevanti, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
+    I dettagli relativi ai periodi di inattività, comprensivi di vacanze, sessioni di studio ed eventuali altri impegni rilevanti, sono disponibili nel documento #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[#gloss[Dichiarazione degli Impegni]].
   ],
 
   [*Occorrenza*], [Media],
@@ -670,7 +670,7 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
 
 
 = Pianificazione attività RTB
-La #gloss[RTB] è una fase in cui vengono fissati i requisiti da soddisfare e si motivano le tecnologie, i framework e le librerie scelte. \
+La #gloss[RTB] è una fase in cui vengono fissati i requisiti da soddisfare e si motivano le tecnologie, i #gloss[framework] e le librerie scelte. \
 Inoltre, è necessario produrre un artefatto, chiamato #gloss[PoC], il quale ha lo scopo di valutare la fattibilità tecnologica del prodotto atteso secondo le scelte implementative fatte.
 
 == Stesura Analisi dei Requisiti
@@ -682,10 +682,10 @@ Per completare il documento sono richieste le seguenti attività:
 - Redazione dell'introduzione;
 - Analisi e mitigazione dei rischi;
 - Stima delle tempistiche di consegna, dei costi e delle risorse impiegate;
-- Pianificazione a lungo termine delle attività previste per la RTB;
-- Analisi dettagliata dei singoli sprint.
+- Pianificazione a lungo termine delle attività previste per la #gloss[RTB];
+- Analisi dettagliata dei singoli #gloss[sprint].
 
-Il documento verrà redatto e aggiornato nel corso di tutti gli sprint, poiché ha il compito di rendicontarne l'avanzamento. \
+Il documento verrà redatto e aggiornato nel corso di tutti gli #gloss[sprint], poiché ha il compito di rendicontarne l'avanzamento. \
 Le stime relative ai costi e alla data di consegna potranno essere aggiornate qualora emergano nuove informazioni o si rilevino previsioni non accurate. \
 Allo stesso modo, l'analisi dei rischi e le relative strategie di mitigazione dovranno essere riviste ogni volta che un rischio si presenta, trattandosi di un processo continuo e non limitato alla fase iniziale.
 
@@ -705,28 +705,28 @@ La sua completa realizzazione è pertanto prevista al termine dell'intero proget
 //TODO
 = Pianificazione e Analisi Sprint per RTB
 Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
-Ogni #gloss[sprint] viene valutato attraverso un #gloss[consuntivo di periodo], nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
+Ogni #gloss[sprint] viene valutato attraverso un #gloss[consuntivo di periodo], nel quale viene analizzato lo #gloss[sprint] appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
 
-Al termine di ogni #gloss[sprint] viene redatto il #gloss[preventivo a finire], il quale descrive le attività pianificate per lo sprint successivo e la stima delle risorse necessarie.
+Al termine di ogni #gloss[sprint] viene redatto il #gloss[preventivo a finire], il quale descrive le attività pianificate per lo #gloss[sprint] successivo e la stima delle risorse necessarie.
 
 
 == Sprint 1
 Inizio: 12/11/2025 \
 Fine: 19/11/2025 \
 
-Questo primo sprint ha lo scopo di avviare le stesura dei documenti #gloss[Piano di Progetto], #gloss[Analisi dei Requisiti] e #gloss[Norme di Progetto].
+Questo primo #gloss[sprint] ha lo scopo di avviare le stesura dei documenti #gloss[Piano di Progetto], #gloss[Analisi dei Requisiti] e #gloss[Norme di Progetto].
 
 === Preventivo a finire
 ==== Attività da svolgere
 Il gruppo ha individuato le seguenti attività da svolgere:
-- Stesura *Piano di Progetto*;
-- Stesura *Analisi dei Requisiti*, concentrandosi sui casi d'uso;
-- Stesura *Norme di Progetto*;
+- Stesura *#gloss[Piano di Progetto]*;
+- Stesura *#gloss[Analisi dei Requisiti]*, concentrandosi sui casi d'uso;
+- Stesura *#gloss[Norme di Progetto]*;
 - Redazione e invio del verbale esterno relativo all'incontro con _M31_ del 13/11/2025
 
 ==== Rischi attesi
-Il gruppo prevede i seguenti rischi per lo *Sprint 1*:
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo sprint.
+Il gruppo prevede i seguenti rischi per lo *#gloss[Sprint] 1*:
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo #gloss[sprint].
 
 ==== Preventivo risorse da utilizzare
 #table(
@@ -763,15 +763,15 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 1*:
 
 ==== Attività svolte
 Il gruppo ha svolto con successo le seguenti attività:
-- Stesura *Piano di Progetto*;
-- Stesura *Norme di Progetto*;
+- Stesura *#gloss[Piano di Progetto]*;
+- Stesura *#gloss[Norme di Progetto]*;
 - Redazione e invio del verbale esterno relativo all'incontro con _M31_ del 13/11/2025
 
 ==== Retrospettiva
 Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _19/11/2025_.\
 Le attività programmate sono state completate correttamente, eccetto per la stesura dell'#gloss[Analisi dei Requisiti].
 È presente un sentimento di tranquillità rispetto all'avanzamento del progetto e alla distribuzione delle attività, il team è soddisfatto di come si sta lavorando insieme.\
-Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisiti] hanno fatto notare la difficoltà nell'individuazione dei casi d'uso, ciò richiederà una maggior allocazione di risorse verso quella specifica attività. Tuttavia, ad oggi, l'analisi dei casi d'uso è ancora in una fase "esplorativa", perciò non ha la priorità più alta.
+Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisiti] hanno fatto notare la difficoltà nell'individuazione dei casi d'uso, #gloss[ci]ò richiederà una maggior allocazione di risorse verso quella specifica attività. Tuttavia, ad oggi, l'analisi dei casi d'uso è ancora in una fase "esplorativa", perciò non ha la priorità più alta.
 
 ==== Risorse utilizzate
 #table(
@@ -807,10 +807,10 @@ Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisit
 )
 
 ==== Rischi occorsi
-Il gruppo ha riscontrato il rischio *RP1*(@RP1) durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
+Il gruppo ha riscontrato il rischio *RP1*(@RP1) durante lo *#gloss[Sprint] 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e attività non bloccanti.\
 L'impatto complessivo è stato positivo, infatti il gruppo ha completato correttamente tutte le attività pianificate e i componenti con impegni accademici sono riusciti a portare a termine i compiti loro affidati.
 Inoltre si è verificato il rischio *RO1*(@RO1), il documento è più complesso del previsto e richiede un maggiore approfondimento del capitolato.\
-L'impatto è stato medio dato che la difficoltà non era quella aspettata e ciò ha comportato una posticipazione dell'attività.\
+L'impatto è stato medio dato che la difficoltà non era quella aspettata e #gloss[ci]ò ha comportato una posticipazione dell'attività.\
 Tuttavia, il rischio è stato comunicato in tempo e i responsabili dell'attività sono stati assegnati ad altre task.
 
 ==== Aggiornamento ore rimanenti
@@ -855,19 +855,19 @@ Tuttavia, il rischio è stato comunicato in tempo e i responsabili dell'attivit�
 Inizio: 19/11/2025 \
 Fine: 26/11/2025 \
 
-Il presente sprint ha lo scopo di continuare la stesura dei documenti *Piano di Progetto*, *Analisi dei Requisiti* e *Norme di Progetto*.
+Il presente #gloss[sprint] ha lo scopo di continuare la stesura dei documenti *#gloss[Piano di Progetto]*, *#gloss[Analisi dei Requisiti]* e *#gloss[Norme di Progetto]*.
 Inoltre, si procederà con l'approfondimento dei casi d'uso.
 
 === Preventivo a finire
 ==== Attività da svolgere
 Il gruppo ha individuato le seguenti attività da svolgere:
-- Continuazione stesura *Piano di Progetto*;
-- Continuazione stesura *Norme di Progetto*;
-- Approfondimento casi d'uso in *Analisi dei Requisiti*, grazie al supporto di _M31_ nell'incontro del 24/11/2025.
+- Continuazione stesura *#gloss[Piano di Progetto]*;
+- Continuazione stesura *#gloss[Norme di Progetto]*;
+- Approfondimento casi d'uso in *#gloss[Analisi dei Requisiti]*, grazie al supporto di _M31_ nell'incontro del 24/11/2025.
 
 ==== Rischi attesi
-Il gruppo prevede i seguenti rischi per lo *Sprint 2*:
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo sprint.
+Il gruppo prevede i seguenti rischi per lo *#gloss[Sprint] 2*:
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo #gloss[sprint].
 
 ==== Preventivo risorse da utilizzare
 #table(
@@ -903,20 +903,20 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 2*:
 
 ==== Attività svolte
 Il gruppo ha svolto con successo le seguenti attività: \
-- Continuazione stesura *Piano di Progetto*;
-- Continuazione stesura *Norme di Progetto*;
-- Approfondimento casi d'uso in *Analisi dei Requisiti*;
+- Continuazione stesura *#gloss[Piano di Progetto]*;
+- Continuazione stesura *#gloss[Norme di Progetto]*;
+- Approfondimento casi d'uso in *#gloss[Analisi dei Requisiti]*;
 - Incontro con _M31_ in data 24/11/2025 per discutere i casi d'uso.
 
 ==== Retrospettiva
 Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _26/11/2025_.\
 Le attività programmate sono state tutte eseguite correttamente ed entro i tempi stabiliti.
 
-Questo sprint ha permesso al gruppo di avanzare nella conoscenza e nella definizione dei casi d'uso, grazie al supporto fornito da _M31_ durante l'incontro del 24/11/2025.\
+Questo #gloss[sprint] ha permesso al gruppo di avanzare nella conoscenza e nella definizione dei casi d'uso, grazie al supporto fornito da _M31_ durante l'incontro del 24/11/2025.\
 L'azienda si è dimostrata disponibile a chiarire i dubbi del gruppo e ha fornito un contributo sostanziale all'approfondimento e alla definizione dei casi d'uso. \
-L'incontro è stato positivo perché ha dimostrato che il gruppo può fare affidamento sul supporto del proponente, vista la sua alta disponibilità e competenza.
+L'incontro è stato positivo perché ha dimostrato che il gruppo può fare affidamento sul supporto del #gloss[proponente], vista la sua alta disponibilità e competenza.
 
-Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub Issues, al fine di migliorare la gestione delle attività e la tracciabilità del lavoro svolto. Ciò rappresenta un segnale positivo, in quanto dimostra la volontà del gruppo di ottimizzare continuamente i propri processi di lavoro.
+Infine, il team ha leggermente ridefinito il workflow di utilizzo delle #gloss[GitHub] Issues, al fine di migliorare la gestione delle attività e la tracciabilità del lavoro svolto. #gloss[Ci]ò rappresenta un segnale positivo, in quanto dimostra la volontà del gruppo di ottimizzare continuamente i propri processi di lavoro.
 
 ==== Risorse utilizzate
 #table(
@@ -952,7 +952,7 @@ Infine, il team ha leggermente ridefinito il workflow di utilizzo delle GitHub I
 )
 
 ==== Rischi occorsi
-Il gruppo ha riscontrato il rischio *RP2*(@RP2) durante lo *Sprint 2*. \
+Il gruppo ha riscontrato il rischio *RP2*(@RP2) durante lo *#gloss[Sprint] 2*. \
 Un componente del gruppo ha fatto notare la mancanza di intraprendenza da parte di due membri, tuttavia la questione è stata risolta con un semplice confronto diretto. \
 La situazione sollevata è stata affrontata in modo costruttivo con lo scopo di portare tutti i componenti sullo stesso livello di partecipazione attiva. \
 L'impatto è stato minimo, dato che la questione è stata risolta e non ha influito nel benessere del gruppo.
@@ -998,7 +998,7 @@ L'impatto è stato minimo, dato che la questione è stata risolta e non ha influ
 Inizio: 26/11/2025 \
 Fine: 03/12/2025 \
 
-Il presente sprint ha lo scopo di continuare con la stesura delle #gloss[Norme di Progetto], trovare delle metriche per il #gloss[Piano di Qualifica] e l'organizzazione di un brainstorming per la stesura dei casi d'uso. \
+Il presente #gloss[sprint] ha lo scopo di continuare con la stesura delle #gloss[Norme di Progetto], trovare delle metriche per il #gloss[Piano di Qualifica] e l'organizzazione di un brainstorming per la stesura dei casi d'uso. \
 
 === Preventivo a finire
 ==== Attività da svolgere
@@ -1006,14 +1006,14 @@ Il gruppo ha individuato le seguenti attività da svolgere:
 - Aggiunta sezione riguardante i documenti incrementali nelle #gloss[Norme di Progetto];
 - Definizione di metriche adatte a misurare la qualità del progetto da utilizzare nel #gloss[Piano di Qualifica];
 - Brainstorming per la stesura dei casi d'uso relativi all'#gloss[Analisi dei Requisiti];
-- Correzione issues secondo le pratiche stabilite nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-26.pdf")[verbale interno del 26/11/2025].
+- Correzione issues secondo le pratiche stabilite nel #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/#gloss[RTB]/VerbaliInterni/2025-11-26.pdf")[verbale interno del 26/11/2025].
 - Implementazione automazione per la generazione della rendicontazione delle ore previste e lavorate per il #gloss[Piano di Progetto].
 
 ==== Rischi attesi
-Il gruppo prevede i seguenti rischi per lo *Sprint 3*:
+Il gruppo prevede i seguenti rischi per lo *#gloss[Sprint] 3*:
 - *RO1*(@RO1): è possibile che l'attività di selezione delle metriche subisca un ritardo, dato che l'individuazione di metriche adeguate non è immediata e occorre un'analisi piu profonda;
-- *RO3*(@RO4): ci potrebbero essere opinioni contrastanti nel brainstorming sull'analisi dei requisiti;
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo sprint.
+- *RO3*(@RO4): #gloss[ci] potrebbero essere opinioni contrastanti nel brainstorming sull'#gloss[analisi dei requisiti];
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo #gloss[sprint].
 
 ==== Preventivo risorse da utilizzare
 #table(
@@ -1051,14 +1051,14 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 3*:
 Il gruppo ha svolto con successo le seguenti attività: \
 - Aggiunta sezione riguardante i documenti incrementali nelle #gloss[Norme di Progetto];
 - Brainstorming per la stesura dei casi d'uso relativi all'#gloss[Analisi dei Requisiti];
-- Correzione issues secondo le pratiche stabilite nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-26.pdf")[verbale interno del 26/11/2025].
+- Correzione issues secondo le pratiche stabilite nel #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/#gloss[RTB]/VerbaliInterni/2025-11-26.pdf")[verbale interno del 26/11/2025].
 - Implementazione automazione per la generazione della rendicontazione delle ore previste e lavorate per il #gloss[Piano di Progetto].
 
 ==== Retrospettiva
-Durante lo *sprint 3* sono state completate tutte le attività pianificate, eccetto la definizione delle metriche per il #gloss[Piano di Qualifica], la quale è stata posticipata dato che attualmente non possiede la massima priorità.\
-Il brainstorming ha fatto maturare nel gruppo molti dubbi riguardo al capitolato, i quali sono stati posti e discussi con _M31_ nell'incontro del 01/12/2025. È possibile trovare le risposte a tali dubbi nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2025-12-02.pdf")[verbale esterno del 02/12/2025].\
-L'incontro interno e quello con M31 hanno permesso al gruppo di chiarire molti aspetti riguardo ai casi d'uso e alle funzionalità attese dal proponente, migliorando così la comprensione del progetto da parte di tutti i membri.\
-Infine, è stata implementata un'automazione per la rendicontazione, per singolo sprint, delle ore previste e lavorate nel #gloss[Piano di Progetto]. Ciò permetterà al gruppo di risparmiare tempo nella stesura del documento e di ridurre gli errori umani.
+Durante lo *#gloss[sprint] 3* sono state completate tutte le attività pianificate, eccetto la definizione delle metriche per il #gloss[Piano di Qualifica], la quale è stata posticipata dato che attualmente non possiede la massima priorità.\
+Il brainstorming ha fatto maturare nel gruppo molti dubbi riguardo al capitolato, i quali sono stati posti e discussi con _M31_ nell'incontro del 01/12/2025. È possibile trovare le risposte a tali dubbi nel #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/#gloss[RTB]/VerbaliEsterni/2025-12-02.pdf")[verbale esterno del 02/12/2025].\
+L'incontro interno e quello con M31 hanno permesso al gruppo di chiarire molti aspetti riguardo ai casi d'uso e alle funzionalità attese dal #gloss[proponente], migliorando così la comprensione del progetto da parte di tutti i membri.\
+Infine, è stata implementata un'automazione per la rendicontazione, per singolo #gloss[sprint], delle ore previste e lavorate nel #gloss[Piano di Progetto]. #gloss[Ci]ò permetterà al gruppo di risparmiare tempo nella stesura del documento e di ridurre gli errori umani.
 
 ==== Risorse utilizzate
 #table(
@@ -1094,8 +1094,8 @@ Infine, è stata implementata un'automazione per la rendicontazione, per singolo
 )
 
 ==== Rischi occorsi
-Durante lo *sprint 3* è occorso il rischio *RO1*(@RO1), il che era previsto data la difficoltà dell'attività.\
-Il gruppo ha deciso di posticipare la task ad uno sprint successivo, in quanto non possiede la massima priorità al momento. Il gruppo è totalmente concentrato nella definizione dei casi d'uso.
+Durante lo *#gloss[sprint] 3* è occorso il rischio *RO1*(@RO1), il che era previsto data la difficoltà dell'attività.\
+Il gruppo ha deciso di posticipare la task ad uno #gloss[sprint] successivo, in quanto non possiede la massima priorità al momento. Il gruppo è totalmente concentrato nella definizione dei casi d'uso.
 Il rischio ha avuto un impatto medio, in quanto era stato preventivato ma rimane un'attività che dovrà essere completata in futuro.
 
 ==== Aggiornamento ore rimanenti
@@ -1140,15 +1140,15 @@ Il rischio ha avuto un impatto medio, in quanto era stato preventivato ma rimane
 Inizio: 03/12/2025 \
 Fine: 10/12/2025 \
 
-Il presente sprint ha lo scopo di continuare lo sviluppo dei casi d'uso.
+Il presente #gloss[sprint] ha lo scopo di continuare lo sviluppo dei casi d'uso.
 
 === Preventivo a finire <sprint-4-paf>
 
 ==== Attività da svolgere
 Il gruppo ha individuato le seguenti attività da svolgere:
 - Stesura casi d'uso per l'attore *super-admin*;
-- Stesura casi d'uso per l'attore *tenant-admin*;
-- Stesura casi d'uso per l'attore *tenant-user*;
+- Stesura casi d'uso per l'attore *#gloss[tenant]-admin*;
+- Stesura casi d'uso per l'attore *#gloss[tenant]-user*;
 - Stesura casi d'uso per l'attore *REST client*;
 - Stesura casi d'uso per l'attore *gateway*;
 - Stesura casi d'uso per l'attore *user generico*.
