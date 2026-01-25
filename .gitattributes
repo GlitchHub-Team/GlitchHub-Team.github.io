@@ -1,2 +1,2 @@
 # I file bash devono avere ending in LF per funzionare
-* text eol=lf
+*.sh text eol=lf
