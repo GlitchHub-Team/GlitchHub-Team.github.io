@@ -153,7 +153,7 @@
   ),
   (
     term: "Requisito",
-    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_ (lato bisogno), oppure una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_(lato soluzione).],
+    definition: [Una capacità di cui un _utente_ ha bisogno per raggiungere un _obiettivo_ (lato bisogno), oppure una capacità che un _sistema_ deve possedere per rispondere ad un'_aspettativa_ (lato soluzione).],
   ),
   (
     term: "Requisito utente",
@@ -277,7 +277,7 @@
   ),
   (
     term: "PB",
-    definition: [La _Product Baseline_ valuta la maturità della baseline architetturale del software e la sua realizzazione, includendo il design definitivo nel documento di #ref-term("Specifica Tecnica"). È presente un avanzamento sostanziale del prodotto software che viene sottoposto al proponente(come #ref-term("MVP")) per valutarne qualità e adeguatezza.],
+    definition: [La _Product Baseline_ valuta la maturità della baseline architetturale del software e la sua realizzazione, includendo il design definitivo nel documento di #ref-term("Specifica Tecnica"). È presente un avanzamento sostanziale del prodotto software che viene sottoposto al proponente (come #ref-term("MVP")) per valutarne qualità e adeguatezza.],
   ),
   (
     term: "Repository",
@@ -398,7 +398,7 @@
   ),
   (
     term: "Analisi dei requisiti",
-    definition: [È l'attività che studia i bisogni dell'utente e del dominio d'uso per definire che cosa il prodotto software deve fare per soddisfarli, senza descrivere come sarà realizzato. Produce una specifica _completa_, _verificabile_ e _tracciabile_ dei requisiti del sistema(lato soluzione).],
+    definition: [È l'attività che studia i bisogni dell'utente e del dominio d'uso per definire che cosa il prodotto software deve fare per soddisfarli, senza descrivere come sarà realizzato. Produce una specifica _completa_, _verificabile_ e _tracciabile_ dei requisiti del sistema (lato soluzione).],
   ),
   (
     term: "Piano di progetto",
@@ -434,7 +434,7 @@
   ),
   (
     term: "Processo di ciclo di vita",
-    definition: [Sono l'insieme di attività che guidano, secondo best practice, un cambio di fase all'interno di un prodotto software(es: concezione -> sviluppo). Un processo è composto da attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_ , secondo _regole definite_, consumando _risorse_ nel farlo],
+    definition: [Sono l'insieme di attività che guidano, secondo best practice, un cambio di fase all'interno di un prodotto software (es: concezione -> sviluppo). Un processo è composto da attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_, secondo _regole definite_, consumando _risorse_ nel farlo],
   ),
   (
     term: "Modello di ciclo di vita",
