@@ -16,6 +16,9 @@ jobs:
   edit_issue:
     runs-on: self-hosted
     steps:
+      - name: Setup
+        run: chmod +x automation/issues/*
+
       - name: Get issue data
         env:
           ORGANIZATION: "GlitchHub-Team"
