@@ -9,21 +9,21 @@
       "0.2.1",
       "23/01/2026",
       "Elia Ernesto Stellin",
-      "-", 
+      "Riccardo Graziani", 
       [Sistemate alcune definizioni per compatibilità con automazione]
     ),
     (
       "0.2.0",
       "15/01/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Riccardo Graziani",
       [Aggiunti termini relativi a GitHub, termini relativi a UC / Attori, termini relativi a gateway e termini relativi a sensori; Impostati link intra-documento]
     ),
     (
       "0.1.3",
       "28/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       "Correzione consuntivo di periodo e preventivo a finire",
     ),
     (
@@ -66,8 +66,8 @@
     "Pubblica",
   ),
   htmlId: "Glossario",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Glossario",
 )
 
