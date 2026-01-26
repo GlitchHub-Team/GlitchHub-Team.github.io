@@ -7,7 +7,7 @@
 
     ("0.22.0",
       "26/01/2026",
-      "Hossam Ezzemouri",
+      "Michele Dioli",
       "-",
       [Aggiunta requsiti mancanti e aggiunta diagrammi degli UC dall'56 al 110],
     ),
