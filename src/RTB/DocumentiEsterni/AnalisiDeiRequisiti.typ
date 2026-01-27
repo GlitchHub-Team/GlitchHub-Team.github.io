@@ -4,8 +4,21 @@
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
   registro-modifiche: (
-
-      ("0.21.0",
+    ("0.23.0",
+      "27/01/2026",
+      "Jaume Bernardi",
+      "-",
+      [Controllo, correzione ed aggiunta requisiti. Aggiunta diagrammi UC dal 110 al 169],
+    ),
+    (
+      "0.22.0",
+      "26/01/2026",
+      "Michele Dioli",
+      "-",
+      [Aggiunta requisiti mancanti e aggiunta diagrammi degli UC dall'56 al 110],
+    ),
+    (
+      "0.21.0",
       "23/01/2026",
       "Hossam Ezzemouri",
       "-",
@@ -1716,7 +1729,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 // TODO: Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
 // -> rifinire l'audit log secondo il pattern per visualizzazione lista di elementi
 ==== #uc() - Visualizzazione lista audit log del tenant <Visualizzazione-audit-log>
-#image("../../assets/diagrammi/UC55.png", width: 80%)
+#image("../../assets/diagrammi/UC55.svg", width: 80%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1858,6 +1871,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
 // TODO: nel diagramma di questo UC ci potrebbe stare mostrare anche <Visualizzazione-dashboard-generica>
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
+#image("../../assets/diagrammi/UC61.svg", width: 80%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
@@ -1921,6 +1935,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Creazione richiesta di decommissioning gateway <Creazione-richiesta-decommissioning-gateway>
+#image("../../assets/diagrammi/UC63.svg", width: 80%)
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1946,7 +1961,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin conferma la selezione
 
 
-==== #uc() - Eliminazione richiesta di commissioning/decommissioning gateway <Eliminazione-richiesta-commissioning-decommissioning-gateway>
+==== #uc() - Eliminazione richiesta di commissioning/decommissioning gateway 
+#image("../../assets/diagrammi/UC64.svg", width: 80%)<Eliminazione-richiesta-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1979,6 +1995,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // Comandi ----------------------------------------------------------------------------------------------------------------------------------------------
 ==== #uc() - Sospensione sensore del tenant <Sospensione-sensore-tenant-admin>
+#image("../../assets/diagrammi/UC65.svg", width: 80%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2000,6 +2017,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione sensore del tenant <Riattivazione-sensore-tenant-admin>
+#image("../../assets/diagrammi/UC66.svg", width: 80%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2021,6 +2039,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Sospensione gateway associato a tenant <Sospensione-gateway-tenant-admin>
+#image("../../assets/diagrammi/UC67.svg", width: 80%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2043,6 +2062,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione gateway associato a tenant <Riattivazione-gateway-tenant-admin>
+#image("../../assets/diagrammi/UC68.svg", width: 80%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2064,6 +2084,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 ==== #uc() - Riavvio gateway associato a tenant <Riavvio-gateway-tenant-admin>
+#image("../../assets/diagrammi/UC69.svg", width: 80%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2084,6 +2105,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"? IN CASO, DA INSERIRE UN INCLUDE "Seleziona parametro di rolling average / invio frequenza" a seconda di quello che ci dicono
 ==== #uc() - Modifica target di frequenza d'invio dati per tipo di sensore di gateway associato a tenant <Modifica-parametro-rolling-average-tenant-admin>
+#image("../../assets/diagrammi/UC70.svg", width: 80%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2122,6 +2144,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 === Attore principale - Super Admin
 // GESTIONE TENANT ------------------------------------------------------------------------
 ==== #uc() - Creazione Tenant <Creazione-tenant>
+#image("../../assets/diagrammi/UC72.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2157,6 +2180,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin ha inserito il nome del nuovo tenant ma è già in uso
 
 ==== #uc() - Eliminazione Tenant <Eliminazione-tenant>
+#image("../../assets/diagrammi/UC74.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2246,6 +2270,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // DASHBOARD ----------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione dashboard Super Admin <Visualizzazione-dashboard-super-admin>
+#image("../../assets/diagrammi/UC76.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2280,6 +2305,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Visualizzazione lista gateway <Visualizzazione-lista-gateway-super-admin>
+#image("../../assets/diagrammi/UC77.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2293,6 +2319,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // TODO: Può avere senso come visualizzazione singolo elemento?
 ==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
+#image("../../assets/diagrammi/UC78.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2366,6 +2393,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // AUTENTICAZIONE GATEWAY --------------------------------------------------------------------
 ==== #uc() - Autenticazione gateway <Autenticazione-gateway>
+#image("../../assets/diagrammi/UC80.svg", width: 80%)
 - *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2416,6 +2444,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // COMMISSIONING ----------------------------------------------------------------------
 ==== #uc() - Associazione gateway -- Tenant <Associazione-gateway-tenant>
+#image("../../assets/diagrammi/UC83.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2486,6 +2515,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // COMANDI GATEWAY SUPER ADMIN ---------------------------------------------------------------------------
 ==== #uc() - Decommissioning gateway <Decommissioning-gateway>
+#image("../../assets/diagrammi/UC87.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2544,6 +2574,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riavvio gateway da Super Admin <Riavvio-gateway-super-admin>
+#image("../../assets/diagrammi/UC89.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2563,6 +2594,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 ==== #uc() - Sospensione gateway <Sospensione-gateway-super-admin>
+#image("../../assets/diagrammi/UC90.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2584,6 +2616,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione gateway <Riattivazione-gateway-super-admin>
+#image("../../assets/diagrammi/UC91.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2606,6 +2639,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"?   Sarebbe bene considerare il parametro di FREQUENZA D'INVIO DEI DATI? CHIEDIAMO A M31
 ==== #uc() - Modifica target di frequenza d'invio dati per tipo di sensore di gateway <Modifica-parametro-rolling-average-gateway-super-admin>
+#image("../../assets/diagrammi/UC92.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2626,6 +2660,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Sospensione sensore <Sospensione-sensore-super-admin>
+#image("../../assets/diagrammi/UC93.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2646,6 +2681,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione sensore <Riattivazione-sensore-super-admin>
+#image("../../assets/diagrammi/UC94.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2690,6 +2726,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // VISUALIZZAZIONE ---------------------------------------------------------------
 ==== #uc() - Visualizzazione lista tenant <Visualizzazione-lista-tenant>
+#image("../../assets/diagrammi/UC97.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2724,6 +2761,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza l'identificativo del tenant in lista
 
 ==== #uc() - Impersonificazione tenant <Impersonificazione-tenant>
+#image("../../assets/diagrammi/UC100.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2771,6 +2809,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>)
 
 ==== #uc() - Visualizzazione singola richiesta di commissioning in lista <Visualizzazione-singola-richiesta-commissioning-in-lista>
+#image("../../assets/diagrammi/UC102.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2828,7 +2867,9 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-decommissioning-in-lista>)
 
-==== #uc() - Visualizzazione singola richiesta di decommissioning in lista <Visualizzazione-singola-richiesta-decommissioning-in-lista>
+==== #uc() - Visualizzazione singola richiesta di decommissioning in lista 
+<Visualizzazione-singola-richiesta-decommissioning-in-lista>
+#image("../../assets/diagrammi/UC104.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2888,6 +2929,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza lo stato della richiesta di decommissioning in lista
 
 ==== #uc() - Visualizzazione storico richieste di commissioning gateway <Visualizzazione-storico-richieste-commissioning-gateway>
+#image("../../assets/diagrammi/UC105.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2939,7 +2981,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-storico-decommissioning-gateway>)
 
-==== #uc() - Visualizzazione singola richiesta lista storico decommissioning <Visualizzazione-singola-richiesta-storico-decommissioning-gateway>
+==== #uc() - Visualizzazione singola richiesta lista storico decommissioning 
+<Visualizzazione-singola-richiesta-storico-decommissioning-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2959,6 +3002,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-stato-richiesta-decommissioning>)
 
 ==== #uc() - Visualizzazione richiesta di commissioning gateway <Visualizzazione-richiesta-commissioning-gateway>
+#image("../../assets/diagrammi/UC109.svg", width: 80%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3385,7 +3429,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin conferma l'eliminazione del sensore simulato selezionato
 
-==== #uc() - Monitoraggio metriche di sistema
+==== #uc() - Monitoraggio metriche di sistema <Monitoraggio-metriche-di-sistema>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -4901,33 +4945,582 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Cloud deve poter inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica],
   [#ref-uc(<Reset-gateway-cloud>)],
+
+
+// ============================================
+// REQUISITI UTENTE AUTENTICATO (UC16-UC30)
+// ============================================
+
+[#rf()],
+  [L'Utente autenticato deve poter effettuare il logout dal Sistema],
+  [#ref-uc(<Logout>)],
+
+[#rf()],
+  [Il Sistema, a seguito del logout, deve registrare l'evento negli audit log salvando nome utente, timestamp e azione eseguita],
+  [#ref-uc(<Logout>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter modificare la propria password],
+  [#ref-uc(<Modifica-password>)],
+
+[#rf()],
+  [L'Utente autenticato, per modificare la password, deve inserire la vecchia password],
+  [#ref-uc(<Inserimento-vecchia-password>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se la vecchia password inserita non è corretta durante la modifica password],
+  [#ref-uc(<Vecchia-password-non-corretta>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter visualizzare i dettagli di un singolo alert],
+  [#ref-uc(<Visualizzazione-alert>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert, deve poter vedere il titolo dell'alert],
+  [#ref-uc(<Visualizzazione-titolo-alert>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert, deve poter vedere la descrizione dell'alert],
+  [#ref-uc(<Visualizzazione-descrizione-alert>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un Gateway],
+  [#ref-uc(<Mancata-ricezione-gateway>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere l'identificativo del gateway],
+  [#ref-uc(<Visualizzazione-id-gateway-alert>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il timestamp dell'ultimo dato ricevuto],
+  [#ref-uc(<Visualizzazione-timestamp-ultimo-dato-gateway-alert>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il tempo di inattività],
+  [#ref-uc(<Visualizzazione-tempo-inattivita-gateway-alert>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un sensore],
+  [#ref-uc(<Mancata-ricezione-sensore>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere l'identificativo del sensore],
+  [#ref-uc(<Visualizzazione-id-sensore-alert>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il timestamp dell'ultimo dato ricevuto],
+  [#ref-uc(<Visualizzazione-timestamp-ultimo-dato-sensore-alert>)],
+
+[#rf()],
+  [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il tempo di inattività],
+  [#ref-uc(<Visualizzazione-tempo-inattivita-sensore-alert>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter selezionare un sensore dalla lista dei sensori associati al proprio tenant],
+  [#ref-uc(<Selezione-sensore>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter visualizzare i dati in tempo reale di un sensore selezionato],
+  [#ref-uc(<Visualizzazione-dati-real-time-sensore>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter visualizzare i dati real-time del sensore attraverso un grafico time-series con assi etichettati],
+  [#ref-uc(<Visualizzazione-grafico-real-time-sensore>)],
+
+[#rf()],
+  [Il grafico dei dati real-time deve aggiornarsi automaticamente alla ricezione di nuovi dati dal Gateway],
+  [#ref-uc(<Visualizzazione-grafico-real-time-sensore>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter visualizzare lo storico dei dati di un sensore selezionato],
+  [#ref-uc(<Visualizzazione-storico-dati-sensore>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter visualizzare lo storico dei dati del sensore attraverso un grafico time-series con assi etichettati],
+  [#ref-uc(<Visualizzazione-grafico-storico-sensore>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter filtrare lo storico dei dati del sensore per intervallo temporale],
+  [#ref-uc(<Filtraggio-dati-storico-sensore>)],
+
+[#rf()],
+  [Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato],
+  [#ref-uc(<Visualizzazione-grafico-filtrato-temporale-sensore>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se l'intervallo temporale inserito non è valido],
+  [#ref-uc(<Intervallo-temporale-non-valido>)],
+
+[#rf()],
+  [L'Utente autenticato deve poter filtrare i dati del sensore per intervallo di valori],
+  [#ref-uc(<Filtraggio-dati-sensore-intervallo-valori>)],
+
+[#rf()],
+  [Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato],
+  [#ref-uc(<Visualizzazione-grafico-filtrato-valori-sensore>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se l'intervallo di valori inserito non è valido],
+  [#ref-uc(<Intervallo-di-valori-non-valido>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato],
+  [#ref-uc(<Dati-non-disponibili-sensore-selezionato>)],
+
+// ============================================
+// REQUISITI SUPER ADMIN (UC72-UC125)
+// ============================================
+
+[#rf()],
+  [Il Super Admin deve poter creare un nuovo tenant nel Sistema],
+  [#ref-uc(<Creazione-tenant>)],
+
+[#rf()],
+  [Il Super Admin, creando un nuovo tenant, deve inserire il nome del tenant],
+  [#ref-uc(<Creazione-tenant>)],
+
+[#rf()],
+  [Il Super Admin, creando un nuovo tenant, deve specificare l'accettazione o meno della clausola di impersonificazione],
+  [#ref-uc(<Clausola-impersonificazione>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se il nome del tenant inserito è già in uso],
+  [#ref-uc(<Nome-tenant-gia-utilizzato>)],
+
+[#rf()],
+  [Il Super Admin deve poter eliminare un tenant esistente dal Sistema],
+  [#ref-uc(<Eliminazione-tenant>)],
+
+[#rf()],
+  [Il Sistema deve richiedere conferma al Super Admin prima di eliminare un tenant],
+  [#ref-uc(<Selezione-e-conferma-tenant-da-eliminare>)],
+
+[#rf()],
+  [Il Sistema, prima di eliminare un tenant, deve eseguire il decommissioning di tutti i Gateway associati],
+  [#ref-uc(<Esecuzione-decommissioning-gateway-associati-tenant>)],
+
+[#rf()],
+  [Il Sistema, eliminando un tenant, deve eliminare tutti i dati e gli utenti associati al tenant],
+  [#ref-uc(<Eliminazione-dati-utenti-associati-tenant>)],
+
+[#rf()],
+  [Il Sistema deve completare l'eliminazione del tenant dopo aver rimosso dati, utenti e Gateway associati],
+  [#ref-uc(<Esecuzione-eliminazione-tenant>)],
+
+[#rf()],
+  [Il Sistema deve notificare il Super Admin se il decommissioning di un Gateway fallisce durante l'eliminazione del tenant],
+  [#ref-uc(<Decommissioning-gateway-fallito>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare la propria dashboard],
+  [#ref-uc(<Visualizzazione-dashboard-super-admin>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la dashboard, deve poter vedere lo stato globale dei gateway (attivi/non attivi)],
+  [#ref-uc(<Visualizzazione-stato-globale-dei-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la dashboard, deve poter vedere il numero totale di tenant nel Sistema],
+  [#ref-uc(<Visualizzazione-numero-di-tenant>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare la lista di tutti i Gateway registrati nel Sistema],
+  [#ref-uc(<Visualizzazione-lista-gateway-super-admin>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere l'identificativo univoco di ogni gateway],
+  [#ref-uc(<Visualizzazione-identificativo-univoco-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere lo stato di autenticazione di ogni gateway],
+  [#ref-uc(<Visualizzazione-stato-autenticazione-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere lo stato operativo di ogni gateway],
+  [#ref-uc(<Visualizzazione-stato-operativo-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere il tenant associato a ogni gateway],
+  [#ref-uc(<Visualizzazione-tenant-associato-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare i dettagli di un singolo Gateway],
+  [#ref-uc(<Visualizzazione-gateway-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter autenticare un nuovo Gateway nel Sistema],
+  [#ref-uc(<Autenticazione-gateway>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se il certificato del Gateway non è valido durante l'autenticazione],
+  [#ref-uc(<Certificato-non-valido>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se l'identificativo del Gateway è già utilizzato],
+  [#ref-uc(<Identificativo-gateway-gia-utilizzato>)],
+
+[#rf()],
+  [Il Super Admin deve poter associare un Gateway a un tenant],
+  [#ref-uc(<Associazione-gateway-tenant>)],
+
+[#rf()],
+  [Il Super Admin, associando un Gateway a un tenant, deve selezionare il Gateway da associare],
+  [#ref-uc(<Selezione-gateway-super-admin>)],
+
+[#rf()],
+  [Il Super Admin, associando un Gateway a un tenant, deve selezionare il tenant di destinazione],
+  [#ref-uc(<Selezione-tenant-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter configurare i parametri di un Gateway],
+  [#ref-uc(<Configurazione-gateway>)],
+
+[#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se la configurazione del Gateway inserita non è valida],
+  [#ref-uc(<Configurazione-gateway-non-valida>)],
+
+[#rf()],
+  [Il Super Admin deve poter eseguire il decommissioning di un Gateway],
+  [#ref-uc(<Decommissioning-gateway>)],
+
+[#rf()],
+  [Il Sistema, durante il decommissioning, deve disassociare il Gateway dal tenant],
+  [#ref-uc(<Disassociazione-gateway-dal-tenant>)],
+
+[#rf()],
+  [Il Super Admin deve poter eseguire il reset di un Gateway],
+  [#ref-uc(<Reset-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter riavviare un Gateway],
+  [#ref-uc(<Riavvio-gateway-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter sospendere l'invio dati di un Gateway],
+  [#ref-uc(<Sospensione-gateway-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter riattivare l'invio dati di un Gateway sospeso],
+  [#ref-uc(<Riattivazione-gateway-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter modificare il parametro di rolling average di un Gateway],
+  [#ref-uc(<Modifica-parametro-rolling-average-gateway-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter sospendere un sensore],
+  [#ref-uc(<Sospensione-sensore-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter riattivare un sensore sospeso],
+  [#ref-uc(<Riattivazione-sensore-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter selezionare un Gateway dalla lista per inviare comandi],
+  [#ref-uc(<Selezione-gateway-per-invio-comando-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter selezionare un sensore dalla lista per inviare comandi],
+  [#ref-uc(<Selezione-sensore-invio-comando-super-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare la lista di tutti i tenant nel Sistema],
+  [#ref-uc(<Visualizzazione-lista-tenant>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la lista dei tenant, deve poter vedere l'identificativo di ogni tenant],
+  [#ref-uc(<Visualizzazione-identificativo-tenant>)],
+
+[#rf()],
+  [Il Super Admin deve poter impersonificare un tenant (se la clausola è stata accettata)],
+  [#ref-uc(<Impersonificazione-tenant>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare i dettagli di un singolo tenant],
+  [#ref-uc(<Visualizzazione-tenant>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando un tenant, deve poter vedere l'identificativo del tenant],
+  [#ref-uc(<Visualizzazione-identificativo-tenant>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare la lista delle richieste di commissioning Gateway in corso],
+  [#ref-uc(<Visualizzazione-lista-richieste-in-corso-commissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere data e ora della richiesta],
+  [#ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il tenant richiedente],
+  [#ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il numero di gateway richiesti],
+  [#ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare la lista delle richieste di decommissioning Gateway in corso],
+  [#ref-uc(<Visualizzazione-lista-richieste-in-corso-decommissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere data e ora della richiesta],
+  [#ref-uc(<Visualizzazione-data-ora-richiesta-decommissioning>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere il tenant richiedente],
+  [#ref-uc(<Visualizzazione-tenant-richiesta-decommissioning>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere il numero di gateway],
+  [#ref-uc(<Visualizzazione-numero-gateway-richiesta-decommissioning>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere lo stato della richiesta],
+  [#ref-uc(<Visualizzazione-stato-richiesta-decommissioning>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare lo storico delle richieste di commissioning Gateway],
+  [#ref-uc(<Visualizzazione-storico-richieste-commissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere lo stato di ogni richiesta],
+  [#ref-uc(<Visualizzazione-stato-richiesta-storico-commissioning>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare lo storico delle richieste di decommissioning Gateway],
+  [#ref-uc(<Visualizzazione-storico-richieste-decommissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare i dettagli di una richiesta di commissioning],
+  [#ref-uc(<Visualizzazione-richiesta-commissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere data e ora della richiesta],
+  [#ref-uc(<Visualizzazione-data-ora-richiesta>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere il tenant richiedente],
+  [#ref-uc(<Visualizzazione-tenant-richiedente-richiesta>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere il numero di gateway richiesti],
+  [#ref-uc(<Visualizzazione-numero-gateway-richiesti>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare i dettagli di una richiesta di decommissioning],
+  [#ref-uc(<Visualizzazione-richiesta-decommissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando una richiesta di decommissioning, deve poter vedere i gateway interessati],
+  [#ref-uc(<Visualizzazione-gateway-da-decommissioning>)],
+
+[#rf()],
+  [Il Super Admin deve poter accettare una richiesta di commissioning/decommissioning Gateway],
+  [#ref-uc(<Accettazione-richiesta-fornitura-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter rifiutare una richiesta di commissioning/decommissioning Gateway],
+  [#ref-uc(<Rifiuto-richiesta-fornitura-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter creare un nuovo utente Tenant Admin],
+  [#ref-uc(<Creazione-utente-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin, creando un Tenant Admin, deve selezionare il tenant di appartenenza],
+  [#ref-uc(<Selezione-tenant>)],
+
+[#rf()],
+  [Il Super Admin, creando un Tenant Admin, deve inserire l'email del nuovo utente],
+  [#ref-uc(<Inserimento-email-nuovo-tenant-admin>)],
+
+[#rf()],
+  [Il Sistema deve inviare un'email per l'impostazione password al nuovo Tenant Admin],
+  [#ref-uc(<Invio-email-impostazione-password-nuovo-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter sospendere un account Tenant Admin],
+  [#ref-uc(<Sospensione-account-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin deve selezionare il Tenant Admin da sospendere],
+  [#ref-uc(<Selezione-tenant-admin-da-sospendere>)],
+
+[#rf()],
+  [Il Sistema deve richiedere conferma prima di sospendere un account Tenant Admin],
+  [#ref-uc(<Conferma-sospensione-account-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter riattivare un account Tenant Admin sospeso],
+  [#ref-uc(<Riattivazione-account-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin deve selezionare il Tenant Admin da riattivare],
+  [#ref-uc(<Selezione-tenant-admin-da-riattivare>)],
+
+[#rf()],
+  [Il Sistema deve richiedere conferma prima di riattivare un account Tenant Admin],
+  [#ref-uc(<Conferma-riattivazione-account-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter eliminare un account Tenant Admin],
+  [#ref-uc(<Eliminazione-account-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin deve selezionare il Tenant Admin da eliminare],
+  [#ref-uc(<Selezione-tenant-admin-da-eliminare>)],
+
+[#rf()],
+  [Il Sistema deve richiedere conferma prima di eliminare un account Tenant Admin],
+  [#ref-uc(<Conferma-eliminazione-account-tenant-admin>)],
+
+[#rf()],
+  [Il Super Admin deve poter creare un gateway simulato],
+  [#ref-uc(<Creazione-gateway-simulato>)],
+
+[#rf()],
+  [Il Super Admin, creando un gateway simulato, deve inserire il nome del gateway],
+  [#ref-uc(<Inserimento-nome-gateway-simulato>)],
+
+[#rf()],
+  [Il Super Admin, creando un gateway simulato, deve inserire il timeout di inattività],
+  [#ref-uc(<Inserimento-timeout-inattivita-gateway-simulato>)],
+
+[#rf()],
+  [Il Super Admin, creando un gateway simulato, deve inserire la dimensione del buffer],
+  [#ref-uc(<Inserimento-dimensione-buffer-gateway-simulato>)],
+
+[#rf()],
+  [Il Super Admin deve poter creare un sensore simulato],
+  [#ref-uc(<Creazione-sensore-simulato>)],
+
+[#rf()],
+  [Il Super Admin, creando un sensore simulato, deve selezionare i servizi GATT da simulare],
+  [#ref-uc(<Selezione-servizi-sensore-simulato>)],
+
+[#rf()],
+  [Il Super Admin, creando un sensore simulato, deve inserire il timeout per gli alert],
+  [#ref-uc(<Inserimento-timeout-alert-sensore-simulato>)],
+
+[#rf()],
+  [Il Super Admin, creando un sensore simulato, deve associarlo a un gateway simulato],
+  [#ref-uc(<Inserimento-associazione-gateway-simulato>)],
+
+[#rf()],
+  [Il Super Admin deve poter eliminare un gateway simulato],
+  [#ref-uc(<Eliminazione-gateway-simulato>)],
+
+[#rf()],
+  [Il Super Admin deve selezionare il gateway simulato da eliminare],
+  [#ref-uc(<Seleziona-gateway-simulato-da-eliminare>)],
+
+[#rf()],
+  [Il Sistema deve richiedere conferma prima di eliminare un gateway simulato],
+  [#ref-uc(<Conferma-eliminazione-gateway-simulato>)],
+
+[#rf()],
+  [Il Super Admin deve poter eliminare un sensore simulato],
+  [#ref-uc(<Eliminazione-sensore-simulato>)],
+
+[#rf()],
+  [Il Super Admin deve selezionare il sensore simulato da eliminare],
+  [#ref-uc(<Seleziona-sensore-simulato-da-eliminare>)],
+
+[#rf()],
+  [Il Sistema deve richiedere conferma prima di eliminare un sensore simulato],
+  [#ref-uc(<Conferma-eliminazione-sensore-simulato>)],
+
+[#rf()],
+  [Il Super Admin deve poter monitorare le metriche di sistema],
+  [#ref-uc(<Monitoraggio-metriche-di-sistema>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare il numero di gateway online/offline],
+  [#ref-uc(<Visualizzazione-gateway-offline-online>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare il throughput dati del sistema],
+  [#ref-uc(<Visualizzazione-throughput-dati>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare l'utilizzo delle risorse dei nodi cloud],
+  [#ref-uc(<Visualizzazione-utilizzo-risorse-nodi-cloud>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare la frequenza delle disconnessioni dei gateway],
+  [#ref-uc(<Visualizzazione-frequenza-disconnessioni-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare le dimensioni dei payload dei pacchetti],
+  [#ref-uc(<Visualizzazione-dimensioni-payload-pacchetti>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare la data staleness dei dati],
+  [#ref-uc(<Visualizzazione-data-staleness>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare i valori out-of-range rilevati],
+  [#ref-uc(<Visualizzazione-valori-out-of-range>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un sensore],
+  [#ref-uc(<Visualizzazione-storico-possessori-sensore>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare il nome del tenant possessore nello storico],
+  [#ref-uc(<Visualizzazione-tenant-possessore-sensore>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare il periodo di associazione del sensore nello storico],
+  [#ref-uc(<Visualizzazione-periodo-associazione-sensore>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un gateway],
+  [#ref-uc(<Visualizzazione-storico-possessori-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare il nome del tenant possessore del gateway nello storico],
+  [#ref-uc(<Visualizzazione-tenant-possessore-gateway>)],
+
+[#rf()],
+  [Il Super Admin deve poter visualizzare il periodo di associazione del gateway nello storico],
+  [#ref-uc(<Visualizzazione-periodo-associazione-gateway>)],
+
 )
 == Requisiti non funzionali
 #table(
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  [*RNF-1-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori, gateway, tenant senza degrado delle prestazioni.], [Capitolato di progetto:
-  5.5 – Requisiti non funzionali], // non so se bisogna dividerlo in 3
-  [*RNF-2-Obb*], [Devono essere presenti test unitari e test di integrazione.], [Capitolato di progetto:
+  [*RNF-1-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori senza degrado delle prestazioni.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-3-Obb*], [Deve essere presente un monitoraggio in tempo reale delle prestazioni del sistema.], [Capitolato di progetto:
+  [*RNF-2-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di gateway senza degrado delle prestazioni.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-4-Obb*], [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.], [Capitolato di progetto:
+  [*RNF-3-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di tenant senza degrado delle prestazioni.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-5-Obb*], [È necessario versionare il codice utilizzando Git.], [Capitolato di progetto:
+  [*RNF-4-Obb*], [Devono essere presenti test unitari e test di integrazione con un livello minimo di copertura prestabilito.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-6-Obb*], [ È necessario gestire la bufferizzazione dei dati (gateway/cloud) per tollerare disconnessioni temporanee.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
-  [*RNF-7-Obb*], [È necessario il supporto allo streaming dei dati in tempo reale ], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
-   [*RNF-8-Obb*], [È necessario il supporto alla gestione di più stream contemporanei.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
-  [*RNF-9Obb*], [È necessario l’uso di container], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)], //non sono sicuro sul orchestrazione
-  [*RNF-10-Obb*], [Deve essere garantita la cifratura dei dati], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-11-Obb*], [Deve essere garantita l’autenticazione dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-12-Obb*], [Deve essere garantito l isolamento dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-13-Des*], [Gradita la presenza di un sistema di eventi/alert],[Capitolato di progetto:
+  [*RNF-5-Obb*], [Deve essere presente un monitoraggio in tempo reale delle prestazioni del sistema.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-6-Obb*], [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-7-Obb*], [È necessario versionare il codice utilizzando Git.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-8-Obb*], [È necessario gestire la bufferizzazione dei dati (gateway/cloud) per tollerare disconnessioni temporanee.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-9-Obb*], [È necessario il supporto allo streaming dei dati in tempo reale.], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)],
+  [*RNF-10-Obb*], [È necessario il supporto alla gestione di più stream contemporanei.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-11-Obb*], [È necessario l’uso di container.], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)], //non sono sicuro sul orchestrazione
+  [*RNF-12-Obb*], [Deve essere garantita la cifratura dei dati.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-13-Obb*], [Deve essere garantita l’autenticazione dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-14-Obb*], [Deve essere garantito l'isolamento dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-15-Des*], [Gradita la presenza di un sistema di eventi/alert.],[Capitolato di progetto:
   5.2 – Requisiti Funzionali Opzionali],
-  [*RNF-14-Des*], [Gradita la presenza di audit log],[Capitolato di progetto:
+  [*RNF-16-Des*], [Gradita la presenza di audit log.],[Capitolato di progetto:
   5.4 – Requisiti di Sicurezza Opzionali],
+  [*RNF-17-Des*], [Gradita la capacità di integrazione con applicazioni esterne tramite API o connettori dedicati.],[Capitolato di progetto:
+  5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-18-Obb*], [Deve essere garantito il provisionamento sicuro dei gateway.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
 )
 
 == Requisiti di dominio
@@ -4935,7 +5528,7 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  [*RD-1-Obb*], [Necessario l'uso di sensori BLE.], [Capitolato di progetto],
+  [*RD-1-Obb*], [È necessario l'uso di sensori BLE.], [Capitolato di progetto],
 
   [*RD-2-Obb*], [I dati devono provenire da sensori Bluetooth Low Energy.], [Capitolato di progetto: 2.1 - Sensori BLE],
 
@@ -4949,7 +5542,7 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [*RD-7-Obb*], [I dati devono essere logicamente separati per tenant.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
-  [*RD-8-Obb*], [I dati devono provenire da sensori differenti], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-8-Obb*], [I dati devono poter provenire da sensori differenti.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
   [*RD-9-Obb*], [I dati devono essere associati a un timestamp ed essere interrogabili per intervallo temporale.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
@@ -4957,9 +5550,11 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [*RD-11-Obb*], [Gateway e sensori devono essere registrati, associati a un tenant e riconosciuti in modo persistente dal sistema.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
-  [*RD-12-Obb*], [ Il dominio richiede l’accesso ai dati storici], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-12-Obb*], [Il dominio richiede l’accesso ai dati storici.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
-  [*RD-13-Obb*], [ Il dominio richiede l’accesso ai dati in tempo reale tramite stream.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-13-Obb*], [Il dominio richiede l’accesso ai dati in tempo reale tramite stream.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-14-Obb*], [È necessaria l'uso di un'interfaccia web per la gestione e configurazione di molteplici elementi diversi.], [Capitolato di progetto: 2.3 - Cloud],
 
 )
 
@@ -5419,20 +6014,24 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Reset-gateway-cloud>)],
 
 
-  [*RNF-1-Obb*],[Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-1-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-2-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-3-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-4-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-5-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
-  [*RNF-6-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi],
-  [*RNF-7-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi],
-  [*RNF-8-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiF],
+  [*RNF-6-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-7-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-8-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
   [*RNF-9-Obb*], [Capitolato di progetto: 3.3 - Cloud],
-  [*RNF-10-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-11-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-10-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-11-Obb*], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)],
   [*RNF-12-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-13-Des*], [Capitolato di progetto: 5.2 – Requisiti Funzionali Opzionali],
-  [*RNF-14-Des*], [Capitolato di progetto: 5.4 – Requisiti di Sicurezza Opzionali],
+  [*RNF-13-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-14-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-15-Des*], [Capitolato di progetto: 5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-16-Des*], [Capitolato di progetto: 5.4 – Requisiti di Sicurezza Opzionali],
+  [*RNF-17-Des*], [Capitolato di progetto: 5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-18-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
 
   [*RD-1-Obb*], [Capitolato di progetto],
   [*RD-2-Obb*],[Capitolato di progetto: 2.1 - Sensori BLE],
@@ -5447,6 +6046,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [*RD-11-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
   [*RD-12-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
   [*RD-13-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-14-Obb*], [Capitolato di progetto: 2.3 - Cloud],
 
   )
 ]
