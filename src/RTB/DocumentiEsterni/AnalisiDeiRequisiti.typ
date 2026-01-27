@@ -4,15 +4,21 @@
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
   registro-modifiche: (
-
-    ("0.22.0",
+    ("0.23.0",
+      "27/01/2026",
+      "Jaume Bernardi",
+      "-",
+      [Controllo, correzione ed aggiunta requisiti. Aggiunta diagrammi UC dal 110 al 169],
+    ),
+    (
+      "0.22.0",
       "26/01/2026",
       "Michele Dioli",
       "-",
-      [Aggiunta requsiti mancanti e aggiunta diagrammi degli UC dall'56 al 110],
+      [Aggiunta requisiti mancanti e aggiunta diagrammi degli UC dall'56 al 110],
     ),
-
-      ("0.21.0",
+    (
+      "0.21.0",
       "23/01/2026",
       "Hossam Ezzemouri",
       "-",
