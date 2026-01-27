@@ -1,28 +1,126 @@
 #import "../../Templates/templateDocumentiGenerici.typ": report
 
+
+#let uc-counter = counter("uc-counter")
+
+
+/* Crea un nuovo UC e ne mostra il codice.*/
+#let uc = () => {
+  uc-counter.step()
+  context uc-counter.display("UC1.1.1")
+}
+
+/* Crea un nuovo sotto-UC e ne mostra il codice*/
+#let sub-uc = () => {
+  uc-counter.step(level: 2)
+  context uc-counter.display("UC1.1.1")
+}
+
+/* Crea un nuovo sotto-sotto-UC e ne mostra il codice */
+#let subsub-uc = () => {
+  uc-counter.step(level: 3)
+  context uc-counter.display("UC1.1.1")
+}
+
+/*
+  Crea un riferimento allo UC relativo a un certo label.
+
+  = Esempio
+  Se da qualche parte ho un titolo con label `<Autenticazione-utente>`
+  che corrisponde allo UC1.2,
+  posso scrivere `#ref-uc(<Autenticazione-utente>)` per avere un link
+  automatico a quella sezione che verrà fuori tipo "UC1.2 [Sezione x.y.z]"
+
+  = Parametri
+  == uc-label
+  Tipo: label
+*/
+#let ref-uc = (lbl, section-prefix: "Sezione ") => context {
+  if query(lbl) == () {
+    panic("Il label <" + str(lbl) + "> non esiste. Assicurati di averlo scritto correttamente.")
+  }
+
+  let label-locs = query(selector(heading).after(lbl))
+  let label-loc = label-locs.at(0).location()
+
+  let uc-counter-value = if label-locs.len() > 1 {
+    uc-counter.at(label-locs.at(1).location())
+  } else { uc-counter.final() }
+
+  let uc-id = "UC" + uc-counter-value.map(str).join(".")
+  let section-id = counter(heading).at(label-loc).map(str).join(".")
+
+  link(label-loc, [#uc-id \[#section-prefix#section-id\]])
+}
+
+
+#let rf-counter = counter("rf-counter")
+#let rnf-counter = counter("rnf-counter")
+#let rd-counter = counter("rd-counter")
+#let rv-counter = counter("rv-counter")
+
+#let rf = (..args) => {
+  rf-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
+  context rf-counter.display(value => {
+    [*RF\-#value\-#rilevanza*]
+  })
+}
+#let rnf = (..args) => {
+  rnf-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
+  context rnf-counter.display(value => {
+    [*RNF\-#value\-#rilevanza*]
+  })
+}
+#let rd = (..args) => {
+  rd-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
+  context rd-counter.display(value => {
+    [*RD\-#value\-#rilevanza*]
+  })
+}
+#let rv = (..args) => {
+  rv-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
+  context rv-counter.display(value => {
+    [*RV\-#value\-#rilevanza*]
+  })
+}
+
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
   registro-modifiche: (
+    (
+      "0.24.0",
+      "27/01/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Sistemati errori di battitura e formattazione; Sistemati diagrammi non funzionanti; modificati #ref-uc(<Modifica-target-freq-invio-dati-tenant-admin>), 
+      #ref-uc(<Modifica-freq-invio-dati-gateway-super-admin>),
+      #ref-uc(<Conferma-comando-modifica-frequenza-invio-dati>) per rispecchiare parametro invio frequenza dati al Gateway 
+      ]
+    ),
     ("0.23.0",
       "27/01/2026",
       "Jaume Bernardi",
       "-",
-      [Controllo, correzione ed aggiunta requisiti. Aggiunta diagrammi UC dal 110 al 169],
+      [Controllo, correzione ed aggiunta requisiti. Aggiunta diagrammi UC dal #ref-uc(<Visualizzazione-richiesta-decommissioning-gateway>) al #ref-uc(<Reset-gateway-cloud>)],
     ),
     (
       "0.22.0",
       "26/01/2026",
       "Michele Dioli",
       "-",
-      [Aggiunta requisiti mancanti e aggiunta diagrammi degli UC dall'56 al 110],
+      [Aggiunta requisiti mancanti e aggiunta diagrammi degli UC dal #ref-uc(<Visualizzazione-singolo-audit-log>) al #ref-uc(<Visualizzazione-richiesta-decommissioning-gateway>)],
     ),
     (
       "0.21.0",
       "23/01/2026",
       "Hossam Ezzemouri",
       "-",
-      [Creazione e aggiunta dei diagrammi degli UC dall'1 al 55],
+      [Creazione e aggiunta dei diagrammi degli UC dall'#ref-uc(<Autenticazione-utente>) al #ref-uc(<Visualizzazione-audit-log>)],
     ),
     (
       "0.20.0",
@@ -187,100 +285,14 @@
   tipo-documento: "Analisi dei Requisiti",
 )
 
-#let uc-counter = counter("uc-counter")
+
 #uc-counter.update(0)
-
-/* Crea un nuovo UC e ne mostra il codice.*/
-#let uc = () => {
-  uc-counter.step()
-  context uc-counter.display("UC1.1.1")
-}
-
-/* Crea un nuovo sotto-UC e ne mostra il codice*/
-#let sub-uc = () => {
-  uc-counter.step(level: 2)
-  context uc-counter.display("UC1.1.1")
-}
-
-/* Crea un nuovo sotto-sotto-UC e ne mostra il codice */
-#let subsub-uc = () => {
-  uc-counter.step(level: 3)
-  context uc-counter.display("UC1.1.1")
-}
-
-/*
-  Crea un riferimento allo UC relativo a un certo label.
-
-  = Esempio
-  Se da qualche parte ho un titolo con label `<Autenticazione-utente>`
-  che corrisponde allo UC1.2,
-  posso scrivere `#ref-uc(<Autenticazione-utente>)` per avere un link
-  automatico a quella sezione che verrà fuori tipo "UC1.2 [Sezione x.y.z]"
-
-  = Parametri
-  == uc-label
-  Tipo: label
-*/
-#let ref-uc = (lbl, section-prefix: "Sezione ") => context {
-  if query(lbl) == () {
-    panic("Il label <" + str(lbl) + "> non esiste. Assicurati di averlo scritto correttamente.")
-  }
-
-  let label-locs = query(selector(heading).after(lbl))
-  let label-loc = label-locs.at(0).location()
-
-  let uc-counter-value = if label-locs.len() > 1 {
-    uc-counter.at(label-locs.at(1).location())
-  } else { uc-counter.final() }
-
-  let uc-id = "UC" + uc-counter-value.map(str).join(".")
-  let section-id = counter(heading).at(label-loc).map(str).join(".")
-
-  link(label-loc, [#uc-id \[#section-prefix#section-id\]])
-}
-
-#let rf-counter = counter("rf-counter")
-#let rnf-counter = counter("rnf-counter")
-#let rd-counter = counter("rd-counter")
-#let rv-counter = counter("rv-counter")
 
 #rf-counter.update(0)
 #rnf-counter.update(0)
 #rd-counter.update(0)
 #rv-counter.update(0)
 
-#let rf = (..args) => {
-  rf-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
-  context rf-counter.display(value => {
-    [*RF\-#value\-#rilevanza*]
-  })
-}
-#let rnf = (..args) => {
-  rnf-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
-  context rnf-counter.display(value => {
-    [*RNF\-#value\-#rilevanza*]
-  })
-}
-#let rd = (..args) => {
-  rd-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
-  context rd-counter.display(value => {
-    [*RD\-#value\-#rilevanza*]
-  })
-}
-#let rv = (..args) => {
-  rv-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
-  context rv-counter.display(value => {
-    [*RV\-#value\-#rilevanza*]
-  })
-}
-
-/*
-NOTE: quando si scrive che super admin impersona tenant admin, si segna come precondizione che il tenant admin ha accettato la clausola d'impersonificazione del contratto
-*/
 
 = Introduzione
 Questo documento ha come obiettivo quello di fornire informazioni  dettagliate e chiare riguardo i requisiti che il software progettato possiede: questo per poter esser un punto di riferimento sia per i soggetti coinvolti nello sviluppo sia per gli appaltanti, consentendo ad entrambi di verificare che il progetto soddisfi i requisiti funzionali e non funzionali esplicitati.
@@ -361,7 +373,7 @@ In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud.
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
 
 ==== #uc() - Autenticazione Utente <Autenticazione-utente>
-#image("../../assets/diagrammi/UC1.png", width: 80%)
+#image("../../assets/diagrammi/UC1.svg", width: 100%)
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -457,7 +469,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 
 ==== #uc() - Autenticazione 2FA <Autenticazione-2FA>
-#image("../../assets/diagrammi/UC6.png", width: 80%)
+#image("../../assets/diagrammi/UC6.svg", width: 100%)
 
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
@@ -523,7 +535,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente visualizza un messaggio di errore
 
 ==== #uc() - Impostazione password <Impostazione-password>
-#image("../../assets/diagrammi/UC9.png", width: 80%)
+#image("../../assets/diagrammi/UC9.svg", width: 100%)
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -548,7 +560,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 
 
 ==== #uc() - Password dimenticata <Password-dimenticata>
-#image("../../assets/diagrammi/UC10.png", width: 80%)
+#image("../../assets/diagrammi/UC10.svg", width: 100%)
 - *Attore principale*: Utente non autenticato
 - *Attore secondario*: Email client
 - *Pre-condizioni*:
@@ -597,7 +609,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente inserisce un indirizzo email non associato ad alcun account
 
 ==== #uc() - Reimpostazione password dimenticata <Reimpostazione-password-dimenticata>
-#image("../../assets/diagrammi/UC12.png", width: 80%)
+#image("../../assets/diagrammi/UC12.svg", width: 100%)
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -693,7 +705,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente esegue il logout dal Sistema
 
 ==== #uc() - Modifica password <Modifica-password>
-#image("../../assets/diagrammi/UC17.png", width: 80%)
+#image("../../assets/diagrammi/UC17.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -739,7 +751,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 // ALERT -----------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista alert <Visualizzazione-lista-alert>
-#image("../../assets/diagrammi/UC19.png", width: 80%)
+#image("../../assets/diagrammi/UC19.svg", width: 100%)
 
 - *Attore principale*: Tenant User
 - *Pre-condizioni*:
@@ -754,7 +766,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Visualizzazione alert <Visualizzazione-alert>
-#image("../../assets/diagrammi/UC20.png", width: 80%)
+#image("../../assets/diagrammi/UC20.svg", width: 100%)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
   - L'Utente Autenticato è autenticato nel Sistema
@@ -782,7 +794,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente Autenticato visualizza la descrizione dell'alert selezionato
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da gateway <Mancata-ricezione-gateway>
-#image("../../assets/diagrammi/UC21.png", width: 80%)
+#image("../../assets/diagrammi/UC21.svg", width: 100%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-alert>)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
@@ -820,7 +832,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente Autenticato visualizza il tempo di inattività del gateway interessato nell'alert
 
 ==== #uc() - Visualizzazione alert mancata ricezione dati da sensore <Mancata-ricezione-sensore>
-#image("../../assets/diagrammi/UC22.png", width: 80%)
+#image("../../assets/diagrammi/UC22.svg", width: 100%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-alert>)
 - *Attore principale*: Utente Autenticato
 - *Pre-condizioni*:
@@ -871,7 +883,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Visualizzazione in tempo reale dei dati del sensore <Visualizzazione-dati-real-time-sensore>
-#image("../../assets/diagrammi/UC24.png", width: 80%)
+#image("../../assets/diagrammi/UC24.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -903,7 +915,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
 
 ==== #uc() - Visualizzazione dello storico dei dati del sensore <Visualizzazione-storico-dati-sensore>
-#image("../../assets/diagrammi/UC25.png", width: 80%)
+#image("../../assets/diagrammi/UC25.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -934,7 +946,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
-#image("../../assets/diagrammi/UC26.png", width: 80%)
+#image("../../assets/diagrammi/UC26.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -983,7 +995,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 
 ==== #uc() - Filtraggio dati del sensore per intervallo di valori <Filtraggio-dati-sensore-intervallo-valori>
-#image("../../assets/diagrammi/UC28.png", width: 80%)
+#image("../../assets/diagrammi/UC28.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -1052,7 +1064,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'utente autenticato visualizza la lista dei sensori associati al proprio tenant
 
 ==== #uc() - Visualizzazione singolo sensore associato al tenant in lista <Visualizzazione-singolo-sensore-associato-tenant-in-lista>
-#image("../../assets/diagrammi/UC32.png", width: 80%)
+#image("../../assets/diagrammi/UC32.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -1074,7 +1086,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 
 // Dashboard ----------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione dashboard generica <Visualizzazione-dashboard-generica>
-#image("../../assets/diagrammi/UC33.png", width: 80%)
+#image("../../assets/diagrammi/UC33.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'utente è autenticato nel Sistema
@@ -1170,7 +1182,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Gestione Tenant User -------------------------------------------------------------------------------------------------
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
-#image("../../assets/diagrammi/UC36.png", width: 80%)
+#image("../../assets/diagrammi/UC36.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Attore secondario*: Email client
 - *Pre-condizioni*:
@@ -1212,7 +1224,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 ==== #uc() - Sospensione Tenant User <Sospensione-tenant-user>
-#image("../../assets/diagrammi/UC37.png", width: 80%)
+#image("../../assets/diagrammi/UC37.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1239,7 +1251,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin conferma la sospensione del Tenant User
 
 ==== #uc() - Riattivazione Tenant User <Riattivazione-tenant-user>
-#image("../../assets/diagrammi/UC38.png", width: 80%)
+#image("../../assets/diagrammi/UC38.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1267,7 +1279,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 ==== #uc() - Eliminazione Tenant User <Eliminazione-tenant-user>
-#image("../../assets/diagrammi/UC39.png", width: 80%)
+#image("../../assets/diagrammi/UC39.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel sistema
@@ -1295,7 +1307,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Commissioning / Decommissioning ------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant 
-#image("../../assets/diagrammi/UC40.png", width: 80%)<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
+#image("../../assets/diagrammi/UC40.svg", width: 100%)<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1308,7 +1320,8 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
 
 ==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant
-#image("../../assets/diagrammi/UC41.png", width: 80%)
+// TODO: Diagramma UC41 mancante
+// #image("../../assets/diagrammi/UC41.svg", width: 100%)
 <Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1349,7 +1362,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin visualizza la lista degli utenti registrati nel proprio tenant
 
 ==== #uc() - Visualizzazione singolo utente in lista <Visualizzazione-singolo-utente-in-lista>
-#image("../../assets/diagrammi/UC43.png", width: 80%)
+#image("../../assets/diagrammi/UC43.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1386,7 +1399,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Visualizzazione gateway/Sensori --------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista di gateway associati a tenant <Visualizzazione-lista-gateway-associati>
-#image("../../assets/diagrammi/UC44.png", width: 80%)
+#image("../../assets/diagrammi/UC44.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1398,7 +1411,8 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-singolo-gateway-in-lista>)
 
 ==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
-#image("../../assets/diagrammi/UC45.png", width: 80%)
+// TODO: Diagramma UC45 mancante
+// #image("../../assets/diagrammi/UC45.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1434,7 +1448,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin visualizza lo stato del singolo gateway nella lista
 
 ==== #uc() - Visualizzazione gateway associato a tenant <Visualizzazione-gateway-associato>
-#image("../../assets/diagrammi/UC46.png", width: 80%)
+#image("../../assets/diagrammi/UC46.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1488,7 +1502,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin visualizza la lista dei sensori collegati al gateway selezionato
 
 ==== #uc() - Visualizza singolo sensore collegato al gateway associato al tenant in lista
-#image("../../assets/diagrammi/UC47.png", width: 80%)
+#image("../../assets/diagrammi/UC47.svg", width: 100%)
 <Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1516,7 +1530,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Gestione API Keys ------------------------------------------------------------------------------------------------------------------
 ==== #uc() - Registrazione nuova API key <Registrazione-nuova-api-key>
-#image("../../assets/diagrammi/UC48.png", width: 80%)
+#image("../../assets/diagrammi/UC48.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1580,7 +1594,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 ==== #uc() - Visualizzazione lista API key <Visualizzazione-lista-api-key>
-#image("../../assets/diagrammi/UC51.png", width: 80%)
+#image("../../assets/diagrammi/UC51.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1593,7 +1607,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-singola-api-key-lista>)
 
 ==== #uc() - Visualizzazione singola API Key in lista <Visualizzazione-singola-api-key-lista>
-#image("../../assets/diagrammi/UC52.png", width: 80%)
+#image("../../assets/diagrammi/UC52.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1638,7 +1652,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // TODO: Singoli uc pure per i dettagli qui?
 ==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
-#image("../../assets/diagrammi/UC6.png", width: 80%)
+#image("../../assets/diagrammi/UC6.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1699,7 +1713,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - Visualizza nell'asse X il tempo
 
 ==== #uc() - Eliminazione API key <Eliminazione-api-key>
-#image("../../assets/diagrammi/UC54.png", width: 80%)
+#image("../../assets/diagrammi/UC54.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1729,7 +1743,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 // TODO: Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
 // -> rifinire l'audit log secondo il pattern per visualizzazione lista di elementi
 ==== #uc() - Visualizzazione lista audit log del tenant <Visualizzazione-audit-log>
-#image("../../assets/diagrammi/UC55.svg", width: 80%)
+#image("../../assets/diagrammi/UC55.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1871,7 +1885,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
 // TODO: nel diagramma di questo UC ci potrebbe stare mostrare anche <Visualizzazione-dashboard-generica>
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
-#image("../../assets/diagrammi/UC61.svg", width: 80%)
+#image("../../assets/diagrammi/UC61.svg", width: 100%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
@@ -1921,7 +1935,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Tenant Admin visualizza il grafico a torta sopra descritto
 
-// Comm./decomm. --------------------------------------------------------
+// Comm./decommissioning. --------------------------------------------------------
 ==== #uc() - Creazione richiesta di commissioning gateway <Creazione-richiesta-commissioning-gateway>
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
@@ -1935,7 +1949,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Creazione richiesta di decommissioning gateway <Creazione-richiesta-decommissioning-gateway>
-#image("../../assets/diagrammi/UC63.svg", width: 80%)
+#image("../../assets/diagrammi/UC63.svg", width: 100%)
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1962,7 +1976,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Eliminazione richiesta di commissioning/decommissioning gateway 
-#image("../../assets/diagrammi/UC64.svg", width: 80%)<Eliminazione-richiesta-commissioning-decommissioning-gateway>
+#image("../../assets/diagrammi/UC64.svg", width: 100%)<Eliminazione-richiesta-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -1995,7 +2009,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // Comandi ----------------------------------------------------------------------------------------------------------------------------------------------
 ==== #uc() - Sospensione sensore del tenant <Sospensione-sensore-tenant-admin>
-#image("../../assets/diagrammi/UC65.svg", width: 80%)
+#image("../../assets/diagrammi/UC65.svg", width: 100%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2017,7 +2031,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione sensore del tenant <Riattivazione-sensore-tenant-admin>
-#image("../../assets/diagrammi/UC66.svg", width: 80%)
+#image("../../assets/diagrammi/UC66.svg", width: 100%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2039,7 +2053,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Sospensione gateway associato a tenant <Sospensione-gateway-tenant-admin>
-#image("../../assets/diagrammi/UC67.svg", width: 80%)
+#image("../../assets/diagrammi/UC67.svg", width: 100%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2062,7 +2076,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione gateway associato a tenant <Riattivazione-gateway-tenant-admin>
-#image("../../assets/diagrammi/UC68.svg", width: 80%)
+#image("../../assets/diagrammi/UC68.svg", width: 100%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2084,7 +2098,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 ==== #uc() - Riavvio gateway associato a tenant <Riavvio-gateway-tenant-admin>
-#image("../../assets/diagrammi/UC69.svg", width: 80%)
+#image("../../assets/diagrammi/UC69.svg", width: 100%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2103,9 +2117,9 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
-// TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"? IN CASO, DA INSERIRE UN INCLUDE "Seleziona parametro di rolling average / invio frequenza" a seconda di quello che ci dicono
-==== #uc() - Modifica target di frequenza d'invio dati per tipo di sensore di gateway associato a tenant <Modifica-parametro-rolling-average-tenant-admin>
-#image("../../assets/diagrammi/UC70.svg", width: 80%)
+
+==== #uc() - Modifica target di frequenza d'invio dati per tipo di sensore di gateway associato a tenant <Modifica-target-freq-invio-dati-tenant-admin>
+#image("../../assets/diagrammi/UC70.svg", width: 100%)
 - *Attore principale*: Tenant Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2144,7 +2158,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 === Attore principale - Super Admin
 // GESTIONE TENANT ------------------------------------------------------------------------
 ==== #uc() - Creazione Tenant <Creazione-tenant>
-#image("../../assets/diagrammi/UC72.svg", width: 80%)
+#image("../../assets/diagrammi/UC72.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2180,7 +2194,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin ha inserito il nome del nuovo tenant ma è già in uso
 
 ==== #uc() - Eliminazione Tenant <Eliminazione-tenant>
-#image("../../assets/diagrammi/UC74.svg", width: 80%)
+#image("../../assets/diagrammi/UC74.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2270,7 +2284,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // DASHBOARD ----------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione dashboard Super Admin <Visualizzazione-dashboard-super-admin>
-#image("../../assets/diagrammi/UC76.svg", width: 80%)
+#image("../../assets/diagrammi/UC76.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2305,7 +2319,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Visualizzazione lista gateway <Visualizzazione-lista-gateway-super-admin>
-#image("../../assets/diagrammi/UC77.svg", width: 80%)
+#image("../../assets/diagrammi/UC77.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2319,7 +2333,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // TODO: Può avere senso come visualizzazione singolo elemento?
 ==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
-#image("../../assets/diagrammi/UC78.svg", width: 80%)
+#image("../../assets/diagrammi/UC78.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2393,7 +2407,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // AUTENTICAZIONE GATEWAY --------------------------------------------------------------------
 ==== #uc() - Autenticazione gateway <Autenticazione-gateway>
-#image("../../assets/diagrammi/UC80.svg", width: 80%)
+#image("../../assets/diagrammi/UC80.svg", width: 100%)
 - *Attore principale*: Super Admin
 //- *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2444,7 +2458,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // COMMISSIONING ----------------------------------------------------------------------
 ==== #uc() - Associazione gateway -- Tenant <Associazione-gateway-tenant>
-#image("../../assets/diagrammi/UC83.svg", width: 80%)
+#image("../../assets/diagrammi/UC83.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2515,7 +2529,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // COMANDI GATEWAY SUPER ADMIN ---------------------------------------------------------------------------
 ==== #uc() - Decommissioning gateway <Decommissioning-gateway>
-#image("../../assets/diagrammi/UC87.svg", width: 80%)
+#image("../../assets/diagrammi/UC87.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2574,7 +2588,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riavvio gateway da Super Admin <Riavvio-gateway-super-admin>
-#image("../../assets/diagrammi/UC89.svg", width: 80%)
+#image("../../assets/diagrammi/UC89.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2594,7 +2608,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 ==== #uc() - Sospensione gateway <Sospensione-gateway-super-admin>
-#image("../../assets/diagrammi/UC90.svg", width: 80%)
+#image("../../assets/diagrammi/UC90.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2616,7 +2630,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione gateway <Riattivazione-gateway-super-admin>
-#image("../../assets/diagrammi/UC91.svg", width: 80%)
+#image("../../assets/diagrammi/UC91.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2637,9 +2651,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 
-// TODO: cos'è che viene parametrizzato nello specifico? cos'è il "valore del parametro di rolling average"?   Sarebbe bene considerare il parametro di FREQUENZA D'INVIO DEI DATI? CHIEDIAMO A M31
-==== #uc() - Modifica target di frequenza d'invio dati per tipo di sensore di gateway <Modifica-parametro-rolling-average-gateway-super-admin>
-#image("../../assets/diagrammi/UC92.svg", width: 80%)
+==== #uc() - Modifica target di frequenza d'invio dati per tipo di sensore di gateway <Modifica-freq-invio-dati-gateway-super-admin>
+#image("../../assets/diagrammi/UC92.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2660,7 +2673,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Sospensione sensore <Sospensione-sensore-super-admin>
-#image("../../assets/diagrammi/UC93.svg", width: 80%)
+#image("../../assets/diagrammi/UC93.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2681,7 +2694,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 ==== #uc() - Riattivazione sensore <Riattivazione-sensore-super-admin>
-#image("../../assets/diagrammi/UC94.svg", width: 80%)
+#image("../../assets/diagrammi/UC94.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Gateway
 - *Pre-condizioni*:
@@ -2726,7 +2739,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // VISUALIZZAZIONE ---------------------------------------------------------------
 ==== #uc() - Visualizzazione lista tenant <Visualizzazione-lista-tenant>
-#image("../../assets/diagrammi/UC97.svg", width: 80%)
+#image("../../assets/diagrammi/UC97.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2738,7 +2751,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-singolo-tenant-lista>)
 
 // TODO: Aggiungere più campi visualizzati???
-==== #uc() - Visualizzazione singolo tenat in lista <Visualizzazione-singolo-tenant-lista>
+==== #uc() - Visualizzazione singolo tenant in lista <Visualizzazione-singolo-tenant-lista>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2761,7 +2774,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza l'identificativo del tenant in lista
 
 ==== #uc() - Impersonificazione tenant <Impersonificazione-tenant>
-#image("../../assets/diagrammi/UC100.svg", width: 80%)
+#image("../../assets/diagrammi/UC100.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2796,7 +2809,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza l'identificativo del tenant selezionato
 
 
-// GESTIONE RICHIESTE COMMISSIONING/DECOMM. ----------------------------------------------------------------------------
+// GESTIONE RICHIESTE COMMISSIONING/DECOMMISSIONING ----------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista richieste in corso di commissioning gateway <Visualizzazione-lista-richieste-in-corso-commissioning-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -2809,7 +2822,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>)
 
 ==== #uc() - Visualizzazione singola richiesta di commissioning in lista <Visualizzazione-singola-richiesta-commissioning-in-lista>
-#image("../../assets/diagrammi/UC102.svg", width: 80%)
+#image("../../assets/diagrammi/UC102.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2869,7 +2882,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc() - Visualizzazione singola richiesta di decommissioning in lista 
 <Visualizzazione-singola-richiesta-decommissioning-in-lista>
-#image("../../assets/diagrammi/UC104.svg", width: 80%)
+#image("../../assets/diagrammi/UC104.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -2929,7 +2942,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza lo stato della richiesta di decommissioning in lista
 
 ==== #uc() - Visualizzazione storico richieste di commissioning gateway <Visualizzazione-storico-richieste-commissioning-gateway>
-#image("../../assets/diagrammi/UC105.svg", width: 80%)
+#image("../../assets/diagrammi/UC105.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3002,7 +3015,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-stato-richiesta-decommissioning>)
 
 ==== #uc() - Visualizzazione richiesta di commissioning gateway <Visualizzazione-richiesta-commissioning-gateway>
-#image("../../assets/diagrammi/UC109.svg", width: 80%)
+#image("../../assets/diagrammi/UC109.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3084,7 +3097,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin accetta la richiesta di commissioning/decommissioning gateway
 
 
-// TODO (CHIEDERE A M31): Ha senso permettere al super admin di RIFIUTARE una richiesta di decommissioning?
+// TODO: Togliere Rifiuto richiesta di commissioning/decommissioning gateway 
 ==== #uc() - Rifiuto richiesta di commissioning/decommissioning gateway <Rifiuto-richiesta-fornitura-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -3690,7 +3703,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il gateway riscontra un errore durante l'esecuzione del decommissioning
   - Il gateway invia la segnalazione di errore al Sistema
 
-// TODO: --- (DA CHIEDERE A M31) serve un log di sistema dove mettere cose come conferma/ricezione di comandi, errori nei comandi, etc...?
+// TODO: Implementare log di sistema (mail 8 gennaio)?
 ==== #uc() - Conferma riavvio <Conferma-comando-riavvio>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
@@ -4690,7 +4703,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
 
   [#rf()],
-  [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del sensore selezionato poichè il gateway a cui esso è associato è in stato di errore],
+  [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore],
   [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
   [#rf()],
@@ -4698,7 +4711,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
 
   [#rf()],
-  [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del sensore selezionato poichè il gateway a cui esso è associato è in stato di errore],
+  [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore],
   [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
   [#rf()],
@@ -4706,7 +4719,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
 
   [#rf()],
-  [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del gateway selezionato poichè esso è in stato di errore],
+  [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
   [#rf()],
@@ -4714,7 +4727,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
 
   [#rf()],
-  [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del gateway selezionato poichè esso è in stato di errore],
+  [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
   [#rf()],
@@ -4722,7 +4735,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
 
   [#rf()],
-  [Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poichè esso è in stato di errore],
+  [Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
   //Attore: Gateway, Sistema: Cloud
@@ -5205,7 +5218,7 @@ Inoltre un buon requisito deve essere *SMART*:
 
 [#rf()],
   [Il Super Admin deve poter modificare il parametro di rolling average di un Gateway],
-  [#ref-uc(<Modifica-parametro-rolling-average-gateway-super-admin>)],
+  [#ref-uc(<Modifica-freq-invio-dati-gateway-super-admin>)],
 
 [#rf()],
   [Il Super Admin deve poter sospendere un sensore],
@@ -5520,7 +5533,7 @@ Inoltre un buon requisito deve essere *SMART*:
   5.4 – Requisiti di Sicurezza Opzionali],
   [*RNF-17-Des*], [Gradita la capacità di integrazione con applicazioni esterne tramite API o connettori dedicati.],[Capitolato di progetto:
   5.2 – Requisiti Funzionali Opzionali],
-  [*RNF-18-Obb*], [Deve essere garantito il provisionamento sicuro dei gateway.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-18-Obb*], [Deve essere garantito il provisioning sicuro dei gateway.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
 )
 
 == Requisiti di dominio
@@ -5564,6 +5577,8 @@ Inoltre un buon requisito deve essere *SMART*:
 == Tracciamento
 // TODO: mettere doppia colonna per ottimizzare gli spazi?
 // TODO: sistemare riferimenti in questa sezione usando un ref-rf() o funzione simile
+
+#rf-counter.update(0)
 // #set page(columns: 2)
 
 #align(center)[
