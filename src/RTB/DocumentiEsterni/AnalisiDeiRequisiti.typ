@@ -5493,27 +5493,34 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  [*RNF-1-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori, gateway, tenant senza degrado delle prestazioni.], [Capitolato di progetto:
-  5.5 – Requisiti non funzionali], // non so se bisogna dividerlo in 3
-  [*RNF-2-Obb*], [Devono essere presenti test unitari e test di integrazione.], [Capitolato di progetto:
+  [*RNF-1-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori senza degrado delle prestazioni.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-3-Obb*], [Deve essere presente un monitoraggio in tempo reale delle prestazioni del sistema.], [Capitolato di progetto:
+  [*RNF-2-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di gateway senza degrado delle prestazioni.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-4-Obb*], [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.], [Capitolato di progetto:
+  [*RNF-3-Obb*], [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di tenant senza degrado delle prestazioni.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-5-Obb*], [È necessario versionare il codice utilizzando Git.], [Capitolato di progetto:
+  [*RNF-4-Obb*], [Devono essere presenti test unitari e test di integrazione con un livello minimo di copertura prestabilito.], [Capitolato di progetto:
   5.5 – Requisiti non funzionali],
-  [*RNF-6-Obb*], [ È necessario gestire la bufferizzazione dei dati (gateway/cloud) per tollerare disconnessioni temporanee.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
-  [*RNF-7-Obb*], [È necessario il supporto allo streaming dei dati in tempo reale ], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
-   [*RNF-8-Obb*], [È necessario il supporto alla gestione di più stream contemporanei.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
-  [*RNF-9Obb*], [È necessario l’uso di container], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)], //non sono sicuro sul orchestrazione
-  [*RNF-10-Obb*], [Deve essere garantita la cifratura dei dati], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-11-Obb*], [Deve essere garantita l’autenticazione dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-12-Obb*], [Deve essere garantito l isolamento dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-13-Des*], [Gradita la presenza di un sistema di eventi/alert],[Capitolato di progetto:
+  [*RNF-5-Obb*], [Deve essere presente un monitoraggio in tempo reale delle prestazioni del sistema.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-6-Obb*], [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-7-Obb*], [È necessario versionare il codice utilizzando Git.], [Capitolato di progetto:
+  5.5 – Requisiti non funzionali],
+  [*RNF-8-Obb*], [È necessario gestire la bufferizzazione dei dati (gateway/cloud) per tollerare disconnessioni temporanee.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-9-Obb*], [È necessario il supporto allo streaming dei dati in tempo reale.], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)],
+  [*RNF-10-Obb*], [È necessario il supporto alla gestione di più stream contemporanei.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-11-Obb*], [È necessario l’uso di container.], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)], //non sono sicuro sul orchestrazione
+  [*RNF-12-Obb*], [Deve essere garantita la cifratura dei dati.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-13-Obb*], [Deve essere garantita l’autenticazione dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-14-Obb*], [Deve essere garantito l'isolamento dei tenant.], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-15-Des*], [Gradita la presenza di un sistema di eventi/alert.],[Capitolato di progetto:
   5.2 – Requisiti Funzionali Opzionali],
-  [*RNF-14-Des*], [Gradita la presenza di audit log],[Capitolato di progetto:
+  [*RNF-16-Des*], [Gradita la presenza di audit log.],[Capitolato di progetto:
   5.4 – Requisiti di Sicurezza Opzionali],
+  [*RNF-17-Des*], [Gradita la capacità di integrazione con applicazioni esterne tramite API o connettori dedicati.],[Capitolato di progetto:
+  5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-18-Obb*], [Deve essere garantito il provisionamento sicuro dei gateway.], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
 )
 
 == Requisiti di dominio
@@ -5521,7 +5528,7 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  [*RD-1-Obb*], [Necessario l'uso di sensori BLE.], [Capitolato di progetto],
+  [*RD-1-Obb*], [È necessario l'uso di sensori BLE.], [Capitolato di progetto],
 
   [*RD-2-Obb*], [I dati devono provenire da sensori Bluetooth Low Energy.], [Capitolato di progetto: 2.1 - Sensori BLE],
 
@@ -5535,7 +5542,7 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [*RD-7-Obb*], [I dati devono essere logicamente separati per tenant.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
-  [*RD-8-Obb*], [I dati devono provenire da sensori differenti], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-8-Obb*], [I dati devono poter provenire da sensori differenti.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
   [*RD-9-Obb*], [I dati devono essere associati a un timestamp ed essere interrogabili per intervallo temporale.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
@@ -5543,9 +5550,11 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [*RD-11-Obb*], [Gateway e sensori devono essere registrati, associati a un tenant e riconosciuti in modo persistente dal sistema.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
-  [*RD-12-Obb*], [ Il dominio richiede l’accesso ai dati storici], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-12-Obb*], [Il dominio richiede l’accesso ai dati storici.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
 
-  [*RD-13-Obb*], [ Il dominio richiede l’accesso ai dati in tempo reale tramite stream.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-13-Obb*], [Il dominio richiede l’accesso ai dati in tempo reale tramite stream.], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+
+  [*RD-14-Obb*], [È necessaria l'uso di un'interfaccia web per la gestione e configurazione di molteplici elementi diversi.], [Capitolato di progetto: 2.3 - Cloud],
 
 )
 
@@ -6003,20 +6012,24 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Reset-gateway-cloud>)],
 
 
-  [*RNF-1-Obb*],[Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-1-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-2-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-3-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-4-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
   [*RNF-5-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
-  [*RNF-6-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi],
-  [*RNF-7-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi],
-  [*RNF-8-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiF],
+  [*RNF-6-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-7-Obb*], [Capitolato di progetto: 5.5 – Requisiti non funzionali],
+  [*RNF-8-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
   [*RNF-9-Obb*], [Capitolato di progetto: 3.3 - Cloud],
-  [*RNF-10-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-11-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-10-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
+  [*RNF-11-Obb*], [Capitolato di progetto: 3.3 - Cloud (Control & Management Layer)],
   [*RNF-12-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
-  [*RNF-13-Des*], [Capitolato di progetto: 5.2 – Requisiti Funzionali Opzionali],
-  [*RNF-14-Des*], [Capitolato di progetto: 5.4 – Requisiti di Sicurezza Opzionali],
+  [*RNF-13-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-14-Obb*], [Capitolato di progetto: 5.3 - Requisiti di Sicurezza],
+  [*RNF-15-Des*], [Capitolato di progetto: 5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-16-Des*], [Capitolato di progetto: 5.4 – Requisiti di Sicurezza Opzionali],
+  [*RNF-17-Des*], [Capitolato di progetto: 5.2 – Requisiti Funzionali Opzionali],
+  [*RNF-18-Obb*], [Capitolato di progetto: 3.2 - Gateway BLE–WiFi (Edge Layer)],
 
   [*RD-1-Obb*], [Capitolato di progetto],
   [*RD-2-Obb*],[Capitolato di progetto: 2.1 - Sensori BLE],
@@ -6031,6 +6044,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [*RD-11-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
   [*RD-12-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
   [*RD-13-Obb*], [Capitolato di progetto: 5.1 - Requisiti Funzionali Minimi],
+  [*RD-14-Obb*], [Capitolato di progetto: 2.3 - Cloud],
 
   )
 ]
