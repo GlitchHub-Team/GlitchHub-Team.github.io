@@ -104,12 +104,12 @@ elif [[ $PROGRAMMATORE_LABEL ]]; then
     echo "Task programmatore"
     SPRINT_ROLE_OPTION_ID=$PROGRAMMATORE_OPTION_ID
 else
-    echo "Impossibile determinare ruolo"
+    echo "Nessun ruolo assegnato"
 fi
 
 echo 'SPRINT_ROLE_OPTION_ID='$SPRINT_ROLE_OPTION_ID >> $GITHUB_ENV
 
-# Add issue to project (and get Item ID) -------------------------------------------------------------------- 
+# Add issue to project to get Item ID -------------------------------------------------------------------- 
 ITEM_ID=$(gh api graphql -f query='
 mutation($project:ID!, $issue:ID!) {
     addProjectV2ItemById(input: {projectId: $project, contentId: $issue}) {
