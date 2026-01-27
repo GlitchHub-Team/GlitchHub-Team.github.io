@@ -31,6 +31,5 @@ if [[ $CURRENT_ITERATION_OPTION_ID ]]; then
   --silent
 else
     echo "ERROR: Nel GitHub Project non esiste il valore del campo Sprint legato all'iterazione corrente. Per far funzionare l'automation, si prega di crearlo nelle impostazioni del GitHub Project."
-
     exit 1
 fi

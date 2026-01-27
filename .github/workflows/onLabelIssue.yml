@@ -3,6 +3,7 @@ on:
   issues:
     types:
       - labeled
+      - unlabeled
 
 permissions:
   contents: read  # non so se serva
@@ -13,8 +14,6 @@ jobs:
   edit_issue:
     runs-on: self-hosted
     steps:
-      - name: Setup
-        run: chmod +x automation/issues/*
         
       - name: Get issue data
         env:
@@ -24,10 +23,14 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
         
-        run: automation/issues/get_issue_data.sh
+        run: |
+          chmod +x ./automation/issues/get_issue_data.sh
+          ./automation/issues/get_issue_data.sh
       
       - name: Set sprint role
         env:
           GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
 
-        run: automation/issues/set_sprint_role.sh
+        run: |
+          chmod +x ./automation/issues/set_sprint_role.sh
+          ./automation/issues/set_sprint_role.sh
