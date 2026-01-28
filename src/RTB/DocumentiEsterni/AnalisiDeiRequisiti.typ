@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.25.0",
+      "28/01/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Aggiunta di requisiti funzionali mancanti],
+    ),
+    (
       "0.24.0",
       "27/01/2026",
       "Elia Ernesto Stellin",
@@ -4420,6 +4427,26 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Impostazione-password>)],
 
   [#rf()],
+  [L'Utente non autenticato deve poter inserire la nuova password durante l'impostazione o reimpostazione della password],
+  [#ref-uc(<Inserimento-nuova-password>)],
+
+  [#rf()],
+  [L'Utente non autenticato deve poter inserire la conferma della nuova password durante l'impostazione o reimpostazione della password],
+  [#ref-uc(<Conferma-password>)],
+
+  [#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se la nuova password e la conferma non coincidono],
+  [#ref-uc(<Password-non-coincidenti>)],
+
+  [#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se la nuova password non rispetta i criteri di sicurezza],
+  [#ref-uc(<Password-non-conforme-criteri-sicurezza>)],
+
+  [#rf()],
+  [Il Sistema deve mostrare un messaggio di errore se l'Utente tenta di usare un link di impostazione o reimpostazione password scaduto],
+  [#ref-uc(<Link-impostazione-password-scaduto>)],
+
+  [#rf()],
   [L'Utente non autenticato deve poter richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata],
   [#ref-uc(<Password-dimenticata>)],
 
@@ -4428,16 +4455,28 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Inserimento-indirizzo-email>)],
 
   [#rf()],
+  [L'Utente non autenticato deve ricevere un messaggio di errore se inserisce un indirizzo email non associato ad alcun account durante la richiesta di reimpostazione password],
+  [#ref-uc(<Indirizzo-email-non-associato-account>)],
+
+  [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
   [#ref-uc(<Invio-email-reimpostazione-password>)],
 
   [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
   [#ref-uc(<Invio-email-reimpostazione-password>)],
+
+  [#rf()],
+  [L'Utente non autenticato deve poter reimpostare la propria password tramite il link ricevuto via email],
+  [#ref-uc(<Reimpostazione-password-dimenticata>)],
 
   [#rf()],
   [L'Utente autenticato deve poter visualizzare la lista dei sensori associati al proprio tenant],
   [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
+
+  [#rf()],
+  [L'Utente autenticato, visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare le informazioni di ciascun sensore in lista],
+  [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>)],
 
   [#rf()],
   [L'Utente autenticato visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare l'identificativo di ciascun sensore nella lista],
@@ -4517,6 +4556,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-utenti-tenant>)],
 
   [#rf()],
+  [L'Admin generico, visualizzando la lista degli utenti associati al proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascun utente in lista],
+  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>)],
+
+  [#rf()],
   [L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere l'email di ciascun utente nella lista],
   [#ref-uc(<Visualizzazione-email-utente-lista>)],
 
@@ -4527,6 +4570,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista dei gateway associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista dei gateway associati al proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascun gateway in lista],
+  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>)],
 
   [#rf()],
   [L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare il nome del gateway nella lista],
@@ -4582,6 +4629,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-api-key>)],
 
   [#rf[?]],
+  [L'Admin generico, visualizzando la lista delle API key associate al proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascuna API key in lista],
+  [#ref-uc(<Visualizzazione-singola-api-key-lista>)],
+
+  [#rf[?]],
   [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere il nome dell'API key],
   [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
 
@@ -4624,6 +4675,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista di tutti gli audit log relativi al proprio Tenant],
   [#ref-uc(<Visualizzazione-audit-log>)],
+
+  [#rf()],
+  [L'Admin generico, visualizzando la lista degli audit log del proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascun audit log in lista],
+  [#ref-uc(<Visualizzazione-singolo-audit-log>)],
 
   [#rf()],
   [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il nome dell'utente che ha generato l'evento],
@@ -4735,6 +4790,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
 
   [#rf()],
+  [Il Tenant Admin deve poter modificare il target di frequenza d'invio dati per tipologia di sensore di un gateway associato al proprio tenant],
+  [#ref-uc(<Modifica-target-freq-invio-dati-tenant-admin>)],
+
+  [#rf()],
   [Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
@@ -4763,6 +4822,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il gateway simulato, dopo aver eseguito il decommissioning, deve ammettere un nuovo commissioning],
   [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [Il gateway simulato deve segnalare al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning, permettendo al Sistema di annullare l'operazione e notificare il Super Admin],
+  [#ref-uc(<Errore-decommissioning>)],
 
   [#rf()],
   [Il gateway simulato deve confermare al Cloud la corretta esecuzione del riavvio in seguito al comando ricevuto dallo stesso],
@@ -4921,11 +4984,11 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [#rf()],
   [Il Cloud deve poter inviare al gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine],
-  [#ref-uc(<Assegnazione-tenant-gateway>) #ref(<Invio-tenant-associato-gateway>)],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-tenant-associato-gateway>)],
 
   [#rf()],
   [Il Cloud deve poter inviare al gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
-  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-chiave-cifratura-dati>), #ref(<Invio-tenant-associato-gateway>)],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-chiave-cifratura-dati>), #ref-uc(<Invio-tenant-associato-gateway>)],
 
   [#rf()],
   [Il Cloud deve poter inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
@@ -5241,6 +5304,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-tenant>)],
 
 [#rf()],
+  [Il Super Admin, visualizzando la lista dei tenant, deve poter visualizzare le informazioni di ciascun tenant in lista],
+  [#ref-uc(<Visualizzazione-singolo-tenant-lista>)],
+
+[#rf()],
   [Il Super Admin, visualizzando la lista dei tenant, deve poter vedere l'identificativo di ogni tenant],
   [#ref-uc(<Visualizzazione-identificativo-tenant>)],
 
@@ -5259,6 +5326,10 @@ Inoltre un buon requisito deve essere *SMART*:
 [#rf()],
   [Il Super Admin deve poter visualizzare la lista delle richieste di commissioning Gateway in corso],
   [#ref-uc(<Visualizzazione-lista-richieste-in-corso-commissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando la lista delle richieste di commissioning gateway in corso, deve poter visualizzare le informazioni di ciascuna richiesta in lista],
+  [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>)],
 
 [#rf()],
   [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere data e ora della richiesta],
@@ -5295,6 +5366,10 @@ Inoltre un buon requisito deve essere *SMART*:
 [#rf()],
   [Il Super Admin deve poter visualizzare lo storico delle richieste di commissioning Gateway],
   [#ref-uc(<Visualizzazione-storico-richieste-commissioning-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando lo storico delle richieste di commissioning gateway, deve poter visualizzare le informazioni di ciascuna richiesta in lista],
+  [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>)],
 
 [#rf()],
   [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere lo stato di ogni richiesta],
@@ -5481,6 +5556,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-storico-possessori-sensore>)],
 
 [#rf()],
+  [Il Super Admin, visualizzando lo storico dei tenant possessori di un sensore, deve poter visualizzare per ogni elemento in lista il tenant possessore e il relativo periodo di associazione],
+  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-sensore>)],
+
+[#rf()],
   [Il Super Admin deve poter visualizzare il nome del tenant possessore nello storico],
   [#ref-uc(<Visualizzazione-tenant-possessore-sensore>)],
 
@@ -5491,6 +5570,10 @@ Inoltre un buon requisito deve essere *SMART*:
 [#rf()],
   [Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un gateway],
   [#ref-uc(<Visualizzazione-storico-possessori-gateway>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando lo storico dei tenant possessori di un gateway, deve poter visualizzare per ogni elemento in lista il tenant possessore e il relativo periodo di associazione],
+  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>)],
 
 [#rf()],
   [Il Super Admin deve poter visualizzare il nome del tenant possessore del gateway nello storico],
@@ -5622,19 +5705,43 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Impostazione-password>)],
 
   [#rf()],
+  [#ref-uc(<Inserimento-nuova-password>)],
+
+  [#rf()],
+  [#ref-uc(<Conferma-password>)],
+
+  [#rf()],
+  [#ref-uc(<Password-non-coincidenti>)],
+
+  [#rf()],
+  [#ref-uc(<Password-non-conforme-criteri-sicurezza>)],
+
+  [#rf()],
+  [#ref-uc(<Link-impostazione-password-scaduto>)],
+
+  [#rf()],
   [#ref-uc(<Password-dimenticata>)],
 
   [#rf()],
   [#ref-uc(<Inserimento-indirizzo-email>)],
 
   [#rf()],
+  [#ref-uc(<Indirizzo-email-non-associato-account>)],
+
+  [#rf()],
   [#ref-uc(<Invio-email-reimpostazione-password>)],
 
   [#rf()],
   [#ref-uc(<Invio-email-reimpostazione-password>)],
+
+  [#rf()],
+  [#ref-uc(<Reimpostazione-password-dimenticata>)],
 
   [#rf()],
   [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>)],
 
   [#rf()],
   [#ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
@@ -5695,6 +5802,9 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-utenti-tenant>)],
 
   [#rf()],
+  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>)],
+
+  [#rf()],
   [#ref-uc(<Visualizzazione-email-utente-lista>)],
 
   [#rf()],
@@ -5702,6 +5812,9 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [#rf()],
   [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>)],
 
   [#rf()],
   [#ref-uc(<Visualizzazione-nome-gateway-lista>)],
@@ -5744,6 +5857,9 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-api-key>)],
 
   [#rf[?]],
+  [#ref-uc(<Visualizzazione-singola-api-key-lista>)],
+
+  [#rf[?]],
   [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
 
   [#rf[?]],
@@ -5775,6 +5891,9 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [#rf()],
   [#ref-uc(<Visualizzazione-audit-log>)],
+
+  [#rf()],
+  [#ref-uc(<Visualizzazione-singolo-audit-log>)],
 
   [#rf()],
   [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
@@ -5859,6 +5978,9 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
 
   [#rf()],
+  [#ref-uc(<Modifica-target-freq-invio-dati-tenant-admin>)],
+
+  [#rf()],
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
 
   //Attore: Gateway, Sistema: Cloud
@@ -5880,6 +6002,9 @@ Inoltre un buon requisito deve essere *SMART*:
 
   [#rf()],
   [#ref-uc(<Conferma-comando-decommissioning>)],
+
+  [#rf()],
+  [#ref-uc(<Errore-decommissioning>)],
 
   [#rf()],
   [#ref-uc(<Conferma-comando-riavvio>)],
@@ -5999,10 +6124,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Rifiuto-autenticazione-gateway>)],
 
   [#rf()],
-  [#ref-uc(<Assegnazione-tenant-gateway>) #ref(<Invio-tenant-associato-gateway>)],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-tenant-associato-gateway>)],
 
   [#rf()],
-  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-chiave-cifratura-dati>), #ref(<Invio-tenant-associato-gateway>)],
+  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-chiave-cifratura-dati>), #ref-uc(<Invio-tenant-associato-gateway>)],
 
   [#rf()],
   [#ref-uc(<Riattivazione-sensore-simulato>)],
