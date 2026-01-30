@@ -22,8 +22,6 @@
   tipo-documento: "Piano di Qualifica",
 )
 
-// TODO: sarebbe bene aggiungere un indice delle figure/tabelle automatico -> avevo chiesto a Dina e aveva detto che era meglio non metterle
-
 = Introduzione <introduzione>
 == Finalità del documento
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
@@ -399,7 +397,6 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Me
 )
 \
 
-// Inoltre forse ha più senso spostare la descrizione dei vari tipi di test nelle Norme di Progetto -> da discutere con gli altri perché nei progetti degli anni scorsi erano qui (in teoria)
 = Metodi di Testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
