@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.25.1",
+      "30/01/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Modifica del requisito  *RF-16-Obb* dello use case #ref-uc(<Link-impostazione-password-scaduto>)],
+    ),
+    (
       "0.25.0",
       "28/01/2026",
       "Hossam Ezzemouri",
@@ -4443,7 +4450,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Password-non-conforme-criteri-sicurezza>)],
 
   [#rf()],
-  [Il Sistema deve mostrare un messaggio di errore se l'Utente tenta di usare un link di impostazione o reimpostazione password scaduto],
+  [Il Sistema deve mostrare un messaggio di errore se l'Utente tenta di usare un link di impostazione password scaduto],
   [#ref-uc(<Link-impostazione-password-scaduto>)],
 
   [#rf()],
