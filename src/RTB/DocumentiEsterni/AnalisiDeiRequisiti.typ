@@ -93,11 +93,11 @@
   stato: "Bozza",
   registro-modifiche: (
     (
-      "0.25.1",
+      "0.26.0",
       "30/01/2026",
       "Hossam Ezzemouri",
       "-",
-      [Modifica del requisito  *RF-16-Obb* dello use case #ref-uc(<Link-impostazione-password-scaduto>)],
+      [Atomicizzazione di requisiti troppo generali],
     ),
     (
       "0.25.0",
@@ -4482,12 +4482,8 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
 
   [#rf()],
-  [L'Utente autenticato, visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare le informazioni di ciascun sensore in lista],
-  [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>)],
-
-  [#rf()],
   [L'Utente autenticato visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare l'identificativo di ciascun sensore nella lista],
-  [#ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>), #ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
 
   // TODO: Da migliorare questo requisito sulla dashboard.
   [#rf()],
@@ -4563,32 +4559,24 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-utenti-tenant>)],
 
   [#rf()],
-  [L'Admin generico, visualizzando la lista degli utenti associati al proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascun utente in lista],
-  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>)],
-
-  [#rf()],
   [L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere l'email di ciascun utente nella lista],
-  [#ref-uc(<Visualizzazione-email-utente-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>), #ref-uc(<Visualizzazione-email-utente-lista>)],
 
   [#rf()],
   [L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere lo stato (attivo/sospeso) di ciascun utente nella lista],
-  [#ref-uc(<Visualizzazione-stato-utente-lista>)], 
+  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>), #ref-uc(<Visualizzazione-stato-utente-lista>)], 
 
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista dei gateway associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
 
   [#rf()],
-  [L'Admin generico, visualizzando la lista dei gateway associati al proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascun gateway in lista],
-  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>)],
-
-  [#rf()],
   [L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare il nome del gateway nella lista],
-  [#ref-uc(<Visualizzazione-nome-gateway-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>), #ref-uc(<Visualizzazione-nome-gateway-lista>)],
 
   [#rf()],
   [L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare lo stato del gateway nella lista],
-  [#ref-uc(<Visualizzazione-stato-gateway-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>), #ref-uc(<Visualizzazione-stato-gateway-lista>)],
 
   [#rf()],
   [L'Admin generico deve poter visualizzare un gateway associato al proprio Tenant nel dettaglio],
@@ -4636,20 +4624,16 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-api-key>)],
 
   [#rf[?]],
-  [L'Admin generico, visualizzando la lista delle API key associate al proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascuna API key in lista],
-  [#ref-uc(<Visualizzazione-singola-api-key-lista>)],
-
-  [#rf[?]],
   [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere il nome dell'API key],
-  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
 
   [#rf[?]],
   [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di creazione dell'API key],
-  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)],
 
   [#rf[?]],
   [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di scadenza dell'API key],
-  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)],
 
   [#rf[?]],
   [L'Admin generico deve poter visualizzare una API key associata al proprio Tenant nel dettaglio],
@@ -4684,20 +4668,16 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-audit-log>)],
 
   [#rf()],
-  [L'Admin generico, visualizzando la lista degli audit log del proprio tenant, deve poter visualizzare le informazioni sintetiche di ciascun audit log in lista],
-  [#ref-uc(<Visualizzazione-singolo-audit-log>)],
-
-  [#rf()],
   [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il nome dell'utente che ha generato l'evento],
-  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
 
   [#rf()],
   [L'Admin generico, visualizzando la lista degli audit log, deve poter vedere il tipo di azione eseguita in ogni evento],
-  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-tipo-azione-audit-log>)],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-tipo-azione-audit-log>)],
 
   [#rf()],
   [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il timestamp dell'evento],
-  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
 
   [#rf()],
   [L'Admin generico deve poter filtrare gli audit log in base al tipo di azione eseguita],
@@ -5311,12 +5291,8 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-tenant>)],
 
 [#rf()],
-  [Il Super Admin, visualizzando la lista dei tenant, deve poter visualizzare le informazioni di ciascun tenant in lista],
-  [#ref-uc(<Visualizzazione-singolo-tenant-lista>)],
-
-[#rf()],
   [Il Super Admin, visualizzando la lista dei tenant, deve poter vedere l'identificativo di ogni tenant],
-  [#ref-uc(<Visualizzazione-identificativo-tenant>)],
+  [#ref-uc(<Visualizzazione-singolo-tenant-lista>), #ref-uc(<Visualizzazione-identificativo-tenant>)],
 
 [#rf()],
   [Il Super Admin deve poter impersonificare un tenant (se la clausola è stata accettata)],
@@ -5335,20 +5311,16 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-richieste-in-corso-commissioning-gateway>)],
 
 [#rf()],
-  [Il Super Admin, visualizzando la lista delle richieste di commissioning gateway in corso, deve poter visualizzare le informazioni di ciascuna richiesta in lista],
-  [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>)],
-
-[#rf()],
   [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere data e ora della richiesta],
-  [#ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)],
+  [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>), #ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)],
 
 [#rf()],
   [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il tenant richiedente],
-  [#ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)],
+  [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>), #ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)],
 
 [#rf()],
   [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il numero di gateway richiesti],
-  [#ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)],
+  [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>), #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)],
 
 [#rf()],
   [Il Super Admin deve poter visualizzare la lista delle richieste di decommissioning Gateway in corso],
@@ -5375,8 +5347,16 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-storico-richieste-commissioning-gateway>)],
 
 [#rf()],
-  [Il Super Admin, visualizzando lo storico delle richieste di commissioning gateway, deve poter visualizzare le informazioni di ciascuna richiesta in lista],
-  [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>)],
+  [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere data e ora di ogni richiesta],
+  [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>), #ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere il tenant richiedente di ogni richiesta],
+  [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>), #ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)],
+
+[#rf()],
+  [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere il numero di gateway richiesti per ogni richiesta],
+  [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>), #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)],
 
 [#rf()],
   [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere lo stato di ogni richiesta],
@@ -5563,32 +5543,24 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-storico-possessori-sensore>)],
 
 [#rf()],
-  [Il Super Admin, visualizzando lo storico dei tenant possessori di un sensore, deve poter visualizzare per ogni elemento in lista il tenant possessore e il relativo periodo di associazione],
-  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-sensore>)],
-
-[#rf()],
   [Il Super Admin deve poter visualizzare il nome del tenant possessore nello storico],
-  [#ref-uc(<Visualizzazione-tenant-possessore-sensore>)],
+  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-sensore>), #ref-uc(<Visualizzazione-tenant-possessore-sensore>)],
 
 [#rf()],
   [Il Super Admin deve poter visualizzare il periodo di associazione del sensore nello storico],
-  [#ref-uc(<Visualizzazione-periodo-associazione-sensore>)],
+  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-sensore>), #ref-uc(<Visualizzazione-periodo-associazione-sensore>)],
 
 [#rf()],
   [Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un gateway],
   [#ref-uc(<Visualizzazione-storico-possessori-gateway>)],
 
 [#rf()],
-  [Il Super Admin, visualizzando lo storico dei tenant possessori di un gateway, deve poter visualizzare per ogni elemento in lista il tenant possessore e il relativo periodo di associazione],
-  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>)],
-
-[#rf()],
   [Il Super Admin deve poter visualizzare il nome del tenant possessore del gateway nello storico],
-  [#ref-uc(<Visualizzazione-tenant-possessore-gateway>)],
+  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>), #ref-uc(<Visualizzazione-tenant-possessore-gateway>)],
 
 [#rf()],
   [Il Super Admin deve poter visualizzare il periodo di associazione del gateway nello storico],
-  [#ref-uc(<Visualizzazione-periodo-associazione-gateway>)],
+  [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>), #ref-uc(<Visualizzazione-periodo-associazione-gateway>)],
 
 )
 == Requisiti non funzionali
@@ -5748,10 +5720,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>)],
-
-  [#rf()],
-  [#ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>), #ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
 
   // TODO: Da migliorare questo requisito sulla dashboard.
   [#rf()],
@@ -5809,25 +5778,19 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-utenti-tenant>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>), #ref-uc(<Visualizzazione-email-utente-lista>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-email-utente-lista>)],
-
-  [#rf()],
-  [#ref-uc(<Visualizzazione-stato-utente-lista>)], 
+  [#ref-uc(<Visualizzazione-singolo-utente-in-lista>), #ref-uc(<Visualizzazione-stato-utente-lista>)], 
 
   [#rf()],
   [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>), #ref-uc(<Visualizzazione-nome-gateway-lista>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-nome-gateway-lista>)],
-
-  [#rf()],
-  [#ref-uc(<Visualizzazione-stato-gateway-lista>)],
+  [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>), #ref-uc(<Visualizzazione-stato-gateway-lista>)],
 
   [#rf()],
   [#ref-uc(<Visualizzazione-gateway-associato>)],
@@ -5864,16 +5827,13 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-lista-api-key>)],
 
   [#rf[?]],
-  [#ref-uc(<Visualizzazione-singola-api-key-lista>)],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
 
   [#rf[?]],
-  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)],
 
   [#rf[?]],
-  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)],
-
-  [#rf[?]],
-  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)],
+  [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)],
 
   [#rf[?]],
   [#ref-uc(<Visualizzazione-dettagli-api-key>)],
@@ -5900,16 +5860,13 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-audit-log>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-singolo-audit-log>)],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-tipo-azione-audit-log>)],
 
   [#rf()],
-  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-tipo-azione-audit-log>)],
-
-  [#rf()],
-  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
+  [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
 
   [#rf()],
   [#ref-uc(<Filtraggio-log-per-tipologia>)],
