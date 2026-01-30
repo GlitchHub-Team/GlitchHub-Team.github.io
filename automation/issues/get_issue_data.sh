@@ -4,6 +4,7 @@
 # - $ORGANIZATION
 # - $PROJECT_NUMBER
 # - $ISSUE_NUMBER
+# - $ISSUE_NODE_ID
 
 # Get project data --------------------------------------------------------------------------------
 PROJECT_DATA=$(gh api graphql -f query=' 
@@ -45,19 +46,20 @@ query($org: String!, $number: Int!) {
         } 
     } 
     } 
-          }' -f org=$ORGANIZATION -F number=$PROJECT_NUMBER)
+}' -f org=$ORGANIZATION -F number=$PROJECT_NUMBER)
           
 echo 'PROJECT_ID='$(                  echo $PROJECT_DATA | jq '.data.organization.projectV2.id') >> $GITHUB_ENV
 echo 'SPRINT_FIELD_ID='$(             echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint") | .id') >> $GITHUB_ENV
 echo 'CURRENT_ITERATION_OPTION_ID='$( echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name == "Sprint") | .configuration.iterations | first | .id') >> $GITHUB_ENV
 echo 'SPRINT_ROLE_FIELD_ID='$(        echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .id') >> $GITHUB_ENV
 
-echo 'RESPONSABILE_OPTION_ID='$(  echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Responsabile") |.id') >> $GITHUB_ENV
-echo 'AMMINISTRATORE_OPTION_ID='$(echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Amministratore") |.id') >> $GITHUB_ENV
-echo 'ANALISTA_OPTION_ID='$(      echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Analista") |.id') >> $GITHUB_ENV
-echo 'VERIFICATORE_OPTION_ID='$(  echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Verificatore") |.id') >> $GITHUB_ENV
-echo 'PROGRAMMATORE_OPTION_ID='$( echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Programmatore") |.id') >> $GITHUB_ENV
-echo 'PROGETTISTA_OPTION_ID='$(   echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Progettista") |.id') >> $GITHUB_ENV
+# Sprint role options
+RESPONSABILE_OPTION_ID=$(  echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Responsabile") |.id')
+AMMINISTRATORE_OPTION_ID=$(echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Amministratore") |.id')
+ANALISTA_OPTION_ID=$(      echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Analista") |.id')
+VERIFICATORE_OPTION_ID=$(  echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Verificatore") |.id')
+PROGRAMMATORE_OPTION_ID=$( echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Programmatore") |.id')
+PROGETTISTA_OPTION_ID=$(   echo $PROJECT_DATA | jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="Progettista") |.id')
           
 # Get issue data -------------------------------------------------------------------------
 ISSUE_DATA=$(gh api graphql -f query='query($repo_owner: String!, $repo_name: String!, $issue_number:Int!) {
@@ -79,6 +81,7 @@ RESPONSABILE_LABEL=$(  echo $ISSUE_DATA | jq '.data.repository.issue.labels.node
 VERIFICATORE_LABEL=$(  echo $ISSUE_DATA | jq '.data.repository.issue.labels.nodes[] | select(.name == "task-verificatore")')
 
 
+# GET SPRINT ROLE OPTION ID
 SPRINT_ROLE_OPTION_ID=""
 if [[ $RESPONSABILE_LABEL ]]; then
     echo Task responsabile

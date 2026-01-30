@@ -10,6 +10,9 @@ permissions:
   issues: write
   repository-projects: write
 
+env:
+  GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
+
 jobs:
   edit_issue:
     runs-on: self-hosted
@@ -17,7 +20,6 @@ jobs:
         
       - name: Get issue data
         env:
-          GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
           ORGANIZATION: GlitchHub-Team
           PROJECT_NUMBER: 2
           ISSUE_NUMBER: ${{ github.event.issue.number }}
@@ -28,9 +30,7 @@ jobs:
           ./automation/issues/get_issue_data.sh
       
       - name: Set sprint role
-        env:
-          GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
-
+      
         run: |
           chmod +x ./automation/issues/set_sprint_role.sh
           ./automation/issues/set_sprint_role.sh
