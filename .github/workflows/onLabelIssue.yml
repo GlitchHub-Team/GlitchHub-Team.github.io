@@ -17,20 +17,16 @@ jobs:
   edit_issue:
     runs-on: self-hosted
     steps:
-        
-      - name: Get issue data
+      
+      - name: Install deps
+        run: pip install -r ./automation/issue-action/requirements.txt
+
+      - name: Execute Script
         env:
-          ORGANIZATION: GlitchHub-Team
-          PROJECT_NUMBER: 2
+          PROJECT: "GlitchHub-Team/2"
+          REPO_OWNER: ${{github.event.repository.owner}}
+          REPO_NAME: ${{github.event.repository.name}}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
         
-        run: |
-          chmod +x ./automation/issues/get_issue_data.sh
-          ./automation/issues/get_issue_data.sh
-      
-      - name: Set sprint role
-      
-        run: |
-          chmod +x ./automation/issues/set_sprint_role.sh
-          ./automation/issues/set_sprint_role.sh
+        run: python3 ./automation/issue-action $PROJECT "$REPO_OWNER/$REPO_NAME/$ISSUE_NUMBER" $ISSUE_NODE_ID --role
