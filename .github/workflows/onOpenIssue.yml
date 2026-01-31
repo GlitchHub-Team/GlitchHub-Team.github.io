@@ -17,7 +17,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Install deps
-        run: pip install -r ./automation/issue-action/requirements.txt
+        run: python3 -m pip install -r ./automation/issue-action/requirements.txt
 
       - name: Execute Script
         env:
