@@ -19,7 +19,7 @@ jobs:
     steps:
       
       - name: Install deps
-        run: python3 -m pip install -r ./automation/issue-action/requirements.txt
+        run: python3 -m pip3 install -r ./automation/issue-action/requirements.txt
 
       - name: Execute Script
         env:
