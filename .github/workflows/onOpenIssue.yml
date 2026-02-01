@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          repository: GlitchHub-Team/GlitchHub-Team.github.io
 
       - name: Setup Python
         uses: actions/setup-python@v6
