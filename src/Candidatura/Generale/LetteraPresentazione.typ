@@ -21,7 +21,7 @@
 
 #align(center)[
   #set text(14pt, weight: "bold")
-  LETTЕRA DI PRESENTAZIONE
+  LETTERA DI PRESENTAZIONE
 ]
 
 #v(1cm)
