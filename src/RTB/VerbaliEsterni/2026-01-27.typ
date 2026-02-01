@@ -2,14 +2,21 @@
 
 #show: report.with(
   titolo: "Verbale esterno 27/01/2026 (M31)",
-  stato: "Bozza",
+  stato: "Da verificare",
   registro-modifiche: (
+    (
+      "0.1.0",
+      "01/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      "Stesura verbale esterno del 27/01/2026",
+    ),
     (
       "0.0.1",
       "01/02/2026",
       "Elia Ernesto Stellin",
       "-",
-      "Stesura verbale esterno del 27/01/2026",
+      "Bozza iniziale verbale esterno del 27/01/2026",
     ),
   ),
   partecipanti: (
@@ -41,13 +48,13 @@ Il presente verbale attesta che in data 27 gennaio 2026 dalle 14:30 alle 15:45, 
 L'incontro ha avuto l'obiettivo di presentare lo stato di avanzamento dei lavori e di discutere sulla struttura del PoC rilevata dal gruppo e su come soddisfare specifici requisiti del prodotto con le tecnologie rilevate.
 
 = Resoconto
-Di seguito si riportano i punti salienti dell'incontro in oggetto, notando che ogni singolo argomento di discussione si rivelerà utile nella produzione del #gloss[PoC] e dell'#gloss[MVP] e si è rivelato utile per una maggiore comprensione del capitolato.
+Di seguito si riportano i punti salienti dell'incontro in oggetto, notando che ogni singolo argomento di discussione si rivelerà utile nella produzione del #gloss[PoC] e dell'#gloss[MVP] e, in generale, per una maggiore comprensione del capitolato.
 
 == Presentazione stato avanzamento lavori
 Il gruppo ha raggiunto una versione stabile dei requisiti del prodotto, i quali sono conformi alle attese della proponente. Inoltre, il gruppo ha iniziato le attività di studio delle tecnologie da usare nel #gloss[PoC], identificandone anche gli elementi architetturali principali.
 
 == Comprensione del #gloss[simulatore di gateway]
-Il gruppo ha posto alla proponente una serie di domande concernenti il funzionamento specifico del simulatore di gateway. Le domande poste sono riportate di seguito.
+Il gruppo ha posto alla proponente una serie di domande concernenti il funzionamento specifico del simulatore di gateway. Le domande poste e le relative risposte ricevute dalla proponente sono riportate di seguito.
 
 === Implementazione risposta a comandi del cloud da parte del Gateway
 Il #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[#gloss[capitolato d'appalto]] pone come requisito funzionale obbligatorio (RQ 2.5) la possibilità che il #gloss[simulatore di gateway] risponda a #gloss[comandi] ricevuti dal #gloss[Cloud].
@@ -58,12 +65,12 @@ Il gruppo ha rilevato due possibili soluzioni per soddisfare questo requisito, c
 
 La proponente ha dichiarato che la prima soluzione è altamente preferibile perché:
 - Fornire al #gloss[simulatore di gateway] la duplice responsabilità di inviare dati e ricevere comandi non è un problema, non essendoci altro modo di ovviare ciò.
-- Usare il #gloss[long polling] potrebbe essere problematico se l'infrastruttura #gloss[Cloud] scala orizzontalmente, in quanto si creerebbe una connessione persistente in grado di raggiungere una solo nodo dell'infrastruttura #gloss[Cloud].
+- Usare il #gloss[long polling] potrebbe essere problematico se l'infrastruttura #gloss[Cloud] dovesse scalare orizzontalmente, in quanto la connessione persistente creata non sarebbe in grado di raggiungere tutti i nodi dell'infrastruttura #gloss[Cloud] interessati nella comunicazione con il #gloss[gateway].
 
 === Scelta del client usato dal Gateway
-Il gruppo ha chiesto se fosse preferibile che, nella comunicazione con l'infrastruttura #gloss[Cloud] tramite #gloss[NATS], il gateway usasse il client nativo a quest'ultimo oppure un client #gloss[MQTT] specifico.
+Il gruppo ha chiesto se fosse preferibile che, nella comunicazione con l'infrastruttura #gloss[Cloud] tramite #gloss[NATS], il gateway usasse il client nativo a tale tecnologia oppure un client #gloss[MQTT] specifico.
 
-La proponente ha dichiarato che è sufficiente utilizzare il client nativo di #gloss[NATS], in quanto il #gloss[simulatore di gateway] non deve soddisfare particolari requisiti di performance, che si potrebbero soddisfare usando il client #gloss[MQTT].
+La proponente ha dichiarato che è sufficiente utilizzare il client nativo di #gloss[NATS] in quanto, nel contesto dell'#gloss[MVP], il #gloss[simulatore di gateway] non deve soddisfare particolari requisiti di performance, che si potrebbero soddisfare usando il client #gloss[MQTT].
 
 === Utilizzo di _ingestion service_
 // TODO: Forse va spiegato meglio? Io scrivo quello che capisco
@@ -80,9 +87,9 @@ Il gruppo ha delineato come elementi principali del #gloss[PoC] i seguenti eleme
 4. Un servizio di #gloss[API] REST che accede ai dati salvati in #gloss[TimescaleDB]. 
 5. Un web server che fornisce un'applicazione web scritta in #gloss[Angular.js] che accede ai dati dei sensori
 
-Il gruppo è indeciso se utilizzare #gloss[Go] o un linguaggio più strutturato come C\# per i servizi di #gloss[API] Rest (Punto 3) e di _data consuming_ (Punto 4), poiché #gloss[Go] non è considerato un linguaggio pienamente _object oriented_. 
+Il gruppo non era sicuro se utilizzare #gloss[Go] o un linguaggio più strutturato come C\# per i servizi di #gloss[API] Rest (Punto 3) e di _data consuming_ (Punto 4), poiché #gloss[Go] non è considerato un linguaggio pienamente _object oriented_. 
 
-La proponente, però, ha caldamente consigliato al gruppo di utilizzare #gloss[Go] invece che C\# onde evitare di dover imparare tre linguaggi (C\#, #gloss[Go] e JavaScript) invece che solo due (#gloss[Go] e JavaScript). Inoltre, sebbene #gloss[Go] non sia un linguaggio tradizionalmente _object oriented_, utilizzarlo per la creazione di #gloss[API] REST è ampiamente facilitato dall'esistenza di framework quali #link("https://gin-gonic.com/en/")[#gloss[Gin]] e #link("https://gofiber.io/")[#gloss[Fiber]].
+La proponente, però, ha caldamente consigliato al gruppo di utilizzare #gloss[Go] al posto di C\# onde evitare di dover imparare tre linguaggi (C\#, #gloss[Go] e JavaScript) invece che solo due (#gloss[Go] e JavaScript). Inoltre, sebbene #gloss[Go] non sia un linguaggio tradizionalmente _object oriented_, utilizzarlo per la creazione di #gloss[API] REST è ampiamente facilitato dall'esistenza di framework quali #link("https://gin-gonic.com/en/")[#gloss[Gin]] e #link("https://gofiber.io/")[#gloss[Fiber]].
 
 == Separazione di dati tra tenant
 Il #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[#gloss[capitolato d'appalto]] pone come requisito funzionale obbligatorio (RQ 3) la piena separazione dei dati tra #gloss[tenant] diversi.
@@ -96,7 +103,7 @@ La proponente ha dichiarato che per quanto concerne l'#gloss[MVP] la prima soluz
 == Gestione perdita di dati con #gloss[TimescaleDB]
 Il gruppo ha deciso di utilizzare #gloss[TimescaleDB] per la persistenza dei dati ottenuti dal servizio di _data consuming_, data la sua performance nell'inserimento di massa (_bulk insert_) di dati associati a una scala temporale.
 
-Il gruppo ha, però, notato che per sfruttare la funzionalità di _bulk insert_ di #gloss[TimescaleDB] è necessario che l'istanza #gloss[Go] di _data consuming_ salvi i dati raccolti in memoria volatile prima di effettuare l'operazione sul database, comportando però un rischio di perdita di dati in caso l'istanza #gloss[Go] riscontri un'avaria. La proponente ha specificato che la perdita di dati è inammissibile e che il gruppo deve definire meglio questi dettagli dopo uno studio più approfondito delle tecnologie scelte.
+Il gruppo ha, però, notato che per sfruttare la funzionalità di _bulk insert_ di #gloss[TimescaleDB] è necessario che l'istanza #gloss[Go] di _data consuming_ salvi i dati raccolti in memoria volatile prima di effettuare l'operazione sul database, comportando però un rischio di perdita di dati in caso l'istanza #gloss[Go] riscontri un'avaria e si spenga. La proponente ha specificato che la perdita di dati è inammissibile e che il gruppo deve definire meglio questi dettagli dopo uno studio più approfondito delle tecnologie scelte.
 
 Perciò, il gruppo ha deciso di cercare un'alternativa che possa comunque sfruttare la funzionalità di _bulk insert_ garantendo al contempo che nessun dato venga mai perso durante questa procedura.
 
@@ -120,19 +127,23 @@ In vista delle discussioni precedentemente riportate, *M31 Srl* ha consigliato l
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  // [Studio tecnologie suggerite], [Alessandro Dinato, Riccardo Graziani], [#issue(165), #issue(169)],
+  [Sviluppo parte #gloss[NATS]],
+  [Alessandro Dinato],
+  [#issue(1, repo:"poc")],
+  
+  [Sviluppo collegamento servizio _data consumer_ - #gloss[TimescaleDB]],
+  [Alessandro Dinato],
+  [#issue(4, repo:"poc")],
 
-  // [Stesura dei requisi e realizzazione diagrammi use case],
-  // [Hossam Ezzemouri,Jaume Bernardi, Michele Dioli],
-  // [#issue(166)],
+  [Studio framework #gloss[Gin]],
+  [Michele Dioli, Jaume Bernardi, Elia Ernesto Stellin],
+  [#issue(6, repo:"poc")],
 
-  // [Conclusione use cases Visualizzazione], [ Riccardo Graziani], [#issue(170)],
+  [Sviluppo API REST con #gloss[Gin]],
+  [Michele Dioli, Jaume Bernardi, Elia Ernesto Stellin],
+  [#issue(7, repo:"poc")],
 
-  // [Approfondimento normalizzazione dati],
-  // [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
-  // [#issue(133)],
-
-  // [Approfondimento Grafana+Prometheus],
-  // [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
-  // [#issue(134)],
+  [Sviluppo dashboard #gloss[Angular.js]],
+  [Siria Salvalaio, Riccardo Graziani],
+  [#issue(11, repo: "poc")]
 )
