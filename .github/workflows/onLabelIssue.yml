@@ -17,9 +17,17 @@ jobs:
   edit_issue:
     runs-on: self-hosted
     steps:
-      
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
       - name: Install deps
-        run: python3 -m pip3 install -r ./automation/issue-action/requirements.txt
+        run: pip install -r ./automation/issue-action/requirements.txt
 
       - name: Execute Script
         env:
@@ -29,4 +37,4 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
         
-        run: python3 ./automation/issue-action $PROJECT "$REPO_OWNER/$REPO_NAME/$ISSUE_NUMBER" $ISSUE_NODE_ID --role
+        run: python ./automation/issue-action $PROJECT "$REPO_OWNER/$REPO_NAME/$ISSUE_NUMBER" $ISSUE_NODE_ID --role
