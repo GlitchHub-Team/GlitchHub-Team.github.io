@@ -1,21 +1,23 @@
 import argparse
 import requests
+import json
 import jq
 import os
+from pprint import pprint
 
 URL = "https://api.github.com/graphql"
 GH_TOKEN = os.environ["GH_TOKEN"]
 
 class JqStrings:
-    GET_PROJECT_ID = '.data.organization.projectV2.id'
-    GET_SPRINT_FIELD_ID = '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint") | .id'
-    GET_CUR_ITER_OPTION_ID = '.data.organization.projectV2.fields.nodes[] | select(.name == "Sprint") | .configuration.iterations | first | .id'
-    GET_SPRINT_ROLE_FIELD_ID = '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .id'
+    GET_PROJECT_ID              = '.data.organization.projectV2.id'
+    GET_SPRINT_FIELD_ID         = '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint") | .id'
+    GET_CUR_ITER_OPTION_ID      = '.data.organization.projectV2.fields.nodes[] | select(.name == "Sprint") | .configuration.iterations | first | .id'
+    GET_SPRINT_ROLE_FIELD_ID    = '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .id'
 
-    GET_ROLE_OPTION_ID = '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="%s") |.id'
-    GET_LABEL_ID = '.data.repository.issue.labels.nodes[] | select(.name == %s)'
+    GET_ROLE_OPTION_ID  = '.data.organization.projectV2.fields.nodes[] | select(.name== "Sprint role") | .options[] | select(.name=="%s") |.id'
+    GET_LABEL_ID        = '.data.repository.issue.labels.nodes[] | select(.name == "%s")'
 
-    GET_ISSUE_ITEM_ID = '.data.addProjectV2ItemById.item.id'
+    GET_ISSUE_ITEM_ID   = '.data.addProjectV2ItemById.item.id'
 
 ROLES = [
     "Responsabile",
@@ -27,14 +29,21 @@ ROLES = [
 ]
 
 
-def request_api(query: str) -> str:
+def request_api(query: str, error_blocking: bool = True) -> dict:
     headers = {
         "Authorization": f"Bearer {GH_TOKEN}"
     }
     request = requests.post(URL, json={'query': query}, headers=headers)
     
     if request.status_code == 200:
-        return request.json()
+        response = request.json()
+
+        if error_blocking and (errors := response.get('errors')):
+            print("ERRORE GraphQL:")
+            pprint(errors)
+            exit(1)
+
+        return response
     else:
         raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
 
@@ -127,9 +136,9 @@ def get_project_data(
         organization: str,
         project_number: int
 ):
-    result = request_api(f"""query(org: "{organization}", number: {project_number}) {{ 
-        organization(login: $org){{ 
-        projectV2(number: $number) {{ 
+    result = request_api(f"""query {{ 
+        organization(login: "{organization}"){{ 
+        projectV2(number: {project_number}) {{ 
             id 
             fields(first:50) {{ 
             nodes {{ 
@@ -191,9 +200,9 @@ def get_issue_data(
         issue_number: int,
         sprint_role_option_ids: dict
 ) -> str|None:
-    result = request_api(f"""query($repo_owner: "{repo_owner}", $repo_name: "{repo_name}", $issue_number: {issue_number}) {{
-    repository(owner: $repo_owner, name: $repo_name) {{
-        issue(number: $issue_number) {{
+    result = request_api(f"""query {{
+    repository(owner: "{repo_owner}", name: "{repo_name}") {{
+        issue(number: {issue_number}) {{
         id
         labels(first: 50) {{
             nodes {{ name }}
@@ -205,15 +214,17 @@ def get_issue_data(
     label_presences = {}
     for role in ROLES:
         label_name = f"task-{role.lower()}"
-        label_presences[role] = jq.compile(JqStrings.GET_LABEL_ID % label_name).input_value(result).first()
+        print(f"  -> searching for {label_name}...")
+        label_presences[role] = bool(jq.compile(JqStrings.GET_LABEL_ID % label_name).input_value(result).all())
 
     sprint_role_option_id = None
     for role in ROLES:
         if label_presences[role]:
-            print(f"Task da {role}")
+            print(f"  RUOLO: {role}")
             sprint_role_option_id = sprint_role_option_ids[role]
+            break
     else:
-        print("Nessun ruolo assegnato")
+        print("  RUOLO: nessun ruolo trovato")
     
     return sprint_role_option_id
 
@@ -222,14 +233,13 @@ def add_issue(
         project_id: str,
         issue_node_id: str
 ) -> str:
-    result = request_api(f"""mutation($project:"{project_id}", $issue:"{issue_node_id}") {{
-        addProjectV2ItemById(input: {{projectId: $project, contentId: $issue}}) {{
+    result = request_api(f"""mutation {{
+        addProjectV2ItemById(input: {{projectId: "{project_id}", contentId: "{issue_node_id}"}}) {{
             item {{id}}
         }}
     }}""")
     
     item_id = jq.compile(JqStrings.GET_ISSUE_ITEM_ID).input_value(result).first()
-
     return item_id
 
 
@@ -243,18 +253,15 @@ def set_sprint_iteration(
         print(f"ERRORE: Nel GitHub Project non esiste il valore del campo Sprint legato all'iterazione corrente."
               " Per far funzionare l'automation, si prega di crearlo nelle impostazioni del GitHub Project.")
         return exit(1)
+ 
+    print(f"  -> current_iteration_option_id = {current_iteration_option_id}")
 
-    request_api(f"""mutation (
-        $project_id: {project_id}
-        $item_id: {item_id}
-        $sprint_field: {sprint_field_id}
-        $sprint_value: {current_iteration_option_id}
-    ) {{
+    result = request_api(f"""mutation {{
         updateProjectV2ItemFieldValue(input: {{
-            projectId: $project_id
-            itemId: $item_id
-            fieldId: $sprint_field
-            value: {{ iterationId: $sprint_value }}
+            projectId: "{project_id}"
+            itemId: "{item_id}"
+            fieldId: "{sprint_field_id}"
+            value: {{ iterationId: "{current_iteration_option_id}" }}
         }}) {{
             projectV2Item {{id}}
         }}
@@ -268,18 +275,14 @@ def set_sprint_role(
         sprint_role_option_id: str|None,
 ):
     # Set non-empty sprint role 
-    if sprint_role_option_id: 
-        request_api(f"""mutation (
-            $project_id: {project_id}
-            $item_id: {item_id}
-            $sprint_role_field: {sprint_role_field_id}
-            $sprint_role_value: {sprint_role_option_id}
-        ) {{
+    if sprint_role_option_id:
+        print(f"  -> sprint_role_option_id = {sprint_role_option_id}")
+        result = request_api(f"""mutation {{
             updateProjectV2ItemFieldValue(input: {{
-            projectId: $project_id
-            itemId: $item_id
-            fieldId: $sprint_role_field
-            value: {{ singleSelectOptionId: $sprint_role_value }}
+                projectId: "{project_id}"
+                itemId: "{item_id}"
+                fieldId: "{sprint_role_field_id}"
+                value: {{ singleSelectOptionId: "{sprint_role_option_id}" }}
             }}) {{
                 projectV2Item {{id}}
             }}
@@ -287,19 +290,17 @@ def set_sprint_role(
     
     # Set empty sprint role
     else:
-        request_api(f"""mutation (
-            $project_id: ID!
-            $item_id: ID!
-            $sprint_role_field: ID!
-        ) {{
+        print(f"  -> rimuovo lo Sprint Role")
+        result = request_api(f"""mutation {{
             clearProjectV2ItemFieldValue(input: {{
-            projectId: $project_id
-            itemId: $item_id
-            fieldId: $sprint_role_field
+            projectId: "{project_id}"
+            itemId: "{item_id}"
+            fieldId: "{sprint_role_field_id}"
             }}) {{
                 projectV2Item {{id}}
             }}
         }}""")
+
 
 if __name__ == "__main__":
     main()    
