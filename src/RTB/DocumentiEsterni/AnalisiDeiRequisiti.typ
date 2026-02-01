@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.27.0",
+      "01/02/2026",
+      "Alessandro Dinato",
+      "-",
+      [Classificazione requisiti da RQ1 a RQ175],
+    ),
+    (
       "0.26.0",
       "30/01/2026",
       "Hossam Ezzemouri",
