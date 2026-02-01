@@ -4,8 +4,15 @@
 #show: report.with(
   titolo: "Verbale interno 30/01/2026",
   stato: "Bozza",
-  versione: "0.0.1",
+  versione: "0.0.2",
   registro-modifiche: (
+    (
+      "0.0.2",
+      "01/02/2026",
+      "Riccardo Graziani",
+      "-",
+      "Aggiunta tabella task e distribuzione ruoli",
+    ),
     (
       "0.0.1",
       "01/02/2026",
@@ -51,12 +58,13 @@ Il presente documento attesta che, in data *30 gennaio 2026* dalle 16:30 alle or
 Durante la riunione il gruppo si è allineato rispetto all'architettura proposta per il PoC. Inoltre, è  stato mostrato il lavoro svolto per quanto riguarda le demo della parte *NATS* e della parte *Angular*.
 \
 Infine è stata creata la #link("https://github.com/GlitchHub-Team/PoC")[*repository*] dedicata per il versionamento del PoC. Il gruppo ha dunque individuato le seguenti attività:
-- sviluppo dell'infrastruttura NATS;
-- studio e sviluppo di API REST usando il framework Gin;
-- sviluppo della dashboard Angular
-- studio e integrazione del monitoring di sistema tramite Grafana e Prometheus;
+- sviluppo *dell'infrastruttura* NATS;
+- studio e sviluppo di *API REST* usando il framework Gin;
+- sviluppo della *dashboard* Angular;
+- studio e integrazione di *Keycloak* come servizio di autenticazione;
+- studio e integrazione del *monitoring* di sistema tramite Grafana e Prometheus;
 
-=== Analisi dei requisiti
+=== Analisi dei Requisiti
 A seguito del consolidamento degli use case redatti, sono stati scritti i relativi *requisiti*, classificandoli in requisiti *funzionali*, *non funzionali* e di *dominio*.
 Sono stati redatti e inseriti i diagrammi relativi agli use case UC1 - UC109. Il gruppo ha dunque individuato le seguenti attività:
 - terminare l'inserimento dei diagrammi dei casi d'uso mancanti;
@@ -90,10 +98,10 @@ La gestione delle GitHub issues da parte del gruppo è stata disorganizzata in p
 \
 In particolare:
 - la programmazione delle nuove issue deve partire dalla *fine*, ossia vanno individuate le attività da svolgere e vanno scomposte in maniera *atomica*;
-- il responsabile ha il compito di *creare*, *assegnare* e *compilare* le issues. In particolare devono essere compilati fin da subito i campi: *start date*, *target date* e *expected worked hours*;
+- il responsabile ha il compito di *creare*, *assegnare* e *compilare* le issues. In particolare devono essere compilati fin da subito i campi: *start date*, *target date* ed *expected worked hours*;
 - è compito dell'assegnatario aggiornare lo stato delle proprie issue in maniera tempestiva tramite la *Kanban* GitHub Projects;
 - al completamento di una issue è compito dell'assegnatario compilare i campi *end date* e *worked hours*;
-Nel caso in cui vengano individuate nuove issue non previste inizialmente, esse vanno poste nel *backlog* della board. Tali issue devono o essere assegnate oppure lasciate nel backlog.
+Nel caso in cui vengano individuate nuove issue non previste inizialmente, esse vanno poste nel *backlog* della board. Tali issue devono essere assegnate oppure lasciate nel backlog.
 \
 È stato ribadito il ruolo che ogni sezione della Kanban GitHub Project ricopre:
 - le issue nel *backlog* rappresentano attività non ancora assegnate, in cui non va inserito lo sprint;
@@ -103,7 +111,7 @@ Nel caso in cui vengano individuate nuove issue non previste inizialmente, esse 
 - le issue in *done* rappresentano attività che sono state *completate* e *verificate/approvate*; 
 
 === Gestione della verifica di attività
-Il gruppo ha rilevato la necessità di effettuare verifiche *più frequenti*, in particolare per quanto riguarda documenti come l'AdR. Al momento bisogna verificare un documento di dimensioni notevoli, avendo cura che nessuno dei verificatori verifichi del lavoro che ha svolto in precedenza. Siccome la redazione degli Use Case e dei requisiti è stata svolta da due gruppi separati, il processo di verifica dell'AdR non dovrebbe causare molti problemi.
+Il gruppo ha rilevato la necessità di effettuare verifiche *più frequenti*, in particolare per quanto riguarda documenti come l'AdR. Al momento, infatti, bisogna verificare un documento di dimensioni notevoli, avendo cura che nessuno dei verificatori verifichi del lavoro che ha svolto in precedenza. Siccome la redazione degli use case e dei requisiti è stata svolta da due gruppi separati, il processo di verifica dell'AdR non dovrebbe causare molti problemi.
 Inoltre è stato concordato che il verificatore ha il compito di *suggerire* le modifiche, non di attuarle.
 
 == Assegnazione delle prossime task basate sulle decisioni prese
@@ -112,19 +120,56 @@ Inoltre è stato concordato che il verificatore ha il compito di *suggerire* le 
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Studio NATS, inizio POC], [Alessandro Dinato], [#issue(165)],
+  [Sviluppo crittografia, autenticazione e account con NATS], [Alessandro Dinato], [#issue_poc(2)],
 
-  [Stesura dei requisiti e scrittura diagrammi degli Use Case], [Michele Dioli, Jaume Bernardi, Hossam Ezzemouri], [#issue(166)],
+  [Impostazione NATS JetStream nel PoC], [Alessandro Dinato], [#issue_poc(3)],
 
-  [Sistemare e completare Piano di Progetto], [Elia Ernesto Stellin], [#issue(140)],
+  [Sviluppo collegamento DataConsumer - TimescaleDB], [Alessandro Dinato], [#issue_poc(4)],
 
-  [Aggiungere termini al glossario], [Elia Ernesto Stellin], [#issue(108)],
+  [Studio Keycloak], [Elia Ernesto Stellin], [#issue_poc(5)],
 
-  [Completare gli Use Case suggeriti da M31], [Elia Ernesto Stellin], [#issue(167)],
+  [Studio Go e framework Gin], [Elia Ernesto Stellin, Michele Dioli, Jaume Bernardi], [#issue_poc(6)],
 
-  [Studio Angular.js], [Michele Dioli], [#issue(169)],
+  [Sviluppo API di autenticazione], [Elia Ernesto Stellin], [#issue(8)],
 
-  [Concludere UC della visualizzazione], [Michele Dioli], [#issue(171)],
+  [Collegamento login Keycloak con dashboard Angular], [Elai Ernesto Stellin], [#issue_poc(16)],
+
+  [Sviluppo API recupero dati storici da TimescaleDB], [Jaume Bernardi], [#issue_poc(9)],
+
+  [Sviluppo API recupero dati real-time da stream NATS], [Michele Dioli], [#issue_poc(10)],
+
+  [Sviluppo dashboard dati storici], [Siria Salvalaio], [#issue_poc(12)],
+
+  [Sviluppo dashboard dati real time], [Riccardo Graziani], [#issue_poc(13)],
+
+  [Studio Grafana e Prometheus], [Hossam Ezzemouri], [#issue_poc(14)],
+
+  [Integrazione Grafana e Prometheus con NATS], [Hossam Ezzemouri], [#issue_poc(15)],
+
+  [Stesura sezione Processi Primari], [Riccardo Graziani], [#issue(205)],
+
+  [Stesura sezione Processi Organizzativi], [Elia Ernesto Stellin], [#issue(140)],
+
+  [Stesura sezione Processi Supporto/Qualifica], [Elia Ernesto Stellin], [#issue(230)],
+
+  [Stesura verbale 30/01/2026], [Riccardo Graziani], [#issue(217)],
+
+  [Classificare RF1 - RF175], [Alessandro Dinato], [#issue(226)],
+
+  [Classificare RF176 - Fine], [Elia Ernesto Stellin], [#issue(227)],
+
+  [Stesura Test di Sistema per RF1 - RF64], [Michele Dioli], [#issue(228)],
+
+  [Stesura Test di Sistema per RF65 - RF128], [Jaume Bernardi], [#issue(229)],
+
+  [Stesura Test di Sistema per RF129 - RF192], [Hossam Ezzemouri], [#issue(231)],
+
+  [Stesura Test di Sistema per RF193 - RF256], [Siria Salvalaio], [#issue(233)],
+
+  [Stesura Test di Sistema per RF257 - RD14], [Riccardo Graziani], [#issue(234)],
 )
 
 == Assegnazione ruoli per le prossime due settimane
+- *Responsabile*: Riccardo Graziani
+- *Amministratore*: Riccardo Graziani, Siria Salvalaio, Hossam Ezzemouri, Jaume Bernardi, Michele Dioli
+- *Programmatore*: Alessandro Dinato, Riccardo Graziani, Jaume Bernardi, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin, Michele Dioli
