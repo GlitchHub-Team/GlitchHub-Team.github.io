@@ -4,10 +4,9 @@ on:
     types:
       - labeled
       - unlabeled
-  workflow_call:  # rende workflow riusabile
 
 permissions:
-  contents: read  # non so se serva
+  contents: read
   issues: write
   repository-projects: write
 
@@ -15,27 +14,10 @@ env:
   GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
 
 jobs:
-  edit_issue:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          repository: GlitchHub-Team/GlitchHub-Team.github.io
-
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.13'
-          cache: 'pip'
-
-      - name: Install deps
-        run: pip install -r ./automation/issue-action/requirements.txt
-
-      - name: Execute Script
-        env:
-          PROJECT:        "GlitchHub-Team/2"
-          REPO:           "${{ github.repository }}"
-          ISSUE_NUMBER:   "${{ github.event.issue.number }}"
-          ISSUE_NODE_ID:  "${{ github.event.issue.node_id }}"
-        run: python ./automation/issue-action $PROJECT "$REPO/$ISSUE_NUMBER" $ISSUE_NODE_ID --role
+  call-automation:
+    uses: GlitchHub-Team/actions/.github/workflows/issue-action.yml@main
+    with:
+      issue-event: label
+      project: GlitchHub-Team/2
+    secrets: 
+      inherit
