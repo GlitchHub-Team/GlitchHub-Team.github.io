@@ -1,6 +1,5 @@
 import argparse
 import requests
-import json
 import jq
 import os
 
@@ -82,7 +81,7 @@ def main():
         exit(1)
 
     try:
-        repo_owner, repo_name, issue_number = args.issue.strip(' "')split("/")
+        repo_owner, repo_name, issue_number = args.issue.strip(' "').split("/")
     except ValueError:
         print("ERROR: Il parametro issue dev'essere nella forma REPO_OWNER/REPO_NAME/ISSUE_NUMBER")
         exit(1)
