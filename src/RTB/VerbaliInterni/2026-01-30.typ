@@ -3,9 +3,16 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 30/01/2026",
-  stato: "Bozza",
-  versione: "0.0.2",
+  stato: "Da verificare",
+  versione: "0.1.0",
   registro-modifiche: (
+    (
+      "0.1.0",
+      "02/02/2026",
+      "Riccardo Graziani",
+      "-",
+      "Raffinamento scrittura ",
+    ),
     (
       "0.0.2",
       "01/02/2026",
@@ -55,23 +62,17 @@ Il presente documento attesta che, in data *30 gennaio 2026* dalle 16:30 alle or
 == Retrospettiva dello sprint
 
 === Allineamento sul PoC
-Durante la riunione il gruppo si è allineato rispetto all'architettura proposta per il PoC. Inoltre, è  stato mostrato il lavoro svolto per quanto riguarda le demo della parte *NATS* e della parte *Angular*.
-\
-Infine è stata creata la #link("https://github.com/GlitchHub-Team/PoC")[*repository*] dedicata per il versionamento del PoC. Il gruppo ha dunque individuato le seguenti attività:
-- sviluppo *dell'infrastruttura* NATS;
-- studio e sviluppo di *API REST* usando il framework Gin;
-- sviluppo della *dashboard* Angular;
-- studio e integrazione di *Keycloak* come servizio di autenticazione;
-- studio e integrazione del *monitoring* di sistema tramite Grafana e Prometheus;
+Durante la riunione, il gruppo ha approvato l'architettura proposta per il PoC. A seguire, sono stati illustrati gli avanzamenti tecnici relativi alle componenti *NATS* e *Angular*.
+È stata inoltre creata la #link("https://github.com/GlitchHub-Team/PoC")[*repository*] dedicata per il versionamento del PoC.
 
 === Analisi dei Requisiti
-A seguito del consolidamento degli use case redatti, sono stati scritti i relativi *requisiti*, classificandoli in requisiti *funzionali*, *non funzionali* e di *dominio*.
-Sono stati redatti e inseriti i diagrammi relativi agli use case UC1 - UC109. Il gruppo ha dunque individuato le seguenti attività:
+A seguito del consolidamento degli use case, si è proceduto alla *stesura* e *classificazione* dei requisiti in funzionali, non funzionali e di dominio. Contestualmente, è stata completata la modellazione grafica degli use case (da *UC1* a *UC109*) Il gruppo ha dunque individuato le seguenti attività:
 - terminare l'inserimento dei diagrammi dei casi d'uso mancanti;
 - creare una *table of contents* relativa ai diagrammi dei casi d'uso;
 - creare la tabella di *tracciamento* requisiti-UC;
 - *classificare* i requisiti per livello di urgenza in: *Obbligatori*, *Opzionali*, *Desiderabili*;
 
+// TODO: Forse da espandere un po' meglio?
 === Norme di Progetto
 Il gruppo ha rilevato come la stesura del documento *Norme di Progetto* sia stata trascurata per troppo tempo. Sono state dunque indviduate le *sezioni* che necessitano di essere redatte:
 - sezione dei *Processi Primari*;
@@ -79,40 +80,38 @@ Il gruppo ha rilevato come la stesura del documento *Norme di Progetto* sia stat
 - sezioni dei *Processi di supporto/Qualifica*;
 
 === Piano di Qualifica
-Sono state individuate e fissate le *iniziative di miglioramento* e sono state inserite le formule relative alle metriche di *Qualità del Processo* e di *Qualità del Prodotto*. 
+Sono state definite le *iniziative di miglioramento* e formalizzate le metriche per il monitoraggio della *Qualità del Processo* e della *Qualità del Prodotto*, con l'integrazione delle relative formule. 
 \
-Il gruppo ha quindi individuato le seguenti attività legate al *Piano di Qualifica*: 
+Il gruppo ha quindi individuato le seguenti attività: 
 - la scrittura dei *Test di Sistema* relativi ai requisiti funzionali, non funzionali e di dominio;
 - l'integrazione del cruscotto di valutazione;
 
 == Miglioramento dell'organizzazione del gruppo
 
 === Gestione delle baseline/milestone
-Il gruppo ha riconosciuto la propria mancanza di lungimiranza per quanto riguarda la *programmazione* delle attività: la mancata definizione di baseline e milestone, assieme ad una pianificazione limitata all'immediato ha portato il gruppo ad aver accumulato *ritardi* nello svolgimento del lavoro.
-Il gruppo si impegna dunque a programmare le attività partendo dalla *fine* e scomponendo le part in:
-- *pianificazione a lungo termine*: bisogna fissare le attività a grana grossa ragionando all'indietro;
-- *pianificazione a breve termine*: le attività a grana fine vanno organizzate con una corretta gesione delle issue;
+Il gruppo ha analizzato le criticità emerse nella *programmazione* delle attività, evidenziando come l'assenza di baseline e milestone e una pianificazione a breve termine abbiano causato *ritardi* nello svolgimento del lavoro.
+Il gruppo si impegna dunque a programmare le attività tramite la pianificazione a ritroso. La strategia si articolerà su due livelli:
+- *pianificazione a lungo termine*: definizione delle attività a grana grossa procedendo a ritroso dalle scadenze prefissate;
+- *pianificazione a breve termine*: scomposizione delle attività in task a grana fine, gestite tramite un sistema di issue strutturato;
 
 === Gestione delle issues/GitHub Project
-La gestione delle GitHub issues da parte del gruppo è stata disorganizzata in più occassioni, inoltre certi campi delle issues non sono stati rispettati o compilati. Il planning delle issue è stato svolto in maniera grossolana e non a grana fine. Grazie all'esperienza maturata negli ultimi mesi e lo studio approfondito svolto per l'esame di SWE, il gruppo ha riconosciuto le proprie lacune e ha proposto un nuovo workflow per la creazione e gestione delle issue.
-\
+È stata rilevata una gestione *inefficiente* delle GitHub Issues, caratterizzata da una compilazione *incompleta* dei metadati e da un planning eccessivamente approssimativo. Facendo tesoro dell'esperienza maturata e degli standard metodologici approfonditi nel corso di *IS*, il gruppo ha identificato i propri debiti tecnici e organizzativi. Di conseguenza, è stato formalizzato un nuovo *workflow operativo* volto a garantire una scomposizione delle attività a grana fine e una gestione rigorosa del repository.
 In particolare:
-- la programmazione delle nuove issue deve partire dalla *fine*, ossia vanno individuate le attività da svolgere e vanno scomposte in maniera *atomica*;
+- la programmazione delle nuove issue seguirà un approccio *top-down*, ossia ogni attività da svolgere verrà scomposta in task *atomici*;
 - il responsabile ha il compito di *creare*, *assegnare* e *compilare* le issues. In particolare devono essere compilati fin da subito i campi: *start date*, *target date* ed *expected worked hours*;
 - è compito dell'assegnatario aggiornare lo stato delle proprie issue in maniera tempestiva tramite la *Kanban* GitHub Projects;
 - al completamento di una issue è compito dell'assegnatario compilare i campi *end date* e *worked hours*;
-Nel caso in cui vengano individuate nuove issue non previste inizialmente, esse vanno poste nel *backlog* della board. Tali issue devono essere assegnate oppure lasciate nel backlog.
-\
+- eventuali nuove issue non previste inizialmente saranno poste nel *backlog* della board. Tali issue rimarranno in stato di attesa fino alla loro *valutazione* e successiva *assegnazione*.
 È stato ribadito il ruolo che ogni sezione della Kanban GitHub Project ricopre:
 - le issue nel *backlog* rappresentano attività non ancora assegnate, in cui non va inserito lo sprint;
 - le issue nel *ready* rappresentano attività assegnate all'interno dello sprint;
 - le issue in *progress* rappresentano attività su cui si sta attivamente lavorando: importante segnare una issue come in progress *appena si inizia il lavoro*;
-- le issue in *review* rappresentano attivià che hanno bisogno di approvazione/verifica;
+- le issue in *review* rappresentano attività che hanno bisogno di approvazione/verifica;
 - le issue in *done* rappresentano attività che sono state *completate* e *verificate/approvate*; 
 
 === Gestione della verifica di attività
-Il gruppo ha rilevato la necessità di effettuare verifiche *più frequenti*, in particolare per quanto riguarda documenti come l'AdR. Al momento, infatti, bisogna verificare un documento di dimensioni notevoli, avendo cura che nessuno dei verificatori verifichi del lavoro che ha svolto in precedenza. Siccome la redazione degli use case e dei requisiti è stata svolta da due gruppi separati, il processo di verifica dell'AdR non dovrebbe causare molti problemi.
-Inoltre è stato concordato che il verificatore ha il compito di *suggerire* le modifiche, non di attuarle.
+Il gruppo ha concordato la necessità di adottare un approccio di verifica *incrementale* e *frequente*, con particolare riferimento a documenti estesi come l'Analisi dei Requisiti (AdR). È stato ribadito il principio secondo cui nessun membro può verificare il proprio operato. Grazie alla separazione del lavoro tra il gruppo dedito agli use case e quello focalizzato sui requisiti, l'integrità del processo di revisione dell'AdR non è a rischio.
+Inoltre è stato concordato che il verificatore ha il compito di esclusivo di *individuare* e *suggerire* le correzioni.
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
@@ -120,53 +119,29 @@ Inoltre è stato concordato che il verificatore ha il compito di *suggerire* le 
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Sviluppo crittografia, autenticazione e account con NATS], [Alessandro Dinato], [#issue_poc(2)],
+  [Stesura sezione Processi Primari], [Riccardo Graziani], [#issue(205, repo:"docs")],
 
-  [Impostazione NATS JetStream nel PoC], [Alessandro Dinato], [#issue_poc(3)],
+  [Stesura sezione Processi Organizzativi], [Elia Ernesto Stellin], [#issue(140, repo:"docs")],
 
-  [Sviluppo collegamento DataConsumer - TimescaleDB], [Alessandro Dinato], [#issue_poc(4)],
+  [Stesura sezione Processi Supporto/Qualifica], [Elia Ernesto Stellin], [#issue(230, repo:"docs")],
 
-  [Studio Keycloak], [Elia Ernesto Stellin], [#issue_poc(5)],
+  [Stesura verbale 30/01/2026], [Riccardo Graziani], [#issue(217, repo:"docs")],
 
-  [Studio Go e framework Gin], [Elia Ernesto Stellin, Michele Dioli, Jaume Bernardi], [#issue_poc(6)],
+  [Classificare RF1 - RF175], [Alessandro Dinato], [#issue(226, repo:"docs")],
 
-  [Sviluppo API di autenticazione], [Elia Ernesto Stellin], [#issue(8)],
+  [Classificare RF176 - Fine], [Elia Ernesto Stellin], [#issue(227, repo:"docs")],
 
-  [Collegamento login Keycloak con dashboard Angular], [Elai Ernesto Stellin], [#issue_poc(16)],
+  [Stesura Test di Sistema per RF1 - RF64], [Michele Dioli], [#issue(228, repo:"docs")],
 
-  [Sviluppo API recupero dati storici da TimescaleDB], [Jaume Bernardi], [#issue_poc(9)],
+  [Stesura Test di Sistema per RF65 - RF128], [Jaume Bernardi], [#issue(229, repo:"docs")],
 
-  [Sviluppo API recupero dati real-time da stream NATS], [Michele Dioli], [#issue_poc(10)],
+  [Stesura Test di Sistema per RF129 - RF192], [Hossam Ezzemouri], [#issue(231, repo:"docs")],
 
-  [Sviluppo dashboard dati storici], [Siria Salvalaio], [#issue_poc(12)],
+  [Stesura Test di Sistema per RF193 - RF256], [Siria Salvalaio], [#issue(233, repo:"docs")],
 
-  [Sviluppo dashboard dati real time], [Riccardo Graziani], [#issue_poc(13)],
+  [Stesura Test di Sistema per RF257 - RD14], [Riccardo Graziani], [#issue(234, repo:"docs")],
 
-  [Studio Grafana e Prometheus], [Hossam Ezzemouri], [#issue_poc(14)],
-
-  [Integrazione Grafana e Prometheus con NATS], [Hossam Ezzemouri], [#issue_poc(15)],
-
-  [Stesura sezione Processi Primari], [Riccardo Graziani], [#issue(205)],
-
-  [Stesura sezione Processi Organizzativi], [Elia Ernesto Stellin], [#issue(140)],
-
-  [Stesura sezione Processi Supporto/Qualifica], [Elia Ernesto Stellin], [#issue(230)],
-
-  [Stesura verbale 30/01/2026], [Riccardo Graziani], [#issue(217)],
-
-  [Classificare RF1 - RF175], [Alessandro Dinato], [#issue(226)],
-
-  [Classificare RF176 - Fine], [Elia Ernesto Stellin], [#issue(227)],
-
-  [Stesura Test di Sistema per RF1 - RF64], [Michele Dioli], [#issue(228)],
-
-  [Stesura Test di Sistema per RF65 - RF128], [Jaume Bernardi], [#issue(229)],
-
-  [Stesura Test di Sistema per RF129 - RF192], [Hossam Ezzemouri], [#issue(231)],
-
-  [Stesura Test di Sistema per RF193 - RF256], [Siria Salvalaio], [#issue(233)],
-
-  [Stesura Test di Sistema per RF257 - RD14], [Riccardo Graziani], [#issue(234)],
+  [Integrazione cruscotto di Valutazione], [Michele Dioli], [#issue(247, repo:"docs")],
 )
 
 == Assegnazione ruoli per le prossime due settimane
