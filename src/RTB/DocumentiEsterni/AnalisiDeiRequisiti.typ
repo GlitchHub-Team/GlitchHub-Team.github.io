@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.28.1",
+      "02/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Migliorata formattazione]
+    ),
+    (
       "0.28.0",
       "01/02/2026",
       "Elia Ernesto Stellin",
@@ -328,7 +335,7 @@ Questo documento ha come obiettivo quello di fornire informazioni  dettagliate e
 
 == Panoramica del prodotto
 // TODO: da approfondire
-Il progetto tratta la realizzazione di un sistema distribuito per l'acquisizione, l'elaborazione e la gestione dei dati provenienti da sensori Bluetooth Low Energy (BLE). In un contesto in cui la raccolta capillare (e affidabile soprattutto) rappresenta un elemento centrale per varie applicazioni (industriali,logistiche,sanitarie, ecc...), il capitolato evidenzia la necessità di una piattaforma in grado di ricevere e normalizzare dati eterogenei provenienti da un numero non trascurabile di sensori, garantendo al contempo sicurezza e scalabilità.
+Il progetto tratta la realizzazione di un sistema distribuito per l'acquisizione, l'elaborazione e la gestione dei dati provenienti da sensori Bluetooth Low Energy (BLE). In un contesto in cui la raccolta capillare (e affidabile soprattutto) rappresenta un elemento centrale per varie applicazioni (industriali,logistiche, sanitarie, ecc...), il capitolato evidenzia la necessità di una piattaforma in grado di ricevere e normalizzare dati eterogenei provenienti da un numero non trascurabile di sensori, garantendo al contempo sicurezza e scalabilità.
 
 == Architettura
 L'architettura prevista si articola in tre principali livelli che collaborano per garantire un flusso dati continuo e sicuro:
@@ -1082,7 +1089,6 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
 
-// TODO: Come espandere secondo il pattern di visualizzazione lista?
 ==== #uc() - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
@@ -1352,8 +1358,6 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
 
 ==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant
-// TODO: Diagramma UC41 mancante
-// #image("../../assets/diagrammi/UC41.svg", width: 100%)
 <Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1382,7 +1386,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Rifiutata
 
 // Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
-// TODO: Come espandere secondo il pattern di visualizzazione lista?
+// TODO: Rifare diagramma in modo tale che si rispetti pattern lista
 ==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1392,6 +1396,8 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - Il Sistema mostra la lista degli utenti registrati nel tenant dell'Admin
 - *Scenario principale*:
   - L'Admin visualizza la lista degli utenti registrati nel proprio tenant
+- *Inclusioni*
+  - #ref-uc(<Visualizzazione-singolo-utente-in-lista>)
 
 ==== #uc() - Visualizzazione singolo utente in lista <Visualizzazione-singolo-utente-in-lista>
 #image("../../assets/diagrammi/UC43.svg", width: 100%)
@@ -1443,8 +1449,6 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-singolo-gateway-in-lista>)
 
 ==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
-// TODO: Diagramma UC45 mancante
-// #image("../../assets/diagrammi/UC45.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1521,7 +1525,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Non associato
     - Non autenticato
 
-// TODO: Come espandere secondo il pattern di visualizzazione lista?
+// TODO: rifare diagramma per questo use case per mostrare meglio il pattern lista
 ===== #sub-uc() - Visualizzazione sensori collegati al gateway associato a tenant <Visualizzazione-sensori-collegati-gateway-associato>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1532,6 +1536,8 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - Il Sistema mostra la lista dei sensori collegati al gateway selezionato
 - *Scenario principale*:
   - L'Admin visualizza la lista dei sensori collegati al gateway selezionato
+- *Inclusioni*:
+  - #ref-uc(<Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>)
 
 ==== #uc() - Visualizza singolo sensore collegato al gateway associato al tenant in lista
 #image("../../assets/diagrammi/UC47.svg", width: 100%)
@@ -1682,7 +1688,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza la data di scadenza della API key selezionata
 
-// TODO: Singoli uc pure per i dettagli qui?
+
 ==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
 #image("../../assets/diagrammi/UC6.svg", width: 100%)
 - *Attore principale*: Admin Generico
@@ -1771,9 +1777,6 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin conferma l'eliminazione della API key selezionata
 
 // Visualizzazione audit log -----------------------------------------------------------------------------------------------------------------------------
-
-// TODO: Da rifinire (es che informazioni mostrare nel log come timestamp, ip, user, tipo di evento)
-// -> rifinire l'audit log secondo il pattern per visualizzazione lista di elementi
 ==== #uc() - Visualizzazione lista audit log del tenant <Visualizzazione-audit-log>
 #image("../../assets/diagrammi/UC55.svg", width: 100%)
 - *Attore principale*: Admin Generico
@@ -1915,7 +1918,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
-// TODO: nel diagramma di questo UC ci potrebbe stare mostrare anche <Visualizzazione-dashboard-generica>
+// TODO: Modificare diagramma UC61.svg e mostrare anche attore collegato a UC vis. dashboard generica
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 #image("../../assets/diagrammi/UC61.svg", width: 100%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
@@ -2350,6 +2353,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il numero di tenant collegati1
 
 
+// TODO: modificare diagramma per mostrare tutto il pattern lista direttamente
 ==== #uc() - Visualizzazione lista gateway <Visualizzazione-lista-gateway-super-admin>
 #image("../../assets/diagrammi/UC77.svg", width: 100%)
 - *Attore principale*: Super Admin
@@ -2363,7 +2367,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singolo-gateway-in-lista>)
 
-// TODO: Può avere senso come visualizzazione singolo elemento?
 ==== #uc() - Visualizzazione singolo gateway in lista <Visualizzazione-singolo-gateway-in-lista>
 #image("../../assets/diagrammi/UC78.svg", width: 100%)
 - *Attore principale*: Super Admin
@@ -2782,7 +2785,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singolo-tenant-lista>)
 
-// TODO: Aggiungere più campi visualizzati???
+// TODO: Si potrebbe aggiungere visualizzazione pulsante impersonazione tenant
 ==== #uc() - Visualizzazione singolo tenant in lista <Visualizzazione-singolo-tenant-lista>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -2794,6 +2797,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza le informazioni elencate sopra per ogni tenant nella lista
 - *Inclusioni*:
+  - #ref-uc(<Visualizzazione-identificativo-tenant>)
 
 ===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant>
 - *Attore principale*: Super Admin
@@ -2985,7 +2989,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>)
 
-// TODO: Ho riutilizzato alcuni sub uc altrimenti diventa un circo questa sezione
 ==== #uc() - Visualizzazione singola richiesta lista storico commissioning <Visualizzazione-singola-richiesta-storico-commissioning-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -3129,7 +3132,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin accetta la richiesta di commissioning/decommissioning gateway
 
 
-// TODO: Togliere Rifiuto richiesta di commissioning/decommissioning gateway
 ==== #uc() - Rifiuto richiesta di commissioning/decommissioning gateway <Rifiuto-richiesta-fornitura-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -3578,9 +3580,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il numero di valori out-of-range rilevati per ogni sensore
   - Il Super Admin visualizza il grafico a barre rappresentante il numero di valori out-of-range rilevati per ogni sensore
 
-// TODO: Vieni qui ad ampliare la roba
-// dc
-// dc
 ==== #uc() - Visualizzazione storico dei Tenant possessori di sensore <Visualizzazione-storico-possessori-sensore>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -3735,7 +3734,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il gateway riscontra un errore durante l'esecuzione del decommissioning
   - Il gateway invia la segnalazione di errore al Sistema
 
-// TODO: Implementare log di sistema (mail 8 gennaio)?
 ==== #uc() - Conferma riavvio <Conferma-comando-riavvio>
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
