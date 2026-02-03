@@ -4857,7 +4857,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Errore-riavvio>)],
 
   [#rf()],
-  [Il gateway simulato deve inviare la conferma di reset avvenuto con successo al Cloud, dopo aver reimpostato correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica],
+  [Il gateway simulato deve poter reimpostare correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica, ovvero reset],
+  [#ref-uc(<Conferma-comando-reset>)],
+
+  [#rf()],
+  [Il gateway simulato, dopo far eseuito il reset correttamente, deve inviare la conferma di successo al Cloud],
   [#ref-uc(<Conferma-comando-reset>)],
 
   [#rf()],
