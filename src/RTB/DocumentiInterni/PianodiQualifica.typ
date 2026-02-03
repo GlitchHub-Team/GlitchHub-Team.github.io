@@ -6,7 +6,7 @@
   stato: "da verificare",
   versione: "0.0.7",
   registro-modifiche: (
-    ("0.0.8", "03/02/2026", "Jaume Bernardi", "", "Stesura test funzionali"),
+    ("0.0.8", "03/02/2026", "Jaume Bernardi", "", "Stesura test di sistema"),
     ("0.0.7", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", "Piccole modifiche"),
     ("0.0.6", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", [Miglioramento descrizione metriche, aggiunta formule e migliorate @iniziative-miglioramento]),
     ("0.0.5", "17/01/2026", "Michele Dioli", "Riccardo Graziani", "Inizio stesura formule metriche"),
