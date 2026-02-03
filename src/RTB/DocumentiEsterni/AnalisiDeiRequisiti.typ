@@ -4861,7 +4861,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Conferma-comando-reset>)],
 
   [#rf()],
-  [Il gateway simulato, dopo far eseuito il reset correttamente, deve inviare la conferma di successo al Cloud],
+  [Il gateway simulato, dopo aver eseguito il reset correttamente, deve inviare la conferma di successo al Cloud],
   [#ref-uc(<Conferma-comando-reset>)],
 
   [#rf()],
