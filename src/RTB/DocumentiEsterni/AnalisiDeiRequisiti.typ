@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.29.1",
+      "03/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Sistemate urgenze dei requisiti]
+    ),
+    (
       "0.29.0",
       "03/02/2026",
       "Jaume Bernardi",
@@ -5147,7 +5154,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-grafico-storico-sensore>)],
 
   // Filtraggio dati storici: desiderabile
-  // TODO: METTERE FILTRAGGIO OBB
   [#rf[Obb]],
   [L'Utente autenticato deve poter filtrare lo storico dei dati del sensore per intervallo temporale],
   [#ref-uc(<Filtraggio-dati-storico-sensore>)],
@@ -5651,7 +5657,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [Si devono predisporre strumenti di monitoraggio in tempo reale delle prestazioni del sistema.],
   [Capitolato §5.5 -- RQ 16, Capitolato §3.3],
 
-  // TODO: gli alert sono OPT o no?
+  
   [#rnf()],
   [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.],
   [Capitolato §5.5 -- RQ 16],
