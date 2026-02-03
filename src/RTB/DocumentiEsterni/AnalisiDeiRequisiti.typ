@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.29.0",
+      "03/02/2026",
+      "Jaume Bernardi",
+      "-",
+      [Suddivisione di alcuni requisiti funzionali per renderli più atomici]
+    ),
+    (
       "0.28.1",
       "02/02/2026",
       "Elia Ernesto Stellin",
@@ -4901,7 +4908,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Invio-dati-crittografati>)],
 
   [#rf()],
-  [Il gateway simulato deve raccogliere i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud ed eliminare i dati più vecchi in caso di overflow del buffer],
+  [Il gateway simulato deve raccogliere i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud],
+  [#ref-uc(<Invio-dati-crittografati>)],
+
+  [#rf()],
+  [Il gateway simulato deve eliminare i dati più vecchi in caso di overflow del buffer],
   [#ref-uc(<Invio-dati-crittografati>)],
 
   [#rf()],
