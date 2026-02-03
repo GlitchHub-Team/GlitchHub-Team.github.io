@@ -2,14 +2,21 @@
 
 #show: report.with(
   titolo: "Verbale esterno 27/01/2026 (M31)",
-  stato: "In attesa di modifiche",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "03/02/2026",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      [Creazione versione stabile del verbale esterno del 27/01/2026],
+    ),
     (
       "0.1.1",
       "03/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Applicate correzioni relative a verifica della versione 0.1.0.]
+      "Alessandro Dinato",
+      [Applicate correzioni relative a verifica della versione 0.1.0.],
     ),
     (
       "0.1.0",
@@ -88,7 +95,7 @@ La proponente ha dichiarato che tale servizio non è necessario,  poiché non si
 
 == Discussione e dubbi sulla struttura del #gloss[PoC]
 Il gruppo ha delineato come elementi principali del #gloss[PoC] i seguenti elementi:
-1. Un servizio in #gloss[Go] che esegue il _publishing_ di dati su #gloss[NATS], simulando la funzionalità di publishing del #gloss[gateway] 
+1. Un servizio in #gloss[Go] che esegue il _publishing_ di dati su #gloss[NATS], simulando la funzionalità di publishing del #gloss[gateway]
 2. L'istanza #gloss[NATS] che agisce da _message broker_
 3. Delle istanze #gloss[Go] che _consumano_ i dati provenienti da #gloss[NATS] e li salvano in un'istanza di #gloss[TimescaleDB]
 4. Un servizio di #gloss[API] REST che accede ai dati salvati in #gloss[TimescaleDB].
