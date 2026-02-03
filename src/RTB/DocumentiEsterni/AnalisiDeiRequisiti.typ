@@ -4837,7 +4837,15 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Conferma-comando-decommissioning>)],
 
   [#rf()],
-  [Il gateway simulato deve segnalare al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning, permettendo al Sistema di annullare l'operazione e notificare il Super Admin],
+  [Il gateway simulato deve segnalare al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning],
+  [#ref-uc(<Errore-decommissioning>)],
+
+  [#rf()],
+  [Il Sistema deve poter annullare il processo di decommissioning quando riceve una notifica di errore dal gateway],
+  [#ref-uc(<Errore-decommissioning>)],
+
+  [#rf()],
+  [Il Sistema deve notificare il Super Admin quando un decommissioning viene annullato a causa di un errore segnalato dal gateway],
   [#ref-uc(<Errore-decommissioning>)],
 
   [#rf()],
