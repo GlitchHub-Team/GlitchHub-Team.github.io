@@ -5,6 +5,13 @@
   stato: "In attesa di modifiche",
   registro-modifiche: (
     (
+      "0.1.1",
+      "03/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Applicate correzioni relative a verifica della versione 0.1.0.]
+    ),
+    (
       "0.1.0",
       "01/02/2026",
       "Elia Ernesto Stellin",
@@ -73,14 +80,15 @@ Il gruppo ha chiesto se fosse preferibile che, nella comunicazione con l'infrast
 La proponente ha dichiarato che è sufficiente utilizzare il client nativo di #gloss[NATS] in quanto, nel contesto dell'#gloss[MVP], il #gloss[simulatore di gateway] non deve soddisfare particolari requisiti di performance, che si potrebbero soddisfare usando il client #gloss[MQTT].
 
 === Utilizzo di _ingestion service_
-Il gruppo ha chiesto se fosse necessario l'utilizzo di un _ingestion service_ da porre come "schermo" tra il #gloss[simulatore di gateway] e il #gloss[Cloud].
-//TODO: si puoi dire che l'ingestion service è uno strato di protezione tra gateway e cloud che ha il ruolo di isolare totalmente NATS per eseguire autonomamente l'autenticazione, autorizzazione e validazione dei messaggi in ingresso, MA soprattutto far si che il gateway non sia dipendente da NATS
+Il gruppo ha chiesto se fosse necessario l'utilizzo di un _ingestion service_ da porre come strato di protezione tra il #gloss[simulatore di gateway] e il #gloss[Cloud], con lo scopo di isolare totalmente #gloss[NATS] dal resto dell'infrastruttura per:
+- Eseguire autonomamente autenticazione, autorizzazione e validazione dei messaggi in ingresso;
+- Rendere il #gloss[simulatore di gateway] indipendente da #gloss[NATS].
 
-La proponente ha dichiarato che tale servizio non è necessario poiché non si pongono requisiti di scalabilità stringenti sul software, in quanto prodotto di un #gloss[progetto didattico].
+La proponente ha dichiarato che tale servizio non è necessario,  poiché non si pongono requisiti di scalabilità stringenti sul software, in quanto prodotto di un #gloss[progetto didattico].
 
 == Discussione e dubbi sulla struttura del #gloss[PoC]
 Il gruppo ha delineato come elementi principali del #gloss[PoC] i seguenti elementi:
-1. Un servizio in #gloss[Go] che esegue il _publishing_ di dati su #gloss[NATS] //TODO: specificare che questo servizio simula i gateway
+1. Un servizio in #gloss[Go] che esegue il _publishing_ di dati su #gloss[NATS], simulando la funzionalità di publishing del #gloss[gateway] 
 2. L'istanza #gloss[NATS] che agisce da _message broker_
 3. Delle istanze #gloss[Go] che _consumano_ i dati provenienti da #gloss[NATS] e li salvano in un'istanza di #gloss[TimescaleDB]
 4. Un servizio di #gloss[API] REST che accede ai dati salvati in #gloss[TimescaleDB].
