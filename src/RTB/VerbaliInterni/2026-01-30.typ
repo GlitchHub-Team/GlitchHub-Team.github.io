@@ -50,7 +50,7 @@
   ),
   htmlId: "RTB-VerbaliInterni",
   verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.jpg",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-verbale: "Interno",
 )
 
