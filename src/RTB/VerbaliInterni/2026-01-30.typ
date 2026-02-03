@@ -10,21 +10,21 @@
       "0.1.0",
       "02/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Siria Salvalaio",
       "Raffinamento scrittura ",
     ),
     (
       "0.0.2",
       "01/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Siria Salvalaio",
       "Aggiunta tabella task e distribuzione ruoli",
     ),
     (
       "0.0.1",
       "01/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Siria Salvalaio",
       "Prima bozza documento",
     ),
   ),
@@ -49,8 +49,8 @@
     [Assegnazione ruoli],
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.jpg",
   tipo-verbale: "Interno",
 )
 
@@ -63,7 +63,7 @@ Il presente documento attesta che, in data *30 gennaio 2026* dalle 16:30 alle or
 
 === Allineamento sul PoC
 Durante la riunione, il gruppo ha approvato l'architettura proposta per il PoC. A seguire, sono stati illustrati gli avanzamenti tecnici relativi alle componenti *NATS* e *Angular*.
-È stata inoltre creata la #link("https://github.com/GlitchHub-Team/PoC")[*repository*] dedicata per il versionamento del PoC.
+È stata inoltre creata la #link("https://github.com/GlitchHub-Team/PoC")[*repository*] dedicata al versionamento del PoC.
 
 === Analisi dei Requisiti
 A seguito del consolidamento degli use case, si è proceduto alla *stesura* e *classificazione* dei requisiti in funzionali, non funzionali e di dominio. Contestualmente, è stata completata la modellazione grafica degli use case (da *UC1* a *UC109*) Il gruppo ha dunque individuato le seguenti attività:
@@ -72,9 +72,9 @@ A seguito del consolidamento degli use case, si è proceduto alla *stesura* e *c
 - creare la tabella di *tracciamento* requisiti-UC;
 - *classificare* i requisiti per livello di urgenza in: *Obbligatori*, *Opzionali*, *Desiderabili*;
 
-// TODO: Forse da espandere un po' meglio?
+// TODO: Forse da espandere un po' meglio -> si, un pochino, puoi scrivere nelle varie sezioni "in particolare ..." o "riguardanti ..."
 === Norme di Progetto
-Il gruppo ha rilevato come la stesura del documento *Norme di Progetto* sia stata trascurata per troppo tempo. Sono state dunque indviduate le *sezioni* che necessitano di essere redatte:
+Il gruppo ha rilevato come la stesura del documento *Norme di Progetto* sia stata trascurata per troppo tempo. Sono state dunque individuate le *sezioni* che necessitano di essere redatte:
 - sezione dei *Processi Primari*;
 - sezione dei *Processi Organizzativi*;
 - sezioni dei *Processi di supporto/Qualifica*;
@@ -89,6 +89,7 @@ Il gruppo ha quindi individuato le seguenti attività:
 == Miglioramento dell'organizzazione del gruppo
 
 === Gestione delle baseline/milestone
+// riformula questa prima riga
 Il gruppo ha analizzato le criticità emerse nella *programmazione* delle attività, evidenziando come l'assenza di baseline e milestone e una pianificazione a breve termine abbiano causato *ritardi* nello svolgimento del lavoro.
 Il gruppo si impegna dunque a programmare le attività tramite la pianificazione a ritroso. La strategia si articolerà su due livelli:
 - *pianificazione a lungo termine*: definizione delle attività a grana grossa procedendo a ritroso dalle scadenze prefissate;
@@ -144,6 +145,7 @@ Inoltre è stato concordato che il verificatore ha il compito di esclusivo di *i
   [Integrazione cruscotto di Valutazione], [Michele Dioli], [#issue(247, repo:"docs")],
 )
 
+//fai affidamento alle issue, per esempio se una persona ha almeno una issue con un ruolo allora va messo visto che è rendicontabile, mi pare che ci sia anche qualcuno da analista ecc., la palestra ovviamente non va messa, mentre per il programmatore adesso vediamo cosa dicono sul gruppo che ho chiesto esplicitamente
 == Assegnazione ruoli per le prossime due settimane
 - *Responsabile*: Riccardo Graziani
 - *Amministratore*: Riccardo Graziani, Siria Salvalaio, Hossam Ezzemouri, Jaume Bernardi, Michele Dioli
