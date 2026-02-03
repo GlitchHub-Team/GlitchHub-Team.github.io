@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.29.0",
+      "03/02/2026",
+      "Jaume Bernardi",
+      "-",
+      [Suddivisione di alcuni requisiti funzionali per renderli più atomici]
+    ),
+    (
       "0.28.1",
       "02/02/2026",
       "Elia Ernesto Stellin",
@@ -4837,7 +4844,15 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Conferma-comando-decommissioning>)],
 
   [#rf()],
-  [Il gateway simulato deve segnalare al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning, permettendo al Sistema di annullare l'operazione e notificare il Super Admin],
+  [Il gateway simulato deve segnalare al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning],
+  [#ref-uc(<Errore-decommissioning>)],
+
+  [#rf()],
+  [Il Sistema deve poter annullare il processo di decommissioning quando riceve una notifica di errore dal gateway],
+  [#ref-uc(<Errore-decommissioning>)],
+
+  [#rf()],
+  [Il Sistema deve notificare il Super Admin quando un decommissioning viene annullato a causa di un errore segnalato dal gateway],
   [#ref-uc(<Errore-decommissioning>)],
 
   [#rf()],
@@ -4849,7 +4864,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Errore-riavvio>)],
 
   [#rf()],
-  [Il gateway simulato deve inviare la conferma di reset avvenuto con successo al Cloud, dopo aver reimpostato correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica],
+  [Il gateway simulato deve poter reimpostare correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica, ovvero reset],
+  [#ref-uc(<Conferma-comando-reset>)],
+
+  [#rf()],
+  [Il gateway simulato, dopo aver eseguito il reset correttamente, deve inviare la conferma di successo al Cloud],
   [#ref-uc(<Conferma-comando-reset>)],
 
   [#rf()],
@@ -4889,7 +4908,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Invio-dati-crittografati>)],
 
   [#rf()],
-  [Il gateway simulato deve raccogliere i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud ed eliminare i dati più vecchi in caso di overflow del buffer],
+  [Il gateway simulato deve raccogliere i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud],
+  [#ref-uc(<Invio-dati-crittografati>)],
+
+  [#rf()],
+  [Il gateway simulato deve eliminare i dati più vecchi in caso di overflow del buffer],
   [#ref-uc(<Invio-dati-crittografati>)],
 
   [#rf()],
