@@ -5124,32 +5124,32 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-grafico-storico-sensore>)],
 
   // Filtraggio dati storici: desiderabile
-  // TODO: Il filtraggio sui grafici dashboard è obbligatorio o desiderabile?
-  [#rf[Des?]],
+  // TODO: METTERE FILTRAGGIO OBB
+  [#rf[Obb]],
   [L'Utente autenticato deve poter filtrare lo storico dei dati del sensore per intervallo temporale],
   [#ref-uc(<Filtraggio-dati-storico-sensore>)],
 
-  [#rf[Des?]],
+  [#rf[Obb]],
   [Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato],
   [#ref-uc(<Visualizzazione-grafico-filtrato-temporale-sensore>)],
 
-  [#rf[Des?]],
+  [#rf[Obb]],
   [Il Sistema deve mostrare un messaggio di errore se l'intervallo temporale inserito non è valido],
   [#ref-uc(<Intervallo-temporale-non-valido>)],
 
-  [#rf[Des?]],
+  [#rf[Obb]],
   [L'Utente autenticato deve poter filtrare i dati del sensore per intervallo di valori],
   [#ref-uc(<Filtraggio-dati-sensore-intervallo-valori>)],
 
-  [#rf[Des?]],
+  [#rf[Obb]],
   [Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato],
   [#ref-uc(<Visualizzazione-grafico-filtrato-valori-sensore>)],
 
-  [#rf[Des?]],
+  [#rf[Obb]],
   [Il Sistema deve mostrare un messaggio di errore se l'intervallo di valori inserito non è valido],
   [#ref-uc(<Intervallo-di-valori-non-valido>)],
 
-  [#rf[Des?]],
+  [#rf[Obb]],
   [Il Sistema deve mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato],
   [#ref-uc(<Dati-non-disponibili-sensore-selezionato>)],
 
@@ -5287,7 +5287,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [Il Super Admin deve poter riavviare un Gateway], 
   [#ref-uc(<Riavvio-gateway-super-admin>)],
 
-  // TODO: sospensione gateway è des?
   [#rf[Des]],
   [Il Super Admin deve poter sospendere l'invio dati di un Gateway],
   [#ref-uc(<Sospensione-gateway-super-admin>)],
@@ -5300,12 +5299,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [Il Super Admin deve poter modificare il parametro di rolling average di un Gateway],
   [#ref-uc(<Modifica-freq-invio-dati-gateway-super-admin>)],
 
-  // TODO: sospensione sensore è des?
-  [#rf[Des]],
+  [#rf[Opt]],
   [Il Super Admin deve poter sospendere un sensore],
   [#ref-uc(<Sospensione-sensore-super-admin>)],
 
-  [#rf[Des]], 
+  [#rf[Opt]],
   [Il Super Admin deve poter riattivare un sensore sospeso],
   [#ref-uc(<Riattivazione-sensore-super-admin>)],
 
@@ -5339,7 +5337,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-identificativo-tenant>)],
 
   // - Visualizzazione/gestione richieste comm/decomm.
-  // TODO: questione di richieste commissioning/decomm. è desiderabile od opzionale?
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare la lista delle richieste di commissioning Gateway in corso],
   [#ref-uc(<Visualizzazione-lista-richieste-in-corso-commissioning-gateway>)],
@@ -5543,7 +5540,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Conferma-eliminazione-sensore-simulato>)],
 
   // Monitoraggio metriche di sistema
-  // TODO: l'observability in generale è obb, ma quali metriche specifiche sono Des?
   [#rf()], 
   [Il Super Admin deve poter monitorare le metriche di sistema], 
   [#ref-uc(<Monitoraggio-metriche-di-sistema>), Capitolato §5.5 -- RQ 16],
@@ -5552,15 +5548,15 @@ Inoltre un buon requisito deve essere *SMART*:
   [Il Super Admin deve poter visualizzare il numero di gateway online/offline],
   [#ref-uc(<Visualizzazione-gateway-offline-online>)],
 
-  [#rf()],
+  [#rf[Des]],
   [Il Super Admin deve poter visualizzare il throughput dati del sistema],
   [#ref-uc(<Visualizzazione-throughput-dati>)],
 
-  [#rf()],
+  [#rf[Opt]],
   [Il Super Admin deve poter visualizzare l'utilizzo delle risorse dei nodi cloud],
   [#ref-uc(<Visualizzazione-utilizzo-risorse-nodi-cloud>)],
 
-  [#rf()],
+  [#rf[Des]],
   [Il Super Admin deve poter visualizzare la frequenza delle disconnessioni dei gateway],
   [#ref-uc(<Visualizzazione-frequenza-disconnessioni-gateway>)],
 
@@ -5572,7 +5568,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [Il Super Admin deve poter visualizzare la data staleness dei dati],
   [#ref-uc(<Visualizzazione-data-staleness>)],
 
-  [#rf()],
+  [#rf[Opt]],
   [Il Super Admin deve poter visualizzare i valori out-of-range rilevati],
   [#ref-uc(<Visualizzazione-valori-out-of-range>)],
 
@@ -5633,7 +5629,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [Capitolato §5.5 -- RQ 16, Capitolato §3.3],
 
   // TODO: gli alert sono OPT o no?
-  [#rnf[Opt]],
+  [#rnf()],
   [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.],
   [Capitolato §5.5 -- RQ 16],
 
