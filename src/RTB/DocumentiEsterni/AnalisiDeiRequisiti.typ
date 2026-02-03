@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.30.0",
+      "03/02/2026",
+      "Jaume Bernardi",
+      "-",
+      [Ulteriore suddivisione di un requisito funzionali per renderlo più atomico]
+    ),
+    (
       "0.29.1",
       "03/02/2026",
       "Elia Ernesto Stellin",
@@ -4931,7 +4938,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Invio-dati-fallito>)],
 
   [#rf()],
-  [Il Cloud deve rilevare l'assenza di dati da un sensore specifico di un gateway simulato allo scadere di un timeout predefinito e notificare gli utenti del tenant associato],
+  [Il Cloud deve rilevare l'assenza di dati da un sensore specifico di un gateway simulato allo scadere di un timeout predefinito],
+  [#ref-uc(<Assenza-prolungata-dati-sensori>)],
+
+  [#rf()],
+  [Il Cloud, nel caso in cui venga rilevata l'assenza di dati di un sensore di un gateway, deve notificare gli utenti del tenant associato],
   [#ref-uc(<Assenza-prolungata-dati-sensori>)],
 
   //Attore: API Client, Sistema: Cloud
