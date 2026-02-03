@@ -2,20 +2,20 @@
 
 #show: report.with(
   titolo: "Verbale esterno 27/01/2026 (M31)",
-  stato: "Da verificare",
+  stato: "In attesa di modifiche",
   registro-modifiche: (
     (
       "0.1.0",
       "01/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Alessandro Dinato",
       "Stesura verbale esterno del 27/01/2026",
     ),
     (
       "0.0.1",
       "01/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Alessandro Dinato",
       "Bozza iniziale verbale esterno del 27/01/2026",
     ),
   ),
@@ -32,11 +32,11 @@
     [Separazione dei dati tra #gloss[tenant]],
     [Gestione perdita di dati con #gloss[TimescaleDB]],
     [Contrattazione su #gloss[use case] suggeriti in precedenza],
-    [Tecnologie suggerite]
+    [Tecnologie suggerite],
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
@@ -73,23 +73,22 @@ Il gruppo ha chiesto se fosse preferibile che, nella comunicazione con l'infrast
 La proponente ha dichiarato che è sufficiente utilizzare il client nativo di #gloss[NATS] in quanto, nel contesto dell'#gloss[MVP], il #gloss[simulatore di gateway] non deve soddisfare particolari requisiti di performance, che si potrebbero soddisfare usando il client #gloss[MQTT].
 
 === Utilizzo di _ingestion service_
-// TODO: Forse va spiegato meglio? Io scrivo quello che capisco
 Il gruppo ha chiesto se fosse necessario l'utilizzo di un _ingestion service_ da porre come "schermo" tra il #gloss[simulatore di gateway] e il #gloss[Cloud].
+//TODO: si puoi dire che l'ingestion service è uno strato di protezione tra gateway e cloud che ha il ruolo di isolare totalmente NATS per eseguire autonomamente l'autenticazione, autorizzazione e validazione dei messaggi in ingresso, MA soprattutto far si che il gateway non sia dipendente da NATS
 
 La proponente ha dichiarato che tale servizio non è necessario poiché non si pongono requisiti di scalabilità stringenti sul software, in quanto prodotto di un #gloss[progetto didattico].
 
 == Discussione e dubbi sulla struttura del #gloss[PoC]
-// TODO: qua potrei sbagliare perché devo capire bene la struttura
 Il gruppo ha delineato come elementi principali del #gloss[PoC] i seguenti elementi:
-1. Un servizio in #gloss[Go] che esegue il _publishing_ di dati su #gloss[NATS]
+1. Un servizio in #gloss[Go] che esegue il _publishing_ di dati su #gloss[NATS] //TODO: specificare che questo servizio simula i gateway
 2. L'istanza #gloss[NATS] che agisce da _message broker_
-3. Un sevizio che _consuma_ i dati provenienti da #gloss[NATS] e li salva in un'istanza di #gloss[TimescaleDB]
-4. Un servizio di #gloss[API] REST che accede ai dati salvati in #gloss[TimescaleDB]. 
+3. Delle istanze #gloss[Go] che _consumano_ i dati provenienti da #gloss[NATS] e li salvano in un'istanza di #gloss[TimescaleDB]
+4. Un servizio di #gloss[API] REST che accede ai dati salvati in #gloss[TimescaleDB].
 5. Un web server che fornisce un'applicazione web scritta in #gloss[Angular.js] che accede ai dati dei sensori
 
-Il gruppo non era sicuro se utilizzare #gloss[Go] o un linguaggio più strutturato come C\# per i servizi di #gloss[API] Rest (Punto 3) e di _data consuming_ (Punto 4), poiché #gloss[Go] non è considerato un linguaggio pienamente _object oriented_. 
+Il gruppo non era sicuro se utilizzare #gloss[Go] o un linguaggio più strutturato come C\# per i servizi di #gloss[API] Rest (Punto 3) e di _data consuming_ (Punto 4), poiché #gloss[Go] non è considerato un linguaggio pienamente _object oriented_ e manca di alcune funzionalità che facilitano lo sviluppo di applicazioni complesse.
 
-La proponente, però, ha caldamente consigliato al gruppo di utilizzare #gloss[Go] al posto di C\# onde evitare di dover imparare tre linguaggi (C\#, #gloss[Go] e JavaScript) invece che solo due (#gloss[Go] e JavaScript). Inoltre, sebbene #gloss[Go] non sia un linguaggio tradizionalmente _object oriented_, utilizzarlo per la creazione di #gloss[API] REST è ampiamente facilitato dall'esistenza di framework quali #link("https://gin-gonic.com/en/")[#gloss[Gin]] e #link("https://gofiber.io/")[#gloss[Fiber]].
+La proponente, però, ha caldamente consigliato al gruppo di utilizzare #gloss[Go] al posto di C\# onde evitare di dover imparare tre linguaggi (C\#, #gloss[Go] e JavaScript) invece che solo due (#gloss[Go] e JavaScript). Inoltre, sebbene #gloss[Go] non sia un linguaggio tradizionalmente con molte librerie, utilizzarlo per la creazione di #gloss[API] REST è ampiamente facilitato dall'esistenza di framework quali #link("https://gin-gonic.com/en/")[#gloss[Gin]] e #link("https://gofiber.io/")[#gloss[Fiber]].
 
 == Separazione di dati tra tenant
 Il #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[#gloss[capitolato d'appalto]] pone come requisito funzionale obbligatorio (RQ 3) la piena separazione dei dati tra #gloss[tenant] diversi.
@@ -127,23 +126,13 @@ In vista delle discussioni precedentemente riportate, *M31 Srl* ha consigliato l
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Sviluppo parte #gloss[NATS]],
-  [Alessandro Dinato],
-  [#issue(1, repo:"poc")],
-  
-  [Sviluppo collegamento servizio _data consumer_ - #gloss[TimescaleDB]],
-  [Alessandro Dinato],
-  [#issue(4, repo:"poc")],
+  [Sviluppo parte #gloss[NATS]], [Alessandro Dinato], [#issue(1, repo: "poc")],
 
-  [Studio framework #gloss[Gin]],
-  [Michele Dioli, Jaume Bernardi, Elia Ernesto Stellin],
-  [#issue(6, repo:"poc")],
+  [Sviluppo collegamento servizio _data consumer_ - #gloss[TimescaleDB]], [Alessandro Dinato], [#issue(4, repo: "poc")],
 
-  [Sviluppo API REST con #gloss[Gin]],
-  [Michele Dioli, Jaume Bernardi, Elia Ernesto Stellin],
-  [#issue(7, repo:"poc")],
+  [Studio framework #gloss[Gin]], [Michele Dioli, Jaume Bernardi, Elia Ernesto Stellin], [#issue(6, repo: "poc")],
 
-  [Sviluppo dashboard #gloss[Angular.js]],
-  [Siria Salvalaio, Riccardo Graziani],
-  [#issue(11, repo: "poc")]
+  [Sviluppo API REST con #gloss[Gin]], [Michele Dioli, Jaume Bernardi, Elia Ernesto Stellin], [#issue(7, repo: "poc")],
+
+  [Sviluppo dashboard #gloss[Angular.js]], [Siria Salvalaio, Riccardo Graziani], [#issue(11, repo: "poc")],
 )
