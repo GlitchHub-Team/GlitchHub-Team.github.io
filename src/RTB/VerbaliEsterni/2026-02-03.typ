@@ -5,6 +5,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.0.0",
+      "04/02/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      "Versione stabile verbale esterno 03/02/2026",
+    ),
+    (
       "0.1.0",
       "04/02/2026",
       "Riccardo Graziani",
@@ -93,4 +100,6 @@ La proponente ha dichiarato che tale soluzione è accettabile nell'ambito del #g
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
   [Login con dashboard Angular], [Elia Ernesto Stellin], [#issue(16, repo: "poc")],
+  [Sviluppo crittografia, autenticazione e account con NATS], [Alessandro Dinato], [#issue(2, repo: "poc")],
+  [Sviluppo API di autenticazione], [Elia Ernesto Stellin], [#issue(8, repo: "poc")],
 )
