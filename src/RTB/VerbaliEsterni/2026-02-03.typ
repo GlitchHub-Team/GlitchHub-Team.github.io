@@ -2,8 +2,15 @@
 
 #show: report.with(
   titolo: "Verbale esterno 03/02/2026 (M31)",
-  stato: "Bozza",
+  stato: "Da verificare",
   registro-modifiche: (
+    (
+      "0.1.0",
+      "04/02/2026",
+      "Riccardo Graziani",
+      "-",
+      "Stesura verbale esterno del 03/02/2026",
+    ),
     (
       "0.0.1",
       "04/02/2026",
@@ -80,9 +87,11 @@ Lo studio di preliminare di *Keycloak* ha evidenziato come una sua implementazio
 La proponente ha dichiarato che tale soluzione è accettabile nell'ambito del #gloss[PoC], e che lo studio di *Keycloak* può essere approfondito in vista dell'#gloss[MVP].
 
 = Attività conseguenti
-// TODO: Ci sono attività conseguenti?
 #table(
   columns: (2fr, 2fr, 1fr),
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
+  [Login con dashboard Angular],
+  [Elia Ernesto Stellin],
+  [#issue(16, repo: "poc")]
 )
