@@ -92,6 +92,15 @@
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
   registro-modifiche: (
+
+    (
+      "0.31.0",
+      "04/02/2026",
+      "Michele Dioli",
+      "-",
+      [Sistemazione di requisito(ex RF-20)]
+    ),
+
     (
       "0.30.0",
       "03/02/2026",
@@ -4533,10 +4542,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore se inserisce un indirizzo email non associato ad alcun account durante la richiesta di reimpostazione password],
   [#ref-uc(<Indirizzo-email-non-associato-account>)],
-
-  [#rf()],
-  [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
-  [#ref-uc(<Invio-email-reimpostazione-password>)],
 
   [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
