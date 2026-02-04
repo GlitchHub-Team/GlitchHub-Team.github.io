@@ -25,6 +25,39 @@
   tipo-documento: "Piano di Qualifica",
 )
 
+#let ts-counter = counter("ts-counter")
+
+#let ts = () => {
+  ts-counter.step()
+  context ts-counter.display(value => {
+    [*TS\-#value*]
+  })
+}
+
+#let rf-counter = counter("rf-counter")
+
+#let rf = (..args) => {
+  rf-counter.step()
+  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
+  context rf-counter.display(value => {
+    [RF\-#value\-#rilevanza]
+  })
+}
+
+#let get-tracciamento = (lista-test) => {
+  lista-test
+    .enumerate()
+    .filter(value => {
+      let (index, cell) = value
+      let col = calc.rem(index, 4)
+      col == 0 or col == 2
+    })
+    .map(value => {
+      let (index, cell) = value
+      cell
+    })
+}
+
 = Introduzione <introduzione>
 == Finalità del documento
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
@@ -426,655 +459,981 @@ I test di sistema verificano il corretto comportamento complessivo dell'applicaz
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
 #show figure: set block(breakable: true)
+
+
+
+/*
+	aggiunge i test SOLO in questa lista
+*/
+
+
+#let lista-test = (
+
+  [#ts()], 
+	[Verificare che l'Utente non autenticato possa accedere alla funzionalità di autenticazione presso il Sistema], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa inserire la propria email per autenticarsi], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa inserire la propria password per autenticarsi], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato riceva un messaggio di errore in caso di inserimento di credenziali errate], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato riceva un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato, dopo aver inserito credenziali corrette per un account con 2FA attiva, riceva una mail con il codice di verifica], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, possa richiedere il re-invio del codice di verifica], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato, dopo aver inserito credenziali corrette per un account con 2FA attiva, possa completare l'autenticazione a due fattori], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa inserire il codice di verifica ricevuto via mail per completare l'autenticazione 2FA], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato riceva un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa impostare la sua prima password tramite il link ricevuto via mail], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa inserire la nuova password durante l'impostazione o reimpostazione della password], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa inserire la conferma della nuova password durante l'impostazione o reimpostazione della password], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema mostri un messaggio di errore se la nuova password e la conferma non coincidono], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema mostri un messaggio di errore se la nuova password non rispetta i criteri di sicurezza], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema mostri un messaggio di errore se l'Utente tenta di usare un link di impostazione password scaduto], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato riceva un messaggio di errore se inserisce un indirizzo email non associato ad alcun account durante la richiesta di reimpostazione password], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema invii la mail per la reimpostazione della password, contenente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente non autenticato possa reimpostare la propria password tramite il link ricevuto via email], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente autenticato possa visualizzare la lista dei sensori associati al proprio tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente autenticato, visualizzando la lista dei sensori associati al proprio tenant, visualizzi l'identificativo di ciascun sensore nella lista], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente autenticato possa visualizzare la sua dashboard personale], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente autenticato, visualizzando la propria dashboard personale, visualizzi la lista degli alert relativi al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente autenticato, visualizzando la propria dashboard personale, visualizzi il numero dei sensori attivi e non attivi associati al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Utente autenticato, visualizzando la propria dashboard personale, visualizzi il numero dei gateway attivi e non attivi associati al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema notifichi l'Admin generico nel caso in cui il gateway a cui ha inviato dei comandi non sia raggiungibile], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema mostri un messaggio di errore all'Admin generico nel caso in cui venga inserita un'email già associata ad un altro Tenant User durante la registrazione di un nuovo Tenant User], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa registrare un nuovo Tenant User all'interno del Sistema], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, registrando un nuovo utente, possa inserire l'indirizzo email associato al nuovo Tenant User], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema invii una mail al nuovo Tenant User contenente il link per impostare la propria password iniziale dopo la registrazione effettuata dall'Admin generico], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa sospendere l'accesso di un Tenant User al Sistema], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema richieda conferma all'Admin generico prima di sospendere l'accesso di un Tenant User al Sistema], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa riattivare l'accesso di un Tenant User al Sistema], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema richieda conferma all'Admin generico prima di riattivare l'accesso di un Tenant User al Sistema], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa eliminare un Tenant User dal Sistema], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema richieda conferma all'Admin generico prima di eliminare un Tenant User dal Sistema], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa visualizzare la lista di tutte le richieste di commissioning e decommissioning di gateway associate al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista di tutte le richieste di commissioning e decommissioning di gateway, possa visualizzare lo stato della richiesta], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa visualizzare la lista di tutti gli utenti associati al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, possa vedere l'email di ciascun utente nella lista], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, possa vedere lo stato (attivo/sospeso) di ciascun utente nella lista], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa visualizzare la lista dei gateway associati al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, visualizzi il nome del gateway nella lista], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, visualizzi lo stato del gateway nella lista], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa visualizzare un gateway associato al proprio Tenant nel dettaglio], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, visualizzi il nome del gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, visualizzi lo stato del gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, visualizzi i sensori collegati al gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista dei sensori collegati al gateway, possa visualizzare per ogni sensore l'identificativo], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa registrare una nuova API key associata al proprio Tenant], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, registrando una nuova API key, possa inserire un nome identificativo per la chiave], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, registrando una nuova API key, possa inserire la data di scadenza della chiave], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema mostri un messaggio di errore se l'Admin generico inserisce un nome identificativo già esistente per una API key durante la registrazione di una nuova chiave], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema mostri un messaggio di errore se l'Admin generico inserisce una data di scadenza già passata durante la registrazione di una nuova API key], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa visualizzare la lista di tutte le API key associate al proprio Tenant], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, possa vedere il nome dell'API key], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, possa vedere la data di creazione dell'API key], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, possa vedere la data di scadenza dell'API key], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa visualizzare una API key associata al proprio Tenant nel dettaglio], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, visualizzi il nome dell'API key], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, visualizzi la data di creazione dell'API key], 
+	[#rf[Des]],
+	[Non implementato],
+    
+	[#ts()], 
+	[Verificare che l'Admin generico, accedendo al dettaglio di una API key del proprio Tenant, visualizzi la data di scadenza associata], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, accedendo al dettaglio di una API key del proprio Tenant, visualizzi un grafico che mostri l'utilizzo della API key], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa eliminare una API key associata al proprio Tenant], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema richieda la conferma all'Admin generico prima di eliminare una API key associata al proprio Tenant], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa visualizzare la lista di tutti gli audit log relativi al proprio Tenant], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il nome dell'utente che l'ha generato], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il tipo di azione eseguita], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il corrispettivo timestamp], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa filtrare gli audit log in base al tipo di azione eseguita], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa filtrare gli audit log in base ad un intervallo temporale], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico possa filtrare gli audit log in base all'utente che ha generato l'evento], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il corrispettivo timestamp], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa visualizzare la sua dashboard personale], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di sensori attivi e non associati al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di gateway attivi e non associati al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi la lista degli alert relativi al proprio Tenant], 
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di API key valide e scadute], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi lo stato delle richieste di commissioning gateway associate al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale visualizzi lo stato delle richieste di decommissioning gateway associate al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa creare una nuova richiesta di commissioning gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa creare una nuova richiesta di decommissioning gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa eliminare una richiesta di commissioning o decommissioning gateway precedentemente creata non ancora evasa], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema richieda una conferma al Tenant Admin prima di eliminare una richiesta di commissioning o decommissioning gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema notifichi l'impossibilità di sospendere l'invio dati del sensore selezionato poiché il gateway associato è in stato di errore],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema notifichi l'impossibilità di riattivare l'invio di dati del sensore selezionato poiché il gateway associato è in stato di errore], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa sospendere l'invio di dati da parte di un gateway appartenente al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema notifichi l'impossibilità di sospendere l'invio di dati da parte del gateway selezionato poiché in stato di errore], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa riattivare l'invio di dati da parte di un gateway appartenente al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema notifichi l'impossibilità di riattivare l'invio di dati da parte del gateway selezionato poiché in stato di errore], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa riavviare un gateway appartenente al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Tenant Admin possa modificare il target di frequenza d'invio dati per tipologia di sensore di un gateway associato al proprio Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema notifichi l'impossibilità di riavviare il gateway selezionato poiché in stato di errore], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato nel caso in cui il processo di commissioning sia stato completato con successo, confermi ciò al Cloud], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato, una volta completato il processo di commissioning, inizi l'invio dei dati], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato invii al Cloud la presenza di eventuali errori durante il processo di commissioning], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato nel caso in cui il processo di decommissioning sia stato completato con successo, confermi ciò al Cloud], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato, dopo aver eseguito il decommissioning, rimuova l'associazione con il tenant, la chiave di cifratura e interrompa l'invio dei dati IoT al Cloud], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato, dopo aver eseguito il decommissioning, ammetta un nuovo commissioning], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato segnali al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema possa annullare il processo di decommissioning quando riceve una notifica di errore dal gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Sistema notifichi il Super Admin quando un decommissioning viene annullato a causa di un errore segnalato dal gateway], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato confermi al Cloud il corretto riavvio in seguito al comando ricevuto dallo stesso], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Cloud si accorga se un gateway simulato non risponda entro un timeout specifico a comando di riavvio e notificare lo stato di errore del gateway agli utenti del Tenant associato], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato possa reimpostare correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica, ovvero reset], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato, dopo aver eseguito il reset correttamente, invii la conferma di successo al Cloud], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato possa confermare la sospensione di invio dei dati al Cloud in seguito al comando di sospensione ricevuto dallo stesso], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato possa confermare la riattivazione dell'invio dei dati al Cloud in seguito al comando di riattivazione ricevuto dallo stesso], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato possa confermare la sospensione dell'invio dei dati di un sensore simulato specifico in seguito al comando di sospensione ricevuto dal Cloud], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato possa confermare la riattivazione dell'invio dei dati di un sensore simulato specifico in seguito al comando di riattivazione ricevuto dal Cloud], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato possa inviare la conferma del cambiamento della frequenza di invio dati al Cloud in seguito al comando di modifica ricevuto dallo stesso], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato, all'avvio, invii un comando di hello, provvisto di proprio ID univoco, al Cloud per autenticarsi], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Cloud rifiuti l'autenticazione del gateway in caso quest'ultimo invii credenziali errate], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Cloud rifiuti l'autenticazione del gateway in caso l'ID univoco inviato dal gateway non sia presente nel proprio database], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato possa inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud durante l'assegnazione del Tenant], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato raccolga i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato, in caso di overflow del buffer, elimini i dati più vecchi], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il gateway simulato ritenti l'invio dei dati al Cloud in caso non sia raggiungibile, mantenendo i dati nel buffer fino al successo dell'invio], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Cloud notifichi gli utenti del Tenant nel caso in cui non riceva dati dal gateway associato per un periodo di tempo superiore ad una soglia predefinita], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il Cloud rilevi l'assenza di dati da un sensore specifico di un gateway simulato allo scadere di un timeout predefinito], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che il Cloud, nel caso in cui venga rilevata l'assenza di dati di un sensore di un gateway, notifichi gli utenti del tenant associato], 
+	[#rf()],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'API Client possa richiedere i dati real-time di un sensore specifico associato al proprio tenant], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()], 
+	[Verificare che l'API Client, dopo aver richiesto i dati real-time di un sensore specifico, possa ricevere tali dati in forma coppia valore-timestamp], 
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* possa richiedere lo storico dei dati di un sensore appartenente al proprio tenant],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* dopo aver richiesto lo storico dei dati di un sensore specifico possa ricevere tali dati in forma coppia valore-timestamp],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non esistente],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore per cui non sono disponibili dati],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non associato al proprio tenant],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* possa autenticarsi nel Sistema utilizzando un'API Key valida],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione non siano valide],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione siano scadute],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sensore simulato* possa inviare i dati rilevati al gateway a cui è collegato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa normalizzarli],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa formattarli secondo un formato interno standardizzato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa salvarli in un buffer interno prima di inviarli al Cloud],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che in caso un o più Sensori simulati inviino una quantità di dati superiore alla capacità di invio del gateway verso il Cloud, il *gateway* possa salvare i dati più recenti nel buffer interno eliminando i dati più vecchi per fare spazio ai nuovi dati],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Heart Rate Service (GATT)],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Pulse Oximeter Service (GATT)],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi ad un profilo custom per l'elettrocardiogramma (ECG)],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Health Thermometer Service (GATT)],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Environmental Sensing Service (GATT)],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare la conferma di autenticazione avvenuta correttamente al gateway, in seguito ad un tentativo di autenticazione andato a buon fine],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare il rifiuto di autenticazione al gateway, in seguito ad un tentativo di autenticazione fallito],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway il comando di sospensione di un Sensore simulato non sospeso specifico. In seguito alla ricezione del comandi il gateway deve interrompere l'invio di dati IoT crittografati relativi a tale Sensore],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare, al gateway sospeso, il comando di riattivazione. In seguito alla ricezione del comando il gateway deve ricominciare l'invio di tutti i dati IoT crittografati],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare, al gateway attivo, il comando di sospensione. In seguito alla ricezione del comando il gateway deve interrompere l'invio di tutti i dati IoT crittografati],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway il comando di riavvio. In seguito alla ricezione del comando il gateway deve spegnersi e riaccendersi, mantenendo le configurazioni e i dati salvati localmente],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway il comando di modifica della frequenza di invio dati per uno specifico tipo di sensore. In seguito alla ricezione di tale comando il gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud relativi a tutti i sensori di tale tipologia, così da inviare un dato ogni intervallo di tempo specificato nel comando.],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway il comando di decommissioning. In seguito alla ricezione del comando il gateway deve cancellare l'associazione al tenant, la chiave di cifratura e deve eseguire un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Cloud* possa inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa effettuare il logout dal Sistema],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema*, a seguito del logout possa registrare l'evento negli audit log salvando nome utente, timestamp e azione eseguita],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa modificare la propria password],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, per modificare la password, possa inserire la vecchia password],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* possa mostrare un messaggio di errore se la vecchia password inserita non è corretta durante la modifica password],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa visualizzare i dettagli di un singolo alert],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere il titolo dell'alert],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere la descrizione dell'alert],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un Gateway],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere l'identificativo del gateway],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il timestamp dell'ultimo dato ricevuto],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il tempo di inattività],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un sensore],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere l'identificativo del sensore],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il timestamp dell'ultimo dato ricevuto],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il tempo di inattività],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa selezionare un sensore dalla lista dei sensori associati al proprio tenant],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa visualizzare i dati in tempo reale di un sensore selezionato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa visualizzare i dati real-time del sensore attraverso un grafico time-series con assi etichettati],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *grafico dei dati real-time* possa aggiornarsi automaticamente alla ricezione di nuovi dati dal Gateway],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati di un sensore selezionato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati del sensore attraverso un grafico time-series con assi etichettati],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa filtrare lo storico dei dati del sensore per intervallo temporale],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo temporale inserito non è valido],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che l'*Utente autenticato* possa filtrare i dati del sensore per intervallo di valori],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo di valori inserito non è valido],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* possa mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa creare un nuovo tenant nel Sistema],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un nuovo tenant, possa inserire il nome del tenant],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un nuovo tenant, possa specificare l'accettazione o meno della clausola di impersonificazione],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* possa mostrare un messaggio di errore se il nome del tenant inserito è già in uso],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa eliminare un tenant esistente dal Sistema],
+	[#rf()],
+	[Non implementato],
+
+  )
+
 #figure(
   table(
-    columns: (1.5fr, 3fr, 1.3fr, 1.7fr),
+    columns: (1fr, 3fr, 1fr, 1fr),
 	  align: center + horizon,
 	  inset: 8pt,
 	  fill: (x, y) => if y == 0 { gray.lighten(70%) },
 	  [*Identificativo*], [*Descrizione*], [*Requisito di riferimento*], [*Stato*],
-    
-    [TS-65], 
-	[Verificare che l’Admin generico, accedendo al dettaglio di una API key del proprio Tenant, visualizzi la data di scadenza associata], 
-	[RF-65-Des],
-	[Non implementato],
-
-	[TS-66], 
-	[Verificare che l’Admin generico, accedendo al dettaglio di una API key del proprio Tenant, visualizzi un grafico che mostri l'utilizzo della API key], 
-	[RF-66-Des],
-	[Non implementato],
-
-	[TS-67], 
-	[Verificare che l'Admin generico possa eliminare una API key associata al proprio Tenant], 
-	[RF-67-Des],
-	[Non implementato],
-
-	[TS-68], 
-	[Verificare che il Sistema richieda la conferma all'Admin generico prima di eliminare una API key associata al proprio Tenant], 
-	[RF-68-Des],
-	[Non implementato],
-
-	[TS-69], 
-	[Verificare che l'Admin generico possa visualizzare la lista di tutti gli audit log relativi al proprio Tenant], 
-	[RF-69-Opt],
-	[Non implementato],
-
-	[TS-70], 
-	[Verificare che l’Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il nome dell’utente che l'ha generato], 
-	[RF-70-Opt],
-	[Non implementato],
-
-	[TS-71], 
-	[Verificare che l’Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il tipo di azione eseguita], 
-	[RF-71-Opt],
-	[Non implementato],
-
-	[TS-72], 
-	[Verificare che l’Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il corrispettivo timestamp], 
-	[RF-72-Opt],
-	[Non implementato],
-
-	[TS-73], 
-	[Verificare che l’Admin generico possa filtrare gli audit log in base al tipo di azione eseguita], 
-	[RF-73-Opt],
-	[Non implementato],
-
-	[TS-74], 
-	[Verificare che l’Admin generico possa filtrare gli audit log in base ad un intervallo temporale], 
-	[RF-74-Opt],
-	[Non implementato],
-
-	[TS-75], 
-	[Verificare che l’Admin generico possa filtrare gli audit log in base all'utente che ha generato l'evento], 
-	[RF-75-Opt],
-	[Non implementato],
-
-	[TS-76], 
-	[Verificare che l’Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il corrispettivo timestamp], 
-	[RF-76-Opt],
-	[Non implementato],
-
-	[TS-77], 
-	[Verificare che il Tenant Admin possa visualizzare la sua dashboard personale], 
-	[RF-77-Obb],
-	[Non implementato],
-
-	[TS-78], 
-	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di sensori attivi e non associati al proprio Tenant], 
-	[RF-78-Obb],
-	[Non implementato],
-
-	[TS-79], 
-	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di gateway attivi e non associati al proprio Tenant], 
-	[RF-79-Obb],
-	[Non implementato],
-
-	[TS-80], 
-	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi la lista degli alert relativi al proprio Tenant], 
-	[RF-80-Opt],
-	[Non implementato],
-
-	[TS-81], 
-	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di API key valide e scadute], 
-	[RF-81-Des],
-	[Non implementato],
-
-	[TS-82], 
-	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi lo stato delle richieste di commissioning gateway associate al proprio Tenant], 
-	[RF-82-Obb],
-	[Non implementato],
-
-	[TS-83], 
-	[Verificare che il Tenant Admin, accedendo alla sua dashboard personale visualizzi lo stato delle richieste di decommissioning gateway associate al proprio Tenant], 
-	[RF-83-Obb],
-	[Non implementato],
-
-	[TS-84], 
-	[Verificare che il Tenant Admin possa creare una nuova richiesta di commissioning gateway], 
-	[RF-84-obb],
-	[Non implementato],
-
-	[TS-85], 
-	[Verificare che il Tenant Admin possa creare una nuova richiesta di decommissioning gateway], 
-	[RF-85-Obb],
-	[Non implementato],
-
-	[TS-86], 
-	[Verificare che il Tenant Admin possa eliminare una richiesta di commissioning o decommissioning gateway precedentemente creata non ancora evasa], 
-	[RF-86-Obb],
-	[Non implementato],
-
-	[TS-87], 
-	[Verificare che il Sistema richieda una conferma al Tenant Admin prima di eliminare una richiesta di commissioning o decommissioning gateway], 
-	[RF-87-Obb],
-	[Non implementato],
-
-	[TS-88], 
-	[Verificare che il Tenant Admin possa sospendere l’invio di dati da parte di un sensore appartenente al proprio Tenant], 
-	[RF-88-Obb],
-	[Non implementato],
-
-	[TS-89], 
-	[Verificare che il Sistema notifichi l’impossibilità di sospendere l’invio dati del sensore selezionato poiché il gateway associato è in stato di errore],
-	[RF-89-obb],
-	[Non implementato],
-
-	[TS-90], 
-	[Verificare che il Tenant Admin possa riattivare l’invio di dati da parte di un sensore appartenente al proprio Tenant], 
-	[RF-90-Obb],
-	[Non implementato],
-
-	[TS-91], 
-	[Verificare che il Sistema notifichi l'impossibilità di riattivare l’invio di dati del sensore selezionato poiché il gateway associato è in stato di errore], 
-	[RF-91-Obb],
-	[Non implementato],
-
-	[TS-92], 
-	[Verificare che il Tenant Admin possa sospendere l’invio di dati da parte di un gateway appartenente al proprio Tenant], 
-	[RF-92-Obb],
-	[Non implementato],
-
-	[TS-93], 
-	[Verificare che il Sistema notifichi l'impossibilità di sospendere l’invio di dati da parte del gateway selezionato poiché in stato di errore], 
-	[RF-93-Obb],
-	[Non implementato],
-
-	[TS-94], 
-	[Verificare che il Tenant Admin possa riattivare l’invio di dati da parte di un gateway appartenente al proprio Tenant], 
-	[RF-94-Obb],
-	[Non implementato],
-
-	[TS-95], 
-	[Verificare che il Sistema notifichi l'impossibilità di riattivare l’invio di dati da parte del gateway selezionato poiché in stato di errore], 
-	[RF-95-Obb],
-	[Non implementato],
-
-	[TS-96], 
-	[Verificare che il Tenant Admin possa riavviare un gateway appartenente al proprio Tenant], 
-	[RF-96-Obb],
-	[Non implementato],
-
-	[TS-97], 
-	[Verificare che il Tenant Admin possa modificare il target di frequenza d’invio dati per tipologia di sensore di un gateway associato al proprio Tenant], 
-	[RF-97-Obb],
-	[Non implementato],
-
-	[TS-98], 
-	[Verificare che il Sistema notifichi l'impossibilità di riavviare il gateway selezionato poiché in stato di errore], 
-	[RF-98-Obb],
-	[Non implementato],
-
-	[TS-99], 
-	[Verificare che il gateway simulato nel caso in cui il processo di commissioning sia stato completato con successo, confermi ciò al Cloud], 
-	[RF-99-Obb],
-	[Non implementato],
-
-	[TS-100], 
-	[Verificare che il gateway simulato, una volta completato il processo di commissioning, inizi l'invio dei dati], 
-	[RF-100-Obb],
-	[Non implementato],
-
-	[TS-101], 
-	[Verificare che il gateway simulato invii al Cloud la presenza di eventuali errori durante il processo di commissioning], 
-	[RF-101-Obb],
-	[Non implementato],
-
-	[TS-102], 
-	[Verificare che il gateway simulato nel caso in cui il processo di decommissioning sia stato completato con successo, confermi ciò al Cloud], 
-	[RF-102-Obb],
-	[Non implementato],
-
-	[TS-103], 
-	[Verificare che il gateway simulato, dopo aver eseguito il decommissioning, rimuova l’associazione con il tenant, la chiave di cifratura e interrompa l’invio dei dati IoT al Cloud], 
-	[RF-103-Obb],
-	[Non implementato],
-
-	[TS-104], 
-	[Verificare che il gateway simulato, dopo aver eseguito il decommissioning, ammetta un nuovo commissioning], 
-	[RF-104-Obb],
-	[Non implementato],
-
-	[TS-105], 
-	[Verificare che il gateway simulato segnali al Cloud eventuali errori riscontrati durante l’esecuzione del decommissioning], 
-	[RF-105-Obb],
-	[Non implementato],
-
-	[TS-106], 
-	[Verificare che il Sistema possa annullare il processo di decommissioning quando riceve una notifica di errore dal gateway], 
-	[RF-106-Obb],
-	[Non implementato],
-
-	[TS-107], 
-	[Verificare che il Sistema notifichi il Super Admin quando un decommissioning viene annullato a causa di un errore segnalato dal gateway], 
-	[RF-107-Obb],
-	[Non implementato],
-
-	[TS-108], 
-	[Verificare che il gateway simulato confermi al Cloud il corretto riavvio in seguito al comando ricevuto dallo stesso], 
-	[RF-108-Obb],
-	[Non implementato],
-
-	[TS-109], 
-	[Verificare che il Cloud si accorga se un gateway simulato non risponda entro un timeout specifico a comando di riavvio e notificare lo stato di errore del gateway agli utenti del Tenant associato], 
-	[RF-109-Obb],
-	[Non implementato],
-
-	[TS-110], 
-	[Verificare che il gateway simulato possa reimpostare correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica, ovvero reset], 
-	[RF-110-Obb],
-	[Non implementato],
-
-	[TS-111], 
-	[Verificare che il gateway simulato, dopo aver eseguito il reset correttamente, invii la conferma di successo al Cloud], 
-	[RF-111-Obb],
-	[Non implementato],
-
-	[TS-112], 
-	[Verificare che il gateway simulato possa confermare la sospensione di invio dei dati al Cloud in seguito al comando di sospensione ricevuto dallo stesso], 
-	[RF-112-Obb],
-	[Non implementato],
-
-	[TS-113], 
-	[Verificare che il gateway simulato possa confermare la riattivazione dell’invio dei dati al Cloud in seguito al comando di riattivazione ricevuto dallo stesso], 
-	[RF-113-Obb],
-	[Non implementato],
-
-	[TS-114], 
-	[Verificare che il gateway simulato possa confermare la sospensione dell’invio dei dati di un sensore simulato specifico in seguito al comando di sospensione ricevuto dal Cloud], 
-	[RF-114-Obb],
-	[Non implementato],
-
-	[TS-115], 
-	[Verificare che il gateway simulato possa confermare la riattivazione dell’invio dei dati di un sensore simulato specifico in seguito al comando di riattivazione ricevuto dal Cloud], 
-	[RF-115-Obb],
-	[Non implementato],
-
-	[TS-116], 
-	[Verificare che il gateway simulato possa inviare la conferma del cambiamento della frequenza di invio dati al Cloud in seguito al comando di modifica ricevuto dallo stesso], 
-	[RF-116-Obb],
-	[Non implementato],
-
-	[TS-117], 
-	[Verificare che il gateway simulato, all’avvio, invii un comando di hello, provvisto di proprio ID univoco, al Cloud per autenticarsi], 
-	[RF-117-Obb],
-	[Non implementato],
-
-	[TS-118], 
-	[Verificare che il Cloud rifiuti l’autenticazione del gateway in caso quest’ultimo invii credenziali errate], 
-	[RF-118-Obb],
-	[Non implementato],
-
-	[TS-119], 
-	[Verificare che il Cloud rifiuti l’autenticazione del gateway in caso l’ID univoco inviato dal gateway non sia presente nel proprio database], 
-	[RF-119-Obb],
-	[Non implementato],
-
-	[TS-120], 
-	[Verificare che il gateway simulato possa inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud durante l’assegnazione del Tenant], 
-	[RF-120-Obb],
-	[Non implementato],
-
-	[TS-121], 
-	[Verificare che il gateway simulato raccolga i dati dei sensori all’interno di un buffer interno prima di inviarli al Cloud], 
-	[RF-121-Obb],
-	[Non implementato],
-
-	[TS-122], 
-	[Verificare che il gateway simulato, in caso di overflow del buffer, elimini i dati più vecchi], 
-	[RF-122-Obb],
-	[Non implementato],
-
-	[TS-123], 
-	[Verificare che il gateway simulato ritenti l’invio dei dati al Cloud in caso non sia raggiungibile, mantenendo i dati nel buffer fino al successo dell’invio], 
-	[RF-123-Obb],
-	[Non implementato],
-
-	[TS-124], 
-	[Verificare che il Cloud notifichi gli utenti del Tenant nel caso in cui non riceva dati dal gateway associato per un periodo di tempo superiore ad una soglia predefinita], 
-	[RF-124-Obb],
-	[Non implementato],
-
-	[TS-125],
-	[Verificare che il Cloud rilevi l’assenza di dati da un sensore specifico di un gateway simulato allo scadere di un timeout predefinito], 
-	[RF-125-Obb],
-	[Non implementato],
-
-	[TS-126], 
-	[Verificare che il Cloud, nel caso in cui venga rilevata l’assenza di dati di un sensore di un gateway, notifichi gli utenti del tenant associato], 
-	[RF-126-Obb],
-	[Non implementato],
-
-	[TS-127], 
-	[Verificare che l’API Client possa richiedere i dati real-time di un sensore specifico associato al proprio tenant], 
-	[RF-127-Des],
-	[Non implementato],
-
-	[TS-128], 
-	[Verificare che l’API Client, dopo aver richiesto i dati real-time di un sensore specifico, possa ricevere tali dati in forma coppia valore-timestamp], 
-	[RF-128-Des],
-	[Non implementato],
-
-
-    [TS-129],
-	  [Verificare che l'*API Client* possa richiedere lo storico dei dati di un sensore appartenente al proprio tenant],
-	  [RF-129-Obb],
-	  [Non implementato],
-
-    [TS-130],
-	  [Verificare che l'*API Client* dopo aver richiesto lo storico dei dati di un sensore specifico possa ricevere tali dati in forma coppia valore-timestamp],
-	  [RF-130-Obb],
-	  [Non implementato],
-
-	  [TS-131],
-	  [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non esistente],
-	  [RF-131-Obb],
-	  [Non implementato],
-
-	  [TS-132],
-	  [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore per cui non sono disponibili dati],
-	  [RF-132-Obb],
-	  [Non implementato],
-
-	  [TS-133],
-	  [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non associato al proprio tenant],
-	  [RF-133-Obb],
-	  [Non implementato],
-
-	  [TS-134],
-	  [Verificare che l'*API Client* possa autenticarsi nel Sistema utilizzando un'API Key valida],
-	  [RF-134-Obb],
-	  [Non implementato],
-
-	  [TS-135],
-	  [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione non siano valide],
-	  [RF-135-Obb],
-	  [Non implementato],
-
-	  [TS-136],
-	  [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione siano scadute],
-	  [RF-136-Obb],
-	  [Non implementato],
-
-	  [TS-137],
-	  [Verificare che il *Sensore simulato* possa inviare i dati rilevati al gateway a cui è collegato],
-	  [RF-137-Obb],
-	  [Non implementato],
-
-	  [TS-138],
-	  [Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa normalizzarli],
-	  [RF-138-Obb],
-	  [Non implementato],
-
-	  [TS-139],
-	  [Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa formattarli secondo un formato interno standardizzato],
-	  [RF-139-Obb],
-	  [Non implementato],
-
-	  [TS-140],
-	  [Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa salvarli in un buffer interno prima di inviarli al Cloud],
-	  [RF-140-Obb],
-	  [Non implementato],
-
-	  [TS-141],
-	  [Verificare che in caso un o più Sensori simulati inviino una quantità di dati superiore alla capacità di invio del gateway verso il Cloud, il *gateway* possa salvare i dati più recenti nel buffer interno eliminando i dati più vecchi per fare spazio ai nuovi dati],
-	  [RF-141-Obb],
-	  [Non implementato],
-
-	  [TS-142],
-	  [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Heart Rate Service (GATT)],
-	  [RF-142-Obb],
-	  [Non implementato],
-
-	  [TS-143],
-	  [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Pulse Oximeter Service (GATT)],
-	  [RF-143-Obb],
-	  [Non implementato],
-
-	  [TS-144],
-	  [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi ad un profilo custom per l'elettrocardiogramma (ECG)],
-	  [RF-144-Obb],
-	  [Non implementato],
-
-	  [TS-145],
-	  [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Health Thermometer Service (GATT)],
-	  [RF-145-Obb],
-	  [Non implementato],
-
-	  [TS-146],
-	  [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Environmental Sensing Service (GATT)],
-	  [RF-146-Obb],
-	  [Non implementato],
-
-	  [TS-147],
-	  [Verificare che il *Cloud* possa inviare la conferma di autenticazione avvenuta correttamente al gateway, in seguito ad un tentativo di autenticazione andato a buon fine],
-	  [RF-147-Obb],
-	  [Non implementato],
-
-	  [TS-148],
-	  [Verificare che il *Cloud* possa inviare il rifiuto di autenticazione al gateway, in seguito ad un tentativo di autenticazione fallito],
-	  [RF-148-Obb],
-	  [Non implementato],
-
-	  [TS-149],
-	  [Verificare che il *Cloud* possa inviare al gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine],
-	  [RF-149-Obb],
-	  [Non implementato],
-
-	  [TS-150],
-	  [Verificare che il *Cloud* possa inviare al gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
-	  [RF-150-Obb],
-	  [Non implementato],
-
-	  [TS-151],
-	  [Verificare che il *Cloud* possa inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
-	  [RF-151-Obb],
-	  [Non implementato],
-
-	  [TS-152],
-	  [Verificare che il *Cloud* possa inviare al gateway il comando di sospensione di un Sensore simulato non sospeso specifico. In seguito alla ricezione del comandi il gateway deve interrompere l'invio di dati IoT crittografati relativi a tale Sensore],
-	  [RF-152-Obb],
-	  [Non implementato],
-
-	  [TS-153],
-	  [Verificare che il *Cloud* possa inviare, al gateway sospeso, il comando di riattivazione. In seguito alla ricezione del comando il gateway deve ricominciare l'invio di tutti i dati IoT crittografati],
-    [RF-153-Obb],
-    [Non implementato],
-
-	  [TS-154],
-	  [Verificare che il *Cloud* possa inviare, al gateway attivo, il comando di sospensione. In seguito alla ricezione del comando il gateway deve interrompere l'invio di tutti i dati IoT crittografati],
-	  [RF-154-Obb],
-	  [Non implementato],
-
-	  [TS-155],
-	  [Verificare che il *Cloud* possa inviare al gateway il comando di riavvio. In seguito alla ricezione del comando il gateway deve spegnersi e riaccendersi, mantenendo le configurazioni e i dati salvati localmente],
-	  [RF-155-Obb],
-	  [Non implementato],
-
-	  [TS-156],
-	  [Verificare che il *Cloud* possa inviare al gateway il comando di modifica della frequenza di invio dati per uno specifico tipo di sensore. In seguito alla ricezione di tale comando il gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud relativi a tutti i sensori di tale tipologia, così da inviare un dato ogni intervallo di tempo specificato nel comando.],
-	  [RF-156-Obb],
-	  [Non implementato],
-
-	  [TS-157],
-	  [Verificare che il *Cloud* possa inviare al gateway il comando di decommissioning. In seguito alla ricezione del comando il gateway deve cancellare l'associazione al tenant, la chiave di cifratura e deve eseguire un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning],
-	  [RF-157-Obb],
-	  [Non implementato],
-
-	  [TS-158],
-	  [Verificare che il *Cloud* possa inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica],
-	  [RF-158-Obb],
-	  [Non implementato],
-
-	  [TS-159],
-	  [Verificare che l'*Utente autenticato* possa effettuare il logout dal Sistema],
-	  [RF-159-Obb],
-	  [Non implementato],
-
-	  [TS-160],
-	  [Verificare che il *Sistema*, a seguito del logout possa registrare l'evento negli audit log salvando nome utente, timestamp e azione eseguita],
-	  [RF-160-Obb],
-	  [Non implementato],
-
-	  [TS-161],
-	  [Verificare che l'*Utente autenticato* possa modificare la propria password],
-	  [RF-161-Obb],
-	  [Non implementato],
-
-	  [TS-162],
-	  [Verificare che l'*Utente autenticato*, per modificare la password, possa inserire la vecchia password],
-	  [RF-162-Obb],
-	  [Non implementato],
-
-	  [TS-163],
-	  [Verificare che il *Sistema* possa mostrare un messaggio di errore se la vecchia password inserita non è corretta durante la modifica password],
-	  [RF-163-Obb],
-	  [Non implementato],
-
-	  [TS-164],
-	  [Verificare che l'*Utente autenticato* possa visualizzare i dettagli di un singolo alert],
-	  [RF-164-Obb],
-	  [Non implementato],
-
-	  [TS-165],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere il titolo dell'alert],
-	  [RF-165-Obb],
-	  [Non implementato],
-
-	  [TS-166],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere la descrizione dell'alert],
-	  [RF-166-Obb],
-	  [Non implementato],
-
-	  [TS-167],
-	  [Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un Gateway],
-	  [RF-167-Obb],
-	  [Non implementato],
-
-	  [TS-168],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere l'identificativo del gateway],
-	  [RF-168-Obb],
-	  [Non implementato],
-
-	  [TS-169],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il timestamp dell'ultimo dato ricevuto],
-	  [RF-169-Obb],
-	  [Non implementato],
-
-	  [TS-170],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il tempo di inattività],
-	  [RF-170-Obb],
-	  [Non implementato],
-
-	  [TS-171],
-	  [Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un sensore],
-	  [RF-171-Obb],
-	  [Non implementato],
-
-	  [TS-172],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere l'identificativo del sensore],
-	  [RF-172-Obb],
-	  [Non implementato],
-
-	  [TS-173],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il timestamp dell'ultimo dato ricevuto],
-	  [RF-173-Obb],
-	  [Non implementato],
-
-	  [TS-174],
-	  [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il tempo di inattività],
-	  [RF-174-Obb],
-	  [Non implementato],
-
-	  [TS-175],
-	  [Verificare che l'*Utente autenticato* possa selezionare un sensore dalla lista dei sensori associati al proprio tenant],
-	  [RF-175-Obb],
-	  [Non implementato],
-
-	  [TS-176],
-	  [Verificare che l'*Utente autenticato* possa visualizzare i dati in tempo reale di un sensore selezionato],
-	  [RF-176-Obb],
-	  [Non implementato],
-
-	  [TS-177],
-	  [Verificare che l'*Utente autenticato* possa visualizzare i dati real-time del sensore attraverso un grafico time-series con assi etichettati],
-	  [RF-177-Obb],
-	  [Non implementato],
-
-	  [TS-178],
-	  [Verificare che il *grafico dei dati real-time* possa aggiornarsi automaticamente alla ricezione di nuovi dati dal Gateway],
-	  [RF-178-Obb],
-	  [Non implementato],
-
-	  [TS-179],
-	  [Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati di un sensore selezionato],
-	  [RF-179-Obb],
-	  [Non implementato],
-
-	  [TS-180],
-	  [Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati del sensore attraverso un grafico time-series con assi etichettati],
-	  [RF-180-Obb],
-	  [Non implementato],
-
-	  [TS-181],
-	  [Verificare che l'*Utente autenticato* possa filtrare lo storico dei dati del sensore per intervallo temporale],
-	  [RF-181-Obb],
-	  [Non implementato],
-
-	  [TS-182],
-	  [Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato],
-	  [RF-182-Obb],
-	  [Non implementato],
-
-	  [TS-183],
-	  [Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo temporale inserito non è valido],
-	  [RF-183-Obb],
-	  [Non implementato],
-
-	  [TS-184],
-	  [Verificare che l'*Utente autenticato* possa filtrare i dati del sensore per intervallo di valori],
-	  [RF-184-Obb],
-	  [Non implementato],
-
-	  [TS-185],
-	  [Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato],
-	  [RF-185-Obb],
-	  [Non implementato],
-
-	  [TS-186],
-	  [Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo di valori inserito non è valido],
-	  [RF-186-Obb],
-	  [Non implementato],
-
-	  [TS-187],
-	  [Verificare che il *Sistema* possa mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato],
-	  [RF-187-Obb],
-	  [Non implementato],
-
-	  [TS-188],
-	  [Verificare che il *Super Admin* possa creare un nuovo tenant nel Sistema],
-	  [RF-188-Obb],
-	  [Non implementato],
-
-	  [TS-189],
-	  [Verificare che il *Super Admin*, creando un nuovo tenant, possa inserire il nome del tenant],
-	  [RF-189-Obb],
-	  [Non implementato],
-
-	  [TS-190],
-	  [Verificare che il *Super Admin*, creando un nuovo tenant, possa specificare l'accettazione o meno della clausola di impersonificazione],
-	  [RF-190-Obb],
-	  [Non implementato],
-
-	  [TS-191],
-	  [Verificare che il *Sistema* possa mostrare un messaggio di errore se il nome del tenant inserito è già in uso],
-	  [RF-191-Obb],
-	  [Non implementato],
-
-	  [TS-192],
-	  [Verificare che il *Super Admin* possa eliminare un tenant esistente dal Sistema],
-	  [RF-192-Obb],
-	  [Non implementato],
-
+	..lista-test
 
   ),
   caption: [Test di Sistema con descrizione e requisito di riferimento],
@@ -1082,342 +1441,62 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
   supplement: [Tabella]
 )
 
-=======
-Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato. //DA COMPLETARE
+#pagebreak()
+#v(1em)
+== Tracciamento test funzionali 
+#v(2em)
 
+/*
+NON TOCCARE 
+*/
+
+#rf-counter.update(0)
+#ts-counter.update(0)
+
+#let spezza-tabella = (data) => {
+  let num-rows = calc.floor(data.len() / 2)
+  let half = calc.ceil(num-rows / 2)
+  
+  let left-data = data.slice(0, half * 2)
+  let right-data = data.slice(half * 2)
+  
+  let combined = ()
+  for i in range(half) {
+    let left-test = left-data.at(i * 2, default: [])
+    let left-req = left-data.at(i * 2 + 1, default: [])
+    let right-test = right-data.at(i * 2, default: [])
+    let right-req = right-data.at(i * 2 + 1, default: [])
+    
+    combined.push(left-test)
+    combined.push(left-req)
+    combined.push([])
+    combined.push(right-test)
+    combined.push(right-req)
+  }
+  combined
+}
+
+/*
+Non usare questa tabella usare lista soptra
+*/
+
+#align(center)[
   #table(
-	    columns: (1.5fr, 3fr, 1.3fr, 1.7fr),
-	    align: center + horizon,
-	    inset: 8pt,
-	    fill: (x, y) => if y == 0 { gray.lighten(70%) },
-	    [*Identificativo*], [*Descrizione*], [*Requisito di riferimento*], [*Stato*],
-	    
-      [TS-129],
-	    [Verificare che l'*API Client* possa richiedere lo storico dei dati di un sensore appartenente al proprio tenant],
-	    [RF-129-Obb],
-	    [Non implementato],
+    columns: (auto, auto, 4em, auto, auto), 
+    align: center,
+    stroke: (x, y) => {
+
+      if x == 2 { none } else { 0.5pt }
+    },
+    table.header(
+      [*Test*], [*Requisito*], 
+      [],
+      [*Test*], [*Requisito*]
+    ),
+    ..spezza-tabella(get-tracciamento(lista-test))
+  )
+]
 
-	    [TS-130],
-	    [Verificare che l'*API Client* dopo aver richiesto lo storico dei dati di un sensore specifico possa ricevere tali dati in forma coppia valore-timestamp],
-	    [RF-130-Obb],
-	    [Non implementato],
-
-	    [TS-131],
-	    [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non esistente],
-	    [RF-131-Obb],
-	    [Non implementato],
-
-	    [TS-132],
-	    [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore per cui non sono disponibili dati],
-	    [RF-132-Obb],
-	    [Non implementato],
-
-	    [TS-133],
-	    [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non associato al proprio tenant],
-	    [RF-133-Obb],
-	    [Non implementato],
-
-	    [TS-134],
-	    [Verificare che l'*API Client* possa autenticarsi nel Sistema utilizzando un'API Key valida],
-	    [RF-134-Obb],
-	    [Non implementato],
-
-	    [TS-135],
-	    [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione non siano valide],
-	    [RF-135-Obb],
-	    [Non implementato],
-
-	    [TS-136],
-	    [Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione siano scadute],
-	    [RF-136-Obb],
-	    [Non implementato],
-
-	    [TS-137],
-	    [Verificare che il *Sensore simulato* possa inviare i dati rilevati al gateway a cui è collegato],
-	    [RF-137-Obb],
-	    [Non implementato],
-
-	    [TS-138],
-	    [Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa normalizzarli],
-	    [RF-138-Obb],
-	    [Non implementato],
-
-	    [TS-139],
-	    [Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa formattarli secondo un formato interno standardizzato],
-	    [RF-139-Obb],
-	    [Non implementato],
-
-	    [TS-140],
-	    [Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa salvarli in un buffer interno prima di inviarli al Cloud],
-	    [RF-140-Obb],
-	    [Non implementato],
-
-	    [TS-141],
-	    [Verificare che in caso un o più Sensori simulati inviino una quantità di dati superiore alla capacità di invio del gateway verso il Cloud, il *gateway* possa salvare i dati più recenti nel buffer interno eliminando i dati più vecchi per fare spazio ai nuovi dati],
-	    [RF-141-Obb],
-	    [Non implementato],
-
-	    [TS-142],
-	    [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Heart Rate Service (GATT)],
-	    [RF-142-Obb],
-	    [Non implementato],
-
-	    [TS-143],
-	    [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Pulse Oximeter Service (GATT)],
-	    [RF-143-Obb],
-	    [Non implementato],
-
-	    [TS-144],
-	    [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi ad un profilo custom per l'elettrocardiogramma (ECG)],
-	    [RF-144-Obb],
-	    [Non implementato],
-
-	    [TS-145],
-	    [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Health Thermometer Service (GATT)],
-	    [RF-145-Obb],
-	    [Non implementato],
-
-	    [TS-146],
-	    [Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Environmental Sensing Service (GATT)],
-	    [RF-146-Obb],
-	    [Non implementato],
-
-	    [TS-147],
-	    [Verificare che il *Cloud* possa inviare la conferma di autenticazione avvenuta correttamente al gateway, in seguito ad un tentativo di autenticazione andato a buon fine],
-	    [RF-147-Obb],
-	    [Non implementato],
-
-	    [TS-148],
-	    [Verificare che il *Cloud* possa inviare il rifiuto di autenticazione al gateway, in seguito ad un tentativo di autenticazione fallito],
-	    [RF-148-Obb],
-	    [Non implementato],
-
-	    [TS-149],
-	    [Verificare che il *Cloud* possa inviare al gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine],
-	    [RF-149-Obb],
-	    [Non implementato],
-
-	    [TS-150],
-	    [Verificare che il *Cloud* possa inviare al gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
-	    [RF-150-Obb],
-	    [Non implementato],
-
-	    [TS-151],
-	    [Verificare che il *Cloud* possa inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
-	    [RF-151-Obb],
-	    [Non implementato],
-
-	    [TS-152],
-	    [Verificare che il *Cloud* possa inviare al gateway il comando di sospensione di un Sensore simulato non sospeso specifico. In seguito alla ricezione del comandi il gateway deve interrompere l'invio di dati IoT crittografati relativi a tale Sensore],
-	    [RF-152-Obb],
-	    [Non implementato],
-
-	    [TS-153],
-	    [Verificare che il *Cloud* possa inviare, al gateway sospeso, il comando di riattivazione. In seguito alla ricezione del comando il gateway deve ricominciare l'invio di tutti i dati IoT crittografati],
-	    [RF-153-Obb],
-	    [Non implementato],
-
-	    [TS-154],
-	    [Verificare che il *Cloud* possa inviare, al gateway attivo, il comando di sospensione. In seguito alla ricezione del comando il gateway deve interrompere l'invio di tutti i dati IoT crittografati],
-	    [RF-154-Obb],
-	    [Non implementato],
-
-	    [TS-155],
-	    [Verificare che il *Cloud* possa inviare al gateway il comando di riavvio. In seguito alla ricezione del comando il gateway deve spegnersi e riaccendersi, mantenendo le configurazioni e i dati salvati localmente],
-	    [RF-155-Obb],
-	    [Non implementato],
-
-	    [TS-156],
-	    [Verificare che il *Cloud* possa inviare al gateway il comando di modifica della frequenza di invio dati per uno specifico tipo di sensore. In seguito alla ricezione di tale comando il gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud relativi a tutti i sensori di tale tipologia, così da inviare un dato ogni intervallo di tempo specificato nel comando.],
-	    [RF-156-Obb],
-	    [Non implementato],
-
-	    [TS-157],
-	    [Verificare che il *Cloud* possa inviare al gateway il comando di decommissioning. In seguito alla ricezione del comando il gateway deve cancellare l'associazione al tenant, la chiave di cifratura e deve eseguire un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning],
-	    [RF-157-Obb],
-	    [Non implementato],
-
-	    [TS-158],
-	    [Verificare che il *Cloud* possa inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica],
-	    [RF-158-Obb],
-	    [Non implementato],
-
-	    [TS-159],
-	    [Verificare che l'*Utente autenticato* possa effettuare il logout dal Sistema],
-	    [RF-159-Obb],
-	    [Non implementato],
-
-	    [TS-160],
-	    [Verificare che il *Sistema*, a seguito del logout possa registrare l'evento negli audit log salvando nome utente, timestamp e azione eseguita],
-	    [RF-160-Obb],
-	    [Non implementato],
-
-	    [TS-161],
-	    [Verificare che l'*Utente autenticato* possa modificare la propria password],
-	    [RF-161-Obb],
-	    [Non implementato],
-
-	    [TS-162],
-	    [Verificare che l'*Utente autenticato*, per modificare la password, possa inserire la vecchia password],
-	    [RF-162-Obb],
-	    [Non implementato],
-
-	    [TS-163],
-	    [Verificare che il *Sistema* possa mostrare un messaggio di errore se la vecchia password inserita non è corretta durante la modifica password],
-	    [RF-163-Obb],
-	    [Non implementato],
-
-	    [TS-164],
-	    [Verificare che l'*Utente autenticato* possa visualizzare i dettagli di un singolo alert],
-	    [RF-164-Obb],
-	    [Non implementato],
-
-	    [TS-165],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere il titolo dell'alert],
-	    [RF-165-Obb],
-	    [Non implementato],
-
-	    [TS-166],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere la descrizione dell'alert],
-	    [RF-166-Obb],
-	    [Non implementato],
-
-	    [TS-167],
-	    [Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un Gateway],
-	    [RF-167-Obb],
-	    [Non implementato],
-
-	    [TS-168],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere l'identificativo del gateway],
-	    [RF-168-Obb],
-	    [Non implementato],
-
-	    [TS-169],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il timestamp dell'ultimo dato ricevuto],
-	    [RF-169-Obb],
-	    [Non implementato],
-
-	    [TS-170],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il tempo di inattività],
-	    [RF-170-Obb],
-	    [Non implementato],
-
-	    [TS-171],
-	    [Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un sensore],
-	    [RF-171-Obb],
-	    [Non implementato],
-
-	    [TS-172],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere l'identificativo del sensore],
-	    [RF-172-Obb],
-	    [Non implementato],
-
-	    [TS-173],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il timestamp dell'ultimo dato ricevuto],
-	    [RF-173-Obb],
-	    [Non implementato],
-
-	    [TS-174],
-	    [Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il tempo di inattività],
-	    [RF-174-Obb],
-	    [Non implementato],
-
-	    [TS-175],
-	    [Verificare che l'*Utente autenticato* possa selezionare un sensore dalla lista dei sensori associati al proprio tenant],
-	    [RF-175-Obb],
-	    [Non implementato],
-
-	    [TS-176],
-	    [Verificare che l'*Utente autenticato* possa visualizzare i dati in tempo reale di un sensore selezionato],
-	    [RF-176-Obb],
-	    [Non implementato],
-
-	    [TS-177],
-	    [Verificare che l'*Utente autenticato* possa visualizzare i dati real-time del sensore attraverso un grafico time-series con assi etichettati],
-	    [RF-177-Obb],
-	    [Non implementato],
-
-	    [TS-178],
-	    [Verificare che il *grafico dei dati real-time* possa aggiornarsi automaticamente alla ricezione di nuovi dati dal Gateway],
-	    [RF-178-Obb],
-	    [Non implementato],
-
-	    [TS-179],
-	    [Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati di un sensore selezionato],
-	    [RF-179-Obb],
-	    [Non implementato],
-
-	    [TS-180],
-	    [Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati del sensore attraverso un grafico time-series con assi etichettati],
-	    [RF-180-Obb],
-	    [Non implementato],
-
-	    [TS-181],
-	    [Verificare che l'*Utente autenticato* possa filtrare lo storico dei dati del sensore per intervallo temporale],
-	    [RF-181-Obb],
-	    [Non implementato],
-
-	    [TS-182],
-	    [Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato],
-	    [RF-182-Obb],
-	    [Non implementato],
-
-	    [TS-183],
-	    [Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo temporale inserito non è valido],
-	    [RF-183-Obb],
-	    [Non implementato],
-
-	    [TS-184],
-	    [Verificare che l'*Utente autenticato* possa filtrare i dati del sensore per intervallo di valori],
-	    [RF-184-Obb],
-	    [Non implementato],
-
-	    [TS-185],
-	    [Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato],
-	    [RF-185-Obb],
-	    [Non implementato],
-
-	    [TS-186],
-	    [Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo di valori inserito non è valido],
-	    [RF-186-Obb],
-	    [Non implementato],
-
-	    [TS-187],
-	    [Verificare che il *Sistema* possa mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato],
-	    [RF-187-Obb],
-	    [Non implementato],
-
-	    [TS-188],
-	    [Verificare che il *Super Admin* possa creare un nuovo tenant nel Sistema],
-	    [RF-188-Obb],
-	    [Non implementato],
-
-	    [TS-189],
-	    [Verificare che il *Super Admin*, creando un nuovo tenant, possa inserire il nome del tenant],
-	    [RF-189-Obb],
-	    [Non implementato],
-
-	    [TS-190],
-	    [Verificare che il *Super Admin*, creando un nuovo tenant, possa specificare l'accettazione o meno della clausola di impersonificazione],
-	    [RF-190-Obb],
-	    [Non implementato],
-
-	    [TS-191],
-	    [Verificare che il *Sistema* possa mostrare un messaggio di errore se il nome del tenant inserito è già in uso],
-	    [RF-191-Obb],
-	    [Non implementato],
-
-	    [TS-192],
-	    [Verificare che il *Super Admin* possa eliminare un tenant esistente dal Sistema],
-	    [RF-192-Obb],
-	    [Non implementato],
-
-	  ),
-	  caption: [Elenco dei test di sistema.],
-	  kind: table,
-  supplement: [Tabella]
-)
->>>>>>> 09bd795 (creazione tabella test di sistema)
 = Cruscotto di Valutazione
 
 = Iniziative di miglioramento <iniziative-miglioramento>
