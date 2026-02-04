@@ -6,13 +6,20 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Bozza",
+  stato: "In attesa di modifiche",
   registro-modifiche: (
-      (
+    (
+      "0.8.2",
+      "04/02/2026",
+      "Siria Salvalaio",
+      "",
+      [Implementazione correzioni PaF sprint 8],
+    ),
+    (
       "0.8.1",
       "03/02/2026",
       "Siria Salvalaio",
-      "",
+      "Alessandro Dinato",
       [Consuntivo di periodo sprint 8],
     ),
     (
@@ -1473,8 +1480,8 @@ Il gruppo di lavoro per il *Piano di Qualifica* ha individuato le seguenti attiv
     top: if y == 0 { 0pt } else { 0.5pt + black },
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
-		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-		"Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
   "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
   "Michele Dioli", "-", "4", "-", "-", "-", "-", [*4*],
   "Hossam Ezzemouri", "-", "4", "-", "-", "-", "-", [*4*],
@@ -1736,7 +1743,7 @@ agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come 
 Inizio: 14/01/2026 \
 Fine: 28/01/2026 \
 
-Il presente sprint ha lo scopo di focalizzarsi prioritariamente sulla stesura dei requisiti e sulla modellazione dei diagrammi Use Case. In parallelo, il team avvierà lo studio e l’apprendimento di NATS e Angular.js in vista dell'imminente implementazione del #gloss("POC"), consolidando al contempo la documentazione normativa, il glossario e la definizione tecnica delle metriche.
+Il presente sprint ha lo scopo di focalizzarsi prioritariamente sulla stesura dei requisiti e sulla modellazione dei diagrammi Use Case. In parallelo, il team avvierà lo studio e l'apprendimento di #gloss[NATS] e #gloss[Angular.js] in vista dell'imminente implementazione del #gloss("POC"), consolidando al contempo la documentazione normativa, il glossario e la definizione tecnica delle metriche.
 
 === Preventivo a finire <sprint-8-paf>
 ==== Attività da svolgere
@@ -1759,8 +1766,8 @@ In seguito sono mostrate le attività identificate:
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
-  top: if y == 0 { 0pt } else { 0.5pt + black },
-  left: if x == 0 { 0pt } else { 0.5pt + black },
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "-", "-", "3", "-", "-", "-", [*3*],
@@ -1775,14 +1782,12 @@ In seguito sono mostrate le attività identificate:
 ==== Grafico a torta della suddivisione oraria prevista
 
 #let orePrevSprint8 = (
-  
-("Responsabile", 2),
-("Amministratore", 3),
-("Analista", 7),
+  ("Responsabile", 2),
+  ("Amministratore", 3),
+  ("Analista", 7),
   ("Progettista", 0),
   ("Programmatore", 0),
   ("Verificatore", 0),
-
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint8)
 
@@ -1800,49 +1805,52 @@ Il team ha svolto con successi le seguenti attività nello sprint 8:
 Lo Sprint 8 si è concluso con il completamento della totalità delle issue pianificate. Un risultato cruciale di questo periodo è stato l'approfondimento delle tecnologie di supporto: grazie alla base tecnica acquisita, il prossimo sprint sarà focalizzato sulla realizzazione pratica del #gloss("POC").
 
 Parallelamente allo sviluppo, verranno redatti i test di sistema da includere nel #gloss("PdQ") e proseguiranno le attività di stesura e aggiornamento delle #gloss("NdP").
+//TODO: la retrospettiva deve guardare indietro non in avanti, deve spiegare cos'è successo e i problemi incontrati, si potrebbe citare il fatto dell'esame di SWE che ha limitato la produttività del gruppo
 
 ==== Risorse utilizzate
 #table(
-	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-		align: left,
-		stroke: (x, y) => (
-		top: if y == 0 { 0pt } else { 0.5pt + black },
-		left: if x == 0 { 0pt } else { 0.5pt + black },
-		),
-		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-		"Jaume Bernardi", "-", "-", "4 (+1)", "-", "-", "-", [*4*],
-"Alessandro Dinato", "-", "-", "-", "-", "-", "-", [*0*],
-"Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
-"Hossam Ezzemouri", "-", "-", "4 (+1)", "-", "-", "-", [*4*],
-"Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
-"Siria Salvalaio", "2", "2", "-", "-", "-", "-", [*4*],
-"Elia Ernesto Stellin", "-", "1", "1", "-", "-", "-", [*2*],
-table.footer([*Totale*], [*2*], [*3*], [*9*], [*0*], [*0*], [*0*], [*14*]),
-	)
-	==== Grafico a torta della suddivisione oraria prevista
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "-", "-", "4 (+1)", "-", "-", "-", [*4*],
+  "Alessandro Dinato", "-", "-", "-", "-", "-", "-", [*0*],
+  "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+  "Hossam Ezzemouri", "-", "-", "4 (+1)", "-", "-", "-", [*4*],
+  "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
+  "Siria Salvalaio", "2", "2", "-", "-", "-", "-", [*4*],
+  "Elia Ernesto Stellin", "-", "1", "1", "-", "-", "-", [*2*],
+  table.footer([*Totale*], [*2*], [*3*], [*9*], [*0*], [*0*], [*0*], [*14*]),
+)
+==== Grafico a torta della suddivisione oraria prevista
 
 #let oreEffettiveSprint8 = (
-  
   ("Responsabile", 2),
   ("Amministratore", 3),
   ("Analista", 9),
   ("Progettista", 0),
   ("Programmatore", 0),
   ("Verificatore", 0),
-
 )
-#graficoTorta("Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",oreEffettiveSprint8,)
+#graficoTorta(
+  "Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint8,
+)
 
 ==== Rischi occorsi
 Il gruppo ha dovuto affrontare i rischi RT1 (@RT1) e RP1 (@RP1). La concomitanza con gli appelli d'esame ha comportato rallentamenti operativi, in particolare per quanto riguarda la issue #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/107")[#107]; non essendo stato possibile completarla entro i termini previsti, l'attività è stata ri-pianificata e verrà portata a termine nel prossimo sprint.
+L'impatto di questi rischi è stato relativamente basso dato all'anticipata previsione.
 
 ==== Aggiornamento ore rimanenti
 #table(
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
-  top: if y == 0 { 0pt } else { 0.5pt + black },
-  left: if x == 0 { 0pt } else { 0.5pt + black },
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
   "Jaume Bernardi", "8", "7", "4 (-4)", "21", "24", "21", [*85*],
@@ -1864,12 +1872,12 @@ Il gruppo ha dovuto affrontare i rischi RT1 (@RT1) e RP1 (@RP1). La concomitanza
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
-  "Responsabile", "38 (-2)" ,"30 €/h", "1140 € (-60 €)",
-  "Amministratore", "32 (-3)" ,"20 €/h", "640 € (-60 €)",
-  "Analista", "2 (-9)" ,"25 €/h", "50 € (-225 €)",
-  "Progettista", "145 " ,"25 €/h", "3625 € ",
-  "Programmatore", "165 " ,"15 €/h", "2475 € ",
-  "Verificatore", "160 " ,"15 €/h", "2400 € ",
+  "Responsabile", "38 (-2)", "30 €/h", "1140 € (-60 €)",
+  "Amministratore", "32 (-3)", "20 €/h", "640 € (-60 €)",
+  "Analista", "2 (-9)", "25 €/h", "50 € (-225 €)",
+  "Progettista", "145 ", "25 €/h", "3625 € ",
+  "Programmatore", "165 ", "15 €/h", "2475 € ",
+  "Verificatore", "160 ", "15 €/h", "2400 € ",
   table.footer([*Totale*], [*542*], [-], [*10330 €*]),
 )
 
