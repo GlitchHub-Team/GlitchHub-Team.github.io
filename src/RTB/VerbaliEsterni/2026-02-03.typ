@@ -2,20 +2,20 @@
 
 #show: report.with(
   titolo: "Verbale esterno 03/02/2026 (M31)",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "0.1.0",
       "04/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Alessandro Dinato",
       "Stesura verbale esterno del 03/02/2026",
     ),
     (
       "0.0.1",
       "04/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Alessandro Dinato",
       "Bozza iniziale verbale esterno del 03/02/2026",
     ),
   ),
@@ -23,28 +23,28 @@
     "Alessandro Dinato",
     "Riccardo Graziani",
     "Elia Ernesto Stellin",
-    "Jaume Bernardi"
+    "Jaume Bernardi",
   ),
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Cardin Riccardo", "Prof. Vardanega Tullio"),
   odg: (
     [Dubbi sulla classificazione dei #gloss[requisiti]],
     [Crittografia #gloss[NATS]],
     [Scambio di chiavi tra #gloss[NATS] e #gloss[Gin]],
-    [Gestione dell'autenticazione tramite *Keycloak*]
+    [Gestione dell'autenticazione tramite *Keycloak*],
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
 )
 
 = Introduzione
-Il presente verbale attesta che in data 3 febbraio 2026 dalle 14:40 alle 15:15, si è svolto l'incontro con la proponente M31 SRL, in modalità remota.
+Il presente verbale attesta che in data 3 febbraio 2026 dalle 14:40 alle 15:15, si è svolto l'incontro con la proponente *M31 SRL*, in modalità remota.
 
 L'incontro ha avuto l'obiettivo di discutere e chiarire:
-- il livello di importanza di alcuni #gloss[requisiti]; 
+- il livello di importanza di alcuni #gloss[requisiti];
 - come gestire la crittografia lato #gloss[NATS];
 - come gestire lo scambio di chiavi di cifratura tra #gloss[NATS] e #gloss[Gin];
 - come gestire l'autenticazione usando *Keycloak*.
@@ -72,12 +72,13 @@ La proponente ha chiarito che:
 - la presenza degli *alert* di base è da considerarsi #gloss[requisito] *obbligatorio*.
 
 == Crittografia NATS
-Il gruppo ha esposto i propri dubbi su come gestire la crittografia dei dati su #gloss[NATS]. Il problema principale riguarda il salvataggio di tali dati su #gloss[TimescaleDB]: salvare tutti i dati crittografati nel database causerebbe un'importante perdita di performance, in quanto il server #gloss[Gin] dovrebbe richiedere tutti i dati e decrittarli in memoria.
+Il gruppo ha esposto i propri dubbi su come gestire la crittografia dei dati su #gloss[NATS]. Il problema principale riguarda il salvataggio di tali dati su #gloss[TimescaleDB]: salvare tutti i dati crittografati nel database causerebbe un'importante perdita di performance, in quanto il server #gloss[Gin] dovrebbe richiedere tutti i dati e decrittarli in memoria prima di poter eseguire qualsiasi operazione di filtro o aggregazione.
+
 \
-La proponente ha dichiarato che la soluzione va determinata con uno studio più approfondito delle tecnologie.
+La proponente ha dichiarato che la soluzione va determinata con uno studio più approfondito delle tecnologie ed ha consigliato di esporre questo dubbio attraverso una mail in maniera da poter fornire una risposta più completa.
 
 == Scambio di chiavi di cifratura
-In relazione al precedente dubbio, il gruppo ha individuato un problema riguardo allo scambio di chiavi di cifratura. In particolare il gruppo si chiede come poter gestire lo scambio di chiavi tra #gloss[NATS] e #gloss[Gin] senza compromettere la cifratura dei dati.
+In relazione al precedente dubbio, il gruppo ha individuato un problema riguardo allo scambio di chiavi di cifratura. In particolare il gruppo non ha chiaro come le istanze di #gloss[Gin] possano avere tutti le chiavi private di cifratura per poter decrittare i dati ricevuti da #gloss[NATS] o da #gloss[TimescaleDB], senza però esporre tali chiavi in chiaro sul network.
 \
 La proponente ha invitato ad esporre questo dubbio attraverso una mail in maniera da poter fornire una risposta completa.
 
@@ -91,7 +92,5 @@ La proponente ha dichiarato che tale soluzione è accettabile nell'ambito del #g
   columns: (2fr, 2fr, 1fr),
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
-  [Login con dashboard Angular],
-  [Elia Ernesto Stellin],
-  [#issue(16, repo: "poc")]
+  [Login con dashboard Angular], [Elia Ernesto Stellin], [#issue(16, repo: "poc")],
 )
