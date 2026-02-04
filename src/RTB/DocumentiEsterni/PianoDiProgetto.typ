@@ -6,8 +6,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
+  stato: "Bozza",
   registro-modifiche: (
+      (
+      "0.8.1",
+      "03/02/2026",
+      "Siria Salvalaio",
+      "",
+      [Consuntivo di periodo sprint 8],
+    ),
     (
       "0.8.0",
       "24/01/2026",
@@ -1586,9 +1593,7 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
 Inizio: 02/01/2026 \
 Fine: 14/01/2026 \
 
-In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura
-dei requisiti relativi agli Use Cases dell'#gloss("Analisi dei Requisiti") e il completamento del sistema di automazione per il cruscotto
-di valutazione delle metriche.
+In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura dei requisiti relativi agli Use Cases dell'#gloss("Analisi dei Requisiti") e il completamento del sistema di automazione per il cruscotto di valutazione delle metriche.
 
 In seguito sono mostrate le attività identificate:
 - Stabilizzazione del Piano di Qualifica (#issue(149))
@@ -1645,12 +1650,9 @@ Issue relative a sprint 7: \
 - Creazione Google Sheet per cruscotto con automazioni #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/150")[\#150],
 
 ==== Retrospettiva
-Durante lo Sprint 7 il gruppo è riuscito a realizzare una versione stabile del #gloss("Piano di Qualifica"),
-procedendo alla selezione e all'adattamento delle metriche precedentemente analizzate. Permangono alcune correzioni di lieve entità,la
-cui implementazione è pianificata per lo Sprint 8. \
-La realizzazione delle automazioni per il cruscotto di visualizzazione delle metriche è stata completata,
-anche in questo caso restano alcuni dettagli minori da rifinire, che verranno ultimati nello sprint successivo. \
-er quanto riguarda la stesura dei requisiti, è stato possibile completare esclusivamente la definizione degli use case dal 31 al 60.
+Durante lo Sprint 7 il gruppo è riuscito a realizzare una versione stabile del #gloss("Piano di Qualifica"), procedendo alla selezione e all'adattamento delle metriche precedentemente analizzate. Permangono alcune correzioni di lieve entità, la cui implementazione è pianificata per lo Sprint 8. \
+La realizzazione delle automazioni per il cruscotto di visualizzazione delle metriche è stata completata, anche in questo caso restano alcuni dettagli minori da rifinire, che verranno ultimati nello sprint successivo. \
+Per quanto riguarda la stesura dei requisiti, è stato possibile completare esclusivamente la definizione degli use case dal 31 al 60.
 Di conseguenza, nello Sprint 8 verrà data maggiore priorità al completamento della documentazione dei requisiti relativi ai restanti use case.
 
 
@@ -1689,9 +1691,7 @@ Di conseguenza, nello Sprint 8 verrà data maggiore priorità al completamento d
 
 ==== Rischi occorsi
 Il gruppo ha riscontrato il rischio R01 (@RO1), in quanto non è stato possibile completare integralmente la stesura dei requisiti relativi
-agli Use Case analizzati, ma solo una parte di essi.L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti")
-in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine,nello Sprint 8 questa attività verrà intensificata
-per il suo completamento.
+agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti") in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine, nello Sprint 8 questa attività verrà intensificata per il suo completamento.
 
 
 ==== Aggiornamento ore rimanenti
@@ -1751,7 +1751,7 @@ In seguito sono mostrate le attività identificate:
 - *RT1* (@RT1): lo studio di nuove tecnologie potrebbe risultare più lunga di quanto previsto e/o più difficile di quanto valutato.
 - *RO1* (@RO1): si potrebbero verificare dei ritardi dato il periodo di studio intenso, legato al rischio *RP1* (@RP1).
 - *RO2* (@RO2): l'errata organizzazione e distribuzione delle risorse del gruppo può portare ad un carico di lavoro squilibrato fra il gruppo che deve scrivere i diagrammi degli use case e gli altri membri del gruppo.
-- *RP1* (@RP1): la *sessione invernale* potrebbe influire negativamente riguardo le scadenze prefissate.
+- *RP1* (@RP1): la *sessione invernale d'esami* potrebbe influire negativamente riguardo le scadenze prefissate.
 
 
 ==== Preventivo risorse da utilizzare
@@ -1788,12 +1788,23 @@ In seguito sono mostrate le attività identificate:
 === Consuntivo di periodo
 
 ==== Attività svolte
+Il team ha svolto con successi le seguenti attività nello sprint 8:
+- Studio di NATS e Angular.js #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/165")[\#165] e #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/169")[\#169],
+- Scrittura diagrammi usa case (tramite STAR UML) e stesura dei requisiti #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/166")[\#166]
+- [PdQ] Ultimate le metriche con aggiunta di formule e definite le iniziative di miglioramento #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/171")[\#171],
+- Aggiunte definizioni al glossario #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/172")[\#172], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/173")[\#173], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/174")[\#174] e #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/175")[\#175]
 
 ==== Retrospettiva
+Durante lo svolgimento dello Sprint 8, il team ha portato a termine con successo la quasi totalità delle issue pianificate. Le uniche attività che necessitano di un ulteriore iter di lavorazione riguardano la finalizzazione dei diagrammi e la definizione ultimata dei requisiti; tali task verranno pertanto completati all'inizio del prossimo sprint.
+
+Un risultato cruciale di questo sprint è stato lo studio approfondito delle tecnologie di supporto: grazie alla solida base tecnica acquisita, il prossimo sprint potrà essere interamente focalizzato sulla realizzazione pratica del #gloss("POC"). Parallelamente allo sviluppo, verranno redatti anche i test di sistema da inserire nel #gloss("PdQ").
 
 ==== Risorse utilizzate
 
 ==== Grafico a torta della suddivisione oraria prevista
+
+==== Rischi occorsi
+Il gruppo ha dovuto affrontare i rischi *RT1* (@RT1) e *RP1* (@RP1), infatti il dover fare appelli di vari esami ha portato a lievi ritardi soprattutto per quando riguarda la issue #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/166")[\#166]
 
 ==== Aggiornamento ore rimanenti
 
