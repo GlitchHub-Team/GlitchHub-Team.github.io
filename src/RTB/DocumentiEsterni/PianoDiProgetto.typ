@@ -1473,15 +1473,15 @@ Il gruppo di lavoro per il *Piano di Qualifica* ha individuato le seguenti attiv
     top: if y == 0 { 0pt } else { 0.5pt + black },
     left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
-  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-  "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+		"Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
   "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
-  "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
-  "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
+  "Michele Dioli", "-", "4", "-", "-", "-", "-", [*4*],
+  "Hossam Ezzemouri", "-", "4", "-", "-", "-", "-", [*4*],
   "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
-  "Siria Salvalaio", "-", "-", "-", "-", "-", "-", [*0*],
+  "Siria Salvalaio", "-", "4", "-", "-", "-", "-", [*4*],
   "Elia Ernesto Stellin", "1", "-", "1", "-", "-", "-", [*2*],
-  table.footer([*Totale*], [*1*], [*0*], [*5*], [*0*], [*0*], [*0*], [*6*]),
+  table.footer([*Totale*], [*1*], [*12*], [*5*], [*0*], [*0*], [*0*], [*18*]),
 )
 ==== Grafico a torta della suddivisione oraria prevista
 
@@ -1710,7 +1710,7 @@ agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come 
   "Riccardo Graziani", "8", "8", "-3 (-4)", "20", "23", "24", [*80*],
   "Siria Salvalaio", "8", "3", "3 (-3)", "21", "24", "21", [*80*],
   "Elia Ernesto Stellin", "6", "3", "-1 (-3)", "21", "23", "24", [*76*],
-  table.footer([*Totale*], [*40*], [*35*], [*11*], [*145*], [*165*], [*160*], [*569*]),
+  table.footer([*Totale*], [*40*], [*35*], [*11*], [*145*], [*165*], [*160*], [*556*]),
 )
 
 ==== Aggiornamento costi
@@ -1759,28 +1759,30 @@ In seguito sono mostrate le attività identificate:
   columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
   align: left,
   stroke: (x, y) => (
-    top: if y == 0 { 0pt } else { 0.5pt + black },
-    left: if x == 0 { 0pt } else { 0.5pt + black },
+  top: if y == 0 { 0pt } else { 0.5pt + black },
+  left: if x == 0 { 0pt } else { 0.5pt + black },
   ),
   table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-  "Jaume Bernardi", "-", "2", "3", "-", "-", "-", [*5*],
-  "Alessandro Dinato", "-", "2", "-", "-", "-", "-", [*2*],
-  "Michele Dioli", "-", "1", "3", "-", "-", "-", [*4*],
+  "Jaume Bernardi", "-", "-", "3", "-", "-", "-", [*3*],
+  "Alessandro Dinato", "-", "-", "-", "-", "-", "-", [*0*],
+  "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
   "Hossam Ezzemouri", "-", "-", "3", "-", "-", "-", [*3*],
-  "Riccardo Graziani", "-", "2", "-", "-", "-", "-", [*2*],
-  "Siria Salvalaio", "2", "1", "-", "-", "-", "-", [*3*],
+  "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
+  "Siria Salvalaio", "2", "2", "-", "-", "-", "-", [*4*],
   "Elia Ernesto Stellin", "-", "1", "1", "-", "-", "-", [*2*],
-  table.footer([*Totale*], [*2*], [*9*], [*10*], [*0*], [*0*], [*0*], [*21*]),
+  table.footer([*Totale*], [*2*], [*3*], [*7*], [*0*], [*0*], [*0*], [*12*]),
 )
 ==== Grafico a torta della suddivisione oraria prevista
 
 #let orePrevSprint8 = (
-  ("Responsabile", 2),
-  ("Amministratore", 9),
-  ("Analista", 10),
+  
+("Responsabile", 2),
+("Amministratore", 3),
+("Analista", 7),
   ("Progettista", 0),
   ("Programmatore", 0),
   ("Verificatore", 0),
+
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint8)
 
@@ -1795,18 +1797,79 @@ Il team ha svolto con successi le seguenti attività nello sprint 8:
 - Aggiunte definizioni al glossario #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/172")[\#172], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/173")[\#173], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/174")[\#174] e #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/175")[\#175]
 
 ==== Retrospettiva
-Durante lo svolgimento dello Sprint 8, il team ha portato a termine con successo la quasi totalità delle issue pianificate. Le uniche attività che necessitano di un ulteriore iter di lavorazione riguardano la finalizzazione dei diagrammi e la definizione ultimata dei requisiti; tali task verranno pertanto completati all'inizio del prossimo sprint.
+Lo Sprint 8 si è concluso con il completamento della totalità delle issue pianificate. Un risultato cruciale di questo periodo è stato l'approfondimento delle tecnologie di supporto: grazie alla base tecnica acquisita, il prossimo sprint sarà focalizzato sulla realizzazione pratica del #gloss("POC").
 
-Un risultato cruciale di questo sprint è stato lo studio approfondito delle tecnologie di supporto: grazie alla solida base tecnica acquisita, il prossimo sprint potrà essere interamente focalizzato sulla realizzazione pratica del #gloss("POC"). Parallelamente allo sviluppo, verranno redatti anche i test di sistema da inserire nel #gloss("PdQ").
+Parallelamente allo sviluppo, verranno redatti i test di sistema da includere nel #gloss("PdQ") e proseguiranno le attività di stesura e aggiornamento delle #gloss("NdP").
 
 ==== Risorse utilizzate
+#table(
+	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+		align: left,
+		stroke: (x, y) => (
+		top: if y == 0 { 0pt } else { 0.5pt + black },
+		left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+		"Jaume Bernardi", "-", "-", "4 (+1)", "-", "-", "-", [*4*],
+"Alessandro Dinato", "-", "-", "-", "-", "-", "-", [*0*],
+"Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+"Hossam Ezzemouri", "-", "-", "4 (+1)", "-", "-", "-", [*4*],
+"Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
+"Siria Salvalaio", "2", "2", "-", "-", "-", "-", [*4*],
+"Elia Ernesto Stellin", "-", "1", "1", "-", "-", "-", [*2*],
+table.footer([*Totale*], [*2*], [*3*], [*9*], [*0*], [*0*], [*0*], [*14*]),
+	)
+	==== Grafico a torta della suddivisione oraria prevista
 
-==== Grafico a torta della suddivisione oraria prevista
+#let oreEffettiveSprint8 = (
+  
+  ("Responsabile", 2),
+  ("Amministratore", 3),
+  ("Analista", 9),
+  ("Progettista", 0),
+  ("Programmatore", 0),
+  ("Verificatore", 0),
+
+)
+#graficoTorta("Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",oreEffettiveSprint8,)
 
 ==== Rischi occorsi
-Il gruppo ha dovuto affrontare i rischi *RT1* (@RT1) e *RP1* (@RP1), infatti il dover fare appelli di vari esami ha portato a lievi ritardi soprattutto per quando riguarda la issue #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/166")[\#166]
+Il gruppo ha dovuto affrontare i rischi RT1 (@RT1) e RP1 (@RP1). La concomitanza con gli appelli d'esame ha comportato rallentamenti operativi, in particolare per quanto riguarda la issue #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/107")[#107]; non essendo stato possibile completarla entro i termini previsti, l'attività è stata ri-pianificata e verrà portata a termine nel prossimo sprint.
 
 ==== Aggiornamento ore rimanenti
+#table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+  align: left,
+  stroke: (x, y) => (
+  top: if y == 0 { 0pt } else { 0.5pt + black },
+  left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+  "Jaume Bernardi", "8", "7", "4 (-4)", "21", "24", "21", [*85*],
+  "Alessandro Dinato", "1", "7", "-3", "21", "23", "24", [*73*],
+  "Michele Dioli", "4", "3", "6", "21", "24", "23", [*81*],
+  "Hossam Ezzemouri", "5", "4", "-3 (-4)", "20", "24", "23", [*73*],
+  "Riccardo Graziani", "8", "8", "-3", "20", "23", "24", [*80*],
+  "Siria Salvalaio", "6 (-2)", "1 (-2)", "3", "21", "24", "21", [*76*],
+  "Elia Ernesto Stellin", "6", "2 (-1)", "-2 (-1)", "21", "23", "24", [*74*],
+  table.footer([*Totale*], [*38*], [*32*], [*2*], [*145*], [*165*], [*160*], [*542*]),
+)
 
 ==== Aggiornamento costi
+#table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+  align: left,
+  stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+  "Responsabile", "38 (-2)" ,"30 €/h", "1140 € (-60 €)",
+  "Amministratore", "32 (-3)" ,"20 €/h", "640 € (-60 €)",
+  "Analista", "2 (-9)" ,"25 €/h", "50 € (-225 €)",
+  "Progettista", "145 " ,"25 €/h", "3625 € ",
+  "Programmatore", "165 " ,"15 €/h", "2475 € ",
+  "Verificatore", "160 " ,"15 €/h", "2400 € ",
+  table.footer([*Totale*], [*542*], [-], [*10330 €*]),
+)
 
