@@ -2937,8 +2937,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-decommissioning-in-lista>)
 
-==== #uc() - Visualizzazione singola richiesta di decommissioning in lista
-<Visualizzazione-singola-richiesta-decommissioning-in-lista>
+==== #uc() - Visualizzazione singola richiesta di decommissioning in lista <Visualizzazione-singola-richiesta-decommissioning-in-lista>
 #image("../../assets/diagrammi/UC104.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -3050,8 +3049,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-storico-decommissioning-gateway>)
 
-==== #uc() - Visualizzazione singola richiesta lista storico decommissioning
-<Visualizzazione-singola-richiesta-storico-decommissioning-gateway>
+==== #uc() - Visualizzazione singola richiesta lista storico decommissioning <Visualizzazione-singola-richiesta-storico-decommissioning-gateway>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3117,6 +3115,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il numero di gateway richiesti nella richiesta
 
 ==== #uc() - Visualizzazione richiesta di decommissioning gateway <Visualizzazione-richiesta-decommissioning-gateway>
+#image("../../assets/diagrammi/UC110.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3168,6 +3167,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 // GESTIONE TENANT ADMIN ------------------------------------------------------------------------------
 ==== #uc() - Creazione utente Tenant Admin <Creazione-utente-tenant-admin>
+#image("../../assets/diagrammi/UC113.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Attore secondario*: Email Client
 - *Pre-condizioni*:
@@ -3221,6 +3221,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - L'Email client riceve una email con il link per l'impostazione della nuova password
 
 ==== #uc() - Sospensione account Tenant Admin <Sospensione-account-tenant-admin>
+#image("../../assets/diagrammi/UC114.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3258,6 +3259,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin conferma la sospensione dell'account del Tenant Admin selezionato
 
 ==== #uc() - Riattivazione account Tenant Admin <Riattivazione-account-tenant-admin>
+#image("../../assets/diagrammi/UC115.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3295,6 +3297,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin conferma la riattivazione dell'account del Tenant Admin selezionato
 
 ==== #uc() - Eliminazione account Tenant Admin <Eliminazione-account-tenant-admin>
+#image("../../assets/diagrammi/UC116.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3334,6 +3337,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 // UC relativi alle azioni del super-admin sul simulatore
 
 ==== #uc() - Creazione gateway simulato <Creazione-gateway-simulato>
+#image("../../assets/diagrammi/UC117.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3379,7 +3383,9 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin inserisce la dimensione in byte del buffer del nuovo gateway simulato
 
-==== #uc() - Creazione sensore simulato <Creazione-sensore-simulato>
+==== #uc() - Creazione sensore simulato 
+<Creazione-sensore-simulato>
+#image("../../assets/diagrammi/UC118.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3430,6 +3436,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin inserisce l'identificativo del gateway simulato
 
 ==== #uc() - Eliminazione gateway simulato <Eliminazione-gateway-simulato>
+#image("../../assets/diagrammi/UC119.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3464,6 +3471,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin conferma l'eliminazione del gateway simulato selezionato
 
 ==== #uc() - Eliminazione sensore simulato <Eliminazione-sensore-simulato>
+#image("../../assets/diagrammi/UC120.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3498,6 +3506,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin conferma l'eliminazione del sensore simulato selezionato
 
 ==== #uc() - Monitoraggio metriche di sistema <Monitoraggio-metriche-di-sistema>
+#image("../../assets/diagrammi/UC121.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3602,6 +3611,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il grafico a barre rappresentante il numero di valori out-of-range rilevati per ogni sensore
 
 ==== #uc() - Visualizzazione storico dei Tenant possessori di sensore <Visualizzazione-storico-possessori-sensore>
+#image("../../assets/diagrammi/UC122.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3648,6 +3658,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il periodo di associazione del sensore specificato al Tenant
 
 ==== #uc() - Visualizzazione storico dei Tenant possessori di gateway <Visualizzazione-storico-possessori-gateway>
+#image("../../assets/diagrammi/UC124.svg", width: 100%)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3695,6 +3706,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 === Attore principale - Gateway
 ==== #uc() - Conferma esecuzione commissioning <Conferma-comando-commissioning>
+#image("../../assets/diagrammi/UC126.svg", width: 100%)
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il gateway è connesso e autenticato con il Cloud
@@ -3886,6 +3898,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il gateway invia un comando di conferma al Cloud
 
 ==== #uc() - Invio comando di hello <Invio-comando-hello>
+#image("../../assets/diagrammi/UC138.svg", width: 100%)
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il gateway è connesso al Cloud
@@ -3974,6 +3987,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 Di seguito sono riportati tutti gli use cases in cui l'attore principale è un generico API Client, ovvero un client che accede all'API esposta tramite una API Key di autenticazione prodotta da un Super Admin o un Tenant Admin.
 
 ==== #uc() - Richiesta dati real-time sensore <Richiesta-dati-real-time-sensore>
+#image("../../assets/diagrammi/UC144.svg", width: 100%)
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
@@ -4004,6 +4018,7 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 
 
 ==== #uc() - Richiesta storico dati sensore <Richiesta-storico-dati-sensore>
+#image("../../assets/diagrammi/UC145.svg", width: 100%)
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
@@ -4065,6 +4080,7 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 
 
 ==== #uc() - Autenticazione API Client <Autenticazione-API-Client>
+#image("../../assets/diagrammi/UC149.svg", width: 100%)
 - *Attore principale*: API Client
 - *Pre-condizioni*:
   - L'API Client possiede delle credenziali di accesso
@@ -4106,6 +4122,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 === Attore principale - Sensore simulato
 
 ==== #uc() - Invio nuovo dato al gateway <Invio-nuovo-dato-gateway>
+#image("../../assets/diagrammi/UC152.svg", width: 100%)
 - *Attore principale*: Sensore simulato
 - *Pre-condizioni*:
   - Il Sensore è configurato correttamente con il Sistema Gateway
@@ -4233,6 +4250,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Cloud invia il rifiuto di autenticazione al gateway
 
 ==== #uc() - Assegnazione tenant al gateway <Assegnazione-tenant-gateway>
+#image("../../assets/diagrammi/UC161.svg", width: 100%)
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
@@ -4346,6 +4364,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 
 ==== #uc() - Decommissioning gateway <Decommissioning-gateway-cloud>
+#image("../../assets/diagrammi/UC168.svg", width: 100%)
 - *Attore principale*: Cloud
 - *Pre-condizioni*:
   - Il Sistema Gateway è autenticato nel Cloud
