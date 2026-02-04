@@ -4,8 +4,9 @@
 #show: report.with(
   titolo: "Piano di Qualifica",
   stato: "da verificare",
-  versione: "0.0.9",
+  versione: "0.0.10",
   registro-modifiche: (
+	("0.0.10", "04/02/2026", "Michele Dioli", "", "Stesura test di sistema da #1 a #64"),
     ("0.0.9", "03/02/2026", "Hossam Ezzemouri", "", "Correzione tabella + stesura test di sistema da #129 a #192"),
     ("0.0.8", "03/02/2026", "Jaume Bernardi", "", "Stesura test di sistema"),
 
