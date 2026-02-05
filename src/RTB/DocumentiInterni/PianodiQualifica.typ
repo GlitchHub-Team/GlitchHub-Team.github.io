@@ -4,9 +4,10 @@
 #show: report.with(
   titolo: "Piano di Qualifica",
   stato: "da verificare",
-  versione: "0.0.10",
+  versione: "0.0.11",
   registro-modifiche: (
-	("0.0.10", "04/02/2026", "Michele Dioli", "", "Stesura test di sistema da #1 a #64"),
+		("0.0.11", "05/02/2026", "Riccardo Graziani", "", "Stesura test di sistema da #257 a #294"),
+		("0.0.10", "04/02/2026", "Michele Dioli", "", "Stesura test di sistema da #1 a #64"),
     ("0.0.9", "03/02/2026", "Hossam Ezzemouri", "", "Correzione tabella + stesura test di sistema da #129 a #192"),
     ("0.0.8", "03/02/2026", "Jaume Bernardi", "", "Stesura test di sistema"),
 
@@ -1425,7 +1426,198 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 	[#rf()],
 	[Non implementato],
 
-  )
+	// RF257 - RF294
+	[#ts()],
+	[Verificare che il *Sistema* possa inviare un'email per l'impostazione password al nuovo Tenant Admin],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa sospendere un account Tenant Admin],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa selezionare il Tenant Admin che vuole sospendere],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* richieda conferma prima di sospendere un account Tenant Admin],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa riattivare un account Tenant Admin sospeso],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa selezionare il Tenant Admin che desidera riattivare],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* richieda conferma prima di riattivare il Tenant Admin selezionato],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa eliminare un account Tenant Admin],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa selezionare il Tenant Admin da eliminare],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* richieda conferma prima di eliminare un account Tenant Admin],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa creare un gateway simulato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un gateway simulato, inserisca il nome del gateway],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un gateway simulato, inserisca la soglia di timeout di inattività],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un gateway simulato, inserisca la dimensione del buffer],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa creare un sensore simulato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un sensore simulato, selezioni il servizio GATT da simulare],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un sensore simulato, inserisca la soglia di timeout per gli alert],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, creando un sensore simulato, lo associ ad un gateway simulato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa eliminare un gateway simulato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa selezionare il gateway simulato da eliminare],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* richieda conferma prima di eliminare un gateway simulato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa eliminare un sensore simulato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa selezionare il sensore simulato da eliminare],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Sistema* richieda conferma prima di eliminare un sensore simulato],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa monitare le metriche di sistema],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare il numero di gateway online/offline],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare il throughput dei dati],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare l'utilizzo delle risorse dei nodi cloud],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare la frequenza delle disconnessioni dei gateway],
+	[#rf[Des]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare le dimensioni dei payload dei pacchetti],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare la data staleness dei dati],
+	[#rf()],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare i valori out-of-range rilevati],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare lo storico dei tenant possessori di un sensore],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un sensore, ne visualizzi il nome],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un sensore, ne visualizzi il periodo di associazione],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin* possa visualizzare lo storico dei tenant possessori di un gateway],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un gateway, ne visualizzi il nome],
+	[#rf[Opt]],
+	[Non implementato],
+
+	[#ts()],
+	[Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un gateway, ne visualizzi il periodo di associazione],
+	[#rf[Opt]],
+	[Non implementato],
+	
+)
 
 #figure(
   table(
