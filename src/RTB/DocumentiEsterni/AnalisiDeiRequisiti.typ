@@ -92,7 +92,13 @@
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
   registro-modifiche: (
-
+    (
+      "0.32.0",
+      "05/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Rimossi requisiti non funzionali e requisiti di dominio ridondanti; Rimosso ex-RF149 e sistemati requisiti relativi a cifratura end-to-end dei dati dei tenant]
+    ),
     (
       "0.31.0",
       "04/02/2026",
@@ -3958,7 +3964,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il Sistema aggiorna il timestamp di ultima ricezione dati per il gateway specifico e per i sensori coinvolti
 - *Scenario principale*:
   - Il gateway raccoglie i dati dal proprio buffer interno
-  - Il gateway utilizza la propria chiave per crittografare i dati raccolti dai sensori
+  - Il gateway utilizza la chiave pubblica per crittografare i dati raccolti dai sensori
   - Il gateway invia i dati crittografati al Sistema
 - *Scenari alternativi*:
   - L'invio dei dati crittografati fallisce
@@ -4258,6 +4264,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia il rifiuto di autenticazione al gateway
 
+// TODO: rifare diagramma UC161, tolto sub uc "invio chiave cifratura dati"
 ==== #uc() - Assegnazione tenant al gateway <Assegnazione-tenant-gateway>
 #image("../../assets/diagrammi/UC161.svg", width: 100%)
 - *Attore principale*: Cloud
@@ -4270,10 +4277,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sistema Gateway è pronto per inviare dati crittografati
 - *Scenario principale*:
   - Il Cloud invia al Sistema Gateway l'assegnazione del tenant al Sistema
-  - Il Cloud invia al Sistema Gateway la chiave pubblica per la cifratura dei dati
 - *Inclusioni*:
   - #ref-uc(<Invio-tenant-associato-gateway>)
-  - #ref-uc(<Invio-chiave-cifratura-dati>)
 
 ===== #sub-uc() - Invio tenant associato al gateway <Invio-tenant-associato-gateway>
 - *Attore principale*: Cloud
@@ -4285,17 +4290,6 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sistema riceve e salva l'assegnazione del tenant
 - *Scenario principale*:
   - Il Cloud invia l'assegnazione del tenant al Sistema
-
-===== #sub-uc() - Invio chiave per la cifratura dei dati <Invio-chiave-cifratura-dati>
-- *Attore principale*: Cloud
-- *Pre-condizioni*:
-  - Il Sistema è autenticato nel Cloud
-  - Il Sistema non è ancora associato ad un tenant
-  - Il Tenant assegnato è valido
-- *Post-condizioni*:
-  - Il Sistema riceve e salva la chiave per la cifratura dei dati
-- *Scenario principale*:
-  - Il Cloud invia la chiave pubblica per la cifratura dei dati al Sistema
 
 
 ==== #uc() - Riattivazione sensore simulato <Riattivazione-sensore-simulato>
@@ -4395,7 +4389,6 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sistema Gateway è associato ad un tenant
 - *Post-condizioni*:
   - Il Sistema cancella l'associazione al tenant
-  - Il Sistema cancella la chiave per la cifratura dei dati
 - *Scenario principale*:
   - Il Cloud invia il comando di disassociazione del tenant al Sistema Gateway
 
@@ -4874,7 +4867,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Conferma-comando-decommissioning>)],
 
   [#rf()],
-  [Il gateway simulato, dopo aver eseguito il decommissioning, deve rimuovere l'associazione con il tenant, la chiave di cifratura e interrompere l'invio dei dati IoT al Cloud],
+  [Il gateway simulato, dopo aver eseguito il decommissioning, deve rimuovere l'associazione con il tenant e interrompere l'invio dei dati IoT al Cloud],
   [#ref-uc(<Conferma-comando-decommissioning>)],
 
   [#rf()],
@@ -4942,7 +4935,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Identificativo-gateway-non-trovato>)],
 
   [#rf()],
-  [Il gateway simulato deve poter inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud durante l'assegnazione del tenant],
+  [Il gateway simulato deve poter inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud],
   [#ref-uc(<Invio-dati-crittografati>)],
 
   [#rf()],
@@ -5065,10 +5058,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-tenant-associato-gateway>)],
 
   [#rf()],
-  [Il Cloud deve poter inviare al gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
-  [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-chiave-cifratura-dati>), #ref-uc(<Invio-tenant-associato-gateway>)],
-
-  [#rf()],
   [Il Cloud deve poter inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
   [#ref-uc(<Riattivazione-sensore-simulato>)],
 
@@ -5093,11 +5082,11 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Modifica-frequenza-invio-dati-gateway>)],
 
   [#rf()],
-  [Il Cloud deve poter inviare al gateway il comando di decommissioning. In seguito alla ricezione del comando il gateway deve cancellare l'associazione al tenant, la chiave di cifratura e deve eseguire un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning],
+  [Il Cloud deve poter inviare al gateway il comando di decommissioning. In seguito alla ricezione del comando il gateway deve cancellare l'associazione al tenant e deve eseguire un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning.],
   [#ref-uc(<Decommissioning-gateway-cloud>) #ref-uc(<Disassociazione-tenant-gateway>) #ref-uc(<Reset-gateway-cloud>)],
 
   [#rf()],
-  [Il Cloud deve poter inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica],
+  [Il Cloud deve poter inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica.],
   [#ref-uc(<Reset-gateway-cloud>)],
 
   // ============================================
@@ -5691,7 +5680,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rnf()],
   [Si devono predisporre strumenti di monitoraggio in tempo reale delle prestazioni del sistema.],
   [Capitolato §5.5 -- RQ 16, Capitolato §3.3],
-
   
   [#rnf()],
   [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.],
@@ -5700,23 +5688,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rnf()],
   [È necessario versionare il codice utilizzando Git.],
   [Capitolato §5.5 -- RQ 17],
-
-  [#rnf()],
-  [È necessario gestire la bufferizzazione dei dati (gateway/cloud) per tollerare disconnessioni temporanee.],
-  [Capitolato §3.2],
-
-  [#rnf()],
-  [È necessario il supporto allo streaming dei dati in tempo reale.],
-  [Capitolato §3.3],
-
-  [#rnf()],
-  [È necessario il supporto alla gestione di più stream contemporanei.],
-  [Capitolato §3.2],
-
-  // TODO: dov'è scritto che è necessario l'uso dei container?
-  [#rnf()],
-  [È necessario l'uso di container.],
-  [Capitolato §3.3],
 
   [#rnf()],
   [Deve essere garantita la cifratura dei dati.],
@@ -5738,18 +5709,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [Deve essere garantito l'isolamento fisico dei tenant.],
   [Capitolato §5.3 -- RQ 10],
 
-  [#rnf[Opt]],
-  [Devono essere garantiti meccanismi di eventi/alert per notificare anomalie.],
-  [Capitolato §5.2 -- RQ 6],
-
-  [#rnf[Opt]],
-  [Dev'essere presente un sistema di _audit log_ per il tracciamento delle azioni degli utenti nel sistema.],
-  [Capitolato §5.4 -- RQ 12],
-
-  [#rnf[Opt]],
-  [Dev'essere garantita la capacità di integrazione con applicazioni esterne tramite API o connettori dedicati.],
-  [Capitolato §5.2 -- RQ 6],
-
   [#rnf()],
   [Deve essere garantito il provisioning sicuro dei gateway.],
   [Capitolato §3.2],
@@ -5765,25 +5724,12 @@ Inoltre un buon requisito deve essere *SMART*:
 == Requisiti di dominio
 // NOTA: Inserire qui i requisiti di dominio, non in tabella
 #let lista-rd = (
-  // TODO: non è un requisito l'uso di sensori BLE, au contraire
-  [#rd()], 
-  [È necessario l'uso di sensori BLE.], 
-  [Capitolato di progetto],
-
-  [#rd()], 
-  [I dati devono provenire da sensori Bluetooth Low Energy.], 
-  [Capitolato §2.1],
-
   [#rd()],
-  [La comunicazione deve essere basata su profili BLE standard.],
-  [Capitolato §2.2],
-
-  [#rd()],
-  [È richiesto l'uso di un'architettura a tre livelli: sensori, gateway BLE--WiFi e cloud.],
+  [È richiesto l'uso di un'architettura a tre livelli: sensori simulati, simulatore di gateway e cloud.],
   [Capitolato §3],
 
   [#rd()],
-  [È necessario l'utilizzo di gateway come intermediari obbligatori: i sensori non devono comunicare direttamente con il cloud.],
+  [È necessario l'utilizzo di gateway come intermediari obbligatori: i sensori simulati non devono comunicare direttamente con il cloud.],
   [Capitolato §2.2],
 
   [#rd()],
@@ -5806,7 +5752,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [I dati devono essere associati a un timestamp ed essere interrogabili per sensore e per intervallo temporale.],
   [Capitolato §5.1 -- RQ 4.2.1],
 
-  // TODO: dov'è scritto questo nella sezione 5.1 di capitolato?
   [#rd()],
   [Gateway e sensori devono essere registrati, associati a un tenant e riconosciuti in modo persistente dal sistema.],
   [Capitolato §5.1 -- RQ 2.4],
@@ -5818,11 +5763,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rd()],
   [Il dominio richiede l'accesso ai dati in tempo reale tramite stream.],
   [Capitolato §5.1 -- RQ 4.2.2],
-
-  // TODO: si può dire che è un requisito di dominio? io direi che è un requisito funzionale...
-  [#rd()],
-  [È necessaria l'uso di un'interfaccia web per la gestione e configurazione di molteplici elementi diversi.],
-  [Capitolato §2.3],
 )
 
 #table(
