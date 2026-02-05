@@ -4,20 +4,91 @@
 #show: report.with(
   titolo: "Piano di Qualifica",
   stato: "da verificare",
-  versione: "0.0.11",
   registro-modifiche: (
-		("0.0.11", "05/02/2026", "Riccardo Graziani", "", "Stesura test di sistema da #257 a #294"),
-		("0.0.10", "04/02/2026", "Michele Dioli", "", "Stesura test di sistema da #1 a #64"),
-    ("0.0.9", "03/02/2026", "Hossam Ezzemouri", "", "Correzione tabella + stesura test di sistema da #129 a #192"),
-    ("0.0.8", "03/02/2026", "Jaume Bernardi", "", "Stesura test di sistema"),
-
-    ("0.0.7", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", "Piccole modifiche"),
-    ("0.0.6", "24/01/2026", "Siria Salvalaio", "Riccardo Graziani", [Miglioramento descrizione metriche, aggiunta formule e migliorate @iniziative-miglioramento]),
-    ("0.0.5", "17/01/2026", "Michele Dioli", "Riccardo Graziani", "Inizio stesura formule metriche"),
-    ("0.0.4", "13/01/2026", "Siria Salvalaio", "Riccardo Graziani", [Inizio stesura @iniziative-miglioramento (bozza)]),
-    ("0.0.3", "03/01/2026", "Hossam Ezzemouri", "Siria Salvalaio", "Aggiunta di metriche"),
-    ("0.0.2", "29/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Stesura metriche"),
-    ("0.0.1", "21/12/2025", "Siria Salvalaio", "Hossam Ezzemouri", "Bozza prime metriche e struttura documento"),
+		(
+			"0.8.0",
+			"05/02/2026",
+			"Elia Ernesto Stellin",
+			"-",
+			[Modifiche di formattazione varie; Modificata formattazione tabella @tracciamento-test-funzionali; Sistemato versionamento documento; Rimosso test relativo a ex *RF-149-Obb*]
+		),
+		(
+			"0.7.0", 
+			"05/02/2026", 
+			"Riccardo Graziani", 
+			"-", 
+			[Stesura test di sistema da *TS-257* a *TS-294*]
+		),
+		(
+			"0.6.0", 
+			"04/02/2026", 
+			"Michele Dioli", 
+			"-", 
+			[Stesura test di sistema da *TS-1* a *TS-64*]
+		),
+    (
+			"0.5.0", 
+			"03/02/2026", 
+			"Hossam Ezzemouri", 
+			"-", 
+			[Correzione tabella + stesura test di sistema da *TS-129* a *TS-192*]
+		),
+    (
+			"0.4.0",
+			"03/02/2026",
+			"Jaume Bernardi",
+			"-", 
+			"Stesura test di sistema"
+		),
+    (
+			"0.3.2",
+			"24/01/2026",
+			"Siria Salvalaio",
+			"Riccardo Graziani", 
+			"Piccole modifiche"
+		),
+    (
+			"0.3.1",
+			"24/01/2026",
+			"Siria Salvalaio",
+			"Riccardo Graziani", 
+			[Miglioramento descrizione metriche, aggiunta formule e migliorate @iniziative-miglioramento]
+		),
+    (
+			"0.3.0",
+			"17/01/2026",
+			"Michele Dioli",
+			"Riccardo Graziani", 
+			"Inizio stesura formule metriche"
+		),
+    (
+			"0.2.1",
+			"13/01/2026",
+			"Siria Salvalaio",
+			"Riccardo Graziani", 
+			[Inizio stesura @iniziative-miglioramento (bozza)]
+		),
+    (
+			"0.2.0",
+			"03/01/2026",
+			"Hossam Ezzemouri",
+			"Siria Salvalaio", 
+			"Aggiunta di metriche"
+		),
+    (
+			"0.1.0",
+			"29/12/2025",
+			"Siria Salvalaio",
+			"Hossam Ezzemouri", 
+			"Stesura metriche"
+		),
+    (
+			"0.0.1",
+			"21/12/2025",
+			"Siria Salvalaio",
+			"Hossam Ezzemouri", 
+			"Bozza prime metriche e struttura documento"
+		),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
@@ -42,7 +113,7 @@
   rf-counter.step()
   let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
   context rf-counter.display(value => {
-    [RF\-#value\-#rilevanza]
+    [*RF\-#value\-#rilevanza*]
   })
 }
 
@@ -71,36 +142,42 @@ Il Piano di qualifica determina 3 elementi essenziali:
 == Riferimenti
 === Riferimenti normativi
 - *Norme di Progetto* \
-  https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf
+  https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf \
   *Ultimo accesso*: versione 0.2.1
+
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
-  https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
-  *Ultimo accesso*: 29 Dicembre 2025
+  https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
+  *Ultimo accesso*: 5 febbraio 2026
+
 - *Piano di Progetto* \
-  https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf
+  https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf \
   *Ultimo accesso*: versione 0.7.4
 
 === Riferimenti informativi
 - *Glossario* \
-  https://glitchhub-team.github.io/pdf/glossary.pdf
-  *Ultimo accesso*: 29 Dicembre 2025
+  https://glitchhub-team.github.io/pdf/glossary.pdf \
+  *Ultimo accesso*: 29 dicembre 2025
+
 - *Slide T07 - Qualità del software* \
-  https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf
-  *Ultimo accesso*: 29 Dicembre 2025
+  https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf \
+  *Ultimo accesso*: 29 dicembre 2025
+
 - *Slide T08 - Qualità del software* \
-  https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf
-  *Ultimo accesso*: 29 Dicembre 2025
+  https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf \
+  *Ultimo accesso*: 29 dicembre 2025
+
 - *ISO/IEC 25010* \
-  https://iso25000.com/index.php/en/iso-25000-standards/iso-25010
-  *Ultimo accesso*: 29 Dicembre 2025
-- *Metrica software - wikipedia* \  
-  https://it.wikipedia.org/wiki/Metrica_software
+  https://iso25000.com/index.php/en/iso-25000-standards/iso-25010 \
+  *Ultimo accesso*: 29 dicembre 2025
+
+- *Metrica software -- Wikipedia* \  
+  https://it.wikipedia.org/wiki/Metrica_software \
   *Ultimo accesso*: 24 gennaio 2026
 
 = Metriche di Qualità del Processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
 
-In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Metriche di processo e controllo). Questo identificativo permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
+In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#strong[M]etriche di #strong[P]rocesso e #strong[C]ontrollo). Questo identificativo permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
 
 == Fornitura
 - *MPC-PV (Planned Value)* \
@@ -289,7 +366,7 @@ In questo documento, tali misure vengono identificate tramite la sigla _MPC_ (Me
 = Metriche di Qualità del Prodotto
 Le metriche di qualità del prodotto misurano le proprietà interne ed esterne del prodotto software finale: comportamento funzionale, affidabilità, usabilità, l'efficienza, la manutenibilità e la sicurezza. Il loro scopo è di verificare quanto il prodotto soddisfa i requisiti che si aspetta l'utente, quanto è robusto in condizioni reali e quanto può essere compreso, modificato, testato e protetto. In sintesi, valutano la qualità del software in esecuzione in circostanze reali.
 
-In questo documento, tali misure vengono identificate tramite la sigla _MPD_ (Metriche di Prodotto). Questo identificativo permette di classificare e monitorare le caratteristiche del software, facilitando la verifica del raggiungimento degli obiettivi qualitativi prefissati per il prodotto finale.
+In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#strong[M]etriche di #strong[P]ro#strong[d]otto). Questo identificativo permette di classificare e monitorare le caratteristiche del software, facilitando la verifica del raggiungimento degli obiettivi qualitativi prefissati per il prodotto finale.
 
 == Funzionalità
 - *MPD-CRO (Copertura Requisiti Obbligatori)* \
@@ -1211,10 +1288,10 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 	[#rf()],
 	[Non implementato],
 
-	[#ts()],
-	[Verificare che il *Cloud* possa inviare al gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
-	[#rf()],
-	[Non implementato],
+	// [#ts()],
+	// [Verificare che il *Cloud* possa inviare al gateway, non commissionato, la chiave pubblica per la cifratura dei dati, in seguito ad un commissioning andato a buon fine],
+	// [#rf()],
+	// [Non implementato],
 
 	[#ts()],
 	[Verificare che il *Cloud* possa inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
@@ -1616,7 +1693,6 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 	[Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un gateway, ne visualizzi il periodo di associazione],
 	[#rf[Opt]],
 	[Non implementato],
-	
 )
 
 #figure(
@@ -1634,9 +1710,8 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
   supplement: [Tabella]
 )
 
-#pagebreak()
-#v(1em)
-== Tracciamento test funzionali 
+
+== Tracciamento test funzionali <tracciamento-test-funzionali>
 #v(2em)
 
 /*
@@ -1646,48 +1721,44 @@ NON TOCCARE
 #rf-counter.update(0)
 #ts-counter.update(0)
 
-#let spezza-tabella = (data) => {
-  let num-rows = calc.floor(data.len() / 2)
-  let half = calc.ceil(num-rows / 2)
+// #let spezza-tabella = (data) => {
+//   let num-rows = calc.floor(data.len() / 2)
+//   let half = calc.ceil(num-rows / 2)
   
-  let left-data = data.slice(0, half * 2)
-  let right-data = data.slice(half * 2)
+//   let left-data = data.slice(0, half * 2)
+//   let right-data = data.slice(half * 2)
   
-  let combined = ()
-  for i in range(half) {
-    let left-test = left-data.at(i * 2, default: [])
-    let left-req = left-data.at(i * 2 + 1, default: [])
-    let right-test = right-data.at(i * 2, default: [])
-    let right-req = right-data.at(i * 2 + 1, default: [])
+//   let combined = ()
+//   for i in range(half) {
+//     let left-test = left-data.at(i * 2, default: [])
+//     let left-req = left-data.at(i * 2 + 1, default: [])
+//     let right-test = right-data.at(i * 2, default: [])
+//     let right-req = right-data.at(i * 2 + 1, default: [])
     
-    combined.push(left-test)
-    combined.push(left-req)
-    combined.push([])
-    combined.push(right-test)
-    combined.push(right-req)
-  }
-  combined
-}
+//     combined.push(left-test)
+//     combined.push(left-req)
+//     combined.push([])
+//     combined.push(right-test)
+//     combined.push(right-req)
+//   }
+//   combined
+// }
 
 /*
-Non usare questa tabella usare lista soptra
+Non usare questa tabella usare lista sopra
 */
 
-#align(center)[
-  #table(
-    columns: (auto, auto, 4em, auto, auto), 
-    align: center,
-    stroke: (x, y) => {
-
-      if x == 2 { none } else { 0.5pt }
-    },
-    table.header(
-      [*Test*], [*Requisito*], 
-      [],
-      [*Test*], [*Requisito*]
-    ),
-    ..spezza-tabella(get-tracciamento(lista-test))
-  )
+#columns(2)[
+	#align(center)[
+		#table(
+			columns: (auto, auto), 
+			align: center,
+			table.header(
+				[*Test*], [*Requisito*], 
+			),
+			..get-tracciamento(lista-test)
+		)
+	]
 ]
 
 = Cruscotto di Valutazione
