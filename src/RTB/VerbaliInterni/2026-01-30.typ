@@ -3,14 +3,21 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 30/01/2026",
-  stato: "Da verificare",
-  versione: "0.2.0",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
+      (
+      "1.0.0",
+      "06/02/2026",
+      "Riccardo Graziani",
+      "Siria Salvalaio",
+      "Versione stabile",
+    ),
     (
       "0.2.0",
       "04/02/2026",
       "Riccardo Graziani",
-      "",
+      "Siria Salvalaio",
       "Implementate le correzioni suggerite",
     ),
     (
