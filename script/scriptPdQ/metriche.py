@@ -6,8 +6,8 @@ from pypdf import PdfReader
 import language_tool_python
 from spellchecker import SpellChecker
 
-ROOT_DIR = "../"
-SRC_DIR = "../src/RTB"
+ROOT_DIR = "../../"
+SRC_DIR = "../../src/RTB"
 OUTPUT_EXCEL_REPORT = "errori&gulp.xlsx"
 
 WHITELIST = {

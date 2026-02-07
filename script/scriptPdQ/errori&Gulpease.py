@@ -3,8 +3,12 @@ from collections import defaultdict
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 import time
+from dotenv import load_dotenv
+import os
 
-GITHUB_TOKEN = "" #
+load_dotenv()
+
+GITHUB_TOKEN = ""
 ORGANIZATION = "GlitchHub-Team"
 PROJECT_NUMBER = 2
 OUTPUT_FILE = "report_sprint_gerarchico.xlsx"
@@ -114,6 +118,7 @@ def get_all_project_items(org, project_num, token):
 
 
 def main():
+    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
     try:
         items = get_all_project_items(ORGANIZATION, PROJECT_NUMBER, GITHUB_TOKEN)
     except Exception:
