@@ -20,7 +20,7 @@
         "definition": "Piattaforma online basata su Git per archiviare repository, collaborare sul codice e gestire progetti software."
     },
     {
-        "term": "GitHub Actions",
+        "term": "GitHub Action",
         "definition": "Sistema di automazione integrato in GitHub che esegue pipeline CI/CD, test, build e deploy al verificarsi di eventi."
     },
     {
@@ -120,7 +120,7 @@
         "definition": "Strumento di project management che consente di organizzare task, documenti, obiettivi e comunicazione del team."
     },
     {
-        "term": "SemanticVersioning",
+        "term": "Semantic Versioning",
         "definition": "Schema di versionamento software basato su tre numeri MAJOR.MINOR.PATCH che indicano rispettivamente cambiamenti incompatibili, nuove funzionalità e correzioni di bug."
     },
     {
@@ -312,15 +312,15 @@
         "definition": "Percentuale di codice coperta dai test automatici, indica quanto è testata l'applicazione."
     },
     {
-        "term": "Analisi dei requisiti",
+        "term": "Analisi dei Requisiti",
         "definition": "È l'attività che studia i bisogni dell'utente e del dominio d'uso per definire che cosa il prodotto software deve fare per soddisfarli, senza descrivere come sarà realizzato. Produce una specifica completa, verificabile e tracciabile dei requisiti del sistema (lato soluzione)."
     },
     {
-        "term": "Piano di progetto",
+        "term": "Piano di Progetto",
         "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando preventivo e consuntivo, e a ricalibrare le attività in corso d'opera."
     },
     {
-        "term": "Piano di qualifica",
+        "term": "Piano di Qualifica",
         "definition": "Documento gestionale che descrive come verranno svolte Verifica e Validazione, fissando gli obiettivi di qualità, le metriche e gli strumenti di controllo."
     },
     {
@@ -542,5 +542,141 @@
     {
         "term": "User - NATS",
         "definition": "Entità in NATS che rappresenta un utente specifico con credenziali di autenticazione e permessi associati. Gli utenti possono essere creati all'interno di un Account e utilizzati per accedere al server NATS a cui dovranno fornire un JWT firmato dall'Account di appartenenza e firmare una challenge con la propria NKEY privata."
+    },
+    {
+        "term": "GitHub Issue",
+        "definition": "Strumento di GitHub per tracciare bug, funzionalità e attività di progetto tramite ticket assegnabili e commentabili."
+    },
+    {
+        "term": "Issue Form",
+        "definition": "Strumento messo a disposizione da GitHub per semplificare la creazione di GitHub Issues che presentano campi simili. Permettono a chi crea l'issue di selezionare da una lista di template precompilati."
+    },
+    {
+        "term": "Caso d'uso",
+        "definition": "La descrizione di una o più funzionalità del prodotto dal lato degli user needs, ovvero delle necessità dell'utente, tramite il linguaggio visivo UML e un'aggiuntiva descrizione testuale. I casi d'uso sono descritti nell'Analisi dei requisiti."
+    },
+    {
+        "term": "Attore",
+        "definition": "Nel contesto di un caso d'uso, è un'entità esterna al sistema preso in considerazione che interagisce con lo stato di quest'ultima in lettura e/o scrittura. Può corrispondere a un essere umano o a un agente automatizzato che compie un'azione specifica."
+    },
+    {
+        "term": "Sistema",
+        "definition": "La parte del prodotto che si prende in considerazione nel contesto di un caso d'uso specifico. Si noti che il sistema di un caso d'uso può corrispondere all'attore di un altro caso, a seconda della funzionalità che si intende descrivere."
+    },
+    {
+        "term": "Tenant User",
+        "definition": "Utente autenticato senza privilegi appartenente a uno specifico tenant. Ha solo il potere di visualizzare i dati dei sensori ricevuti dai gateway."
+    },
+    {
+        "term": "Tenant Admin",
+        "definition": "Utente autenticato appartenente a un tenant specifico con privilegi di amministrazione all'interno del proprio tenant e sui gateway a esso associati."
+    },
+    {
+        "term": "Super Admin",
+        "definition": "Utente autenticato con poteri di amministrazione globali a tutti i tenant associati alla piattaforma cloud."
+    },
+    {
+        "term": "API Client",
+        "definition": "Un qualunque client che possa accedere ai dati esposti dall'API pubblica del sistema cloud."
+    },
+    {
+        "term": "Simulatore di Gateway",
+        "definition": "Programma che simula in software il funzionamento di un gateway, senza richiedere hardware specializzato a tale scopo."
+    },
+    {
+        "term": "Sensore simulato",
+        "definition": "Entità logica che corrisponde a un sensore collegato al simulatore di gateway simulato interamente in software che non utilizza le stesse tecnologie di un vero gateway o di veri sensori BLE."
+    },
+    {
+        "term": "Impersonificazione",
+        "definition": "Atto con cui un Super Admin si fa temporaneamente riconoscere dal sistema cloud come utente appartenente a uno specifico tenant, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un Tenant Admin. Questo può avvenire soltanto se il tenant impersonato ha precedentemente accettato un'apposita clausola contrattuale."
+    },
+    {
+        "term": "Comando (gateway)",
+        "definition": "Messaggio inviato a un Gateway per modificarne lo stato o la configurazione attuale."
+    },
+    {
+        "term": "Sospensione (gateway)",
+        "definition": "Comando inviato a un gateway per interrompere l'invio di tutti i suoi dati alla piattaforma Cloud, ma non la ricezione di comandi da questa. Si noti che la sospensione non spegne completamente il gateway."
+    },
+    {
+        "term": "Riattivazione (gateway)",
+        "definition": "Comando inviato a un gateway per riprendere l'invio di tutti i suoi dati alla piattaforma Cloud, precedentemente interrotto."
+    },
+    {
+        "term": "Sospensione (sensore)",
+        "definition": "Comando inviato al gateway associato a un sensore specifico, per interrompere l'invio dei dati da esso ricevuti alla piattaforma Cloud. Si noti che la sospensione non spegne completamente il sensore interessato."
+    },
+    {
+        "term": "Riattivazione (sensore)",
+        "definition": "Comando inviato al gateway associato a un sensore specifico, per riprendere l'invio dei dati da esso ricevuti alla piattaforma Cloud."
+    },
+    {
+        "term": "Riavvio (gateway)",
+        "definition": "Comando inviato a un gateway per spegnerlo e riaccenderlo da remoto, con lo scopo di risolvere eventuali errori di corruzione di memoria volatile. Il riavvio mantiene la configurazione del gateway."
+    },
+    {
+        "term": "Reset (gateway)",
+        "definition": "Comando inviato a un gateway per reimpostarlo alla configurazione di fabbrica."
+    },
+    {
+        "term": "Commissioning (gateway)",
+        "definition": "Procedura di associazione di un gateway a un tenant specifico e di impostazione di una configurazione precisa."
+    },
+    {
+        "term": "Decommissioning (gateway)",
+        "definition": "Procedura di disassociazione di un gateway al tenant a cui è correntemente associato e di impostazione del gateway alla configurazione di fabbrica."
+    },
+    {
+        "term": "Provisioning (gateway)",
+        "definition": "Procedura di autenticazione e di associazione di un gateway alla piattaforma Cloud, in cui le due componenti si scambiano le informazioni di autenticazione e le chiavi necessarie per scambiarsi dati in maniera crittografata."
+    },
+    {
+        "term": "Configurazione (gateway)",
+        "definition": "Insieme di parametri associati a un gateway che ne dettano le specifiche di funzionamento."
+    },
+    {
+        "term": "Configurazione di fabbrica (gateway)",
+        "definition": "Configurazione di un gateway di default."
+    },
+    {
+        "term": "Normalizzazione",
+        "definition": "Procedura che trasforma dei dati eterogenei in un insieme di dati che condividono lo stesso formato e le stesse caratteristiche numeriche."
+    },
+    {
+        "term": "Profilo BLE",
+        "definition": "Specifica standardizzata che descrive i dettagli della comunicazione tra dispositivi BLE."
+    },
+    {
+        "term": "Profilo GATT",
+        "definition": "Profilo BLE che definisce nello specifico come avviene lo scambio di dati tra due dispositivi BLE, tramite un modello Server-Client. Un dispositivo BLE può essere associato a uno dei molteplici profili GATT standard."
+    },
+    {
+        "term": "Specifica Tecnica",
+        "definition": "Documento che include il design definitivo del prodotto software, descritto nella fase di Product Baseline (PB)."
+    },
+    {
+        "term": "Progetto Didattico",
+        "definition": "Progetto svolto dal gruppo GlitchHub Team per l'esame di Ingegneria del Software del Corso di Laurea Triennale in Informatica dell'Università del Padova, svoltosi nell'anno accademico 2025-2026."
+    },
+    {
+        "term": "Heart Rate Service (Profilo GATT)",
+        "definition": "Profilo GATT usato per l'invio via BLE di dati relativi a misurazioni di battito cardiaco."
+    },
+    {
+        "term": "Pulse Oximeter Service (Profilo GATT)",
+        "definition": "Profilo GATT usato per l'invio via BLE di dati relativi a misurazioni di saturazione di ossigeno (pulsossimetria)."
+    },
+    {
+        "term": "ECG Custom Profile (Profilo GATT)",
+        "definition": "Profilo GATT usato per l'invio via BLE di dati relativi a misurazioni di elettrocardiogrammi."
+    },
+    {
+        "term": "Health Thermometer Service (Profilo GATT)",
+        "definition": "Profilo GATT usato per l'invio via BLE di dati relativi a misurazioni di temperatura utilizzate in ambito medico."
+    },
+    {
+        "term": "Environmental Sensing Service (Profilo GATT)",
+        "definition": "Profilo GATT usato per l'invio via BLE di dati relativi a misurazioni di temperatura e umidità ambientali."
     }
 ]

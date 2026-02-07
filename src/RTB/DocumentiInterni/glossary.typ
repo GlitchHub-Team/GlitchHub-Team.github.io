@@ -6,11 +6,25 @@
   stato: "Verificato",
   registro-modifiche: (
     (
-      "0.2.0",
+      "0.3.0",
       "07/02/2026",
       "Alessandro Dinato",
       "Riccardo Graziani",
       "Aggiunta termini tecnici incontrati nello sviluppo del PoC e inserimento introduzione al documento",
+    ),
+    (
+      "0.2.1",
+      "23/01/2026",
+      "Elia Ernesto Stellin",
+      "Riccardo Graziani",
+      [Sistemate alcune definizioni per compatibilità con automazione],
+    ),
+    (
+      "0.2.0",
+      "15/01/2026",
+      "Elia Ernesto Stellin",
+      "Riccardo Graziani",
+      [Aggiunti termini relativi a GitHub, termini relativi a UC / Attori, termini relativi a gateway e termini relativi a sensori; Impostati link intra-documento],
     ),
     (
       "0.1.3",
@@ -64,6 +78,17 @@
   tipo-documento: "Glossario",
 )
 
+/**
+ * Crea un link intra-documento a un altro termine del glossario.
+ * Parametri:
+ *   term: il termine com'è scritto nella definizione del termine, case INSENSITIVE
+ *   display: cosa mostrare al posto del termine esatto (può essere utile in caso di plurali o di leggere declinazioni della parola)
+ */
+#let ref-term = (term, display: none) => {
+  if display == none { display = term }
+  link(label(lower(term)), [*#display*])
+}
+
 = Introduzione
 Il presente documento ha lo scopo di fornire una raccolta di termini e definizioni utilizzati nell'ambito del *progetto didattico*.
 
@@ -87,7 +112,7 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
   }
 
   for (letter, group) in grouped {
-    grouped.at(letter) = group.sorted(key: t => t.term)
+    grouped.at(letter) = group.sorted(key: t => lower(t.term))
   }
 
   return grouped
@@ -104,7 +129,7 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
       block(
         inset: (left: 1.5em, bottom: 0.8em),
         [
-          *#entry.term* \
+          #heading(entry.term, outlined: false, depth: 2, numbering: none) #label(lower(entry.term))
           #text(size: 10pt)[#entry.definition]
         ],
       )
