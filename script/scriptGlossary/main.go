@@ -16,9 +16,9 @@ type GlossaryTerm struct {
 }
 
 func main() {
-	jsonPath := "../src/glossary.json"
-	htmlTemplatePath := "../website/glossary.html"
-	htmlOutputPath := "../website/glossary.html"
+	jsonPath := "../../src/glossary.json"
+	htmlTemplatePath := "../../website/glossary.html"
+	htmlOutputPath := "../../website/glossary.html"
 
 	jsonData, err := os.ReadFile(jsonPath)
 	if err != nil {

@@ -70,11 +70,11 @@ jobs:
 
         - name: Install Go dependencies
           run: go mod tidy
-          working-directory: scriptGlossary/
+          working-directory: script/scriptGlossary/
 
         - name: Render HTML with Go for Glossary
           run: go run main.go
-          working-directory: scriptGlossary/
+          working-directory: script/scriptGlossary/
 
         - name: Configure GitHub Pages
           uses: actions/configure-pages@v5
