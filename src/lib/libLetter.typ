@@ -20,6 +20,7 @@
   title: "",
   htmlId: "Candidatura-Generale",
   versione: "1.0.0",
+  index: "0",
   body,
 ) = {
   let body-font = "PT Sans"
@@ -33,7 +34,7 @@
 
   set document(
     title: title,
-    keywords: (htmlId, versione),
+    keywords: (htmlId, versione, index),
   )
 
   set text(
