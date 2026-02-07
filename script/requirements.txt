@@ -1,0 +1,6 @@
+requests
+openpyxl
+pandas
+pypdf
+language-tool-python
+pyspellchecker
