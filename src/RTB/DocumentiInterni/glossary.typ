@@ -3,20 +3,20 @@
 #show link: underline
 #show: report.with(
   titolo: "Glossario",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "0.2.0",
       "07/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       "Aggiunta termini tecnici incontrati nello sviluppo del PoC e inserimento introduzione al documento",
     ),
     (
       "0.1.3",
       "28/11/2025",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       "Correzione consuntivo di periodo e preventivo a finire",
     ),
     (
