@@ -62,11 +62,11 @@ jobs:
 
         - name: Install Go dependencies
           run: go mod tidy
-          working-directory: script/
+          working-directory: script/scriptHomePage/
 
         - name: Render HTML with Go
           run: go run renderHTMLwithPDFs.go
-          working-directory: script/
+          working-directory: script/scriptHomePage/
 
         - name: Install Go dependencies
           run: go mod tidy
