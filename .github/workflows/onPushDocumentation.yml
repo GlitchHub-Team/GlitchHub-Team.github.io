@@ -29,10 +29,6 @@ jobs:
       - name: Install Go dependencies
         run: go mod tidy
         working-directory: script/scriptHomePage
-
-      - name: Install Go dependencies for ScriptGlossary
-        run: go mod tidy
-        working-directory: script/scriptGlossary
       
       - name: Pull latest changes
         run: |
