@@ -68,6 +68,14 @@ jobs:
           run: go run renderHTMLwithPDFs.go
           working-directory: script/
 
+        - name: Install Go dependencies
+          run: go mod tidy
+          working-directory: scriptGlossary/
+
+        - name: Render HTML with Go for Glossary
+          run: go run main.go
+          working-directory: scriptGlossary/
+
         - name: Configure GitHub Pages
           uses: actions/configure-pages@v5
 
