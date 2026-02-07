@@ -3,8 +3,15 @@
 
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "da verificare",
+  stato: "Da verificare",
   registro-modifiche: (
+			(
+			"0.9.0", 
+			"07/02/2026", 
+			"Siria Salvalaio", 
+			"-", 
+			[Stesura test di sistema da *TS-191* a *TS-254*]
+		),
 		(
 			"0.8.0",
 			"05/02/2026",
@@ -1503,9 +1510,330 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 	[#rf()],
 	[Non implementato],
 
-	// RF257 - RF294
+	// RF191 - RF256
+  [#ts()],
+  [Verificare che il *Sistema* richieda conferma al *Super Admin* prima di eliminare un tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema*, prima di eliminare un tenant, debba eseguire il decommissioning di tutti i Gateway associati],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema*, eliminando un tenant, debba eliminare tutti i dati e gli utenti associati al tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema* debba completare l’eliminazione del tenant dopo aver rimosso dati, utenti e Gateway associati],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema* debba notificare il *Super Admin* se il decommissioning di un Gateway fallisce durante l’eliminazione del tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare la propria dashboard],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando la dashboard, possa vedere lo stato globale dei gateway (attivi/non attivi)],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando la dashboard, possa vedere la lista di tutti i tenant nel Sistema],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare la lista di tutti i Gateway registrati nel Sistema],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere l’identificativo univoco di ogni gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere lo stato di autenticazione di ogni gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere lo stato operativo di ogni gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere il tenant associato a ogni gateway],
+  [#rf()],
+  [Non implementato],
+
 	[#ts()],
-	[Verificare che il *Sistema* possa inviare un'email per l'impostazione password al nuovo Tenant Admin],
+  [Verificare che il *Super Admin* possa visualizzare i dettagli di un singolo Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa autenticare un nuovo Gateway nel Sistema],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema* mostri un messaggio di errore se il certificato del Gateway non è valido durante l’autenticazione],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema* mostri un messaggio di errore se l’identificativo del Gateway è già utilizzato],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa associare un Gateway a un tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, associando un Gateway a un tenant, debba selezionare il Gateway da associare],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, associando un Gateway a un tenant, debba selezionare il tenant di destinazione],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa configurare i parametri di un Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema* mostri un messaggio di errore se la configurazione del Gateway inserita non è valida],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa eseguire il decommissioning di un Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Sistema*, durante il decommissioning, debba disassociare il Gateway dal tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa eseguire il reset di un Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa riavviare un Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa sospendere l’invio dati di un Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa riattivare l’invio dati di un Gateway sospeso],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa modificare il parametro di rolling average di un Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa sospendere un sensore],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa riattivare un sensore sospeso],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa selezionare un Gateway dalla lista per inviare comandi],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa selezionare un sensore dalla lista per inviare comandi],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare la lista di tutti i tenant nel Sistema],
+  [#rf()],
+  [Non implementato],
+
+	[#ts()],
+  [Verificare che il *Super Admin*, visualizzando la lista dei tenant, possa vedere l’identificativo di ogni tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa impersonificare un tenant, se la clausola d’impersonazione è stata accettata],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare i dettagli di un singolo tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando un tenant, possa vedere l’identificativo del tenant],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare la lista delle richieste di commissioning Gateway in corso],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di commissioning in lista, possa vedere data e ora della richiesta],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di commissioning in lista, possa vedere il tenant richiedente],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di commissioning in lista, possa vedere il numero di gateway richiesti],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare la lista delle richieste di decommissioning Gateway in corso],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere data e ora della richiesta],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere il tenant richiedente],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere il numero di gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere lo stato della richiesta],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare lo storico delle richieste di commissioning Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere data e ora di ogni richiesta],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere il tenant richiedente di ogni richiesta],
+  [#rf()],
+  [Non implementato],
+
+	[#ts()],
+  [Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere il numero di gateway di ogni richiesta],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere lo stato di ogni richiesta],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa visualizzare lo storico delle richieste di decommissioning Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa vedere i dettagli di una richiesta di commissioning],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di commissioning, possa vedere data e ora della richiesta],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di commissioning, possa vedere il tenant richiedente],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di commissioning, possa vedere il numero di gateway richiesti],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa vedere i dettagli di una richiesta di decommissioning],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning, possa visualizzare i gateway interessati],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa accettare una richiesta di commissioning/decommissioning Gateway],
+  [#rf()],
+  [Non implementato],
+
+	[#ts()],
+  [Verificare che il *Super Admin* possa rifiutare una richiesta di commissioning/decommissioning Gateway],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin* possa creare un nuovo utente Tenant Admin],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, creando un Tenant Admin, debba selezionare il tenant di appartenenza],
+  [#rf()],
+  [Non implementato],
+
+  [#ts()],
+  [Verificare che il *Super Admin*, creando un Tenant Admin, debba inserire l'email del nuovo utente],
+  [#rf()],
+  [Non implementato],
+
+	// RF255 - RF294
+	[#ts()],
+	[Verificare che il *Sistema* debba inviare un'email per l'impostazione password al nuovo Tenant Admin],
 	[#rf()],
 	[Non implementato],
 
