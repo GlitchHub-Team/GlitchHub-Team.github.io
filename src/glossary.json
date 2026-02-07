@@ -36,7 +36,7 @@
         "definition": "In un sistema multi-tenant, è un cliente o gruppo di utenti che condivide la stessa piattaforma, ma con dati e accessi isolati dagli altri."
     },
     {
-        "term": "IoT Gateway",
+        "term": "Gateway",
         "definition": "Sono hub a cui si collegano i dispositivi IoT per centralizzare le comunicazioni. Hanno il ruolo di comunicare con il cloud, pre-elaborare i dati, garantire sicurezza e integrità."
     },
     {
@@ -462,5 +462,85 @@
     {
         "term": "Documento incrementale",
         "definition": "Documento che viene redatto e aggiornato progressivamente insieme all'avanzamento del progetto. Può contenere inizialmente sezioni vuote e incomplete e ogni versione stabile include solo le parti effettivamente compilate e verificate. Viene pubblicato man mano tramite versioni aggiornate"
+    },
+    {
+        "term": "Gin",
+        "definition": "Framework web basato sul linguaggio di programmazione Go. Offre funzionalità built-in per routing, middleware, gestione delle richieste e risposte, e supporta la creazione di API RESTful in modo semplice."
+    },
+    {
+        "term": "Fiber",
+        "definition": "Framework web basato sul linguaggio di programmazione Go, ispirato a Express.js. Rispetto a Gin, è più leggero e performante, ma offre meno funzionalità built-in, richiedendo l'integrazione di librerie esterne per alcune funzionalità avanzate."
+    },
+    {
+        "term": "TimescaleDB",
+        "definition": "Estensione di PostgreSQL progettata per gestire dati temporali, come quelli generati da sensori IoT. Offre funzionalità avanzate per l'analisi e la gestione di serie temporali, come per esempio le HyperTables."
+    },
+    {
+        "term": "HyperTable",
+        "definition": "Struttura di tabella in TimescaleDB che consente di gestire grandi volumi di dati temporali suddividendoli in partizioni basate su intervalli di tempo, migliorando le prestazioni e la scalabilità."
+    },
+    {
+        "term": "Grafana",
+        "definition": "Piattaforma per la visualizzazione e l'analisi di dati, spesso utilizzata per monitorare metriche e log di sistemi IT, inclusi quelli generati da dispositivi IoT."
+    },
+    {
+        "term": "Prometheus",
+        "definition": "Sistema di monitoraggio e allerta progettato per raccogliere e memorizzare metriche in tempo reale, spesso utilizzato insieme a Grafana per visualizzare i dati raccolti."
+    },
+    {
+        "term": "Schema",
+        "definition": "Struttura che separa logicamente i dati in un database, permettendo di organizzare e gestire le tabelle in modo più efficiente. Nel nostro progetto sono utilizzati per la divisione logica dei dati nel database."
+    },
+    {
+        "term": "Docker Compose",
+        "definition": "Strumento che permette di definire e gestire applicazioni multi-container Docker tramite un file YAML, semplificando l'orchestrazione e la configurazione dei servizi."
+    },
+    {
+        "term": "NATS Jetstream",
+        "definition": "Estensione di NATS che fornisce funzionalità di messaggistica persistente, supporto a code di messaggi e funzionalità avanzate per la gestione dei messaggi, rendendolo adatto a scenari che non accettano nessuna perdita di dati."
+    },
+    {
+        "term": "Subject - NATS",
+        "definition": "Concetto fondamentale in NATS che rappresenta un canale di comunicazione su cui i messaggi vengono pubblicati e sottoscritti. I soggetti permettono di organizzare e filtrare i messaggi all'interno del sistema di messaggistica."
+    },
+    {
+        "term": "Stream - NATS Jetstream",
+        "definition": "Concetto in NATS Jetstream che rappresenta un flusso di messaggi persistenti, organizzati in code, che possono essere consumati da più sottoscrittori. I stream permettono di gestire grandi volumi di messaggi con garanzia di consegna e persistenza."
+    },
+    {
+        "term": "ACK",
+        "definition": "Abbreviazione di 'Acknowledgment', è un messaggio di conferma inviato da un destinatario per indicare che ha ricevuto e processato correttamente un messaggio o una richiesta."
+    },
+    {
+        "term": "Wildcard - NATS",
+        "definition": "Carattere speciale utilizzato nei soggetti di NATS per rappresentare uno o più livelli di soggetti. Il wildcard '*' rappresenta un singolo livello, mentre '>' rappresenta tutti i livelli successivi. Esempio: 'sensors.*' corrisponde a 'sensors.temperature' e 'sensors.humidity', mentre 'sensors.>' corrisponde a tutti i soggetti che iniziano con 'sensors.'"
+    },
+    {
+        "term": "JWT",
+        "definition": "JSON Web Token è uno standard aperto per la trasmissione sicura di informazioni tra parti come oggetti JSON. Il token solitamente contiene un header, un payload e una firma, esso contiene informazioni che possono essere verificate e affidabili. Permette l'autenticazione e l'autorizzazione in sistemi distribuiti."
+    },
+    {
+        "term": "NKEY - NATS",
+        "definition": "Sistema di gestione delle chiavi di NATS basato su ed25519, che consente di generare chiavi pubbliche e private per l'autenticazione e la crittografia dei messaggi. Le NKEY sono utilizzate per firmare i JWT e garantire perciò l'autenticità dei token."
+    },
+    {
+        "term": "NATS Server",
+        "definition": "Componente centrale del sistema di messaggistica NATS che gestisce la comunicazione tra i client, instrada i messaggi e garantisce la consegna. Il server NATS è progettato per essere leggero, ad alte prestazioni e scalabile."
+    },
+    {
+        "term": "NSC - NATS",
+        "definition": "NATS Server Configuration è uno strumento di gestione della configurazione del server NATS, che consente di creare e gestire utenti, permessi, soggetti e stream in modo semplice e organizzato."
+    },
+    {
+        "term": "Operator - NATS",
+        "definition": "Entità in NATS che rappresenta un'organizzazione, responsabile della creazione e gestione di Account, utenti e permessi all'interno del sistema. Esso firma il proprio JWT e quelli degli Account che gestisce."
+    },
+    {
+        "term": "Account - NATS",
+        "definition": "Entità in NATS che rappresenta un'unità di isolamento (tenant), con propri utenti, permessi e stream. Gli Account possono comunicare tra loro tramite permessi specifici."
+    },
+    {
+        "term": "User - NATS",
+        "definition": "Entità in NATS che rappresenta un utente specifico con credenziali di autenticazione e permessi associati. Gli utenti possono essere creati all'interno di un Account e utilizzati per accedere al server NATS a cui dovranno fornire un JWT firmato dall'Account di appartenenza e firmare una challenge con la propria NKEY privata."
     }
 ]
