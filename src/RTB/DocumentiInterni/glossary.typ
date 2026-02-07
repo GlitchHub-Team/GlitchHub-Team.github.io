@@ -1,4 +1,4 @@
-#import "./Templates/templateDocumentiGenerici.typ": report
+#import "../../Templates/templateDocumentiGenerici.typ": report
 
 #show link: underline
 #show: report.with(
@@ -52,13 +52,13 @@
   distribuzione: (
     "Pubblica",
   ),
-  htmlId: "Glossario",
+  htmlId: "RTB-DocumentiInterni",
   verificatore-interno: "Alessandro Dinato",
   left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Glossario",
 )
 
-#let glossary_terms = json("glossary.json")
+#let glossary_terms = json("../../glossary.json")
 
 // Function to group terms by first letter
 #let group_by_letter(terms) = {
