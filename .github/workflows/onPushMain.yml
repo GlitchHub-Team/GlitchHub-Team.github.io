@@ -25,12 +25,6 @@ jobs:
         uses: typst-community/setup-typst@v4
         with:
           typst-version: '0.13.1'
-
-      - name: Pull latest changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin ${{ github.ref_name }}
           
       - name: Run bash
         run: | 
