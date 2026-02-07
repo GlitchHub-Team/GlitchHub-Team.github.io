@@ -5,8 +5,18 @@
 #show: report.with(
   titolo: "Dichiarazione impegni",
   stato: "Verificato",
-  versione: "1.1.0",
   registro-modifiche: (
+    ("1.1.0", "4/11/2025", "Alessandro Dinato", "Michele Dioli", "Aggiunta criteri di rotazione dei ruoli"),
+    ("1.0.0", "30/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Versione stabile del documento"),
+    ("0.0.7", "30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
+    ("0.0.6", "30/10/2025", "Hossam Ezzemouri", "Michele Dioli", "Revisione e correzioni del documento"),
+    (
+      "0.0.5",
+      "30/10/2025",
+      "Jaume Bernardi",
+      "Hossam Ezzemouri",
+      "Arricchimento analisi dei rischi ed aggiunta dei periodi di rallentamento",
+    ),
     ("1.1.0", "4/11/2025", "Alessandro Dinato", "Michele Dioli", "Aggiunta criteri di rotazione dei ruoli"),
     ("1.0.0", "30/10/2025", "Siria Salvalaio", "Elia Ernesto Stellin", "Versione stabile del documento"),
     ("0.0.7", "30/10/2025", "Michele Dioli", "Siria Salvalaio", "Correzioni grammaticali del documento"),
@@ -33,6 +43,7 @@
 
 = Introduzione
 Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
+Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
 Con la presente dichiarazione i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
 
 = Analisi dei ruoli
@@ -57,7 +68,7 @@ La sua attività include la selezione, messa in opera e manutenzione degli strum
 
 == Analista
 L'Analista è la figura incaricata di definire i requisiti del sistema e di modellare i casi d'uso. \
-Riveste un ruolo cruciale nelle fasi iniziali del progetto, poiché traduce le esigenze del committente in specifiche tecniche e funzionali. \
+Riveste un ruolo cruciale nelle fasi iniziali del progetto, poiché traduce le esigenze del #gloss[committente] in specifiche tecniche e funzionali. \
 Deve possedere conoscenze approfondite del dominio del problema e buone capacità comunicative, poiché la chiarezza dei requisiti influenza in modo diretto il successo dell'intero progetto. \
 Gli analisti partecipano soprattutto alle prime fasi di progettazione, fornendo le basi per il lavoro dei progettisti e programmatori.
 
@@ -74,7 +85,7 @@ Oltre a scrivere codice, contribuisce alla manutenzione e all'integrazione del p
 Pur avendo competenze tecniche, ha margini decisionali limitati, operando nel rispetto delle linee guida progettuali stabilite a monte.
 
 == Verificatore
-Il Verificatore è responsabile del controllo di qualità del prodotto e della verifica della corretta esecuzione delle attività. \
+Il Verificatore è responsabile del controllo di qualità del prodotto e della #gloss[verifica] della corretta esecuzione delle attività. \
 Effettua test, revisioni e validazioni per garantire che il lavoro svolto rispetti gli standard di progetto. \
 È una figura presente per l'intera durata del progetto e deve possedere esperienza tecnica, conoscenza del processo di sviluppo e capacità di giudizio indipendente. \
 Il suo lavoro è cruciale per assicurare l'affidabilità e la coerenza del risultato finale.
@@ -172,29 +183,29 @@ La suddivisione oraria è stata definita tenendo conto del metodo di lavoro del 
 
 L'allocazione delle ore per ruolo è motivata dalle esigenze operative e dalla necessità di contenere i rischi progettuali. \
 Ai ruoli di *programmatore* e di *verificatore* sono state assegnate *165 ore* ciascuno (330 ore complessive), corrispondenti al 50% del totale. \
-Questa scelta riflette la prevalenza di attività di *sviluppo* e *validazione* richieste dal progetto e l'importanza di un programma di testing intensivo per ridurre la possibilità di *ritardi* e *bug software*.\
+Questa scelta riflette la prevalenza di attività di *sviluppo* e *#gloss[validazione]* richieste dal progetto e l'importanza di un programma di testing intensivo per ridurre la possibilità di *ritardi* e *bug software*.\
 
 Al ruolo di *progettista* sono state assegnate *145 ore*, in modo tale da definire un'architettura coerente e ridurre la probabilità di revisioni progettuali durante le fasi avanzate dello sviluppo.\
 La somma delle ore destinate ai ruoli di progettista, programmatore e verificatore ammonta a 475 ore, equivalenti al *73%* dell'impegno complessivo.
-Lo scopo è preservare l'efficacia del design e limitare il costo delle eventuali modifiche successive.
+Lo scopo è preservare l'#gloss[efficacia] del design e limitare il costo delle eventuali modifiche successive.
 
 Ai ruoli di *responsabile* e *amministratore* sono state assegnate *54 ore* ciascuno.\
 Al responsabile è attribuito il compito di coordinamento, pianificazione e supervisione, mentre all'amministratore è demandata la gestione degli strumenti e degli ambienti di lavoro.\
-Entrambi richiedono una presenza costante, ma con un impegno operativo inferiore rispetto alle attività di sviluppo e verifica. \
+Entrambi richiedono una presenza costante, ma con un impegno operativo inferiore rispetto alle attività di sviluppo e #gloss[verifica]. \
 Infine, il ruolo di *analista* è stato stimato in *68 ore*, poiché è un ruolo intensamente coinvolto nelle attività iniziali del progetto e tende a ridursi con l'inizio della fase di sviluppo.
 
 Per scopi didattici, i ruoli verranno ruotati periodicamente tra i membri del gruppo.\
 Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i componenti, garantendo equità nelle responsabilità e opportunità di apprendimento per tutti.
 
 == Criteri di rotazione dei ruoli
-Il gruppo, dopo aver definito una durata dello *Sprint* pari a *una settimana*, ha stabilito di effettuare la rotazione dei ruoli ogni *due settimane*. \
-Questa scelta permette a ciascun componente di ricoprire tutti i ruoli nell'arco del Progetto Didattico e consente di includere due Sprint all'interno del periodo di rotazione, così da individuare e correggere eventuali criticità legate all'assunzione di un nuovo ruolo.
+Il gruppo, dopo aver definito una durata dello *#gloss[Sprint]* pari a *una settimana*, ha stabilito di effettuare la rotazione dei ruoli ogni *due settimane*. \
+Questa scelta permette a ciascun componente di ricoprire tutti i ruoli nell'arco del Progetto Didattico e consente di includere due #gloss[Sprint] all'interno del periodo di rotazione, così da individuare e correggere eventuali criticità legate all'assunzione di un nuovo ruolo.
 
 Una rotazione con frequenza inferiore non garantirebbe un sufficiente periodo di adattamento e non favorirebbe l'apprendimento delle competenze richieste. \
 Inoltre, ogni componente si impegna a trasferire al proprio successore le conoscenze maturate nello svolgimento del ruolo, al fine di agevolare e velocizzare l'inserimento.
 
 Il gruppo si riserva la possibilità di rivedere i criteri esposti qualora dovessero emergere nuove esigenze organizzative. \
-Tuttavia, al momento si ritiene che, per le prossime *9 settimane*, ovvero fino al termine dell'*RTB*, tali criteri rimarranno invariati.
+Tuttavia, al momento si ritiene che, per le prossime *9 settimane*, ovvero fino al termine dell'*#gloss[RTB]*, tali criteri rimarranno invariati.
 
 
 #pagebreak()
@@ -291,9 +302,9 @@ Il gruppo ha individuato periodi in cui il lavoro rallenterà, possibilmente fin
 = Analisi dei rischi
 Il gruppo ha individuato diversi rischi potenziali nella realizzazione del progetto concordato che potrebbero risultare in disagi, qualora venissero gestiti non correttamente.
 == Organizzazione e distribuzione delle risorse
-La valutazione della suddivisione del lavoro tra i membri del gruppo e nel tempo potrebbe risultare errata, portando ad una scarsità di risorse tra i vari compiti. Presenta un rischio alto, originato dall'inesperienza del gruppo su progetti più corposi, nonché nell'utilizzo di un way of working professionale e la comprensione e conseguimento dello stato dell'arte nell'ambito richiesto.
+La valutazione della suddivisione del lavoro tra i membri del gruppo e nel tempo potrebbe risultare errata, portando ad una scarsità di risorse tra i vari compiti. Presenta un rischio alto, originato dall'inesperienza del gruppo su progetti più corposi, nonché nell'utilizzo di un #gloss[way of working] professionale e la comprensione e conseguimento dello stato dell'arte nell'ambito richiesto.
 
-Qualora ciò dovesse avvenire, è necessario che tale ostacolo venga discusso durante la riunione appena successiva, in modo da poter pianificare una migliore suddivisione dei compiti, una fase di riallineamento o altra attività ritenuta sul momento più adeguata.
+Qualora #gloss[ci]ò dovesse avvenire, è necessario che tale ostacolo venga discusso durante la riunione appena successiva, in modo da poter pianificare una migliore suddivisione dei compiti, una fase di riallineamento o altra attività ritenuta sul momento più adeguata.
 == Comprensione dei requisiti
 Un insufficiente e/o inefficiente coinvolgimento del cliente può portare ad una incomprensione dei requisiti del progetto. Il rischio in questo caso è basso, considerando che il cliente è competente nell'ambito richiesto, minimizzando la possibilità di equivoci e dati mancanti tra i requisiti.
 

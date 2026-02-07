@@ -54,28 +54,28 @@ Il presente documento attesta che, in data *26 novembre 2025* dalle ore 14.30 al
 
 == Manutenzione della documentazione
 Il gruppo ha discusso le modalità di manutenzione della documentazione.
-È stato stabilito che chiunque individui un errore in un documento si prende in carico la correzione e richiede successivamente una verifica da parte di un terzo membro.
-Qualora il documento fosse già stato pubblicato nel sito del gruppo, la modifica dovrà essere proposta tramite una nuova *pull request*.
+È stato stabilito che chiunque individui un errore in un documento si prende in carico la correzione e richiede successivamente una #gloss[verifica] da parte di un terzo membro.
+Qualora il documento fosse già stato pubblicato nel sito del gruppo, la modifica dovrà essere proposta tramite una nuova *#gloss[pull request]*.
 
 == Workflow GitHub Issues
-Durante l'incontro sono stati definiti nuovi campi da aggiungere alle GitHub Issues:
+Durante l'incontro sono stati definiti nuovi campi da aggiungere alle #gloss[GitHub] Issues:
 - *priority*: priorità dell'attività
 - *start date*: data di inizio lavorazione
-- *target date*: data prevista di consegna, che non può superare la fine dello sprint
+- *target date*: data prevista di consegna, che non può superare la fine dello #gloss[sprint]
 - *end date*: data effettiva di completamento
-- *sprint*: numero dello sprint
-- *sprint role*: ruolo associato alla task, utile per la rendicontazione delle ore
+- *#gloss[sprint]*: numero dello #gloss[sprint]
+- *#gloss[sprint] role*: ruolo associato alla task, utile per la rendicontazione delle ore
 - *expected worked hours*: ore previste per completare la task
 - *worked hours*: ore effettivamente lavorate
 
 È stato concordato un nuovo workflow:
-- il *Responsabile* crea le issue sulla base di quanto definito nella *Sprint Retrospective*;
-- vengono assegnati correttamente *Assignees*, *Labels*, *Type* (di norma: Task), *Milestone* e *Projects*;
+- il *Responsabile* crea le issue sulla base di quanto definito nella *#gloss[Sprint Retrospective]*;
+- vengono assegnati correttamente *Assignees*, *Labels*, *Type* (di norma: Task), *#gloss[Milestone]* e *Projects*;
 - è necessario configurare correttamente i *Relationships*, in particolare:
   - impostare una *parent issue* per ogni task principale, non assegnata a nessuno;
   - suddividere la parent issue in sub-issue atomiche (le più piccole possibili);
   - una sub-issue deve essere assegnata a una sola persona;
-  - utilizzare *blocking* / *blocked by* (es. la scrittura di un documento blocca la sua verifica).
+  - utilizzare *blocking* / *blocked by* (es. la scrittura di un documento blocca la sua #gloss[verifica]).
 
 La persona assegnata alla task, al momento dell'assegnazione, deve compilare:
 - start date
@@ -104,33 +104,33 @@ Il workflow differisce da quello dei documenti monolitici:
   align: center + horizon,
   [*Task*], [*Responsabile*], [*Issue*],
 
-  [Scrittura Norme di Progetto v0.2.0 e aggiornamento Glossario (definizione documento incrementale)],
+  [Scrittura #gloss[Norme di Progetto] v0.2.0 e aggiornamento Glossario (definizione #gloss[documento incrementale])],
   [Siria Salvalaio],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/51")[*\#51*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/51")[*\#51*]],
 
-  [Verifica Norme di Progetto v0.2.0],
+  [#gloss[Verifica] #gloss[Norme di Progetto] v0.2.0],
   [Hossam Ezzemouri],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/52")[*\#52*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/52")[*\#52*]],
 
-  [Piano di Qualifica — individuazione metriche],
+  [#gloss[Piano di Qualifica] — individuazione metriche],
   [Elia Stellin, Michele Dioli, Jaume Bernardi],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/62")[*\#62*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/62")[*\#62*]],
 
-  [Analisi dei Requisiti — sessione di brainstorming],
+  [#gloss[Analisi dei Requisiti] — sessione di brainstorming],
   [Tutto il gruppo],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/63")[*\#63*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/63")[*\#63*]],
 
-  [Correzione GitHub Issues secondo il nuovo workflow],
+  [Correzione #gloss[GitHub] Issues secondo il nuovo workflow],
   [Alessandro Dinato],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/64")[*\#64*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/64")[*\#64*]],
 
   [Scrittura Verbale Interno 26/11],
   [Alessandro Dinato],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/66")[*\#66*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/66")[*\#66*]],
 
-  [Verifica Verbale Interno 26/11],
+  [#gloss[Verifica] Verbale Interno 26/11],
   [Riccardo Graziani],
-  [#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/67")[*\#67*]],
+  [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/67")[*\#67*]],
 )
 
 == Ruoli assegnati per le prossime due settimane
@@ -138,5 +138,5 @@ Il workflow differisce da quello dei documenti monolitici:
 - Alessandro Dinato: Responsabile, Amministratore
 - Hossam Ezzemouri: Verificatore
 - Siria Salvalaio: Analista
-- Tutti gli altri membri: attività di esercizio riguardante l'Analisi dei Requisiti
+- Tutti gli altri membri: attività di esercizio riguardante l'#gloss[Analisi dei Requisiti]
 
