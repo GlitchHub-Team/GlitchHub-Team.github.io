@@ -31,7 +31,11 @@ jobs:
       
       - name: Install Go dependencies
         run: go mod tidy
-        working-directory: script/
+        working-directory: script/scriptHomePage
+
+      - name: Install Go dependencies Glossary
+        run: go mod tidy
+        working-directory: script/scriptGlossary
       
       - name: Run bash
         run: | 
