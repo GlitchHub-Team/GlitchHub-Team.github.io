@@ -4,7 +4,6 @@
 #show: report.with(
   titolo: "Glossario",
   stato: "Da verificare",
-  versione: "0.1.2",
   registro-modifiche: (
     (
       "0.1.3",
