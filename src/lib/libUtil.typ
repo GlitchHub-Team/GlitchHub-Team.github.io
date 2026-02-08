@@ -45,3 +45,19 @@
     base-url + "/" + repo-name + "/issues/" + str(number),
   )[*Issue #repo-desc \##number*]
 }
+
+#let repo(tipo, content) = {
+  let base-url = "https://github.com/GlitchHub-Team"
+  if tipo == "docs" {
+    link(base-url + "/GlitchHub-Team.github.io")[#content]
+  }
+  else if tipo == "poc" {
+    link(base-url + "/PoC")[#content]
+  }
+  else if tipo == "actions" {
+    link(base-url + "/actions")[#content]
+  }
+  else {
+    panic("Impossibile determinare repo")
+  }
+}
