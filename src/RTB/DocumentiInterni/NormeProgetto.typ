@@ -53,8 +53,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Norme di Progetto",
 )
 
