@@ -4,23 +4,23 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Da verificare",
+  stato: "In attesa di modifiche",
   registro-modifiche: (
-      (
-        "0.3.0",
-        "07/02/2026",
-        "Elia Ernesto Stellin",
-        "-", 
-        [Aggiunte @processi-organizzativi, @processi-organizzativi, @infrastruttura, @miglioramento-processi, @formazione]
-      ),
-      (
-        "0.2.1",
-        "28/11/2025",
-        "Siria Salvalaio",
-        "Hossam Ezzemouri",
-        [
-          Aggiunta paragrafo @doc-incrementali.
-        ],
+    (
+      "0.3.0",
+      "07/02/2026",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      [Aggiunte @processi-organizzativi, @processi-organizzativi, @infrastruttura, @miglioramento-processi, @formazione],
+    ),
+    (
+      "0.2.1",
+      "28/11/2025",
+      "Siria Salvalaio",
+      "Hossam Ezzemouri",
+      [
+        Aggiunta paragrafo @doc-incrementali.
+      ],
     ),
     (
       "0.2.0",
@@ -112,8 +112,8 @@ In questa sezione, verranno descritti i processi essenziali allo svolgimento del
 Al momento della scrittura di questa versione delle Norme di Progetto, i processi di fornitura e sviluppo del prodotto non sono ancora iniziati, ma stanno venendo definite incrementalmente le Norme relative alla Documentazione (vd. @documentazione).
 
 == Fornitura
-// TODO: (2.1) spiegare fornitura 
-// The Supply Process contains the activities and tasks of the suppli er. The process may be initiated either by a decision to prepare a proposal to answer an acquirer’s request for proposal or by sign ing and entering into a contract with the acquirer to provide the system, software product or software service. The process continues with the determination of procedures and resources needed to mana ge and assure the project, including development of project plans and execution of the plans through delivery of the system, software product or software service to the acquirer. 
+// TODO: (2.1) spiegare fornitura
+// The Supply Process contains the activities and tasks of the suppli er. The process may be initiated either by a decision to prepare a proposal to answer an acquirer’s request for proposal or by sign ing and entering into a contract with the acquirer to provide the system, software product or software service. The process continues with the determination of procedures and resources needed to mana ge and assure the project, including development of project plans and execution of the plans through delivery of the system, software product or software service to the acquirer.
 
 // processo adottato dal fornitore
 // - tratta del relazionarsi con la proponente -> analizzare e trattare sulle richieste
@@ -406,7 +406,7 @@ In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente 
 === Verifica
 // TODO: (3.4.1) definisci verifica
 // The Verification Process is a process for determining whether the software products of an activity fulfill the requirements or conditions imposed on them in the previous activities. For cost and performance effectiveness, verification should be integrated, as early as possible, with the process (such as supply, development, ope ration, or maintenance) that employs it. This process may include analysis, review and test. This process may be executed with varying degrees of independence. The degree of independence may range from the same person or different person in the same organization to a person in a different organization with varying degrees of separation. In the case where the process is executed by an organization independent of the supplier, developer, operator, or maintainer, it is called Independent Verification Process
-// 
+//
 ==== Attività previste
 
 1. Implementazione processo
@@ -420,10 +420,11 @@ In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente 
 1. Implementazione processo
 2. Validazione
 
-= Processi organizzativi <processi-organizzativi>
+= Processi organizzativi <processi-organizzativi> //TODO errato dire che sono processi di supporto, si confonde appunto con i processi supporto(sto Tulliando sorry)
 I *processi organizzativi* sono i processi di supporto al progetto che stabiliscono una struttura solida di processi di cicli di vita
 atti a migliorare i processi stessi e l'adozione di eventuali miglioramenti ad essi.
 
+//TODO stesso discorso di sopra
 I *processi organizzativi* sono i processi di supporto alle attività di progetto che contribuiscono al buon andamento di quest'ultimo.
 Le attività previste da questi processi consentono di migliorare la strutturazione e l'organizzazione dei processi di cicli di vita applicati e di facilitare l'adozione di atti di miglioramento nei confronti di questi ultimi.
 
@@ -434,12 +435,12 @@ Nello specifico, si identificano i seguenti processi organizzativi:
 - #link(<formazione>)[*Formazione*]
 
 == Gestione dei processi <gestione-processi>
-La *gestione dei processi* è composta dalle attività compiute dal gruppo per pianificare e organizzare in modo efficace ed efficiente i compiti che ciascun membro deve svolgere, in modo tale che non vengano causati ritardi nello svolgimento di tali. 
+La *gestione dei processi* è composta dalle attività compiute dal gruppo per pianificare e organizzare in modo efficace ed efficiente i compiti che ciascun membro deve svolgere, in modo tale che non vengano causati ritardi nello svolgimento di tali.
 
 === Strumenti a supporto
 - #gloss[GitHub Issues]: Il gruppo utilizza l'Issue Tracking System nativo di #gloss[GitHub] per classificare le attività da compiere e assegnarle ai membri del gruppo. Con l'utilizzo delle #gloss[GitHub Actions], la loro creazione è ampiamente facilitata.
 
-- #gloss[GitHub Project]: Il gruppo lo utilizza poiché le _issues_ semplici presentano una serie limitata di campi compilabili. I _projects_ permettono di rendere le _issues_ più descrittive, aggiungendo ad esse ulteriori campi quali la data d'inizio e la data di fine dell'attività, le ore di lavoro previste, etc. Inoltre, i _projects_ permettono di raggruppare le issue provenienti da diverse #gloss[repository].
+- #gloss[GitHub Project]: Il gruppo lo utilizza poiché le _issues_ semplici presentano una serie limitata di campi compilabili. I _projects_ permettono di rendere le _issues_ più descrittive, aggiungendo ad esse ulteriori campi quali la data d'inizio e la data di fine dell'attività, le ore di lavoro previste e le ore effettive. Inoltre, i _projects_ permettono di raggruppare le issue provenienti da diverse #gloss[repository].
 
 === Attività previste <gestione-processi-attivita-previste>
 Le attività previste nella gestione di processi sono le seguenti:
@@ -464,7 +465,7 @@ Si noti che le _issue_ in questo stato devono essere associate allo stato di *"B
 
 ==== Pianificazione <gestione-processi-pianificazione>
 Per pianificare un'attività è fondamentale comprendere quali siano le risorse richieste, sia temporali che economiche, e le singole _task_ di cui è composta. Poiché le attività del progetto richiedono competenza in un'ampia gamma di ambiti diversi, ogni _task_ è assegnata a un *ruolo* specifico; si veda la @divisione-ruoli per un riassunto delle responsabilità e del valore economico del lavoro di ogni singolo ruolo.
-
+//TODO: i campi fanno riferimento ai compiti/task non alle attività
 Quando si deve pianificare lo svolgimento di una _task_, il #gloss[responsabile] crea un'_issue_ specifica per un certo ruolo e determina i seguenti campi:
 - _Start Date_: la data d'inizio prevista dell'attività,
 - _Target Date_: la data di fine prevista dell'attività,
@@ -474,6 +475,7 @@ Quando si deve pianificare lo svolgimento di una _task_, il #gloss[responsabile]
 - _Priority_: priorità dell'_issue_
 
 Inoltre, lo stato dell'_issue_ rilevata dev'essere impostato a *"Ready"*, il quale indica che l'issue è pronta per essere svolta dall'assegnatario nell'iterazione corrente.
+//TODO: citare che le task di palestra hanno la rispettiva label, e che non consideriamo le ore segnate in quella task come rendicontabili ma ci servono per tenere traccia del tempo del carico effettivo sull'individuo
 
 ==== Esecuzione e controllo <gestione-processi-esecuzione-controllo>
 L'esecuzione delle diverse attività è affidata ai diversi ruoli e dev'essere monitorata regolarmente dal #gloss[responsabile] per accertarsi che ogni membro del gruppo rispetti i propri compiti nelle scadenze prefissate.
@@ -495,8 +497,10 @@ Il processo di verifica di un'_issue_ può avvenire in più modi:
 ==== Conclusione <gestione-processi-conclusione>
 Per utilizzare una linea di lavoro comune, il gruppo applica una _Definition of Done_, ovvero una definizione di cosa determina se un'attività sia conclusa o meno, ben precisa: _Un attività è conclusa quando è stata approvata definitivamente da un verificatore diverso dall'assegnatario originale_.
 
+//TODO: accettiamo "l'incoerenza" del fatto che prima abbiamo detto che non tutte le task hanno task di verifica associate? sezione 4.1.2
+//TODO: è giusto in questa sezione citare le attività? la definition of done. non dovrebbe pplicarsi alle task prima di tutto?
 Questa definizione garantisce che il gruppo possa determinare in ogni momento quando un'attività qualunque è conclusa o meno.
-
+//TODO: i campi fanno riferimento ai compiti/task non alle attività
 Quando una _task_ viene conclusa, il suo assegnatario deve modificare la relativa _issue_ impostando i seguenti campi:
 - _End Date_: data effettiva di fine dell'attività
 - _Worked Hours_: le ore effettive di lavoro sull'attività
@@ -504,16 +508,16 @@ Quando una _task_ viene conclusa, il suo assegnatario deve modificare la relativ
 
 #set heading(outlined: true)
 === Ruoli <divisione-ruoli>
-Di seguito, sono riportate le descrizioni dei compiti, delle responsabilità e dl valore del lavoro di tutti i ruoli che i membri del gruppo possono assumere durante l'esecuzione del progetto. 
+Di seguito, sono riportate le descrizioni dei compiti, delle responsabilità e del valore del lavoro di tutti i ruoli che i membri del gruppo possono assumere durante l'esecuzione del progetto.
 
 Si noti che durante una certa iterazione, chiunque può assumere più ruoli a patto che ciò non causi conflitti d'interesse: ad esempio, un #gloss[programmatore] non può anche essere #gloss[verificatore] del suo stesso codice.
 
 #set heading(outlined: false)
-
+//TODO forse metterei ore produttive
 ==== Amministratore
 - *Presenza*: La figura dell'amministratore è presente a ogni iterazione di progetto
 - *Compiti/responsabilità*:
-  - Gestisce e apporta migliorie all'infrastruttura usata dal gruppo per compiere le attività di progetto, quali l'Issue Tracking System e gli strumenti di verifica e validazione;
+  - Gestisce e apporta migliorie all'infrastruttura usata dal gruppo per compiere le attività di progetto, quali l'Issue Tracking System e gli strumenti di verifica;
   - Risolve le problematiche legate all'infrastruttura _as soon as possible_;
   - Con la sua conoscenza approfondita del #gloss[way of working], redige il documento di #gloss[Piano di Qualifica].
 - *Valore orario*: Ogni ora rendicontabile dell'amministratore ha il valore di *20 €/h*
@@ -532,7 +536,7 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
   - Trasforma i requisiti, rilevati dall'#gloss[Analista], in _design_ architetturale;
   - Produce documenti e schemi che spiegano il _design_ rilevato;
   - Definisce le scelte tecnologiche.
-- *Valore orario*: - *Valore orario*: Ogni ora rendicontabile del progettista ha il valore di *25 €/h*
+- *Valore orario*: Ogni ora rendicontabile del progettista ha il valore di *25 €/h*
 
 ==== Programmatore
 - *Presenza*: La figura del #gloss[programmatore] è presente nella fase di sviluppo del #gloss[PoC], poco prima della scadenza #gloss[RTB] e per tutta la fase successiva fino alla produzione dell'#gloss[MVP].
@@ -542,8 +546,9 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
   - Lavora a stretto contatto con i #gloss[verificatori] per la produzione e l'esecuzione di #gloss[test] che verificano il codice prodotto
 - *Valore orario*: Ogni ora rendicontabile del programmatore ha il valore di *15 €/h*
 
+//TODO: compila il PdP
 ==== Responsabile
-- *Presenza*: La figura del responsabile è presente a ogni iterazione di progetto
+- *Presenza*: La figura del responsabile è presente ad ogni iterazione di progetto
 - *Compiti/responsabilità*:
   - Coordina il _team_, assicurandosi che tutti i membri rispettino il _Way of Working_ condiviso e le scadenze prefissate
   - All'inizio di ogni iterazione, comprende quali sono le attività che devono essere svolte e le pianifica, assegnando a ogni membro le adeguate _task_
@@ -577,7 +582,7 @@ Le *riunioni esterne*, invece, sono lo strumento con cui il gruppo comunica dire
 ==== Comunicazioni
 Per quanto riguarda le comunicazioni interne, _GlitchHub Team_ utilizza principalmente *WhatsApp* e *Discord* per, rispettivamente, le comunicazioni asincrone e veloci e le comunicazioni sincrone e strutturate. Infatti, tutte le comunicazioni di servizio che devono essere recapitate in maniera immediata a tutti i membri del gruppo avvengono tramite WhatsApp, mentre le conversazioni più strutturate e le riunioni avvengono tramite il gruppo Discord del _team_.
 
-Eventuali comunicazioni dirette tra membri specifici che non richiedono l'attenzione del resto del gruppo avvengono tramite i messaggi diretti 
+Eventuali comunicazioni dirette tra membri specifici che non richiedono l'attenzione del resto del gruppo avvengono tramite i messaggi diretti
 di Whatsapp.
 
 Le comunicazioni esterne con la proponente vengono svolte dal #gloss[Responsabile] via mail usando l'indirizzo di posta elettronica del gruppo #link("mailto:glitchhubteam@gmail.com")[`glitchhubteam@gmail.com`].
@@ -595,7 +600,8 @@ Il processo d'infrastruttura è composto dalle seguenti attività:
 === Implementazione <infrastruttura-implementazione>
 Durante lo svolgimento del progetto, il gruppo ha appreso i seguenti strumenti che hanno consentito un'organizzazione più efficace delle attività e dei processi di progetto:
 
-- *ClickUp*: È un servizio web che consente una gestione totale dell'organizzazione delle attività di gruppo. Inizialmente, _GlitchHub Team_ ha provato ad utilizzarlo per pianificare le attività degli _sprint_, ma lo strumento si è rivelato troppo macchinoso e inefficiente da usare, per cui è utilizzato dal gruppo principalmente per la condivisione degli appunti delle riunioni.
+//TODO occhio ad attività, è corretto compiti
+- *ClickUp*: È un servizio web che consente una gestione totale dell'organizzazione delle attività di gruppo. Inizialmente, _GlitchHub Team_ ha provato ad utilizzarlo per pianificare le attività degli _sprint_, ma lo strumento si è rivelato troppo macchinoso e inefficiente da usare, per cui è utilizzato dal gruppo principalmente per la condivisione degli appunti delle riunioni e della pianificazione degli eventi, quali i meeting esterni ed interni.
 
 - *Discord*: È un servizio di messaggistica istantanea e videoconferenza usato da _GlitchHub Team_ per svolgere le riunioni interne in maniera virtuale.
 
@@ -648,8 +654,8 @@ La pagina principale dell'_organization_ introduce brevemente il gruppo e i suoi
 La #gloss[repository] di documentazione del gruppo è stata istituita con il nome `GlitchHub-Team.github.io`, poiché ciò consente la creazione di una #gloss[GitHub Page], ovvero una pagina web statica utilizzabile gratuitamente che il gruppo usa per esporre al pubblico le versioni stabili dei prodotti di progetto.
 
 All'interno della repository si trovano il file *README.md* che la descrive dettagliatamente, il file *.gitignore* che permette di impedire il versionamento per certi file specifici e le seguenti cartelle:
-- `.github/`, in cui sono contenuti i file relativi ai workflow di #gloss[GitHub Actions] e gli #gloss[issue templates] descritti 
-- `script/` in cui è presente il sorgente degli script di compilazione dei file Typst
+- `.github/`, in cui sono contenuti i file relativi ai workflow di #gloss[GitHub Actions] e gli #gloss[issue templates] descritti
+- `script/` in cui è presente il sorgente degli script di compilazione dei file Typst e di altre automazioni
 - `src/` in cui sono presenti i sorgenti dei file di documentazione
 - `website/` in cui è presente il sorgente della #gloss[GitHub Page]
 
@@ -693,7 +699,7 @@ Per maggiori informazioni riguardanti la gestione delle _issues_ durante lo svol
 
 ===== GitHub Project
 Il gruppo ha deciso di utilizzare un #gloss[GitHub Project] per raggruppare tutte le _issue_ delle diverse #gloss[repository] in un luogo unico e per assegnare a ogni _issue_ dei campi aggiuntivi che descrivono l'organizzazione delle relative _task_. La descrizione dei campi aggiuntivi forniti dal _project_ è presente nella @gestione-processi-attivita-previste.
- 
+
 Inoltre, il _project_ impostato consente di visualizzare anche le _issue_ in diagrammi di #gloss[Gantt] (separati per membro del gruppo o per sotto-attività) e di visualizzare anche una board #gloss[Kanban] per una visualizzazione rapida di quali _task_ sono in #gloss[Backlog], quali sono pronte per essere eseguite, su quali _issue_ si sta lavorando al momento e su quali sono in revisione.
 
 #set heading(outlined: true)
@@ -718,13 +724,14 @@ Gli script utilizzati dal gruppo sono i seguenti nella #repo("docs")[repository 
 - Il file `compile.sh` permette di compilare tutti i file sorgenti Typst in file PDF;
 - Il file `script/renderHTMLwithPDFs.go` permette di modificare la #gloss[GitHub Page] in modo tale da rendere accessibili pubblicamente i documenti compilati in PDF;
 - La cartella `src/RTB/DocumentiEsterni/sprintPdPGenerator` contiene lo script necessario per generare automaticamente le tabelle di consuntivo di periodo e di preventivo a finire di un determinato sprint, tramite il calcolo delle ore di lavoro attese ed effettive delle _issues_ collegate al #gloss[GitHub Project] del gruppo.
+//TODO: aggiungere script per creazione dati PdQ (da vedere nel branch Documentation-PdQ)
 
 ==== Typst <infrastruttura-creazione-typst>
 Prima di iniziare a redigere la documentazione, il gruppo ha stabilito un ambiente di Typst nella #repo("docs")[repository di documentazione] per la creazione di documenti eleganti ed omogenei, creando degli appositi _templates_ e funzioni personalizzate.
 
 #set heading(outlined: false)
 ===== Template
-I _template_ utilizzati dal gruppo risiedono nella cartella `src/Templates` e forniscono gli strumenti per usare uno stile standard nella redazione dei documenti. 
+I _template_ utilizzati dal gruppo risiedono nella cartella `src/Templates` e forniscono gli strumenti per usare uno stile standard nella redazione dei documenti.
 
 Per maggiori informazioni riguardanti le caratteristiche dei documenti e dei relativi _template_ è possibile consultare la @doc-caratteristiche-struttura.
 
@@ -761,7 +768,7 @@ Per poter attuare il processo di miglioramento, è prima necessario stabilire e 
 === Valutazione dei processi <miglioramento-valutazione>
 Quando i processi sono stati stabiliti e documentati è necessario anche stabilire un processo di valutazione degli stessi, il quale dev'essere anch'esso documentato e applicato. Per poter applicare il processo di valutazione è necessario revisionare regolarmente i processi applicati in modo tale da garantire la loro idoneità al progetto ed efficacia.
 
-_GlitchHub Team_ ha redatto il documento di #gloss[Piano di Qualifica] con lo scopo di misurare la qualità dei processi applicati a ogni _sprint_ in maniera quantificabile e misurabile, in modo tale
+_GlitchHub Team_ ha redatto il documento di #gloss[Piano di Qualifica] con lo scopo di misurare la qualità dei processi applicati a ogni _sprint_ in maniera quantificabile e misurabile, in modo tale //TODO manca qualcosa
 
 === Miglioramento dei processi <miglioramento-miglioramento>
 Le misurazioni e i controlli compiuti nella @miglioramento-valutazione hanno lo scopo di rilevare quali siano i processi che presentano problematiche; una volta rilevati, è necessario individuare delle soluzioni che possano migliorarne l'efficacia ed efficienza, aggiornando anche la relativa documentazione.
@@ -828,13 +835,21 @@ Risorse per l'approfondimento di *Go*:
 Risorse per l'approfondimento di *Gin*:
 - #link("https://gin-gonic.com/en/docs/")[Documentazione ufficiale di _Gin_]
   - Si noti che è questa documentazione è carente sotto alcuni punti vista, per cui si consiglia l'utilizzo di articoli non ufficiali per una maggiore comprensione _hands-on_ di Gin
-- #link("https://ututuv.medium.com/building-user-authentication-and-authorisation-api-in-go-using-gin-and-gorm-93dfe38e0612")[_Building user authentication and authorisation API in Go using Gin and Gorm -- Verdotte Aututu_ (non ufficiale)]
+- #link(
+    "https://ututuv.medium.com/building-user-authentication-and-authorisation-api-in-go-using-gin-and-gorm-93dfe38e0612",
+  )[_Building user authentication and authorisation API in Go using Gin and Gorm -- Verdotte Aututu_ (non ufficiale)]
 
 ==== Grafana e Prometheus
 - #link("https://prometheus.io/docs")[Documentazione ufficiale di _Prometheus_]
-- #link("https://betterstack.com/community/guides/monitoring/visualize-prometheus-metrics-grafana/")[_Creating Grafana Dashboards for Prometheus: A Beginner's Guide -- Ayooluwa Isaiah_ (non ufficiale)]
-- #link("https://geekpaul.medium.com/introducing-prometheus-with-grafana-metrics-collection-and-monitoring-36ca88ac4332")[_Introducing Prometheus with Grafana: Metrics Collection and Monitroing -- Arindam Paul_ (non ufficiale)]
-- #link("https://dev.to/devcorner/monitoring-with-prometheus-and-grafana-a-comprehensive-guide-48gf")[_Monitoring with Prometheus and Grafana: A Comprehensive Guide_ (non ufficiale)]
+- #link(
+    "https://betterstack.com/community/guides/monitoring/visualize-prometheus-metrics-grafana/",
+  )[_Creating Grafana Dashboards for Prometheus: A Beginner's Guide -- Ayooluwa Isaiah_ (non ufficiale)]
+- #link(
+    "https://geekpaul.medium.com/introducing-prometheus-with-grafana-metrics-collection-and-monitoring-36ca88ac4332",
+  )[_Introducing Prometheus with Grafana: Metrics Collection and Monitroing -- Arindam Paul_ (non ufficiale)]
+- #link(
+    "https://dev.to/devcorner/monitoring-with-prometheus-and-grafana-a-comprehensive-guide-48gf",
+  )[_Monitoring with Prometheus and Grafana: A Comprehensive Guide_ (non ufficiale)]
 
 ==== NATS
 - #link("https://docs.nats.io/")[Documentazione ufficiale di _NATS_]
@@ -843,7 +858,7 @@ Risorse per l'approfondimento di *Gin*:
 ==== Python
 Essendo Python un linguaggio molto semplice, è possibile utilizzare una _cheatsheet_ come https://learnxinyminutes.com/python/ per approfondirlo in maniera rapida.
 
- 
+
 === Implementazione del piano di formazione <formazione-implementazione-piano>
 Ogni membro di _GlitchHub Team_ si impegna a ricavare in ogni _sprint_ le risorse temporali necessarie per approfondire le tecnologie usate, in modo tale da permettere una formazione omogenea e comprensiva di tutte le tecnologie utilizzate. La formazione personale di ogni membro avverrà principalmente in maniera asincrona, ma sfruttando anche le sessioni di _brainstorming_ come strumenti di formazione collettiva.
 
