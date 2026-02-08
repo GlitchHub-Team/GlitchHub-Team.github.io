@@ -6,6 +6,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.3.1",
+      "08/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Reinserimento dei collegamenti intra-documento e aggiunta di collegamenti vari]
+    ),
+    (
       "0.3.0",
       "07/02/2026",
       "Alessandro Dinato",
@@ -96,8 +103,10 @@ Il glossario ha lo scopo di raccogliere termini teorici e tecnici nell'ambito SW
 
 Il documento è destinato ad essere un riferimento per tutti i membri del gruppo, fissando concetti chiave e terminologia comune, al fine di facilitare la comunicazione e la comprensione all'interno del progetto.
 
-
-
+/**
+ * NOTA: Per scrivere il glossario, modificare solamente il file src/glossary.json!!!
+ * Non inserirli più qua, ma modificare solo il registro modifiche!
+*/
 #let glossary_terms = json("../../glossary.json")
 
 #let group_by_letter(terms) = {
@@ -120,6 +129,19 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
 
 #let grouped_terms = group_by_letter(glossary_terms)
 
+#let parse_glossary_typst = (string) => {
+  string = string.replace(
+    regex("@\\{([^\\}]+)\\}\\{([^\\}]+)\\}"),
+    (match) => "#ref-term(\"" + match.captures.at(0) + "\", display: \"" + match.captures.at(1)  + "\")"
+  )
+  .replace(
+    regex("@\\{([^\\}]+)\\}"), 
+    (match) => "#ref-term(\"" + match.captures.at(0) + "\")"
+  )
+  
+  eval(string, mode: "markup", scope: (ref-term: ref-term))
+}
+
 #{
   for letter in grouped_terms.keys().sorted() {
     heading(level: 1)[#letter]
@@ -130,7 +152,7 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
         inset: (left: 1.5em, bottom: 0.8em),
         [
           #heading(entry.term, outlined: false, depth: 2, numbering: none) #label(lower(entry.term))
-          #text(size: 10pt)[#entry.definition]
+          #text(size: 10pt)[#parse_glossary_typst(entry.definition)]
         ],
       )
     }
