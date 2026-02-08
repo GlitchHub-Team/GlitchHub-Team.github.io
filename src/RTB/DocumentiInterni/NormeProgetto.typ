@@ -4,14 +4,14 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "In attesa di modifiche",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "0.3.1",
       "07/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Applicate correzioni a @processi-organizzativi rilevate durante verifica.]
+      "Alessandro Dinato",
+      [Applicate correzioni a @processi-organizzativi rilevate durante verifica.],
     ),
     (
       "0.3.0",
@@ -427,7 +427,7 @@ In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente 
 1. Implementazione processo
 2. Validazione
 
-= Processi organizzativi <processi-organizzativi> 
+= Processi organizzativi <processi-organizzativi>
 I *processi organizzativi* avvengono parallelamente ai processi di progetto contribuendo a un buon andamento di quest'ultimo. Le attività previste da questi processi consentono di migliorare la strutturazione e l'organizzazione dei processi di cicli di vita applicati e di facilitare l'adozione di atti di miglioramento nei confronti di questi ultimi.
 
 Nello specifico, si identificano i seguenti processi organizzativi:
@@ -500,11 +500,7 @@ Il processo di verifica di un'_issue_ può avvenire in più modi:
 ==== Conclusione <gestione-processi-conclusione>
 Per utilizzare una linea di lavoro comune, il gruppo applica una _Definition of Done_, ovvero una definizione di cosa determina se un'attività sia conclusa o meno, ben precisa: _Un attività è conclusa quando è stata approvata definitivamente da un verificatore diverso dall'assegnatario originale_.
 
-//TODO: accettiamo "l'incoerenza" del fatto che prima abbiamo detto che non tutte le task hanno task di verifica associate? sezione 4.1.2
-// -> ho sistemato specificando distinzione tra attività palestra e non
-//TODO: è giusto in questa sezione citare le attività? la definition of done. non dovrebbe pplicarsi alle task prima di tutto?
-// -> sostituisco con "task"
-Questa definizione garantisce che il gruppo possa determinare in ogni momento quando una rendicontabile qualunque è conclusa o meno. Questa definizione non è sempre applicabile a tutte le _task_ di "palestra", poiché non sempre essere richiedono una verifica da parte di un terzo, ma ciononostante vengono inserite nel #gloss[backlog] di _task_ del gruppo per motivi di tracciamento.
+Questa definizione garantisce che il gruppo possa determinare in ogni momento quando una task rendicontabile qualunque è conclusa o meno. Questa definizione non è sempre applicabile a tutte le _task_ di "palestra", poiché non sempre essere richiedono una verifica da parte di un terzo, ma ciononostante vengono inserite nel #gloss[backlog] di _task_ del gruppo per motivi di tracciamento.
 
 Quando una _task_ viene conclusa, il suo assegnatario deve modificare la relativa _issue_ impostando i seguenti campi:
 - _End Date_: data effettiva di fine della _task_
@@ -518,8 +514,6 @@ Di seguito, sono riportate le descrizioni dei compiti, delle responsabilità e d
 Si noti che durante una certa iterazione, chiunque può assumere più ruoli a patto che ciò non causi conflitti d'interesse: ad esempio, un #gloss[programmatore] non può anche essere #gloss[verificatore] del suo stesso codice.
 
 #set heading(outlined: false)
-//TODO forse metterei ore produttive
-// -> ho sostituito con "valore delle ore produttive"
 ==== Amministratore
 - *Presenza*: La figura dell'amministratore è presente a ogni iterazione di progetto
 - *Compiti/responsabilità*:
@@ -561,7 +555,7 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
   - Fornisce l'approvazione finale delle aggiunte alla #gloss[repository] pubblica;
   - Rappresenta il progetto rispetto agli stakeholders e si occupa della comunicazione con questi ultimi;
   - Redige i verbali interni ed esterni, se presente alle relative riunioni.
-- *Valore orario*: Ogni ora rendicontabile del responsabile ha il valore di *30€/h*
+- *Valore delle ore produttive*: Ogni ora rendicontabile del responsabile ha il valore di *30€/h*
 
 ==== Verificatore
 - *Presenza*: La figura del #gloss[verificatore] è presente per l'intera durata del progetto
@@ -570,7 +564,7 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
   - Esegue test e revisioni del software approfonditi;
   - Verifica la correttezza di ogni versione della documentazione prodotta;
   - Identifica aree di miglioramento in ciò che verifica, codice o documentazione che sia.
-- *Valore orario*: Ogni ora rendicontabile del verificatore ha il valore di *15 €/h*
+- *Valore delle ore produttive*: Ogni ora rendicontabile del verificatore ha il valore di *15 €/h*
 
 #set heading(outlined: true)
 === Coordinamento
