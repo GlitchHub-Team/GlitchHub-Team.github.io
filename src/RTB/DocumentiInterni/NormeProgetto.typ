@@ -7,6 +7,13 @@
   stato: "In attesa di modifiche",
   registro-modifiche: (
     (
+      "0.3.1",
+      "07/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Applicate correzioni a @processi-organizzativi rilevate durante verifica.]
+    ),
+    (
       "0.3.0",
       "07/02/2026",
       "Elia Ernesto Stellin",
@@ -420,13 +427,8 @@ In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente 
 1. Implementazione processo
 2. Validazione
 
-= Processi organizzativi <processi-organizzativi> //TODO errato dire che sono processi di supporto, si confonde appunto con i processi supporto(sto Tulliando sorry)
-I *processi organizzativi* sono i processi di supporto al progetto che stabiliscono una struttura solida di processi di cicli di vita
-atti a migliorare i processi stessi e l'adozione di eventuali miglioramenti ad essi.
-
-//TODO stesso discorso di sopra
-I *processi organizzativi* sono i processi di supporto alle attività di progetto che contribuiscono al buon andamento di quest'ultimo.
-Le attività previste da questi processi consentono di migliorare la strutturazione e l'organizzazione dei processi di cicli di vita applicati e di facilitare l'adozione di atti di miglioramento nei confronti di questi ultimi.
+= Processi organizzativi <processi-organizzativi> 
+I *processi organizzativi* avvengono parallelamente ai processi di progetto contribuendo a un buon andamento di quest'ultimo. Le attività previste da questi processi consentono di migliorare la strutturazione e l'organizzazione dei processi di cicli di vita applicati e di facilitare l'adozione di atti di miglioramento nei confronti di questi ultimi.
 
 Nello specifico, si identificano i seguenti processi organizzativi:
 - #link(<gestione-processi>)[*Gestione dei processi*]
@@ -452,30 +454,31 @@ Le attività previste nella gestione di processi sono le seguenti:
 
 Si noti che la descrizione di questo processo riguarda le attività rendicontabili il cui sviluppo produce prodotti di progetto "esterni", ovvero tutto il codice e la documentazione richiesta dal capitolato e dalle specifiche del progetto didattico. Inoltre, in ogni successiva sottosezione si riportano i passaggi da seguire per gestire le #gloss[GitHub Issues] relative a specifiche _task_, secondo quanto deciso dal gruppo nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[*verbale interno del 30 gennaio 2026*]
 
-Le attività non rendicontabili o di "palestra" seguono un ciclo di vita simile ma che spesso non comprende la fase di #link(<gestione-processi-revisione-valutazione>)[revisione e valutazione] e una fase di #link(<gestione-processi-conclusione>)[conclusione] più semplificata, ma ciononostante vengono tracciate con le #gloss[GitHub Issues].
+Le attività non rendicontabili o di "palestra", ovvero il cui svolgimento non influisce sul budget fissato dal gruppo, seguono un ciclo di vita simile ma che spesso non comprende la fase di #link(<gestione-processi-revisione-valutazione>)[revisione e valutazione] e una fase di #link(<gestione-processi-conclusione>)[conclusione] più semplificata, ma ciononostante vengono tracciate con le #gloss[GitHub Issues].
 
 
 #set heading(outlined: false)
 ==== Avvio dell'attività e definizione della portata <gestione-processi-avvio>
 Innanzitutto, è necessario stabilire i requisiti e le risorse necessarie per completare l'attività. Dopodiché il #gloss[responsabile] del gruppo deve stabilire la fattibilità del processo controllando la disponibilità delle risorse del gruppo, ovvero controllando che l'attività sia fattibile nell'intervallo temporale fissato. Si noti che i requisiti del processo possono essere discussi con i loro assegnatari.
 
-Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in _task_ assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento.
+Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in "_task_" assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento.
 
 Si noti che le _issue_ in questo stato devono essere associate allo stato di *"Backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
 
 ==== Pianificazione <gestione-processi-pianificazione>
 Per pianificare un'attività è fondamentale comprendere quali siano le risorse richieste, sia temporali che economiche, e le singole _task_ di cui è composta. Poiché le attività del progetto richiedono competenza in un'ampia gamma di ambiti diversi, ogni _task_ è assegnata a un *ruolo* specifico; si veda la @divisione-ruoli per un riassunto delle responsabilità e del valore economico del lavoro di ogni singolo ruolo.
-//TODO: i campi fanno riferimento ai compiti/task non alle attività
-Quando si deve pianificare lo svolgimento di una _task_, il #gloss[responsabile] crea un'_issue_ specifica per un certo ruolo e determina i seguenti campi:
-- _Start Date_: la data d'inizio prevista dell'attività,
-- _Target Date_: la data di fine prevista dell'attività,
-- _Expected Worked Hours_: il numero d'ore atteso per compiere questa attività,
-- _Sprint Role_: il ruolo a cui corrisponde l'attività, può anche essere vuoto in caso l'attività sia di "palestra", ovvero sia un'attività di studio o di produzione di documentazione interna; questo campo è solitamente compilato automaticamente dalle automazioni usate dal gruppo
-- _Sprint_: l'iterazione a cui è assegnata questa attività; questo campo è solitamente compilato automaticamente dalle automazioni usate dal gruppo
-- _Priority_: priorità dell'_issue_
+
+Quando si deve pianificare lo svolgimento di una specifica _task_, il #gloss[responsabile] crea un'_issue_ specifica per un certo ruolo e determina i seguenti campi:
+- _Start Date_: la data d'inizio prevista della _task_,
+- _Target Date_: la data di fine prevista della _task_,
+- _Expected Worked Hours_: il numero d'ore atteso per compiere la _task_,
+- _Sprint Role_: il ruolo a cui corrisponde la _task_, può anche essere vuoto in caso l'attività sia di "palestra", ovvero sia una _task_ di studio o di produzione di documentazione interna; questo campo è solitamente compilato automaticamente dalle automazioni usate dal gruppo
+- _Sprint_: l'iterazione a cui è assegnata questa _task_; questo campo è solitamente compilato automaticamente dalle automazioni usate dal gruppo
+- _Priority_: priorità dell'_issue_.
 
 Inoltre, lo stato dell'_issue_ rilevata dev'essere impostato a *"Ready"*, il quale indica che l'issue è pronta per essere svolta dall'assegnatario nell'iterazione corrente.
-//TODO: citare che le task di palestra hanno la rispettiva label, e che non consideriamo le ore segnate in quella task come rendicontabili ma ci servono per tenere traccia del tempo del carico effettivo sull'individuo
+
+Il gruppo applica la procedura di tracciamento sopra descritta anche alle _task_ di "palestra" citate in precedenza con lo scopo di tenere traccia del carico effettivo di ogni membro del gruppo, il quale non può essere rappresentato fedelmente dal numero di ore spese su attività solamente rendicontabili.
 
 ==== Esecuzione e controllo <gestione-processi-esecuzione-controllo>
 L'esecuzione delle diverse attività è affidata ai diversi ruoli e dev'essere monitorata regolarmente dal #gloss[responsabile] per accertarsi che ogni membro del gruppo rispetti i propri compiti nelle scadenze prefissate.
@@ -498,13 +501,15 @@ Il processo di verifica di un'_issue_ può avvenire in più modi:
 Per utilizzare una linea di lavoro comune, il gruppo applica una _Definition of Done_, ovvero una definizione di cosa determina se un'attività sia conclusa o meno, ben precisa: _Un attività è conclusa quando è stata approvata definitivamente da un verificatore diverso dall'assegnatario originale_.
 
 //TODO: accettiamo "l'incoerenza" del fatto che prima abbiamo detto che non tutte le task hanno task di verifica associate? sezione 4.1.2
+// -> ho sistemato specificando distinzione tra attività palestra e non
 //TODO: è giusto in questa sezione citare le attività? la definition of done. non dovrebbe pplicarsi alle task prima di tutto?
-Questa definizione garantisce che il gruppo possa determinare in ogni momento quando un'attività qualunque è conclusa o meno.
-//TODO: i campi fanno riferimento ai compiti/task non alle attività
+// -> sostituisco con "task"
+Questa definizione garantisce che il gruppo possa determinare in ogni momento quando una rendicontabile qualunque è conclusa o meno. Questa definizione non è sempre applicabile a tutte le _task_ di "palestra", poiché non sempre essere richiedono una verifica da parte di un terzo, ma ciononostante vengono inserite nel #gloss[backlog] di _task_ del gruppo per motivi di tracciamento.
+
 Quando una _task_ viene conclusa, il suo assegnatario deve modificare la relativa _issue_ impostando i seguenti campi:
-- _End Date_: data effettiva di fine dell'attività
-- _Worked Hours_: le ore effettive di lavoro sull'attività
-- L'_issue_ e l'eventuale _issue_ relativa alla verifica della _task_ devono essere impostate come *"Done"*
+- _End Date_: data effettiva di fine della _task_
+- _Worked Hours_: le ore effettive di lavoro sulla _task_
+  - L'_issue_ relativa alla _task_ e l'eventuale _issue_ relativa alla sua verifica devono essere impostate come *"Done"*
 
 #set heading(outlined: true)
 === Ruoli <divisione-ruoli>
@@ -514,13 +519,14 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
 
 #set heading(outlined: false)
 //TODO forse metterei ore produttive
+// -> ho sostituito con "valore delle ore produttive"
 ==== Amministratore
 - *Presenza*: La figura dell'amministratore è presente a ogni iterazione di progetto
 - *Compiti/responsabilità*:
   - Gestisce e apporta migliorie all'infrastruttura usata dal gruppo per compiere le attività di progetto, quali l'Issue Tracking System e gli strumenti di verifica;
   - Risolve le problematiche legate all'infrastruttura _as soon as possible_;
   - Con la sua conoscenza approfondita del #gloss[way of working], redige il documento di #gloss[Piano di Qualifica].
-- *Valore orario*: Ogni ora rendicontabile dell'amministratore ha il valore di *20 €/h*
+- *Valore delle ore produttive*: Ogni ora rendicontabile dell'amministratore ha il valore di *20 €/h*
 
 ==== Analista
 - *Presenza*: La figura dell'#gloss[analista] è presente principalmente nella prima fase di progetto, tra la #gloss[candidatura] e l'#gloss[RTB], in cui si delinea la maggior parte dei requisiti del software. La sua presenza è ampiamente ridotta nella fase compresa tra l'#gloss[RTB] e il #gloss[PB], in cui i requisiti delineati sono stabili e soggetti a cambiamenti minori.
@@ -528,7 +534,7 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
   - Identifica gli scenari d'uso del prodotto, tramite sessioni di _brainstorming_ e le riunioni esterne con la #gloss[proponente];
   - Identifica i requisiti del Software e li classifica per tipologia e urgenza;
   - Redige il documento di #gloss[Analisi dei Requisiti].
-- *Valore orario*: Ogni ora rendicontabile dell'analista ha il valore di *25 €/h*
+- *Valore delle ore produttive*: Ogni ora rendicontabile dell'analista ha il valore di *25 €/h*
 
 ==== Progettista
 - *Presenza*: La figura del progettista è presente nella fase tra l'#gloss[RTB] e il #gloss[PB], in cui si delinea il _design_ architetturale dell'MVP.
@@ -536,7 +542,7 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
   - Trasforma i requisiti, rilevati dall'#gloss[Analista], in _design_ architetturale;
   - Produce documenti e schemi che spiegano il _design_ rilevato;
   - Definisce le scelte tecnologiche.
-- *Valore orario*: Ogni ora rendicontabile del progettista ha il valore di *25 €/h*
+- *Valore delle ore produttive*: Ogni ora rendicontabile del progettista ha il valore di *25 €/h*
 
 ==== Programmatore
 - *Presenza*: La figura del #gloss[programmatore] è presente nella fase di sviluppo del #gloss[PoC], poco prima della scadenza #gloss[RTB] e per tutta la fase successiva fino alla produzione dell'#gloss[MVP].
@@ -544,26 +550,26 @@ Si noti che durante una certa iterazione, chiunque può assumere più ruoli a pa
   - È responsabile dello sviluppo del software, portando il _design_ architetturale rilevato dai #gloss[progettisti] in codice funzionante;
   - Collabora con i #gloss[progettisti] per assicurarsi che il codice prodotto sia conforme al _design_ rilevato;
   - Lavora a stretto contatto con i #gloss[verificatori] per la produzione e l'esecuzione di #gloss[test] che verificano il codice prodotto
-- *Valore orario*: Ogni ora rendicontabile del programmatore ha il valore di *15 €/h*
+- *Valore delle ore produttive*: Ogni ora rendicontabile del programmatore ha il valore di *15 €/h*
 
-//TODO: compila il PdP
 ==== Responsabile
 - *Presenza*: La figura del responsabile è presente ad ogni iterazione di progetto
 - *Compiti/responsabilità*:
   - Coordina il _team_, assicurandosi che tutti i membri rispettino il _Way of Working_ condiviso e le scadenze prefissate
-  - All'inizio di ogni iterazione, comprende quali sono le attività che devono essere svolte e le pianifica, assegnando a ogni membro le adeguate _task_
-  - Fornisce l'approvazione finale delle aggiunte alla #gloss[repository] pubblica
-  - Rappresenta il progetto rispetto agli stakeholders e si occupa della comunicazione con questi ultimi
-  - Redige i verbali interni ed esterni, se presente alle relative riunioni
+  - All'inizio di ogni iterazione, comprende quali sono le attività che devono essere svolte e le pianifica, assegnando a ogni membro le adeguate _task_;
+  - All'inizio di ogni iterazione, compila la sezione del #gloss[Piano di Progetto] relativa alla previsione delle risorse che verranno consumate e dei rischi che potrebbero occorrere durante lo _sprint_, mentre a fine dello _sprint_ ne compila la sezione relativa al consuntivo di periodo;
+  - Fornisce l'approvazione finale delle aggiunte alla #gloss[repository] pubblica;
+  - Rappresenta il progetto rispetto agli stakeholders e si occupa della comunicazione con questi ultimi;
+  - Redige i verbali interni ed esterni, se presente alle relative riunioni.
 - *Valore orario*: Ogni ora rendicontabile del responsabile ha il valore di *30€/h*
 
 ==== Verificatore
 - *Presenza*: La figura del #gloss[verificatore] è presente per l'intera durata del progetto
 - *Compiti/responsabilità*:
-  - Garantisce che ogni attività di progetto sia eseguita secondo lo stato dell'arte
-  - Esegue test e revisioni del software approfonditi
-  - Verifica la correttezza di ogni versione della documentazione prodotta
-  - Identifica aree di miglioramento in ciò che verifica, codice o documentazione che sia
+  - Garantisce che ogni attività di progetto sia eseguita secondo lo stato dell'arte;
+  - Esegue test e revisioni del software approfonditi;
+  - Verifica la correttezza di ogni versione della documentazione prodotta;
+  - Identifica aree di miglioramento in ciò che verifica, codice o documentazione che sia.
 - *Valore orario*: Ogni ora rendicontabile del verificatore ha il valore di *15 €/h*
 
 #set heading(outlined: true)
@@ -600,20 +606,19 @@ Il processo d'infrastruttura è composto dalle seguenti attività:
 === Implementazione <infrastruttura-implementazione>
 Durante lo svolgimento del progetto, il gruppo ha appreso i seguenti strumenti che hanno consentito un'organizzazione più efficace delle attività e dei processi di progetto:
 
-//TODO occhio ad attività, è corretto compiti
-- *ClickUp*: È un servizio web che consente una gestione totale dell'organizzazione delle attività di gruppo. Inizialmente, _GlitchHub Team_ ha provato ad utilizzarlo per pianificare le attività degli _sprint_, ma lo strumento si è rivelato troppo macchinoso e inefficiente da usare, per cui è utilizzato dal gruppo principalmente per la condivisione degli appunti delle riunioni e della pianificazione degli eventi, quali i meeting esterni ed interni.
+- *ClickUp*: È un servizio web che consente una gestione totale dell'organizzazione delle _task_ di gruppo. Inizialmente, _GlitchHub Team_ ha provato ad utilizzarlo per pianificare le  _task_ degli _sprint_, ma lo strumento si è rivelato troppo macchinoso e inefficiente da usare, per cui è utilizzato dal gruppo principalmente per la condivisione degli appunti delle riunioni e della pianificazione degli eventi, quali i meeting esterni ed interni.
 
 - *Discord*: È un servizio di messaggistica istantanea e videoconferenza usato da _GlitchHub Team_ per svolgere le riunioni interne in maniera virtuale.
 
 - *Git*: È uno dei _Version Control System_ (VCS) open-source più usati al mondo: offre un sistema di versionamento efficace del codice e permette di separare lo spazio di lavoro degli utenti in _branch_ separate. _GlitchHub Team_ ha deciso di utilizzare questo strumento per versionare la propria documentazione e il proprio codice.
 
 - *GitHub*: È un servizio che permette di eseguire l'_hosting_ di #gloss[repository] Git gratuitamente, fornendo molti strumenti che facilitano la collaborazione tra sviluppatori, quali:
-  - *GitHub Issues* per il tracciamento del _backlog_ delle attività
+  - *GitHub Issues* per il tracciamento del _backlog_ delle _task_
   - *GitHub Actions* per la gestione delle automazioni e delle pipeline #gloss[CI/CD]
-  - *GitHub Projects* per una gestione più fine della pianificazione delle attività, tramite diagrammi di #gloss[Gantt] e _#gloss[Kanban] boards_
+  - *GitHub Projects* per una gestione più fine della pianificazione delle  _task_, tramite diagrammi di #gloss[Gantt] e _#gloss[Kanban] boards_
   _GlitchHub Team_ ha deciso di utilizzare questo strumento per l'_hosting_ pubblico delle proprie #gloss[repository] di documentazione e di codice per il progetto.
 
-- *Google Calendar*: È un servizio di calendaristica che consente un'integrazione nativa con molti strumenti di pianificazione delle attività. Il gruppo ha deciso di usarlo per la pianificazione degli incontri interni ed esterni.
+- *Google Calendar*: È un servizio di calendaristica che consente un'integrazione nativa con molti strumenti di pianificazione delle _task_. Il gruppo ha deciso di usarlo per la pianificazione degli incontri interni ed esterni.
 
 - *Google Mail* (Gmail): È il servizio di posta elettronica dell'ecosistema Google. Viene usato da _GlitchHub Team_ per la comunicazione con gli _stakeholders_ del progetto.
 
@@ -724,7 +729,7 @@ Gli script utilizzati dal gruppo sono i seguenti nella #repo("docs")[repository 
 - Il file `compile.sh` permette di compilare tutti i file sorgenti Typst in file PDF;
 - Il file `script/renderHTMLwithPDFs.go` permette di modificare la #gloss[GitHub Page] in modo tale da rendere accessibili pubblicamente i documenti compilati in PDF;
 - La cartella `src/RTB/DocumentiEsterni/sprintPdPGenerator` contiene lo script necessario per generare automaticamente le tabelle di consuntivo di periodo e di preventivo a finire di un determinato sprint, tramite il calcolo delle ore di lavoro attese ed effettive delle _issues_ collegate al #gloss[GitHub Project] del gruppo.
-//TODO: aggiungere script per creazione dati PdQ (da vedere nel branch Documentation-PdQ)
+- La cartella `script/scriptPdQ` contiene lo script per la rilevazione dei dati utili al calcolo delle metriche presenti nel #gloss[Piano di Qualifiche]
 
 ==== Typst <infrastruttura-creazione-typst>
 Prima di iniziare a redigere la documentazione, il gruppo ha stabilito un ambiente di Typst nella #repo("docs")[repository di documentazione] per la creazione di documenti eleganti ed omogenei, creando degli appositi _templates_ e funzioni personalizzate.
@@ -768,7 +773,7 @@ Per poter attuare il processo di miglioramento, è prima necessario stabilire e 
 === Valutazione dei processi <miglioramento-valutazione>
 Quando i processi sono stati stabiliti e documentati è necessario anche stabilire un processo di valutazione degli stessi, il quale dev'essere anch'esso documentato e applicato. Per poter applicare il processo di valutazione è necessario revisionare regolarmente i processi applicati in modo tale da garantire la loro idoneità al progetto ed efficacia.
 
-_GlitchHub Team_ ha redatto il documento di #gloss[Piano di Qualifica] con lo scopo di misurare la qualità dei processi applicati a ogni _sprint_ in maniera quantificabile e misurabile, in modo tale //TODO manca qualcosa
+_GlitchHub Team_ ha redatto il documento di #gloss[Piano di Qualifica] con lo scopo di misurare la qualità dei processi applicati a ogni _sprint_ in maniera quantificabile e misurabile, in modo tale da poter trarre delle conclusioni su quali siano i difetti del _way of working_ del gruppo e come questi si possano migliorare in modo continuo.
 
 === Miglioramento dei processi <miglioramento-miglioramento>
 Le misurazioni e i controlli compiuti nella @miglioramento-valutazione hanno lo scopo di rilevare quali siano i processi che presentano problematiche; una volta rilevati, è necessario individuare delle soluzioni che possano migliorarne l'efficacia ed efficienza, aggiornando anche la relativa documentazione.
@@ -783,7 +788,6 @@ Le attività previste da questo processo sono:
 - #link(<formazione-implementazione-piano>)[Implementazione del piano di formazione]
 
 === Implementazione del processo <formazione-implementazione>
-// A review of the project requirements shall be conducted to establish and make timely provision for acquiring or developing the resources and skills required by the management and technical staff. The types and levels of training and categories of personnel needing training shall be determined. A training plan, addressing implementation schedules, resource requirements, and training needs, should be developed and documented.
 Secondo lo standard _ISO/IEC 12207:1995_, per poter attuare il processo di formazione è fondamentale condurre una revisione dei requisiti del progetto, in modo tale da acquisire e sviluppare le risorse e abilità necessarie per il suo buon svolgimento.
 
 Dopo un'attenta analisi dei requisiti del progetto, il gruppo ha stabilito che è necessario studiare e approfondire le seguenti tecnologie:
@@ -846,7 +850,7 @@ Risorse per l'approfondimento di *Gin*:
   )[_Creating Grafana Dashboards for Prometheus: A Beginner's Guide -- Ayooluwa Isaiah_ (non ufficiale)]
 - #link(
     "https://geekpaul.medium.com/introducing-prometheus-with-grafana-metrics-collection-and-monitoring-36ca88ac4332",
-  )[_Introducing Prometheus with Grafana: Metrics Collection and Monitroing -- Arindam Paul_ (non ufficiale)]
+  )[_Introducing Prometheus with Grafana: Metrics Collection and Monitoring -- Arindam Paul_ (non ufficiale)]
 - #link(
     "https://dev.to/devcorner/monitoring-with-prometheus-and-grafana-a-comprehensive-guide-48gf",
   )[_Monitoring with Prometheus and Grafana: A Comprehensive Guide_ (non ufficiale)]
