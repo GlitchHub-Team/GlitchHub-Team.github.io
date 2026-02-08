@@ -23,7 +23,13 @@ var FilesToIgnore = map[string]bool{
 	"LetteraPresentazione.typ": true,
 }
 
+/**
+	NOTA: con la trasformazione del glossario in file json, questo script non funziona più.
+*/
 func main() {
+	fmt.Println("Questo script non funziona più finché non viene adattato al file glossary.json")
+	return
+
 	if _, err := os.Stat(GlossaryFile); os.IsNotExist(err) {
 		fmt.Printf("No glossario in: %s\n", GlossaryFile)
 		return
