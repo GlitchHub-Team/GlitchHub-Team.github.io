@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.33.0",
+      "09/02/2026",
+      "Jaume Bernardi",
+      "-",
+      [Aggiunto diagramma ad UC141]
+    ),
+    (
       "0.32.0",
       "05/02/2026",
       "Elia Ernesto Stellin",
@@ -3954,6 +3961,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il gateway riceve il messaggio di identificativo non trovato dal Sistema
 
 ==== #uc() - Invio dati crittografati <Invio-dati-crittografati>
+#image("../../assets/diagrammi/UC141.svg", width: 100%)
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il gateway è connesso e autenticato con il Cloud
@@ -3972,7 +3980,6 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - #ref-uc(<Invio-dati-fallito>)
 
 ==== #uc() - Invio dati fallito <Invio-dati-fallito>
-#image("../../assets/diagrammi/UC141.svg", width: 100%)
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il gateway tenta di inviare dati crittografati al Sistema Cloud
