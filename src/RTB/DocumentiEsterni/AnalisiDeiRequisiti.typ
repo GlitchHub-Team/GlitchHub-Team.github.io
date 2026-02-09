@@ -3972,6 +3972,7 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - #ref-uc(<Invio-dati-fallito>)
 
 ==== #uc() - Invio dati fallito <Invio-dati-fallito>
+#image("../../assets/diagrammi/UC141.svg", width: 100%)
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il gateway tenta di inviare dati crittografati al Sistema Cloud
