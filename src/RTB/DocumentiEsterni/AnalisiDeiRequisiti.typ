@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.32.3",
+      "09/02/2026",
+      "Michele Dioli",
+      "-",
+      "Sistemano requisito 40"
+    ),
+    (
       "0.32.2",
       "09/02/2026",
       "Elia Ernesto Stellin",
@@ -4630,9 +4637,10 @@ Inoltre un buon requisito deve essere *SMART*:
   [L'Admin generico deve poter visualizzare la lista di tutte le richieste di commissioning e decommissioning di gateway associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>)],
 
+
   [#rf()],
-  [L'Admin generico, visualizzando la lista di tutte le richieste di commissioning e decommissioning di gateway, deve poter visualizzare lo stato della richiesta],
-  [#ref-uc(<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>)],
+  [L'Admin generico deve poter visualizzare la richiesta di commissioning e decommissioning di gateway associate al proprio Tenant],
+  [#ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)],
 
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista di tutti gli utenti associati al proprio Tenant],
