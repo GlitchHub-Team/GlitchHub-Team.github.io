@@ -6,8 +6,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "In attesa di modifiche",
+  stato: "Da Verificare",
   registro-modifiche: (
+      (
+      "0.9.0",
+      "09/02/2026",
+      "Siria Salvalaio",
+      "",
+      [Stesura @S_AdR, @S_NdP, @S_PdQ, @S_PoC],
+    ),
     (
       "0.8.2",
       "04/02/2026",
@@ -687,8 +694,19 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
 La #gloss[RTB] è una fase in cui vengono fissati i requisiti da soddisfare e si motivano le tecnologie, i framework e le librerie scelte. \
 Inoltre, è necessario produrre un artefatto, chiamato #gloss[PoC], il quale ha lo scopo di valutare la fattibilità tecnologica del prodotto atteso secondo le scelte implementative fatte.
 
-== Stesura Analisi dei Requisiti
-//TODO
+== Stesura Analisi dei Requisiti <S_AdR>
+Il documento di Analisi dei Requisiti ha lo scopo di formalizzare le specifiche del prodotto software, definendo in modo chiaro le funzionalità, i vincoli e le interazioni del sistema. Esso rappresenta il riferimento principale per la verifica della conformità del prodotto rispetto alle richieste del proponente.
+
+Per la redazione di questo documento sono previste le seguenti attività:
+- *Analisi del Capitolato e identificazione degli attori*: individuazione delle entità che interagiscono con il sistema, distinguendo tra utenti e componenti hardware/software (es. Sensori BLE, Gateway, Sistema Cloud);
+- *Definizione dei Casi d'uso (Use Case)*: modellazione delle interazioni tramite diagrammi UML e descrizioni testuali dettagliate, comprendenti pre-condizioni, post-condizioni, scenari principali e scenari alternativi;
+- *Specifica dei requisiti*: individuazione puntuale e classificazione dei requisiti in:
+  - Funzionali (comportamenti attesi del sistema);
+  - Non funzionali (vincoli di qualità, performance e sicurezza);
+  - Di dominio (vincoli dettati dal contesto applicativo).
+Il documento coprirà sia le specifiche relative all'infrastruttura Cloud (gestione tenant, dashboard, API), sia quelle relative al Simulatore di Gateway (generazione dati sensori, protocolli GATT).
+
+La redazione di tale documento ha coperto l'intero arco temporale della fase di RTB, iniziando dal primo sprint e concludendosi con il rilascio della versione stabile nel nono sprint. Durante questo periodo, il documento è stato oggetto di un continuo raffinamento incrementale, con una particolare attenzione ai dettagli, alla granularità dei casi d'uso e alla revisione dei requisiti proprio negli ultimi sprint.
 
 == Stesura Piano di Progetto
 Il #gloss[Piano di Progetto] definisce in modo chiaro e strutturato tutte le attività necessarie alla realizzazione del progetto, stabilendo risorse, modalità operative e tempistiche di sviluppo. \
@@ -704,19 +722,30 @@ Le stime relative ai costi e alla data di consegna potranno essere aggiornate qu
 Allo stesso modo, l'analisi dei rischi e le relative strategie di mitigazione dovranno essere riviste ogni volta che un rischio si presenta, trattandosi di un processo continuo e non limitato alla fase iniziale.
 
 
-== Stesura Norme di Progetto
-//TODO
+== Stesura Norme di Progetto <S_NdP>
+Il documento Norme di Progetto definisce il _Way of Working_ del gruppo, stabilendo le regole, gli strumenti e le procedure operative da seguire per garantire uniformità, efficienza e qualità nello svolgimento del progetto.
 
-== Stesura Piano di Qualifica
-//TODO
+La redazione del documento è stata svolta in due fasi principali:
+- *Fase Iniziale* (Primi Sprint): Durante i primi sprint è stata stesa l'ossatura fondamentale del documento, necessaria per avviare i lavori. In questa fase sono stati definiti i processi di supporto (in particolare il ciclo di vita della documentazione e la verifica), le convenzioni di versionamento e l'uso degli strumenti a supporto come GitHub e Typst.
+
+- *Fase Finale* (Nono Sprint): La stesura è stata completata e raffinata nel corso del nono sprint. In questa fase sono stati formalizzati i processi primari e i processi organizzativi, consolidando le pratiche apprese durante lo svolgimento della RTB.
+
+== Stesura Piano di Qualifica <S_PdQ>
+Il documento Piano di Qualifica ha lo scopo di definire la strategia di gestione della qualità adottata dal gruppo per garantire il soddisfacimento degli standard prefissati. Esso descrive le procedure operative di verifica e validazione, stabilendo metriche oggettive per monitorare sia l'efficienza dei processi interni che la conformità del prodotto software ai requisiti funzionali e qualitativi. Nello specifico, il documento stabilisce le metriche di valutazione applicate sia ai processi che al prodotto stesso, riportando anche i dettagli sulle procedure di verifica, sui test effettuati e sulle iniziative di miglioramento.
+
+La redazione del documento ha coperto l'intero arco della fase di RTB. Durante questo periodo, il testo è stato oggetto di un continuo lavoro di revisione che ha permesso di raffinare progressivamente le varie metriche e le sezioni relative al controllo qualità, adattandole all'evoluzione del progetto.
 
 == Stesura Glossario
 Il *glossario* ha lo scopo di facilitare la comprensione della documentazione da parte di lettori esterni e di fissare, all'interno del gruppo, definizioni univoche che riducano possibili ambiguità interpretative.\
 Sebbene la sua prima versione sia stata redatta durante la fase di *Candidatura*, il documento richiede un aggiornamento continuo, integrando progressivamente nuove definizioni man mano che emergono durante il progetto.\
 La sua completa realizzazione è pertanto prevista al termine dell'intero progetto didattico.
 
-== Realizzazione #gloss[Proof of Concept] (PoC)
-//TODO
+== Realizzazione #gloss[Proof of Concept] (PoC) <S_PoC>
+La realizzazione del #gloss[Proof of Concept] (PoC) si è concentrata interamente nel corso del nono sprint, rappresentando il culmine delle attività di analisi e ricerca tecnologica raffinata fino a quel punto. \
+L'obiettivo dell'artefatto è stato quello di validare concretamente l'architettura ideata e di verificare l'efficacia delle tecnologie scelte in uno scenario d'uso reale.
+
+Il prototipo realizzato è un sistema interamente containerizzato tramite Docker, che orchestra diversi componenti chiave: Go e NATS JetStream per la gestione performante della messaggistica in tempo reale, TimescaleDB per la persistenza efficiente delle serie temporali e una dashboard sviluppata in Angular e Gin per la fruizione dei dati. A supporto dell'infrastruttura è stato integrato un sistema di observability basato su Prometheus e Grafana, permettendo il monitoraggio attivo delle metriche di sistema. Questo lavoro ha permesso di confermare la fattibilità tecnica della soluzione proposta, garantendo la corretta acquisizione, storicizzazione e visualizzazione dei dati provenienti dai sensori simulati.
+
 = Pianificazione e Analisi Sprint per RTB
 Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
 Ogni #gloss[sprint] viene valutato attraverso un #gloss[consuntivo di periodo], nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.
@@ -1802,10 +1831,8 @@ Il team ha svolto con successi le seguenti attività nello sprint 8:
 - Aggiunte definizioni al glossario #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/172")[\#172], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/173")[\#173], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/174")[\#174] e #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/175")[\#175]
 
 ==== Retrospettiva
-Lo Sprint 8 si è concluso con il completamento della totalità delle issue pianificate. Un risultato cruciale di questo periodo è stato l'approfondimento delle tecnologie di supporto: grazie alla base tecnica acquisita, il prossimo sprint sarà focalizzato sulla realizzazione pratica del #gloss("POC").
-
-Parallelamente allo sviluppo, verranno redatti i test di sistema da includere nel #gloss("PdQ") e proseguiranno le attività di stesura e aggiornamento delle #gloss("NdP").
-//TODO: la retrospettiva deve guardare indietro non in avanti, deve spiegare cos'è successo e i problemi incontrati, si potrebbe citare il fatto dell'esame di SWE che ha limitato la produttività del gruppo
+Lo Sprint 8 ha visto il completamento delle attività principali, ma con una produttività ridotta causata dalla sessione d'esami invernale (@RP1). L'impegno per gli appelli accademici ha limitato la disponibilità del team, rendendo difficile il rispetto rigoroso delle tempistiche su alcune issue secondarie. \
+Il prossimo sprint sarà focalizzato sulla realizzazione pratica del #gloss("POC"), verranno redatti i test di sistema da includere nel #gloss("PdQ") e proseguiranno le attività di stesura e aggiornamento delle #gloss("NdP").
 
 ==== Risorse utilizzate
 #table(
