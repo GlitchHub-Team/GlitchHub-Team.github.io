@@ -95,16 +95,16 @@
     (
       "0.32.2",
       "09/02/2026",
-      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
       "-",
-      [Aggiunto diagramma ad UC141],
+      [Sistemati digrammi da #ref-uc(<Visualizzazione-audit-log>) a #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>)]
     ),
     (
       "0.32.1",
       "09/02/2026",
-      "Elia Ernesto Stellin",
+      "Jaume Bernardi",
       "-",
-      [Sistemati digrammi da #ref-uc(<Visualizzazione-audit-log>) a #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>)]
+      [Aggiunto diagramma ad UC141],
     ),
     (
       "0.32.0",
