@@ -4,8 +4,15 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Verificato",
+  stato: "Da verificare",
   registro-modifiche: (
+    (
+      "0.4.0",
+      "09/02/2026",
+      "Riccardo Graziani",
+      "",
+      [Aggiunte @processi-primari, @processo-fornitura, @processo-sviluppo],
+    ),
     (
       "0.3.1",
       "07/02/2026",
@@ -53,8 +60,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "",
+  left-signature: "",
   tipo-documento: "Norme di Progetto",
 )
 
@@ -112,51 +119,172 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - Link: https://glitchhub-team.github.io/pdf/glossary.pdf
   - Ultimo accesso: 25 gennaio 2026
 
-
 = Processi primari <processi-primari>
-In questa sezione, verranno descritti i processi essenziali allo svolgimento del progetto didattico.
+I processi primari della norma #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*ISO/IEC 12207:1995*] definiscono le attività fondamentali del ciclo di vita del software attraverso cinque processi: Acquisizione, Fornitura, Sviluppo, Operazione e Manutenzione, assicurando la conformità ai requisiti e agli obiettivi di qualità stabiliti.
 
-Al momento della scrittura di questa versione delle Norme di Progetto, i processi di fornitura e sviluppo del prodotto non sono ancora iniziati, ma stanno venendo definite incrementalmente le Norme relative alla Documentazione (vd. @documentazione).
+Tra i #gloss[*processi*] primari applicati nel progetto si distinguono:
+- #link(<processo-fornitura>)[*Fornitura*]
+- #link(<processo-sviluppo>)[*Sviluppo*]
 
-== Fornitura
-// TODO: (2.1) spiegare fornitura
-// The Supply Process contains the activities and tasks of the suppli er. The process may be initiated either by a decision to prepare a proposal to answer an acquirer’s request for proposal or by sign ing and entering into a contract with the acquirer to provide the system, software product or software service. The process continues with the determination of procedures and resources needed to mana ge and assure the project, including development of project plans and execution of the plans through delivery of the system, software product or software service to the acquirer.
+== Fornitura <processo-fornitura>
+Il processo di *fornitura* definisce le attività attraverso cui un fornitore pianifica, realizza e consegna un prodotto software. Il processo comprende la risposta alla richiesta del cliente, la definizione e l'accordo sui termini di fornitura, la pianificazione del progetto, l'esecuzione, il monitoraggio dell'avanzamento e la consegna del prodotti. 
 
-// processo adottato dal fornitore
-// - tratta del relazionarsi con la proponente -> analizzare e trattare sulle richieste
+L'obiettivo del processo è garantire che il software sia sviluppato e fornito in modo controllato, tracciabile e conforme agli standard di qualità concordati con il proponente. 
 
-=== Strumenti a supporto
-// TODO: (2.1.1) def. strumenti a supporto per fornitura
+=== Strumenti a supporto <fornitura-strumenti-supporto>
+- #gloss[*GitHub*]: come infrastruttura per il controllo di versione
+  - *GitHub Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];
+  - *Github Project*: per la visualizzazione delle task in modalità Kanban, utile ad illustrare lo stato d'avanzamento delle task assegnate;
+- *Whatsapp*: come canale di comunicazione all'interno del gruppo;
+- #gloss[*Discord*]: per svolgere le riunioni interne del gruppo;
+- #gloss[*ClickUp*]: come strumento di project management, utilizzato principalmente come piattaforma di organizzazione e *condivisione* di documenti.
 
-// Per svolgere le attività di progetto, il gruppo utilizza i seguenti strumenti:
+Le comunicazioni e gli incontri con l'azienda proponente necessitano invece dei seguenti strumenti:
+- *Gmail*: come piattaforma di comunicazione asincrona con la proponente;
+- *Microsoft Teams*: per svolgere le riunioni da remoto con l'azienda proponente.
 
-=== Attività previste
-// TODO: (2.1.2) def. attività previste per fornitura
+=== Attività previste <attivita-previste-fornitura>
+Il processo di fornitura si compone delle seguenti attività di seguito descritte:
+- *Inizializzazione*: il fornitore analizza i requisiti contenuti nella richiesta dell'acquirente per valutare la fattibilità tecnica ed economica. In questa fase si decide se partecipare alla fornitura, si definiscono le risorse necessarie e si individuano eventuali requisiti da contrattare con il proponente;
+- *Preparazione della risposta*: il fornitore elabora la proposta formale che tenga conto di quanto emerso durante l'attività di inizializzazione;
+- *Contrattazione*: riguarda la negoziazione con il proponente, in cui il fornitore presenta la proposta elaborata in precedenza, con l'obiettivo di giungere alla sottoscrizione di un accordo formale;  
+- *Pianificazione*: il fornitore stabilisce la struttura di gestione e qualità, selezionando, se non specificato nel contratto, il modello di ciclo di vita software adeguato. Sono definite le risorse e le tecnologie necessarie allo sviluppo, a fronte di un'analisi dei rischi associati a ciascuna di esse;
+- *Esecuzione e controllo*: il fornitore, dopo aver documentato l'attività di pianificazione, realizza quanto stabilito, monitorando la qualità del prodotto software e lo stato di avanzamento dello sviluppo;
+- *Revisione e valutazione*: il fornitore assume la responsabilità di coordinare le attività di comunicazione con il proponente, supportando attivamente riunioni informali e revisioni congiunte. Il fornitore esegue la verifica e la validazione del processo per dimostrare conformità del prodotto ai requisiti;
+- *Consegna e completamento*: il fornitore consegna il prodotto finale, garantendo assistenza al proponente a supporto del prodotto consegnato.
 
-== Sviluppo
-// TODO: (2.2) spiega sviluppo, quando effettivamente iniziamo lo sviluppo
-// The Development Process contains the activities and tasks of the developer. The process contains the activities for requirements analysis, design , coding , integration , testing, and installation and acceptance related to software products. It may contain system related activities if stipula ted in the contract. The developer performs or supports the activities in this process in accordance with the contract.
+=== Documentazione fornita
+Di seguito presentiamo l'elenco completo della documentazione che *GlitchHub Team* consegnerà all'azienda proponente *M31* e ai committenti *Prof. Tullio Vardanega* e *Prof. Riccardo Cardin*.
+==== Lettera di Candidatura <doc-fornita-lettera-candidatura>
+La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/LetteraPresentazione.pdf")[*Lettera di Candidatura*] è il documento con cui *GlitchHub Team* ha presentato formalmente la propria candidatura al 
+#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[#gloss[capitolato d'appalto]] proposto dall'azienda *M31*.
 
-=== Strumenti a supporto
-// TODO: (2.2.1) def. strumenti a supporto per sviluppo
+==== Valutazione dei capitolati <doc-fornita-valutazione-capitolati>
+La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/ValutazioneCapitolati.pdf")[*Valutazione dei capitolati*] è il documento in cui *GlitchHub Team* ha fornito, per ogni #gloss[capitolato], un'analisi 
+dei rispettivi punti di forza e debolezza, e le motivazioni che hanno spinto il gruppo a scegliere/non scegliere tale #gloss[capitolato].
 
-=== Attività previste
-// TODO: (2.2.2) traduci attività previste in italiano e tieni quelle effettivamente utili
+==== Dichiarazione degli impegni <doc-fornita-dichiarazione-impegni>
+La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[*Dichiarazione degli impegni*] è il documento in cui *GlitchHub Team* ha formalizzato la pianificazione economica e organizzativa del progetto. 
+Il documento espone le stime relative all'impegno *orario* suddiviso per singoli componenti e per ruoli, definisce il costo *complessivo* dell'opera e illustra i criteri adottati per la *rotazione* dei ruoli all'interno del gruppo
 
-// 1. Process implementation;
-// 2. System requirements analysis;
-// 3. System architectural design;
-// 4. Software requirements analysis;
-// 5. Software architectural design;
-// 6. Software detailed design;
-// 7. Software coding and testing;
-// 8. Software integration;
-// 9. Software qualification testing;
-// 10. System integration;
-// 11. System qualification testing;
-// 12. Software installation;
-// 13. Software acceptance support.
+==== Lettera di Presentazione <doc-fornita-lettera-presentazione>
+// TODO: Da linkare quando sarà su pages
+La *Lettera di Presentazione* è il documento tramite il quale *GlitchHub Team* intende formalizzare la propria candidatura alle revisioni di avanzamento legate alle #gloss[baseline] del progetto didattico, ossia la *Requirements and Technology Baseline (#gloss[RTB])* e la *Product Baseline (#gloss[PB])*. 
 
+==== Analisi dei Requisiti <doc-fornita-analisi-requisiti>
+// TODO: Da linkare quando sarà su pages
+L'#link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[*Analisi dei Requisiti*] è il documento in cui *GlitchHub Team* definisce in dettaglio tutti i #gloss[requisiti] del progetto, classificandoli in obbligatori, desiderabili e opzionali. 
+Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[Casi d'Uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
+
+==== Piano di Progetto <doc-fornita-piano-progetto>
+Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[*Piano di Progetto*] è il documento in cui *GlitchHub Team* documenta 
+l'evoluzione di ogni #gloss[sprint] confrontando la fase previsionale con quella consuntiva. Per ciascuno #gloss[sprint], infatti, vengono inizialmente definite le *attività* previste, 
+i *rischi* potenziali e il *preventivo* delle risorse; successivamente, il documento registra le attività effettivamente svolte, il consumo reale delle risorse (con relativo aggiornamento di quelle residue) e gli esiti della *retrospettiva* del gruppo.
+
+==== Piano di Qualifica <doc-fornita-piano-qualifica>
+// TODO: Da linkare quando sarà su pages
+Il *Piano di Qualifica* illustra le strategie e le attività operative volte a garantire la *qualità* del prodotto finale da parte del gruppo *GlitchHub Team*.  
+Nello specifico, il documento stabilisce le *metriche* di valutazione applicate sia ai *processi* che al *prodotto* stesso, riportando inoltre i dettagli sui *test* di verifica effettuati
+
+==== Norme di Progetto <doc-fornita-norme-progetto>
+Le *Norme di Progetto* definiscono il #gloss[Way of Working] del gruppo *GlitchHub Team*, 
+stabilendo gli *strumenti* da utilizzare, le convenzioni per la *stesura* del codice e della documentazione, e le procedure operative necessarie a garantire uniformità ed efficienza nello sviluppo.
+
+==== Glossario <doc-fornita-glossario>
+Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario*] raccoglie e definisce la *terminologia* tecnica adottata nel corso del progetto. Il suo obiettivo è costituire un punto di *riferimento* univoco per tutti i membri del gruppo, garantendo una comunicazione chiara e priva di ambiguità.
+
+==== Verbali interni <doc-fornita-verb-interni>
+Rappresentano i *verbali* delle riunioni svolte con la sola presenza dei membri del gruppo.
+
+==== Verbali esterni <doc-fornita-verb-esterni>
+Rappresentano i *verbali* delle riunioni svolte con la presenza di persone esterne al gruppo.
+
+== Sviluppo <processo-sviluppo>
+Il processo di *sviluppo* definisce le attività per la realizzazione del software, comprendendo l'analisi dei requisiti, la progettazione, l'implementazione, l'integrazione e la verifica, al fine di garantire la conformità del prodotto alle specifiche e ai requisiti di qualità stabiliti.
+
+=== Strumenti a supporto <sviluppo-strumenti-supporto>
+// TODO: 
+- #gloss[Angular]: come framework di sviluppo frontend;
+- #gloss[Gin]: come framework di sviluppo backend;
+- #gloss[Go]: come linguaggio di programmazione per lo sviluppo dei servizi di publish e subscribe;
+- *Visual Studio Code*: per la codifica del software;
+- *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[Casi d'Uso]*.
+
+=== Attività previste <attivita-previste-sviluppo>
+- *Implementazione del processo*: in cui si definisce o si seleziona il modello di ciclo di vita del software adatto al progetto;
+- *Analisi dei requisiti di sistema*: in cui si individuano le necessità dell'utente finale e si definiscono le funzionalità che il Sistema deve soddisfare;
+- *Progettazione dell'architettura di sistema*: in cui si stabilisce l'architettura di alto livello del Sistema identificando gli elementi hardware e software atti a soddisfare i requisiti individuati;
+- *Analisi dei requisiti software*: in cui si stabiliscono e documentano i requisiti software (funzionali, prestazionali, di interfaccia, di sicurezza e di qualità) per ogni elemento software identificato nel Sistema;
+- *Progettazione dell'architettura software*: ossia trasformare i requisiti in un'architettura che descriva la struttura del software, identificando i componenti software e le interfacce esterne ed interne;
+- *Progettazione dettagliata del software*: ossia la progettazione in dettaglio dei componenti software individuati, fino alla definizione delle singole unità software;
+- *Codifica e test del software*: ossia lo sviluppo delle unità software individuate per ogni singolo componente, seguito da test effettuati sulle singole unità per verficarne il corretto funzionamento in isolamento;
+- *Integrazione del software*: ossia l'integrazione delle unità software e dei componenti software, testando gli aggregati man mano che vengono sviluppati per verificarne il corretto funzionamento;
+- *Test di qualificazione del software*: ossia lo svolgimento dei test di qualificazione per dimostrare che il prodotto software soddisfi i requisiti definiti.
+- *Integrazione di sistema*: ossia integrare tutte le componenti sviluppate nel Sistema;
+- *Test di qualificazione del sistema*: ossia eseguire test di qualificazione sul Sistema completo per valutare la conformità ai requisiti e assicurare che il Sistema sia pronto per la consegna;
+- *Installazione del software*: ossia la fornitura del prodotto software nell'ambiente operativo secondo quanto specificato nel contratto;
+- *Supporto all'accettazione del software*: in cui si fornisce supporto alle revisioni e ai test di accettazione dell'acquirente per completare la consegna formale del prodotto software.
+
+In relazione alla definizione delle #gloss[baseline] previste per il progetto, ossia la Requirements and Technology Baseline (#gloss[RTB]) e la Product Baseline (#gloss[PB]), *GlitchHub Team* ha identificato l'*Analisi dei Requisiti* e la *Codifica* come attività principali dell'#gloss[RTB]. Al contrario la *Progettazione dell'architettura software*, la *Progettazione dettagliata del software* e la *Codifica* come attività principali della #gloss[PB].
+
+=== Analisi dei Requisiti <attivita-analisi-requisiti>
+L'attività di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[#gloss[Analisi dei Requisiti]] ha lo scopo di comprendere, individuare e definire in modo completo e strutturato tutti i #gloss[requisiti] che il *Sistema* dovrà soddisfare. Essa consente di formalizzare le esigenze del proponente e di tradurle in #gloss[requisiti] chiaramente identificabili e verificabili.
+\
+Il risultato di tale attività è documentato nel documento di #gloss[Analisi dei Requisiti], che raccoglie l'insieme dei #gloss[Casi d'Uso] individuati e i #gloss[requisiti] ad essi associati, costituendo il riferimento principale per le successive fasi di progettazione e sviluppo del Sistema.
+
+==== Casi d'Uso <attivita-casi-uso>
+I #gloss[Casi d'Uso] sono identificati secondo la seguente nomenclatura:
+#align(center)[
+  *UC[Primario].[Secondario]*
+]
+in cui:
+- *UC* indica *Use Case*, ossia la traduzione inglese di #gloss[Caso d'Uso];
+- *[Primario]* è un numero progressivo che identifica univocamente il #gloss[Caso d'Uso] all'interno dell'#gloss[Analisi dei Requisiti];
+- *[Secondario]* è un numero progressivo che identifica un #gloss[Caso d'Uso] correlato in modo esclusivo al caso *Primario*.
+Ogni #gloss[Caso d'Uso] è inoltre corredato da un titolo che ne riassume lo scopo e da una descrizione testuale; per ulteriori dettagli si rimanda alla sezione introduttiva sui #gloss[Casi d'Uso] del documento di #gloss[Analisi dei Requisiti].
+
+==== Requisiti <attivita-requisiti>
+I #gloss[requisiti] sono identificati secondo la seguente nomenclatura:
+#align(center)[
+  *R[Tipologia]-[Codice]-[Priorità]*
+]
+in cui:
+- *R* indica l'abbreviazione di #gloss[requisito];
+- *[Tipologia]* indica il tipo di requisito tra i seguenti valori:
+  - *F* per *Funzionale*;
+  - *NF* per *Non Funzionale*;
+  - *D* per *Dominio*;
+- *[Codice]* identifica i #gloss[requisiti] per tipologia, ed è composto da un numero progressivo univoco nell'ambito della tipologia;
+- *[Priorità]* indica la priorità di ogni #gloss[requisito] tra i seguenti valori:
+  - *Obb* per *Obbligatorio*;
+  - *Des* per *Desiderabile*;
+  - *Opt* per *Opzionale*.
+Per una descrizione più approfondita della tipologia e della priorità di un #gloss[requisito], si rimanda alla sezione introduttiva sui #gloss[requisiti] del documento di #gloss[Analisi dei Requisiti].
+
+//TODO: post-RTB sarà da aggiungere sezione relativa alla progettazione ed espandere su queste norme di codifica
+=== Codifica <attivita-codifica>
+L'attività di *codifica*, svolta dai programmatori, consiste nel tradurre la progettazione definita dai *progettisti* nel prodotto software finale. In questa sezione vengono illustrate le *norme* e le *convenzioni* che i programmatori sono tenuti a rispettare, con l'obiettivo di:
+- *Ottimizzare* la revisione: velocizzare le attività di verifica e collaudo del codice attraverso una scrittura più chiara.
+- *Assicurare* l'evoluzione del sistema: migliorare la manutenibilità e la futura estensibilità del software prodotto.
+- *Garantire l'uniformità* qualitativa: certificare che il codice sia conforme agli standard di qualità precedentemente fissati.
+
+==== Stile di codifica Typescript <codifica-typescript>
+In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Typescript* all'interno del framework Angular, al fine di garantire l'uniformità del codice prodotto dal team.
+
+===== Convenzioni di nomenclatura <convenzioni-nomenclatura-typescript>
+- *File*: utilizzare il formato `kebab-case` separando il nome dal tipo di feature (es. `sensor-chart.component.ts`, `sensor-data.service.ts`);
+- *Classi e Interfacce*: utilizzare il formato `PascalCase` (es. `DashboardComponent`);
+- *Variabili e Metodi*: utilizzare il formato `camelCase`;
+- *Costanti*: utilizzare il formato `UPPER_SNAKE_CASE` per valori immutabili definiti a livello globale o di modulo;
+
+==== Stile di codifica Go <codifica-go>
+In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Go* al fine di garantire l'uniformità del codice prodotto dal team.
+
+===== Convenzioni di nomenclatura
+- *File*: utilizzare il formato `camelCase` (es. `writeToDatabase.go`, `apiController.go`);
+- *Struct*: utilizzare il formato `PascalCase` (es. `PulseOxData`);
+- *Variabili e Metodi*: utilizzare il formato `camelCase` per le variabili e il formato `PascalCase` per i metodi;
+- *Costanti*: utilizzare il formato `UPPER_SNAKE_CASE` per valori immutabili definiti a livello globale o di package;
 
 = Processi di supporto <processi-di-supporto>
 
@@ -787,7 +915,7 @@ Secondo lo standard _ISO/IEC 12207:1995_, per poter attuare il processo di forma
 Dopo un'attenta analisi dei requisiti del progetto, il gruppo ha stabilito che è necessario studiare e approfondire le seguenti tecnologie:
 - Per lo sviluppo del codice del progetto:
   - Il linguaggio di programmazione #gloss[Go] e il framework #gloss[Gin]
-  - Il linguaggio #gloss[JavaScript] insieme al framework #gloss[Angular.js] e alla libreria Chart.js
+  - Il linguaggio #gloss[Typescript] insieme al framework #gloss[Angular.js] e alla libreria Chart.js
   - Il sistema di virtualizzazione #gloss[Docker]
   - Il sistema di _messaging_ #gloss[NATS JetStream]
   - I sistemi di _observability_ #gloss[Grafana] e #gloss[Prometheus]
@@ -804,8 +932,8 @@ Dopo un'attenta analisi dei requisiti del progetto, il gruppo ha stabilito che �
 === Sviluppo del materiale di formazione <formazione-sviluppo>
 Di seguito sono riportate le risorse utilizzate dal gruppo per imparare le tecnologie identificate.
 
-==== Angular e JavaScript
-- #link("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide")[Guida per _JavaScript_ -- Mozilla Foundation]
+==== Angular e Typescript
+- #link("https://www.typescriptlang.org/docs/")[Documentazione ufficiale di _Typescript_ ]
 - #link("https://www.chartjs.org/docs/latest/getting-started/")[Documentazione ufficiale di _Chart.js_]
 - #link("https://angular.dev/overview")[Documentazione ufficiale di _Angular.js_]
 - #link("https://www.youtube.com/watch?v=oUmVFHlwZsI")[_Crash course_ su _Angular.js_ -- Non ufficiale]
