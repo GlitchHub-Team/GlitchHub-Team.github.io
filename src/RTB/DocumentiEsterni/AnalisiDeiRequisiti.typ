@@ -1,4 +1,4 @@
-#import "../../Templates/templateDocumentiGenerici.typ": report
+#import "../../Templates/templateDocumentiGenerici.typ": *
 
 
 #let uc-counter = counter("uc-counter")
@@ -92,6 +92,13 @@
   titolo: "Analisi dei Requisiti",
   stato: "Bozza",
   registro-modifiche: (
+    (
+      "0.33.0",
+      "10/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Aggiunta @intro-scopo-doc]
+    ),
     (
       "0.32.3",
       "09/02/2026",
@@ -388,7 +395,24 @@
 
 
 = Introduzione
-Questo documento ha come obiettivo quello di fornire informazioni  dettagliate e chiare riguardo i requisiti che il software progettato possiede: questo per poter esser un punto di riferimento sia per i soggetti coinvolti nello sviluppo sia per gli appaltanti, consentendo ad entrambi di verificare che il progetto soddisfi i requisiti funzionali e non funzionali esplicitati.
+
+== Scopo del documento <intro-scopo-doc>
+Il documento di #gloss[Analisi dei Requisiti] ha come obiettivo quello di fornire informazioni dettagliate e chiare riguardo i requisiti che il software richiesto dal #gloss[capitolato d'appalto] dovrà rispettare. Per tale motivo, questo documento è un punto di riferimento fondamentale sia per il _team_ di sviluppo che per la #gloss[proponente], consentendo a tutte le persone coinvolte nel progetto di verificare che il progetto soddisfi i requisiti funzionali e non funzionali esplicitati.
+
+A tale scopo, il presente documento include per ognuno dei #gloss[casi d'uso] (_use cases_ o "UC") rilevati durante la fase di analisi del progetto, la sua descrizione e il relativo diagramma UML che permette di visualizzare in maniera intuitiva le interazioni tra gli attori e i sistemi rilevati.
+
+La seconda parte del documento, invece, presenta tutti i #gloss[requisiti] derivati dai casi d'uso sopra descritti; questi rappresentano le fondamenta su cui si baserà la progettazione del prodotto software richiesto dal capitolato. 
+
+Il documento di #gloss[Analisi dei Requisiti] viene redatto dagli #gloss[analisti] del _team_ ed è rivolto ai seguenti destinatari:
+
+- La #gloss[proponente] (M31 Srl), che verificherà se i requisiti sono stati adeguatamente rilevati
+
+- I #gloss[progettisti] e #gloss[programmatori] del gruppo che useranno il documento come riferimento principale nelle rispettive attività di progettazione e sviluppo dell'#gloss[MVP]
+
+- I #gloss[verificatori] che baseranno sull'#gloss[analisi dei requisiti] la scrittura dei test di sistema che il prodotto dovrà rispettare
+
+- Gli #gloss[amministratori] e i futuri #gloss[responsabili], che potranno usare il documento come riferimento per una maggiore comprensione del prodotto alla mano
+
 
 == Panoramica del prodotto
 // TODO: da approfondire
@@ -401,6 +425,31 @@ L'architettura prevista si articola in tre principali livelli che collaborano pe
 - *Cloud*
 
 I sensori svolgono la funzione di acquisizione locale mentre i gateway aggregano e inoltrano i dati verso il cloud, che rappresenta il core del sistema. Quest'ultimo si occupa di archiviazione, gestione dei tenant, esposizione delle API e monitoraggio tramite dashboard.
+
+// TODO: specificare che il nostro prodotto non rispetta questa architettura, ma l'MVP mocka parte sensori e gateway (c'è scritto nei req. del capitolato)
+
+== Analisi dell'utenza
+// TODO: descrivere l'utente tipo del prodotto
+
+== Riferimenti
+=== Riferimenti normativi
+- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto v0.3.1] \
+  *Ultimo accesso*: 9 febbraio 2026
+
+- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 -- Sistema di acquisizione dati da sensori] \
+  *Ultimo accesso*: 9 febbraio 2026
+
+=== Riferimenti informativi
+- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf")[Analisi dei Requisiti -- Lezione T5 del prof. Tullio Vardanega] \
+  *Ultimo accesso*: 9 febbraio 2026
+
+- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[Glossario _GlitchHub Team_] \
+  *Ultimo accesso*: 9 febbraio 2026
+
+- #link("https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf")[Diagrammi delle Classi -- Lezione del prof. Riccardo Cardin] \
+  *Ultimo accesso*: 9 febbraio 2026
+
+
 
 = Casi d'uso
 == Introduzione <casi-d-uso-introduzione>
