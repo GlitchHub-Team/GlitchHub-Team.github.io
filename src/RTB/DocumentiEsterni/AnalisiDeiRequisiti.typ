@@ -93,11 +93,18 @@
   stato: "Bozza",
   registro-modifiche: (
     (
-      "0.33.0",
+      "0.32.2",
       "09/02/2026",
       "Jaume Bernardi",
       "-",
-      [Aggiunto diagramma ad UC141]
+      [Aggiunto diagramma ad UC141],
+    ),
+    (
+      "0.32.1",
+      "09/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Sistemati digrammi da #ref-uc(<Visualizzazione-audit-log>) a #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>)]
     ),
     (
       "0.32.0",
