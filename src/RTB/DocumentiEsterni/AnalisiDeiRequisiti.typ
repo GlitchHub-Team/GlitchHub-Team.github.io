@@ -2310,6 +2310,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema invia al gateway il comando di modifica target di frequenza d'invio dati per il tipo di sensore specificato
 - *Scenario principale*:
   - Il Tenant Admin seleziona il gateway da modificare
+  - Il Tenant Admin seleziona una tipologia valida di sensore
   - Il Tenant Admin seleziona quanti dati per unità di tempo il gateway deve inviare al Cloud
   - Il Sistema invia il comando di modifica frequenza d'invio dati al gateway
 - *Scenari alternativi*:
