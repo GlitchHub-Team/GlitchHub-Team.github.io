@@ -415,7 +415,7 @@ Il documento di #gloss[Analisi dei Requisiti] viene redatto dagli #gloss[analist
 
 
 == Panoramica del prodotto
-// TODO: da approfondire
+// TODO: approfondire panoramica prodotto
 Il progetto tratta la realizzazione di un sistema distribuito per l'acquisizione, l'elaborazione e la gestione dei dati provenienti da sensori Bluetooth Low Energy (BLE). In un contesto in cui la raccolta capillare (e affidabile soprattutto) rappresenta un elemento centrale per varie applicazioni (industriali,logistiche, sanitarie, ecc...), il capitolato evidenzia la necessità di una piattaforma in grado di ricevere e normalizzare dati eterogenei provenienti da un numero non trascurabile di sensori, garantendo al contempo sicurezza e scalabilità.
 
 == Architettura
@@ -1492,7 +1492,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Rifiutata
 
 // Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
-// TODO: Rifare diagramma in modo tale che si rispetti pattern lista
+// TODO: RIFARE DIAGRAMMA in modo tale che si rispetti pattern lista
 ==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1631,7 +1631,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Non associato
     - Non autenticato
 
-// TODO: rifare diagramma per questo use case per mostrare meglio il pattern lista
+// TODO: RIFARE DIAGRAMMA per questo use case per mostrare meglio il pattern lista
 ===== #sub-uc() - Visualizzazione sensori collegati al gateway associato a tenant <Visualizzazione-sensori-collegati-gateway-associato>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -2024,7 +2024,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
-// TODO: Modificare diagramma UC61.svg e mostrare anche attore collegato a UC vis. dashboard generica
+// TODO: MODIFICARE diagramma UC61.svg e mostrare anche attore collegato a UC vis. dashboard generica
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 #image("../../assets/diagrammi/UC61.svg", width: 100%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
@@ -2459,7 +2459,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Super Admin visualizza il numero di tenant collegati1
 
 
-// TODO: modificare diagramma per mostrare tutto il pattern lista direttamente
+// TODO: RIFARE DIAGRAMMI UC77-UC78 per mostrare tutto il pattern lista direttamente
 ==== #uc() - Visualizzazione lista gateway <Visualizzazione-lista-gateway-super-admin>
 #image("../../assets/diagrammi/UC77.svg", width: 100%)
 - *Attore principale*: Super Admin
@@ -2891,7 +2891,6 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singolo-tenant-lista>)
 
-// TODO: Si potrebbe aggiungere visualizzazione pulsante impersonazione tenant
 ==== #uc() - Visualizzazione singolo tenant in lista <Visualizzazione-singolo-tenant-lista>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -4335,7 +4334,7 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia il rifiuto di autenticazione al gateway
 
-// TODO: rifare diagramma UC161, tolto sub uc "invio chiave cifratura dati"
+// TODO: RIFARE DIAGRAMMA UC161, tolto sub uc "invio chiave cifratura dati"
 ==== #uc() - Assegnazione tenant al gateway <Assegnazione-tenant-gateway>
 #image("../../assets/diagrammi/UC161.svg", width: 100%)
 - *Attore principale*: Cloud
@@ -5853,7 +5852,7 @@ NOTA: In questa sezione, si usa la funzione #get-tracciamento() e le varie varia
 Quindi non va modificata!
 */
 
-// TODO: sistemare riferimenti in questa sezione usando un ref-rf() o funzione simile
+// TODO (non importante) sistemare riferimenti in questa sezione usando un ref-rf() o funzione simile
 #rf-counter.update(0)
 #rnf-counter.update(0)
 #rd-counter.update(0)
