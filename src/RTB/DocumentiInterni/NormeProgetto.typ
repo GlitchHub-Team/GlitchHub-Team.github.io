@@ -7,6 +7,13 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "0.4.1",
+      "09/02/2026",
+      "Riccardo Graziani",
+      "",
+      [Applicate correzioni a @attivita-previste-sviluppo rilevate durante la verifica],
+    ),
+    (
       "0.4.0",
       "09/02/2026",
       "Riccardo Graziani",
@@ -203,7 +210,6 @@ Rappresentano i *verbali* delle riunioni svolte con la presenza di persone ester
 Il processo di *sviluppo* definisce le attività per la realizzazione del software, comprendendo l'analisi dei requisiti, la progettazione, l'implementazione, l'integrazione e la verifica, al fine di garantire la conformità del prodotto alle specifiche e ai requisiti di qualità stabiliti.
 
 === Strumenti a supporto <sviluppo-strumenti-supporto>
-// TODO: 
 - #gloss[Angular]: come framework di sviluppo frontend;
 - #gloss[Gin]: come framework di sviluppo backend;
 - #gloss[Go]: come linguaggio di programmazione per lo sviluppo dei servizi di publish e subscribe;
@@ -211,7 +217,7 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[Casi d'Uso]*.
 
 === Attività previste <attivita-previste-sviluppo>
-- *Implementazione del processo*: in cui si definisce o si seleziona il modello di ciclo di vita del software adatto al progetto;
+- *Implementazione del processo*: in cui viene stabilita l'articolazione delle fasi di ingegnerizzazione, garantendo che ogni attività di sviluppo sia coerente con la strategia di realizzazione scelta;
 - *Analisi dei requisiti di sistema*: in cui si individuano le necessità dell'utente finale e si definiscono le funzionalità che il Sistema deve soddisfare;
 - *Progettazione dell'architettura di sistema*: in cui si stabilisce l'architettura di alto livello del Sistema identificando gli elementi hardware e software atti a soddisfare i requisiti individuati;
 - *Analisi dei requisiti software*: in cui si stabiliscono e documentano i requisiti software (funzionali, prestazionali, di interfaccia, di sicurezza e di qualità) per ogni elemento software identificato nel Sistema;
@@ -254,6 +260,7 @@ in cui:
   - *F* per *Funzionale*;
   - *NF* per *Non Funzionale*;
   - *D* per *Dominio*;
+  - *V* per *Vincolo*;
 - *[Codice]* identifica i #gloss[requisiti] per tipologia, ed è composto da un numero progressivo univoco nell'ambito della tipologia;
 - *[Priorità]* indica la priorità di ogni #gloss[requisito] tra i seguenti valori:
   - *Obb* per *Obbligatorio*;
