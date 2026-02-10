@@ -1810,7 +1810,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)
   - #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)
 
-===== #sub-uc() - Visualizzazione nome singola API key lista <Visualizzazione-nome-singola-api-key-lista>
+===== #sub-uc() - Visualizzazione nome singola API key in lista <Visualizzazione-nome-singola-api-key-lista>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1819,7 +1819,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza il nome della API key selezionata nella lista
 
-===== #sub-uc() - Visualizzazione data di creazione singola API key lista <Visualizzazione-data-creazione-singola-api-key-lista>
+===== #sub-uc() - Visualizzazione data di creazione singola API key in lista <Visualizzazione-data-creazione-singola-api-key-lista>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1828,7 +1828,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza la data di creazione della API key selezionata nella
 
-===== #sub-uc() - Visualizzazione data di scadenza singola API key lista <Visualizzazione-data-scadenza-singola-api-key-lista>
+===== #sub-uc() - Visualizzazione data di scadenza singola API key in lista <Visualizzazione-data-scadenza-singola-api-key-lista>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
