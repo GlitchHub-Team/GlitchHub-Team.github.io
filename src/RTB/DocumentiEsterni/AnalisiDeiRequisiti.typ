@@ -442,8 +442,8 @@ Il documento di #gloss[Analisi dei Requisiti] viene redatto dagli #gloss[analist
 
 
 == Panoramica del prodotto <panoramica-prodotto>
-Il progetto consiste nella realizzazione di una piattaforma #gloss[Cloud] multi-tenant scalabile e sicura, progettata per l'acquisizione, la normalizzazione e lo smistamento di flussi di dati provenienti da sensori Bluetooth Low Energy #gloss[(BLE)]. In un panorama #gloss[IoT] dove la frammentazione dei dispositivi è elevata, 
-il sistema si pone l'obiettivo di agire come un hub centralizzato capace di gestire dati eterogenei (ambientali, industriali o biometrici) trasformandoli in informazioni strutturate e fruibili, garantendo al tempo stesso sicurezza e scalabilità. 
+Il progetto consiste nella realizzazione di una piattaforma #gloss[Cloud] multi-tenant scalabile e sicura, progettata per l'acquisizione, la normalizzazione e lo smistamento di flussi di dati provenienti da sensori Bluetooth Low Energy #gloss[(BLE)]. In un panorama #gloss[IoT] dove la frammentazione dei dispositivi è elevata,
+il sistema si pone l'obiettivo di agire come un hub centralizzato capace di gestire dati eterogenei (ambientali, industriali o biometrici) trasformandoli in informazioni strutturate e fruibili, garantendo al tempo stesso sicurezza e scalabilità.
 
 Gli obiettivi principali che questo prodotto mira a soddisfare sono:
 - progettare un'infrastruttura *scalabile* e *sicura* per la gestione di dati eterogenei;
@@ -459,13 +459,13 @@ L'architettura prevista si articola in tre principali livelli che collaborano pe
 
 I sensori svolgono la funzione di acquisizione locale mentre i gateway aggregano e inoltrano i dati verso il cloud, che rappresenta il core del sistema. Quest'ultimo si occupa di archiviazione, gestione dei tenant, esposizione delle API e monitoraggio tramite dashboard.
 
-Secondo quanto specificato dal #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*Capitolato*] d'appalto nei #gloss[requisiti] *RQ1* ed *RQ2*,  i livelli dell'architettura riguardanti i 
-*sensori BLE* e i *gateway BLE WiFi* saranno interamente virtualizzati. Il *simulatore* avrà dunque il compito di generare dati eterogenei e inviarli al #gloss[Cloud] tramite protocolli sicuri 
+Secondo quanto specificato dal #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*Capitolato*] d'appalto nei #gloss[requisiti] *RQ1* ed *RQ2*,  i livelli dell'architettura riguardanti i
+*sensori BLE* e i *gateway BLE WiFi* saranno interamente virtualizzati. Il *simulatore* avrà dunque il compito di generare dati eterogenei e inviarli al #gloss[Cloud] tramite protocolli sicuri
 
 == Analisi dell'utenza <analisi-utenza>
 La natura del progetto è orientata a fornire al proponente *M31* una progettazione solida ed efficace, pronta per essere ingegnerizzata in una soluzione definitiva.
 
-L'utente tipo si identifica in organizzazioni che operano su larga scala nell'ambito dell'#gloss[IoT], le quali necessitano di un'infrastruttura #gloss[Cloud] multi-tenant robusta per gestire con sicurezza e alte prestazioni 
+L'utente tipo si identifica in organizzazioni che operano su larga scala nell'ambito dell'#gloss[IoT], le quali necessitano di un'infrastruttura #gloss[Cloud] multi-tenant robusta per gestire con sicurezza e alte prestazioni
 l'acquisizione di flussi di dati provenienti da reti di sensori eterogenei.
 
 == Riferimenti
@@ -4642,9 +4642,8 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [L'Utente autenticato visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare l'identificativo di ciascun sensore nella lista],
   [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>), #ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
-  // TODO: Da migliorare questo requisito sulla dashboard.
   [#rf()],
-  [L'Utente autenticato deve poter visualizzare la sua dashboard personale],
+  [L'Utente autenticato deve poter visualizzare la propria dashboard personale],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
   [#rf()],
   [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
@@ -4797,29 +4796,28 @@ Inoltre un buon requisito deve essere *SMART*:
   [L'Admin generico deve poter filtrare gli audit log in base all'utente che ha generato l'evento],
   [#ref-uc(<Filtraggio-log-per-utente>)],
   [#rf[Opt]],
-  [L'Admin generico deve poter esportare gli audit log in un file testuale scaricabile],
+  [L'Admin generico deve poter esportare gli audit log in un file scaricabile],
   [#ref-uc(<Esportazione-log>)],
-  // TODO: Da migliorare questi requisiti sulla dashboard.
   [#rf()],
-  [Il Tenant Admin deve poter visualizzare la sua dashboard personale],
+  [Il Tenant Admin deve poter visualizzare la propria dashboard personale],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>)],
   [#rf()],
-  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di sensori attivi e non associati al proprio Tenant],
+  [Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare il numero di sensori attivi e non associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
   [#rf()],
-  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di gateway attivi e non associati al proprio Tenant],
+  [Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare il numero di gateway attivi e non associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
   [#rf[Opt]],
-  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
+  [Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-lista-alert>)],
   [#rf[Des]],
-  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di API key valide e scadute],
+  [Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare il numero di API key valide e scadute],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-api-key-valide-scadute>)],
   [#rf()],
-  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare lo stato delle richieste di commissioning gateway associate al proprio Tenant],
+  [Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare lo stato delle richieste di commissioning gateway associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-commissioning-gateway>)],
   [#rf()],
-  [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare lo stato delle richieste di decommissioning gateway associate al proprio Tenant],
+  [Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare lo stato delle richieste di decommissioning gateway associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-decommissioning-gateway>)],
   [#rf()],
   [Il Tenant Admin deve poter creare una nuova richiesta di commissioning gateway],
@@ -4867,7 +4865,6 @@ Inoltre un buon requisito deve essere *SMART*:
   [Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
   //Attore: Gateway, Sistema: Cloud
-  //TODO: controllare che requisiti siano atomici
   [#rf()],
   [Il gateway simulato deve poter confermare al Cloud che il processo di commissioning è stato completato con successo],
   [#ref-uc(<Conferma-comando-commissioning>)],
