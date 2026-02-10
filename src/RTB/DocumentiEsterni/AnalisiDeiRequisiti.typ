@@ -515,7 +515,8 @@ In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud.
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
 
 ==== #uc() - Autenticazione Utente <Autenticazione-utente>
-#image("../../assets/diagrammi/UC1.svg", width: 100%)
+// #image("../../assets/diagrammi/UC1.svg", width: 100%)
+
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
   - L'Utente non è autenticato nel Sistema
@@ -1447,11 +1448,11 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin conferma l'eliminazione del Tenant User
 
 // Commissioning / Decommissioning ------------------------------------------------------------------------------------------------------------
-==== #uc() - Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant
+==== #uc() - Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant <Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
 #image(
   "../../assets/diagrammi/UC40.svg",
   width: 100%,
-)<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>
+)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1463,8 +1464,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
 
-==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant
-<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>
+==== #uc() - Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant <Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin generico è autenticato nel Sistema
@@ -1645,9 +1645,9 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Inclusioni*:
   - #ref-uc(<Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>)
 
-==== #uc() - Visualizza singolo sensore collegato al gateway associato al tenant in lista
+==== #uc() - Visualizza singolo sensore collegato al gateway associato al tenant in lista <Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>
+
 #image("../../assets/diagrammi/UC47.svg", width: 100%)
-<Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -2116,8 +2116,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin conferma la selezione
 
 
-==== #uc() - Eliminazione richiesta di commissioning/decommissioning gateway
-#image("../../assets/diagrammi/UC64.svg", width: 100%)<Eliminazione-richiesta-commissioning-decommissioning-gateway>
+==== #uc() - Eliminazione richiesta di commissioning/decommissioning gateway <Eliminazione-richiesta-commissioning-decommissioning-gateway>
+#image("../../assets/diagrammi/UC64.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
