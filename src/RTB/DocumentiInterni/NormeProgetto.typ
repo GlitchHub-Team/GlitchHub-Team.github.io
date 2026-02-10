@@ -8,7 +8,7 @@
   registro-modifiche: (
     (
       "0.4.1",
-      "09/02/2026",
+      "10/02/2026",
       "Riccardo Graziani",
       "",
       [Applicate correzioni a @attivita-previste-sviluppo rilevate durante la verifica],
