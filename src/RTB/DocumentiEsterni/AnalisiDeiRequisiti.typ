@@ -802,7 +802,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - L'Utente ha ricevuto l'email di reimpostazione password
 - *Post-condizioni*:
   - La password dell'Utente viene reimpostata
-  - Il Sistema registra l'evento negli audit log, salvando il nome dell'utente, il timestamp e l'azione eseguita
+  - Il Sistema registra l'evento negli audit log,  salvando il nome dell'utente,  il timestamp e l'azione eseguita
 - *Scenario principale*:
   - L'Utente clicca sul link di reimpostazione password nell'email
   - L'Utente inserisce la nuova password
@@ -1240,6 +1240,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema prova a recuperare i dati del sensore selezionato e rileva l'assenza di dati
 
 ==== #uc() - Visualizzazione lista sensori associati al tenant <Visualizzazione-lista-sensori-associati-tenant>
+#image("../../assets/diagrammi/UC31.svg", width: 100%)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -1247,6 +1248,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il Sistema mostra la lista dei sensori associati al tenant dell'utente
 - *Scenario principale*:
   - L'utente autenticato visualizza la lista dei sensori associati al proprio tenant
+- *Inclusioni*:
+  - #ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>)
 
 ==== #uc() - Visualizzazione singolo sensore associato al tenant in lista <Visualizzazione-singolo-sensore-associato-tenant-in-lista>
 #image("../../assets/diagrammi/UC32.svg", width: 100%)
@@ -1536,6 +1539,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 // Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
 ==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
+#image("../../assets/diagrammi/UC42.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
