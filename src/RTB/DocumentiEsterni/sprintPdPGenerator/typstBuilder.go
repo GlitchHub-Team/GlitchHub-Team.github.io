@@ -366,16 +366,35 @@ func buildCosts(content string, resources *map[string]map[string]int, prevResour
 	return strings.Replace(content, placeholder, table, 1)
 }
 
+func removeTaskPalestraIssues(issues []Issue) []Issue {
+	var filteredIssues []Issue
+	for _, issue := range issues {
+		isTaskPalestra := false
+		for _, label := range issue.Labels {
+			if label == "task-palestra" {
+				isTaskPalestra = true
+				break
+			}
+		}
+		if !isTaskPalestra {
+			filteredIssues = append(filteredIssues, issue)
+		}
+	}
+	return filteredIssues
+}
+
 func generateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time, sprintEndDate time.Time) string {
 	var buf bytes.Buffer
 
 	var content = fmt.Sprintf(SPRINT_TEMPLATE, sprint, formatDate(sprintStartDate), formatDate(sprintEndDate), sprint, sprint, sprint, sprint, sprint)
 
-	expSprintUsage := ResourceUsage(issues, sprint, Expected)
-	effSprintUsage := ResourceUsage(issues, sprint, Effective)
-	groupedIssuesByState := GroupIssuesByState(issues, sprint)
-	updatedResources := UpdateResources(issues, sprint)
-	updatedPrevResources := UpdateResources(issues, sprint-1)
+	issuesFiltered := removeTaskPalestraIssues(*issues)
+
+	expSprintUsage := ResourceUsage(&issuesFiltered, sprint, Expected)
+	effSprintUsage := ResourceUsage(&issuesFiltered, sprint, Effective)
+	groupedIssuesByState := GroupIssuesByState(&issuesFiltered, sprint)
+	updatedResources := UpdateResources(&issuesFiltered, sprint)
+	updatedPrevResources := UpdateResources(&issuesFiltered, sprint-1)
 
 	content = buildUsage(content, &expSprintUsage, nil, "{{EXPECTED_USAGE}}", "{{CHART_EXPECTED_USAGE}}")
 	content = buildUsage(content, &effSprintUsage, &expSprintUsage, "{{EFFECTIVE_USAGE}}", "{{CHART_EFFECTIVE_USAGE}}")

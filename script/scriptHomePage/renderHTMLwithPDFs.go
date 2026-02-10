@@ -23,8 +23,8 @@ type PDFDocument struct {
 }
 
 const KEYWORDS_N = 3
-const PATH_TO_DOCUMENTS = "../website/pdf/"
-const PATH_TO_HTML = "../website/index.html"
+const PATH_TO_DOCUMENTS = "../../website/pdf/"
+const PATH_TO_HTML = "../../website/index.html"
 const TEMPLATE = "<li><a href='%s' target='_blank'>%s</a><span class='version-tag'>v%s</span></li>"
 
 func loadPDFMetadata(pdf *PDFDocument) error {
@@ -36,7 +36,7 @@ func loadPDFMetadata(pdf *PDFDocument) error {
 	pdf.title = ctx.Title
 	keywordsList := strings.Split(ctx.Keywords, ",")
 	if len(keywordsList) != KEYWORDS_N {
-		return fmt.Errorf("there are not exactly %d keywords, check the typst file", KEYWORDS_N)
+		return fmt.Errorf("%s: there are not exactly %d keywords, check the typst file", pdf.title, KEYWORDS_N)
 	}
 	pdf.htmlId = keywordsList[0]
 	pdf.version = keywordsList[1]
@@ -144,7 +144,7 @@ func main() {
 
 	for i := 0; i < len(docs); i++ {
 		d := docs[i]
-		d.path = strings.Replace(d.path, "./website", "", 1)
+		d.path = strings.Replace(d.path, "../../website", "", 1)
 		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title, d.version)
 		updatedHTML, err := addChildToId(htmlStr, d.htmlId, renderedHTML)
 		if err != nil {
