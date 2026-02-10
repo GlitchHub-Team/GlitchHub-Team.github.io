@@ -2979,9 +2979,9 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza i dettagli del tenant selezionato
 - *Inclusioni*:
-  - #ref-uc(<Visualizzazione-identificativo-tenant>)
+  - #ref-uc(<Visualizzazione-identificativo-del-tenant>)
 
-===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-tenant>
+===== #sub-uc() - Visualizzazione identificativo del tenant <Visualizzazione-identificativo-del-tenant>
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -5273,7 +5273,7 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-tenant>)],
   [#rf()],
   [Il Super Admin, visualizzando un tenant, deve poter vedere l'identificativo del tenant],
-  [#ref-uc(<Visualizzazione-identificativo-tenant>)],
+  [#ref-uc(<Visualizzazione-identificativo-del-tenant>)],
   // - Visualizzazione/gestione richieste comm/decomm.
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare la lista delle richieste di commissioning Gateway in corso],
