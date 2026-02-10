@@ -90,8 +90,15 @@
 
 #show: report.with(
   titolo: "Analisi dei Requisiti",
-  stato: "Bozza",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "09/02/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Creazione versione stabile Analisi dei Requisiti],
+    ),
     (
       "0.37.0",
       "09/02/2026",
@@ -407,8 +414,8 @@
 
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Analisi dei Requisiti",
 )
 
