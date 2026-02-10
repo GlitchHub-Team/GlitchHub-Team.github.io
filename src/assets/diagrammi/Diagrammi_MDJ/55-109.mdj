@@ -2177,6 +2177,11 @@
 									}
 								}
 							],
+							"containedViews": [
+								{
+									"$ref": "AAAAAAGb0eCuboGsQys="
+								}
+							],
 							"font": "Arial;13;0",
 							"parentStyle": false,
 							"left": 184,
@@ -18238,218 +18243,6 @@
 							}
 						},
 						{
-							"_type": "UMLUseCaseView",
-							"_id": "AAAAAAGb0eCuboGsQys=",
-							"_parent": {
-								"$ref": "AAAAAAGb0X+fgvxTiSk="
-							},
-							"model": {
-								"$ref": "AAAAAAGb0eCubYGqt9c="
-							},
-							"subViews": [
-								{
-									"_type": "UMLNameCompartmentView",
-									"_id": "AAAAAAGb0eCuboGtzxk=",
-									"_parent": {
-										"$ref": "AAAAAAGb0eCuboGsQys="
-									},
-									"model": {
-										"$ref": "AAAAAAGb0eCubYGqt9c="
-									},
-									"subViews": [
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGb0eCuboGu2Fk=",
-											"_parent": {
-												"$ref": "AAAAAAGb0eCuboGtzxk="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"left": -718,
-											"top": 240,
-											"height": 13
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGb0eCuboGvH6M=",
-											"_parent": {
-												"$ref": "AAAAAAGb0eCuboGtzxk="
-											},
-											"font": "Arial;13;1",
-											"parentStyle": true,
-											"left": 320,
-											"top": 4833.5,
-											"width": 151,
-											"height": 39,
-											"text": "UC75 - Decommissioning Gateway fallito",
-											"wordWrap": true
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGb0eCuboGwzxA=",
-											"_parent": {
-												"$ref": "AAAAAAGb0eCuboGtzxk="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"left": -718,
-											"top": 240,
-											"width": 73.67724609375,
-											"height": 13,
-											"text": "(from Model)"
-										},
-										{
-											"_type": "LabelView",
-											"_id": "AAAAAAGb0eCuboGxhRQ=",
-											"_parent": {
-												"$ref": "AAAAAAGb0eCuboGtzxk="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"left": -718,
-											"top": 240,
-											"horizontalAlignment": 1,
-											"wordWrap": true
-										}
-									],
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": 315,
-									"top": 4826.5,
-									"width": 161,
-									"height": 51,
-									"stereotypeLabel": {
-										"$ref": "AAAAAAGb0eCuboGu2Fk="
-									},
-									"nameLabel": {
-										"$ref": "AAAAAAGb0eCuboGvH6M="
-									},
-									"namespaceLabel": {
-										"$ref": "AAAAAAGb0eCuboGwzxA="
-									},
-									"propertyLabel": {
-										"$ref": "AAAAAAGb0eCuboGxhRQ="
-									}
-								},
-								{
-									"_type": "UMLAttributeCompartmentView",
-									"_id": "AAAAAAGb0eCuboGyMHE=",
-									"_parent": {
-										"$ref": "AAAAAAGb0eCuboGsQys="
-									},
-									"model": {
-										"$ref": "AAAAAAGb0eCubYGqt9c="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -359,
-									"top": 120,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLOperationCompartmentView",
-									"_id": "AAAAAAGb0eCuboGzk/M=",
-									"_parent": {
-										"$ref": "AAAAAAGb0eCuboGsQys="
-									},
-									"model": {
-										"$ref": "AAAAAAGb0eCubYGqt9c="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -359,
-									"top": 120,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLReceptionCompartmentView",
-									"_id": "AAAAAAGb0eCuboG0RQE=",
-									"_parent": {
-										"$ref": "AAAAAAGb0eCuboGsQys="
-									},
-									"model": {
-										"$ref": "AAAAAAGb0eCubYGqt9c="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -359,
-									"top": 120,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLTemplateParameterCompartmentView",
-									"_id": "AAAAAAGb0eCuboG1qVs=",
-									"_parent": {
-										"$ref": "AAAAAAGb0eCuboGsQys="
-									},
-									"model": {
-										"$ref": "AAAAAAGb0eCubYGqt9c="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -359,
-									"top": 120,
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLExtensionPointCompartmentView",
-									"_id": "AAAAAAGb0eCub4G2dfo=",
-									"_parent": {
-										"$ref": "AAAAAAGb0eCuboGsQys="
-									},
-									"model": {
-										"$ref": "AAAAAAGb0eCubYGqt9c="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"parentStyle": true,
-									"left": -359,
-									"top": 120,
-									"width": 10,
-									"height": 10
-								}
-							],
-							"font": "Arial;13;0",
-							"parentStyle": false,
-							"containerChangeable": true,
-							"left": 281,
-							"top": 4816,
-							"width": 229,
-							"height": 72,
-							"nameCompartment": {
-								"$ref": "AAAAAAGb0eCuboGtzxk="
-							},
-							"wordWrap": true,
-							"suppressAttributes": true,
-							"suppressOperations": true,
-							"attributeCompartment": {
-								"$ref": "AAAAAAGb0eCuboGyMHE="
-							},
-							"operationCompartment": {
-								"$ref": "AAAAAAGb0eCuboGzk/M="
-							},
-							"receptionCompartment": {
-								"$ref": "AAAAAAGb0eCuboG0RQE="
-							},
-							"templateParameterCompartment": {
-								"$ref": "AAAAAAGb0eCuboG1qVs="
-							},
-							"extensionPointCompartment": {
-								"$ref": "AAAAAAGb0eCub4G2dfo="
-							}
-						},
-						{
 							"_type": "UMLExtendView",
 							"_id": "AAAAAAGb0eDQDY9ilkE=",
 							"_parent": {
@@ -18471,8 +18264,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 411,
-									"top": 4789,
+									"left": 403,
+									"top": 4859,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -18492,8 +18285,8 @@
 									},
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 400,
-									"top": 4789,
+									"left": 392,
+									"top": 4860,
 									"width": 53.49169921875,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -18516,8 +18309,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 382,
-									"top": 4790,
+									"left": 374,
+									"top": 4856,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -18536,7 +18329,7 @@
 								"$ref": "AAAAAAGb0eAEnjiGr3o="
 							},
 							"lineStyle": 1,
-							"points": "398:4777;397:4815",
+							"points": "397:4777;381:4951",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGb0eDQDY9jw1A="
@@ -18790,7 +18583,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": -288,
-											"top": 208,
+											"top": 144,
 											"height": 13
 										},
 										{
@@ -18802,7 +18595,7 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 598,
-											"top": 4884,
+											"top": 4852,
 											"width": 148,
 											"height": 52,
 											"text": "UC74.2 Esecuzione decommissioning Gateway associati al tenant",
@@ -18818,7 +18611,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": -288,
-											"top": 208,
+											"top": 144,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -18833,7 +18626,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": -288,
-											"top": 208,
+											"top": 144,
 											"horizontalAlignment": 1,
 											"wordWrap": true
 										}
@@ -18841,7 +18634,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 593,
-									"top": 4877,
+									"top": 4845,
 									"width": 158,
 									"height": 64,
 									"stereotypeLabel": {
@@ -18870,7 +18663,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": -144,
-									"top": 104,
+									"top": 72,
 									"width": 10,
 									"height": 10
 								},
@@ -18887,7 +18680,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": -144,
-									"top": 104,
+									"top": 72,
 									"width": 10,
 									"height": 10
 								},
@@ -18904,7 +18697,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": -144,
-									"top": 104,
+									"top": 72,
 									"width": 10,
 									"height": 10
 								},
@@ -18921,7 +18714,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": -144,
-									"top": 104,
+									"top": 72,
 									"width": 10,
 									"height": 10
 								},
@@ -18938,7 +18731,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": -144,
-									"top": 104,
+									"top": 72,
 									"width": 10,
 									"height": 10
 								}
@@ -18947,7 +18740,7 @@
 							"parentStyle": false,
 							"containerChangeable": true,
 							"left": 560,
-							"top": 4864,
+							"top": 4832,
 							"width": 224,
 							"height": 90,
 							"nameCompartment": {
@@ -19631,7 +19424,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 690,
-									"top": 4966,
+									"top": 4950,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -19652,7 +19445,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 679,
-									"top": 4965,
+									"top": 4949,
 									"width": 53.49169921875,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -19676,7 +19469,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 661,
-									"top": 4967,
+									"top": 4951,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -19695,7 +19488,7 @@
 								"$ref": "AAAAAAGb0edCPgtxuoQ="
 							},
 							"lineStyle": 1,
-							"points": "675:4955;677:4991",
+							"points": "674:4923;678:4991",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGb0eqqGyjWk6A="
@@ -20026,8 +19819,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 536,
-									"top": 4801,
+									"left": 533,
+									"top": 4784,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -20047,8 +19840,8 @@
 									},
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 517,
-									"top": 4788,
+									"left": 513,
+									"top": 4771,
 									"width": 55.65625,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -20071,8 +19864,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 521,
-									"top": 4826,
+									"left": 520,
+									"top": 4811,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -20091,7 +19884,7 @@
 								"$ref": "AAAAAAGb0eAEnjiGr3o="
 							},
 							"lineStyle": 1,
-							"points": "460:4777;598:4863",
+							"points": "473:4777;581:4831",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGb0esQzGYZP88="
@@ -34617,7 +34410,7 @@
 											"top": 8222,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -35759,7 +35552,7 @@
 											"top": 8841,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -38371,7 +38164,7 @@
 											"top": 8826,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -40157,7 +39950,7 @@
 											"top": 9124,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -41943,7 +41736,7 @@
 											"top": 9408,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -43414,7 +43207,7 @@
 											"top": 9887,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -44199,7 +43992,7 @@
 											"top": 10286,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -47897,7 +47690,7 @@
 											"top": 10666,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -51434,7 +51227,7 @@
 											"top": 11254,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -53531,7 +53324,7 @@
 											"top": 4686,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -53715,7 +53508,7 @@
 											"top": 5083,
 											"width": 84.54150390625,
 											"height": 13,
-											"text": "Super Admin"
+											"text": "Tenant admin"
 										},
 										{
 											"_type": "LabelView",
@@ -56493,6 +56286,221 @@
 							},
 							"lineStyle": 1,
 							"points": "594:4103;511:3997"
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "AAAAAAGb0eCuboGsQys=",
+							"_parent": {
+								"$ref": "AAAAAAGb0X+fgvxTiSk="
+							},
+							"model": {
+								"$ref": "AAAAAAGb0eCubYGqt9c="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAGb0eCuboGtzxk=",
+									"_parent": {
+										"$ref": "AAAAAAGb0eCuboGsQys="
+									},
+									"model": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGb0eCuboGu2Fk=",
+											"_parent": {
+												"$ref": "AAAAAAGb0eCuboGtzxk="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": -769,
+											"top": 648,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGb0eCuboGvH6M=",
+											"_parent": {
+												"$ref": "AAAAAAGb0eCuboGtzxk="
+											},
+											"font": "Arial;13;1",
+											"parentStyle": true,
+											"left": 303,
+											"top": 4969.5,
+											"width": 151,
+											"height": 39,
+											"text": "UC75 - Decommissioning Gateway fallito",
+											"wordWrap": true
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGb0eCuboGwzxA=",
+											"_parent": {
+												"$ref": "AAAAAAGb0eCuboGtzxk="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": -769,
+											"top": 648,
+											"width": 119.919921875,
+											"height": 13,
+											"text": "(from Sistema cloud)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAGb0eCuboGxhRQ=",
+											"_parent": {
+												"$ref": "AAAAAAGb0eCuboGtzxk="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": -769,
+											"top": 648,
+											"horizontalAlignment": 1,
+											"wordWrap": true
+										}
+									],
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": 298,
+									"top": 4962.5,
+									"width": 161,
+									"height": 51,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAGb0eCuboGu2Fk="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAGb0eCuboGvH6M="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAGb0eCuboGwzxA="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAGb0eCuboGxhRQ="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAGb0eCuboGyMHE=",
+									"_parent": {
+										"$ref": "AAAAAAGb0eCuboGsQys="
+									},
+									"model": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": -393,
+									"top": 392,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAGb0eCuboGzk/M=",
+									"_parent": {
+										"$ref": "AAAAAAGb0eCuboGsQys="
+									},
+									"model": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": -393,
+									"top": 392,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAGb0eCuboG0RQE=",
+									"_parent": {
+										"$ref": "AAAAAAGb0eCuboGsQys="
+									},
+									"model": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": -393,
+									"top": 392,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAGb0eCuboG1qVs=",
+									"_parent": {
+										"$ref": "AAAAAAGb0eCuboGsQys="
+									},
+									"model": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": -393,
+									"top": 392,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "AAAAAAGb0eCub4G2dfo=",
+									"_parent": {
+										"$ref": "AAAAAAGb0eCuboGsQys="
+									},
+									"model": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"parentStyle": true,
+									"left": -393,
+									"top": 392,
+									"width": 10,
+									"height": 10
+								}
+							],
+							"containerView": {
+								"$ref": "AAAAAAGb/EoWsVcc4KI="
+							},
+							"font": "Arial;13;0",
+							"parentStyle": false,
+							"containerChangeable": true,
+							"left": 264,
+							"top": 4952,
+							"width": 229,
+							"height": 72,
+							"nameCompartment": {
+								"$ref": "AAAAAAGb0eCuboGtzxk="
+							},
+							"wordWrap": true,
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"attributeCompartment": {
+								"$ref": "AAAAAAGb0eCuboGyMHE="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAGb0eCuboGzk/M="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAGb0eCuboG0RQE="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAGb0eCuboG1qVs="
+							},
+							"extensionPointCompartment": {
+								"$ref": "AAAAAAGb0eCub4G2dfo="
+							}
 						}
 					]
 				},
@@ -57925,29 +57933,6 @@
 							},
 							"target": {
 								"$ref": "AAAAAAGb0edCPgtv/VQ="
-							}
-						}
-					]
-				},
-				{
-					"_type": "UMLUseCase",
-					"_id": "AAAAAAGb0eCubYGqt9c=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "UC75 - Decommissioning Gateway fallito",
-					"ownedElements": [
-						{
-							"_type": "UMLExtend",
-							"_id": "AAAAAAGcQ2WgENbCaFI=",
-							"_parent": {
-								"$ref": "AAAAAAGb0eCubYGqt9c="
-							},
-							"source": {
-								"$ref": "AAAAAAGb0eCubYGqt9c="
-							},
-							"target": {
-								"$ref": "AAAAAAGb0eAEnjiEUPY="
 							}
 						}
 					]
@@ -60742,9 +60727,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 292.5,
-													"top": 274,
+													"top": 280.5,
 													"width": 131,
-													"height": 52,
+													"height": 39,
 													"text": "UC61 - Visualizzazione dashboard Tenant Admin",
 													"wordWrap": true
 												},
@@ -60781,9 +60766,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 287.5,
-											"top": 267,
+											"top": 273.5,
 											"width": 141,
-											"height": 64,
+											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GDvKKbFttM="
 											},
@@ -61166,9 +61151,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 728,
-													"top": 172.5,
+													"top": 185.5,
 													"width": 148,
-													"height": 65,
+													"height": 39,
 													"text": "UC61.2 - Visualizzazione stato richieste commissioning gateway",
 													"wordWrap": true
 												},
@@ -61205,9 +61190,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 723,
-											"top": 165.5,
+											"top": 178.5,
 											"width": 158,
-											"height": 77,
+											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GDvKKbbC2Q="
 											},
@@ -61378,9 +61363,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 711,
-													"top": 292,
+													"top": 298.5,
 													"width": 154,
-													"height": 52,
+													"height": 39,
 													"text": "UC61.3 - Visualizzazione stato richieste decommissioning gateway",
 													"wordWrap": true
 												},
@@ -61417,9 +61402,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 706,
-											"top": 285,
+											"top": 291.5,
 											"width": 164,
-											"height": 64,
+											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GDvKKbmN8k="
 											},
@@ -62054,7 +62039,7 @@
 											"parentStyle": true,
 											"left": 200,
 											"top": 464.5,
-											"width": 105.1259765625,
+											"width": 104,
 											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GDvKKcHAPI="
@@ -63106,9 +63091,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 305,
-													"top": 66,
+													"top": 72.5,
 													"width": 114,
-													"height": 52,
+													"height": 39,
 													"text": "UC33 Visualizzazione dashboard generica",
 													"wordWrap": true
 												},
@@ -63145,9 +63130,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 300,
-											"top": 59,
+											"top": 65.5,
 											"width": 124,
-											"height": 64,
+											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GDvKac297o="
 											},
@@ -66022,9 +66007,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 295.5,
-													"top": 99.5,
+													"top": 106,
 													"width": 125,
-													"height": 39,
+													"height": 26,
 													"text": "UC65 - Sospensione sensore del tenant",
 													"wordWrap": true
 												},
@@ -66061,9 +66046,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 290.5,
-											"top": 92.5,
+											"top": 99,
 											"width": 135,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GI/OKKcs5I="
 											},
@@ -67490,9 +67475,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 285,
-													"top": 70,
+													"top": 76.5,
 													"width": 114,
-													"height": 52,
+													"height": 39,
 													"text": "UC-66 Riattivazione sensore del tenant",
 													"wordWrap": true
 												},
@@ -67529,9 +67514,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 280,
-											"top": 63,
+											"top": 69.5,
 											"width": 124,
-											"height": 64,
+											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GLAN+yzMDU="
 											},
@@ -67988,9 +67973,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 562.5,
-													"top": 75.5,
+													"top": 82,
 													"width": 103,
-													"height": 39,
+													"height": 26,
 													"text": "UC34 - Gateway non raggiungibile",
 													"wordWrap": true
 												},
@@ -68027,9 +68012,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 557.5,
-											"top": 68.5,
+											"top": 75,
 											"width": 113,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GLAN+zK/ik="
 											},
@@ -69456,9 +69441,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 586.5,
-													"top": 65.5,
+													"top": 72,
 													"width": 103,
-													"height": 39,
+													"height": 26,
 													"text": "UC34 - Gateway non raggiungibile",
 													"wordWrap": true
 												},
@@ -69495,9 +69480,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 581.5,
-											"top": 58.5,
+											"top": 65,
 											"width": 113,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GMaDiZCT3k="
 											},
@@ -74830,9 +74815,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 278.5,
-													"top": 95.5,
+													"top": 102,
 													"width": 103,
-													"height": 39,
+													"height": 26,
 													"text": "UC72 - Creazione Tenant",
 													"wordWrap": true
 												},
@@ -74869,9 +74854,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 273.5,
-											"top": 88.5,
+											"top": 95,
 											"width": 113,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GUTWTe18rQ="
 											},
@@ -75082,7 +75067,7 @@
 											"parentStyle": true,
 											"left": 265.5,
 											"top": 205.5,
-											"width": 127.7490234375,
+											"width": 127,
 											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GUTWTfAOec="
@@ -76298,9 +76283,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 307.5,
-													"top": 207.5,
+													"top": 214,
 													"width": 125,
-													"height": 39,
+													"height": 26,
 													"text": "UC74 - Eliminazione Tenant",
 													"wordWrap": true
 												},
@@ -76337,9 +76322,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 302.5,
-											"top": 200.5,
+											"top": 207,
 											"width": 135,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GV4vKzVPWY="
 											},
@@ -78683,6 +78668,29 @@
 									"points": "553:465;683:441"
 								}
 							]
+						},
+						{
+							"_type": "UMLUseCase",
+							"_id": "AAAAAAGb0eCubYGqt9c=",
+							"_parent": {
+								"$ref": "AAAAAAGb/EoWsFcaMTo="
+							},
+							"name": "UC75 - Decommissioning Gateway fallito",
+							"ownedElements": [
+								{
+									"_type": "UMLExtend",
+									"_id": "AAAAAAGcQ2WgENbCaFI=",
+									"_parent": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"source": {
+										"$ref": "AAAAAAGb0eCubYGqt9c="
+									},
+									"target": {
+										"$ref": "AAAAAAGb0eAEnjiEUPY="
+									}
+								}
+							]
 						}
 					]
 				},
@@ -79071,9 +79079,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 556,
-													"top": 107.5,
+													"top": 114,
 													"width": 204,
-													"height": 39,
+													"height": 26,
 													"text": "UC102.1 - Visualizzazione data e ora della richiesta di commissioning",
 													"wordWrap": true
 												},
@@ -79110,9 +79118,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 551,
-											"top": 100.5,
+											"top": 107,
 											"width": 214,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GjpYqXr6U0="
 											},
@@ -79283,9 +79291,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 553.5,
-													"top": 211.5,
+													"top": 218,
 													"width": 193,
-													"height": 39,
+													"height": 26,
 													"text": "UC102.2 - Visualizzazione tenant della richiesta di commissioning",
 													"wordWrap": true
 												},
@@ -79322,9 +79330,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 548.5,
-											"top": 204.5,
+											"top": 211,
 											"width": 203,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GjpYqX2UD4="
 											},
@@ -80008,7 +80016,7 @@
 													"top": 232,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -82068,7 +82076,7 @@
 													"top": 153,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -82858,9 +82866,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 319,
-													"top": 215.5,
+													"top": 222,
 													"width": 142,
-													"height": 39,
+													"height": 26,
 													"text": "UC76 - Visualizzazione dashboard Super Admin",
 													"wordWrap": true
 												},
@@ -82897,9 +82905,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 314,
-											"top": 208.5,
+											"top": 215,
 											"width": 152,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GX1BGlcixY="
 											},
@@ -83706,9 +83714,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 310.5,
-													"top": 370,
+													"top": 376.5,
 													"width": 159,
-													"height": 52,
+													"height": 39,
 													"text": "UC103 - Visualizzazione lista richieste in corso di decommissioning Gateway",
 													"wordWrap": true
 												},
@@ -83745,9 +83753,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 305.5,
-											"top": 363,
+											"top": 369.5,
 											"width": 169,
-											"height": 64,
+											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GX1BGmIuoQ="
 											},
@@ -85129,9 +85137,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 568.5,
-													"top": 104,
+													"top": 117,
 													"width": 131,
-													"height": 52,
+													"height": 26,
 													"text": "UC45 - Visualizzazione singolo gateway in lista",
 													"wordWrap": true
 												},
@@ -85168,9 +85176,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 563.5,
-											"top": 97,
+											"top": 110,
 											"width": 141,
-											"height": 64,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GZ4wyFI/Gs="
 											},
@@ -86043,9 +86051,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 276.5,
-													"top": 270,
+													"top": 283,
 													"width": 131,
-													"height": 52,
+													"height": 26,
 													"text": "UC78 - Visualizzazione singolo gateway in lista",
 													"wordWrap": true
 												},
@@ -86082,9 +86090,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 271.5,
-											"top": 263,
+											"top": 276,
 											"width": 141,
-											"height": 64,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GcYNgzd/i8="
 											},
@@ -91972,7 +91980,7 @@
 											"parentStyle": true,
 											"left": 398,
 											"top": 194.5,
-											"width": 104.60546875,
+											"width": 103,
 											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GgZv+AsosU="
@@ -92147,9 +92155,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 595.5,
-													"top": 313.5,
+													"top": 320,
 													"width": 137,
-													"height": 39,
+													"height": 26,
 													"text": "UC86 - Configurazione Gateway non valida",
 													"wordWrap": true
 												},
@@ -92186,9 +92194,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 590.5,
-											"top": 306.5,
+											"top": 313,
 											"width": 147,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GgZv+BDDFQ="
 											},
@@ -92880,7 +92888,7 @@
 											"parentStyle": true,
 											"left": 451.5,
 											"top": 59.5,
-											"width": 121.96630859375,
+											"width": 121,
 											"height": 51,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GtXN4F4yhA="
@@ -94652,7 +94660,7 @@
 											"parentStyle": true,
 											"left": 663,
 											"top": 245,
-											"width": 111.15625,
+											"width": 111,
 											"height": 64,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GtXOIHo6PA="
@@ -95468,9 +95476,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 207,
-													"top": 105.5,
+													"top": 112,
 													"width": 74,
-													"height": 39,
+													"height": 26,
 													"text": "UC88 - Reset Gateway",
 													"wordWrap": true
 												},
@@ -95507,9 +95515,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 202,
-											"top": 98.5,
+											"top": 105,
 											"width": 84,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GtXN4GZwCg="
 											},
@@ -95921,9 +95929,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 329.5,
-													"top": 109.5,
+													"top": 116,
 													"width": 165,
-													"height": 26,
+													"height": 13,
 													"text": "UC90 - Sospensione Gateway",
 													"wordWrap": true
 												},
@@ -95960,9 +95968,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 324.5,
-											"top": 102.5,
+											"top": 109,
 											"width": 175,
-											"height": 38,
+											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/Gx3kJQHJCU="
 											},
@@ -96348,7 +96356,7 @@
 													"top": 139,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -99354,9 +99362,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 324.5,
-													"top": 281.5,
+													"top": 288,
 													"width": 103,
-													"height": 39,
+													"height": 26,
 													"text": "UC34 - Gateway non raggiungibile",
 													"wordWrap": true
 												},
@@ -99393,9 +99401,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 319.5,
-											"top": 274.5,
+											"top": 281,
 											"width": 113,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/GvsE+eSMNE="
 											},
@@ -99865,7 +99873,7 @@
 													"top": 114,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -101814,9 +101822,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 297.5,
-													"top": 94.5,
+													"top": 101,
 													"width": 165,
-													"height": 39,
+													"height": 26,
 													"text": "UC92 - Modifica parametro di rolling average",
 													"wordWrap": true
 												},
@@ -101853,9 +101861,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 292.5,
-											"top": 87.5,
+											"top": 94,
 											"width": 175,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/G1kJKJaNRE="
 											},
@@ -102340,7 +102348,7 @@
 													"top": 135,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -103289,9 +103297,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 308.5,
-													"top": 233.5,
+													"top": 240,
 													"width": 103,
-													"height": 39,
+													"height": 26,
 													"text": "UC34 - Gateway non raggiungibile",
 													"wordWrap": true
 												},
@@ -103328,9 +103336,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 303.5,
-											"top": 226.5,
+											"top": 233,
 											"width": 113,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/G1kJKJlnwE="
 											},
@@ -103766,9 +103774,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 356.5,
-													"top": 83.5,
+													"top": 90,
 													"width": 159,
-													"height": 26,
+													"height": 13,
 													"text": "UC93 - Sospensione sensore",
 													"wordWrap": true
 												},
@@ -103805,9 +103813,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 351.5,
-											"top": 76.5,
+											"top": 83,
 											"width": 169,
-											"height": 38,
+											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/G3MjfvBxeQ="
 											},
@@ -104292,7 +104300,7 @@
 													"top": 121,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -104326,7 +104334,7 @@
 											],
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 24,
+											"left": 28,
 											"top": 114,
 											"width": 94.54150390625,
 											"height": 25,
@@ -104649,7 +104657,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": false,
-											"left": 216,
+											"left": 218,
 											"top": 76,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -104671,7 +104679,7 @@
 											"visible": null,
 											"font": "Arial;13;0",
 											"parentStyle": false,
-											"left": 216,
+											"left": 218,
 											"top": 61,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -104693,7 +104701,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": false,
-											"left": 217,
+											"left": 219,
 											"top": 105,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -104715,7 +104723,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": false,
-											"left": 144,
+											"left": 148,
 											"top": 76,
 											"height": 13,
 											"alpha": 0.5235987755982988,
@@ -104737,7 +104745,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": false,
-											"left": 146,
+											"left": 150,
 											"top": 63,
 											"height": 13,
 											"alpha": 0.7853981633974483,
@@ -104759,7 +104767,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": false,
-											"left": 140,
+											"left": 144,
 											"top": 104,
 											"height": 13,
 											"alpha": -0.5235987755982988,
@@ -105718,9 +105726,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 327.5,
-													"top": 75.5,
+													"top": 82,
 													"width": 165,
-													"height": 26,
+													"height": 13,
 													"text": "UC94 - Riattivazione sensore",
 													"wordWrap": true
 												},
@@ -105757,9 +105765,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 322.5,
-											"top": 68.5,
+											"top": 75,
 											"width": 175,
-											"height": 38,
+											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/G5zPcn0Bv8="
 											},
@@ -106244,7 +106252,7 @@
 													"top": 109,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -107193,9 +107201,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 286.5,
-													"top": 228.5,
+													"top": 235,
 													"width": 103,
-													"height": 39,
+													"height": 26,
 													"text": "UC34 - Gateway non raggiungibile",
 													"wordWrap": true
 												},
@@ -107232,9 +107240,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 281.5,
-											"top": 221.5,
+											"top": 228,
 											"width": 113,
-											"height": 51,
+											"height": 38,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/G5zPcn/QQw="
 											},
@@ -108274,7 +108282,7 @@
 													"top": 116,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -109403,7 +109411,7 @@
 													"top": 143,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -110542,9 +110550,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 531.5,
-													"top": 78.5,
+													"top": 85,
 													"width": 103,
-													"height": 78,
+													"height": 65,
 													"text": "UC106 - Visualizzazione singola richiesta lista storico commissioning",
 													"wordWrap": true
 												},
@@ -110581,9 +110589,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 526.5,
-											"top": 71.5,
+											"top": 78,
 											"width": 113,
-											"height": 90,
+											"height": 77,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/HEmdZhgDQc="
 											},
@@ -110856,7 +110864,7 @@
 													"top": 159,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -111329,9 +111337,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 249.5,
-													"top": 219.5,
+													"top": 226,
 													"width": 131,
-													"height": 65,
+													"height": 52,
 													"text": "UC106.1 Visualizzazione stato richiesta dello storico commissioning",
 													"wordWrap": true
 												},
@@ -111368,9 +111376,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 244.5,
-											"top": 212.5,
+											"top": 219,
 											"width": 141,
-											"height": 77,
+											"height": 64,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/HEmdZiFmnA="
 											},
@@ -112364,9 +112372,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 755.5,
-													"top": 78.5,
+													"top": 85,
 													"width": 103,
-													"height": 78,
+													"height": 65,
 													"text": "UC102.3 Visualizzazione numero gateway della richiesta di commissioning",
 													"wordWrap": true
 												},
@@ -112403,9 +112411,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 750.5,
-											"top": 71.5,
+											"top": 78,
 											"width": 113,
-											"height": 90,
+											"height": 77,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/HEmdZi22nk="
 											},
@@ -112725,7 +112733,7 @@
 													"top": 119,
 													"width": 84.54150390625,
 													"height": 13,
-													"text": "Super Admin"
+													"text": "Tenant admin"
 												},
 												{
 													"_type": "LabelView",
@@ -113164,7 +113172,7 @@
 											"parentStyle": true,
 											"left": 509,
 											"top": 70,
-											"width": 105.1259765625,
+											"width": 104,
 											"height": 64,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/HJTY5u6H5Y="
@@ -114131,9 +114139,9 @@
 													"font": "Arial;13;1",
 													"parentStyle": true,
 													"left": 484.5,
-													"top": 198.5,
+													"top": 205,
 													"width": 103,
-													"height": 65,
+													"height": 52,
 													"text": "UC109.2 - Visualizzazione tenant richiedente della richiesta",
 													"wordWrap": true
 												},
@@ -114170,9 +114178,9 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 479.5,
-											"top": 191.5,
+											"top": 198,
 											"width": 113,
-											"height": 77,
+											"height": 64,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAGb/HJTY5voBcE="
 											},
@@ -114665,9 +114673,9 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 291,
-											"top": 140.5,
+											"top": 147,
 											"width": 148,
-											"height": 39,
+											"height": 26,
 											"text": "UC55 - Visualizzazione lista audit log del tenant",
 											"wordWrap": true
 										},
@@ -114704,9 +114712,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 286,
-									"top": 133.5,
+									"top": 140,
 									"width": 158,
-									"height": 51,
+									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGb/F36JBS8tzE="
 									},
@@ -114877,9 +114885,9 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 280.5,
-											"top": 239,
+											"top": 252,
 											"width": 137,
-											"height": 52,
+											"height": 26,
 											"text": "UC56 - Visualizzazione singolo audit log in lista",
 											"wordWrap": true
 										},
@@ -114916,9 +114924,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 275.5,
-									"top": 232,
+									"top": 245,
 									"width": 147,
-									"height": 64,
+									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGb/F36JRTHMps="
 									},
@@ -115189,9 +115197,9 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 629,
-											"top": 103,
+											"top": 109.5,
 											"width": 120,
-											"height": 52,
+											"height": 39,
 											"text": "UC56.1 - Visualizzazione tipo azione audit log",
 											"wordWrap": true
 										},
@@ -115228,9 +115236,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 624,
-									"top": 96,
+									"top": 102.5,
 									"width": 130,
-									"height": 64,
+									"height": 51,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGb/F36JRTWS4U="
 									},
@@ -116725,9 +116733,9 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 291,
-											"top": 140.5,
+											"top": 147,
 											"width": 148,
-											"height": 39,
+											"height": 26,
 											"text": "UC55 - Visualizzazione lista audit log del tenant",
 											"wordWrap": true
 										},
@@ -116764,9 +116772,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 286,
-									"top": 133.5,
+									"top": 140,
 									"width": 158,
-									"height": 51,
+									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGb/F+mhEyVmUs="
 									},
@@ -116937,9 +116945,9 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 280.5,
-											"top": 239,
+											"top": 252,
 											"width": 137,
-											"height": 52,
+											"height": 26,
 											"text": "UC56 - Visualizzazione singolo audit log in lista",
 											"wordWrap": true
 										},
@@ -116976,9 +116984,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 275.5,
-									"top": 232,
+									"top": 245,
 									"width": 147,
-									"height": 64,
+									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGb/F+mhEygsdk="
 									},
@@ -117249,9 +117257,9 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 629,
-											"top": 103,
+											"top": 109.5,
 											"width": 120,
-											"height": 52,
+											"height": 39,
 											"text": "UC56.1 - Visualizzazione tipo azione audit log",
 											"wordWrap": true
 										},
@@ -117288,9 +117296,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 624,
-									"top": 96,
+									"top": 102.5,
 									"width": 130,
-									"height": 64,
+									"height": 51,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGb/F+mhEyvXMQ="
 									},
