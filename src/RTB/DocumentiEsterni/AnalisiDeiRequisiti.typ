@@ -96,7 +96,7 @@
       "0.37.0",
       "09/02/2026",
       "Riccardo Graziani",
-      "",
+      "Alessandro Dinato",
       [Stesura @panoramica-prodotto, @analisi-utenza e miglioramento di @architettura-prodotto],
     ),
     (
