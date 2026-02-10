@@ -541,7 +541,7 @@ In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud.
 L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaforma Cloud, che cerca di accedervi.
 
 ==== #uc() - Autenticazione Utente <Autenticazione-utente>
-// #image("../../assets/diagrammi/UC1.svg", width: 100%)
+#image("../../assets/diagrammi/UC1.svg", width: 100%)
 
 - *Attore principale*: Utente non autenticato
 - *Pre-condizioni*:
