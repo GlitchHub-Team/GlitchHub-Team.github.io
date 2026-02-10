@@ -1839,7 +1839,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 ==== #uc() - Visualizzazione dettagli API key <Visualizzazione-dettagli-api-key>
-#image("../../assets/diagrammi/UC6.svg", width: 100%)
+#image("../../assets/diagrammi/UC53.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
