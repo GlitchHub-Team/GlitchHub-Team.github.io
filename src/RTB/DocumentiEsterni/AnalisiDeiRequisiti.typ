@@ -1535,7 +1535,6 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Rifiutata
 
 // Visualizzazione Utenti --------------------------------------------------------------------------------------------------------------
-// TODO: RIFARE DIAGRAMMA in modo tale che si rispetti pattern lista
 ==== #uc() - Visualizzazione lista utenti tenant <Visualizzazione-lista-utenti-tenant>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -1674,7 +1673,6 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Non associato
     - Non autenticato
 
-// TODO: RIFARE DIAGRAMMA per questo use case per mostrare meglio il pattern lista
 ===== #sub-uc() - Visualizzazione sensori collegati al gateway associato a tenant <Visualizzazione-sensori-collegati-gateway-associato>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
@@ -2061,12 +2059,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 
 
 === Attore principale - Tenant Admin
-// TODO: questa sezione è una copia di quello che c'è scritto in sezione Tenant User. lo tengo oppure no?
 Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto delle funzionalità del *Tenant Admin* e *Super Admin* impersonante quest'ultimo, ovvero tutto ciò che può essere compiuto da un *Tenant User*, può essere compiuto anche da un *Tenant Admin*\/*Super Admin*.
 
 
 // DASHBOARD --------------------------------------------------------------------------------------------------------------------------------------------------
-// TODO: MODIFICARE diagramma UC61.svg e mostrare anche attore collegato a UC vis. dashboard generica
 ==== #uc() - Visualizzazione dashboard Tenant Admin <Visualizzazione-dashboard-tenant-admin>
 #image("../../assets/diagrammi/UC61.svg", width: 100%)
 - *Generalizzazione*: #ref-uc(<Visualizzazione-dashboard-generica>)
@@ -4376,7 +4372,6 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 - *Scenario principale*:
   - Il Cloud invia il rifiuto di autenticazione al gateway
 
-// TODO: RIFARE DIAGRAMMA UC161, tolto sub uc "invio chiave cifratura dati"
 ==== #uc() - Assegnazione tenant al gateway <Assegnazione-tenant-gateway>
 #image("../../assets/diagrammi/UC161.svg", width: 100%)
 - *Attore principale*: Cloud
