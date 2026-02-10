@@ -1794,7 +1794,6 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Visualizzazione-singola-api-key-lista>)
 
 ==== #uc() - Visualizzazione singola API Key in lista <Visualizzazione-singola-api-key-lista>
-#image("../../assets/diagrammi/UC52.svg", width: 100%)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1940,7 +1939,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singolo-audit-log>)
 
-==== #uc() - Visualizzazione singolo audit log in lista <Visualizzazione-singolo-audit-log>
+==== #uc() - Visualizzazione singolo audit log <Visualizzazione-singolo-audit-log>
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
