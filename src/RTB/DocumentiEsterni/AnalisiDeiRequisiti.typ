@@ -93,6 +93,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.37.0",
+      "09/02/2026",
+      "Riccardo Graziani",
+      "",
+      [Stesura @panoramica-prodotto, @analisi-utenza e miglioramento di @architettura-prodotto],
+    ),
+    (
       "0.36.0",
       "09/02/2026",
       "Jaume Bernardi",
@@ -434,22 +441,32 @@ Il documento di #gloss[Analisi dei Requisiti] viene redatto dagli #gloss[analist
 - Gli #gloss[amministratori] e i futuri #gloss[responsabili], che potranno usare il documento come riferimento per una maggiore comprensione del prodotto alla mano
 
 
-== Panoramica del prodotto
-// TODO: approfondire panoramica prodotto
-Il progetto tratta la realizzazione di un sistema distribuito per l'acquisizione, l'elaborazione e la gestione dei dati provenienti da sensori Bluetooth Low Energy (BLE). In un contesto in cui la raccolta capillare (e affidabile soprattutto) rappresenta un elemento centrale per varie applicazioni (industriali,logistiche, sanitarie, ecc...), il capitolato evidenzia la necessità di una piattaforma in grado di ricevere e normalizzare dati eterogenei provenienti da un numero non trascurabile di sensori, garantendo al contempo sicurezza e scalabilità.
+== Panoramica del prodotto <panoramica-prodotto>
+Il progetto consiste nella realizzazione di una piattaforma #gloss[Cloud] multi-tenant scalabile e sicura, progettata per l'acquisizione, la normalizzazione e lo smistamento di flussi di dati provenienti da sensori Bluetooth Low Energy #gloss[(BLE)]. In un panorama #gloss[IoT] dove la frammentazione dei dispositivi è elevata, 
+il sistema si pone l'obiettivo di agire come un hub centralizzato capace di gestire dati eterogenei (ambientali, industriali o biometrici) trasformandoli in informazioni strutturate e fruibili, garantendo al tempo stesso sicurezza e scalabilità. 
 
-== Architettura
+Gli obiettivi principali che questo prodotto mira a soddisfare sono:
+- progettare un'infrastruttura *scalabile* e *sicura* per la gestione di dati eterogenei;
+- garantire la *separazione* dei dati tra diversi #gloss[tenant];
+- fornire meccanismi di comunicazione *sicura* tra i diversi livelli del prodotto;
+- fornire strumenti grafici per il *monitoraggio* e la *visualizzazione* dei dati sia per utenti amministratori che per utenti semplici.
+
+== Architettura <architettura-prodotto>
 L'architettura prevista si articola in tre principali livelli che collaborano per garantire un flusso dati continuo e sicuro:
 - *Sensori BLE*
-- *Gateway BLE WiFI*
+- *Gateway BLE WiFi*
 - *Cloud*
 
 I sensori svolgono la funzione di acquisizione locale mentre i gateway aggregano e inoltrano i dati verso il cloud, che rappresenta il core del sistema. Quest'ultimo si occupa di archiviazione, gestione dei tenant, esposizione delle API e monitoraggio tramite dashboard.
 
-// TODO: specificare che il nostro prodotto non rispetta questa architettura, ma l'MVP mocka parte sensori e gateway (c'è scritto nei req. del capitolato)
+Secondo quanto specificato dal #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*Capitolato*] d'appalto nei #gloss[requisiti] *RQ1* ed *RQ2*,  i livelli dell'architettura riguardanti i 
+*sensori BLE* e i *gateway BLE WiFi* saranno interamente virtualizzati. Il *simulatore* avrà dunque il compito di generare dati eterogenei e inviarli al #gloss[Cloud] tramite protocolli sicuri 
 
-== Analisi dell'utenza
-// TODO: descrivere l'utente tipo del prodotto
+== Analisi dell'utenza <analisi-utenza>
+La natura del progetto è orientata a fornire al proponente *M31* una progettazione solida ed efficace, pronta per essere ingegnerizzata in una soluzione definitiva.
+
+L'utente tipo si identifica in organizzazioni che operano su larga scala nell'ambito dell'#gloss[IoT], le quali necessitano di un'infrastruttura #gloss[Cloud] multi-tenant robusta per gestire con sicurezza e alte prestazioni 
+l'acquisizione di flussi di dati provenienti da reti di sensori eterogenei.
 
 == Riferimenti
 === Riferimenti normativi
