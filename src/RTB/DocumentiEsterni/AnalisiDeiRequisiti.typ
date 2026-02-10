@@ -93,109 +93,129 @@
   stato: "Bozza",
   registro-modifiche: (
     (
-      "0.33.0",
-      "10/02/2026",
+      "0.36.0",
+      "09/02/2026",
+      "Jaume Bernardi",
+      "Michele Dioli",
+      [Aggiunta condizioni su diagrammi casi d'uso da UC110 a UC169],
+    ),
+    (
+      "0.35.0",
+      "09/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Aggiunta @intro-scopo-doc]
+      "Riccardo Graziani",
+      [Aggiunta condizioni su diagrammi casi d'uso da UC56 a UC109],
+    ),
+    (
+      "0.34.0",
+      "09/02/2026",
+      "Alessandro Dinato",
+      "Hossam Ezzemouri",
+      [Aggiunta condizioni su diagrammi casi d'uso da UC1 a UC55],
+    ),
+    (
+      "0.33.0",
+      "09/02/2026",
+      "Elia Ernesto Stellin",
+      "Riccardo Graziani",
+      [Aggiunta @intro-scopo-doc],
     ),
     (
       "0.32.3",
       "09/02/2026",
       "Michele Dioli",
-      "-",
-      "Sistemano requisito 40"
+      "Alessandro Dinato",
+      "Sistemano requisito 40",
     ),
     (
       "0.32.2",
       "09/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Sistemati digrammi da #ref-uc(<Visualizzazione-audit-log>) a #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>)]
+      "Alessandro Dinato",
+      [Sistemati digrammi da #ref-uc(<Visualizzazione-audit-log>) a #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>)],
     ),
     (
       "0.32.1",
       "09/02/2026",
       "Jaume Bernardi",
-      "-",
+      "Alessandro Dinato",
       [Aggiunto diagramma ad UC141],
     ),
     (
       "0.32.0",
       "05/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Rimossi requisiti non funzionali e requisiti di dominio ridondanti; Rimosso ex-RF149 e sistemati requisiti relativi a cifratura end-to-end dei dati dei tenant]
+      "Alessandro Dinato",
+      [Rimossi requisiti non funzionali e requisiti di dominio ridondanti; Rimosso ex-RF149 e sistemati requisiti relativi a cifratura end-to-end dei dati dei tenant],
     ),
     (
       "0.31.0",
       "04/02/2026",
       "Michele Dioli",
-      "-",
-      [Sistemazione di requisito(ex RF-20)]
+      "Elia Ernesto Stellin",
+      [Sistemazione di requisito(ex RF-20)],
     ),
-
     (
       "0.30.0",
       "03/02/2026",
       "Jaume Bernardi",
-      "-",
-      [Ulteriore suddivisione di un requisito funzionali per renderlo più atomico]
+      "Riccardo Graziani",
+      [Ulteriore suddivisione di un requisito funzionali per renderlo più atomico],
     ),
     (
       "0.29.1",
       "03/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Sistemate urgenze dei requisiti]
+      "Riccardo Graziani",
+      [Sistemate urgenze dei requisiti],
     ),
     (
       "0.29.0",
       "03/02/2026",
       "Jaume Bernardi",
-      "-",
-      [Suddivisione di alcuni requisiti funzionali per renderli più atomici]
+      "Riccardo Graziani",
+      [Suddivisione di alcuni requisiti funzionali per renderli più atomici],
     ),
     (
       "0.28.1",
       "02/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Migliorata formattazione]
+      "Michele Dioli",
+      [Migliorata formattazione],
     ),
     (
       "0.28.0",
       "01/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Classificazione requisiti da *RF-175* in poi; Sistemata @tracciamento-requisiti; Riformulati alcuni requisiti; Migliorata formattazione fonti]
+      "Michele Dioli",
+      [Classificazione requisiti da *RF-175* in poi; Sistemata @tracciamento-requisiti; Riformulati alcuni requisiti; Migliorata formattazione fonti],
     ),
     (
       "0.27.0",
       "01/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Jaume Bernardi",
       [Classificazione requisiti da *RF-1* a *RF-175*],
     ),
     (
       "0.26.0",
       "30/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Resi atomici i requisiti troppo generali],
     ),
     (
       "0.25.0",
       "28/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Riccardo Graziani",
       [Aggiunta di requisiti funzionali mancanti],
     ),
     (
       "0.24.0",
       "27/01/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Hossam Ezzemouri",
       [Sistemati errori di battitura e formattazione; Sistemati diagrammi non funzionanti; modificati #ref-uc(<Modifica-target-freq-invio-dati-tenant-admin>),
         #ref-uc(<Modifica-freq-invio-dati-gateway-super-admin>),
         #ref-uc(<Conferma-comando-modifica-frequenza-invio-dati>) per rispecchiare parametro invio frequenza dati al Gateway
@@ -205,84 +225,84 @@
       "0.23.0",
       "27/01/2026",
       "Jaume Bernardi",
-      "-",
+      "Alessandro Dinato",
       [Controllo, correzione ed aggiunta requisiti. Aggiunta diagrammi UC dal #ref-uc(<Visualizzazione-richiesta-decommissioning-gateway>) al #ref-uc(<Reset-gateway-cloud>)],
     ),
     (
       "0.22.0",
       "26/01/2026",
       "Michele Dioli",
-      "-",
+      "Elia Ernesto Stellin",
       [Aggiunta requisiti mancanti e aggiunta diagrammi degli UC dal #ref-uc(<Visualizzazione-singolo-audit-log>) al #ref-uc(<Visualizzazione-richiesta-decommissioning-gateway>)],
     ),
     (
       "0.21.0",
       "23/01/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Creazione e aggiunta dei diagrammi degli UC dall'#ref-uc(<Autenticazione-utente>) al #ref-uc(<Visualizzazione-audit-log>)],
     ),
     (
       "0.20.0",
       "20/01/2026",
       "Michele Dioli",
-      "-",
+      "Elia Ernesto Stellin",
       [Creazione requisiti non funzionali e di dominio],
     ),
     (
       "0.19.0",
       "14/01/2026",
       "Riccardo Graziani",
-      "-",
+      "Hossam Ezzemouri",
       [Creazione requisiti dashboard Utente autenticato e Tenant Admin],
     ),
     (
       "0.18.0",
       "13/01/2026",
       "Alessandro Dinato",
-      "-",
+      "Jaume Bernardi",
       [Creazione requisiti attore gateway con Sistema Cloud e tutti attori relativi al Sistema Gateway],
     ),
     (
       "0.17.0",
       "12/01/2026",
       "Riccardo Graziani",
-      "-",
+      "Jaume Bernardi",
       [Approfonditi use case di visualizzazione liste e visualizzazione in dettaglio di alcuni elementi (API Key, Gateway)],
     ),
     (
       "0.16.0",
       "11/01/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Michele Dioli",
       [Riempita sezione "Admin Generico" e modifiche a inclusioni di use case contenuti in essa; Sistemato registro modifiche; Ottimizzazione compilazione del documento],
     ),
     (
       "0.15.0",
       "05/01/2026",
       "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
-      "-",
+      "Hossam Ezzemouri, Jaume Bernardi, Michele Dioli",
       [Modifiche di formattazione; Migliorata descrizione dei casi d'uso (@casi-d-uso-introduzione); Aggiunti use case mancanti relativi a invio di comandi al gateway; Impostati contatori dei requisiti],
     ),
     (
       "0.14.0",
       "03/01/2026",
       "Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani",
-      "-",
+      "Hossam Ezzemouri, Jaume Bernardi, Michele Dioli",
       [Aggiunta use case relativi agli alert e la loro generazione],
     ),
     (
       "0.13.1",
       "03/01/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Hossam Ezzemouri, Jaume Bernardi, Michele Dioli",
       [Modifiche di formattazione],
     ),
     (
       "0.13.0",
       "29/12/2025",
       "Elia Ernesto Stellin, Alessandro Dinato, Riccardo Graziani",
-      "-",
+      "Hossam Ezzemouri, Jaume Bernardi, Michele Dioli",
       [Verifica Use Case attuali],
     ),
     (
@@ -401,7 +421,7 @@ Il documento di #gloss[Analisi dei Requisiti] ha come obiettivo quello di fornir
 
 A tale scopo, il presente documento include per ognuno dei #gloss[casi d'uso] (_use cases_ o "UC") rilevati durante la fase di analisi del progetto, la sua descrizione e il relativo diagramma UML che permette di visualizzare in maniera intuitiva le interazioni tra gli attori e i sistemi rilevati.
 
-La seconda parte del documento, invece, presenta tutti i #gloss[requisiti] derivati dai casi d'uso sopra descritti; questi rappresentano le fondamenta su cui si baserà la progettazione del prodotto software richiesto dal capitolato. 
+La seconda parte del documento, invece, presenta tutti i #gloss[requisiti] derivati dai casi d'uso sopra descritti; questi rappresentano le fondamenta su cui si baserà la progettazione del prodotto software richiesto dal capitolato.
 
 Il documento di #gloss[Analisi dei Requisiti] viene redatto dagli #gloss[analisti] del _team_ ed è rivolto ai seguenti destinatari:
 
@@ -436,17 +456,23 @@ I sensori svolgono la funzione di acquisizione locale mentre i gateway aggregano
 - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto v0.3.1] \
   *Ultimo accesso*: 9 febbraio 2026
 
-- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 -- Sistema di acquisizione dati da sensori] \
+- #link(
+    "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
+  )[Capitolato d'appalto C7 -- Sistema di acquisizione dati da sensori] \
   *Ultimo accesso*: 9 febbraio 2026
 
 === Riferimenti informativi
-- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf")[Analisi dei Requisiti -- Lezione T5 del prof. Tullio Vardanega] \
+- #link(
+    "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf",
+  )[Analisi dei Requisiti -- Lezione T5 del prof. Tullio Vardanega] \
   *Ultimo accesso*: 9 febbraio 2026
 
 - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[Glossario _GlitchHub Team_] \
   *Ultimo accesso*: 9 febbraio 2026
 
-- #link("https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf")[Diagrammi delle Classi -- Lezione del prof. Riccardo Cardin] \
+- #link(
+    "https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf",
+  )[Diagrammi delle Classi -- Lezione del prof. Riccardo Cardin] \
   *Ultimo accesso*: 9 febbraio 2026
 
 
@@ -3467,7 +3493,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin inserisce la dimensione in byte del buffer del nuovo gateway simulato
 
-==== #uc() - Creazione sensore simulato 
+==== #uc() - Creazione sensore simulato
 <Creazione-sensore-simulato>
 #image("../../assets/diagrammi/UC118.svg", width: 100%)
 - *Attore principale*: Super Admin
@@ -4508,7 +4534,7 @@ Inoltre un buon requisito deve essere *SMART*:
 
 == Requisiti funzionali
 
-#let get-tracciamento = (lista-requisiti) => {
+#let get-tracciamento = lista-requisiti => {
   lista-requisiti
     .enumerate()
     .filter(value => {
@@ -4533,1190 +4559,902 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema],
   [#ref-uc(<Autenticazione-utente>)],
-
   [#rf()],
   [L'Utente non autenticato deve inserire la propria email per autenticarsi],
   [#ref-uc(<Inserimento-email-auth>)],
-
   [#rf()],
   [L'Utente non autenticato deve inserire la propria password per autenticarsi],
   [#ref-uc(<Autenticazione-utente>) \ #ref-uc(<Inserimento-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore in caso di inserimento di credenziali errate],
   [#ref-uc(<Autenticazione-non-riuscita>)],
-
   [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso],
   [#ref-uc(<Account-sospeso>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve riceve una mail con il codice di verifica],
   [#ref-uc(<Invio-codice-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, deve poter richiedere il re-invio del codice di verifica nel caso in cui non lo abbia ricevuto o sia scaduto],
   [#ref-uc(<Re-invio-codice-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve poter completare l'autenticazione a due fattori per autenticarsi nel Sistema],
   [#ref-uc(<Autenticazione-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato deve poter inserire il codice di verifica ricevuto via mail per completare l'autenticazione, in caso sia richiesta la 2FA],
   [#ref-uc(<Inserimento-codice-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato deve ricevere un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto],
   [#ref-uc(<Codice-2FA-errato>)\ #ref-uc(<Codice-2FA-scaduto>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter impostare la sua prima password, in seguito alla ricezione della mail contenente il link per la creazione della prima password],
   [#ref-uc(<Impostazione-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter inserire la nuova password durante l'impostazione o reimpostazione della password],
   [#ref-uc(<Inserimento-nuova-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter inserire la conferma della nuova password durante l'impostazione o reimpostazione della password],
   [#ref-uc(<Conferma-password>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se la nuova password e la conferma non coincidono],
   [#ref-uc(<Password-non-coincidenti>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se la nuova password non rispetta i criteri di sicurezza],
   [#ref-uc(<Password-non-conforme-criteri-sicurezza>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se l'Utente tenta di usare un link di impostazione password scaduto],
   [#ref-uc(<Link-impostazione-password-scaduto>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata],
   [#ref-uc(<Password-dimenticata>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password],
   [#ref-uc(<Inserimento-indirizzo-email>)],
-
   [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore se inserisce un indirizzo email non associato ad alcun account durante la richiesta di reimpostazione password],
   [#ref-uc(<Indirizzo-email-non-associato-account>)],
-
   [#rf()],
   [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
   [#ref-uc(<Invio-email-reimpostazione-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter reimpostare la propria password tramite il link ricevuto via email],
   [#ref-uc(<Reimpostazione-password-dimenticata>)],
-
   [#rf()],
   [L'Utente autenticato deve poter visualizzare la lista dei sensori associati al proprio tenant],
   [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
-
   [#rf()],
   [L'Utente autenticato visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare l'identificativo di ciascun sensore nella lista],
   [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>), #ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
-
   // TODO: Da migliorare questo requisito sulla dashboard.
   [#rf()],
   [L'Utente autenticato deve poter visualizzare la sua dashboard personale],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
-
   [#rf()],
   [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-lista-alert>)],
-
   [#rf()],
   [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei sensori attivi e non attivi associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
-
   [#rf()],
   [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei gateway attivi e non attivi associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
-
   [#rf()],
   [Il Sistema deve notificare l'Admin generico nel caso in cui il gateway a cui ha inviato dei comandi non sia raggiungibile],
   [#ref-uc(<Gateway-non-raggiungibile>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore all'Admin generico nel caso in cui venga inserita un'email già associata ad un altro Tenant User durante la registrazione di un nuovo Tenant User],
   [#ref-uc(<Email-gia-utilizzata>)],
-
   [#rf()],
   [L'Admin generico deve poter registrare un nuovo Tenant User all'interno del Sistema],
   [#ref-uc(<Registrazione-nuovo-tenant-user>)],
-
   [#rf()],
   [L'Admin generico, registrando un nuovo utente, deve inserire l'indirizzo email associato al nuovo Tenant User],
   [#ref-uc(<Inserimento-email>)],
-
   [#rf()],
   [Il Sistema deve inviare una mail al nuovo Tenant User contenente il link per impostare la propria password iniziale dopo la registrazione effettuata dall'Admin generico],
   [#ref-uc(<Invio-email-impostazione-password>)],
-
   [#rf[Des]],
   [L'Admin generico deve poter sospendere l'accesso di un Tenant User al Sistema],
   [#ref-uc(<Sospensione-tenant-user>)],
-
   [#rf[Des]],
   [Il Sistema deve richiedere conferma all'Admin generico prima di sospendere l'accesso di un Tenant User al Sistema],
   [#ref-uc(<Conferma-sospensione-tenant-user>)],
-
   [#rf[Des]],
   [L'Admin generico deve poter riattivare l'accesso di un Tenant User al Sistema],
   [#ref-uc(<Riattivazione-tenant-user>)],
-
   [#rf[Des]],
   [Il Sistema deve richiedere conferma all'Admin generico prima di riattivare l'accesso di un Tenant User al Sistema],
   [#ref-uc(<Conferma-riattivazione-tenant-user>)],
-
-  [#rf()], [L'Admin generico deve poter eliminare un Tenant User al Sistema], [#ref-uc(<Eliminazione-tenant-user>)],
-
+  [#rf()],
+  [L'Admin generico deve poter eliminare un Tenant User al Sistema],
+  [#ref-uc(<Eliminazione-tenant-user>)],
   [#rf()],
   [Il Sistema deve richiedere conferma all'Admin generico prima di eliminare un Tenant User al Sistema],
   [#ref-uc(<Conferma-eliminazione-tenant-user>)],
-
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista di tutte le richieste di commissioning e decommissioning di gateway associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>)],
-
-
   [#rf()],
   [L'Admin generico deve poter visualizzare la richiesta di commissioning e decommissioning di gateway associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)],
-
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista di tutti gli utenti associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-utenti-tenant>)],
-
   [#rf()],
   [L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere l'email di ciascun utente nella lista],
   [#ref-uc(<Visualizzazione-singolo-utente-in-lista>), #ref-uc(<Visualizzazione-email-utente-lista>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere lo stato (attivo/sospeso) di ciascun utente nella lista],
   [#ref-uc(<Visualizzazione-singolo-utente-in-lista>), #ref-uc(<Visualizzazione-stato-utente-lista>)],
-
   [#rf()],
   [L'Admin generico deve poter visualizzare la lista dei gateway associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-gateway-associati>)],
-
   [#rf()],
   [L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare il nome del gateway nella lista],
   [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>), #ref-uc(<Visualizzazione-nome-gateway-lista>)],
-
   [#rf()],
   [L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare lo stato del gateway nella lista],
   [#ref-uc(<Visualizzazione-singolo-gateway-in-lista>), #ref-uc(<Visualizzazione-stato-gateway-lista>)],
-
   [#rf()],
   [L'Admin generico deve poter visualizzare un gateway associato al proprio Tenant nel dettaglio],
   [#ref-uc(<Visualizzazione-gateway-associato>)],
-
   [#rf()],
   [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare il nome del gateway],
   [#ref-uc(<Visualizzazione-nome-gateway-associato>)],
-
   [#rf()],
   [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare lo stato del gateway],
   [#ref-uc(<Visualizzazione-stato-gateway-associato>)],
-
   [#rf()],
   [L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare i sensori collegati al gateway],
   [#ref-uc(<Visualizzazione-sensori-collegati-gateway-associato>)],
-
   [#rf()],
   [L'Admin generico, visualizzando la lista dei sensori collegati al gateway, deve poter visualizzare per ogni sensore l'identificativo],
   [#ref-uc(<Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>)],
-
   [#rf[Des]],
   [L'Admin generico deve poter registrare una nuova API key associata al proprio Tenant],
   [#ref-uc(<Registrazione-nuova-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico, registrando una nuova API key, deve inserire un nome identificativo per la chiave],
   [#ref-uc(<Inserimento-nome-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico, registrando una nuova API key, deve inserire la data di scadenza della chiave],
   [#ref-uc(<Inserimento-scadenza-api-key>)],
-
   [#rf[Des]],
   [Il Sistema deve mostrare un messaggio di errore se l'Admin generico inserisce un nome identificativo già esistente per una API key durante la registrazione di una nuova chiave],
   [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-nome-api-key>), #ref-uc(<Nome-api-key-gia-utilizzato>)],
-
   [#rf[Des]],
   [Il Sistema deve mostrare un messaggio di errore se l'Admin generico inserisce una data di scadenza già passata durante la registrazione di una nuova API key],
   [#ref-uc(<Registrazione-nuova-api-key>), #ref-uc(<Inserimento-scadenza-api-key>), #ref-uc(<Scadenza-api-key-data-passata>)],
-
   [#rf[Des]],
   [L'Admin generico deve poter visualizzare la lista di tutte le API key associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-lista-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere il nome dell'API key],
   [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-nome-singola-api-key-lista>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di creazione dell'API key],
   [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-data-creazione-singola-api-key-lista>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di scadenza dell'API key],
   [#ref-uc(<Visualizzazione-lista-api-key>), #ref-uc(<Visualizzazione-singola-api-key-lista>), #ref-uc(<Visualizzazione-data-scadenza-singola-api-key-lista>)],
-
   [#rf[Des]],
   [L'Admin generico deve poter visualizzare una API key associata al proprio Tenant nel dettaglio],
   [#ref-uc(<Visualizzazione-dettagli-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare il nome dell'API key],
   [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-nome-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare la data di creazione dell'API key],
   [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-data-creazione-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare la data di scadenza dell'API key],
   [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Visualizzazione-data-scadenza-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare un grafico che mostri l'utilizzo dell'API key],
   [#ref-uc(<Visualizzazione-dettagli-api-key>), #ref-uc(<Grafico-utilizzo-api-key>)],
-
   [#rf[Des]],
   [L'Admin generico deve poter eliminare una API key associata al proprio Tenant],
   [#ref-uc(<Eliminazione-api-key>)],
-
   [#rf[Des]],
   [Il Sistema deve richiedere conferma all'Admin generico prima di eliminare una API key associata al proprio Tenant],
   [#ref-uc(<Eliminazione-api-key>), #ref-uc(<Conferma-eliminazione-api-key>)],
-
   [#rf[Opt]],
   [L'Admin generico deve poter visualizzare la lista di tutti gli audit log relativi al proprio Tenant],
   [#ref-uc(<Visualizzazione-audit-log>)],
-
   [#rf[Opt]],
   [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il nome dell'utente che ha generato l'evento],
   [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-nome-utente-audit-log>)],
-
   [#rf[Opt]],
   [L'Admin generico, visualizzando la lista degli audit log, deve poter vedere il tipo di azione eseguita in ogni evento],
   [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-tipo-azione-audit-log>)],
-
   [#rf[Opt]],
   [L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il timestamp dell'evento],
   [#ref-uc(<Visualizzazione-audit-log>), #ref-uc(<Visualizzazione-singolo-audit-log>), #ref-uc(<Visualizzazione-timestamp-azione-audit-log>)],
-
   [#rf[Opt]],
   [L'Admin generico deve poter filtrare gli audit log in base al tipo di azione eseguita],
   [#ref-uc(<Filtraggio-log-per-tipologia>)],
-
   [#rf[Opt]],
   [L'Admin generico deve poter filtrare gli audit log in base ad un intervallo temporale],
   [#ref-uc(<Filtraggio-log-per-intervallo-temporale>)],
-
   [#rf[Opt]],
   [L'Admin generico deve poter filtrare gli audit log in base all'utente che ha generato l'evento],
   [#ref-uc(<Filtraggio-log-per-utente>)],
-
   [#rf[Opt]],
   [L'Admin generico deve poter esportare gli audit log in un file testuale scaricabile],
   [#ref-uc(<Esportazione-log>)],
-
   // TODO: Da migliorare questi requisiti sulla dashboard.
   [#rf()],
   [Il Tenant Admin deve poter visualizzare la sua dashboard personale],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>)],
-
   [#rf()],
   [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di sensori attivi e non associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
-
   [#rf()],
   [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di gateway attivi e non associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
-
   [#rf[Opt]],
   [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-lista-alert>)],
-
   [#rf[Des]],
   [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare il numero di API key valide e scadute],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-numero-api-key-valide-scadute>)],
-
   [#rf()],
   [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare lo stato delle richieste di commissioning gateway associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-commissioning-gateway>)],
-
   [#rf()],
   [Il Tenant Admin, visualizzando la sua dashboard personale, deve visualizzare lo stato delle richieste di decommissioning gateway associate al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-tenant-admin>), #ref-uc(<Visualizzazione-stato-richieste-decommissioning-gateway>)],
-
   [#rf()],
   [Il Tenant Admin deve poter creare una nuova richiesta di commissioning gateway],
   [#ref-uc(<Creazione-richiesta-commissioning-gateway>)],
-
   [#rf()],
   [Il Tenant Admin deve poter creare una nuova richiesta di decommissioning gateway],
   [#ref-uc(<Creazione-richiesta-decommissioning-gateway>), #ref-uc(<Selezione-gateway-decommissioning-tenant-admin>)],
-
   [#rf()],
   [Il Tenant Admin deve poter eliminare una richiesta di commissioning o decommissioning gateway precedentemente creata, purché essa non sia stata ancora evasa],
   [#ref-uc(<Eliminazione-richiesta-commissioning-decommissioning-gateway>)],
-
   [#rf()],
   [Il Sistema deve richiedere conferma al Tenant Admin prima di eliminare una richiesta di commissioning o decommissioning gateway],
   [#ref-uc(<Eliminazione-richiesta-commissioning-decommissioning-gateway>), #ref-uc(<Conferma-eliminazione-richiesta-commissioning-decommissioning>)],
-
   [#rf()],
   [Il Tenant Admin deve poter sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant],
   [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
-
   [#rf()],
   [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore],
   [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
-
   [#rf()],
   [Il Tenant Admin deve poter riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant],
   [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Selezione-sensore>)],
-
   [#rf()],
   [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore],
   [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
-
   [#rf()],
   [Il Tenant Admin deve poter sospendere l'invio di dati da parte di un gateway appartenente al proprio Tenant],
   [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
-
   [#rf()],
   [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Sospensione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
-
   [#rf()],
   [Il Tenant Admin deve poter riattivare l'invio di dati da parte di un gateway appartenente al proprio Tenant],
   [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
-
   [#rf()],
   [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Riattivazione-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
-
   [#rf()],
   [Il Tenant Admin deve poter riavviare un gateway appartenente al proprio Tenant],
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Seleziona-gateway-per-invio-comando-tenant-admin>)],
-
   [#rf()],
   [Il Tenant Admin deve poter modificare il target di frequenza d'invio dati per tipologia di sensore di un gateway associato al proprio tenant],
   [#ref-uc(<Modifica-target-freq-invio-dati-tenant-admin>)],
-
   [#rf()],
   [Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poiché esso è in stato di errore],
   [#ref-uc(<Riavvio-gateway-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
-
   //Attore: Gateway, Sistema: Cloud
   //TODO: controllare che requisiti siano atomici
   [#rf()],
   [Il gateway simulato deve poter confermare al Cloud che il processo di commissioning è stato completato con successo],
   [#ref-uc(<Conferma-comando-commissioning>)],
-
   [#rf()],
   [Il gateway simulato deve cominciare ad inviare i dati una volta completato il processo di commissioning],
   [#ref-uc(<Conferma-comando-commissioning>)],
-
   [#rf()],
   [Il gateway simulato deve inviare al Cloud la presenza di errori durante il processo di commissioning],
   [#ref-uc(<Errore-commissioning>)],
-
   [#rf()],
   [Il gateway simulato deve poter confermare al Cloud che il processo di decommissioning è stato completato con successo],
   [#ref-uc(<Conferma-comando-decommissioning>)],
-
   [#rf()],
   [Il gateway simulato, dopo aver eseguito il decommissioning, deve rimuovere l'associazione con il tenant e interrompere l'invio dei dati IoT al Cloud],
   [#ref-uc(<Conferma-comando-decommissioning>)],
-
   [#rf()],
   [Il gateway simulato, dopo aver eseguito il decommissioning, deve ammettere un nuovo commissioning],
   [#ref-uc(<Conferma-comando-decommissioning>)],
-
   [#rf()],
   [Il gateway simulato deve segnalare al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning],
   [#ref-uc(<Errore-decommissioning>)],
-
   [#rf()],
   [Il Sistema deve poter annullare il processo di decommissioning quando riceve una notifica di errore dal gateway],
   [#ref-uc(<Errore-decommissioning>)],
-
   [#rf()],
   [Il Sistema deve notificare il Super Admin quando un decommissioning viene annullato a causa di un errore segnalato dal gateway],
   [#ref-uc(<Errore-decommissioning>)],
-
   [#rf()],
   [Il gateway simulato deve confermare al Cloud la corretta esecuzione del riavvio in seguito al comando ricevuto dallo stesso],
   [#ref-uc(<Conferma-comando-riavvio>)],
-
   [#rf()],
   [Il Cloud deve accorgersi se dopo un comando di riavvio presso un gateway simulato egli non risponde dopo un timeout specifico. Di conseguenza deve considerare il gateway in stato di errore e notificare gli utenti del tenant associato],
   [#ref-uc(<Errore-riavvio>)],
-
   [#rf()],
   [Il gateway simulato deve poter reimpostare correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica, ovvero reset],
   [#ref-uc(<Conferma-comando-reset>)],
-
   [#rf()],
   [Il gateway simulato, dopo aver eseguito il reset correttamente, deve inviare la conferma di successo al Cloud],
   [#ref-uc(<Conferma-comando-reset>)],
-
   [#rf()],
   [Il gateway simulato deve poter confermare la sospensione di invio dei dati al Cloud in seguito al comando di sospensione ricevuto dallo stesso],
   [#ref-uc(<Conferma-comando-sospensione-invio-dati>)],
-
   [#rf()],
   [Il gateway simulato deve poter confermare la riattivazione dell'invio dei dati al Cloud in seguito al comando di riattivazione ricevuto dallo stesso],
   [#ref-uc(<Conferma-comando-riattivazione-invio-dati>)],
-
   [#rf()],
   [Il gateway simulato deve poter confermare la sospensione dell'invio dei dati di un sensore simulato specifico in seguito al comando di sospensione ricevuto dal Cloud],
   [#ref-uc(<Conferma-comando-sospensione-sensore>)],
-
   [#rf()],
   [Il gateway simulato deve poter confermare la riattivazione dell'invio dei dati di un sensore simulato specifico in seguito al comando di riattivazione ricevuto dal Cloud],
   [#ref-uc(<Conferma-comando-riattivazione-sensore>)],
-
   [#rf()],
   [Il gateway simulato deve poter inviare la conferma del cambiamento della frequenza di invio dati al Cloud in seguito al comando di modifica ricevuto dallo stesso],
   [#ref-uc(<Conferma-comando-modifica-frequenza-invio-dati>)],
-
   [#rf()],
   [Il gateway simulato, all'avvio, deve inviare un comando di hello al Cloud per autenticarsi. Il comando deve contenere il proprio ID univoco],
   [#ref-uc(<Invio-comando-hello>)],
-
   [#rf()],
   [Il Cloud deve rifiutare l'autenticazione del gateway in caso quest'ultimo invii credenziali errate],
   [#ref-uc(<Autenticazione-gateway-fallita>)],
-
   [#rf()],
   [Il Cloud deve rifiutare l'autenticazione del gateway in caso l'ID univoco inviato dal gateway non sia presente nel proprio database],
   [#ref-uc(<Identificativo-gateway-non-trovato>)],
-
   [#rf()],
   [Il gateway simulato deve poter inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud],
   [#ref-uc(<Invio-dati-crittografati>)],
-
   [#rf()],
   [Il gateway simulato deve raccogliere i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud],
   [#ref-uc(<Invio-dati-crittografati>)],
-
   [#rf()],
   [Il gateway simulato deve eliminare i dati più vecchi in caso di overflow del buffer],
   [#ref-uc(<Invio-dati-crittografati>)],
-
   [#rf()],
   [Il gateway simulato deve ritentare l'invio dei dati al Cloud in caso non sia raggiungibile, mantenendo i dati nel buffer fino al successo dell'invio],
   [#ref-uc(<Invio-dati-fallito>)],
-
   [#rf()],
   [Il Cloud deve considerare il gateway in stato di errore nel caso in cui non riceva dati da esso per un periodo di tempo superiore ad una soglia predefinita, notificando gli utenti del tenant associato],
   [#ref-uc(<Invio-dati-fallito>)],
-
   [#rf()],
   [Il Cloud deve rilevare l'assenza di dati da un sensore specifico di un gateway simulato allo scadere di un timeout predefinito],
   [#ref-uc(<Assenza-prolungata-dati-sensori>)],
-
   [#rf()],
   [Il Cloud, nel caso in cui venga rilevata l'assenza di dati di un sensore di un gateway, deve notificare gli utenti del tenant associato],
   [#ref-uc(<Assenza-prolungata-dati-sensori>)],
-
   //Attore: API Client, Sistema: Cloud
   [#rf[Des]],
   [L'API Client deve poter richiedere i dati real-time di un sensore specifico associato al proprio tenant],
   [#ref-uc(<Richiesta-dati-real-time-sensore>)],
-
   [#rf[Des]],
   [L'API Client dopo aver richiesto i dati real-time di un sensore specifico deve poter ricevere tali dati in forma coppia valore-timestamp],
   [#ref-uc(<Ricezione-dati-real-time-sensore>)],
-
   [#rf[Des]],
   [L'API Client deve poter richiedere lo storico dei dati di un sensore appartenente al proprio tenant],
   [#ref-uc(<Richiesta-storico-dati-sensore>)],
-
   [#rf[Des]],
   [L'API Client dopo aver richiesto lo storico dei dati di un sensore specifico deve poter ricevere tali dati in forma coppia valore-timestamp],
   [#ref-uc(<Ricezione-storico-dati-sensore>)],
-
   [#rf[Des]],
   [L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non esistente],
   [#ref-uc(<Sensore-non-trovato>)],
-
   [#rf[Des]],
   [L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore per cui non sono disponibili dati],
   [#ref-uc(<Nessun-dato-disponibile-sensore-richiesto>)],
-
   [#rf[Des]],
   [L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non associato al proprio tenant],
   [#ref-uc(<Sensore-non-associato-tenant-API-Client>)],
-
   [#rf[Des]],
   [L'API Client deve potersi autenticare nel Sistema utilizzando un'API Key valida],
   [#ref-uc(<Autenticazione-API-Client>)],
-
   [#rf[Des]],
   [L'API Client deve ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione non siano valide],
   [#ref-uc(<Credenziali-API-Client-errate>)],
-
   [#rf[Des]],
   [L'API Client deve ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione siano scadute],
   [#ref-uc(<Credenziali-API-Client-scadute>)],
-
   //Attore: Sensore simulato, Sistema: Gateway
   [#rf()],
   [Il Sensore simulato deve inviare i dati rilevati al gateway a cui è collegato],
   [#ref-uc(<Invio-nuovo-dato-gateway>)],
-
   [#rf()],
   [Il Sistema Gateway alla ricezione dei dati dei sensori deve normalizzarli],
   [#ref-uc(<Invio-nuovo-dato-gateway>)],
-
   [#rf()],
   [Il Sistema Gateway alla ricezione dei dati dei sensori deve formattarli secondo un formato interno standardizzato],
   [#ref-uc(<Invio-nuovo-dato-gateway>)],
-
   [#rf()],
   [Il Sistema Gateway alla ricezione dei dati dei sensori deve salvarli in un buffer interno prima di inviarli al Cloud],
   [#ref-uc(<Invio-nuovo-dato-gateway>)],
-
   [#rf()],
   [In caso uno o più Sensori simulati inviino una quantità di dati superiore alla capacità di invio del gateway verso il Cloud, il gateway deve salvare i dati più recenti nel buffer interno eliminando i dati più vecchi per fare spazio ai nuovi dati],
   [#ref-uc(<Invio-dati-eccessivi-gateway>)],
-
   [#rf()],
   [Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Heart Rate Service (GATT)],
   [#ref-uc(<Invio-dato-heart-rate-service>)],
-
   [#rf()],
   [Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Pulse Oximeter Service (GATT)],
   [#ref-uc(<Invio-dato-pulse-oximeter-service>)],
-
   [#rf()],
   [Il Sensore simulato deve poter inviare al gateway i dati relativi ad un profilo custom per l'elettrocardiogramma (ECG)],
   [#ref-uc(<Invio-dato-ecg-custom>)],
-
   [#rf()],
   [Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Health Thermometer Service (GATT)],
   [#ref-uc(<Invio-dato-health-thermometer-service>)],
-
   [#rf()],
   [Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Environmental Sensing Service (GATT)],
   [#ref-uc(<Invio-dato-environmental-sensing-service>)],
-
   //Attore: Cloud, Sistema: Gateway
   [#rf()],
   [Il Cloud deve poter inviare la conferma di autenticazione avvenuta correttamente al gateway, in seguito ad un tentativo di autenticazione andato a buon fine],
   [#ref-uc(<Conferma-autenticazione-gateway>)],
-
   [#rf()],
   [Il Cloud deve poter inviare il rifiuto di autenticazione al gateway, in seguito ad un tentativo di autenticazione fallito],
   [#ref-uc(<Rifiuto-autenticazione-gateway>)],
-
   [#rf()],
   [Il Cloud deve poter inviare al gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine],
   [#ref-uc(<Assegnazione-tenant-gateway>) #ref-uc(<Invio-tenant-associato-gateway>)],
-
   [#rf()],
   [Il Cloud deve poter inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore],
   [#ref-uc(<Riattivazione-sensore-simulato>)],
-
   [#rf()],
   [Il Cloud deve poter inviare al gateway il comando di sospensione di un Sensore simulato non sospeso specifico. In seguito alla ricezione del comandi il gateway deve interrompere l'invio di dati IoT crittografati relativi a tale Sensore],
   [#ref-uc(<Sospensione-sensore-simulato>)],
-
   [#rf()],
   [Il Cloud deve poter inviare, al gateway sospeso, il comando di riattivazione. In seguito alla ricezione del comando il gateway deve ricominciare l'invio di tutti i dati IoT crittografati],
   [#ref-uc(<Riattivazione-gateway>)],
-
   [#rf()],
   [Il Cloud deve poter inviare, al gateway attivo, il comando di sospensione. In seguito alla ricezione del comando il gateway deve interrompere l'invio di tutti i dati IoT crittografati],
   [#ref-uc(<Sospensione-gateway>)],
-
   [#rf()],
   [Il Cloud deve poter inviare al gateway il comando di riavvio. In seguito alla ricezione del comando il gateway deve spegnersi e riaccendersi, mantenendo le configurazioni e i dati salvati localmente],
   [#ref-uc(<Riavvio-gateway-cloud>)],
-
   [#rf()],
   [Il Cloud deve poter inviare al gateway il comando di modifica della frequenza di invio dati per uno specifico tipo di sensore. In seguito alla ricezione di tale comando il gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud relativi a tutti i sensori di tale tipologia, così da inviare un dato ogni intervallo di tempo specificato nel comando.],
   [#ref-uc(<Modifica-frequenza-invio-dati-gateway>)],
-
   [#rf()],
   [Il Cloud deve poter inviare al gateway il comando di decommissioning. In seguito alla ricezione del comando il gateway deve cancellare l'associazione al tenant e deve eseguire un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning.],
   [#ref-uc(<Decommissioning-gateway-cloud>) #ref-uc(<Disassociazione-tenant-gateway>) #ref-uc(<Reset-gateway-cloud>)],
-
   [#rf()],
   [Il Cloud deve poter inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica.],
   [#ref-uc(<Reset-gateway-cloud>)],
-
   // ============================================
   // REQUISITI UTENTE AUTENTICATO (UC16-UC30)
   // ============================================
-
-  [#rf()], [L'Utente autenticato deve poter effettuare il logout dal Sistema], [#ref-uc(<Logout>)],
-
+  [#rf()],
+  [L'Utente autenticato deve poter effettuare il logout dal Sistema],
+  [#ref-uc(<Logout>)],
   [#rf[Opt]],
   [Il Sistema, a seguito del logout, deve registrare l'evento negli audit log salvando nome utente, timestamp e azione eseguita],
   [#ref-uc(<Logout>)],
-
-  [#rf()], [L'Utente autenticato deve poter modificare la propria password], [#ref-uc(<Modifica-password>)],
-
+  [#rf()],
+  [L'Utente autenticato deve poter modificare la propria password],
+  [#ref-uc(<Modifica-password>)],
   [#rf()],
   [L'Utente autenticato, per modificare la password, deve inserire la vecchia password],
   [#ref-uc(<Inserimento-vecchia-password>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se la vecchia password inserita non è corretta durante la modifica password],
   [#ref-uc(<Vecchia-password-non-corretta>)],
-
   [#rf[Opt]],
   [L'Utente autenticato deve poter visualizzare i dettagli di un singolo alert],
   [#ref-uc(<Visualizzazione-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert, deve poter vedere il titolo dell'alert],
   [#ref-uc(<Visualizzazione-titolo-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert, deve poter vedere la descrizione dell'alert],
   [#ref-uc(<Visualizzazione-descrizione-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un Gateway],
   [#ref-uc(<Mancata-ricezione-gateway>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere l'identificativo del gateway],
   [#ref-uc(<Visualizzazione-id-gateway-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il timestamp dell'ultimo dato ricevuto],
   [#ref-uc(<Visualizzazione-timestamp-ultimo-dato-gateway-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il tempo di inattività],
   [#ref-uc(<Visualizzazione-tempo-inattivita-gateway-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un sensore],
   [#ref-uc(<Mancata-ricezione-sensore>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere l'identificativo del sensore],
   [#ref-uc(<Visualizzazione-id-sensore-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il timestamp dell'ultimo dato ricevuto],
   [#ref-uc(<Visualizzazione-timestamp-ultimo-dato-sensore-alert>)],
-
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il tempo di inattività],
   [#ref-uc(<Visualizzazione-tempo-inattivita-sensore-alert>)],
-
   [#rf()],
   [L'Utente autenticato deve poter selezionare un sensore dalla lista dei sensori associati al proprio tenant],
   [#ref-uc(<Selezione-sensore>)],
-
   [#rf()],
   [L'Utente autenticato deve poter visualizzare i dati in tempo reale di un sensore selezionato],
   [#ref-uc(<Visualizzazione-dati-real-time-sensore>)],
-
   [#rf()],
   [L'Utente autenticato deve poter visualizzare i dati real-time del sensore attraverso un grafico time-series con assi etichettati],
   [#ref-uc(<Visualizzazione-grafico-real-time-sensore>)],
-
   [#rf()],
   [Il grafico dei dati real-time deve aggiornarsi automaticamente alla ricezione di nuovi dati dal Gateway],
   [#ref-uc(<Visualizzazione-grafico-real-time-sensore>)],
-
   [#rf()],
   [L'Utente autenticato deve poter visualizzare lo storico dei dati di un sensore selezionato],
   [#ref-uc(<Visualizzazione-storico-dati-sensore>)],
-
   [#rf()],
   [L'Utente autenticato deve poter visualizzare lo storico dei dati del sensore attraverso un grafico time-series con assi etichettati],
   [#ref-uc(<Visualizzazione-grafico-storico-sensore>)],
-
   // Filtraggio dati storici: desiderabile
   [#rf[Obb]],
   [L'Utente autenticato deve poter filtrare lo storico dei dati del sensore per intervallo temporale],
   [#ref-uc(<Filtraggio-dati-storico-sensore>)],
-
   [#rf[Obb]],
   [Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato],
   [#ref-uc(<Visualizzazione-grafico-filtrato-temporale-sensore>)],
-
   [#rf[Obb]],
   [Il Sistema deve mostrare un messaggio di errore se l'intervallo temporale inserito non è valido],
   [#ref-uc(<Intervallo-temporale-non-valido>)],
-
   [#rf[Obb]],
   [L'Utente autenticato deve poter filtrare i dati del sensore per intervallo di valori],
   [#ref-uc(<Filtraggio-dati-sensore-intervallo-valori>)],
-
   [#rf[Obb]],
   [Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato],
   [#ref-uc(<Visualizzazione-grafico-filtrato-valori-sensore>)],
-
   [#rf[Obb]],
   [Il Sistema deve mostrare un messaggio di errore se l'intervallo di valori inserito non è valido],
   [#ref-uc(<Intervallo-di-valori-non-valido>)],
-
   [#rf[Obb]],
   [Il Sistema deve mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato],
   [#ref-uc(<Dati-non-disponibili-sensore-selezionato>)],
-
   // ============================================
   // REQUISITI SUPER ADMIN (UC72-UC125)
   // ============================================
-
   // Gestione Tenant
-  [#rf()], 
-  [Il Super Admin deve poter creare un nuovo tenant nel Sistema], 
+  [#rf()],
+  [Il Super Admin deve poter creare un nuovo tenant nel Sistema],
   [#ref-uc(<Creazione-tenant>)],
-
-  [#rf()], 
-  [Il Super Admin, creando un nuovo tenant, deve inserire il nome del tenant], 
+  [#rf()],
+  [Il Super Admin, creando un nuovo tenant, deve inserire il nome del tenant],
   [#ref-uc(<Creazione-tenant>)],
-
   [#rf()],
   [Il Super Admin, creando un nuovo tenant, deve specificare l'accettazione o meno della clausola di impersonificazione],
   [#ref-uc(<Clausola-impersonificazione>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se il nome del tenant inserito è già in uso],
   [#ref-uc(<Nome-tenant-gia-utilizzato>)],
-
-  [#rf()], 
-  [Il Super Admin deve poter eliminare un tenant esistente dal Sistema], 
+  [#rf()],
+  [Il Super Admin deve poter eliminare un tenant esistente dal Sistema],
   [#ref-uc(<Eliminazione-tenant>)],
-
   [#rf()],
   [Il Sistema deve richiedere conferma al Super Admin prima di eliminare un tenant],
   [#ref-uc(<Selezione-e-conferma-tenant-da-eliminare>)],
-
   [#rf()],
   [Il Sistema, prima di eliminare un tenant, deve eseguire il decommissioning di tutti i Gateway associati],
   [#ref-uc(<Esecuzione-decommissioning-gateway-associati-tenant>)],
-
   [#rf()],
   [Il Sistema, eliminando un tenant, deve eliminare tutti i dati e gli utenti associati al tenant],
   [#ref-uc(<Eliminazione-dati-utenti-associati-tenant>)],
-
   [#rf()],
   [Il Sistema deve completare l'eliminazione del tenant dopo aver rimosso dati, utenti e Gateway associati],
   [#ref-uc(<Esecuzione-eliminazione-tenant>)],
-
   [#rf()],
   [Il Sistema deve notificare il Super Admin se il decommissioning di un Gateway fallisce durante l'eliminazione del tenant],
   [#ref-uc(<Decommissioning-gateway-fallito>)],
-
   // Visualizzazione dashboard
   [#rf()],
   [Il Super Admin deve poter visualizzare la propria dashboard],
   [#ref-uc(<Visualizzazione-dashboard-super-admin>), Capitolato §5.1 -- RQ 5],
-
   [#rf[Des]],
   [Il Super Admin, visualizzando la dashboard, deve poter vedere lo stato globale dei gateway (attivi/non attivi)],
   [#ref-uc(<Visualizzazione-stato-globale-dei-gateway>)],
-
   [#rf[Des]],
   [Il Super Admin, visualizzando la dashboard, deve poter vedere il numero totale di tenant nel Sistema],
   [#ref-uc(<Visualizzazione-numero-di-tenant>)],
-
   // Visualizzazione lista gateway
   [#rf()],
   [Il Super Admin deve poter visualizzare la lista di tutti i Gateway registrati nel Sistema],
   [#ref-uc(<Visualizzazione-lista-gateway-super-admin>)],
-
   [#rf()],
   [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere l'identificativo univoco di ogni gateway],
   [#ref-uc(<Visualizzazione-identificativo-univoco-gateway>)],
-
   [#rf()],
   [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere lo stato di autenticazione di ogni gateway],
   [#ref-uc(<Visualizzazione-stato-autenticazione-gateway>),],
-
   [#rf()],
   [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere lo stato operativo di ogni gateway],
   [#ref-uc(<Visualizzazione-stato-operativo-gateway>)],
-
   [#rf()],
   [Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere il tenant associato a ogni gateway],
   [#ref-uc(<Visualizzazione-tenant-associato-gateway>)],
-
   [#rf()],
   [Il Super Admin deve poter visualizzare i dettagli di un singolo Gateway],
   [#ref-uc(<Visualizzazione-gateway-super-admin>)],
-
   // Autenticazione/associazione gateway
-  [#rf()], 
-  [Il Super Admin deve poter autenticare un nuovo Gateway nel Sistema], 
+  [#rf()],
+  [Il Super Admin deve poter autenticare un nuovo Gateway nel Sistema],
   [#ref-uc(<Autenticazione-gateway>), Capitolato §5.1 -- RQ 5],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se il certificato del Gateway non è valido durante l'autenticazione],
   [#ref-uc(<Certificato-non-valido>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se l'identificativo del Gateway è già utilizzato],
   [#ref-uc(<Identificativo-gateway-gia-utilizzato>)],
-
-  [#rf()], 
+  [#rf()],
   [Il Super Admin deve poter associare un Gateway a un tenant],
   [#ref-uc(<Associazione-gateway-tenant>), Capitolato §5.1 -- RQ 5],
-
   [#rf()],
   [Il Super Admin, associando un Gateway a un tenant, deve selezionare il Gateway da associare],
   [#ref-uc(<Selezione-gateway-super-admin>)],
-
   [#rf()],
   [Il Super Admin, associando un Gateway a un tenant, deve selezionare il tenant di destinazione],
   [#ref-uc(<Selezione-tenant-super-admin>)],
-
-  [#rf()], 
-  [Il Super Admin deve poter configurare i parametri di un Gateway], 
+  [#rf()],
+  [Il Super Admin deve poter configurare i parametri di un Gateway],
   [#ref-uc(<Configurazione-gateway>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se la configurazione del Gateway inserita non è valida],
   [#ref-uc(<Configurazione-gateway-non-valida>)],
-
   // Decommissioning gateway
-  [#rf()], 
-  [Il Super Admin deve poter eseguire il decommissioning di un Gateway], 
+  [#rf()],
+  [Il Super Admin deve poter eseguire il decommissioning di un Gateway],
   [#ref-uc(<Decommissioning-gateway>)],
-
   [#rf()],
   [Il Sistema, durante il decommissioning, deve disassociare il Gateway dal tenant],
   [#ref-uc(<Disassociazione-gateway-dal-tenant>)],
-
   // Comandi gateway
-  [#rf()], 
-  [Il Super Admin deve poter eseguire il reset di un Gateway], 
+  [#rf()],
+  [Il Super Admin deve poter eseguire il reset di un Gateway],
   [#ref-uc(<Reset-gateway>)],
-
-  [#rf()], 
-  [Il Super Admin deve poter riavviare un Gateway], 
+  [#rf()],
+  [Il Super Admin deve poter riavviare un Gateway],
   [#ref-uc(<Riavvio-gateway-super-admin>)],
-
   [#rf[Des]],
   [Il Super Admin deve poter sospendere l'invio dati di un Gateway],
   [#ref-uc(<Sospensione-gateway-super-admin>)],
-
   [#rf[Des]],
   [Il Super Admin deve poter riattivare l'invio dati di un Gateway sospeso],
   [#ref-uc(<Riattivazione-gateway-super-admin>)],
-
   [#rf[Des]],
   [Il Super Admin deve poter modificare il parametro di rolling average di un Gateway],
   [#ref-uc(<Modifica-freq-invio-dati-gateway-super-admin>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter sospendere un sensore],
   [#ref-uc(<Sospensione-sensore-super-admin>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter riattivare un sensore sospeso],
   [#ref-uc(<Riattivazione-sensore-super-admin>)],
-
   [#rf()],
   [Il Super Admin deve poter selezionare un Gateway dalla lista per inviare comandi],
   [#ref-uc(<Selezione-gateway-per-invio-comando-super-admin>)],
-
   [#rf()],
   [Il Super Admin deve poter selezionare un sensore dalla lista per inviare comandi],
   [#ref-uc(<Selezione-sensore-invio-comando-super-admin>)],
-
   // Visualizzazione tenant
   [#rf()],
   [Il Super Admin deve poter visualizzare la lista di tutti i tenant nel Sistema],
   [#ref-uc(<Visualizzazione-lista-tenant>)],
-
   [#rf()],
   [Il Super Admin, visualizzando la lista dei tenant, deve poter vedere l'identificativo di ogni tenant],
   [#ref-uc(<Visualizzazione-singolo-tenant-lista>), #ref-uc(<Visualizzazione-identificativo-tenant>)],
-
   [#rf()],
   [Il Super Admin deve poter impersonificare un tenant, se la clausola d'impersonazione è stata accettata],
   [#ref-uc(<Impersonificazione-tenant>)],
-
   [#rf()],
   [Il Super Admin deve poter visualizzare i dettagli di un singolo tenant],
   [#ref-uc(<Visualizzazione-tenant>)],
-
   [#rf()],
   [Il Super Admin, visualizzando un tenant, deve poter vedere l'identificativo del tenant],
   [#ref-uc(<Visualizzazione-identificativo-tenant>)],
-
   // - Visualizzazione/gestione richieste comm/decomm.
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare la lista delle richieste di commissioning Gateway in corso],
   [#ref-uc(<Visualizzazione-lista-richieste-in-corso-commissioning-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere data e ora della richiesta],
   [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>), #ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il tenant richiedente],
   [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>), #ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il numero di gateway richiesti],
   [#ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>), #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare la lista delle richieste di decommissioning Gateway in corso],
   [#ref-uc(<Visualizzazione-lista-richieste-in-corso-decommissioning-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere data e ora della richiesta],
   [#ref-uc(<Visualizzazione-data-ora-richiesta-decommissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere il tenant richiedente],
   [#ref-uc(<Visualizzazione-tenant-richiesta-decommissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere il numero di gateway],
   [#ref-uc(<Visualizzazione-numero-gateway-richiesta-decommissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere lo stato della richiesta],
   [#ref-uc(<Visualizzazione-stato-richiesta-decommissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare lo storico delle richieste di commissioning Gateway],
   [#ref-uc(<Visualizzazione-storico-richieste-commissioning-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere data e ora di ogni richiesta],
   [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>), #ref-uc(<Visualizzazione-data-ora-richiesta-commissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere il tenant richiedente di ogni richiesta],
   [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>), #ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere il numero di gateway richiesti per ogni richiesta],
   [#ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>), #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando lo storico commissioning, deve poter vedere lo stato di ogni richiesta],
   [#ref-uc(<Visualizzazione-stato-richiesta-storico-commissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare lo storico delle richieste di decommissioning Gateway],
   [#ref-uc(<Visualizzazione-storico-richieste-decommissioning-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare i dettagli di una richiesta di commissioning],
   [#ref-uc(<Visualizzazione-richiesta-commissioning-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere data e ora della richiesta],
   [#ref-uc(<Visualizzazione-data-ora-richiesta>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere il tenant richiedente],
   [#ref-uc(<Visualizzazione-tenant-richiedente-richiesta>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere il numero di gateway richiesti],
   [#ref-uc(<Visualizzazione-numero-gateway-richiesti>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare i dettagli di una richiesta di decommissioning],
   [#ref-uc(<Visualizzazione-richiesta-decommissioning-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin, visualizzando una richiesta di decommissioning, deve poter vedere i gateway interessati],
   [#ref-uc(<Visualizzazione-gateway-da-decommissioning>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter accettare una richiesta di commissioning/decommissioning Gateway],
   [#ref-uc(<Accettazione-richiesta-fornitura-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter rifiutare una richiesta di commissioning/decommissioning Gateway],
   [#ref-uc(<Rifiuto-richiesta-fornitura-gateway>)],
-
   // Gestione Tenant Admin
   [#rf()],
   [Il Super Admin deve poter creare un nuovo utente Tenant Admin],
   [#ref-uc(<Creazione-utente-tenant-admin>)],
-
   [#rf()],
   [Il Super Admin, creando un Tenant Admin, deve selezionare il tenant di appartenenza],
   [#ref-uc(<Selezione-tenant>)],
-
   [#rf()],
   [Il Super Admin, creando un Tenant Admin, deve inserire l'email del nuovo utente],
   [#ref-uc(<Inserimento-email-nuovo-tenant-admin>)],
-
   [#rf()],
   [Il Sistema deve inviare un'email per l'impostazione password al nuovo Tenant Admin],
   [#ref-uc(<Invio-email-impostazione-password-nuovo-tenant-admin>)],
-
   [#rf[Des]],
   [Il Super Admin deve poter sospendere un account Tenant Admin],
   [#ref-uc(<Sospensione-account-tenant-admin>)],
-
   [#rf[Des]],
   [Il Super Admin deve selezionare il Tenant Admin da sospendere],
   [#ref-uc(<Selezione-tenant-admin-da-sospendere>)],
-
   [#rf[Des]],
   [Il Sistema deve richiedere conferma prima di sospendere un account Tenant Admin],
   [#ref-uc(<Conferma-sospensione-account-tenant-admin>)],
-
   [#rf[Des]],
   [Il Super Admin deve poter riattivare un account Tenant Admin sospeso],
   [#ref-uc(<Riattivazione-account-tenant-admin>)],
-
   [#rf[Des]],
   [Il Super Admin deve selezionare il Tenant Admin da riattivare],
   [#ref-uc(<Selezione-tenant-admin-da-riattivare>)],
-
   [#rf[Des]],
   [Il Sistema deve richiedere conferma prima di riattivare un account Tenant Admin],
   [#ref-uc(<Conferma-riattivazione-account-tenant-admin>)],
-
   [#rf()],
   [Il Super Admin deve poter eliminare un account Tenant Admin],
   [#ref-uc(<Eliminazione-account-tenant-admin>)],
-
   [#rf()],
   [Il Super Admin deve selezionare il Tenant Admin da eliminare],
   [#ref-uc(<Selezione-tenant-admin-da-eliminare>)],
-
   [#rf()],
   [Il Sistema deve richiedere conferma prima di eliminare un account Tenant Admin],
   [#ref-uc(<Conferma-eliminazione-account-tenant-admin>)],
-
   // Gestione gateway simulati
-  [#rf()], 
+  [#rf()],
   [Il Super Admin deve poter creare un gateway simulato],
   [#ref-uc(<Creazione-gateway-simulato>), Capitolato §5.1 -- RQ 5],
-
   [#rf()],
   [Il Super Admin, creando un gateway simulato, deve inserire il nome del gateway],
   [#ref-uc(<Inserimento-nome-gateway-simulato>)],
-
   [#rf()],
   [Il Super Admin, creando un gateway simulato, deve inserire il timeout di inattività],
   [#ref-uc(<Inserimento-timeout-inattivita-gateway-simulato>)],
-
   [#rf()],
   [Il Super Admin, creando un gateway simulato, deve inserire la dimensione del buffer],
   [#ref-uc(<Inserimento-dimensione-buffer-gateway-simulato>)],
-
-  [#rf()], 
+  [#rf()],
   [Il Super Admin deve poter creare un sensore simulato],
   [#ref-uc(<Creazione-sensore-simulato>), Capitolato §5.1 -- RQ 5],
-
   [#rf()],
   [Il Super Admin, creando un sensore simulato, deve selezionare i servizi GATT da simulare],
   [#ref-uc(<Selezione-servizi-sensore-simulato>)],
-
   [#rf[Opt]],
   [Il Super Admin, creando un sensore simulato, deve inserire il timeout per gli alert],
   [#ref-uc(<Inserimento-timeout-alert-sensore-simulato>)],
-
   [#rf()],
   [Il Super Admin, creando un sensore simulato, deve associarlo a un gateway simulato],
   [#ref-uc(<Inserimento-associazione-gateway-simulato>)],
-
-  [#rf()], 
+  [#rf()],
   [Il Super Admin deve poter eliminare un gateway simulato],
-   [#ref-uc(<Eliminazione-gateway-simulato>)],
-
+  [#ref-uc(<Eliminazione-gateway-simulato>)],
   [#rf()],
   [Il Super Admin deve selezionare il gateway simulato da eliminare],
   [#ref-uc(<Seleziona-gateway-simulato-da-eliminare>)],
-
   [#rf()],
   [Il Sistema deve richiedere conferma prima di eliminare un gateway simulato],
   [#ref-uc(<Conferma-eliminazione-gateway-simulato>)],
-
-  [#rf()], 
+  [#rf()],
   [Il Super Admin deve poter eliminare un sensore simulato],
   [#ref-uc(<Eliminazione-sensore-simulato>)],
-
   [#rf()],
   [Il Super Admin deve selezionare il sensore simulato da eliminare],
   [#ref-uc(<Seleziona-sensore-simulato-da-eliminare>)],
-
   [#rf()],
   [Il Sistema deve richiedere conferma prima di eliminare un sensore simulato],
   [#ref-uc(<Conferma-eliminazione-sensore-simulato>)],
-
   // Monitoraggio metriche di sistema
-  [#rf()], 
-  [Il Super Admin deve poter monitorare le metriche di sistema], 
+  [#rf()],
+  [Il Super Admin deve poter monitorare le metriche di sistema],
   [#ref-uc(<Monitoraggio-metriche-di-sistema>), Capitolato §5.5 -- RQ 16],
-
   [#rf()],
   [Il Super Admin deve poter visualizzare il numero di gateway online/offline],
   [#ref-uc(<Visualizzazione-gateway-offline-online>)],
-
   [#rf[Des]],
   [Il Super Admin deve poter visualizzare il throughput dati del sistema],
   [#ref-uc(<Visualizzazione-throughput-dati>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare l'utilizzo delle risorse dei nodi cloud],
   [#ref-uc(<Visualizzazione-utilizzo-risorse-nodi-cloud>)],
-
   [#rf[Des]],
   [Il Super Admin deve poter visualizzare la frequenza delle disconnessioni dei gateway],
   [#ref-uc(<Visualizzazione-frequenza-disconnessioni-gateway>)],
-
   [#rf()],
   [Il Super Admin deve poter visualizzare le dimensioni dei payload dei pacchetti],
   [#ref-uc(<Visualizzazione-dimensioni-payload-pacchetti>)],
-
   [#rf()],
   [Il Super Admin deve poter visualizzare la data staleness dei dati],
   [#ref-uc(<Visualizzazione-data-staleness>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare i valori out-of-range rilevati],
   [#ref-uc(<Visualizzazione-valori-out-of-range>)],
-
   // Storico possessori di un sensore
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un sensore],
   [#ref-uc(<Visualizzazione-storico-possessori-sensore>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare il nome del tenant possessore nello storico],
   [#ref-uc(<Visualizzazione-singolo-tenant-possessore-sensore>), #ref-uc(<Visualizzazione-tenant-possessore-sensore>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare il periodo di associazione del sensore nello storico],
   [#ref-uc(<Visualizzazione-singolo-tenant-possessore-sensore>), #ref-uc(<Visualizzazione-periodo-associazione-sensore>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un gateway],
   [#ref-uc(<Visualizzazione-storico-possessori-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare il nome del tenant possessore del gateway nello storico],
   [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>), #ref-uc(<Visualizzazione-tenant-possessore-gateway>)],
-
   [#rf[Opt]],
   [Il Super Admin deve poter visualizzare il periodo di associazione del gateway nello storico],
   [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>), #ref-uc(<Visualizzazione-periodo-associazione-gateway>)],
@@ -5726,7 +5464,7 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (1fr, 4fr, 1.5fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  ..lista-rf
+  ..lista-rf,
 )
 
 == Requisiti non funzionali
@@ -5735,51 +5473,39 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rnf()],
   [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori senza degrado delle prestazioni.],
   [Capitolato §5.5 -- RQ 14],
-
   [#rnf()],
   [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di gateway senza degrado delle prestazioni.],
   [Capitolato §5.5 -- RQ 14],
-
   [#rnf()],
   [Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di tenant senza degrado delle prestazioni.],
   [Capitolato §5.5 -- RQ 14],
-
   [#rnf()],
   [Devono essere presenti test unitari e test di integrazione con un livello minimo di copertura prestabilito.],
   [Capitolato §5.5 -- RQ 15],
-
   [#rnf()],
   [Si devono predisporre strumenti di monitoraggio in tempo reale delle prestazioni del sistema.],
   [Capitolato §5.5 -- RQ 16, Capitolato §3.3],
-  
   [#rnf()],
   [Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.],
   [Capitolato §5.5 -- RQ 16],
-
   [#rnf()],
   [È necessario versionare il codice utilizzando Git.],
   [Capitolato §5.5 -- RQ 17],
-
   [#rnf()],
   [Deve essere garantita la cifratura dei dati.],
   [Capitolato §5.3 -- RQ 9],
-
   [#rnf()],
   [Si deve garantire che l'autenticazione dei tenant avvenga tramite meccanismi robusti.],
   [Capitolato §5.3 -- RQ 8],
-
   [#rnf()],
   [Si deve garantire che l'autenticazione dei tenant avvenga con ruoli granulari.],
   [Capitolato §5.3 -- RQ 8],
-
   [#rnf()],
   [Deve essere garantito l'isolamento logico dei tenant.],
   [Capitolato §5.3 -- RQ 10],
-
   [#rnf[Des]],
   [Deve essere garantito l'isolamento fisico dei tenant.],
   [Capitolato §5.3 -- RQ 10],
-
   [#rnf()],
   [Deve essere garantito il provisioning sicuro dei gateway.],
   [Capitolato §3.2],
@@ -5789,7 +5515,7 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  ..lista-rnf
+  ..lista-rnf,
 )
 
 == Requisiti di dominio
@@ -5798,39 +5524,30 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rd()],
   [È richiesto l'uso di un'architettura a tre livelli: sensori simulati, simulatore di gateway e cloud.],
   [Capitolato §3],
-
   [#rd()],
   [È necessario l'utilizzo di gateway come intermediari obbligatori: i sensori simulati non devono comunicare direttamente con il cloud.],
   [Capitolato §2.2],
-
   [#rd()],
   [Il sistema deve supportare più clienti simultanei.],
   [Capitolato §5.1 -- RQ 3],
-
   [#rd()],
   [I dati devono essere logicamente separati per tenant.],
   [Capitolato §5.1 -- RQ 3],
-
   [#rd()],
   [I dati devono poter provenire da sensori simulati differenti.],
   [Capitolato §5.1 -- RQ 2.3],
-
   [#rd()],
   [I dati devono essere associati a un timestamp ed essere interrogabili per intervallo temporale.],
   [Capitolato §5.1 -- RQ 4.2.1],
-
   [#rd()],
   [I dati devono essere associati a un timestamp ed essere interrogabili per sensore e per intervallo temporale.],
   [Capitolato §5.1 -- RQ 4.2.1],
-
   [#rd()],
   [Gateway e sensori devono essere registrati, associati a un tenant e riconosciuti in modo persistente dal sistema.],
   [Capitolato §5.1 -- RQ 2.4],
-
   [#rd()],
   [Il dominio richiede l'accesso ai dati storici.],
   [Capitolato §5.1 -- RQ 4.2.1],
-
   [#rd()],
   [Il dominio richiede l'accesso ai dati in tempo reale tramite stream.],
   [Capitolato §5.1 -- RQ 4.2.2],
@@ -5840,7 +5557,7 @@ Inoltre un buon requisito deve essere *SMART*:
   columns: (0.20fr, 0.60fr, 0.20fr),
   align: left,
   table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  ..lista-rd
+  ..lista-rd,
 )
 
 #set page(columns: 2) // Doppia colonna per ottimizzare gli spazi
@@ -5867,7 +5584,7 @@ Quindi non va modificata!
 
     ..get-tracciamento(lista-rf),
     ..get-tracciamento(lista-rnf),
-    ..get-tracciamento(lista-rd)
+    ..get-tracciamento(lista-rd),
   )
 ]
 
