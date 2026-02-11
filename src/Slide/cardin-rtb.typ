@@ -63,6 +63,9 @@
   - *Docker + Docker Compose*: virtualizzazione e gestione di container multipli
     - Conosciuto bene dal gruppo
     - Isolamento dei servizi in diversi container, deploy multi-platform
-    - Ambiente di sviluppo riproducibile
-    - Gestione semplificata di scalabilità
+    - Ambiente di sviluppo riproducibile, gestione semplificata di scalabilità
+
+  - *Nginx*: reverse proxy, load balancing, cache HTTP
+    - *Alternative*: Apache2
+    - Gestione asincrona richieste, più adeguato per scalare
 ]
