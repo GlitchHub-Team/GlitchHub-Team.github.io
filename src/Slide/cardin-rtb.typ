@@ -34,7 +34,7 @@
 
   - *Gin*: framework Go lato back-end
     - *Alternative*: Fiber, Chi
-    - Rapidità di sviluppo, funzionalità integrate, flessiblità
+    - Rapidità di sviluppo, funzionalità integrate, flessibilità
 
   - *Nginx*: reverse proxy, load balancing, cache HTTP
     - *Alternative*: Apache HTTP Server
