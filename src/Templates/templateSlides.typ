@@ -54,7 +54,7 @@
   body
 }
 
-#let my-slide-internal(title: none, body) = {
+#let my-slide-internal(title: none, subtext, body) = {
   set page(
     paper: "presentation-16-9",
     header: context {
@@ -97,7 +97,7 @@
         grid(
           columns: (1fr, 1fr, 1fr),
           align: (left, center, right),
-          [GitHub Team - diario di bordo], [#title], [#current / #total],
+          [#subtext], [#title], [#current / #total],
         )
       }
     },
@@ -160,8 +160,8 @@
   ]
 }
 
-#let content-slide(title: none, body) = {
-  my-slide-internal(title: title)[
+#let content-slide(title: none, body, subtext: "GlitchHub Team - diario di bordo") = {
+  my-slide-internal(title: title, subtext)[
     #align(horizon)[#body]
   ]
 }
