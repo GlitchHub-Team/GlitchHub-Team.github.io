@@ -10,60 +10,59 @@
   htmlId: "Diapositive",
 )
 
-
 #content-slide(title: [Capitolato C7 -- Sistema di acquisizione dati da sensori])[
-  #set text(size: 27pt)
-  - Sistema per *acquisire* dati da sensori IoT e *visualizzarli* su dashboard
+  #set text(size: 21pt)
+  - Sistema per *acquisire* dati da sensori IoT e *visualizzarli* su dashboard o da API Client
 
-  - *Acquisizione* dati da sensori collegati a Gateway WiFi: generazione ed esposizione dei dati vengono *simulate*
-
-  - *Visualizzazione* di dati ottenuti su dashboard online
+  - *Acquisizione* dati da sensori collegati a Gateway WiFi: generazione ed invio dei dati vengono *simulati*
 
   - *Separazione* di dati e utenti tra diversi *tenant*
+
+  - Richiesti *scalability* e *monitoring* del Cloud
 ]
 
 #content-slide(title: [Struttura PoC])[
-  - *Dashboard*: Angular per front-end, Go e Gin per back-end, comunicazione via WebSocket
-  - *Generazione dati*: Go per servizi di _pub/sub_ comunicanti su NATS
-  - *Observability*: Grafana + Prometheus
-
+  #align(center + horizon, image("../assets/diagrammi/diagrammaPoC.svg", width: 100%))
 
 ]
 
 #content-slide(title: [Tecnologie usate])[
-  #set text(size: 25pt)
+  #set text(size: 21pt)
   - Linguaggio *Go*: back-end dashboard e servizi _pub/sub_ di dati
     - *Alternative*: C\#
-    - Scelto perché bla bla
+    - Goroutine, linguaggio compilato, sintassi semplice e utilizzato dalla proponente
 
-  - *Gin*: framework Go per back-end dashboard
-    - *Alternative*: Fiber, Chi, stdlib
-    - Rapidità di sviluppo, funzionalità integrate, scalabilità
+  - *Gin*: framework Go lato back-end
+    - *Alternative*: Fiber, Chi
+    - Rapidità di sviluppo, funzionalità integrate, flessiblità
 
-  - *Angular*: front-end dashboard
-    - *Alternative*: React
-    - Molti tool built-in, architettura ben definita
+  - *Nginx*: reverse proxy, load balancing, cache HTTP
+    - *Alternative*: Apache HTTP Server
+    - Gestione asincrona richieste, più adeguato per scalare
 
-  - *NATS*: message broker
+  #pagebreak()
+  #set text(size: 21pt)
+  - *Grafana + Prometheus*: observability
+    - *Alternative*: Loki(Prometheus), InfluxDB(Prometheus), Chronograf(Grafana)
+    - Plug&Play, integrazione seamless con NATS
+
+  - *NATS Jetstream*: message broker con sistema di persistenza
     - *Alternative*: Kafka, RabbitMQ
-    - ...
-    
+    - Scalabilità, multi-tenancy nativa, utilizzato dalla proponente, integrazione Prometheus
+
   - *TimescaleDB*: estensione di PostgreSQL, persistenza dati IoT
     - *Alternative*: InfluxDB
     - Conosciuto dal gruppo, buona gestione di dati _time-series_
 
-  - *Grafana + Prometheus*: observability
-    - *Alternative*: ?
-    - Plug&Play, integrazione seamless con NATS
+  #pagebreak()
+  #set text(size: 21pt)
+  - *Angular*: framework lato front-end
+    - *Alternative*: React
+    - Tool built-in, architettura standardizzata, Typescript nativo
 
   - *Docker + Docker Compose*: virtualizzazione e gestione di container multipli
-    - Molto conosciuto dal gruppo
+    - Conosciuto bene dal gruppo
     - Isolamento dei servizi in diversi container, deploy multi-platform
     - Ambiente di sviluppo riproducibile
     - Gestione semplificata di scalabilità
-
-  - *Nginx*: reverse proxy, load balancing, cache HTTP
-    - *Alternative*: Apache2
-    - Gestione asincrona richieste, più adeguato per scalare
 ]
-
