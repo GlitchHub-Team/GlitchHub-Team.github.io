@@ -17,7 +17,7 @@
       "0.4.0",
       "09/02/2026",
       "Riccardo Graziani",
-      "",
+      "Jaume Bernardi",
       [Aggiunte @processi-primari, @processo-fornitura, @processo-sviluppo],
     ),
     (
@@ -410,35 +410,15 @@ Un documento è *"verificato"* quando un componente del gruppo diverso dallo scr
 ==== Versionamento <doc-versionamento>
 Essendo la produzione di documentazione un processo iterativo, è necessario tenere traccia di ogni versione dei documenti prodotti, in modo tale da tracciare, nel tempo, quali modifiche vengono applicate a essi e da chi.
 
-La convenzione di versionamento di tutti i documenti tranne i diari di bordo, è riportata come descritta originariamente nel #link("https://glitchhub-team.github.io/pdf/Candidatura/VerbaliInterni/2025-10-27.pdf")[*verbale interno del 27 ottobre 2025*].
-
-Il gruppo ha deciso di adottare il sistema di versionamento #link("https://semverdoc.org")[*#gloss[Semantic Versioning]*] (abbreviato SemVer) per i documenti, in cui ogni versione è descritta da 3 numeri naturali separati da punto (*`MAJOR.MINOR.PATCH`*), dove:
-
-- *`MAJOR`*: rappresenta le modifiche sostanziali applicate al documento
-  - Se `MAJOR = 0`, la versione è da considerarsi non "stabile", ovvero soggetta in futuro a cambiamenti rapidi e sostanziali. In particolare, ciò rappresenta che il documento è in fase di prima stesura;
-  - Se `MAJOR = 1`, allora il documento è nella versione di prima stesura "stabile", ovvero *verificata* da un altro membro del gruppo;
-  - Ogni valore `MAJOR >= 1`, rappresenta una nuova stesura del documento sostanzialmente diversa dal precedente. Per cui, il numero `MAJOR` va aumentato solo in caso di modifiche sostanziali alla struttura o al contenuto del documento.
-
-- *`MINOR`*: va aumentato a ogni nuova revisione sostanziale che non modifica la struttura o il significato del contenuto del documento,
-
-- *`PATCH`*: va aumentato a ogni revisione che corregge la formattazione, refusi o punteggiatura del testo.
-
-All'incremento di un numero di versione, tutti i numeri alla sua destra vengono messi a 0, per cui la versione `MINOR` successiva alla `0.1.1` non può essere `0.2.1`, ma deve essere necessariamente `0.2.0`.
-
-In questo sistema, quindi:
-- la prima *bozza* del documento è rappresentata dalla versione `0.0.1`,
-- la prima *stesura* ancora non verificata dalla versione `0.1.0`
-- la prima *stesura* verificata dalla versione `1.0.0`
-- e così via, fino al completamento del documento
+Per maggiori informazioni sul versionamento della documentazione, si consulti la @controllo-configurazione.
 
 ==== Denominazione e locazione file
 I documenti in formato PDF sono resi disponibili sul #link("https://GlitchHub-Team.github.io")[sito web di _GlitchHub Team_].
 
-I documenti seguono uno schema di locazione all'interno del file system del sito: tutti i documenti, eccetto i diari di bordo e il Glossario, sono disponibili nel _path_:
+Tutti i documenti, fatta eccezione per i diari di bordo e il glossario, seguono il seguente schema di collocazione all'interno dell'alberatura del dominio del #link("https://GlitchHub-Team.github.io")[sito web del gruppo]:
+#align(center, [`/pdf/`*`[FASE]`*`/`*`[TIPO DOCUMENTO]`*`/`*`[NOME DOCUMENTO]`*`.pdf`])
 
-#align(center, [`/pdf/`*`[FASE]`*`/`*`[TIPO DOCUMENTO]`*`/`*`[NOME DOCUMENTO]`*`.pdf`,])
-
-dove:
+Dove:
 - *`[FASE]`* è una tra `Candidatura`, `RTB` e `PB`, a seconda della fase della baseline di progetto a cui appartiene il documento
 - *`[TIPO DOCUMENTO]`* corrisponde a:
   - `VerbaliInterni` per i verbali interni
@@ -454,9 +434,8 @@ dove:
     - `PianoDiProgetto` per il piano di progetto.
   Si noti che l'utilizzo delle preposizioni (ad es. "di" in "Norme *di* progetto") è facoltativo.
 
-// TODO: inserire schema denominazione diari di bordo
 Fanno da eccezione:
-- I diari di bordo che sono locati in `...`
+- I diari di bordo che sono collocati nella cartella `Slide`;
 - Il glossario, che è collocato in #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[`pdf/glossary.pdf`]
 
 Si noti che sul sito web il gruppo rende disponibile sempre l'*ultima* versione *verificata* (vd. @doc-def-verificato) dei documenti della _baseline_ corrente.
@@ -488,7 +467,6 @@ I passaggi descritti sono i seguenti:
 4. Una volta terminata la prima stesura, si deve fare il _push_ delle proprie modifiche sul branch di lavoro e creare una nuova _Pull Request_ in modo tale da fare il _merge_ da `Documentation-[...]` a `main`, assegnando i verificatori scelti come Reviewer.
 
 ==== Verifica <doc-verifica>
-// TODO: (3.1.5.2) forse questo va spostato in qualifica?
 Ogni documento scritto deve essere verificato da un componente del gruppo diverso dallo scrittore originale, per evitare di travisare, intenzionalmente o meno, le decisioni e azioni prese dal gruppo.
 
 Le procedure di verifica sono riportate di seguito, come descritte nel #link("https://glitchhub-team.github.io/pdf/Candidatura/VerbaliInterni/2025-10-27.pdf")[*verbale interno del 27 ottobre 2025*] e nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-12.pdf")[*verbale interno del 12 novembre 2025*].
@@ -506,7 +484,9 @@ Si noti che nel caso di #gloss[documenti incrementali], la verifica deve avvenir
 Nel caso di questo documento, le versioni "intermedie" sono considerabili incomplete, poiché non tutte le sezioni sono presenti, ma le sezioni che sono già state scritte sono da considerarsi "stabili" e quindi da verificare.
 
 ==== Pubblicazione <doc-pubblicazione>
-// TODO: (3.1.5.3) inserire descrizione di procedura GH action di pubblicazione sulla repo pubblica
+Una volta che il documento da pubblicare è stato verificato, la relativa #gloss[Pull Request] dev'essere accettata, eseguendo così il _merge_ del documento nel #gloss[branch] principale (`main`).
+
+Ciò darà inizio all'esecuzione automatica della #gloss[GitHub Action] che compila il codice Typst del documento in PDF e pubblica il file sul sito web del gruppo.
 
 === Manutenzione <doc-manutenzione>
 // TODO: (3.1.5.4) dobbiamo definire bene la procedura di manutenzione
@@ -516,52 +496,163 @@ In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente 
 
 
 == Gestione delle configurazioni
-// TODO: (3.2) definire gestione delle configurazioni
-// The Configuration Management Process is a process of applying administrative and technical procedures through out the software life cycle to: identify, define, and baseline software items in a system; control modifications and releases of the items; record and report the status of the items and modification requests; ensure the completeness, consistency, and correctness of the items; and control storage, handling, and delivery of the items.
+Secondo lo standard #gloss[ISO/IEC 12207:1995], la *gestione delle configurazioni* è il processo di applicazione di procedure di natura tecnica e amministrativa durante tutto il ciclo di vita del software con i seguenti scopi:
+- identificare e definire le parti di un prodotto software e associarle a specifiche #gloss[baseline];
+- controllare le modifiche e il rilascio di tali parti;
+- registrare e riportare il loro _status_ e di eventuali richieste di modifica ad esse;
+- assicurare la loro completezza, coerenza e correttezza.
 
 === Strumenti a supporto
-// TODO: (3.2.1) def. strumenti per gestione config-.
+Il principale strumento a supporto del processo di gestione delle configurazioni è #gloss[GitHub], il quale permette di gestire il versionamento e i cambiamenti da effettuare di codice e documentazione.
+
+Per ulteriori informazioni sullo strumento si consiglia la lettura della @infrastruttura-implementazione
 
 === Attività previste
-// TODO: (3.2.2) traduci attività previste gestione config. in italiano e prendi quelle che usiamo
-1. Process implementation;
-2. Configuration identification;
-3. Configuration control;
-4. Configuration status accounting;
-5. Configuration evaluation;
-6. Release management and delivery.
+Le attività previste dal processo sono:
+- *Identificazione della configurazione*
+- *Controllo della configurazione*
+- *Registrazione dello stato di configurazione*
+- *Valutazione della configurazione*
 
-// === Identificazione della configurazione
+=== Identificazione della configurazione
+L'attività di *identificazione della configurazione* consiste nell'individuazione di tutte le componenti, sia documentali che composte da codice, che formeranno il prodotto da sviluppare.
 
-// === Controllo della configurazione
+Secondo lo standard #gloss[ISO/IEC 12207:1995], è necessario stabilire per ogni prodotto di software e le sue versioni:
+- La documentazione che ne stabilisce la #gloss[baseline];
+- I riferimenti alla versione;
+- Altri dettagli di identificazione.
 
-// === Registrazione dello stato di configurazione <registrazione-stato-configurazione>
+Nello specifico, questa attività avverrà durante la fase di progettazione, in cui verrà schematizzata l'architettura del _software_, che poi verrà implementata dai #gloss[programmatori].
+
+Per quanto riguarda l'identificazione della configurazione della documentazione, si consulti la @documentazione.
+
+=== Controllo della configurazione <controllo-configurazione>
+L'attività di *controllo della configurazione* disciplina le richieste di modifica alla documentazione o al codice, le quali potranno dovranno essere accettate o meno.
+
+A tale scopo, _GlitchHub Team_ ha deciso numerosi strumenti offerti da #gloss[GitHub], descritti di seguito.
+
+- #gloss[GitHub Issues]: Il gruppo utilizza le _issues_ per descrivere le modifiche da apportare a documentazione e codice; una _issue_ dev'essere assegnata al singolo membro che si assume la responsabilità di portare a termine la modifica. Una qualunque _issue_ è composta da:
+  - Un identificativo numerico univoco all'interno della #gloss[repository] in cui è stata creata;
+  - Un nome che descrive brevemente la modifica da compiere;
+  - Una descrizione facoltativa che fornisce ulteriori informazioni sull'attività da svolgere;
+  - L'assegnatario che si assumerà la responsabilità di compiere la _task_;
+  - Una serie di etichette o "_label_" che descrivono il tipo di modifica da compiere;
+  - Il collegamento con uno o più #gloss[GitHub Projects];
+  - La #gloss[milestone] a cui corrisponde la modifica;
+  - La relazione dell'_issue_ con altre _issue_.
+
+  Per maggiori informazioni sull'utilizzo delle _issue_ durante l'organizzazione delle attività, si consulti la @gestione-processi.
+
+- #gloss[GitHub Project]: Il gruppo utilizza un _project_ collegato a tutte le #gloss[repository] istituite dal gruppo, per organizzare le attività negli _sprint_ in modo da massimizzare la parallelizzazione del lavoro. Infatti, il _project_ usato permette di associare a ogni _issue_ dei campi aggiuntivi che facilitano una buona organizzazione temporale delle _task_ da compiere, e di visualizzare le _issue_ in _board_ #gloss[Kanban] e in diagrammi di #gloss[Gantt].
+
+- #gloss[Pull Request] (PR) e _*branch protection*_: All'interno delle #gloss[repository] del gruppo, il #gloss[branch] `main` è *protetto*, ovvero non è possibile applicarvi direttamente delle modifiche: per fare ciò è necessario utilizzare le _PR_. Queste, infatti, sono uno strumento che necessitano che tutte le modifiche applicate al branch principale siano verificate da un altro membro del gruppo detto _Reviewer_, il quale può fornire l'approvazione diretta o richiedere un'ulteriore revisione. Questo strumento è fondamentale per un buon controllo della configurazione, in quanto costringe tutti i membri del gruppo a lavorare con un _way of working_ corretto che considera la verifica come passo fondamentale di qualunque attività di progetto.
+
+=== Registrazione dello stato di configurazione
+L'attività di *registrazione dello stato di configurazione* consiste nel tracciare lo stato e la storia di tutte le componenti del progetto. A tale scopo, il gruppo ha istituito una convenzione di versionamento della documentazione, riportata di seguito come descritta originariamente nel #link("https://glitchhub-team.github.io/pdf/Candidatura/VerbaliInterni/2025-10-27.pdf")[*verbale interno del 27 ottobre 2025*].
+
+Il gruppo ha deciso di adottare il sistema di versionamento #link("https://semverdoc.org")[*#gloss[Semantic Versioning]*] (abbreviato SemVer) per i documenti, in cui ogni versione è descritta da 3 numeri naturali separati da punto (*`MAJOR.MINOR.PATCH`*), dove:
+
+- *`MAJOR`*: rappresenta le modifiche sostanziali applicate al documento
+  - Se `MAJOR = 0`, la versione è da considerarsi non "stabile", ovvero soggetta in futuro a cambiamenti rapidi e sostanziali. In particolare, ciò rappresenta che il documento è in fase di prima stesura;
+  - Se `MAJOR = 1`, allora il documento è nella versione di prima stesura "stabile", ovvero *verificata* da un altro membro del gruppo;
+  - Ogni valore `MAJOR >= 1`, rappresenta una nuova stesura del documento sostanzialmente diversa dal precedente. Per cui, il numero `MAJOR` va aumentato solo in caso di modifiche sostanziali alla struttura o al contenuto del documento.
+
+- *`MINOR`*: va aumentato a ogni nuova revisione sostanziale che non modifica la struttura o il significato del contenuto del documento,
+
+- *`PATCH`*: va aumentato a ogni revisione che corregge la formattazione, refusi o punteggiatura del testo.
+
+All'incremento di un numero di versione, tutti i numeri alla sua destra vengono messi a 0, per cui la versione `MINOR` successiva alla `0.1.1` non può essere `0.2.1`, ma deve essere necessariamente `0.2.0`.
+
+In questo sistema, quindi:
+- la prima *bozza* del documento è rappresentata dalla versione `0.0.1`,
+- la prima *stesura* ancora non verificata dalla versione `0.1.0`
+- la prima *stesura* verificata dalla versione `1.0.0`
+- e così via, fino al completamento del documento
+
+Inoltre, ogni documento versionato presenterà il proprio *registro delle modifiche*, descritto nella @doc-caratteristiche-struttura. 
+
+=== Valutazione della configurazione
+L'attività di *valutazione della configurazione* consiste nel controllo che il software prodotto presenti una completezza funzionale rispetto ai requisiti rilevati. 
+
+A tale scopo, il documento di #gloss[Analisi dei Requisiti] presenta una sezione di *tracciamento dei requisiti* che verrà usata dal gruppo durante la fase di progettazione e sviluppo come riferimento per verificare che il software prodotto sia adeguato alle aspettative e richieste della #gloss[proponente].
+
+== Accertamento della qualità
+Secondo lo standard #gloss[ISO/IEC 12207:1995], il processo di *accertamento qualità* consiste nell'accertare in modo adeguato che i processi e i prodotti dei cicli di vita del progetto siano conformi ai requisiti specificati. 
+
+Perché questo processo sia privo di _bias_ e di conflitti d'interesse, è fondamentale che avvenga in modo svincolato dalle persone responsabili dell'applicazione del processo controllato o dello sviluppo del componente controllato.
+
+=== Attività previste
+Le attività previste dal processo sono le seguenti:
+- *Implementazione del processo*: L'implementazione consiste nella creazione di un processo di accertamento della qualità su misura per il progetto in modo tale da garantire che i prodotti di progetto siano conformi alle attese e ai requisiti rilevati.
+
+- *Accertamento della qualità di prodotto*: Consiste nel controllare che il software prodotto rispetti i requisiti rilevati, tramite i test prodotti dai #gloss[verificatori] e la misurazione delle metriche di qualità del prodotto.
+
+- *Accertamento della qualità di processo*: Consiste nel controllo e nella misurazione delle metriche di qualità dei processi, per assicurarsi che i processi rispettino gli standard di qualità stabiliti dal gruppo.
+
+Per svolgere le attività di *accertamento della qualità di prodotto e processo*, il gruppo ha stabilito nel documento di #gloss[Piano di Qualifica] le metriche di qualità di prodotto e processo e il *cruscotto di valutazione* che riporta l'andamento delle misurazioni di tali durante lo svolgimento del progetto. Si noti che queste misurazioni vanno effettuate al termine di ogni _sprint_.
+
+
+== Verifica <verifica>
+Il processo di *verifica* ha lo scopo di determinare se un prodotto di progetto sia conforme ai requisiti e rispetti le condizioni imposte sul prodotto dalle attività precedenti: l'obiettivo del processo si può sintetizzare nella domanda _"Did I build the system *right*?"_, ovvero "Ho costruito il sistema *correttamente*?".
+
+In generale, gli esiti di questo processo, ovvero le misurazioni delle metriche di qualità, sono racchiuse nel documento di #gloss[Piano di Qualifica].
+ 
+=== Attività previste
+Le attività previste da questo processo, secondo lo standard #gloss[ISO/IEC 12207:1995] sono le seguenti:
+- *Implementazione del processo*: L'attività di implementazione consiste nella rilevazione dei processi e prodotti di progetto che presentano criticità e/o richiedono di essere verificati, e nell'istituzione e documentazione di un processo di verifica che documenti e risolva tutte le non conformità da esso rilevate.
+- *Attività di verifica*: Consiste nell'applicazione del processo stabilito dal passaggio precedente, che ha lo scopo di controllare l'efficacia di:
+  - #gloss[processi], i quali devono rispettare gli standard stabiliti dal gruppo e dalla #gloss[proponente];
+  - #gloss[requisiti], i quali devono essere coerenti con le aspettative della #gloss[proponente], fattibili e verificabili;
+  - #gloss[progettazione], la quale deve rispecchiare tutti i requisiti rilevati ed essere ad essi tracciabile, e dev'essere corretta e coerente;
+  - #gloss[codice], il quale deve rispettare progettazione e requisiti ed essere ad essi tracciabile, e dev'essere verificabile e rispettoso degli standard di codifica del _team_;
+  - #gloss[integrazione] del sistema, la quale deve consentire a tutte le componenti del software prodotto di essere completamente integrabili e compatibili tra loro;
+  - #gloss[documentazione], la quale dev'essere adeguata, completa e coerente, e dev'essere prodotto con puntualità.
+
+=== Implementazione del processo
+Il gruppo è giunto alla conclusione che, per quanto concerne il processo di verifica, la priorità principale è soddisfare le aspettative della #gloss[proponente]: ciò è possibile tramite la realizzazione di test approfonditi che garantiscano il più possibile la conformità con le attese di *M31*.
+
+Il principale punto critico che è stato rilevato sin da subito dal gruppo è la necessità che il #gloss[branch] principale di tutte le #gloss[repository] usate dal gruppo contenga solamente elementi corretti.
+
+Infatti, tale branch deve soltanto contenere tutti gli elementi che soddisfano la #gloss[baseline] corrente, ovvero tutti i prodotti di progetto che sono stati adeguatamente verificati e quindi considerabili corretti: ciò è ampiamente facilitato dalle regole di _branch protection_ di #gloss[GitHub], descritte nella @controllo-configurazione.
+
+Nella @verifica-attivita si descrive i dettagli dell'attività di verifica applicata del gruppo durante lo svolgimento del progetto.
+
+=== Attività di verifica <verifica-attivita>
+Per quanto concerna la verifica della *documentazione*, il gruppo ha determinato sin da subito la necessità di processi di applicare ad essa dei processi di verifica rigidi e tempestivi che possano garantirne la correttezza formale e contenutistica. Infatti, lo scopo di verificare i documenti redatti è di garantire che vengano rappresentate correttamente le opinioni e le decisioni prese dal gruppo, onde evitare malintesi durante il dialogo interno al gruppo e con la #gloss[proponente].
+
+Per informazioni più dettagliate sul processo di verifica della documentazione, si consulti la @doc-verifica.
+
+Per quanto concerne la verifica del *codice* prodotto, questa sezione verrà ampliata una volta iniziate le attività di sviluppo dell'#gloss[MVP], in quanto il codice prodotto per il #gloss[PoC] non richiede di essere testato tramite le procedure descritte successivamente.
+
+Tutte le informazioni specifiche relative alla verifica verranno riportate nel documento di #gloss[Piano di Qualifica]. In generale, però, si può applicare il processo di verifica al codice sorgente del _software_ tramite l'*analisi statica* (descritta nella @verifica-analisi-statica) e l'*analisi dinamica* (descritta nella @verifica-analisi-dinamica).
+
+==== Analisi statica <verifica-analisi-statica>
+// TODO: completa qua
+
+==== Analisi dinamica <verifica-analisi-dinamica>
+// TODO: completa qua
+
+===== Test di unità
+===== Test di integrazione
+===== Test di sistema
+===== Test di regressione
+===== Test di accettazione
 
 
 
-== Accertamento qualità
-// TODO: (3.3) definire accertamento qualità
-// The Quality Assurance Process is a process for providing adequate assurance that the software products and processes in the project life cycle conform to their specified requirements and adhere to their established plans. To be unbiased, qual ity assurance needs to have organizational freedom and authority from persons directly responsible for developing the software product or executing the process in the project. Quality assurance may be internal or external depending on whether evidence of product or process quality is demonstrated to the management of the supplier or the acquirer. Quality assurance may make use of the results of other supporting processes, such as Verification, Validation, Joint Reviews, Audits, and Problem Resolution.
-
-== Qualifica
-// TODO: (3.4) definire qualifica in termini generici
-=== Verifica
-// TODO: (3.4.1) definisci verifica
-// The Verification Process is a process for determining whether the software products of an activity fulfill the requirements or conditions imposed on them in the previous activities. For cost and performance effectiveness, verification should be integrated, as early as possible, with the process (such as supply, development, ope ration, or maintenance) that employs it. This process may include analysis, review and test. This process may be executed with varying degrees of independence. The degree of independence may range from the same person or different person in the same organization to a person in a different organization with varying degrees of separation. In the case where the process is executed by an organization independent of the supplier, developer, operator, or maintainer, it is called Independent Verification Process
-//
-==== Attività previste
-
-1. Implementazione processo
-2. Verifica
-
-=== Validazione
-// TODO: (3.4.2) definisci validazione, traducendo e prendendo quello che serve
+== Validazione
+// TODO: (3.5) definisci validazione, traducendo e prendendo quello che serve
 // The Validation Process is a process for determining whether the requirements and the final, as-built system or software product fulfills its specific intend ed use. Validation may be conducted in earlier stages. This process may be conducted as a part of Software Acceptance Support. This process may be executed with varying degrees of independence. The degree of independence may range from the same person or different person in the same organization to a person in a different organization with varying degrees of separation. In the case where the process is executed by an organization independent of the supplier, developer, operator, or maintainer, it is called Independent Validation Process.
 
-==== Attività previste
+=== Attività previste
 1. Implementazione processo
 2. Validazione
 
+=== Implementazione processo
+
+=== Validazione
+
+ 
 = Processi organizzativi <processi-organizzativi>
 I *processi organizzativi* avvengono parallelamente ai processi di progetto contribuendo a un buon andamento di quest'ultimo. Le attività previste da questi processi consentono di migliorare la strutturazione e l'organizzazione dei processi di cicli di vita applicati e di facilitare l'adozione di atti di miglioramento nei confronti di questi ultimi.
 
@@ -593,14 +684,14 @@ Le attività non rendicontabili o di "palestra", ovvero il cui svolgimento non i
 
 
 #set heading(outlined: false)
-==== Avvio dell'attività e definizione della portata <gestione-processi-avvio>
+=== Avvio dell'attività e definizione della portata <gestione-processi-avvio>
 Innanzitutto, è necessario stabilire i requisiti e le risorse necessarie per completare l'attività. Dopodiché il #gloss[responsabile] del gruppo deve stabilire la fattibilità del processo controllando la disponibilità delle risorse del gruppo, ovvero controllando che l'attività sia fattibile nell'intervallo temporale fissato. Si noti che i requisiti del processo possono essere discussi con i loro assegnatari.
 
 Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in "_task_" assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento.
 
 Si noti che le _issue_ in questo stato devono essere associate allo stato di *"Backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
 
-==== Pianificazione <gestione-processi-pianificazione>
+=== Pianificazione <gestione-processi-pianificazione>
 Per pianificare un'attività è fondamentale comprendere quali siano le risorse richieste, sia temporali che economiche, e le singole _task_ di cui è composta. Poiché le attività del progetto richiedono competenza in un'ampia gamma di ambiti diversi, ogni _task_ è assegnata a un *ruolo* specifico; si veda la @divisione-ruoli per un riassunto delle responsabilità e del valore economico del lavoro di ogni singolo ruolo.
 
 Quando si deve pianificare lo svolgimento di una specifica _task_, il #gloss[responsabile] crea un'_issue_ specifica per un certo ruolo e determina i seguenti campi:
@@ -615,16 +706,15 @@ Inoltre, lo stato dell'_issue_ rilevata dev'essere impostato a *"Ready"*, il qua
 
 Il gruppo applica la procedura di tracciamento sopra descritta anche alle _task_ di "palestra" citate in precedenza con lo scopo di tenere traccia del carico effettivo di ogni membro del gruppo, il quale non può essere rappresentato fedelmente dal numero di ore spese su attività solamente rendicontabili.
 
-==== Esecuzione e controllo <gestione-processi-esecuzione-controllo>
+=== Esecuzione e controllo <gestione-processi-esecuzione-controllo>
 L'esecuzione delle diverse attività è affidata ai diversi ruoli e dev'essere monitorata regolarmente dal #gloss[responsabile] per accertarsi che ogni membro del gruppo rispetti i propri compiti nelle scadenze prefissate.
 
 Una volta che le _issue_ sono state create dal #gloss[responsabile], la loro gestione viene affidata ai relativi assegnatari. Quando un membro del gruppo inizia a lavorare su una task, la relativa _issue_ dev'essere impostata come *"In progress"*.
 
-==== Revisione e valutazione <gestione-processi-revisione-valutazione>
+=== Revisione e valutazione <gestione-processi-revisione-valutazione>
 Una volta che l'attività è stata svolta, è fondamentale che questa venga verificata da un altro membro del gruppo che copre il ruolo di #gloss[Verificatore].
 
-// TODO: aggiungere riferimento a processo di verifica codice
-// (questo si potrà fare quando inizieremo a scrivere codice e a verificarlo ovviamente)
+// TODO: (post-RTB) aggiungere riferimento a processo di verifica codice
 Il flusso di lavoro per le attività di verifica di documentazione è descritto nella @doc-verifica.
 
 Il processo di verifica di un'_issue_ può avvenire in più modi:
@@ -632,7 +722,7 @@ Il processo di verifica di un'_issue_ può avvenire in più modi:
 
 - Altrimenti, se l'attività non apporta modifiche immediate sulla repository pubblica, ad esempio nel caso della modifica di un #gloss[documento incrementale], allora è necessario segnare comunque l'issue come *"In review"*, ma anche creare un'ulteriore _issue_ relativa alla _task_ di verifica e segnarla come *"In progress"*, finché il processo di verifica non finisce.
 
-==== Conclusione <gestione-processi-conclusione>
+=== Conclusione <gestione-processi-conclusione>
 Per utilizzare una linea di lavoro comune, il gruppo applica una _Definition of Done_, ovvero una definizione di cosa determina se un'attività sia conclusa o meno, ben precisa: _Un attività è conclusa quando è stata approvata definitivamente da un verificatore diverso dall'assegnatario originale_.
 
 Questa definizione garantisce che il gruppo possa determinare in ogni momento quando una task rendicontabile qualunque è conclusa o meno. Questa definizione non è sempre applicabile a tutte le _task_ di "palestra", poiché non sempre essere richiedono una verifica da parte di un terzo, ma ciononostante vengono inserite nel #gloss[backlog] di _task_ del gruppo per motivi di tracciamento.
@@ -885,7 +975,7 @@ L'attività di manutenzione del'infrastruttura è fondamentale per assicurare ch
 
 
 == Miglioramento <miglioramento-processi>
-Il processo di *miglioramento* è definito dallo standard _ISO/IEC 12207:1995_ come l'insieme di attività atte allo stabilimento, valutazione, misurazione, controllo e miglioramento dei processi di cicli di vita del software.
+Il processo di *miglioramento* è definito dallo standard _ISO/IEC 12207:1995_ come l'insieme di attività atte alla creazione, valutazione, misurazione, controllo e miglioramento dei processi di cicli di vita del software.
 
 I processi di miglioramento continuo del _way of working_ sono delle attività fondamentali per consentire al gruppo di aumentare la propria efficacia ed efficienza del proprio lavoro a ogni iterazione.
 
