@@ -7,10 +7,17 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "0.5.0",
+      "11/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Espansa @documentazione; \ Create @controllo-configurazione, @accertamento-qualita, @verifica e @validazione]
+    ),
+    (
       "0.4.1",
       "10/02/2026",
       "Riccardo Graziani",
-      "",
+      "Elia Ernesto Stellin",
       [Applicate correzioni a @attivita-previste-sviluppo rilevate durante la verifica],
     ),
     (
@@ -110,21 +117,25 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 == Riferimenti
 === Riferimenti normativi
 
-- *#gloss[Capitolato d'appalto] C7*
-  - Link: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
-  - Ultimo accesso: 13 novembre 2025
+- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*#gloss[Capitolato d'appalto] C7*]
+  - *Ultimo accesso*: 13 novembre 2025
 
 === Riferimenti informativi
 
-- *Standard ISO/IEC 12207:1995*
-  - Link: https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf
-  - Ultimo accesso: 25 gennaio 2026
-  - Note: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
+- #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*Standard ISO/IEC 12207:1995*]
+  - *Ultimo accesso*: 25 gennaio 2026
+  - *Note*: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
-- *Glossario v0.2.1*
-  - Link: https://glitchhub-team.github.io/pdf/glossary.pdf
-  - Ultimo accesso: 25 gennaio 2026
+- #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario v0.3.1*]
+  - *Ultimo accesso*: 11 febbraio 2026
+
+- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[*Verifica e validazione: introduzione*] -- Lezione T9 del prof. Vardanega
+  - *Ultimo accesso*: 11 febbraio 2026
+
+- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11pdf")[*Verifica e validazione: analisi dinamica*] -- Lezione T11 del prof. Vardanega
+  - *Ultimo accesso*: 11 febbraio 2026
+
 
 = Processi primari <processi-primari>
 I processi primari della norma #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*ISO/IEC 12207:1995*] definiscono le attività fondamentali del ciclo di vita del software attraverso cinque processi: Acquisizione, Fornitura, Sviluppo, Operazione e Manutenzione, assicurando la conformità ai requisiti e agli obiettivi di qualità stabiliti.
@@ -489,13 +500,12 @@ Una volta che il documento da pubblicare è stato verificato, la relativa #gloss
 Ciò darà inizio all'esecuzione automatica della #gloss[GitHub Action] che compila il codice Typst del documento in PDF e pubblica il file sul sito web del gruppo.
 
 === Manutenzione <doc-manutenzione>
-// TODO: (3.1.5.4) dobbiamo definire bene la procedura di manutenzione
 Un documento stabile non è da considerarsi finito e immutabile, poiché in seguito alla sua verifica potrebbero emergere errori che non sono stati rilevati né dallo scrittore che dal verificatore.
 
 In tal caso, chi si accorge dell'errore è tenuto a segnalarlo ed eventualmente proporre una modifica, che contribuirà a creare una nuova versione del documento, la quale andrà successivamente verificata da qualcun altro.
 
 
-== Gestione delle configurazioni
+== Gestione delle configurazioni <gestione-configurazioni>
 Secondo lo standard #gloss[ISO/IEC 12207:1995], la *gestione delle configurazioni* è il processo di applicazione di procedure di natura tecnica e amministrativa durante tutto il ciclo di vita del software con i seguenti scopi:
 - identificare e definire le parti di un prodotto software e associarle a specifiche #gloss[baseline];
 - controllare le modifiche e il rilascio di tali parti;
@@ -571,12 +581,12 @@ In questo sistema, quindi:
 
 Inoltre, ogni documento versionato presenterà il proprio *registro delle modifiche*, descritto nella @doc-caratteristiche-struttura. 
 
-=== Valutazione della configurazione
+=== Valutazione della configurazione <valutazione-configurazione>
 L'attività di *valutazione della configurazione* consiste nel controllo che il software prodotto presenti una completezza funzionale rispetto ai requisiti rilevati. 
 
 A tale scopo, il documento di #gloss[Analisi dei Requisiti] presenta una sezione di *tracciamento dei requisiti* che verrà usata dal gruppo durante la fase di progettazione e sviluppo come riferimento per verificare che il software prodotto sia adeguato alle aspettative e richieste della #gloss[proponente].
 
-== Accertamento della qualità
+== Accertamento della qualità <accertamento-qualita>
 Secondo lo standard #gloss[ISO/IEC 12207:1995], il processo di *accertamento qualità* consiste nell'accertare in modo adeguato che i processi e i prodotti dei cicli di vita del progetto siano conformi ai requisiti specificati. 
 
 Perché questo processo sia privo di _bias_ e di conflitti d'interesse, è fondamentale che avvenga in modo svincolato dalle persone responsabili dell'applicazione del processo controllato o dello sviluppo del componente controllato.
@@ -627,32 +637,102 @@ Per quanto concerne la verifica del *codice* prodotto, questa sezione verrà amp
 Tutte le informazioni specifiche relative alla verifica verranno riportate nel documento di #gloss[Piano di Qualifica]. In generale, però, si può applicare il processo di verifica al codice sorgente del _software_ tramite l'*analisi statica* (descritta nella @verifica-analisi-statica) e l'*analisi dinamica* (descritta nella @verifica-analisi-dinamica).
 
 ==== Analisi statica <verifica-analisi-statica>
-// TODO: completa qua
+L'*analisi statica* comprende tutte le attività di verifica che non prevedono l'esecuzione dell'oggetto di test, ma si concentra sulla sintassi e la correttezza del contenuto di quanto scritto con lo scopo di rilevare problemi prima che si possano presentare durante la sua esecuzione.
+
+Questa può avvenire usando *metodi formali*, i quali dimostrano formalmente che l'oggetto in esame soddisfa specifiche proprietà, e tramite *metodi di lettura*, i quali sono meno formali ma comunque efficaci nel rilevare problematiche nell'oggetto di test.
+
+I principali *metodi di lettura* sono:
+- *_Walkthrough_*: Metodo di analisi che cerca di rilevare difetti leggendo l'oggetto in esame con una modalità ad ampio spettro: quindi, si è consapevoli dell'esistenza di un problema ma non si quale questo possa essere e dove trovarlo. Questo metodo è costoso e poco applicabile perché non automatizzabile, ma potenzialmente molto efficace.
+
+- *_Inspection_*: Metodo di analisi che invece rileva la presenza di difetti tramite una lettura mirata dell'oggetto: quindi, si sa quali siano i problemi da rilevare e i test si concentrano esclusivamente sulla rilevazione di questi ultimi. Questo metodo si rivela meno costoso e più facilmente automatizzabile, ma non è in grado di determinare se l'oggetto in esame è totalmente corretto, in quanto non si può avere completa certezza che i test scelti siano esaustivi.
+
+In generale, i metodi di _inspection_ sono preferibili per il progetto in quanto sono realizzabili tramite la verifica di _checklist_, ovvero di liste di controllo automatizzabili che possono rilevare gli errori più frequenti nella scrittura del codice.
 
 ==== Analisi dinamica <verifica-analisi-dinamica>
-// TODO: completa qua
+L'*analisi dinamica* comprende tutte le attività di verifica che prevedono l'esecuzione dell'oggetto in esame, in modo tale da eliminare i _fault_, ovvero gli elementi del prodotto che hanno un comportamento inatteso ("failure") rilevato durante l'esecuzione del codice. Essendo il software immutabile di natura, possono essere introdotti in esso tali _fault_ solamente a causa di errori umani.
 
-===== Test di unità
-===== Test di integrazione
-===== Test di sistema
-===== Test di regressione
-===== Test di accettazione
+Quindi, l'*analisi dinamica* consiste nell'esecuzione di più oggetti di prova, detti _test_, che corrispondono a diverse esecuzioni degli oggetti di prova. Ogni _test_ studia il comportamento di una singola parte di codice su un insieme finito di casi di prova. I test dinamici devono essere:
+- *ripetibili*: ovvero eseguibili con gli stessi esiti su diversi ambienti di esecuzione, in modo tale che solo le modifiche al codice possano causare esiti diversi dei test.
+- *automatizzabili*: ovvero eseguibili automaticamente dalla macchina, in quanto la procedura di esecuzione manuale dei test è uno spreco di risorse, essendo essa pienamente automatizzabile tramite l'utilizzo di:
+  - _driver_: componente attiva fittizia che eseguono il test, sostituendosi alla procedura "`main()`" del programma
+  - _stub_: componenti passive fittizie che simulano parti del sistema esterne all'oggetto in esame ma utili per l'esecuzione del _test_ stesso
+  - _logger_: componente secondario che registra l'esito dei test senza interferire con la loro esecuzione
 
+I principali tipi di test sono i seguenti:
+- *#link(<test-unita>)[Test di unità]*
+- *#link(<test-integrazione>)[Test d'integrazione]*
+- *#link(<test-sistema>)[Test di sistema]*
+- *#link(<test-regressione>)[Test di regressione]*
+- *#link(<test-accettazione>)[Test di accettazione]*, i quali non corrispondono propriamente a verifiche del codice ripetibili e automatizzabili, ma sono inclusi per completezza.
 
+La convenzione usata da _GlitchHub Team_ per identificare i test è la seguente:
+#align(center)[*`T[Tipo]-[Numero]`*]
+Dove:
+- *`T`* è l'abbreviazione di "Test"
+- *`[Tipo]`* è una lettera che indica la tipologia di test
+  - `U` per i test di Unità 
+  - `I` per i test d'Integrazione
+  - `S` per i test di Sistema
+  - `A` per i test di Accettazione
+- *`[Numero]`* è un numero identificativo incrementale univoco per la tipologia di test (per cui possono esistere contemporaneamente i test `TU-1` e `TS-1`).
 
-== Validazione
-// TODO: (3.5) definisci validazione, traducendo e prendendo quello che serve
-// The Validation Process is a process for determining whether the requirements and the final, as-built system or software product fulfills its specific intend ed use. Validation may be conducted in earlier stages. This process may be conducted as a part of Software Acceptance Support. This process may be executed with varying degrees of independence. The degree of independence may range from the same person or different person in the same organization to a person in a different organization with varying degrees of separation. In the case where the process is executed by an organization independent of the supplier, developer, operator, or maintainer, it is called Independent Validation Process.
+Inoltre ogni test si può trovare in ogni momento in uno di tre stati:
+- *Non implementato*, se il test è stato ideato ma non implementato in codice;
+- *Implementato*, se il test è stato implementato ma non ancora eseguito e/o superato;
+- *Superato*, se il test è stato implementato, eseguito e superato correttamente.
+
+===== Test di unità <test-unita>
+Un *unità* è definita come la più piccola quantità di software che sia sufficientemente grande da essere verificata in quanto oggetto singolo. Quindi, un componente di un _software_ è composto da un insieme di *unità* tra loro integrate, le quali sono composte da uno o più *moduli* cadauna.
+
+I *test di unità*, quindi, verificano la correttezza delle *unità* del _software_ e si dividono in due sottocategorie principali:
+- *Test funzionali* (_black-box_), i quali verificano solamente che a ogni input preso in considerazione corrisponda l'output corretto senza considerare la logica interna dell'unità, da cui il nome _"black-box"_. Poiché il dominio di un valore in input può essere potenzialmente infinito, ma il tempo a disposizione per eseguire un test è necessariamente finito, un buon test di unità viene eseguito usando come input un valore per ognuna delle seguenti _classi d'equivalenza_:
+  - Classe dei *valori nominali* nel dominio, ovvero tutti i valori validi che l'input può assumere
+  - Classe dei *valori illegali inferiori*, ovvero tutti i valori oltre il limite *inferiore* del dominio
+  - Classe dei *valori illegali superiori*, ovvero tutti i valori oltre il limite *superiore* del dominio
+  - Classe dei *valori legali d'estremo inferiore*, ovvero tutti i valori al confine tra il dominio e il suo limite inferiore
+  - Classe dei *valori legali d'estremo superiore*, ovvero tutti i valori al confine tra il dominio e il suo limite superiore
+
+- *Test strutturali* (_white-box_), i quali verificano la logica interna del codice dell'oggetto di verifica, misurando quanti _statement_, _branch_ e _decision_ vengono eseguiti all'interno di ogni test.
+
+===== Test d'integrazione <test-integrazione>
+I *test d'integrazione* verificano il corretto assemblaggio delle componenti del _software_ individuate nella fase di _design_ architetturale, rilevando difetti di progettazione o problemi di qualità nei #link(<test-unita>)[test di unità]. 
+
+Per verificare una corretta integrazione delle componenti, è necessario eseguire il loro assemblaggio in maniera incrementale e reversibile, utilizzando una delle seguenti strategie:
+
+- *Bottom--up*, in cui si integrano prima le componenti con minori dipendenze e maggiore utilità interna, richiedendo una minore quantità di _stub_ durante lo sviluppo, ma mostrando risultati all'utente con maggiore ritardo;
+
+- *Top--down*: in cui, invece, si integrano prima le componenti con maggiori dipendenze d'uso e maggiore utilità esterna, richiedendo l'uso di molti più _stub_ durante lo sviluppo, ma rendendo visibili le funzionalità usabili dall'utente molto prima.
+
+===== Test di sistema <test-sistema>
+I *test di sistema* verificano la conformità funzionale del sistema rispetto ai requisiti stabiliti nel documento di #gloss[Analisi dei Requisiti]. Infatti, la loro stesura avviene in concomitanza con la stesura dei requisiti funzionali del prodotto.
+
+===== Test di regressione <test-regressione>
+I *test di regressione* verificano che alcune correzioni o estensioni applicate a specifiche unità non causino _fault_ in 
+parti del sistema esterne all'oggetto in esame. Infatti, di fronte a un problema del genere è necessario valutare le necessità di modifica del sistema e selezionare la soluzione che offra il miglior rapporto costi/benefici.
+
+Nel concreto, i test di regressione consiste nell'esecuzione ripetuta di un sottoinsieme di #link(<test-unita>)[test di unità], #link(<test-integrazione>)[test d'integrazione] e #link(<test-sistema>)[test di sistema] che hanno causato in passato problemi di regressione.
+
+===== Test di accettazione <test-accettazione>
+I *test di accettazione* verificano la conformità del prodotto rispetto ai _requisiti utente_ definiti dal #gloss[committente] nel #gloss[capitolato d'appalto]. Questi test, al contrario, degli altri non possono avvenire in maniera automatizzabile e ripetibile, in quanto vengono eseguiti manualmente in presenza del #gloss[committente] stesso, ma vengono comunque inclusi nella @verifica-analisi-dinamica per completezza.
+
+== Validazione <validazione>
+Il processo di *validazione* ha l'obiettivo di determinare se i requisiti rilevati e il software prodotto rispettano le aspettative ed esigenze dell'azienda #gloss[proponente]; ciò si può riassumere nella ricerca della risposta alla domanda _"Did I build the *right* system?"_, ovvero "Ho costruito il *giusto* sistema?".
 
 === Attività previste
-1. Implementazione processo
-2. Validazione
+In base allo standard #gloss[ISO/IEC 12207:1995], le attività previste dal processo sono le seguenti:
+- *Implementazione del processo*
+- *Attività di validazione*
 
 === Implementazione processo
+_GlitchHub Team_ ha condotto uno studio approfondito delle richieste della #gloss[proponente], riassumendo tutti i requisiti da soddisfare nel documento di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf", gloss[Analisi dei Requisiti]).
 
-=== Validazione
+Come già descritto nella @valutazione-configurazione, l'#gloss[Analisi dei Requisiti] presenta una sezione di *tracciamento dei requisiti*, fondamentale al processo di *validazione*. Infatti, questa permette di controllare se una parte del prodotto funziona correttamente ed è conforme ai requisiti: un requisito si può considerare soddisfatto solo se il codice che lo implementa funziona correttamente e siccome i requisiti sono tracciati, è possibile verificare quali requisiti vengono soddisfatti dal codice e quali no.
 
- 
+
+=== Attività di validazione
+Per applicare il processo di validazione, il gruppo si impegna a continuare l'attività di *tracciamento dei requisiti* e ad effettuare #link(<test-accettazione>)[test di accettazione] per verificare la conformità del prodotto con le attese della #gloss[proponente], ricercando attivamente da essa la maggior quantità di _feedback_ possibile relativamente alla conformità del lavoro svolto.
+
+
 = Processi organizzativi <processi-organizzativi>
 I *processi organizzativi* avvengono parallelamente ai processi di progetto contribuendo a un buon andamento di quest'ultimo. Le attività previste da questi processi consentono di migliorare la strutturazione e l'organizzazione dei processi di cicli di vita applicati e di facilitare l'adozione di atti di miglioramento nei confronti di questi ultimi.
 
