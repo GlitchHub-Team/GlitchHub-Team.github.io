@@ -10,7 +10,7 @@
       "0.5.0",
       "11/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Riccardo Graziani",
       [Espansa @documentazione; \ Create @controllo-configurazione, @accertamento-qualita, @verifica e @validazione]
     ),
     (
@@ -106,8 +106,10 @@ Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Can
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
-Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
-
+Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel 
+// TODO: Link rotto per il glossario
+#link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
+// TODO: Link rotto per il verbale del 19 novembre
 Come descritto nel #link("https://glitchub-team.github.io/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
 
 #align(center, gloss("parola"))
@@ -116,7 +118,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 
 == Riferimenti
 === Riferimenti normativi
-
+// TODO: Fose dovremmo uniformare la data di ultimo accesso dei riferimenti?
 - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*#gloss[Capitolato d'appalto] C7*]
   - *Ultimo accesso*: 13 novembre 2025
 
@@ -133,6 +135,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[*Verifica e validazione: introduzione*] -- Lezione T9 del prof. Vardanega
   - *Ultimo accesso*: 11 febbraio 2026
 
+// TODO: Link rotto (manca il . in T11.pdf)
 - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11pdf")[*Verifica e validazione: analisi dinamica*] -- Lezione T11 del prof. Vardanega
   - *Ultimo accesso*: 11 febbraio 2026
 
@@ -174,6 +177,7 @@ Il processo di fornitura si compone delle seguenti attività di seguito descritt
 === Documentazione fornita
 Di seguito presentiamo l'elenco completo della documentazione che *GlitchHub Team* consegnerà all'azienda proponente *M31* e ai committenti *Prof. Tullio Vardanega* e *Prof. Riccardo Cardin*.
 ==== Lettera di Candidatura <doc-fornita-lettera-candidatura>
+// TODO: Su pages si chiama ancora lettera di presentazione, ma dovrebbe chiamarsi lettera di candidatura
 La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/LetteraPresentazione.pdf")[*Lettera di Candidatura*] è il documento con cui *GlitchHub Team* ha presentato formalmente la propria candidatura al 
 #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[#gloss[capitolato d'appalto]] proposto dall'azienda *M31*.
 
@@ -190,7 +194,6 @@ Il documento espone le stime relative all'impegno *orario* suddiviso per singoli
 La *Lettera di Presentazione* è il documento tramite il quale *GlitchHub Team* intende formalizzare la propria candidatura alle revisioni di avanzamento legate alle #gloss[baseline] del progetto didattico, ossia la *Requirements and Technology Baseline (#gloss[RTB])* e la *Product Baseline (#gloss[PB])*. 
 
 ==== Analisi dei Requisiti <doc-fornita-analisi-requisiti>
-// TODO: Da linkare quando sarà su pages
 L'#link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[*Analisi dei Requisiti*] è il documento in cui *GlitchHub Team* definisce in dettaglio tutti i #gloss[requisiti] del progetto, classificandoli in obbligatori, desiderabili e opzionali. 
 Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[Casi d'Uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
 
@@ -200,7 +203,7 @@ l'evoluzione di ogni #gloss[sprint] confrontando la fase previsionale con quella
 i *rischi* potenziali e il *preventivo* delle risorse; successivamente, il documento registra le attività effettivamente svolte, il consumo reale delle risorse (con relativo aggiornamento di quelle residue) e gli esiti della *retrospettiva* del gruppo.
 
 ==== Piano di Qualifica <doc-fornita-piano-qualifica>
-// TODO: Da linkare quando sarà su pages
+// TODO: Da linkare quando sarà su pages (inoltre dovrebbe essere sotto doc esterna, per il momento lo vedo sotto doc interna)
 Il *Piano di Qualifica* illustra le strategie e le attività operative volte a garantire la *qualità* del prodotto finale da parte del gruppo *GlitchHub Team*.  
 Nello specifico, il documento stabilisce le *metriche* di valutazione applicate sia ai *processi* che al *prodotto* stesso, riportando inoltre i dettagli sui *test* di verifica effettuati
 
@@ -242,7 +245,7 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - *Installazione del software*: ossia la fornitura del prodotto software nell'ambiente operativo secondo quanto specificato nel contratto;
 - *Supporto all'accettazione del software*: in cui si fornisce supporto alle revisioni e ai test di accettazione dell'acquirente per completare la consegna formale del prodotto software.
 
-In relazione alla definizione delle #gloss[baseline] previste per il progetto, ossia la Requirements and Technology Baseline (#gloss[RTB]) e la Product Baseline (#gloss[PB]), *GlitchHub Team* ha identificato l'*Analisi dei Requisiti* e la *Codifica* come attività principali dell'#gloss[RTB]. Al contrario la *Progettazione dell'architettura software*, la *Progettazione dettagliata del software* e la *Codifica* come attività principali della #gloss[PB]. Di conseguenza sono state approfondite le attività principali relative all'#gloss[RTB], mentre verranno stese (o ampliate) in seguito le sezioni relative alle attività principali alla #gloss[PB]. 
+In relazione alla definizione delle #gloss[baseline] previste per il progetto, ossia la Requirements and Technology Baseline (#gloss[RTB]) e la Product Baseline (#gloss[PB]), *GlitchHub Team* ha identificato l'*Analisi dei Requisiti* e la *Codifica* come attività principali dell'#gloss[RTB]. Di contro, sono state identificate la *Progettazione dell'architettura software*, la *Progettazione dettagliata del software* e la *Codifica* come attività principali della #gloss[PB]. Di conseguenza sono state approfondite le attività principali relative all'#gloss[RTB], mentre verranno stese (o ampliate) in seguito le sezioni relative alle attività principali della #gloss[PB]. 
 
 === Analisi dei Requisiti <attivita-analisi-requisiti>
 L'attività di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[#gloss[Analisi dei Requisiti]] ha lo scopo di comprendere, individuare e definire in modo completo e strutturato tutti i #gloss[requisiti] che il *Sistema* dovrà soddisfare. Essa consente di formalizzare le esigenze del proponente e di tradurle in #gloss[requisiti] chiaramente identificabili e verificabili.
@@ -372,6 +375,8 @@ Dopo il registro delle modifiche è presente l'indice del documento il quale ne 
 
 Infine, sull'ultima pagina è presente la firma del revisore interno del documento.
 
+// TODO: Ho letto sulle valutazioni delle passate RTB che non è corretto inserire la voce di glossario
+// nei titoli, a Tullio non piace che compaia il pedice nelle voci dell'indice
 ==== #gloss[Documenti incrementali] <doc-incrementali>
 Alcuni documenti, come il presente _Norme di Progetto_, _Piano di Qualifica_ e _Piano di Progetto_, sono *incrementali*, cioè crescono parallelamente allo sviluppo del progetto. Per questo motivo alcune sezioni possono rimanere inizialmente vuote o incomplete, poiché non è ancora possibile definirne i concetti.
 
@@ -447,6 +452,7 @@ Dove:
 
 Fanno da eccezione:
 - I diari di bordo che sono collocati nella cartella `Slide`;
+// TODO: Link glossario rotto
 - Il glossario, che è collocato in #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[`pdf/glossary.pdf`]
 
 Si noti che sul sito web il gruppo rende disponibile sempre l'*ultima* versione *verificata* (vd. @doc-def-verificato) dei documenti della _baseline_ corrente.
