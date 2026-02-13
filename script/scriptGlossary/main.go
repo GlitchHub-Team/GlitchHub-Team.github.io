@@ -1,3 +1,8 @@
+/*
+Script creazione Glossario online:
+
+Prendendo in input il file src/glossary.json crea una risorsa web interattiva.
+*/
 package main
 
 import (
@@ -5,6 +10,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"sort"
 	"strings"
 	"unicode"
@@ -17,7 +23,7 @@ type GlossaryTerm struct {
 
 func main() {
 	jsonPath := "../../src/glossary.json"
-	htmlTemplatePath := "../../website/glossary.html"
+	htmlTemplatePath := "./glossaryTemplate.html"
 	htmlOutputPath := "../../website/glossary.html"
 
 	jsonData, err := os.ReadFile(jsonPath)
@@ -63,7 +69,7 @@ func main() {
 		log.Fatalf("Errore nella scrittura del file HTML: %v", err)
 	}
 
-	fmt.Println("✓ Glossario HTML generato con successo!")
+	fmt.Println("✓ Glossario HTML generato con successo! Bella raga")
 	fmt.Printf("  - Termini processati: %d\n", len(terms))
 	fmt.Printf("  - Lettere con termini: %d\n", len(groupedTerms))
 }
@@ -129,17 +135,27 @@ func generateLetterDefinitions(groupedTerms map[string][]GlossaryTerm) string {
 
 		letterLower := strings.ToLower(letter)
 
-		html.WriteString(fmt.Sprintf("            <div class=\"letter-section\" id=\"letter-%s\">\n", letterLower))
-		html.WriteString(fmt.Sprintf("                <h2>%s</h2>\n", letter))
-		html.WriteString("                <dl class=\"glossary-terms\">\n")
+		fmt.Fprintf(&html, `
+            <div class="letter-section" id="letter-%s">
+                <h2>%s</h2>
+                <dl class="glossary-terms">`,
+			letterLower, letter,
+		)
 
 		for _, term := range terms {
-			html.WriteString(fmt.Sprintf("                    <dt>%s</dt>\n", escapeHTML(term.Term)))
-			html.WriteString(fmt.Sprintf("                    <dd>%s</dd>\n\n", escapeHTML(term.Definition)))
+			fmt.Fprintf(&html, `
+                    <dt id="%s">%s</dt>
+                    <dd>%s</dd>`,
+				normStringToHtmlId(term.Term),
+				term.Term,
+				jsonTextToHtml(term.Definition),
+			)
 		}
 
-		html.WriteString("                </dl>\n")
-		html.WriteString("            </div>\n\n")
+		fmt.Fprintf(&html, `
+                </dl>
+            </div>        
+        `)
 	}
 
 	return html.String()
@@ -152,4 +168,64 @@ func escapeHTML(s string) string {
 	s = strings.ReplaceAll(s, "\"", "&quot;")
 	s = strings.ReplaceAll(s, "'", "&#39;")
 	return s
+}
+
+func normStringToHtmlId(s string) string {
+	s = strings.ReplaceAll(s, "à", "a")
+	s = strings.ReplaceAll(s, "è", "e")
+	s = strings.ReplaceAll(s, "é", "e")
+	s = strings.ReplaceAll(s, "ì", "i")
+	s = strings.ReplaceAll(s, "ò", "o")
+	s = strings.ReplaceAll(s, "ù", "u")
+
+	normRegex := regexp.MustCompile(`[^\w\d ']`)
+	s = normRegex.ReplaceAllString(s, "")
+
+	spaceRegex := regexp.MustCompile(`\s|'`)
+	s = spaceRegex.ReplaceAllString(s, "-")
+
+	return strings.ToLower(s)
+}
+
+func jsonTextToHtml(str string) string {
+
+    // Rileva italics
+	italicRegex := regexp.MustCompile(`(^|[^\\])_(([^_]*)([^\\]))_`)
+	str = italicRegex.ReplaceAllString(str, `$1<em>$2</em>`)
+
+    // Sostituisci \_ (underscore escaped)
+    str = strings.ReplaceAll(str, `\_`, "_")
+
+    // Rileva bold
+	boldRegex := regexp.MustCompile(`(^|[^\\])\*(([^*]*)([^\\]))\*`)
+	str = boldRegex.ReplaceAllString(str, `$1<strong>$2</strong>`)
+
+    // Sostituisci \* (asterisco escaped)
+    str = strings.ReplaceAll(str, `\*`, "*")
+
+    // Sostituisci @{}{}
+	refTermDoubleRegex := regexp.MustCompile(`@\{([^\}]+)\}\{([^\}]+)\}`)
+    str = refTermDoubleRegex.ReplaceAllString(str, `<a href="#$1">$2</a>`)
+
+    // Sostituisci @{}
+    refTermSingleRegex := regexp.MustCompile(`@\{([^\}]+)\}`)
+    str = refTermSingleRegex.ReplaceAllString(str, `<a href="#$1">$1</a>`)
+
+    hrefNormalizeRegex := regexp.MustCompile(`<a href="#([^"]+)">`)
+    matches := hrefNormalizeRegex.FindAllStringSubmatch(str, -1)
+    for _, groups := range matches {
+        old := groups[0]
+        href := groups[1]
+        str = strings.ReplaceAll(str, old, fmt.Sprintf(`<a href="#%v">`, normStringToHtmlId(href)))
+    }
+
+    // Sostituisci simboli comuni di Typst
+    str = strings.ReplaceAll(str, "---", "&mdash;")
+    str = strings.ReplaceAll(str, "--", "&ndash;")
+
+    // Newline
+    str = strings.ReplaceAll(str, "\n", "<br>")
+	fmt.Println(str)
+
+	return str
 }
