@@ -99,22 +99,22 @@ const (
 	]
 	}
 
-	== Sprint %d
+	== Sprint %d <sprint-%d>
 	Inizio: %s \
 	Fine: %s \
 
 	Piccola introduzione sprint.
 
-	=== Preventivo a finire
-	==== Attività da svolgere
+	=== Attività da svolgere
 	Il gruppo ha individuato le seguenti attività da svolgere:
 	- 
 	-
 	-
 
-	==== Rischi attesi
+	=== Rischi attesi
 	Descrivere i rischi attesi
 	
+	=== Consuntivo a finire
 	==== Preventivo risorse da utilizzare
 	#table(
 	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
@@ -133,9 +133,7 @@ const (
 	)
 	#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint%d)
 
-	=== Consuntivo di periodo
-
-	==== Attività svolte
+	=== Attività svolte
 	Il gruppo ha svolto con successo le seguenti attività: \
 	Issue relative a sprint %d: \
 	{{GROUPED_BY_STATE_ISSUES}}
@@ -143,9 +141,13 @@ const (
 	-
 	-
 
-	==== Retrospettiva
+	=== Retrospettiva
 	Raccontare retrospettiva
 
+	=== Rischi occorsi
+	Descrivere i rischi occorsi
+
+	=== Consuntivo di periodo
 	==== Risorse utilizzate
 	#table(
 	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
@@ -157,7 +159,7 @@ const (
 		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
 		{{EFFECTIVE_USAGE}}
 	)
-	==== Grafico a torta della suddivisione oraria prevista
+	==== Grafico a torta della suddivisione oraria effettiva
 
 	#let oreEffettiveSprint%d = (
 		{{CHART_EFFECTIVE_USAGE}}
@@ -166,9 +168,6 @@ const (
 	"Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
 	oreEffettiveSprint%d,
 	)
-
-	==== Rischi occorsi
-	Descrivere i rischi occorsi
 
 	==== Aggiornamento ore rimanenti
 	#table(
@@ -386,7 +385,7 @@ func removeTaskPalestraIssues(issues []Issue) []Issue {
 func generateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time, sprintEndDate time.Time) string {
 	var buf bytes.Buffer
 
-	var content = fmt.Sprintf(SPRINT_TEMPLATE, sprint, formatDate(sprintStartDate), formatDate(sprintEndDate), sprint, sprint, sprint, sprint, sprint)
+	var content = fmt.Sprintf(SPRINT_TEMPLATE, sprint, sprint, formatDate(sprintStartDate), formatDate(sprintEndDate), sprint, sprint, sprint, sprint, sprint)
 
 	issuesFiltered := removeTaskPalestraIssues(*issues)
 
