@@ -4,8 +4,15 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "13/02/2026",
+      "Elia Ernesto Stellin",
+      "Riccardo Graziani",
+      [Versione stabile del documento]
+    ),
     (
       "0.5.1",
       "13/02/2026",
@@ -81,8 +88,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Norme di Progetto",
 )
 
@@ -206,8 +213,8 @@ l'evoluzione di ogni #gloss[sprint] confrontando la fase previsionale con quella
 i *rischi* potenziali e il *preventivo* delle risorse; successivamente, il documento registra le attività effettivamente svolte, il consumo reale delle risorse (con relativo aggiornamento di quelle residue) e gli esiti della *retrospettiva* del gruppo.
 
 ==== Piano di Qualifica <doc-fornita-piano-qualifica>
-// TODO: Da linkare quando sarà su pages (inoltre dovrebbe essere sotto doc esterna, per il momento lo vedo sotto doc interna)
-Il *Piano di Qualifica* illustra le strategie e le attività operative volte a garantire la *qualità* del prodotto finale da parte del gruppo *GlitchHub Team*.  
+// NOTA: il link è già segnato come esterno
+Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiQualifica.pdf")[*Piano di Qualifica*] illustra le strategie e le attività operative volte a garantire la *qualità* del prodotto finale da parte del gruppo *GlitchHub Team*.  
 Nello specifico, il documento stabilisce le *metriche* di valutazione applicate sia ai *processi* che al *prodotto* stesso, riportando inoltre i dettagli sui *test* di verifica effettuati
 
 ==== Norme di Progetto <doc-fornita-norme-progetto>
