@@ -43,32 +43,32 @@ L'incontro è stato organizzato con lo scopo di organizzare la documentazione ne
 = Resoconto della riunione
 
 == Organizzazione ClickUp
-È stato deciso di organizzare il workflow del gruppo attraverso la piattaforma *ClickUp*, con l'obiettivo di gestire in maniera centralizzata scadenze, task e incontri.\
-ClickUp mette a disposizione le seguenti funzionalità:
+È stato deciso di organizzare il workflow del gruppo attraverso la piattaforma *#gloss[ClickUp]*, con l'obiettivo di gestire in maniera centralizzata scadenze, task e incontri.\
+#gloss[ClickUp] mette a disposizione le seguenti funzionalità:
 - un calendario *centralizzato*, con la possibilità di sincronizzarsi con altri calendari quali Google Calendar e Apple Calendar;
 - creazione, assegnazione e tracking delle *task* da eseguire;
 - generazione automatica di *diagrammi a sequenza* e *diagrammi di Gantt*;
 - sistema di raccolta documenti e note;
-- integrazioni con *GitHub*, *Google Calendar*, *Google Drive* e *Gmail*
-Per tutte le comunicazioni informali è stato deciso di mantenere la piattaforma *Whatsapp*, mentre per le riunioni virtuali si continuerà ad utilizzare la piattaforma *Discord*.
+- integrazioni con *#gloss[GitHub]*, *Google Calendar*, *Google Drive* e *Gmail*
+Per tutte le comunicazioni informali è stato deciso di mantenere la piattaforma *Whatsapp*, mentre per le riunioni virtuali si continuerà ad utilizzare la piattaforma *#gloss[Discord]*.
 
 == Compilazione documenti
 Sono stati individuati tutti i documenti da redigere in vista della scadenza per la presentazione della candidatura, ossia:
-- Lettera di candidatura;
+- #gloss[Lettera di candidatura];
 - Valutazione dei capitolati;
 - Dichiarazione impegni con preventivo dei costi;
 - Diario di bordo del 27/10/2025;
-Inoltre si è deciso di adottare *Typst* come strumento per la creazione dei diari di bordo per la possibilità di creare un template strutturato da poter riutilizzare per i diari di bordo successivi.
+Inoltre si è deciso di adottare *#gloss[Typst]* come strumento per la creazione dei diari di bordo per la possibilità di creare un template strutturato da poter riutilizzare per i diari di bordo successivi.
 
 == Stato avanzamento lavori
 Successivamente è stato presentato il lavoro svolto finora dai vari membri del gruppo. \
 Tutti i componenti hanno dimostrato un ottimo stato di avanzamento rispetto alle scadenze, perciò non c'è stato bisogno di rivedere le risorse e le scadenze fissate in precedenza.
 
 === Pagina GitHub
-Le funzionalità di *preview* e *download* dei file nel sito GitHub Pages sono state completate, ma il gruppo ha concordato che la parte front-end del sito va migliorata.
+Le funzionalità di *preview* e *download* dei file nel sito #gloss[GitHub Pages] sono state completate, ma il gruppo ha concordato che la parte front-end del sito va migliorata.
 
 === Automazione Typst
-Sono state create *automazioni* nella repository per aggiungere al sito di GitHub Pages tutti i documenti che verranno compilati durante lo svolgimento del progetto senza la necessità di aggiornare la pagina HTML.
+Sono state create *automazioni* nella #gloss[repository] per aggiungere al sito di #gloss[GitHub Pages] tutti i documenti che verranno compilati durante lo svolgimento del progetto senza la necessità di aggiornare la pagina #gloss[HTML].
 
 === Template Typst
 La creazione del template si trova a buon punto, resta da perfezionare l'impostazione grafica.
@@ -92,10 +92,10 @@ La creazione del template si trova a buon punto, resta da perfezionare l'imposta
 
     "Completamento sito", "Siria Salvalaio, Hossam Ezzemouri, Jaume Bernardi", "26/10/2025",
     "Redazione verbale 21/10/2025", "Riccardo Graziani", "22/10/2025",
-    "Redazione documento di Valutazione capitolati", "Elia Ernesto Stellin, Siria Salvalaio", "28/10/2025",
+    "Redazione documento di #gloss[Valutazione capitolati]", "Elia Ernesto Stellin, Siria Salvalaio", "28/10/2025",
   ),
 )
 
 = Conclusioni
 Il gruppo ha stabilito che si terrà una riunione interna il giorno *27/10/2025* alle ore *16:30* per valutare lo stato di completamento delle task assegnate. \
-Inoltre verrà effettuata una discussione di gruppo riguardo il contenuto dei documenti *Dichiarazione impegni e preventivo costi* e *Valutazione capitolati*.
+Inoltre verrà effettuata una discussione di gruppo riguardo il contenuto dei documenti *Dichiarazione impegni e preventivo costi* e *#gloss[Valutazione capitolati]*.

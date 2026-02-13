@@ -1,0 +1,11 @@
+name: Task Amministratore
+description: Crea una task generica per amministratore
+title: "Task"
+labels: ["documentation", "task-amministratore"]
+projects: ["GlitchHub-Team/2"]
+type: task
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: Descrizione della Task
