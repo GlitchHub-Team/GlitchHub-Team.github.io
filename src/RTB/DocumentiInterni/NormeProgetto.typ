@@ -10,7 +10,7 @@
       "0.5.1",
       "13/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Riccardo Graziani",
       [Sistemati link rotti e riferimenti al glossario]
     ),
     (
@@ -133,7 +133,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - *Note*: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
-- #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario v0.3.1*]
+- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario v0.3.1*]
   - *Ultimo accesso*: 13 febbraio 2026
 
 - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[*Verifica e validazione: introduzione*] -- Lezione T9 del prof. Vardanega
