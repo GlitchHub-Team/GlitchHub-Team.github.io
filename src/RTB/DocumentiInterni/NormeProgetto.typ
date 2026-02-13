@@ -7,6 +7,13 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "0.5.1",
+      "13/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Sistemati link rotti e riferimenti al glossario]
+    ),
+    (
       "0.5.0",
       "11/02/2026",
       "Elia Ernesto Stellin",
@@ -106,11 +113,9 @@ Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Can
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
-Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel 
-// TODO: Link rotto per il glossario
-#link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
-// TODO: Link rotto per il verbale del 19 novembre
-Come descritto nel #link("https://glitchub-team.github.io/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
+Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
+
+Come descritto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
 
 #align(center, gloss("parola"))
 
@@ -118,26 +123,24 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 
 == Riferimenti
 === Riferimenti normativi
-// TODO: Fose dovremmo uniformare la data di ultimo accesso dei riferimenti?
 - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*#gloss[Capitolato d'appalto] C7*]
-  - *Ultimo accesso*: 13 novembre 2025
+  - *Ultimo accesso*: 13 febbraio 2025
 
 === Riferimenti informativi
 
 - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*Standard ISO/IEC 12207:1995*]
-  - *Ultimo accesso*: 25 gennaio 2026
+  - *Ultimo accesso*: 13 febbraio 2026
   - *Note*: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
 - #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[*Glossario v0.3.1*]
-  - *Ultimo accesso*: 11 febbraio 2026
+  - *Ultimo accesso*: 13 febbraio 2026
 
 - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[*Verifica e validazione: introduzione*] -- Lezione T9 del prof. Vardanega
-  - *Ultimo accesso*: 11 febbraio 2026
+  - *Ultimo accesso*: 13 febbraio 2026
 
-// TODO: Link rotto (manca il . in T11.pdf)
-- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11pdf")[*Verifica e validazione: analisi dinamica*] -- Lezione T11 del prof. Vardanega
-  - *Ultimo accesso*: 11 febbraio 2026
+- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf")[*Verifica e validazione: analisi dinamica*] -- Lezione T11 del prof. Vardanega
+  - *Ultimo accesso*: 13 febbraio 2026
 
 
 = Processi primari <processi-primari>
@@ -375,9 +378,7 @@ Dopo il registro delle modifiche è presente l'indice del documento il quale ne 
 
 Infine, sull'ultima pagina è presente la firma del revisore interno del documento.
 
-// TODO: Ho letto sulle valutazioni delle passate RTB che non è corretto inserire la voce di glossario
-// nei titoli, a Tullio non piace che compaia il pedice nelle voci dell'indice
-==== #gloss[Documenti incrementali] <doc-incrementali>
+==== Documenti incrementali <doc-incrementali>
 Alcuni documenti, come il presente _Norme di Progetto_, _Piano di Qualifica_ e _Piano di Progetto_, sono *incrementali*, cioè crescono parallelamente allo sviluppo del progetto. Per questo motivo alcune sezioni possono rimanere inizialmente vuote o incomplete, poiché non è ancora possibile definirne i concetti.
 
 Il workflow di questi documenti differisce dagli altri "monolitici", infatti ogni *versione stabile* (vd. @doc-versionamento) considera tali solo le sezioni complete e verificate (vd. @doc-verifica), ignorando quelle vuote. Ogni versione stabile deve essere poi pubblicata nel sito tramite _pull request_, così da rendere disponibile il prima possibile lo stato aggiornato del documento.
@@ -448,12 +449,11 @@ Dove:
     - `DichiarazioneImpegni` per la dichiarazione di impegni
     - `NormeProgetto` per il documento di norme di progetto
     - `PianoDiProgetto` per il piano di progetto.
+    - `glossary` per il glossrio
   Si noti che l'utilizzo delle preposizioni (ad es. "di" in "Norme *di* progetto") è facoltativo.
 
-Fanno da eccezione:
-- I diari di bordo che sono collocati nella cartella `Slide`;
-// TODO: Link glossario rotto
-- Il glossario, che è collocato in #link("https://glitchhub-team.github.io/pdf/glossary.pdf")[`pdf/glossary.pdf`]
+Fanno da eccezione i diari di bordo che sono collocati nella cartella `Slide`;
+
 
 Si noti che sul sito web il gruppo rende disponibile sempre l'*ultima* versione *verificata* (vd. @doc-def-verificato) dei documenti della _baseline_ corrente.
 
