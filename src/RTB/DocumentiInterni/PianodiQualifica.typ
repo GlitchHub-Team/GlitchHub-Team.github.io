@@ -99,7 +99,7 @@
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
-  htmlId: "RTB-DocumentiInterni",
+  htmlId: "RTB-DocumentiEsterni",
   verificatore-interno: "Riccardo Graziani",
   left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Piano di Qualifica",
