@@ -105,8 +105,8 @@ const (
 
 	Piccola introduzione sprint.
 
-	=== Attività da svolgere
-	Il gruppo ha individuato le seguenti attività da svolgere:
+	=== Compiti da svolgere
+	Il gruppo ha individuato i seguenti compiti da svolgere:
 	- 
 	-
 	-
@@ -133,8 +133,8 @@ const (
 	)
 	#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint%d)
 
-	=== Attività svolte
-	Il gruppo ha svolto con successo le seguenti attività: \
+	=== Compiti svolti
+	Il gruppo ha svolto con successo i seguenti compiti: \
 	Issue relative a sprint %d: \
 	{{GROUPED_BY_STATE_ISSUES}}
 	- 
