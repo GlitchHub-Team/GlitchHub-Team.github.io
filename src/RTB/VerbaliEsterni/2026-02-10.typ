@@ -2,8 +2,15 @@
 
 #show: report.with(
   titolo: "Verbale esterno 10/02/2026 (M31)",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "13/02/2026",
+      "Riccardo Graziani",
+      "Jaume Bernardi",
+      "Versione stabile verbale esterno del 10/02/2026",
+    ),
     (
       "0.1.0",
       "13/02/2026",
@@ -25,8 +32,8 @@
     [Dubbi sulla scalability del prodotto],
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Jaume Bernardi",
+  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   verificatore-esterno: "",
   right-signature: "",
   tipo-verbale: "Esterno",
