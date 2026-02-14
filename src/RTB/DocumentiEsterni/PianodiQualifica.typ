@@ -5,6 +5,13 @@
   titolo: "Piano di Qualifica",
   stato: "Da verificare",
   registro-modifiche: (
+		(
+			"0.10.0", 
+			"14/02/2026", 
+			"Michele Dioli", 
+			"-", 
+			[Implementati grafici per cruscotto di valutazione]
+		),
 			(
 			"0.9.0", 
 			"07/02/2026", 
@@ -228,7 +235,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
   $ "SV" = "EV" - "PV" $
 
 - *MPC-TCR (Task Completion Rate)* \
-  Indica la percentuale di task completati rispetto a quelli chiusi in ritardo per un determinato periodo (es. Sprint). Rappresenta la capacità del team di completare il lavoro previsto.
+  Indica la percentuale di task completati rispetto a quelli chiusi in ritardo per un determinato sprint. Rappresenta la capacità del team di completare il lavoro previsto.
   $ "TCR" = ("Task Completati" / ("Task Completati" + "Task Ritardo")) times 100 $
 
 - *MPC-TS (Task Slippage)* \ //----------------------------------------
@@ -2089,7 +2096,313 @@ Non usare questa tabella usare lista sopra
 	]
 ]
 
-= Cruscotto di Valutazione
+= Cruscotto di Valutazione // aka DASHBOARD
+
+In questa sezione vengono presentate le misurazioni raccolte negli sprint compresi tra l’aggiudicazione del capitolato e il raggiungimento della RTB.
+Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite tabelle riepilogative, grafici di andamento e relativa interpretazione qualitativa.
+
+L’obiettivo del cruscotto è monitorare l’andamento di costi, tempi e produttività del team, individuando eventuali scostamenti rispetto alla pianificazione.
+
+==  MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
+
+#figure(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[PV (€)]],
+      [#text(fill: white, weight: "bold")[EV (€)]],
+      [#text(fill: white, weight: "bold")[PV acc. (€)]],
+      [#text(fill: white, weight: "bold")[EV acc. (€)]],
+    ),
+    [Sprint 1], [315,00], [242,31], [315,00], [242,31],
+    [Sprint 2], [240,00], [240,00], [555,00], [482,31],
+    [Sprint 3], [120,00], [144,00], [675,00], [626,31],
+    [Sprint 4], [290,00], [290,00], [965,00], [916,31],
+    [Sprint 5], [200,00], [250,00], [1.165,00], [1.166,31],
+    [Sprint 6], [345,00], [366,56], [1.510,00], [1.532,87],
+    [Sprint 7], [260,00], [260,00], [1.770,00], [1.792,87],
+    [Sprint 8], [445,00], [519,17], [2.215,00], [2.312,04],
+    [Sprint 9], [895,00], [842,35], [3.110,00], [3.154,39],
+  ),
+  caption: [Valori di PV e EV per sprint],
+)
+#figure(
+	image("../../assets/metriche/pv-ev.svg"),
+	caption: [Valori di PV e EV per sprint],
+)
+
+Il valore pianificato (PV) mostra un incremento progressivo coerente con l’avanzamento del progetto.
+
+Nel primo sprint l’EV risulta inferiore al PV (€242,31 contro €315,00), evidenziando una fase iniziale di assestamento del team. A partire dallo sprint 3 si osserva un miglioramento delle performance, con diversi periodi in cui l’EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
+
+L’EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di €3.110,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
+
+*Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
+*Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
+
+
+==  MPC-AC e MPC-ETC: _Actual Cost_ e _Estimate To Complete_
+
+#figure(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[AC (€)]],
+      [#text(fill: white, weight: "bold")[AC acc. (€)]],
+      [#text(fill: white, weight: "bold")[ETC (€)]],
+      [#text(fill: white, weight: "bold")[EAC (€)]],
+    ),
+    [Sprint 1], [240,00], [240,00], [12.611,43], [12.851,43],
+    [Sprint 2], [240,00], [480,00], [12.432,92], [12.912,92],
+    [Sprint 3], [150,00], [630,00], [12.421,49], [13.051,49],
+    [Sprint 4], [290,00], [920,00], [12.107,28], [13.027,28],
+    [Sprint 5], [230,00], [1.150,00], [11.643,58], [12.793,58],
+    [Sprint 6], [365,00], [1.515,00], [11.308,74], [12.823,74],
+    [Sprint 7], [260,00], [1.775,00], [11.070,67], [12.845,67],
+    [Sprint 8], [520,00], [2.295,00], [10.584,39], [12.879,39],
+    [Sprint 9], [830,00], [3.125,00], [9.729,11], [12.854,11],
+  ),
+  caption: [Valori di AC, ETC e EAC per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/ac-etc.svg"),
+	caption: [Valori di AC, ETC e EAC per sprint],
+)
+
+Il costo effettivo sostenuto (AC) cresce progressivamente fino a raggiungere €3.125,00 allo sprint 9. Il valore massimo di spesa per singolo sprint si registra nello sprint 9 (€830,00), in corrispondenza del picco di attività operative.
+
+L’ETC mostra una riduzione costante nel tempo, passando da €12.611,43 a €9.729,11, a conferma del regolare avanzamento del progetto verso il completamento.
+
+Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore rispetto al BAC di €12.975,00, con uno scostamento positivo di circa lo 0,9%.
+
+*Soglia accettabile:* $"AC" > 0€$ _sempre rispettata_. \
+*Soglia ottima:* $"AC" lt.eq "EAC"$ _sempre rispettata_.
+
+*Soglia accettabile:* $"ETC" gt.eq 0$  _sempre rispettata_. \
+*Soglia ottima:* $"ETC" gt.eq 0$  _sempre rispettata_.
+
+==  MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
+
+#figure(
+  table(
+    columns: (auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[CV (€)]],
+      [#text(fill: white, weight: "bold")[SV (€)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 1], [+2,31], [−72,69], [Ritardo schedulazione],
+    [Sprint 2], [0,00], [0,00], [In linea],
+    [Sprint 3], [−6,00], [+24,00], [Lieve costo extra],
+    [Sprint 4], [0,00], [0,00], [In linea],
+    [Sprint 5], [+20,00], [+50,00], [Sotto budget e in anticipo],
+    [Sprint 6], [+1,56], [+21,56], [Sotto budget e in anticipo],
+    [Sprint 7], [0,00], [0,00], [In linea],
+    [Sprint 8], [−0,83], [+74,17], [In anticipo (costo ~in linea)],
+    [Sprint 9], [+12,35], [−52,65], [Ritardo schedulazione],
+  ),
+  caption: [Cost Variance e Schedule Variance per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/cv-sv.svg"),
+	caption: [Cost Variance e Schedule Variance per sprint],
+)
+
+- *Cost Variance (CV)*: La CV risulta prevalentemente positiva o nulla, indicando un buon controllo dei costi. Gli unici scostamenti negativi si verificano negli sprint 3 (−€6,00) e 8 (−€0,83), entrambi di entità trascurabile. Lo sprint 5 registra il miglior risultato economico (+€20,00).
+
+- *Schedule Variance (SV)*: La SV presenta maggiore variabilità. Lo sprint 1 evidenzia il principale ritardo (−€72,69), attribuibile alla fase iniziale di rodaggio del team. Gli sprint intermedi mostrano valori positivi significativi, indicando recupero e anticipo sulla pianificazione. Nello sprint 9 si osserva un nuovo rallentamento (−€52,65).
+
+*Soglia accettabile CV:* $"CV" > 0$ _violata in 2 sprint su 9 (scostamenti minimi)_ \
+*Soglia accettabile SV:* $"SV" gt.eq 0$ _violata negli sprint 1 e 9_
+
+
+==  MPC-BAC e MPC-EAC: _Budget At Completion_ e _Estimate At Completion_
+
+$ "BAC" = 12.975 € $
+
+#figure(
+  table(
+    columns: (auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[EAC (€)]],
+      [#text(fill: white, weight: "bold")[BAC (€)]],
+      [#text(fill: white, weight: "bold")[Stato]],
+    ),
+    [Sprint 1], [12.851,43], [12.975,00], [EAC < BAC],
+    [Sprint 2], [12.912,92], [12.975,00], [EAC < BAC],
+    [Sprint 3], [13.051,49], [12.975,00], [EAC > BAC],
+    [Sprint 4], [13.027,28], [12.975,00], [EAC > BAC],
+    [Sprint 5], [12.793,58], [12.975,00], [EAC < BAC],
+    [Sprint 6], [12.823,74], [12.975,00], [EAC < BAC],
+    [Sprint 7], [12.845,67], [12.975,00], [EAC < BAC],
+    [Sprint 8], [12.879,39], [12.975,00], [EAC < BAC],
+    [Sprint 9], [12.854,11], [12.975,00], [EAC < BAC],
+  ),
+  caption: [EAC vs BAC per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/eac-bac.svg"),
+	caption: [EAC vs BAC per sprint],
+)
+
+Durante il progetto l’EAC oscilla attorno al BAC, con valori compresi tra €12.793,58 e €13.051,49. Il superamento del BAC si verifica esclusivamente negli sprint 3 e 4; a partire dallo sprint 5 l’EAC rientra stabilmente sotto il budget previsto.
+
+Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una previsione di completamento sotto budget.
+
+*Risparmio stimato finale*: €120,89 (≈ −0,9%)
+
+*Soglia accettabile: EAC* $>= 0,95$ × BAC = €12.326,25 _sempre rispettata_
+
+
+
+== MPC-TCR: _Task Completion Rate_
+
+#figure(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[Completate]],
+      [#text(fill: white, weight: "bold")[In Ritardo]],
+      [#text(fill: white, weight: "bold")[TCR (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 1], [12], [0], [100,0%], [Ottimo],
+    [Sprint 2], [11], [0], [100,0%], [Ottimo],
+    [Sprint 3], [10], [1], [90,9%], [Accettabile],
+    [Sprint 4], [11], [0], [100,0%], [Ottimo],
+    [Sprint 5], [11], [0], [100,0%], [Ottimo],
+    [Sprint 6], [11], [1], [91,7%], [Accettabile],
+    [Sprint 7], [8], [2], [80,0%], [Critico],
+    [Sprint 8], [12], [2], [85,7%], [Accettabile],
+    [Sprint 9], [24], [0], [100,0%], [Ottimo],
+  ),
+  caption: [Task Completion Rate per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/tcr.svg"),
+	caption: [Task Completion Rate per sprint],
+)
+
+Il TCR risulta ottimo (100%) in 6 sprint su 9.
+
+Le principali flessioni si osservano:
+	-	Sprint 7:  80,0% (unico sotto soglia accettabile)
+	-	Sprint 8:  85,7%
+	-	Sprint 3: e 6  circa 91%
+
+Il recupero completo nello sprint 9 (100% con 24 task completate) dimostra una buona capacità di reazione del team.
+
+*Soglia accettabile:* $"TCR" gt.eq 85%$ _violata solo nello sprint 7_. \
+
+
+== MPC-TS: _Task Slippage_
+
+#figure(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[Completate]],
+      [#text(fill: white, weight: "bold")[In Ritardo]],
+      [#text(fill: white, weight: "bold")[TS (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 1], [12], [0], [0,0%], [Ottimo],
+    [Sprint 2], [11], [0], [0,0%], [Ottimo],
+    [Sprint 3], [10], [1], [9,1%], [Accettabile],
+    [Sprint 4], [11], [0], [0,0%], [Ottimo],
+    [Sprint 5], [11], [0], [0,0%], [Ottimo],
+    [Sprint 6], [11], [1], [8,3%], [Accettabile],
+    [Sprint 7], [8], [2], [20,0%], [Critico],
+    [Sprint 8], [12], [2], [14,3%], [Accettabile],
+    [Sprint 9], [24], [0], [0,0%], [Ottimo],
+  ),
+  caption: [Task Slippage per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/ts.svg"),
+	caption: [Task Slippage per sprint],
+)
+
+Il Task Slippage conferma quanto osservato nel TCR:
+	-	In 6 sprint su 9 il valore è pari a 0%, indicando pieno rispetto delle scadenze
+	-	Sprint 7 rappresenta il punto critico (20,0%), superando la soglia accettabile
+	-	Sprint 8 si colloca al limite (14,3%)
+	-	Sprint 3 e 6 mostrano scostamenti fisiologici contenuti
+
+*Soglia accettabile:* $"TS" lt.eq 15%$ _violata solo nello sprint 7_. \
+
+== MPC-IG: Indice di Gulpease
+
+#figure(
+	image("../../assets/metriche/gulpease.svg"),
+	caption: [Indice di Gulpease per sprint],
+)
+
+Nel complesso il _team_ ha mantenuto una buona attenzione alla leggibilità dei documenti prodotti. Il Glossario e l’Analisi dei Requisiti (AdR) si collocano stabilmente in prossimità o al di sopra della soglia ottima ($>= 60$), indicando un’elevata comprensibilità dei testi.
+
+L’AdR evidenzia un calo significativo tra lo sprint 1 e lo sprint 3 (da 90 a 65), riconducibile all’inserimento massivo di contenuti tecnici, coincidente con l’avvio della redazione dei primi casi d’uso. Successivamente il valore recupera progressivamente fino a 72,3.
+
+Il Piano di Qualifica (PdQ) mostra un andamento leggermente decrescente (da 72 a 63), pur rimanendo sempre superiore alla soglia minima di accettabilità ($>= 40$).
+
+Le Norme di Progetto (NdP) si mantengono invece stabili nell’intervallo 71–73, valori coerenti con la natura normativa del documento, tipicamente meno scorrevole rispetto ai documenti descrittivi.
+
+Soglia accettabile: IG $>= 40$ _rispettata_
+Soglia ottima: IG $>= 60$ _rispettata_
+
+
+== MPC-CO: Correttezza Ortografica
+
+#figure(
+	image("../../assets/metriche/errori.svg"),
+	caption: [Indice di Gulpease per sprint],
+)
+
+Il grafico evidenzia i primi sprint caratterizzati da una gestione non ancora ottimale degli errori ortografici. Infatti nei primi sprint (S1–S4) si registrano infatti picchi significativi, in particolare:
+	-	Analisi dei Requisiti: fino a 34 errori nello sprint 3
+	-	Norme di Progetto: fino a 28 errori nello sprint 4
+	-	Piano di Progetto: 14 errori nello sprint 1
+
+Un’analisi più approfondita ha evidenziato che parte degli errori segnalati dallo script automatico includeva forme linguistiche corrette, come le “d” eufoniche, erroneamente classificate come refusi. Tali segnalazioni sono state individuate, verificate manualmente e successivamente escluse dal conteggio.
+
+A partire dagli sprint successivi si osserva una drastica riduzione degli errori, fino al raggiungimento sistematico del valore ottimo (0 errori) nella maggior parte dei documenti. Persistono solo sporadiche anomalie residue (AdR: 1 errore in S9; NdP: 2 errori in S8; PdQ: 2 errori in S6), fisiologiche in un contesto di aggiornamento continuo dei documenti.
+
+Nel complesso, l’andamento conferma un progressivo miglioramento del processo di revisione e controllo qualitativo.
+
 
 = Iniziative di miglioramento <iniziative-miglioramento>
 Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \

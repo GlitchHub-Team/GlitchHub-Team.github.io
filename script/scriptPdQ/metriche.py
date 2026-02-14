@@ -1,367 +1,574 @@
-import subprocess
+import requests
+from collections import defaultdict
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+import time
+from dotenv import load_dotenv
 import os
-import pandas as pd
-import re
-from pypdf import PdfReader
-import language_tool_python
-from spellchecker import SpellChecker
 
-ROOT_DIR = "../../"
-SRC_DIR = "../../src/RTB"
-OUTPUT_EXCEL_REPORT = "errori&gulp.xlsx"
+load_dotenv()
 
-WHITELIST = {
-    # Nomi propri
-    "glitchhub", "alessandro", "dinato", "elia", "ernesto", "stellin",
-    "jaume", "bernardi", "michele", "dioli", "riccardo", "graziani",
-    "siria", "salvalaio", "hossam", "ver", "of", "ezzemouri",
-    "m31", "srl", "luca", "cossaro", "moones", "mobaraki", "cristian", "pirlog",
-    "vardanega", "tullio", "cardin", "unipd", "math",
-    
-    # Termini tecnici documentazione
-    "consuntivo", "preventivo", "redazione", "rendicontazione", "norme", 
-    "qualifica", "capitolato", "proponente", "committente", "verbali", 
-    "bozza", "stabile", "incrementale", "monolitico", "manutenibilità", 
-    "usabilità", "affidabilità", "scalabilità", "cifratura", "completezza", 
-    "ortografica", "avanzamento", "cruscotto", "pedice",
-    
-    # Acronimi e metriche
-    "mpc", "pv", "ac", "ev", "bac", "eac", "etc", "cv", "sv", "tcr", "ts", 
-    "rsi", "prct", "ig", "gulpease", "co", "cd", "cc", "tsr", "dd", "crg", 
-    "qms", "cq", "te", "wd", "spf", "mpd", "cro", "crp", "ad", "dl", "ft", 
-    "ff", "mtbf", "mttr", "lt", "mum", "rt", "ur", "an", "mo", "de", "afr",
-    
-    # Ruoli utente
-    "superadmin", "tenantadmin", "tenantuser",
-    
-    # Tool e tecnologie
-    "typst", "latex", "github", "clickup", "discord", "microsoft", "teams", 
-    "tinymist", "cetz", "semver", "nosql", "api", "apis",
-    
-    # Ruoli abbreviati (BASE per pedici G, G1, G2, etc.)
-    "resp", "amm", "verif", "verf", "analist", "progett", "programm",
-    "respg", "ammg", "verifg", "verfg", "analistg", "progettg", "programmg",
-    
-    # Admin e varianti
-    "admin", "tenant", "enant",
-    
-    # Termini tecnici aggiuntivi
-    "postcondizioni", "precondizioni", "timestamp", "datetime",
-    "timeseries", "tenat", "oximeter", "outofrange", "realtime", 
-    "obb", "des", "stat", "multitenant", "multitenancy",
-    
-    # Grafici
-    "torta", "barre", "linea", "istogramma",
-    
-    # Altre parole comuni nei documenti
-    "frontend", "backend", "database", "endpoint", "workflow",
-    "sprint", "backlog", "stakeholder", "milestone", "deploy",
-    "repository", "commit", "branch", "merge", "pull", "push",
-    "refactoring", "debugging", "testing", "mock", "stub",
-}
+GITHUB_TOKEN = ""
+ORGANIZATION = "GlitchHub-Team"
+PROJECT_NUMBER = 2
+OUTPUT_FILE = "report_sprint_gerarchico.xlsx"
 
-PEDICE_PATTERN = re.compile(r'^(.+?)(G\d*|g\d*)$')
+EXPECTED_HOURS_FIELD = "Expected Worked Hours"
+WORKED_HOURS_FIELD = "Worked hours"
+ROLE_FIELD_NAME = "Sprint role"
 
-IGNORA_PATTERN = [
-    "a torta", "a barre", "a linea", "T otale", "t otale",
-    "della API", "a dati", "ai Super", "del API", "dal API", 
-    "Client e", "delle API", "alle API", "con API"
+EXCLUDED_LABELS = ["task-palestra"]
+
+STANDARD_ROLES = [
+    "Responsabile",
+    "Amministratore",
+    "Analista",
+    "Progettista",
+    "Programmatore",
+    "Verificatore"
 ]
 
-try:
-    tool_it = language_tool_python.LanguageTool('it')
-    spell_en = SpellChecker(language='en')
-except Exception:
-    exit(1)
+HOURLY_RATES = {
+    "Responsabile": 30,
+    "Amministratore": 20,
+    "Analista": 25,
+    "Progettista": 25,
+    "Programmatore": 15,
+    "Verificatore": 15,
+    "Non assegnato": 15
+}
+
+BAT_BUDGET = 12975
 
 
-def ripara_testo_pdf(testo):
-    if not testo:
-        return ""
+def get_all_project_items(org, project_num, token):
+    url = "https://api.github.com/graphql"
+    headers = {"Authorization": f"bearer {token}"}
 
-    testo = testo.replace('\x00', '')
-    testo = re.sub(r'(\w)-\n(\w)', r'\1\2', testo)
-    testo = re.sub(r'(\w)\s*-\s+([a-z])', r'\1\2', testo)
-    testo = re.sub(r'(\w)\u00ad\s*(\w)', r'\1\2', testo)
+    all_nodes = []
+    has_next_page = True
+    end_cursor = None
 
-    trattini = '[\u2010\u2011\u2012\u2013\u2014\u2015\u2212]'
-    testo = re.sub(rf'(\w){trattini}\s*\n?\s*([a-z])', r'\1\2', testo)
-    testo = re.sub(r'(\w)\s*\n\s*([a-z])', r'\1\2', testo)
-    testo = testo.replace('\u00ad', '')
-    
-    correzioni = {
-        "T otale": "Totale",
-        "t otale": "totale",
-        "C liente": "Cliente",
-        "c liente": "cliente",
-        "S erver": "Server",
-        "s erver": "server",
-    }
-    for errato, corretto in correzioni.items():
-        testo = testo.replace(errato, corretto) 
-  
-    testo = re.sub(r'[ \t]+', ' ', testo)
-    testo = re.sub(r'\n\s*\n', '\n\n', testo)
-    
-    return testo.strip()
+    while has_next_page:
+        after_arg = f', after: "{end_cursor}"' if end_cursor else ""
 
-
-def parola_in_whitelist(parola):
-    parola_lower = parola.lower().strip()
-
-    if parola_lower in WHITELIST:
-        return True
-
-    parola_clean = re.sub(r'[^\w]', '', parola_lower)
-    if parola_clean in WHITELIST:
-        return True
-
-    match = PEDICE_PATTERN.match(parola_clean)
-    if match:
-        base = match.group(1).lower()
-        if base in WHITELIST:
-            return True
-    
-    match_num = re.match(r'^(.+?)(\d+)$', parola_clean)
-    if match_num:
-        base = match_num.group(1)
-        if base in WHITELIST:
-            return True
-    
-    if parola_clean.endswith('g') and len(parola_clean) > 1:
-        base = parola_clean[:-1]
-        if base in WHITELIST:
-            return True
-    
-    return False
-
-
-def e_parola_tecnica(parola):
-    if re.match(r'^[a-z]+[A-Z]', parola):
-        return True
-
-    if '_' in parola:
-        return True
-
-    if re.match(r'^[a-zA-Z]+\d+[a-zA-Z]*$', parola):
-        return True
-
-    if parola.isupper() and len(parola) >= 2:
-        return True
-
-    if '/' in parola or '.' in parola and len(parola) > 5:
-        return True
-    
-    return False
-
-
-def conta_frasi_semplice(testo):
-    abbreviazioni = [
-        r'Sig\.', r'Dott\.', r'Prof\.', r'Dr\.', r'art\.', r'pag\.',
-        r'ecc\.', r'sig\.ra', r'sig\.na', r'Vs\.', r'N\.', r'n\.',
-        r'cap\.', r'tel\.', r'fig\.', r'tab\.', r'vol\.', r'pp\.',
-        r'ed\.', r'cfr\.', r'ca\.', r'es\.', r'etc\.', r'vs\.',
-    ]
-    
-    testo_temp = testo
-    for i, abbr in enumerate(abbreviazioni):
-        testo_temp = re.sub(abbr, f'ABBR{i}ABBR', testo_temp, flags=re.IGNORECASE)
-    
-    frasi = re.split(r'[.!?]+(?:\s+|$)', testo_temp)
-    frasi = [f.strip() for f in frasi if f.strip()]
-    
-    if len(frasi) == 0 and testo.strip():
-        return 1
-    
-    return len(frasi)
-
-
-def conta_parole(testo):
-    testo_pulito = re.sub(r'[^\w\s\']', ' ', testo)
-    parole = testo_pulito.split()
-    parole = [p for p in parole if p.strip() and not p.isdigit()]
-    return len(parole)
-
-
-def calcola_gulp_ease_semplice(testo):
-    if not testo.strip():
-        return 0, 0, 0, 0
-
-    try:
-        num_frasi = conta_frasi_semplice(testo)
-        num_parole = conta_parole(testo)
-        num_lettere = len([c for c in testo if c.isalpha()])
-
-        if num_parole == 0 or num_frasi == 0:
-            return 0, num_frasi, num_parole, num_lettere
-
-        gulp_ease = 89 + ((300 * num_frasi) - (10 * num_lettere)) / num_parole
-        
-        return round(gulp_ease, 2), num_frasi, num_parole, num_lettere
-        
-    except Exception:
-        return 0, 0, 0, 0
-
-
-def controlla_errori_smart(testo, tool_it, spell_en):
-    errori_log = []
-    
-    try:
-        matches = tool_it.check(testo)
-        
-        for match in matches:
-            regole_ignorate = {
-                "WHITESPACE_RULE", 
-                "UPPERCASE_SENTENCE_START", 
-                "Double_Punctuation",
-                "COMMA_PARENTHESIS_WHITESPACE",
-                "UNPAIRED_BRACKETS",
-                "MORFOLOGIK_RULE_IT_IT", 
+        query = """
+        query {
+          organization(login: "%s") {
+            projectV2(number: %d) {
+              items(first: 100%s) {
+                pageInfo { hasNextPage, endCursor }
+                nodes {
+                  content {
+                    ... on Issue {
+                      title
+                      number
+                      state
+                      url
+                      createdAt
+                      author { login }
+                      assignees(first: 10) {
+                        nodes { login }
+                      }
+                      labels(first: 10) { nodes { name } }
+                    }
+                  }
+                  fieldValues(first: 20) {
+                    nodes {
+                      ... on ProjectV2ItemFieldIterationValue {
+                        title
+                        field { ... on ProjectV2IterationField { name } }
+                      }
+                      ... on ProjectV2ItemFieldSingleSelectValue {
+                        name
+                        field { ... on ProjectV2SingleSelectField { name } }
+                      }
+                      ... on ProjectV2ItemFieldNumberValue {
+                        number
+                        field { ... on ProjectV2Field { name } }
+                      }
+                      ... on ProjectV2ItemFieldTextValue {
+                        text
+                        field { ... on ProjectV2Field { name } }
+                      }
+                    }
+                  }
+                }
+              }
             }
-            
-            if match.rule_id in regole_ignorate:
-                continue
+          }
+        }
+        """ % (org, project_num, after_arg)
 
-            parola = testo[match.offset : match.offset + match.error_length]
+        response = requests.post(url, json={'query': query}, headers=headers)
+        if response.status_code != 200:
+            raise Exception(f"Errore HTTP: {response.status_code} - {response.text}")
 
-            if not re.search(r'[a-zA-Z]', parola):
-                continue
-            
-            ctx_around = testo[max(0, match.offset - 10):match.offset + match.error_length + 10]
-            if any(pattern.lower() in ctx_around.lower() for pattern in IGNORA_PATTERN):
-                continue
-            
-            parola_clean = re.sub(r'[^\w]', '', parola)
-            
-            if parola_in_whitelist(parola_clean):
-                continue
+        data = response.json()
+        if 'errors' in data:
+            raise Exception(data['errors'][0]['message'])
 
-            if e_parola_tecnica(parola_clean):
-                continue
+        chunk = data['data']['organization']['projectV2']['items']
+        all_nodes.extend(chunk['nodes'])
+        has_next_page = chunk['pageInfo']['hasNextPage']
+        end_cursor = chunk['pageInfo']['endCursor']
+        time.sleep(0.2)
 
-            if len(parola_clean) > 2:
-                if parola_clean.lower() in spell_en:
-                    continue
-                base = re.sub(r'\d+$', '', parola_clean.lower())
-                if base and base in spell_en:
-                    continue
+    return all_nodes
 
-            sugg = match.replacements[0] if match.replacements else "N/A"
 
-            ctx_start = max(0, match.offset - 25)
-            ctx_end = min(len(testo), match.offset + match.error_length + 25)
-            ctx = testo[ctx_start:ctx_end].replace("\n", " ").strip()
-            
-            errori_log.append({
-                "Parola": parola,
-                "Suggerimento": sugg,
-                "Contesto": f"...{ctx}...",
-                "Tipo": match.rule_id
-            })
-    
+def main():
+    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+    try:
+        items = get_all_project_items(ORGANIZATION, PROJECT_NUMBER, GITHUB_TOKEN)
     except Exception:
-        pass
-    
-    return errori_log
-
-
-def formatta_errori(errori_list):
-    if not errori_list:
-        return "Nessun errore"
-    
-    result = []
-    for err in errori_list:
-        result.append(f"• '{err['Parola']}' → {err['Suggerimento']} | CTX: {err['Contesto']}")
-    
-    return "\n".join(result)
-
-
-def esegui_analisi_completa():
-    if not os.path.exists(SRC_DIR):
-        return
-    
-    files_to_process = []
-    for root, dirs, files in os.walk(SRC_DIR):
-        for file in files:
-            if file.endswith(".typ") and not file.startswith("_") and not file[0].isdigit():
-                if "bd" not in file.lower() and "diario" not in file.lower():
-                    files_to_process.append(os.path.join(root, file))
-    
-    if not files_to_process:
         return
 
-    report_data = []
-    errori_compilazione = []
-    
-    for idx, fpath in enumerate(files_to_process, 1):
-        nome_file = os.path.basename(fpath)
-        pdf_temp = f"temp_{nome_file.replace('.typ', '')}.pdf"
-        
-        try:
-            result = subprocess.run(
-                ["typst", "compile", "--root", ROOT_DIR, fpath, pdf_temp],
-                check=True,
-                capture_output=True,
-                text=True
-            )
-            
-            if not os.path.exists(pdf_temp):
-                errori_compilazione.append(nome_file)
-                continue
-            
-            reader = PdfReader(pdf_temp)
-            full_text = ""
-            for page in reader.pages:
-                page_text = page.extract_text()
-                if page_text:
-                    full_text += page_text + " "
-            
-            if not full_text.strip():
+    sprint_summary = {}
+    role_hours_expected = defaultdict(float)
+    role_hours_worked = defaultdict(float)
+    sprint_role_hours = defaultdict(lambda: defaultdict(lambda: {'expected': 0, 'worked': 0}))
+    author_hours_expected = defaultdict(float)
+    author_hours_worked = defaultdict(float)
+    sprint_author_hours = defaultdict(lambda: defaultdict(lambda: {'expected': 0, 'worked': 0}))
+
+    assignee_hours = defaultdict(lambda: {'expected': 0, 'worked': 0, 'issue_count': 0})
+    sprint_assignee_hours = defaultdict(lambda: defaultdict(lambda: {'expected': 0, 'worked': 0, 'issue_count': 0}))
+
+    for item in items:
+        if not item['content']:
+            continue
+
+        labels = [l['name'].lower() for l in item['content']['labels']['nodes']]
+
+        if any(excl.lower() in labels for excl in EXCLUDED_LABELS):
+            continue
+
+        sprint_name = "Backlog"
+        expected_hours = 0
+        worked_hours = 0
+        role = "Non assegnato"
+
+        for fv in item['fieldValues']['nodes']:
+            if not fv or 'field' not in fv:
                 continue
 
-            txt = ripara_testo_pdf(full_text)
-            gulp, frasi, parole, lettere = calcola_gulp_ease_semplice(txt)
-            errori = controlla_errori_smart(txt, tool_it, spell_en)
+            field_name = fv['field'].get('name', '')
 
-            with open("file.txt", "w", encoding="utf-8") as f:
-                f.write(f"=== {nome_file} ===\n")
-                for errore in errori:
-                    f.write(f"{errore}\n")
+            if field_name == 'Sprint':
+                sprint_name = fv.get('title') or fv.get('name') or "Backlog"
+
+            if field_name == EXPECTED_HOURS_FIELD:
+                expected_hours = fv.get('number') or 0
+
+            if field_name == WORKED_HOURS_FIELD:
+                worked_hours = fv.get('number') or 0
+
+            if field_name == ROLE_FIELD_NAME:
+                role = fv.get('name') or fv.get('text') or "Non assegnato"
+
+        author = item['content'].get('author', {})
+        author_login = author.get('login', 'Sconosciuto') if author else 'Sconosciuto'
+
+        state = item['content']['state']
+
+        if sprint_name not in sprint_summary:
+            sprint_summary[sprint_name] = {
+                'completate': 0,
+                'ritardo': 0,
+                'ore_stimate': 0,
+                'ore_lavorate': 0,
+                'ore_stimate_completate': 0,
+                'ore_lavorate_completate': 0
+            }
+
+        sprint_summary[sprint_name]['ore_stimate'] += expected_hours
+        sprint_summary[sprint_name]['ore_lavorate'] += worked_hours
+
+        if state == 'CLOSED':
+            sprint_summary[sprint_name]['completate'] += 1
+            sprint_summary[sprint_name]['ore_stimate_completate'] += expected_hours
+            sprint_summary[sprint_name]['ore_lavorate_completate'] += worked_hours
+
+        if state == 'CLOSED' and 'delayed' in labels:
+            sprint_summary[sprint_name]['ritardo'] += 1
+
+        role_hours_expected[role] += expected_hours
+        role_hours_worked[role] += worked_hours
+        sprint_role_hours[sprint_name][role]['expected'] += expected_hours
+        sprint_role_hours[sprint_name][role]['worked'] += worked_hours
+
+        author_hours_expected[author_login] += expected_hours
+        author_hours_worked[author_login] += worked_hours
+        sprint_author_hours[sprint_name][author_login]['expected'] += expected_hours
+        sprint_author_hours[sprint_name][author_login]['worked'] += worked_hours
+
+        assignees = item['content'].get('assignees', {}).get('nodes', [])
+        if assignees:
+            num_assignees = len(assignees)
+            hours_per_assignee_exp = expected_hours / num_assignees if num_assignees > 0 else 0
+            hours_per_assignee_wrk = worked_hours / num_assignees if num_assignees > 0 else 0
+
+            for assignee in assignees:
+                assignee_login = assignee.get('login', 'Sconosciuto')
+                assignee_hours[assignee_login]['expected'] += hours_per_assignee_exp
+                assignee_hours[assignee_login]['worked'] += hours_per_assignee_wrk
+                assignee_hours[assignee_login]['issue_count'] += 1
+                sprint_assignee_hours[sprint_name][assignee_login]['expected'] += hours_per_assignee_exp
+                sprint_assignee_hours[sprint_name][assignee_login]['worked'] += hours_per_assignee_wrk
+                sprint_assignee_hours[sprint_name][assignee_login]['issue_count'] += 1
+        else:
+            assignee_hours['Non assegnato']['expected'] += expected_hours
+            assignee_hours['Non assegnato']['worked'] += worked_hours
+            assignee_hours['Non assegnato']['issue_count'] += 1
+            sprint_assignee_hours[sprint_name]['Non assegnato']['expected'] += expected_hours
+            sprint_assignee_hours[sprint_name]['Non assegnato']['worked'] += worked_hours
+            sprint_assignee_hours[sprint_name]['Non assegnato']['issue_count'] += 1
+
+    wb = Workbook()
+
+    header_font = Font(bold=True, color='FFFFFF')
+    header_fill = PatternFill('solid', start_color='4472C4')
+    header_align = Alignment(horizontal='center', vertical='center')
+    thin_border = Border(
+        left=Side(style='thin'), right=Side(style='thin'),
+        top=Side(style='thin'), bottom=Side(style='thin')
+    )
+    role_font = Font(bold=True)
+
+    ws = wb.active
+    ws.title = 'Report'
+
+    def sprint_sort_key(name):
+        import re
+        match = re.search(r'(\d+)', name)
+        return int(match.group(1)) if match else 999
+
+    sorted_sprints = sorted(
+        [s for s in sprint_role_hours.keys() if s != "Backlog"],
+        key=sprint_sort_key
+    )
+
+    current_row = 1
+
+    title_font = Font(bold=True, size=14)
+    ws.cell(row=current_row, column=1, value="RIEPILOGO ORE PER RUOLO").font = title_font
+    current_row += 2
+
+    header_row = ['Ruolo']
+    for sprint in sorted_sprints:
+        sprint_short = sprint.replace("Sprint ", "S")
+        header_row.extend([f'{sprint_short} Prev.', f'{sprint_short} Eff.'])
+
+    for col, val in enumerate(header_row, 1):
+        cell = ws.cell(row=current_row, column=col, value=val)
+        cell.font = header_font
+        cell.fill = header_fill
+        cell.alignment = header_align
+        cell.border = thin_border
+
+    current_row += 1
+
+    role_totals = {}
+    for role in STANDARD_ROLES:
+        ws.cell(row=current_row, column=1, value=role).font = role_font
+        ws.cell(row=current_row, column=1).border = thin_border
+        col = 2
+        role_total_exp = 0
+        role_total_wrk = 0
+        for sprint in sorted_sprints:
+            exp = sprint_role_hours[sprint][role]['expected']
+            wrk = sprint_role_hours[sprint][role]['worked']
+            role_total_exp += exp
+            role_total_wrk += wrk
+            ws.cell(row=current_row, column=col, value=exp).border = thin_border
+            ws.cell(row=current_row, column=col+1, value=wrk).border = thin_border
+            col += 2
+        role_totals[role] = {'expected': role_total_exp, 'worked': role_total_wrk}
+        current_row += 1
+
+    total_fill = PatternFill('solid', start_color='D9E2F3')
+    ws.cell(row=current_row, column=1, value="TOTALE").font = Font(bold=True)
+    ws.cell(row=current_row, column=1).fill = total_fill
+    ws.cell(row=current_row, column=1).border = thin_border
+    col = 2
+    grand_total_exp = 0
+    grand_total_wrk = 0
+    for sprint in sorted_sprints:
+        total_exp = sum(sprint_role_hours[sprint][r]['expected'] for r in STANDARD_ROLES)
+        total_wrk = sum(sprint_role_hours[sprint][r]['worked'] for r in STANDARD_ROLES)
+        grand_total_exp += total_exp
+        grand_total_wrk += total_wrk
+        cell_exp = ws.cell(row=current_row, column=col, value=total_exp)
+        cell_wrk = ws.cell(row=current_row, column=col+1, value=total_wrk)
+        for c in [cell_exp, cell_wrk]:
+            c.font = Font(bold=True)
+            c.fill = total_fill
+            c.border = thin_border
+        col += 2
+
+    tot_row = 11
+    ws.cell(row=tot_row, column=1, value="TOTALI").font = title_font
+    tot_row += 1
+
+    for col, val in enumerate(['Ruolo', 'TOT Prev.', 'TOT Eff.'], 1):
+        cell = ws.cell(row=tot_row, column=col, value=val)
+        cell.font = header_font
+        cell.fill = PatternFill('solid', start_color='70AD47')
+        cell.alignment = header_align
+        cell.border = thin_border
+    tot_row += 1
+
+    for role in STANDARD_ROLES:
+        ws.cell(row=tot_row, column=1, value=role).font = role_font
+        ws.cell(row=tot_row, column=1).border = thin_border
+        ws.cell(row=tot_row, column=2, value=role_totals[role]['expected']).border = thin_border
+        ws.cell(row=tot_row, column=3, value=role_totals[role]['worked']).border = thin_border
+        tot_row += 1
+
+    grand_fill = PatternFill('solid', start_color='C6EFCE')
+    ws.cell(row=tot_row, column=1, value="TOTALE").font = Font(bold=True)
+    ws.cell(row=tot_row, column=1).fill = grand_fill
+    ws.cell(row=tot_row, column=1).border = thin_border
+    cell_gt_exp = ws.cell(row=tot_row, column=2, value=grand_total_exp)
+    cell_gt_wrk = ws.cell(row=tot_row, column=3, value=grand_total_wrk)
+    for c in [cell_gt_exp, cell_gt_wrk]:
+        c.font = Font(bold=True)
+        c.fill = grand_fill
+        c.border = thin_border
+
+    current_row += 3
+
+    current_row = 22
+
+    ws.cell(row=current_row, column=1, value="RIEPILOGO SPRINT").font = title_font
+    current_row += 2
+
+    headers2 = ['Sprint', 'Completate', 'In Ritardo', 'Ore Stimate', 'Ore Lavorate', 'Ore Stim. Compl.', 'Ore Lav. Compl.', 'TCR (%)']
+    for col, val in enumerate(headers2, 1):
+        cell = ws.cell(row=current_row, column=col, value=val)
+        cell.font = header_font
+        cell.fill = header_fill
+        cell.alignment = header_align
+        cell.border = thin_border
+
+    current_row += 1
+
+    for sprint in sorted_sprints + (["Backlog"] if "Backlog" in sprint_summary else []):
+        if sprint in sprint_summary:
+
+            data = sprint_summary[sprint]
+
+            comp = data['completate']
+            rit = data['ritardo']
+            denominatore = comp + rit
             
-            report_data.append({
-                "Nome File": nome_file,
-                "Indice Gulpease": gulp,
-                "Numero Errori": len(errori),
-            })
-            
-        except FileNotFoundError:
-            errori_compilazione.append(nome_file)
-            break
-            
-        except subprocess.CalledProcessError:
-            errori_compilazione.append(nome_file)
-            
-        except Exception:
-            errori_compilazione.append(nome_file)
-            
-        finally:
-            if os.path.exists(pdf_temp):
-                try:
-                    os.remove(pdf_temp)
-                except:
-                    pass
+            if denominatore > 0:
+                tcr_val = (comp / denominatore) * 100
+            else:
+                tcr_val = 0
+
+            row_data = [
+                sprint,
+                data['completate'],
+                data['ritardo'],
+                data['ore_stimate'],
+                data['ore_lavorate'],
+                data['ore_stimate_completate'],
+                data['ore_lavorate_completate'],
+                f"{tcr_val:.1f}%"
+            ]
+            for col, val in enumerate(row_data, 1):
+                cell = ws.cell(row=current_row, column=col, value=val)
+                cell.border = thin_border
+                if col == 1:
+                    cell.font = role_font
+            current_row += 1
+
+    ws.column_dimensions['A'].width = 25
+    for i in range(2, len(header_row) + 1):
+        col_letter = chr(64 + i) if i <= 26 else 'A' + chr(64 + i - 26)
+        ws.column_dimensions[col_letter].width = 12
+
+    current_row += 2
+
+    ws.cell(row=current_row, column=1, value="ORE PER PERSONA ASSEGNATA").font = title_font
+    current_row += 2
+
+    headers3 = ['Persona', 'N. Issue', 'Ore Prev.', 'Ore Eff.', 'Differenza']
+    for col, val in enumerate(headers3, 1):
+        cell = ws.cell(row=current_row, column=col, value=val)
+        cell.font = header_font
+        cell.fill = PatternFill('solid', start_color='ED7D31')
+        cell.alignment = header_align
+        cell.border = thin_border
+    current_row += 1
+
+    sorted_assignees = sorted(assignee_hours.items(), key=lambda x: x[1]['worked'], reverse=True)
+
+    assignee_to_anonymous = {}
+    person_counter = 1
+    for assignee, _ in sorted_assignees:
+        if assignee == 'Non assegnato':
+            assignee_to_anonymous[assignee] = 'Non assegnato'
+        else:
+            assignee_to_anonymous[assignee] = f'Persona {person_counter}'
+            person_counter += 1
+
+    total_assignee_exp = 0
+    total_assignee_wrk = 0
+    total_issue_count = 0
+
+    for assignee, hours in sorted_assignees:
+        anonymous_name = assignee_to_anonymous[assignee]
+        ws.cell(row=current_row, column=1, value=anonymous_name).font = role_font
+        ws.cell(row=current_row, column=1).border = thin_border
+        ws.cell(row=current_row, column=2, value=hours['issue_count']).border = thin_border
+        ws.cell(row=current_row, column=3, value=round(hours['expected'], 1)).border = thin_border
+        ws.cell(row=current_row, column=4, value=round(hours['worked'], 1)).border = thin_border
+        diff = round(hours['worked'] - hours['expected'], 1)
+        diff_cell = ws.cell(row=current_row, column=5, value=diff)
+        diff_cell.border = thin_border
+        if diff < 0:
+            diff_cell.font = Font(color='FF0000')
+        elif diff > 0:
+            diff_cell.font = Font(color='008000')
+
+        total_assignee_exp += hours['expected']
+        total_assignee_wrk += hours['worked']
+        total_issue_count += hours['issue_count']
+        current_row += 1
+
+    ws.cell(row=current_row, column=1, value="TOTALE").font = Font(bold=True)
+    ws.cell(row=current_row, column=1).fill = PatternFill('solid', start_color='FCE4D6')
+    ws.cell(row=current_row, column=1).border = thin_border
+    ws.cell(row=current_row, column=2, value=total_issue_count).font = Font(bold=True)
+    ws.cell(row=current_row, column=2).fill = PatternFill('solid', start_color='FCE4D6')
+    ws.cell(row=current_row, column=2).border = thin_border
+    ws.cell(row=current_row, column=3, value=round(total_assignee_exp, 1)).font = Font(bold=True)
+    ws.cell(row=current_row, column=3).fill = PatternFill('solid', start_color='FCE4D6')
+    ws.cell(row=current_row, column=3).border = thin_border
+    ws.cell(row=current_row, column=4, value=round(total_assignee_wrk, 1)).font = Font(bold=True)
+    ws.cell(row=current_row, column=4).fill = PatternFill('solid', start_color='FCE4D6')
+    ws.cell(row=current_row, column=4).border = thin_border
+    ws.cell(row=current_row, column=5, value=round(total_assignee_wrk - total_assignee_exp, 1)).font = Font(bold=True)
+    ws.cell(row=current_row, column=5).fill = PatternFill('solid', start_color='FCE4D6')
+    ws.cell(row=current_row, column=5).border = thin_border
+
+    current_row += 3
     
-    tool_it.close()
-    
-    if report_data:
-        df = pd.DataFrame(report_data)
-        
-        try:
-            df.to_excel(OUTPUT_EXCEL_REPORT, index=False, sheet_name="Report Completo")
-        except (PermissionError, Exception):
-            pass
+    ws.cell(row=current_row, column=1, value="EARNED VALUE MANAGEMENT (€)").font = title_font
+    current_row += 2
+
+    def calc_cost(hours_dict):
+        cost_exp = 0
+        cost_wrk = 0
+        for role in STANDARD_ROLES:
+            rate = HOURLY_RATES.get(role, 15)
+            cost_exp += hours_dict[role]['expected'] * rate
+            cost_wrk += hours_dict[role]['worked'] * rate
+        return cost_exp, cost_wrk
+
+    evm_data = {
+        'BAC': [],
+        'AC': [],
+        'PV': [],
+        'EV': [],
+        'PV_acc': [],
+        'AC_acc': [],
+        'EV_acc': [],
+        'SV': [],
+        'CV': [],
+        'EAC': [],
+        'ETC': []
+    }
+
+    pv_accumulated = 0
+    ac_accumulated = 0
+    ev_accumulated = 0
+
+    for sprint in sorted_sprints:
+        pv_cost, ac_cost = calc_cost(sprint_role_hours[sprint])
+
+        sprint_data = sprint_summary.get(sprint, {})
+        ore_stimate_totali = sprint_data.get('ore_stimate', 0)
+        ore_stimate_completate = sprint_data.get('ore_lavorate', 0)
+
+        ev_cost = 0
+        if ore_stimate_totali > 0:
+            completion_ratio = ore_stimate_completate / ore_stimate_totali
+            ev_cost = pv_cost * completion_ratio
+
+        pv_accumulated += pv_cost
+        ac_accumulated += ac_cost
+        ev_accumulated += ev_cost
+
+        sv = ev_cost - pv_cost
+        cv = ev_cost - ac_cost
+
+        # CPI = EV_acc / AC_acc
+        cpi = ev_accumulated / ac_accumulated if ac_accumulated > 0 else 0
+
+        # EAC = BAC / CPI
+        eac = BAT_BUDGET / cpi if cpi > 0 else 0
+
+        # ETC = EAC - AC_acc 
+        etc = eac - ac_accumulated if eac > 0 else 0
+
+        evm_data['BAC'].append(BAT_BUDGET)
+        evm_data['AC'].append(round(ac_cost, 2))
+        evm_data['PV'].append(round(pv_cost, 2))
+        evm_data['EV'].append(round(ev_cost, 2))
+        evm_data['PV_acc'].append(round(pv_accumulated, 2))
+        evm_data['AC_acc'].append(round(ac_accumulated, 2))
+        evm_data['EV_acc'].append(round(ev_accumulated, 2))
+        evm_data['SV'].append(round(sv, 2))
+        evm_data['CV'].append(round(cv, 2))
+        evm_data['EAC'].append(round(eac, 2))
+        evm_data['ETC'].append(round(etc, 2))
+
+    evm_header = [''] + [s.replace('Sprint ', 's') for s in sorted_sprints]
+    for col, val in enumerate(evm_header, 1):
+        cell = ws.cell(row=current_row, column=col, value=val)
+        cell.font = header_font
+        cell.fill = PatternFill('solid', start_color='7030A0')
+        cell.alignment = header_align
+        cell.border = thin_border
+    current_row += 1
+
+    evm_rows = [
+        ('BAC - Budget at Completion (€)', evm_data['BAC']),
+        ('AC - Actual Cost (€)', evm_data['AC']),
+        ('PV - Planned Value (€)', evm_data['PV']),
+        ('EV - Earned Value (€)', evm_data['EV']),
+        ('PV acc. (€)', evm_data['PV_acc']),
+        ('AC acc. (€)', evm_data['AC_acc']),
+        ('EV acc. (€)', evm_data['EV_acc']),
+        ('SV - Schedule Variance (€)', evm_data['SV']),
+        ('CV - Cost Variance (€)', evm_data['CV']),
+        ('EAC - Estimate At Completion (€)', evm_data['EAC']),
+        ('ETC - Estimate To Complete (€)', evm_data['ETC']),
+    ]
+
+    for row_name, values in evm_rows:
+        ws.cell(row=current_row, column=1, value=row_name).font = role_font
+        ws.cell(row=current_row, column=1).border = thin_border
+
+        for col, val in enumerate(values, 2):
+            cell = ws.cell(row=current_row, column=col, value=val)
+            cell.border = thin_border
+            if 'SV' in row_name or 'CV' in row_name:
+                if val < 0:
+                    cell.font = Font(color='FF0000')
+                elif val > 0:
+                    cell.font = Font(color='008000')
+        current_row += 1
+
+    current_row += 3
+
+    wb.save(OUTPUT_FILE)
+    print(f"-> {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
-    esegui_analisi_completa()
-    #esegui_analisi_completa_2()
+    main()
