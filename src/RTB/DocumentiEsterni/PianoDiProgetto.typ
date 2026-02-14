@@ -9,6 +9,13 @@
   stato: "Da Verificare",
   registro-modifiche: (
     (
+      "0.10.0",
+      "14/02/2026",
+      "Riccardo Graziani",
+      "-",
+      [Stesura sprint 9 (@sprint-9)],
+    ),
+    (
       "0.9.0",
       "09/02/2026",
       "Siria Salvalaio",
@@ -742,7 +749,7 @@ Il *glossario* ha lo scopo di facilitare la comprensione della documentazione da
 Sebbene la sua prima versione sia stata redatta durante la fase di *Candidatura*, il documento richiede un aggiornamento continuo, integrando progressivamente nuove definizioni man mano che emergono durante il progetto.\
 La sua completa realizzazione è pertanto prevista al termine dell'intero progetto didattico.
 
-== Realizzazione #gloss[Proof of Concept] (PoC) <S_PoC>
+== Realizzazione Proof of Concept (PoC) <S_PoC>
 La realizzazione del #gloss[Proof of Concept] (PoC) si è concentrata interamente nel corso del nono sprint, rappresentando il culmine delle attività di analisi e ricerca tecnologica raffinata fino a quel punto. \
 L'obiettivo dell'artefatto è stato quello di validare concretamente l'architettura ideata e di verificare l'efficacia delle tecnologie scelte in uno scenario d'uso reale.
 
@@ -1898,13 +1905,42 @@ L'impatto di questi rischi è stato relativamente basso dato all'anticipata prev
 Inizio: 28/01/2026 \
 Fine: 13/02/2026 \
 
-//TODO introduzione sprint9
+Il presente sprint ha lo scopo di completare la progettazione e lo sviluppo del #gloss[Proof of Concept] a seguito del completamento dello studio delle tecnologie effettuato nel precedente sprint. Contestualmente all'attività di sviluppo, il gruppo si pone l'obiettivo di pubblicare nella #gloss[repository] la versione *1.0.0* dei documenti di #gloss[Analisi dei Requisiti] e #gloss[Norme di Progetto]. 
+
+Una volta consolidati i #gloss[requisiti] si procederà alla stesura dei relativi *Test di Sistema* all'interno del #gloss[Piano di Qualifica]. Infine, il responsabile dello sprint avrà l'incarico di contattare il professor Cardin per definire la data della riunione di valutazione della prima fase della #gloss[RTB].
 
 === Attività da svolgere
-//TODO attività da svolgere
+Di seguito sono elencate le attività individuate:
+- Studio del linguaggio #gloss[Go] e del framework #gloss[Gin] (#issue(6, repo: "poc"))
+- Studio dello stack di monitoring composto da #gloss[Grafana] e #gloss[Prometheus] (#issue(14, repo: "poc"))
+- Sviluppo #gloss[NATS] (#issue(1, repo: "poc")), composto dalle issue:
+  - Sviluppo crittografia, autenticazione e account (#issue(2, repo: "poc")) 
+  - Impostazione #gloss[NATS] *JetStream* (#issue(3, repo: "poc")) 
+  - Sviluppo collegamento *DataConsumer*-#gloss[TimescaleDB] (#issue(4, repo: "poc"))
+- Sviluppo *API REST* con #gloss[Gin] (#issue(7, repo: "poc")), composto dalle issue:
+  - Sviluppo API di *autenticazione* (#issue(8, repo: "poc")) 
+  - Sviluppo API per recupero dati *storici* da #gloss[TimescaleDB] (#issue(9, repo: "poc")) 
+  - Sviluppo API per recupero dati *real-time* da #gloss[NATS] (#issue(10, repo: "poc"))
+- Sviluppo *dashboard* con #gloss[Angular] (#issue(11, repo: "poc")), composto dalle issue:
+  - Login con dashboard #gloss[Angular] (#issue(16, repo: "poc")) 
+  - Sviluppo dashboard dati *storici* (#issue(12, repo: "poc")) 
+  - Sviluppo dashboard dati *real-time* (#issue(13, repo: "poc"))
+- Integrazione di #gloss[Grafana] e #gloss[Prometheus] con #gloss[NATS] (#issue(15, repo: "poc"))
+- Creazione presentazione tecnologie #gloss[RTB] (#issue(20, repo: "poc"))
+- Stesura dei *Test di Sistema* (#issue(228), #issue(229), #issue(231), #issue(233), #issue(234))
+- Aggiornare ed aggiungere termini al #gloss[glossario] (#issue(241), #issue(242), #issue(243), #issue(258))
+- Rendere il #gloss[glossario] una risorsa web (#issue(189)) 
+- Scrivere le sezioni mancanti delle #gloss[Norme di Progetto] (#issue(140), #issue(205), #issue(230))
+- Classificare i requisiti per urgenza (#issue(226), #issue(227))
+- Effettuare la revisione finale dell'#gloss[Analisi dei Requisiti] (#issue(261))
+- Integrare il *cruscotto di valutazione* nel #gloss[Piano di Qualifica] (#issue(247))
 
 === Rischi attesi
-//TODO rischi attesi
+- *RO1* (@RO1): la ridotta disponibilità dovuta alla *sessione d'esame* (@RP1) rischia di compromettere la sincronia del team, rallentando il coordinamento tra attività di *sviluppo* e *revisione documentale*.
+- *RP1* (@RP1): la sessione d'esame invernale limita la capacità produttiva dei singoli componenti, con potenziale impatto sul rispetto delle scadenze prefissate.
+- *RT1* (@RT1): lo studio di tecnologie non padroneggiate potrebbe richiedere tempistiche superiori alle stime, posticipando l'avvio delle attività operative.
+// TODO: RT2 non ha ancora definiti occorrenza e impatto, l'ho messo comunque perchè ha senso con le attività che abbiamo svolto
+- *RT2* (@RT2): il passaggio alla pratica nel #gloss[PoC] espone il gruppo a imprevisti tecnici e tempi di debugging superiori alla norma a causa della scarsa familiarità pratica con le tecnologie.
 
 === Consuntivo a finire
 ==== Preventivo risorse da utilizzare
@@ -1937,21 +1973,35 @@ Fine: 13/02/2026 \
 )
 #graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint9)
 
-=== Attività svolte //TODO attività svolte
-Il gruppo ha svolto con successo le seguenti attività: \
-Issue relative a sprint 9: \
-OPEN: #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/191")[\#191],
-CLOSED: #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/13")[\#13], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/235")[\#235], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/8")[\#8], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/190")[\#190], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/225")[\#225], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/234")[\#234], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/10")[\#10], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/15")[\#15], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/233")[\#233], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/231")[\#231], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/228")[\#228], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/229")[\#229], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/2")[\#2], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/3")[\#3], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/4")[\#4], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/1")[\#1], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/7")[\#7], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/9")[\#9], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/11")[\#11], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/12")[\#12], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/16")[\#16], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/227")[\#227], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/250")[\#250], #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/265")[\#265],
+=== Attività svolte 
+Il gruppo ha svolto con successo le seguenti attività nello sprint 9:
+- [PoC] Studio del linguaggio #gloss[Go] e del framework #gloss[Gin] (#issue(6, repo: "poc"))
+- [PoC] Studio dello stack di monitoring composto da #gloss[Grafana] e #gloss[Prometheus] (#issue(14, repo: "poc"))
+- [PoC] Sviluppo #gloss[NATS] (#issue(1, repo: "poc")) e relative _sub-issue_
+- [PoC] Sviluppo *API REST* con #gloss[Gin] (#issue(7, repo: "poc")) e relative _sub-issue_
+- [PoC] Sviluppo *dashboard* con #gloss[Angular] (#issue(11, repo: "poc")) e relative _sub-issue_
+- [PoC] Integrazione di #gloss[Grafana] e #gloss[Prometheus] con #gloss[NATS] (#issue(15, repo: "poc"))
+- [PdQ] Stesura dei *Test di Sistema* (#issue(228), #issue(229), #issue(231), #issue(233), #issue(234))
+- [Gloss] Aggiornare ed aggiungere termini al #gloss[Glossario] (#issue(241), #issue(242), #issue(243), #issue(258))
+- [Gloss] Rendere il #gloss[glossario] una risorsa web (#issue(189)) 
+- [NdP] Scrivere le sezioni mancanti delle #gloss[Norme di Progetto] (#issue(140), #issue(205), #issue(230))
+- [AdR] Classificare i requisiti per urgenza (#issue(226), #issue(227))
+- [AdR] Effettuare la revisione finale dell'#gloss[Analisi dei Requisiti] (#issue(261))
 
--
--
--
+Le seguenti attività sono state posticipate:
+- [PdQ] Integrare il *cruscotto di valutazione* nel #gloss[Piano di Qualifica] (#issue(247))
 
 === Retrospettiva
-//TODO retrospettiva
+Nella riunione interna del #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[*30 gennaio 2026*] il gruppo ha intrapreso una revisione critica del proprio #gloss[Way of Working]. Tale confronto ha portato alla definizione di un nuovo *workflow* per la gestione delle #gloss[issue] e la pianificazione delle attività, volto a ottimizzare la distribuzione del carico di lavoro. L'applicazione di questa metodologia durante lo sprint corrente ha dato prova di una maggiore *efficienza* operativa, permettendo un tracciamento più puntuale dei progressi e una migliore reattività alle criticità. 
+
+Questa riorganizzazione non solo ha garantito il completamento di tutte le attività legate allo *sviluppo* del #gloss[PoC] entro le scadenze prefissate, ma ha anche consentito al gruppo di *assorbire* i ritardi accumulati negli sprint precedenti. Grazie a una pianificazione più granulare e a un monitoraggio costante del progresso, il gruppo ha ritrovato la sincronia necessaria per ultimare il rilascio della documentazione in tempo utile. Tale solidità operativa ha reso possibile lo svolgimento della riunione di *revisione* con il professor Cardin in data *12 febbraio 2026*.
+
+Durante lo *sprint 10* il gruppo si focalizzerà sul consolidamento finale della documentazione in vista della chiusura della fase di #gloss[RTB]. L'obiettivo primario sarà il rilascio nella _repository_ della versione *1.0.0* dei documenti rimanenti, con particolare attenzione al #gloss[Piano di Qualifica] e al presente #gloss[Piano di Progetto]. Infine, sul piano gestionale, lo sprint prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
 
 === Rischi occorsi
-//TODO rischi occorsi
+Il manifestarsi del rischio *RP1* (@RP1) durante la sessione invernale è stato gestito con successo attraverso i canali di comunicazione interna. La segnalazione anticipata delle difficoltà individuali ha consentito al gruppo di riorganizzare le attività in modo dinamico, assorbendo il carico di lavoro residuo tra i membri con maggiore disponibilità. L'impatto rilevato è dunque *basso*.
+
+L'esecuzione parallela delle attività di sviluppo e redazione documentale ha richiesto una *ridefinizione* delle priorità operative, come previsto dal rischio *RO1* (@RO1). Al fine di garantire il completamento della documentazione necessaria per la revisione con il professor Cardin, il gruppo ha deciso di posticipare le attività non critiche: nello specifico, l'integrazione del cruscotto di valutazione (#issue(247)) è stata posticipata allo sprint successivo. L'impatto rilevato è valutato come *basso*, in quanto la pianificazione strategica ha permesso di portare a termine le attività a priorità maggiore.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
