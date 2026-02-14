@@ -6,7 +6,7 @@
   registro-modifiche: (
     (
       "1.0.0",
-      "13/02/2026",
+      "14/02/2026",
       "Riccardo Graziani",
       "Jaume Bernardi",
       "Versione stabile verbale esterno del 10/02/2026",
