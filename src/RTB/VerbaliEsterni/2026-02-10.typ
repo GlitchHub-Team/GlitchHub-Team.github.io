@@ -8,7 +8,7 @@
       "0.1.0",
       "13/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Jaume Bernardi",
       "Prima stesura verbale esterno del 10/02/2026",
     ),
   ),
