@@ -9,6 +9,13 @@
   stato: "Da Verificare",
   registro-modifiche: (
     (
+      "0.10.1",
+      "14/02/2026",
+      "Riccardo Graziani",
+      "-",
+      [Correzione imprecisione],
+    ),
+    (
       "0.10.0",
       "14/02/2026",
       "Riccardo Graziani",
@@ -1996,7 +2003,7 @@ Nella riunione interna del #link("https://glitchhub-team.github.io/pdf/RTB/Verba
 
 Questa riorganizzazione non solo ha garantito il completamento di tutte le attività legate allo *sviluppo* del #gloss[PoC] entro le scadenze prefissate, ma ha anche consentito al gruppo di *assorbire* i ritardi accumulati negli sprint precedenti. Grazie a una pianificazione più granulare e a un monitoraggio costante del progresso, il gruppo ha ritrovato la sincronia necessaria per ultimare il rilascio della documentazione in tempo utile. Tale solidità operativa ha reso possibile lo svolgimento della riunione di *revisione* con il professor Cardin in data *12 febbraio 2026*.
 
-Durante lo *sprint 10* il gruppo si focalizzerà sul consolidamento finale della documentazione in vista della chiusura della fase di #gloss[RTB]. L'obiettivo primario sarà il rilascio nella _repository_ della versione *1.0.0* dei documenti rimanenti, con particolare attenzione al #gloss[Piano di Qualifica] e al presente #gloss[Piano di Progetto]. Infine, sul piano gestionale, lo sprint prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
+Durante lo *sprint 10* il gruppo si focalizzerà sul consolidamento finale della documentazione in vista della fine dell'#gloss[RTB]. L'obiettivo primario sarà il rilascio nella _repository_ della versione *1.0.0* dei documenti rimanenti, con particolare attenzione al #gloss[Piano di Qualifica] e al presente #gloss[Piano di Progetto]. Infine, sul piano gestionale, lo sprint prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
 
 === Rischi occorsi
 Il manifestarsi del rischio *RP1* (@RP1) durante la sessione invernale è stato gestito con successo attraverso i canali di comunicazione interna. La segnalazione anticipata delle difficoltà individuali ha consentito al gruppo di riorganizzare le attività in modo dinamico, assorbendo il carico di lavoro residuo tra i membri con maggiore disponibilità. L'impatto rilevato è dunque *basso*.
