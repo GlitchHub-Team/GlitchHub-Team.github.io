@@ -6,11 +6,18 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.4.0",
+      "14/02/2026",
+      "Alessandro Dinato",
+      "-",
+      [Aggiornamento dei termini Consuntivo di Periodo e Consuntivo a finire],
+    ),
+    (
       "0.3.1",
       "08/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Reinserimento dei collegamenti intra-documento e aggiunta di collegamenti vari]
+      "Alessandro Dinato",
+      [Reinserimento dei collegamenti intra-documento e aggiunta di collegamenti vari],
     ),
     (
       "0.3.0",
@@ -106,7 +113,7 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
 /**
  * NOTA: Per scrivere il glossario, modificare solamente il file src/glossary.json!!!
  * Non inserirli più qua, ma modificare solo il registro modifiche!
-*/
+ */
 #let glossary_terms = json("../../glossary.json")
 
 #let group_by_letter(terms) = {
@@ -129,16 +136,17 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
 
 #let grouped_terms = group_by_letter(glossary_terms)
 
-#let parse_glossary_typst = (string) => {
-  string = string.replace(
-    regex("@\\{([^\\}]+)\\}\\{([^\\}]+)\\}"),
-    (match) => "#ref-term(\"" + match.captures.at(0) + "\", display: \"" + match.captures.at(1)  + "\")"
-  )
-  .replace(
-    regex("@\\{([^\\}]+)\\}"), 
-    (match) => "#ref-term(\"" + match.captures.at(0) + "\")"
-  )
-  
+#let parse_glossary_typst = string => {
+  string = string
+    .replace(
+      regex("@\\{([^\\}]+)\\}\\{([^\\}]+)\\}"),
+      match => "#ref-term(\"" + match.captures.at(0) + "\", display: \"" + match.captures.at(1) + "\")",
+    )
+    .replace(
+      regex("@\\{([^\\}]+)\\}"),
+      match => "#ref-term(\"" + match.captures.at(0) + "\")",
+    )
+
   eval(string, mode: "markup", scope: (ref-term: ref-term))
 }
 

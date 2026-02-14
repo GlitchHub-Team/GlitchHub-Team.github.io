@@ -321,7 +321,7 @@
     },
     {
         "term": "Piano di progetto",
-        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint, @{preventivo a finire} e @{consuntivo di periodo}, in modo tale da ricalibrare le attività in corso d'opera."
+        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint: @{consuntivo a finire}, @{consuntivo di periodo}, previsione e analisi dei compiti svolti e dei rischi. In modo tale da ricalibrare le attività in corso d'opera."
     },
     {
         "term": "Piano di qualifica",
@@ -405,15 +405,15 @@
     },
     {
         "term": "Consuntivo di periodo",
-        "definition": "È una sezione nel @{Piano di Progetto} nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.\nL'analisi generica dello sprint appena svolto si chiama @{retrospettiva}{retrospettiva di periodo}."
+        "definition": "È una sezione nel @{Piano di Progetto} nel quale vengono analizzate le ore effettivamente utilizzate nello sprint interessato e di conseguenza le risorse utilizzate. Inoltre si aggiornano le ore e le risorse rimanenti."
     },
     {
         "term": "Retrospettiva",
         "definition": "Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni."
     },
     {
-        "term": "Preventivo a finire",
-        "definition": "È una sezione del @{Piano di Progetto} nel quale si descrivono le attività pianificate per lo sprint successivo e la stima delle risorse necessarie."
+        "term": "Consuntivo a finire",
+        "definition": "È una sezione del @{Piano di Progetto} nel quale si stimano le ore e le risorse necessarie per completare le attività pianificate."
     },
     {
         "term": "Slack time",
