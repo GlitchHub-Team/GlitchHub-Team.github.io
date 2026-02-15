@@ -12,14 +12,14 @@
       "0.10.1",
       "14/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Hossam Ezzemouri",
       [Correzione imprecisione],
     ),
     (
       "0.10.0",
       "14/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Hossam Ezzemouri",
       [Stesura sprint 9 (@sprint-9)],
     ),
     (
@@ -1999,8 +1999,8 @@ Il gruppo ha svolto con successo i seguenti compiti nello sprint 9:
 - [PoC] Sviluppo *dashboard* con #gloss[Angular] (#issue(11, repo: "poc")) e relative _sub-issue_
 - [PoC] Integrazione di #gloss[Grafana] e #gloss[Prometheus] con #gloss[NATS] (#issue(15, repo: "poc"))
 - [PdQ] Stesura dei *Test di Sistema* (#issue(228), #issue(229), #issue(231), #issue(233), #issue(234))
-- [Gloss] Aggiornare ed aggiungere termini al #gloss[Glossario] (#issue(241), #issue(242), #issue(243), #issue(258))
-- [Gloss] Rendere il #gloss[glossario] una risorsa web (#issue(189))
+- [Gloss] Aggiornare e aggiungere termini al #gloss[Glossario] (#issue(241), #issue(242), #issue(243), #issue(258))
+- [Gloss] Rendere il #gloss[Glossario] una risorsa web (#issue(189))
 - [NdP] Scrivere le sezioni mancanti delle #gloss[Norme di Progetto] (#issue(140), #issue(205), #issue(230))
 - [AdR] Classificare i requisiti per urgenza (#issue(226), #issue(227))
 - [AdR] Effettuare la revisione finale dell'#gloss[Analisi dei Requisiti] (#issue(261))
