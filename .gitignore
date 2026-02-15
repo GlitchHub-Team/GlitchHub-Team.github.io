@@ -4,3 +4,5 @@ pdf/**/*.tex
 .vscode
 website/pdf/
 .env
+.env.*
+__pycache__

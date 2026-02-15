@@ -1,0 +1,11 @@
+name: Task Analista
+description: Crea una task generica per analista
+title: "Task"
+labels: ["documentation", "task-analista"]
+projects: ["GlitchHub-Team/2"]
+type: task
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: Descrizione della Task

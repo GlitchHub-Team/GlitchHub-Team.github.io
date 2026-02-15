@@ -28,7 +28,7 @@ jobs:
       
       - name: Install Go dependencies
         run: go mod tidy
-        working-directory: script/
+        working-directory: script/scriptHomePage
       
       - name: Pull latest changes
         run: |
