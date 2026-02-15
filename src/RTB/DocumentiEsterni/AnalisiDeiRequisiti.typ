@@ -90,8 +90,15 @@
 
 #show: report.with(
   titolo: "Analisi dei Requisiti",
-  stato: "Verificato",
+  stato: "Da verificare",
   registro-modifiche: (
+      (
+      "1.0.1",
+      "15/02/2026",
+      "Siria Salvalaio",
+      "-",
+      [Modifica indici per immagini e tabelle],
+    ),
     (
       "1.0.0",
       "09/02/2026",
@@ -426,6 +433,18 @@
 #rnf-counter.update(0)
 #rd-counter.update(0)
 #rv-counter.update(0)
+
+#outline(
+  title: "Indice delle tabelle",
+  target: figure.where(kind: table),
+)
+
+#outline(
+  title: "Indice delle figure",
+  target: figure.where(kind: image),
+)
+
+#pagebreak()
 
 
 = Introduzione
@@ -1495,7 +1514,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 ==== #uc() - Sospensione Tenant User <Sospensione-tenant-user>
 #figure(
   image("../../assets/diagrammi/UC37.svg", width: 100%),
-  caption: [UC37, UC37.1],
+  caption: [UC37 - UC37.1],
 )
 
 - *Attore principale*: Admin Generico
