@@ -88,6 +88,33 @@
   })
 }
 
+#let tabella-paginata(contenuto, didascalia, label-id: none) = {
+  // 1. Ghost Figure: crea l'ancora per l'Indice e il Link in alto
+  [
+    #show figure.caption: none 
+    #figure(
+      kind: table,
+      caption: didascalia,
+      outlined: true, 
+      gap: 0em,
+      [] 
+    ) 
+    #if label-id != none { label(label-id) }
+  ]
+
+  // 2. La Tabella (che può andare su più pagine)
+  contenuto
+
+  // 3. Didascalia visiva (in basso)
+  align(center)[
+    #v(0.5em) // Un po' di spazio tra tabella e testo
+    #context [
+      #let n = counter(figure.where(kind: table)).display()
+      #text[Tabella #n: #didascalia]
+    ]
+  ]
+}
+
 #show: report.with(
   titolo: "Analisi dei Requisiti",
   stato: "Da verificare",
@@ -550,65 +577,43 @@ Come scritto precedentemente, il sistema si compone di più livelli e coinvolge 
 
 Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel documento e una breve descrizione per ognuno di essi.
 
-// Figure fantasma che gestisce index, link e counter
-#[
-  // Nasconde la figure 
-  #show figure.caption: none 
-  
-  #figure(
-    kind: table,
-    caption: [Nomi degli attori e una breve descrizione di ciascuno], // Il testo mostrato nell'indice delle tabelle
-    gap: 0em,
-    outlined: true, 
-    [] 
-  ) <tab-requisiti> 
-]
+#tabella-paginata(
+  table(
+    columns: (1fr, 2.5fr),
+    table.header([Attore], [Descrizione]),
 
-// La tabella vera e propria
-#table(
-  columns: (1fr, 2.5fr),
-  table.header([Attore], [Descrizione]),
+    [Utente non autenticato], [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
 
-  [Utente non autenticato], [Un qualunque utente che non abbia eseguito l'accesso alla piattaforma *Cloud*],
+    [Utente autenticato],
+    [Un qualunque utente che abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione di *Tenant User*, *Tenant Admin* e *Super Admin*],
 
-  [Utente autenticato],
-  [Un qualunque utente che abbia eseguito l'accesso alla piattaforma Cloud. Corrisponde alla generalizzazione di *Tenant User*, *Tenant Admin* e *Super Admin*],
+    [Tenant User],
+    [Un utente autenticato appartenente a uno specifico tenant che ha facoltà di visualizzare i dati dei sensori ricevuti dai *Gateway*.],
 
-  [Tenant User],
-  [Un utente autenticato appartenente a uno specifico tenant che ha facoltà di visualizzare i dati dei sensori ricevuti dai *Gateway*.],
+    [Tenant Admin],
+    [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant.],
 
-  [Tenant Admin],
-  [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant.],
+    [Super Admin], [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud.],
 
-  [Super Admin], [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud.],
+    [Admin Generico],
+    [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.],
 
-  [Admin Generico],
-  [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.],
+    [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
 
-  [API Client], [Un qualunque client API che possa accedere all'API pubblica esposta dal sistema cloud.],
+    [Sensore simulato], [Un qualunque sensore BLE che venga simulato dal *Gateway simulato* sviluppato.],
 
-  [Sensore simulato], [Un qualunque sensore BLE che venga simulato dal *Gateway simulato* sviluppato.],
+    [Gateway simulato],
+    [Un gateway simulato che interloquisce con l'*Infrastruttura Cloud* per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
 
-  [Gateway simulato],
-  [Un gateway simulato che interloquisce con l'*Infrastruttura Cloud* per l'invio di dati normalizzati e crittografati e per la ricezione di comandi.],
+    [Infrastruttura Cloud],
+    [L'infrastruttura Cloud che riceve i dati normalizzati dal gateway, rendendoli visibili ai *Tenant User*.],
 
-  [Infrastruttura Cloud],
-  [L'infrastruttura Cloud che riceve i dati normalizzati dal gateway, rendendoli visibili ai *Tenant User*.],
-
-  [Email Client],
-  [Rappresenta un client di posta elettronica usato dagli utenti. Si noti che quest'ultimo può essere solo un attore secondario, in quanto non è in grado di compiere azioni diverse dal ricevere email.],
+    [Email Client],
+    [Rappresenta un client di posta elettronica usato dagli utenti. Si noti che quest'ultimo può essere solo un attore secondario, in quanto non è in grado di compiere azioni diverse dal ricevere email.],
+  ),
+  [Nomi degli attori e una breve descrizione di ciascuno],
+  label-id: "tab-attori"
 )
-
-// La caption visibile nel documento
-#align(center)[
-  #context [
-    // Recupera il numero della tabella
-    #let n = counter(figure.where(kind: table)).display()
-    // Fa render del testo come se fosse una vera caption
-    #text[Tabella #n: Nomi degli attori e una breve descrizione di ciascuno]
-  ]
-]
-
 
 == Sistema Cloud - Lista dei casi d'uso
 In questa sezione, il termine *"Sistema"* si riferisce all'infrastruttura cloud. Per ogni caso d'uso viene considerato il Sistema Cloud come raggiungibile e funzionante.
@@ -5855,37 +5860,16 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>), #ref-uc(<Visualizzazione-periodo-associazione-gateway>)],
 )
 
-// Figure fantasma che gestisce index, link e counter
-#[
-  // Nasconde la figure 
-  #show figure.caption: none 
-  
-  #figure(
-    kind: table,
-    caption: [Requisiti funzionali], // Il testo mostrato nell'indice delle tabelle
-    gap: 0em,
-    outlined: true, 
-    [] 
-  ) <tab-requisiti> 
-]
-
-// La tabella vera e propria
-#table(
-  columns: (1fr, 4fr, 1.5fr),
-  align: left,
-  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  ..lista-rf,
+#tabella-paginata(
+  table(
+    columns: (1fr, 4fr, 1.5fr),
+    align: left,
+    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+    ..lista-rf,
+  ),
+  [Requisiti funzionali],
+  label-id: "tab-requisiti"
 )
-
-// La caption visibile nel documento
-#align(center)[
-  #context [
-    // Recupera il numero della tabella
-    #let n = counter(figure.where(kind: table)).display()
-    // Fa render del testo come se fosse una vera caption
-    #text[Tabella #n: Requisiti funzionali]
-  ]
-]
 
 == Requisiti non funzionali
 // NOTA: Inserire qui i requisiti non funzionali, non in tabella
@@ -5931,37 +5915,16 @@ Inoltre un buon requisito deve essere *SMART*:
   [Capitolato §3.2],
 )
 
-// Figure fantasma che gestisce index, link e counter
-#[
-  // Nasconde la figure 
-  #show figure.caption: none 
-  
-  #figure(
-    kind: table,
-    caption: [Requisiti non funzionali], // Il testo mostrato nell'indice delle tabelle
-    gap: 0em,
-    outlined: true, 
-    [] 
-  ) <tab-requisiti> 
-]
-
-// La tabella vera e propria
-#table(
-  columns: (1fr, 4fr, 1.5fr),
-  align: left,
-  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  ..lista-rnf,
+#tabella-paginata(
+  table(
+    columns: (1fr, 4fr, 1.5fr),
+    align: left,
+    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+    ..lista-rnf,
+  ),
+  [Requisiti non funzionali],
+  label-id: "tab-requisiti-non-funzionali"
 )
-
-// La caption visibile nel documento
-#align(center)[
-  #context [
-    // Recupera il numero della tabella
-    #let n = counter(figure.where(kind: table)).display()
-    // Fa render del testo come se fosse una vera caption
-    #text[Tabella #n: Requisiti non funzionali]
-  ]
-]
 
 == Requisiti di dominio
 // NOTA: Inserire qui i requisiti di dominio, non in tabella
@@ -5998,37 +5961,16 @@ Inoltre un buon requisito deve essere *SMART*:
   [Capitolato §5.1 -- RQ 4.2.2],
 )
 
-// Figure fantasma che gestisce index, link e counter
-#[
-  // Nasconde la figure 
-  #show figure.caption: none 
-  
-  #figure(
-    kind: table,
-    caption: [Requisiti di dominio], // Il testo mostrato nell'indice delle tabelle
-    gap: 0em,
-    outlined: true, 
-    [] 
-  ) <tab-requisiti> 
-]
-
-// La tabella vera e propria
-#table(
-  columns: (1fr, 4fr, 1.5fr),
-  align: left,
-  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-  ..lista-rd,
+#tabella-paginata(
+  table(
+    columns: (1fr, 4fr, 1.5fr),
+    align: left,
+    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+    ..lista-rd,
+  ),
+  [Requisiti di dominio],
+  label-id: "tab-requisiti-dominio"
 )
-
-// La caption visibile nel documento
-#align(center)[
-  #context [
-    // Recupera il numero della tabella
-    #let n = counter(figure.where(kind: table)).display()
-    // Fa render del testo come se fosse una vera caption
-    #text[Tabella #n: Requisiti di dominio]
-  ]
-]
 
 #set page(columns: 2) // Doppia colonna per ottimizzare gli spazi
 
@@ -6047,39 +5989,18 @@ Quindi non va modificata!
 
 // NOTA: questa tabella è generata automaticamente, non va toccata! Se volete modificare un requisito, modificate le liste direttamente.
 
-// Figure fantasma che gestisce index, link e counter
-#[
-  // Nasconde la figure 
-  #show figure.caption: none 
-  
-  #figure(
-    kind: table,
-    caption: [Tracciamento], // Il testo mostrato nell'indice delle tabelle
-    gap: 0em,
-    outlined: true, 
-    [] 
-  ) <tab-requisiti> 
-]
+#tabella-paginata(
+  align(center)[
+    #table(
+      columns: (auto, auto),
+      align: center,
+      table.header([*Requisito*], [*Fonti*]),
 
-// La tabella vera e propria
-#align(center)[
-  #table(
-    columns: (auto, auto),
-    align: center,
-    table.header([*Requisito*], [*Fonti*]),
-
-    ..get-tracciamento(lista-rf),
-    ..get-tracciamento(lista-rnf),
-    ..get-tracciamento(lista-rd),
-  )
-]
-
-// La caption visibile nel documento
-#align(center)[
-  #context [
-    // Recupera il numero della tabella
-    #let n = counter(figure.where(kind: table)).display()
-    // Fa render del testo come se fosse una vera caption
-    #text[Tabella #n: Tracciamento]
-  ]
-]
+      ..get-tracciamento(lista-rf),
+      ..get-tracciamento(lista-rnf),
+      ..get-tracciamento(lista-rd),
+    )
+  ],
+  [Tracciamento],
+  label-id: "tab-requisiti"
+)
