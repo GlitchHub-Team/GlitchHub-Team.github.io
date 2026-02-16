@@ -788,7 +788,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 ==== #uc() - Password dimenticata <Password-dimenticata>
 #figure(
   image("../../assets/diagrammi/UC10.svg", width: 100%),
-  caption: [UC10 - UC10.1, 10.2, UC11],
+  caption: [UC10 - UC10.1, UC10.2, UC11],
 )
 
 - *Attore principale*: Utente non autenticato
@@ -5826,15 +5826,37 @@ Inoltre un buon requisito deve essere *SMART*:
   [#ref-uc(<Visualizzazione-singolo-tenant-possessore-gateway>), #ref-uc(<Visualizzazione-periodo-associazione-gateway>)],
 )
 
-#figure(
-  table(
-    columns: (1fr, 4fr, 1.5fr),
-    align: left,
-    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-    ..lista-rf,
-  ),
-  caption: [Requisiti funzionali],
+// Figure fantasma che gestisce index, link e counter
+#[
+  // Nasconde la figure 
+  #show figure.caption: none 
+  
+  #figure(
+    kind: table,
+    caption: [Requisiti funzionali], // Il testo mostrato nell'indice delle tabelle
+    gap: 0em,
+    outlined: true, 
+    [] 
+  ) <tab-requisiti> 
+]
+
+// La tabella vera e propria
+#table(
+  columns: (1fr, 4fr, 1.5fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  ..lista-rf,
 )
+
+// La caption visibile nel documento
+#align(center)[
+  #context [
+    // Recupera il numero della tabella
+    #let n = counter(figure.where(kind: table)).display()
+    // Fa render del testo come se fosse una vera caption
+    #text[Tabella #n: Requisiti funzionali]
+  ]
+]
 
 == Requisiti non funzionali
 // NOTA: Inserire qui i requisiti non funzionali, non in tabella
