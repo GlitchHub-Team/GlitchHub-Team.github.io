@@ -1,8 +1,6 @@
 #import "../../Templates/templateDocumentiGenerici.typ": *
 #show ref: underline
 
-#let url(dest) = link(dest)[#dest]
-
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
@@ -139,21 +137,21 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 === Riferimenti informativi
 
 - *Standard ISO/IEC 12207:1995*
-  - #url("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf`]
   - *Ultimo accesso*: 13 febbraio 2026
   - *Note*: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
 - *Glossario v0.3.1*
-  - #url("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`]
   - *Ultimo accesso*: 13 febbraio 2026
 
 - *Verifica e validazione: introduzione* -- Lezione T9 del prof. Vardanega
-  - #url("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf`]
   - *Ultimo accesso*: 13 febbraio 2026
 
 - *Verifica e validazione: analisi dinamica* -- Lezione T11 del prof. Vardanega
-  - #url("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf")
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf`]
   - *Ultimo accesso*: 13 febbraio 2026
 
 
