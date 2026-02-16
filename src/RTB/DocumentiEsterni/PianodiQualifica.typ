@@ -37,14 +37,14 @@
       "0.10.1",
       "16/02/2026",
       "Siria Salvalaio",
-      "-",
+      "Riccardo Graziani",
       [Modifica indici tabelle e figure],
     ),
     (
       "0.10.0",
       "14/02/2026",
       "Michele Dioli",
-      "-",
+      "Riccardo Graziani",
       [Implementati grafici per cruscotto di valutazione],
     ),
     (
@@ -201,6 +201,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 - Le attività di *Controllo di qualità*
 - Le iniziative di *Miglioramento continuo*
 
+// TODO: Per i documenti con versione sarebbe meglio indicare la versione nel nome e la data di ultimo accesso
 == Riferimenti
 === Riferimenti normativi
 - *Norme di Progetto* \
@@ -417,7 +418,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-WD], [Work Distribution], [$$], [$$],
     [MPC-SPF], [Single Point of Failure Risk], [$15%$], [$<10%$],
   ),
-  [Valori per misurare la qualità della qualità e dei processi.],
+  [Valori per misurare l'efficacia della qualità e dei processi.],
   label-id: "tab-qual-qual-proc",
 )
 
@@ -2025,6 +2026,7 @@ $ "BAC" = 12.975 € $
   label-id: "tab-EAC-BAC",
 )
 
+// TODO: Nel grafico la soglia accettabile per il BAC non viene mostrata correttamente
 #figure(
   image("../../assets/metriche/eac-bac.svg"),
   caption: [EAC vs BAC per sprint],
@@ -2153,7 +2155,7 @@ Soglia ottima: IG $>= 60$ _rispettata_
 
 #figure(
   image("../../assets/metriche/errori.svg"),
-  caption: [Indice di Gulpease per sprint],
+  caption: [Numero di errori ortografici per documento],
 )
 
 Il grafico evidenzia i primi sprint caratterizzati da una gestione non ancora ottimale degli errori ortografici. Infatti nei primi sprint (S1–S4) si registrano infatti picchi significativi, in particolare:
