@@ -9,6 +9,13 @@
   stato: "Da Verificare",
   registro-modifiche: (
     (
+      "0.10.2",
+      "16/02/2026",
+      "Jaume Bernardi",
+      "-",
+      [Revisione rischi e contromisure, nonché Sprint.],
+    ),
+    (
       "0.10.1",
       "14/02/2026",
       "Riccardo Graziani",
@@ -473,7 +480,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 )
 
 == Rischi personali
-=== Problemi personali o accademici <RP1>
+=== Problemi accademici <RP1>
 #table(
   columns: (0.25fr, 0.75fr),
   align: left,
@@ -484,20 +491,20 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   ),
   [], [],
   [*ID*], [RP1],
-  [*Nome*], [Problemi personali o accademici],
+  [*Nome*], [Problemi accademici],
   [*Descrizione*],
   [
-    Eventuali impegni personali o sovraccarichi accademici potrebbero influire sulla disponibilità dei membri del gruppo, causando ritardi nelle consegne.
+    Eventuali sovraccarichi accademici potrebbero influire sulla disponibilità dei membri del gruppo, causando ritardi nelle consegne.
   ],
 
   [*Misure di mitigazione*],
   [
-    Il gruppo è consapevole che, durante il periodo di progetto, la disponibilità dei membri potrà variare a causa di esigenze personali o accademiche.\
+    Il gruppo è consapevole che, durante il periodo di progetto, la disponibilità dei membri potrà variare a causa di esigenze accademiche.\
     Fin dall'inizio sono stati individuati i periodi di inattività dei diversi componenti. Per gestire efficacemente tali situazioni sarà necessario:
-    - Prevedere adeguati buffer temporali nelle pianificazioni;
+    - Pianificare le attività tenendo conto dei calendari accademici e delle sessioni d’esame;
     - Mantenere una comunicazione trasparente riguardo a possibili variazioni di disponibilità;
     - Assegnare ruoli e compiti in modo flessibile, adattandoli alle esigenze e ai carichi di ciascun membro. \
-    I dettagli relativi ai periodi di inattività, comprensivi di vacanze, sessioni di studio ed eventuali altri impegni rilevanti, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
+    I dettagli relativi alle sessioni di studio ed eventuali altri impegni rilevanti, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
   ],
 
   [*Occorrenza*], [Media],
@@ -526,6 +533,36 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
   [
     Ogni dissidio deve essere affrontato tempestivamente, evitando che si accumulino malumori. Le questioni vanno discusse privatamente con le persone direttamente coinvolte, così da favorire un confronto sereno e mirato. \
     Le discussioni devono essere gestite senza coinvolgere i membri non interessati, prevenendo così inutili tensioni all'interno del gruppo e preservando un ambiente di lavoro collaborativo.
+  ],
+
+  [*Occorrenza*], [Bassa],
+  [*Impatto*], [Medio],
+)
+
+=== Problemi personali <RP3>
+#table(
+  columns: (0.25fr, 0.75fr),
+  align: left,
+  stroke: (x, y) => (
+    right: if x < 1 and y > 0 { 0.7pt } else { 0pt },
+    top: if y > 1 { 0.7pt } else { 0pt },
+    bottom: if y < 5 { 0.7pt } else { 0pt },
+  ),
+  [], [],
+  [*ID*], [RP3],
+  [*Nome*], [Problemi personali],
+  [*Descrizione*],
+  [
+    Eventuali impegni personali potrebbero influire sulla disponibilità dei membri del gruppo, causando ritardi nelle consegne.
+  ],
+
+  [*Misure di mitigazione*],
+  [
+    I membri del gruppo potrebbero avere periodi di indisponibilità dovuti a esigenze personali (famiglia, salute, impegni imprevisti). Queste variazioni possono influire sulla continuità del lavoro e sulla capacità del team di rispettare le scadenze. Per mitigare almeno parzialmente questi avenimenti il gruppo si impegna nel adottare questi punti:
+    - Prevedere adeguati buffer temporali nelle pianificazioni;
+    - Mantenere una comunicazione trasparente e tempestiva riguardo a possibili variazioni di disponibilità;
+    - Assegnare ruoli e compiti in modo flessibile, adattandoli alle esigenze e ai carichi di ciascun membro. \
+    I dettagli relativi ai periodi di inattività, comprensivi di vacanze, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
   ],
 
   [*Occorrenza*], [Bassa],
@@ -1370,7 +1407,7 @@ Il gruppo ha individuato i seguenti compiti da svolgere:
 === Rischi attesi
 Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
 - *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-attesi), un ulteriore studio degli use cases può portare alla creazione di ulteriori dubbi che possono rallentare lo sviluppo degli use cases.
-- *RP1* (@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali imprevisti, che possono rendere più difficile un lavoro sincrono di brainstorming e di studio.
+- *RP1* (@RP1): alcuni membri del gruppo potrebbero avere impegni accademici imprevisti, che possono rendere più difficile un lavoro sincrono di brainstorming e di studio.
 
 === Consuntivo a finire
 ==== Preventivo risorse da utilizzare
@@ -1565,7 +1602,7 @@ Issue relative a sprint 6:
 L'obiettivo primario dello sprint 6 era il raggiungimento di una milestone interna fissata per il 31 dicembre 2025. Il gruppo mirava a ottenere una versione stabile dell'#gloss[Analisi dei Requisiti] e del #gloss[Piano di Qualifica] per anticipare il carico di lavoro in vista della sessione d'esami invernale. Nonostante il rallentamento previsto per le festività natalizie, lo sprint è stato strutturato su due settimane per bilanciare i tempi di produzione e permettere un maggiore lavoro asincrono.
 
 === Rischi occorsi
-Il gruppo si è imbattuto in *R01* (@RO1) in quanto non è stato possibile realizzare il set di automazioni per il cruscotto relativo alle metriche del #gloss("Piano di Qualifica").
+Il gruppo si è imbattuto in *RO1* (@RO1) in quanto non è stato possibile realizzare il set di automazioni per il cruscotto relativo alle metriche del #gloss("Piano di Qualifica").
 L'impatto del rischio è stato medio dato che l'assenza delle automazioni non ha interferito con i compiti contemporanei, tuttavia ha bloccato la visualizzazione delle metriche in modo automatico.\
 La task è stata di conseguenza posticipata allo sprint successivo dandole una priorità maggiore in modo da poter stabilizzare l'intero reparto inerente al *Piano di Qualifica*.
 
@@ -1707,7 +1744,7 @@ Per quanto riguarda la stesura dei requisiti, è stato possibile completare escl
 Di conseguenza, nello Sprint 8 verrà data maggiore priorità al completamento della documentazione dei requisiti relativi ai restanti use case.
 
 === Rischi occorsi
-Il gruppo ha riscontrato il rischio R01 (@RO1), in quanto non è stato possibile completare integralmente la stesura dei requisiti relativi
+Il gruppo ha riscontrato il rischio RO1 (@RO1), in quanto non è stato possibile completare integralmente la stesura dei requisiti relativi
 agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti") in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine, nello Sprint 8 questa attività verrà intensificata per il suo completamento.
 
 === Consuntivo di periodo
