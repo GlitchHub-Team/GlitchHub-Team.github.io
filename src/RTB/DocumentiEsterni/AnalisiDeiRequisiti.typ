@@ -130,7 +130,7 @@
       "16/02/2026",
       "Elia Ernesto Stellin",
       "-",
-      [Rimossi use case e relativi requisiti superflui]
+      [Rimossi use case e relativi requisiti superflui],
     ),
     (
       "1.0.2",
@@ -638,7 +638,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 ==== #uc() - Autenticazione Utente <Autenticazione-utente>
 #figure(
   image("../../assets/diagrammi/UC1.svg", width: 100%),
-  caption: [UC1 - UC1.1, UC1.2, UC2, UC3, UC4],
+  caption: [UC1 - UC1.1, UC1.2, UC2, UC3],
 )
 
 - *Attore principale*: Utente non autenticato
@@ -657,7 +657,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 - *Estensioni*:
   - #ref-uc(<Autenticazione-non-riuscita>)
   - #ref-uc(<Account-sospeso>)
-  // - #ref-uc(<Invio-codice-2FA>)
+// - #ref-uc(<Invio-codice-2FA>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-email-auth>)
   - #ref-uc(<Inserimento-password>)
@@ -838,7 +838,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 ==== #uc() - Password dimenticata <Password-dimenticata>
 #figure(
   image("../../assets/diagrammi/UC10.svg", width: 100%),
-  caption: [UC10 - UC10.1, UC10.2, UC11],
+  caption: [UC10 - UC10.1, UC11],
 )
 
 - *Attore principale*: Utente non autenticato
@@ -856,7 +856,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
   - #ref-uc(<Indirizzo-email-non-associato-account>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-indirizzo-email>)
-  // - #ref-uc(<Invio-email-reimpostazione-password>)
+// - #ref-uc(<Invio-email-reimpostazione-password>)
 
 ===== #sub-uc() - Inserimento indirizzo email <Inserimento-indirizzo-email>
 - *Attore principale*: Utente non autenticato
@@ -1520,7 +1520,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 ==== #uc() - Registrazione nuovo Tenant User <Registrazione-nuovo-tenant-user>
 #figure(
   image("../../assets/diagrammi/UC36.svg", width: 100%),
-  caption: [UC36 - UC35, UC36.1, UC36.2],
+  caption: [UC36 - UC35, UC36.1],
 )
 
 - *Attore principale*: Admin Generico
@@ -1540,7 +1540,7 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - #ref-uc(<Email-gia-utilizzata>)
 - *Inclusioni*:
   - #ref-uc(<Inserimento-email>)
-  // - #ref-uc(<Invio-email-impostazione-password>)
+// - #ref-uc(<Invio-email-impostazione-password>)
 
 ===== #sub-uc() - Inserimento email <Inserimento-email>
 - *Attore principale*: Admin Generico
@@ -2625,7 +2625,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc() - Eliminazione Tenant <Eliminazione-tenant>
 #figure(
   image("../../assets/diagrammi/UC74.svg", width: 100%),
-  caption: [UC74 - UC34, UC74.1, UC74.2, UC74.3, UC74.4, UC75],
+  caption: [UC74 - UC74.1, UC75],
 )
 
 - *Attore principale*: Super Admin
@@ -2650,9 +2650,9 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Decommissioning-gateway-fallito>)
 - *Inclusioni*:
   - #ref-uc(<Selezione-e-conferma-tenant-da-eliminare>)
-  // - #ref-uc(<Esecuzione-decommissioning-gateway-associati-tenant>)
-  // - #ref-uc(<Eliminazione-dati-utenti-associati-tenant>)
-  // - #ref-uc(<Esecuzione-eliminazione-tenant>)
+// - #ref-uc(<Esecuzione-decommissioning-gateway-associati-tenant>)
+// - #ref-uc(<Eliminazione-dati-utenti-associati-tenant>)
+// - #ref-uc(<Esecuzione-eliminazione-tenant>)
 
 ===== #sub-uc() - Selezione e conferma tenant da eliminare <Selezione-e-conferma-tenant-da-eliminare>
 - *Attore principale*: Super Admin
@@ -2984,7 +2984,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc() - Decommissioning gateway <Decommissioning-gateway>
 #figure(
   image("../../assets/diagrammi/UC87.svg", width: 100%),
-  caption: [UC87 - UC34, UC87.1, UC88, UC95],
+  caption: [UC87 - UC34, UC95],
 )
 
 - *Attore principale*: Super Admin
@@ -3005,8 +3005,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il gateway non è raggiungibile perciò il decommissioning non può essere completato
 - *Inclusioni*:
   - #ref-uc(<Selezione-gateway-per-invio-comando-super-admin>)
-  // - #ref-uc(<Disassociazione-gateway-dal-tenant>)
-  // - #ref-uc(<Reset-gateway>)
+// - #ref-uc(<Disassociazione-gateway-dal-tenant>)
+// - #ref-uc(<Reset-gateway>)
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
@@ -3642,7 +3642,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Selezione-tenant>)
   - #ref-uc(<Inserimento-email-nuovo-tenant-admin>)
-  // - #ref-uc(<Invio-email-impostazione-password-nuovo-tenant-admin>)
+// - #ref-uc(<Invio-email-impostazione-password-nuovo-tenant-admin>)
 
 ===== #sub-uc() - Selezione tenant <Selezione-tenant>
 - *Attore principale*: Super Admin
@@ -4980,141 +4980,108 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema],
   [#ref-uc(<Autenticazione-utente>)],
-
   [#rf()],
   [L'Utente non autenticato deve inserire la propria email per autenticarsi],
   [#ref-uc(<Inserimento-email-auth>)],
-  
   [#rf()],
   [L'Utente non autenticato deve inserire la propria password per autenticarsi],
   [#ref-uc(<Autenticazione-utente>) \ #ref-uc(<Inserimento-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore in caso di inserimento di credenziali errate],
   [#ref-uc(<Autenticazione-non-riuscita>)],
-  
   [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso],
   [#ref-uc(<Account-sospeso>)],
-
   // TODO: Togliere requisito
   [#rf[Opt]],
   [TOGLIERE],
   [],
   // [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve riceve una mail con il codice di verifica],
   // [#ref-uc(<Invio-codice-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, deve poter richiedere il re-invio del codice di verifica nel caso in cui non lo abbia ricevuto o sia scaduto],
   [#ref-uc(<Re-invio-codice-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve poter completare l'autenticazione a due fattori per autenticarsi nel Sistema],
   [#ref-uc(<Autenticazione-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato deve poter inserire il codice di verifica ricevuto via mail per completare l'autenticazione, in caso sia richiesta la 2FA],
   [#ref-uc(<Inserimento-codice-2FA>)],
-
   [#rf[Opt]],
   [L'Utente non autenticato deve ricevere un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto],
   [#ref-uc(<Codice-2FA-errato>)\ #ref-uc(<Codice-2FA-scaduto>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter impostare la sua prima password, in seguito alla ricezione della mail contenente il link per la creazione della prima password],
   [#ref-uc(<Impostazione-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter inserire la nuova password durante l'impostazione o reimpostazione della password],
   [#ref-uc(<Inserimento-nuova-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter inserire la conferma della nuova password durante l'impostazione o reimpostazione della password],
   [#ref-uc(<Conferma-password>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se la nuova password e la conferma non coincidono],
   [#ref-uc(<Password-non-coincidenti>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se la nuova password non rispetta i criteri di sicurezza],
   [#ref-uc(<Password-non-conforme-criteri-sicurezza>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se l'Utente tenta di usare un link di impostazione password scaduto],
   [#ref-uc(<Link-impostazione-password-scaduto>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata],
   [#ref-uc(<Password-dimenticata>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password],
   [#ref-uc(<Inserimento-indirizzo-email>)],
-
   [#rf()],
   [L'Utente non autenticato deve ricevere un messaggio di errore se inserisce un indirizzo email non associato ad alcun account durante la richiesta di reimpostazione password],
   [#ref-uc(<Indirizzo-email-non-associato-account>)],
-
   // TODO: Togliere requisito
   [#rf()],
   [TOGLIERE],
   [],
   // [Il Sistema deve inviare la mail per la reimpostazione della password, contente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta],
   // [#ref-uc(<Invio-email-reimpostazione-password>)],
-
   [#rf()],
   [L'Utente non autenticato deve poter reimpostare la propria password tramite il link ricevuto via email],
   [#ref-uc(<Reimpostazione-password-dimenticata>)],
-
   [#rf()],
   [L'Utente autenticato deve poter visualizzare la lista dei sensori associati al proprio tenant],
   [#ref-uc(<Visualizzazione-lista-sensori-associati-tenant>)],
-
   [#rf()],
   [L'Utente autenticato visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare l'identificativo di ciascun sensore nella lista],
   [#ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>), #ref-uc(<Visualizzazione-identificativo-sensore-in-lista>)],
-
   [#rf()],
   [L'Utente autenticato deve poter visualizzare la propria dashboard personale],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
-
   [#rf()],
   [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-lista-alert>)],
-
   [#rf()],
   [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei sensori attivi e non attivi associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-sensori-attivi-non-attivi>)],
-
   [#rf()],
   [L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei gateway attivi e non attivi associati al proprio Tenant],
   [#ref-uc(<Visualizzazione-dashboard-generica>), #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)],
-
   [#rf()],
   [Il Sistema deve notificare l'Admin generico nel caso in cui il gateway a cui ha inviato dei comandi non sia raggiungibile],
   [#ref-uc(<Gateway-non-raggiungibile>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore all'Admin generico nel caso in cui venga inserita un'email già associata ad un altro Tenant User durante la registrazione di un nuovo Tenant User],
   [#ref-uc(<Email-gia-utilizzata>)],
-
   [#rf()],
   [L'Admin generico deve poter registrare un nuovo Tenant User all'interno del Sistema],
-  [#ref-uc(<Registrazione-nuovo-tenant-user>)]
-  ,
+  [#ref-uc(<Registrazione-nuovo-tenant-user>)],
   [#rf()],
   [L'Admin generico, registrando un nuovo utente, deve inserire l'indirizzo email associato al nuovo Tenant User],
   [#ref-uc(<Inserimento-email>)],
-
   // TODO: togliere requisito
   [#rf()],
   [TOGLIERE],
   [],
-
   // [Il Sistema deve inviare una mail al nuovo Tenant User contenente il link per impostare la propria password iniziale dopo la registrazione effettuata dall'Admin generico],
   // [#ref-uc(<Invio-email-impostazione-password>)],
-
   [#rf[Des]],
   [L'Admin generico deve poter sospendere l'accesso di un Tenant User al Sistema],
   [#ref-uc(<Sospensione-tenant-user>)],
@@ -5277,25 +5244,21 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Sistema deve richiedere conferma al Tenant Admin prima di eliminare una richiesta di commissioning o decommissioning gateway],
   [#ref-uc(<Eliminazione-richiesta-commissioning-decommissioning-gateway>), #ref-uc(<Conferma-eliminazione-richiesta-commissioning-decommissioning>)],
-
   [#rf()],
   [Il Tenant Admin deve poter sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant],
   [
     #ref-uc(<Sospensione-sensore-tenant-admin>)
     // , #ref-uc(<Selezione-sensore>)
   ],
-
   [#rf()],
   [Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore],
   [#ref-uc(<Sospensione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
   [#rf()],
-  
   [Il Tenant Admin deve poter riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant],
   [
     #ref-uc(<Riattivazione-sensore-tenant-admin>)
     // , #ref-uc(<Selezione-sensore>)
   ],
-
   [#rf()],
   [Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore],
   [#ref-uc(<Riattivazione-sensore-tenant-admin>), #ref-uc(<Gateway-non-raggiungibile>)],
@@ -5552,14 +5515,12 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf[Opt]],
   [L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il tempo di inattività],
   [#ref-uc(<Visualizzazione-tempo-inattivita-sensore-alert>)],
-
   // TODO: togliere requisito
   [#rf()],
   [TOGLIERE],
   [],
   // [L'Utente autenticato deve poter selezionare un sensore dalla lista dei sensori associati al proprio tenant],
   // [#ref-uc(<Selezione-sensore>)],
-  
   [#rf()],
   [L'Utente autenticato deve poter visualizzare i dati in tempo reale di un sensore selezionato],
   [#ref-uc(<Visualizzazione-dati-real-time-sensore>)],
@@ -5604,48 +5565,39 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Super Admin deve poter creare un nuovo tenant nel Sistema],
   [#ref-uc(<Creazione-tenant>)],
-
   [#rf()],
   [Il Super Admin, creando un nuovo tenant, deve inserire il nome del tenant],
   [#ref-uc(<Creazione-tenant>)],
-
   [#rf()],
   [Il Super Admin, creando un nuovo tenant, deve specificare l'accettazione o meno della clausola di impersonificazione],
   [#ref-uc(<Clausola-impersonificazione>)],
-
   [#rf()],
   [Il Sistema deve mostrare un messaggio di errore se il nome del tenant inserito è già in uso],
   [#ref-uc(<Nome-tenant-gia-utilizzato>)],
-
   [#rf()],
   [Il Super Admin deve poter eliminare un tenant esistente dal Sistema],
   [#ref-uc(<Eliminazione-tenant>)],
-
   [#rf()],
   [Il Sistema deve richiedere conferma al Super Admin prima di eliminare un tenant],
   [#ref-uc(<Selezione-e-conferma-tenant-da-eliminare>)],
-
   // TODO: togliere requisito
   [#rf()],
   [TOGLIERE],
   [],
   // [Il Sistema, prima di eliminare un tenant, deve eseguire il decommissioning di tutti i Gateway associati],
   // [#ref-uc(<Esecuzione-decommissioning-gateway-associati-tenant>)],
-
   // TODO: togliere requisito
   [#rf()],
   [TOGLIERE],
   [],
   // [Il Sistema, eliminando un tenant, deve eliminare tutti i dati e gli utenti associati al tenant],
   // [#ref-uc(<Eliminazione-dati-utenti-associati-tenant>)],
-
   // TODO: togliere requisito
   [#rf()],
   [TOGLIERE],
   [],
   // [Il Sistema deve completare l'eliminazione del tenant dopo aver rimosso dati, utenti e Gateway associati],
   // [#ref-uc(<Esecuzione-eliminazione-tenant>)],
-
   [#rf()],
   [Il Sistema deve notificare il Super Admin se il decommissioning di un Gateway fallisce durante l'eliminazione del tenant],
   [#ref-uc(<Decommissioning-gateway-fallito>)],
@@ -5707,14 +5659,12 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Super Admin deve poter eseguire il decommissioning di un Gateway],
   [#ref-uc(<Decommissioning-gateway>)],
-
   // TODO: togliere requisito
   [#rf()],
   [TOGLIERE],
   [],
   // [Il Sistema, durante il decommissioning, deve disassociare il Gateway dal tenant],
   // [#ref-uc(<Disassociazione-gateway-dal-tenant>)],
-
   // Comandi gateway
   [#rf()],
   [Il Super Admin deve poter eseguire il reset di un Gateway],
@@ -5839,14 +5789,12 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Super Admin, creando un Tenant Admin, deve inserire l'email del nuovo utente],
   [#ref-uc(<Inserimento-email-nuovo-tenant-admin>)],
-
   // TODO: togliere requisito
   [#rf()],
   [],
   [],
   // [Il Sistema deve inviare un'email per l'impostazione password al nuovo Tenant Admin],
   // [#ref-uc(<Invio-email-impostazione-password-nuovo-tenant-admin>)],
-  
   [#rf[Des]],
   [Il Super Admin deve poter sospendere un account Tenant Admin],
   [#ref-uc(<Sospensione-account-tenant-admin>)],
@@ -6091,20 +6039,18 @@ Quindi non va modificata!
 
 
 // NOTA: questa tabella è generata automaticamente, non va toccata! Se volete modificare un requisito, modificate le liste direttamente.
-#columns(2,
-  tabella-paginata(
-    align(center)[
-      #table(
-        columns: (auto, auto),
-        align: center,
-        table.header([*Requisito*], [*Fonti*]),
+#columns(2, tabella-paginata(
+  align(center)[
+    #table(
+      columns: (auto, auto),
+      align: center,
+      table.header([*Requisito*], [*Fonti*]),
 
-        ..get-tracciamento(lista-rf),
-        ..get-tracciamento(lista-rnf),
-        ..get-tracciamento(lista-rd),
-      )
-    ],
-    [Tracciamento],
-    label-id: "tab-requisiti",
-  )
-)
+      ..get-tracciamento(lista-rf),
+      ..get-tracciamento(lista-rnf),
+      ..get-tracciamento(lista-rd),
+    )
+  ],
+  [Tracciamento],
+  label-id: "tab-requisiti",
+))
