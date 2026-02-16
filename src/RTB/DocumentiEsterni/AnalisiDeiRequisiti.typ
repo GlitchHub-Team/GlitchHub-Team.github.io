@@ -143,7 +143,7 @@
       "1.0.1",
       "15/02/2026",
       "Siria Salvalaio",
-      "-",
+      "Riccardo Graziani",
       [Modifica indici per immagini e tabelle],
     ),
     (
@@ -809,7 +809,7 @@ L'utente non autenticato è chiunque *non* abbia eseguito l'accesso alla piattaf
 ==== #uc() - Impostazione password <Impostazione-password>
 #figure(
   image("../../assets/diagrammi/UC9.svg", width: 100%),
-  caption: [UC9 - UC12, UC12.1, UC13, UC14, UC15],
+  caption: [UC9 - UC12.1, UC12.2, UC13, UC14, UC15],
 )
 
 - *Attore principale*: Utente non autenticato
@@ -991,7 +991,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 ==== #uc() - Modifica password <Modifica-password>
 #figure(
   image("../../assets/diagrammi/UC17.svg", width: 100%),
-  caption: [UC17 - UC12, UC12.2, UC13, UC14, UC17.1, UC18],
+  caption: [UC17 - UC12.1, UC12.2, UC13, UC14, UC17.1, UC18],
 )
 
 - *Attore principale*: Utente autenticato
@@ -1192,7 +1192,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 ==== #uc() - Visualizzazione in tempo reale dei dati del sensore <Visualizzazione-dati-real-time-sensore>
 #figure(
   image("../../assets/diagrammi/UC24.svg", width: 100%),
-  caption: [UC24 - UC23, UC24.1, UC30],
+  caption: [UC24 - UC24.1, UC30],
 )
 
 - *Attore principale*: Utente autenticato
@@ -1228,7 +1228,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 ==== #uc() - Visualizzazione dello storico dei dati del sensore <Visualizzazione-storico-dati-sensore>
 #figure(
   image("../../assets/diagrammi/UC25.svg", width: 100%),
-  caption: [UC25 - UC23, UC25.1, UC30],
+  caption: [UC25 - UC25.1, UC30],
 )
 
 - *Attore principale*: Utente autenticato
@@ -1263,7 +1263,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 ==== #uc() - Filtraggio per intervallo temporale dati storico sensore <Filtraggio-dati-storico-sensore>
 #figure(
   image("../../assets/diagrammi/UC26.svg", width: 100%),
-  caption: [UC26 - UC23, UC26.1, UC27, UC30],
+  caption: [UC26 - UC26.1, UC27, UC30],
 )
 
 - *Attore principale*: Utente autenticato
@@ -1316,7 +1316,7 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 ==== #uc() - Filtraggio dati del sensore per intervallo di valori <Filtraggio-dati-sensore-intervallo-valori>
 #figure(
   image("../../assets/diagrammi/UC28.svg", width: 100%),
-  caption: [UC28 - UC23, UC28.1, UC29, UC30],
+  caption: [UC28 - UC28.1, UC29, UC30],
 )
 
 - *Attore principale*: Utente autenticato
@@ -2411,7 +2411,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc() - Sospensione sensore del tenant <Sospensione-sensore-tenant-admin>
 #figure(
   image("../../assets/diagrammi/UC65.svg", width: 100%),
-  caption: [UC65 - UC23, UC34],
+  caption: [UC65 - UC34],
 )
 
 - *Attore principale*: Tenant Admin
@@ -2437,7 +2437,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc() - Riattivazione sensore del tenant <Riattivazione-sensore-tenant-admin>
 #figure(
   image("../../assets/diagrammi/UC66.svg", width: 100%),
-  caption: [UC66 - UC23, UC34],
+  caption: [UC66 - UC34],
 )
 
 - *Attore principale*: Tenant Admin
@@ -3273,7 +3273,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc() - Visualizzazione tenant <Visualizzazione-tenant>
 #figure(
   image("../../assets/diagrammi/UC100.svg", width: 100%),
-  caption: [UC100 - UC100.1], //TODO: cambiare nell'immagine da 101.1 a 100.1
+  caption: [UC100 - UC100.1],
 )
 
 - *Attore principale*: Super Admin
