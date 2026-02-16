@@ -2033,7 +2033,7 @@ $ "BAC" = 12.975 € $
 )
 
 #figure(
-  image("../../assets/metriche/eac-bac.svg"),
+  image("../../assets/metriche/eac-bac.png"),
   caption: [EAC vs BAC per sprint],
 )
 
