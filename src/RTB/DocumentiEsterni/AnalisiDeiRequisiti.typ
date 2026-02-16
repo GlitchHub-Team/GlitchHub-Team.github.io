@@ -92,7 +92,14 @@
   titolo: "Analisi dei Requisiti",
   stato: "Da verificare",
   registro-modifiche: (
-      (
+    (
+      "1.0.2",
+      "16/02/2026",
+      "Riccardo Graziani",
+      "-",
+      [Fix rendering delle tabelle],
+    ),
+    (
       "1.0.1",
       "15/02/2026",
       "Siria Salvalaio",
@@ -542,9 +549,23 @@ I casi d'uso si compongono di un diagramma UML, che offre una rappresentazione s
 Come scritto precedentemente, il sistema si compone di più livelli e coinvolge attori eterogenei, sia umani che automatici. L'utilizzo dei casi d'uso consente quindi di modellare le interazioni tra tali attori, traducendo i requisiti funzionali individuati in scenari operativi concreti. Essi permettono di focalizzarsi quindi sugli aspetti fondamentali del sistema preso in considerazione, quali l'acquisizione e l'aggregazione dei dati, l'inoltro verso il cloud, il provisioning sicuro dei dispositivi, la gestione multi-tenant e la visualizzazione dei dati tramite dashboard.
 
 Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel documento e una breve descrizione per ognuno di essi.
-#figure(
-  table(
-  // align: (left, left),
+
+// Figure fantasma che gestisce index, link e counter
+#[
+  // Nasconde la figure 
+  #show figure.caption: none 
+  
+  #figure(
+    kind: table,
+    caption: [Nomi degli attori e una breve descrizione di ciascuno], // Il testo mostrato nell'indice delle tabelle
+    gap: 0em,
+    outlined: true, 
+    [] 
+  ) <tab-requisiti> 
+]
+
+// La tabella vera e propria
+#table(
   columns: (1fr, 2.5fr),
   table.header([Attore], [Descrizione]),
 
@@ -576,9 +597,17 @@ Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel 
 
   [Email Client],
   [Rappresenta un client di posta elettronica usato dagli utenti. Si noti che quest'ultimo può essere solo un attore secondario, in quanto non è in grado di compiere azioni diverse dal ricevere email.],
-),
-  caption: [Nomi degli attori e una breve descrizione di ciascuno],
 )
+
+// La caption visibile nel documento
+#align(center)[
+  #context [
+    // Recupera il numero della tabella
+    #let n = counter(figure.where(kind: table)).display()
+    // Fa render del testo come se fosse una vera caption
+    #text[Tabella #n: Nomi degli attori e una breve descrizione di ciascuno]
+  ]
+]
 
 
 == Sistema Cloud - Lista dei casi d'uso
@@ -5902,15 +5931,37 @@ Inoltre un buon requisito deve essere *SMART*:
   [Capitolato §3.2],
 )
 
-#figure(
-  table(
-    columns: (0.20fr, 0.60fr, 0.20fr),
-    align: left,
-    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-    ..lista-rnf,
-  ),
-  caption: [Requisiti non funzionali],
+// Figure fantasma che gestisce index, link e counter
+#[
+  // Nasconde la figure 
+  #show figure.caption: none 
+  
+  #figure(
+    kind: table,
+    caption: [Requisiti non funzionali], // Il testo mostrato nell'indice delle tabelle
+    gap: 0em,
+    outlined: true, 
+    [] 
+  ) <tab-requisiti> 
+]
+
+// La tabella vera e propria
+#table(
+  columns: (1fr, 4fr, 1.5fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  ..lista-rnf,
 )
+
+// La caption visibile nel documento
+#align(center)[
+  #context [
+    // Recupera il numero della tabella
+    #let n = counter(figure.where(kind: table)).display()
+    // Fa render del testo come se fosse una vera caption
+    #text[Tabella #n: Requisiti non funzionali]
+  ]
+]
 
 == Requisiti di dominio
 // NOTA: Inserire qui i requisiti di dominio, non in tabella
@@ -5947,15 +5998,37 @@ Inoltre un buon requisito deve essere *SMART*:
   [Capitolato §5.1 -- RQ 4.2.2],
 )
 
-#figure(
-  table(
-    columns: (0.20fr, 0.60fr, 0.20fr),
-    align: left,
-    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
-    ..lista-rd,
-  ),
-  caption: [Requisiti di dominio],
+// Figure fantasma che gestisce index, link e counter
+#[
+  // Nasconde la figure 
+  #show figure.caption: none 
+  
+  #figure(
+    kind: table,
+    caption: [Requisiti di dominio], // Il testo mostrato nell'indice delle tabelle
+    gap: 0em,
+    outlined: true, 
+    [] 
+  ) <tab-requisiti> 
+]
+
+// La tabella vera e propria
+#table(
+  columns: (1fr, 4fr, 1.5fr),
+  align: left,
+  table.header([*Codice*], [*Descrizione*], [*Fonti*]),
+  ..lista-rd,
 )
+
+// La caption visibile nel documento
+#align(center)[
+  #context [
+    // Recupera il numero della tabella
+    #let n = counter(figure.where(kind: table)).display()
+    // Fa render del testo come se fosse una vera caption
+    #text[Tabella #n: Requisiti di dominio]
+  ]
+]
 
 #set page(columns: 2) // Doppia colonna per ottimizzare gli spazi
 
@@ -5973,18 +6046,40 @@ Quindi non va modificata!
 
 
 // NOTA: questa tabella è generata automaticamente, non va toccata! Se volete modificare un requisito, modificate le liste direttamente.
-#figure(
-  align(center)[
-    #table(
-      columns: (auto, auto),
-      align: center,
-      table.header([*Requisito*], [*Fonti*]),
 
-      ..get-tracciamento(lista-rf),
-      ..get-tracciamento(lista-rnf),
-      ..get-tracciamento(lista-rd),
-    )
-  ],
-  caption: [Tracciamento],
-)
+// Figure fantasma che gestisce index, link e counter
+#[
+  // Nasconde la figure 
+  #show figure.caption: none 
+  
+  #figure(
+    kind: table,
+    caption: [Tracciamento], // Il testo mostrato nell'indice delle tabelle
+    gap: 0em,
+    outlined: true, 
+    [] 
+  ) <tab-requisiti> 
+]
 
+// La tabella vera e propria
+#align(center)[
+  #table(
+    columns: (auto, auto),
+    align: center,
+    table.header([*Requisito*], [*Fonti*]),
+
+    ..get-tracciamento(lista-rf),
+    ..get-tracciamento(lista-rnf),
+    ..get-tracciamento(lista-rd),
+  )
+]
+
+// La caption visibile nel documento
+#align(center)[
+  #context [
+    // Recupera il numero della tabella
+    #let n = counter(figure.where(kind: table)).display()
+    // Fa render del testo come se fosse una vera caption
+    #text[Tabella #n: Tracciamento]
+  ]
+]
