@@ -97,14 +97,14 @@
 #let tabella-paginata(contenuto, didascalia, label-id: none) = {
   // 1. Ghost Figure: crea l'ancora per l'Indice e il Link in alto
   [
-    #show figure.caption: none 
+    #show figure.caption: none
     #figure(
       kind: table,
       caption: didascalia,
-      outlined: true, 
+      outlined: true,
       gap: 0em,
-      [] 
-    ) 
+      [],
+    )
     #if label-id != none { label(label-id) }
   ]
 
@@ -606,7 +606,8 @@ Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel 
     [Tenant Admin],
     [Un utente autenticato appartenente a uno specifico tenant che ha poteri di amministrazione sui gateway collegati al tenant.],
 
-    [Super Admin], [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud.],
+    [Super Admin],
+    [Un utente autenticato che ha poteri di amministrazione su tutti i tenant associati al sistema cloud.],
 
     [Admin Generico],
     [Un utente autenticato con poteri di amministrazione generici. Corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.],
@@ -625,7 +626,7 @@ Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel 
     [Rappresenta un client di posta elettronica usato dagli utenti. Si noti che quest'ultimo può essere solo un attore secondario, in quanto non è in grado di compiere azioni diverse dal ricevere email.],
   ),
   [Nomi degli attori e una breve descrizione di ciascuno],
-  label-id: "tab-attori"
+  label-id: "tab-attori",
 )
 
 == Sistema Cloud - Lista dei casi d'uso
@@ -5965,7 +5966,7 @@ Inoltre un buon requisito deve essere *SMART*:
     ..lista-rf,
   ),
   [Requisiti funzionali],
-  label-id: "tab-requisiti"
+  label-id: "tab-requisiti",
 )
 
 == Requisiti non funzionali
@@ -6020,7 +6021,7 @@ Inoltre un buon requisito deve essere *SMART*:
     ..lista-rnf,
   ),
   [Requisiti non funzionali],
-  label-id: "tab-requisiti-non-funzionali"
+  label-id: "tab-requisiti-non-funzionali",
 )
 
 == Requisiti di dominio
@@ -6066,7 +6067,7 @@ Inoltre un buon requisito deve essere *SMART*:
     ..lista-rd,
   ),
   [Requisiti di dominio],
-  label-id: "tab-requisiti-dominio"
+  label-id: "tab-requisiti-dominio",
 )
 
 #set page(columns: 2) // Doppia colonna per ottimizzare gli spazi
@@ -6099,5 +6100,5 @@ Quindi non va modificata!
     )
   ],
   [Tracciamento],
-  label-id: "tab-requisiti"
+  label-id: "tab-requisiti",
 )
