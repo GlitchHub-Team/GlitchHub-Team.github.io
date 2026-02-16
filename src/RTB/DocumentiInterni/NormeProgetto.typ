@@ -133,7 +133,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 == Riferimenti
 === Riferimenti normativi
 - #gloss[Capitolato d'appalto] C7
-  - #url("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")
+- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`]
   - *Ultimo accesso*: 13 febbraio 2025
 
 === Riferimenti informativi
