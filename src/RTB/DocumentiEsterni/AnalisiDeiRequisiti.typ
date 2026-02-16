@@ -3005,23 +3005,23 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il gateway non è raggiungibile perciò il decommissioning non può essere completato
 - *Inclusioni*:
   - #ref-uc(<Selezione-gateway-per-invio-comando-super-admin>)
-  - #ref-uc(<Disassociazione-gateway-dal-tenant>)
-  - #ref-uc(<Reset-gateway>)
+  // - #ref-uc(<Disassociazione-gateway-dal-tenant>)
+  // - #ref-uc(<Reset-gateway>)
 - *Estensioni*:
   - #ref-uc(<Gateway-non-raggiungibile>)
 
-===== #sub-uc() - Disassociazione gateway dal tenant <Disassociazione-gateway-dal-tenant>
-- *Attore principale*: Super Admin
-- *Attore secondario*: Gateway
-- *Pre-condizioni*:
-  - Il Super Admin è autenticato
-  - Il gateway deve essere registrato e autenticato nel Sistema
-  - Il gateway deve essere associato ad un tenant
-- *Post-condizioni*:
-  - Il gateway viene disassociato dal tenant a livello di Sistema
-- *Scenario principale*:
-  - Il Super Admin seleziona il gateway da disassociare
-  - Il Sistema invia il comando di disassociazione al gateway
+// ===== #sub-uc() - Disassociazione gateway dal tenant <Disassociazione-gateway-dal-tenant>
+// - *Attore principale*: Super Admin
+// - *Attore secondario*: Gateway
+// - *Pre-condizioni*:
+//   - Il Super Admin è autenticato
+//   - Il gateway deve essere registrato e autenticato nel Sistema
+//   - Il gateway deve essere associato ad un tenant
+// - *Post-condizioni*:
+//   - Il gateway viene disassociato dal tenant a livello di Sistema
+// - *Scenario principale*:
+//   - Il Super Admin seleziona il gateway da disassociare
+//   - Il Sistema invia il comando di disassociazione al gateway
 
 
 ==== #uc() - Reset gateway <Reset-gateway>
@@ -5707,9 +5707,14 @@ Inoltre un buon requisito deve essere *SMART*:
   [#rf()],
   [Il Super Admin deve poter eseguire il decommissioning di un Gateway],
   [#ref-uc(<Decommissioning-gateway>)],
+
+  // TODO: togliere requisito
   [#rf()],
-  [Il Sistema, durante il decommissioning, deve disassociare il Gateway dal tenant],
-  [#ref-uc(<Disassociazione-gateway-dal-tenant>)],
+  [TOGLIERE],
+  [],
+  // [Il Sistema, durante il decommissioning, deve disassociare il Gateway dal tenant],
+  // [#ref-uc(<Disassociazione-gateway-dal-tenant>)],
+
   // Comandi gateway
   [#rf()],
   [Il Super Admin deve poter eseguire il reset di un Gateway],
@@ -6070,7 +6075,7 @@ Inoltre un buon requisito deve essere *SMART*:
   label-id: "tab-requisiti-dominio",
 )
 
-#set page(columns: 2) // Doppia colonna per ottimizzare gli spazi
+// #set page(columns: 2) // Doppia colonna per ottimizzare gli spazi
 
 == Tracciamento <tracciamento-requisiti>
 /*
@@ -6086,19 +6091,20 @@ Quindi non va modificata!
 
 
 // NOTA: questa tabella è generata automaticamente, non va toccata! Se volete modificare un requisito, modificate le liste direttamente.
+#columns(2,
+  tabella-paginata(
+    align(center)[
+      #table(
+        columns: (auto, auto),
+        align: center,
+        table.header([*Requisito*], [*Fonti*]),
 
-#tabella-paginata(
-  align(center)[
-    #table(
-      columns: (auto, auto),
-      align: center,
-      table.header([*Requisito*], [*Fonti*]),
-
-      ..get-tracciamento(lista-rf),
-      ..get-tracciamento(lista-rnf),
-      ..get-tracciamento(lista-rd),
-    )
-  ],
-  [Tracciamento],
-  label-id: "tab-requisiti",
+        ..get-tracciamento(lista-rf),
+        ..get-tracciamento(lista-rnf),
+        ..get-tracciamento(lista-rd),
+      )
+    ],
+    [Tracciamento],
+    label-id: "tab-requisiti",
+  )
 )
