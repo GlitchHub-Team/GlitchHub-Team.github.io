@@ -8,11 +8,18 @@
   titolo: "Piano di Progetto",
   stato: "Da Verificare",
   registro-modifiche: (
-      (
-      "0.10.2",
+    (
+      "0.10.4",
+      "16/02/2026",
+      "Riccardo Graziani",
+      "-",
+      [Revisione rischi Sprint 1-4],
+    ),
+    (
+      "0.10.3",
       "16/02/2026",
       "Siria Salvalaio",
-      " ",
+      "-",
       [Modifica indici tabelle e grafici],
     ),
     (
@@ -319,6 +326,7 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 - Gestione di progetto: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf") \
   *Ultimo accesso: 22/11/2025*
 
+// TODO: Mettere riferimento a glossario con versione 
 
 == Redazione del documento
 Questa sezione descrive le pratiche adottate per la redazione del #gloss[Piano di Progetto]. \
@@ -420,8 +428,8 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
       Il membro che dovesse incontrare questa problematica potrà sempre contare sul supporto degli altri membri ed eventualmente del contributo di _M31_.
     ],
 
-    [*Occorrenza*], [Da definire],
-    [*Impatto*], [Da definire],
+    [*Occorrenza*], [Alta],
+    [*Impatto*], [Medio],
   ),
   [Rischi tecnologici - Problematiche nello sviluppo software],
   label-id: "tab-rischi-tecn-2"
@@ -556,7 +564,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 )
 
 == Rischi personali
-=== Problemi personali o accademici <RP1>
+=== Problemi accademici <RP1>
 #tabella-paginata(
   table(
     columns: (0.25fr, 0.75fr),
@@ -587,7 +595,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Occorrenza*], [Media],
     [*Impatto*], [Medio],
   ),
-  [Rischi personali - Problemi personali o accademici],
+  [Rischi personali - Problemi accademici],
   label-id: "tab-rischi-pers-1"
 )
 
@@ -624,34 +632,39 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 )
 
 === Problemi personali <RP3>
-#table(
-  columns: (0.25fr, 0.75fr),
-  align: left,
-  stroke: (x, y) => (
-    right: if x < 1 and y > 0 { 0.7pt } else { 0pt },
-    top: if y > 1 { 0.7pt } else { 0pt },
-    bottom: if y < 5 { 0.7pt } else { 0pt },
+#tabella-paginata(
+  table(
+    columns: (0.25fr, 0.75fr),
+    align: left,
+    stroke: (x, y) => (
+      right: if x < 1 and y > 0 { 0.7pt } else { 0pt },
+      top: if y > 1 { 0.7pt } else { 0pt },
+      bottom: if y < 5 { 0.7pt } else { 0pt },
+    ),
+    [], [],
+    [*ID*], [RP3],
+    [*Nome*], [Problemi personali],
+    [*Descrizione*],
+    [
+      Eventuali impegni personali potrebbero influire sulla disponibilità dei membri del gruppo, causando ritardi nelle consegne.
+    ],
+
+    [*Misure di mitigazione*],
+    [
+      I membri del gruppo potrebbero avere periodi di indisponibilità dovuti a esigenze personali (famiglia, salute, impegni imprevisti). Queste variazioni possono influire sulla continuità del lavoro e sulla capacità del team di rispettare le scadenze. Per mitigare almeno parzialmente questi avenimenti il gruppo si impegna nel adottare questi punti:
+      - Prevedere adeguati buffer temporali nelle pianificazioni;
+      - Mantenere una comunicazione trasparente e tempestiva riguardo a possibili variazioni di disponibilità;
+      - Assegnare ruoli e compiti in modo flessibile, adattandoli alle esigenze e ai carichi di ciascun membro. \
+      I dettagli relativi ai periodi di inattività, comprensivi di vacanze, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
+    ],
+
+    [*Occorrenza*], [Bassa],
+    [*Impatto*], [Medio],
   ),
-  [], [],
-  [*ID*], [RP3],
-  [*Nome*], [Problemi personali],
-  [*Descrizione*],
-  [
-    Eventuali impegni personali potrebbero influire sulla disponibilità dei membri del gruppo, causando ritardi nelle consegne.
-  ],
-
-  [*Misure di mitigazione*],
-  [
-    I membri del gruppo potrebbero avere periodi di indisponibilità dovuti a esigenze personali (famiglia, salute, impegni imprevisti). Queste variazioni possono influire sulla continuità del lavoro e sulla capacità del team di rispettare le scadenze. Per mitigare almeno parzialmente questi avenimenti il gruppo si impegna nel adottare questi punti:
-    - Prevedere adeguati buffer temporali nelle pianificazioni;
-    - Mantenere una comunicazione trasparente e tempestiva riguardo a possibili variazioni di disponibilità;
-    - Assegnare ruoli e compiti in modo flessibile, adattandoli alle esigenze e ai carichi di ciascun membro. \
-    I dettagli relativi ai periodi di inattività, comprensivi di vacanze, sono disponibili nel documento #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni].
-  ],
-
-  [*Occorrenza*], [Bassa],
-  [*Impatto*], [Medio],
+  [Rischi personali - Problemi personali],
+  label-id: "tab-rischi-pers-3"
 )
+
 
 = Calendario di massima del progetto <calendario-progetto>
 Il gruppo si impegna a presentare la candidatura per la #gloss[Requirements and Technology Baseline] entro il 12/02/2025, con possibilità di deroga a seconda delle necessità del gruppo.
@@ -930,7 +943,7 @@ Il gruppo ha individuato i seguenti compiti da svolgere:
 
 === Rischi attesi
 Il gruppo prevede i seguenti rischi per lo *Sprint 1*:
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo sprint.
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici che limitano la loro disponibilità durante lo sprint.
 
 === Consuntivo a finire
 ==== Preventivo risorse da utilizzare
@@ -1088,7 +1101,7 @@ Il gruppo ha individuato i seguenti compiti da svolgere:
 
 === Rischi attesi
 Il gruppo prevede i seguenti rischi per lo *Sprint 2*:
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo sprint.
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici che limitano la loro disponibilità durante lo sprint.
 
 === Consuntivo a finire
 ==== Preventivo risorse da utilizzare
@@ -1251,7 +1264,7 @@ Il gruppo ha individuato i seguenti compiti da svolgere:
 Il gruppo prevede i seguenti rischi per lo *Sprint 3*:
 - *RO1*(@RO1): è possibile che il compito di selezione delle metriche subisca un ritardo, dato che l'individuazione di metriche adeguate non è immediata e occorre un'analisi piu profonda;
 - *RO3*(@RO4): ci potrebbero essere opinioni contrastanti nel brainstorming sull'analisi dei requisiti;
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali che limitano la loro disponibilità durante lo sprint.
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici che limitano la loro disponibilità durante lo sprint.
 
 === Consuntivo a finire
 ==== Preventivo risorse da utilizzare
@@ -1409,7 +1422,7 @@ Il gruppo ha individuato i seguenti compiti da svolgere:
 === Rischi attesi <sprint-4-rischi-attesi>
 Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
 - *RO3*(@RO3): andando in profondità nei casi d'uso potrebbero sorgere dubbi, bloccando così lo sviluppo di certi casi d'uso;
-- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici o personali imprevisti.
+- *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici imprevisti.
 
 === Consuntivo a finire
 ==== Preventivo risorse da utilizzare
@@ -1473,7 +1486,7 @@ Un ulteriore fattore di rallentamento nelle attività di gruppo è stata la diff
 === Rischi occorsi <sprint-4-rischi-occorsi>
 Durante lo *sprint 4*, sono occorsi i seguenti rischi:
 - *RO3* (@RO3): come previsto, lo studio dei requisiti del capitolato ha fatto sorgere numerosi dubbi relativamente ai casi d'utilizzo del prodotto bloccando lo sviluppo di certi use cases, soprattutto quelli relativi al simulatore di #gloss[Gateway]. Questo rischio ha avuto un impatto medio poiché, sebbene fosse stato previsto, ha comunque causato ritardi nello sviluppo degli use cases.
-- *RP1* (@RP1): gli impegni accademici o personali dei membri del gruppo hanno ostacolato il lavoro sincrono a gruppi di comprensione e studio degli use cases, rallentandone la produzione. Questo rischio ha avuto un impatto medio in quanto ha causato l'insorgere di dubbi verso la fine dello sprint.
+- *RP1* (@RP1), *RP3* (@RP3): gli impegni accademici o personali dei membri del gruppo hanno ostacolato il lavoro sincrono a gruppi di comprensione e studio degli use cases, rallentandone la produzione. Questo rischio ha avuto un impatto medio in quanto ha causato l'insorgere di dubbi verso la fine dello sprint.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
