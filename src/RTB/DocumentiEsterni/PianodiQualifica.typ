@@ -1859,7 +1859,10 @@ Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite ta
 
 L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttività del team, individuando eventuali scostamenti rispetto alla pianificazione.
 
-== MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
+
+Sono state trovate criticità e un peggioramento delle metriche specializzate negli sprint 4, 7 e 8. Analizzando il calendario e interpretando questi dati troviamo che lo sprint 4 è caduto nei giorni finali di dicembre dove è stato più difficile comunicare con i membri del gruppo. Sprint 7 e 8 sono gli sprint dove il gruppo ha iniziato a sviluppare il PoC e lo studio può essere stato causa di rallentamenti.
+
+==  MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
 
 #tabella-paginata(
   table(
@@ -1897,9 +1900,12 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
 
 Il valore pianificato (PV) mostra un incremento progressivo coerente con l'avanzamento del progetto.
 
-Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00), evidenziando una fase iniziale di assestamento del team. A partire dallo sprint 3 si osserva un miglioramento delle performance, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
+Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00), evidenziando una fase iniziale di assestamento del team, si è sottovalutato il tempo da dover dedicare allo studio. A partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
 
 L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di €3.110,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
+
+Si è visto un miglioramento personale sfruttando meglio le ore di palestra/studio anche grazie all'esperienza sempre maggiore.
+
 
 *Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
 *Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
@@ -1987,9 +1993,9 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
   caption: [Cost Variance e Schedule Variance per sprint],
 )
 
-- *Cost Variance (CV)*: La CV risulta prevalentemente positiva o nulla, indicando un buon controllo dei costi. Gli unici scostamenti negativi si verificano negli sprint 3 (−€6,00) e 8 (−€0,83), entrambi di entità trascurabile. Lo sprint 5 registra il miglior risultato economico (+€20,00).
+- *Cost Variance (CV)*: La CV risulta prevalentemente positiva o nulla, indicando un buon controllo dei costi. Gli unici scostamenti negativi si verificano negli sprint 3 (−€6,00) e 8 (−€0,83), entrambi di entità trascurabile. Lo sprint 5 registra il miglior risultato economico (+€20,00), dove vengono spese maggiori ore di analista coerentemente coincidenti con la scrittura della documentazione.
 
-- *Schedule Variance (SV)*: La SV presenta maggiore variabilità. Lo sprint 1 evidenzia il principale ritardo (−€72,69), attribuibile alla fase iniziale di rodaggio del team. Gli sprint intermedi mostrano valori positivi significativi, indicando recupero e anticipo sulla pianificazione. Nello sprint 9 si osserva un nuovo rallentamento (−€52,65).
+- *Schedule Variance (SV)*: La SV presenta maggiore variabilità. Lo sprint 1 evidenzia il principale ritardo (−€72,69), attribuibile alla fase iniziale di rodaggio del _team_. Gli sprint intermedi mostrano valori positivi significativi, indicando recupero e anticipo sulla pianificazione. Nello sprint 9 si osserva un nuovo rallentamento (−€52,65), possibile causa i rallentamenti dovuti allo svolgimento di esami e alla precedente preparazione del _team_.
 
 *Soglia accettabile CV:* $"CV" > 0$ _violata in 2 sprint su 9 (scostamenti minimi)_ \
 *Soglia accettabile SV:* $"SV" gt.eq 0$ _violata negli sprint 1 e 9_
@@ -2026,7 +2032,6 @@ $ "BAC" = 12.975 € $
   label-id: "tab-EAC-BAC",
 )
 
-// TODO: Nel grafico la soglia accettabile per il BAC non viene mostrata correttamente
 #figure(
   image("../../assets/metriche/eac-bac.svg"),
   caption: [EAC vs BAC per sprint],
@@ -2039,7 +2044,6 @@ Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una prev
 *Risparmio stimato finale*: €120,89 (≈ −0,9%)
 
 *Soglia accettabile: EAC* $>= 0,95$ × BAC = €12.326,25 _sempre rispettata_
-
 
 
 == MPC-TCR: _Task Completion Rate_
@@ -2080,6 +2084,7 @@ Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una prev
 Il TCR risulta ottimo (100%) in 6 sprint su 9.
 
 Le principali flessioni si osservano:
+
 - Sprint 7:  80,0% (unico sotto soglia accettabile)
 - Sprint 8:  85,7%
 - Sprint 3: e 6  circa 91%
@@ -2132,6 +2137,95 @@ Il Task Slippage conferma quanto osservato nel TCR:
 
 *Soglia accettabile:* $"TS" lt.eq 15%$ _violata solo nello sprint 7_. \
 
+#pagebreak()
+
+== MPC-PRCT: _Pull Request Cycle Time_
+
+
+#figure(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[PRCT Medio (ore)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 1], [18.6],[Ottimo],
+    [Sprint 2], [0],  [Ottimo],
+    [Sprint 3], [13], [Ottimo],
+    [Sprint 4], [0],  [Ottimo],
+    [Sprint 5], [1.7], [Ottimo],
+    [Sprint 6], [16], [Ottimo],
+    [Sprint 7], [0], [Ottimo],
+    [Sprint 8], [40.5], [Accettabile],
+    [Sprint 9], [19.6], [Ottimo],
+  ),
+  caption: [Pull Request Cycle Time per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/prct.svg"),
+	caption: [Task Slippage per sprint],
+)
+
+Il _Pull Request Cycle Time_ medio risulta complessivamente contenuto per la quasi totalità degli sprint, indicando un processo di revisione rapido ed efficace.
+
+Valori moderatamente più elevati si osservano negli sprint 1 (18,6 ore), 6 (16 ore) e 9 (19,6 ore), comunque pienamente entro livelli ottimali. Lo sprint 8 rappresenta l’unica eccezione significativa, con un PRCT medio pari a 40,5 ore, riconducibile a _pull request_ fatte durante il periodo di esami e di maggior impegno esterno del gruppo
+
+Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
+
+*Soglia accettabile*: PRCT $gt.eq 48$ ore _sempre rispettata_ \
+*Soglia ottima*: PRCT $gt.eq 24$ ore
+
+== MPC-WSD Distribuzione carico ore
+
+#figure(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[STD DEV (%)]] ,
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 1], [5.35], [Ottimo],
+    [Sprint 2], [5.35], [Ottimo],
+    [Sprint 3], [11.87], [Critico],
+    [Sprint 4], [10.88], [Critico],
+    [Sprint 5], [9.37], [Accettabile],
+    [Sprint 6], [8.13], [Accettabile],
+    [Sprint 7], [8.99], [Accettabile],
+    [Sprint 8], [7.06], [Accettabile],
+    [Sprint 9], [8.28], [Accettabile],
+  ),
+  caption: [Distribuzione del carico di lavoro per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/wsd.svg"),
+	caption: [wsd per sprint],
+)
+
+La metrica MPC-WD evidenzia una distribuzione del carico di lavoro generalmente equilibrata nella maggior parte degli sprint.
+
+Nei primi due sprint la deviazione standard percentuale risulta inferiore alla soglia ottima ($lt.eq$ 6,30%), indicando una ripartizione particolarmente uniforme delle attività.
+
+Negli sprint 3 e 4 si osservano invece valori superiori alla soglia accettabile del 10% (11,87% e 10,88%), evidenziando uno squilibrio temporaneo nel carico di lavoro tra i membri del team. Tale fenomeno è verosimilmente riconducibile alla presenza di attività con complessità elevata o fortemente specializzate, concentrate su alcuni componenti.
+
+A partire dallo sprint 5 la metrica rientra stabilmente entro i limiti accettabili, mantenendosi compresa tra il 7% e il 9%, segno di un progressivo riequilibrio delle attività.
+
+Nel complesso, le criticità risultano circoscritte e correttamente assorbite nel prosieguo del progetto.
+
+Soglia ottima: MPC-WD $lt.eq$ 6,30%
+Soglia accettabile: MPC-WD $lt.eq$ 10%
+
 == MPC-IG: Indice di Gulpease
 
 #figure(
@@ -2168,6 +2262,88 @@ Un'analisi più approfondita ha evidenziato che parte degli errori segnalati dal
 A partire dagli sprint successivi si osserva una drastica riduzione degli errori, fino al raggiungimento sistematico del valore ottimo (0 errori) nella maggior parte dei documenti. Persistono solo sporadiche anomalie residue (AdR: 1 errore in S9; NdP: 2 errori in S8; PdQ: 2 errori in S6), fisiologiche in un contesto di aggiornamento continuo dei documenti.
 
 Nel complesso, l'andamento conferma un progressivo miglioramento del processo di revisione e controllo qualitativo.
+
+== MPC-TE : _Time efficiency_
+
+#figure(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[TE (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 1], [41%], [Non acc.],
+    [Sprint 2], [48%], [Non acc.],
+    [Sprint 3], [52%], [Accettabile],
+    [Sprint 4], [50%], [Accettabile],
+    [Sprint 5], [71%], [Accettabile],
+    [Sprint 6], [94%], [Ottimo],
+    [Sprint 7], [90%], [Ottimo],
+    [Sprint 8], [52%], [Non acc.],
+    [Sprint 9], [55%], [Accettabile],
+  ),
+  caption: [_Time Efficiency_ per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/te.svg"),
+	caption: [_Time Efficiency_ sprint],
+)
+
+La metrica evidenzia gli _sprint_ iniziali caratterizzati da un'elevata quantità di ore dedicate alle attività di palestra, con valori che scendono al di sotto della soglia accettabile.
+Successivamente si osserva un incremento progressivo fino al raggiungimento di un picco di circa il 94% nello _sprint_ 6, in concomitanza con l'avvio della redazione dei casi d'uso e dei relativi test di sistema e requisiti.
+
+Nei successivi _sprint_ il rapporto diminuisce nuovamente, in corrispondenza dell'inizio dello studio delle tecnologie necessarie allo sviluppo del _Proof of Concept_ (PoC).
+
+*Soglia accettabile*: TE $gt.eq$ 50%\
+*Soglia ottima*: TE $gt.eq$ 90%
+
+
+== MPC-QMS: _Quality Metrics Satisfied_
+#figure(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[MPC-QMS]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 1], [81.8],[Accettabile],
+    [Sprint 2], [100.0%],  [Ottimo],
+    [Sprint 3], [90.9%], [Accettabile],
+    [Sprint 4], [100.0%],  [Ottimo],
+    [Sprint 5], [100.0%], [Ottimo],
+    [Sprint 6], [100.0%], [Ottimo],
+    [Sprint 7], [80.0%], [Accettabile],
+    [Sprint 8], [90.9%], [Accettabile],
+    [Sprint 9], [90.9%], [Accettabile],
+  ),
+  caption: [_Quality Metrics Satisfied_ per sprint],
+)
+
+#figure(
+	image("../../assets/metriche/qm.svg"),
+	caption: [_Quality Metrics Satisfied_ sprint],
+)
+
+L’indicatore MPC-QMS evidenzia un’elevata percentuale di metriche di qualità soddisfatte lungo gli sprint. Il valore ottimo (100%) viene raggiunto in quattro sprint (S2, S4, S5, S6), a conferma della piena conformità agli obiettivi di qualità prefissati.
+
+Negli altri sprint il valore si mantiene comunque sopra l’80%, rientrando sempre nella soglia di accettabilità. Le flessioni osservate negli sprint 1 e 7 (rispettivamente 81,8% e 80,0%) risultano contenute e non critiche.
+
+L’andamento complessivo mostra una costante attenzione al rispetto delle metriche di qualità, senza mai scendere sotto i livelli minimi previsti.
+
+*Soglia accettabile*: MPC-QMS $gt.eq 80$% _sempre rispettata_ \
+*Soglia ottima*: MPC-QMS = 100%
+
 
 
 = Iniziative di miglioramento <iniziative-miglioramento>
