@@ -3621,7 +3621,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc() - Creazione utente Tenant Admin <Creazione-utente-tenant-admin>
 #figure(
   image("../../assets/diagrammi/UC113.svg", width: 100%),
-  caption: [UC113 - UC35, UC113.1, UC113.2, UC113.3],
+  caption: [UC113 - UC35, UC113.1, UC113.2],
 )
 
 - *Attore principale*: Super Admin
