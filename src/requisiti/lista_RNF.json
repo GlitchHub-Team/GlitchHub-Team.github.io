@@ -1,0 +1,120 @@
+[
+    {
+        "id": "RNF-Scalabilita-sensori",
+        "urgenza": "Obb",
+        "desc": "Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori senza degrado delle prestazioni.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 14"
+        ]
+    },
+    {
+        "id": "RNF-Scalabilita-gateway",
+        "urgenza": "Obb",
+        "desc": "Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di gateway senza degrado delle prestazioni.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 14"
+        ]
+    },
+    {
+        "id": "RNF-Scalabilità-tenant",
+        "urgenza": "Obb",
+        "desc": "Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di tenant senza degrado delle prestazioni.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 14"
+        ]
+    },
+    {
+        "id": "RNF-Test-unitari-integrazione",
+        "urgenza": "Obb",
+        "desc": "Devono essere presenti test unitari e test di integrazione con un livello minimo di copertura prestabilito.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 15"
+        ]
+    },
+    {
+        "id": "RNF-Monitoraggio-prestazioni",
+        "urgenza": "Obb",
+        "desc": "Si devono predisporre strumenti di monitoraggio in tempo reale delle prestazioni del sistema.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 16",
+            "Capitolato §3.3"
+        ]
+    },
+    {
+        "id": "RNF-Presenza-alert-gateway",
+        "urgenza": "Obb",
+        "desc": "Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 16"
+        ]
+    },
+    {
+        "id": "RNF-Versionamento",
+        "urgenza": "Obb",
+        "desc": "È necessario versionare il codice utilizzando Git.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 17"
+        ]
+    },
+    {
+        "id": "RNF-Cifratura-dati",
+        "urgenza": "Obb",
+        "desc": "Deve essere garantita la cifratura dei dati.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.3 -- RQ 9"
+        ]
+    },
+    {
+        "id": "RNF-Autenticazione-robusta",
+        "urgenza": "Obb",
+        "desc": "Si deve garantire che l'autenticazione dei tenant avvenga tramite meccanismi robusti.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.3 -- RQ 8"
+        ]
+    },
+    {
+        "id": "RNF-Autenticazione-tenant-granulare",
+        "urgenza": "Obb",
+        "desc": "Si deve garantire che l'autenticazione dei tenant avvenga con ruoli granulari.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.3 -- RQ 8"
+        ]
+    },
+    {
+        "id": "RNF-Isolamento-logico-tenant",
+        "urgenza": "Obb",
+        "desc": "Deve essere garantito l'isolamento logico dei tenant.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.3 -- RQ 10"
+        ]
+    },
+    {
+        "id": "RNF-Scalabilità-Isolamento-fisico-tenant",
+        "urgenza": "Des",
+        "desc": "Deve essere garantito l'isolamento fisico dei tenant.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.3 -- RQ 10"
+        ]
+    },
+    {
+        "id": "RNF-Provisioning-sicuro-gateway",
+        "urgenza": "Obb",
+        "desc": "Deve essere garantito il provisioning sicuro dei gateway.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §3.2"
+        ]
+    }
+]
