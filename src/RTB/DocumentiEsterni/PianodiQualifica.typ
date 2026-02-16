@@ -1,10 +1,45 @@
 #import "../../Templates/templateDocumentiGenerici.typ": *
 #show ref: underline
 
+#let tabella-paginata(contenuto, didascalia, label-id: none) = {
+  // 1. Ghost Figure: crea l'ancora per l'Indice e il Link in alto
+  [
+    #show figure.caption: none
+    #figure(
+      kind: table,
+      caption: didascalia,
+      outlined: true,
+      gap: 0em,
+      [],
+    )
+    #if label-id != none { label(label-id) }
+  ]
+
+  // 2. La Tabella (che può andare su più pagine)
+  align(center, contenuto)
+  
+
+  // 3. Didascalia visiva (in basso)
+  align(center)[
+    #v(0.5em) // Un po' di spazio tra tabella e testo
+    #context [
+      #let n = counter(figure.where(kind: table)).display()
+      #text[Tabella #n: #didascalia]
+    ]
+  ]
+}
+
 #show: report.with(
   titolo: "Piano di Qualifica",
   stato: "Da verificare",
   registro-modifiche: (
+      (
+      "0.10.1",
+      "16/02/2026",
+      "Siria Salvalaio",
+      "-",
+      [Modifica indici tabelle e figure],
+    ),
     (
       "0.10.0",
       "14/02/2026",
@@ -107,8 +142,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "",
+  left-signature: "",
   tipo-documento: "Piano di Qualifica",
 )
 
@@ -144,6 +179,19 @@
       cell
     })
 }
+
+
+#outline(
+  title: "Indice delle tabelle",
+  target: figure.where(kind: table),
+)
+
+#outline(
+  title: "Indice delle figure",
+  target: figure.where(kind: image),
+)
+
+#pagebreak()
 
 = Introduzione <introduzione>
 == Finalità del documento
@@ -241,7 +289,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
 - *MPC-TS (Task Slippage)* \ //----------------------------------------
   Percentuale di task che non sono state portate a termine entro la fine dello sprint e che vengono posticipate a quello successivo.
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -259,10 +307,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-TCR], [Task Completion Rate], [$>=85%$], [$100%$],
     [MPC-TS], [Task Slippage], [$<= 15%$], [$0%$],
   ),
-  caption: [Valori per misurare la qualità della fornitura.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità della fornitura.],
+  label-id: "tab-qual-forn",
 )
+
 \
 == Sviluppo
 - *MPC-RSI (Requirements Stability Index)* \
@@ -274,7 +322,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
   Misura il tempo medio che intercorre tra l'apertura di una Pull Request e la sua integrazione (merge) nel ramo principale. Monitora l'efficienza delle revisioni.
   $ "PRCT" = "Data e Ora del Merge" - "Data e Ora dell'Apertura" $
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -284,10 +332,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-RSI], [Requirements Stability Index], [$>= 80%$], [$= 100%$],
     [MPC-PRCT], [Pull Request Cycle Time], [$<= "48 ore"$], [$<= "24 ore"$],
   ),
-  caption: [Valori per misurare la qualità dello sviluppo.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità dello sviluppo.],
+  label-id: "tab-qual-svil",
 )
+
 \
 == Documentazione
 - *MPC-IG (Indice di Gulpease)* \
@@ -297,7 +345,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
 - *MPC-CO (Correttezza Ortografica)* \
   Numero di errori grammaticali o di battitura rilevati nei documenti.
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -307,10 +355,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-IG], [Indice di Gulpease], [$>= 40$], [$>= 60$],
     [MPC-CO], [Correttezza Ortografica], [$0$], [$0$],
   ),
-  caption: [Valori per misurare la qualità della documentazione.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità della documentazione.],
+  label-id: "tab-qual-doc",
 )
+
 \
 == Verifica
 - *MPC-CC (Code Coverage)* \
@@ -325,7 +373,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
   Misura la qualità del codice calcolando quanti bug vengono trovati per ogni cento righe di codice (CRG).
   $ "DD" = ("Numero di Bug Rilevati" / "Centinaia di Righe di Codice (CRG)") $
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -336,10 +384,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-TSR], [Test Success Rate], [$= 100%$], [$= 100%$],
     [MPC-DD], [Bug Density], [$<= "2 per CRG"$], [$= "0 per CRG"$],
   ),
-  caption: [Valori per misurare la qualità della verifica.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità della verifica.],
+  label-id: "tab-qual-ver",
 )
+
 \
 == Gestione della qualità e processi
 - *MPC-QMS (Quality Metrics Satisfied)* \
@@ -357,7 +405,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
   Indice che valuta la concentrazione di attività (task) critiche su un numero limitato di membri del team, al fine di ridurre il rischio di dipendenza da un singolo componente del gruppo.
 
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -369,10 +417,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-WD], [Work Distribution], [$$], [$$],
     [MPC-SPF], [Single Point of Failure Risk], [$15%$], [$<10%$],
   ),
-  caption: [Valori per misurare la qualità della qualità e dei processi.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità della qualità e dei processi.],
+  label-id: "tab-qual-qual-proc",
 )
+
 \
 = Metriche di Qualità del Prodotto
 Le metriche di qualità del prodotto misurano le proprietà interne ed esterne del prodotto software finale: comportamento funzionale, affidabilità, usabilità, l'efficienza, la manutenibilità e la sicurezza. Il loro scopo è di verificare quanto il prodotto soddisfa i requisiti che si aspetta l'utente, quanto è robusto in condizioni reali e quanto può essere compreso, modificato, testato e protetto. In sintesi, valutano la qualità del software in esecuzione in circostanze reali.
@@ -392,7 +440,8 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
   Misura l'affidabilità della trasmissione dati tra gateway e cloud.
   $ "DL" = (( "Messaggi Inviati" - "Messaggi Ricevuti" ) / "Messaggi Inviati") times 100 $
 \
-#figure(
+
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -405,10 +454,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     [MPD-AD], [API Documentation], [$>=90%$], [$100%$],
     [MPD-DL], [Data Loss], [$0,1%-1%$], [$<0,01%$],
   ),
-  caption: [Valori per misurare la qualità delle funzionalità.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità delle funzionalità.],
+  label-id: "tab-qual-funz",
 )
+
 \
 == Affidabilità
 - *MPD-BC (Branch Coverage)* \
@@ -418,8 +467,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
   Rappresenta la percentuale di singole istruzioni (statement) che sono state percorse durante l'esecuzione dei test. È una metrica importante per assicurarsi che non vi siano porzioni di codice completamente "oscure" ai test.
   $ "SC" = ("Istruzioni eseguite" / "Totale istruzioni presenti") times 100 $
 
-
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -429,16 +477,16 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     [MPD-BC], [Branch Coverage], [$>= "60%"$], [$>= "80%"$],
     [MPD-SC], [Statement Coverage], [$>= "70%"$], [$>= "90%"$],
   ),
-  caption: [Valori per misurare la qualità dell'affidabilità.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità dell'affidabilità.],
+  label-id: "tab-qual-aff",
 )
+
 \
 == Usabilità
 - *MPD-TT (Time on Task)* \
   Tempo necessario a un utente per imparare a usare una funzione.
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -447,17 +495,17 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
     [MPD-LT], [Learning Time], [$<= "30 min"$], [$<= "10 min"$],
   ),
-  caption: [Valori per misurare la qualità dell'usabilità.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità dell'usabilità.],
+  label-id: "tab-qual-usab",
 )
+
 \
 == Efficienza
 - *MPD-RT (Response Time)* \
   Tempo di risposta del sistema ad un input dell'utente.
   $ "RT" = "Ora Risposta" - "Ora Richiesta" $
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -466,10 +514,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
     [MPD-RT], [Response Time], [$<= "2 secondi"$], [$<= "0,5 secondi"$],
   ),
-  caption: [Valori per misurare la qualità dell'efficienza.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità dell'efficienza.],
+  label-id: "tab-qual-eff",
 )
+
 \
 == Manutenibilità
 - *MPD-CD (Code Smell)*\
@@ -488,7 +536,8 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     - $"N"$ : numero di nodi (istruzioni);
     - $"P"$ : numero di componenti connesse (solitamente 1).
 
-#figure(
+
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -499,16 +548,17 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     [MPD-COC], [Coefficient of Coupling], [$<= "0.5"$], [$<= "0.2"$],
     [MPD-CYC], [Cyclomatic Complexity], [$<= "15"$], [$<= "10"$],
   ),
-  caption: [Valori per misurare la qualità della manutenibilità.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità della manutenibilità.],
+  label-id: "tab-qual-manut",
 )
+
 \
 == Sicurezza
 - *MPD-DE (Data encryption)* \
   Livello di copertura della cifratura sui dati sensibili.
 
-#figure(
+
+#tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
     align: center + horizon,
@@ -517,10 +567,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
     [MPD-DE], [Data encryption], [$"100% dati sensibili"$], [$"100% dati sensibili"$],
   ),
-  caption: [Valori per misurare la qualità della sicurezza.],
-  kind: table,
-  supplement: [Tabella],
+  [Valori per misurare la qualità della sicurezza.],
+  label-id: "tab-qual-sicur",
 )
+
 \
 
 = Metodi di Testing
@@ -1736,7 +1786,8 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
   [Non implementato],
 )
 
-#figure(
+
+#tabella-paginata(
   table(
     columns: (1fr, 3fr, 1fr, 1fr),
     align: center + horizon,
@@ -1745,15 +1796,12 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
     [*Identificativo*], [*Descrizione*], [*Requisito di riferimento*], [*Stato*],
     ..lista-test,
   ),
-  caption: [Test di Sistema con descrizione e requisito di riferimento],
-  kind: table,
-  supplement: [Tabella],
+  [Test di Sistema con descrizione e requisito di riferimento],
+  label-id: "tab-test-sistema",
 )
 
 
 == Tracciamento test funzionali <tracciamento-test-funzionali>
-#v(2em)
-
 /*
 NON TOCCARE
 */
@@ -1790,11 +1838,15 @@ Non usare questa tabella usare lista sopra
 
 #columns(2)[
   #align(center)[
-    #table(
-      columns: (auto, auto),
-      align: center,
-      table.header([*Test*], [*Requisito*]),
-      ..get-tracciamento(lista-test),
+    #tabella-paginata(
+      table(
+        columns: (auto, auto),
+        align: center,
+        table.header([*Test*], [*Requisito*]),
+        ..get-tracciamento(lista-test),
+      ),
+      [Tracciamento test funzionali],
+      label-id: "tab-test-funz",
     )
   ]
 ]
@@ -1808,7 +1860,7 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
 
 == MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, auto, auto, auto, auto),
     align: center,
@@ -1832,8 +1884,11 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
     [Sprint 8], [445,00], [519,17], [2.215,00], [2.312,04],
     [Sprint 9], [895,00], [842,35], [3.110,00], [3.154,39],
   ),
-  caption: [Valori di PV e EV per sprint],
+  [Valori di PV e EV per sprint],
+  label-id: "tab-valori-EP-EV",
 )
+
+
 #figure(
   image("../../assets/metriche/pv-ev.svg"),
   caption: [Valori di PV e EV per sprint],
@@ -1851,7 +1906,7 @@ L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di
 
 == MPC-AC e MPC-ETC: _Actual Cost_ e _Estimate To Complete_
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, auto, auto, auto, auto),
     align: center,
@@ -1875,7 +1930,8 @@ L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di
     [Sprint 8], [520,00], [2.295,00], [10.584,39], [12.879,39],
     [Sprint 9], [830,00], [3.125,00], [9.729,11], [12.854,11],
   ),
-  caption: [Valori di AC, ETC e EAC per sprint],
+  [Valori di AC, ETC e EAC per sprint],
+  label-id: "tab-valori-AC-ETC-EAC",
 )
 
 #figure(
@@ -1897,7 +1953,8 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
 
 == MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
 
-#figure(
+
+#tabella-paginata(
   table(
     columns: (auto, auto, auto, auto),
     align: center,
@@ -1920,7 +1977,8 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
     [Sprint 8], [−0,83], [+74,17], [In anticipo (costo ~in linea)],
     [Sprint 9], [+12,35], [−52,65], [Ritardo schedulazione],
   ),
-  caption: [Cost Variance e Schedule Variance per sprint],
+  [Cost Variance e Schedule Variance per sprint],
+  label-id: "tab-CS-SV",
 )
 
 #figure(
@@ -1940,7 +1998,7 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
 
 $ "BAC" = 12.975 € $
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, auto, auto, auto),
     align: center,
@@ -1963,7 +2021,8 @@ $ "BAC" = 12.975 € $
     [Sprint 8], [12.879,39], [12.975,00], [EAC < BAC],
     [Sprint 9], [12.854,11], [12.975,00], [EAC < BAC],
   ),
-  caption: [EAC vs BAC per sprint],
+  [EAC vs BAC per sprint],
+  label-id: "tab-EAC-BAC",
 )
 
 #figure(
@@ -1983,7 +2042,7 @@ Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una prev
 
 == MPC-TCR: _Task Completion Rate_
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, auto, auto, auto, auto),
     align: center,
@@ -2007,7 +2066,8 @@ Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una prev
     [Sprint 8], [12], [2], [85,7%], [Accettabile],
     [Sprint 9], [24], [0], [100,0%], [Ottimo],
   ),
-  caption: [Task Completion Rate per sprint],
+  [Task Completion Rate per sprint],
+  label-id: "tab-TCR",
 )
 
 #figure(
@@ -2029,7 +2089,7 @@ Il recupero completo nello sprint 9 (100% con 24 task completate) dimostra una b
 
 == MPC-TS: _Task Slippage_
 
-#figure(
+#tabella-paginata(
   table(
     columns: (auto, auto, auto, auto, auto),
     align: center,
@@ -2053,7 +2113,8 @@ Il recupero completo nello sprint 9 (100% con 24 task completate) dimostra una b
     [Sprint 8], [12], [2], [14,3%], [Accettabile],
     [Sprint 9], [24], [0], [0,0%], [Ottimo],
   ),
-  caption: [Task Slippage per sprint],
+  [Task Slippage per sprint],
+  label-id: "tab-TS",
 )
 
 #figure(
@@ -2111,7 +2172,8 @@ Nel complesso, l'andamento conferma un progressivo miglioramento del processo di
 Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \
 
 == Valutazione sull'organizzazione
-#figure(
+
+#tabella-paginata(
   table(
     columns: (1.4fr, 2fr, 2fr),
     align: center + horizon,
@@ -2131,13 +2193,13 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     [Incomprensione dei requisiti dovuta a un coinvolgimento insufficiente del cliente],
     [Incontri di review con M31 ogni due settimane e comunicazione costante per chiarire i dubbi],
   ),
-  caption: [Azioni adottate per migliorare l'organizzazione.],
-  kind: table,
-  supplement: [Tabella],
+  [Azioni adottate per migliorare l'organizzazione.],
+  label-id: "tab-azioni-org",
 )
 
 == Valutazione sui ruoli
-#figure(
+
+#tabella-paginata(
   table(
     columns: (1.4fr, 2fr, 2fr),
     align: center + horizon,
@@ -2157,13 +2219,13 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     [Tensioni emerse a causa di differenti personalità o approcci lavorativi],
     [Discussione privata e mirata con i diretti interessati per favorire un confronto sereno],
   ),
-  caption: [Azioni adottate per migliorare la gestione dei ruoli.],
-  kind: table,
-  supplement: [Tabella],
+  [Azioni adottate per migliorare la gestione dei ruoli.],
+  label-id: "tab-azioni-ruoli",
 )
 
 == Valutazione sugli strumenti
-#figure(
+
+#tabella-paginata(
   table(
     columns: (1.5fr, 2fr, 2fr),
     align: center + horizon,
@@ -2179,7 +2241,6 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     [Possibile difficoltà nell'apprendimento di nuovi strumenti ],
     [Studio individuale preventivo e condivisione di template/guide per standardizzare l'uso degli strumenti],
   ),
-  caption: [Azioni adottate per migliorare l'uso degli strumenti],
-  kind: table,
-  supplement: [Tabella],
+  [Azioni adottate per migliorare l'uso degli strumenti],
+  label-id: "tab-azioni-str",
 )
