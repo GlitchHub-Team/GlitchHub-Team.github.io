@@ -30,12 +30,6 @@
         "state": "NI"
     },
     {
-        "id": "TS-Ricezione-mail-codice-verifica",
-        "descr": "Verificare che l'Utente non autenticato, dopo aver inserito credenziali corrette per un account con 2FA attiva, riceva una mail con il codice di verifica",
-        "ref-req": "//TODO missing ref",
-        "state": "NI"
-    },
-    {
         "id": "TS-Re-invio-codice-2FA",
         "descr": "Verificare che l'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, possa richiedere il re-invio del codice di verifica",
         "ref-req": "RF-Re-invio-codice-2FA",
@@ -114,12 +108,6 @@
         "state": "NI"
     },
     {
-        "id": "TS-Invio-mail-reimpostazione",
-        "descr": "Verificare che il Sistema invii la mail per la reimpostazione della password, contenente il link di reimpostazione, all'Utente non autenticato che ne fa richiesta",
-        "ref-req": "//TODO missing ref",
-        "state": "NI"
-    },
-    {
         "id": "TS-Reimpostazione-password-link",
         "descr": "Verificare che l'Utente non autenticato possa reimpostare la propria password tramite il link ricevuto via email",
         "ref-req": "RF-Reimpostazione-password-dimenticata",
@@ -174,21 +162,9 @@
         "state": "NI"
     },
     {
-        "id": "TS-Registrazione-tenant-user",
-        "descr": "Verificare che l'Admin generico possa registrare un nuovo Tenant User all'interno del Sistema",
-        "ref-req": "//TODO missing ref",
-        "state": "NI"
-    },
-    {
         "id": "TS-Inserimento-email-nuovo-utente",
         "descr": "Verificare che l'Admin generico, registrando un nuovo utente, possa inserire l'indirizzo email associato al nuovo Tenant User",
         "ref-req": "RF-Inserimento-email",
-        "state": "NI"
-    },
-    {
-        "id": "TS-Invio-mail-nuovo-utente",
-        "descr": "Verificare che il Sistema invii una mail al nuovo Tenant User contenente il link per impostare la propria password iniziale dopo la registrazione effettuata dall'Admin generico",
-        "ref-req": "//TODO missing ref",
         "state": "NI"
     },
     {
@@ -444,9 +420,9 @@
         "state": "NI"
     },
     {
-        "id": "TS-Duplicate-timestamp-log",
-        "descr": "Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il corrispettivo timestamp",
-        "ref-req": "//TODO missing ref",
+        "id": "TS-Esportazione-log",
+        "descr": "Verificare che l'Admin generico possa esportare gli audit log in un file scaricabile",
+        "ref-req": "RF-Esportazione-log",
         "state": "NI"
     },
     {
@@ -1032,12 +1008,6 @@
         "state": "NI"
     },
     {
-        "id": "TS-Selezione-sensore",
-        "descr": "Verificare che l'*Utente autenticato* possa selezionare un sensore dalla lista dei sensori associati al proprio tenant",
-        "ref-req": "//TODO missing ref",
-        "state": "NI"
-    },
-    {
         "id": "TS-Dati-real-time",
         "descr": "Verificare che l'*Utente autenticato* possa visualizzare i dati in tempo reale di un sensore selezionato",
         "ref-req": "RF-Visualizzazione-dati-real-time-sensore",
@@ -1152,24 +1122,6 @@
         "state": "NI"
     },
     {
-        "id": "TS-Decommissioning-pre-eliminazione",
-        "descr": "Verificare che il *Sistema*, prima di eliminare un tenant, debba eseguire il decommissioning di tutti i Gateway associati",
-        "ref-req": "//TODO missing ref",
-        "state": "NI"
-    },
-    {
-        "id": "TS-Eliminazione-dati-tenant",
-        "descr": "Verificare che il *Sistema*, eliminando un tenant, debba eliminare tutti i dati e gli utenti associati al tenant",
-        "ref-req": "//TODO missing ref",
-        "state": "NI"
-    },
-    {
-        "id": "TS-Completamento-eliminazione",
-        "descr": "Verificare che il *Sistema* debba completare l'eliminazione del tenant dopo aver rimosso dati, utenti e Gateway associati",
-        "ref-req": "//TODO missing ref",
-        "state": "NI"
-    },
-    {
         "id": "TS-Errore-decommissioning-eliminazione",
         "descr": "Verificare che il *Sistema* debba notificare il *Super Admin* se il decommissioning di un Gateway fallisce durante l'eliminazione del tenant",
         "ref-req": "RF-Decommissioning-gateway-fallito",
@@ -1281,12 +1233,6 @@
         "id": "TS-Decommissioning-gateway",
         "descr": "Verificare che il *Super Admin* possa eseguire il decommissioning di un Gateway",
         "ref-req": "RF-Decommissioning-gateway",
-        "state": "NI"
-    },
-    {
-        "id": "TS-Disassociazione-gateway",
-        "descr": "Verificare che il *Sistema*, durante il decommissioning, disassoci il Gateway dal tenant",
-        "ref-req": "//TODO missing ref",
         "state": "NI"
     },
     {
@@ -1527,12 +1473,6 @@
         "id": "TS-Inserimento-email-tenant-admin",
         "descr": "Verificare che il *Super Admin*, creando un Tenant Admin, debba inserire l'email del nuovo utente",
         "ref-req": "RF-Inserimento-email-nuovo-tenant-admin",
-        "state": "NI"
-    },
-    {
-        "id": "TS-Invio-email-password",
-        "descr": "Verificare che il *Sistema* debba inviare un'email per l'impostazione password al nuovo Tenant Admin",
-        "ref-req": "//TODO missing ref",
         "state": "NI"
     },
     {

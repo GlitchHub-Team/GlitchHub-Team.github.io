@@ -38,7 +38,7 @@
       "17/02/2026",
       "Elia Ernesto Stellin",
       "-",
-      [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts]
+      [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts; Rimossi TS relativi a RF obsoleti]
     ),
     (
       "0.11.1",
@@ -596,8 +596,6 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
             #if test.ref-req in tracciamento-RF {
               context rf(test.ref-req, tracciamento-RF.at(test.ref-req).number, tracciamento-RF.at(test.ref-req).urgenza)
             } else {
-              // context rf("RF", "MISSING-" + str(missing-counter.get().at(0)), "???")
-              // missing-counter.step()
               "RF mancante"
             }
             
