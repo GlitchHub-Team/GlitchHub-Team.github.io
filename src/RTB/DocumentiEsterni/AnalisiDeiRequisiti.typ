@@ -202,13 +202,13 @@
 
 #show: report.with(
   titolo: "Analisi dei Requisiti",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.1.1",
       "17/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Riccardo Graziani",
       [
         Rimossi ex UC4 e UC23 e relativi diagrammi; Sistemata numerazione di tutti gli altri UC
       ]
@@ -217,7 +217,7 @@
       "1.1.0",
       "16/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Riccardo Graziani",
       [
         Aumentata @tracciamento-requisiti con tracciamento per requisito e per UC; Sistemata formattazione di @lista-requisiti-funzionali, @lista-requisiti-non-funzionali e @lista-requisiti-dominio
       ]
@@ -226,14 +226,14 @@
       "1.0.3",
       "16/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Riccardo Graziani",
       [Rimossi use case e relativi requisiti superflui],
     ),
     (
       "1.0.2",
       "16/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Elia Ernesto Stellin",
       [Fix rendering delle tabelle],
     ),
     (
@@ -637,8 +637,9 @@ l'acquisizione di flussi di dati provenienti da reti di sensori eterogenei.
 
 == Riferimenti
 === Riferimenti normativi
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto v0.3.1] \
-  *Ultimo accesso*: 9 febbraio 2026
+- *Norme di Progetto v1.0.0*
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf") \
+  - *Ultimo accesso*: 17 febbraio 2026
 
 - #link(
     "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
