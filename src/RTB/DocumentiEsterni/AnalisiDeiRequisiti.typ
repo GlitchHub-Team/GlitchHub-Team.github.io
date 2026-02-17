@@ -5038,9 +5038,9 @@ Inoltre un buon requisito deve essere *SMART*:
 
 
 // NOTA: Modificare il file .json per modificare i requisiti!
-#let LISTA_RF   = json("lista_RF.json")
-#let LISTA_RNF  = json("lista_RNF.json")
-#let LISTA_RD   = json("lista_RD.json")
+#let LISTA_RF   = json("../../requisiti/lista_RF.json")
+#let LISTA_RNF  = json("../../requisiti/lista_RNF.json")
+#let LISTA_RD   = json("../../requisiti/lista_RD.json")
 
 #let tabella-rf = tabella-requisiti(rf, ref-rf, LISTA_RF)
 #let tabella-rnf = tabella-requisiti(rnf, ref-rnf, LISTA_RNF)
