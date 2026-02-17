@@ -168,8 +168,9 @@
 
 #let get-tracciamento = lista-test => {
   lista-test
-    .map(test => {
-      ([#test.id], [#test.ref-req])
+    .enumerate()
+    .map(((i, test)) => {
+      ([TS-#(i + 1)], [#test.ref-req])
     })
     .flatten()
 }
