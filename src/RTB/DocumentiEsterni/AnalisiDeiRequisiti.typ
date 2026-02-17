@@ -212,23 +212,32 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "1.2.1",
+      "17/02/2026",
+      "Alessandro Dinato",
+      "-",
+      [
+        Eliminazione RNF 1,2,3; aggiornamento code coverage minimo RNF 4; definizione strumenti monitoraggio RNF 5; definizione algoritmo cifratura in transito RNF 8; definizione meccanismo autenticazione robuto RNF 9; definizione tipi di design interessati nei diagrammi RNF 13; eliminazione RD 3, 6, 7 dato che sono req. funzionali
+      ],
+    ),
+    (
       "1.2.0",
       "17/02/2026",
       "Alessandro Dinato",
       "Riccardo Graziani",
       [
         Rimosso ex UC83 ("Configurazione Gateway"),
-        Approfonditi #ref-uc(<Visualizzazione-grafico-real-time-sensore>), 
-        #ref-uc(<Visualizzazione-dashboard-generica>), 
-        #ref-uc(<Creazione-tenant>), 
-        ex UC83, 
-        #ref-uc(<Richiesta-dati-real-time-sensore>), 
-        #ref-uc(<Richiesta-storico-dati-sensore>), 
+        Approfonditi #ref-uc(<Visualizzazione-grafico-real-time-sensore>),
+        #ref-uc(<Visualizzazione-dashboard-generica>),
+        #ref-uc(<Creazione-tenant>),
+        ex UC83,
+        #ref-uc(<Richiesta-dati-real-time-sensore>),
+        #ref-uc(<Richiesta-storico-dati-sensore>),
         #ref-uc(<Credenziali-API-Client-errate>),
         #ref-uc(<Invio-dati-eccessivi-gateway>); \
         Aggiunti da #ref-rd("RD-linguaggio-Go") a #ref-rd("RD-Grafana-Prometheus"), da #ref-rnf("RNF-doc-diagrammi") a #ref-rnf("RNF-manuale-utente-amm");
         Cambiato nome della versione da 1.1.2
-      ]
+      ],
     ),
     (
       "1.1.1",
@@ -3120,7 +3129,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Selezione-gateway-super-admin>)
   - #ref-uc(<Selezione-tenant-super-admin>)
-  // - #ref-uc(<Configurazione-gateway>)
+// - #ref-uc(<Configurazione-gateway>)
 
 ===== #sub-uc([Selezione gateway], "Selezione-gateway-super-admin")
 - *Attore principale*: Super Admin
