@@ -8,7 +8,7 @@
   registro-modifiche: (
     (
       "1.1.0",
-      "13/02/2026",
+      "17/02/2026",
       "Michele Dioli",
       "Alessandro Dinato",
       [Aggiunta sezioni metriche],
