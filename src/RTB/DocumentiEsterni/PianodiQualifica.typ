@@ -602,7 +602,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 */
 
 
-#let lista-test = json("test.json")
+#let lista-test-sistema = json("test_sistema.json")
 
 #tabella-paginata(
   table(
@@ -611,9 +611,10 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
     inset: 8pt,
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Identificativo*], [*Descrizione*], [*Requisito di riferimento*], [*Stato*],
-    ..lista-test
-      .map(test => {
-        ([#test.id], [#eval(test.descr, mode: "markup")], [#test.ref-req], [#test.state])
+    ..lista-test-sistema
+      .enumerate()
+      .map(((i, test)) => {
+        ([TS-#(i + 1)], [#eval(test.descr, mode: "markup")], [#test.ref-req], [#test.state])
       })
       .flatten(),
   ),
@@ -664,13 +665,37 @@ Non usare questa tabella usare lista sopra
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        ..get-tracciamento(lista-test),
+        ..get-tracciamento(lista-test-sistema),
       ),
       [Tracciamento test funzionali],
       label-id: "tab-test-funz",
     )
   ]
 ]
+
+== Test di Accettazione
+I Test di Accettazione verificano che il sistema soddisfi i *requisiti utente* relativi al #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[capitolato d'appalto].\
+Nella tabella sottostante il singolo test di accettazione verrà associato ad un requisito di riferimento nel capitolato d'appalto.
+
+#let lista-test-accettazione = json("test_accettazione.json")
+
+#tabella-paginata(
+  table(
+    columns: (1fr, 3fr, 1fr, 0.5fr),
+    align: center + horizon,
+    inset: 8pt,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Identificativo*], [*Descrizione*], [*Requisito di riferimento*], [*Stato*],
+    ..lista-test-accettazione
+      .enumerate()
+      .map(((i, test)) => {
+        ([TA-#(i + 1)], [#eval(test.descr, mode: "markup")], [#test.ref-req], [#test.state])
+      })
+      .flatten(),
+  ),
+  [Test di Accettazione con descrizione e requisito utente di riferimento],
+  label-id: "tab-test-accettazione",
+)
 
 = Cruscotto di Valutazione // aka DASHBOARD
 
@@ -863,7 +888,7 @@ Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una prev
 
 *Risparmio stimato finale*: €120,89 (≈ -0,9%)
 
-*Soglia accettabile: EAC* $>= 0,95$ × BAC = €12.326,25 _sempre rispettata_
+*Soglia accettabile: EAC* $>= 0,95$ x BAC = €12.326,25 _sempre rispettata_
 
 
 == MPC-TCR: _Task Completion Rate_
@@ -1001,7 +1026,7 @@ Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 *Soglia accettabile*: PRCT $gt.eq 48$ ore _sempre rispettata_ \
 *Soglia ottima*: PRCT $gt.eq 24$ ore
 
-== MPC-WSD Distribuzione carico ore
+== MPC-WSD Distribuzione carico ore <mpc-wsd>
 
 #figure(
   table(
@@ -1179,17 +1204,29 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
 
-    [Rispetto delle scadenze],
-    [Ritardi nello svolgimento delle task che rischiano di bloccare le attività successive],
-    [Comunicazione tempestiva dei ritardi per consentire una rapida riorganizzazione delle attività coinvolte],
+    [Rendicontazione dei compiti],
+    [La rendicontazione dei compiti non è sempre tempestiva, causando difficoltà nella pianificazione e nella gestione delle attività],
+    [Creazione di nuove GitHub View per facilitare la rendicontazione e monitoraggio più frequente delle task],
 
-    [Pianificazione impegni],
-    [Variazioni della disponibilità dei membri per motivi personali o accademici],
-    [Previsione dei periodi di difficoltà e mantenimento di una comunicazione trasparente sulle variazioni],
+    [Aggiornamento tempestivo documenti incrementali],
+    [Mancanza di aggiornamento periodico dei documenti incrementali, quali #gloss[NdP] e #gloss[glossario], con conseguente accumulo di modifiche],
+    [Creazione di una #gloss[GitHub Issue] dedicata per ogni nuova modifica e successiva assegnazione a un membro del team],
 
-    [Gestione dei requisiti],
-    [Incomprensione dei requisiti dovuta a un coinvolgimento insufficiente del cliente],
-    [Incontri di review con M31 ogni due settimane e comunicazione costante per chiarire i dubbi],
+    [Divisione atomica dei compiti],
+    [Difficoltà nel completamento di task troppo ampie o complesse, con conseguente rallentamento del progresso],
+    [Scomposizione dei compiti in unità più piccole e gestibili, facilitando il completamento e migliorando la tracciabilità delle attività],
+
+    [Pianificazione delle attività a lungo termine],
+    [Mancanza di pianificazione strategica a lungo termine, con conseguente difficoltà nella definizione delle attività a breve termine],
+    [Istanziazione di Milestone interne a lungo termine e utilizzo di diagramma di Gantt per pianificazione a lungo termine],
+
+    [Distribuzione del carico],
+    [Sovraccarichi per alcuni membri a causa della suddivisione non omogenea del lavoro],
+    [Istanziazione della metrica *WSD*(@mpc-wsd) per monitorare la distribuzione del carico e adottare misure correttive in caso di squilibri],
+
+    [Dissidi interni],
+    [Tensioni emerse a causa di differenti personalità o approcci lavorativi],
+    [Discussione privata e mirata con i diretti interessati per favorire un confronto sereno],
   ),
   [Azioni adottate per migliorare l'organizzazione.],
   label-id: "tab-azioni-org",
@@ -1204,18 +1241,9 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     inset: 8pt,
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
-
-    [Distribuzione del carico],
-    [Sovraccarichi per alcuni membri a causa della suddivisione non omogenea del lavoro],
-    [Adattamento tempestivo della pianificazione e ridefinizione chiara delle responsabilità],
-
-    [Flessibilità dei ruoli],
-    [Necessità di adattare i carichi di lavoro alle esigenze variabili dei membri],
-    [Assegnazione di ruoli e attività in modo flessibile, adattandoli ai carichi di ciascun membro],
-
-    [Gestione dei dissidi],
-    [Tensioni emerse a causa di differenti personalità o approcci lavorativi],
-    [Discussione privata e mirata con i diretti interessati per favorire un confronto sereno],
+    [Verificatore],
+    [Necessità di una maggiore frequenza di verifica dei documenti e del codice per garantire un'alta qualità],
+    [Definizione di un nuovo stato per le GitHub Issue, denominato "In Review", per obbligare una Issue ad essere verificata prima di essere chiusa. Inoltre definizione a monte, in fase di #gloss[Sprint Planning], delle task di verifica.],
   ),
   [Azioni adottate per migliorare la gestione dei ruoli.],
   label-id: "tab-azioni-ruoli",
@@ -1231,13 +1259,17 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
 
-    [Gestione del versionamento e dei documenti],
-    [Rischio di incoerenza nella redazione dei documenti e perdita di modifiche],
-    [Utilizzo di *GitHub* per il controllo di versione e di *Typst* per garantire una formattazione professionale e uniforme di tutti i file di progetto.],
+    [Utilizzo di GitHub Project],
+    [Difficoltà nell'utilizzo di GitHub Project e delle relative Issue con i campi custom, con conseguente difficoltà nella rendicontazione],
+    [Sessioni di affiancamento per l'utilizzo di GitHub Project, creazione di template per la creazione delle Issue e creazione di GitHub View più intuitive],
 
-    [Inesperienza tecnologica],
-    [Possibile difficoltà nell'apprendimento di nuovi strumenti ],
-    [Studio individuale preventivo e condivisione di template/guide per standardizzare l'uso degli strumenti],
+    [NATS],
+    [Difficoltà nello studio e nell'utilizzo di NATS per la scarsa esperienza del team],
+    [Creazione di un documento interno che riassume le principali funzionalità di NATS, basato sulla documentazione ufficiale],
+
+    [Glossario],
+    [Difficoltà nel controllo della presenza di una parola nel #gloss[glossario]],
+    [Al posto del solo documento PDF è stato creato, a partire dallo stesso file JSON, una sezione dedicata nella repository del gruppo],
   ),
   [Azioni adottate per migliorare l'uso degli strumenti],
   label-id: "tab-azioni-str",
