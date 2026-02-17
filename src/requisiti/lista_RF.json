@@ -1735,6 +1735,15 @@
         "ref_capitolato": []
     },
     {
+        "id": "RF-Inserimento-nome-nuovo-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un nuovo tenant, deve inserire il nome del nuovo tenant",
+        "ref_uc": [
+            "<Inserimento-nome-nuovo-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
         "id": "RF-Nome-tenant-gia-utilizzato",
         "urgenza": "Obb",
         "desc": "Il Sistema deve mostrare un messaggio di errore se il nome del tenant inserito è già in uso",
