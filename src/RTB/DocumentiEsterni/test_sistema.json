@@ -1128,6 +1128,12 @@
         "state": "NI"
     },
     {
+        "id": "TS-Nome-nuovo-tenant",
+        "descr": "Verificare che il *Super Admin*, creando un nuovo tenant, possa specificare il nome del nuovo tenant da creare",
+        "ref-req": "RF-Inserimento-nome-nuovo-tenant",
+        "state": "NI"
+    },
+    {
         "id": "TS-Nome-tenant-esistente",
         "descr": "Verificare che il *Sistema* possa mostrare un messaggio di errore se il nome del tenant inserito è già in uso",
         "ref-req": "RF-Nome-tenant-gia-utilizzato",
