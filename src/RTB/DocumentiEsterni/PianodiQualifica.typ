@@ -531,7 +531,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 /*
 	aggiunge i test SOLO in questa lista
 */
-#let lista-RF = json("../../requisiti/lista_RF.json")
+#let lista-RF = json("../../tracciamento/RF.json")
 
 #let tracciamento-RF = (:)
 #let missing-counter = counter("missing-counter")
@@ -546,7 +546,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 /* ----------------------------------------------------------------- */
 #let tracciamento-ts = (:)
 #let tracciamento-inverso-ts = (:)
-#let lista-TS = json("test_sistema.json")
+#let lista-TS = json("../../tracciamento/TS.json")
 #let requisiti-coperti = 0
 #let totale-requisiti = lista-RF.len()
 
@@ -634,7 +634,6 @@ Di seguito, si esegue il tracciamento assegnando a ogni test di sistema (TS) il 
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        // ..get-tracciamento(lista-TS),
         ..tabella-tracciamento-ts
       ),
       [Tracciamento test funzionali],
@@ -652,11 +651,10 @@ Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        // ..get-tracciamento(lista-TS),
         ..tabella-tracciamento-inverso-ts
       ),
       [Tracciamento inverso test funzionali],
-      label-id: "tab-test-funz",
+      label-id: "tab-test-funz-inverso",
     )
   ]
 ]
@@ -666,7 +664,6 @@ Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF
     columns: (auto, auto),
     align: center,
     table.header([*N° RF coperti da TS*], [*N° RF totali*]),
-    // ..get-tracciamento(lista-TS),
     [#requisiti-coperti], [#totale-requisiti],
   ),
   [Conteggio requisiti coperti da TS],
@@ -678,7 +675,7 @@ Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF
 I Test di Accettazione verificano che il sistema soddisfi i *requisiti utente* relativi al #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[capitolato d'appalto].\
 Nella tabella sottostante il singolo test di accettazione verrà associato ad un requisito di riferimento nel capitolato d'appalto.
 
-#let lista-test-accettazione = json("test_accettazione.json")
+#let lista-test-accettazione = json("../../tracciamento/TA.json")
 
 #tabella-paginata(
   table(
