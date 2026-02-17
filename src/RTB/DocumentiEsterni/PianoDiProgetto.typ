@@ -313,20 +313,26 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 
 == Riferimenti
 === Riferimenti normativi
-- Capitolato d'appalto C7: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf") \
-  *Ultimo accesso: 22/11/2025*
-//- Norme di Progetto: #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto] \
-// *Versione: 1.0.0*
+- Capitolato d'appalto C7: 
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`] \
+  - *Ultimo accesso: 17/02/2026*
+- Norme di Progetto v1.0.0: 
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf`] \
+  - *Ultimo accesso: 17/02/2026*
 
 === Riferimenti informativi
-- Regolamento del Progetto Didattico: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf") \
-  *Ultimo accesso: 22/11/2025* //scriviamo ultimo accesso o ultima modifica?
-- Il ciclo di vita del Software: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf") \
-  *Ultimo accesso: 22/11/2025*
-- Gestione di progetto: #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf") \
-  *Ultimo accesso: 22/11/2025*
-
-// TODO: Mettere riferimento a glossario con versione 
+- Regolamento del Progetto Didattico: 
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf`] \
+  - *Ultimo accesso: 17/02/2026* //scriviamo ultimo accesso o ultima modifica?
+- Il ciclo di vita del Software: 
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf`] \
+  - *Ultimo accesso: 17/02/2026*
+- Gestione di progetto: 
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf`] \
+  - *Ultimo accesso: 17/02/2026*
+- Glossario v.0.3.1:
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`] \
+  - *Ultimo accesso: 17/02/2026*
 
 == Redazione del documento
 Questa sezione descrive le pratiche adottate per la redazione del #gloss[Piano di Progetto]. \
@@ -1682,7 +1688,7 @@ Il gruppo ha riscontrato principalmente i seguenti rischi:
   ("Verificatore", 0),
 )
 #graficoTorta(
-  "Sprint 5 -  Ore produttive complessive ed effettive per ogni ruolo",
+  "Sprint 5 - Ore produttive complessive ed effettive per ogni ruolo",
   oreEffettiveSprint5,
 )
 
@@ -1790,7 +1796,7 @@ Il gruppo di lavoro per il *Piano di Qualifica* ha individuato i seguenti compit
   ("Programmatore", 0),
   ("Verificatore", 0),
 )
-#graficoTorta("Sprint 6 -  Ore produttive previste per ogni ruolo", orePrevSprint6)
+#graficoTorta("Sprint 6 - Ore produttive previste per ogni ruolo", orePrevSprint6)
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
