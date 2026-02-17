@@ -16,8 +16,9 @@
     #context uc-counter.display("UC1.1.1") --- #uc-title #label(uc-label-name)
     #uc-map.update(
       old => {
-        old.insert(str(uc-label-name), (uc-id-string, heading-value, position)); old
-      }
+        old.insert(str(uc-label-name), (uc-id-string, heading-value, position))
+        old
+      },
     )
   ]
 }
@@ -86,9 +87,12 @@
   let formal-name = "RF-" + str(rf-counter.get().at(0)) + "-" + urgenza
   [
     #rf-formal-names.update(
-      old => {old.insert(id, formal-name); old}
+      old => {
+        old.insert(id, formal-name)
+        old
+      },
     )
-    *#formal-name* #label(id)  
+    *#formal-name* #label(id)
   ]
   rf-counter.step()
 }
@@ -97,9 +101,12 @@
   let formal-name = "RNF-" + str(rnf-counter.get().at(0)) + "-" + urgenza
   [
     #rnf-formal-names.update(
-      old => {old.insert(id, formal-name); old}
+      old => {
+        old.insert(id, formal-name)
+        old
+      },
     )
-    *#formal-name* #label(id)  
+    *#formal-name* #label(id)
   ]
   rnf-counter.step()
 }
@@ -108,9 +115,12 @@
   let formal-name = "RD-" + str(rd-counter.get().at(0)) + "-" + urgenza
   [
     #rd-formal-names.update(
-      old => {old.insert(id, formal-name); old}
+      old => {
+        old.insert(id, formal-name)
+        old
+      },
     )
-    *#formal-name* #label(id)  
+    *#formal-name* #label(id)
   ]
   rd-counter.step()
 }
@@ -119,22 +129,25 @@
   let formal-name = "RV-" + str(rv-counter.get().at(0)) + "-" + urgenza
   [
     #rv-formal-names.update(
-      old => {old.insert(id, formal-name); old}
+      old => {
+        old.insert(id, formal-name)
+        old
+      },
     )
-    *#formal-name* #label(id)  
+    *#formal-name* #label(id)
   ]
   rv-counter.step()
 }
 
-#let ref-rf = (id) => link(label(id))[#context rf-formal-names.get().at(id)]
-#let ref-rnf = (id) => link(label(id))[#context rnf-formal-names.get().at(id)]
-#let ref-rv = (id) =>  link(label(id))[#context rv-formal-names.get().at(id)]
-#let ref-rd = (id) =>  link(label(id))[#context rd-formal-names.get().at(id)]
+#let ref-rf = id => link(label(id))[#context rf-formal-names.get().at(id)]
+#let ref-rnf = id => link(label(id))[#context rnf-formal-names.get().at(id)]
+#let ref-rv = id => link(label(id))[#context rv-formal-names.get().at(id)]
+#let ref-rd = id => link(label(id))[#context rd-formal-names.get().at(id)]
 
 /**
  * Conta le urgenze per una specifica lista di requisiti
-*/
-#let conteggio-urgenze = (lista-requisiti) => {
+ */
+#let conteggio-urgenze = lista-requisiti => {
   let conteggio = (:)
   for requisito in lista-requisiti {
     conteggio.insert(requisito.urgenza, conteggio.at(requisito.urgenza, default: 0) + 1)
@@ -142,17 +155,14 @@
   conteggio
 }
 
-#let normalize-uc = (id-uc) => (id-uc.trim("<").trim(">"))
-#let normalize-ref-list = (requisito) => {
+#let normalize-uc = id-uc => (id-uc.trim("<").trim(">"))
+#let normalize-ref-list = requisito => {
   (
-    requisito.ref_uc
-      .map(id-uc => ref-uc(normalize-uc(id-uc), section-prefix:"§"))
-    + requisito.ref_capitolato
-      .map(ref-cap => link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[
+    requisito.ref_uc.map(id-uc => ref-uc(normalize-uc(id-uc), section-prefix: "§"))
+      + requisito.ref_capitolato.map(ref-cap => link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[
         #eval(ref-cap, mode: "markup")
       ])
-  )
-  .join([, \ ])
+  ).join([, \ ])
 }
 
 #let tabella-requisiti = (funzione-req, funzione-ref-req, lista-requisiti) => {
@@ -211,7 +221,7 @@
       "Riccardo Graziani",
       [
         Rimossi ex UC4 e UC23 e relativi diagrammi; Sistemata numerazione di tutti gli altri UC
-      ]
+      ],
     ),
     (
       "1.1.0",
@@ -220,7 +230,7 @@
       "Riccardo Graziani",
       [
         Aumentata @tracciamento-requisiti con tracciamento per requisito e per UC; Sistemata formattazione di @lista-requisiti-funzionali, @lista-requisiti-non-funzionali e @lista-requisiti-dominio
-      ]
+      ],
     ),
     (
       "1.0.3",
@@ -1210,7 +1220,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - L'Utente Autenticato visualizza l'identificativo del gateway interessato nell'alert
 
-===== #sub-uc([Visualizzazione timestamp ultimo dato gateway alert], "Visualizzazione-timestamp-ultimo-dato-gateway-alert")
+===== #sub-uc(
+  [Visualizzazione timestamp ultimo dato gateway alert],
+  "Visualizzazione-timestamp-ultimo-dato-gateway-alert",
+)
 - *Attore principale*: Utente Autenticato
 - *Post-condizioni*:
   - Il Sistema mostra il timestamp dell'ultimo dato ricevuto dal gateway interessato nell'alert, ovvero il datetime preciso in cui è stato inviato l'ultimo dato
@@ -1252,7 +1265,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Scenario principale*:
   - L'Utente Autenticato visualizza l'identificativo del sensore interessato nell'alert
 
-===== #sub-uc([Visualizzazione timestamp ultimo dato sensore alert], "Visualizzazione-timestamp-ultimo-dato-sensore-alert")
+===== #sub-uc(
+  [Visualizzazione timestamp ultimo dato sensore alert],
+  "Visualizzazione-timestamp-ultimo-dato-sensore-alert",
+)
 - *Attore principale*: Utente Autenticato
 - *Post-condizioni*:
   - Il Sistema mostra il timestamp dell'ultimo dato ricevuto dal gateway relativo al sensore in questione, ovvero il datetime preciso in cui è stato inviato l'ultimo dato dal sensore e correttamente inviato al Cloud.
@@ -1312,6 +1328,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Post-condizioni*:
   - Vengono visualizzati i dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento specifico
   - Il grafico visualizzato si aggiorna in *tempo reale* (_real-time_), appena il Cloud riceve dati nuovi dal gateway
+  - Il grafico visualizzato rappresenta sull'asse x gli istanti di rilevazione
+  - Il grafico visualizzato rappresenta sull'asse y i valori delle rilevazioni
 - *Scenario principale*:
   - L'Utente visualizza il grafico relativo ai dati real-time del sensore selezionato
   - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
@@ -1346,6 +1364,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il sensore selezionato appartiene al tenant dell'utente autenticato
 - *Post-condizioni*:
   - Il Sistema mostra lo storico dei dati del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento passato specifico
+  - Il grafico visualizzato rappresenta sull'asse x gli istanti di rilevazione
+  - Il grafico visualizzato rappresenta sull'asse y i valori delle rilevazioni
 - *Scenario principale*
   - L'Utente visualizza il grafico relativo allo storico dei dati del sensore selezionato
   - L'Utente può visualizzare il dato in un momento preciso dato che il grafico è labeled, ovvero si può visualizzare il valore effettivo di ogni punto nel grafico
@@ -1378,7 +1398,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - #ref-uc(<Visualizzazione-grafico-filtrato-temporale-sensore>)
 
 
-===== #sub-uc([Visualizzazione grafico dati sensore filtrato per intervallo temporale], "Visualizzazione-grafico-filtrato-temporale-sensore")
+===== #sub-uc(
+  [Visualizzazione grafico dati sensore filtrato per intervallo temporale],
+  "Visualizzazione-grafico-filtrato-temporale-sensore",
+)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -1386,6 +1409,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il filtro temporale è valido
 - *Post-condizioni*:
   - Il Sistema mostra i dati storici del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento passato specifico, filtrati per intervallo temporale
+  - Il grafico visualizzato rappresenta sull'asse x gli istanti di rilevazione
+  - Il grafico visualizzato rappresenta sull'asse y i valori delle rilevazioni
 - *Scenario principale*
   - L'Utente visualizza il grafico relativo allo storico dei dati del sensore selezionato
   - L'Utente visualizza il grafico filtrato per intervallo temporale
@@ -1431,7 +1456,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   // - #ref-uc(<Selezione-sensore>)
   - #ref-uc(<Visualizzazione-grafico-filtrato-valori-sensore>)
 
-===== #sub-uc([Visualizzazione grafico dati sensore filtrato per intervallo di valori], "Visualizzazione-grafico-filtrato-valori-sensore")
+===== #sub-uc(
+  [Visualizzazione grafico dati sensore filtrato per intervallo di valori],
+  "Visualizzazione-grafico-filtrato-valori-sensore",
+)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'Utente è autenticato nel Sistema
@@ -1439,6 +1467,8 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - Il filtro per valore è valido
 - *Post-condizioni*:
   - Il Sistema mostra i dati storici del sensore selezionato in modalità *time-series* tramite un grafico con assi etichettati che permette di visualizzare un dato preciso in un momento passato specifico, filtrati per intervallo di valori
+  - Il grafico visualizzato rappresenta sull'asse x gli istanti di rilevazione
+  - Il grafico visualizzato rappresenta sull'asse y i valori delle rilevazioni
 - *Scenario principale*
   - L'Utente visualizza il grafico relativo allo storico dei dati del sensore selezionato
   - L'Utente visualizza il grafico filtrato per intervallo di valori
@@ -1483,7 +1513,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singolo-sensore-associato-tenant-in-lista>)
 
-==== #uc([Visualizzazione singolo sensore associato al tenant in lista], "Visualizzazione-singolo-sensore-associato-tenant-in-lista")
+==== #uc(
+  [Visualizzazione singolo sensore associato al tenant in lista],
+  "Visualizzazione-singolo-sensore-associato-tenant-in-lista",
+)
 #figure(
   image("../../assets/diagrammi/UC30.svg", width: 100%),
   caption: [UC30 - UC30.1],
@@ -1530,7 +1563,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - #ref-uc(<Visualizzazione-numero-gateway-attivi-non-attivi>)
   - #ref-uc(<Visualizzazione-lista-alert>)
 
-===== #sub-uc([Visualizzazione numero di sensori attivi e non attivi], "Visualizzazione-numero-sensori-attivi-non-attivi")
+===== #sub-uc(
+  [Visualizzazione numero di sensori attivi e non attivi],
+  "Visualizzazione-numero-sensori-attivi-non-attivi",
+)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'utente autenticato è autenticato nel Sistema
@@ -1540,7 +1576,10 @@ Il Super Admin che accede ad un tenant può esattamente eseguire le stesse azion
   - L'utente autenticato visualizza il numero di sensori attivi e non attivi
   - L'utente autenticato visualizza le informazioni in forma testuale e di grafico a torta.
 
-===== #sub-uc([Visualizzazione numero di gateway attivi e non attivi], "Visualizzazione-numero-gateway-attivi-non-attivi")
+===== #sub-uc(
+  [Visualizzazione numero di gateway attivi e non attivi],
+  "Visualizzazione-numero-gateway-attivi-non-attivi",
+)
 - *Attore principale*: Utente autenticato
 - *Pre-condizioni*:
   - L'utente autenticato è autenticato nel Sistema
@@ -1749,7 +1788,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - L'Admin conferma l'eliminazione del Tenant User
 
 // Commissioning / Decommissioning ------------------------------------------------------------------------------------------------------------
-==== #uc([Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant], "Visualizzazione-lista-richieste-commissioning-decommissioning-gateway")
+==== #uc(
+  [Visualizzazione lista delle richieste di commissioning e decommissioning di gateway del tenant],
+  "Visualizzazione-lista-richieste-commissioning-decommissioning-gateway",
+)
 #figure(
   image("../../assets/diagrammi/UC38.svg", width: 100%),
   caption: [UC38 - UC39, UC39.1],
@@ -1766,7 +1808,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>)
 
-==== #uc([Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant], "Visualizzazione-richiesta-di-commissioning-decommissioning-gateway")
+==== #uc(
+  [Visualizzazione richiesta di commissioning e decommissioning di gateway del tenant],
+  "Visualizzazione-richiesta-di-commissioning-decommissioning-gateway",
+)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin generico è autenticato nel Sistema
@@ -1779,7 +1824,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
   - *Inclusioni*:
     - #ref-uc(<Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway>)
 
-===== #sub-uc([Visualizzazione stato richiesta di commissioning e decommissioning di gateway],"Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway")
+===== #sub-uc(
+  [Visualizzazione stato richiesta di commissioning e decommissioning di gateway],
+  "Visualizzazione-stato-richiesta-di-commissioning-decommissioning-gateway",
+)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin generico è autenticato nel Sistema
@@ -1948,7 +1996,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
     - Non associato
     - Non autenticato
 
-===== #sub-uc([Visualizzazione sensori collegati al gateway associato a tenant], "Visualizzazione-sensori-collegati-gateway-associato")
+===== #sub-uc(
+  [Visualizzazione sensori collegati al gateway associato a tenant],
+  "Visualizzazione-sensori-collegati-gateway-associato",
+)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -1961,7 +2012,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Inclusioni*:
   - #ref-uc(<Visualizza-singolo-sensore-collegato-gateway-associato-in-lista>)
 
-==== #uc([Visualizza singolo sensore collegato al gateway associato al tenant in lista], "Visualizza-singolo-sensore-collegato-gateway-associato-in-lista")
+==== #uc(
+  [Visualizza singolo sensore collegato al gateway associato al tenant in lista],
+  "Visualizza-singolo-sensore-collegato-gateway-associato-in-lista",
+)
 
 #figure(
   image("../../assets/diagrammi/UC45.svg", width: 100%),
@@ -1981,7 +2035,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>)
 
-===== #sub-uc([Visualizzazione identificativo sensore collegato al gateway associato a tenant in lista], "Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista")
+===== #sub-uc(
+  [Visualizzazione identificativo sensore collegato al gateway associato a tenant in lista],
+  "Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista",
+)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -2103,7 +2160,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza il nome della API key selezionata nella lista
 
-===== #sub-uc([Visualizzazione data di creazione singola API key in lista], "Visualizzazione-data-creazione-singola-api-key-lista")
+===== #sub-uc(
+  [Visualizzazione data di creazione singola API key in lista],
+  "Visualizzazione-data-creazione-singola-api-key-lista",
+)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -2112,7 +2172,10 @@ Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effe
 - *Scenario principale*:
   - L'Admin visualizza la data di creazione della API key selezionata nella
 
-===== #sub-uc([Visualizzazione data di scadenza singola API key in lista], "Visualizzazione-data-scadenza-singola-api-key-lista")
+===== #sub-uc(
+  [Visualizzazione data di scadenza singola API key in lista],
+  "Visualizzazione-data-scadenza-singola-api-key-lista",
+)
 - *Attore principale*: Admin Generico
 - *Pre-condizioni*:
   - L'Admin è autenticato nel Sistema
@@ -2399,7 +2462,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin visualizza il numero di API key valide e scadute nel tenant
   - Il Tenant Admin visualizza le informazioni in forma testuale e di grafico a torta.
 
-===== #sub-uc([Visualizzazione stato richieste commissioning gateway], "Visualizzazione-stato-richieste-commissioning-gateway")
+===== #sub-uc(
+  [Visualizzazione stato richieste commissioning gateway],
+  "Visualizzazione-stato-richieste-commissioning-gateway",
+)
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -2408,7 +2474,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Tenant Admin visualizza il grafico a torta descritto sopra
 
-===== #sub-uc([Visualizzazione stato richieste decommissioning gateway], "Visualizzazione-stato-richieste-decommissioning-gateway")
+===== #sub-uc(
+  [Visualizzazione stato richieste decommissioning gateway],
+  "Visualizzazione-stato-richieste-decommissioning-gateway",
+)
 - *Attore principale*: Tenant Admin
 - *Pre-condizioni*:
   - Il Tenant Admin è autenticato nel Sistema
@@ -2461,7 +2530,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Tenant Admin conferma la selezione
 
 
-==== #uc([Eliminazione richiesta di commissioning/decommissioning gateway], "Eliminazione-richiesta-commissioning-decommissioning-gateway")
+==== #uc(
+  [Eliminazione richiesta di commissioning/decommissioning gateway],
+  "Eliminazione-richiesta-commissioning-decommissioning-gateway",
+)
 #figure(
   image("../../assets/diagrammi/UC62.svg", width: 100%),
   caption: [UC62 - UC62.1],
@@ -2628,7 +2700,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 
-==== #uc([Modifica target di frequenza d'invio dati per tipo di sensore di gateway associato a tenant], "Modifica-target-freq-invio-dati-tenant-admin")
+==== #uc(
+  [Modifica target di frequenza d'invio dati per tipo di sensore di gateway associato a tenant],
+  "Modifica-target-freq-invio-dati-tenant-admin",
+)
 #figure(
   image("../../assets/diagrammi/UC68.svg", width: 100%),
   caption: [UC68 - UC32, UC69],
@@ -2675,7 +2750,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc([Creazione Tenant], "Creazione-tenant")
 #figure(
   image("../../assets/diagrammi/UC70.svg", width: 100%),
-  caption: [UC70 - UC70.1, UC71],
+  caption: [UC70 - UC70.1, UC70.2, UC71],
 )
 
 - *Attore principale*: Super Admin
@@ -2692,6 +2767,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Nome-tenant-gia-utilizzato>)
 - *Inclusioni*:
   - #ref-uc(<Clausola-impersonificazione>)
+  - #ref-uc(<Inserimento-nome-nuovo-tenant>)
 
 ===== #sub-uc([Clausola impersonificazione], "Clausola-impersonificazione")
 - *Attore principale*: Super Admin
@@ -2701,6 +2777,17 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema riceve l'accettazione o meno della clausola
 - *Scenario principale*:
   - Il Super Admin inserisce l'accettazione o meno della clausola di impersonificazione
+
+===== #sub-uc([Inserimento nome nuovo tenant], "Inserimento-nome-nuovo-tenant")
+- *Attore principale*: Super Admin
+- *Pre-condizioni*:
+  - Il Super Admin è autenticato
+- *Post-condizioni*:
+  - Il Sistema riceve il nome del nuovo tenant
+- *Scenario principale*:
+  - Il Super Admin inserisce il nome del nuovo tenant
+
+
 
 ==== #uc([Nome del tenant già utilizzato], "Nome-tenant-gia-utilizzato")
 - *Attore principale*: Super Admin
@@ -3210,7 +3297,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Gateway-non-raggiungibile>)
 
 
-==== #uc([Modifica target di frequenza d'invio dati per tipo di sensore di gateway], "Modifica-freq-invio-dati-gateway-super-admin")
+==== #uc(
+  [Modifica target di frequenza d'invio dati per tipo di sensore di gateway],
+  "Modifica-freq-invio-dati-gateway-super-admin",
+)
 #figure(
   image("../../assets/diagrammi/UC90.svg", width: 100%),
   caption: [UC90 - UC32, UC93],
@@ -3389,7 +3479,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 
 // GESTIONE RICHIESTE COMMISSIONING/DECOMMISSIONING ----------------------------------------------------------------------------
-==== #uc([Visualizzazione lista richieste in corso di commissioning gateway], "Visualizzazione-lista-richieste-in-corso-commissioning-gateway")
+==== #uc(
+  [Visualizzazione lista richieste in corso di commissioning gateway],
+  "Visualizzazione-lista-richieste-in-corso-commissioning-gateway",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3400,7 +3493,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-commissioning-in-lista>)
 
-==== #uc([Visualizzazione singola richiesta di commissioning in lista], "Visualizzazione-singola-richiesta-commissioning-in-lista")
+==== #uc(
+  [Visualizzazione singola richiesta di commissioning in lista],
+  "Visualizzazione-singola-richiesta-commissioning-in-lista",
+)
 #figure(
   image("../../assets/diagrammi/UC100.svg", width: 100%),
   caption: [UC100 - UC100.1, UC100.2, UC100.3],
@@ -3422,7 +3518,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-tenant-richiesta-commissioning>)
   - #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)
 
-===== #sub-uc([Visualizzazione data e ora della richiesta di commissioning], "Visualizzazione-data-ora-richiesta-commissioning")
+===== #sub-uc(
+  [Visualizzazione data e ora della richiesta di commissioning],
+  "Visualizzazione-data-ora-richiesta-commissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3432,7 +3531,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza la data e l'ora della richiesta di commissioning in lista
 
-===== #sub-uc([Visualizzazione tenant della richiesta di commissioning], "Visualizzazione-tenant-richiesta-commissioning")
+===== #sub-uc(
+  [Visualizzazione tenant della richiesta di commissioning],
+  "Visualizzazione-tenant-richiesta-commissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3442,7 +3544,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza il tenant della richiesta di commissioning in lista
 
-===== #sub-uc([Visualizzazione numero gateway della richiesta di commissioning], "Visualizzazione-numero-gateway-richiesta-commissioning")
+===== #sub-uc(
+  [Visualizzazione numero gateway della richiesta di commissioning],
+  "Visualizzazione-numero-gateway-richiesta-commissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3452,7 +3557,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza il numero di gateway della richiesta di commissioning in lista
 
-==== #uc([Visualizzazione lista richieste in corso di decommissioning gateway], "Visualizzazione-lista-richieste-in-corso-decommissioning-gateway")
+==== #uc(
+  [Visualizzazione lista richieste in corso di decommissioning gateway],
+  "Visualizzazione-lista-richieste-in-corso-decommissioning-gateway",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3463,7 +3571,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-decommissioning-in-lista>)
 
-==== #uc([Visualizzazione singola richiesta di decommissioning in lista], "Visualizzazione-singola-richiesta-decommissioning-in-lista")
+==== #uc(
+  [Visualizzazione singola richiesta di decommissioning in lista],
+  "Visualizzazione-singola-richiesta-decommissioning-in-lista",
+)
 #figure(
   image("../../assets/diagrammi/UC102.svg", width: 100%),
   caption: [UC102 - UC102.1, UC102.2, UC102.3, UC102.4],
@@ -3487,7 +3598,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-numero-gateway-richiesta-decommissioning>)
   - #ref-uc(<Visualizzazione-stato-richiesta-decommissioning>)
 
-===== #sub-uc([Visualizzazione data e ora della richiesta di decommissioning], "Visualizzazione-data-ora-richiesta-decommissioning")
+===== #sub-uc(
+  [Visualizzazione data e ora della richiesta di decommissioning],
+  "Visualizzazione-data-ora-richiesta-decommissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3497,7 +3611,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza la data e l'ora della richiesta di decommissioning in lista
 
-===== #sub-uc([Visualizzazione tenant della richiesta di decommissioning], "Visualizzazione-tenant-richiesta-decommissioning")
+===== #sub-uc(
+  [Visualizzazione tenant della richiesta di decommissioning],
+  "Visualizzazione-tenant-richiesta-decommissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3507,7 +3624,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza il tenant della richiesta di decommissioning in lista
 
-===== #sub-uc([Visualizzazione numero gateway della richiesta di decommissioning], "Visualizzazione-numero-gateway-richiesta-decommissioning")
+===== #sub-uc(
+  [Visualizzazione numero gateway della richiesta di decommissioning],
+  "Visualizzazione-numero-gateway-richiesta-decommissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3517,7 +3637,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza il numero di gateway della richiesta di decommissioning in lista
 
-===== #sub-uc([Visualizzazione stato della richiesta di decommissioning], "Visualizzazione-stato-richiesta-decommissioning")
+===== #sub-uc(
+  [Visualizzazione stato della richiesta di decommissioning],
+  "Visualizzazione-stato-richiesta-decommissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3527,7 +3650,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza lo stato della richiesta di decommissioning in lista
 
-==== #uc([Visualizzazione storico richieste di commissioning gateway], "Visualizzazione-storico-richieste-commissioning-gateway")
+==== #uc(
+  [Visualizzazione storico richieste di commissioning gateway],
+  "Visualizzazione-storico-richieste-commissioning-gateway",
+)
 #figure(
   image("../../assets/diagrammi/UC103.svg", width: 100%),
   caption: [UC103 - UC100.1, UC100.2, UC100.3, UC104, UC104.1],
@@ -3543,7 +3669,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-storico-commissioning-gateway>)
 
-==== #uc([Visualizzazione singola richiesta lista storico commissioning], "Visualizzazione-singola-richiesta-storico-commissioning-gateway")
+==== #uc(
+  [Visualizzazione singola richiesta lista storico commissioning],
+  "Visualizzazione-singola-richiesta-storico-commissioning-gateway",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3562,7 +3691,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - #ref-uc(<Visualizzazione-numero-gateway-richiesta-commissioning>)
   - #ref-uc(<Visualizzazione-stato-richiesta-storico-commissioning>)
 
-===== #sub-uc([Visualizzazione stato richiesta dello storico commissioning], "Visualizzazione-stato-richiesta-storico-commissioning")
+===== #sub-uc(
+  [Visualizzazione stato richiesta dello storico commissioning],
+  "Visualizzazione-stato-richiesta-storico-commissioning",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3572,7 +3704,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Scenario principale*:
   - Il Super Admin visualizza lo stato della richiesta di commissioning in lista
 
-==== #uc([Visualizzazione storico richieste di decommissioning gateway], "Visualizzazione-storico-richieste-decommissioning-gateway")
+==== #uc(
+  [Visualizzazione storico richieste di decommissioning gateway],
+  "Visualizzazione-storico-richieste-decommissioning-gateway",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3583,7 +3718,10 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Visualizzazione-singola-richiesta-storico-decommissioning-gateway>)
 
-==== #uc([Visualizzazione singola richiesta lista storico decommissioning], "Visualizzazione-singola-richiesta-storico-decommissioning-gateway")
+==== #uc(
+  [Visualizzazione singola richiesta lista storico decommissioning],
+  "Visualizzazione-singola-richiesta-storico-decommissioning-gateway",
+)
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
   - Il Super Admin è autenticato
@@ -3856,7 +3994,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   caption: [UC114 - UC114.1, UC114.2],
 )
 
-- *Attore principale*: Super 
+- *Attore principale*: Super
 - *Pre-condizioni*:Admin
   - Il Super Admin è autenticato
   - Il Tenant Admin deve esistere nel Sistema
@@ -4473,7 +4611,10 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
   - Il gateway esegue il comando ricevuto e riattiva il sensore, riprendendo l'invio dei dati ricevuti da esso al Cloud
   - Il gateway invia un comando di conferma al Cloud
 
-==== #uc([Conferma modifica frequenza di invio dati per tipo di sensore], "Conferma-comando-modifica-frequenza-invio-dati")
+==== #uc(
+  [Conferma modifica frequenza di invio dati per tipo di sensore],
+  "Conferma-comando-modifica-frequenza-invio-dati",
+)
 - *Attore principale*: Gateway
 - *Pre-condizioni*:
   - Il gateway è connesso e autenticato con il Cloud
@@ -4594,9 +4735,10 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema restituisce dati real-time del sensore richiesto
+  - Il Sistema restituisce una lista di dati real-time del sensore richiesto in formato JSON
+  - Il Sistema il singolo dato come tupla (timestamp, valore rilevato)
 - *Scenario principale*:
-  - L'API Client richiede e riceve dati real-time del sensore specificato
+  - L'API Client richiede e riceve dati real-time del sensore specificato in formato JSON
 - *Scenari alternativi*:
   - Sensore non trovato
   - Nessun dato storico disponibile per il sensore richiesto
@@ -4629,9 +4771,10 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Pre-condizioni*:
   - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
-  - Il Sistema restituisce lo storico dei dati del sensore specificato
+  - Il Sistema restituisce lo storico dei dati del sensore specificato in formato JSON
+  - Il Sistema restituisce lo storico dei dati del sensore richiesto come lista di tuple (timestamp, valore rilevato)
 - *Scenario principale*:
-  - L'API Client richiede lo storico dei dati del sensore specificato
+  - L'API Client richiede e riceve lo storico dei dati del sensore specificato in formato JSON
 - *Scenari alternativi*:
   - Sensore non trovato
   - Nessun dato storico disponibile per il sensore richiesto
@@ -4697,7 +4840,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 - *Post-condizioni*:
   - Il Sistema autentica l'API Client
 - *Scenario principale*:
-  - L'API Client invia le credenziali di autenticazione al Sistema
+  - L'API Client invia l'identificativo del tenant
+  - L'API Client invia la propria API Key
   - L'API Client riceve la conferma di autenticazione
 - *Scenari alternativi*:
   - Le credenziali inviate dall'API Client non sono valide
@@ -4745,8 +4889,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
   - Il Sistema Gateway normalizza e formatta il dato in un formato interno standardizzato
   - Il Sistema Gateway salva i dati in un buffer interno
 - *Scenario principale*:
-  - Il Sensore genera un nuovo dato simulato
-  - Il Sensore invia il dato al Sistema Gateway
+  - Il Sensore genera una nuova misurazione simulata e ne registra il momento di generazione
+  - Il Sensore invia il dato al Sistema Gateway associandone il timestamp del momento in cui è stato generata la misurazione
 - *Scenario alternativo*:
   - Il sensore invia una quantità eccessiva di dati al gateway
 - *Estensioni*:
@@ -5042,9 +5186,9 @@ Inoltre un buon requisito deve essere *SMART*:
 
 
 // NOTA: Modificare il file .json per modificare i requisiti!
-#let LISTA_RF   = json("../../requisiti/lista_RF.json")
-#let LISTA_RNF  = json("../../requisiti/lista_RNF.json")
-#let LISTA_RD   = json("../../requisiti/lista_RD.json")
+#let LISTA_RF = json("../../requisiti/lista_RF.json")
+#let LISTA_RNF = json("../../requisiti/lista_RNF.json")
+#let LISTA_RD = json("../../requisiti/lista_RD.json")
 
 #let tabella-rf = tabella-requisiti(rf, ref-rf, LISTA_RF)
 #let tabella-rnf = tabella-requisiti(rnf, ref-rnf, LISTA_RNF)
@@ -5056,15 +5200,11 @@ Inoltre un buon requisito deve essere *SMART*:
   table(
     columns: (1fr, 3.2fr, 1.5fr),
     align: left,
-    table.header(
-      [*Codice*],
-      [*Descrizione*],
-      [*Fonti*],
-    ),
+    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
     ..tabella-rf,
   ),
   [Descrizione requisiti funzionali],
-  label-id: "tab-rf"
+  label-id: "tab-rf",
 )
 
 == Requisiti non funzionali <lista-requisiti-non-funzionali>
@@ -5072,15 +5212,11 @@ Inoltre un buon requisito deve essere *SMART*:
   table(
     columns: (1fr, 3.2fr, 1.5fr),
     align: left,
-    table.header(
-      [*Codice*],
-      [*Descrizione*],
-      [*Fonti*],
-    ),
+    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
     ..tabella-rnf,
   ),
   [Descrizione requisiti non funzionali],
-  label-id: "tab-rnf"
+  label-id: "tab-rnf",
 )
 
 == Requisiti di dominio <lista-requisiti-dominio>
@@ -5088,30 +5224,26 @@ Inoltre un buon requisito deve essere *SMART*:
   table(
     columns: (1fr, 3.2fr, 1.5fr),
     align: left,
-    table.header(
-      [*Codice*],
-      [*Descrizione*],
-      [*Fonti*],
-    ),
+    table.header([*Codice*], [*Descrizione*], [*Fonti*]),
     ..tabella-rd,
   ),
   [Descrizione requisiti di dominio],
-  label-id: "tab-rd"
+  label-id: "tab-rd",
 )
 
 // #set page(columns: 2) // Doppia colonna per ottimizzare gli spazi
 
 == Tracciamento <tracciamento-requisiti>
 /*
-NOTA: In questa sezione le tabelle sono generate automaticamente, per modificare i requisiti direttamente è 
+NOTA: In questa sezione le tabelle sono generate automaticamente, per modificare i requisiti direttamente è
 necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
 */
 
 #context {
   let tracciamento-requisiti = (funzione-req, funzione-ref-req, lista-requisiti) => {
-    let tabella-tracciamento     = ()   // Req -> UC
-    let tracciamento-inverso-uc  = (:)  // UC -> Req
-    let tracciamento-inverso-cap = (:)  // Capitolato -> Req
+    let tabella-tracciamento = () // Req -> UC
+    let tracciamento-inverso-uc = (:) // UC -> Req
+    let tracciamento-inverso-cap = (:) // Capitolato -> Req
 
     for requisito in lista-requisiti {
       let lista-uc-correlati = normalize-ref-list(requisito)
@@ -5124,53 +5256,61 @@ necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
       // - UC
       for ref in requisito.ref_uc {
         tracciamento-inverso-uc.insert(
-          ref, tracciamento-inverso-uc.at(ref, default: ()) + (requisito.id,)
+          ref,
+          tracciamento-inverso-uc.at(ref, default: ()) + (requisito.id,),
         )
       }
       // - req. capitolato
       for ref in requisito.ref_capitolato {
         tracciamento-inverso-cap.insert(
-          ref, tracciamento-inverso-cap.at(ref, default: ()) + (requisito.id,)
+          ref,
+          tracciamento-inverso-cap.at(ref, default: ()) + (requisito.id,),
         )
       }
     }
 
     // Tabella tracciamento inverso
     // - tracciamento UC
-    tracciamento-inverso-uc = tracciamento-inverso-uc.pairs()
-      .sorted(key: (pair) => {
+    tracciamento-inverso-uc = tracciamento-inverso-uc
+      .pairs()
+      .sorted(key: pair => {
         uc-map.get().at(normalize-uc(pair.at(0))).at(1)
       })
     let tabella-tracciamento-inverso = ()
     for (id-uc, id-requisiti) in tracciamento-inverso-uc {
-      tabella-tracciamento-inverso.push(ref-uc(normalize-uc(id-uc), section-prefix:"§"))
+      tabella-tracciamento-inverso.push(ref-uc(normalize-uc(id-uc), section-prefix: "§"))
       tabella-tracciamento-inverso.push(
-        id-requisiti.map(
-          id-requisito => funzione-ref-req(id-requisito)
-        )
-        .join([, \ ])
+        id-requisiti
+          .map(
+            id-requisito => funzione-ref-req(id-requisito),
+          )
+          .join([, \ ]),
       )
     }
 
     // - tracciamento req. capitolato
-    tracciamento-inverso-cap = tracciamento-inverso-cap.pairs().sorted(
-      key: pair => pair.at(0)
-    )
+    tracciamento-inverso-cap = tracciamento-inverso-cap
+      .pairs()
+      .sorted(
+        key: pair => pair.at(0),
+      )
     for (req-capitolato, id-requisiti) in tracciamento-inverso-cap {
       tabella-tracciamento-inverso.push(req-capitolato)
       tabella-tracciamento-inverso.push(
-        id-requisiti.map(
-          id-requisito => funzione-ref-req(id-requisito)
-        ).join([, \ ])
+        id-requisiti
+          .map(
+            id-requisito => funzione-ref-req(id-requisito),
+          )
+          .join([, \ ]),
       )
     }
 
     (tabella-tracciamento, tabella-tracciamento-inverso)
   }
 
-  let (tracciamento-rf, tracciamento-inv-rf)    = tracciamento-requisiti(rf, ref-rf, LISTA_RF)
-  let (tracciamento-rnf, tracciamento-inv-rnf)  = tracciamento-requisiti(rnf, ref-rnf, LISTA_RNF)
-  let (tracciamento-rd, tracciamento-inv-rd)    = tracciamento-requisiti(rd, ref-rd, LISTA_RD)
+  let (tracciamento-rf, tracciamento-inv-rf) = tracciamento-requisiti(rf, ref-rf, LISTA_RF)
+  let (tracciamento-rnf, tracciamento-inv-rnf) = tracciamento-requisiti(rnf, ref-rnf, LISTA_RNF)
+  let (tracciamento-rd, tracciamento-inv-rd) = tracciamento-requisiti(rd, ref-rd, LISTA_RD)
 
   [
     === Tracciamento requisiti -- UC/requisiti capitolato
@@ -5181,16 +5321,15 @@ necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
       table(
         columns: (1fr, 2fr),
         align: horizon + left,
-        table.header(
-          [*Requisito*], [*Casi d'uso/requisiti capitolato correlati*], 
-        ),
+        table.header([*Requisito*], [*Casi d'uso/requisiti capitolato correlati*]),
         ..tracciamento-rf,
         ..tracciamento-rnf,
         ..tracciamento-rd,
       ),
       [Tracciamento requisiti],
-      label-id: "tab-tracciamento-rf"
-    ), 2
+      label-id: "tab-tracciamento-rf",
+    ),
+    2,
   )
 
   [
@@ -5200,19 +5339,17 @@ necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
         table(
           columns: (2fr, 1fr),
           align: horizon + left,
-          table.header(
-            [*Caso d'uso/Requisito capitolato*], [*Requisiti derivati*]
-          ),
+          table.header([*Caso d'uso/Requisito capitolato*], [*Requisiti derivati*]),
           ..tracciamento-inv-rf,
           ..tracciamento-inv-rnf,
           ..tracciamento-inv-rd,
         ),
         [Tracciamento requisiti inverso: per ogni caso d'uso si descrivono i relativi requisiti],
-        label-id: "tab-tracciamento-inverso-rf"
-      ), 2
+        label-id: "tab-tracciamento-inverso-rf",
+      ),
+      2,
     )
   ]
-  
 }
 
 
@@ -5220,9 +5357,9 @@ necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
 === Conteggio requisiti
 Di seguito si riporta il conteggio dei requisiti per urgenza e per tipologia.
 
-#let conteggio-rf   = conteggio-urgenze(LISTA_RF)
-#let conteggio-rnf  = conteggio-urgenze(LISTA_RNF)
-#let conteggio-rd   = conteggio-urgenze(LISTA_RD)
+#let conteggio-rf = conteggio-urgenze(LISTA_RF)
+#let conteggio-rnf = conteggio-urgenze(LISTA_RNF)
+#let conteggio-rd = conteggio-urgenze(LISTA_RD)
 
 #let num-rf-obb = conteggio-rf.at("Obb", default: 0)
 #let num-rf-opt = conteggio-rf.at("Des", default: 0)
@@ -5243,39 +5380,26 @@ Di seguito si riporta il conteggio dei requisiti per urgenza e per tipologia.
   columns: (1fr, 2fr, 2fr, 2fr, 1fr),
 
   table.header(
-    [*Tipo \ requisito*], 
-    [*N° requisiti obbligatori* (Obb)], 
-    [*N° requisiti desiderabili* (Des)], 
-    [*N° requisiti opzionali* (Opt)], 
-    [*Totale*]
+    [*Tipo \ requisito*],
+    [*N° requisiti obbligatori* (Obb)],
+    [*N° requisiti desiderabili* (Des)],
+    [*N° requisiti opzionali* (Opt)],
+    [*Totale*],
   ),
 
-  [*RF*],
-  [#num-rf-obb],
-  [#num-rf-des],
-  [#num-rf-opt],
-  [*#tot-rf*],
+  [*RF*], [#num-rf-obb], [#num-rf-des], [#num-rf-opt], [*#tot-rf*],
 
-  [*RNF*],
-  [#num-rnf-obb],
-  [#num-rnf-des],
-  [#num-rnf-opt],
-  [*#tot-rnf*],
+  [*RNF*], [#num-rnf-obb], [#num-rnf-des], [#num-rnf-opt], [*#tot-rnf*],
 
-  [*RD*],
-  [#num-rd-obb],
-  [#num-rd-des],
-  [#num-rd-opt],
-  [*#tot-rd*],
+  [*RD*], [#num-rd-obb], [#num-rd-des], [#num-rd-opt], [*#tot-rd*],
 
   table.footer(
-    [*TOTALE*], 
+    [*TOTALE*],
     [*#(num-rf-obb + num-rnf-obb + num-rd-obb)*],
     [*#(num-rf-des + num-rnf-des + num-rd-des)*],
     [*#(num-rf-opt + num-rnf-opt + num-rd-opt)*],
     [*#(tot-rf + tot-rnf + tot-rd)*],
   ),
-
 )
 
- 
+
