@@ -217,7 +217,7 @@
       "Alessandro Dinato",
       "-",
       [
-        Eliminazione RNF 1,2,3; aggiornamento code coverage minimo RNF 4; definizione strumenti monitoraggio RNF 5; definizione algoritmo cifratura in transito RNF 8; definizione meccanismo autenticazione robuto RNF 9; definizione tipi di design interessati nei diagrammi RNF 13; eliminazione RD 3, 6, 7 dato che sono req. funzionali
+        Eliminazione RNF 1,2,3; aggiornamento code coverage minimo RNF 4; definizione strumenti monitoraggio RNF 5; definizione algoritmo cifratura in transito RNF 8; definizione meccanismo autenticazione robusto RNF 9; definizione tipi di design interessati nei diagrammi RNF 13; eliminazione RD 3, 6, 7 dato che sono req. funzionali
       ],
     ),
     (
@@ -1632,7 +1632,7 @@ Le funzionalità del *Tenant User* sono un sottoinsieme stretto delle funzionali
 === Attore principale - Admin Generico
 L'attore *Admin Generico* corrisponde alla generalizzazione di *Tenant Admin* e *Super Admin*.
 
-Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effettivo oppure un *Super Admin* in fase d'*impersonazione*, ovvero un Super Admin che viene riconosciuto temporaneamente dal Sistema Cloud come *Tenant Admin* di un specifico Tenant che abbia accettato la clausola d'impersonificazione.
+Si noti che un utente *Admin Generico* può rappresentare un *Tenant Admin* effettivo oppure un *Super Admin* in fase d'*impersonificazione*, ovvero un Super Admin che viene riconosciuto temporaneamente dal Sistema Cloud come *Tenant Admin* di un specifico Tenant che abbia accettato la clausola d'impersonificazione.
 
 // - #ref-uc(<Registrazione-nuovo-tenant-user>) - #ref-uc(<Eliminazione-Tenant-User>)
 // - #ref-uc(<Visualizzazione-richiesta-commissioning-gateway>) - #ref-uc(<Visualizzazione-lista-utenti-tenant>)
