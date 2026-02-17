@@ -209,7 +209,7 @@
 #let ref-uc = ref-uc.with(section-prefix: "§")
 #show: report.with(
   titolo: "Analisi dei Requisiti",
-  stato: "Verificato",
+  stato: "Da verificare",
   registro-modifiche: (
     (
       "1.2.0",
@@ -226,7 +226,8 @@
         #ref-uc(<Richiesta-storico-dati-sensore>), 
         #ref-uc(<Credenziali-API-Client-errate>),
         #ref-uc(<Invio-dati-eccessivi-gateway>); \
-        Aggiunti da #ref-rd("RD-linguaggio-Go") a #ref-rd("RD-Grafana-Prometheus"), da #ref-rnf("RNF-doc-diagrammi") a #ref-rnf("RNF-manuale-utente-amm")
+        Aggiunti da #ref-rd("RD-linguaggio-Go") a #ref-rd("RD-Grafana-Prometheus"), da #ref-rnf("RNF-doc-diagrammi") a #ref-rnf("RNF-manuale-utente-amm");
+        Cambiato nome della versione da 1.1.2
       ]
     ),
     (
