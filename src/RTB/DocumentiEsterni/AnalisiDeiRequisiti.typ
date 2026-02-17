@@ -7,11 +7,10 @@
 #let uc-map = state("uc-map", (:))
 
 #let show-uc = (uc-title, uc-label-name) => context {
-  let uc-id-string = uc-counter.display("UC1.1.1") //context uc-counter.display("UC1.1.1")
+  let uc-id-string = uc-counter.display("UC1.1.1")
   let heading-value = counter(heading).at(here())
   let position = here().position()
 
-  // let uc-label-name = "UC-" + uc-label-name
   [
     #context uc-counter.display("UC1.1.1") --- #uc-title #label(uc-label-name)
     #uc-map.update(
@@ -22,7 +21,6 @@
     )
   ]
 }
-
 
 /* Crea un nuovo UC e ne mostra il codice.*/
 #let uc = (title, lbl, display: true) => context {
@@ -178,7 +176,6 @@
 }
 
 
-
 /* Tabella paged -------------------------------------------------------------------------------------------------- */
 #let tabella-paginata(contenuto, didascalia, label-id: none) = {
   // 1. Ghost Figure: crea l'ancora per l'Indice e il Link in alto
@@ -207,8 +204,7 @@
   ]
 }
 
-// NOTA: Anche questo update va tenuto qui, insieme all'altro!
-// #uc-counter.update(1)
+
 
 #let ref-uc = ref-uc.with(section-prefix: "§")
 #show: report.with(
