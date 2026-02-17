@@ -34,6 +34,13 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "0.12.0",
+      "17/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts]
+    ),
+    (
       "0.11.1",
       "16/02/2026",
       "Michele Dioli",
@@ -161,33 +168,6 @@
   tipo-documento: "Piano di Qualifica",
 )
 
-#let ts-counter = counter("ts-counter")
-
-#let ts = () => {
-  ts-counter.step()
-  context ts-counter.display(value => {
-    [*TS\-#value*]
-  })
-}
-
-#let rf-counter = counter("rf-counter")
-
-#let rf = (..args) => {
-  rf-counter.step()
-  let rilevanza = if args.at(0, default: []) != [] { args.at(0) } else { "Obb" }
-  context rf-counter.display(value => {
-    [*RF\-#value\-#rilevanza*]
-  })
-}
-
-#let get-tracciamento = lista-test => {
-  lista-test
-    .enumerate()
-    .map(((i, test)) => {
-      ([TS-#(i + 1)], [#test.ref-req])
-    })
-    .flatten()
-}
 
 
 #outline(
@@ -215,7 +195,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 === Riferimenti normativi
 - *Norme di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf \
-  *Ultimo accesso*: versione 0.2.1
+  *Ultimo accesso*: versione 1.0.0
 
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
@@ -223,7 +203,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 
 - *Piano di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf \
-  *Ultimo accesso*: versione 0.7.4
+  *Ultimo accesso*: versione 0.8.0
 
 === Riferimenti informativi
 - *Glossario* \
@@ -480,12 +460,124 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
 
 
+/* Test di Sistema ----------------------------------------------------- */
+#let ts-map = state("ts-map", (:))
+
+#let ts-counter = counter("ts-counter")
+#ts-counter.update(1)
+
+#let ts = (id) => context {
+
+  let ts-name = ts-counter.display(value => "TS-" + str(value))
+  let index = ts-counter.get().at(0)
+  let position = here().position()
+  [
+    #context ts-counter.display("TS-1")
+    #ts-map.update(old => {
+      old.insert(id, (
+        name: ts-name,
+        pos: position,
+        index: index
+      ));
+      old
+    })
+  ]
+  
+  ts-counter.step(level: 1)
+}
+
+#let ref-ts = (id) => {
+  context link(ts-map.final().at(id).pos)[#ts-map.final().at(id).name]
+}
+
+
+/* RF ----------------------------------------------------------------------- */
+#let rf-formal-names = state("rf-formal-names", (:))
+
+#let rf-counter = counter("rf-counter")
+#rf-counter.update(1)
+
+#let rf = (id, number, urgenza) => context {
+  let formal-name = "RF-" + str(number) + "-" + urgenza
+  [
+    #rf-formal-names.update(
+      old => {
+        old.insert(id, formal-name)
+        old
+      },
+    )
+    *#formal-name* #label(id)
+  ]
+  // rf-counter.step()
+}
+
+
+#let ref-rf = id => context {
+  if id in rf-formal-names.final() {
+    link(label(id))[#context rf-formal-names.final().at(id)]
+  }
+  else {"LINK MANCANTE"}
+}
+
+#let get-tracciamento = lista-test => {
+  lista-test
+    .enumerate()
+    .map(((i, test)) => {
+      ([*#context ref-ts(test.id)*], [#ref-rf(test.ref-req)])
+    })
+    .flatten()
+}
+
 /*
 	aggiunge i test SOLO in questa lista
 */
+#let lista-RF = json("../../requisiti/lista_RF.json")
 
+#let tracciamento-RF = (:)
+#let missing-counter = counter("missing-counter")
 
-#let lista-test-sistema = json("test_sistema.json")
+#let c = 1
+#for rf in lista-RF {
+  tracciamento-RF.insert(rf.id, (..rf, number: c))
+  rf-counter.step()
+  c+=1
+}
+
+/* ----------------------------------------------------------------- */
+#let tracciamento-ts = (:)
+#let tracciamento-inverso-ts = (:)
+#let lista-TS = json("test_sistema.json")
+#let requisiti-coperti = 0
+#let totale-requisiti = lista-RF.len()
+
+#for ts in lista-TS {
+  if ts.ref-req in tracciamento-RF {
+    tracciamento-ts.insert(ts.id, ts.ref-req)
+    tracciamento-inverso-ts.insert(ts.ref-req, ts.id)
+    requisiti-coperti += 1
+  }
+}
+
+#let tabella-tracciamento-ts = ()
+#let tabella-tracciamento-inverso-ts = ()
+
+#for (ts-id, rf-id) in tracciamento-ts {
+  tabella-tracciamento-ts.push(
+    [*#context ref-ts(ts-id)*]
+  )
+  tabella-tracciamento-ts.push(
+    [#context ref-rf(rf-id)]
+  )
+}
+
+#for (rf-id, ts-id) in tracciamento-inverso-ts {
+  tabella-tracciamento-inverso-ts.push([
+    *#context ref-rf(rf-id)*
+  ])
+  tabella-tracciamento-inverso-ts.push([
+    #context ref-ts(ts-id)
+  ])
+}
 
 #tabella-paginata(
   table(
@@ -494,10 +586,24 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
     inset: 8pt,
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Identificativo*], [*Descrizione*], [*Requisito di riferimento*], [*Stato*],
-    ..lista-test-sistema
+    ..lista-TS
       .enumerate()
       .map(((i, test)) => {
-        ([TS-#(i + 1)], [#eval(test.descr, mode: "markup")], [#test.ref-req], [#test.state])
+        (
+          [*#context ts(test.id)*], 
+          [#eval(test.descr, mode: "markup")], 
+          [
+            #if test.ref-req in tracciamento-RF {
+              context rf(test.ref-req, tracciamento-RF.at(test.ref-req).number, tracciamento-RF.at(test.ref-req).urgenza)
+            } else {
+              // context rf("RF", "MISSING-" + str(missing-counter.get().at(0)), "???")
+              // missing-counter.step()
+              "RF mancante"
+            }
+            
+          ], 
+          [#test.state]
+        )
       })
       .flatten(),
   ),
@@ -505,56 +611,68 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
   label-id: "tab-test-sistema",
 )
 
-
+#pagebreak()
 == Tracciamento test funzionali <tracciamento-test-funzionali>
 /*
 NON TOCCARE
 */
 
-#rf-counter.update(0)
-#ts-counter.update(0)
 
-// #let spezza-tabella = (data) => {
-//   let num-rows = calc.floor(data.len() / 2)
-//   let half = calc.ceil(num-rows / 2)
-
-//   let left-data = data.slice(0, half * 2)
-//   let right-data = data.slice(half * 2)
-
-//   let combined = ()
-//   for i in range(half) {
-//     let left-test = left-data.at(i * 2, default: [])
-//     let left-req = left-data.at(i * 2 + 1, default: [])
-//     let right-test = right-data.at(i * 2, default: [])
-//     let right-req = right-data.at(i * 2 + 1, default: [])
-
-//     combined.push(left-test)
-//     combined.push(left-req)
-//     combined.push([])
-//     combined.push(right-test)
-//     combined.push(right-req)
-//   }
-//   combined
-// }
+// #rf-counter.update(0)
+// #ts-counter.update(1)
 
 /*
 Non usare questa tabella usare lista sopra
 */
 
-#columns(2)[
+=== Tracciamento TS -- RF <tracciamento-ts-rf>
+Di seguito, si esegue il tracciamento assegnando a ogni test di sistema (TS) il relativo requisito funzionale (RF):
+#columns(3)[
   #align(center)[
     #tabella-paginata(
       table(
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        ..get-tracciamento(lista-test-sistema),
+        // ..get-tracciamento(lista-TS),
+        ..tabella-tracciamento-ts
       ),
       [Tracciamento test funzionali],
       label-id: "tab-test-funz",
     )
   ]
 ]
+
+=== Tracciamento RF -- TS <tracciamento-rf-ts>
+Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF) il relativo test di sistema (TS):
+#columns(3)[
+  #align(center)[
+    #tabella-paginata(
+      table(
+        columns: (auto, auto),
+        align: center,
+        table.header([*Test*], [*Requisito*]),
+        // ..get-tracciamento(lista-TS),
+        ..tabella-tracciamento-inverso-ts
+      ),
+      [Tracciamento inverso test funzionali],
+      label-id: "tab-test-funz",
+    )
+  ]
+]
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto),
+    align: center,
+    table.header([*N° RF coperti da TS*], [*N° RF totali*]),
+    // ..get-tracciamento(lista-TS),
+    [#requisiti-coperti], [#totale-requisiti],
+  ),
+  [Conteggio requisiti coperti da TS],
+  label-id: "tab-copertura",
+)
+
 
 == Test di Accettazione
 I Test di Accettazione verificano che il sistema soddisfi i *requisiti utente* relativi al #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[capitolato d'appalto].\

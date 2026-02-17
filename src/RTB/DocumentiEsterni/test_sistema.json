@@ -276,7 +276,7 @@
         "state": "NI"
     },
     {
-        "id": "TS-Dettaglio-gateway",
+        "id": "TS-Dettaglio-gateway-admin-generico",
         "descr": "Verificare che l'Admin generico possa visualizzare un gateway associato al proprio Tenant nel dettaglio",
         "ref-req": "RF-Visualizzazione-gateway-associato",
         "state": "NI"
@@ -516,7 +516,7 @@
         "state": "NI"
     },
     {
-        "id": "TS-Sospensione-sensore",
+        "id": "TS-Sospensione-sensore-tenant-admin",
         "descr": "Verificare che il Tenant Admin possa sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant",
         "ref-req": "RF-Sospensione-sensore-tenant-admin",
         "state": "NI"
@@ -528,7 +528,7 @@
         "state": "NI"
     },
     {
-        "id": "TS-Riattivazione-sensore",
+        "id": "TS-Riattivazione-sensore-tenant-admin",
         "descr": "Verificare che il Tenant Admin possa riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant",
         "ref-req": "RF-Riattivazione-sensore-tenant-admin",
         "state": "NI"
@@ -564,7 +564,7 @@
         "state": "NI"
     },
     {
-        "id": "TS-Riavvio-gateway",
+        "id": "TS-Riavvio-gateway-tenant-admin",
         "descr": "Verificare che il Tenant Admin possa riavviare un gateway appartenente al proprio Tenant",
         "ref-req": "RF-Riavvio-gateway-tenant-admin",
         "state": "NI"
@@ -1224,7 +1224,7 @@
         "state": "NI"
     },
     {
-        "id": "TS-Dettaglio-gateway",
+        "id": "TS-Dettaglio-gateway-super-admin",
         "descr": "Verificare che il *Super Admin* possa visualizzare i dettagli di un singolo Gateway",
         "ref-req": "RF-Visualizzazione-gateway-super-admin",
         "state": "NI"
@@ -1296,7 +1296,7 @@
         "state": "NI"
     },
     {
-        "id": "TS-Riavvio-gateway",
+        "id": "TS-Riavvio-gateway-super-admin",
         "descr": "Verificare che il *Super Admin* possa riavviare un Gateway",
         "ref-req": "RF-Riavvio-gateway-super-admin",
         "state": "NI"
@@ -1320,13 +1320,13 @@
         "state": "NI"
     },
     {
-        "id": "TS-Sospensione-sensore",
+        "id": "TS-Sospensione-sensore-super-admin",
         "descr": "Verificare che il *Super Admin* possa sospendere un sensore",
         "ref-req": "RF-Sospensione-sensore-super-admin",
         "state": "NI"
     },
     {
-        "id": "TS-Riattivazione-sensore",
+        "id": "TS-Riattivazione-sensore-super-admin",
         "descr": "Verificare che il *Super Admin* possa riattivare un sensore sospeso",
         "ref-req": "RF-Riattivazione-sensore-super-admin",
         "state": "NI"
@@ -1675,7 +1675,7 @@
     },
     {
         "id": "TS-Monitoraggio-metriche",
-        "descr": "Verificare che il *Super Admin* possa monitare le metriche di sistema",
+        "descr": "Verificare che il *Super Admin* possa monitorare le metriche di sistema",
         "ref-req": "RF-Monitoraggio-metriche-di-sistema",
         "state": "NI"
     },
