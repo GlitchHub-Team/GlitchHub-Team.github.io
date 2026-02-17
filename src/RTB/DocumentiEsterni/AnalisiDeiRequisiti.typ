@@ -139,10 +139,10 @@
   rv-counter.step()
 }
 
-#let ref-rf = id => link(label(id))[#context rf-formal-names.get().at(id)]
-#let ref-rnf = id => link(label(id))[#context rnf-formal-names.get().at(id)]
-#let ref-rv = id => link(label(id))[#context rv-formal-names.get().at(id)]
-#let ref-rd = id => link(label(id))[#context rd-formal-names.get().at(id)]
+#let ref-rf = id => link(label(id))[#context rf-formal-names.final().at(id)]
+#let ref-rnf = id => link(label(id))[#context rnf-formal-names.final().at(id)]
+#let ref-rv = id => link(label(id))[#context rv-formal-names.final().at(id)]
+#let ref-rd = id => link(label(id))[#context rd-formal-names.final().at(id)]
 
 /**
  * Conta le urgenze per una specifica lista di requisiti
@@ -229,8 +229,8 @@
         #ref-uc(<Richiesta-dati-real-time-sensore>), 
         #ref-uc(<Richiesta-storico-dati-sensore>), 
         #ref-uc(<Credenziali-API-Client-errate>),
-        #ref-uc(<Invio-dati-eccessivi-gateway>);
-        #ref-rd("RD-Linguaggio-Go")
+        #ref-uc(<Invio-dati-eccessivi-gateway>); \
+        Aggiunti da #ref-rd("RD-linguaggio-Go") a #ref-rd("RD-Grafana-Prometheus"), da #ref-rnf("RNF-doc-diagrammi") a #ref-rnf("RNF-manuale-utente-amm")
       ]
     ),
     (
