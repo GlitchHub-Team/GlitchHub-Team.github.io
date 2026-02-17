@@ -18,16 +18,16 @@
     (
       "0.10.3",
       "16/02/2026",
-      "Siria Salvalaio",
+      "Jaume Bernardi",
       "-",
-      [Modifica indici tabelle e grafici],
+      [Revisione rischi e contromisure, nonché Sprint.],
     ),
     (
       "0.10.2",
       "16/02/2026",
-      "Jaume Bernardi",
-      "-",
-      [Revisione rischi e contromisure, nonché Sprint.],
+      "Siria Salvalaio",
+      "Riccardo Graziani",
+      [Modifica indici tabelle e grafici],
     ),
     (
       "0.10.1",
