@@ -656,28 +656,26 @@ l'acquisizione di flussi di dati provenienti da reti di sensori eterogenei.
 
 == Riferimenti
 === Riferimenti normativi
-- *Norme di Progetto v1.0.0*
+- Norme di Progetto v1.0.0
   - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf") \
   - *Ultimo accesso*: 17 febbraio 2026
 
-- #link(
-    "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
-  )[Capitolato d'appalto C7 -- Sistema di acquisizione dati da sensori] \
-  *Ultimo accesso*: 9 febbraio 2026
+- Capitolato d'appalto C7 -- Sistema di acquisizione dati da sensori
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf") \
+  - *Ultimo accesso*: 17 febbraio 2026
 
 === Riferimenti informativi
-- #link(
-    "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf",
-  )[Analisi dei Requisiti -- Lezione T5 del prof. Tullio Vardanega] \
-  *Ultimo accesso*: 9 febbraio 2026
+- Analisi dei Requisiti -- Lezione T5 del prof. Tullio Vardanega
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf") \
+  - *Ultimo accesso*: 17 febbraio 2026
 
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[Glossario _GlitchHub Team_] \
-  *Ultimo accesso*: 9 febbraio 2026
+- Glossario v0.3.1
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf") \
+  - *Ultimo accesso*: 17 febbraio 2026
 
-- #link(
-    "https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf",
-  )[Diagrammi delle Classi -- Lezione del prof. Riccardo Cardin] \
-  *Ultimo accesso*: 9 febbraio 2026
+- Diagrammi delle Classi -- Lezione del prof. Riccardo Cardin
+  - #link("https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf") \
+  - *Ultimo accesso*: 17 febbraio 2026
 
 
 
