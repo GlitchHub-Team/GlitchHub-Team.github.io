@@ -215,7 +215,7 @@
       "1.2.0",
       "17/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       [
         Rimosso ex UC83 ("Configurazione Gateway"),
         Approfonditi #ref-uc(<Visualizzazione-grafico-real-time-sensore>), 
@@ -590,8 +590,8 @@
 
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Analisi dei Requisiti",
 )
 
