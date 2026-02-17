@@ -215,6 +215,15 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "1.1.2",
+      "17/02/2026",
+      "Alessandro Dinato",
+      "-",
+      [
+        Approfonditi gli UC22.1, UC13.1, UC70, UC142, UC143, UC147, UC150
+      ],
+    ),
+    (
       "1.1.1",
       "17/02/2026",
       "Elia Ernesto Stellin",
