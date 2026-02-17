@@ -114,12 +114,6 @@
         "state": "NI"
     },
     {
-        "id": "TA-scalability",
-        "descr": "Verificare che il cloud possa scalare orizzontalmente",
-        "ref-req": "RQ-14",
-        "state": "NI"
-    },
-    {
         "id": "TA-code-coverage",
         "descr": "Verificare che il codice abbia un livello minimo di Code Coverage dell'80%",
         "ref-req": "RQ-15",
