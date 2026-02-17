@@ -904,7 +904,7 @@ def main():
     
     current_row += 3
 
-    ws.cell(row=current_row, column=1, value="MPC-WSD - DISTRIBUZIONE CARICO ORE").font = title_font
+    ws.cell(row=current_row, column=1, value="MPC-WD - DISTRIBUZIONE CARICO ORE").font = title_font
     current_row += 2
 
     
@@ -1182,7 +1182,7 @@ def main():
         
         wsd_vals = [sprint_workload_stddev.get(s) for s in sorted_sprints]
         metrics.append({
-            'id': 'MPC-WSD', 'name': 'Workload Std Dev',
+            'id': 'MPC-WD', 'name': 'Workload Std Dev',
             'acc_str': '≤ 10%', 'opt_str': '≤ 6.30%',
             'values': wsd_vals,
             'check_acc': lambda v: v is not None and v <= 10.0,
