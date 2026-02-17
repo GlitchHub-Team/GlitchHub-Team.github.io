@@ -5152,7 +5152,9 @@ necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
     }
 
     // - tracciamento req. capitolato
-    tracciamento-inverso-cap = tracciamento-inverso-cap.pairs().sorted(by: (l, r) => (l.at(0) >= r.at(0)))
+    tracciamento-inverso-cap = tracciamento-inverso-cap.pairs().sorted(
+      key: pair => pair.at(0)
+    )
     for (req-capitolato, id-requisiti) in tracciamento-inverso-cap {
       tabella-tracciamento-inverso.push(req-capitolato)
       tabella-tracciamento-inverso.push(
