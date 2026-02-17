@@ -7,6 +7,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.0.1",
+      "17/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Corretta formula per metrica MPC-WD (@mpc-wd)]
+    ),
+    (
       "1.0.0",
       "13/02/2026",
       "Elia Ernesto Stellin",
@@ -1348,14 +1355,20 @@ Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di
 - *Unità di misura*: percentuale (%)
 
 === MPC-WD: Work Distribution <mpc-wd>
-- *Descrizione*: Misura l'equilibrio nella distribuzione del carico di lavoro tra i membri del team. Viene calcolata come coefficiente di variazione delle ore lavorate dai singoli membri rispetto alla media del team nello sprint. Valori bassi indicano una distribuzione omogenea del carico.
+- *Descrizione*: Misura l'equilibrio nella distribuzione del carico di lavoro tra i membri del team. Viene calcolata come la deviazione standard delle ore lavorate dai singoli membri rispetto alla media del team nello sprint. Valori bassi indicano una distribuzione omogenea del carico.
 - *Formula*:
-  $ "WD" = sigma / overline(h) times 100 $
+  $ "WD" = sigma times 100 $
   dove:
-  $ sigma = sqrt((sum_(i=1)^(n) (h_i - overline(h))^2) / n) $
+  $ sigma = sqrt((sum_(i=1)^(n) (h^%_i  - overline(h^%))^2) / n) $
   - $n$: numero di membri del team
-  - $h_i$: ore lavorate dal membro $i$-esimo nello sprint
-  - $overline(h)$: media delle ore lavorate nello sprint
+    - Si noti che $n = 7$
+
+  - $h^%_i$: "carico di lavoro" del membro $i$ nello sprint, definito come
+    $ h_i / (sum_(j=1)^n h_j) = (text("ore di lavoro del membro") i) / text("ore di lavoro complessive di tutti i membri del gruppo")
+    $
+
+  - $overline(h^%)$: media del carico di lavoro di tutti i membri, sempre pari a $1 / 7 approx 14,29%$
+
 - *Unità di misura*: percentuale (%)
 
 = Metriche di Qualità del Prodotto <metriche-prodotto>
