@@ -218,9 +218,9 @@
       "1.1.2",
       "17/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       [
-        Approfonditi gli UC22.1, UC13.1, UC70, UC142, UC143, UC147, UC150
+        Approfonditi gli UC22.1, UC23.1, UC70, UC142, UC143, UC147, UC150
       ],
     ),
     (
@@ -4745,7 +4745,7 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
   - L'API Client è autenticato nel Sistema
 - *Post-condizioni*:
   - Il Sistema restituisce una lista di dati real-time del sensore richiesto in formato JSON
-  - Il Sistema il singolo dato come tupla (timestamp, valore rilevato)
+  - Il Sistema il singolo restituisce il dato come tupla (timestamp, valore rilevato)
 - *Scenario principale*:
   - L'API Client richiede e riceve dati real-time del sensore specificato in formato JSON
 - *Scenari alternativi*:
