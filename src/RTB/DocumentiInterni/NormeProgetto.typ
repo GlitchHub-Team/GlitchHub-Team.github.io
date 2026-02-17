@@ -1184,3 +1184,305 @@ Essendo Python un linguaggio molto semplice, è possibile utilizzare una _cheats
 Ogni membro di _GlitchHub Team_ si impegna a ricavare in ogni _sprint_ le risorse temporali necessarie per approfondire le tecnologie usate, in modo tale da permettere una formazione omogenea e comprensiva di tutte le tecnologie utilizzate. La formazione personale di ogni membro avverrà principalmente in maniera asincrona, ma sfruttando anche le sessioni di _brainstorming_ come strumenti di formazione collettiva.
 
 Si noti anche che lo sviluppo del #gloss[Proof of Concept] e dell'#gloss[MVP] costituiranno i momenti di maggiore formazione e pratica nell'uso delle tecnologie sopra riportate.
+
+= Metriche di Qualità <metriche-qualita>
+
+La definizione operativa delle metriche di qualità all'interno delle Norme di Progetto ha lo scopo di normare le attività di misurazione, stabilendo per ogni metrica *cosa* misurare, *come* calcolarne il valore.
+
+Gli *obiettivi metrici* (soglie accettabili e ottime) e i *valori rilevati* per ogni sprint sono documentati nel #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiQualifica.pdf")[#gloss[Piano di Qualifica]], il quale contiene il cruscotto di valutazione con l'andamento storico delle misurazioni.
+
+Ogni metrica è descritta in termini di:
+- *Identificativo*: codice univoco della metrica
+- *Nome*: denominazione della metrica
+- *Descrizione*: definizione operativa dello scopo della metrica
+- *Formula*: espressione matematica per il calcolo del valore
+- *Unità di misura*: unità in cui il valore è espresso
+
+Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di #strong[P]rocesso e #strong[C]ontrollo), mentre le metriche di prodotto dalla sigla *MPD* (#strong[M]etrica di #strong[P]ro#strong[d]otto).
+
+= Metriche di Qualità del Processo <metriche-processo>
+
+== Fornitura <metriche-fornitura>
+
+=== MPC-PV: Planned Value <mpc-pv>
+- *Descrizione*: Valore economico del lavoro che si era pianificato di completare entro la fine dello sprint. Rappresenta il costo previsto per le attività pianificate.
+- *Formula*:
+  $ "PV" = sum_(i=1)^(n) ("Ore Previste"_i times "Tariffa Oraria"_i) $
+  dove $n$ è il numero di task pianificate nello sprint e la tariffa oraria corrisponde al ruolo assegnato alla task.
+- *Unità di misura*: Euro (€)
+
+=== MPC-AC: Actual Cost <mpc-ac>
+- *Descrizione*: Costo effettivamente sostenuto per le ore lavorate nello sprint.
+- *Formula*:
+  $ "AC" = sum_(i=1)^(n) ("Ore Effettive"_i times "Tariffa Oraria"_i) $
+  dove $n$ è il numero di task completate nello sprint e la tariffa oraria corrisponde al ruolo assegnato alla task.
+- *Unità di misura*: Euro (€)
+
+=== MPC-EV: Earned Value <mpc-ev>
+- *Descrizione*: Valore del lavoro effettivamente completato, misurato come la quota di lavoro pianificato che è stata portata a termine.
+- *Formula*:
+  $ "EV" = "PV" times ("Ore Completate" / "Ore Pianificate") $
+- *Unità di misura*: Euro (€)
+
+=== MPC-BAC: Budget At Completion <mpc-bac>
+- *Descrizione*: Budget totale preventivato per l'intero progetto. Questo valore è fissato alla stipula del contratto e non varia nel tempo.
+- *Formula*:
+  $ "BAC" = 12.975 € $
+- *Unità di misura*: Euro (€)
+
+=== MPC-EAC: Estimated At Completion <mpc-eac>
+- *Descrizione*: Stima del costo totale finale a completamento del progetto, basata sull'efficienza dei costi misurata dal CPI (Cost Performance Index).
+- *Formula*:
+  $ "EAC" = "BAC" / "CPI" $
+  dove:
+  $ "CPI" = "EV" / "AC" $
+  Il *CPI* (Cost Performance Index) rappresenta l'efficienza dei costi:
+  - $"CPI" > 1$: il progetto sta producendo valore a un costo inferiore al previsto
+  - $"CPI" = 1$: il progetto è in linea con il budget
+  - $"CPI" < 1$: il progetto sta spendendo più del previsto
+- *Interpretazione*:
+  - $"EAC" < "BAC"$: il progetto finirà sotto budget
+  - $"EAC" = "BAC"$: il progetto finirà in linea con il budget
+  - $"EAC" > "BAC"$: il progetto finirà sopra budget
+- *Unità di misura*: Euro (€)
+
+=== MPC-ETC: Estimated To Complete <mpc-etc>
+- *Descrizione*: Stima del costo rimanente per completare il progetto, ottenuta sottraendo il costo cumulativo effettivo dalla stima a completamento.
+- *Formula*:
+  $ "ETC" = "EAC" - "AC"_"cumulativo" $
+  dove $"AC"_"cumulativo"$ è la somma dei costi effettivi sostenuti dall'inizio del progetto fino allo sprint corrente.
+- *Unità di misura*: Euro (€)
+
+=== MPC-CV: Cost Variance <mpc-cv>
+- *Descrizione*: Deviazione dal budget nello sprint corrente. Indica se il lavoro completato è costato più o meno di quanto valga.
+- *Formula*:
+  $ "CV" = "EV" - "AC" $
+- *Interpretazione*:
+  - $"CV" > 0$: sotto budget (situazione favorevole)
+  - $"CV" = 0$: in linea con il budget
+  - $"CV" < 0$: sopra budget (situazione sfavorevole)
+- *Unità di misura*: Euro (€)
+
+=== MPC-SV: Schedule Variance <mpc-sv>
+- *Descrizione*: Deviazione dalla schedulazione nello sprint corrente. Indica se il progetto è in anticipo o in ritardo rispetto al piano.
+- *Formula*:
+  $ "SV" = "EV" - "PV" $
+- *Interpretazione*:
+  - $"SV" > 0$: in anticipo rispetto al piano
+  - $"SV" = 0$: in linea con il piano
+  - $"SV" < 0$: in ritardo rispetto al piano
+- *Unità di misura*: Euro (€)
+
+
+=== MPC-TCR: Task Completion Rate <mpc-tcr>
+- *Descrizione*: Percentuale di task completati entro la scadenza dello sprint rispetto al totale dei task chiusi nello sprint (in tempo e in ritardo). Misura la capacità del team di rispettare le scadenze prefissate.
+- *Formula*:
+  $ "TCR" = ("Task Completati in Tempo" / ("Task Completati in Tempo" + "Task Completati in Ritardo")) times 100 $
+  Un task è considerato "completato in tempo" se la sua _End Date_ è precedente o uguale alla _Target Date_ dello sprint.
+- *Unità di misura*: percentuale (%)
+
+=== MPC-TS: Task Slippage <mpc-ts>
+- *Descrizione*: Percentuale di task pianificati per lo sprint corrente che non sono stati portati a termine entro la sua conclusione e vengono posticipati allo sprint successivo.
+- *Formula*:
+  $ "TS" = ("Task Posticipati" / "Task Totali dello Sprint") times 100 $
+  Un task è considerato "posticipato" se alla chiusura dello sprint il suo stato è diverso da "Done".
+- *Unità di misura*: percentuale (%)
+
+== Sviluppo <metriche-sviluppo>
+
+=== MPC-PRCT: Pull Request Cycle Time <mpc-prct>
+- *Descrizione*: Tempo medio che intercorre tra l'apertura di una #gloss[Pull Request]. Monitora l'efficienza del processo di revisione.
+- *Formula*:
+  $ "PRCT" = (sum_(i=1)^(n) ("Timestamp Merge"_i - "Timestamp Apertura"_i)) / n $
+  dove $n$ è il numero di Pull Request integrate nello sprint.
+
+== Documentazione <metriche-documentazione>
+
+=== MPC-IG: Indice di Gulpease <mpc-ig>
+- *Descrizione*: Indice di leggibilità calibrato per la lingua italiana. Valuta la complessità del testo in base alla lunghezza delle parole e delle frasi. Valori più alti indicano maggiore leggibilità.
+- *Formula*:
+  $ "IG" = 89 + (300 times "Numero Frasi" - 10 times "Numero Lettere") / "Numero Parole" $
+- *Unità di misura*: adimensionale (scala 0–100)
+
+
+=== MPC-CO: Correttezza Ortografica <mpc-co>
+- *Descrizione*: Numero di errori grammaticali o di battitura rilevati nei documenti tramite strumenti automatici di controllo ortografico.
+- *Formula*:
+  $ "CO" = "Numero di Errori Ortografici Rilevati" $
+- *Unità di misura*: numero intero (conteggio assoluto)
+
+== Verifica <metriche-verifica>
+
+=== MPC-CC: Code Coverage <mpc-cc>
+- *Descrizione*: Percentuale di righe di codice sorgente effettivamente eseguite durante i test automatici. Misura il grado di copertura complessivo della suite di test.
+- *Formula*:
+  $ "CC" = ("Linee di Codice Eseguite dai Test" / "Linee di Codice Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+- *Strumento di rilevazione*: framework di test con supporto a code coverage (da specificare in fase di sviluppo #gloss[MVP])
+
+=== MPC-TSR: Test Success Rate <mpc-tsr>
+- *Descrizione*: Percentuale di test passati con successo sul totale dei test eseguiti nello sprint.
+- *Formula*:
+  $ "TSR" = ("Test Superati" / "Test Eseguiti") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== MPC-DD: Bug Density <mpc-dd>
+- *Descrizione*: Densità di bug nel codice sorgente, calcolata come numero di bug rilevati per ogni cento righe di codice (CRG). Valori bassi indicano maggiore qualità del codice prodotto.
+- *Formula*:
+  $ "DD" = "Numero di Bug Rilevati" / "CRG" $
+  dove $"CRG" = "Righe di Codice Totali" / 100$.
+- *Unità di misura*: bug per CRG (centinaia di righe di codice)
+
+== Gestione della Qualità <metriche-gestione-qualita>
+
+=== MPC-QMS: Quality Metrics Satisfied <mpc-qms>
+- *Descrizione*: Percentuale di metriche di qualità (di processo e di prodotto) che rientrano nel range accettabile definito nel #gloss[Piano di Qualifica]. Rappresenta un indicatore sintetico della salute complessiva del progetto.
+- *Formula*:
+  $ "QMS" = ("Metriche in Range Accettabile" / "Totale Metriche Monitorate") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== MPC-TE: Time Efficiency <mpc-te>
+- *Descrizione*: Rapporto tra le ore dedicate ad attività produttive (rendicontabili) e le ore totali di lavoro (incluse le attività di "palestra" e studio). Indica quanta parte del tempo impiegato dal team si traduce direttamente in prodotti di progetto.
+- *Formula*:
+  $ "TE" = ("Ore Produttive Rendicontabili" / "Ore Totali Lavorate") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== MPC-WD: Work Distribution <mpc-wd>
+- *Descrizione*: Misura l'equilibrio nella distribuzione del carico di lavoro tra i membri del team. Viene calcolata come coefficiente di variazione delle ore lavorate dai singoli membri rispetto alla media del team nello sprint. Valori bassi indicano una distribuzione omogenea del carico.
+- *Formula*:
+  $ "WD" = sigma / overline(h) times 100 $
+  dove:
+  $ sigma = sqrt((sum_(i=1)^(n) (h_i - overline(h))^2) / n) $
+  - $n$: numero di membri del team
+  - $h_i$: ore lavorate dal membro $i$-esimo nello sprint
+  - $overline(h)$: media delle ore lavorate nello sprint
+- *Unità di misura*: percentuale (%)
+
+= Metriche di Qualità del Prodotto <metriche-prodotto>
+
+== Funzionalità <metriche-funzionalita>
+
+=== MPD-CRO: Copertura Requisiti Obbligatori <mpd-cro>
+- *Descrizione*: Percentuale di requisiti obbligatori correttamente implementati e verificati rispetto al totale dei requisiti obbligatori rilevati nell'#gloss[Analisi dei Requisiti].
+- *Formula*:
+  $ "CRO" = ("Requisiti Obbligatori Soddisfatti" / "Requisiti Obbligatori Totali") times 100 $
+  Un requisito è considerato "soddisfatto" quando il relativo test di sistema risulta superato.
+- *Unità di misura*: percentuale (%)
+
+=== MPD-CRD: Copertura Requisiti Desiderabili <mpd-crd>
+- *Descrizione*: Percentuale di requisiti desiderabili correttamente implementati e verificati rispetto al totale dei requisiti desiderabili rilevati.
+- *Formula*:
+  $ "CRD" = ("Requisiti Desiderabili Soddisfatti" / "Requisiti Desiderabili Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== MPD-CROP: Copertura Requisiti Opzionali <mpd-crop>
+- *Descrizione*: Percentuale di requisiti opzionali correttamente implementati e verificati rispetto al totale dei requisiti opzionali rilevati.
+- *Formula*:
+  $ "CROP" = ("Requisiti Opzionali Soddisfatti" / "Requisiti Opzionali Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== MPD-AD: API Documentation Coverage <mpd-ad>
+- *Descrizione*: Percentuale di endpoint API pubblici che dispongono di documentazione completa e aggiornata. Un endpoint è considerato "documentato" quando sono presenti: descrizione funzionale, parametri di input con tipo e vincoli, formato della risposta con codici di stato HTTP e almeno un esempio d'uso.
+- *Formula*:
+  $ "AD" = ("Endpoint API Documentati" / "Endpoint API Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== MPD-DL: Data Loss Rate <mpd-dl>
+- *Descrizione*: Percentuale di messaggi persi durante la trasmissione dati tra gateway e infrastruttura cloud. Misura l'affidabilità della catena di comunicazione.
+- *Formula*:
+  $ "DL" = (("Messaggi Inviati" - "Messaggi Ricevuti") / "Messaggi Inviati") times 100 $
+- *Unità di misura*: percentuale (%)
+
+== Affidabilità <metriche-affidabilita>
+
+=== MPD-BC: Branch Coverage <mpd-bc>
+- *Descrizione*: Percentuale di rami decisionali (ad esempio i rami `true` e `false` di un costrutto `if`) che sono stati eseguiti durante i test. Garantisce che tutte le possibili direzioni del flusso logico siano state verificate.
+- *Formula*:
+  $ "BC" = ("Rami Decisionali Eseguiti" / "Rami Decisionali Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+- *Strumento di rilevazione*: framework di test con supporto a branch coverage
+
+=== MPD-SC: Statement Coverage <mpd-sc>
+- *Descrizione*: Percentuale di singole istruzioni (statement) percorse durante l'esecuzione dei test. Assicura che non vi siano porzioni di codice mai eseguite dalla suite di test.
+- *Formula*:
+  $ "SC" = ("Istruzioni Eseguite" / "Istruzioni Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+- *Strumento di rilevazione*: framework di test con supporto a statement coverage
+
+== Usabilità <metriche-usabilita>
+
+=== MPD-TT: Time on Task <mpd-tt>
+- *Descrizione*: Tempo medio necessario a un utente per completare con successo una funzionalità specifica del sistema per la prima volta, senza assistenza esterna. Misura l'apprendibilità dell'interfaccia utente.
+- *Formula*:
+  $ "TT" = (sum_(i=1)^(n) "Tempo di Completamento"_i) / n $
+  dove $n$ è il numero di utenti coinvolti nella sessione di test di usabilità. Il tempo è misurato dal momento in cui l'utente inizia l'interazione con la funzionalità fino al completamento (o abbandono) della stessa.
+- *Unità di misura*: minuti
+
+== Efficienza <metriche-efficienza>
+
+=== MPD-RT: Response Time <mpd-rt>
+- *Descrizione*: Tempo di risposta del sistema a un input dell'utente, misurato come intervallo tra l'invio della richiesta e la ricezione della risposta completa.
+- *Formula*:
+  $ "RT" = "Timestamp Risposta" - "Timestamp Richiesta" $
+  La misurazione avviene tramite test automatici di performance che simulano le richieste HTTP verso gli endpoint del sistema.
+- *Unità di misura*: secondi (s)
+
+== Manutenibilità <metriche-manutenibilita>
+
+=== MPD-CS: Code Smell Density <mpd-cs>
+- *Descrizione*: Densità di _code smell_ nel codice sorgente. I _code smell_ sono indicatori di progettazione debole (metodi troppo lunghi, classi troppo grandi, duplicazione di codice) che, pur non essendo errori bloccanti, rendono il sistema fragile e difficile da manutenere.
+- *Formula*:
+  $ "CS" = "Numero di Code Smell Rilevati" / "CRG" $
+  dove $"CRG" = "Righe di Codice Totali" / 100$.
+- *Unità di misura*: code smell per CRG (centinaia di righe di codice)
+- *Strumento di rilevazione*: analizzatore statico del codice (es. SonarQube, ESLint, golangci-lint)
+
+=== MPD-COC: Coefficient of Coupling <mpd-coc>
+- *Descrizione*: Misura il grado di interdipendenza tra i diversi moduli del software. Un accoppiamento elevato implica che una modifica in una parte del codice rischia di propagarsi ad altre sezioni (effetto a catena), riducendo la manutenibilità.
+- *Formula*:
+  $ "COC" = "Dipendenze Effettive tra Moduli" / (n times (n - 1)) $
+  dove $n$ è il numero totale di moduli del sistema e $n times (n - 1)$ rappresenta il numero massimo di dipendenze direzionali possibili. Una "dipendenza" sussiste quando un modulo importa, invoca o referenzia direttamente un altro modulo.
+- *Interpretazione*:
+  - $"COC" = 0$: nessun accoppiamento (moduli completamente indipendenti)
+  - $"COC" = 1$: accoppiamento massimo (ogni modulo dipende da tutti gli altri)
+- *Unità di misura*: adimensionale (scala 0–1)
+- *Strumento di rilevazione*: analisi delle dipendenze tramite strumenti di analisi statica o ispezione manuale del grafo delle importazioni
+
+=== MPD-CYC: Cyclomatic Complexity <mpd-cyc>
+- *Descrizione*: Misura la complessità logica del codice contando il numero di percorsi linearmente indipendenti attraverso il flusso di controllo (costrutti `if`, `switch`, `loop`). Valori elevati indicano codice difficile da testare e comprendere.
+- *Formula*:
+  $ M = E - N + 2P $
+  dove:
+  - $E$: numero di archi nel grafo di controllo del flusso
+  - $N$: numero di nodi (istruzioni) nel grafo di controllo del flusso
+  - $P$: numero di componenti connesse del grafo (solitamente $P = 1$ per una singola funzione)
+- *Unità di misura*: numero intero (adimensionale). Il valore riportato nel cruscotto è la media della complessità ciclomatica su tutte le funzioni del sistema.
+- *Strumento di rilevazione*: analizzatore statico del codice (es. `gocyclo` per Go, ESLint per TypeScript)
+
+== Sicurezza <metriche-sicurezza>
+
+==== MPD-DE: Data Encryption Coverage <mpd-de>
+- *Descrizione*: Percentuale di flussi dati classificati come sensibili (dati dei tenant, credenziali di autenticazione, dati IoT in transito) che sono protetti da cifratura, sia a riposo (_at rest_) che in transito (_in transit_).
+- *Formula*:
+  $ "DE" = ("Flussi Dati Sensibili Cifrati" / "Flussi Dati Sensibili Totali") times 100 $
+  Un "flusso dati sensibile" è ogni canale di comunicazione o punto di persistenza che tratta dati personali, credenziali o dati soggetti a separazione multi-tenant. La classificazione dei flussi sensibili è stabilita in fase di progettazione architetturale.
+- *Unità di misura*: percentuale (%)
+
+== Metriche di Progresso dei Test <metriche-progresso-test>
+
+=== MPT-TS: Test di Sistema Specificati <mpt-ts>
+- *Descrizione*: Percentuale di test di sistema definiti rispetto al numero totale di requisiti funzionali presenti nell'#gloss[Analisi dei Requisiti]. Misura il grado di completamento nella specifica dei test.
+- *Formula*:
+  $ "TS" = ("Test di Sistema Specificati" / "Requisiti Funzionali Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+=== MPT-TE: Test di Sistema Eseguiti <mpt-te>
+- *Descrizione*: Percentuale di test di sistema specificati che sono stati effettivamente eseguiti. Misura il progresso nell'esecuzione della campagna di test.
+- *Formula*:
+  $ "TE" = ("Test di Sistema Eseguiti" / "Test di Sistema Specificati") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== MPT-TP: Test di Sistema Superati <mpt-tp>
+- *Descrizione*: Percentuale di test di sistema eseguiti che sono stati superati con successo. Misura la conformità del sistema ai requisiti funzionali verificati.
+- *Formula*:
+  $ "TP" = ("Test di Sistema Superati" / "Test di Sistema Eseguiti") times 100 $
+- *Unità di misura*: percentuale (%)
