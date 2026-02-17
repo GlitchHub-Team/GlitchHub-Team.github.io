@@ -34,6 +34,20 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "0.11.1",
+      "16/02/2026",
+      "Michele Dioli",
+      "Riccardo Graziani",
+      [Sistemati paragrafi doppi],
+    ),
+    (
+      "0.11.0",
+      "16/02/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [Modificati test di accettazione],
+    ),
+    (
       "0.10.1",
       "16/02/2026",
       "Siria Salvalaio",
@@ -238,52 +252,6 @@ Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il con
 In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#strong[M]etriche di #strong[P]rocesso e #strong[C]ontrollo). Questo identificativo permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
 
 == Fornitura
-- *MPC-PV (Planned Value)* \
-  Valore economico del lavoro che si era pianificato di completare entro una certa data.
-  $ "PV" = sum_(i=1)^(n) ("Ore Previste"_i times "Tariffa Oraria"_i) $
-
-- *MPC-AC (Actual Cost)* \
-  Costo effettivamente sostenuto per le ore lavorate.
-  $ "AC" = sum_(i=1)^(n) ("Ore Effettive"_i times "Tariffa Oraria"_i) $
-
-- *MPC-EV (Earned Value)* \
-  Valore del lavoro effettivamente completato, misurato rispetto al budget totale.
-  $ "EV" = "PV" times ("Ore Completate" / "Ore Pianificate") $
-
-- *MPC-BAC (Budget At Completion)* \
-  Budget totale preventivato per l'intero progetto.
-  $ "BAC" = 12.975 € $
-
-- *MPC-EAC (Estimated At Completion)* \
-  Stima del costo totale finale a completamento del progetto, basata sulle performance attuali.
-  $ "EAC" = "BAC" / "CPI" $
-
-  - *Interpretazione:* \
-    $"EAC" < "BAC"$: Il progetto finirà *sotto budget* \
-    $"EAC" = "BAC"$: Il progetto finirà *in linea* con il budget \
-    $"EAC" > "BAC"$: Il progetto finirà *sopra budget*
-
-- *MPC-ETC (Estimated To Complete)* \
-  Stima del costo rimanente per completare il progetto.
-  $ "ETC" = "EAC" - "AC"_"acc" $
-
-  - *Interpretazione:* \
-    Rappresenta quanto ancora si dovrà spendere per finire il progetto, considerando le performance attuali.
-
-- *MPC-CV (Cost Variance)* \
-  Misura la deviazione dal budget. Indica se il progetto è sotto o sopra budget.
-  $ "CV" = "EV" - "AC" $
-
-- *MPC-SV (Schedule Variance)* \
-  Misura la deviazione dalla schedulazione. Indica se il progetto è in anticipo o in ritardo rispetto al piano.
-  $ "SV" = "EV" - "PV" $
-
-- *MPC-TCR (Task Completion Rate)* \
-  Indica la percentuale di task completati rispetto a quelli chiusi in ritardo per un determinato sprint. Rappresenta la capacità del team di completare il lavoro previsto.
-  $ "TCR" = ("Task Completati" / ("Task Completati" + "Task Ritardo")) times 100 $
-
-- *MPC-TS (Task Slippage)* \ //----------------------------------------
-  Percentuale di task che non sono state portate a termine entro la fine dello sprint e che vengono posticipate a quello successivo.
 
 #tabella-paginata(
   table(
@@ -307,16 +275,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
   label-id: "tab-qual-forn",
 )
 
-\
 == Sviluppo
-- *MPC-RSI (Requirements Stability Index)* \
-  Indica la stabilità dei requisiti nel tempo. Un valore elevato segnala che l'analisi iniziale è solida; un valore basso evidenzia frequenti cambiamenti che possono rallentare lo sviluppo.
-
-  $ "RSI" = (1-("Requisiti Modificati" + "Aggiunti" + "Rimossi")/"Totale Requisiti Iniziali") times 100 $
-
-- *MPC-PRCT (Pull Request Cycle Time)* \
-  Misura il tempo medio che intercorre tra l'apertura di una Pull Request e la sua integrazione (merge) nel ramo principale. Monitora l'efficienza delle revisioni.
-  $ "PRCT" = "Data e Ora del Merge" - "Data e Ora dell'Apertura" $
 
 #tabella-paginata(
   table(
@@ -334,12 +293,6 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
 
 \
 == Documentazione
-- *MPC-IG (Indice di Gulpease)* \
-  Indice di leggibilità calibrato specificamente per la lingua italiana. Valuta la complessità del testo in base alla lunghezza delle parole e delle frasi.
-  $ "Gulpease" = 89 + (300 times "Numero Frasi" - 10 times "Numero Lettere") / "Numero Parole" $
-
-- *MPC-CO (Correttezza Ortografica)* \
-  Numero di errori grammaticali o di battitura rilevati nei documenti.
 
 #tabella-paginata(
   table(
@@ -355,19 +308,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
   label-id: "tab-qual-doc",
 )
 
-\
 == Verifica
-- *MPC-CC (Code Coverage)* \
-  Percentuale di righe di codice sorgente effettivamente eseguite durante i test automatici.
-  $ "CC" = ("Linee di Codice Testate" / "Linee di Codice Totali") times 100 $
-
-- *MPC-TSR (Test Success Rate)* \
-  Percentuale di test passati con successo sul totale dei test eseguiti.
-  $ "TSR" = ("Test Superati" / "Test Eseguiti") times 100 $
-
-- *MPC-DD (Bug Density)* \
-  Misura la qualità del codice calcolando quanti bug vengono trovati per ogni cento righe di codice (CRG).
-  $ "DD" = ("Numero di Bug Rilevati" / "Centinaia di Righe di Codice (CRG)") $
 
 #tabella-paginata(
   table(
@@ -383,23 +324,6 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
   [Valori per misurare la qualità della verifica.],
   label-id: "tab-qual-ver",
 )
-
-\
-== Gestione della qualità e processi
-- *MPC-QMS (Quality Metrics Satisfied)* \
-  Percentuale di metriche di qualità che rientrano nel range accettabile.
-  $ "QMS" = ("Metriche in Range Accettabile" / "Totale Metriche Monitorate") times 100 $
-
-- *MPC-TE (Time efficiency)* \
-  Rapporto tra tempo di produzione effettivo e tempo totale di lavoro.
-  $ "TE" = ("Ore Lavoro Effettive" / "Ore Totali Disponibili") times 100 $
-
-- *MPC-WD (Work Distribution)* \ //-----------------------
-  Misura la distribuzione in percentuale delle attività (task) tra i membri del team per garantire un carico di lavoro equilibrato. (numero totale task/ numero task per persona -> varianza)
-
-- *MPC-SPF (Single Point of Failure Risk)* \ //-----------------------
-  Indice che valuta la concentrazione di attività (task) critiche su un numero limitato di membri del team, al fine di ridurre il rischio di dipendenza da un singolo componente del gruppo.
-
 
 #tabella-paginata(
   table(
@@ -424,18 +348,6 @@ Le metriche di qualità del prodotto misurano le proprietà interne ed esterne d
 In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#strong[M]etriche di #strong[P]ro#strong[d]otto). Questo identificativo permette di classificare e monitorare le caratteristiche del software, facilitando la verifica del raggiungimento degli obiettivi qualitativi prefissati per il prodotto finale.
 
 == Funzionalità
-- *MPD-CRO (Copertura Requisiti Obbligatori)* \
-  Percentuale di requisiti obbligatori implementati.
-- *MPD-CRP (Copertura Requisiti Desiderabili)* \
-  Percentuale di requisiti desiderabili implementati.
-- *MPD-CRP (Copertura Requisiti Opzionali)* \
-  Percentuale di requisiti opzionali implementati.
-- *MPD-AD (API Documentation)* \ //-----------------------
-  Misura il grado di copertura, accuratezza e aggiornamento della documentazione delle API.
-- *MPD-DL (Data Loss)* \
-  Misura l'affidabilità della trasmissione dati tra gateway e cloud.
-  $ "DL" = (( "Messaggi Inviati" - "Messaggi Ricevuti" ) / "Messaggi Inviati") times 100 $
-\
 
 #tabella-paginata(
   table(
@@ -456,12 +368,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
 \
 == Affidabilità
-- *MPD-BC (Branch Coverage)* \
-  Misura la percentuale di rami decisionali (es. i rami true e false di un if) che sono stati eseguiti dai test. Garantisce che tutte le possibili direzioni del flusso logico siano state verificate.
-  $ "BC" = ("Rami Decisionali Eseguiti" / "Totale rami decisionali presenti") times 100 $
-- *MPD-SC (Statement Coverage)* \
-  Rappresenta la percentuale di singole istruzioni (statement) che sono state percorse durante l'esecuzione dei test. È una metrica importante per assicurarsi che non vi siano porzioni di codice completamente "oscure" ai test.
-  $ "SC" = ("Istruzioni eseguite" / "Totale istruzioni presenti") times 100 $
+
 
 #tabella-paginata(
   table(
@@ -479,9 +386,6 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
 \
 == Usabilità
-- *MPD-TT (Time on Task)* \
-  Tempo necessario a un utente per imparare a usare una funzione.
-
 #tabella-paginata(
   table(
     columns: (auto, 2fr, 1fr, 1fr),
@@ -497,9 +401,6 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
 \
 == Efficienza
-- *MPD-RT (Response Time)* \
-  Tempo di risposta del sistema ad un input dell'utente.
-  $ "RT" = "Ora Risposta" - "Ora Richiesta" $
 
 #tabella-paginata(
   table(
@@ -514,24 +415,8 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
   label-id: "tab-qual-eff",
 )
 
-\
+
 == Manutenibilità
-- *MPD-CD (Code Smell)*\
-  Identifica "sintomi" nel codice che indicano una progettazione debole (es. metodi troppo lunghi, classi troppo grandi o duplicazione). Non sono errori bloccanti, ma rendono il sistema fragile.
-  $ "CD" = ("Numero di Code Smell rilevati" / "CRG (Centinaia di Righe di Codice)") $
-
-// Capire meglio che formula è
-- *MPD-COC (Coefficient of Coupling)*
-  Misura il grado di interdipendenza tra i diversi moduli o classi del software. Un accoppiamento elevato significa che una modifica in una parte del codice rischia di rompere molte altre sezioni (effetto a catena).
-
-- *MPD-CYC (Cyclomatic Complexity)*
-  Misura la complessità logica del codice contando il numero di percorsi linearmente indipendenti attraverso il flusso di controllo (if, switch, loop). Più è alta, più il codice è difficile da testare e comprendere.
-  $ "M" = "E" - "N" + "2P" $
-  - Dove:
-    - $"E"$ : numero di archi (collegamenti nel grafo di controllo);
-    - $"N"$ : numero di nodi (istruzioni);
-    - $"P"$ : numero di componenti connesse (solitamente 1).
-
 
 #tabella-paginata(
   table(
@@ -548,11 +433,8 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
   label-id: "tab-qual-manut",
 )
 
-\
+#pagebreak()
 == Sicurezza
-- *MPD-DE (Data encryption)* \
-  Livello di copertura della cifratura sui dati sensibili.
-
 
 #tabella-paginata(
   table(
