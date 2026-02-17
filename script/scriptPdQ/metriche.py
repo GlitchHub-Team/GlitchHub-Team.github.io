@@ -1182,7 +1182,7 @@ def main():
         
         wsd_vals = [sprint_workload_stddev.get(s) for s in sorted_sprints]
         metrics.append({
-            'id': 'MPC-WD', 'name': 'Workload Std Dev',
+            'id': 'MPC-WD', 'name': 'Work Distribution',
             'acc_str': '≤ 10%', 'opt_str': '≤ 6.30%',
             'values': wsd_vals,
             'check_acc': lambda v: v is not None and v <= 10.0,
