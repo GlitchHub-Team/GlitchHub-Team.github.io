@@ -100,21 +100,48 @@
         ]
     },
     {
-        "id": "RNF-Scalabilità-Isolamento-fisico-tenant",
-        "urgenza": "Des",
-        "desc": "Deve essere garantito l'isolamento fisico dei tenant.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.3 -- RQ 10"
-        ]
-    },
-    {
         "id": "RNF-Provisioning-sicuro-gateway",
         "urgenza": "Obb",
         "desc": "Deve essere garantito il provisioning sicuro dei gateway.",
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §3.2"
+        ]
+    },
+    {
+        "id": "RNF-doc-diagrammi",
+        "urgenza": "Obb",
+        "desc": "Devono essere forniti diagrammi architetturali rappresentanti i diversi livelli di design.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
+        ]
+    },
+    {
+        "id": "RNF-doc-tecnica",
+        "urgenza": "Obb",
+        "desc": "Deve essere fornita la documentazione del codice e delle sue funzionalità.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
+        ]
+    },
+    {
+        "id": "RNF-manuale-test",
+        "urgenza": "Obb",
+        "desc": "Deve essere redatto un manuale che rappresenti tutti i test messi in atto, i criteri di successo e i risultati ottenuti.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
+        ]
+    },
+    {
+        "id": "RNF-manuale-utente-amm",
+        "urgenza": "Obb",
+        "desc": "Deve essere prodotta una guida che spieghi le funzionalità utente e amministratore.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
         ]
     }
 ]
