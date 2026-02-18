@@ -255,27 +255,24 @@
   target: figure.where(kind: "grafico"),
 )
 
-#pagebreak()
 
 #outline(
   title: "Indice delle tabelle",
   target: figure.where(kind: table),
 )
 
-#pagebreak()
-
 
 #let tabella-paginata(contenuto, didascalia, label-id: none) = {
   // 1. Ghost Figure: crea l'ancora per l'Indice e il Link in alto
   [
-    #show figure.caption: none 
+    #show figure.caption: none
     #figure(
       kind: table,
       caption: didascalia,
-      outlined: true, 
+      outlined: true,
       gap: 0em,
-      [] 
-    ) 
+      [],
+    )
     #if label-id != none { label(label-id) }
   ]
 
@@ -313,25 +310,37 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 
 == Riferimenti
 === Riferimenti normativi
-- Capitolato d'appalto C7: 
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`] \
+- Capitolato d'appalto C7:
+  - #link(
+      "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
+    )[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`] \
   - *Ultimo accesso: 17/02/2026*
-- Norme di Progetto v1.0.0: 
-  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf`] \
+- Norme di Progetto v1.0.0:
+  - #link(
+      "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf",
+    )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf`] \
   - *Ultimo accesso: 17/02/2026*
 
 === Riferimenti informativi
-- Regolamento del Progetto Didattico: 
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf`] \
+- Regolamento del Progetto Didattico:
+  - #link(
+      "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf",
+    )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf`] \
   - *Ultimo accesso: 17/02/2026* //scriviamo ultimo accesso o ultima modifica?
-- Il ciclo di vita del Software: 
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf`] \
+- Il ciclo di vita del Software:
+  - #link(
+      "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf",
+    )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf`] \
   - *Ultimo accesso: 17/02/2026*
-- Gestione di progetto: 
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf")[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf`] \
+- Gestione di progetto:
+  - #link(
+      "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf",
+    )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf`] \
   - *Ultimo accesso: 17/02/2026*
 - Glossario v.0.3.1:
-  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`] \
+  - #link(
+      "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf",
+    )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`] \
   - *Ultimo accesso: 17/02/2026*
 
 == Redazione del documento
@@ -403,7 +412,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Medio],
   ),
   [Rischi tecnologici - Apprendimento delle nuove tecnologie],
-  label-id: "tab-rischi-tecn-1"
+  label-id: "tab-rischi-tecn-1",
 )
 
 === Problematiche nello sviluppo software <RT2>
@@ -438,7 +447,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Medio],
   ),
   [Rischi tecnologici - Problematiche nello sviluppo software],
-  label-id: "tab-rischi-tecn-2"
+  label-id: "tab-rischi-tecn-2",
 )
 
 == Rischi organizzativi
@@ -471,7 +480,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Alto],
   ),
   [Rischi organizzativi - Mancato rispetto delle scadenze prefissate],
-  label-id: "tab-rischi-org-1"
+  label-id: "tab-rischi-org-1",
 )
 
 === Errata organizzazione e distribuzione delle risorse <RO2>
@@ -502,7 +511,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Medio],
   ),
   [Rischi organizzativi - Errata organizzazione e distribuzione delle risorse],
-  label-id: "tab-rischi-org-2"
+  label-id: "tab-rischi-org-2",
 )
 
 === Incomprensione dei requisiti <RO3>
@@ -534,7 +543,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Alto],
   ),
   [Rischi organizzativi - Incomprensione dei requisiti],
-  label-id: "tab-rischi-org-2"
+  label-id: "tab-rischi-org-2",
 )
 
 === Presenza di opinioni contrastanti <RO4>
@@ -566,7 +575,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Basso],
   ),
   [Rischi organizzativi - Presenza di opinioni contrastanti],
-  label-id: "tab-rischi-org-3"
+  label-id: "tab-rischi-org-3",
 )
 
 == Rischi personali
@@ -602,7 +611,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Medio],
   ),
   [Rischi personali - Problemi accademici],
-  label-id: "tab-rischi-pers-1"
+  label-id: "tab-rischi-pers-1",
 )
 
 === Dissidi interni <RP2>
@@ -634,7 +643,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Medio],
   ),
   [Rischi personali - Dissidi interni],
-  label-id: "tab-rischi-pers-2"
+  label-id: "tab-rischi-pers-2",
 )
 
 === Problemi personali <RP3>
@@ -668,7 +677,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
     [*Impatto*], [Medio],
   ),
   [Rischi personali - Problemi personali],
-  label-id: "tab-rischi-pers-3"
+  label-id: "tab-rischi-pers-3",
 )
 
 
@@ -708,13 +717,13 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
     table.footer([*Totale*], [*54*], [*54*], [*68*], [*145*], [*165*], [*165*], [*651*]),
   ),
   [Tabella suddivisione ore produttive per componente e ruolo],
-  label-id: "tab-sudd-ore"
+  label-id: "tab-sudd-ore",
 )
 
 == Grafico a torta della suddivisione oraria
 #figure(
-    align(center)[
-  
+  align(center)[
+
     #let ore = (
       ("Responsabile", 54),
       ("Amministratore", 54),
@@ -767,8 +776,8 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
     })
   ],
   caption: "Suddivisione oraria",
-  kind: "grafico", 
-  supplement: [Grafico]
+  kind: "grafico",
+  supplement: [Grafico],
 )
 
 
@@ -794,13 +803,13 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
     table.footer([*Totale*], [*651*], [-], [*12975 €*]),
   ),
   [Tabella suddivisione ore e costi per ruoli],
-  label-id: "tab-sudd-ore-ruoli"
+  label-id: "tab-sudd-ore-ruoli",
 )
 
 == Grafico a torta dei costi progettuali
 #figure(
-    align(center)[
-    
+  align(center)[
+
     #let costi = (
       ("Responsabile", 1620),
       ("Amministratore", 1080),
@@ -853,8 +862,8 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
     })
   ],
   caption: "Ore produttive complessive per ogni ruolo",
-  kind: "grafico", 
-  supplement: [Grafico]
+  kind: "grafico",
+  supplement: [Grafico],
 )
 
 
@@ -972,7 +981,7 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 1*:
     table.footer([*Totale*], [*2*], [*0*], [*12*], [*0*], [*0*], [*2*], [*16*]),
   ),
   [Sprint 1 - Preventivo risorse da utilizzare],
-  label-id: "spr1-prev-risorse"
+  label-id: "spr1-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -1028,7 +1037,7 @@ Tuttavia, il rischio è stato comunicato in tempo e i responsabili dell'attivit�
     table.footer([*Totale*], [*2*], [*0*], [*8*], [*0*], [*0*], [*2*], [*12*]),
   ),
   [Sprint 1 - Risorse utilizzate],
-  label-id: "spr1-risorse-utiliz"
+  label-id: "spr1-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -1066,7 +1075,7 @@ Tuttavia, il rischio è stato comunicato in tempo e i responsabili dell'attivit�
     table.footer([*Totale*], [*52*], [*54*], [*60*], [*145*], [*165*], [*163*], [*639*]),
   ),
   [Sprint 1 - Aggiornamento ore rimanenti],
-  label-id: "spr1-agg-ore-rim"
+  label-id: "spr1-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -1088,7 +1097,7 @@ Tuttavia, il rischio è stato comunicato in tempo e i responsabili dell'attivit�
     table.footer([*Totale*], [*639*], [-], [*12685 €*]),
   ),
   [Sprint 1 - Aggiornamento costi],
-  label-id: "spr1-agg-costi"
+  label-id: "spr1-agg-costi",
 )
 
 == Sprint 2 <sprint-2>
@@ -1113,24 +1122,24 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 2*:
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
-  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-  align: left,
-  stroke: (x, y) => (
-    top: if y == 0 { 0pt } else { 0.5pt + black },
-    left: if x == 0 { 0pt } else { 0.5pt + black },
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "-", "-", "-", "-", "-", "1", [*1*],
+    "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
+    "Michele Dioli", "2", "-", "-", "-", "-", "-", [*2*],
+    "Hossam Ezzemouri", "-", "-", "2", "-", "-", "-", [*2*],
+    "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
+    "Siria Salvalaio", "-", "-", "-", "-", "-", "1", [*1*],
+    "Elia Ernesto Stellin", "-", "-", "2", "-", "-", "-", [*2*],
+    table.footer([*Totale*], [*2*], [*0*], [*8*], [*0*], [*0*], [*2*], [*12*]),
   ),
-  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-  "Jaume Bernardi", "-", "-", "-", "-", "-", "1", [*1*],
-  "Alessandro Dinato", "-", "-", "2", "-", "-", "-", [*2*],
-  "Michele Dioli", "2", "-", "-", "-", "-", "-", [*2*],
-  "Hossam Ezzemouri", "-", "-", "2", "-", "-", "-", [*2*],
-  "Riccardo Graziani", "-", "-", "2", "-", "-", "-", [*2*],
-  "Siria Salvalaio", "-", "-", "-", "-", "-", "1", [*1*],
-  "Elia Ernesto Stellin", "-", "-", "2", "-", "-", "-", [*2*],
-  table.footer([*Totale*], [*2*], [*0*], [*8*], [*0*], [*0*], [*2*], [*12*]),
-),
   [Sprint 2 - Preventivo risorse da utilizzare],
-  label-id: "spr2-prev-risorse"
+  label-id: "spr2-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -1189,7 +1198,7 @@ L'impatto è stato minimo, dato che la questione è stata risolta e non ha influ
     table.footer([*Totale*], [*2*], [*0*], [*8*], [*0*], [*0*], [*2*], [*12*]),
   ),
   [Sprint 2 - Risorse utilizzate],
-  label-id: "spr2-risorse-utiliz"
+  label-id: "spr2-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -1227,7 +1236,7 @@ L'impatto è stato minimo, dato che la questione è stata risolta e non ha influ
     table.footer([*Totale*], [*50*], [*54*], [*52*], [*145*], [*165*], [*161*], [*627*]),
   ),
   [Sprint 2 - Aggiornamento ore rimanenti],
-  label-id: "spr2-agg-ore-rim"
+  label-id: "spr2-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -1249,7 +1258,7 @@ L'impatto è stato minimo, dato che la questione è stata risolta e non ha influ
     table.footer([*Totale*], [*627*], [-], [*12395 €*]),
   ),
   [Sprint 2 - Aggiornamento costi],
-  label-id: "spr2-agg-costi"
+  label-id: "spr2-agg-costi",
 )
 
 == Sprint 3 <sprint-3>
@@ -1293,7 +1302,7 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 3*:
     table.footer([*Totale*], [*2*], [*1*], [*1*], [*0*], [*0*], [*1*], [*5*]),
   ),
   [Sprint 3 - Preventivo risorse da utilizzare],
-  label-id: "spr3-prev-risorse"
+  label-id: "spr3-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -1347,7 +1356,7 @@ Il rischio ha avuto un impatto medio, in quanto era stato preventivato ma rimane
     table.footer([*Totale*], [*3*], [*1*], [*1*], [*0*], [*0*], [*1*], [*6*]),
   ),
   [Sprint 3 - Risorse utilizzate],
-  label-id: "spr3-risorse-utiliz"
+  label-id: "spr3-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -1385,7 +1394,7 @@ Il rischio ha avuto un impatto medio, in quanto era stato preventivato ma rimane
     table.footer([*Totale*], [*47*], [*53*], [*51*], [*145*], [*165*], [*160*], [*621*]),
   ),
   [Sprint 3 - Aggiornamento ore rimanenti],
-  label-id: "spr3-agg-ore-rim"
+  label-id: "spr3-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -1407,7 +1416,7 @@ Il rischio ha avuto un impatto medio, in quanto era stato preventivato ma rimane
     table.footer([*Totale*], [*621*], [-], [*12245 €*]),
   ),
   [Sprint 3 - Aggiornamento costi],
-  label-id: "spr3-agg-costi"
+  label-id: "spr3-agg-costi",
 )
 
 == Sprint 4 <sprint-4>
@@ -1451,7 +1460,7 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
     table.footer([*Totale*], [*3*], [*0*], [*14*], [*0*], [*0*], [*0*], [*17*]),
   ),
   [Sprint 4 - Preventivo risorse da utilizzare],
-  label-id: "spr4-prev-risorse"
+  label-id: "spr4-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -1515,7 +1524,7 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
     table.footer([*Totale*], [*3*], [*0*], [*13*], [*0*], [*0*], [*0*], [*16*]),
   ),
   [Sprint 4 - Risorse utilizzate],
-  label-id: "spr4-risorse-utiliz"
+  label-id: "spr4-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -1553,7 +1562,7 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
     table.footer([*Totale*], [*44*], [*53*], [*38*], [*145*], [*165*], [*160*], [*605*]),
   ),
   [Sprint 4 - Aggiornamento ore rimanenti],
-  label-id: "spr4-agg-ore-rim"
+  label-id: "spr4-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -1575,7 +1584,7 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
     table.footer([*Totale*], [*605*], [-], [*11830 €*]),
   ),
   [Sprint 4 - Aggiornamento costi],
-  label-id: "spr4-agg-costi"
+  label-id: "spr4-agg-costi",
 )
 
 
@@ -1620,7 +1629,7 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
     table.footer([*Totale*], [*2*], [*2*], [*7*], [*0*], [*0*], [*0*], [*11*]),
   ),
   [Sprint 5 - Preventivo risorse da utilizzare],
-  label-id: "spr5-prev-risorse"
+  label-id: "spr5-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -1674,7 +1683,7 @@ Il gruppo ha riscontrato principalmente i seguenti rischi:
     table.footer([*Totale*], [*1*], [*5*], [*7*], [*0*], [*0*], [*0*], [*13*]),
   ),
   [Sprint 5 - Risorse utilizzate],
-  label-id: "spr5-risorse-utiliz"
+  label-id: "spr5-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -1712,7 +1721,7 @@ Il gruppo ha riscontrato principalmente i seguenti rischi:
     table.footer([*Totale*], [*43*], [*48*], [*31*], [*145*], [*165*], [*160*], [*592*]),
   ),
   [Sprint 5 - Aggiornamento ore rimanenti],
-  label-id: "spr5-agg-ore-rim"
+  label-id: "spr5-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -1734,7 +1743,7 @@ Il gruppo ha riscontrato principalmente i seguenti rischi:
     table.footer([*Totale*], [*592*], [-], [*11525 €*]),
   ),
   [Sprint 5 - Aggiornamento costi],
-  label-id: "spr5-agg-costi"
+  label-id: "spr5-agg-costi",
 )
 
 == Sprint 6 <sprint-6>
@@ -1783,7 +1792,7 @@ Il gruppo di lavoro per il *Piano di Qualifica* ha individuato i seguenti compit
     table.footer([*Totale*], [*1*], [*12*], [*5*], [*0*], [*0*], [*0*], [*18*]),
   ),
   [Sprint 6 - Preventivo risorse da utilizzare],
-  label-id: "spr6-prev-risorse"
+  label-id: "spr6-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -1840,7 +1849,7 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
     table.footer([*Totale*], [*1*], [*13*], [*5*], [*0*], [*0*], [*0*], [*19*]),
   ),
   [Sprint 6 - Risorse utilizzate],
-  label-id: "spr6-risorse-utiliz"
+  label-id: "spr6-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -1878,7 +1887,7 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
     table.footer([*Totale*], [*42*], [*35*], [*26*], [*145*], [*165*], [*160*], [*573*]),
   ),
   [Sprint 6 - Aggiornamento ore rimanenti],
-  label-id: "spr6-agg-ore-rim"
+  label-id: "spr6-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -1900,7 +1909,7 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
     table.footer([*Totale*], [*573*], [-], [*11110 €*]),
   ),
   [Sprint 6 - Aggiornamento costi],
-  label-id: "spr6-agg-costi"
+  label-id: "spr6-agg-costi",
 )
 
 == Sprint 7 <sprint-7>
@@ -1943,7 +1952,7 @@ In seguito sono mostrati i compiti identificati:
     table.footer([*Totale*], [*2*], [*0*], [*15*], [*0*], [*0*], [*0*], [*17*]),
   ),
   [Sprint 7 - Preventivo risorse da utilizzare],
-  label-id: "spr7-prev-risorse"
+  label-id: "spr7-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -1999,7 +2008,7 @@ agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come 
     table.footer([*Totale*], [*2*], [*0*], [*15*], [*0*], [*0*], [*0*], [*17*]),
   ),
   [Sprint 7 - Risorse utilizzate],
-  label-id: "spr7-risorse-utiliz"
+  label-id: "spr7-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -2037,7 +2046,7 @@ agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come 
     table.footer([*Totale*], [*40*], [*35*], [*11*], [*145*], [*165*], [*160*], [*556*]),
   ),
   [Sprint 7 - Aggiornamento ore rimanenti],
-  label-id: "spr7-agg-ore-rim"
+  label-id: "spr7-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -2059,7 +2068,7 @@ agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come 
     table.footer([*Totale*], [*556*], [-], [*10675 €*]),
   ),
   [Sprint 7 - Aggiornamento costi],
-  label-id: "spr7-agg-costi"
+  label-id: "spr7-agg-costi",
 )
 
 == Sprint 8 <sprint-8>
@@ -2103,7 +2112,7 @@ In seguito sono mostrati i compiti identificati:
     table.footer([*Totale*], [*2*], [*3*], [*13*], [*0*], [*0*], [*0*], [*18*]),
   ),
   [Sprint 8 - Preventivo risorse da utilizzare],
-  label-id: "spr8-prev-risorse"
+  label-id: "spr8-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -2154,7 +2163,7 @@ L'impatto di questi rischi è stato relativamente basso dato all'anticipata prev
     table.footer([*Totale*], [*2*], [*3*], [*16*], [*0*], [*0*], [*0*], [*21*]),
   ),
   [Sprint 8 - Risorse utilizzate],
-  label-id: "spr8-risorse-utiliz"
+  label-id: "spr8-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -2192,7 +2201,7 @@ L'impatto di questi rischi è stato relativamente basso dato all'anticipata prev
     table.footer([*Totale*], [*38*], [*32*], [*-5*], [*145*], [*165*], [*160*], [*535*]),
   ),
   [Sprint 8 - Aggiornamento ore rimanenti],
-  label-id: "spr8-agg-ore-rim"
+  label-id: "spr8-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -2214,7 +2223,7 @@ L'impatto di questi rischi è stato relativamente basso dato all'anticipata prev
     table.footer([*Totale*], [*535*], [-], [*10155 €*]),
   ),
   [Sprint 8 - Aggiornamento costi],
-  label-id: "spr8-agg-costi"
+  label-id: "spr8-agg-costi",
 )
 
 == Sprint 9 <sprint-9>
@@ -2279,7 +2288,7 @@ Di seguito sono elencati i compiti individuati:
     table.footer([*Totale*], [*3*], [*9*], [*4*], [*0*], [*31*], [*4*], [*51*]),
   ),
   [Sprint 9 - Preventivo risorse da utilizzare],
-  label-id: "spr9-prev-risorse"
+  label-id: "spr9-prev-risorse",
 )
 
 ==== Grafico a torta della suddivisione oraria prevista
@@ -2345,7 +2354,7 @@ L'esecuzione parallela delle attività di sviluppo e redazione documentale ha ri
     table.footer([*Totale*], [*3*], [*11*], [*1*], [*0*], [*31*], [*2*], [*48*]),
   ),
   [Sprint 9 - Risorse utilizzate],
-  label-id: "spr9-risorse-utiliz"
+  label-id: "spr9-risorse-utiliz",
 )
 
 ==== Grafico a torta della suddivisione oraria effettiva
@@ -2383,7 +2392,7 @@ L'esecuzione parallela delle attività di sviluppo e redazione documentale ha ri
     table.footer([*Totale*], [*35*], [*21*], [*-6*], [*145*], [*134*], [*158*], [*487*]),
   ),
   [Sprint 9 - Aggiornamento ore rimanenti],
-  label-id: "spr9-agg-ore-rim"
+  label-id: "spr9-agg-ore-rim",
 )
 
 ==== Aggiornamento costi
@@ -2405,5 +2414,5 @@ L'esecuzione parallela delle attività di sviluppo e redazione documentale ha ri
     table.footer([*Totale*], [*487*], [-], [*9325 €*]),
   ),
   [Sprint 9 - Aggiornamento costi],
-  label-id: "spr9-agg-costi"
+  label-id: "spr9-agg-costi",
 )
