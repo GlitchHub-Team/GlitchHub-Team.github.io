@@ -99,99 +99,139 @@ const (
 	]
 	}
 
-	== Sprint %d
+	#let tabella-paginata(contenuto, didascalia, label-id: none) = {
+		[
+			#show figure.caption: none
+			#figure(
+				kind: table,
+				caption: didascalia,
+				outlined: true,
+				gap: 0em,
+				[],
+			)
+			#if label-id != none { label(label-id) }
+		]
+
+		contenuto
+
+		align(center)[
+			#v(0.5em)
+			#context [
+				#let n = counter(figure.where(kind: table)).display()
+				#text[Tabella #n: #didascalia]
+			]
+		]
+	}
+
+
+	== Sprint %d <sprint-%d>
 	Inizio: %s \
 	Fine: %s \
 
 	Piccola introduzione sprint.
 
-	=== Preventivo a finire
-	==== Attività da svolgere
-	Il gruppo ha individuato le seguenti attività da svolgere:
+	=== Compiti da svolgere
+	Il gruppo ha individuato i seguenti compiti da svolgere:
 	- 
 	-
 	-
 
-	==== Rischi attesi
+	=== Rischi attesi
 	Descrivere i rischi attesi
 	
+	=== Consuntivo a finire
 	==== Preventivo risorse da utilizzare
-	#table(
-	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-		align: left,
-		stroke: (x, y) => (
-		top: if y == 0 { 0pt } else { 0.5pt + black },
-		left: if x == 0 { 0pt } else { 0.5pt + black },
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			{{EXPECTED_USAGE}}
 		),
-		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-		{{EXPECTED_USAGE}}
+		[Sprint %d - Preventivo risorse da utilizzare],
+		label-id: "spr%d-prev-risorse",
 	)
 	==== Grafico a torta della suddivisione oraria prevista
 
 	#let orePrevSprint%d = (
 		{{CHART_EXPECTED_USAGE}}
 	)
-	#graficoTorta("Il grafico a torta contiene le ore produttive previste per ogni ruolo", orePrevSprint%d)
+	#graficoTorta("Sprint %d - Ore produttive previste per ogni ruolo", orePrevSprint%d)
 
-	=== Consuntivo di periodo
-
-	==== Attività svolte
-	Il gruppo ha svolto con successo le seguenti attività: \
+	=== Compiti svolti
+	Il gruppo ha svolto con successo i seguenti compiti: \
 	Issue relative a sprint %d: \
 	{{GROUPED_BY_STATE_ISSUES}}
 	- 
 	-
 	-
 
-	==== Retrospettiva
+	=== Retrospettiva
 	Raccontare retrospettiva
 
+	=== Rischi occorsi
+	Descrivere i rischi occorsi
+
+	=== Consuntivo di periodo
 	==== Risorse utilizzate
-	#table(
-	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-		align: left,
-		stroke: (x, y) => (
-		top: if y == 0 { 0pt } else { 0.5pt + black },
-		left: if x == 0 { 0pt } else { 0.5pt + black },
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
 		),
 		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-		{{EFFECTIVE_USAGE}}
+			{{EFFECTIVE_USAGE}}
+		),
+		[Sprint %d - Risorse utilizzate],
+		label-id: "spr%d-risorse-utiliz",
 	)
-	==== Grafico a torta della suddivisione oraria prevista
+	==== Grafico a torta della suddivisione oraria effettiva
 
 	#let oreEffettiveSprint%d = (
 		{{CHART_EFFECTIVE_USAGE}}
 	)
 	#graficoTorta(
-	"Il grafico a torta contiene le ore produttive complessive ed effettive per ogni ruolo",
+	"Sprint %d - Ore produttive complessive ed effettive per ogni ruolo",
 	oreEffettiveSprint%d,
 	)
 
-	==== Rischi occorsi
-	Descrivere i rischi occorsi
-
 	==== Aggiornamento ore rimanenti
-	#table(
-	  	columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-		align: left,
-		stroke: (x, y) => (
-		top: if y == 0 { 0pt } else { 0.5pt + black },
-		left: if x == 0 { 0pt } else { 0.5pt + black },
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
 		),
 		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-		{{UPDATED_RESOURCES}}
+			{{UPDATED_RESOURCES}}
+		),
+		[Sprint %d - Aggiornamento ore rimanenti],
+		label-id: "spr%d-agg-ore-rim",
 	)
 
 	==== Aggiornamento costi
-	#table(
+	#tabella-paginata(
+	table(
 		columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
-		align: left,
-		stroke: (x, y) => (
+			align: left,
+			stroke: (x, y) => (
 			top: if y == 0 { 0pt } else { 0.5pt + black },
 			left: if x == 0 { 0pt } else { 0.5pt + black },
 		),
 		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
-		{{UPDATED_COSTS}}
+			{{UPDATED_COSTS}}
+		),
+		[Sprint %d - Aggiornamento costi],
+		label-id: "spr%d-agg-costi",
 	)
 	`
 
@@ -386,7 +426,7 @@ func removeTaskPalestraIssues(issues []Issue) []Issue {
 func generateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time, sprintEndDate time.Time) string {
 	var buf bytes.Buffer
 
-	var content = fmt.Sprintf(SPRINT_TEMPLATE, sprint, formatDate(sprintStartDate), formatDate(sprintEndDate), sprint, sprint, sprint, sprint, sprint)
+	var content = fmt.Sprintf(SPRINT_TEMPLATE, sprint, sprint, formatDate(sprintStartDate), formatDate(sprintEndDate), sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint)
 
 	issuesFiltered := removeTaskPalestraIssues(*issues)
 
