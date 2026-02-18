@@ -67,25 +67,25 @@ Il presente documento attesta che, in data *13 febbraio 2026* dalle ore 11:00 al
 = Resoconto della riunione
 
 == Migliorie nell'organizzazione del gruppo
-Dopo un riscontro, il gruppo ha valutato molto positive le modifiche applicate al #gloss[Way of Working] applicate nello *sprint 9*. In particolar modo la creazione di task atomiche, figlie di una rispettiva attività principale, ha reso sin da subito l'esecuzione delle task più semplice ed ha permesso una pianificazione più accurata sia a livello di gruppo che a livello di singolo membro.\
+Dopo un riscontro, il gruppo ha valutato molto positive le modifiche applicate al #gloss[Way of Working] introdotte nello *sprint 9*. In particolar modo la creazione di task atomiche, figlie di una rispettiva attività principale, ha reso sin da subito l'esecuzione delle task più semplice ed ha permesso una pianificazione più accurata sia a livello di gruppo che a livello di singolo membro.\
 Questo miglioramento verrà documentato in modo più approfondito all'interno della *retrospettiva* dello *sprint 9* all'interno del #gloss[Piano di Progetto].
 
-Inoltre il rispetto delle convenzioni per la rendicontazione delle Issue è stata semplificata dalla creazione di una nuova GitHub View rappresentante tutte le Issue assegnate al membro con cui si accede a GitHub.
+Inoltre, il rispetto delle convenzioni per la rendicontazione delle #gloss[Issue] è stata semplificata dalla creazione di una nuova _GitHub View_ rappresentante tutte le #gloss[Issue] assegnate al membro con cui si accede a #gloss[Github].
 
-In aggiunta, è stata considerata la convenzione di inserire nel messaggio di un commit il numero della issue che si presta a risolvere con lo scopo di aumentare la tracciabilità delle modifiche.
+In aggiunta, è stata considerata la convenzione di inserire nel messaggio di un commit il numero della #gloss[Issue] che si presta a risolvere, con  l’obiettivo di aumentare la tracciabilità delle modifiche
 
 == Revisione della documentazione
-In vista della fine dell'#gloss[RTB], durante il periodo di questo sprint il gruppo si focalizza nel ricontrollare tutta la documentazione esistente, ciò include:
+In vista della fine dell'#gloss[RTB], durante questo sprint il gruppo si focalizza nel ricontrollare tutta la documentazione esistente, in particolare:
 - la creazione degli indici delle tabelle e delle figure;
 - la revisione del PdP con particolare attenzione alla sua introduzione;
 - la revisione del PdQ con particolare attenzione ai test di accettazione e test di sistema.
 
 == Programmazione in vista della revisione finale della RTB
-Il gruppo, infine, ha pianificato le ultime attività in vista della revisione finale della RTB, le quali includono:
+Il gruppo, infine, ha pianificato le ultime attività in vista della revisione finale della RTB, che comprendono:
 - la stesura di una lettera di presentazione della RTB;
 - creazione delle diapositive per la presentazione della RTB al professor Vardanega;
 
-Il gruppo è consapevole che durante le revisioni dei documenti sorgeranno ulteriori compiti, per questo ogni componente del gruppo si impegna a rendicontare e comunicare l'insorgere di nuove task. Ciò sarà facilitato dall'intensiva comunicazione sincrona attraverso #gloss[Discord].
+Il gruppo è consapevole che, durante le revisioni dei documenti, sorgeranno ulteriori compiti, per questo ogni componente del gruppo si impegna a rendicontare e comunicare tempestivamente l'insorgere di nuove task. Ciò sarà facilitato dall'intensiva comunicazione sincrona attraverso #gloss[Discord].
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
