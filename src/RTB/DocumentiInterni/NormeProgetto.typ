@@ -7,6 +7,31 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.2.0",
+      "18/02/2026",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      [
+        Modificato utilizzo delle maiuscole;
+        Aggiornata @infrastruttura-github-repo-documentazione in modo tale da rispecchiare struttura della repo;
+        Aggiornata @validazione-implementazione-processo per includere informazioni su tracciamento di requisiti e test
+      ],
+    ),
+    (
+      "1.1.0",
+      "17/02/2026",
+      "Michele Dioli",
+      "Alessandro Dinato",
+      [Aggiunta sezioni metriche],
+    ),
+    (
+      "1.0.1",
+      "17/02/2026",
+      "Elia Ernesto Stellin",
+      "Alessandro Dinato",
+      [Corretta formula per metrica MPC-WD (@mpc-wd)],
+    ),
+    (
       "1.0.0",
       "13/02/2026",
       "Elia Ernesto Stellin",
@@ -88,8 +113,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Norme di Progetto",
 )
 
@@ -120,7 +145,7 @@ Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Can
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
-Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
+Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
 
 Come descritto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
 
@@ -130,28 +155,43 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 
 == Riferimenti
 === Riferimenti normativi
-- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[*#gloss[Capitolato d'appalto] C7*]
-  - *Ultimo accesso*: 13 febbraio 2025
+- #gloss[Capitolato d'appalto] C7
+- #link(
+    "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
+  )[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`]
+  - *Ultimo accesso*: 17 febbraio 2025
 
 === Riferimenti informativi
 
-- #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*Standard ISO/IEC 12207:1995*]
-  - *Ultimo accesso*: 13 febbraio 2026
+- *Standard ISO/IEC 12207:1995*
+  - #link(
+      "https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf",
+    )[`https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf`]
+  - *Ultimo accesso*: 17 febbraio 2026
   - *Note*: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario v0.3.1*]
-  - *Ultimo accesso*: 13 febbraio 2026
+- *Glossario v0.5.0*
+  - #link(
+      "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf",
+    )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`]
+  - *Ultimo accesso*: 17 febbraio 2026
 
-- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[*Verifica e validazione: introduzione*] -- Lezione T9 del prof. Vardanega
-  - *Ultimo accesso*: 13 febbraio 2026
+- *Verifica e validazione: introduzione* -- Lezione T9 del prof. Vardanega
+  - #link(
+      "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf",
+    )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf`]
+  - *Ultimo accesso*: 17 febbraio 2026
 
-- #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf")[*Verifica e validazione: analisi dinamica*] -- Lezione T11 del prof. Vardanega
-  - *Ultimo accesso*: 13 febbraio 2026
+- *Verifica e validazione: analisi dinamica* -- Lezione T11 del prof. Vardanega
+  - #link(
+      "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf",
+    )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf`]
+  - *Ultimo accesso*: 17 febbraio 2026
 
 
 = Processi primari <processi-primari>
-I processi primari della norma #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*ISO/IEC 12207:1995*] definiscono le attività fondamentali del ciclo di vita del software attraverso cinque processi: Acquisizione, Fornitura, Sviluppo, Operazione e Manutenzione, assicurando la conformità ai requisiti e agli obiettivi di qualità stabiliti.
+I processi primari della norma #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*ISO/IEC 12207:1995*] definiscono le attività fondamentali del ciclo di vita del software attraverso cinque processi: acquisizione, fornitura, sviluppo, operazione e manutenzione, assicurando la conformità ai requisiti e agli obiettivi di qualità stabiliti.
 
 Tra i #gloss[*processi*] primari applicati nel progetto si distinguono:
 - #link(<processo-fornitura>)[*Fornitura*]
@@ -164,7 +204,7 @@ L'obiettivo del processo è garantire che il software sia sviluppato e fornito i
 
 === Strumenti a supporto <fornitura-strumenti-supporto>
 - #gloss[*GitHub*]: come infrastruttura per il controllo di versione
-  - *GitHub Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];
+  - *GitHub Issues*: per l'assegnazione degli elementi del _backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];
   - *Github Project*: per la visualizzazione delle task in modalità Kanban, utile ad illustrare lo stato d'avanzamento delle task assegnate;
 - *Whatsapp*: come canale di comunicazione all'interno del gruppo;
 - #gloss[*Discord*]: per svolgere le riunioni interne del gruppo;
@@ -186,7 +226,7 @@ Il processo di fornitura si compone delle seguenti attività di seguito descritt
 
 === Documentazione fornita
 Di seguito presentiamo l'elenco completo della documentazione che *GlitchHub Team* consegnerà all'azienda proponente *M31* e ai committenti *Prof. Tullio Vardanega* e *Prof. Riccardo Cardin*.
-==== Lettera di Candidatura <doc-fornita-lettera-candidatura>
+==== Lettera di candidatura <doc-fornita-lettera-candidatura>
 // TODO: Su pages si chiama ancora lettera di presentazione, ma dovrebbe chiamarsi lettera di candidatura
 La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/LetteraPresentazione.pdf")[*Lettera di Candidatura*] è il documento con cui *GlitchHub Team* ha presentato formalmente la propria candidatura al
 #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[#gloss[capitolato d'appalto]] proposto dall'azienda *M31*.
@@ -199,13 +239,13 @@ dei rispettivi punti di forza e debolezza, e le motivazioni che hanno spinto il 
 La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[*Dichiarazione degli impegni*] è il documento in cui *GlitchHub Team* ha formalizzato la pianificazione economica e organizzativa del progetto.
 Il documento espone le stime relative all'impegno *orario* suddiviso per singoli componenti e per ruoli, definisce il costo *complessivo* dell'opera e illustra i criteri adottati per la *rotazione* dei ruoli all'interno del gruppo
 
-==== Lettera di Presentazione <doc-fornita-lettera-presentazione>
+==== Lettera di presentazione <doc-fornita-lettera-presentazione>
 // TODO: Da linkare quando sarà su pages
 La *Lettera di Presentazione* è il documento tramite il quale *GlitchHub Team* intende formalizzare la propria candidatura alle revisioni di avanzamento legate alle #gloss[baseline] del progetto didattico, ossia la *Requirements and Technology Baseline (#gloss[RTB])* e la *Product Baseline (#gloss[PB])*.
 
 ==== Analisi dei Requisiti <doc-fornita-analisi-requisiti>
 L'#link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[*Analisi dei Requisiti*] è il documento in cui *GlitchHub Team* definisce in dettaglio tutti i #gloss[requisiti] del progetto, classificandoli in obbligatori, desiderabili e opzionali.
-Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[Casi d'Uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
+Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[casi d'uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
 
 ==== Piano di Progetto <doc-fornita-piano-progetto>
 Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[*Piano di Progetto*] è il documento in cui *GlitchHub Team* documenta
@@ -222,7 +262,7 @@ Le *Norme di Progetto* definiscono il #gloss[Way of Working] del gruppo *GlitchH
 stabilendo gli *strumenti* da utilizzare, le convenzioni per la *stesura* del codice e della documentazione, e le procedure operative necessarie a garantire uniformità ed efficienza nello sviluppo.
 
 ==== Glossario <doc-fornita-glossario>
-Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario*] raccoglie e definisce la *terminologia* tecnica adottata nel corso del progetto. Il suo obiettivo è costituire un punto di *riferimento* univoco per tutti i membri del gruppo, garantendo una comunicazione chiara e priva di ambiguità.
+Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*glossario*] raccoglie e definisce la *terminologia* tecnica adottata nel corso del progetto. Il suo obiettivo è costituire un punto di *riferimento* univoco per tutti i membri del gruppo, garantendo una comunicazione chiara e priva di ambiguità.
 
 ==== Verbali interni <doc-fornita-verb-interni>
 Rappresentano i *verbali* delle riunioni svolte con la sola presenza dei membri del gruppo.
@@ -238,7 +278,7 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - #gloss[Gin]: come framework di sviluppo backend;
 - #gloss[Go]: come linguaggio di programmazione per lo sviluppo dei servizi di publish e subscribe;
 - *Visual Studio Code*: per la codifica del software;
-- *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[Casi d'Uso]*.
+- *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[casi d'uso]*.
 
 === Attività previste <attivita-previste-sviluppo>
 - *Implementazione del processo*: in cui viene stabilita l'articolazione delle fasi di ingegnerizzazione, garantendo che ogni attività di sviluppo sia coerente con la strategia di realizzazione scelta;
@@ -247,7 +287,7 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - *Analisi dei requisiti software*: in cui si stabiliscono e documentano i requisiti software (funzionali, prestazionali, di interfaccia, di sicurezza e di qualità) per ogni elemento software identificato nel Sistema;
 - *Progettazione dell'architettura software*: ossia trasformare i requisiti in un'architettura che descriva la struttura del software, identificando i componenti software e le interfacce esterne ed interne;
 - *Progettazione dettagliata del software*: ossia la progettazione in dettaglio dei componenti software individuati, fino alla definizione delle singole unità software;
-- *Codifica e test del software*: ossia lo sviluppo delle unità software individuate per ogni singolo componente, seguito da test effettuati sulle singole unità per verficarne il corretto funzionamento in isolamento;
+- *Codifica e test del software*: ossia lo sviluppo delle unità software individuate per ogni singolo componente, seguito da test effettuati sulle singole unità per verificarne il corretto funzionamento in isolamento;
 - *Integrazione del software*: ossia l'integrazione delle unità software e dei componenti software, testando gli aggregati man mano che vengono sviluppati per verificarne il corretto funzionamento;
 - *Test di qualificazione del software*: ossia lo svolgimento dei test di qualificazione per dimostrare che il prodotto software soddisfi i requisiti definiti.
 - *Integrazione di sistema*: ossia integrare tutte le componenti sviluppate nel Sistema;
@@ -255,23 +295,23 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - *Installazione del software*: ossia la fornitura del prodotto software nell'ambiente operativo secondo quanto specificato nel contratto;
 - *Supporto all'accettazione del software*: in cui si fornisce supporto alle revisioni e ai test di accettazione dell'acquirente per completare la consegna formale del prodotto software.
 
-In relazione alla definizione delle #gloss[baseline] previste per il progetto, ossia la Requirements and Technology Baseline (#gloss[RTB]) e la Product Baseline (#gloss[PB]), *GlitchHub Team* ha identificato l'*Analisi dei Requisiti* e la *Codifica* come attività principali dell'#gloss[RTB]. Di contro, sono state identificate la *Progettazione dell'architettura software*, la *Progettazione dettagliata del software* e la *Codifica* come attività principali della #gloss[PB]. Di conseguenza sono state approfondite le attività principali relative all'#gloss[RTB], mentre verranno stese (o ampliate) in seguito le sezioni relative alle attività principali della #gloss[PB].
+In relazione alla definizione delle #gloss[baseline] previste per il progetto, ossia la Requirements and Technology Baseline (#gloss[RTB]) e la Product Baseline (#gloss[PB]), *GlitchHub Team* ha identificato l'*analisi dei requisiti* (@attivita-analisi-requisiti[§]) e la *codifica* (@attivita-codifica[§]) come attività principali dell'#gloss[RTB]. Di contro, sono state identificate la *progettazione dell'architettura software*, la *progettazione dettagliata del software* e la *codifica* come attività principali della #gloss[PB]. Di conseguenza sono state approfondite le attività principali relative all'#gloss[RTB], mentre verranno stese (o ampliate) in seguito le sezioni relative alle attività principali della #gloss[PB].
 
 === Analisi dei Requisiti <attivita-analisi-requisiti>
-L'attività di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[#gloss[Analisi dei Requisiti]] ha lo scopo di comprendere, individuare e definire in modo completo e strutturato tutti i #gloss[requisiti] che il *Sistema* dovrà soddisfare. Essa consente di formalizzare le esigenze del proponente e di tradurle in #gloss[requisiti] chiaramente identificabili e verificabili.
+L'attività di *analisi dei requisiti* ha lo scopo di comprendere, individuare e definire in modo completo e strutturato tutti i #gloss[requisiti] che il *sistema* dovrà soddisfare. Essa consente di formalizzare le esigenze del proponente e di tradurle in #gloss[requisiti] chiaramente identificabili e verificabili.
 \
-Il risultato di tale attività è documentato nel documento di #gloss[Analisi dei Requisiti], che raccoglie l'insieme dei #gloss[Casi d'Uso] individuati e i #gloss[requisiti] ad essi associati, costituendo il riferimento principale per le successive fasi di progettazione e sviluppo del Sistema.
+Il risultato di tale attività è documentato nel documento di #gloss[Analisi dei Requisiti], che raccoglie l'insieme dei #gloss[casi d'uso] individuati e i #gloss[requisiti] ad essi associati, costituendo il riferimento principale per le successive fasi di progettazione e sviluppo del sistema.
 
-==== Casi d'Uso <attivita-casi-uso>
-I #gloss[Casi d'Uso] sono identificati secondo la seguente nomenclatura:
+==== Casi d'uso <attivita-casi-uso>
+I #gloss[casi d'uso] sono identificati secondo la seguente nomenclatura:
 #align(center)[
   *UC[Primario].[Secondario]*
 ]
 in cui:
-- *UC* indica *Use Case*, ossia la traduzione inglese di #gloss[Caso d'Uso];
-- *[Primario]* è un numero progressivo che identifica univocamente il #gloss[Caso d'Uso] all'interno dell'#gloss[Analisi dei Requisiti];
-- *[Secondario]* è un numero progressivo che identifica un #gloss[Caso d'Uso] correlato in modo esclusivo al caso *Primario*.
-Ogni #gloss[Caso d'Uso] è inoltre corredato da un titolo che ne riassume lo scopo e da una descrizione testuale; per ulteriori dettagli si rimanda alla sezione introduttiva sui #gloss[Casi d'Uso] del documento di #gloss[Analisi dei Requisiti].
+- *UC* indica *Use Case*, ossia la traduzione inglese di "#gloss[caso d'uso]";
+- *[Primario]* è un numero progressivo che identifica univocamente il #gloss[caso d'uso] all'interno dell'#gloss[Analisi dei Requisiti];
+- *[Secondario]* è un numero progressivo che identifica un #gloss[caso d'uso] correlato in modo esclusivo al caso *primario*.
+Ogni #gloss[caso d'uso] è inoltre corredato da un titolo che ne riassume lo scopo e da una descrizione testuale; per ulteriori dettagli si rimanda alla sezione introduttiva sui #gloss[casi d'uso] del documento di #gloss[Analisi dei Requisiti].
 
 ==== Requisiti <attivita-requisiti>
 I #gloss[requisiti] sono identificati secondo la seguente nomenclatura:
@@ -290,7 +330,7 @@ in cui:
   - *Obb* per *Obbligatorio*;
   - *Des* per *Desiderabile*;
   - *Opt* per *Opzionale*.
-Per una descrizione più approfondita della tipologia e della priorità di un #gloss[requisito], si rimanda alla sezione introduttiva sui #gloss[requisiti] del documento di #gloss[Analisi dei Requisiti].
+Per una descrizione più approfondita della tipologia e della priorità di un #gloss[requisito], si rimanda alla sezione introduttiva sui #gloss[requisiti] del documento di #gloss[analisi dei requisiti].
 
 //TODO: post-RTB sarà da aggiungere sezione relativa alla progettazione ed espandere su queste norme di codifica
 === Codifica <attivita-codifica>
@@ -348,7 +388,7 @@ Quindi, questo processo riguarda tutte le attività di pianificazione, progettaz
 - *#gloss[Typst]*: è un #gloss[sistema] di composizione tipografica digitale, che permette di redigere documenti con un linguaggio di mark-up intuitivo e più semplice di LaTeX. Il #gloss[sistema] fornisce anche un linguaggio di scripting che permette di scrivere con semplicità macro e procedure che semplificano la scrittura di contenuti dinamici. La forza di #gloss[Typst] risiede nel suo #gloss[sistema] di templating, utilizzato in modo ubiquitario da _GlitchHub Team_ e nel reloading istantaneo che consente una scrittura più rapida dei documenti.
 
 - *#gloss[GitHub]*: per il controllo del versionamento dei sorgenti #gloss[Typst] dei documenti
-  - *GitHub Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];, sono fondamentali per il tracciamento delle azioni prese in seguito a decisioni di gruppo
+  - *GitHub Issues*: per l'assegnazione degli elementi del _backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];, sono fondamentali per il tracciamento delle azioni prese in seguito a decisioni di gruppo
   - *Github Project*: per la visualizzazione delle task in modalità Kanban, utile ad illustrare lo stato d'avanzamento delle task assegnate
   - #gloss[GitHub Pages]: per l'hosting via sito web della documentazione stabile di progetto
 
@@ -375,7 +415,7 @@ A prescindere dal proprio tipo, il frontespizio di tutti i documenti tranne i di
 - La distribuzione del documento, ovvero i destinatari del documento, sotto lo stato.
 
 Inoltre, dalla seconda pagina di ogni documento, vi è presente la tabella del registro delle modifiche, dove ogni riga rappresenta una versione del documento e con le seguenti colonne:
-- Codice che descrive la *Versione* (vd. @doc-versionamento)
+- Codice che descrive la *versione* (vd. @doc-versionamento)
 - *Data* di scrittura della versione;
 - *Autore* della versione;
 - *Verificatore* della versione;
@@ -456,7 +496,7 @@ Dove:
     - `DichiarazioneImpegni` per la dichiarazione di impegni
     - `NormeProgetto` per il documento di norme di progetto
     - `PianoDiProgetto` per il piano di progetto.
-    - `glossary` per il glossrio
+    - `glossary` per il glossario
   Si noti che l'utilizzo delle preposizioni (ad es. "di" in "Norme *di* progetto") è facoltativo.
 
 Fanno da eccezione i diari di bordo che sono collocati nella cartella `Slide`;
@@ -597,7 +637,7 @@ Inoltre, ogni documento versionato presenterà il proprio *registro delle modifi
 === Valutazione della configurazione <valutazione-configurazione>
 L'attività di *valutazione della configurazione* consiste nel controllo che il software prodotto presenti una completezza funzionale rispetto ai requisiti rilevati.
 
-A tale scopo, il documento di #gloss[Analisi dei Requisiti] presenta una sezione di *tracciamento dei requisiti* che verrà usata dal gruppo durante la fase di progettazione e sviluppo come riferimento per verificare che il software prodotto sia adeguato alle aspettative e richieste della #gloss[proponente].
+A tale scopo, il documento di #gloss[analisi dei requisiti] presenta una sezione di *tracciamento dei requisiti* che verrà usata dal gruppo durante la fase di progettazione e sviluppo come riferimento per verificare che il software prodotto sia adeguato alle aspettative e richieste della #gloss[proponente].
 
 == Accertamento della qualità <accertamento-qualita>
 Secondo lo standard #gloss[ISO/IEC 12207:1995], il processo di *accertamento qualità* consiste nell'accertare in modo adeguato che i processi e i prodotti dei cicli di vita del progetto siano conformi ai requisiti specificati.
@@ -689,9 +729,10 @@ Dove:
   - `A` per i test di Accettazione
 - *`[Numero]`* è un numero identificativo incrementale univoco per la tipologia di test (per cui possono esistere contemporaneamente i test `TU-1` e `TS-1`).
 
-Inoltre ogni test si può trovare in ogni momento in uno di tre stati:
-- *Non implementato*, se il test è stato ideato ma non implementato in codice;
-- *Implementato*, se il test è stato implementato ma non ancora eseguito e/o superato;
+Inoltre ogni test si può trovare in ogni momento in uno di quattro stati:
+- *NI* ovvero *Non implementato*, se il test è stato ideato ma non implementato in codice;
+- *I* ovvero *Implementato*, se il test è stato implementato ma non ancora eseguito;
+- *NS* ovvero *Non superato*, se il test è stato implementato, eseguito e non superato;
 - *Superato*, se il test è stato implementato, eseguito e superato correttamente.
 
 ===== Test di unità <test-unita>
@@ -717,7 +758,7 @@ Per verificare una corretta integrazione delle componenti, è necessario eseguir
 - *Top--down*: in cui, invece, si integrano prima le componenti con maggiori dipendenze d'uso e maggiore utilità esterna, richiedendo l'uso di molti più _stub_ durante lo sviluppo, ma rendendo visibili le funzionalità usabili dall'utente molto prima.
 
 ===== Test di sistema <test-sistema>
-I *test di sistema* verificano la conformità funzionale del sistema rispetto ai requisiti stabiliti nel documento di #gloss[Analisi dei Requisiti]. Infatti, la loro stesura avviene in concomitanza con la stesura dei requisiti funzionali del prodotto.
+I *test di sistema* verificano la conformità funzionale del sistema rispetto ai requisiti stabiliti nel documento di #gloss[analisi dei requisiti]. Infatti, la loro stesura avviene in concomitanza con la stesura dei requisiti funzionali del prodotto.
 
 ===== Test di regressione <test-regressione>
 I *test di regressione* verificano che alcune correzioni o estensioni applicate a specifiche unità non causino _fault_ in
@@ -736,11 +777,32 @@ In base allo standard #gloss[ISO/IEC 12207:1995], le attività previste dal proc
 - *Implementazione del processo*
 - *Attività di validazione*
 
-=== Implementazione processo
-_GlitchHub Team_ ha condotto uno studio approfondito delle richieste della #gloss[proponente], riassumendo tutti i requisiti da soddisfare nel documento di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf", gloss[Analisi dei Requisiti]).
+=== Implementazione processo <validazione-implementazione-processo>
+_GlitchHub Team_ ha condotto uno studio approfondito delle richieste della #gloss[proponente], riassumendo tutti i requisiti da soddisfare nel documento di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf", gloss[analisi dei requisiti]).
 
 Come già descritto nella @valutazione-configurazione, l'#gloss[Analisi dei Requisiti] presenta una sezione di *tracciamento dei requisiti*, fondamentale al processo di *validazione*. Infatti, questa permette di controllare se una parte del prodotto funziona correttamente ed è conforme ai requisiti: un requisito si può considerare soddisfatto solo se il codice che lo implementa funziona correttamente e siccome i requisiti sono tracciati, è possibile verificare quali requisiti vengono soddisfatti dal codice e quali no.
 
+Per un tracciamento efficace, _GlitchHub Team_ ha deciso di raccogliere tutti i requisiti e i relativi test in relativi file JSON all'interno della cartella `src/tracciamento` della #gloss[repository] di documentazione. I file JSON all'interno della cartella sono i seguenti:
+- `RF.json` che tiene traccia di tutti i requisiti funzionali
+- `RNF.json` che tiene traccia di tutti i requisiti non funzionali
+- `RD.json` che tiene traccia di tutti i requisiti di dominio
+- `TS.json` che tiene traccia di tutti i test di sistema
+- `TA.json` che tiene traccia di tutti i test di accettazione
+
+In generale, ogni *requisito* tracciato nei file è descritto da:
+- una stringa identificativa univoca (campo "`id`")
+- una descrizione testuale (campo "`desc`")
+- una stringa che descrive l'urgenza del requisito (campo "`urgenza`")
+- una lista che contiene tutti i riferimenti agli use case identificati nell'#gloss[Analisi Dei Requisiti] (campo "`ref_uc`")
+- una lista che contiene tutti i riferimenti a requisiti del #gloss[capitolato] (campo "`ref_capitolato`")
+
+I *test* tracciati, invece, sono descritti nella struttura JSON da:
+- Analoghi campi `"id"` e `"descr"`
+- Il riferimento al requisito (rilevato dal gruppo o di capitolato) (campo "`ref-req`")
+  - Se il campo si riferisce a un requisito rilevato dal gruppo, allora esso deve contenere l'`id` del requisito considerato
+- Lo stato del test, come descritto nella @verifica-analisi-dinamica (campo `"stato"`)
+
+Descrivere i requisiti e i test di sistema con una serie di file strutturati permette di tracciare i requisiti e i test in maniera totalmente automatica, facilitando le misurazioni delle metriche concernenti i requisiti.
 
 === Attività di validazione
 Per applicare il processo di validazione, il gruppo si impegna a continuare l'attività di *tracciamento dei requisiti* e ad effettuare #link(<test-accettazione>)[test di accettazione] per verificare la conformità del prodotto con le attese della #gloss[proponente], ricercando attivamente da essa la maggior quantità di _feedback_ possibile relativamente alla conformità del lavoro svolto.
@@ -782,7 +844,7 @@ Innanzitutto, è necessario stabilire i requisiti e le risorse necessarie per co
 
 Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in "_task_" assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento.
 
-Si noti che le _issue_ in questo stato devono essere associate allo stato di *"Backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
+Si noti che le _issue_ in questo stato devono essere associate allo stato di *"backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
 
 === Pianificazione <gestione-processi-pianificazione>
 Per pianificare un'attività è fondamentale comprendere quali siano le risorse richieste, sia temporali che economiche, e le singole _task_ di cui è composta. Poiché le attività del progetto richiedono competenza in un'ampia gamma di ambiti diversi, ogni _task_ è assegnata a un *ruolo* specifico; si veda la @divisione-ruoli per un riassunto delle responsabilità e del valore economico del lavoro di ogni singolo ruolo.
@@ -930,7 +992,7 @@ Durante lo svolgimento del progetto, il gruppo ha appreso i seguenti strumenti c
   - *GitHub Projects* per una gestione più fine della pianificazione delle  _task_, tramite diagrammi di #gloss[Gantt] e _#gloss[Kanban] boards_
   _GlitchHub Team_ ha deciso di utilizzare questo strumento per l'_hosting_ pubblico delle proprie #gloss[repository] di documentazione e di codice per il progetto.
 
-- *Google Calendar*: È un servizio di calendaristica che consente un'integrazione nativa con molti strumenti di pianificazione delle _task_. Il gruppo ha deciso di usarlo per la pianificazione degli incontri interni ed esterni.
+- *Google Calendar*: È un servizio di calendario online che consente un'integrazione nativa con molti strumenti di pianificazione delle _task_. Il gruppo ha deciso di usarlo per la pianificazione degli incontri interni ed esterni.
 
 - *Google Mail* (Gmail): È il servizio di posta elettronica dell'ecosistema Google. Viene usato da _GlitchHub Team_ per la comunicazione con gli _stakeholders_ del progetto.
 
@@ -967,27 +1029,27 @@ Prima di iniziare le attività di progetto, il gruppo ha istituito la #link("htt
 
 La pagina principale dell'_organization_ introduce brevemente il gruppo e i suoi membri.
 
-===== Repository documentazione (#repo("docs")[`GlitchHub-Team/GlitchHub-Team.github.io`]) <infrastruttura-github-repo-doc>
+===== Repository documentazione (#repo("docs")[`GlitchHub-Team/GlitchHub-Team.github.io`]) <infrastruttura-github-repo-documentazione>
 La #gloss[repository] di documentazione del gruppo è stata istituita con il nome `GlitchHub-Team.github.io`, poiché ciò consente la creazione di una #gloss[GitHub Page], ovvero una pagina web statica utilizzabile gratuitamente che il gruppo usa per esporre al pubblico le versioni stabili dei prodotti di progetto.
 
 All'interno della repository si trovano il file *README.md* che la descrive dettagliatamente, il file *.gitignore* che permette di impedire il versionamento per certi file specifici e le seguenti cartelle:
-- `.github/`, in cui sono contenuti i file relativi ai workflow di #gloss[GitHub Actions] e gli #gloss[issue templates] descritti
-- `script/` in cui è presente il sorgente degli script di compilazione dei file Typst e di altre automazioni
-- `src/` in cui sono presenti i sorgenti dei file di documentazione
-- `website/` in cui è presente il sorgente della #gloss[GitHub Page]
+- `.github/`, in cui sono contenuti i file relativi ai workflow di #gloss[GitHub Actions] e gli #gloss[issue templates] descritti;
+- `script/` in cui sono presenti i sorgenti dei vari script utilizzati dal gruppo per la compilazione dei file Typst e di altre automazioni utilizzate dal gruppo durante la redazione dei documenti;
+- `src/` in cui sono presenti i sorgenti dei file di documentazione;
+- `website/` in cui è presente il sorgente della #gloss[GitHub Page].
 
 Inoltre, la cartella `src/` contiene al suo interno:
 - Le cartelle `Candidatura/` e `RTB/` sono contenuti i sorgenti dei documenti appartenenti rispettivamente alla fase di #gloss[candidatura] e alla fase #gloss[RTB];
 - La cartella `Slide/`, che contiene i sorgenti delle presentazioni dei diari di bordo:
 - La cartella `Templates/`, che contiene i #link(<infrastruttura-creazione-typst>)[template di Typst utilizzati dal gruppo];
-- La cartella `assets/`, che contiene le immagini utilizzate nei documenti;
-- La cartella `fonts/`, che contiene i font usati dai documenti;
+- La cartella `assets/`, che contiene tutti gli asset usati nei documenti, tra cui immagini, diagrammi e font personalizzati;
 - La cartella `lib/`, che contiene le librerie usate dai file Typst;
-- Il file `glossary.typ` che contiene i sorgenti del file di glossario.
+- La cartella `tracciamento/`, che contiene tutti i file JSON di tracciamento dei requisiti descritti nella @validazione-implementazione-processo;
+- Il file `glossary.json`, che contiene
 
-===== Repository PoC (#repo("poc")[`GlitchHub-Team/PoC`])
+===== Repository PoC (#repo("poc")[`GlitchHub-Team/PoC`]) <infrastruttura-github-repo-poc>
 La #gloss[repository] che contiene il codice sorgente del #gloss[PoC] contiene al suo interno:
-- La cartella `.github/`, come nella @infrastruttura-github-repo-doc
+- La cartella `.github/`, come nella @infrastruttura-github-repo-documentazione
 - La cartella `.vscode/`, che contiene elementi di configurazione comuni per l'editor di testo Visual Studio Code;
 - La cartella `evaluation/`, che contiene dei documenti che riportano la valutazione delle tecnologie scelte;
 - La cartella `src/` che contiene il codice sorgente del PoC;
@@ -1017,7 +1079,7 @@ Per maggiori informazioni riguardanti la gestione delle _issues_ durante lo svol
 ===== GitHub Project
 Il gruppo ha deciso di utilizzare un #gloss[GitHub Project] per raggruppare tutte le _issue_ delle diverse #gloss[repository] in un luogo unico e per assegnare a ogni _issue_ dei campi aggiuntivi che descrivono l'organizzazione delle relative _task_. La descrizione dei campi aggiuntivi forniti dal _project_ è presente nella @gestione-processi-attivita-previste.
 
-Inoltre, il _project_ impostato consente di visualizzare anche le _issue_ in diagrammi di #gloss[Gantt] (separati per membro del gruppo o per sotto-attività) e di visualizzare anche una board #gloss[Kanban] per una visualizzazione rapida di quali _task_ sono in #gloss[Backlog], quali sono pronte per essere eseguite, su quali _issue_ si sta lavorando al momento e su quali sono in revisione.
+Inoltre, il _project_ impostato consente di visualizzare anche le _issue_ in diagrammi di #gloss[Gantt] (separati per membro del gruppo o per sotto-attività) e di visualizzare anche una board #gloss[Kanban] per una visualizzazione rapida di quali _task_ sono in #gloss[backlog], quali sono pronte per essere eseguite, su quali _issue_ si sta lavorando al momento e su quali sono in revisione.
 
 #set heading(outlined: true)
 ==== Google Calendar
@@ -1153,7 +1215,7 @@ Risorse per l'approfondimento di *Gin*:
   - Si noti che è questa documentazione è carente sotto alcuni punti vista, per cui si consiglia l'utilizzo di articoli non ufficiali per una maggiore comprensione _hands-on_ di Gin
 - #link(
     "https://ututuv.medium.com/building-user-authentication-and-authorisation-api-in-go-using-gin-and-gorm-93dfe38e0612",
-  )[_Building user authentication and authorisation API in Go using Gin and Gorm -- Verdotte Aututu_ (non ufficiale)]
+  )[_Building user authentication and authorization API in Go using Gin and Gorm -- Verdotte Aututu_ (non ufficiale)]
 
 ==== Grafana e Prometheus
 - #link("https://prometheus.io/docs")[Documentazione ufficiale di _Prometheus_]
@@ -1179,3 +1241,314 @@ Essendo Python un linguaggio molto semplice, è possibile utilizzare una _cheats
 Ogni membro di _GlitchHub Team_ si impegna a ricavare in ogni _sprint_ le risorse temporali necessarie per approfondire le tecnologie usate, in modo tale da permettere una formazione omogenea e comprensiva di tutte le tecnologie utilizzate. La formazione personale di ogni membro avverrà principalmente in maniera asincrona, ma sfruttando anche le sessioni di _brainstorming_ come strumenti di formazione collettiva.
 
 Si noti anche che lo sviluppo del #gloss[Proof of Concept] e dell'#gloss[MVP] costituiranno i momenti di maggiore formazione e pratica nell'uso delle tecnologie sopra riportate.
+
+= Metriche di qualità <metriche-qualita>
+
+La definizione operativa delle metriche di qualità all'interno delle Norme di Progetto ha lo scopo di normare le attività di misurazione, stabilendo per ogni metrica *cosa* misurare, *come* calcolarne il valore.
+
+Gli *obiettivi metrici* (soglie accettabili e ottime) e i *valori rilevati* per ogni sprint sono documentati nel #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiQualifica.pdf")[#gloss[Piano di Qualifica]], il quale contiene il cruscotto di valutazione con l'andamento storico delle misurazioni.
+
+Ogni metrica è descritta in termini di:
+- *Identificativo*: codice univoco della metrica
+- *Nome*: denominazione della metrica
+- *Descrizione*: definizione operativa dello scopo della metrica
+- *Formula*: espressione matematica per il calcolo del valore
+- *Unità di misura*: unità in cui il valore è espresso
+
+Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di #strong[P]rocesso e #strong[C]ontrollo), mentre le metriche di prodotto dalla sigla *MPD* (#strong[M]etrica di #strong[P]ro#strong[d]otto).
+
+== Metriche di qualità del processo <metriche-processo>
+
+=== Fornitura <metriche-fornitura>
+
+==== MPC-PV: Planned Value <mpc-pv>
+- *Descrizione*: Valore economico del lavoro che si era pianificato di completare entro la fine dello sprint. Rappresenta il costo previsto per le attività pianificate.
+- *Formula*:
+  $ "PV" = sum_(i=1)^(n) ("Ore Previste"_i times "Tariffa Oraria"_i) $
+  dove $n$ è il numero di task pianificate nello sprint e la tariffa oraria corrisponde al ruolo assegnato alla task.
+- *Unità di misura*: Euro (€)
+
+==== MPC-AC: Actual Cost <mpc-ac>
+- *Descrizione*: Costo effettivamente sostenuto per le ore lavorate nello sprint.
+- *Formula*:
+  $ "AC" = sum_(i=1)^(n) ("Ore Effettive"_i times "Tariffa Oraria"_i) $
+  dove $n$ è il numero di task completate nello sprint e la tariffa oraria corrisponde al ruolo assegnato alla task.
+- *Unità di misura*: Euro (€)
+
+==== MPC-EV: Earned Value <mpc-ev>
+- *Descrizione*: Valore del lavoro effettivamente completato, misurato come la quota di lavoro pianificato che è stata portata a termine.
+- *Formula*:
+  $ "EV" = "PV" times ("Ore Completate" / "Ore Pianificate") $
+- *Unità di misura*: Euro (€)
+
+==== MPC-BAC: Budget At Completion <mpc-bac>
+- *Descrizione*: Budget totale preventivato per l'intero progetto. Questo valore è fissato alla stipula del contratto e non varia nel tempo.
+- *Formula*:
+  $ "BAC" = 12.975 € $
+- *Unità di misura*: Euro (€)
+
+==== MPC-EAC: Estimated At Completion <mpc-eac>
+- *Descrizione*: Stima del costo totale finale a completamento del progetto, basata sull'efficienza dei costi misurata dal CPI (Cost Performance Index).
+- *Formula*:
+  $ "EAC" = "BAC" / "CPI" $
+  dove:
+  $ "CPI" = "EV" / "AC" $
+  Il *CPI* (Cost Performance Index) rappresenta l'efficienza dei costi:
+  - $"CPI" > 1$: il progetto sta producendo valore a un costo inferiore al previsto
+  - $"CPI" = 1$: il progetto è in linea con il budget
+  - $"CPI" < 1$: il progetto sta spendendo più del previsto
+- *Interpretazione*:
+  - $"EAC" < "BAC"$: il progetto finirà sotto budget
+  - $"EAC" = "BAC"$: il progetto finirà in linea con il budget
+  - $"EAC" > "BAC"$: il progetto finirà sopra budget
+- *Unità di misura*: Euro (€)
+
+==== MPC-ETC: Estimated To Complete <mpc-etc>
+- *Descrizione*: Stima del costo rimanente per completare il progetto, ottenuta sottraendo il costo cumulativo effettivo dalla stima a completamento.
+- *Formula*:
+  $ "ETC" = "EAC" - "AC"_"cumulativo" $
+  dove $"AC"_"cumulativo"$ è la somma dei costi effettivi sostenuti dall'inizio del progetto fino allo sprint corrente.
+- *Unità di misura*: Euro (€)
+
+==== MPC-CV: Cost Variance <mpc-cv>
+- *Descrizione*: Deviazione dal budget nello sprint corrente. Indica se il lavoro completato è costato più o meno di quanto valga.
+- *Formula*:
+  $ "CV" = "EV" - "AC" $
+- *Interpretazione*:
+  - $"CV" > 0$: sotto budget (situazione favorevole)
+  - $"CV" = 0$: in linea con il budget
+  - $"CV" < 0$: sopra budget (situazione sfavorevole)
+- *Unità di misura*: Euro (€)
+
+==== MPC-SV: Schedule Variance <mpc-sv>
+- *Descrizione*: Deviazione dalla pianificazione nello sprint corrente. Indica se il progetto è in anticipo o in ritardo rispetto al piano.
+- *Formula*:
+  $ "SV" = "EV" - "PV" $
+- *Interpretazione*:
+  - $"SV" > 0$: in anticipo rispetto al piano
+  - $"SV" = 0$: in linea con il piano
+  - $"SV" < 0$: in ritardo rispetto al piano
+- *Unità di misura*: Euro (€)
+
+
+//TODO controllare coerenza con implementazione, se si considera -delayed- o stato Done alla fine dello sprint
+//-> Task slippage e TCR
+==== MPC-TCR: Task Completion Rate <mpc-tcr>
+- *Descrizione*: Percentuale di task completati entro la scadenza dello sprint rispetto al totale dei task chiusi nello sprint (in tempo e in ritardo). Misura la capacità del team di rispettare le scadenze prefissate.
+- *Formula*:
+  $ "TCR" = ("Task Completati in Tempo" / ("Task Completati in Tempo" + "Task Completati in Ritardo")) times 100 $
+  Un task è considerato "completato in tempo" se la sua _End Date_ è precedente o uguale alla _Target Date_ dello sprint.
+- *Unità di misura*: percentuale (%)
+
+==== MPC-TS: Task Slippage <mpc-ts>
+- *Descrizione*: Percentuale di task pianificati per lo sprint corrente che non sono stati portati a termine entro la sua conclusione e vengono posticipati allo sprint successivo.
+- *Formula*:
+  $ "TS" = ("Task Posticipati" / "Task Totali dello Sprint") times 100 $
+  Un task è considerato "posticipato" se alla chiusura dello sprint il suo stato è diverso da "Done".
+- *Unità di misura*: percentuale (%)
+
+=== Sviluppo <metriche-sviluppo>
+
+==== MPC-PRCT: Pull Request Cycle Time <mpc-prct>
+- *Descrizione*: Tempo medio che intercorre tra l'apertura di una #gloss[Pull Request]. Monitora l'efficienza del processo di revisione.
+- *Formula*:
+  $ "PRCT" = (sum_(i=1)^(n) ("Timestamp Merge"_i - "Timestamp Apertura"_i)) / n $
+  dove $n$ è il numero di Pull Request integrate nello sprint.
+
+=== Documentazione <metriche-documentazione>
+
+==== MPC-IG: Indice di Gulpease <mpc-ig>
+- *Descrizione*: Indice di leggibilità calibrato per la lingua italiana. Valuta la complessità del testo in base alla lunghezza delle parole e delle frasi. Valori più alti indicano maggiore leggibilità.
+- *Formula*:
+  $ "IG" = 89 + (300 times "Numero Frasi" - 10 times "Numero Lettere") / "Numero Parole" $
+- *Unità di misura*: adimensionale (scala 0–100)
+
+
+==== MPC-CO: Correttezza Ortografica <mpc-co>
+- *Descrizione*: Numero di errori grammaticali o di battitura rilevati nei documenti tramite strumenti automatici di controllo ortografico.
+- *Formula*:
+  $ "CO" = "Numero di Errori Ortografici Rilevati" $
+- *Unità di misura*: numero intero (conteggio assoluto)
+
+=== Verifica <metriche-verifica>
+
+==== MPC-CC: Code Coverage <mpc-cc>
+- *Descrizione*: Percentuale di righe di codice sorgente effettivamente eseguite durante i test automatici. Misura il grado di copertura complessivo della suite di test.
+- *Formula*:
+  $ "CC" = ("Linee di Codice Eseguite dai Test" / "Linee di Codice Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+- *Strumento di rilevazione*: framework di test con supporto a code coverage (da specificare in fase di sviluppo #gloss[MVP])
+
+==== MPC-TSR: Test Success Rate <mpc-tsr>
+- *Descrizione*: Percentuale di test passati con successo sul totale dei test eseguiti nello sprint.
+- *Formula*:
+  $ "TSR" = ("Test Superati" / "Test Eseguiti") times 100 $
+- *Unità di misura*: percentuale (%)
+
+==== MPC-DD: Bug Density <mpc-dd>
+- *Descrizione*: Densità di bug nel codice sorgente, calcolata come numero di bug rilevati per ogni cento righe di codice (CRG). Valori bassi indicano maggiore qualità del codice prodotto.
+- *Formula*:
+  $ "DD" = "Numero di Bug Rilevati" / "CRG" $
+  dove $"CRG" = "Righe di Codice Totali" / 100$.
+- *Unità di misura*: bug per CRG (centinaia di righe di codice)
+
+=== Gestione della qualità <metriche-gestione-qualita>
+
+==== MPC-QMS: Quality Metrics Satisfied <mpc-qms>
+- *Descrizione*: Percentuale di metriche di qualità (di processo e di prodotto) che rientrano nel range accettabile definito nel #gloss[Piano di Qualifica]. Rappresenta un indicatore sintetico della salute complessiva del progetto.
+- *Formula*:
+  $ "QMS" = ("Metriche in Range Accettabile" / "Totale Metriche Monitorate") times 100 $
+- *Unità di misura*: percentuale (%)
+
+==== MPC-TE: Time Efficiency <mpc-te>
+- *Descrizione*: Rapporto tra le ore dedicate ad attività produttive (rendicontabili) e le ore totali di lavoro (incluse le attività di "palestra" e studio). Indica quanta parte del tempo impiegato dal team si traduce direttamente in prodotti di progetto.
+- *Formula*:
+  $ "TE" = ("Ore Produttive Rendicontabili" / "Ore Totali Lavorate") times 100 $
+- *Unità di misura*: percentuale (%)
+
+==== MPC-WD: Work Distribution <mpc-wd>
+- *Descrizione*: Misura l'equilibrio nella distribuzione del carico di lavoro tra i membri del team. Viene calcolata come la deviazione standard delle ore lavorate dai singoli membri rispetto alla media del team nello sprint. Valori bassi indicano una distribuzione omogenea del carico.
+- *Formula*:
+  $ "WD" = sigma times 100 $
+  dove:
+  $ sigma = sqrt((sum_(i=1)^(n) (h^%_i - overline(h^%))^2) / n) $
+  - $n$: numero di membri del team
+    - Si noti che $n = 7$
+
+  - $h^%_i$: "carico di lavoro" del membro $i$ nello sprint, definito come
+    $
+      h_i / (sum_(j=1)^n h_j) = (text("ore di lavoro del membro") i) / text("ore di lavoro complessive di tutti i membri del gruppo")
+    $
+
+  - $overline(h^%)$: media del carico di lavoro di tutti i membri, sempre pari a $1 / 7 approx 14,29%$
+
+- *Unità di misura*: percentuale (%)
+
+== Metriche di qualità del prodotto <metriche-prodotto>
+
+=== Funzionalità <metriche-funzionalita>
+
+==== MPD-CRO: Copertura Requisiti Obbligatori <mpd-cro>
+- *Descrizione*: Percentuale di requisiti obbligatori correttamente implementati e verificati rispetto al totale dei requisiti obbligatori rilevati nell'#gloss[Analisi dei Requisiti].
+- *Formula*:
+  $ "CRO" = ("Requisiti Obbligatori Soddisfatti" / "Requisiti Obbligatori Totali") times 100 $
+  Un requisito è considerato "soddisfatto" quando il relativo test di sistema risulta superato.
+- *Unità di misura*: percentuale (%)
+
+==== MPD-CRD: Copertura Requisiti Desiderabili <mpd-crd>
+- *Descrizione*: Percentuale di requisiti desiderabili correttamente implementati e verificati rispetto al totale dei requisiti desiderabili rilevati.
+- *Formula*:
+  $ "CRD" = ("Requisiti Desiderabili Soddisfatti" / "Requisiti Desiderabili Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+
+==== MPD-CROP: Copertura Requisiti Opzionali <mpd-crop>
+- *Descrizione*: Percentuale di requisiti opzionali correttamente implementati e verificati rispetto al totale dei requisiti opzionali rilevati.
+- *Formula*:
+  $ "CROP" = ("Requisiti Opzionali Soddisfatti" / "Requisiti Opzionali Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+
+==== MPD-AD: API Documentation Coverage <mpd-ad>
+- *Descrizione*: Percentuale di endpoint API pubblici che dispongono di documentazione completa e aggiornata. Un endpoint è considerato "documentato" quando sono presenti: descrizione funzionale, parametri di input con tipo e vincoli, formato della risposta con codici di stato HTTP e almeno un esempio d'uso.
+- *Formula*:
+  $ "AD" = ("Endpoint API Documentati" / "Endpoint API Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+
+==== MPD-DL: Data Loss Rate <mpd-dl>
+- *Descrizione*: Percentuale di messaggi persi durante la trasmissione dati tra gateway e infrastruttura cloud. Misura l'affidabilità della catena di comunicazione.
+- *Formula*:
+  $ "DL" = (("Messaggi Inviati" - "Messaggi Ricevuti") / "Messaggi Inviati") times 100 $
+- *Unità di misura*: percentuale (%)
+
+=== Affidabilità <metriche-affidabilita>
+
+==== MPD-BC: Branch Coverage <mpd-bc>
+- *Descrizione*: Percentuale di rami decisionali (ad esempio i rami `true` e `false` di un costrutto `if`) che sono stati eseguiti durante i test. Garantisce che tutte le possibili direzioni del flusso logico siano state verificate.
+- *Formula*:
+  $ "BC" = ("Rami Decisionali Eseguiti" / "Rami Decisionali Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+- *Strumento di rilevazione*: framework di test con supporto a branch coverage
+
+==== MPD-SC: Statement Coverage <mpd-sc>
+- *Descrizione*: Percentuale di singole istruzioni (statement) percorse durante l'esecuzione dei test. Assicura che non vi siano porzioni di codice mai eseguite dalla suite di test.
+- *Formula*:
+  $ "SC" = ("Istruzioni Eseguite" / "Istruzioni Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+- *Strumento di rilevazione*: framework di test con supporto a statement coverage
+
+=== Usabilità <metriche-usabilita>
+
+==== MPD-TT: Time on Task <mpd-tt>
+- *Descrizione*: Tempo medio necessario a un utente per completare con successo una funzionalità specifica del sistema per la prima volta, senza assistenza esterna. Misura l'apprendibilità dell'interfaccia utente.
+- *Formula*:
+  $ "TT" = (sum_(i=1)^(n) "Tempo di Completamento"_i) / n $
+  dove $n$ è il numero di utenti coinvolti nella sessione di test di usabilità. Il tempo è misurato dal momento in cui l'utente inizia l'interazione con la funzionalità fino al completamento (o abbandono) della stessa.
+- *Unità di misura*: minuti
+
+=== Efficienza <metriche-efficienza>
+
+==== MPD-RT: Response Time <mpd-rt>
+- *Descrizione*: Tempo di risposta del sistema a un input dell'utente, misurato come intervallo tra l'invio della richiesta e la ricezione della risposta completa.
+- *Formula*:
+  $ "RT" = "Timestamp Risposta" - "Timestamp Richiesta" $
+  La misurazione avviene tramite test automatici di performance che simulano le richieste HTTP verso gli endpoint del sistema.
+- *Unità di misura*: secondi (s)
+
+=== Manutenibilità <metriche-manutenibilita>
+
+==== MPD-CS: Code Smell Density <mpd-cs>
+- *Descrizione*: Densità di _code smell_ nel codice sorgente. I _code smell_ sono indicatori di progettazione debole (metodi troppo lunghi, classi troppo grandi, duplicazione di codice) che, pur non essendo errori bloccanti, rendono il sistema fragile e difficile da manutenere.
+- *Formula*:
+  $ "CS" = "Numero di Code Smell Rilevati" / "CRG" $
+  dove $"CRG" = "Righe di Codice Totali" / 100$.
+- *Unità di misura*: code smell per CRG (centinaia di righe di codice)
+- *Strumento di rilevazione*: analizzatore statico del codice (es. SonarQube, ESLint, golangci-lint)
+
+==== MPD-COC: Coefficient of Coupling <mpd-coc>
+- *Descrizione*: Misura il grado di interdipendenza tra i diversi moduli del software. Un accoppiamento elevato implica che una modifica in una parte del codice rischia di propagarsi ad altre sezioni (effetto a catena), riducendo la manutenibilità.
+- *Formula*:
+  $ "COC" = "Dipendenze Effettive tra Moduli" / (n times (n - 1)) $
+  dove $n$ è il numero totale di moduli del sistema e $n times (n - 1)$ rappresenta il numero massimo di dipendenze direzionali possibili. Una "dipendenza" sussiste quando un modulo importa, invoca o referenzia direttamente un altro modulo.
+- *Interpretazione*:
+  - $"COC" = 0$: nessun accoppiamento (moduli completamente indipendenti)
+  - $"COC" = 1$: accoppiamento massimo (ogni modulo dipende da tutti gli altri)
+- *Unità di misura*: adimensionale (scala 0–1)
+- *Strumento di rilevazione*: analisi delle dipendenze tramite strumenti di analisi statica o ispezione manuale del grafo delle importazioni
+
+==== MPD-CYC: Cyclomatic Complexity <mpd-cyc>
+- *Descrizione*: Misura la complessità logica del codice contando il numero di percorsi linearmente indipendenti attraverso il flusso di controllo (costrutti `if`, `switch`, `loop`). Valori elevati indicano codice difficile da testare e comprendere.
+- *Formula*:
+  $ M = E - N + 2P $
+  dove:
+  - $E$: numero di archi nel grafo di controllo del flusso
+  - $N$: numero di nodi (istruzioni) nel grafo di controllo del flusso
+  - $P$: numero di componenti connesse del grafo (solitamente $P = 1$ per una singola funzione)
+- *Unità di misura*: numero intero (adimensionale). Il valore riportato nel cruscotto è la media della complessità ciclomatica su tutte le funzioni del sistema.
+- *Strumento di rilevazione*: analizzatore statico del codice (es. `gocyclo` per Go, ESLint per TypeScript)
+
+=== Sicurezza <metriche-sicurezza>
+
+==== MPD-DE: Data Encryption Coverage <mpd-de>
+- *Descrizione*: Percentuale di flussi dati classificati come sensibili (dati dei tenant, credenziali di autenticazione, dati IoT in transito) che sono protetti da cifratura, sia a riposo (_at rest_) che in transito (_in transit_).
+- *Formula*:
+  $ "DE" = ("Flussi Dati Sensibili Cifrati" / "Flussi Dati Sensibili Totali") times 100 $
+  Un "flusso dati sensibile" è ogni canale di comunicazione o punto di persistenza che tratta dati personali, credenziali o dati soggetti a separazione multi-tenant. La classificazione dei flussi sensibili è stabilita in fase di progettazione architetturale.
+- *Unità di misura*: percentuale (%)
+
+=== Metriche di progresso dei test <metriche-progresso-test>
+
+==== MPT-TS: Test di Sistema Specificati <mpt-ts>
+- *Descrizione*: Percentuale di test di sistema definiti rispetto al numero totale di requisiti funzionali presenti nell'#gloss[Analisi dei Requisiti]. Misura il grado di completamento nella specifica dei test.
+- *Formula*:
+  $ "TS" = ("Test di Sistema Specificati" / "Requisiti Funzionali Totali") times 100 $
+- *Unità di misura*: percentuale (%)
+==== MPT-TE: Test di Sistema Eseguiti <mpt-te>
+- *Descrizione*: Percentuale di test di sistema specificati che sono stati effettivamente eseguiti. Misura il progresso nell'esecuzione della campagna di test.
+- *Formula*:
+  $ "TE" = ("Test di Sistema Eseguiti" / "Test di Sistema Specificati") times 100 $
+- *Unità di misura*: percentuale (%)
+
+==== MPT-TP: Test di Sistema Superati <mpt-tp>
+- *Descrizione*: Percentuale di test di sistema eseguiti che sono stati superati con successo. Misura la conformità del sistema ai requisiti funzionali verificati.
+- *Formula*:
+  $ "TP" = ("Test di Sistema Superati" / "Test di Sistema Eseguiti") times 100 $
+- *Unità di misura*: percentuale (%)
