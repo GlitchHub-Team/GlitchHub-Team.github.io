@@ -1887,12 +1887,10 @@
         "ref_capitolato": []
     },
     {
-        "id": "RF-Configurazione-gateway",
+        "id": "RF-OBSOLETO-Configurazione-gateway",
         "urgenza": "Obb",
         "desc": "Il Super Admin deve poter configurare i parametri di un Gateway",
-        "ref_uc": [
-            "<Configurazione-gateway>"
-        ],
+        "ref_uc": [],
         "ref_capitolato": []
     },
     {
