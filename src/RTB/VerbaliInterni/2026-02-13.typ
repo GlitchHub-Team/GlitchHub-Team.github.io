@@ -47,6 +47,8 @@
   tipo-verbale: "Interno",
 )
 
+//riformula l introduzione, è costruita in maniera confusionaria
+//hai scritto "alle" due volte
 = Introduzione
 Il presente documento attesta che, in data *13 gennaio 2026* iniziato alle ore 11:00 alle ore 11:50 si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
@@ -55,9 +57,12 @@ Il presente documento attesta che, in data *13 gennaio 2026* iniziato alle ore 1
 == Retrospettiva dello sprint
 
 === Migliorie nell'organizzazione del gruppo
-Dopo un riscontro, il gruppo ha ritenuto molto positive le modifiche applicate al Way of Working durante il periodo di sprint precedente.
+//"ritenuto" non è il verbo giusto
+Dopo un riscontro, il gruppo ha ritenuto molto positive le modifiche applicate al #gloss[Way of Working] durante il periodo di #gloss[sprint] precedente.
 Come ulteriore miglioria è stata considerata la convenzione di inserire nel messaggio di un commit il numero della issue che si presta a risolvere.
 Successivamente è stato fatto un controllo generale sulla completezza dei metadati riguardo le issue preesistenti.
+
+//manca contesto, devi parlare di ciò che è stato detto in riunione e che ha portato alla delle issue mostrate sotto in tabella
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
@@ -67,9 +72,9 @@ Successivamente è stato fatto un controllo generale sulla completezza dei metad
 
   [Integrazione cruscotto di valutazione], [Michele Dioli], [#issue(247, repo:"docs")],
 
-  [Stesura lettera di presentazione RTB], [Tutti i membri], [#issue(260, repo:"docs")],
+  [Stesura lettera di presentazione #gloss[RTB]], [Tutti i membri], [#issue(260, repo:"docs")],
 
-  [Stesura Sprint 9 del PdP], [Riccardo Graziani], [#issue(267, repo:"docs")],
+  [Stesura #gloss[Sprint] 9 del PdP], [Riccardo Graziani], [#issue(267, repo:"docs")],
 
   [Revisione introduzione del PdP], [Alessandro Dinato], [#issue(269, repo:"docs")],
 

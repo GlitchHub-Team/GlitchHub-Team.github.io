@@ -80,7 +80,7 @@ Poichè #gloss[ci] si trova nelle fasi iniziali, il lavoro sarà principalmente 
 I componenti del team responsabili della redazione dei documenti si sono organizzati per rendere il lavoro di scrittura più agevole ed evitare conflitti, preferendo una modalità di lavoro asincrona.
 
 == Preparazione per l’incontro formale con M31
-Si è deciso di comunicare all’azienda l’avvenuta candidatura e quindi l’inizio del progetto didattico. Inoltre, si richiederà un primo incontro formale per allinearsi sulle attività da svolgere.\
+Si è deciso di comunicare all’azienda l’avvenuta candidatura e quindi l’inizio del #gloss[progetto didattico]. Inoltre, si richiederà un primo incontro formale per allinearsi sulle attività da svolgere.\
 In vista di questo incontro in presenza con l’azienda #gloss[proponente], il gruppo ha scelto di riflettere su alcune domande da porre, al fine di chiarire i dubbi iniziali emersi dopo la candidatura.\
 Principalmente si chiederà all’azienda di predisporre un canale di comunicazione rapido e di fornire alcuni consigli operativi, dato che ha già maturato esperienza nel tutoraggio di gruppi negli anni precedenti.\
 Ogni membro del gruppo si impegnerà a rileggere e approfondire quanto riportato nel capitolato dell’azienda, così da rendere l’incontro il più produttivo possibile.

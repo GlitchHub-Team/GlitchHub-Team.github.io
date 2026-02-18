@@ -61,25 +61,25 @@ Il gruppo ha discusso l'incontro con M31 del 02/12/2025.
 Gli assenti alla riunione sono stati allineati sui concetti espressi da M31, che erano comunque già stati condivisi tramite un documento su #gloss[ClickUp].\
 Il gruppo attraverso la discussione ha fatto emergere i seguenti dubbi:
 - Non è chiaro come la visualizzazione anonima dei dati, da parte del super-admin, implichi che le sorgenti vengano mostrate con etichette generiche (ad esempio “Sensore 1” anziché “Sensore Battito XYZK”). È inoltre emerso che il super-admin, qualora necessario, può creare un proprio account #gloss[tenant]-admin per accedere ai dati in forma non anonimizzata, il che implica la possibilità di visualizzare le sorgenti con le loro etichette originali.
-- Sono emersi dubbi riguardo al contenuto effettivo dell'azione di configurazione del gateway. Il gruppo si chiede se la configurazione includa esclusivamente l'associazione al #gloss[tenant] e l'avvio del provisioning, oppure se siano previsti ulteriori aspetti tecnici legati, per esempio, alla rete.
-- Il gruppo ha discusso i meccanismi di autenticazione del gateway. In particolare, non è chiaro se, oltre alla cifratura dei dati, il gateway debba utilizzare la firma digitale per dimostrare la propria autenticità ed evitare che dispositivi esterni possano fingersi gateway M31.\
-È stata inoltre ipotizzata una possibile procedura in cui l'operatore comunica al super-admin (o inserisce direttamente) la chiave pubblica del gateway, così da consentire la #gloss[verifica] dell'autenticità durante la comunicazione con il #gloss[cloud].
-- Sono presenti dubbi riguardo quali controlli il super-admin possa esercitare durante il processo di provisioning. L'ipotesi concepita è che, una volta associato un gateway “in attesa di essere associato” (ovvero appena installato e collegato al #gloss[cloud]), il provisioning avvenga in maniera completamente automatica. Si richiede conferma su tale interpretazione.
+- Sono emersi dubbi riguardo al contenuto effettivo dell'azione di configurazione del #gloss[gateway]. Il gruppo si chiede se la configurazione includa esclusivamente l'associazione al #gloss[tenant] e l'avvio del provisioning, oppure se siano previsti ulteriori aspetti tecnici legati, per esempio, alla rete.
+- Il gruppo ha discusso i meccanismi di autenticazione del #gloss[gateway]. In particolare, non è chiaro se, oltre alla cifratura dei dati, il #gloss[gateway] debba utilizzare la firma digitale per dimostrare la propria autenticità ed evitare che dispositivi esterni possano fingersi #gloss[gateway] M31.\
+È stata inoltre ipotizzata una possibile procedura in cui l'operatore comunica al super-admin (o inserisce direttamente) la chiave pubblica del #gloss[gateway], così da consentire la #gloss[verifica] dell'autenticità durante la comunicazione con il #gloss[cloud].
+- Sono presenti dubbi riguardo quali controlli il super-admin possa esercitare durante il processo di provisioning. L'ipotesi concepita è che, una volta associato un #gloss[gateway] “in attesa di essere associato” (ovvero appena installato e collegato al #gloss[cloud]), il provisioning avvenga in maniera completamente automatica. Si richiede conferma su tale interpretazione.
 
 I dubbi sono stati prontamente inviati a M31 tramite email per ricevere chiarimenti.
 
 == Allineamento sugli attori del sistema
-Il gruppo ha discusso gli attori del sistema per assicurarsi che tutti i membri avessero una comprensione comune.
+Il gruppo ha discusso gli attori del #gloss[sistema] per assicurarsi che tutti i membri avessero una comprensione comune.
 Sono stati identificati i seguenti attori principali:
-- *Super-admin*: amministratore globale del sistema, responsabile della gestione dei #gloss[tenant]-admin e della visualizzazione aggregata dei dati;
-- *#gloss[Tenant]-admin*: amministratore di un singolo #gloss[tenant], responsabile della gestione degli utenti e dei gateway associati al proprio #gloss[tenant];
-- *Gateway*: dispositivo fisico che raccoglie i dati dai sensori e li invia al #gloss[cloud];
-- *User*: utente generico che accede al sistema;
-- *REST client*: applicazione o servizio _esterno_ che interagisce con il sistema tramite #gloss[API] REST;
+- *Super-admin*: amministratore globale del #gloss[sistema], responsabile della gestione dei #gloss[tenant]-admin e della visualizzazione aggregata dei dati;
+- *#gloss[Tenant]-admin*: amministratore di un singolo #gloss[tenant], responsabile della gestione degli utenti e dei #gloss[gateway] associati al proprio #gloss[tenant];
+- *#gloss[Gateway]*: dispositivo fisico che raccoglie i dati dai sensori e li invia al #gloss[cloud];
+- *User*: utente generico che accede al #gloss[sistema];
+- *REST client*: applicazione o servizio _esterno_ che interagisce con il #gloss[sistema] tramite #gloss[API] REST;
 - *#gloss[Tenant] user*: utente associato a un #gloss[tenant] specifico, con soli permessi di lettura dati.
 
 == Assegnazione delle prossime task basate sulle decisioni prese
-Il gruppo ha deciso di suddividersi la scrittura dei casi d'uso per attore principale.
+Il gruppo ha deciso di suddividersi la scrittura dei casi d'uso per #gloss[attore] principale.
 #table(
   columns: (4fr, 2fr, 1fr),
   align: center + horizon,
@@ -93,7 +93,7 @@ Il gruppo ha deciso di suddividersi la scrittura dei casi d'uso per attore princ
   [Riccardo Graziani, Elia Ernesto Stellin],
   [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/76")[*\#76*]],
 
-  [Sviluppo casi d'uso relativi al gateway],
+  [Sviluppo casi d'uso relativi al #gloss[gateway]],
   [Jaume Bernardi, Siria Salvalaio],
   [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/75")[*\#75*]],
 

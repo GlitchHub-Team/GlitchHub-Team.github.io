@@ -49,7 +49,7 @@
 = Introduzione <introduzione>
 
 == Scopo del documento
-Lo scopo di questo documento è di descrivere il #gloss[_Way of Working_] del gruppo _GlitchHub Team_ durante lo svolgimento del progetto didattico.
+Lo scopo di questo documento è di descrivere il #gloss[_Way of Working_] del gruppo _GlitchHub Team_ durante lo svolgimento del #gloss[progetto didattico].
 
 A tale scopo, il gruppo ha deciso di prendere come riferimento lo standard internazionale *#gloss[ISO/IEC 12207:1995]*, che definisce una struttura normata per descrivere i processi di cicli di vita del Software.
 
@@ -59,17 +59,17 @@ Più nello specifico, vengono riconosciuti dallo standard tre tipi principali di
 - *Processi di supporto* (@processi-di-supporto): i processi che si integrano con i processi primari per semplificare lo svolgimento del progetto
 - *Processi organizzativi* (@processi-organizzativi): i processi che semplificano le procedure di sviluppo
 
-Questo documento ha carattere #gloss[incrementale], per cui, verrà modificato e aggiornato col progredire dello sviluppo del progetto didattico a seguito di miglioramenti e modifiche al #gloss[_Way of Working_] del gruppo.
+Questo documento ha carattere #gloss[incrementale], per cui, verrà modificato e aggiornato col progredire dello sviluppo del #gloss[progetto didattico] a seguito di miglioramenti e modifiche al #gloss[_Way of Working_] del gruppo.
 
 == Scopo del prodotto
 Il progetto proposto dal #gloss[capitolato] *C7* di *M31 Srl* è inerente alla gestione e acquisizione di dati provenienti da sensori #gloss[IoT] distribuiti ed eterogenei a basso consumo energetico, i quali permettono di raccogliere dettagliatamente dati da qualunque fonte.
 
-Nello specifico, lo sviluppo richiesto dal progetto si colloca in un sistema distribuito di acquisizione e smistamento dati da sensori #gloss[Bluetooth Low Energy (BLE)]. L'obiettivo del progetto è di sviluppare un'infrastruttura scalabile che comunichi in modo sicuro con sensori non conformati e che ne gestisca i dati raccolti tramite strumenti di monitoraggio e visualizzazione, ad amministratori e utenti finali, garantendo al contempo la totale separazione dei dati tra diversi _#gloss[tenant]_.
+Nello specifico, lo sviluppo richiesto dal progetto si colloca in un #gloss[sistema] distribuito di acquisizione e smistamento dati da sensori #gloss[Bluetooth Low Energy (BLE)]. L'obiettivo del progetto è di sviluppare un'infrastruttura scalabile che comunichi in modo sicuro con sensori non conformati e che ne gestisca i dati raccolti tramite strumenti di monitoraggio e visualizzazione, ad amministratori e utenti finali, garantendo al contempo la totale separazione dei dati tra diversi _#gloss[tenant]_.
 
 Secondo quanto specificato nella #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/Candidatura/Generale/LetteraPresentazione.pdf")[*Lettera di Presentazione*], il gruppo si è posto di realizzare questo progetto entro il *27 marzo 2026* con un budget massimo di *Euro 12.975*.
 
 == Glossario
-La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed #gloss[efficienza] nelle attività di progetto.
+La creazione e lo sviluppo di un #gloss[sistema] software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed #gloss[efficienza] nelle attività di progetto.
 
 Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
 
@@ -102,7 +102,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 
 
 = Processi primari <processi-primari>
-In questa sezione, verranno descritti i processi essenziali allo svolgimento del progetto didattico.
+In questa sezione, verranno descritti i processi essenziali allo svolgimento del #gloss[progetto didattico].
 
 Al momento della scrittura di questa versione delle #gloss[Norme di Progetto], i processi di fornitura e sviluppo del prodotto non sono ancora iniziati, ma stanno venendo definite incrementalmente le Norme relative alla Documentazione (vd. @documentazione).
 /*
@@ -144,7 +144,7 @@ Nello specifico, una decisione viene documentata solamente se questa si può tra
 Quindi, questo processo riguarda tutte le attività di pianificazione, progettazione, sviluppo, produzione e modifica dei documenti necessari al gruppo per lavorare secondo una linea di lavoro condivisa, e necessari al #gloss[proponente] e alla #gloss[committente] per osservare l'avanzamento del prodotto.
 
 === Strumenti a supporto <doc-strumenti-a-supporto>
-- *#gloss[Typst]*: è un sistema di composizione tipografica digitale, che permette di redigere documenti con un linguaggio di mark-up intuitivo e più semplice di LaTeX. Il sistema fornisce anche un linguaggio di scripting che permette di scrivere con semplicità macro e procedure che semplificano la scrittura di contenuti dinamici. La forza di #gloss[Typst] risiede nel suo sistema di templating, utilizzato in modo ubiquitario da _GlitchHub Team_ e nel reloading istantaneo che consente una scrittura più rapida dei documenti.
+- *#gloss[Typst]*: è un #gloss[sistema] di composizione tipografica digitale, che permette di redigere documenti con un linguaggio di mark-up intuitivo e più semplice di LaTeX. Il #gloss[sistema] fornisce anche un linguaggio di scripting che permette di scrivere con semplicità macro e procedure che semplificano la scrittura di contenuti dinamici. La forza di #gloss[Typst] risiede nel suo #gloss[sistema] di templating, utilizzato in modo ubiquitario da _GlitchHub Team_ e nel reloading istantaneo che consente una scrittura più rapida dei documenti.
 
 - *#gloss[GitHub]*: per il controllo del versionamento dei sorgenti #gloss[Typst] dei documenti
   - *#gloss[GitHub] Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];, sono fondamentali per il tracciamento delle azioni prese in seguito a decisioni di gruppo
@@ -237,7 +237,7 @@ Essendo la produzione di documentazione un processo iterativo, è necessario ten
 
 La convenzione di versionamento di tutti i documenti tranne i Diari di Bordo, è riportata come descritta originariamente nel #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/Candidatura/VerbaliInterni/2025-10-27.pdf")[*verbale interno del 27 ottobre 2025*].
 
-Il gruppo ha deciso di adottare il sistema di versionamento #link("#gloss[https]://semverdoc.org")[*#gloss[Semantic Versioning]*] (abbreviato SemVer) per i documenti, in cui ogni versione è descritta da 3 numeri naturali separati da punto (*`MAJOR.MINOR.PATCH`*), dove:
+Il gruppo ha deciso di adottare il #gloss[sistema] di versionamento #link("#gloss[https]://semverdoc.org")[*#gloss[Semantic Versioning]*] (abbreviato SemVer) per i documenti, in cui ogni versione è descritta da 3 numeri naturali separati da punto (*`MAJOR.MINOR.PATCH`*), dove:
 
 - *`MAJOR`*: rappresenta le modifiche sostanziali applicate al documento
   - Se `MAJOR = 0`, la versione è da considerarsi non "stabile", ovvero soggetta in futuro a cambiamenti rapidi e sostanziali. In particolare, #gloss[ci]ò rappresenta che il documento è in fase di prima stesura;
@@ -250,7 +250,7 @@ Il gruppo ha deciso di adottare il sistema di versionamento #link("#gloss[https]
 
 All'#gloss[incremento] di un numero di versione, tutti i numeri alla sua destra vengono messi a 0, per cui la versione `MINOR` successiva alla `0.1.1` non può essere `0.2.1`, ma deve essere necessariamente `0.2.0`.
 
-In questo sistema, quindi:
+In questo #gloss[sistema], quindi:
 - la prima *bozza* del documento è rappresentata dalla versione `0.0.1`,
 - la prima *stesura* ancora non verificata dalla versione `0.1.0`
 - la prima *stesura* verificata dalla versione `1.0.0`
@@ -259,7 +259,7 @@ In questo sistema, quindi:
 ==== Denominazione e Locazione File
 I documenti in formato PDF sono resi disponibili sul #link("#gloss[https]://GlitchHub-Team.#gloss[github].io")[sito web di _GlitchHub Team_].
 
-I documenti seguono uno schema di locazione all'interno del file system del sito: tutti i documenti, eccetto i Diari di Bordo e il Glossario, sono disponibili nel _path_:
+I documenti seguono uno #gloss[schema] di locazione all'interno del file system del sito: tutti i documenti, eccetto i Diari di Bordo e il Glossario, sono disponibili nel _path_:
 
 #align(center, [`/pdf/`*`[FASE]`*`/`*`[TIPO DOCUMENTO]`*`/`*`[NOME DOCUMENTO]`*`.pdf`,])
 
@@ -279,7 +279,7 @@ dove:
     - `PianoDiProgetto` per il #gloss[piano di progetto].
   Si noti che l'utilizzo delle preposizioni (ad es. "di" in "Norme *di* progetto") è facoltativo.
 
-// TODO: inserire schema denominazione Diari di Bordo
+// TODO: inserire #gloss[schema] denominazione Diari di Bordo
 Fanno da eccezione:
 - I Diari di Bordo che sono locati in `...`
 - Il glossario, che è collocato in #link("#gloss[https]://glitchhub-team.#gloss[github].io/pdf/glossary.pdf")[`pdf/glossary.pdf`]

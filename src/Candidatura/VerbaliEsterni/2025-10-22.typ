@@ -52,7 +52,7 @@ L’attenzione deve quindi essere posta sia sull'#gloss[efficacia] delle funzion
 == Accuratezza delle analisi AI
 Il gruppo ha chiesto quale grado di accuratezza fosse richiesto per le analisi di intelligenza artificiale e se fosse necessario addestrare modelli di *Machine Learning*. \
 Miriade ha specificato che l’obiettivo è ottenere risultati il più possibile accurati, ma che è preferibile utilizzare *#gloss[API] o modelli già disponibili*, soprattutto per la parte di conversazione. \
-Inoltre, è stato specificato che, qualora la risposta generata non fosse sufficientemente accurata, il sistema deve evitare di rispondere.
+Inoltre, è stato specificato che, qualora la risposta generata non fosse sufficientemente accurata, il #gloss[sistema] deve evitare di rispondere.
 
 == Gestione della privacy e dei dati utente
 In merito al trattamento dei dati, in particolare per quanto riguarda il contatto tra utenti e *#gloss[LLM]*, \

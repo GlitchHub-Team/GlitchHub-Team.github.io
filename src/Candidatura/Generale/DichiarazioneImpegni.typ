@@ -42,8 +42,8 @@
 )
 
 = Introduzione
-Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
-Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - Sistema di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
+Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - #gloss[Sistema] di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
+Il gruppo GlitchHub Team si impegna formalmente alla realizzazione del Capitolato *C7 - #gloss[Sistema] di acquisizione dati e sensori*, proposto dall'azienda *M31 S.r.l.*, nell'ambito del progetto di Ingegneria del Software presso l'Università degli Studi di Padova.\
 Con la presente dichiarazione i membri del gruppo assumono l'impegno di svolgere con responsabilità e continuità tutte le attività previste dal progetto, rispettando i ruoli assegnati, le scadenze concordate e gli standard di qualità definiti.
 
 = Analisi dei ruoli
@@ -67,20 +67,20 @@ L'Amministratore si occupa della gestione delle risorse informatiche e del setup
 La sua attività include la selezione, messa in opera e manutenzione degli strumenti tecnici, oltre alla gestione di eventuali segnalazioni di malfunzionamenti. Si tratta di un ruolo essenziale per garantire continuità e stabilità al processo di sviluppo.
 
 == Analista
-L'Analista è la figura incaricata di definire i requisiti del sistema e di modellare i casi d'uso. \
+L'Analista è la figura incaricata di definire i requisiti del #gloss[sistema] e di modellare i casi d'uso. \
 Riveste un ruolo cruciale nelle fasi iniziali del progetto, poiché traduce le esigenze del #gloss[committente] in specifiche tecniche e funzionali. \
 Deve possedere conoscenze approfondite del dominio del problema e buone capacità comunicative, poiché la chiarezza dei requisiti influenza in modo diretto il successo dell'intero progetto. \
 Gli analisti partecipano soprattutto alle prime fasi di progettazione, fornendo le basi per il lavoro dei progettisti e programmatori.
 
 == Progettista
-Il Progettista definisce l'architettura del sistema e le scelte tecnologiche principali. \
+Il Progettista definisce l'architettura del #gloss[sistema] e le scelte tecnologiche principali. \
 È responsabile della coerenza interna del software e della qualità del design, garantendo che le soluzioni adottate siano efficienti, mantenibili e scalabili.\
-Deve possedere competenze tecniche avanzate (soprattutto aggiornate) e una visione d'insieme del sistema, in modo da guidare correttamente lo sviluppo. \
+Deve possedere competenze tecniche avanzate (soprattutto aggiornate) e una visione d'insieme del #gloss[sistema], in modo da guidare correttamente lo sviluppo. \
 Generalmente segue il progetto nella fase di realizzazione, ma non durante la manutenzione.
 
 == Programmatore
 Il Programmatore realizza il codice seguendo le specifiche fornite dal Progettista. \
-È la figura più numerosa e operativa del gruppo, impegnata nella concreta implementazione delle funzionalità previste, ponendo anche attenzione alla manutenzione del sistema. \
+È la figura più numerosa e operativa del gruppo, impegnata nella concreta implementazione delle funzionalità previste, ponendo anche attenzione alla manutenzione del #gloss[sistema]. \
 Oltre a scrivere codice, contribuisce alla manutenzione e all'integrazione del prodotto. \
 Pur avendo competenze tecniche, ha margini decisionali limitati, operando nel rispetto delle linee guida progettuali stabilite a monte.
 
@@ -199,7 +199,7 @@ Come evidenziato nella tabella, la distribuzione delle ore è omogenea tra i com
 
 == Criteri di rotazione dei ruoli
 Il gruppo, dopo aver definito una durata dello *#gloss[Sprint]* pari a *una settimana*, ha stabilito di effettuare la rotazione dei ruoli ogni *due settimane*. \
-Questa scelta permette a ciascun componente di ricoprire tutti i ruoli nell'arco del Progetto Didattico e consente di includere due #gloss[Sprint] all'interno del periodo di rotazione, così da individuare e correggere eventuali criticità legate all'assunzione di un nuovo ruolo.
+Questa scelta permette a ciascun componente di ricoprire tutti i ruoli nell'arco del #gloss[Progetto Didattico] e consente di includere due #gloss[Sprint] all'interno del periodo di rotazione, così da individuare e correggere eventuali criticità legate all'assunzione di un nuovo ruolo.
 
 Una rotazione con frequenza inferiore non garantirebbe un sufficiente periodo di adattamento e non favorirebbe l'apprendimento delle competenze richieste. \
 Inoltre, ogni componente si impegna a trasferire al proprio successore le conoscenze maturate nello svolgimento del ruolo, al fine di agevolare e velocizzare l'inserimento.

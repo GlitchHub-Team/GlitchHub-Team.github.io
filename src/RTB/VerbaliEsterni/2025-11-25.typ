@@ -44,12 +44,12 @@ L'incontro è stato organizzato per ottenere maggiore chiarezza sui casi d'uso. 
 È stato chiarito che i casi d'uso hanno il compito di rendere quantificabili gli User Need.\
 
 Durante l'incontro sono stati approfonditi alcuni punti importanti riguardo alla gestione dei casi d'uso relativi ai #gloss[requisiti non funzionali].
-Anzitutto, è stato ribadito che un caso d'uso può essere definito tale soltanto quando coinvolge un attore. I #gloss[requisiti non funzionali], invece, non vengono rappresentati tramite casi d'uso: per questi si utilizzano delle specifiche che descrivono nel dettaglio come il software deve essere realizzato affinché tali requisiti siano soddisfatti.\
+Anzitutto, è stato ribadito che un #gloss[caso d'uso] può essere definito tale soltanto quando coinvolge un #gloss[attore]. I #gloss[requisiti non funzionali], invece, non vengono rappresentati tramite casi d'uso: per questi si utilizzano delle specifiche che descrivono nel dettaglio come il software deve essere realizzato affinché tali requisiti siano soddisfatti.\
 
 Per rendere più chiari questi concetti, sono stati discussi alcuni esempi tratti direttamente dal nostro progetto. È stato sottolineato che:
-- il Gateway non può essere considerato un attore;
-- l'utente non può essere attore di sé stesso nei casi d'uso;
-- il Bluetooth, invece, è considerato un attore, poiché rappresenta un'entità esterna non completamente controllabile dal sistema.
+- il #gloss[Gateway] non può essere considerato un #gloss[attore];
+- l'utente non può essere #gloss[attore] di sé stesso nei casi d'uso;
+- il Bluetooth, invece, è considerato un #gloss[attore], poiché rappresenta un'entità esterna non completamente controllabile dal #gloss[sistema].
 
 == Stabilire giorno settimanale per futuri incontri
 È stato richiesto all'azienda di definire un giorno ricorrente per i futuri incontri, a causa delle indisponibilità di alcuni membri del gruppo in determinate giornate. \
