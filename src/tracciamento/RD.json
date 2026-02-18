@@ -1,0 +1,92 @@
+[
+    {
+        "id": "RD-Architettura-tre-livelli",
+        "urgenza": "Obb",
+        "desc": "È richiesto l'uso di un'architettura a tre livelli: sensori simulati, simulatore di gateway e cloud.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §3"
+        ]
+    },
+    {
+        "id": "RD-Gateway-intermediari",
+        "urgenza": "Obb",
+        "desc": "È necessario l'utilizzo di gateway come intermediari obbligatori: i sensori simulati non devono comunicare direttamente con il cloud.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §2.2"
+        ]
+    },
+    {
+        "id": "RD-Clienti-simultanei",
+        "urgenza": "Obb",
+        "desc": "Il sistema deve supportare più clienti simultanei.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 3"
+        ]
+    },
+    {
+        "id": "RD-Dati-logicamente-separati-per-tenant",
+        "urgenza": "Obb",
+        "desc": "I dati devono essere logicamente separati per tenant.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 3"
+        ]
+    },
+    {
+        "id": "RD-Piu-sensori-simulati",
+        "urgenza": "Obb",
+        "desc": "I dati devono poter provenire da sensori simulati differenti.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 2.3"
+        ]
+    },
+    {
+        "id": "RD-Dati-interrogabili-intervallo-temporale",
+        "urgenza": "Obb",
+        "desc": "I dati devono essere associati a un timestamp ed essere interrogabili per intervallo temporale.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 4.2.1"
+        ]
+    },
+    {
+        "id": "RD-Dati-interrogabili-intervallo-temporale-sensore",
+        "urgenza": "Obb",
+        "desc": "I dati devono essere associati a un timestamp ed essere interrogabili per sensore e per intervallo temporale.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 4.2.1"
+        ]
+    },
+    {
+        "id": "RD-Persistenza-gateway-sensori",
+        "urgenza": "Obb",
+        "desc": "Gateway e sensori devono essere registrati, associati a un tenant e riconosciuti in modo persistente dal sistema.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 2.4"
+        ]
+    },
+    {
+        "id": "RD-Accesso-dati-storici",
+        "urgenza": "Obb",
+        "desc": "Il dominio richiede l'accesso ai dati storici.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 4.2.1"
+        ]
+    },
+    {
+        "id": "RD-Accesso-dati-real-time",
+        "urgenza": "Obb",
+        "desc": "Il dominio richiede l'accesso ai dati in tempo reale tramite stream.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 4.2.2"
+        ]
+    }
+]
