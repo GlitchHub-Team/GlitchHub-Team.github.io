@@ -22,7 +22,7 @@ jobs:
       - name: Install Typst
         uses: typst-community/setup-typst@v4
         with:
-          typst-version: '0.13.1'
+          typst-version: '0.14.1'
       
       - name: Setup Go
         uses: actions/setup-go@v5
@@ -31,7 +31,11 @@ jobs:
       
       - name: Install Go dependencies
         run: go mod tidy
-        working-directory: script/
+        working-directory: script/scriptHomePage
+
+      - name: Install Go dependencies Glossary
+        run: go mod tidy
+        working-directory: script/scriptGlossary
       
       - name: Run bash
         run: | 
@@ -50,38 +54,46 @@ jobs:
           if-no-files-found: error
 
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Download website files and PDFs artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: website-pdf-files
-          path: website/
-      
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.24.3'
-      
-      - name: Install Go dependencies
-        run: go mod tidy
-        working-directory: script/
-      
-      - name: Render HTML with Go
-        run: go run renderHTMLwithPDFs.go
-        working-directory: script/
-      
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: website/
-      
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      needs: build
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Download website files and PDFs artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: website-pdf-files
+            path: website/
+
+        - name: Setup Go
+          uses: actions/setup-go@v5
+          with:
+            go-version: '1.24.3'
+
+        - name: Install Go dependencies
+          run: go mod tidy
+          working-directory: script/scriptHomePage/
+
+        - name: Render HTML with Go
+          run: go run renderHTMLwithPDFs.go
+          working-directory: script/scriptHomePage/
+
+        - name: Install Go dependencies
+          run: go mod tidy
+          working-directory: script/scriptGlossary/
+
+        - name: Render HTML with Go for Glossary
+          run: go run main.go
+          working-directory: script/scriptGlossary/
+
+        - name: Configure GitHub Pages
+          uses: actions/configure-pages@v5
+
+        - name: Upload Pages artifact
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: website/
+
+        - name: Deploy to GitHub Pages
+          uses: actions/deploy-pages@v4

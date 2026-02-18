@@ -1,0 +1,2608 @@
+[
+    {
+        "id": "RF-Autenticazione-utente",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve avere la possibilità di autenticarsi presso il Sistema",
+        "ref_uc": [
+            "<Autenticazione-utente>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-email-auth",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve inserire la propria email per autenticarsi",
+        "ref_uc": [
+            "<Inserimento-email-auth>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-password",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve inserire la propria password per autenticarsi",
+        "ref_uc": [
+            "<Autenticazione-utente>",
+            "<Inserimento-password>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Autenticazione-non-riuscita",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve ricevere un messaggio di errore in caso di inserimento di credenziali errate",
+        "ref_uc": [
+            "<Autenticazione-non-riuscita>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Account-sospeso",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve ricevere un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso",
+        "ref_uc": [
+            "<Account-sospeso>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Re-invio-codice-2FA",
+        "urgenza": "Opt",
+        "desc": "L'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, deve poter richiedere il re-invio del codice di verifica nel caso in cui non lo abbia ricevuto o sia scaduto",
+        "ref_uc": [
+            "<Re-invio-codice-2FA>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Autenticazione-2FA",
+        "urgenza": "Opt",
+        "desc": "L'Utente non autenticato, dopo aver inserito delle credenziali corrette per un account con 2FA attiva, deve poter completare l'autenticazione a due fattori per autenticarsi nel Sistema",
+        "ref_uc": [
+            "<Autenticazione-2FA>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-codice-2FA",
+        "urgenza": "Opt",
+        "desc": "L'Utente non autenticato deve poter inserire il codice di verifica ricevuto via mail per completare l'autenticazione, in caso sia richiesta la 2FA",
+        "ref_uc": [
+            "<Inserimento-codice-2FA>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Codice-2FA-errato",
+        "urgenza": "Opt",
+        "desc": "L'Utente non autenticato deve ricevere un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto",
+        "ref_uc": [
+            "<Codice-2FA-errato>",
+            "<Codice-2FA-scaduto>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Impostazione-password",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve poter impostare la sua prima password, in seguito alla ricezione della mail contenente il link per la creazione della prima password",
+        "ref_uc": [
+            "<Impostazione-password>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-nuova-password",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve poter inserire la nuova password durante l'impostazione o reimpostazione della password",
+        "ref_uc": [
+            "<Inserimento-nuova-password>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-password",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve poter inserire la conferma della nuova password durante l'impostazione o reimpostazione della password",
+        "ref_uc": [
+            "<Conferma-password>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Password-non-coincidenti",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se la nuova password e la conferma non coincidono",
+        "ref_uc": [
+            "<Password-non-coincidenti>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Password-non-conforme-criteri-sicurezza",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se la nuova password non rispetta i criteri di sicurezza",
+        "ref_uc": [
+            "<Password-non-conforme-criteri-sicurezza>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Link-impostazione-password-scaduto",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se l'Utente tenta di usare un link di impostazione password scaduto",
+        "ref_uc": [
+            "<Link-impostazione-password-scaduto>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Password-dimenticata",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve poter richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata",
+        "ref_uc": [
+            "<Password-dimenticata>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-indirizzo-email",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve poter inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password",
+        "ref_uc": [
+            "<Inserimento-indirizzo-email>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Indirizzo-email-non-associato-account",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve ricevere un messaggio di errore se inserisce un indirizzo email non associato ad alcun account durante la richiesta di reimpostazione password",
+        "ref_uc": [
+            "<Indirizzo-email-non-associato-account>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Reimpostazione-password-dimenticata",
+        "urgenza": "Obb",
+        "desc": "L'Utente non autenticato deve poter reimpostare la propria password tramite il link ricevuto via email",
+        "ref_uc": [
+            "<Reimpostazione-password-dimenticata>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-sensori-associati-tenant",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter visualizzare la lista dei sensori associati al proprio tenant",
+        "ref_uc": [
+            "<Visualizzazione-lista-sensori-associati-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-identificativo-sensore-in-lista",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato visualizzando la lista dei sensori associati al proprio tenant, deve poter visualizzare l'identificativo di ciascun sensore nella lista",
+        "ref_uc": [
+            "<Visualizzazione-singolo-sensore-associato-tenant-in-lista>",
+            "<Visualizzazione-identificativo-sensore-in-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-dashboard-generica",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter visualizzare la propria dashboard personale",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-generica>",
+            "<Visualizzazione-numero-sensori-attivi-non-attivi>",
+            "<Visualizzazione-numero-gateway-attivi-non-attivi>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-alert",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-generica>",
+            "<Visualizzazione-lista-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-sensori-attivi-non-attivi",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei sensori attivi e non attivi associati al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-generica>",
+            "<Visualizzazione-numero-sensori-attivi-non-attivi>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-gateway-attivi-non-attivi",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare il numero dei gateway attivi e non attivi associati al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-generica>",
+            "<Visualizzazione-numero-gateway-attivi-non-attivi>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Gateway-non-raggiungibile",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare l'Admin generico nel caso in cui il gateway a cui ha inviato dei comandi non sia raggiungibile",
+        "ref_uc": [
+            "<Gateway-non-raggiungibile>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Email-gia-utilizzata",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore all'Admin generico nel caso in cui venga inserita un'email già associata ad un altro Tenant User durante la registrazione di un nuovo Tenant User",
+        "ref_uc": [
+            "<Email-gia-utilizzata>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-email",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, registrando un nuovo utente, deve inserire l'indirizzo email associato al nuovo Tenant User",
+        "ref_uc": [
+            "<Inserimento-email>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-tenant-user",
+        "urgenza": "Des",
+        "desc": "L'Admin generico deve poter sospendere l'accesso di un Tenant User al Sistema",
+        "ref_uc": [
+            "<Sospensione-tenant-user>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-sospensione-tenant-user",
+        "urgenza": "Des",
+        "desc": "Il Sistema deve richiedere conferma all'Admin generico prima di sospendere l'accesso di un Tenant User al Sistema",
+        "ref_uc": [
+            "<Conferma-sospensione-tenant-user>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-tenant-user",
+        "urgenza": "Des",
+        "desc": "L'Admin generico deve poter riattivare l'accesso di un Tenant User al Sistema",
+        "ref_uc": [
+            "<Riattivazione-tenant-user>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-riattivazione-tenant-user",
+        "urgenza": "Des",
+        "desc": "Il Sistema deve richiedere conferma all'Admin generico prima di riattivare l'accesso di un Tenant User al Sistema",
+        "ref_uc": [
+            "<Conferma-riattivazione-tenant-user>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-tenant-user",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico deve poter eliminare un Tenant User al Sistema",
+        "ref_uc": [
+            "<Eliminazione-tenant-user>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-eliminazione-tenant-user",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve richiedere conferma all'Admin generico prima di eliminare un Tenant User al Sistema",
+        "ref_uc": [
+            "<Conferma-eliminazione-tenant-user>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-richieste-commissioning-decommissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico deve poter visualizzare la lista di tutte le richieste di commissioning e decommissioning di gateway associate al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-richiesta-di-commissioning-decommissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico deve poter visualizzare la richiesta di commissioning e decommissioning di gateway associate al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-utenti-tenant",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico deve poter visualizzare la lista di tutti gli utenti associati al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-lista-utenti-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-email-utente-lista",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere l'email di ciascun utente nella lista",
+        "ref_uc": [
+            "<Visualizzazione-singolo-utente-in-lista>",
+            "<Visualizzazione-email-utente-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-utente-lista",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, deve poter vedere lo stato (attivo/sospeso) di ciascun utente nella lista",
+        "ref_uc": [
+            "<Visualizzazione-singolo-utente-in-lista>",
+            "<Visualizzazione-stato-utente-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-gateway-associati",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico deve poter visualizzare la lista dei gateway associati al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-lista-gateway-associati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-nome-gateway-lista",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare il nome del gateway nella lista",
+        "ref_uc": [
+            "<Visualizzazione-singolo-gateway-in-lista>",
+            "<Visualizzazione-nome-gateway-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-gateway-lista",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, deve visualizzare lo stato del gateway nella lista",
+        "ref_uc": [
+            "<Visualizzazione-singolo-gateway-in-lista>",
+            "<Visualizzazione-stato-gateway-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-gateway-associato",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico deve poter visualizzare un gateway associato al proprio Tenant nel dettaglio",
+        "ref_uc": [
+            "<Visualizzazione-gateway-associato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-nome-gateway-associato",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare il nome del gateway",
+        "ref_uc": [
+            "<Visualizzazione-nome-gateway-associato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-gateway-associato",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare lo stato del gateway",
+        "ref_uc": [
+            "<Visualizzazione-stato-gateway-associato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-sensori-collegati-gateway-associato",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, deve visualizzare i sensori collegati al gateway",
+        "ref_uc": [
+            "<Visualizzazione-sensori-collegati-gateway-associato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista",
+        "urgenza": "Obb",
+        "desc": "L'Admin generico, visualizzando la lista dei sensori collegati al gateway, deve poter visualizzare per ogni sensore l'identificativo",
+        "ref_uc": [
+            "<Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Registrazione-nuova-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico deve poter registrare una nuova API key associata al proprio Tenant",
+        "ref_uc": [
+            "<Registrazione-nuova-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-nome-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, registrando una nuova API key, deve inserire un nome identificativo per la chiave",
+        "ref_uc": [
+            "<Inserimento-nome-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-scadenza-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, registrando una nuova API key, deve inserire la data di scadenza della chiave",
+        "ref_uc": [
+            "<Inserimento-scadenza-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Nome-api-key-gia-utilizzato",
+        "urgenza": "Des",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se l'Admin generico inserisce un nome identificativo già esistente per una API key durante la registrazione di una nuova chiave",
+        "ref_uc": [
+            "<Registrazione-nuova-api-key>",
+            "<Inserimento-nome-api-key>",
+            "<Nome-api-key-gia-utilizzato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Scadenza-api-key-data-passata",
+        "urgenza": "Des",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se l'Admin generico inserisce una data di scadenza già passata durante la registrazione di una nuova API key",
+        "ref_uc": [
+            "<Registrazione-nuova-api-key>",
+            "<Inserimento-scadenza-api-key>",
+            "<Scadenza-api-key-data-passata>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico deve poter visualizzare la lista di tutte le API key associate al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-lista-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-nome-singola-api-key-lista",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere il nome dell'API key",
+        "ref_uc": [
+            "<Visualizzazione-lista-api-key>",
+            "<Visualizzazione-singola-api-key-lista>",
+            "<Visualizzazione-nome-singola-api-key-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-creazione-singola-api-key-lista",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di creazione dell'API key",
+        "ref_uc": [
+            "<Visualizzazione-lista-api-key>",
+            "<Visualizzazione-singola-api-key-lista>",
+            "<Visualizzazione-data-creazione-singola-api-key-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-scadenza-singola-api-key-lista",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, deve poter vedere la data di scadenza dell'API key",
+        "ref_uc": [
+            "<Visualizzazione-lista-api-key>",
+            "<Visualizzazione-singola-api-key-lista>",
+            "<Visualizzazione-data-scadenza-singola-api-key-lista>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-dettagli-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico deve poter visualizzare una API key associata al proprio Tenant nel dettaglio",
+        "ref_uc": [
+            "<Visualizzazione-dettagli-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-nome-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare il nome dell'API key",
+        "ref_uc": [
+            "<Visualizzazione-dettagli-api-key>",
+            "<Visualizzazione-nome-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-creazione-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare la data di creazione dell'API key",
+        "ref_uc": [
+            "<Visualizzazione-dettagli-api-key>",
+            "<Visualizzazione-data-creazione-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-scadenza-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare la data di scadenza dell'API key",
+        "ref_uc": [
+            "<Visualizzazione-dettagli-api-key>",
+            "<Visualizzazione-data-scadenza-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Grafico-utilizzo-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, deve visualizzare un grafico che mostri l'utilizzo dell'API key",
+        "ref_uc": [
+            "<Visualizzazione-dettagli-api-key>",
+            "<Grafico-utilizzo-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-api-key",
+        "urgenza": "Des",
+        "desc": "L'Admin generico deve poter eliminare una API key associata al proprio Tenant",
+        "ref_uc": [
+            "<Eliminazione-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-eliminazione-api-key",
+        "urgenza": "Des",
+        "desc": "Il Sistema deve richiedere conferma all'Admin generico prima di eliminare una API key associata al proprio Tenant",
+        "ref_uc": [
+            "<Eliminazione-api-key>",
+            "<Conferma-eliminazione-api-key>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-audit-log",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico deve poter visualizzare la lista di tutti gli audit log relativi al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-audit-log>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-nome-utente-audit-log",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il nome dell'utente che ha generato l'evento",
+        "ref_uc": [
+            "<Visualizzazione-audit-log>",
+            "<Visualizzazione-singolo-audit-log>",
+            "<Visualizzazione-nome-utente-audit-log>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tipo-azione-audit-log",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico, visualizzando la lista degli audit log, deve poter vedere il tipo di azione eseguita in ogni evento",
+        "ref_uc": [
+            "<Visualizzazione-audit-log>",
+            "<Visualizzazione-singolo-audit-log>",
+            "<Visualizzazione-tipo-azione-audit-log>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-timestamp-azione-audit-log",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico, visualizzando la lista degli audit log, deve visualizzare il timestamp dell'evento",
+        "ref_uc": [
+            "<Visualizzazione-audit-log>",
+            "<Visualizzazione-singolo-audit-log>",
+            "<Visualizzazione-timestamp-azione-audit-log>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Filtraggio-log-per-tipologia",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico deve poter filtrare gli audit log in base al tipo di azione eseguita",
+        "ref_uc": [
+            "<Filtraggio-log-per-tipologia>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Filtraggio-log-per-intervallo-temporale",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico deve poter filtrare gli audit log in base ad un intervallo temporale",
+        "ref_uc": [
+            "<Filtraggio-log-per-intervallo-temporale>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Filtraggio-log-per-utente",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico deve poter filtrare gli audit log in base all'utente che ha generato l'evento",
+        "ref_uc": [
+            "<Filtraggio-log-per-utente>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Esportazione-log",
+        "urgenza": "Opt",
+        "desc": "L'Admin generico deve poter esportare gli audit log in un file scaricabile",
+        "ref_uc": [
+            "<Esportazione-log>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-dashboard-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter visualizzare la propria dashboard personale",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-sensori-attivi-non-attivi-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare il numero di sensori attivi e non associati al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-tenant-admin>",
+            "<Visualizzazione-numero-sensori-attivi-non-attivi>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-gateway-attivi-non-attivi-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare il numero di gateway attivi e non associati al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-tenant-admin>",
+            "<Visualizzazione-numero-gateway-attivi-non-attivi>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-alert-admin",
+        "urgenza": "Opt",
+        "desc": "Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-tenant-admin>",
+            "<Visualizzazione-lista-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-api-key-valide-scadute",
+        "urgenza": "Des",
+        "desc": "Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare il numero di API key valide e scadute",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-tenant-admin>",
+            "<Visualizzazione-numero-api-key-valide-scadute>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-richieste-commissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare lo stato delle richieste di commissioning gateway associate al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-tenant-admin>",
+            "<Visualizzazione-stato-richieste-commissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-richieste-decommissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare lo stato delle richieste di decommissioning gateway associate al proprio Tenant",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-tenant-admin>",
+            "<Visualizzazione-stato-richieste-decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Creazione-richiesta-commissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter creare una nuova richiesta di commissioning gateway",
+        "ref_uc": [
+            "<Creazione-richiesta-commissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Creazione-richiesta-decommissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter creare una nuova richiesta di decommissioning gateway",
+        "ref_uc": [
+            "<Creazione-richiesta-decommissioning-gateway>",
+            "<Selezione-gateway-decommissioning-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-richiesta-commissioning-decommissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter eliminare una richiesta di commissioning o decommissioning gateway precedentemente creata, purché essa non sia stata ancora evasa",
+        "ref_uc": [
+            "<Eliminazione-richiesta-commissioning-decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-eliminazione-richiesta-commissioning-decommissioning",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve richiedere conferma al Tenant Admin prima di eliminare una richiesta di commissioning o decommissioning gateway",
+        "ref_uc": [
+            "<Eliminazione-richiesta-commissioning-decommissioning-gateway>",
+            "<Conferma-eliminazione-richiesta-commissioning-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-sensore-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant",
+        "ref_uc": [
+            "<Sospensione-sensore-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-sensore-fallita-gateway-irraggiungibile",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore",
+        "ref_uc": [
+            "<Sospensione-sensore-tenant-admin>",
+            "<Gateway-non-raggiungibile>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-sensore-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant",
+        "ref_uc": [
+            "<Riattivazione-sensore-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-sensore-fallita-gateway-irraggiungibile",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore",
+        "ref_uc": [
+            "<Riattivazione-sensore-tenant-admin>",
+            "<Gateway-non-raggiungibile>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-gateway-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter sospendere l'invio di dati da parte di un gateway appartenente al proprio Tenant",
+        "ref_uc": [
+            "<Sospensione-gateway-tenant-admin>",
+            "<Seleziona-gateway-per-invio-comando-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-gateway-fallita-gateway-irraggiungibile",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore",
+        "ref_uc": [
+            "<Sospensione-gateway-tenant-admin>",
+            "<Gateway-non-raggiungibile>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-gateway-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter riattivare l'invio di dati da parte di un gateway appartenente al proprio Tenant",
+        "ref_uc": [
+            "<Riattivazione-gateway-tenant-admin>",
+            "<Seleziona-gateway-per-invio-comando-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-gateway-fallita-gateway-irraggiungibile",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore",
+        "ref_uc": [
+            "<Riattivazione-gateway-tenant-admin>",
+            "<Gateway-non-raggiungibile>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riavvio-gateway-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter riavviare un gateway appartenente al proprio Tenant",
+        "ref_uc": [
+            "<Riavvio-gateway-tenant-admin>",
+            "<Seleziona-gateway-per-invio-comando-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Modifica-target-freq-invio-dati-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Tenant Admin deve poter modificare il target di frequenza d'invio dati per tipologia di sensore di un gateway associato al proprio tenant",
+        "ref_uc": [
+            "<Modifica-target-freq-invio-dati-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riavvio-gateway-fallita-gateway-irraggiungibile",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poiché esso è in stato di errore",
+        "ref_uc": [
+            "<Riavvio-gateway-tenant-admin>",
+            "<Gateway-non-raggiungibile>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-commissioning",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter confermare al Cloud che il processo di commissioning è stato completato con successo",
+        "ref_uc": [
+            "<Conferma-comando-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Avvio-invio-dati-post-commissioning",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve cominciare ad inviare i dati una volta completato il processo di commissioning",
+        "ref_uc": [
+            "<Conferma-comando-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Errore-commissioning",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve inviare al Cloud la presenza di errori durante il processo di commissioning",
+        "ref_uc": [
+            "<Errore-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-decommissioning",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter confermare al Cloud che il processo di decommissioning è stato completato con successo",
+        "ref_uc": [
+            "<Conferma-comando-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Rimozione-associazione-post-decommissioning",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato, dopo aver eseguito il decommissioning, deve rimuovere l'associazione con il tenant e interrompere l'invio dei dati IoT al Cloud",
+        "ref_uc": [
+            "<Conferma-comando-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Nuovo-commissioning-post-decommissioning",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato, dopo aver eseguito il decommissioning, deve ammettere un nuovo commissioning",
+        "ref_uc": [
+            "<Conferma-comando-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Errore-decommissioning",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve segnalare al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning",
+        "ref_uc": [
+            "<Errore-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Annullamento-decommissioning-errore",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve poter annullare il processo di decommissioning quando riceve una notifica di errore dal gateway",
+        "ref_uc": [
+            "<Errore-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Notifica-errore-decommissioning",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare il Super Admin quando un decommissioning viene annullato a causa di un errore segnalato dal gateway",
+        "ref_uc": [
+            "<Errore-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-riavvio",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve confermare al Cloud la corretta esecuzione del riavvio in seguito al comando ricevuto dallo stesso",
+        "ref_uc": [
+            "<Conferma-comando-riavvio>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Errore-riavvio",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve accorgersi se dopo un comando di riavvio presso un gateway simulato egli non risponde dopo un timeout specifico. Di conseguenza deve considerare il gateway in stato di errore e notificare gli utenti del tenant associato",
+        "ref_uc": [
+            "<Errore-riavvio>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-reset",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter reimpostare correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica, ovvero reset",
+        "ref_uc": [
+            "<Conferma-comando-reset>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-successo-reset",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato, dopo aver eseguito il reset correttamente, deve inviare la conferma di successo al Cloud",
+        "ref_uc": [
+            "<Conferma-comando-reset>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-sospensione-invio-dati",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter confermare la sospensione di invio dei dati al Cloud in seguito al comando di sospensione ricevuto dallo stesso",
+        "ref_uc": [
+            "<Conferma-comando-sospensione-invio-dati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-riattivazione-invio-dati",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter confermare la riattivazione dell'invio dei dati al Cloud in seguito al comando di riattivazione ricevuto dallo stesso",
+        "ref_uc": [
+            "<Conferma-comando-riattivazione-invio-dati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-sospensione-sensore",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter confermare la sospensione dell'invio dei dati di un sensore simulato specifico in seguito al comando di sospensione ricevuto dal Cloud",
+        "ref_uc": [
+            "<Conferma-comando-sospensione-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-riattivazione-sensore",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter confermare la riattivazione dell'invio dei dati di un sensore simulato specifico in seguito al comando di riattivazione ricevuto dal Cloud",
+        "ref_uc": [
+            "<Conferma-comando-riattivazione-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-comando-modifica-frequenza-invio-dati",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter inviare la conferma del cambiamento della frequenza di invio dati al Cloud in seguito al comando di modifica ricevuto dallo stesso",
+        "ref_uc": [
+            "<Conferma-comando-modifica-frequenza-invio-dati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-comando-hello",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato, all'avvio, deve inviare un comando di hello al Cloud per autenticarsi. Il comando deve contenere il proprio ID univoco",
+        "ref_uc": [
+            "<Invio-comando-hello>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Autenticazione-gateway-fallita",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve rifiutare l'autenticazione del gateway in caso quest'ultimo invii credenziali errate",
+        "ref_uc": [
+            "<Autenticazione-gateway-fallita>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Identificativo-gateway-non-trovato",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve rifiutare l'autenticazione del gateway in caso l'ID univoco inviato dal gateway non sia presente nel proprio database",
+        "ref_uc": [
+            "<Identificativo-gateway-non-trovato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dati-crittografati",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve poter inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud",
+        "ref_uc": [
+            "<Invio-dati-crittografati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Buffer-dati-sensori",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve raccogliere i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud",
+        "ref_uc": [
+            "<Invio-dati-crittografati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-dati-buffer-pieno",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve eliminare i dati più vecchi in caso di overflow del buffer",
+        "ref_uc": [
+            "<Invio-dati-crittografati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dati-fallito",
+        "urgenza": "Obb",
+        "desc": "Il gateway simulato deve ritentare l'invio dei dati al Cloud in caso non sia raggiungibile, mantenendo i dati nel buffer fino al successo dell'invio",
+        "ref_uc": [
+            "<Invio-dati-fallito>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Errore-gateway-assenza-dati",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve considerare il gateway in stato di errore nel caso in cui non riceva dati da esso per un periodo di tempo superiore ad una soglia predefinita, notificando gli utenti del tenant associato",
+        "ref_uc": [
+            "<Invio-dati-fallito>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Assenza-prolungata-dati-sensori",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve rilevare l'assenza di dati da un sensore specifico di un gateway simulato allo scadere di un timeout predefinito",
+        "ref_uc": [
+            "<Assenza-prolungata-dati-sensori>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Notifica-assenza-dati-sensore",
+        "urgenza": "Obb",
+        "desc": "Il Cloud, nel caso in cui venga rilevata l'assenza di dati di un sensore di un gateway, deve notificare gli utenti del tenant associato",
+        "ref_uc": [
+            "<Assenza-prolungata-dati-sensori>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Richiesta-dati-real-time-sensore",
+        "urgenza": "Des",
+        "desc": "L'API Client deve poter richiedere i dati real-time di un sensore specifico associato al proprio tenant",
+        "ref_uc": [
+            "<Richiesta-dati-real-time-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Ricezione-dati-real-time-sensore",
+        "urgenza": "Des",
+        "desc": "L'API Client dopo aver richiesto i dati real-time di un sensore specifico deve poter ricevere tali dati in forma coppia valore-timestamp",
+        "ref_uc": [
+            "<Ricezione-dati-real-time-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Richiesta-storico-dati-sensore",
+        "urgenza": "Des",
+        "desc": "L'API Client deve poter richiedere lo storico dei dati di un sensore appartenente al proprio tenant",
+        "ref_uc": [
+            "<Richiesta-storico-dati-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Ricezione-storico-dati-sensore",
+        "urgenza": "Des",
+        "desc": "L'API Client dopo aver richiesto lo storico dei dati di un sensore specifico deve poter ricevere tali dati in forma coppia valore-timestamp",
+        "ref_uc": [
+            "<Ricezione-storico-dati-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sensore-non-trovato",
+        "urgenza": "Des",
+        "desc": "L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non esistente",
+        "ref_uc": [
+            "<Sensore-non-trovato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Nessun-dato-disponibile-sensore-richiesto",
+        "urgenza": "Des",
+        "desc": "L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore per cui non sono disponibili dati",
+        "ref_uc": [
+            "<Nessun-dato-disponibile-sensore-richiesto>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sensore-non-associato-tenant-API-Client",
+        "urgenza": "Des",
+        "desc": "L'API Client deve ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non associato al proprio tenant",
+        "ref_uc": [
+            "<Sensore-non-associato-tenant-API-Client>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Autenticazione-API-Client",
+        "urgenza": "Des",
+        "desc": "L'API Client deve potersi autenticare nel Sistema utilizzando un'API Key valida",
+        "ref_uc": [
+            "<Autenticazione-API-Client>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Credenziali-API-Client-errate",
+        "urgenza": "Des",
+        "desc": "L'API Client deve ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione non siano valide",
+        "ref_uc": [
+            "<Credenziali-API-Client-errate>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Credenziali-API-Client-scadute",
+        "urgenza": "Des",
+        "desc": "L'API Client deve ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione siano scadute",
+        "ref_uc": [
+            "<Credenziali-API-Client-scadute>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-nuovo-dato-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Sensore simulato deve inviare i dati rilevati al gateway a cui è collegato",
+        "ref_uc": [
+            "<Invio-nuovo-dato-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Normalizzazione-dati-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Sistema Gateway alla ricezione dei dati dei sensori deve normalizzarli",
+        "ref_uc": [
+            "<Invio-nuovo-dato-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Formattazione-dati-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Sistema Gateway alla ricezione dei dati dei sensori deve formattarli secondo un formato interno standardizzato",
+        "ref_uc": [
+            "<Invio-nuovo-dato-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Salvataggio-buffer-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Sistema Gateway alla ricezione dei dati dei sensori deve salvarli in un buffer interno prima di inviarli al Cloud",
+        "ref_uc": [
+            "<Invio-nuovo-dato-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dati-eccessivi-gateway",
+        "urgenza": "Obb",
+        "desc": "In caso uno o più Sensori simulati inviino una quantità di dati superiore alla capacità di invio del gateway verso il Cloud, il gateway deve salvare i dati più recenti nel buffer interno eliminando i dati più vecchi per fare spazio ai nuovi dati",
+        "ref_uc": [
+            "<Invio-dati-eccessivi-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dato-heart-rate-service",
+        "urgenza": "Obb",
+        "desc": "Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Heart Rate Service (GATT)",
+        "ref_uc": [
+            "<Invio-dato-heart-rate-service>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dato-pulse-oximeter-service",
+        "urgenza": "Obb",
+        "desc": "Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Pulse Oximeter Service (GATT)",
+        "ref_uc": [
+            "<Invio-dato-pulse-oximeter-service>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dato-ecg-custom",
+        "urgenza": "Obb",
+        "desc": "Il Sensore simulato deve poter inviare al gateway i dati relativi ad un profilo custom per l'elettrocardiogramma (ECG)",
+        "ref_uc": [
+            "<Invio-dato-ecg-custom>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dato-health-thermometer-service",
+        "urgenza": "Obb",
+        "desc": "Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Health Thermometer Service (GATT)",
+        "ref_uc": [
+            "<Invio-dato-health-thermometer-service>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Invio-dato-environmental-sensing-service",
+        "urgenza": "Obb",
+        "desc": "Il Sensore simulato deve poter inviare al gateway i dati relativi al servizio Environmental Sensing Service (GATT)",
+        "ref_uc": [
+            "<Invio-dato-environmental-sensing-service>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-autenticazione-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare la conferma di autenticazione avvenuta correttamente al gateway, in seguito ad un tentativo di autenticazione andato a buon fine",
+        "ref_uc": [
+            "<Conferma-autenticazione-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Rifiuto-autenticazione-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare il rifiuto di autenticazione al gateway, in seguito ad un tentativo di autenticazione fallito",
+        "ref_uc": [
+            "<Rifiuto-autenticazione-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Assegnazione-tenant-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare al gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine",
+        "ref_uc": [
+            "<Assegnazione-tenant-gateway>",
+            "<Invio-tenant-associato-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-sensore-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico. In seguito alla ricezione del comando il gateway deve ricominciare ad inviare dati IoT crittografati relativi a tale Sensore",
+        "ref_uc": [
+            "<Riattivazione-sensore-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-sensore-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare al gateway il comando di sospensione di un Sensore simulato non sospeso specifico. In seguito alla ricezione del comandi il gateway deve interrompere l'invio di dati IoT crittografati relativi a tale Sensore",
+        "ref_uc": [
+            "<Sospensione-sensore-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare, al gateway sospeso, il comando di riattivazione. In seguito alla ricezione del comando il gateway deve ricominciare l'invio di tutti i dati IoT crittografati",
+        "ref_uc": [
+            "<Riattivazione-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare, al gateway attivo, il comando di sospensione. In seguito alla ricezione del comando il gateway deve interrompere l'invio di tutti i dati IoT crittografati",
+        "ref_uc": [
+            "<Sospensione-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riavvio-gateway-cloud",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare al gateway il comando di riavvio. In seguito alla ricezione del comando il gateway deve spegnersi e riaccendersi, mantenendo le configurazioni e i dati salvati localmente",
+        "ref_uc": [
+            "<Riavvio-gateway-cloud>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Modifica-frequenza-invio-dati-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare al gateway il comando di modifica della frequenza di invio dati per uno specifico tipo di sensore. In seguito alla ricezione di tale comando il gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud relativi a tutti i sensori di tale tipologia, così da inviare un dato ogni intervallo di tempo specificato nel comando.",
+        "ref_uc": [
+            "<Modifica-frequenza-invio-dati-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Decommissioning-gateway-cloud",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare al gateway il comando di decommissioning. In seguito alla ricezione del comando il gateway deve cancellare l'associazione al tenant e deve eseguire un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning.",
+        "ref_uc": [
+            "<Decommissioning-gateway-cloud>",
+            "<Disassociazione-tenant-gateway>",
+            "<Reset-gateway-cloud>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Reset-gateway-cloud",
+        "urgenza": "Obb",
+        "desc": "Il Cloud deve poter inviare al gateway il comando di reset. In seguito alla ricezione del comando il gateway deve cancellare tutte le configurazioni e i dati salvati localmente, ritornando allo stato iniziale di fabbrica.",
+        "ref_uc": [
+            "<Reset-gateway-cloud>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Logout",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter effettuare il logout dal Sistema",
+        "ref_uc": [
+            "<Logout>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Logout-audit-log",
+        "urgenza": "Opt",
+        "desc": "Il Sistema, a seguito del logout, deve registrare l'evento negli audit log salvando nome utente, timestamp e azione eseguita",
+        "ref_uc": [
+            "<Logout>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Modifica-password",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter modificare la propria password",
+        "ref_uc": [
+            "<Modifica-password>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-vecchia-password",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato, per modificare la password, deve inserire la vecchia password",
+        "ref_uc": [
+            "<Inserimento-vecchia-password>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Vecchia-password-non-corretta",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se la vecchia password inserita non è corretta durante la modifica password",
+        "ref_uc": [
+            "<Vecchia-password-non-corretta>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato deve poter visualizzare i dettagli di un singolo alert",
+        "ref_uc": [
+            "<Visualizzazione-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-titolo-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert, deve poter vedere il titolo dell'alert",
+        "ref_uc": [
+            "<Visualizzazione-titolo-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-descrizione-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert, deve poter vedere la descrizione dell'alert",
+        "ref_uc": [
+            "<Visualizzazione-descrizione-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Mancata-ricezione-gateway",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un Gateway",
+        "ref_uc": [
+            "<Mancata-ricezione-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-id-gateway-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere l'identificativo del gateway",
+        "ref_uc": [
+            "<Visualizzazione-id-gateway-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-timestamp-ultimo-dato-gateway-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il timestamp dell'ultimo dato ricevuto",
+        "ref_uc": [
+            "<Visualizzazione-timestamp-ultimo-dato-gateway-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tempo-inattivita-gateway-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il tempo di inattività",
+        "ref_uc": [
+            "<Visualizzazione-tempo-inattivita-gateway-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Mancata-ricezione-sensore",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un sensore",
+        "ref_uc": [
+            "<Mancata-ricezione-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-id-sensore-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere l'identificativo del sensore",
+        "ref_uc": [
+            "<Visualizzazione-id-sensore-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-timestamp-ultimo-dato-sensore-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il timestamp dell'ultimo dato ricevuto",
+        "ref_uc": [
+            "<Visualizzazione-timestamp-ultimo-dato-sensore-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tempo-inattivita-sensore-alert",
+        "urgenza": "Opt",
+        "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il tempo di inattività",
+        "ref_uc": [
+            "<Visualizzazione-tempo-inattivita-sensore-alert>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-dati-real-time-sensore",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter visualizzare i dati in tempo reale di un sensore selezionato",
+        "ref_uc": [
+            "<Visualizzazione-dati-real-time-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-grafico-real-time-sensore",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter visualizzare i dati real-time del sensore attraverso un grafico time-series con assi etichettati",
+        "ref_uc": [
+            "<Visualizzazione-grafico-real-time-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Aggiornamento-grafico-real-time-sensore",
+        "urgenza": "Obb",
+        "desc": "Il grafico dei dati real-time deve aggiornarsi automaticamente alla ricezione di nuovi dati dal Gateway",
+        "ref_uc": [
+            "<Visualizzazione-grafico-real-time-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-storico-dati-sensore",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter visualizzare lo storico dei dati di un sensore selezionato",
+        "ref_uc": [
+            "<Visualizzazione-storico-dati-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-grafico-storico-sensore",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter visualizzare lo storico dei dati del sensore attraverso un grafico time-series con assi etichettati",
+        "ref_uc": [
+            "<Visualizzazione-grafico-storico-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Filtraggio-dati-storico-sensore",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter filtrare lo storico dei dati del sensore per intervallo temporale",
+        "ref_uc": [
+            "<Filtraggio-dati-storico-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-grafico-filtrato-temporale-sensore",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato",
+        "ref_uc": [
+            "<Visualizzazione-grafico-filtrato-temporale-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Intervallo-temporale-non-valido",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se l'intervallo temporale inserito non è valido",
+        "ref_uc": [
+            "<Intervallo-temporale-non-valido>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Filtraggio-dati-sensore-intervallo-valori",
+        "urgenza": "Obb",
+        "desc": "L'Utente autenticato deve poter filtrare i dati del sensore per intervallo di valori",
+        "ref_uc": [
+            "<Filtraggio-dati-sensore-intervallo-valori>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-grafico-filtrato-valori-sensore",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato",
+        "ref_uc": [
+            "<Visualizzazione-grafico-filtrato-valori-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Intervallo-di-valori-non-valido",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se l'intervallo di valori inserito non è valido",
+        "ref_uc": [
+            "<Intervallo-di-valori-non-valido>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Dati-non-disponibili-sensore-selezionato",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato",
+        "ref_uc": [
+            "<Dati-non-disponibili-sensore-selezionato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Creazione-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter creare un nuovo tenant nel Sistema",
+        "ref_uc": [
+            "<Creazione-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-nome-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un nuovo tenant, deve inserire il nome del tenant",
+        "ref_uc": [
+            "<Creazione-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Clausola-impersonificazione",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un nuovo tenant, deve specificare l'accettazione o meno della clausola di impersonificazione",
+        "ref_uc": [
+            "<Clausola-impersonificazione>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-nome-nuovo-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un nuovo tenant, deve inserire il nome del nuovo tenant",
+        "ref_uc": [
+            "<Inserimento-nome-nuovo-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Nome-tenant-gia-utilizzato",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se il nome del tenant inserito è già in uso",
+        "ref_uc": [
+            "<Nome-tenant-gia-utilizzato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter eliminare un tenant esistente dal Sistema",
+        "ref_uc": [
+            "<Eliminazione-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-e-conferma-tenant-da-eliminare",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve richiedere conferma al Super Admin prima di eliminare un tenant",
+        "ref_uc": [
+            "<Selezione-e-conferma-tenant-da-eliminare>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Decommissioning-gateway-fallito",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve notificare il Super Admin se il decommissioning di un Gateway fallisce durante l'eliminazione del tenant",
+        "ref_uc": [
+            "<Decommissioning-gateway-fallito>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-dashboard-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare la propria dashboard",
+        "ref_uc": [
+            "<Visualizzazione-dashboard-super-admin>"
+        ],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 5"
+        ]
+    },
+    {
+        "id": "RF-Visualizzazione-stato-globale-dei-gateway",
+        "urgenza": "Des",
+        "desc": "Il Super Admin, visualizzando la dashboard, deve poter vedere lo stato globale dei gateway (attivi/non attivi)",
+        "ref_uc": [
+            "<Visualizzazione-stato-globale-dei-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-di-tenant",
+        "urgenza": "Des",
+        "desc": "Il Super Admin, visualizzando la dashboard, deve poter vedere il numero totale di tenant nel Sistema",
+        "ref_uc": [
+            "<Visualizzazione-numero-di-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-gateway-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare la lista di tutti i Gateway registrati nel Sistema",
+        "ref_uc": [
+            "<Visualizzazione-lista-gateway-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-identificativo-univoco-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere l'identificativo univoco di ogni gateway",
+        "ref_uc": [
+            "<Visualizzazione-identificativo-univoco-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-autenticazione-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere lo stato di autenticazione di ogni gateway",
+        "ref_uc": [
+            "<Visualizzazione-stato-autenticazione-gateway>"
+        ],
+        "ref_capitolato": [
+            ""
+        ]
+    },
+    {
+        "id": "RF-Visualizzazione-stato-operativo-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere lo stato operativo di ogni gateway",
+        "ref_uc": [
+            "<Visualizzazione-stato-operativo-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tenant-associato-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, visualizzando la lista dei Gateway, deve poter vedere il tenant associato a ogni gateway",
+        "ref_uc": [
+            "<Visualizzazione-tenant-associato-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-gateway-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare i dettagli di un singolo Gateway",
+        "ref_uc": [
+            "<Visualizzazione-gateway-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Autenticazione-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter autenticare un nuovo Gateway nel Sistema",
+        "ref_uc": [
+            "<Autenticazione-gateway>"
+        ],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 5"
+        ]
+    },
+    {
+        "id": "RF-Certificato-non-valido",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se il certificato del Gateway non è valido durante l'autenticazione",
+        "ref_uc": [
+            "<Certificato-non-valido>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Identificativo-gateway-gia-utilizzato",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve mostrare un messaggio di errore se l'identificativo del Gateway è già utilizzato",
+        "ref_uc": [
+            "<Identificativo-gateway-gia-utilizzato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Associazione-gateway-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter associare un Gateway a un tenant",
+        "ref_uc": [
+            "<Associazione-gateway-tenant>"
+        ],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 5"
+        ]
+    },
+    {
+        "id": "RF-Selezione-gateway-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, associando un Gateway a un tenant, deve selezionare il Gateway da associare",
+        "ref_uc": [
+            "<Selezione-gateway-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-tenant-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, associando un Gateway a un tenant, deve selezionare il tenant di destinazione",
+        "ref_uc": [
+            "<Selezione-tenant-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Decommissioning-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter eseguire il decommissioning di un Gateway",
+        "ref_uc": [
+            "<Decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Reset-gateway",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter eseguire il reset di un Gateway",
+        "ref_uc": [
+            "<Reset-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riavvio-gateway-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter riavviare un Gateway",
+        "ref_uc": [
+            "<Riavvio-gateway-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-gateway-super-admin",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve poter sospendere l'invio dati di un Gateway",
+        "ref_uc": [
+            "<Sospensione-gateway-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-gateway-super-admin",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve poter riattivare l'invio dati di un Gateway sospeso",
+        "ref_uc": [
+            "<Riattivazione-gateway-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Modifica-freq-invio-dati-gateway-super-admin",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve poter modificare il parametro di rolling average di un Gateway",
+        "ref_uc": [
+            "<Modifica-freq-invio-dati-gateway-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-sensore-super-admin",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter sospendere un sensore",
+        "ref_uc": [
+            "<Sospensione-sensore-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-sensore-super-admin",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter riattivare un sensore sospeso",
+        "ref_uc": [
+            "<Riattivazione-sensore-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-gateway-per-invio-comando-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter selezionare un Gateway dalla lista per inviare comandi",
+        "ref_uc": [
+            "<Selezione-gateway-per-invio-comando-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-sensore-invio-comando-super-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter selezionare un sensore dalla lista per inviare comandi",
+        "ref_uc": [
+            "<Selezione-sensore-invio-comando-super-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare la lista di tutti i tenant nel Sistema",
+        "ref_uc": [
+            "<Visualizzazione-lista-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-identificativo-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, visualizzando la lista dei tenant, deve poter vedere l'identificativo di ogni tenant",
+        "ref_uc": [
+            "<Visualizzazione-singolo-tenant-lista>",
+            "<Visualizzazione-identificativo-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Impersonificazione-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter impersonificare un tenant, se la clausola d'impersonazione è stata accettata",
+        "ref_uc": [
+            "<Impersonificazione-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare i dettagli di un singolo tenant",
+        "ref_uc": [
+            "<Visualizzazione-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-identificativo-del-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, visualizzando un tenant, deve poter vedere l'identificativo del tenant",
+        "ref_uc": [
+            "<Visualizzazione-identificativo-del-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-richieste-in-corso-commissioning-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare la lista delle richieste di commissioning Gateway in corso",
+        "ref_uc": [
+            "<Visualizzazione-lista-richieste-in-corso-commissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-ora-richiesta-commissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere data e ora della richiesta",
+        "ref_uc": [
+            "<Visualizzazione-singola-richiesta-commissioning-in-lista>",
+            "<Visualizzazione-data-ora-richiesta-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tenant-richiesta-commissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il tenant richiedente",
+        "ref_uc": [
+            "<Visualizzazione-singola-richiesta-commissioning-in-lista>",
+            "<Visualizzazione-tenant-richiesta-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-gateway-richiesta-commissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di commissioning in lista, deve poter vedere il numero di gateway richiesti",
+        "ref_uc": [
+            "<Visualizzazione-singola-richiesta-commissioning-in-lista>",
+            "<Visualizzazione-numero-gateway-richiesta-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-lista-richieste-in-corso-decommissioning-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare la lista delle richieste di decommissioning Gateway in corso",
+        "ref_uc": [
+            "<Visualizzazione-lista-richieste-in-corso-decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-ora-richiesta-decommissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere data e ora della richiesta",
+        "ref_uc": [
+            "<Visualizzazione-data-ora-richiesta-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tenant-richiesta-decommissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere il tenant richiedente",
+        "ref_uc": [
+            "<Visualizzazione-tenant-richiesta-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-gateway-richiesta-decommissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere il numero di gateway",
+        "ref_uc": [
+            "<Visualizzazione-numero-gateway-richiesta-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-richiesta-decommissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di decommissioning in lista, deve poter vedere lo stato della richiesta",
+        "ref_uc": [
+            "<Visualizzazione-stato-richiesta-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-storico-richieste-commissioning-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare lo storico delle richieste di commissioning Gateway",
+        "ref_uc": [
+            "<Visualizzazione-storico-richieste-commissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-singola-richiesta-storico-commissioning-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando lo storico commissioning, deve poter vedere data e ora di ogni richiesta",
+        "ref_uc": [
+            "<Visualizzazione-singola-richiesta-storico-commissioning-gateway>",
+            "<Visualizzazione-data-ora-richiesta-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tenant-richiesta-commissioning-storico",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando lo storico commissioning, deve poter vedere il tenant richiedente di ogni richiesta",
+        "ref_uc": [
+            "<Visualizzazione-singola-richiesta-storico-commissioning-gateway>",
+            "<Visualizzazione-tenant-richiesta-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-gateway-richiesta-commissioning-storico",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando lo storico commissioning, deve poter vedere il numero di gateway richiesti per ogni richiesta",
+        "ref_uc": [
+            "<Visualizzazione-singola-richiesta-storico-commissioning-gateway>",
+            "<Visualizzazione-numero-gateway-richiesta-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-stato-richiesta-storico-commissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando lo storico commissioning, deve poter vedere lo stato di ogni richiesta",
+        "ref_uc": [
+            "<Visualizzazione-stato-richiesta-storico-commissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-storico-richieste-decommissioning-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare lo storico delle richieste di decommissioning Gateway",
+        "ref_uc": [
+            "<Visualizzazione-storico-richieste-decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-richiesta-commissioning-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare i dettagli di una richiesta di commissioning",
+        "ref_uc": [
+            "<Visualizzazione-richiesta-commissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-ora-richiesta",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere data e ora della richiesta",
+        "ref_uc": [
+            "<Visualizzazione-data-ora-richiesta>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-tenant-richiedente-richiesta",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere il tenant richiedente",
+        "ref_uc": [
+            "<Visualizzazione-tenant-richiedente-richiesta>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-numero-gateway-richiesti",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di commissioning, deve poter vedere il numero di gateway richiesti",
+        "ref_uc": [
+            "<Visualizzazione-numero-gateway-richiesti>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-richiesta-decommissioning-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare i dettagli di una richiesta di decommissioning",
+        "ref_uc": [
+            "<Visualizzazione-richiesta-decommissioning-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-gateway-da-decommissioning",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, visualizzando una richiesta di decommissioning, deve poter vedere i gateway interessati",
+        "ref_uc": [
+            "<Visualizzazione-gateway-da-decommissioning>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Accettazione-richiesta-fornitura-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter accettare una richiesta di commissioning/decommissioning Gateway",
+        "ref_uc": [
+            "<Accettazione-richiesta-fornitura-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Rifiuto-richiesta-fornitura-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter rifiutare una richiesta di commissioning/decommissioning Gateway",
+        "ref_uc": [
+            "<Rifiuto-richiesta-fornitura-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Creazione-utente-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter creare un nuovo utente Tenant Admin",
+        "ref_uc": [
+            "<Creazione-utente-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-tenant",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un Tenant Admin, deve selezionare il tenant di appartenenza",
+        "ref_uc": [
+            "<Selezione-tenant>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-email-nuovo-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un Tenant Admin, deve inserire l'email del nuovo utente",
+        "ref_uc": [
+            "<Inserimento-email-nuovo-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Sospensione-account-tenant-admin",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve poter sospendere un account Tenant Admin",
+        "ref_uc": [
+            "<Sospensione-account-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-tenant-admin-da-sospendere",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve selezionare il Tenant Admin da sospendere",
+        "ref_uc": [
+            "<Selezione-tenant-admin-da-sospendere>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-sospensione-account-tenant-admin",
+        "urgenza": "Des",
+        "desc": "Il Sistema deve richiedere conferma prima di sospendere un account Tenant Admin",
+        "ref_uc": [
+            "<Conferma-sospensione-account-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Riattivazione-account-tenant-admin",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve poter riattivare un account Tenant Admin sospeso",
+        "ref_uc": [
+            "<Riattivazione-account-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-tenant-admin-da-riattivare",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve selezionare il Tenant Admin da riattivare",
+        "ref_uc": [
+            "<Selezione-tenant-admin-da-riattivare>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-riattivazione-account-tenant-admin",
+        "urgenza": "Des",
+        "desc": "Il Sistema deve richiedere conferma prima di riattivare un account Tenant Admin",
+        "ref_uc": [
+            "<Conferma-riattivazione-account-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-account-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter eliminare un account Tenant Admin",
+        "ref_uc": [
+            "<Eliminazione-account-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Selezione-tenant-admin-da-eliminare",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve selezionare il Tenant Admin da eliminare",
+        "ref_uc": [
+            "<Selezione-tenant-admin-da-eliminare>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-eliminazione-account-tenant-admin",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve richiedere conferma prima di eliminare un account Tenant Admin",
+        "ref_uc": [
+            "<Conferma-eliminazione-account-tenant-admin>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Creazione-gateway-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter creare un gateway simulato",
+        "ref_uc": [
+            "<Creazione-gateway-simulato>"
+        ],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 5"
+        ]
+    },
+    {
+        "id": "RF-Inserimento-nome-gateway-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un gateway simulato, deve inserire il nome del gateway",
+        "ref_uc": [
+            "<Inserimento-nome-gateway-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-timeout-inattivita-gateway-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un gateway simulato, deve inserire il timeout di inattività",
+        "ref_uc": [
+            "<Inserimento-timeout-inattivita-gateway-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-dimensione-buffer-gateway-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un gateway simulato, deve inserire la dimensione del buffer",
+        "ref_uc": [
+            "<Inserimento-dimensione-buffer-gateway-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Creazione-sensore-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter creare un sensore simulato",
+        "ref_uc": [
+            "<Creazione-sensore-simulato>"
+        ],
+        "ref_capitolato": [
+            "Capitolato §5.1 -- RQ 5"
+        ]
+    },
+    {
+        "id": "RF-Selezione-servizi-sensore-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un sensore simulato, deve selezionare i servizi GATT da simulare",
+        "ref_uc": [
+            "<Selezione-servizi-sensore-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-timeout-alert-sensore-simulato",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin, creando un sensore simulato, deve inserire il timeout per gli alert",
+        "ref_uc": [
+            "<Inserimento-timeout-alert-sensore-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Inserimento-associazione-gateway-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin, creando un sensore simulato, deve associarlo a un gateway simulato",
+        "ref_uc": [
+            "<Inserimento-associazione-gateway-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-gateway-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter eliminare un gateway simulato",
+        "ref_uc": [
+            "<Eliminazione-gateway-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Seleziona-gateway-simulato-da-eliminare",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve selezionare il gateway simulato da eliminare",
+        "ref_uc": [
+            "<Seleziona-gateway-simulato-da-eliminare>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-eliminazione-gateway-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve richiedere conferma prima di eliminare un gateway simulato",
+        "ref_uc": [
+            "<Conferma-eliminazione-gateway-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Eliminazione-sensore-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter eliminare un sensore simulato",
+        "ref_uc": [
+            "<Eliminazione-sensore-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Seleziona-sensore-simulato-da-eliminare",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve selezionare il sensore simulato da eliminare",
+        "ref_uc": [
+            "<Seleziona-sensore-simulato-da-eliminare>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Conferma-eliminazione-sensore-simulato",
+        "urgenza": "Obb",
+        "desc": "Il Sistema deve richiedere conferma prima di eliminare un sensore simulato",
+        "ref_uc": [
+            "<Conferma-eliminazione-sensore-simulato>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Monitoraggio-metriche-di-sistema",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter monitorare le metriche di sistema",
+        "ref_uc": [
+            "<Monitoraggio-metriche-di-sistema>"
+        ],
+        "ref_capitolato": [
+            "Capitolato §5.5 -- RQ 16"
+        ]
+    },
+    {
+        "id": "RF-Visualizzazione-gateway-offline-online",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare il numero di gateway online/offline",
+        "ref_uc": [
+            "<Visualizzazione-gateway-offline-online>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-throughput-dati",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve poter visualizzare il throughput dati del sistema",
+        "ref_uc": [
+            "<Visualizzazione-throughput-dati>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-utilizzo-risorse-nodi-cloud",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare l'utilizzo delle risorse dei nodi cloud",
+        "ref_uc": [
+            "<Visualizzazione-utilizzo-risorse-nodi-cloud>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-frequenza-disconnessioni-gateway",
+        "urgenza": "Des",
+        "desc": "Il Super Admin deve poter visualizzare la frequenza delle disconnessioni dei gateway",
+        "ref_uc": [
+            "<Visualizzazione-frequenza-disconnessioni-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-dimensioni-payload-pacchetti",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare le dimensioni dei payload dei pacchetti",
+        "ref_uc": [
+            "<Visualizzazione-dimensioni-payload-pacchetti>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-data-staleness",
+        "urgenza": "Obb",
+        "desc": "Il Super Admin deve poter visualizzare la data staleness dei dati",
+        "ref_uc": [
+            "<Visualizzazione-data-staleness>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-valori-out-of-range",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare i valori out-of-range rilevati",
+        "ref_uc": [
+            "<Visualizzazione-valori-out-of-range>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-storico-possessori-sensore",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un sensore",
+        "ref_uc": [
+            "<Visualizzazione-storico-possessori-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-singolo-tenant-possessore-sensore",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare il nome del tenant possessore nello storico",
+        "ref_uc": [
+            "<Visualizzazione-singolo-tenant-possessore-sensore>",
+            "<Visualizzazione-tenant-possessore-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-periodo-associazione-sensore",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare il periodo di associazione del sensore nello storico",
+        "ref_uc": [
+            "<Visualizzazione-singolo-tenant-possessore-sensore>",
+            "<Visualizzazione-periodo-associazione-sensore>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-storico-possessori-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare lo storico dei tenant possessori di un gateway",
+        "ref_uc": [
+            "<Visualizzazione-storico-possessori-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-singolo-tenant-possessore-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare il nome del tenant possessore del gateway nello storico",
+        "ref_uc": [
+            "<Visualizzazione-singolo-tenant-possessore-gateway>",
+            "<Visualizzazione-tenant-possessore-gateway>"
+        ],
+        "ref_capitolato": []
+    },
+    {
+        "id": "RF-Visualizzazione-periodo-associazione-gateway",
+        "urgenza": "Opt",
+        "desc": "Il Super Admin deve poter visualizzare il periodo di associazione del gateway nello storico",
+        "ref_uc": [
+            "<Visualizzazione-singolo-tenant-possessore-gateway>",
+            "<Visualizzazione-periodo-associazione-gateway>"
+        ],
+        "ref_capitolato": []
+    }
+]
