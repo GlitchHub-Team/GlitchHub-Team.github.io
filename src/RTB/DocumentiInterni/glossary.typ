@@ -9,14 +9,14 @@
       "0.5.0",
       "18/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       [Aggiornamento definizione Milestone e Baseline, rimozione termini ridondanti],
     ),
     (
       "0.4.0",
       "14/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       [Aggiornamento dei termini Consuntivo di Periodo e Consuntivo a finire],
     ),
     (
@@ -94,8 +94,8 @@
     "Pubblica",
   ),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Glossario",
 )
 
