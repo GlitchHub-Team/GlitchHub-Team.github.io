@@ -11,7 +11,7 @@
       "18/02/2026",
       "Michele Dioli",
       "Alessandro Dinato",
-      [Ridistribuite ore fine RTB],
+      [Spiegazione criteri di ridistribuzione ore fine RTB],
     ),
     (
       "1.0.0",
