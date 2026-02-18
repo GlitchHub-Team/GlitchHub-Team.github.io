@@ -31,13 +31,20 @@
 
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "18/02/2026",
+      "Michele Dioli",
+      "Alessandro Dinato",
+      [Creazione versione stabile per RTB],
+    ),
     (
       "0.12.1",
       "17/02/2026",
       "Michele Dioli",
-      "-",
+      "Alessandro Dinato",
       [Rimossi elementi ridondanti],
     ),
     (
@@ -170,8 +177,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Qualifica",
 )
 
@@ -202,7 +209,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 === Riferimenti normativi
 - *Norme di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf \
-  *Ultimo accesso*: versione 1.0.0
+  *Ultimo accesso*: versione 1.2.0
 
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
