@@ -209,13 +209,13 @@
 #let ref-uc = ref-uc.with(section-prefix: "§")
 #show: report.with(
   titolo: "Analisi dei Requisiti",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.2.1",
       "17/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       [
         Eliminazione RNF 1,2,3; aggiornamento code coverage minimo RNF 4; definizione strumenti monitoraggio RNF 5; definizione algoritmo cifratura in transito RNF 8; definizione meccanismo autenticazione robusto RNF 9; definizione tipi di design interessati nei diagrammi RNF 13; eliminazione RD 3, 6, 7 dato che sono req. funzionali
       ],
@@ -297,14 +297,14 @@
       "09/02/2026",
       "Jaume Bernardi",
       "Michele Dioli",
-      [Aggiunta condizioni su diagrammi casi d'uso da UC107 a UC166],
+      [Aggiunta condizioni su diagrammi casi d'uso da UC106 a UC165],
     ),
     (
       "0.35.0",
       "09/02/2026",
       "Elia Ernesto Stellin",
       "Riccardo Graziani",
-      [Aggiunta condizioni su diagrammi casi d'uso da UC54 a UC106],
+      [Aggiunta condizioni su diagrammi casi d'uso da UC54 a UC105],
     ),
     (
       "0.34.0",
@@ -339,7 +339,7 @@
       "09/02/2026",
       "Jaume Bernardi",
       "Alessandro Dinato",
-      [Aggiunto diagramma ad UC138],
+      [Aggiunto diagramma ad UC137],
     ),
     (
       "0.32.0",
@@ -2920,7 +2920,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 ==== #uc([Visualizzazione dashboard Super Admin], "Visualizzazione-dashboard-super-admin")
 #figure(
   image("../../assets/diagrammi/UC74.svg", width: 100%),
-  caption: [UC74 - UC74.1, UC74.2, UC98, UC100],
+  caption: [UC74 - UC74.1, UC74.2, UC97, UC99],
 )
 
 - *Attore principale*: Super Admin
@@ -3170,7 +3170,7 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 //   - #ref-uc(<Gateway-non-raggiungibile>)
 //   - #ref-uc(<Configurazione-gateway-non-valida>)
 
-
+/*
 ==== #uc([Configurazione gateway non valida], "Configurazione-gateway-non-valida")
 - *Attore principale*: Super Admin
 - *Pre-condizioni*:
@@ -3180,12 +3180,12 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   - Il Sistema mostra un messaggio di errore e non applica la configurazione al gateway
 - *Scenario principale*:
   - Il Super Admin inserisce una configurazione non valida per il gateway selezionato
-
+*/
 // COMANDI GATEWAY SUPER ADMIN ---------------------------------------------------------------------------
 ==== #uc([Decommissioning gateway], "Decommissioning-gateway")
 #figure(
-  image("../../assets/diagrammi/UC84.svg", width: 100%),
-  caption: [UC84 - UC32, UC92],
+  image("../../assets/diagrammi/UC83.svg", width: 100%),
+  caption: [UC83 - UC32, UC91],
 )
 
 - *Attore principale*: Super Admin
@@ -3247,8 +3247,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Riavvio gateway da Super Admin], "Riavvio-gateway-super-admin")
 #figure(
-  image("../../assets/diagrammi/UC86.svg", width: 100%),
-  caption: [UC86 - UC32, UC92],
+  image("../../assets/diagrammi/UC85.svg", width: 100%),
+  caption: [UC85 - UC32, UC91],
 )
 
 - *Attore principale*: Super Admin
@@ -3271,8 +3271,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Sospensione gateway], "Sospensione-gateway-super-admin")
 #figure(
-  image("../../assets/diagrammi/UC87.svg", width: 100%),
-  caption: [UC87 - UC32, UC92],
+  image("../../assets/diagrammi/UC86.svg", width: 100%),
+  caption: [UC86 - UC32, UC91],
 )
 
 - *Attore principale*: Super Admin
@@ -3297,8 +3297,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Riattivazione gateway], "Riattivazione-gateway-super-admin")
 #figure(
-  image("../../assets/diagrammi/UC88.svg", width: 100%),
-  caption: [UC88 - UC32, UC92],
+  image("../../assets/diagrammi/UC87.svg", width: 100%),
+  caption: [UC87 - UC32, UC91],
 )
 
 - *Attore principale*: Super Admin
@@ -3326,8 +3326,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   "Modifica-freq-invio-dati-gateway-super-admin",
 )
 #figure(
-  image("../../assets/diagrammi/UC89.svg", width: 100%),
-  caption: [UC89 - UC32, UC92],
+  image("../../assets/diagrammi/UC88.svg", width: 100%),
+  caption: [UC88 - UC32, UC91],
 )
 
 - *Attore principale*: Super Admin
@@ -3351,8 +3351,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Sospensione sensore], "Sospensione-sensore-super-admin")
 #figure(
-  image("../../assets/diagrammi/UC90.svg", width: 100%),
-  caption: [UC90 - UC32, UC93],
+  image("../../assets/diagrammi/UC89.svg", width: 100%),
+  caption: [UC89 - UC32, UC92],
 )
 
 - *Attore principale*: Super Admin
@@ -3376,8 +3376,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Riattivazione sensore], "Riattivazione-sensore-super-admin")
 #figure(
-  image("../../assets/diagrammi/UC91.svg", width: 100%),
-  caption: [UC91 - UC32, UC93],
+  image("../../assets/diagrammi/UC90.svg", width: 100%),
+  caption: [UC90 - UC32, UC92],
 )
 
 - *Attore principale*: Super Admin
@@ -3425,8 +3425,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 // VISUALIZZAZIONE ---------------------------------------------------------------
 ==== #uc([Visualizzazione lista tenant], "Visualizzazione-lista-tenant")
 #figure(
-  image("../../assets/diagrammi/UC94.svg", width: 100%),
-  caption: [UC94 - UC95, UC95.1],
+  image("../../assets/diagrammi/UC93.svg", width: 100%),
+  caption: [UC93 - UC94, UC94.1],
 )
 
 - *Attore principale*: Super Admin
@@ -3476,8 +3476,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Visualizzazione tenant], "Visualizzazione-tenant")
 #figure(
-  image("../../assets/diagrammi/UC97.svg", width: 100%),
-  caption: [UC97 - UC97.1],
+  image("../../assets/diagrammi/UC96.svg", width: 100%),
+  caption: [UC96 - UC96.1],
 )
 
 - *Attore principale*: Super Admin
@@ -3522,8 +3522,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   "Visualizzazione-singola-richiesta-commissioning-in-lista",
 )
 #figure(
-  image("../../assets/diagrammi/UC99.svg", width: 100%),
-  caption: [UC99 - UC99.1, UC99.2, UC99.3],
+  image("../../assets/diagrammi/UC98.svg", width: 100%),
+  caption: [UC98 - UC98.1, UC98.2, UC98.3],
 )
 
 - *Attore principale*: Super Admin
@@ -3600,8 +3600,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   "Visualizzazione-singola-richiesta-decommissioning-in-lista",
 )
 #figure(
-  image("../../assets/diagrammi/UC101.svg", width: 100%),
-  caption: [UC101 - UC101.1, UC101.2, UC101.3, UC101.4],
+  image("../../assets/diagrammi/UC100.svg", width: 100%),
+  caption: [UC100 - UC100.1, UC100.2, UC100.3, UC100.4],
 )
 
 - *Attore principale*: Super Admin
@@ -3679,8 +3679,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
   "Visualizzazione-storico-richieste-commissioning-gateway",
 )
 #figure(
-  image("../../assets/diagrammi/UC102.svg", width: 100%),
-  caption: [UC102 - UC99.1, UC99.2, UC99.3, UC103, UC103.1],
+  image("../../assets/diagrammi/UC101.svg", width: 100%),
+  caption: [UC101 - UC98.1, UC98.2, UC98.3, UC102, UC102.1],
 )
 
 - *Attore principale*: Super Admin
@@ -3766,8 +3766,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Visualizzazione richiesta di commissioning gateway], "Visualizzazione-richiesta-commissioning-gateway")
 #figure(
-  image("../../assets/diagrammi/UC106.svg", width: 100%),
-  caption: [UC106 - UC106.1, UC106.2, UC106.3],
+  image("../../assets/diagrammi/UC105.svg", width: 100%),
+  caption: [UC105 - UC105.1, UC105.2, UC105.3],
 )
 
 - *Attore principale*: Super Admin
@@ -3816,8 +3816,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Visualizzazione richiesta di decommissioning gateway], "Visualizzazione-richiesta-decommissioning-gateway")
 #figure(
-  image("../../assets/diagrammi/UC107.svg", width: 100%),
-  caption: [UC107 - UC106.1, UC106.2, UC107.1],
+  image("../../assets/diagrammi/UC106.svg", width: 100%),
+  caption: [UC106 - UC105.1, UC105.2, UC106.1],
 )
 
 - *Attore principale*: Super Admin
@@ -3872,8 +3872,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 // GESTIONE TENANT ADMIN ------------------------------------------------------------------------------
 ==== #uc([Creazione utente Tenant Admin], "Creazione-utente-tenant-admin")
 #figure(
-  image("../../assets/diagrammi/UC110.svg", width: 100%),
-  caption: [UC110 - UC33, UC110.1, UC110.2],
+  image("../../assets/diagrammi/UC109.svg", width: 100%),
+  caption: [UC109 - UC33, UC109.1, UC109.2],
 )
 
 - *Attore principale*: Super Admin
@@ -3930,8 +3930,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Sospensione account Tenant Admin], "Sospensione-account-tenant-admin")
 #figure(
-  image("../../assets/diagrammi/UC111.svg", width: 100%),
-  caption: [UC111 - UC111.1, UC111.2],
+  image("../../assets/diagrammi/UC110.svg", width: 100%),
+  caption: [UC110 - UC110.1, UC110.2],
 )
 
 - *Attore principale*: Super Admin
@@ -3972,8 +3972,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Riattivazione account Tenant Admin], "Riattivazione-account-tenant-admin")
 #figure(
-  image("../../assets/diagrammi/UC112.svg", width: 100%),
-  caption: [UC112 - UC112.1, UC112.2],
+  image("../../assets/diagrammi/UC111.svg", width: 100%),
+  caption: [UC111 - UC111.1, UC111.2],
 )
 
 - *Attore principale*: Super Admin
@@ -4014,8 +4014,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Eliminazione account Tenant Admin], "Eliminazione-account-tenant-admin")
 #figure(
-  image("../../assets/diagrammi/UC113.svg", width: 100%),
-  caption: [UC113 - UC113.1, UC113.2],
+  image("../../assets/diagrammi/UC112.svg", width: 100%),
+  caption: [UC112 - UC112.1, UC112.2],
 )
 
 - *Attore principale*: Super
@@ -4058,8 +4058,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Creazione gateway simulato], "Creazione-gateway-simulato")
 #figure(
-  image("../../assets/diagrammi/UC114.svg", width: 100%),
-  caption: [UC114 - UC114.1, UC114.2, UC114.3],
+  image("../../assets/diagrammi/UC113.svg", width: 100%),
+  caption: [UC113 - UC113.1, UC113.2, UC113.3],
 )
 
 - *Attore principale*: Super Admin
@@ -4109,8 +4109,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Creazione sensore simulato], "Creazione-sensore-simulato")
 #figure(
-  image("../../assets/diagrammi/UC115.svg", width: 100%),
-  caption: [UC115 - UC115.1, UC115.2, UC115.3],
+  image("../../assets/diagrammi/UC114.svg", width: 100%),
+  caption: [UC114 - UC114.1, UC114.2, UC114.3],
 )
 
 - *Attore principale*: Super Admin
@@ -4164,8 +4164,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Eliminazione gateway simulato], "Eliminazione-gateway-simulato")
 #figure(
-  image("../../assets/diagrammi/UC116.svg", width: 100%),
-  caption: [UC116 - UC116.1, UC116.2],
+  image("../../assets/diagrammi/UC115.svg", width: 100%),
+  caption: [UC115 - UC115.1, UC115.2],
 )
 
 - *Attore principale*: Super Admin
@@ -4203,8 +4203,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Eliminazione sensore simulato], "Eliminazione-sensore-simulato")
 #figure(
-  image("../../assets/diagrammi/UC117.svg", width: 100%),
-  caption: [UC117 - UC117.1, UC117.2],
+  image("../../assets/diagrammi/UC116.svg", width: 100%),
+  caption: [UC116 - UC116.1, UC116.2],
 )
 
 - *Attore principale*: Super Admin
@@ -4242,8 +4242,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Monitoraggio metriche di sistema], "Monitoraggio-metriche-di-sistema")
 #figure(
-  image("../../assets/diagrammi/UC118.svg", width: 100%),
-  caption: [UC118 - UC118.1, UC118.2, UC118.3, UC118.4, UC118.5, UC118.6, UC118.7],
+  image("../../assets/diagrammi/UC117.svg", width: 100%),
+  caption: [UC117 - UC117.1, UC117.2, UC117.3, UC117.4, UC117.5, UC117.6, UC117.7],
 )
 
 - *Attore principale*: Super Admin
@@ -4351,8 +4351,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Visualizzazione storico dei Tenant possessori di sensore], "Visualizzazione-storico-possessori-sensore")
 #figure(
-  image("../../assets/diagrammi/UC119.svg", width: 100%),
-  caption: [UC119 - UC120, UC120.1, UC120.2],
+  image("../../assets/diagrammi/UC118.svg", width: 100%),
+  caption: [UC118 - UC119, UC119.1, UC119.2],
 )
 
 - *Attore principale*: Super Admin
@@ -4402,8 +4402,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 
 ==== #uc([Visualizzazione storico dei Tenant possessori di gateway], "Visualizzazione-storico-possessori-gateway")
 #figure(
-  image("../../assets/diagrammi/UC121.svg", width: 100%),
-  caption: [UC121 - UC122, UC122.1, UC122.2],
+  image("../../assets/diagrammi/UC120.svg", width: 100%),
+  caption: [UC120 - UC121, UC121.1, UC121.2],
 )
 
 - *Attore principale*: Super Admin
@@ -4454,8 +4454,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 === Attore principale - Gateway
 ==== #uc([Conferma esecuzione commissioning], "Conferma-comando-commissioning")
 #figure(
-  image("../../assets/diagrammi/UC123.svg", width: 100%),
-  caption: [UC123 - UC124, UC138, UC139],
+  image("../../assets/diagrammi/UC122.svg", width: 100%),
+  caption: [UC122 - UC123, UC137, UC138],
 )
 
 - *Attore principale*: Gateway
@@ -4653,8 +4653,8 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc([Invio comando di hello], "Invio-comando-hello")
 #figure(
-  image("../../assets/diagrammi/UC135.svg", width: 100%),
-  caption: [UC135 - UC136, UC137],
+  image("../../assets/diagrammi/UC134.svg", width: 100%),
+  caption: [UC134 - UC135, UC136],
 )
 
 - *Attore principale*: Gateway
@@ -4698,8 +4698,8 @@ Non serve che il gateway confermi l'autenticazione, è il sistema che notifica i
 
 ==== #uc([Invio dati crittografati], "Invio-dati-crittografati")
 #figure(
-  image("../../assets/diagrammi/UC138.svg", width: 100%),
-  caption: [UC138 - UC139],
+  image("../../assets/diagrammi/UC137.svg", width: 100%),
+  caption: [UC137 - UC138],
 )
 
 - *Attore principale*: Gateway
@@ -4751,8 +4751,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 
 ==== #uc([Richiesta dati real-time sensore], "Richiesta-dati-real-time-sensore")
 #figure(
-  image("../../assets/diagrammi/UC141.svg", width: 100%),
-  caption: [UC141 - UC141.1, UC143, UC144, UC145],
+  image("../../assets/diagrammi/UC140.svg", width: 100%),
+  caption: [UC140 - UC140.1, UC142, UC143, UC144],
 )
 
 - *Attore principale*: API Client
@@ -4787,8 +4787,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 
 ==== #uc([Richiesta storico dati sensore], "Richiesta-storico-dati-sensore")
 #figure(
-  image("../../assets/diagrammi/UC142.svg", width: 100%),
-  caption: [UC142 - UC142.1, UC143, UC144, UC145],
+  image("../../assets/diagrammi/UC141.svg", width: 100%),
+  caption: [UC141 - UC141.1, UC142, UC143, UC144],
 )
 
 - *Attore principale*: API Client
@@ -4854,8 +4854,8 @@ Di seguito sono riportati tutti gli use cases in cui l'attore principale è un g
 
 ==== #uc([Autenticazione API Client], "Autenticazione-API-Client")
 #figure(
-  image("../../assets/diagrammi/UC146.svg", width: 100%),
-  caption: [UC146 - UC147, UC148],
+  image("../../assets/diagrammi/UC145.svg", width: 100%),
+  caption: [UC145 - UC146, UC147],
 )
 
 - *Attore principale*: API Client
@@ -4901,8 +4901,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 ==== #uc([Invio nuovo dato al gateway], "Invio-nuovo-dato-gateway")
 #figure(
-  image("../../assets/diagrammi/UC149.svg", width: 100%),
-  caption: [UC149 - UC150, UC151, UC152, UC153, UC154, UC155],
+  image("../../assets/diagrammi/UC148.svg", width: 100%),
+  caption: [UC148 - UC149, UC150, UC151, UC152, UC153, UC154],
 )
 
 - *Attore principale*: Sensore simulato
@@ -5033,8 +5033,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 ==== #uc([Assegnazione tenant al gateway], "Assegnazione-tenant-gateway")
 #figure(
-  image("../../assets/diagrammi/UC158.svg", width: 100%),
-  caption: [UC158 - UC158.1],
+  image("../../assets/diagrammi/UC157.svg", width: 100%),
+  caption: [UC157 - UC157.1],
 )
 
 - *Attore principale*: Cloud
@@ -5138,8 +5138,8 @@ Per ogni caso d'uso viene considerato il Sistema Gateway come funzionante e ragg
 
 ==== #uc([Decommissioning gateway], "Decommissioning-gateway-cloud")
 #figure(
-  image("../../assets/diagrammi/UC165.svg", width: 100%),
-  caption: [UC165 - UC165.1, UC166],
+  image("../../assets/diagrammi/UC164.svg", width: 100%),
+  caption: [UC164 - UC164.1, UC165],
 )
 
 - *Attore principale*: Cloud
@@ -5210,9 +5210,9 @@ Inoltre un buon requisito deve essere *SMART*:
 
 
 // NOTA: Modificare il file .json per modificare i requisiti!
-#let LISTA_RF = json("../../requisiti/lista_RF.json")
-#let LISTA_RNF = json("../../requisiti/lista_RNF.json")
-#let LISTA_RD = json("../../requisiti/lista_RD.json")
+#let LISTA_RF = json("../../tracciamento/RF.json")
+#let LISTA_RNF = json("../../tracciamento/RNF.json")
+#let LISTA_RD = json("../../tracciamento/RD.json")
 
 #let tabella-rf = tabella-requisiti(rf, ref-rf, LISTA_RF)
 #let tabella-rnf = tabella-requisiti(rnf, ref-rnf, LISTA_RNF)

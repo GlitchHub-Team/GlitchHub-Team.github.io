@@ -132,10 +132,6 @@
         "definition": "Nella piattaforma @{GitHub}, è una richiesta formale di unire codice da un branch a un altro (operazione di _\"merge\"_) in una @{repository}, a seguito di una revisione."
     },
     {
-        "term": "GitHub Page",
-        "definition": "Servizio di @{GitHub} che permette di pubblicare siti web statici direttamente da una repository."
-    },
-    {
         "term": "HTML",
         "definition": "L'_HyperText Markup Language_ è il linguaggio usato per strutturare contenuti nelle pagine web."
     },
@@ -276,10 +272,6 @@
         "definition": "Database in-memory ad alte prestazioni utilizzato per caching, gestione delle sessioni e code di messaggi."
     },
     {
-        "term": "Angular.js",
-        "definition": "Framework front-end sviluppato da Google per creare applicazioni web complesse e modulari, è un framework opinionated."
-    },
-    {
         "term": "SPA",
         "definition": "Una _Single Page Application_ è un'applicazione web che carica una sola pagina e aggiorna dinamicamente i contenuti senza ricarichi completi."
     },
@@ -321,7 +313,7 @@
     },
     {
         "term": "Piano di progetto",
-        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint, @{preventivo a finire} e @{consuntivo di periodo}, in modo tale da ricalibrare le attività in corso d'opera."
+        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint: @{consuntivo a finire}, @{consuntivo di periodo}, previsione e analisi dei compiti svolti e dei rischi. In modo tale da ricalibrare le attività in corso d'opera."
     },
     {
         "term": "Piano di qualifica",
@@ -397,23 +389,23 @@
     },
     {
         "term": "Milestone",
-        "definition": "Traguardo intermedio o punto di controllo in un progetto, che segna il completamento di una fase importante del lavoro. Il raggiungimento di una _milestone_ è generalmente associato alla realizzazione di una @{baseline} che soddisfa i @{requisito}{requisiti} previsti fino a quel punto."
+        "definition": "Rappresenta un punto nel calendario di progetto, inteso come data, il quale definisce un determinato stato di avanzamento. Questo strumento è utile per fissare obiettivi intermedi abilitando alla pianificazione a medio e breve termine."
     },
     {
         "term": "Baseline",
-        "definition": "Versione approvata di un prodotto (software, documentazione o loro insieme) che può essere modificata solo tramite procedure formali di controllo delle modifiche. Ogni _baseline_ è sottoposta a controllo di versione e di configurazione e serve come riferimento stabile per il progresso del progetto."
+        "definition": "La baseline è un insieme di documenti e artefatti, con una versione specifica, volti a fornire un'evidenza concreta del raggiungimento dello stato di avanzamento desiderato e stabilito nella @{Milestone}."
     },
     {
         "term": "Consuntivo di periodo",
-        "definition": "È una sezione nel @{Piano di Progetto} nel quale viene analizzato lo sprint appena terminato, riportando le attività svolte, gli eventuali scostamenti e i rischi occorsi, con il relativo impatto e le azioni di mitigazione adottate.\nL'analisi generica dello sprint appena svolto si chiama @{retrospettiva}{retrospettiva di periodo}."
+        "definition": "È una sezione nel @{Piano di Progetto} nel quale vengono analizzate le ore effettivamente utilizzate nello sprint interessato e di conseguenza le risorse utilizzate. Inoltre si aggiornano le ore e le risorse rimanenti."
     },
     {
         "term": "Retrospettiva",
         "definition": "Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni."
     },
     {
-        "term": "Preventivo a finire",
-        "definition": "È una sezione del @{Piano di Progetto} nel quale si descrivono le attività pianificate per lo sprint successivo e la stima delle risorse necessarie."
+        "term": "Consuntivo a finire",
+        "definition": "È una sezione del @{Piano di Progetto} nel quale si stimano le ore e le risorse necessarie per completare le attività pianificate."
     },
     {
         "term": "Slack time",
@@ -484,10 +476,6 @@
         "definition": "La descrizione di una o più funzionalità del prodotto dal lato degli _user needs_, ovvero delle necessità dell'utente, tramite il linguaggio visivo UML e un'aggiuntiva descrizione testuale. I casi d'uso sono descritti nell'@{Analisi dei requisiti}."
     },
     {
-        "term": "Use case",
-        "definition": "Vd. @{Caso d'uso}."
-    },
-    {
         "term": "Attore",
         "definition": "Nel contesto di un @{caso d'uso}, è un'entità esterna al @{sistema} preso in considerazione che interagisce con lo stato di quest'ultima in lettura e/o scrittura. Può corrispondere a un essere umano o a un agente automatizzato che compie un'azione specifica."
     },
@@ -521,10 +509,6 @@
     },
     {
         "term": "Impersonificazione",
-        "definition": "Vd. @{Impersonazione}"
-    },
-    {
-        "term": "Impersonazione",
         "definition": "Atto con cui un @{Super Admin} si fa temporaneamente riconoscere dal sistema @{cloud} come utente appartenente a uno specifico @{tenant}, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un @{Tenant Admin}. Questo può avvenire soltanto se il @{tenant} impersonato ha precedentemente accettato un'apposita clausola contrattuale."
     },
     {
