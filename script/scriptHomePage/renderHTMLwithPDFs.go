@@ -145,7 +145,7 @@ func main() {
 	for i := 0; i < len(docs); i++ {
 		d := docs[i]
 		d.path = strings.Replace(d.path, "../../website", "", 1)
-		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title, d.version)
+		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title, strings.TrimSpace(d.version))
 		updatedHTML, err := addChildToId(htmlStr, d.htmlId, renderedHTML)
 		if err != nil {
 			fmt.Println("Error:", err)

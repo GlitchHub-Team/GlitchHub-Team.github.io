@@ -293,13 +293,15 @@ header .text p {
   grid-area: container;
   min-height: 50vh;
   padding: 2rem 2.5rem 3rem;
+  max-width: 1200px;
 }
 
-.container > section {
+
+.container > details {
   margin-bottom: 2.5rem;
 }
 
-.container > section > summary {
+.container > details > summary {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -308,7 +310,7 @@ header .text p {
   margin-bottom: 1.2rem;
 }
 
-.container > section > summary h2 {
+.container > details > summary h2 {
   font-size: 1.15rem;
   font-weight: 700;
   color: #1e1b4b;
@@ -316,8 +318,8 @@ header .text p {
   margin: 0;
 }
 
-.container section section p {
-  font-size: 0.7rem;
+.container details h3 {
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -327,11 +329,53 @@ header .text p {
   border-bottom: 1px solid #f0edf7;
 }
 
-.container ul {
+.container details summary {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  transition: background 0.15s;
+  border-radius: 6px;
+  margin: 0.15rem 0;
+}
+
+.container details summary::-webkit-details-marker { display: none; }
+
+.container details > summary::before {
+  content: "▸";
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  width: 0.65rem;
+  margin: 0;
   padding: 0;
 }
 
-.container ul li {
+.container section.subsection > * {
+  margin-left: 0.5rem;
+}
+
+.container details.section > summary::before {
+  font-size:1.6rem;
+  color: #06b6d4;
+}
+
+.container details[open] > summary::before {
+  transform: rotate(90deg);
+  transform-origin: center center;
+}
+
+.container details summary:hover {
+  background: #f3f2f7;
+}
+
+
+section ul {
+  padding: 0;
+}
+
+section ul li {
   display: flex;
   align-items: center;
   padding: 0.55rem 0.6rem;
@@ -339,12 +383,17 @@ header .text p {
   transition: background 0.15s;
 }
 
-.container ul li:last-child {
+section ul li:last-child {
   border-bottom: none;
 }
 
-.container ul li:hover {
-  background: #f5f3ff;
+section ul li:hover {
+  background: #f0eefd;
+}
+
+section ul li:hover a {
+  color: #5b21b6;
+  text-decoration: underline;
 }
 
 .container ul li a {
@@ -352,13 +401,10 @@ header .text p {
   font-size: 0.88rem;
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.1s;
   flex: 1;
 }
 
-.container ul li a:hover {
-  color: #5b21b6;
-}
 
 .container .version-tag {
   font-size: 0.7rem;
@@ -407,7 +453,7 @@ header .text p {
 .member {
     padding: 1rem;
     width: 20%;
-    background-color: #f4fafe;
+    background-color: #00ffff09;
 }
 
 .member {
@@ -423,10 +469,9 @@ header .text p {
     width: 2px;
     height: 100%;
     background: linear-gradient(180deg,
-            #00ffff,
-            #ff00ff,
-            #007bff,
-            #ff0077);
+      #007bff,
+      #ff00ff
+    );
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
 }
