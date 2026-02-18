@@ -133,7 +133,8 @@ header::before {
 
 .logo-Header {
     text-align: center;
-    padding: 3rem 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .logoGrande {
@@ -153,21 +154,18 @@ header::before {
     }
 }
 
-.text {
+.aboutus-desc {
     text-align: center;
-    padding: 0.8rem 1rem 0.8rem;
     max-width: 800px;
     margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.text p {
+.aboutus-desc p {
     margin: 0.5rem 0;
-    color: var(--text-light);
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-.text p:first-child {
+    line-height: 1.5;
     color: var(--text-dark);
     font-size: 1.2rem;
     font-weight: 500;
@@ -334,11 +332,11 @@ header::before {
         max-width: 200px;
     }
 
-    .text {
+    .aboutus-desc {
         padding: 1.5rem 1rem 2rem;
     }
 
-    .text p {
+    .aboutus-desc p {
         font-size: 1rem;
     }
 
@@ -452,19 +450,15 @@ details[open] {
 
 .aboutus {
     background-color: white;
-}
-
-.aboutus {
     text-align: center;
-    padding: 2em;
+    padding-top: 2rem;
 }
 
 .aboutus h3 {
+    background-color: white;
     font-size: 2rem;
-    margin-bottom: 1.5rem;
     color: #222;
     letter-spacing: 2px;
-    padding-top: 2em;
 }
 
 .members {
@@ -496,7 +490,7 @@ details[open] {
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 650px) {
     .members>* {
         flex: 1 1 90%;
         max-width: 90%;
@@ -506,7 +500,7 @@ details[open] {
         font-size: 0.9em;
     }
 
-    .text p:first-child {
+    .aboutus-desc p:first-child {
         font-size: 1.2em;
     }
 
@@ -537,10 +531,9 @@ details[open] {
     width: 2px;
     height: 100%;
     background: linear-gradient(180deg,
-            #00ffff,
-            #ff00ff,
-            #007bff,
-            #ff0077);
+        #00ffff,
+        #ff00ff
+    );
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
 }
