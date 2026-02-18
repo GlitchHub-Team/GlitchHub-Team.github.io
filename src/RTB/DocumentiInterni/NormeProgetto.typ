@@ -7,6 +7,17 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.2.0",
+      "18/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [
+        Modificato utilizzo delle maiuscole;
+        Aggiornata @infrastruttura-github-repo-documentazione in modo tale da rispecchiare struttura della repo;
+        Aggiornata @validazione-implementazione-processo per includere informazioni su tracciamento di requisiti e test
+      ]
+    ),
+    (
       "1.1.0",
       "17/02/2026",
       "Michele Dioli",
@@ -215,7 +226,7 @@ Il processo di fornitura si compone delle seguenti attività di seguito descritt
 
 === Documentazione fornita
 Di seguito presentiamo l'elenco completo della documentazione che *GlitchHub Team* consegnerà all'azienda proponente *M31* e ai committenti *Prof. Tullio Vardanega* e *Prof. Riccardo Cardin*.
-==== Lettera di Candidatura <doc-fornita-lettera-candidatura>
+==== Lettera di candidatura <doc-fornita-lettera-candidatura>
 // TODO: Su pages si chiama ancora lettera di presentazione, ma dovrebbe chiamarsi lettera di candidatura
 La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/LetteraPresentazione.pdf")[*Lettera di Candidatura*] è il documento con cui *GlitchHub Team* ha presentato formalmente la propria candidatura al
 #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[#gloss[capitolato d'appalto]] proposto dall'azienda *M31*.
@@ -228,13 +239,13 @@ dei rispettivi punti di forza e debolezza, e le motivazioni che hanno spinto il 
 La #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[*Dichiarazione degli impegni*] è il documento in cui *GlitchHub Team* ha formalizzato la pianificazione economica e organizzativa del progetto.
 Il documento espone le stime relative all'impegno *orario* suddiviso per singoli componenti e per ruoli, definisce il costo *complessivo* dell'opera e illustra i criteri adottati per la *rotazione* dei ruoli all'interno del gruppo
 
-==== Lettera di Presentazione <doc-fornita-lettera-presentazione>
+==== Lettera di presentazione <doc-fornita-lettera-presentazione>
 // TODO: Da linkare quando sarà su pages
 La *Lettera di Presentazione* è il documento tramite il quale *GlitchHub Team* intende formalizzare la propria candidatura alle revisioni di avanzamento legate alle #gloss[baseline] del progetto didattico, ossia la *Requirements and Technology Baseline (#gloss[RTB])* e la *Product Baseline (#gloss[PB])*.
 
 ==== Analisi dei Requisiti <doc-fornita-analisi-requisiti>
 L'#link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[*Analisi dei Requisiti*] è il documento in cui *GlitchHub Team* definisce in dettaglio tutti i #gloss[requisiti] del progetto, classificandoli in obbligatori, desiderabili e opzionali.
-Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[Casi d'Uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
+Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[casi d'uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
 
 ==== Piano di Progetto <doc-fornita-piano-progetto>
 Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[*Piano di Progetto*] è il documento in cui *GlitchHub Team* documenta
@@ -267,7 +278,7 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - #gloss[Gin]: come framework di sviluppo backend;
 - #gloss[Go]: come linguaggio di programmazione per lo sviluppo dei servizi di publish e subscribe;
 - *Visual Studio Code*: per la codifica del software;
-- *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[Casi d'Uso]*.
+- *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[casi d'uso]*.
 
 === Attività previste <attivita-previste-sviluppo>
 - *Implementazione del processo*: in cui viene stabilita l'articolazione delle fasi di ingegnerizzazione, garantendo che ogni attività di sviluppo sia coerente con la strategia di realizzazione scelta;
@@ -284,23 +295,23 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - *Installazione del software*: ossia la fornitura del prodotto software nell'ambiente operativo secondo quanto specificato nel contratto;
 - *Supporto all'accettazione del software*: in cui si fornisce supporto alle revisioni e ai test di accettazione dell'acquirente per completare la consegna formale del prodotto software.
 
-In relazione alla definizione delle #gloss[baseline] previste per il progetto, ossia la Requirements and Technology Baseline (#gloss[RTB]) e la Product Baseline (#gloss[PB]), *GlitchHub Team* ha identificato l'*Analisi dei Requisiti* e la *Codifica* come attività principali dell'#gloss[RTB]. Di contro, sono state identificate la *Progettazione dell'architettura software*, la *Progettazione dettagliata del software* e la *Codifica* come attività principali della #gloss[PB]. Di conseguenza sono state approfondite le attività principali relative all'#gloss[RTB], mentre verranno stese (o ampliate) in seguito le sezioni relative alle attività principali della #gloss[PB].
+In relazione alla definizione delle #gloss[baseline] previste per il progetto, ossia la Requirements and Technology Baseline (#gloss[RTB]) e la Product Baseline (#gloss[PB]), *GlitchHub Team* ha identificato l'*analisi dei requisiti* (@attivita-analisi-requisiti[§]) e la *codifica* (@attivita-codifica[§]) come attività principali dell'#gloss[RTB]. Di contro, sono state identificate la *progettazione dell'architettura software*, la *progettazione dettagliata del software* e la *codifica* come attività principali della #gloss[PB]. Di conseguenza sono state approfondite le attività principali relative all'#gloss[RTB], mentre verranno stese (o ampliate) in seguito le sezioni relative alle attività principali della #gloss[PB].
 
 === Analisi dei Requisiti <attivita-analisi-requisiti>
-L'attività di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[#gloss[Analisi dei Requisiti]] ha lo scopo di comprendere, individuare e definire in modo completo e strutturato tutti i #gloss[requisiti] che il *Sistema* dovrà soddisfare. Essa consente di formalizzare le esigenze del proponente e di tradurle in #gloss[requisiti] chiaramente identificabili e verificabili.
+L'attività di *analisi dei requisiti* ha lo scopo di comprendere, individuare e definire in modo completo e strutturato tutti i #gloss[requisiti] che il *sistema* dovrà soddisfare. Essa consente di formalizzare le esigenze del proponente e di tradurle in #gloss[requisiti] chiaramente identificabili e verificabili.
 \
-Il risultato di tale attività è documentato nel documento di #gloss[Analisi dei Requisiti], che raccoglie l'insieme dei #gloss[Casi d'Uso] individuati e i #gloss[requisiti] ad essi associati, costituendo il riferimento principale per le successive fasi di progettazione e sviluppo del Sistema.
+Il risultato di tale attività è documentato nel documento di #gloss[Analisi dei Requisiti], che raccoglie l'insieme dei #gloss[casi d'uso] individuati e i #gloss[requisiti] ad essi associati, costituendo il riferimento principale per le successive fasi di progettazione e sviluppo del sistema.
 
-==== Casi d'Uso <attivita-casi-uso>
-I #gloss[Casi d'Uso] sono identificati secondo la seguente nomenclatura:
+==== Casi d'uso <attivita-casi-uso>
+I #gloss[casi d'uso] sono identificati secondo la seguente nomenclatura:
 #align(center)[
   *UC[Primario].[Secondario]*
 ]
 in cui:
-- *UC* indica *Use Case*, ossia la traduzione inglese di #gloss[Caso d'Uso];
-- *[Primario]* è un numero progressivo che identifica univocamente il #gloss[Caso d'Uso] all'interno dell'#gloss[Analisi dei Requisiti];
-- *[Secondario]* è un numero progressivo che identifica un #gloss[Caso d'Uso] correlato in modo esclusivo al caso *Primario*.
-Ogni #gloss[Caso d'Uso] è inoltre corredato da un titolo che ne riassume lo scopo e da una descrizione testuale; per ulteriori dettagli si rimanda alla sezione introduttiva sui #gloss[Casi d'Uso] del documento di #gloss[Analisi dei Requisiti].
+- *UC* indica *Use Case*, ossia la traduzione inglese di "#gloss[caso d'uso]";
+- *[Primario]* è un numero progressivo che identifica univocamente il #gloss[caso d'uso] all'interno dell'#gloss[Analisi dei Requisiti];
+- *[Secondario]* è un numero progressivo che identifica un #gloss[caso d'uso] correlato in modo esclusivo al caso *Primario*.
+Ogni #gloss[caso d'uso] è inoltre corredato da un titolo che ne riassume lo scopo e da una descrizione testuale; per ulteriori dettagli si rimanda alla sezione introduttiva sui #gloss[casi d'uso] del documento di #gloss[Analisi dei Requisiti].
 
 ==== Requisiti <attivita-requisiti>
 I #gloss[requisiti] sono identificati secondo la seguente nomenclatura:
@@ -319,7 +330,7 @@ in cui:
   - *Obb* per *Obbligatorio*;
   - *Des* per *Desiderabile*;
   - *Opt* per *Opzionale*.
-Per una descrizione più approfondita della tipologia e della priorità di un #gloss[requisito], si rimanda alla sezione introduttiva sui #gloss[requisiti] del documento di #gloss[Analisi dei Requisiti].
+Per una descrizione più approfondita della tipologia e della priorità di un #gloss[requisito], si rimanda alla sezione introduttiva sui #gloss[requisiti] del documento di #gloss[analisi dei requisiti].
 
 //TODO: post-RTB sarà da aggiungere sezione relativa alla progettazione ed espandere su queste norme di codifica
 === Codifica <attivita-codifica>
@@ -626,7 +637,7 @@ Inoltre, ogni documento versionato presenterà il proprio *registro delle modifi
 === Valutazione della configurazione <valutazione-configurazione>
 L'attività di *valutazione della configurazione* consiste nel controllo che il software prodotto presenti una completezza funzionale rispetto ai requisiti rilevati.
 
-A tale scopo, il documento di #gloss[Analisi dei Requisiti] presenta una sezione di *tracciamento dei requisiti* che verrà usata dal gruppo durante la fase di progettazione e sviluppo come riferimento per verificare che il software prodotto sia adeguato alle aspettative e richieste della #gloss[proponente].
+A tale scopo, il documento di #gloss[analisi dei requisiti] presenta una sezione di *tracciamento dei requisiti* che verrà usata dal gruppo durante la fase di progettazione e sviluppo come riferimento per verificare che il software prodotto sia adeguato alle aspettative e richieste della #gloss[proponente].
 
 == Accertamento della qualità <accertamento-qualita>
 Secondo lo standard #gloss[ISO/IEC 12207:1995], il processo di *accertamento qualità* consiste nell'accertare in modo adeguato che i processi e i prodotti dei cicli di vita del progetto siano conformi ai requisiti specificati.
@@ -718,9 +729,10 @@ Dove:
   - `A` per i test di Accettazione
 - *`[Numero]`* è un numero identificativo incrementale univoco per la tipologia di test (per cui possono esistere contemporaneamente i test `TU-1` e `TS-1`).
 
-Inoltre ogni test si può trovare in ogni momento in uno di tre stati:
-- *Non implementato*, se il test è stato ideato ma non implementato in codice;
-- *Implementato*, se il test è stato implementato ma non ancora eseguito e/o superato;
+Inoltre ogni test si può trovare in ogni momento in uno di quattro stati:
+- *NI* ovvero *Non implementato*, se il test è stato ideato ma non implementato in codice;
+- *I* ovvero *Implementato*, se il test è stato implementato ma non ancora eseguito;
+- *NS* ovvero *Non superato*, se il test è stato implementato, eseguito e non superato;
 - *Superato*, se il test è stato implementato, eseguito e superato correttamente.
 
 ===== Test di unità <test-unita>
@@ -746,7 +758,7 @@ Per verificare una corretta integrazione delle componenti, è necessario eseguir
 - *Top--down*: in cui, invece, si integrano prima le componenti con maggiori dipendenze d'uso e maggiore utilità esterna, richiedendo l'uso di molti più _stub_ durante lo sviluppo, ma rendendo visibili le funzionalità usabili dall'utente molto prima.
 
 ===== Test di sistema <test-sistema>
-I *test di sistema* verificano la conformità funzionale del sistema rispetto ai requisiti stabiliti nel documento di #gloss[Analisi dei Requisiti]. Infatti, la loro stesura avviene in concomitanza con la stesura dei requisiti funzionali del prodotto.
+I *test di sistema* verificano la conformità funzionale del sistema rispetto ai requisiti stabiliti nel documento di #gloss[analisi dei requisiti]. Infatti, la loro stesura avviene in concomitanza con la stesura dei requisiti funzionali del prodotto.
 
 ===== Test di regressione <test-regressione>
 I *test di regressione* verificano che alcune correzioni o estensioni applicate a specifiche unità non causino _fault_ in
@@ -765,11 +777,32 @@ In base allo standard #gloss[ISO/IEC 12207:1995], le attività previste dal proc
 - *Implementazione del processo*
 - *Attività di validazione*
 
-=== Implementazione processo
-_GlitchHub Team_ ha condotto uno studio approfondito delle richieste della #gloss[proponente], riassumendo tutti i requisiti da soddisfare nel documento di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf", gloss[Analisi dei Requisiti]).
+=== Implementazione processo <validazione-implementazione-processo>
+_GlitchHub Team_ ha condotto uno studio approfondito delle richieste della #gloss[proponente], riassumendo tutti i requisiti da soddisfare nel documento di #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf", gloss[analisi dei requisiti]).
 
 Come già descritto nella @valutazione-configurazione, l'#gloss[Analisi dei Requisiti] presenta una sezione di *tracciamento dei requisiti*, fondamentale al processo di *validazione*. Infatti, questa permette di controllare se una parte del prodotto funziona correttamente ed è conforme ai requisiti: un requisito si può considerare soddisfatto solo se il codice che lo implementa funziona correttamente e siccome i requisiti sono tracciati, è possibile verificare quali requisiti vengono soddisfatti dal codice e quali no.
 
+Per un tracciamento efficace, _GlitchHub Team_ ha deciso di raccogliere tutti i requisiti e i relativi test in relativi file JSON all'interno della cartella `src/tracciamento` della #gloss[repository] di documentazione. I file JSON all'interno della cartella sono i seguenti:
+- `RF.json` che tiene traccia di tutti i requisiti funzionali
+- `RNF.json` che tiene traccia di tutti i requisiti non funzionali
+- `RD.json` che tiene traccia di tutti i requisiti di dominio
+- `TS.json` che tiene traccia di tutti i test di sistema
+- `TA.json` che tiene traccia di tutti i test di accettazione
+
+In generale, ogni *requisito* tracciato nei file è descritto da:
+- una stringa identificativa univoca (campo "`id`")
+- una descrizione testuale (campo "`desc`")
+- una stringa che descrive l'urgenza del requisito (campo "`urgenza`")
+- una lista che contiene tutti i riferimenti agli use case identificati nell'#gloss[Analisi Dei Requisiti] (campo "`ref_uc`")
+- una lista che contiene tutti i riferimenti a requisiti del #gloss[capitolato] (campo "`ref_capitolato`")
+
+I *test* tracciati, invece, sono descritti nella struttura JSON da:
+- Analoghi campi `"id"` e `"descr"`
+- Il riferimento al requisito (rilevato dal gruppo o di capitolato) (campo "`ref-req`")
+  - Se il campo si riferisce a un requisito rilevato dal gruppo, allora esso deve contenere l'`id` del requisito considerato
+- Lo stato del test, come descritto nella @verifica-analisi-dinamica (campo `"stato"`)
+
+Descrivere i requisiti e i test di sistema con una serie di file strutturati permette di tracciare i requisiti e i test in maniera totalmente automatica, facilitando le misurazioni delle metriche concernenti i requisiti.
 
 === Attività di validazione
 Per applicare il processo di validazione, il gruppo si impegna a continuare l'attività di *tracciamento dei requisiti* e ad effettuare #link(<test-accettazione>)[test di accettazione] per verificare la conformità del prodotto con le attese della #gloss[proponente], ricercando attivamente da essa la maggior quantità di _feedback_ possibile relativamente alla conformità del lavoro svolto.
@@ -996,27 +1029,27 @@ Prima di iniziare le attività di progetto, il gruppo ha istituito la #link("htt
 
 La pagina principale dell'_organization_ introduce brevemente il gruppo e i suoi membri.
 
-===== Repository documentazione (#repo("docs")[`GlitchHub-Team/GlitchHub-Team.github.io`]) <infrastruttura-github-repo-doc>
+===== Repository documentazione (#repo("docs")[`GlitchHub-Team/GlitchHub-Team.github.io`]) <infrastruttura-github-repo-documentazione>
 La #gloss[repository] di documentazione del gruppo è stata istituita con il nome `GlitchHub-Team.github.io`, poiché ciò consente la creazione di una #gloss[GitHub Page], ovvero una pagina web statica utilizzabile gratuitamente che il gruppo usa per esporre al pubblico le versioni stabili dei prodotti di progetto.
 
 All'interno della repository si trovano il file *README.md* che la descrive dettagliatamente, il file *.gitignore* che permette di impedire il versionamento per certi file specifici e le seguenti cartelle:
-- `.github/`, in cui sono contenuti i file relativi ai workflow di #gloss[GitHub Actions] e gli #gloss[issue templates] descritti
-- `script/` in cui è presente il sorgente degli script di compilazione dei file Typst e di altre automazioni
-- `src/` in cui sono presenti i sorgenti dei file di documentazione
-- `website/` in cui è presente il sorgente della #gloss[GitHub Page]
+- `.github/`, in cui sono contenuti i file relativi ai workflow di #gloss[GitHub Actions] e gli #gloss[issue templates] descritti;
+- `script/` in cui sono presenti i sorgenti dei vari script utilizzati dal gruppo per la compilazione dei file Typst e di altre automazioni utilizzate dal gruppo durante la redazione dei documenti;
+- `src/` in cui sono presenti i sorgenti dei file di documentazione;
+- `website/` in cui è presente il sorgente della #gloss[GitHub Page].
 
 Inoltre, la cartella `src/` contiene al suo interno:
 - Le cartelle `Candidatura/` e `RTB/` sono contenuti i sorgenti dei documenti appartenenti rispettivamente alla fase di #gloss[candidatura] e alla fase #gloss[RTB];
 - La cartella `Slide/`, che contiene i sorgenti delle presentazioni dei diari di bordo:
 - La cartella `Templates/`, che contiene i #link(<infrastruttura-creazione-typst>)[template di Typst utilizzati dal gruppo];
-- La cartella `assets/`, che contiene le immagini utilizzate nei documenti;
-- La cartella `fonts/`, che contiene i font usati dai documenti;
+- La cartella `assets/`, che contiene tutti gli asset usati nei documenti, tra cui immagini, diagrammi e font personalizzati;
 - La cartella `lib/`, che contiene le librerie usate dai file Typst;
-- Il file `glossary.typ` che contiene i sorgenti del file di glossario.
+- La cartella `tracciamento/`, che contiene tutti i file JSON di tracciamento dei requisiti descritti nella @validazione-implementazione-processo;
+- Il file `glossary.json`, che contiene
 
-===== Repository PoC (#repo("poc")[`GlitchHub-Team/PoC`])
+===== Repository PoC (#repo("poc")[`GlitchHub-Team/PoC`]) <infrastruttura-github-repo-poc>
 La #gloss[repository] che contiene il codice sorgente del #gloss[PoC] contiene al suo interno:
-- La cartella `.github/`, come nella @infrastruttura-github-repo-doc
+- La cartella `.github/`, come nella @infrastruttura-github-repo-documentazione
 - La cartella `.vscode/`, che contiene elementi di configurazione comuni per l'editor di testo Visual Studio Code;
 - La cartella `evaluation/`, che contiene dei documenti che riportano la valutazione delle tecnologie scelte;
 - La cartella `src/` che contiene il codice sorgente del PoC;
@@ -1209,7 +1242,7 @@ Ogni membro di _GlitchHub Team_ si impegna a ricavare in ogni _sprint_ le risors
 
 Si noti anche che lo sviluppo del #gloss[Proof of Concept] e dell'#gloss[MVP] costituiranno i momenti di maggiore formazione e pratica nell'uso delle tecnologie sopra riportate.
 
-= Metriche di Qualità <metriche-qualita>
+= Metriche di qualità <metriche-qualita>
 
 La definizione operativa delle metriche di qualità all'interno delle Norme di Progetto ha lo scopo di normare le attività di misurazione, stabilendo per ogni metrica *cosa* misurare, *come* calcolarne il valore.
 
@@ -1224,7 +1257,7 @@ Ogni metrica è descritta in termini di:
 
 Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di #strong[P]rocesso e #strong[C]ontrollo), mentre le metriche di prodotto dalla sigla *MPD* (#strong[M]etrica di #strong[P]ro#strong[d]otto).
 
-== Metriche di Qualità del Processo <metriche-processo>
+== Metriche di qualità del processo <metriche-processo>
 
 === Fornitura <metriche-fornitura>
 
@@ -1359,7 +1392,7 @@ Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di
   dove $"CRG" = "Righe di Codice Totali" / 100$.
 - *Unità di misura*: bug per CRG (centinaia di righe di codice)
 
-=== Gestione della Qualità <metriche-gestione-qualita>
+=== Gestione della qualità <metriche-gestione-qualita>
 
 ==== MPC-QMS: Quality Metrics Satisfied <mpc-qms>
 - *Descrizione*: Percentuale di metriche di qualità (di processo e di prodotto) che rientrano nel range accettabile definito nel #gloss[Piano di Qualifica]. Rappresenta un indicatore sintetico della salute complessiva del progetto.
@@ -1391,7 +1424,7 @@ Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di
 
 - *Unità di misura*: percentuale (%)
 
-== Metriche di Qualità del Prodotto <metriche-prodotto>
+== Metriche di qualità del prodotto <metriche-prodotto>
 
 === Funzionalità <metriche-funzionalita>
 
@@ -1501,7 +1534,7 @@ Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di
   Un "flusso dati sensibile" è ogni canale di comunicazione o punto di persistenza che tratta dati personali, credenziali o dati soggetti a separazione multi-tenant. La classificazione dei flussi sensibili è stabilita in fase di progettazione architetturale.
 - *Unità di misura*: percentuale (%)
 
-=== Metriche di Progresso dei Test <metriche-progresso-test>
+=== Metriche di progresso dei test <metriche-progresso-test>
 
 ==== MPT-TS: Test di Sistema Specificati <mpt-ts>
 - *Descrizione*: Percentuale di test di sistema definiti rispetto al numero totale di requisiti funzionali presenti nell'#gloss[Analisi dei Requisiti]. Misura il grado di completamento nella specifica dei test.
