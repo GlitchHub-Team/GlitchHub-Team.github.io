@@ -7,14 +7,14 @@
   versione: "0.0.3",
   registro-modifiche: (
     (
-      "0.0.3",
+      "0.2.0",
       "18/02/2026",
       "Jaume Bernardi",
       "-",
       "Applicazione critica fornita dalla verifica",
     ),
     (
-      "0.0.2",
+      "0.1.0",
       "18/02/2026",
       "Jaume Bernardi",
       "-",
@@ -66,12 +66,10 @@ Dopo un riscontro, il gruppo ha valutato molto positive le modifiche applicate a
 
 Per quanto riguarda la compilazione dei metadati di una issue durante e dopo la sua creazione, le convenzioni adottate hanno considerevolmente ridotto le possibilità di omissioni. A tal proposito, durante la riunione è stata effettuata una revisione generale delle issue precedenti queste migliorie.
 
-In aggiunta, è stata considerata la convenzione di inserire nel messaggio di un commit il numero della issue che si presta a risolvere.
-
-Il cambio di approccio alla verifica dei documenti, dove il verificatore ha il compito esclusivo di individuare e suggerire le correzioni anziché applicarle direttamente per poi necessitare di un ulteriore verifictore, ha reso l'operato ha reso l'attività più intuitiva.
+In aggiunta, è stata considerata la convenzione di inserire nel messaggio di un commit il numero della issue che si presta a risolvere con lo scopo di aumentare la tracciabilità delle modifiche.
 
 === Revisione della documentazione
-In vista della fine dell'#gloss[RTB], durante il periodo di questo sprint il gruppo si focalizza sul ricontrollare tutta la documentazione esistente. Ciò include la struttura e completezza delle tabelle, dei grafici e delle figure, come i diagrammi delgi use case.
+In vista della fine dell'#gloss[RTB], durante il periodo di questo sprint il gruppo si focalizza sul ricontrollare tutta la documentazione esistente. Ciò include la struttura e completezza delle tabelle, dei grafici e delle figure, come i diagrammi degli use case.
 
 Infine, si prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
 
@@ -81,20 +79,23 @@ Infine, si prevede l'avvio dei contatti con il professor Vardanega per concordar
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Integrazione cruscotto di valutazione], [Michele Dioli], [#issue(247, repo:"docs")],
+  [Integrazione cruscotto di valutazione], [Michele Dioli], [#issue(247, repo: "docs")],
 
-  [Stesura lettera di presentazione #gloss[RTB]], [Tutti i membri], [#issue(260, repo:"docs")],
+  [Stesura lettera di presentazione #gloss[RTB]], [Tutti i membri], [#issue(260, repo: "docs")],
 
-  [Stesura #gloss[Sprint] 9 del PdP], [Riccardo Graziani], [#issue(267, repo:"docs")],
+  [Stesura #gloss[Sprint] 9 del PdP], [Riccardo Graziani], [#issue(267, repo: "docs")],
 
-  [Revisione introduzione del PdP], [Alessandro Dinato], [#issue(269, repo:"docs")],
+  [Revisione introduzione del PdP], [Alessandro Dinato], [#issue(269, repo: "docs")],
 
-  [Modifica figure e caption su AdR, PdP e PdQ], [Siria Salvalaio], [#issue(271, repo:"docs")],
+  [Modifica figure e caption su AdR, PdP e PdQ], [Siria Salvalaio], [#issue(271, repo: "docs")],
 
-  [Stesura verbale interno 13/02/2026], [Jaume Bernardi], [#issue(273, repo:"docs")],
+  [Stesura verbale interno 13/02/2026], [Jaume Bernardi], [#issue(273, repo: "docs")],
 
-  [Stesura verbale esterno 10/02/2026], [Riccardo Graziani], [#issue(276, repo:"docs")],
-  
+  [Verifica verbale interno 13/02/2026], [Alessandro Dinato], [#issue(274, repo: "docs")],
+
+  [Stesura verbale esterno 10/02/2026], [Riccardo Graziani], [#issue(276, repo: "docs")],
+
+  [Verifica verbale esterno 10/02/2026], [Riccardo Graziani], [#issue(277, repo: "docs")],
 )
 
 == Assegnazione ruoli per le prossima settimana
