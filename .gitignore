@@ -5,3 +5,4 @@ pdf/**/*.tex
 website/pdf/
 .env
 .env.*
+__pycache__
