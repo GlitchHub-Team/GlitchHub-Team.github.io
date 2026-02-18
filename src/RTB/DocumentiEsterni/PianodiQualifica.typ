@@ -194,8 +194,8 @@
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
 Il Piano di qualifica determina 3 elementi essenziali:
 - Il *Piano di Qualità*, cioè l'insieme delle attività e obiettivi di qualità
-- Le attività di *Controllo di qualità*
-- Le iniziative di *Miglioramento continuo*
+- Le attività di *controllo di qualità*
+- Le iniziative di *miglioramento continuo*
 
 // TODO: Per i documenti con versione sarebbe meglio indicare la versione nel nome e la data di ultimo accesso
 == Riferimenti
@@ -233,7 +233,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
   https://it.wikipedia.org/wiki/Metrica_software \
   *Ultimo accesso*: 24 gennaio 2026
 
-= Metriche di Qualità del Processo
+= Metriche di qualità del processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
 
 In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#strong[M]etriche di #strong[P]rocesso e #strong[C]ontrollo). Questo identificativo permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
@@ -329,7 +329,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
 )
 
 \
-= Metriche di Qualità del Prodotto
+= Metriche di qualità del prodotto
 Le metriche di qualità del prodotto misurano le proprietà interne ed esterne del prodotto software finale: comportamento funzionale, affidabilità, usabilità, l'efficienza, la manutenibilità e la sicurezza. Il loro scopo è di verificare quanto il prodotto soddisfa i requisiti che si aspetta l'utente, quanto è robusto in condizioni reali e quanto può essere compreso, modificato, testato e protetto. In sintesi, valutano la qualità del software in esecuzione in circostanze reali.
 
 In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#strong[M]etriche di #strong[P]ro#strong[d]otto). Questo identificativo permette di classificare e monitorare le caratteristiche del software, facilitando la verifica del raggiungimento degli obiettivi qualitativi prefissati per il prodotto finale.
@@ -438,7 +438,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
 \
 
-= Metodi di Testing
+= Metodi di testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
 Le attività di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del prodotto discusse in questo documento.
@@ -455,18 +455,18 @@ La copertura del codice (detta anche *Code Coverage*) misura la percentuale di c
 
 Il valore minimo accettabile è fissato all' 80%
 
-== Test Unitari
+== Test unitari
 I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate. \
 L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
 
-== Test di Integrazione
+== Test di integrazione
 I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
 
-== Test di Regressione
+== Test di regressione
 I test di regressione vengono eseguiti in seguito all'implementazione di nuove funzionalità o modifiche al sistema, in modo da accertarsi che il corretto comportamento precedente non sia stato compromesso.
 Essi consistono nella riesecuzione dei test unitari e di integrazione già esistenti. Un aumento del numero di test di regressione falliti rappresenta un indicatore di instabilità e deve essere strettamente monitorato per evitare regressioni funzionali.
 
-== Test di Sistema
+== Test di sistema
 I test di sistema verificano il corretto comportamento complessivo dell'applicazione in un ambiente il più possibile simile a quello di utilizzo reale. \
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
@@ -685,8 +685,8 @@ Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF
 )
 
 
-== Test di Accettazione
-I Test di Accettazione verificano che il sistema soddisfi i *requisiti utente* relativi al #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[capitolato d'appalto].\
+== Test di accettazione
+I test di accettazione verificano che il sistema soddisfi i *requisiti utente* relativi al #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[capitolato d'appalto].\
 Nella tabella sottostante il singolo test di accettazione verrà associato ad un requisito di riferimento nel capitolato d'appalto.
 
 #let lista-test-accettazione = json("../../tracciamento/TA.json")
@@ -705,11 +705,11 @@ Nella tabella sottostante il singolo test di accettazione verrà associato ad un
       })
       .flatten(),
   ),
-  [Test di Accettazione con descrizione e requisito utente di riferimento],
+  [Test di accettazione con descrizione e requisito utente di riferimento],
   label-id: "tab-test-accettazione",
 )
 
-= Cruscotto di Valutazione // aka DASHBOARD
+= Cruscotto di valutazione // aka DASHBOARD
 
 In questa sezione vengono presentate le misurazioni raccolte negli sprint compresi tra l'aggiudicazione del capitolato e il raggiungimento della RTB.
 Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite tabelle riepilogative, grafici di andamento e relativa interpretazione qualitativa.
@@ -1084,7 +1084,7 @@ Soglia accettabile: MPC-WD $lt.eq$ 10%
   caption: [Indice di Gulpease per sprint],
 )
 
-Nel complesso il _team_ ha mantenuto una buona attenzione alla leggibilità dei documenti prodotti. Il Glossario e l'Analisi dei Requisiti (AdR) si collocano stabilmente in prossimità o al di sopra della soglia ottima ($>= 60$), indicando un'elevata comprensibilità dei testi.
+Nel complesso il _team_ ha mantenuto una buona attenzione alla leggibilità dei documenti prodotti. Il *glossario* e l'*Analisi dei Requisiti* (AdR) si collocano stabilmente in prossimità o al di sopra della soglia ottima ($>= 60$), indicando un'elevata comprensibilità dei testi.
 
 L'AdR evidenzia un calo significativo tra lo sprint 1 e lo sprint 3 (da 90 a 65), riconducibile all'inserimento massivo di contenuti tecnici, coincidente con l'avvio della redazione dei primi casi d'uso. Successivamente il valore recupera progressivamente fino a 72,3.
 
@@ -1114,7 +1114,7 @@ A partire dagli sprint successivi si osserva una drastica riduzione degli errori
 
 Nel complesso, l'andamento conferma un progressivo miglioramento del processo di revisione e controllo qualitativo.
 
-== MPC-TE : _Time efficiency_
+== MPC-TE : _Time Efficiency_
 
 #figure(
   table(
@@ -1248,7 +1248,7 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
     [Verificatore],
     [Necessità di una maggiore frequenza di verifica dei documenti e del codice per garantire un'alta qualità],
-    [Definizione di un nuovo stato per le GitHub Issue, denominato "In Review", per obbligare una Issue ad essere verificata prima di essere chiusa. Inoltre definizione a monte, in fase di #gloss[Sprint Planning], delle task di verifica.],
+    [Definizione di un nuovo stato per le GitHub Issue, denominato "In Review", per obbligare una issue ad essere verificata prima di essere chiusa. Inoltre definizione a monte, in fase di #gloss[Sprint Planning], delle task di verifica.],
   ),
   [Azioni adottate per migliorare la gestione dei ruoli.],
   label-id: "tab-azioni-ruoli",
@@ -1265,8 +1265,8 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
 
     [Utilizzo di GitHub Project],
-    [Difficoltà nell'utilizzo di GitHub Project e delle relative Issue con i campi custom, con conseguente difficoltà nella rendicontazione],
-    [Sessioni di affiancamento per l'utilizzo di GitHub Project, creazione di template per la creazione delle Issue e creazione di GitHub View più intuitive],
+    [Difficoltà nell'utilizzo di GitHub Project e delle relative issue con i campi custom, con conseguente difficoltà nella rendicontazione],
+    [Sessioni di affiancamento per l'utilizzo di GitHub Project, creazione di template per la creazione delle issue e creazione di GitHub View più intuitive],
 
     [NATS],
     [Difficoltà nello studio e nell'utilizzo di NATS per la scarsa esperienza del team],
