@@ -38,7 +38,7 @@
       "17/02/2026",
       "Elia Ernesto Stellin",
       "-",
-      [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts; Rimossi TS relativi a RF obsoleti]
+      [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts; Rimossi TS relativi a RF obsoleti],
     ),
     (
       "0.11.1",
@@ -436,6 +436,13 @@ La presente sezione descrive le attività di testing adottate nel progetto e le 
 
 Le attività di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del prodotto discusse in questo documento.
 
+I test avranno un codice univoco, la descrizione, il requisito di riferimento e lo stato attuale. \
+I codici per descrivere gli stati dei test sono i seguenti:
+- *NI*: Non Implementato
+- *I*: Implementato, ma non ancora verificato
+- *S*: Superato, ovvero il test è stato eseguito ed ha restituito un esito positivo
+- *NS*: Non Superato, ovvero il test è stato eseguito ma ha restituito un esito negativo
+
 == Copertura del codice
 La copertura del codice (detta anche *Code Coverage*) misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici. Tale metrica consente di valutare il grado di verifica del software ed è direttamente collegata alla metrica *MPC-CC (Code Coverage)*.
 
@@ -466,8 +473,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 #let ts-counter = counter("ts-counter")
 #ts-counter.update(1)
 
-#let ts = (id) => context {
-
+#let ts = id => context {
   let ts-name = ts-counter.display(value => "TS-" + str(value))
   let index = ts-counter.get().at(0)
   let position = here().position()
@@ -477,16 +483,16 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
       old.insert(id, (
         name: ts-name,
         pos: position,
-        index: index
-      ));
+        index: index,
+      ))
       old
     })
   ]
-  
+
   ts-counter.step(level: 1)
 }
 
-#let ref-ts = (id) => {
+#let ref-ts = id => {
   context link(ts-map.final().at(id).pos)[#ts-map.final().at(id).name]
 }
 
@@ -515,8 +521,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 #let ref-rf = id => context {
   if id in rf-formal-names.final() {
     link(label(id))[#context rf-formal-names.final().at(id)]
-  }
-  else {"LINK MANCANTE"}
+  } else { "LINK MANCANTE" }
 }
 
 #let get-tracciamento = lista-test => {
@@ -540,7 +545,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 #for rf in lista-RF {
   tracciamento-RF.insert(rf.id, (..rf, number: c))
   rf-counter.step()
-  c+=1
+  c += 1
 }
 
 /* ----------------------------------------------------------------- */
@@ -563,10 +568,10 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
 #for (ts-id, rf-id) in tracciamento-ts {
   tabella-tracciamento-ts.push(
-    [*#context ref-ts(ts-id)*]
+    [*#context ref-ts(ts-id)*],
   )
   tabella-tracciamento-ts.push(
-    [#context ref-rf(rf-id)]
+    [#context ref-rf(rf-id)],
   )
 }
 
@@ -590,17 +595,21 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
       .enumerate()
       .map(((i, test)) => {
         (
-          [*#context ts(test.id)*], 
-          [#eval(test.descr, mode: "markup")], 
+          [*#context ts(test.id)*],
+          [#eval(test.descr, mode: "markup")],
           [
             #if test.ref-req in tracciamento-RF {
-              context rf(test.ref-req, tracciamento-RF.at(test.ref-req).number, tracciamento-RF.at(test.ref-req).urgenza)
+              context rf(
+                test.ref-req,
+                tracciamento-RF.at(test.ref-req).number,
+                tracciamento-RF.at(test.ref-req).urgenza,
+              )
             } else {
               "RF mancante"
             }
-            
-          ], 
-          [#test.state]
+
+          ],
+          [#test.state],
         )
       })
       .flatten(),
@@ -632,7 +641,7 @@ Di seguito, si esegue il tracciamento assegnando a ogni test di sistema (TS) il 
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        ..tabella-tracciamento-ts
+        ..tabella-tracciamento-ts,
       ),
       [Tracciamento test funzionali],
       label-id: "tab-test-funz",
@@ -649,7 +658,7 @@ Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        ..tabella-tracciamento-inverso-ts
+        ..tabella-tracciamento-inverso-ts,
       ),
       [Tracciamento inverso test funzionali],
       label-id: "tab-test-funz-inverso",
