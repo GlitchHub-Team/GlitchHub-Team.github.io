@@ -6,6 +6,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.5.0",
+      "18/02/2026",
+      "Alessandro Dinato",
+      "-",
+      [Aggiornamento definizione Milestone e Baseline, rimozione termini ridondanti],
+    ),
+    (
       "0.4.0",
       "14/02/2026",
       "Alessandro Dinato",
