@@ -7,6 +7,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.1.0",
+      "18/02/2026",
+      "Michele Dioli",
+      "Riccardo Graziani",
+      [Ridistribuite ore fine RTB],
+    ),
+    (
       "1.0.0",
       "18/02/2026",
       "Alessandro Dinato",
@@ -713,11 +720,16 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
 - *Progett* = Progettista
 - *Programm* = Programmatore
 
-Durante lo *sprint 10*, coincidente con la fine dell'RTB, è stata eseguita un bilanciamento della suddivisione e della previsione delle ore produttive.\
-La suddetta azione è risultata necessaria in quanto sono state fatte delle stime errate riguardo ad alcuni ruoli.
+Durante la conclusione del periodo di RTB, avvenuta nello *sprint 10*, il gruppo ha effettuato un ribilanciamento della suddivisione oraria prevista per componente e ruolo.
 
-A partire dallo *sprint 10* è stata applicata la seguente suddivisione oraria.\
-La ricalibrazione oraria non ha comportato alcuna differenza nella stima dei costi di realizzazione.
+Il ribilanciamento nasce dall’analisi dei primi nove sprint in retrospettiva, che ha evidenziato la ripartizione iniziale non essere ideale per le attività di progetto. In particolare:
+
+- Le ore di *Analista* sono risultate sottostimate rispetto all'effettivo impegno richiesto dalla stesura dell'Analisi dei Requisiti, che ha richiesto un numero di sprint superiore al previsto;
+- Le ore di *Progettista* sono risultate sovrastimate per il periodo RTB, durante il quale l'attività di progettazione non è ancora stata avviata;
+-	Le ore di *Programmatore* e *Verificatore* sono state oggetto di un riequilibrio reciproco. Lo sviluppo del PoC ha richiesto esclusivamente attività di programmazione, rendendo necessaria un’integrazione delle ore previste, di conseguenza una ridistribuzione anche sul ruolo di verificatore.
+-	Le ore di Responsabile sono state ridistribuite per allinearle alle assegnazioni già definite per i successivi tre sprint e per compensare gli sforamenti registrati in altri ruoli, garantendo al contempo il rispetto del budget inizialmente previsto.
+
+La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali, ovvero modificando la distribuzione tra ruoli per ciascun membro senza alterare il monte ore individuale di *95 ore* né il costo complessivo di realizzazione.
 
 === Suddivisione oraria dallo sprint 10 <suddivisione-oraria-rtb>
 #tabella-paginata(
