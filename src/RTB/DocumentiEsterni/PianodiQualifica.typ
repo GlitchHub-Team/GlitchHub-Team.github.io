@@ -34,10 +34,17 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "0.12.1",
+      "17/02/2026",
+      "Michele Dioli",
+      "-",
+      [Rimossi elementi ridondanti],
+    ),
+    (
       "0.12.0",
       "17/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Michele Dioli",
       [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts; Rimossi TS relativi a RF obsoleti],
     ),
     (
@@ -709,9 +716,6 @@ Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite ta
 
 L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttività del team, individuando eventuali scostamenti rispetto alla pianificazione.
 
-
-Sono state trovate criticità e un peggioramento delle metriche specializzate negli sprint 4, 7 e 8. Analizzando il calendario e interpretando questi dati troviamo che lo sprint 4 è caduto nei giorni finali di dicembre dove è stato più difficile comunicare con i membri del gruppo. Sprint 7 e 8 sono gli sprint dove il gruppo ha iniziato a sviluppare il PoC e lo studio può essere stato causa di rallentamenti.
-
 == MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
 
 #tabella-paginata(
@@ -750,12 +754,9 @@ Sono state trovate criticità e un peggioramento delle metriche specializzate ne
 
 Il valore pianificato (PV) mostra un incremento progressivo coerente con l'avanzamento del progetto.
 
-Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00), evidenziando una fase iniziale di assestamento del team, si è sottovalutato il tempo da dover dedicare allo studio. A partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
+Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00). A partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
 
 L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di €3.110,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
-
-Si è visto un miglioramento personale sfruttando meglio le ore di palestra/studio anche grazie all'esperienza sempre maggiore.
-
 
 *Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
 *Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
@@ -1024,7 +1025,7 @@ Il Task Slippage conferma quanto osservato nel TCR:
 
 Il _Pull Request Cycle Time_ medio risulta complessivamente contenuto per la quasi totalità degli sprint, indicando un processo di revisione rapido ed efficace.
 
-Valori moderatamente più elevati si osservano negli sprint 1 (18,6 ore), 6 (16 ore) e 9 (19,6 ore), comunque pienamente entro livelli ottimali. Lo sprint 8 rappresenta l'unica eccezione significativa, con un PRCT medio pari a 40,5 ore, riconducibile a _pull request_ fatte durante il periodo di esami e di maggior impegno esterno del gruppo
+Valori moderatamente più elevati si osservano negli sprint 1 (18,6 ore), 6 (16 ore) e 9 (19,6 ore), comunque pienamente entro livelli ottimali. Lo sprint 8 rappresenta l'unica eccezione significativa, con un PRCT medio pari a 40,5 ore.
 
 Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 
@@ -1067,7 +1068,7 @@ La metrica MPC-WD evidenzia una distribuzione del carico di lavoro generalmente 
 
 Nei primi due sprint la deviazione standard percentuale risulta inferiore alla soglia ottima ($lt.eq$ 6,30%), indicando una ripartizione particolarmente uniforme delle attività.
 
-Negli sprint 3 e 4 si osservano invece valori superiori alla soglia accettabile del 10% (11,87% e 10,88%), evidenziando uno squilibrio temporaneo nel carico di lavoro tra i membri del team. Tale fenomeno è verosimilmente riconducibile alla presenza di attività con complessità elevata o fortemente specializzate, concentrate su alcuni componenti.
+Negli sprint 3 e 4 si osservano invece valori superiori alla soglia accettabile del 10% (11,87% e 10,88%), evidenziando uno squilibrio temporaneo nel carico di lavoro tra i membri del team.
 
 A partire dallo sprint 5 la metrica rientra stabilmente entro i limiti accettabili, mantenendosi compresa tra il 7% e il 9%, segno di un progressivo riequilibrio delle attività.
 
@@ -1146,9 +1147,9 @@ Nel complesso, l'andamento conferma un progressivo miglioramento del processo di
 )
 
 La metrica evidenzia gli _sprint_ iniziali caratterizzati da un'elevata quantità di ore dedicate alle attività di palestra, con valori che scendono al di sotto della soglia accettabile.
-Successivamente si osserva un incremento progressivo fino al raggiungimento di un picco di circa il 94% nello _sprint_ 6, in concomitanza con l'avvio della redazione dei casi d'uso e dei relativi test di sistema e requisiti.
+Successivamente si osserva un incremento progressivo fino al raggiungimento di un picco di circa il 94% nello _sprint_ 6.
 
-Nei successivi _sprint_ il rapporto diminuisce nuovamente, in corrispondenza dell'inizio dello studio delle tecnologie necessarie allo sviluppo del _Proof of Concept_ (PoC).
+Nei successivi _sprint_ il rapporto diminuisce nuovamente.
 
 *Soglia accettabile*: TE $gt.eq$ 50%\
 *Soglia ottima*: TE $gt.eq$ 90%
@@ -1193,7 +1194,6 @@ L'andamento complessivo mostra una costante attenzione al rispetto delle metrich
 
 *Soglia accettabile*: MPC-QMS $gt.eq 80$% _sempre rispettata_ \
 *Soglia ottima*: MPC-QMS = 100%
-
 
 
 = Iniziative di miglioramento <iniziative-miglioramento>
