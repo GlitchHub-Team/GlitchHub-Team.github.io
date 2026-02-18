@@ -1218,18 +1218,6 @@
         "state": "NI"
     },
     {
-        "id": "TS-Configurazione-gateway",
-        "descr": "Verificare che il *Super Admin* possa configurare i parametri di un Gateway",
-        "ref-req": "RF-Configurazione-gateway",
-        "state": "NI"
-    },
-    {
-        "id": "TS-Configurazione-non-valida",
-        "descr": "Verificare che il *Sistema* mostri un messaggio di errore se la configurazione del Gateway inserita non è valida",
-        "ref-req": "RF-Configurazione-gateway-non-valida",
-        "state": "NI"
-    },
-    {
         "id": "TS-Decommissioning-gateway",
         "descr": "Verificare che il *Super Admin* possa eseguire il decommissioning di un Gateway",
         "ref-req": "RF-Decommissioning-gateway",

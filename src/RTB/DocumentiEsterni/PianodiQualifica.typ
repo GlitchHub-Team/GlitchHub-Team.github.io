@@ -31,14 +31,28 @@
 
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "18/02/2026",
+      "Michele Dioli",
+      "Alessandro Dinato",
+      [Creazione versione stabile per RTB],
+    ),
+    (
+      "0.12.1",
+      "17/02/2026",
+      "Michele Dioli",
+      "Alessandro Dinato",
+      [Rimossi elementi ridondanti],
+    ),
     (
       "0.12.0",
       "17/02/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts; Rimossi TS relativi a RF obsoleti]
+      "Michele Dioli",
+      [Integrata @tracciamento-test-funzionali con file JSON di raccolta TS e RF; Aggiunte @tracciamento-ts-rf e @tracciamento-rf-ts; Rimossi TS relativi a RF obsoleti],
     ),
     (
       "0.11.1",
@@ -163,8 +177,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Qualifica",
 )
 
@@ -187,15 +201,15 @@
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
 Il Piano di qualifica determina 3 elementi essenziali:
 - Il *Piano di Qualità*, cioè l'insieme delle attività e obiettivi di qualità
-- Le attività di *Controllo di qualità*
-- Le iniziative di *Miglioramento continuo*
+- Le attività di *controllo di qualità*
+- Le iniziative di *miglioramento continuo*
 
 // TODO: Per i documenti con versione sarebbe meglio indicare la versione nel nome e la data di ultimo accesso
 == Riferimenti
 === Riferimenti normativi
 - *Norme di Progetto* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf \
-  *Ultimo accesso*: versione 1.0.0
+  *Ultimo accesso*: versione 1.2.0
 
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
@@ -226,7 +240,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
   https://it.wikipedia.org/wiki/Metrica_software \
   *Ultimo accesso*: 24 gennaio 2026
 
-= Metriche di Qualità del Processo
+= Metriche di qualità del processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
 
 In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#strong[M]etriche di #strong[P]rocesso e #strong[C]ontrollo). Questo identificativo permette di classificare e tracciare tutte le misurazioni relative alla gestione dei costi, all'avanzamento temporale, alla qualità della documentazione e all'efficienza dei processi interni al team di sviluppo.
@@ -322,7 +336,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
 )
 
 \
-= Metriche di Qualità del Prodotto
+= Metriche di qualità del prodotto
 Le metriche di qualità del prodotto misurano le proprietà interne ed esterne del prodotto software finale: comportamento funzionale, affidabilità, usabilità, l'efficienza, la manutenibilità e la sicurezza. Il loro scopo è di verificare quanto il prodotto soddisfa i requisiti che si aspetta l'utente, quanto è robusto in condizioni reali e quanto può essere compreso, modificato, testato e protetto. In sintesi, valutano la qualità del software in esecuzione in circostanze reali.
 
 In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#strong[M]etriche di #strong[P]ro#strong[d]otto). Questo identificativo permette di classificare e monitorare le caratteristiche del software, facilitando la verifica del raggiungimento degli obiettivi qualitativi prefissati per il prodotto finale.
@@ -431,28 +445,35 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
 \
 
-= Metodi di Testing
+= Metodi di testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
 
 Le attività di testing forniscono evidenza oggettiva del corretto funzionamento dell'intero sistema e supportano la valutazione delle metriche di qualità del prodotto discusse in questo documento.
+
+I test avranno un codice univoco, la descrizione, il requisito di riferimento e lo stato attuale. \
+I codici per descrivere gli stati dei test sono i seguenti:
+- *NI*: Non Implementato
+- *I*: Implementato, ma non ancora verificato
+- *S*: Superato, ovvero il test è stato eseguito ed ha restituito un esito positivo
+- *NS*: Non Superato, ovvero il test è stato eseguito ma ha restituito un esito negativo
 
 == Copertura del codice
 La copertura del codice (detta anche *Code Coverage*) misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici. Tale metrica consente di valutare il grado di verifica del software ed è direttamente collegata alla metrica *MPC-CC (Code Coverage)*.
 
 Il valore minimo accettabile è fissato all' 80%
 
-== Test Unitari
+== Test unitari
 I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate. \
 L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
 
-== Test di Integrazione
+== Test di integrazione
 I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
 
-== Test di Regressione
+== Test di regressione
 I test di regressione vengono eseguiti in seguito all'implementazione di nuove funzionalità o modifiche al sistema, in modo da accertarsi che il corretto comportamento precedente non sia stato compromesso.
 Essi consistono nella riesecuzione dei test unitari e di integrazione già esistenti. Un aumento del numero di test di regressione falliti rappresenta un indicatore di instabilità e deve essere strettamente monitorato per evitare regressioni funzionali.
 
-== Test di Sistema
+== Test di sistema
 I test di sistema verificano il corretto comportamento complessivo dell'applicazione in un ambiente il più possibile simile a quello di utilizzo reale. \
 Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
@@ -466,8 +487,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 #let ts-counter = counter("ts-counter")
 #ts-counter.update(1)
 
-#let ts = (id) => context {
-
+#let ts = id => context {
   let ts-name = ts-counter.display(value => "TS-" + str(value))
   let index = ts-counter.get().at(0)
   let position = here().position()
@@ -477,16 +497,16 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
       old.insert(id, (
         name: ts-name,
         pos: position,
-        index: index
-      ));
+        index: index,
+      ))
       old
     })
   ]
-  
+
   ts-counter.step(level: 1)
 }
 
-#let ref-ts = (id) => {
+#let ref-ts = id => {
   context link(ts-map.final().at(id).pos)[#ts-map.final().at(id).name]
 }
 
@@ -515,8 +535,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 #let ref-rf = id => context {
   if id in rf-formal-names.final() {
     link(label(id))[#context rf-formal-names.final().at(id)]
-  }
-  else {"LINK MANCANTE"}
+  } else { "LINK MANCANTE" }
 }
 
 #let get-tracciamento = lista-test => {
@@ -540,7 +559,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 #for rf in lista-RF {
   tracciamento-RF.insert(rf.id, (..rf, number: c))
   rf-counter.step()
-  c+=1
+  c += 1
 }
 
 /* ----------------------------------------------------------------- */
@@ -563,10 +582,10 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
 #for (ts-id, rf-id) in tracciamento-ts {
   tabella-tracciamento-ts.push(
-    [*#context ref-ts(ts-id)*]
+    [*#context ref-ts(ts-id)*],
   )
   tabella-tracciamento-ts.push(
-    [#context ref-rf(rf-id)]
+    [#context ref-rf(rf-id)],
   )
 }
 
@@ -590,17 +609,21 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
       .enumerate()
       .map(((i, test)) => {
         (
-          [*#context ts(test.id)*], 
-          [#eval(test.descr, mode: "markup")], 
+          [*#context ts(test.id)*],
+          [#eval(test.descr, mode: "markup")],
           [
             #if test.ref-req in tracciamento-RF {
-              context rf(test.ref-req, tracciamento-RF.at(test.ref-req).number, tracciamento-RF.at(test.ref-req).urgenza)
+              context rf(
+                test.ref-req,
+                tracciamento-RF.at(test.ref-req).number,
+                tracciamento-RF.at(test.ref-req).urgenza,
+              )
             } else {
               "RF mancante"
             }
-            
-          ], 
-          [#test.state]
+
+          ],
+          [#test.state],
         )
       })
       .flatten(),
@@ -632,7 +655,7 @@ Di seguito, si esegue il tracciamento assegnando a ogni test di sistema (TS) il 
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        ..tabella-tracciamento-ts
+        ..tabella-tracciamento-ts,
       ),
       [Tracciamento test funzionali],
       label-id: "tab-test-funz",
@@ -649,7 +672,7 @@ Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF
         columns: (auto, auto),
         align: center,
         table.header([*Test*], [*Requisito*]),
-        ..tabella-tracciamento-inverso-ts
+        ..tabella-tracciamento-inverso-ts,
       ),
       [Tracciamento inverso test funzionali],
       label-id: "tab-test-funz-inverso",
@@ -669,8 +692,8 @@ Di seguito, si esegue il tracciamento assegnando a ogni requisito funzionale (RF
 )
 
 
-== Test di Accettazione
-I Test di Accettazione verificano che il sistema soddisfi i *requisiti utente* relativi al #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[capitolato d'appalto].\
+== Test di accettazione
+I test di accettazione verificano che il sistema soddisfi i *requisiti utente* relativi al #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[capitolato d'appalto].\
 Nella tabella sottostante il singolo test di accettazione verrà associato ad un requisito di riferimento nel capitolato d'appalto.
 
 #let lista-test-accettazione = json("../../tracciamento/TA.json")
@@ -689,19 +712,16 @@ Nella tabella sottostante il singolo test di accettazione verrà associato ad un
       })
       .flatten(),
   ),
-  [Test di Accettazione con descrizione e requisito utente di riferimento],
+  [Test di accettazione con descrizione e requisito utente di riferimento],
   label-id: "tab-test-accettazione",
 )
 
-= Cruscotto di Valutazione // aka DASHBOARD
+= Cruscotto di valutazione // aka DASHBOARD
 
 In questa sezione vengono presentate le misurazioni raccolte negli sprint compresi tra l'aggiudicazione del capitolato e il raggiungimento della RTB.
 Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite tabelle riepilogative, grafici di andamento e relativa interpretazione qualitativa.
 
 L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttività del team, individuando eventuali scostamenti rispetto alla pianificazione.
-
-
-Sono state trovate criticità e un peggioramento delle metriche specializzate negli sprint 4, 7 e 8. Analizzando il calendario e interpretando questi dati troviamo che lo sprint 4 è caduto nei giorni finali di dicembre dove è stato più difficile comunicare con i membri del gruppo. Sprint 7 e 8 sono gli sprint dove il gruppo ha iniziato a sviluppare il PoC e lo studio può essere stato causa di rallentamenti.
 
 == MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
 
@@ -741,12 +761,9 @@ Sono state trovate criticità e un peggioramento delle metriche specializzate ne
 
 Il valore pianificato (PV) mostra un incremento progressivo coerente con l'avanzamento del progetto.
 
-Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00), evidenziando una fase iniziale di assestamento del team, si è sottovalutato il tempo da dover dedicare allo studio. A partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
+Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00). A partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
 
 L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di €3.110,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
-
-Si è visto un miglioramento personale sfruttando meglio le ore di palestra/studio anche grazie all'esperienza sempre maggiore.
-
 
 *Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
 *Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
@@ -1015,7 +1032,7 @@ Il Task Slippage conferma quanto osservato nel TCR:
 
 Il _Pull Request Cycle Time_ medio risulta complessivamente contenuto per la quasi totalità degli sprint, indicando un processo di revisione rapido ed efficace.
 
-Valori moderatamente più elevati si osservano negli sprint 1 (18,6 ore), 6 (16 ore) e 9 (19,6 ore), comunque pienamente entro livelli ottimali. Lo sprint 8 rappresenta l'unica eccezione significativa, con un PRCT medio pari a 40,5 ore, riconducibile a _pull request_ fatte durante il periodo di esami e di maggior impegno esterno del gruppo
+Valori moderatamente più elevati si osservano negli sprint 1 (18,6 ore), 6 (16 ore) e 9 (19,6 ore), comunque pienamente entro livelli ottimali. Lo sprint 8 rappresenta l'unica eccezione significativa, con un PRCT medio pari a 40,5 ore.
 
 Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 
@@ -1058,7 +1075,7 @@ La metrica MPC-WD evidenzia una distribuzione del carico di lavoro generalmente 
 
 Nei primi due sprint la deviazione standard percentuale risulta inferiore alla soglia ottima ($lt.eq$ 6,30%), indicando una ripartizione particolarmente uniforme delle attività.
 
-Negli sprint 3 e 4 si osservano invece valori superiori alla soglia accettabile del 10% (11,87% e 10,88%), evidenziando uno squilibrio temporaneo nel carico di lavoro tra i membri del team. Tale fenomeno è verosimilmente riconducibile alla presenza di attività con complessità elevata o fortemente specializzate, concentrate su alcuni componenti.
+Negli sprint 3 e 4 si osservano invece valori superiori alla soglia accettabile del 10% (11,87% e 10,88%), evidenziando uno squilibrio temporaneo nel carico di lavoro tra i membri del team.
 
 A partire dallo sprint 5 la metrica rientra stabilmente entro i limiti accettabili, mantenendosi compresa tra il 7% e il 9%, segno di un progressivo riequilibrio delle attività.
 
@@ -1074,7 +1091,7 @@ Soglia accettabile: MPC-WD $lt.eq$ 10%
   caption: [Indice di Gulpease per sprint],
 )
 
-Nel complesso il _team_ ha mantenuto una buona attenzione alla leggibilità dei documenti prodotti. Il Glossario e l'Analisi dei Requisiti (AdR) si collocano stabilmente in prossimità o al di sopra della soglia ottima ($>= 60$), indicando un'elevata comprensibilità dei testi.
+Nel complesso il _team_ ha mantenuto una buona attenzione alla leggibilità dei documenti prodotti. Il *glossario* e l'*Analisi dei Requisiti* (AdR) si collocano stabilmente in prossimità o al di sopra della soglia ottima ($>= 60$), indicando un'elevata comprensibilità dei testi.
 
 L'AdR evidenzia un calo significativo tra lo sprint 1 e lo sprint 3 (da 90 a 65), riconducibile all'inserimento massivo di contenuti tecnici, coincidente con l'avvio della redazione dei primi casi d'uso. Successivamente il valore recupera progressivamente fino a 72,3.
 
@@ -1104,7 +1121,7 @@ A partire dagli sprint successivi si osserva una drastica riduzione degli errori
 
 Nel complesso, l'andamento conferma un progressivo miglioramento del processo di revisione e controllo qualitativo.
 
-== MPC-TE : _Time efficiency_
+== MPC-TE : _Time Efficiency_
 
 #figure(
   table(
@@ -1137,9 +1154,9 @@ Nel complesso, l'andamento conferma un progressivo miglioramento del processo di
 )
 
 La metrica evidenzia gli _sprint_ iniziali caratterizzati da un'elevata quantità di ore dedicate alle attività di palestra, con valori che scendono al di sotto della soglia accettabile.
-Successivamente si osserva un incremento progressivo fino al raggiungimento di un picco di circa il 94% nello _sprint_ 6, in concomitanza con l'avvio della redazione dei casi d'uso e dei relativi test di sistema e requisiti.
+Successivamente si osserva un incremento progressivo fino al raggiungimento di un picco di circa il 94% nello _sprint_ 6.
 
-Nei successivi _sprint_ il rapporto diminuisce nuovamente, in corrispondenza dell'inizio dello studio delle tecnologie necessarie allo sviluppo del _Proof of Concept_ (PoC).
+Nei successivi _sprint_ il rapporto diminuisce nuovamente.
 
 *Soglia accettabile*: TE $gt.eq$ 50%\
 *Soglia ottima*: TE $gt.eq$ 90%
@@ -1184,7 +1201,6 @@ L'andamento complessivo mostra una costante attenzione al rispetto delle metrich
 
 *Soglia accettabile*: MPC-QMS $gt.eq 80$% _sempre rispettata_ \
 *Soglia ottima*: MPC-QMS = 100%
-
 
 
 = Iniziative di miglioramento <iniziative-miglioramento>
@@ -1239,7 +1255,7 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
     [Verificatore],
     [Necessità di una maggiore frequenza di verifica dei documenti e del codice per garantire un'alta qualità],
-    [Definizione di un nuovo stato per le GitHub Issue, denominato "In Review", per obbligare una Issue ad essere verificata prima di essere chiusa. Inoltre definizione a monte, in fase di #gloss[Sprint Planning], delle task di verifica.],
+    [Definizione di un nuovo stato per le GitHub Issue, denominato "In Review", per obbligare una issue ad essere verificata prima di essere chiusa. Inoltre definizione a monte, in fase di #gloss[Sprint Planning], delle task di verifica.],
   ),
   [Azioni adottate per migliorare la gestione dei ruoli.],
   label-id: "tab-azioni-ruoli",
@@ -1256,8 +1272,8 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
     [*Problema*], [*Descrizione*], [*Azioni di correzione*],
 
     [Utilizzo di GitHub Project],
-    [Difficoltà nell'utilizzo di GitHub Project e delle relative Issue con i campi custom, con conseguente difficoltà nella rendicontazione],
-    [Sessioni di affiancamento per l'utilizzo di GitHub Project, creazione di template per la creazione delle Issue e creazione di GitHub View più intuitive],
+    [Difficoltà nell'utilizzo di GitHub Project e delle relative issue con i campi custom, con conseguente difficoltà nella rendicontazione],
+    [Sessioni di affiancamento per l'utilizzo di GitHub Project, creazione di template per la creazione delle issue e creazione di GitHub View più intuitive],
 
     [NATS],
     [Difficoltà nello studio e nell'utilizzo di NATS per la scarsa esperienza del team],
