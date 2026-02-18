@@ -3,28 +3,35 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 13/02/2026",
-  stato: "da verificare",
-  versione: "0.0.3",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "18/02/2026",
+      "Jaume Bernardi",
+      "Alessandro Dinato",
+      "Applicazione critica fornita dalla verifica",
+    ),
     (
       "0.2.0",
       "18/02/2026",
       "Jaume Bernardi",
-      "-",
+      "Alessandro Dinato",
       "Applicazione critica fornita dalla verifica",
     ),
     (
       "0.1.0",
       "18/02/2026",
       "Jaume Bernardi",
-      "-",
+      "Alessandro Dinato",
       "Modifica ai ruoli",
     ),
     (
       "0.0.1",
       "16/02/2026",
       "Jaume Bernardi",
-      "-",
+      "Alessandro Dinato",
       "Prima bozza documento",
     ),
   ),
@@ -55,23 +62,30 @@
 )
 
 = Introduzione
-Il presente documento attesta che, in data *13 gennaio 2026* iniziato dalle ore 11:00 alle ore 11:50 si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
+Il presente documento attesta che, in data *13 febbraio 2026* iniziato dalle ore 11:00 alle ore 11:50 si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 = Resoconto della riunione
 
-== Retrospettiva dello sprint
+== Migliorie nell'organizzazione del gruppo
+Dopo un riscontro, il gruppo ha valutato molto positive le modifiche applicate al #gloss[Way of Working] applicate nello *sprint 9*. In particolar modo la creazione di task atomiche, figlie di una rispettiva attività principale, ha reso sin da subito l'esecuzione delle task più semplice ed ha permesso una pianificazione più accurata sia a livello di gruppo che a livello di singolo membro.\
+Questo miglioramento verrà documentato in modo pià approfondito all'interno della *retrospettiva* dello *sprint 9* all'interno del #gloss[Piano di Progetto].
 
-=== Migliorie nell'organizzazione del gruppo
-Dopo un riscontro, il gruppo ha valutato molto positive le modifiche applicate al #gloss[Way of Working] durante il periodo di #gloss[sprint] precedente. In particolar modo la creazione di task atomiche, figlie di una rispettiva attività principale, ha reso sin da subito la suddivisione del lavoro più strutturata, sia tra i compiti da svolgere che tra i membri a cui vengono assegnati.
-
-Per quanto riguarda la compilazione dei metadati di una issue durante e dopo la sua creazione, le convenzioni adottate hanno considerevolmente ridotto le possibilità di omissioni. A tal proposito, durante la riunione è stata effettuata una revisione generale delle issue precedenti queste migliorie.
+Inoltre il rispetto delle convenzioni per la rendicontazione delle Issue è stata semplificata dalla creazione di una nuova GitHub View rappresentante tutte le Issue assegnate al membro con cui si accede a GitHub.
 
 In aggiunta, è stata considerata la convenzione di inserire nel messaggio di un commit il numero della issue che si presta a risolvere con lo scopo di aumentare la tracciabilità delle modifiche.
 
-=== Revisione della documentazione
-In vista della fine dell'#gloss[RTB], durante il periodo di questo sprint il gruppo si focalizza sul ricontrollare tutta la documentazione esistente. Ciò include la struttura e completezza delle tabelle, dei grafici e delle figure, come i diagrammi degli use case.
+== Revisione della documentazione
+In vista della fine dell'#gloss[RTB], durante il periodo di questo sprint il gruppo si focalizza nel ricontrollare tutta la documentazione esistente, ciò include:
+- la creazione degli indici delle tabelle e delle figure;
+- la revisione del PdP con particolare attenzione alla sua introduzione;
+- la revisione del PdQ con particolare attenzione ai test di accettazione e test di sistema.
 
-Infine, si prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
+== Programmazione in vista della revisione finale della RTB
+Il gruppo, infine, ha pianificato le ultime attività in vista della revisione finale della RTB, le quali includono:
+- la stesura di una lettera di presentazione della RTB;
+- creazione delle diapositive per la presentazione della RTB al professor Vardanega;
+
+Il gruppo è consapevole che durante le revisioni dei documenti sorgeranno ulteriori compiti, per questo ogni componente del gruppo si impegna a rendicontare e comunicare l'insorgere di nuove task. Ciò sarà facilitato dall'intensiva comunicazione sincrona attraverso #gloss[Discord].
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
@@ -87,6 +101,8 @@ Infine, si prevede l'avvio dei contatti con il professor Vardanega per concordar
 
   [Revisione introduzione del PdP], [Alessandro Dinato], [#issue(269, repo: "docs")],
 
+  [Presentazione RTB Parte 2(professor Vardanega)], [Siria Salvalaio], [#issue(270, repo: "docs")],
+
   [Modifica figure e caption su AdR, PdP e PdQ], [Siria Salvalaio], [#issue(271, repo: "docs")],
 
   [Stesura verbale interno 13/02/2026], [Jaume Bernardi], [#issue(273, repo: "docs")],
@@ -96,6 +112,8 @@ Infine, si prevede l'avvio dei contatti con il professor Vardanega per concordar
   [Stesura verbale esterno 10/02/2026], [Riccardo Graziani], [#issue(276, repo: "docs")],
 
   [Verifica verbale esterno 10/02/2026], [Riccardo Graziani], [#issue(277, repo: "docs")],
+
+  [Adattare Norme di Progetto a modifiche alla repo], [Elia Ernesto Stellin], [#issue(307, repo: "docs")],
 )
 
 == Assegnazione ruoli per le prossima settimana
