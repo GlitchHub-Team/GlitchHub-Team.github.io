@@ -4,8 +4,15 @@
 #show: report.with(
   titolo: "Verbale interno 13/02/2026",
   stato: "da verificare",
-  versione: "0.0.1",
+  versione: "0.0.2",
   registro-modifiche: (
+    (
+      "0.0.2",
+      "18/02/2026",
+      "Jaume Bernardi",
+      "-",
+      "Modifica ai ruoli",
+    ),
     (
       "0.0.1",
       "16/02/2026",
@@ -77,3 +84,5 @@ Successivamente è stato fatto un controllo generale sulla completezza dei metad
 == Assegnazione ruoli per le prossima settimana
 - *Responsabile*: Jaume Bernardi
 - *Amministratore*: Michele Dioli
+- *Verificatore*: Alessandro Dinato, Riccardo Graziani, Jaume Bernardi, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin, Hossam Ezzemouri
+- *Analista*: Alessandro Dinato, Riccardo Graziani, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin, Hossam Ezzemouri
