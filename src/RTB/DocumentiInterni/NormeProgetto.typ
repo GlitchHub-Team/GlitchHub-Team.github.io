@@ -171,7 +171,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - *Note*: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
-- *Glossario v0.3.1*
+- *Glossario v0.5.0*
   - #link(
       "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf",
     )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`]
