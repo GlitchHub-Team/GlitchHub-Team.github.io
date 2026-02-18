@@ -18,15 +18,6 @@
         ]
     },
     {
-        "id": "RD-Clienti-simultanei",
-        "urgenza": "Obb",
-        "desc": "Il sistema deve supportare più clienti simultanei.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.1 -- RQ 3"
-        ]
-    },
-    {
         "id": "RD-Dati-logicamente-separati-per-tenant",
         "urgenza": "Obb",
         "desc": "I dati devono essere logicamente separati per tenant.",
@@ -42,24 +33,6 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.1 -- RQ 2.3"
-        ]
-    },
-    {
-        "id": "RD-Dati-interrogabili-intervallo-temporale",
-        "urgenza": "Obb",
-        "desc": "I dati devono essere associati a un timestamp ed essere interrogabili per intervallo temporale.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.1 -- RQ 4.2.1"
-        ]
-    },
-    {
-        "id": "RD-Dati-interrogabili-intervallo-temporale-sensore",
-        "urgenza": "Obb",
-        "desc": "I dati devono essere associati a un timestamp ed essere interrogabili per sensore e per intervallo temporale.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.1 -- RQ 4.2.1"
         ]
     },
     {
@@ -87,6 +60,33 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.1 -- RQ 4.2.2"
+        ]
+    },
+    {
+        "id": "RD-linguaggio-Go",
+        "urgenza": "Obb",
+        "desc": "Il dominio richiede l'utilizzo del linguaggio Go, dato che fa part del tech stack della proponente.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §4"
+        ]
+    },
+    {
+        "id": "RD-NATS",
+        "urgenza": "Obb",
+        "desc": "Il dominio richiede l'utilizzo di NATS essendo specializzato per contesti IoT e facendo parte del tech stack della proponente.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §4"
+        ]
+    },
+    {
+        "id": "RD-Grafana-Prometheus",
+        "urgenza": "Obb",
+        "desc": "Il dominio richiede l'utilizzo di Grafana e Prometheus per il monitoring del sistema cloud.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §4"
         ]
     }
 ]

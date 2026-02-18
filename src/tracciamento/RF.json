@@ -1887,24 +1887,6 @@
         "ref_capitolato": []
     },
     {
-        "id": "RF-Configurazione-gateway",
-        "urgenza": "Obb",
-        "desc": "Il Super Admin deve poter configurare i parametri di un Gateway",
-        "ref_uc": [
-            "<Configurazione-gateway>"
-        ],
-        "ref_capitolato": []
-    },
-    {
-        "id": "RF-Configurazione-gateway-non-valida",
-        "urgenza": "Obb",
-        "desc": "Il Sistema deve mostrare un messaggio di errore se la configurazione del Gateway inserita non è valida",
-        "ref_uc": [
-            "<Configurazione-gateway-non-valida>"
-        ],
-        "ref_capitolato": []
-    },
-    {
         "id": "RF-Decommissioning-gateway",
         "urgenza": "Obb",
         "desc": "Il Super Admin deve poter eseguire il decommissioning di un Gateway",

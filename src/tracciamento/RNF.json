@@ -1,35 +1,8 @@
 [
     {
-        "id": "RNF-Scalabilita-sensori",
-        "urgenza": "Obb",
-        "desc": "Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di sensori senza degrado delle prestazioni.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.5 -- RQ 14"
-        ]
-    },
-    {
-        "id": "RNF-Scalabilita-gateway",
-        "urgenza": "Obb",
-        "desc": "Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di gateway senza degrado delle prestazioni.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.5 -- RQ 14"
-        ]
-    },
-    {
-        "id": "RNF-Scalabilità-tenant",
-        "urgenza": "Obb",
-        "desc": "Il sistema cloud deve supportare la scalabilità orizzontale per gestire un numero crescente di tenant senza degrado delle prestazioni.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.5 -- RQ 14"
-        ]
-    },
-    {
         "id": "RNF-Test-unitari-integrazione",
         "urgenza": "Obb",
-        "desc": "Devono essere presenti test unitari e test di integrazione con un livello minimo di copertura prestabilito.",
+        "desc": "Devono essere presenti test unitari e test di integrazione con un livello minimo di copertura dell'80% del codice.",
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.5 -- RQ 15"
@@ -38,7 +11,7 @@
     {
         "id": "RNF-Monitoraggio-prestazioni",
         "urgenza": "Obb",
-        "desc": "Si devono predisporre strumenti di monitoraggio in tempo reale delle prestazioni del sistema.",
+        "desc": "Si devono predisporre strumenti di monitoraggio in tempo reale delle prestazioni del sistema, quali Prometheus e Grafana.",
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.5 -- RQ 16",
@@ -66,7 +39,7 @@
     {
         "id": "RNF-Cifratura-dati",
         "urgenza": "Obb",
-        "desc": "Deve essere garantita la cifratura dei dati.",
+        "desc": "Deve essere garantita la cifratura dei dati in transito attraverso TLS",
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.3 -- RQ 9"
@@ -75,7 +48,7 @@
     {
         "id": "RNF-Autenticazione-robusta",
         "urgenza": "Obb",
-        "desc": "Si deve garantire che l'autenticazione dei tenant avvenga tramite meccanismi robusti.",
+        "desc": "Si deve garantire che l'autenticazione dei tenant avvenga tramite meccanismi distribuiti come il JWT(JSON Web Token).",
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.3 -- RQ 8"
@@ -100,21 +73,48 @@
         ]
     },
     {
-        "id": "RNF-Scalabilità-Isolamento-fisico-tenant",
-        "urgenza": "Des",
-        "desc": "Deve essere garantito l'isolamento fisico dei tenant.",
-        "ref_uc": [],
-        "ref_capitolato": [
-            "Capitolato §5.3 -- RQ 10"
-        ]
-    },
-    {
         "id": "RNF-Provisioning-sicuro-gateway",
         "urgenza": "Obb",
         "desc": "Deve essere garantito il provisioning sicuro dei gateway.",
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §3.2"
+        ]
+    },
+    {
+        "id": "RNF-doc-diagrammi",
+        "urgenza": "Obb",
+        "desc": "Devono essere forniti diagrammi architetturali rappresentanti il design logico e di dettaglio.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
+        ]
+    },
+    {
+        "id": "RNF-doc-tecnica",
+        "urgenza": "Obb",
+        "desc": "Deve essere fornita la documentazione del codice e delle sue funzionalità.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
+        ]
+    },
+    {
+        "id": "RNF-manuale-test",
+        "urgenza": "Obb",
+        "desc": "Deve essere redatto un manuale che rappresenti tutti i test messi in atto, i criteri di successo e i risultati ottenuti.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
+        ]
+    },
+    {
+        "id": "RNF-manuale-utente-amm",
+        "urgenza": "Obb",
+        "desc": "Deve essere prodotta una guida che spieghi le funzionalità utente e amministratore.",
+        "ref_uc": [],
+        "ref_capitolato": [
+            "Capitolato §8"
         ]
     }
 ]
