@@ -76,18 +76,18 @@ Il presente documento attesta che, in data *30 gennaio 2026* dalle 16:30 alle or
 == Retrospettiva dello sprint
 
 === Allineamento sul PoC
-Durante la riunione, il gruppo ha approvato l'architettura proposta per il PoC. A seguire, sono stati illustrati gli avanzamenti tecnici relativi alle componenti *NATS* e *Angular*.
-È stata inoltre creata la #link("https://github.com/GlitchHub-Team/PoC")[*repository*] dedicata al versionamento del PoC.
+Durante la riunione, il gruppo ha approvato l'architettura proposta per il PoC. A seguire, sono stati illustrati gli avanzamenti tecnici relativi alle componenti *#gloss[NATS]* e *Angular*.
+È stata inoltre creata la #link("#gloss[https]://#gloss[github].com/GlitchHub-Team/PoC")[*#gloss[repository]*] dedicata al versionamento del PoC.
 
 === Analisi dei Requisiti
-A seguito del consolidamento degli use case, si è proceduto alla *stesura* e *classificazione* dei requisiti in funzionali, non funzionali e di dominio. Contestualmente, è stata completata la modellazione grafica degli use case (da *UC1* a *UC109*) Il gruppo ha dunque individuato le seguenti attività:
+A seguito del consolidamento degli #gloss[use case], si è proceduto alla *stesura* e *classificazione* dei requisiti in funzionali, non funzionali e di dominio. Contestualmente, è stata completata la modellazione grafica degli #gloss[use case] (da *UC1* a *UC109*) Il gruppo ha dunque individuato le seguenti attività:
 - terminare l'inserimento dei diagrammi dei casi d'uso mancanti;
 - creare una *table of contents* relativa ai diagrammi dei casi d'uso;
 - creare la tabella di *tracciamento* requisiti-UC;
 - *classificare* i requisiti per livello di urgenza in: *Obbligatori*, *Opzionali*, *Desiderabili*;
 
 === Norme di Progetto
-Il gruppo ha rilevato come la stesura del documento *Norme di Progetto* sia stata trascurata per troppo tempo. Sono state dunque individuate le *sezioni* che necessitano di essere redatte:
+Il gruppo ha rilevato come la stesura del documento *#gloss[Norme di Progetto]* sia stata trascurata per troppo tempo. Sono state dunque individuate le *sezioni* che necessitano di essere redatte:
 - sezione dei *Processi Primari*, in particolare le sezioni riguardanti i processi di *fornitura* e *sviluppo*;
 - sezione dei *Processi Organizzativi*, in particolare le sezioni riguardanti la *gestione dei processi* e *l'infrastruttura*;
 - sezione dei *Processi di Supporto*, in particolare la sezione di *qualifica* e le *convenzioni* usate nella documentazione;
@@ -96,34 +96,34 @@ Il gruppo ha rilevato come la stesura del documento *Norme di Progetto* sia stat
 Sono state definite le *iniziative di miglioramento* e formalizzate le metriche per il monitoraggio della *Qualità del Processo* e della *Qualità del Prodotto*, con l'integrazione delle relative formule. 
 \
 Il gruppo ha quindi individuato le seguenti attività: 
-- la scrittura dei *Test di Sistema* relativi ai requisiti funzionali, non funzionali e di dominio;
+- la scrittura dei *Test di #gloss[Sistema]* relativi ai #gloss[requisiti funzionali], non funzionali e di dominio;
 - l'integrazione del cruscotto di valutazione;
 
 == Miglioramento dell'organizzazione del gruppo
 
 === Gestione delle baseline/milestone
-Il gruppo ha rilevato come la mancata *definizione* di baseline e milestone abbia limitato la visione d'insieme, causando uno *slittamento* delle attività.
+Il gruppo ha rilevato come la mancata *definizione* di #gloss[baseline] e #gloss[milestone] abbia limitato la visione d'insieme, causando uno *slittamento* delle attività.
 Per ovviare a tale lacuna, il gruppo si impegna a programmare le attività tramite la pianificazione a ritroso. La strategia si articolerà su due livelli:
 - *pianificazione a lungo termine*: definizione delle attività a grana grossa procedendo a ritroso dalle scadenze prefissate;
-- *pianificazione a breve termine*: scomposizione delle attività in task a grana fine, gestite tramite un sistema di issue strutturato;
+- *pianificazione a breve termine*: scomposizione delle attività in task a grana fine, gestite tramite un #gloss[sistema] di issue strutturato;
 
 === Gestione delle issues/GitHub Project
-È stata rilevata una gestione *inefficiente* delle GitHub Issues, caratterizzata da una compilazione *incompleta* dei metadati e da un planning eccessivamente approssimativo. Facendo tesoro dell'esperienza maturata e degli standard metodologici approfonditi nel corso di *IS*, il gruppo ha identificato i propri debiti tecnici e organizzativi. Di conseguenza, è stato formalizzato un nuovo *workflow operativo* volto a garantire una scomposizione delle attività a grana fine e una gestione rigorosa del repository.
+È stata rilevata una gestione *inefficiente* delle #gloss[GitHub] Issues, caratterizzata da una compilazione *incompleta* dei metadati e da un planning eccessivamente approssimativo. Facendo tesoro dell'esperienza maturata e degli standard metodologici approfonditi nel corso di *IS*, il gruppo ha identificato i propri debiti tecnici e organizzativi. Di conseguenza, è stato formalizzato un nuovo *workflow operativo* volto a garantire una scomposizione delle attività a grana fine e una gestione rigorosa del #gloss[repository].
 In particolare:
 - la programmazione delle nuove issue seguirà un approccio *top-down*, ossia ogni attività da svolgere verrà scomposta in task *atomici*;
 - il responsabile ha il compito di *creare*, *assegnare* e *compilare* le issues. In particolare devono essere compilati fin da subito i campi: *start date*, *target date* ed *expected worked hours*;
-- è compito dell'assegnatario aggiornare lo stato delle proprie issue in maniera tempestiva tramite la *Kanban* GitHub Projects;
+- è compito dell'assegnatario aggiornare lo stato delle proprie issue in maniera tempestiva tramite la *Kanban* #gloss[GitHub] Projects;
 - al completamento di una issue è compito dell'assegnatario compilare i campi *end date* e *worked hours*;
 - eventuali nuove issue non previste inizialmente saranno poste nel *backlog* della board. Tali issue rimarranno in stato di attesa fino alla loro *valutazione* e successiva *assegnazione*.
-È stato ribadito il ruolo che ogni sezione della Kanban GitHub Project ricopre:
-- le issue nel *backlog* rappresentano attività non ancora assegnate, in cui non va inserito lo sprint;
-- le issue nel *ready* rappresentano attività assegnate all'interno dello sprint;
+È stato ribadito il ruolo che ogni sezione della Kanban #gloss[GitHub] Project ricopre:
+- le issue nel *backlog* rappresentano attività non ancora assegnate, in cui non va inserito lo #gloss[sprint];
+- le issue nel *ready* rappresentano attività assegnate all'interno dello #gloss[sprint];
 - le issue in *progress* rappresentano attività su cui si sta attivamente lavorando: importante segnare una issue come in progress *appena si inizia il lavoro*;
-- le issue in *review* rappresentano attività che hanno bisogno di approvazione/verifica;
+- le issue in *review* rappresentano attività che hanno bisogno di approvazione/#gloss[verifica];
 - le issue in *done* rappresentano attività che sono state *completate* e *verificate/approvate*; 
 
 === Gestione della verifica di attività
-Il gruppo ha concordato la necessità di adottare un approccio di verifica *incrementale* e *frequente*, con particolare riferimento a documenti estesi come l'Analisi dei Requisiti (AdR). È stato ribadito il principio secondo cui nessun membro può verificare il proprio operato. Grazie alla separazione del lavoro tra il gruppo dedito agli use case e quello focalizzato sui requisiti, l'integrità del processo di revisione dell'AdR non è a rischio.
+Il gruppo ha concordato la necessità di adottare un approccio di #gloss[verifica] *incrementale* e *frequente*, con particolare riferimento a documenti estesi come l'#gloss[Analisi dei Requisiti] (AdR). È stato ribadito il principio secondo cui nessun membro può verificare il proprio operato. Grazie alla separazione del lavoro tra il gruppo dedito agli #gloss[use case] e quello focalizzato sui requisiti, l'integrità del processo di revisione dell'AdR non è a rischio.
 Inoltre è stato concordato che il verificatore ha il compito di esclusivo di *individuare* e *suggerire* le correzioni.
 
 == Assegnazione delle prossime task basate sulle decisioni prese
@@ -144,15 +144,15 @@ Inoltre è stato concordato che il verificatore ha il compito di esclusivo di *i
 
   [Classificare RF176 - Fine], [Elia Ernesto Stellin], [#issue(227, repo:"docs")],
 
-  [Stesura Test di Sistema per RF1 - RF64], [Michele Dioli], [#issue(228, repo:"docs")],
+  [Stesura Test di #gloss[Sistema] per RF1 - RF64], [Michele Dioli], [#issue(228, repo:"docs")],
 
-  [Stesura Test di Sistema per RF65 - RF128], [Jaume Bernardi], [#issue(229, repo:"docs")],
+  [Stesura Test di #gloss[Sistema] per RF65 - RF128], [Jaume Bernardi], [#issue(229, repo:"docs")],
 
-  [Stesura Test di Sistema per RF129 - RF192], [Hossam Ezzemouri], [#issue(231, repo:"docs")],
+  [Stesura Test di #gloss[Sistema] per RF129 - RF192], [Hossam Ezzemouri], [#issue(231, repo:"docs")],
 
-  [Stesura Test di Sistema per RF193 - RF256], [Siria Salvalaio], [#issue(233, repo:"docs")],
+  [Stesura Test di #gloss[Sistema] per RF193 - RF256], [Siria Salvalaio], [#issue(233, repo:"docs")],
 
-  [Stesura Test di Sistema per RF257 - RD14], [Riccardo Graziani], [#issue(234, repo:"docs")],
+  [Stesura Test di #gloss[Sistema] per RF257 - RD14], [Riccardo Graziani], [#issue(234, repo:"docs")],
 
   [Integrazione cruscotto di Valutazione], [Michele Dioli], [#issue(247, repo:"docs")],
 )

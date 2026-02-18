@@ -44,7 +44,7 @@ Hanno partecipato:
 - *in sede*: Elia Ernesto Stellin, Michele Dioli, Riccardo Graziani;
 - *da remoto*: Alessandro Dinato, Siria Salvalaio, Hossam Ezzemouri, Jaume Bernardi.
 
-La riunione è stata convocata a seguito dell'aggiudicazione del #gloss[capitolato d'appalto] C7: _Sistema di acquisizione dati da sensori_ da parte di GlitchHub Team. L'incontro aveva l'obiettivo di presentare ufficialmente il gruppo e conoscere i referenti di M31:
+La riunione è stata convocata a seguito dell'aggiudicazione del #gloss[capitolato d'appalto] C7: _#gloss[Sistema] di acquisizione dati da sensori_ da parte di GlitchHub Team. L'incontro aveva l'obiettivo di presentare ufficialmente il gruppo e conoscere i referenti di M31:
 - *Luca Cossaro*
 - *Moones Mobaraki*
 - *Cristian Pirlog*
@@ -63,8 +63,8 @@ Per l'organizzazione interna del gruppo è stato suggerito di adottare un approc
 
 == Analisi del capitolato
 === Architettura
-Una parte significativa della riunione è stata dedicata all'analisi del capitolato insieme a Cristian Pirlog. La discussione si è focalizzata sul ruolo dei *gateway* e sull'*architettura* proposta, in particolare è stato evidenziato che:
-- i dati grezzi verranno *simulati* tramite un simulatore di gateway;
+Una parte significativa della riunione è stata dedicata all'analisi del capitolato insieme a Cristian Pirlog. La discussione si è focalizzata sul ruolo dei *#gloss[gateway]* e sull'*architettura* proposta, in particolare è stato evidenziato che:
+- i dati grezzi verranno *simulati* tramite un #gloss[simulatore di gateway];
 - il simulatore dovrà *standardizzare* i dati e disporre di un *buffer* in grado di conservarli in ingresso in caso di disconnessione;
 - l'architettura proposta è da considerarsi *indicativa*, e i dettagli implementativi verranno definiti nelle fasi successive.
 
@@ -76,10 +76,10 @@ In merito ai #gloss[requisiti funzionali], sono stati evidenziati i seguenti:
 
 Per quanto riguarda i #gloss[requisiti funzionali] opzionali, è stata indicata come prioritaria l'integrazione con applicazioni di terze parti (*RQ6*), rispetto a prevedere meccanismi di alert (*RQ7*). \
 
-Tra i #gloss[requisiti di sicurezza] opzionali, l'attenzione dovrebbe concentrarsi sulla creazione di un sistema di audit e tracciamento (*RQ12*), poichè gli altri requisiti sono stati ritenuti non essenziali (*RQ11*) o eccessivamente complessi (*RQ13*).
+Tra i #gloss[requisiti di sicurezza] opzionali, l'attenzione dovrebbe concentrarsi sulla creazione di un #gloss[sistema] di audit e tracciamento (*RQ12*), poichè gli altri requisiti sono stati ritenuti non essenziali (*RQ11*) o eccessivamente complessi (*RQ13*).
 
 === Test e validazione
-L'azienda M31 ha sottolineato l'importanza della *qualità* del codice e della *#gloss[validazione]* del sistema tramite test strutturati. Le attività di testing verranno eseguite durante *meeting dedicati*, previa condivisione del test book sviluppato dal gruppo. L'azienda ha chiarito che non sono richiesti *test di scalabilità* e *penetration test*.
+L'azienda M31 ha sottolineato l'importanza della *qualità* del codice e della *#gloss[validazione]* del #gloss[sistema] tramite test strutturati. Le attività di testing verranno eseguite durante *meeting dedicati*, previa condivisione del test book sviluppato dal gruppo. L'azienda ha chiarito che non sono richiesti *test di scalabilità* e *penetration test*.
 
 = Conclusioni
 L'incontro è stato estremamente utile per chiarire sia gli aspetti organizzativi sia i dubbi relativi ai requisiti richiesti dal capitolato.

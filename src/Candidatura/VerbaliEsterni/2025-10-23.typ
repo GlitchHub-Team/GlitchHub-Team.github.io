@@ -27,7 +27,7 @@
 
 = Introduzione
 Il seguente verbale attesta che in data *23 Ottobre 2025* è avvenuto l'incontro con il #gloss[proponente] *M31 SRL*, in videoconferenza, dalle ore 10 alle ore 10:40. \
-La riunione è stata organizzata con lo scopo di discutere alcune domande e dubbi sorti tra i componenti del gruppo riguardo il capitolato C7:  _ Sistema di acquisizione dati da sensori_. \
+La riunione è stata organizzata con lo scopo di discutere alcune domande e dubbi sorti tra i componenti del gruppo riguardo il capitolato C7:  _ #gloss[Sistema] di acquisizione dati da sensori_. \
 L'incontro è stato presenziato dai rappresentanti *Alessandro Dinato* e *Siria Salvalaio* in videoconferenza tramite la piattaforma _Microsoft Teams_.
 = Preparazione all'incontro
 Il gruppo GlitchHub Team, in data *21/10/2025*, si è riunito con lo scopo di far emergere i dubbi dei singoli componenti. \
@@ -37,13 +37,13 @@ La richiesta è stata soddisfatta in data *20/10/2025* con l'invio delle domande
 
 I quesiti inviati:
 #enum(
-  "Nel punto 3.2 del capitolato è presente questa frase 'Devono(i gateway) essere provisionati in modo sicuro, associandosi a un #gloss[tenant] specifico e caricando certificati di autenticazione'. Quindi ogni gateway sarà associato solo ad un singolo #gloss[tenant]?",
+  "Nel punto 3.2 del capitolato è presente questa frase 'Devono(i #gloss[gateway]) essere provisionati in modo sicuro, associandosi a un #gloss[tenant] specifico e caricando certificati di autenticazione'. Quindi ogni #gloss[gateway] sarà associato solo ad un singolo #gloss[tenant]?",
   "Perchè i dati dei #gloss[tenant] devono essere separati anche a livello fisico? Cosa si intende un database diverso per ogni #gloss[tenant]?",
   "Quali saranno i servizi di Google #gloss[Cloud] disponibili?",
-  "Perchè dalla #gloss[UI] c’è la necessità di registrare e configurare nuovi sensori o gateway simulati? Quindi la #gloss[UI] oltre ad essere una grande dashboard di dati real-time e #gloss[on-demand], è anche una piattaforma di setup?",
+  "Perchè dalla #gloss[UI] c’è la necessità di registrare e configurare nuovi sensori o #gloss[gateway] simulati? Quindi la #gloss[UI] oltre ad essere una grande dashboard di dati real-time e #gloss[on-demand], è anche una piattaforma di setup?",
   "Che tipologia di autenticazione a due fattori verrà richiesta?",
   "Quale/i tra i requisiti opzionali apporterebbe/ro il maggior valore aggiunto al progetto?",
-  "Quale funzionalità del gateway simulato ritenete sia la più critica per il PoC e l'MPV, e quale ritenete sia la più complessa?",
+  "Quale funzionalità del #gloss[gateway] simulato ritenete sia la più critica per il PoC e l'MPV, e quale ritenete sia la più complessa?",
   "Che tipo di supporto puó offrire M31 al nostro gruppo nei periodi verso la #gloss[RTB] e la #gloss[PB]? ",
   "Una volta completato il verbale del meeting possiamo inviarvelo e riceverlo firmato (sarebbe ottimale avere una piccola foto del vostro timbro e/o firma)?",
 )
@@ -52,7 +52,7 @@ I due rappresentanti si sono collegati puntualmente alle ore 10 per l'incontro c
 Avendo già a disposizione le domande i rappresentanti dell'azienda M31 hanno immediatamente cominciato con le delucidazioni.
 == Informazioni sul supporto offerto dall'azienda
 La domanda è stata posta dal gruppo con lo scopo di avere la massima conoscenza degli strumenti a disposizione durante lo svolgimento del capitolato. \
-M31 ha risposto che non offre supporto attivo, come corsi o lezioni dirette, perchè ritiene che l'apprendimento sia parte integrante del progetto didattico e che il loro ruolo sia di indirizzare, non di insegnare. \
+M31 ha risposto che non offre supporto attivo, come corsi o lezioni dirette, perchè ritiene che l'apprendimento sia parte integrante del #gloss[progetto didattico] e che il loro ruolo sia di indirizzare, non di insegnare. \
 Il rappresentante Alessandro Dinato è intervenuto chiedendo se #gloss[ci] fosse la possibilità di accedere a piattaforme di apprendimento con cui l'azienda avesse accordi. \
 La risposta è stata positiva, M31 è in grado di fornire l'accesso a determinati corsi sulla piattaforma *Udemy*, consiglia inoltre di utilizzare strumenti moderni, come #gloss[LLM], per l’apprendimento.
 == Importanza requisiti opzionali
@@ -62,13 +62,13 @@ I requisiti menzionati si possono trovare nel #link("#gloss[https]://www.math.un
 == Gestione multi-tenant
 Il gruppo ha posto diverse domande sulla gestione multi-#gloss[tenant] per avere una visione chiara dell'architettura che si aspetta il #gloss[proponente]. \
 === Rapporto 1 a 1 tra tenant e gateway
-Il gruppo desiderava chiarire se un gateway è associato ad un solo #gloss[tenant] o se un gateway potesse produrre dati per più #gloss[tenant]. \
-M31 ha chiarito che un gateway può avere un solo #gloss[tenant] associato. \
+Il gruppo desiderava chiarire se un #gloss[gateway] è associato ad un solo #gloss[tenant] o se un #gloss[gateway] potesse produrre dati per più #gloss[tenant]. \
+M31 ha chiarito che un #gloss[gateway] può avere un solo #gloss[tenant] associato. \
 === Separazione a livello fisico dei dati di diversi tenant
 Il gruppo non aveva compreso cosa si intendesse per "separazione fisica dei dati di diversi #gloss[tenant]". \
 L'azienda ha spiegato che la loro richiesta è che i dati di diversi #gloss[tenant] vengano inseriti in tabelle diverse per evitare che il volume di un'ipotetica tabella generica diventi troppo grande.
 == Dashboard con funzioni di setup
-Il gruppo aveva dei dubbi riguardo al #gloss[requisito] di "registrazione di nuovi sensori e gateway via dashboard". \
+Il gruppo aveva dei dubbi riguardo al #gloss[requisito] di "registrazione di nuovi sensori e #gloss[gateway] via dashboard". \
 M31 ha precisato che la registrazione di nuovi sensori dalla dashboard ha lo scopo di creare un'entry con cui associare i dati provenienti dal sensore fisico, non c'è nessun #gloss[requisito] di setup da parte della dashboard.
 == Servizi cloud e tecnologie consigliate
 Il gruppo si chiedeva quali servizi #gloss[cloud] M31 sarebbe stata in grado di offrire e quali tecnologie consigliava tra le tante menzionate nel #link("#gloss[https]://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[documento del capitolato C7]. \
