@@ -46,15 +46,6 @@
         "ref_capitolato": []
     },
     {
-        "id": "RF-Obsoleto-1",
-        "urgenza": "Opt",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
-    },
-    {
         "id": "RF-Re-invio-codice-2FA",
         "urgenza": "Opt",
         "desc": "L'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, deve poter richiedere il re-invio del codice di verifica nel caso in cui non lo abbia ricevuto o sia scaduto",
@@ -173,15 +164,6 @@
         "ref_capitolato": []
     },
     {
-        "id": "RF-Obsoleto-2",
-        "urgenza": "Obb",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
-    },
-    {
         "id": "RF-Reimpostazione-password-dimenticata",
         "urgenza": "Obb",
         "desc": "L'Utente non autenticato deve poter reimpostare la propria password tramite il link ricevuto via email",
@@ -276,15 +258,6 @@
             "<Inserimento-email>"
         ],
         "ref_capitolato": []
-    },
-    {
-        "id": "RF-Obsoleto-3",
-        "urgenza": "Obb",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
     },
     {
         "id": "RF-Sospensione-tenant-user",
@@ -1591,15 +1564,6 @@
         "ref_capitolato": []
     },
     {
-        "id": "RF-Obsoleto-4",
-        "urgenza": "Obb",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
-    },
-    {
         "id": "RF-Visualizzazione-dati-real-time-sensore",
         "urgenza": "Obb",
         "desc": "L'Utente autenticato deve poter visualizzare i dati in tempo reale di un sensore selezionato",
@@ -1769,33 +1733,6 @@
             "<Selezione-e-conferma-tenant-da-eliminare>"
         ],
         "ref_capitolato": []
-    },
-    {
-        "id": "RF-Obsoleto-5",
-        "urgenza": "Obb",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
-    },
-    {
-        "id": "RF-Obsoleto-6",
-        "urgenza": "Obb",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
-    },
-    {
-        "id": "RF-Obsoleto-7",
-        "urgenza": "Obb",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
     },
     {
         "id": "RF-Decommissioning-gateway-fallito",
@@ -1973,15 +1910,6 @@
             "<Decommissioning-gateway>"
         ],
         "ref_capitolato": []
-    },
-    {
-        "id": "RF-Obsoleto-8",
-        "urgenza": "Obb",
-        "desc": "TOGLIERE",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
     },
     {
         "id": "RF-Reset-gateway",
@@ -2349,15 +2277,6 @@
             "<Inserimento-email-nuovo-tenant-admin>"
         ],
         "ref_capitolato": []
-    },
-    {
-        "id": "RF-Obsoleto-9",
-        "urgenza": "Obb",
-        "desc": "",
-        "ref_uc": [],
-        "ref_capitolato": [
-            ""
-        ]
     },
     {
         "id": "RF-Sospensione-account-tenant-admin",
