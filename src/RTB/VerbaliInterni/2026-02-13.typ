@@ -11,7 +11,7 @@
       "18/02/2026",
       "Jaume Bernardi",
       "Alessandro Dinato",
-      "Applicazione critica fornita dalla verifica",
+      "Creazione versione stabile del verbale interno del 13/02/2026",
     ),
     (
       "0.2.0",
@@ -56,19 +56,19 @@
     [Assegnazione ruoli],
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-verbale: "Interno",
 )
 
 = Introduzione
-Il presente documento attesta che, in data *13 febbraio 2026* iniziato dalle ore 11:00 alle ore 11:50 si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
+Il presente documento attesta che, in data *13 febbraio 2026* dalle ore 11:00 alle ore 11:50, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 = Resoconto della riunione
 
 == Migliorie nell'organizzazione del gruppo
 Dopo un riscontro, il gruppo ha valutato molto positive le modifiche applicate al #gloss[Way of Working] applicate nello *sprint 9*. In particolar modo la creazione di task atomiche, figlie di una rispettiva attività principale, ha reso sin da subito l'esecuzione delle task più semplice ed ha permesso una pianificazione più accurata sia a livello di gruppo che a livello di singolo membro.\
-Questo miglioramento verrà documentato in modo pià approfondito all'interno della *retrospettiva* dello *sprint 9* all'interno del #gloss[Piano di Progetto].
+Questo miglioramento verrà documentato in modo più approfondito all'interno della *retrospettiva* dello *sprint 9* all'interno del #gloss[Piano di Progetto].
 
 Inoltre il rispetto delle convenzioni per la rendicontazione delle Issue è stata semplificata dalla creazione di una nuova GitHub View rappresentante tutte le Issue assegnate al membro con cui si accede a GitHub.
 
@@ -111,7 +111,7 @@ Il gruppo è consapevole che durante le revisioni dei documenti sorgeranno ulter
 
   [Stesura verbale esterno 10/02/2026], [Riccardo Graziani], [#issue(276, repo: "docs")],
 
-  [Verifica verbale esterno 10/02/2026], [Riccardo Graziani], [#issue(277, repo: "docs")],
+  [Verifica verbale esterno 10/02/2026], [Jaume Bernardi], [#issue(277, repo: "docs")],
 
   [Adattare Norme di Progetto a modifiche alla repo], [Elia Ernesto Stellin], [#issue(307, repo: "docs")],
 )
