@@ -4,9 +4,9 @@ set -e
 
 SRC_DIR="src"
 OUT_DIR="website/pdf"
-GO_MAIN="script/glossario.go"
+# GO_MAIN="script/applyGlossary.go"
 
-go run "$GO_MAIN"
+# go run "$GO_MAIN"
 
 typ_files=()
 while IFS= read -r -d '' file; do
