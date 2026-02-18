@@ -4,18 +4,18 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.2.0",
       "18/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Alessandro Dinato",
       [
         Modificato utilizzo delle maiuscole;
         Aggiornata @infrastruttura-github-repo-documentazione in modo tale da rispecchiare struttura della repo;
         Aggiornata @validazione-implementazione-processo per includere informazioni su tracciamento di requisiti e test
-      ]
+      ],
     ),
     (
       "1.1.0",
