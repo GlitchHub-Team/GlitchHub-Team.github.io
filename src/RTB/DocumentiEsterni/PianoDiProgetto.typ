@@ -2,8 +2,6 @@
 #import "@preview/cetz:0.4.2"
 #import "@preview/cetz-plot:0.1.3": chart, plot
 
-#show table: it => block(breakable: false, it)
-
 #show: report.with(
   titolo: "Piano di Progetto",
   stato: "Da Verificare",
