@@ -255,11 +255,14 @@
   target: figure.where(kind: "grafico"),
 )
 
+#pagebreak()
 
 #outline(
   title: "Indice delle tabelle",
   target: figure.where(kind: table),
 )
+
+#pagebreak()
 
 
 #let tabella-paginata(contenuto, didascalia, label-id: none) = {
