@@ -4,8 +4,15 @@
 #show: report.with(
   titolo: "Verbale interno 13/02/2026",
   stato: "da verificare",
-  versione: "0.0.2",
+  versione: "0.0.3",
   registro-modifiche: (
+    (
+      "0.0.3",
+      "18/02/2026",
+      "Jaume Bernardi",
+      "-",
+      "Applicazione critica fornita dalla verifica",
+    ),
     (
       "0.0.2",
       "18/02/2026",
@@ -47,22 +54,26 @@
   tipo-verbale: "Interno",
 )
 
-//riformula l introduzione, è costruita in maniera confusionaria
-//hai scritto "alle" due volte
 = Introduzione
-Il presente documento attesta che, in data *13 gennaio 2026* iniziato alle ore 11:00 alle ore 11:50 si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
+Il presente documento attesta che, in data *13 gennaio 2026* iniziato dalle ore 11:00 alle ore 11:50 si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 = Resoconto della riunione
 
 == Retrospettiva dello sprint
 
 === Migliorie nell'organizzazione del gruppo
-//"ritenuto" non è il verbo giusto
-Dopo un riscontro, il gruppo ha ritenuto molto positive le modifiche applicate al #gloss[Way of Working] durante il periodo di #gloss[sprint] precedente.
-Come ulteriore miglioria è stata considerata la convenzione di inserire nel messaggio di un commit il numero della issue che si presta a risolvere.
-Successivamente è stato fatto un controllo generale sulla completezza dei metadati riguardo le issue preesistenti.
+Dopo un riscontro, il gruppo ha valutato molto positive le modifiche applicate al #gloss[Way of Working] durante il periodo di #gloss[sprint] precedente. In particolar modo la creazione di task atomiche, figlie di una rispettiva attività principale, ha reso sin da subito la suddivisione del lavoro più strutturata, sia tra i compiti da svolgere che tra i membri a cui vengono assegnati.
 
-//manca contesto, devi parlare di ciò che è stato detto in riunione e che ha portato alla delle issue mostrate sotto in tabella
+Per quanto riguarda la compilazione dei metadati di una issue durante e dopo la sua creazione, le convenzioni adottate hanno considerevolmente ridotto le possibilità di omissioni. A tal proposito, durante la riunione è stata effettuata una revisione generale delle issue precedenti queste migliorie.
+
+In aggiunta, è stata considerata la convenzione di inserire nel messaggio di un commit il numero della issue che si presta a risolvere.
+
+Il cambio di approccio alla verifica dei documenti, dove il verificatore ha il compito esclusivo di individuare e suggerire le correzioni anziché applicarle direttamente per poi necessitare di un ulteriore verifictore, ha reso l'operato ha reso l'attività più intuitiva.
+
+=== Revisione della documentazione
+In vista della fine dell'#gloss[RTB], durante il periodo di questo sprint il gruppo si focalizza sul ricontrollare tutta la documentazione esistente. Ciò include la struttura e completezza delle tabelle, dei grafici e delle figure, come i diagrammi delgi use case.
+
+Infine, si prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
