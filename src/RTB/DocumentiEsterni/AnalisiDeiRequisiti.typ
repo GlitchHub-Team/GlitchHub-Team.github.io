@@ -215,7 +215,7 @@
       "1.2.1",
       "17/02/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       [
         Eliminazione RNF 1,2,3; aggiornamento code coverage minimo RNF 4; definizione strumenti monitoraggio RNF 5; definizione algoritmo cifratura in transito RNF 8; definizione meccanismo autenticazione robusto RNF 9; definizione tipi di design interessati nei diagrammi RNF 13; eliminazione RD 3, 6, 7 dato che sono req. funzionali
       ],
@@ -5210,9 +5210,9 @@ Inoltre un buon requisito deve essere *SMART*:
 
 
 // NOTA: Modificare il file .json per modificare i requisiti!
-#let LISTA_RF = json("../../requisiti/lista_RF.json")
-#let LISTA_RNF = json("../../requisiti/lista_RNF.json")
-#let LISTA_RD = json("../../requisiti/lista_RD.json")
+#let LISTA_RF = json("../../tracciamento/RF.json")
+#let LISTA_RNF = json("../../tracciamento/RNF.json")
+#let LISTA_RD = json("../../tracciamento/RD.json")
 
 #let tabella-rf = tabella-requisiti(rf, ref-rf, LISTA_RF)
 #let tabella-rnf = tabella-requisiti(rnf, ref-rnf, LISTA_RNF)
