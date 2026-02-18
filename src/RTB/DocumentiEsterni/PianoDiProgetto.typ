@@ -10,7 +10,7 @@
       "1.1.0",
       "18/02/2026",
       "Michele Dioli",
-      "Riccardo Graziani",
+      "Alessandro Dinato",
       [Ridistribuite ore fine RTB],
     ),
     (
@@ -211,8 +211,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -722,12 +722,12 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
 
 Durante la conclusione del periodo di RTB, avvenuta nello *sprint 10*, il gruppo ha effettuato un ribilanciamento della suddivisione oraria prevista per componente e ruolo.
 
-Il ribilanciamento nasce dall’analisi dei primi nove sprint in retrospettiva, che ha evidenziato la ripartizione iniziale non essere ideale per le attività di progetto. In particolare:
+Il ribilanciamento nasce dall'analisi dei primi nove sprint in retrospettiva, che ha evidenziato la ripartizione iniziale non essere ideale per le attività di progetto. In particolare:
 
 - Le ore di *Analista* sono risultate sottostimate rispetto all'effettivo impegno richiesto dalla stesura dell'Analisi dei Requisiti, che ha richiesto un numero di sprint superiore al previsto;
-- Le ore di *Progettista* sono risultate sovrastimate per il periodo RTB, durante il quale l'attività di progettazione non è ancora stata avviata;
--	Le ore di *Programmatore* e *Verificatore* sono state oggetto di un riequilibrio reciproco. Lo sviluppo del PoC ha richiesto esclusivamente attività di programmazione, rendendo necessaria un’integrazione delle ore previste, di conseguenza una ridistribuzione anche sul ruolo di verificatore.
--	Le ore di Responsabile sono state ridistribuite per allinearle alle assegnazioni già definite per i successivi tre sprint e per compensare gli sforamenti registrati in altri ruoli, garantendo al contempo il rispetto del budget inizialmente previsto.
+- Le ore di *Progettista* sono risultate sovrastimate in vista della PB e di ciò che il gruppo si aspetta di dover affrontare in fase di progettazione;
+- Le ore di *Programmatore* e *Verificatore* sono state oggetto di un riequilibrio reciproco. Lo sviluppo del #gloss[PoC] ha richiesto esclusivamente attività di programmazione, rendendo necessaria un'integrazione delle ore previste, di conseguenza una ridistribuzione anche sul ruolo di verificatore.
+- Le ore di *Responsabile* sono state ridistribuite per allinearle alle assegnazioni già definite per i successivi tre sprint e per compensare gli sforamenti registrati in altri ruoli, garantendo al contempo il rispetto del budget inizialmente previsto.
 
 La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali, ovvero modificando la distribuzione tra ruoli per ciascun membro senza alterare il monte ore individuale di *95 ore* né il costo complessivo di realizzazione.
 
