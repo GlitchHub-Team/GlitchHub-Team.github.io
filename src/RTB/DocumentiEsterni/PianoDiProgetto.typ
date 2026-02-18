@@ -4,20 +4,34 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Da Verificare",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.0.0",
+      "18/02/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Creazione versione stabile del documento],
+    ),
+    (
+      "0.11.0",
+      "18/02/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Riassegnazione ore e costi dopo lo sprint 10],
+    ),
     (
       "0.10.4",
       "16/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Alessandro Dinato",
       [Revisione rischi Sprint 1-4],
     ),
     (
       "0.10.3",
       "16/02/2026",
       "Jaume Bernardi",
-      "-",
+      "Alessandro Dinato",
       [Revisione rischi e contromisure, nonché Sprint.],
     ),
     (
@@ -540,7 +554,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
       Per garantire un allineamento continuo ed evitare fraintendimenti, il gruppo e _M31_ hanno concordato di incontrarsi ogni due settimane per una review del lavoro svolto, così da assicurare che lo sviluppo proceda in linea con le aspettative del cliente.
     ],
 
-    [*Occorrenza*], [Bassa],
+    [*Occorrenza*], [Media],
     [*Impatto*], [Alto],
   ),
   [Rischi organizzativi - Incomprensione dei requisiti],
@@ -688,7 +702,7 @@ Il gruppo si impegna a presentare la candidatura per la #gloss[Requirements and 
 Inoltre, come descritto nella #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni], _GlitchHub Team_ si impegna a terminare il progetto entro il giorno *27 marzo 2026*, senza alcuna possibilità di deroga.
 
 = Impegno orario previsto
-Il gruppo ha deciso di dedicare un totale di *93 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
+Il gruppo ha deciso di dedicare un totale di *95 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
 
 == Tabella suddivisione ore produttive per componente e ruolo
 Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere i singoli ruoli.
@@ -698,6 +712,37 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
 - *Analist* = Analista
 - *Progett* = Progettista
 - *Programm* = Programmatore
+
+Durante lo *sprint 10*, coincidente con la fine dell'RTB, è stata eseguita un bilanciamento della suddivisione e della previsione delle ore produttive.\
+La suddetta azione è risultata necessaria in quanto sono state fatte delle stime errate riguardo ad alcuni ruoli.
+
+A partire dallo *sprint 10* è stata applicata la seguente suddivisione oraria.\
+La ricalibrazione oraria non ha comportato alcuna differenza nella stima dei costi di realizzazione.
+
+=== Suddivisione oraria dallo sprint 10 <suddivisione-oraria-rtb>
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "4", "7", "10", "18", "28", "28", [*95*],
+    "Alessandro Dinato", "6", "8", "13", "18", "25", "25", [*95*],
+    "Michele Dioli", "8", "7", "10", "18", "27", "25", [*95*],
+    "Hossam Ezzemouri", "2", "9", "14", "17", "27", "26", [*95*],
+    "Riccardo Graziani", "3", "8", "13", "17", "27", "27", [*95*],
+    "Siria Salvalaio", "6", "9", "10", "18", "25", "27", [*95*],
+    "Elia Ernesto Stellin", "5", "8", "12", "18", "27", "25", [*95*],
+    table.footer([*Totale*], [*34*], [*56*], [*82*], [*124*], [*186*], [*183*], [*665*]),
+  ),
+  [Tabella suddivisione ore produttive per componente e ruolo],
+  label-id: "tab-sudd-ore",
+)
+
+=== Suddivisione oraria iniziale
 
 #tabella-paginata(
   table(
@@ -721,7 +766,69 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
   label-id: "tab-sudd-ore",
 )
 
-== Grafico a torta della suddivisione oraria
+
+== Grafico a torta della suddivisione oraria dallo sprint 10
+#figure(
+  align(center)[
+
+    #let ore = (
+      ("Responsabile", 34),
+      ("Amministratore", 56),
+      ("Analista", 82),
+      ("Progettista", 124),
+      ("Programmatore", 186),
+      ("Verificatore", 183),
+    )
+
+    #cetz.canvas({
+      let colors = gradient.linear(
+        rgb(153, 72, 188),
+        rgb("#19e0d9"),
+        rgb(84, 101, 255),
+      )
+
+      chart.piechart(
+        ore,
+        value-key: 1,
+        label-key: 0,
+        radius: 4,
+        stroke: none,
+        slice-style: colors,
+        inner-radius: 0.7,
+        // Label interne con ore
+        inner-label: (
+          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
+          radius: 110%,
+        ),
+        // Label esterne con linee di connessione
+        outer-label: (
+          content: (value, label) => [
+            #box(
+              fill: white,
+              outset: 3pt,
+              radius: 3pt,
+              stroke: 0.5pt + luma(200),
+              text(black, size: 0.85em, weight: "medium", label),
+            )
+          ],
+          radius: 110%,
+        ),
+        // Abilita le linee di connessione
+        outer-label-line: (
+          stroke: 1pt + luma(150),
+          mark: (end: ">", size: 0.15),
+        ),
+        legend: (label: none),
+      )
+    })
+  ],
+  caption: "Suddivisione oraria dallo sprint 10",
+  kind: "grafico",
+  supplement: [Grafico],
+)
+
+
+== Grafico a torta della suddivisione oraria iniziale
 #figure(
   align(center)[
 
@@ -776,7 +883,7 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
       )
     })
   ],
-  caption: "Suddivisione oraria",
+  caption: "Suddivisione oraria iniziale",
   kind: "grafico",
   supplement: [Grafico],
 )
@@ -785,7 +892,31 @@ Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere
 = Stima dei costi di realizzazione
 Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ruolo per il relativo costo orario.\
 
-== Tabella suddivisione ore e costi per ruoli
+Come per la sezione precedente è disponibile la suddivisione dei costi prima e dopo la riassegnazione, la quale ha comportato una diminuzione della stime dei costi pari a *150 €*.
+
+== Tabella suddivisione ore e costi per ruoli a partire dallo sprint 10
+#tabella-paginata(
+  table(
+    columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+    "Responsabile", "34", "30 €/h", "1020 €",
+    "Amministratore", "56", "20 €/h", "1120 €",
+    "Analista", "82", "25 €/h", "2050 €",
+    "Progettista", "124", "25 €/h", "3100 €",
+    "Programmatore", "186", "15 €/h", "2790 €",
+    "Verificatore", "183", "15 €/h", "2745 €",
+    table.footer([*Totale*], [*665*], [-], [*12825 €*]),
+  ),
+  [Tabella suddivisione ore e costi per ruoli],
+  label-id: "tab-sudd-ore-ruoli",
+)
+
+== Tabella suddivisione ore e costi per ruoli iniziale
 #tabella-paginata(
   table(
     columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
@@ -807,7 +938,68 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
   label-id: "tab-sudd-ore-ruoli",
 )
 
-== Grafico a torta dei costi progettuali
+== Grafico a torta dei costi progettuali dallo sprint 10
+#figure(
+  align(center)[
+
+    #let costi = (
+      ("Responsabile", 1020),
+      ("Amministratore", 1120),
+      ("Analista", 2050),
+      ("Progettista", 3100),
+      ("Programmatore", 2790),
+      ("Verificatore", 2745),
+    )
+
+    #cetz.canvas({
+      let colors = gradient.linear(
+        rgb(153, 72, 188),
+        rgb("#19e0d9"),
+        rgb(84, 101, 255),
+      )
+
+      chart.piechart(
+        costi,
+        value-key: 1,
+        label-key: 0,
+        radius: 4,
+        stroke: none,
+        slice-style: colors,
+        inner-radius: 0.7,
+        // Label interne con ore
+        inner-label: (
+          content: (value, label) => [#text(white, weight: "bold", str(value) + " €")],
+          radius: 100%,
+        ),
+        // Label esterne con linee di connessione
+        outer-label: (
+          content: (value, label) => [
+            #box(
+              fill: white,
+              outset: 3pt,
+              radius: 3pt,
+              stroke: 0.5pt + luma(200),
+              text(black, size: 0.85em, weight: "medium", label),
+            )
+          ],
+          radius: 110%,
+        ),
+        // Abilita le linee di connessione
+        outer-label-line: (
+          stroke: 1pt + luma(150),
+          mark: (end: ">", size: 0.15),
+        ),
+        legend: (label: none),
+      )
+    })
+  ],
+  caption: "Costi complessivi per ogni ruolo a partire dallo rivalutazione dello sprint 10",
+  kind: "grafico",
+  supplement: [Grafico],
+)
+
+
+== Grafico a torta dei costi progettuali iniziale
 #figure(
   align(center)[
 
@@ -862,10 +1054,11 @@ Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ru
       )
     })
   ],
-  caption: "Ore produttive complessive per ogni ruolo",
+  caption: "Costi complessivi iniziali per ogni ruolo",
   kind: "grafico",
   supplement: [Grafico],
 )
+
 
 
 = Pianificazione RTB
@@ -878,7 +1071,7 @@ Il documento di #gloss[Analisi dei Requisiti] ha lo scopo di formalizzare le spe
 Per la redazione di questo documento sono previste le seguenti attività:
 - *Analisi del Capitolato e identificazione degli attori*: individuazione degli attori che interagiscono con il sistema, distinguendo tra utenti e componenti hardware/software (es. Sensori BLE, Gateway, Sistema Cloud);
 - *Definizione scenari d'uso*: individuazione degli scenari principali per attore con lo scopo di scomporli in casi d'uso più dettagliati;
-- *Definizione dei Casi d'uso (Use Case)*: modellazione delle interazioni tramite diagrammi UML e descrizioni testuali dettagliate, comprendenti pre-condizioni, post-condizioni, scenari principali e scenari alternativi;
+- *Definizione dei Casi d'uso (use case)*: modellazione delle interazioni tramite diagrammi UML e descrizioni testuali dettagliate, comprendenti pre-condizioni, post-condizioni, scenari principali e scenari alternativi;
 - *Specifica dei requisiti*: individuazione puntuale e classificazione dei requisiti in:
   - Funzionali (comportamenti attesi del sistema);
   - Non funzionali (vincoli di qualità, performance e sicurezza);
@@ -1013,7 +1206,7 @@ Infine, i componenti responsabili della stesura dell'#gloss[Analisi dei Requisit
 === Rischi occorsi
 Il gruppo ha riscontrato il rischio *RP1*(@RP1) durante lo *Sprint 1*. Tale rischio è stato gestito secondo quanto previsto, assegnando ai membri coinvolti un carico di lavoro ridotto e compiti non bloccanti.\
 L'impatto complessivo è stato positivo, infatti il gruppo ha completato correttamente tutti i compiti pianificati e i componenti con impegni accademici sono riusciti a portare a termine i compiti loro affidati.
-Inoltre si è verificato il rischio *RO1*(@RO1), il documento è più complesso del previsto e richiede un maggiore approfondimento del capitolato.\
+Inoltre si è verificato il rischio *RO1*(@RO1), il documento è più complesso del previsto e richiede un maggiore approfondimento del capitolato, perciò il gruppo discuterà dei dubbi sorti con la proponente nella prossima riunione.\
 L'impatto è stato medio dato che la difficoltà non era quella aspettata e ciò ha comportato una posticipazione dell'attività.\
 Tuttavia, il rischio è stato comunicato in tempo e i responsabili dell'attività sono stati assegnati ad altre task.
 
@@ -1164,7 +1357,7 @@ Il gruppo ha svolto con successo i seguenti compiti: \
 
 === Retrospettiva
 Il gruppo ha svolto, come previsto, la #gloss[Sprint Retrospective] in data _26/11/2025_.\
-I compiti programmati sono state tutte eseguite correttamente ed entro i tempi stabiliti.
+I compiti programmati sono stati tutti eseguiti correttamente ed entro i tempi stabiliti.
 
 Questo sprint ha permesso al gruppo di avanzare nella conoscenza e nella definizione dei casi d'uso, grazie al supporto fornito da _M31_ durante l'incontro del 24/11/2025.\
 L'azienda si è dimostrata disponibile a chiarire i dubbi del gruppo e ha fornito un contributo sostanziale all'approfondimento e alla definizione dei casi d'uso. \
@@ -1478,31 +1671,33 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 4*:
 
 === Compiti svolti
 Il gruppo ha svolto i seguenti compiti *con successo*:
-- Determinare use cases per *user*, *tenant*, *REST client* (#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/88")[*issue \#88*])
+- Determinare use case per *user*, *tenant*, *REST client* (#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/88")[*issue \#88*])
 
 Il gruppo ha svolto *parzialmente* i seguenti compiti:
-- Use cases *Super Admin* (#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/77")[*Issue \#77*])
-- Use cases *Tenant Admin* (#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/76")[*Issue \#76*])
-- Use cases *Gateway* #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/75")[(*Issue \#75*)]
+- Use case *Super Admin* (#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/77")[*Issue \#77*])
+- Use case *Tenant Admin* (#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/76")[*Issue \#76*])
+- Use case *Gateway* #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/75")[(*Issue \#75*)]
 
 Questi ultimi compiti verranno continuati nello sprint successivo (@sprint-5).
 
 === Retrospettiva
-La maggior parte dei compiti dello *sprint 4* sono stati rallentati considerevolmente da dubbi del gruppo relativi alla scrittura degli use cases. Più nello specifico, i dubbi riguardavano il ruolo degli attori, la definizione di "sistema" per un use case e il significato e lo scopo degli use cases stessi.
+La maggior parte dei compiti dello *sprint 4* sono stati rallentati considerevolmente da dubbi del gruppo relativi alla scrittura dei casi d'uso. Più nello specifico, i dubbi riguardavano il ruolo degli attori, la definizione di "sistema", il significato e lo scopo degli use case stessi.
 
-Questi dubbi sono emersi durante le sessioni di #gloss[brainstorming] in cui il gruppo ha ragionato in modo approfondito sul #gloss[capitolato] e su come scriverne gli use cases. Queste sessioni sono state altamente proficue, in quanto le questioni emerse sono fondamentali per la scrittura dell'#gloss[Analisi dei Requisiti] e la comprensione del capitolato stesso.
+Questi dubbi sono emersi durante le sessioni di #gloss[brainstorming] in cui il gruppo ha ragionato in modo approfondito sul #gloss[capitolato] e su come scriverne gli use case. Queste sessioni sono state altamente proficue, in quanto le questioni emerse sono fondamentali per la scrittura dell'#gloss[Analisi dei Requisiti] e la comprensione del capitolato stesso.
 
 Il dialogo continuo con *M31 Srl*, via mail e in presenza (vd. #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2025-12-09.pdf")[*verbale esterno del 09/12/2025*]), ha permesso al gruppo di chiarire i dubbi emersi durante lo sprint e di farne emergere altri da chiarire.
 
-Un ulteriore fattore di rallentamento nelle attività di gruppo è stata la difficoltà nell'organizzare sessioni di lavoro sincrone in cui ragionare a gruppi su use cases diversi. Infatti, i membri del gruppo che non sono riusciti a lavorare insieme sincronamente hanno fatto emergere dei dubbi sostanziali relativi agli use cases durante l'incontro di Sprint Retrospective del *10 dicembre 2025*, riassunto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[*verbale interno dell'11 dicembre 2025*].
+Un ulteriore fattore di rallentamento nelle attività di gruppo è stata la difficoltà nell'organizzare sessioni di lavoro sincrone in cui ragionare a gruppi su use case diversi. Infatti, i membri del gruppo che non sono riusciti a lavorare insieme sincronamente hanno fatto emergere dei dubbi sostanziali relativi agli use case durante l'incontro di Sprint Retrospective del *10 dicembre 2025*, riassunto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[*verbale interno dell'11 dicembre 2025*].
 #footnote[
-  La riunione del *10 dicembre 2025* è riassunta nel verbale dell'*11 dicembre 2025* perché, sebbene nella riunione del *10 dicembre* il gruppo avrebbe dovuto svolgere l'usuale incontro settimanale di retrospettiva, questo è presto diventato una sessione di brainstorming sui dubbi del gruppo relativi agli use cases. Per tale ragione, i componenti del gruppo hanno deciso di proseguire tale riunione l'*11 dicembre*, definendo ivi i ruoli e i compiti per lo *sprint 5*.
+  La riunione del *10 dicembre 2025* è riassunta nel verbale dell'*11 dicembre 2025* perché, sebbene nella riunione del *10 dicembre* il gruppo avrebbe dovuto svolgere l'usuale incontro settimanale di retrospettiva, questo è presto diventato una sessione di brainstorming sui dubbi del gruppo relativi agli use case. Per tale ragione, i componenti del gruppo hanno deciso di proseguire tale riunione l'*11 dicembre*, definendo ivi i ruoli e i compiti per lo *sprint 5*.
 ]
 
 === Rischi occorsi <sprint-4-rischi-occorsi>
 Durante lo *sprint 4*, sono occorsi i seguenti rischi:
-- *RO3* (@RO3): come previsto, lo studio dei requisiti del capitolato ha fatto sorgere numerosi dubbi relativamente ai casi d'utilizzo del prodotto bloccando lo sviluppo di certi use cases, soprattutto quelli relativi al simulatore di #gloss[Gateway]. Questo rischio ha avuto un impatto medio poiché, sebbene fosse stato previsto, ha comunque causato ritardi nello sviluppo degli use cases.
-- *RP1* (@RP1), *RP3* (@RP3): gli impegni accademici o personali dei membri del gruppo hanno ostacolato il lavoro sincrono a gruppi di comprensione e studio degli use cases, rallentandone la produzione. Questo rischio ha avuto un impatto medio in quanto ha causato l'insorgere di dubbi verso la fine dello sprint.
+- *RO3* (@RO3): come previsto, lo studio dei requisiti del capitolato ha fatto sorgere numerosi dubbi relativi ai casi d'utilizzo del prodotto bloccando lo sviluppo di certi use case, soprattutto quelli relativi al simulatore di #gloss[Gateway], perciò il gruppo ha deciso di esporre i dubbi di persona al professor Cardin e alla proponente. Questo rischio ha avuto un impatto medio poiché, sebbene fosse stato previsto, ha comunque causato ritardi nello sviluppo degli use case.
+- *RP1* (@RP1), *RP3* (@RP3): gli impegni accademici o personali dei membri del gruppo hanno ostacolato il lavoro a gruppi sincroni di comprensione e studio degli use case, rallentandone la produzione. \
+Ogni componente del gruppo si impegna, perciò, a comunicare in modo più preciso i propri impegni accademici e personali, così da permettere una programmazione più precisa.
+Questo rischio ha avuto un impatto medio in quanto ha causato l'insorgere di dubbi verso la fine dello sprint.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
@@ -1593,20 +1788,20 @@ Durante lo *sprint 4*, sono occorsi i seguenti rischi:
 Inizio: 10/12/2025 \
 Fine: 17/12/2025 \
 
-Il presente sprint ha lo scopo di sviluppare ulteriormente i casi d'uso in vista dell'incontro con l'azienda proponente del 15/12/2025, in cui il gruppo presenterà gli use cases prodotti all'azienda e riceverà feedback utili alla produzione dell'#gloss[analisi dei requisiti].
+Il presente sprint ha lo scopo di sviluppare ulteriormente i casi d'uso in vista dell'incontro con l'azienda proponente del 15/12/2025, in cui il gruppo presenterà gli use case prodotti all'azienda e riceverà feedback utili alla produzione dell'#gloss[analisi dei requisiti].
 
 Inoltre, secondo quanto detto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[*verbale interno dell'11 dicembre 2025*], è sorta la necessità di creare degli *Issue Form* e delle automazioni per le #gloss[GitHub Issues] per aumentare la produttività del gruppo.
 
 === Compiti da svolgere
 Il gruppo ha individuato i seguenti compiti da svolgere:
-- Sviluppo degli use cases con attore *Super Admin*
-- Sviluppo degli use cases con attore *Tenant Admin*
-- Sviluppo degli use cases con attore *Gateway*
+- Sviluppo degli use case con attore *Super Admin*
+- Sviluppo degli use case con attore *Tenant Admin*
+- Sviluppo degli use case con attore *Gateway*
 - Creazione di *Issue Form* e automazioni per #gloss[Github Issues]
 
 === Rischi attesi
 Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
-- *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-attesi), un ulteriore studio degli use cases può portare alla creazione di ulteriori dubbi che possono rallentare lo sviluppo degli use cases.
+- *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-attesi), un ulteriore studio degli use case può portare alla creazione di ulteriori dubbi che possono rallentare lo sviluppo degli use case.
 - *RP1* (@RP1): alcuni membri del gruppo potrebbero avere impegni accademici imprevisti, che possono rendere più difficile un lavoro sincrono di brainstorming e di studio.
 
 === Consuntivo a finire
@@ -1647,21 +1842,21 @@ Il gruppo prevede i seguenti rischi per lo *Sprint 5*:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti:
-- Sviluppo degli use cases con attore *Super Admin* (#issue(97))
-- Sviluppo degli use cases con attore *Tenant Admin* (#issue(98))
-- Sviluppo degli use cases con attore *Gateway* (#issue(99))
+- Sviluppo degli use case con attore *Super Admin* (#issue(97))
+- Sviluppo degli use case con attore *Tenant Admin* (#issue(98))
+- Sviluppo degli use case con attore *Gateway* (#issue(99))
 - Creazione di *Issue Form* e automazioni per #gloss[GitHub Issues] (#issue(104))
 
 === Retrospettiva
-Durante lo *sprint 5*, il gruppo ha continuato la scrittura degli use cases del progetto i quali, però, non sono ancora stati completati, a causa di una serie di dubbi che hanno rallentato i lavori del gruppo per l'intero sprint.
+Durante lo *sprint 5*, il gruppo ha continuato la scrittura degli use case del progetto i quali, però, non sono ancora stati completati, a causa di una serie di dubbi che hanno rallentato i lavori del gruppo per l'intero sprint.
 
-Per riuscire a scrivere il documento di #gloss[Analisi dei requisiti] in tempo utile, il gruppo si impegna a continuare la redazione degli use cases nello sprint successivo.
+Per riuscire a scrivere il documento di #gloss[Analisi dei requisiti] in tempo utile, il gruppo si impegna a continuare la redazione degli use case nello sprint successivo.
 
 Inoltre, la task "Creazione di *Issue Form* e automazioni per #gloss[GitHub Issues] (#issue(104))" ha impiegato molto più tempo da *Amministratore* del previsto, in quanto non si aveva previsto che le automazioni desiderate dal gruppo richiedessero uno studio delle API di GitHub, che utilizzano #gloss[GraphQL] per le richieste.
 
 === Rischi occorsi
 Il gruppo ha riscontrato principalmente i seguenti rischi:
-- *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-occorsi), i dubbi emersi durante lo sviluppo degli use cases ne hanno rallentato lo sviluppo
+- *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-occorsi), i dubbi emersi durante lo sviluppo degli use case ne hanno rallentato lo sviluppo. Il gruppo perciò ha prontamente inviato una mail alla proponente con i dubbi emersi. \ L'impatto è stato medio dato che la conoscenza del capitolato è più stabile ed ha fatto emergere meno dubbi, ma ha comunque causato ritardi nello sviluppo degli use case.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
@@ -1757,10 +1952,10 @@ Il presente sprint ha lo scopo di raggiungere una versione stabile per i documen
 Poiché i compiti da svolgere riguardano la redazione di due documenti diversi, *Analisi dei Requisiti* e *Piano di Qualifica*, il gruppo ha deciso di dividersi in due sottogruppi, ciascuno dei quali dovrà lavorare su uno dei documenti descritti sopra.
 
 Il gruppo di lavoro per l'*Analisi dei Requisiti* ha individuato i seguenti compiti da svolgere:
-- Approfondire gli use cases scritti finora (#issue(123))
-- Espandere gli use cases troppo generici (#issue(124))
-- Definire gli use cases con cloud come *attore* e #gloss[gateway simulato] come *sistema* (#issue(125))
-- Definire gli use cases con sensore come *attore* e #gloss[gateway simulato] come *sistema* (#issue(126))
+- Approfondire gli use case scritti finora (#issue(123))
+- Espandere gli use case troppo generici (#issue(124))
+- Definire gli use case con cloud come *attore* e #gloss[gateway simulato] come *sistema* (#issue(125))
+- Definire gli use case con sensore come *attore* e #gloss[gateway simulato] come *sistema* (#issue(126))
 - Approfondire i metodi di normalizzazione dati da sensori BLE e approfondire gli strumenti Grafana+Prometheus (risp. #issue(133) e #issue(134))
 
 Il gruppo di lavoro per il *Piano di Qualifica* ha individuato i seguenti compiti da svolgere:
@@ -1813,7 +2008,7 @@ Il gruppo ha svolto con successo i seguenti compiti: \
 Issue relative a sprint 6:
 - [AdR] UC per interfaccia utente #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/146")[\#146],
 - [UC] Studio metodi di normalizzazione dati da sensori BLE #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/133")[\#133],
-- [AdR] Approfondimento Use Cases attuali #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/123")[\#123],
+- [AdR] Approfondimento Use Case attuali #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/123")[\#123],
 - [AdR] Definire UC Attore=Sensore Simulato, Sistema=Gateway Simulato #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/126")[\#126],
 - [AdR] Definire UC con Attore=Cloud, Sistema=Simulatore Gateway #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/125")[\#125],
 - [PdQ] Trovare e definire metriche #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/120")[\#120],
@@ -1822,7 +2017,12 @@ Issue relative a sprint 6:
 - Definire la struttura del #gloss[Piano di Qualifica] #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/121")[\#121],
 
 === Retrospettiva
-L'obiettivo primario dello sprint 6 era il raggiungimento di una milestone interna fissata per il 31 dicembre 2025. Il gruppo mirava a ottenere una versione stabile dell'#gloss[Analisi dei Requisiti] e del #gloss[Piano di Qualifica] per anticipare il carico di lavoro in vista della sessione d'esami invernale. Nonostante il rallentamento previsto per le festività natalizie, lo sprint è stato strutturato su due settimane per bilanciare i tempi di produzione e permettere un maggiore lavoro asincrono.
+L'obiettivo primario dello sprint 6 era il raggiungimento di una milestone interna fissata per il 31 dicembre 2025. Il gruppo mirava a ottenere una versione stabile dell'#gloss[Analisi dei Requisiti] e del #gloss[Piano di Qualifica] per anticipare il carico di lavoro in vista della sessione d'esami invernale, tuttavia il gruppo si è reso conto di aver sottovalutato gli obiettivi prefissati.\
+Infatti sono stati fatti sostanziali progressi nell'#gloss[Analisi dei Requisiti], ma non si ha ancora raggiunto una versione stabile.\
+Invece, per quanto riguarda il #gloss[Piano di Qualifica], l'attività di definizione delle metriche sta risultando più complessa e onerosa del previsto.
+
+Visto il rallentamento previsto per le festività natalizie, lo sprint è stato strutturato su due settimane per bilanciare i tempi di produzione e permettere un maggiore lavoro asincrono, ciò ha permesso di concentrarsi esclusivamente sui compiti assegnati.\
+Il gruppo ha apprezzato l'allungamento della durata dello sprint.
 
 === Rischi occorsi
 Il gruppo si è imbattuto in *RO1* (@RO1) in quanto non è stato possibile realizzare il set di automazioni per il cruscotto relativo alle metriche del #gloss("Piano di Qualifica").
@@ -1917,7 +2117,7 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
 Inizio: 02/01/2026 \
 Fine: 14/01/2026 \
 
-In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura dei requisiti relativi agli Use Cases dell'#gloss("Analisi dei Requisiti") e il completamento del sistema di automazione per il cruscotto di valutazione delle metriche.
+In questo sprint il gruppo si è concentrato su tre obiettivi principali: il raggiungimento di una versione stabile del #gloss("Piano di Qualifica"), la stesura dei requisiti relativi agli use case dell'#gloss("Analisi dei Requisiti") e il completamento del sistema di automazione per il cruscotto di valutazione delle metriche.
 
 === Compiti da svolgere
 In seguito sono mostrati i compiti identificati:
@@ -1980,13 +2180,13 @@ Issue relative a sprint 7: \
 
 === Retrospettiva
 Durante lo Sprint 7 il gruppo è riuscito a realizzare una versione stabile del #gloss("Piano di Qualifica"), procedendo alla selezione e all'adattamento delle metriche precedentemente analizzate. Permangono alcune correzioni di lieve entità, la cui implementazione è pianificata per lo Sprint 8. \
-La realizzazione delle automazioni per il cruscotto di visualizzazione delle metriche è stata completata, anche in questo caso restano alcuni dettagli minori da rifinire, che verranno ultimati nello sprint successivo. \
-Per quanto riguarda la stesura dei requisiti, è stato possibile completare esclusivamente la definizione degli use case dal 31 al 60.
+La suddetta implementazione è fondamentale dato che fornisce la possibilità di verifica sulla qualità di processo del gruppo, dato sarà possibile visionare le metriche attraverso le automazioni realizzate.\
+Per quanto riguarda la stesura dei requisiti, è stato possibile completare esclusivamente la definizione degli use case dal 31 al 60, ritardando la stesura dei requisiti successivi.
 Di conseguenza, nello Sprint 8 verrà data maggiore priorità al completamento della documentazione dei requisiti relativi ai restanti use case.
 
 === Rischi occorsi
 Il gruppo ha riscontrato il rischio RO1 (@RO1), in quanto non è stato possibile completare integralmente la stesura dei requisiti relativi
-agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti") in vista della conclusione della #gloss("RTB"), fissata per il 7 febbraio 2026. A tal fine, nello Sprint 8 questa attività verrà intensificata per il suo completamento.
+agli use case analizzati, ma solo una parte di essi. L'impatto è valutato come medio, poiché si prevede di ultimare l' #gloss("Analisi dei Requisiti") in vista della conclusione della #gloss("RTB"), fissata per il 12 febbraio 2026. A tal fine, nello Sprint 8 questa attività verrà intensificata per il suo completamento.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
@@ -2076,7 +2276,7 @@ agli Use Case analizzati, ma solo una parte di essi. L'impatto è valutato come 
 Inizio: 14/01/2026 \
 Fine: 28/01/2026 \
 
-Il presente sprint ha lo scopo di focalizzarsi prioritariamente sulla stesura dei requisiti e sulla modellazione dei diagrammi Use Case. In parallelo, il team avvierà lo studio e l'apprendimento di #gloss[NATS] e #gloss[Angular.js] in vista dell'imminente implementazione del #gloss("POC"), consolidando al contempo la documentazione normativa, il glossario e la definizione tecnica delle metriche.
+Il presente sprint ha lo scopo di focalizzarsi prioritariamente sulla stesura dei requisiti e sulla modellazione dei diagrammi use case. In parallelo, il team avvierà lo studio e l'apprendimento di #gloss[NATS] e #gloss[Angular.js] in vista dell'imminente implementazione del #gloss("POC"), consolidando al contempo la documentazione normativa, il glossario e la definizione tecnica delle metriche.
 
 === Compiti da svolgere
 In seguito sono mostrati i compiti identificati:
@@ -2137,7 +2337,7 @@ Il team ha svolto con successo i seguenti compiti nello sprint 8:
 
 === Retrospettiva
 Lo Sprint 8 ha visto il completamento dei compiti principali, ma con una produttività ridotta causata dalla sessione d'esami invernale (@RP1). L'impegno per gli appelli accademici ha limitato la disponibilità del team, rendendo difficile il rispetto rigoroso delle tempistiche su alcune issue secondarie. \
-Il prossimo sprint sarà focalizzato sulla realizzazione pratica del #gloss("POC"), verranno redatti i test di sistema da includere nel #gloss("PdQ") e proseguiranno i compiti di stesura e aggiornamento delle #gloss("NdP").
+In ogni caso il team rimane fiducioso ed è convinto di potersi candidare per la #gloss[RTB] senza gravi ritardi.
 
 === Rischi occorsi
 Il gruppo ha dovuto affrontare i rischi RT1 (@RT1) e RP1 (@RP1). La concomitanza con gli appelli d'esame ha comportato rallentamenti operativi, in particolare per quanto riguarda la issue #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/107")[#107]; non essendo stato possibile completarla entro i termini previsti è stata ri-pianificata e verrà portata a termine nel prossimo sprint.
@@ -2327,7 +2527,7 @@ Nella riunione interna del #link("https://glitchhub-team.github.io/pdf/RTB/Verba
 
 Questa riorganizzazione non solo ha garantito il completamento di tutti i compiti legati allo *sviluppo* del #gloss[PoC] entro le scadenze prefissate, ma ha anche consentito al gruppo di *assorbire* i ritardi accumulati negli sprint precedenti. Grazie a una pianificazione più granulare e a un monitoraggio costante del progresso, il gruppo ha ritrovato la sincronia necessaria per ultimare il rilascio della documentazione in tempo utile. Tale solidità operativa ha reso possibile lo svolgimento della riunione di *revisione* con il professor Cardin in data *12 febbraio 2026*.
 
-Durante lo *sprint 10* il gruppo si focalizzerà sul consolidamento finale della documentazione in vista della fine dell'#gloss[RTB]. L'obiettivo primario sarà il rilascio nella _repository_ della versione *1.0.0* dei documenti rimanenti, con particolare attenzione al #gloss[Piano di Qualifica] e al presente #gloss[Piano di Progetto]. Infine, sul piano gestionale, lo sprint prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
+Durante lo *sprint 10* il gruppo si focalizzerà sul consolidamento finale della documentazione in vista della fine dell'#gloss[RTB]. L'obiettivo primario sarà il rilascio nella _repository_ della versione *1.x.x* dei documenti rimanenti, con particolare attenzione al #gloss[Piano di Qualifica] e al presente #gloss[Piano di Progetto]. Infine, sul piano gestionale, lo sprint prevede l'avvio dei contatti con il professor Vardanega per concordare la data della *seconda riunione* di valutazione relativa alla #gloss[RTB].
 
 === Rischi occorsi
 Il manifestarsi del rischio *RP1* (@RP1) durante la sessione invernale è stato gestito con successo attraverso i canali di comunicazione interna. La segnalazione anticipata delle difficoltà individuali ha consentito al gruppo di riorganizzare i compiti in modo dinamico, assorbendo il carico di lavoro residuo tra i membri con maggiore disponibilità. L'impatto rilevato è dunque *basso*.
