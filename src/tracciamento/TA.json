@@ -1,0 +1,140 @@
+[
+    {
+        "id": "TA-acq-gen-sensori",
+        "descr": "Verificare che il gateway possa ricevere e gestire dati di 5 tipologie diverse di sensori simulati",
+        "ref-req": "RQ-1",
+        "state": "NI"
+    },
+    {
+        "id": "TA-sim-dati-gateway",
+        "descr": "Verificare che il gateway simulato generi dati simulati, attraverso sensori simulati, pronti alla trasmissione",
+        "ref-req": "RQ-2.1",
+        "state": "NI"
+    },
+    {
+        "id": "TA-invio-dati-tls",
+        "descr": "Verificare che il gateway simulato invii dati al cloud con crittografia TLS",
+        "ref-req": "RQ-2.2",
+        "state": "NI"
+    },
+    {
+        "id": "TA-gestione-sensori-simulati",
+        "descr": "Verificare che il gateway simulato riesca a gestire più sensori simulati in parallelo",
+        "ref-req": "RQ-2.3",
+        "state": "NI"
+    },
+    {
+        "id": "TA-acq-gen-sensori",
+        "descr": "Verificare che il gateway simulato possa salvare le informazioni di commissioning in modo consistente",
+        "ref-req": "RQ-2.4",
+        "state": "NI"
+    },
+    {
+        "id": "TA-risposta-mess-cloud",
+        "descr": "Verificare che il gateway possa rispondere ai messaggi da parte del cloud",
+        "ref-req": "RQ-2.5",
+        "state": "NI"
+    },
+    {
+        "id": "TA-isol-logico-dati-tenant",
+        "descr": "Verificare che il cloud possa isolare logicamente i dati dei diversi tenant",
+        "ref-req": "RQ-3",
+        "state": "NI"
+    },
+    {
+        "id": "TA-esp-api",
+        "descr": "Verificare che il cloud esponga API per accedere ai dati raccolti dai sensori",
+        "ref-req": "RQ-4",
+        "state": "NI"
+    },
+    {
+        "id": "TA-client-api",
+        "descr": "Verificare che ogni client delle API sia identificato univocamente",
+        "ref-req": "RQ-4.1",
+        "state": "NI"
+    },
+    {
+        "id": "TA-api-on-demand",
+        "descr": "Verificare che le API possano fornire su richiesta i dati di uno o più gateway con possibilità di filtraggio dati per sensore e per intervallo temporale",
+        "ref-req": "RQ-4.2.1",
+        "state": "NI"
+    },
+    {
+        "id": "TA-api-stream",
+        "descr": "Verificare che le API possano fornire i dati di un sensore specifico in real-time",
+        "ref-req": "RQ-4.2.2",
+        "state": "NI"
+    },
+    {
+        "id": "TA-ui-web",
+        "descr": "Verificare che l'interfaccia web permetta di esplorare i dati acquisiti e di configurare nuovi gateway e sensori simulati",
+        "ref-req": "RQ-5",
+        "state": "NI"
+    },
+    {
+        "id": "TA-api-terze-parti",
+        "descr": "Verificare che il cloud fornisca delle API integrabili da applicazioni esterne mediante l'utilizzo di API Key o Certificati SSL/TLS",
+        "ref-req": "RQ-6",
+        "state": "NI"
+    },
+    {
+        "id": "TA-alert-configurabili",
+        "descr": "Verificare che il cloud possa notificare gli utenti interessati in caso di anomalie o eventi critici tramite alert configurabili",
+        "ref-req": "RQ-7",
+        "state": "NI"
+    },
+    {
+        "id": "TA-auth-jwt",
+        "descr": "Verificare che gli accessi al cloud siano protetti tramite JWT con ruoli granulari",
+        "ref-req": "RQ-8",
+        "state": "NI"
+    },
+    {
+        "id": "TA-dati-cifrati",
+        "descr": "Verificare che i dati siano cifrati a riposo e in transito",
+        "ref-req": "RQ-9",
+        "state": "NI"
+    },
+    {
+        "id": "TA-auth-mfa",
+        "descr": "Verificare che l'accesso all'interfaccia web e alle API sia protetto da autenticazione a più fattori",
+        "ref-req": "RQ-11",
+        "state": "NI"
+    },
+    {
+        "id": "TA-audit-log",
+        "descr": "Verificare che il cloud crei degli audit log per accessi, modifiche ai dati e alle configurazioni.",
+        "ref-req": "RQ-12",
+        "state": "NI"
+    },
+    {
+        "id": "TA-rate-limiting",
+        "descr": "Verificare che il cloud implementi meccanismi di rate limiting, intrusion detection e failover automatico",
+        "ref-req": "RQ-13",
+        "state": "NI"
+    },
+    {
+        "id": "TA-code-coverage",
+        "descr": "Verificare che il codice abbia un livello minimo di Code Coverage dell'80%",
+        "ref-req": "RQ-15",
+        "state": "NI"
+    },
+    {
+        "id": "TA-monitoring",
+        "descr": "Verificare che il cloud abbia un meccanismo di monitoraggio delle proprie performance",
+        "ref-req": "RQ-16",
+        "state": "NI"
+    },
+    {
+        "id": "TA-monitoring-gateway",
+        "descr": "Verificare che il cloud abbia un meccanismo per monitorare lo stato di funzionamento dei gateway",
+        "ref-req": "RQ-16",
+        "state": "NI"
+    },
+    {
+        "id": "TA-ci-cd-git",
+        "descr": "Verificare che il codice sia versionato tramite Git e che abbia una pipeline CI/CD per il deployment automatico",
+        "ref-req": "RQ-17",
+        "state": "NI"
+    }
+]
