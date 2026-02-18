@@ -332,38 +332,38 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 
 == Riferimenti
 === Riferimenti normativi
-- Capitolato d'appalto C7:
+- *Capitolato d'appalto C7*:
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`] \
-  - *Ultimo accesso: 17/02/2026*
-- Norme di Progetto v1.0.0:
+  - *Ultimo accesso*: 18/02/2026
+- *Norme di Progetto v1.2.0*:
   - #link(
       "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf",
     )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf`] \
-  - *Ultimo accesso: 17/02/2026*
+  - *Ultimo accesso*: 18/02/2026
 
 === Riferimenti informativi
-- Regolamento del progetto didattico:
+- *Regolamento del progetto didattico*:
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf`] \
-  - *Ultimo accesso: 17/02/2026* //scriviamo ultimo accesso o ultima modifica?
-- Il ciclo di vita del software:
+  - *Ultimo accesso*: 18/02/2026
+- *Il ciclo di vita del software*:
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf`] \
-  - *Ultimo accesso: 17/02/2026*
-- Gestione di progetto:
+  - *Ultimo accesso*: 18/02/2026
+- *Gestione di progetto*:
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf`] \
-  - *Ultimo accesso: 17/02/2026*
-- Glossario v.0.5.0:
+  - *Ultimo accesso*: 18/02/2026
+- *Glossario v.0.5.0*:
   - #link(
       "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf",
     )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`] \
-  - *Ultimo accesso: 18/02/2026*
+  - *Ultimo accesso*: 18/02/2026
 
 == Redazione del documento
 Questa sezione descrive le pratiche adottate per la redazione del #gloss[Piano di Progetto]. \
