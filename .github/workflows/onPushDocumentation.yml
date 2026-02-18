@@ -1,5 +1,4 @@
 name: Compile Typst
-
 on:
   push:
     branches: [ "Documentation-**", "Documentation" ]
@@ -13,28 +12,36 @@ permissions:
 jobs:
   build:
     runs-on: self-hosted
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Install Typst
         uses: typst-community/setup-typst@v4
         with:
           typst-version: '0.13.1'
-
+      
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.3'
+      
+      - name: Install Go dependencies
+        run: go mod tidy
+        working-directory: script/scriptHomePage
+      
       - name: Pull latest changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config pull.rebase false
           git pull origin ${{ github.ref_name }}
-          
+      
       - name: Run bash
         run: | 
           chmod +x compile.sh
           ./compile.sh
-
+      
       - name: Check Git status
         run: git status
       

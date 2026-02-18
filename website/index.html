@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="it">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="GlitchHub Team" />
-    <meta name="description" content="Sito del gruppo 5 di Ingegneria del Software (GlitchHub Team)" />
+<html lang="it"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="GlitchHub Team">
+    <meta name="description" content="Sito del gruppo 5 di Ingegneria del Software (GlitchHub Team)">
 
     <title>GlitchHub Team</title>
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="logo&amp;banner/GlitchHub-Team_LogoP.svg" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo&amp;banner/GlitchHub-Team_LogoP.svg">
     <script src="script.js"></script>
 
 </head>
@@ -20,74 +18,56 @@
     <header>
         <nav class="navbar">
             <div class="containernav">
-                <img class="logoPiccolo" src="logo&amp;banner/GlitchHub-Team_LogoP.svg" alt="Logo GlitchHub Piccolo" />
+                <img class="logoPiccolo" src="logo&amp;banner/GlitchHub-Team_LogoP.svg" alt="Logo GlitchHub Piccolo">
 
                 <button class="menu-toggle" id="menu-toggle" aria-label="Apri menu">
                     ☰
                 </button>
 
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="#candidatura">Candidatura</a></li>
-                    <li><a href="#rtb">RTB</a></li>
-                    <li><a href="#pb">PB</a></li>
-                    <li><a href="#Diapositive">Diapositive</a></li>
-                    <li><a href="#chisiamo">Chi siamo</a></li>
+                    <li><a href="glossary.html">Glossario</a></li>
                 </ul>
             </div>
         </nav>
         <div class="logo-Header">
-            <img class="logoGrande" src="logo&amp;banner/GlitchHub-Team_LogoG.svg" alt="Logo GlitchHub Grande" />
+            <img class="logoGrande" src="logo&amp;banner/GlitchHub-Team_LogoG.svg" alt="Logo GlitchHub Grande">
         </div>
         <div class="text">
             <p>
-                Sito di presentazione del progetto didattico di Ingegneria del Software (2025-2026) <br />del corso di
-                Informatica dell&#39;Università degli Studi di Padova.
+                Sito di presentazione del progetto didattico di Ingegneria del Software (2025-2026) <br>del corso di
+                Informatica dell'Università degli Studi di Padova.
             </p>
         </div>
     </header>
 
-    <div class="container">
-        <details id="candidatura">
+    <div class="side-bar">
+
+        <details id="rtb" open="">
             <summary>
-                <h2>Candidatura</h2>
+                <h2>RTB</h2>
             </summary>
 
             <div>
                 <section>
-                    <p>Candidatura</p>
-                    <ul id="Candidatura-Generale">
+                    <ul id="RTB-Generale">
                     </ul>
                 </section>
             </div>
 
             <div class="liste">
+
                 <div>
                     <section>
-                        <p>Verbali interni</p>
-                        <ul id="Candidatura-VerbaliInterni">
+                        <p>Documenti esterni</p>
+                        <ul id="RTB-DocumentiEsterni">
                         </ul>
                     </section>
                 </div>
 
                 <div>
                     <section>
-                        <p>Verbali esterni</p>
-                        <ul id="Candidatura-VerbaliEsterni">
-                        </ul>
-                    </section>
-                </div>
-            </div>
-        </details>
-
-        <details id="rtb">
-            <summary>
-                <h2>RTB</h2>
-            </summary>
-            <div class="liste">
-                <div>
-                    <section>
-                        <p>Verbali interni</p>
-                        <ul id="RTB-VerbaliInterni">
+                        <p>Documenti interni</p>
+                        <ul id="RTB-DocumentiInterni">
                         </ul>
                     </section>
                 </div>
@@ -99,10 +79,19 @@
                         </ul>
                     </section>
                 </div>
+
+                <div>
+                    <section>
+                        <p>Verbali interni</p>
+                        <ul id="RTB-VerbaliInterni">
+                        </ul>
+                    </section>
+                </div>
+
             </div>
         </details>
 
-        <details id="pb">
+        <details id="pb" class="nascondi">
             <summary>
                 <h2>PB</h2>
             </summary>
@@ -125,13 +114,156 @@
             </div>
         </details>
 
-        <details>
+        <details id="candidatura">
+            <summary>
+                <h2>Candidatura</h2>
+            </summary>
+
+            <div>
+                <section>
+                    <p>Documenti</p>
+                    <ul id="Candidatura-Generale">
+                 </ul>
+                </section>
+            </div>
+
+            <div class="liste">
+
+                <div>
+                    <section>
+                        <p>Verbali esterni</p>
+                        <ul id="Candidatura-VerbaliEsterni">
+                        </ul>
+                    </section>
+                </div>
+
+                <div>
+                    <section>
+                        <p>Verbali interni</p>
+                        <ul id="Candidatura-VerbaliInterni">
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+        </details>
+
+    </div>
+
+    <div class="container">
+
+        <section id="pb" class="nascondi">
+            <summary>
+                <h2>PB</h2>
+            </summary>
+            <div class="liste">
+                <div>
+                    <section>
+                        <p>Verbali interni</p>
+                        <ul id="PB-VerbaliInterni">
+                        </ul>
+                    </section>
+                </div>
+
+                <div>
+                    <section>
+                        <p>Verbali esterni</p>
+                        <ul id="PB-VerbaliEsterni">
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <section class="nascondi">
             <summary>
                 <h2>Diapositive</h2>
             </summary>
             <ul id="Diapositive">
-            </ul>
-        </details>
+        </section>
+
+        <section id="rtb" open="">
+            <summary>
+                <h2>RTB</h2>
+            </summary>
+
+            <div>
+                <section>
+                    <ul id="RTB-Generale">
+                    </ul>
+                </section>
+            </div>
+
+            <div class="liste">
+
+                <div>
+                    <section>
+                        <p>Documenti esterni</p>
+                        <ul id="RTB-DocumentiEsterni">
+                        </ul>
+                    </section>
+                </div>
+
+                <div>
+                    <section>
+                        <p>Documenti interni</p>
+                        <ul id="RTB-DocumentiInterni">
+                        </ul>
+                    </section>
+                </div>
+
+                <div>
+                    <section>
+                        <p>Verbali esterni</p>
+                        <ul id="RTB-VerbaliEsterni">
+                        </ul>
+                    </section>
+                </div>
+
+                <div>
+                    <section>
+                        <p>Verbali interni</p>
+                        <ul id="RTB-VerbaliInterni">
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+        </section>
+
+         <section id="candidatura">
+            <summary>
+                <h2>Candidatura</h2>
+            </summary>
+
+            <div>
+                <section>
+                    <p>Documenti</p>
+                    <ul id="Candidatura-Generale">
+                    </ul>
+                </section>
+            </div>
+
+            <div class="liste">
+
+                <div>
+                    <section>
+                        <p>Verbali esterni</p>
+                        <ul id="Candidatura-VerbaliEsterni">
+                        </ul>
+                    </section>
+                </div>
+
+                <div>
+                    <section>
+                        <p>Verbali interni</p>
+                        <ul id="Candidatura-VerbaliInterni">
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+        </section>
 
     </div>
 
@@ -212,7 +344,7 @@
     </section>
 
     <footer>
-        <dl>
+        <dl id="contatti">
             <dt>Email</dt>
             <dd><a href="mailto:glitchhubteam@gmail.com" target="_blank">glitchhubteam@gmail.com</a></dd>
         </dl>
@@ -230,6 +362,6 @@
 
 
 
-</body>
 
-</html>
+
+</body></html>

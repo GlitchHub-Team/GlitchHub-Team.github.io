@@ -1,11 +1,11 @@
-#import "../../Templates/templateVerbali.typ": report
+#import "../../Templates/templateVerbali.typ": *
 
 #show: report.with(
   titolo: "Verbale interno 17/10/2025",
   stato: "Verificato",
   versione: "1.0.1",
   registro-modifiche: (
-    ("1.0.1", "28/10/2025", "Elia Ernesto Stellin", "Elia Ernesto Stellin", "Correzione refuso"),
+    ("1.0.1", "28/10/2025", "Elia Ernesto Stellin", "Jaume Bernardi", "Correzione refuso"),
     ("1.0.0", "26/10/2025", "Alessandro Dinato", "Jaume Bernardi", "Versione stabile del verbale"),
     ("0.1.0", "25/10/2025", "Alessandro Dinato", "Jaume Bernardi", "Stesura verbale dalla bozza"),
     ("0.0.1", "18/10/2025", "Riccardo Graziani", "Alessandro Dinato", "Bozza primo incontro del gruppo"),
@@ -40,7 +40,7 @@
 
 = Introduzione
 Il presente documento attesta che, in data *17 ottobre 2025*, dalle 17:43 alle 18:53, si è tenuta, in modalità virtuale, la riunione del gruppo *GlitchHub Team*. \
-L'incontro è stato organizzato con lo scopo di creare un _way of working_ iniziale e configurare alcune caratteristiche del gruppo, come _nome_ e _logo_.
+L'incontro è stato organizzato con lo scopo di creare un _#gloss[way of working]_ iniziale e configurare alcune caratteristiche del gruppo, come _nome_ e _logo_.
 = Resoconto
 == Scelta del nome del gruppo
 Dopo una breve serie di proposte, è stato deciso di adottare *GlitchHub Team* come nome ufficiale del gruppo su proposta di Siria Salvalaio.
@@ -61,7 +61,7 @@ I colori distintivi scelti sono i seguenti: *\#9948BC* e *\#90FCF9*.
 == Scelta dei canali di comunicazione
 Sono stati adottati i seguenti canali di comunicazione:
 - *WhatsApp* per comunicazioni quotidiane;
-- *Discord* come piattaforma per riunioni da remoto.
+- *#gloss[Discord]* come piattaforma per riunioni da remoto.
 == Discussione dei capitolati
 Dopo un confronto tra i componenti del gruppo, si è giunti al seguente ordine di preferenza per i capitolati proposti:
 - C7 — *Sistema di acquisizione dati da sensori*, proposto da *M31*
@@ -69,12 +69,12 @@ Dopo un confronto tra i componenti del gruppo, si è giunti al seguente ordine d
 - C4 — *L’app che Protegge e Trasforma*, proposto da *Miriade*
 Si è deciso di contattare le aziende *M31*, *Var Group* e *Miriade* via email per richiedere un incontro di approfondimento sui rispettivi capitolati.
 == Organizzazione del repository
-È stato deciso di utilizzare la piattaforma *GitHub* come sistema di versionamento della documentazione del gruppo. \
-Inoltre, verrà realizzato un sito *GitHub Pages* per facilitare la consultazione della documentazione di progetto. \
+È stato deciso di utilizzare la piattaforma *#gloss[GitHub]* come sistema di versionamento della documentazione del gruppo. \
+Inoltre, verrà realizzato un sito *#gloss[GitHub Pages]* per facilitare la consultazione della documentazione di progetto. \
 == Organizzazione documentale
-È stato deciso di adottare *Typst* come linguaggio per la redazione della documentazione del progetto. \
-La scelta è ricaduta su Typst per la semplice sintassi e le molteplici funzionalità. \
-Verranno, inoltre, sviluppati alcuni template standard per la stesura dei futuri documenti che verranno pubblicati su GitHub Pages automaticamente attraverso le GitHub Actions.
+È stato deciso di adottare *#gloss[Typst]* come linguaggio per la redazione della documentazione del progetto. \
+La scelta è ricaduta su #gloss[Typst] per la semplice sintassi e le molteplici funzionalità. \
+Verranno, inoltre, sviluppati alcuni template standard per la stesura dei futuri documenti che verranno pubblicati su #gloss[GitHub Pages] automaticamente attraverso le #gloss[GitHub Actions].
 = Decisioni e attività
 Il gruppo alla fine dell'incontro ha deciso come suddividersi i compiti con relative scadenze.
 #figure(
@@ -87,8 +87,8 @@ Il gruppo alla fine dell'incontro ha deciso come suddividersi i compiti con rela
     ),
     table.header([*Descrizione*], [*Responsabile*], [*Scadenza*]),
     "Redazione del verbale 17/10/2025", "Riccardo Graziani", "18/10/2025",
-    "Creazione del template Typst", "Michele Dioli, Alessandro Dinato", "21/10/2025",
-    "Creazione sito GitHub Pages", "Hossam Ezzemouri, Jaume Bernardi", "23/10/2025",
+    "Creazione del template #gloss[Typst]", "Michele Dioli, Alessandro Dinato", "21/10/2025",
+    "Creazione sito #gloss[GitHub Pages]", "Hossam Ezzemouri, Jaume Bernardi", "23/10/2025",
     "Contattare aziende", "Alessandro Dinato, Silvia Salvalaio", "19/10/2025",
   ),
 )

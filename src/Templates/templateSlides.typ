@@ -6,6 +6,8 @@
   place(right + bottom, image("../assets/loghi/GlitchHub-Team_LogoWM.png", width: 17cm))
 }
 
+#let gloss(content) = [*#content#sub[G]*]
+
 #let slide-title-internal(body) = {
   set page(
     paper: "presentation-16-9",
@@ -183,10 +185,12 @@
   title: "GlitchHub Team",
   subtitle: "Diario di bordo",
   htmlId: "Diapositive",
+  index: "0",
   date: datetime.today().display("[year]-[month]-[day]"),
   authors: (),
   body,
 ) = {
+  show link: underline
   set page(paper: "presentation-16-9")
   set text(font: "Lato", size: 20pt)
 
@@ -199,7 +203,7 @@
   set document(
     title: "Diario di bordo " + date,
     author: "GlitchHub Team",
-    keywords: (htmlId, "1.0.0"), //versione di default per script Go
+    keywords: (htmlId, "1.0.0", index), //versione di default per script Go
   )
   pagebreak()
 

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     const linkCandidatura = document.getElementById("linkCandidatura");
     const candidatura = document.getElementById("candidatura");
     if (linkCandidatura && candidatura) {

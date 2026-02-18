@@ -1,5 +1,4 @@
 name: Compile Typst
-
 on:
   push:
     branches: [ "main" ]
@@ -16,21 +15,33 @@ permissions:
 jobs:
   build:
     runs-on: self-hosted
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Install Typst
         uses: typst-community/setup-typst@v4
         with:
           typst-version: '0.13.1'
-          
+      
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.3'
+      
+      - name: Install Go dependencies
+        run: go mod tidy
+        working-directory: script/scriptHomePage
+
+      - name: Install Go dependencies Glossary
+        run: go mod tidy
+        working-directory: script/scriptGlossary
+      
       - name: Run bash
         run: | 
           chmod +x compile.sh
           ./compile.sh
-
+      
       - name: Check Git status
         run: git status
       
@@ -62,11 +73,19 @@ jobs:
 
         - name: Install Go dependencies
           run: go mod tidy
-          working-directory: script/
+          working-directory: script/scriptHomePage/
 
         - name: Render HTML with Go
           run: go run renderHTMLwithPDFs.go
-          working-directory: script/
+          working-directory: script/scriptHomePage/
+
+        - name: Install Go dependencies
+          run: go mod tidy
+          working-directory: script/scriptGlossary/
+
+        - name: Render HTML with Go for Glossary
+          run: go run main.go
+          working-directory: script/scriptGlossary/
 
         - name: Configure GitHub Pages
           uses: actions/configure-pages@v5

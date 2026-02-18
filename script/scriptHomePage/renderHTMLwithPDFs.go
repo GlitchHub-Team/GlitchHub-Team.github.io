@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
+	"strconv"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -13,15 +15,16 @@ import (
 )
 
 type PDFDocument struct {
+	index   int
 	path    string
 	version string
 	title   string
 	htmlId  string
 }
 
-const KEYWORDS_N = 2
-const PATH_TO_DOCUMENTS = "../website/pdf/"
-const PATH_TO_HTML = "../website/index.html"
+const KEYWORDS_N = 3
+const PATH_TO_DOCUMENTS = "../../website/pdf/"
+const PATH_TO_HTML = "../../website/index.html"
 const TEMPLATE = "<li><a href='%s' target='_blank'>%s</a><span class='version-tag'>v%s</span></li>"
 
 func loadPDFMetadata(pdf *PDFDocument) error {
@@ -33,10 +36,15 @@ func loadPDFMetadata(pdf *PDFDocument) error {
 	pdf.title = ctx.Title
 	keywordsList := strings.Split(ctx.Keywords, ",")
 	if len(keywordsList) != KEYWORDS_N {
-		return fmt.Errorf("there are not exactly %d keywords, check the typst file", KEYWORDS_N)
+		return fmt.Errorf("%s: there are not exactly %d keywords, check the typst file", pdf.title, KEYWORDS_N)
 	}
 	pdf.htmlId = keywordsList[0]
 	pdf.version = keywordsList[1]
+	index, err := strconv.Atoi(strings.TrimSpace(keywordsList[2]))
+	if err != nil {
+		return fmt.Errorf("invalid index: %w", err)
+	}
+	pdf.index = index
 
 	return nil
 }
@@ -115,6 +123,17 @@ func main() {
 		panic(err)
 	}
 
+	sort.Slice(docs, func(i, j int) bool {
+		if docs[i].index == docs[j].index {
+			return docs[i].path > docs[j].path
+		}
+		return docs[i].index > docs[j].index
+	})
+
+	for _, d := range docs {
+		fmt.Println(d.path, d.title, d.index)
+	}
+
 	htmlBytes, err := os.ReadFile(PATH_TO_HTML)
 	if err != nil {
 		fmt.Println("Error while reading the HTML file:", err)
@@ -123,9 +142,9 @@ func main() {
 
 	htmlStr := string(htmlBytes)
 
-	for i := len(docs) - 1; i >= 0; i-- {
+	for i := 0; i < len(docs); i++ {
 		d := docs[i]
-		d.path = strings.Replace(d.path, "./website", "", 1)
+		d.path = strings.Replace(d.path, "../../website", "", 1)
 		renderedHTML := fmt.Sprintf(TEMPLATE, d.path, d.title, d.version)
 		updatedHTML, err := addChildToId(htmlStr, d.htmlId, renderedHTML)
 		if err != nil {
