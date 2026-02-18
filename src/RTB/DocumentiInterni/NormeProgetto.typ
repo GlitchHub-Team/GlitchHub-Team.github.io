@@ -4,7 +4,7 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Verificato",
+  stato: "Da verificare",
   registro-modifiche: (
     (
       "1.2.0",
