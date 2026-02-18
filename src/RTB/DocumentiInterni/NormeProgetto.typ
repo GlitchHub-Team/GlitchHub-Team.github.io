@@ -145,7 +145,7 @@ Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Can
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
-Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
+Il principale tipo di ambiguità che si può creare nello svolgimento del progetto è l'incomprensione del significato dei termini utilizzati dal gruppo. A tale scopo, la nomenclatura adottata da quest'ultimo verrà raccolta nel #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*glossario*], un #gloss[documento incrementale] che definisce ogni parola rilevante per il dominio del progetto.
 
 Come descritto nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-19.pdf")[*verbale interno del 19 novembre 2025*], il gruppo si impegna ad annotare tutte le parole del glossario che compaiono nei documenti con una G a pedice in questo modo:
 
@@ -191,7 +191,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 
 
 = Processi primari <processi-primari>
-I processi primari della norma #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*ISO/IEC 12207:1995*] definiscono le attività fondamentali del ciclo di vita del software attraverso cinque processi: Acquisizione, Fornitura, Sviluppo, Operazione e Manutenzione, assicurando la conformità ai requisiti e agli obiettivi di qualità stabiliti.
+I processi primari della norma #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[*ISO/IEC 12207:1995*] definiscono le attività fondamentali del ciclo di vita del software attraverso cinque processi: acquisizione, fornitura, sviluppo, operazione e manutenzione, assicurando la conformità ai requisiti e agli obiettivi di qualità stabiliti.
 
 Tra i #gloss[*processi*] primari applicati nel progetto si distinguono:
 - #link(<processo-fornitura>)[*Fornitura*]
@@ -204,7 +204,7 @@ L'obiettivo del processo è garantire che il software sia sviluppato e fornito i
 
 === Strumenti a supporto <fornitura-strumenti-supporto>
 - #gloss[*GitHub*]: come infrastruttura per il controllo di versione
-  - *GitHub Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];
+  - *GitHub Issues*: per l'assegnazione degli elementi del _backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];
   - *Github Project*: per la visualizzazione delle task in modalità Kanban, utile ad illustrare lo stato d'avanzamento delle task assegnate;
 - *Whatsapp*: come canale di comunicazione all'interno del gruppo;
 - #gloss[*Discord*]: per svolgere le riunioni interne del gruppo;
@@ -262,7 +262,7 @@ Le *Norme di Progetto* definiscono il #gloss[Way of Working] del gruppo *GlitchH
 stabilendo gli *strumenti* da utilizzare, le convenzioni per la *stesura* del codice e della documentazione, e le procedure operative necessarie a garantire uniformità ed efficienza nello sviluppo.
 
 ==== Glossario <doc-fornita-glossario>
-Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*Glossario*] raccoglie e definisce la *terminologia* tecnica adottata nel corso del progetto. Il suo obiettivo è costituire un punto di *riferimento* univoco per tutti i membri del gruppo, garantendo una comunicazione chiara e priva di ambiguità.
+Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*glossario*] raccoglie e definisce la *terminologia* tecnica adottata nel corso del progetto. Il suo obiettivo è costituire un punto di *riferimento* univoco per tutti i membri del gruppo, garantendo una comunicazione chiara e priva di ambiguità.
 
 ==== Verbali interni <doc-fornita-verb-interni>
 Rappresentano i *verbali* delle riunioni svolte con la sola presenza dei membri del gruppo.
@@ -310,7 +310,7 @@ I #gloss[casi d'uso] sono identificati secondo la seguente nomenclatura:
 in cui:
 - *UC* indica *Use Case*, ossia la traduzione inglese di "#gloss[caso d'uso]";
 - *[Primario]* è un numero progressivo che identifica univocamente il #gloss[caso d'uso] all'interno dell'#gloss[Analisi dei Requisiti];
-- *[Secondario]* è un numero progressivo che identifica un #gloss[caso d'uso] correlato in modo esclusivo al caso *Primario*.
+- *[Secondario]* è un numero progressivo che identifica un #gloss[caso d'uso] correlato in modo esclusivo al caso *primario*.
 Ogni #gloss[caso d'uso] è inoltre corredato da un titolo che ne riassume lo scopo e da una descrizione testuale; per ulteriori dettagli si rimanda alla sezione introduttiva sui #gloss[casi d'uso] del documento di #gloss[Analisi dei Requisiti].
 
 ==== Requisiti <attivita-requisiti>
@@ -388,7 +388,7 @@ Quindi, questo processo riguarda tutte le attività di pianificazione, progettaz
 - *#gloss[Typst]*: è un sistema di composizione tipografica digitale, che permette di redigere documenti con un linguaggio di mark-up intuitivo e più semplice di LaTeX. Il sistema fornisce anche un linguaggio di scripting che permette di scrivere con semplicità macro e procedure che semplificano la scrittura di contenuti dinamici. La forza di #gloss[Typst] risiede nel suo sistema di templating, utilizzato in modo ubiquitario da _GlitchHub Team_ e nel reloading istantaneo che consente una scrittura più rapida dei documenti.
 
 - *#gloss[GitHub]*: per il controllo del versionamento dei sorgenti #gloss[Typst] dei documenti
-  - *GitHub Issues*: per l'assegnazione degli elementi del _Backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];, sono fondamentali per il tracciamento delle azioni prese in seguito a decisioni di gruppo
+  - *GitHub Issues*: per l'assegnazione degli elementi del _backlog_ e la segnalazione di eventuali problemi nella #gloss[Repository];, sono fondamentali per il tracciamento delle azioni prese in seguito a decisioni di gruppo
   - *Github Project*: per la visualizzazione delle task in modalità Kanban, utile ad illustrare lo stato d'avanzamento delle task assegnate
   - #gloss[GitHub Pages]: per l'hosting via sito web della documentazione stabile di progetto
 
@@ -415,7 +415,7 @@ A prescindere dal proprio tipo, il frontespizio di tutti i documenti tranne i di
 - La distribuzione del documento, ovvero i destinatari del documento, sotto lo stato.
 
 Inoltre, dalla seconda pagina di ogni documento, vi è presente la tabella del registro delle modifiche, dove ogni riga rappresenta una versione del documento e con le seguenti colonne:
-- Codice che descrive la *Versione* (vd. @doc-versionamento)
+- Codice che descrive la *versione* (vd. @doc-versionamento)
 - *Data* di scrittura della versione;
 - *Autore* della versione;
 - *Verificatore* della versione;
@@ -844,7 +844,7 @@ Innanzitutto, è necessario stabilire i requisiti e le risorse necessarie per co
 
 Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in "_task_" assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento.
 
-Si noti che le _issue_ in questo stato devono essere associate allo stato di *"Backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
+Si noti che le _issue_ in questo stato devono essere associate allo stato di *"backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
 
 === Pianificazione <gestione-processi-pianificazione>
 Per pianificare un'attività è fondamentale comprendere quali siano le risorse richieste, sia temporali che economiche, e le singole _task_ di cui è composta. Poiché le attività del progetto richiedono competenza in un'ampia gamma di ambiti diversi, ogni _task_ è assegnata a un *ruolo* specifico; si veda la @divisione-ruoli per un riassunto delle responsabilità e del valore economico del lavoro di ogni singolo ruolo.
@@ -1079,7 +1079,7 @@ Per maggiori informazioni riguardanti la gestione delle _issues_ durante lo svol
 ===== GitHub Project
 Il gruppo ha deciso di utilizzare un #gloss[GitHub Project] per raggruppare tutte le _issue_ delle diverse #gloss[repository] in un luogo unico e per assegnare a ogni _issue_ dei campi aggiuntivi che descrivono l'organizzazione delle relative _task_. La descrizione dei campi aggiuntivi forniti dal _project_ è presente nella @gestione-processi-attivita-previste.
 
-Inoltre, il _project_ impostato consente di visualizzare anche le _issue_ in diagrammi di #gloss[Gantt] (separati per membro del gruppo o per sotto-attività) e di visualizzare anche una board #gloss[Kanban] per una visualizzazione rapida di quali _task_ sono in #gloss[Backlog], quali sono pronte per essere eseguite, su quali _issue_ si sta lavorando al momento e su quali sono in revisione.
+Inoltre, il _project_ impostato consente di visualizzare anche le _issue_ in diagrammi di #gloss[Gantt] (separati per membro del gruppo o per sotto-attività) e di visualizzare anche una board #gloss[Kanban] per una visualizzazione rapida di quali _task_ sono in #gloss[backlog], quali sono pronte per essere eseguite, su quali _issue_ si sta lavorando al momento e su quali sono in revisione.
 
 #set heading(outlined: true)
 ==== Google Calendar
