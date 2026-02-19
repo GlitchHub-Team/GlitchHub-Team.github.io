@@ -213,7 +213,7 @@
   registro-modifiche: (
     (
       "1.2.1",
-      "17/02/2026",
+      "18/02/2026",
       "Alessandro Dinato",
       "Riccardo Graziani",
       [
@@ -673,26 +673,26 @@ l'acquisizione di flussi di dati provenienti da reti di sensori eterogenei.
 
 == Riferimenti
 === Riferimenti normativi
-- Norme di Progetto v1.0.0
+- Norme di Progetto v1.2.0
   - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf") \
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 18 febbraio 2026
 
 - Capitolato d'appalto C7 -- sistema di acquisizione dati da sensori
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf") \
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 18 febbraio 2026
 
 === Riferimenti informativi
 - Analisi dei Requisiti -- Lezione T5 del prof. Tullio Vardanega
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf") \
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 18 febbraio 2026
 
-- Glossario v0.3.1
+- Glossario v0.5.0
   - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf") \
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 18 febbraio 2026
 
 - Diagrammi delle Classi -- Lezione del prof. Riccardo Cardin
   - #link("https://www.math.unipd.it/~rcardin/swea/2023/Diagrammi%20delle%20Classi.pdf") \
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 18 febbraio 2026
 
 
 
