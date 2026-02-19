@@ -42,31 +42,34 @@ La documentazione prodotta da _GlitchHub Team_ è reperibile nella sezione "RTB"
 All'interno di quest'ultima si mettono a disposizione i seguenti documenti, oltre al presente:
 
 #columns(2)[
-// Documenti
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[Analisi dei Requisiti v1.2.1]
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[Glossario v0.5.0], disponibile anche come #link("https://glitchhub-team.github.io/glossary.html")[risorsa web]
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto v1.2.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[Piano di Progetto v1.1.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianodiQualifica.pdf")[Piano di Qualifica v1.0.0]
-// VE
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-02-03.pdf")[Verbale esterno 03/02/2026 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-01-27.pdf")[Verbale esterno 27/01/2026 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-01-13.pdf")[Verbale esterno 13/01/2026 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2025-12-16.pdf")[Verbale esterno 16/12/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 09/12/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 02/12/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 25/11/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 13/11/2025 v1.0.1]
-// VI
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[Verbale interno 30/01/2026 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-14.pdf")[Verbale interno 14/01/2026 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-02.pdf")[Verbale interno 02/01/2026 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-17.pdf")[Verbale interno 17/12/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[Verbale interno 31/12/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-03.pdf")[Verbale interno 03/12/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-26.pdf")[Verbale interno 26/11/2025 v1.0.0]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-19.pdf")[Verbale interno 19/11/2025 v1.0.1]
-- #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-12.pdf")[Verbale interno 12/11/2025 v1.0.0]
+  // Documenti
+  - #link(
+      "https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf",
+    )[Analisi dei Requisiti v1.2.1]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[Glossario v0.5.0], disponibile anche come #link("https://glitchhub-team.github.io/glossary.html")[risorsa web]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf")[Norme di Progetto v1.2.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[Piano di Progetto v1.1.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianodiQualifica.pdf")[Piano di Qualifica v1.0.0]
+  // VE
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-02-03.pdf")[Verbale esterno 03/02/2026 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-01-27.pdf")[Verbale esterno 27/01/2026 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-01-13.pdf")[Verbale esterno 13/01/2026 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2025-12-16.pdf")[Verbale esterno 16/12/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 09/12/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 02/12/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 25/11/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/.pdf")[Verbale esterno 13/11/2025 v1.0.1]
+  // VI
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-02-13.pdf")[Verbale interno 13/02/2026 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[Verbale interno 30/01/2026 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-14.pdf")[Verbale interno 14/01/2026 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-02.pdf")[Verbale interno 02/01/2026 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-17.pdf")[Verbale interno 17/12/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[Verbale interno 31/12/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-03.pdf")[Verbale interno 03/12/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-26.pdf")[Verbale interno 26/11/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-19.pdf")[Verbale interno 19/11/2025 v1.0.1]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-12.pdf")[Verbale interno 12/11/2025 v1.0.0]
 ]
 
 Infine, il gruppo riconferma la data finale di consegna del progetto al *27 marzo 2026* con costo stimato massimo di *Euro 12.825*. Si noti che quest'ultimo è inferiore alla stima di *Euro 12.975* presentata in fase di aggiudicazione dell'appalto, poiché il gruppo ha deciso successivamente di ricalcolare la distribuzione delle ore di lavoro previste; per ulteriori informazioni relativamente a ciò, è possibile consultare la sezione 4.1 del #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[Piano di Progetto].
