@@ -1282,9 +1282,11 @@ Le metriche di processo sono identificate dalla sigla *MPC* (#strong[M]etrica di
 - *Unità di misura*: Euro (€)
 
 ==== MPC-BAC: Budget At Completion <mpc-bac>
-- *Descrizione*: Budget totale preventivato per l'intero progetto. Questo valore è fissato alla stipula del contratto e non varia nel tempo.
+- *Descrizione*: Budget totale preventivato per l'intero progetto. Questo valore è fissato alla stipula del contratto e può solo diminuire nel tempo.
 - *Formula*:
-  $ "BAC" = 12.975 € $
+  $ "BAC" = 12.825 € $
+  Nota:
+  Il valore considerato fino allo *sprint 9* è di 12.975 € (vd. #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[Piano di Progetto, sezione 4.1])
 - *Unità di misura*: Euro (€)
 
 ==== MPC-EAC: Estimated At Completion <mpc-eac>
