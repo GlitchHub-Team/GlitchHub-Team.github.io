@@ -758,7 +758,7 @@ Nella seguente tabella, si riporta la lista di tutti gli attori considerati nel 
   label-id: "tab-attori",
 )
 
-== sistema Cloud - Lista dei casi d'uso
+== Sistema Cloud - Lista dei casi d'uso
 In questa sezione, il termine * "sistema"* si riferisce all'infrastruttura cloud. Per ogni caso d'uso viene considerato il sistema Cloud come raggiungibile e funzionante.
 
 === Attore principale - Utente non autenticato
