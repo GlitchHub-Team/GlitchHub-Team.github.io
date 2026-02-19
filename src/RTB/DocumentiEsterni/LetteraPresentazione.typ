@@ -65,7 +65,7 @@ All'interno di quest'ultima si mettono a disposizione i seguenti documenti, oltr
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-14.pdf")[Verbale interno 14/01/2026 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-02.pdf")[Verbale interno 02/01/2026 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-17.pdf")[Verbale interno 17/12/2025 v1.0.0]
-  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[Verbale interno 31/12/2025 v1.0.0]
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-11.pdf")[Verbale interno 11/12/2025 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-12-03.pdf")[Verbale interno 03/12/2025 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-26.pdf")[Verbale interno 26/11/2025 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2025-11-19.pdf")[Verbale interno 19/11/2025 v1.0.1]
