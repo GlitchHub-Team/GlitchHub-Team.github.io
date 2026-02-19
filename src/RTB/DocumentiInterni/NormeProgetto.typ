@@ -142,6 +142,10 @@ Nello specifico, lo sviluppo richiesto dal progetto si colloca in un sistema dis
 
 Secondo quanto specificato nella #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/LetteraPresentazione.pdf")[*Lettera di Presentazione*], il gruppo si è posto di realizzare questo progetto entro il *27 marzo 2026* con un budget massimo di *Euro 12.975*.
 
+A seguito di una successiva suddivisione delle ore di lavoro previste, il gruppo ha deciso di ricalcolare la distribuzione delle ore di lavoro, arrivando a una stima di *Euro 12.825* per il costo complessivo del progetto. Per ulteriori informazioni relativamente a ciò, è possibile consultare la sezione 4.1 del #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[Piano di Progetto].
+
+La data finale di consegna del progetto è confermata al *27 marzo 2026*.
+
 == Glossario
 La creazione e lo sviluppo di un sistema software richiedono una grande operazione di progettazione e analisi del dominio del software, che avviene a priori della scrittura di codice. Il gruppo, perciò, si impegna a raccogliere tali informazioni in una maniera facilmente accessibile in modo tale da favorire una maggiore asincronia ed efficienza nelle attività di progetto.
 
