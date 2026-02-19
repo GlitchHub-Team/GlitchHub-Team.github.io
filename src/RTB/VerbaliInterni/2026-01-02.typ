@@ -53,13 +53,13 @@ Il presente documento attesta che, in data *2 Gennaio 2026* dalle ore 15:15 alle
 
 == Allineamento task post festività
 === Analisi dei requisiti - Use Case
-L'attività di studio e scrittura degli use dell'#gloss("Analisi dei requisiti") si è conclusa positivamente. E' stato possibile individuare e descrivere un numero significativo di use case, consentendo un approfondimento adeguato ed una migliore comprensione delle funzionalità richieste.
+L'attività di studio e scrittura degli use dell'#gloss("#gloss[Analisi dei requisiti]") si è conclusa positivamente. E' stato possibile individuare e descrivere un numero significativo di #gloss[use case], consentendo un approfondimento adeguato ed una migliore comprensione delle funzionalità richieste.
 
 === Piano di Qualifica
-In fase di pianificazione si prevedeva di ottenere una versione stabile del documento entro fine *Sprint 6* e di riuscire ad implementare le automazioni discusse su *Google Sheet*, ma a causa di alcune criticità dovute alla comunicazione, tali obiettivi non sono stati raggiunti. Di conseguenza nello *Sprint 7* la priorità sarà il completamento della task slittata.
+In fase di pianificazione si prevedeva di ottenere una versione stabile del documento entro fine *#gloss[Sprint] 6* e di riuscire ad implementare le automazioni discusse su *Google Sheet*, ma a causa di alcune criticità dovute alla comunicazione, tali obiettivi non sono stati raggiunti. Di conseguenza nello *#gloss[Sprint] 7* la priorità sarà il completamento della task slittata.
 
 == Discussione sulla nuova data di fine RTB
-In seguito all'analisi dello stato di avanzamento attuale, si è deciso di pianificare la data ultima di candidatura all'#gloss("RTB") per il 7 Febbraio 2026.
+In seguito all'analisi dello stato di avanzamento attuale, si è deciso di pianificare la data ultima di candidatura all'#gloss("#gloss[RTB]") per il 7 Febbraio 2026.
 
 == Assegnazione delle prossime task basate sulle decisioni prese
 #table(
@@ -67,15 +67,15 @@ In seguito all'analisi dello stato di avanzamento attuale, si è deciso di piani
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Stabilizzazione Piano di Qualifica], [Hossam Ezzemouri, Siria Salvalaio], [#issue(149)],
+  [Stabilizzazione #gloss[Piano di Qualifica]], [Hossam Ezzemouri, Siria Salvalaio], [#issue(149)],
 
-  [Terminare automazioni Piano di Qualifica e creazione file Google Sheet], [Michele Dioli], [#issue(150)],
+  [Terminare automazioni #gloss[Piano di Qualifica] e creazione file Google Sheet], [Michele Dioli], [#issue(150)],
 
-  [Completamento degli Use Case], [Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani], [#issue(151)],
+  [Completamento degli #gloss[Use Case]], [Alessandro Dinato, Elia Ernesto Stellin, Riccardo Graziani], [#issue(151)],
 
   [Stesura dei requisiti], [Jaume Bernardi, Elia Ernesto Stellin, Alessandro Dinato, Riccardo Graziani], [#issue(152)],
 
-  [Scrittura dei Test di Sistema (PdQ)],
+  [Scrittura dei Test di #gloss[Sistema] (PdQ)],
   [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
   [#issue(153)],
 

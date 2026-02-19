@@ -33,8 +33,8 @@ Il presente verbale attesta che in data *2 dicembre 2025* si è svolto l'incontr
 Hanno partecipato:
 - *da remoto*: Elia Ernesto Stellin, Jaume Bernardi, Michele Dioli, Riccardo Graziani, Siria Salvalaio.
 
-L'incontro aveva l'obiettivo di approfondire il ruolo e le funzionalità del super-admin all'interno del sistema.\
-All'inizio della settimana il #gloss[proponente] ha inviato esempio di utilizzo del sistema con lo scopo di chiarire i dubbi emersi e favorire lo sviluppo dei casi d'uso.\
+L'incontro aveva l'obiettivo di approfondire il ruolo e le funzionalità del super-admin all'interno del #gloss[sistema].\
+All'inizio della settimana il #gloss[proponente] ha inviato esempio di utilizzo del #gloss[sistema] con lo scopo di chiarire i dubbi emersi e favorire lo sviluppo dei casi d'uso.\
 L'esempio era particolarmente incentrato sulle funzionalità e i privilegi dell'utente super-admin.\
 Inoltre, la riunione serviva a mostrare al #gloss[proponente] lo stato dei lavori riguardanti il progetto.
 
@@ -45,45 +45,45 @@ Poiché il #gloss[proponente] era interessato a materiale tecnico più dettaglia
 
 == Discussione sull'esempio implementativo e il ruolo del super-admin
 === Ruolo e privilegi del Super Admin
-Il super admin può operare come #gloss[tenant] admin all'interno di qualsiasi #gloss[tenant].\
-#gloss[Ci]ò gli permette di accedere al #gloss[tenant], dallo stesso profilo, al fine di verificare le configurazioni e il corretto funzionamento del sistema. \
+Il #gloss[super admin] può operare come #gloss[tenant] admin all'interno di qualsiasi #gloss[tenant].\
+#gloss[Ci]ò gli permette di accedere al #gloss[tenant], dallo stesso profilo, al fine di verificare le configurazioni e il corretto funzionamento del #gloss[sistema]. \
 Tuttavia sarà in grado di visualizzare i dati solo in forma anonima.
 
 === Operazioni sui Gateway
-Il #gloss[tenant] admin può unicamente riavviare un gateway.\
-Il super admin, oltre a quanto sopra, può eseguire riconfigurazioni, reset totali e operazioni di _decommissioning_.\
+Il #gloss[tenant] admin può unicamente riavviare un #gloss[gateway].\
+Il #gloss[super admin], oltre a quanto sopra, può eseguire riconfigurazioni, reset totali e operazioni di _decommissioning_.\
 Le operazioni possibili sono:
-- *Riavvio*: spegnimento e riaccensione del gateway;
+- *Riavvio*: spegnimento e riaccensione del #gloss[gateway];
 - *Reset*: ritorno alla configurazione di fabbrica, con eliminazione della configurazione lato #gloss[cloud];
-- *Riconfigurazione*: applicazione di una configurazione personalizzata da parte del super admin;
+- *Riconfigurazione*: applicazione di una configurazione personalizzata da parte del #gloss[super admin];
 - *Decommissioning*: dissociazione dal #gloss[tenant], con reset totale ed eliminazione dei dati prodotti. È possibile mantenere uno storico di quali #gloss[tenant] sono stati associati a determinati sensori.
 
-Il super admin può inoltre gestire le richieste di aggiunta di gateway fatte dai #gloss[tenant], accettandole o rifiutandole, e può anche aggiungere manualmente nuovi gateway ai #gloss[tenant].\
-L'accettazione della richiesta viene fatta solo quando l'installazione del gateway è fisicamente avvenuta.
-Inoltre, il super admin può sempre manualmente associare o dissociare gateway dai #gloss[tenant].
+Il #gloss[super admin] può inoltre gestire le richieste di aggiunta di #gloss[gateway] fatte dai #gloss[tenant], accettandole o rifiutandole, e può anche aggiungere manualmente nuovi #gloss[gateway] ai #gloss[tenant].\
+L'accettazione della richiesta viene fatta solo quando l'installazione del #gloss[gateway] è fisicamente avvenuta.
+Inoltre, il #gloss[super admin] può sempre manualmente associare o dissociare #gloss[gateway] dai #gloss[tenant].
 
 === Consumi e Costi
-I costi sono pensati come “a consumo”, su modello simile alle #gloss[API] (ad esempio OpenAI). Il consumo è legato ai dati generati dai sensori e inviati dai gateway.\
+I costi sono pensati come “a consumo”, su modello simile alle #gloss[API] (ad esempio OpenAI). Il consumo è legato ai dati generati dai sensori e inviati dai #gloss[gateway].\
 Il #gloss[tenant] admin può configurare i consumi modificando la frequenza o la modalità di invio dei dati (es. rolling average).
-Ogni #gloss[tenant] può visualizzare il proprio consumo complessivo e il dettaglio per singolo gateway.\
-Il super admin può visualizzare l'andamento dei costi dei #gloss[tenant].
+Ogni #gloss[tenant] può visualizzare il proprio consumo complessivo e il dettaglio per singolo #gloss[gateway].\
+Il #gloss[super admin] può visualizzare l'andamento dei costi dei #gloss[tenant].
 
 === Comunicazione e Flusso dei Dati
-I sensori comunicano con un unico gateway (modello many-to-one). Il gateway invia i dati al server M31, che si occupa della normalizzazione.\
+I sensori comunicano con un unico #gloss[gateway] (modello many-to-one). Il #gloss[gateway] invia i dati al server M31, che si occupa della #gloss[normalizzazione].\
 La dashboard #gloss[cloud] visualizza i dati interrogando il server.\
 La piattaforma non fornisce persistenza massiva: funge da tunnel di dati, mentre sistemi di storage o dashboard avanzate vengono costruiti dal cliente sulla base delle #gloss[API] offerte.
 
 === Provisioning e Certificati
-Il processo previsto è avviato dal super admin, quando un nuovo gateway deve essere aggiunto al sistema il super admin lo associa ad un #gloss[tenant] e ne avvia il provisioning.\
+Il processo previsto è avviato dal #gloss[super admin], quando un nuovo #gloss[gateway] deve essere aggiunto al #gloss[sistema] il #gloss[super admin] lo associa ad un #gloss[tenant] e ne avvia il provisioning.\
 
 === Permessi degli Utenti
 Gli utenti normali possono esclusivamente visualizzare i dati.
-Per l'#gloss[MVP] non si implementa un sistema avanzato di autorizzazioni granulari: gli utenti di un #gloss[tenant] possono visualizzare tutti i dati del #gloss[tenant].
+Per l'#gloss[MVP] non si implementa un #gloss[sistema] avanzato di autorizzazioni granulari: gli utenti di un #gloss[tenant] possono visualizzare tutti i dati del #gloss[tenant].
 Eventuali dashboard o filtraggi complessi vengono costruiti dai clienti tramite le #gloss[API].
 
 === Altre Chiarificazioni
-- Il super admin non interviene nel flusso dei dati salvo casi anomali.
-- La richiesta di aggiunta di gateway avviene quando un #gloss[tenant] necessita maggiore scalabilità.
+- Il #gloss[super admin] non interviene nel flusso dei dati salvo casi anomali.
+- La richiesta di aggiunta di #gloss[gateway] avviene quando un #gloss[tenant] necessita maggiore scalabilità.
 - Il giorno e l'orario degli incontri è fissato a *martedì alle 14:30*, tuttavia può essere spostato a *venerdì mattina* in caso di indisponibilità del #gloss[proponente].
 
 = Attività conseguenti
@@ -100,7 +100,7 @@ Eventuali dashboard o filtraggi complessi vengono costruiti dai clienti tramite 
   [Riccardo Graziani, Elia Ernesto Stellin],
   [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/76")[*\#76*]],
 
-  [Sviluppo casi d'uso relativi al gateway],
+  [Sviluppo casi d'uso relativi al #gloss[gateway]],
   [Jaume Bernardi, Siria Salvalaio],
   [#link("#gloss[https]://#gloss[github].com/GlitchHub-Team/GlitchHub-Team.#gloss[github].io/issues/75")[*\#75*]],
 

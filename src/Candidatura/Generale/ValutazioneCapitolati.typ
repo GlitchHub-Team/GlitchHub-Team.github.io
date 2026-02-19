@@ -40,13 +40,13 @@
 
 = Introduzione
 Il presente documento ha lo scopo di mostrare la valutazione, da parte del gruppo _GlitchHub Team_, di ciascun capitolato presentato nella *Presentazione dei Capitolati di Appalto* in data *14 ottobre 2025*. \
-Tale valutazione ha permesso di motivare la scelta del gruppo di presentare la candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._.
+Tale valutazione ha permesso di motivare la scelta del gruppo di presentare la candidatura per il capitolato *C7: #gloss[Sistema] di acquisizione dati da sensori*, proposto da _M31 S.r.l._.
 
 = Valutazione dei capitolati
 Di seguito, per ciascun capitolato verranno riportati: una breve descrizione, la valutazione del gruppo in merito e le motivazioni per cui il gruppo ha scelto di procedere o meno con la candidatura per tale capitolato.
 
 Come verrà descritto anche successivamente, il gruppo ha scelto di candidarsi al capitolato *C7*.
-Tale scelta è avvenuta tramite un sistema di votazione in cui ogni membro ha espresso le proprie preferenze in merito ai capitolati proposti.
+Tale scelta è avvenuta tramite un #gloss[sistema] di votazione in cui ogni membro ha espresso le proprie preferenze in merito ai capitolati proposti.
 
 Sebbene questo capitolato non sia stato scelto all'unanimità, la maggior parte del gruppo ha espresso interesse nello sviluppare il progetto da esso proposto, considerando al contempo altri capitolati come "seconde scelte", in caso di rifiuto della candidatura al *C7*.
 
@@ -66,12 +66,12 @@ Inoltre, il gruppo trova troppo vaghe le specifiche tecnologiche richieste dal p
 Per le motivazioni sopra descritte, il gruppo ha deciso di non candidarsi al capitolato C1, non considerandolo nemmeno come possibile alternativa.
 
 == C2: Code Guardian (VarGroup S.p.A.)
-Il progetto proposto da _VarGroup S.p.A._ nel capitolato *C2* prevede lo sviluppo di una piattaforma in #gloss[cloud] basata su un sistema ad agenti orchestrato in grado di automatizzare processi di miglioramento del codice e di audit di sicurezza del codice. \
+Il progetto proposto da _VarGroup S.p.A._ nel capitolato *C2* prevede lo sviluppo di una piattaforma in #gloss[cloud] basata su un #gloss[sistema] ad agenti orchestrato in grado di automatizzare processi di miglioramento del codice e di audit di sicurezza del codice. \
 La piattaforma dev'essere capace di analizzare #gloss[repository] #gloss[GitHub] per valutarne qualità, sicurezza e manutenzione, fornendo reportistica automatica e sfruttando gli agenti per fornire rimedi in caso di lacune, che siano vulnerabilità di sicurezza, mancanze di best practices o test mancanti.
 
 Nonostante il gruppo trovi d'interesse le tecnologie richieste e l'idea proposta, si è deciso di non procedere con la candidatura per questo capitolato, per i seguenti motivi.
 
-Innanzitutto, all'interno del gruppo non vi è interesse nello sviluppo di sistemi ad agenti AI, e sono emersi dubbi significativi riguardo alla validità degli #gloss[LLM] come strumenti adatti a questo caso d'uso.
+Innanzitutto, all'interno del gruppo non vi è interesse nello sviluppo di sistemi ad agenti AI, e sono emersi dubbi significativi riguardo alla validità degli #gloss[LLM] come strumenti adatti a questo #gloss[caso d'uso].
 
 Più nello specifico, sono sorti dubbi in merito alla capacità di un #gloss[LLM] di scorgere vulnerabilità di sicurezza all'interno di una codebase estesa, la quale potrebbe essere potenzialmente composta da numerose parti interconnesse, che possono nascondere vulnerabilità, difficili da rilevare anche a un essere umano. \
 Essendo gli #gloss[LLM] degli strumenti fondamentalmente probabilistici e non algoritmici, la probabilità che alcune rilevazioni di vulnerabilità siano falsi positivi o falsi negativi è considerevole.\
@@ -82,7 +82,7 @@ Al momento della scrittura di questo documento, il gruppo non ha ricevuto rispos
 Nonostante #gloss[ci]ò, seguendo la votazione interna al gruppo, si è deciso di mantenere questo capitolato come "seconda scelta" in caso di rifiuto della candidatura al *C7*.
 
 == C3: DIPReader (Sanmarco Informatica S.p.A)
-Il capitolato *C3*, proposto da Sanmarco Informatica S.p.A., prevede lo sviluppo di una piattaforma che consenta di ricercare e consultare documenti conservati all'interno di un sistema di archiviazione digitale centralizzato, denominato _Distribution Information Package_ (DIP).
+Il capitolato *C3*, proposto da Sanmarco Informatica S.p.A., prevede lo sviluppo di una piattaforma che consenta di ricercare e consultare documenti conservati all'interno di un #gloss[sistema] di archiviazione digitale centralizzato, denominato _Distribution Information Package_ (DIP).
 
 L'obiettivo del progetto è fornire agli utenti la possibilità di accedere e ricercare tali documenti anche in assenza di connettività, tramite un'interfaccia accessibile via browser o applicazione multipiattaforma. \
 Tra le funzionalità principali figurano la visualizzazione semplificata dei dati tecnici contenuti nei pacchetti, la ricerca tramite metadati, la visualizzazione in anteprima dei formati più comuni e la possibilità di esportare selezioni di documenti.\
@@ -91,9 +91,9 @@ Tra le funzionalità opzionali sono inoltre previste la ricerca semantica, la #g
 Le tecnologie suggerite comprendono l'utilizzo di SQLite per la gestione locale dei dati e FAISS (Facebook AI Similarity Search) per la ricerca basata su similarità, mentre per il front-end vengono proposti #gloss[framework] moderni come React o #gloss[Angular] sviluppati in #gloss[TypeScript] o #gloss[JavaScript].
 
 // NOTA [Elia]: Ho corretto leggermente la frase secondo quello che avevamo detto in riunione (Vedi Appunti Riunione Interna 2025-10-27)
-Il gruppo ritiene che sia interessante la sfida di rendere efficiente il sistema di archiviazione, ma la maggior parte del gruppo non prova particolare interesse verso il dominio dell'archiviazione di documentazione.
+Il gruppo ritiene che sia interessante la sfida di rendere efficiente il #gloss[sistema] di archiviazione, ma la maggior parte del gruppo non prova particolare interesse verso il dominio dell'archiviazione di documentazione.
 
-Tuttavia, sono emerse alcune incertezze riguardo all'architettura del sistema e al livello di complessità nella gestione dei pacchetti di conservazione, che potrebbero richiedere una notevole fase di analisi preliminare. \
+Tuttavia, sono emerse alcune incertezze riguardo all'architettura del #gloss[sistema] e al livello di complessità nella gestione dei pacchetti di conservazione, che potrebbero richiedere una notevole fase di analisi preliminare. \
 Inoltre, diverse parti non risultano sufficientemente dettagliate e lasciano spazio a dubbi sull'effettiva implementazione.
 
 Per tali motivi, il gruppo ha deciso di non candidarsi per il capitolato *C3*, pur riconoscendo il potenziale applicativo.
@@ -142,22 +142,22 @@ Opzionalmente, l'applicazione potrebbe anche scrivere interamente il testo segue
 Il gruppo non è interessato nel procedere con la candidatura a questo capitolato, poiché non prova un forte interesse né verso l'utilizzo degli #gloss[LLM] e dei sistemi AI, né verso le tecnologie richieste dal progetto, quali Java/Python per un eventuale #gloss[back-end].
 
 Inoltre, il gruppo non trova il progetto abbastanza stimolante e interessante didatticamente, in quanto le specifiche richieste dal capitolato non sembrano fornire il livello di esperienza didattica che gli altri capitolati proposti offrono, data la loro maggiore complessità. \
-Poiché il progetto didattico viene svolto in vista di un apprendimento utile all'inserimento nel mondo del lavoro, non si ritiene che _Second Brain_ possa soddisfare l'aspettativa di apprendimento e di crescita nell'ambito del Software Engineering.
+Poiché il #gloss[progetto didattico] viene svolto in vista di un apprendimento utile all'inserimento nel mondo del lavoro, non si ritiene che _Second Brain_ possa soddisfare l'aspettativa di apprendimento e di crescita nell'ambito del Software Engineering.
 
 
 == C7: Sistema di acquisizione dati da sensori (M31 S.r.l.)
 Il progetto proposto dal capitolato *C7* è inerente alla gestione e acquisizione di dati provenienti da sensori distribuiti a basso consumo energetico, i quali permettono di raccogliere dati in modo dettagliato.
 
-Nello specifico, lo sviluppo richiesto dal progetto si colloca in un sistema distribuito di acquisizione e smistamento dati da sensori #gloss[Bluetooth Low Energy (BLE)] diviso in 3 strati principali:
+Nello specifico, lo sviluppo richiesto dal progetto si colloca in un #gloss[sistema] distribuito di acquisizione e smistamento dati da sensori #gloss[Bluetooth Low Energy (BLE)] diviso in 3 strati principali:
 
 // TODO: non so se vada bene l'elenco numerato
 1. Lo strato di raccolta dati di campo tramite sensori,
-2. Lo strato di gateway tra i sensori e il #gloss[cloud] tramite Wi-Fi,
-3. Lo strato di #gloss[cloud], oggetto del capitolato di progetto, che si connette in modo sicuro al gateway preso in considerazione per rendere disponibili i dati raccolti tramite #gloss[API].
+2. Lo strato di #gloss[gateway] tra i sensori e il #gloss[cloud] tramite Wi-Fi,
+3. Lo strato di #gloss[cloud], oggetto del capitolato di progetto, che si connette in modo sicuro al #gloss[gateway] preso in considerazione per rendere disponibili i dati raccolti tramite #gloss[API].
 
 Più nello specifico, l'obiettivo del progetto è di progettare un'infrastruttura scalabile che comunichi in modo sicuro con i sensori non conformati e che ne gestisca i dati raccolti, in modo tale da fornire strumenti di monitoraggio e visualizzazione dei dati raccolti agli amministratori e agli utenti finali, garantendo al contempo la totale separazione dei dati tra i diversi #gloss[tenant].
 
-Il gruppo ha dimostrato un interesse unanime verso l'architettura richiesta dal progetto e le tecnologie di riferimento, nello specifico l'utilizzo di *Google #gloss[Cloud]* per la gestione del servizio, *#gloss[Go]* per il #gloss[back-end] di componenti ad alte prestazione e *#gloss[NATS]* per la comunicazione tra microservizi. Inoltre, il gruppo, oltre ad aver dimostrato un forte interesse verso il dominio dell'#gloss[IoT], ritiene che il progetto proposto dal capitolato abbia una complessità tale da essere un progetto didattico in grado di fornire un valore di apprendimento notevole.
+Il gruppo ha dimostrato un interesse unanime verso l'architettura richiesta dal progetto e le tecnologie di riferimento, nello specifico l'utilizzo di *Google #gloss[Cloud]* per la gestione del servizio, *#gloss[Go]* per il #gloss[back-end] di componenti ad alte prestazione e *#gloss[NATS]* per la comunicazione tra microservizi. Inoltre, il gruppo, oltre ad aver dimostrato un forte interesse verso il dominio dell'#gloss[IoT], ritiene che il progetto proposto dal capitolato abbia una complessità tale da essere un #gloss[progetto didattico] in grado di fornire un valore di apprendimento notevole.
 
 Infine, l'azienda è stata disponibile sin da subito per rispondere ai dubbi e alle domande di approfondimento del gruppo, dimostrando professionalità e alta competenza nell'incontro avvenuto il *23 ottobre 2025*.
 
@@ -170,7 +170,7 @@ La gestione di tali ordini di acquisto è tediosa, poiché richiede un grande sf
 
 Il capitolato richiede che la piattaforma sia sviluppata a strati, suddividendo gli strati di raccolta input, pre-processing ed elaborazione dei dati, dagli strati di interfaccia utente e di gestione degli ordini strutturati, utilizzando tecnologie innovative, quali i sistemi di database vettoriali e di Computer Vision, verso le quali parte del gruppo ha mostrato interesse.
 
-Il gruppo ha anche trovato particolarmente stimolante il dominio del progetto, ritenendo che il Machine Learning sia uno strumento totalmente appropriato al caso d'uso dell'elaborazione e interpretazione di dati non strutturati. \
+Il gruppo ha anche trovato particolarmente stimolante il dominio del progetto, ritenendo che il Machine Learning sia uno strumento totalmente appropriato al #gloss[caso d'uso] dell'elaborazione e interpretazione di dati non strutturati. \
 Infatti, il progetto di _SmartOrder_ richiede l'uso di diverse tecnologie di Intelligenza Artificiale per i diversi formati analizzabili: Transformer come GPT e BERT per il testo, reti neurali convoluzionali (CNN) per l'analisi delle immagini, sistemi di speech-to-text per l'audio, e molti altri.
 
 // TODO: non sono sicuro di essere stato chiaro, mi sembra di essere discordante con quello che ho detto prima
@@ -179,7 +179,7 @@ Per tale motivo, questo capitolato si distingue dagli altri che impiegano l'util
 
 == C9: View4Life (Vimar S.p.A.)
 Il capitolato *C9*, proposto da _Vimar S.p.A_., prevede la realizzazione di _View4Life_, una piattaforma per la gestione completa degli impianti smart nelle residenze protette. \
-Il progetto si colloca nell'ambito della domotica avanzata e mira a creare un sistema integrato per il monitoraggio e il controllo di dispositivi #gloss[IoT], come sensori di presenza, attuatori, termostati e sistemi di illuminazione, con l'obiettivo di migliorare sicurezza, comfort e sostenibilità energetica nelle strutture dedicate agli anziani non autosufficienti.
+Il progetto si colloca nell'ambito della domotica avanzata e mira a creare un #gloss[sistema] integrato per il monitoraggio e il controllo di dispositivi #gloss[IoT], come sensori di presenza, attuatori, termostati e sistemi di illuminazione, con l'obiettivo di migliorare sicurezza, comfort e sostenibilità energetica nelle strutture dedicate agli anziani non autosufficienti.
 
 Il progetto richiede lo sviluppo di due componenti principali: un'infrastruttura #gloss[Cloud], realizzata secondo il principio di Infrastructure as Code tramite #gloss[Docker] e un applicativo web responsive per il personale sanitario, in grado di gestire allarmi, analisi e consumi energetici attraverso l'interfaccia #gloss[IoT] fornita da Vimar. \
 Le tecnologie suggerite includono #gloss[framework] moderni come React, #gloss[Angular] o Flask per il front-end, e #gloss[Node.js], Java con Spring e/o Python per il #gloss[back-end], con la possibilità di integrazione su AWS.
@@ -194,7 +194,7 @@ Al termine dell'analisi e delle valutazioni effettuate, il gruppo _GlitchHub Tea
 Il processo di selezione si è basato su criteri condivisi da tutti i membri, tra cui l'interesse tecnico, la chiarezza della proposta, la disponibilità dell'azienda #gloss[proponente] e il potenziale formativo del progetto. \
 
 Tra i capitolati analizzati, diversi sono risultati di particolare interesse, in particolare *C2: Code Guardian*,  *C4: L'app che Protegge e Trasforma* e *C9: View4Life*, ritenuti progetti solidi, concreti e con un notevole valore applicativo. \
-Tuttavia, dopo un confronto approfondito e una votazione interna, il gruppo ha deciso di presentare la propria candidatura per il capitolato *C7: Sistema di acquisizione dati da sensori*, proposto da _M31 S.r.l._, che è risultato il più in linea con le competenze, gli interessi e gli obiettivi formativi del team. \
+Tuttavia, dopo un confronto approfondito e una votazione interna, il gruppo ha deciso di presentare la propria candidatura per il capitolato *C7: #gloss[Sistema] di acquisizione dati da sensori*, proposto da _M31 S.r.l._, che è risultato il più in linea con le competenze, gli interessi e gli obiettivi formativi del team. \
 
 La scelta è stata presa con un margine rispetto ad altri capitolati di elevata qualità, segno della varietà e dell'elevato livello delle proposte di quest'anno. \
 Il gruppo ritiene che il percorso di analisi e confronto svolto sia stato estremamente utile per definire con maggiore consapevolezza la direzione progettuale e le priorità comuni, ponendo le basi per un lavoro motivato e coerente con le proprie aspirazioni tecniche e professionali.

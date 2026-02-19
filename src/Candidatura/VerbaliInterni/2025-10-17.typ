@@ -64,12 +64,12 @@ Sono stati adottati i seguenti canali di comunicazione:
 - *#gloss[Discord]* come piattaforma per riunioni da remoto.
 == Discussione dei capitolati
 Dopo un confronto tra i componenti del gruppo, si è giunti al seguente ordine di preferenza per i capitolati proposti:
-- C7 — *Sistema di acquisizione dati da sensori*, proposto da *M31*
+- C7 — *#gloss[Sistema] di acquisizione dati da sensori*, proposto da *M31*
 - C2 — *Code Guardian*, proposto da *Var Group*
 - C4 — *L’app che Protegge e Trasforma*, proposto da *Miriade*
 Si è deciso di contattare le aziende *M31*, *Var Group* e *Miriade* via email per richiedere un incontro di approfondimento sui rispettivi capitolati.
 == Organizzazione del repository
-È stato deciso di utilizzare la piattaforma *#gloss[GitHub]* come sistema di versionamento della documentazione del gruppo. \
+È stato deciso di utilizzare la piattaforma *#gloss[GitHub]* come #gloss[sistema] di versionamento della documentazione del gruppo. \
 Inoltre, verrà realizzato un sito *#gloss[GitHub Pages]* per facilitare la consultazione della documentazione di progetto. \
 == Organizzazione documentale
 È stato deciso di adottare *#gloss[Typst]* come linguaggio per la redazione della documentazione del progetto. \

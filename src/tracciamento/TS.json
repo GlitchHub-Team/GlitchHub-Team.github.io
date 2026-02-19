@@ -1,0 +1,1688 @@
+[
+    {
+        "id": "TS-Autenticazione-utente",
+        "descr": "Verificare che l'Utente non autenticato possa accedere alla funzionalità di autenticazione presso il Sistema",
+        "ref-req": "RF-Autenticazione-utente",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-email-auth",
+        "descr": "Verificare che l'Utente non autenticato possa inserire la propria email per autenticarsi",
+        "ref-req": "RF-Inserimento-email-auth",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-password",
+        "descr": "Verificare che l'Utente non autenticato possa inserire la propria password per autenticarsi",
+        "ref-req": "RF-Inserimento-password",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Autenticazione-non-riuscita",
+        "descr": "Verificare che l'Utente non autenticato riceva un messaggio di errore in caso di inserimento di credenziali errate",
+        "ref-req": "RF-Autenticazione-non-riuscita",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Account-sospeso",
+        "descr": "Verificare che l'Utente non autenticato riceva un messaggio di errore nel caso in cui tenti di accedere ad un account sospeso",
+        "ref-req": "RF-Account-sospeso",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Re-invio-codice-2FA",
+        "descr": "Verificare che l'Utente non autenticato, una volta autenticato con credenziali corrette per un account con 2FA attiva, possa richiedere il re-invio del codice di verifica",
+        "ref-req": "RF-Re-invio-codice-2FA",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Autenticazione-2FA",
+        "descr": "Verificare che l'Utente non autenticato, dopo aver inserito credenziali corrette per un account con 2FA attiva, possa completare l'autenticazione a due fattori",
+        "ref-req": "RF-Autenticazione-2FA",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-codice-2FA",
+        "descr": "Verificare che l'Utente non autenticato possa inserire il codice di verifica ricevuto via mail per completare l'autenticazione 2FA",
+        "ref-req": "RF-Inserimento-codice-2FA",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Codice-2FA-errato",
+        "descr": "Verificare che l'Utente non autenticato riceva un messaggio di errore in caso il codice di verifica inserito per la 2FA sia errato o scaduto",
+        "ref-req": "RF-Codice-2FA-errato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Impostazione-password",
+        "descr": "Verificare che l'Utente non autenticato possa impostare la sua prima password tramite il link ricevuto via mail",
+        "ref-req": "RF-Impostazione-password",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-nuova-password",
+        "descr": "Verificare che l'Utente non autenticato possa inserire la nuova password durante l'impostazione o reimpostazione della password",
+        "ref-req": "RF-Inserimento-nuova-password",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-password",
+        "descr": "Verificare che l'Utente non autenticato possa inserire la conferma della nuova password durante l'impostazione o reimpostazione della password",
+        "ref-req": "RF-Conferma-password",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Password-non-coincidenti",
+        "descr": "Verificare che il Sistema mostri un messaggio di errore se la nuova password e la conferma non coincidono",
+        "ref-req": "RF-Password-non-coincidenti",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Password-non-conforme",
+        "descr": "Verificare che il Sistema mostri un messaggio di errore se la nuova password non rispetta i criteri di sicurezza",
+        "ref-req": "RF-Password-non-conforme-criteri-sicurezza",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Link-password-scaduto",
+        "descr": "Verificare che il Sistema mostri un messaggio di errore se l'Utente tenta di usare un link di impostazione password scaduto",
+        "ref-req": "RF-Link-impostazione-password-scaduto",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Password-dimenticata",
+        "descr": "Verificare che l'Utente non autenticato possa richiedere il link di reimpostazione della password via email nel caso in cui l'abbia dimenticata",
+        "ref-req": "RF-Password-dimenticata",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-email-reimpostazione",
+        "descr": "Verificare che l'Utente non autenticato possa inserire l'indirizzo mail a cui è associato il proprio account per richiedere la reimpostazione della password",
+        "ref-req": "RF-Inserimento-indirizzo-email",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Email-non-associata",
+        "descr": "Verificare che l'Utente non autenticato riceva un messaggio di errore se inserisce un indirizzo email non associato ad alcun account durante la richiesta di reimpostazione password",
+        "ref-req": "RF-Indirizzo-email-non-associato-account",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Reimpostazione-password-link",
+        "descr": "Verificare che l'Utente non autenticato possa reimpostare la propria password tramite il link ricevuto via email",
+        "ref-req": "RF-Reimpostazione-password-dimenticata",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-sensori-tenant",
+        "descr": "Verificare che l'Utente autenticato possa visualizzare la lista dei sensori associati al proprio tenant",
+        "ref-req": "RF-Visualizzazione-lista-sensori-associati-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-sensore-in-lista",
+        "descr": "Verificare che l'Utente autenticato, visualizzando la lista dei sensori associati al proprio tenant, visualizzi l'identificativo di ciascun sensore nella lista",
+        "ref-req": "RF-Visualizzazione-identificativo-sensore-in-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dashboard-personale",
+        "descr": "Verificare che l'Utente autenticato possa visualizzare la sua dashboard personale",
+        "ref-req": "RF-Visualizzazione-dashboard-generica",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-alert-dashboard",
+        "descr": "Verificare che l'Utente autenticato, visualizzando la propria dashboard personale, visualizzi la lista degli alert relativi al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-lista-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Numero-sensori-dashboard",
+        "descr": "Verificare che l'Utente autenticato, visualizzando la propria dashboard personale, visualizzi il numero dei sensori attivi e non attivi associati al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-numero-sensori-attivi-non-attivi",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Numero-gateway-dashboard",
+        "descr": "Verificare che l'Utente autenticato, visualizzando la propria dashboard personale, visualizzi il numero dei gateway attivi e non attivi associati al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-numero-gateway-attivi-non-attivi",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Gateway-non-raggiungibile",
+        "descr": "Verificare che il Sistema notifichi l'Admin generico nel caso in cui il gateway a cui ha inviato dei comandi non sia raggiungibile",
+        "ref-req": "RF-Gateway-non-raggiungibile",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Email-gia-utilizzata",
+        "descr": "Verificare che il Sistema mostri un messaggio di errore all'Admin generico nel caso in cui venga inserita un'email già associata ad un altro Tenant User durante la registrazione di un nuovo Tenant User",
+        "ref-req": "RF-Email-gia-utilizzata",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-email-nuovo-utente",
+        "descr": "Verificare che l'Admin generico, registrando un nuovo utente, possa inserire l'indirizzo email associato al nuovo Tenant User",
+        "ref-req": "RF-Inserimento-email",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-tenant-user",
+        "descr": "Verificare che l'Admin generico possa sospendere l'accesso di un Tenant User al Sistema",
+        "ref-req": "RF-Sospensione-tenant-user",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-sospensione",
+        "descr": "Verificare che il Sistema richieda conferma all'Admin generico prima di sospendere l'accesso di un Tenant User al Sistema",
+        "ref-req": "RF-Conferma-sospensione-tenant-user",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-tenant-user",
+        "descr": "Verificare che l'Admin generico possa riattivare l'accesso di un Tenant User al Sistema",
+        "ref-req": "RF-Riattivazione-tenant-user",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-riattivazione",
+        "descr": "Verificare che il Sistema richieda conferma all'Admin generico prima di riattivare l'accesso di un Tenant User al Sistema",
+        "ref-req": "RF-Conferma-riattivazione-tenant-user",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Eliminazione-tenant-user",
+        "descr": "Verificare che l'Admin generico possa eliminare un Tenant User dal Sistema",
+        "ref-req": "RF-Eliminazione-tenant-user",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-eliminazione",
+        "descr": "Verificare che il Sistema richieda conferma all'Admin generico prima di eliminare un Tenant User dal Sistema",
+        "ref-req": "RF-Conferma-eliminazione-tenant-user",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-richieste-commissioning",
+        "descr": "Verificare che l'Admin generico possa visualizzare la lista di tutte le richieste di commissioning e decommissioning di gateway associate al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-lista-richieste-commissioning-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-richiesta-commissioning",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista di tutte le richieste di commissioning e decommissioning di gateway, possa visualizzare lo stato della richiesta",
+        "ref-req": "RF-Visualizzazione-richiesta-di-commissioning-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-utenti-tenant",
+        "descr": "Verificare che l'Admin generico possa visualizzare la lista di tutti gli utenti associati al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-lista-utenti-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Email-utente-in-lista",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, possa vedere l'email di ciascun utente nella lista",
+        "ref-req": "RF-Visualizzazione-email-utente-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-utente-in-lista",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista di tutti gli utenti associati al proprio Tenant, possa vedere lo stato (attivo/sospeso) di ciascun utente nella lista",
+        "ref-req": "RF-Visualizzazione-stato-utente-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-gateway-tenant",
+        "descr": "Verificare che l'Admin generico possa visualizzare la lista dei gateway associati al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-lista-gateway-associati",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-gateway-in-lista",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, visualizzi il nome del gateway nella lista",
+        "ref-req": "RF-Visualizzazione-nome-gateway-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-gateway-in-lista",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista dei gateway associati al proprio Tenant, visualizzi lo stato del gateway nella lista",
+        "ref-req": "RF-Visualizzazione-stato-gateway-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dettaglio-gateway-admin-generico",
+        "descr": "Verificare che l'Admin generico possa visualizzare un gateway associato al proprio Tenant nel dettaglio",
+        "ref-req": "RF-Visualizzazione-gateway-associato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-gateway-dettaglio",
+        "descr": "Verificare che l'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, visualizzi il nome del gateway",
+        "ref-req": "RF-Visualizzazione-nome-gateway-associato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-gateway-dettaglio",
+        "descr": "Verificare che l'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, visualizzi lo stato del gateway",
+        "ref-req": "RF-Visualizzazione-stato-gateway-associato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sensori-gateway-dettaglio",
+        "descr": "Verificare che l'Admin generico, visualizzando un gateway associato al proprio Tenant nel dettaglio, visualizzi i sensori collegati al gateway",
+        "ref-req": "RF-Visualizzazione-sensori-collegati-gateway-associato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-sensore-gateway",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista dei sensori collegati al gateway, possa visualizzare per ogni sensore l'identificativo",
+        "ref-req": "RF-Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Registrazione-api-key",
+        "descr": "Verificare che l'Admin generico possa registrare una nuova API key associata al proprio Tenant",
+        "ref-req": "RF-Registrazione-nuova-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-api-key",
+        "descr": "Verificare che l'Admin generico, registrando una nuova API key, possa inserire un nome identificativo per la chiave",
+        "ref-req": "RF-Inserimento-nome-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Scadenza-api-key",
+        "descr": "Verificare che l'Admin generico, registrando una nuova API key, possa inserire la data di scadenza della chiave",
+        "ref-req": "RF-Inserimento-scadenza-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-nome-key-esistente",
+        "descr": "Verificare che il Sistema mostri un messaggio di errore se l'Admin generico inserisce un nome identificativo già esistente per una API key durante la registrazione di una nuova chiave",
+        "ref-req": "RF-Nome-api-key-gia-utilizzato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-data-scaduta",
+        "descr": "Verificare che il Sistema mostri un messaggio di errore se l'Admin generico inserisce una data di scadenza già passata durante la registrazione di una nuova API key",
+        "ref-req": "RF-Scadenza-api-key-data-passata",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-api-key",
+        "descr": "Verificare che l'Admin generico possa visualizzare la lista di tutte le API key associate al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-lista-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-api-key-in-lista",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, possa vedere il nome dell'API key",
+        "ref-req": "RF-Visualizzazione-nome-singola-api-key-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-creazione-key-in-lista",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, possa vedere la data di creazione dell'API key",
+        "ref-req": "RF-Visualizzazione-data-creazione-singola-api-key-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-scadenza-key-in-lista",
+        "descr": "Verificare che l'Admin generico, visualizzando la lista di tutte le API key associate al proprio Tenant, possa vedere la data di scadenza dell'API key",
+        "ref-req": "RF-Visualizzazione-data-scadenza-singola-api-key-lista",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dettaglio-api-key",
+        "descr": "Verificare che l'Admin generico possa visualizzare una API key associata al proprio Tenant nel dettaglio",
+        "ref-req": "RF-Visualizzazione-dettagli-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-api-key-dettaglio",
+        "descr": "Verificare che l'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, visualizzi il nome dell'API key",
+        "ref-req": "RF-Visualizzazione-nome-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-creazione-key-dettaglio",
+        "descr": "Verificare che l'Admin generico, visualizzando una API key associata al proprio Tenant nel dettaglio, visualizzi la data di creazione dell'API key",
+        "ref-req": "RF-Visualizzazione-data-creazione-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-scadenza-key-dettaglio",
+        "descr": "Verificare che l'Admin generico, accedendo al dettaglio di una API key del proprio Tenant, visualizzi la data di scadenza associata",
+        "ref-req": "RF-Visualizzazione-data-scadenza-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Grafico-utilizzo-key",
+        "descr": "Verificare che l'Admin generico, accedendo al dettaglio di una API key del proprio Tenant, visualizzi un grafico che mostri l'utilizzo della API key",
+        "ref-req": "RF-Grafico-utilizzo-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Eliminazione-api-key",
+        "descr": "Verificare che l'Admin generico possa eliminare una API key associata al proprio Tenant",
+        "ref-req": "RF-Eliminazione-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-eliminazione-key",
+        "descr": "Verificare che il Sistema richieda la conferma all'Admin generico prima di eliminare una API key associata al proprio Tenant",
+        "ref-req": "RF-Conferma-eliminazione-api-key",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-audit-log",
+        "descr": "Verificare che l'Admin generico possa visualizzare la lista di tutti gli audit log relativi al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-audit-log",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-utente-audit-log",
+        "descr": "Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il nome dell'utente che l'ha generato",
+        "ref-req": "RF-Visualizzazione-nome-utente-audit-log",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Azione-audit-log",
+        "descr": "Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il tipo di azione eseguita",
+        "ref-req": "RF-Visualizzazione-tipo-azione-audit-log",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Timestamp-audit-log",
+        "descr": "Verificare che l'Admin generico, accedendo alla lista degli audit log, visualizzi per ogni evento il corrispettivo timestamp",
+        "ref-req": "RF-Visualizzazione-timestamp-azione-audit-log",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Filtro-azione-log",
+        "descr": "Verificare che l'Admin generico possa filtrare gli audit log in base al tipo di azione eseguita",
+        "ref-req": "RF-Filtraggio-log-per-tipologia",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Filtro-temporale-log",
+        "descr": "Verificare che l'Admin generico possa filtrare gli audit log in base ad un intervallo temporale",
+        "ref-req": "RF-Filtraggio-log-per-intervallo-temporale",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Filtro-utente-log",
+        "descr": "Verificare che l'Admin generico possa filtrare gli audit log in base all'utente che ha generato l'evento",
+        "ref-req": "RF-Filtraggio-log-per-utente",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Esportazione-log",
+        "descr": "Verificare che l'Admin generico possa esportare gli audit log in un file scaricabile",
+        "ref-req": "RF-Esportazione-log",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dashboard-tenant-admin",
+        "descr": "Verificare che il Tenant Admin possa visualizzare la sua dashboard personale",
+        "ref-req": "RF-Visualizzazione-dashboard-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Num-sensori-dashboard-admin",
+        "descr": "Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di sensori attivi e non associati al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-numero-sensori-attivi-non-attivi-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Num-gateway-dashboard-admin",
+        "descr": "Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di gateway attivi e non associati al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-numero-gateway-attivi-non-attivi-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-alert-dashboard-admin",
+        "descr": "Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi la lista degli alert relativi al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-lista-alert-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Num-api-key-dashboard",
+        "descr": "Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi il numero di API key valide e scadute",
+        "ref-req": "RF-Visualizzazione-numero-api-key-valide-scadute",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-comm-dashboard",
+        "descr": "Verificare che il Tenant Admin, accedendo alla sua dashboard personale, visualizzi lo stato delle richieste di commissioning gateway associate al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-stato-richieste-commissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-decomm-dashboard",
+        "descr": "Verificare che il Tenant Admin, accedendo alla sua dashboard personale visualizzi lo stato delle richieste di decommissioning gateway associate al proprio Tenant",
+        "ref-req": "RF-Visualizzazione-stato-richieste-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Creazione-richiesta-comm",
+        "descr": "Verificare che il Tenant Admin possa creare una nuova richiesta di commissioning gateway",
+        "ref-req": "RF-Creazione-richiesta-commissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Creazione-richiesta-decomm",
+        "descr": "Verificare che il Tenant Admin possa creare una nuova richiesta di decommissioning gateway",
+        "ref-req": "RF-Creazione-richiesta-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Eliminazione-richiesta",
+        "descr": "Verificare che il Tenant Admin possa eliminare una richiesta di commissioning o decommissioning gateway precedentemente creata non ancora evasa",
+        "ref-req": "RF-Eliminazione-richiesta-commissioning-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-eliminazione-richiesta",
+        "descr": "Verificare che il Sistema richieda una conferma al Tenant Admin prima di eliminare una richiesta di commissioning o decommissioning gateway",
+        "ref-req": "RF-Conferma-eliminazione-richiesta-commissioning-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-sensore-tenant-admin",
+        "descr": "Verificare che il Tenant Admin possa sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant",
+        "ref-req": "RF-Sospensione-sensore-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-sospensione-sensore",
+        "descr": "Verificare che il Sistema notifichi l'impossibilità di sospendere l'invio dati del sensore selezionato poiché il gateway associato è in stato di errore",
+        "ref-req": "RF-Sospensione-sensore-fallita-gateway-irraggiungibile",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-sensore-tenant-admin",
+        "descr": "Verificare che il Tenant Admin possa riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant",
+        "ref-req": "RF-Riattivazione-sensore-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-riattivazione-sensore",
+        "descr": "Verificare che il Sistema notifichi l'impossibilità di riattivare l'invio di dati del sensore selezionato poiché il gateway associato è in stato di errore",
+        "ref-req": "RF-Riattivazione-sensore-fallita-gateway-irraggiungibile",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-gateway",
+        "descr": "Verificare che il Tenant Admin possa sospendere l'invio di dati da parte di un gateway appartenente al proprio Tenant",
+        "ref-req": "RF-Sospensione-gateway-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-sospensione-gateway",
+        "descr": "Verificare che il Sistema notifichi l'impossibilità di sospendere l'invio di dati da parte del gateway selezionato poiché in stato di errore",
+        "ref-req": "RF-Sospensione-gateway-fallita-gateway-irraggiungibile",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-gateway",
+        "descr": "Verificare che il Tenant Admin possa riattivare l'invio di dati da parte di un gateway appartenente al proprio Tenant",
+        "ref-req": "RF-Riattivazione-gateway-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-riattivazione-gateway",
+        "descr": "Verificare che il Sistema notifichi l'impossibilità di riattivare l'invio di dati da parte del gateway selezionato poiché in stato di errore",
+        "ref-req": "RF-Riattivazione-gateway-fallita-gateway-irraggiungibile",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riavvio-gateway-tenant-admin",
+        "descr": "Verificare che il Tenant Admin possa riavviare un gateway appartenente al proprio Tenant",
+        "ref-req": "RF-Riavvio-gateway-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Modifica-frequenza-gateway",
+        "descr": "Verificare che il Tenant Admin possa modificare il target di frequenza d'invio dati per tipologia di sensore di un gateway associato al proprio Tenant",
+        "ref-req": "RF-Modifica-target-freq-invio-dati-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-riavvio-gateway",
+        "descr": "Verificare che il Sistema notifichi l'impossibilità di riavviare il gateway selezionato poiché in stato di errore",
+        "ref-req": "RF-Riavvio-gateway-fallita-gateway-irraggiungibile",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-commissioning-gateway",
+        "descr": "Verificare che il gateway simulato nel caso in cui il processo di commissioning sia stato completato con successo, confermi ciò al Cloud",
+        "ref-req": "RF-Conferma-comando-commissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Invio-dati-post-commissioning",
+        "descr": "Verificare che il gateway simulato, una volta completato il processo di commissioning, inizi l'invio dei dati",
+        "ref-req": "RF-Avvio-invio-dati-post-commissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-commissioning",
+        "descr": "Verificare che il gateway simulato invii al Cloud la presenza di eventuali errori durante il processo di commissioning",
+        "ref-req": "RF-Errore-commissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-decommissioning",
+        "descr": "Verificare che il gateway simulato nel caso in cui il processo di decommissioning sia stato completato con successo, confermi ciò al Cloud",
+        "ref-req": "RF-Conferma-comando-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stop-dati-post-decommissioning",
+        "descr": "Verificare che il gateway simulato, dopo aver eseguito il decommissioning, rimuova l'associazione con il tenant e interrompa l'invio dei dati IoT al Cloud",
+        "ref-req": "RF-Rimozione-associazione-post-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nuovo-commissioning",
+        "descr": "Verificare che il gateway simulato, dopo aver eseguito il decommissioning, ammetta un nuovo commissioning",
+        "ref-req": "RF-Nuovo-commissioning-post-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-decommissioning",
+        "descr": "Verificare che il gateway simulato segnali al Cloud eventuali errori riscontrati durante l'esecuzione del decommissioning",
+        "ref-req": "RF-Errore-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Annulla-decommissioning-errore",
+        "descr": "Verificare che il Sistema possa annullare il processo di decommissioning quando riceve una notifica di errore dal gateway",
+        "ref-req": "RF-Annullamento-decommissioning-errore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Notifica-errore-decommissioning",
+        "descr": "Verificare che il Sistema notifichi il Super Admin quando un decommissioning viene annullato a causa di un errore segnalato dal gateway",
+        "ref-req": "RF-Notifica-errore-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-riavvio",
+        "descr": "Verificare che il gateway simulato confermi al Cloud il corretto riavvio in seguito al comando ricevuto dallo stesso",
+        "ref-req": "RF-Conferma-comando-riavvio",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-timeout-riavvio",
+        "descr": "Verificare che il Cloud si accorga se un gateway simulato non risponda entro un timeout specifico a comando di riavvio e notificare lo stato di errore del gateway agli utenti del Tenant associato",
+        "ref-req": "RF-Errore-riavvio",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Reset-simulato",
+        "descr": "Verificare che il gateway simulato possa reimpostare correttamente tutte le configurazioni e i dati locali alle impostazioni di fabbrica, ovvero reset",
+        "ref-req": "RF-Conferma-comando-reset",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-reset",
+        "descr": "Verificare che il gateway simulato, dopo aver eseguito il reset correttamente, invii la conferma di successo al Cloud",
+        "ref-req": "RF-Conferma-successo-reset",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-sospensione-dati",
+        "descr": "Verificare che il gateway simulato possa confermare la sospensione di invio dei dati al Cloud in seguito al comando di sospensione ricevuto dallo stesso",
+        "ref-req": "RF-Conferma-comando-sospensione-invio-dati",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-riattivazione-dati",
+        "descr": "Verificare che il gateway simulato possa confermare la riattivazione dell'invio dei dati al Cloud in seguito al comando di riattivazione ricevuto dallo stesso",
+        "ref-req": "RF-Conferma-comando-riattivazione-invio-dati",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-sospensione-sensore",
+        "descr": "Verificare che il gateway simulato possa confermare la sospensione dell'invio dei dati di un sensore simulato specifico in seguito al comando di sospensione ricevuto dal Cloud",
+        "ref-req": "RF-Conferma-comando-sospensione-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-riattivazione-sensore",
+        "descr": "Verificare che il gateway simulato possa confermare la riattivazione dell'invio dei dati di un sensore simulato specifico in seguito al comando di riattivazione ricevuto dal Cloud",
+        "ref-req": "RF-Conferma-comando-riattivazione-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-modifica-frequenza",
+        "descr": "Verificare che il gateway simulato possa inviare la conferma del cambiamento della frequenza di invio dati al Cloud in seguito al comando di modifica ricevuto dallo stesso",
+        "ref-req": "RF-Conferma-comando-modifica-frequenza-invio-dati",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Hello-gateway",
+        "descr": "Verificare che il gateway simulato, all'avvio, invii un comando di hello, provvisto di proprio ID univoco, al Cloud per autenticarsi",
+        "ref-req": "RF-Invio-comando-hello",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Autenticazione-gateway-ko",
+        "descr": "Verificare che il Cloud rifiuti l'autenticazione del gateway in caso quest'ultimo invii credenziali errate",
+        "ref-req": "RF-Autenticazione-gateway-fallita",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-gateway-non-trovato",
+        "descr": "Verificare che il Cloud rifiuti l'autenticazione del gateway in caso l'ID univoco inviato dal gateway non sia presente nel proprio database",
+        "ref-req": "RF-Identificativo-gateway-non-trovato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dati-crittografati",
+        "descr": "Verificare che il gateway simulato possa inviare i dati dei sensori al Cloud in modo crittografato utilizzando la chiave pubblica ricevuta dal Cloud durante l'assegnazione del Tenant",
+        "ref-req": "RF-Invio-dati-crittografati",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Buffer-interno",
+        "descr": "Verificare che il gateway simulato raccolga i dati dei sensori all'interno di un buffer interno prima di inviarli al Cloud",
+        "ref-req": "RF-Buffer-dati-sensori",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Buffer-overflow",
+        "descr": "Verificare che il gateway simulato, in caso di overflow del buffer, elimini i dati più vecchi",
+        "ref-req": "RF-Eliminazione-dati-buffer-pieno",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Retry-invio-dati",
+        "descr": "Verificare che il gateway simulato ritenti l'invio dei dati al Cloud in caso non sia raggiungibile, mantenendo i dati nel buffer fino al successo dell'invio",
+        "ref-req": "RF-Invio-dati-fallito",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Notifica-assenza-dati-gateway",
+        "descr": "Verificare che il Cloud notifichi gli utenti del Tenant nel caso in cui non riceva dati dal gateway associato per un periodo di tempo superiore ad una soglia predefinita",
+        "ref-req": "RF-Errore-gateway-assenza-dati",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Rilevamento-assenza-dati-sensore",
+        "descr": "Verificare che il Cloud rilevi l'assenza di dati da un sensore specifico di un gateway simulato allo scadere di un timeout predefinito",
+        "ref-req": "RF-Assenza-prolungata-dati-sensori",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Notifica-assenza-dati-sensore",
+        "descr": "Verificare che il Cloud, nel caso in cui venga rilevata l'assenza di dati di un sensore di un gateway, notifichi gli utenti del tenant associato",
+        "ref-req": "RF-Notifica-assenza-dati-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Richiesta-real-time",
+        "descr": "Verificare che l'API Client possa richiedere i dati real-time di un sensore specifico associato al proprio tenant",
+        "ref-req": "RF-Richiesta-dati-real-time-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Ricezione-real-time",
+        "descr": "Verificare che l'API Client, dopo aver richiesto i dati real-time di un sensore specifico, possa ricevere tali dati in forma coppia valore-timestamp",
+        "ref-req": "RF-Ricezione-dati-real-time-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Richiesta-storico",
+        "descr": "Verificare che l'*API Client* possa richiedere lo storico dei dati di un sensore appartenente al proprio tenant",
+        "ref-req": "RF-Richiesta-storico-dati-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Ricezione-storico",
+        "descr": "Verificare che l'*API Client* dopo aver richiesto lo storico dei dati di un sensore specifico possa ricevere tali dati in forma coppia valore-timestamp",
+        "ref-req": "RF-Ricezione-storico-dati-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sensore-non-esistente",
+        "descr": "Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non esistente",
+        "ref-req": "RF-Sensore-non-trovato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nessun-dato-disponibile",
+        "descr": "Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore per cui non sono disponibili dati",
+        "ref-req": "RF-Nessun-dato-disponibile-sensore-richiesto",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sensore-non-associato",
+        "descr": "Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui richieda i dati di un sensore non associato al proprio tenant",
+        "ref-req": "RF-Sensore-non-associato-tenant-API-Client",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Autenticazione-api",
+        "descr": "Verificare che l'*API Client* possa autenticarsi nel Sistema utilizzando un'API Key valida",
+        "ref-req": "RF-Autenticazione-API-Client",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Credenziali-api-non-valide",
+        "descr": "Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione non siano valide",
+        "ref-req": "RF-Credenziali-API-Client-errate",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Credenziali-api-scadute",
+        "descr": "Verificare che l'*API Client* possa ricevere un messaggio di errore nel caso in cui le credenziali inviate per l'autenticazione siano scadute",
+        "ref-req": "RF-Credenziali-API-Client-scadute",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Invio-dati-sensore",
+        "descr": "Verificare che il *Sensore simulato* possa inviare i dati rilevati al gateway a cui è collegato",
+        "ref-req": "RF-Invio-nuovo-dato-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Normalizzazione-dati",
+        "descr": "Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa normalizzarli",
+        "ref-req": "RF-Normalizzazione-dati-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Formattazione-dati",
+        "descr": "Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa formattarli secondo un formato interno standardizzato",
+        "ref-req": "RF-Formattazione-dati-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Salvataggio-buffer",
+        "descr": "Verificare che il *Sistema Gateway* alla ricezione dei dati dei sensori possa salvarli in un buffer interno prima di inviarli al Cloud",
+        "ref-req": "RF-Salvataggio-buffer-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Gestione-buffer-pieno",
+        "descr": "Verificare che in caso un o più Sensori simulati inviino una quantità di dati superiore alla capacità di invio del gateway verso il Cloud, il *gateway* possa salvare i dati più recenti nel buffer interno eliminando i dati più vecchi per fare spazio ai nuovi dati",
+        "ref-req": "RF-Invio-dati-eccessivi-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Heart-rate-service",
+        "descr": "Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Heart Rate Service (GATT)",
+        "ref-req": "RF-Invio-dato-heart-rate-service",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Pulse-oximeter-service",
+        "descr": "Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Pulse Oximeter Service (GATT)",
+        "ref-req": "RF-Invio-dato-pulse-oximeter-service",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Ecg-custom",
+        "descr": "Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi ad un profilo custom per l'elettrocardiogramma (ECG)",
+        "ref-req": "RF-Invio-dato-ecg-custom",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Health-thermometer",
+        "descr": "Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Health Thermometer Service (GATT)",
+        "ref-req": "RF-Invio-dato-health-thermometer-service",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Environmental-sensing",
+        "descr": "Verificare che il *Sensore simulato* possa inviare al gateway i dati relativi al servizio Environmental Sensing Service (GATT)",
+        "ref-req": "RF-Invio-dato-environmental-sensing-service",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-auth-gateway",
+        "descr": "Verificare che il *Cloud* possa inviare la conferma di autenticazione avvenuta correttamente al gateway, in seguito ad un tentativo di autenticazione andato a buon fine",
+        "ref-req": "RF-Conferma-autenticazione-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Rifiuto-auth-gateway",
+        "descr": "Verificare che il *Cloud* possa inviare il rifiuto di autenticazione al gateway, in seguito ad un tentativo di autenticazione fallito",
+        "ref-req": "RF-Rifiuto-autenticazione-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Assegnazione-tenant",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway, non commissionato, l'assegnazione del tenant, in seguito ad un commissioning andato a buon fine",
+        "ref-req": "RF-Assegnazione-tenant-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-sensore-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway sospeso il comando di riattivazione di un Sensore simulato sospeso specifico e verificare che, in seguito alla ricezione del comando il gateway, ricomincia ad inviare dati IoT crittografati relativi a tale Sensore",
+        "ref-req": "RF-Riattivazione-sensore-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-sensore-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway il comando di sospensione di un Sensore simulato non sospeso specifico e verificare che, in seguito alla ricezione del comando il gateway, interrompe l'invio di dati IoT crittografati relativi a tale Sensore",
+        "ref-req": "RF-Sospensione-sensore-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-gateway-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare, al gateway sospeso, il comando di riattivazione e verificare che, in seguito alla ricezione del comando, il gateway ricomincia l'invio di tutti i dati IoT crittografati",
+        "ref-req": "RF-Riattivazione-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-gateway-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway il comando di sospensione e verificare che, in seguito alla ricezione del comando, il gateway interrompe l'invio di tutti i dati IoT crittografati",
+        "ref-req": "RF-Sospensione-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riavvio-gateway-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway il comando di riavvio e verificare che,in seguito alla ricezione del comando il gateway, si spegne e riaccende, mantenendo le configurazioni e i dati salvati localmente",
+        "ref-req": "RF-Riavvio-gateway-cloud",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Modifica-frequenza-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway il comando di modifica della frequenza di invio dati per uno specifico tipo di sensore e verificare che, in seguito alla ricezione di tale comando il gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud relativi a tutti i sensori di tale tipologia, così da inviare un dato ogni intervallo di tempo specificato nel comando.",
+        "ref-req": "RF-Modifica-frequenza-invio-dati-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Decommissioning-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway il comando di decommissioning e verificare che, in seguito alla ricezione del comando il gateway, cancella l'associazione al tenant ed esegue un reset. Dopo aver eseguito il decommissioning il gateway deve ammettere un nuovo commissioning",
+        "ref-req": "RF-Decommissioning-gateway-cloud",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Reset-cloud",
+        "descr": "Verificare che il *Cloud* possa inviare al gateway il comando di reset e verificare che, in seguito alla ricezione del comando il gateway, cancella tutte le configurazioni e i dati salvati localmente",
+        "ref-req": "RF-Reset-gateway-cloud",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Logout",
+        "descr": "Verificare che l'*Utente autenticato* possa effettuare il logout dal Sistema",
+        "ref-req": "RF-Logout",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Logout-audit",
+        "descr": "Verificare che il *Sistema*, a seguito del logout possa registrare l'evento negli audit log salvando nome utente, timestamp e azione eseguita",
+        "ref-req": "RF-Logout-audit-log",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Modifica-password",
+        "descr": "Verificare che l'*Utente autenticato* possa modificare la propria password",
+        "ref-req": "RF-Modifica-password",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-vecchia-password",
+        "descr": "Verificare che l'*Utente autenticato*, per modificare la password, possa inserire la vecchia password",
+        "ref-req": "RF-Inserimento-vecchia-password",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-vecchia-password",
+        "descr": "Verificare che il *Sistema* possa mostrare un messaggio di errore se la vecchia password inserita non è corretta durante la modifica password",
+        "ref-req": "RF-Vecchia-password-non-corretta",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dettaglio-alert",
+        "descr": "Verificare che l'*Utente autenticato* possa visualizzare i dettagli di un singolo alert",
+        "ref-req": "RF-Visualizzazione-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Titolo-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere il titolo dell'alert",
+        "ref-req": "RF-Visualizzazione-titolo-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Descrizione-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert, possa vedere la descrizione dell'alert",
+        "ref-req": "RF-Visualizzazione-descrizione-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Alert-gateway",
+        "descr": "Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un Gateway",
+        "ref-req": "RF-Mancata-ricezione-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-gateway-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere l'identificativo del gateway",
+        "ref-req": "RF-Visualizzazione-id-gateway-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Timestamp-gateway-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il timestamp dell'ultimo dato ricevuto",
+        "ref-req": "RF-Visualizzazione-timestamp-ultimo-dato-gateway-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inattivita-gateway-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da Gateway, possa vedere il tempo di inattività",
+        "ref-req": "RF-Visualizzazione-tempo-inattivita-gateway-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Alert-sensore",
+        "descr": "Verificare che l'*Utente autenticato* possa visualizzare gli alert relativi alla mancata ricezione dati da un sensore",
+        "ref-req": "RF-Mancata-ricezione-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-sensore-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere l'identificativo del sensore",
+        "ref-req": "RF-Visualizzazione-id-sensore-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Timestamp-sensore-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il timestamp dell'ultimo dato ricevuto",
+        "ref-req": "RF-Visualizzazione-timestamp-ultimo-dato-sensore-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inattivita-sensore-alert",
+        "descr": "Verificare che l'*Utente autenticato*, visualizzando un alert di mancata ricezione dati da sensore, possa vedere il tempo di inattività",
+        "ref-req": "RF-Visualizzazione-tempo-inattivita-sensore-alert",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dati-real-time",
+        "descr": "Verificare che l'*Utente autenticato* possa visualizzare i dati in tempo reale di un sensore selezionato",
+        "ref-req": "RF-Visualizzazione-dati-real-time-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Grafico-real-time",
+        "descr": "Verificare che l'*Utente autenticato* possa visualizzare i dati real-time del sensore attraverso un grafico time-series con assi etichettati",
+        "ref-req": "RF-Visualizzazione-grafico-real-time-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Aggiornamento-grafico",
+        "descr": "Verificare che il *grafico dei dati real-time* possa aggiornarsi automaticamente alla ricezione di nuovi dati dal Gateway",
+        "ref-req": "RF-Aggiornamento-grafico-real-time-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Storico-dati",
+        "descr": "Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati di un sensore selezionato",
+        "ref-req": "RF-Visualizzazione-storico-dati-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Grafico-storico",
+        "descr": "Verificare che l'*Utente autenticato* possa visualizzare lo storico dei dati del sensore attraverso un grafico time-series con assi etichettati",
+        "ref-req": "RF-Visualizzazione-grafico-storico-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Filtro-temporale",
+        "descr": "Verificare che l'*Utente autenticato* possa filtrare lo storico dei dati del sensore per intervallo temporale",
+        "ref-req": "RF-Filtraggio-dati-storico-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Grafico-filtrato-tempo",
+        "descr": "Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo temporale selezionato",
+        "ref-req": "RF-Visualizzazione-grafico-filtrato-temporale-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-filtro-tempo",
+        "descr": "Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo temporale inserito non è valido",
+        "ref-req": "RF-Intervallo-temporale-non-valido",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Filtro-valori",
+        "descr": "Verificare che l'*Utente autenticato* possa filtrare i dati del sensore per intervallo di valori",
+        "ref-req": "RF-Filtraggio-dati-sensore-intervallo-valori",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Grafico-filtrato-valori",
+        "descr": "Verificare che il *Sistema* possa visualizzare il grafico dei dati del sensore filtrato per l'intervallo di valori selezionato",
+        "ref-req": "RF-Visualizzazione-grafico-filtrato-valori-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-filtro-valori",
+        "descr": "Verificare che il *Sistema* possa mostrare un messaggio di errore se l'intervallo di valori inserito non è valido",
+        "ref-req": "RF-Intervallo-di-valori-non-valido",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dati-non-disponibili",
+        "descr": "Verificare che il *Sistema* possa mostrare un messaggio informativo se non sono disponibili dati per il sensore selezionato",
+        "ref-req": "RF-Dati-non-disponibili-sensore-selezionato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Creazione-tenant",
+        "descr": "Verificare che il *Super Admin* possa creare un nuovo tenant nel Sistema",
+        "ref-req": "RF-Creazione-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-tenant",
+        "descr": "Verificare che il *Super Admin*, creando un nuovo tenant, possa inserire il nome del tenant",
+        "ref-req": "RF-Inserimento-nome-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Clausola-impersonificazione",
+        "descr": "Verificare che il *Super Admin*, creando un nuovo tenant, possa specificare l'accettazione o meno della clausola di impersonificazione",
+        "ref-req": "RF-Clausola-impersonificazione",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-nuovo-tenant",
+        "descr": "Verificare che il *Super Admin*, creando un nuovo tenant, possa specificare il nome del nuovo tenant da creare",
+        "ref-req": "RF-Inserimento-nome-nuovo-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-tenant-esistente",
+        "descr": "Verificare che il *Sistema* possa mostrare un messaggio di errore se il nome del tenant inserito è già in uso",
+        "ref-req": "RF-Nome-tenant-gia-utilizzato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Eliminazione-tenant",
+        "descr": "Verificare che il *Super Admin* possa eliminare un tenant esistente dal Sistema",
+        "ref-req": "RF-Eliminazione-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-eliminazione-tenant",
+        "descr": "Verificare che il *Sistema* richieda conferma al *Super Admin* prima di eliminare un tenant",
+        "ref-req": "RF-Selezione-e-conferma-tenant-da-eliminare",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Errore-decommissioning-eliminazione",
+        "descr": "Verificare che il *Sistema* debba notificare il *Super Admin* se il decommissioning di un Gateway fallisce durante l'eliminazione del tenant",
+        "ref-req": "RF-Decommissioning-gateway-fallito",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dashboard-super-admin",
+        "descr": "Verificare che il *Super Admin* possa visualizzare la propria dashboard",
+        "ref-req": "RF-Visualizzazione-dashboard-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-gateway-dashboard",
+        "descr": "Verificare che il *Super Admin*, visualizzando la dashboard, possa vedere lo stato globale dei gateway (attivi/non attivi)",
+        "ref-req": "RF-Visualizzazione-stato-globale-dei-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-tenant-dashboard",
+        "descr": "Verificare che il *Super Admin*, visualizzando la dashboard, possa vedere la lista di tutti i tenant nel Sistema",
+        "ref-req": "RF-Visualizzazione-numero-di-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-gateway",
+        "descr": "Verificare che il *Super Admin* possa visualizzare la lista di tutti i Gateway registrati nel Sistema",
+        "ref-req": "RF-Visualizzazione-lista-gateway-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-gateway-lista",
+        "descr": "Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere l'identificativo univoco di ogni gateway",
+        "ref-req": "RF-Visualizzazione-identificativo-univoco-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-auth-gateway-lista",
+        "descr": "Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere lo stato di autenticazione di ogni gateway",
+        "ref-req": "RF-Visualizzazione-stato-autenticazione-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-op-gateway-lista",
+        "descr": "Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere lo stato operativo di ogni gateway",
+        "ref-req": "RF-Visualizzazione-stato-operativo-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Tenant-gateway-lista",
+        "descr": "Verificare che il *Super Admin*, visualizzando la lista dei Gateway, possa vedere il tenant associato a ogni gateway",
+        "ref-req": "RF-Visualizzazione-tenant-associato-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dettaglio-gateway-super-admin",
+        "descr": "Verificare che il *Super Admin* possa visualizzare i dettagli di un singolo Gateway",
+        "ref-req": "RF-Visualizzazione-gateway-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Autenticazione-gateway",
+        "descr": "Verificare che il *Super Admin* possa autenticare un nuovo Gateway nel Sistema",
+        "ref-req": "RF-Autenticazione-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Certificato-non-valido",
+        "descr": "Verificare che il *Sistema* mostri un messaggio di errore se il certificato del Gateway non è valido durante l'autenticazione",
+        "ref-req": "RF-Certificato-non-valido",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-gateway-esistente",
+        "descr": "Verificare che il *Sistema* mostri un messaggio di errore se l'identificativo del Gateway è già utilizzato",
+        "ref-req": "RF-Identificativo-gateway-gia-utilizzato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Associazione-gateway-tenant",
+        "descr": "Verificare che il *Super Admin* possa associare un Gateway a un tenant",
+        "ref-req": "RF-Associazione-gateway-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-gateway",
+        "descr": "Verificare che il *Super Admin*, associando un Gateway a un tenant, debba selezionare il Gateway da associare",
+        "ref-req": "RF-Selezione-gateway-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-tenant",
+        "descr": "Verificare che il *Super Admin*, associando un Gateway a un tenant, debba selezionare il tenant di destinazione",
+        "ref-req": "RF-Selezione-tenant-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Decommissioning-gateway",
+        "descr": "Verificare che il *Super Admin* possa eseguire il decommissioning di un Gateway",
+        "ref-req": "RF-Decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Reset-gateway",
+        "descr": "Verificare che il *Super Admin* possa eseguire il reset di un Gateway",
+        "ref-req": "RF-Reset-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riavvio-gateway-super-admin",
+        "descr": "Verificare che il *Super Admin* possa riavviare un Gateway",
+        "ref-req": "RF-Riavvio-gateway-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-invio-dati",
+        "descr": "Verificare che il *Super Admin* possa sospendere l'invio dati di un Gateway",
+        "ref-req": "RF-Sospensione-gateway-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-invio-dati",
+        "descr": "Verificare che il *Super Admin* possa riattivare l'invio dati di un Gateway sospeso",
+        "ref-req": "RF-Riattivazione-gateway-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Rolling-average",
+        "descr": "Verificare che il *Super Admin* possa modificare il parametro di rolling average di un Gateway",
+        "ref-req": "RF-Modifica-freq-invio-dati-gateway-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-sensore-super-admin",
+        "descr": "Verificare che il *Super Admin* possa sospendere un sensore",
+        "ref-req": "RF-Sospensione-sensore-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-sensore-super-admin",
+        "descr": "Verificare che il *Super Admin* possa riattivare un sensore sospeso",
+        "ref-req": "RF-Riattivazione-sensore-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-gateway-comandi",
+        "descr": "Verificare che il *Super Admin* possa selezionare un Gateway dalla lista per inviare comandi",
+        "ref-req": "RF-Selezione-gateway-per-invio-comando-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-sensore-comandi",
+        "descr": "Verificare che il *Super Admin* possa selezionare un sensore dalla lista per inviare comandi",
+        "ref-req": "RF-Selezione-sensore-invio-comando-super-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-tenant",
+        "descr": "Verificare che il *Super Admin* possa visualizzare la lista di tutti i tenant nel Sistema",
+        "ref-req": "RF-Visualizzazione-lista-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-tenant-in-lista",
+        "descr": "Verificare che il *Super Admin*, visualizzando la lista dei tenant, possa vedere l'identificativo di ogni tenant",
+        "ref-req": "RF-Visualizzazione-identificativo-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Impersonificazione",
+        "descr": "Verificare che il *Super Admin* possa impersonificare un tenant, se la clausola d'impersonazione è stata accettata",
+        "ref-req": "RF-Impersonificazione-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dettaglio-tenant",
+        "descr": "Verificare che il *Super Admin* possa visualizzare i dettagli di un singolo tenant",
+        "ref-req": "RF-Visualizzazione-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Id-tenant-dettaglio",
+        "descr": "Verificare che il *Super Admin*, visualizzando un tenant, possa vedere l'identificativo del tenant",
+        "ref-req": "RF-Visualizzazione-identificativo-del-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-commissioning",
+        "descr": "Verificare che il *Super Admin* possa visualizzare la lista delle richieste di commissioning Gateway in corso",
+        "ref-req": "RF-Visualizzazione-lista-richieste-in-corso-commissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di commissioning in lista, possa vedere data e ora della richiesta",
+        "ref-req": "RF-Visualizzazione-data-ora-richiesta-commissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Tenant-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di commissioning in lista, possa vedere il tenant richiedente",
+        "ref-req": "RF-Visualizzazione-tenant-richiesta-commissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Num-gateway-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di commissioning in lista, possa vedere il numero di gateway richiesti",
+        "ref-req": "RF-Visualizzazione-numero-gateway-richiesta-commissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Lista-decommissioning",
+        "descr": "Verificare che il *Super Admin* possa visualizzare la lista delle richieste di decommissioning Gateway in corso",
+        "ref-req": "RF-Visualizzazione-lista-richieste-in-corso-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-decommissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere data e ora della richiesta",
+        "ref-req": "RF-Visualizzazione-data-ora-richiesta-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Tenant-decommissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere il tenant richiedente",
+        "ref-req": "RF-Visualizzazione-tenant-richiesta-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Num-gateway-decommissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere il numero di gateway",
+        "ref-req": "RF-Visualizzazione-numero-gateway-richiesta-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-decommissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning in lista, possa vedere lo stato della richiesta",
+        "ref-req": "RF-Visualizzazione-stato-richiesta-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Storico-commissioning",
+        "descr": "Verificare che il *Super Admin* possa visualizzare lo storico delle richieste di commissioning Gateway",
+        "ref-req": "RF-Visualizzazione-storico-richieste-commissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-storico-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere data e ora di ogni richiesta",
+        "ref-req": "RF-Visualizzazione-singola-richiesta-storico-commissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Tenant-storico-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere il tenant richiedente di ogni richiesta",
+        "ref-req": "RF-Visualizzazione-tenant-richiesta-commissioning-storico",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Num-gateway-storico-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere il numero di gateway di ogni richiesta",
+        "ref-req": "RF-Visualizzazione-numero-gateway-richiesta-commissioning-storico",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Stato-storico-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico commissioning, possa vedere lo stato di ogni richiesta",
+        "ref-req": "RF-Visualizzazione-stato-richiesta-storico-commissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Storico-decommissioning",
+        "descr": "Verificare che il *Super Admin* possa visualizzare lo storico delle richieste di decommissioning Gateway",
+        "ref-req": "RF-Visualizzazione-storico-richieste-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dettaglio-commissioning",
+        "descr": "Verificare che il *Super Admin* possa vedere i dettagli di una richiesta di commissioning",
+        "ref-req": "RF-Visualizzazione-richiesta-commissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-dettaglio-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di commissioning, possa vedere data e ora della richiesta",
+        "ref-req": "RF-Visualizzazione-data-ora-richiesta",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Tenant-dettaglio-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di commissioning, possa vedere il tenant richiedente",
+        "ref-req": "RF-Visualizzazione-tenant-richiedente-richiesta",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Num-gateway-dettaglio-commissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di commissioning, possa vedere il numero di gateway richiesti",
+        "ref-req": "RF-Visualizzazione-numero-gateway-richiesti",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dettaglio-decommissioning",
+        "descr": "Verificare che il *Super Admin* possa vedere i dettagli di una richiesta di decommissioning",
+        "ref-req": "RF-Visualizzazione-richiesta-decommissioning-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Gateway-decommissioning",
+        "descr": "Verificare che il *Super Admin*, visualizzando una richiesta di decommissioning, possa visualizzare i gateway interessati",
+        "ref-req": "RF-Visualizzazione-gateway-da-decommissioning",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Accetta-richiesta",
+        "descr": "Verificare che il *Super Admin* possa accettare una richiesta di commissioning/decommissioning Gateway",
+        "ref-req": "RF-Accettazione-richiesta-fornitura-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Rifiuta-richiesta",
+        "descr": "Verificare che il *Super Admin* possa rifiutare una richiesta di commissioning/decommissioning Gateway",
+        "ref-req": "RF-Rifiuto-richiesta-fornitura-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Creazione-tenant-admin",
+        "descr": "Verificare che il *Super Admin* possa creare un nuovo utente Tenant Admin",
+        "ref-req": "RF-Creazione-utente-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-tenant-per-admin",
+        "descr": "Verificare che il *Super Admin*, creando un Tenant Admin, debba selezionare il tenant di appartenenza",
+        "ref-req": "RF-Selezione-tenant",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Inserimento-email-tenant-admin",
+        "descr": "Verificare che il *Super Admin*, creando un Tenant Admin, debba inserire l'email del nuovo utente",
+        "ref-req": "RF-Inserimento-email-nuovo-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Sospensione-tenant-admin",
+        "descr": "Verificare che il *Super Admin* possa sospendere un account Tenant Admin",
+        "ref-req": "RF-Sospensione-account-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-admin-sospensione",
+        "descr": "Verificare che il *Super Admin* possa selezionare il Tenant Admin che vuole sospendere",
+        "ref-req": "RF-Selezione-tenant-admin-da-sospendere",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-sospensione-admin",
+        "descr": "Verificare che il *Sistema* richieda conferma prima di sospendere un account Tenant Admin",
+        "ref-req": "RF-Conferma-sospensione-account-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Riattivazione-tenant-admin",
+        "descr": "Verificare che il *Super Admin* possa riattivare un account Tenant Admin sospeso",
+        "ref-req": "RF-Riattivazione-account-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-admin-riattivazione",
+        "descr": "Verificare che il *Super Admin* possa selezionare il Tenant Admin che desidera riattivare",
+        "ref-req": "RF-Selezione-tenant-admin-da-riattivare",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-riattivazione-admin",
+        "descr": "Verificare che il *Sistema* richieda conferma prima di riattivare il Tenant Admin selezionato",
+        "ref-req": "RF-Conferma-riattivazione-account-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Eliminazione-tenant-admin",
+        "descr": "Verificare che il *Super Admin* possa eliminare un account Tenant Admin",
+        "ref-req": "RF-Eliminazione-account-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-admin-eliminazione",
+        "descr": "Verificare che il *Super Admin* possa selezionare il Tenant Admin da eliminare",
+        "ref-req": "RF-Selezione-tenant-admin-da-eliminare",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-eliminazione-admin",
+        "descr": "Verificare che il *Sistema* richieda conferma prima di eliminare un account Tenant Admin",
+        "ref-req": "RF-Conferma-eliminazione-account-tenant-admin",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Creazione-gateway-simulato",
+        "descr": "Verificare che il *Super Admin* possa creare un gateway simulato",
+        "ref-req": "RF-Creazione-gateway-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-gateway-simulato",
+        "descr": "Verificare che il *Super Admin*, creando un gateway simulato, inserisca il nome del gateway",
+        "ref-req": "RF-Inserimento-nome-gateway-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Timeout-gateway-simulato",
+        "descr": "Verificare che il *Super Admin*, creando un gateway simulato, inserisca la soglia di timeout di inattività",
+        "ref-req": "RF-Inserimento-timeout-inattivita-gateway-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Buffer-gateway-simulato",
+        "descr": "Verificare che il *Super Admin*, creando un gateway simulato, inserisca la dimensione del buffer",
+        "ref-req": "RF-Inserimento-dimensione-buffer-gateway-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Creazione-sensore-simulato",
+        "descr": "Verificare che il *Super Admin* possa creare un sensore simulato",
+        "ref-req": "RF-Creazione-sensore-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Servizio-gatt-sensore",
+        "descr": "Verificare che il *Super Admin*, creando un sensore simulato, selezioni il servizio GATT da simulare",
+        "ref-req": "RF-Selezione-servizi-sensore-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Timeout-alert-sensore",
+        "descr": "Verificare che il *Super Admin*, creando un sensore simulato, inserisca la soglia di timeout per gli alert",
+        "ref-req": "RF-Inserimento-timeout-alert-sensore-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Associazione-sensore-gateway",
+        "descr": "Verificare che il *Super Admin*, creando un sensore simulato, lo associ ad un gateway simulato",
+        "ref-req": "RF-Inserimento-associazione-gateway-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Eliminazione-gateway-simulato",
+        "descr": "Verificare che il *Super Admin* possa eliminare un gateway simulato",
+        "ref-req": "RF-Eliminazione-gateway-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-gateway-eliminazione",
+        "descr": "Verificare che il *Super Admin* possa selezionare il gateway simulato da eliminare",
+        "ref-req": "RF-Seleziona-gateway-simulato-da-eliminare",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-eliminazione-gateway",
+        "descr": "Verificare che il *Sistema* richieda conferma prima di eliminare un gateway simulato",
+        "ref-req": "RF-Conferma-eliminazione-gateway-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Eliminazione-sensore-simulato",
+        "descr": "Verificare che il *Super Admin* possa eliminare un sensore simulato",
+        "ref-req": "RF-Eliminazione-sensore-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Selezione-sensore-eliminazione",
+        "descr": "Verificare che il *Super Admin* possa selezionare il sensore simulato da eliminare",
+        "ref-req": "RF-Seleziona-sensore-simulato-da-eliminare",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Conferma-eliminazione-sensore",
+        "descr": "Verificare che il *Sistema* richieda conferma prima di eliminare un sensore simulato",
+        "ref-req": "RF-Conferma-eliminazione-sensore-simulato",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Monitoraggio-metriche",
+        "descr": "Verificare che il *Super Admin* possa monitorare le metriche di sistema",
+        "ref-req": "RF-Monitoraggio-metriche-di-sistema",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Gateway-online-offline",
+        "descr": "Verificare che il *Super Admin* possa visualizzare il numero di gateway online/offline",
+        "ref-req": "RF-Visualizzazione-gateway-offline-online",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Throughput-dati",
+        "descr": "Verificare che il *Super Admin* possa visualizzare il throughput dei dati",
+        "ref-req": "RF-Visualizzazione-throughput-dati",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Utilizzo-risorse-cloud",
+        "descr": "Verificare che il *Super Admin* possa visualizzare l'utilizzo delle risorse dei nodi cloud",
+        "ref-req": "RF-Visualizzazione-utilizzo-risorse-nodi-cloud",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Frequenza-disconnessioni",
+        "descr": "Verificare che il *Super Admin* possa visualizzare la frequenza delle disconnessioni dei gateway",
+        "ref-req": "RF-Visualizzazione-frequenza-disconnessioni-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Dimensioni-payload",
+        "descr": "Verificare che il *Super Admin* possa visualizzare le dimensioni dei payload dei pacchetti",
+        "ref-req": "RF-Visualizzazione-dimensioni-payload-pacchetti",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Data-staleness",
+        "descr": "Verificare che il *Super Admin* possa visualizzare la data staleness dei dati",
+        "ref-req": "RF-Visualizzazione-data-staleness",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Valori-out-of-range",
+        "descr": "Verificare che il *Super Admin* possa visualizzare i valori out-of-range rilevati",
+        "ref-req": "RF-Visualizzazione-valori-out-of-range",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Storico-possessori-sensore",
+        "descr": "Verificare che il *Super Admin* possa visualizzare lo storico dei tenant possessori di un sensore",
+        "ref-req": "RF-Visualizzazione-storico-possessori-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-tenant-possessore-sensore",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un sensore, ne visualizzi il nome",
+        "ref-req": "RF-Visualizzazione-singolo-tenant-possessore-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Periodo-associazione-sensore",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un sensore, ne visualizzi il periodo di associazione",
+        "ref-req": "RF-Visualizzazione-periodo-associazione-sensore",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Storico-possessori-gateway",
+        "descr": "Verificare che il *Super Admin* possa visualizzare lo storico dei tenant possessori di un gateway",
+        "ref-req": "RF-Visualizzazione-storico-possessori-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Nome-tenant-possessore-gateway",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un gateway, ne visualizzi il nome",
+        "ref-req": "RF-Visualizzazione-singolo-tenant-possessore-gateway",
+        "state": "NI"
+    },
+    {
+        "id": "TS-Periodo-associazione-gateway",
+        "descr": "Verificare che il *Super Admin*, visualizzando lo storico dei tenant possessori di un gateway, ne visualizzi il periodo di associazione",
+        "ref-req": "RF-Visualizzazione-periodo-associazione-gateway",
+        "state": "NI"
+    }
+]
