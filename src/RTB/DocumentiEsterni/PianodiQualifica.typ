@@ -213,7 +213,7 @@ Il Piano di qualifica determina 3 elementi essenziali:
 
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
-  *Ultimo accesso*: 5 febbraio 2026
+  *Ultimo accesso*: 18 febbraio 2026
 
 - *Piano di Progetto v1.1.0* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf \
