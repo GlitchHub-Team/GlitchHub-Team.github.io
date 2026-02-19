@@ -51,6 +51,7 @@ All'interno di quest'ultima si mettono a disposizione i seguenti documenti, oltr
   - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[Piano di Progetto v1.1.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianodiQualifica.pdf")[Piano di Qualifica v1.0.0]
   // VE
+  - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-02-10.pdf")[Verbale esterno 10/02/2026 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-02-03.pdf")[Verbale esterno 03/02/2026 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-01-27.pdf")[Verbale esterno 27/01/2026 v1.0.0]
   - #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliEsterni/2026-01-13.pdf")[Verbale esterno 13/01/2026 v1.0.0]
