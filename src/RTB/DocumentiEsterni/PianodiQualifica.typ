@@ -207,38 +207,38 @@ Il Piano di qualifica determina 3 elementi essenziali:
 // TODO: Per i documenti con versione sarebbe meglio indicare la versione nel nome e la data di ultimo accesso
 == Riferimenti
 === Riferimenti normativi
-- *Norme di Progetto* \
+- *Norme di Progetto v1.2.0* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf \
-  *Ultimo accesso*: versione 1.2.0
+  *Ultimo accesso*: 18 febbraio 2026
 
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
   *Ultimo accesso*: 5 febbraio 2026
 
-- *Piano di Progetto* \
+- *Piano di Progetto v1.1.0* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf \
-  *Ultimo accesso*: versione 0.8.0
+  *Ultimo accesso*: 18 febbraio 2026
 
 === Riferimenti informativi
-- *Glossario* \
+- *Glossario v0.5.0* \
   https://glitchhub-team.github.io/pdf/glossary.pdf \
-  *Ultimo accesso*: 29 dicembre 2025
+  *Ultimo accesso*: 18 febbraio 2026
 
 - *Slide T07 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf \
-  *Ultimo accesso*: 29 dicembre 2025
+  *Ultimo accesso*: 18 febbraio 2026
 
 - *Slide T08 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf \
-  *Ultimo accesso*: 29 dicembre 2025
+  *Ultimo accesso*: 18 febbraio 2026
 
 - *ISO/IEC 25010* \
   https://iso25000.com/index.php/en/iso-25000-standards/iso-25010 \
-  *Ultimo accesso*: 29 dicembre 2025
+  *Ultimo accesso*: 18 febbraio 2026
 
 - *Metrica software -- Wikipedia* \
   https://it.wikipedia.org/wiki/Metrica_software \
-  *Ultimo accesso*: 24 gennaio 2026
+  *Ultimo accesso*: 18 febbraio 2026
 
 = Metriche di qualità del processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
