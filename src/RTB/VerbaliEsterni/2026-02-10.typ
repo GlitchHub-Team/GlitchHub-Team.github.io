@@ -34,8 +34,8 @@
   htmlId: "RTB-VerbaliEsterni",
   verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
-  verificatore-esterno: "",
-  right-signature: "",
+  verificatore-esterno: "Cristian Pirlog",
+  right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
   tipo-verbale: "Esterno",
 )
 
