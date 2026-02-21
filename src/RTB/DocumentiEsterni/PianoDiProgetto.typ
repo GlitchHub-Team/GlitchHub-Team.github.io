@@ -370,7 +370,7 @@ Questa sezione descrive le pratiche adottate per la redazione del #gloss[Piano d
 Il *responsabile* è la figura incaricata di compilare e aggiornare il documento, con cadenza regolare al termine di ogni sprint.
 
 Il workflow previsto per ogni sprint è il seguente:
-1. Durante l'incontro settimanale del gruppo vengono analizzati i risultati dello sprint precedente e pianificate le attività e i compiti futuri;
+1. Durante la #gloss[sprint retrospective] del gruppo vengono analizzati i risultati dello sprint precedente e pianificate le attività e i compiti futuri;
 2. Il responsabile dello sprint compila il #gloss[consuntivo di periodo] e il #gloss[preventivo a finire] sulla base di quanto emerso in riunione, eseguendo i seguenti compiti:
   - descrive i compiti svolti;
   - redige la retrospettiva di periodo;
