@@ -312,8 +312,12 @@
         "definition": "È l'attività che studia i bisogni dell'utente e del dominio d'uso per definire che cosa il prodotto software deve fare per soddisfarli, senza descrivere come sarà realizzato. Produce una specifica _completa_, _verificabile_ e _tracciabile_ dei requisiti del sistema (lato soluzione)."
     },
     {
+        "term": "Preventivo a finire",
+        "definition": "È una sezione nel @{Piano di Progetto}, che viene compilata ogni @{sprint}, nel quale viene aggiornata la pianificazione futura e le risorse rimanenti in funzione delle risorse utilizzate nello @{sprint} corrente."
+    },
+    {
         "term": "Piano di Progetto",
-        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint: @{consuntivo a finire}, @{consuntivo di periodo}, previsione e analisi dei compiti svolti e dei rischi. In modo tale da ricalibrare le attività in corso d'opera."
+        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint: @{preventivo}, @{consuntivo di periodo}, @{preventivo a finire} e analisi dei compiti svolti e dei rischi. In modo tale da ricalibrare le attività in corso d'opera."
     },
     {
         "term": "Piano di Qualifica",
@@ -397,15 +401,15 @@
     },
     {
         "term": "Consuntivo di periodo",
-        "definition": "È una sezione nel @{Piano di Progetto} nel quale vengono analizzate le ore effettivamente utilizzate nello sprint interessato e di conseguenza le risorse utilizzate. Inoltre si aggiornano le ore e le risorse rimanenti."
+        "definition": "È una sezione nel @{Piano di Progetto}, che viene compilata ogni @{sprint}, nel quale vengono analizzate le ore effettivamente consumate nello @{sprint} interessato e di conseguenza le risorse utilizzate."
     },
     {
         "term": "Retrospettiva",
         "definition": "Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni."
     },
     {
-        "term": "Consuntivo a finire",
-        "definition": "È una sezione del @{Piano di Progetto} nel quale si stimano le ore e le risorse necessarie per completare le attività pianificate."
+        "term": "Preventivo",
+        "definition": "È una sezione del @{Piano di Progetto}, che viene compilata ogni @{sprint}, nel quale si stimano le ore e le risorse necessarie per completare le attività pianificate."
     },
     {
         "term": "Slack time",
