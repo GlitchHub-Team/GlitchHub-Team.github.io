@@ -49,109 +49,109 @@
 )
 
 = Introduzione
-Il presente verbale attesta che in data 13 gennaio 2026 alle 14:30 si è svolto l'incontro con il proponente M31 SRL, in modalità ibrida.
+Il presente verbale attesta che in data 13 gennaio 2026 alle 14:30 si è svolto l'incontro con il #gloss[proponente] M31 SRL, in modalità ibrida.
 
-L'incontro ha avuto l'obiettivo di discutere e chiarire alcuni aspetti funzionali del sistema sotto studio, con particolare riferimento agli use cases relativi alla gestione degli alert, alla visualizzazione dei dati, all'impersonificazione degli utenti, alla configurazione dei gateway e alla gestione della sicurezza e dell'osservabilità del sistema.
+L'incontro ha avuto l'obiettivo di discutere e chiarire alcuni aspetti funzionali del #gloss[sistema] sotto studio, con particolare riferimento agli use cases relativi alla gestione degli alert, alla visualizzazione dei dati, all'#gloss[impersonificazione] degli utenti, alla configurazione dei #gloss[gateway] e alla gestione della sicurezza e dell'osservabilità del #gloss[sistema].
 
 = Resoconto
 == Discussione su autenticazione e sicurezza
 Durante la riunione, il gruppo ha chiesto chiarimenti riguardo l'eventuale utilizzo di meccanismi di autenticazione a due fattori (2FA).
-Il proponente ha specificato che il supporto al 2FA è di interesse marginale e che non è richiesta un'implementazione esplicita di tale funzionalità nell'ambito del progetto.
+Il #gloss[proponente] ha specificato che il supporto al 2FA è di interesse marginale e che non è richiesta un'implementazione esplicita di tale funzionalità nell'ambito del progetto.
 
-È stata inoltre discussa la gestione delle API Key: l'azienda ha confermato che ha senso mostrare il token una sola volta al momento della creazione, per motivi di sicurezza, lasciando aperta la possibilità di rendere opzionale l'adozione delle API Key.
+È stata inoltre discussa la gestione delle #gloss[API] Key: l'azienda ha confermato che ha senso mostrare il token una sola volta al momento della creazione, per motivi di sicurezza, lasciando aperta la possibilità di rendere opzionale l'adozione delle #gloss[API] Key.
 
 == Gestione degli alert
-Il gruppo ha presentato la propria interpretazione degli alert di sistema.
+Il gruppo ha presentato la propria interpretazione degli alert di #gloss[sistema].
 
 M31 ha chiarito che:
-- la piattaforma non deve occuparsi della validazione dei valori oltre soglia;
-- la verifica di soglie applicative è demandata a piattaforme esterne;
-- gli alert gestiti dal cloud devono essere principalmente di tipo infrastrutturale o gestionale.
+- la piattaforma non deve occuparsi della #gloss[validazione] dei valori oltre soglia;
+- la #gloss[verifica] di soglie applicative è demandata a piattaforme esterne;
+- gli alert gestiti dal #gloss[cloud] devono essere principalmente di tipo infrastrutturale o gestionale.
 
 Sono stati ritenuti appropriati:
-- alert relativi a gateway offline;
-- alert relativi ai costi del tenant, con invio di una mail al superamento di una soglia (funzionalità opzionale).
+- alert relativi a #gloss[gateway] offline;
+- alert relativi ai costi del #gloss[tenant], con invio di una mail al superamento di una soglia (funzionalità opzionale).
 
 Gli alert proposti dal gruppo sono stati giudicati coerenti.
 
 == Visualizzazione dei dati e dashboard
-La proponente ha espresso parere positivo riguardo:
+La #gloss[proponente] ha espresso parere positivo riguardo:
 - l'uso di grafici per la visualizzazione dei dati dei sensori;
 - la visualizzazione dello storico dei dati;
 - il filtraggio dei dati storici;
 - la presenza di una dashboard generica per l'utente autenticato.
 
 È stata valutata positivamente l'introduzione di:
-- una mappa con la posizione dei gateway nella dashboard del Tenant Admin;
-- una visualizzazione analoga nella dashboard del Super Admin.
+- una mappa con la posizione dei #gloss[gateway] nella dashboard del #gloss[Tenant Admin];
+- una visualizzazione analoga nella dashboard del #gloss[Super Admin].
 
-Per le richieste dei gateway, è stata ritenuta adeguata una tabella semplice con stato della richiesta e azioni disponibili.
+Per le richieste dei #gloss[gateway], è stata ritenuta adeguata una tabella semplice con stato della richiesta e azioni disponibili.
 
 == Impersonificazione degli utenti
-Il gruppo ha approfondito il tema dell'impersonificazione.
+Il gruppo ha approfondito il tema dell'#gloss[impersonificazione].
 
 M31 ha chiarito che:
 - impersonare un account significa assumerne completamente il ruolo;
-- l'impersonificazione è usata dal Super Admin per risolvere problematiche operative;
-- l'operazione deve avvenire nei Tenant che hanno accettato la suddetta clausola.
+- l'#gloss[impersonificazione] è usata dal #gloss[Super Admin] per risolvere problematiche operative;
+- l'operazione deve avvenire nei #gloss[Tenant] che hanno accettato la suddetta clausola.
 
 È stato inoltre specificato che:
-- il Super-Admin deve poter accedere agli stessi dati del Tenant Admin anche senza impersonificazione, con esclusione delle informazioni più sensibili;
-- gli use cases possono essere ricondotti a un ruolo di Admin generico, considerando il Super Admin come utente fidato.
+- il Super-Admin deve poter accedere agli stessi dati del #gloss[Tenant Admin] anche senza #gloss[impersonificazione], con esclusione delle informazioni più sensibili;
+- gli use cases possono essere ricondotti a un ruolo di Admin generico, considerando il #gloss[Super Admin] come utente fidato.
 
-È stata suggerita la tecnologia open source *Keycloak* per la gestione delle utenze e dell'impersonificazione.
+È stata suggerita la tecnologia open source *Keycloak* per la gestione delle utenze e dell'#gloss[impersonificazione].
 
 == Audit log
 Il gruppo ha discusso la necessità di introdurre audit log.
 
 M31 ha confermato che:
 - gli audit log sono necessari;
-- il Tenant Admin deve poter visualizzare le operazioni degli operatori del proprio tenant;
+- il #gloss[Tenant Admin] deve poter visualizzare le operazioni degli operatori del proprio #gloss[tenant];
 - è sufficiente tracciare chi ha fatto cosa e quando;
 - il filtraggio per tipologia di azione è sensato;
 - l'esportazione in formato CSV è adeguata.
 
 == Configurazione dei gateway e gestione dei sensori
-È stata approfondita la gestione della frequenza di invio dei dati e delle tecniche di normalizzazione.
+È stata approfondita la gestione della frequenza di invio dei dati e delle tecniche di #gloss[normalizzazione].
 
 M31 ha chiarito che:
-- la frequenza di invio dati varia in base alla tipologia di sensore, ci sarà un parametro di default per ogni tipologia e successivamente ogni tenant potrà personalizzarlo;
-- il gateway può inviare dati atomici o in pacchetti;
-- è possibile definire limiti di invio a livello di gateway.
+- la frequenza di invio dati varia in base alla tipologia di sensore, #gloss[ci] sarà un parametro di default per ogni tipologia e successivamente ogni #gloss[tenant] potrà personalizzarlo;
+- il #gloss[gateway] può inviare dati atomici o in pacchetti;
+- è possibile definire limiti di invio a livello di #gloss[gateway].
 
-Dal punto di vista del Tenant:
+Dal punto di vista del #gloss[Tenant]:
 - è importante poter modificare la frequenza di invio per tipologia di sensore;
-- ogni gateway deve avere configurazioni di default e custom;
-- le modifiche devono essere inviate al gateway tramite comandi;
-- le configurazioni custom devono essere tracciate dal Cloud.
+- ogni #gloss[gateway] deve avere configurazioni di default e custom;
+- le modifiche devono essere inviate al #gloss[gateway] tramite comandi;
+- le configurazioni custom devono essere tracciate dal #gloss[Cloud].
 
 == Commissioning e decommissioning dei gateway
 Il commissioning è considerato opzionale:
-- per l'MVP è sufficiente che il Super Admin possa commissionare un numero arbitrario di gateway.
+- per l'#gloss[MVP] è sufficiente che il #gloss[Super Admin] possa commissionare un numero arbitrario di #gloss[gateway].
 
 Per il decommissioning:
-- deve essere possibile specificare quali gateway decommissionare;
+- deve essere possibile specificare quali #gloss[gateway] decommissionare;
 - il rifiuto della richiesta può essere rimosso.
 
 == Profili GATT e sensori simulati
 M31 ha confermato che:
-- ha senso modellare gateway con sensori simulati;
-- un singolo profilo GATT può fornire più tipologie di dato;
-- il sistema deve essere consapevole delle diverse misurazioni prodotte.
+- ha senso modellare #gloss[gateway] con sensori simulati;
+- un singolo #gloss[profilo GATT] può fornire più tipologie di dato;
+- il #gloss[sistema] deve essere consapevole delle diverse misurazioni prodotte.
 
 == Monitoraggio del sistema e requisiti non funzionali
-Il requisito di monitoraggio è da considerarsi obbligatorio.
+Il #gloss[requisito] di monitoraggio è da considerarsi obbligatorio.
 
 È sufficiente fare riferimento al capitolato e adottare una soluzione semplice ma scalabile.
 
-Per il Proof of Concept:
+Per il #gloss[Proof of Concept]:
 - non è richiesta una gestione completa di ruoli e permessi;
 - è fondamentale dimostrare connessione dei device, transito e crittografia dei dati.
 
 == Tecnologie suggerite
 M31 ha suggerito:
-- NATS per la comunicazione;
-- Node.js per i servizi applicativi, favorendo JavaScript o TypeScript lungo l'intero stack.
+- #gloss[NATS] per la comunicazione;
+- #gloss[Node.js] per i servizi applicativi, favorendo #gloss[JavaScript] o #gloss[TypeScript] lungo l'intero stack.
 
 = Attività conseguenti
 #table(
@@ -161,13 +161,13 @@ M31 ha suggerito:
 
   [Studio tecnologie suggerite], [Alessandro Dinato, Riccardo Graziani], [#issue(165), #issue(169)],
 
-  [Stesura dei requisi e realizzazione diagrammi use case],
+  [Stesura dei requisi e realizzazione diagrammi #gloss[use case]],
   [Hossam Ezzemouri,Jaume Bernardi, Michele Dioli],
   [#issue(166)],
 
   [Conclusione use cases Visualizzazione], [ Riccardo Graziani], [#issue(170)],
 
-  [Approfondimento normalizzazione dati],
+  [Approfondimento #gloss[normalizzazione] dati],
   [Jaume Bernardi, Alessandro Dinato, Riccardo Graziani, Elia Ernesto Stellin],
   [#issue(133)],
 

@@ -48,7 +48,7 @@ L'incontro è stato organizzato con lo scopo di organizzare la documentazione ne
 - un calendario *centralizzato*, con la possibilità di sincronizzarsi con altri calendari quali Google Calendar e Apple Calendar;
 - creazione, assegnazione e tracking delle *task* da eseguire;
 - generazione automatica di *diagrammi a sequenza* e *diagrammi di Gantt*;
-- sistema di raccolta documenti e note;
+- #gloss[sistema] di raccolta documenti e note;
 - integrazioni con *#gloss[GitHub]*, *Google Calendar*, *Google Drive* e *Gmail*
 Per tutte le comunicazioni informali è stato deciso di mantenere la piattaforma *Whatsapp*, mentre per le riunioni virtuali si continuerà ad utilizzare la piattaforma *#gloss[Discord]*.
 

@@ -11,7 +11,7 @@
     Prof. Vardanega Tullio \
     Prof. Cardin Riccardo \
   ],
-  date: datetime.today().display(),
+  date: "2025-10-31",
   subject: "Candidatura capitolato C7",
   logo: "../assets/loghi/GlitchHub-Team_LogoG.png",
   htmlId: "Candidatura-Generale",

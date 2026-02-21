@@ -56,7 +56,7 @@ L'incontro è stato organizzato con lo scopo di risolvere i problemi emersi dura
 
 = Resoconto della riunione
 == Organizzazione sprint settimanali
-Il gruppo, dopo aver valutato rispettivi impegni individuali e universitari, ha deciso di adottare un sistema di organizzazione temporale a _#gloss[sprint]_ settimanali in accordo con il modello di sviluppo _#gloss[Agile]_.
+Il gruppo, dopo aver valutato rispettivi impegni individuali e universitari, ha deciso di adottare un #gloss[sistema] di organizzazione temporale a _#gloss[sprint]_ settimanali in accordo con il modello di sviluppo _#gloss[Agile]_.
 
 Al termine di ogni #gloss[sprint] verrà svolta una cerimonia di _#gloss[sprint retrospective]_, fissata ogni mercoledì alle ore 14:30 in seguito a una votazione di gruppo, con lo scopo di analizzare il lavoro svolto, discutere insieme eventuali dubbi e/o problemi emersi durante la settimana e proporre soluzioni condivise. \
 Questa cerimonia avrà anche il ruolo di _#gloss[sprint review]_, dato che si analizzeranno i prodotti dello #gloss[sprint]. Una volta aggiudicato l'appalto, il gruppo procederà a separare le due cerimonie integrando l'azienda #gloss[proponente] nella _#gloss[sprint review]_.

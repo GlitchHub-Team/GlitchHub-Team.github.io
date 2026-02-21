@@ -60,7 +60,7 @@ Dopodiché, il gruppo si è allineato sui workflow e sulle convenzioni da adatta
 === Versionamento
 Essendo la produzione di documentazione un processo iterativo, è necessario tenere traccia di ogni versione dei documenti prodotti, in modo tale da tracciare, nel tempo, quali modifiche vengono applicate a essi e da chi.
 
-Per tale motivo, è stato deciso di adottare il sistema di versionamento #link("#gloss[https]://semver.org/lang/it/")[*Semantic Versioning*] (abbreviato SemVer), spesso impiegato in ambito di versionamento del Software, in cui ogni versione è descritta da 3 numeri naturali separati da punto (*`MAJOR.MINOR.PATCH`*), dove:
+Per tale motivo, è stato deciso di adottare il #gloss[sistema] di versionamento #link("#gloss[https]://semver.org/lang/it/")[*#gloss[Semantic Versioning]*] (abbreviato SemVer), spesso impiegato in ambito di versionamento del Software, in cui ogni versione è descritta da 3 numeri naturali separati da punto (*`MAJOR.MINOR.PATCH`*), dove:
 
 - *`MAJOR`*: rappresenta le modifiche sostanziali applicate al documento
   - Se `MAJOR = 0`, la versione è da considerarsi non "stabile", ovvero soggetta in futuro a cambiamenti rapidi e sostanziali. In particolare, #gloss[ci]ò rappresenta che il documento è in fase di prima stesura;
@@ -73,15 +73,15 @@ Per tale motivo, è stato deciso di adottare il sistema di versionamento #link("
 
 All'#gloss[incremento] di un numero di versione, tutti i numeri alla sua destra vengono messi a 0, per cui la versione `MINOR` successiva alla `0.1.1` non può essere `0.2.1`, ma deve essere necessariamente `0.2.0`.
 
-In questo sistema, quindi:
+In questo #gloss[sistema], quindi:
 - la prima *bozza* del documento è rappresentata dalla versione `0.0.1`,
 - la prima *stesura* ancora non verificata dalla versione `0.1.0`
 - la prima *stesura* verificata dalla versione `1.0.0`
 - e così via, fino al completamento del documento
 
-Sebbene questo sistema sia più complicato di un semplice sistema "a revisioni", in cui ogni revisione del documento viene rappresentata da un numero incrementale (ad es. "rev. 1", "rev. 2", "rev. 3", etc), d'altro canto, esso permette di rappresentare in modo conciso il cambiamento da una versione alla successiva.
+Sebbene questo #gloss[sistema] sia più complicato di un semplice #gloss[sistema] "a revisioni", in cui ogni revisione del documento viene rappresentata da un numero incrementale (ad es. "rev. 1", "rev. 2", "rev. 3", etc), d'altro canto, esso permette di rappresentare in modo conciso il cambiamento da una versione alla successiva.
 
-Inoltre, si noti che questo sistema è già stato adottato informalmente nelle stesure dei verbali precedenti, avvenute prima dello svolgimento della riunione in oggetto, tuttavia questo verbale sancisce ufficialmente la decisione del gruppo di utilizzarlo.
+Inoltre, si noti che questo #gloss[sistema] è già stato adottato informalmente nelle stesure dei verbali precedenti, avvenute prima dello svolgimento della riunione in oggetto, tuttavia questo verbale sancisce ufficialmente la decisione del gruppo di utilizzarlo.
 
 === Verifica
 Per quanto riguarda la #gloss[verifica] dei verbali, si è deciso di agire in questa maniera:

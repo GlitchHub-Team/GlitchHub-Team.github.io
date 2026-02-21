@@ -81,7 +81,7 @@
     },
     {
         "term": "Committente",
-        "definition": "Nel _Progetto Didattico_ lo sono i docenti ed hanno lo scopo di: misurare il progresso con due revisioni, regolare il Progetto Didattico e valutarlo"
+        "definition": "Nel _progetto didattico_ lo sono i docenti ed hanno lo scopo di: misurare il progresso con due revisioni, regolare il progetto didattico e valutarlo"
     },
     {
         "term": "Proponente",
@@ -185,11 +185,11 @@
     },
     {
         "term": "RTB",
-        "definition": "La _Requirements and Technology Baseline_ è una fase del @{Progetto Didattico} che fissa in modo stabile i @{requisito}{requisiti} da soddisfare, concordati con la @{proponente}, e motiva le tecnologie, i framework e le librerie scelti. È supportata dal @{Proof of Concept}."
+        "definition": "La _Requirements and Technology Baseline_ è una fase del @{Progetto didattico} che fissa in modo stabile i @{requisito}{requisiti} da soddisfare, concordati con la @{proponente}, e motiva le tecnologie, i framework e le librerie scelti. È supportata dal @{Proof of Concept}."
     },
     {
         "term": "PB",
-        "definition": "La _Product Baseline_ valuta la maturità della baseline architetturale del software e la sua realizzazione, includendo il design definitivo nel documento di @{Specifica Tecnica}. È presente un avanzamento sostanziale del prodotto software che viene sottoposto alla @{proponente} (come @{MVP}) per valutarne qualità e adeguatezza."
+        "definition": "La _Product Baseline_ valuta la maturità della baseline architetturale del software e la sua realizzazione, includendo il design definitivo nel documento di @{Specifica tecnica}. È presente un avanzamento sostanziale del prodotto software che viene sottoposto alla @{proponente} (come @{MVP}) per valutarne qualità e adeguatezza."
     },
     {
         "term": "Repository",
@@ -308,15 +308,19 @@
         "definition": "Percentuale di codice coperta dai test automatici, indica quanto è testata l'applicazione."
     },
     {
-        "term": "Analisi dei requisiti",
+        "term": "Analisi dei Requisiti",
         "definition": "È l'attività che studia i bisogni dell'utente e del dominio d'uso per definire che cosa il prodotto software deve fare per soddisfarli, senza descrivere come sarà realizzato. Produce una specifica _completa_, _verificabile_ e _tracciabile_ dei requisiti del sistema (lato soluzione)."
     },
     {
-        "term": "Piano di progetto",
-        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint: @{consuntivo a finire}, @{consuntivo di periodo}, previsione e analisi dei compiti svolti e dei rischi. In modo tale da ricalibrare le attività in corso d'opera."
+        "term": "Preventivo a finire",
+        "definition": "È una sezione nel @{Piano di Progetto}, che viene compilata ogni @{sprint}, nel quale viene aggiornata la pianificazione futura e le risorse rimanenti in funzione delle risorse utilizzate nello @{sprint} corrente."
     },
     {
-        "term": "Piano di qualifica",
+        "term": "Piano di Progetto",
+        "definition": "Documento gestionale che pianifica tempi, costi, risorse e rischi del progetto. Serve a monitorare l'avanzamento confrontando, per ogni sprint: @{preventivo}, @{consuntivo di periodo}, @{preventivo a finire} e analisi dei compiti svolti e dei rischi. In modo tale da ricalibrare le attività in corso d'opera."
+    },
+    {
+        "term": "Piano di Qualifica",
         "definition": "Documento gestionale che descrive come verranno svolte @{Verifica} e @{Validazione}, fissando gli obiettivi di qualità, le metriche e gli strumenti di controllo."
     },
     {
@@ -397,15 +401,15 @@
     },
     {
         "term": "Consuntivo di periodo",
-        "definition": "È una sezione nel @{Piano di Progetto} nel quale vengono analizzate le ore effettivamente utilizzate nello sprint interessato e di conseguenza le risorse utilizzate. Inoltre si aggiornano le ore e le risorse rimanenti."
+        "definition": "È una sezione nel @{Piano di Progetto}, che viene compilata ogni @{sprint}, nel quale vengono analizzate le ore effettivamente consumate nello @{sprint} interessato e di conseguenza le risorse utilizzate."
     },
     {
         "term": "Retrospettiva",
         "definition": "Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni."
     },
     {
-        "term": "Consuntivo a finire",
-        "definition": "È una sezione del @{Piano di Progetto} nel quale si stimano le ore e le risorse necessarie per completare le attività pianificate."
+        "term": "Preventivo",
+        "definition": "È una sezione del @{Piano di Progetto}, che viene compilata ogni @{sprint}, nel quale si stimano le ore e le risorse necessarie per completare le attività pianificate."
     },
     {
         "term": "Slack time",
@@ -484,15 +488,15 @@
         "definition": "La parte del prodotto che si prende in considerazione nel contesto di un @{caso d'uso} specifico. Si noti che il sistema di un caso d'uso può corrispondere all'@{attore} di un altro caso, a seconda della funzionalità che si intende descrivere."
     },
     {
-        "term": "Tenant User",
+        "term": "Tenant user",
         "definition": "Utente autenticato senza privilegi appartenente a uno specifico @{tenant}. Ha solo il potere di visualizzare i dati dei sensori ricevuti dai @{gateway}."
     },
     {
-        "term": "Tenant Admin",
+        "term": "Tenant admin",
         "definition": "Utente autenticato appartenente a un @{tenant} specifico con privilegi di amministrazione all'interno del proprio tenant e sui @{gateway} a esso associati."
     },
     {
-        "term": "Super Admin",
+        "term": "Super admin",
         "definition": "Utente autenticato con poteri di amministrazione globali a tutti i @{tenant} associati alla piattaforma @{cloud}"
     },
     {
@@ -500,7 +504,7 @@
         "definition": "Un qualunque client che possa accedere ai dati esposti dall'@{API} pubblica del sistema @{cloud}."
     },
     {
-        "term": "Simulatore di Gateway",
+        "term": "Simulatore di gateway",
         "definition": "Programma che simula in software il funzionamento di un @{gateway}, senza richiedere hardware specializzato a tale scopo."
     },
     {
@@ -509,7 +513,7 @@
     },
     {
         "term": "Impersonificazione",
-        "definition": "Atto con cui un @{Super Admin} si fa temporaneamente riconoscere dal sistema @{cloud} come utente appartenente a uno specifico @{tenant}, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un @{Tenant Admin}. Questo può avvenire soltanto se il @{tenant} impersonato ha precedentemente accettato un'apposita clausola contrattuale."
+        "definition": "Atto con cui un @{Super admin} si fa temporaneamente riconoscere dal sistema @{cloud} come utente appartenente a uno specifico @{tenant}, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un @{Tenant Admin}. Questo può avvenire soltanto se il @{tenant} impersonato ha precedentemente accettato un'apposita clausola contrattuale."
     },
     {
         "term": "Comando (gateway)",
@@ -576,7 +580,7 @@
         "definition": "Standard che descrive formalmente come strutturare un insieme di dati in uno specifico linguaggio di markup."
     },
     {
-        "term": "Progetto Didattico",
+        "term": "Progetto didattico",
         "definition": "Progetto svolto dal gruppo _GlitchHub Team_ per l'esame di Ingegneria del Software del Corso di Laurea Triennale in Informatica dell'Università del Padova, svoltosi nell'anno accademico 2025---2026."
     },
     {
@@ -600,7 +604,7 @@
         "definition": "@{Profilo GATT} usato per l'invio via @{bluetooth low energy (ble)}{BLE} di dati relativi a misurazioni di temperatura e umidità ambientali."
     },
     {
-        "term": "Specifica Tecnica",
+        "term": "Specifica tecnica",
         "definition": "_Ancora da definire_"
     },
     {
