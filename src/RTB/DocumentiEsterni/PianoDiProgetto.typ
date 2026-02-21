@@ -319,7 +319,7 @@ Il documento fornisce una visione complessiva e costantemente aggiornata dell'av
 Un aspetto fondamentale del documento è l'analisi dei rischi attesi, accompagnata dalle relative strategie di mitigazione, con l'obiettivo di ridurre l'incertezza e migliorare la capacità del gruppo di affrontare imprevisti tecnologici, organizzativi e/o personali.
 Il documento include inoltre il calendario di massima del progetto, la stima dei costi complessivi e l'impegno orario previsto per ogni ruolo, i quali sono stati definiti durante la *candidatura*.
 
-Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi e il #gloss[consuntivo a finire] dello sprint successivo, i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
+Poiché il gruppo ha deciso di adottare un approccio di sviluppo #gloss[agile], al termine di ogni sprint vengono aggiornati il #gloss[consuntivo di periodo], l'analisi dei rischi effettivamente occorsi, il #gloss[preventivo a finire] e il #gloss[preventivo] dello sprint successivo, i quali vengono analizzati durante lo #gloss[sprint retrospective] settimanale. \
 Questo processo permette di rivedere costantemente la pianificazione delle attività e dei compiti, migliorare i processi tramite retrospettive periodiche e mantenere una stima realistica del completamento finale.
 
 == Glossario
@@ -370,19 +370,19 @@ Questa sezione descrive le pratiche adottate per la redazione del #gloss[Piano d
 Il *responsabile* è la figura incaricata di compilare e aggiornare il documento, con cadenza regolare al termine di ogni sprint.
 
 Il workflow previsto per ogni sprint è il seguente:
-1. Durante l'incontro settimanale del gruppo vengono analizzati i risultati dello sprint precedente e pianificate le attività e i compiti futuri;
-2. Il responsabile dello sprint compila il consuntivo di periodo sulla base di quanto emerso in riunione, eseguendo i seguenti compiti:
+1. Durante la #gloss[sprint retrospective] del gruppo vengono analizzati i risultati dello sprint precedente e pianificate le attività e i compiti futuri;
+2. Il responsabile dello sprint compila il #gloss[consuntivo di periodo] e il #gloss[preventivo a finire] sulla base di quanto emerso in riunione, eseguendo i seguenti compiti:
   - descrive i compiti svolti;
   - redige la retrospettiva di periodo;
-  - aggiorna le risorse impiegate;
   - registra i rischi occorsi analizzandone cause e modalità di gestione;
+  - aggiorna le risorse impiegate;
   - aggiorna ore e budget rimanente.
-3. Infine, definisce i compiti da svolgere nello sprint corrente, individua i rischi attesi e compila il preventivo delle risorse necessarie.
+3. Infine, definisce i compiti da svolgere nello sprint corrente, individua i rischi attesi e compila il #gloss[preventivo] delle risorse necessarie.
 
 Per rendere più efficiente questo processo è stato sviluppato uno script in #gloss[Go] che, a partire dai *custom fields* delle #gloss[GitHub Issue] e dallo sprint selezionato, genera automaticamente la sezione dello sprint con costi e ore aggiornate. \
 Le parti descrittive e narrative richiedono comunque l'intervento del responsabile, che deve completarle manualmente.
 
-In ogni caso, è preferibile che dopo la riunione vengano compilati sia il consuntivo dello sprint concluso sia il consuntivo a finire dello sprint successivo, così da mantenere una pianificazione sempre aggiornata e accurata.
+In ogni caso, è preferibile che dopo la riunione vengano compilati sia il #gloss[consuntivo di periodo] e il #gloss[preventivo a finire] dello sprint concluso sia il #gloss[preventivo] dello sprint successivo, così da mantenere una pianificazione sempre aggiornata e accurata.
 
 
 = Analisi e mitigazione dei rischi
@@ -1144,10 +1144,10 @@ Dato il #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[cap
 - *Framework front-end*: il gruppo avrà bisogno di esplorare un framework per lo sviluppo di un'applicazione che gestisca il sistema. Le probabili alternative che il gruppo andrà ad esplorare sono: *Angular* e *React*.
 = Pianificazione e analisi sprint per RTB
 Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
-Ogni #gloss[sprint] viene valutato attraverso un #gloss[consuntivo di periodo], i compiti svolti, i rischi occorsi e la #gloss[retrospettiva di periodo].
+Ogni #gloss[sprint] viene valutato attraverso un #gloss[consuntivo di periodo], il #gloss[preventivo a finire], i compiti svolti, i rischi occorsi e la #gloss[retrospettiva di periodo].
 
 Al termine di ogni #gloss[sprint] viene redatta la programmazione e la previsione dello sprint successivo.
-Vengono così stilati il #gloss[consuntivo a finire], i rischi attesi, le attività e i compiti da svolgere.
+Vengono così stilati il #gloss[preventivo], i rischi attesi, le attività e i compiti da svolgere.
 
 == Sprint 1 <sprint-1>
 Inizio: 12/11/2025 \
@@ -1166,7 +1166,7 @@ Il gruppo ha individuato i seguenti compiti da svolgere:
 Il gruppo prevede i seguenti rischi per lo *Sprint 1*:
 - *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici che limitano la loro disponibilità durante lo sprint.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -1261,6 +1261,7 @@ Tuttavia, il rischio è stato comunicato in tempo e i responsabili dell'attivit�
   oreEffettiveSprint1,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -1324,7 +1325,7 @@ Il gruppo ha individuato i seguenti compiti da svolgere:
 Il gruppo prevede i seguenti rischi per lo *sprint 2*:
 - *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici che limitano la loro disponibilità durante lo sprint.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -1422,6 +1423,7 @@ L'impatto è stato minimo, dato che la questione è stata risolta e non ha influ
   oreEffettiveSprint2,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -1487,7 +1489,7 @@ Il gruppo prevede i seguenti rischi per lo *sprint 3*:
 - *RO3*(@RO4): ci potrebbero essere opinioni contrastanti nel brainstorming sull'analisi dei requisiti;
 - *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici che limitano la loro disponibilità durante lo sprint.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -1580,6 +1582,7 @@ Il rischio ha avuto un impatto medio, in quanto era stato preventivato ma rimane
   oreEffettiveSprint3,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -1645,7 +1648,7 @@ Il gruppo prevede i seguenti rischi per lo *sprint 4*:
 - *RO3*(@RO3): andando in profondità nei casi d'uso potrebbero sorgere dubbi, bloccando così lo sviluppo di certi casi d'uso;
 - *RP1*(@RP1): alcuni membri del gruppo potrebbero avere impegni accademici imprevisti.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -1750,6 +1753,7 @@ Questo rischio ha avuto un impatto medio in quanto ha causato l'insorgere di dub
   oreEffettiveSprint4,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -1816,7 +1820,7 @@ Il gruppo prevede i seguenti rischi per lo *sprint 5*:
 - *RO3* (@RO3): analogamente allo sprint precedente (vd. @sprint-4-rischi-attesi), un ulteriore studio degli use case può portare alla creazione di ulteriori dubbi che possono rallentare lo sviluppo degli use case.
 - *RP1* (@RP1): alcuni membri del gruppo potrebbero avere impegni accademici imprevisti, che possono rendere più difficile un lavoro sincrono di brainstorming e di studio.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -1909,6 +1913,7 @@ Il gruppo ha riscontrato principalmente i seguenti rischi:
   oreEffettiveSprint5,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -1979,7 +1984,7 @@ Il gruppo di lavoro per il *Piano di Qualifica* ha individuato i seguenti compit
 - *RO1* (@RO1): il mancato rispetto delle scadenze prefissate potrebbe ritardare notevolmente gli sviluppi dell'*Analisi dei Requisiti*, la cui redazione sarà ulteriormente rallentata nel periodo di sessione di studi invernale, fissata dal *19 gennaio 2026* al *21 febbraio 2026*;
 - *RO2* (@RO2): l'errata organizzazione e distribuzione delle risorse del gruppo può portare a uno sbilanciamento nel carico di lavoro tra i due sottogruppi formati per lo sprint corrente.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -2080,6 +2085,7 @@ La task è stata di conseguenza posticipata allo sprint successivo dandole una p
   oreEffettiveSprint6,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -2144,7 +2150,7 @@ In seguito sono mostrati i compiti identificati:
 - *RP1* (@RP1): trovandoci in prossimità della sessione invernale di esami la disponibilità temporale dei membri del gruppo potrebbe risultare ridotta a causa degli impegni accademici in concomitanza
 - *RO1* (@RO1): dalla la possibilità che RP1 si verifichi potrebbe avvenire ritardi nel completamento delle task assegnate
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -2239,6 +2245,7 @@ agli use case analizzati, ma solo una parte di essi. L'impatto è valutato come 
   oreEffettiveSprint7,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -2304,7 +2311,7 @@ In seguito sono mostrati i compiti identificati:
 - *RO2* (@RO2): l'errata organizzazione e distribuzione delle risorse del gruppo può portare ad un carico di lavoro squilibrato fra il gruppo che deve scrivere i diagrammi degli use case e gli altri membri del gruppo.
 - *RP1* (@RP1): la *sessione invernale d'esami* potrebbe influire negativamente riguardo le scadenze prefissate.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -2394,6 +2401,7 @@ L'impatto di questi rischi è stato relativamente basso dato all'anticipata prev
   oreEffettiveSprint8,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
@@ -2480,7 +2488,7 @@ Di seguito sono elencati i compiti individuati:
 // TODO: RT2 non ha ancora definiti occorrenza e impatto, l'ho messo comunque perché ha senso con le attività che abbiamo svolto
 - *RT2* (@RT2): il passaggio alla pratica nel #gloss[PoC] espone il gruppo a imprevisti tecnici e tempi di debugging superiori alla norma a causa della scarsa familiarità pratica con le tecnologie.
 
-=== Consuntivo a finire
+=== Preventivo
 ==== Preventivo risorse da utilizzare
 #tabella-paginata(
   table(
@@ -2585,6 +2593,7 @@ L'esecuzione parallela delle attività di sviluppo e redazione documentale ha ri
   oreEffettiveSprint9,
 )
 
+=== Preventivo a finire
 ==== Aggiornamento ore rimanenti
 #tabella-paginata(
   table(
