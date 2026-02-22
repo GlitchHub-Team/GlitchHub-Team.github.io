@@ -212,6 +212,15 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.2.2",
+      "22/02/2026",
+      "Elia Ernesto Stellin",
+      "Jaume Bernardi",
+      [
+        Sistemati diagrammi per #ref-uc(<Creazione-tenant>), #ref-uc(<Eliminazione-tenant>), #ref-uc(<Associazione-gateway-tenant>), #ref-uc(<Decommissioning-gateway>) e definizione di #ref-uc(<Associazione-gateway-tenant>)
+      ]
+    ),
+    (
       "1.2.1",
       "18/02/2026",
       "Alessandro Dinato",
@@ -600,8 +609,8 @@
 
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Jaume Bernardi",
+  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   tipo-documento: "Analisi dei Requisiti",
 )
 
@@ -3129,7 +3138,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Selezione-gateway-super-admin>)
   - #ref-uc(<Selezione-tenant-super-admin>)
-// - #ref-uc(<Configurazione-gateway>)
+- *Estensioni*:
+  - #ref-uc(<Gateway-non-raggiungibile>)
 
 ===== #sub-uc([Selezione Gateway], "Selezione-gateway-super-admin")
 - *Attore principale*: Super Admin
