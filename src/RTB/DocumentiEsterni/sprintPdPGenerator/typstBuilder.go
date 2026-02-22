@@ -139,7 +139,7 @@ const (
 	=== Rischi attesi
 	Descrivere i rischi attesi
 	
-	=== Consuntivo a finire
+	=== Preventivo
 	==== Preventivo risorse da utilizzare
 	#tabella-paginata(
 		table(
@@ -202,6 +202,7 @@ const (
 	oreEffettiveSprint%d,
 	)
 
+	=== Preventivo a finire
 	==== Aggiornamento ore rimanenti
 	#tabella-paginata(
   	table(
