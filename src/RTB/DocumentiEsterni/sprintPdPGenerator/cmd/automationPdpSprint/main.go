@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"scriptPdP/internal"
 
 	"github.com/joho/godotenv"
 )
@@ -28,13 +29,13 @@ func main() {
 
 	fmt.Printf("Recupero issue dal project #%d di %s...\n", projectNumber, owner)
 
-	issues, sprintStartDate, sprintEndDate, err := fetchProjectIssues(token, owner, projectNumber, isOrganization, sprint)
+	issues, sprintStartDate, sprintEndDate, err := internal.FetchProjectIssues(token, owner, projectNumber, isOrganization, sprint)
 	if err != nil {
 		fmt.Printf("Errore: %v\n", err)
 		os.Exit(1)
 	}
 
-	content := generateTypstContent(&issues, sprint, sprintStartDate, sprintEndDate)
+	content := internal.GenerateTypstContent(&issues, sprint, sprintStartDate, sprintEndDate)
 
 	outputFile := fmt.Sprintf("sprint%d.typ", sprint)
 
