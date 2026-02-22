@@ -209,8 +209,17 @@
 #let ref-uc = ref-uc.with(section-prefix: "§")
 #show: report.with(
   titolo: "Analisi dei Requisiti",
-  stato: "Verificato",
+  stato: "Da verificare",
   registro-modifiche: (
+    (
+      "1.2.2",
+      "22/02/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [
+        Sistemati diagrammi per #ref-uc(<Creazione-tenant>), #ref-uc(<Eliminazione-tenant>), #ref-uc(<Associazione-gateway-tenant>), #ref-uc(<Decommissioning-gateway>) e definizione di #ref-uc(<Associazione-gateway-tenant>)
+      ]
+    ),
     (
       "1.2.1",
       "18/02/2026",
@@ -3129,7 +3138,8 @@ Si noti che le funzionalità del *Tenant User* sono un sottoinsieme stretto dell
 - *Inclusioni*:
   - #ref-uc(<Selezione-gateway-super-admin>)
   - #ref-uc(<Selezione-tenant-super-admin>)
-// - #ref-uc(<Configurazione-gateway>)
+- *Estensioni*:
+  - #ref-uc(<Gateway-non-raggiungibile>)
 
 ===== #sub-uc([Selezione Gateway], "Selezione-gateway-super-admin")
 - *Attore principale*: Super Admin
