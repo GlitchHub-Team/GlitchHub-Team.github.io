@@ -209,13 +209,13 @@
 #let ref-uc = ref-uc.with(section-prefix: "§")
 #show: report.with(
   titolo: "Analisi dei Requisiti",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.2.2",
       "22/02/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Jaume Bernardi",
       [
         Sistemati diagrammi per #ref-uc(<Creazione-tenant>), #ref-uc(<Eliminazione-tenant>), #ref-uc(<Associazione-gateway-tenant>), #ref-uc(<Decommissioning-gateway>) e definizione di #ref-uc(<Associazione-gateway-tenant>)
       ]
@@ -609,8 +609,8 @@
 
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Jaume Bernardi",
+  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   tipo-documento: "Analisi dei Requisiti",
 )
 
