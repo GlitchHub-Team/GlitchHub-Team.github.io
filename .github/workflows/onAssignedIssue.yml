@@ -1,0 +1,13 @@
+name: Test Recall Local
+
+on:
+  issues:
+    types: [assigned]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
+
+jobs:
+  call-automation:
+    uses: GlitchHub-Team/actions/.github/workflows/branch-action.yml@main
+    secrets: inherit
