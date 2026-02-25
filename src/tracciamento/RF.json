@@ -1797,9 +1797,7 @@
         "ref_uc": [
             "<Visualizzazione-stato-autenticazione-gateway>"
         ],
-        "ref_capitolato": [
-            ""
-        ]
+        "ref_capitolato": []
     },
     {
         "id": "RF-Visualizzazione-stato-operativo-gateway",
