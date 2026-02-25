@@ -36,7 +36,7 @@
 = Introduzione
 Il presente verbale attesta che in data 24 febbraio 2026 dalle 14:30 alle 15:20, si è svolto l'incontro con la proponente *M31 SRL*, in modalità remota.
 
-Durante l'incontro il gruppo ha riportato l'esito degli incotri di rtb con i professori, succesivamnte sono stati dati consigli pratici su come avanzare.
+Durante l'incontro il gruppo ha riportato l'esito degli incotri di rtb con i professori, succesivamente sono stati dati consigli pratici su come avanzare.
 
 = Resoconto
 
