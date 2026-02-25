@@ -1,0 +1,16 @@
+name: "Creazione branch su assegnazione issue"
+on:
+  issues:
+    types: [assigned]
+
+permissions:
+  contents: write
+  issues: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
+
+jobs:
+  call-automation:
+    uses: GlitchHub-Team/actions/.github/workflows/branch-action.yml@main
+    secrets: inherit
