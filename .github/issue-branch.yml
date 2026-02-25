@@ -1,8 +1,0 @@
-# Configurazione per il nome del branch
-branchName: '${scope}-${issue.number}-${issue.title}'
-variables:
-  - name: scope
-    source: title
-    regex: '^\[(.+?)\].*'
-    defaultValue: 'no-scope'
-silent: true
