@@ -4,17 +4,8 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Da Verificare",
+  stato: "Verificato",
   registro-modifiche: (
-    (
-      "1.3.0",
-      "26/02/2026",
-      "Riccardo Graziani",
-      "-",
-      [Modificata @gestione-processi-attivita-previste per riflettere il nuovo workflow basato su _issue-branch_;
-      Aggiunta @infrastruttura-creazione-github-branches per descrivere convenzioni di nomenclatura dei branch automatici
-      ]
-    ),
     (
       "1.2.0",
       "18/02/2026",
@@ -122,8 +113,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Norme di Progetto",
 )
 
@@ -836,11 +827,7 @@ La *gestione dei processi* è composta dalle attività compiute dal gruppo per p
 === Strumenti a supporto
 - #gloss[GitHub Issues]: Il gruppo utilizza l'Issue Tracking System nativo di #gloss[GitHub] per classificare le attività da compiere e assegnarle ai membri del gruppo. Con l'utilizzo delle #gloss[GitHub Actions], la loro creazione è ampiamente facilitata.
 
-- #gloss[GitHub Actions]: Il gruppo utilizza le #gloss[GitHub Actions] per automatizzare la creazione di _branch_ specifici per ogni _issue_, in modo tale da facilitare l'applicazione dei workflow di verifica tramite #gloss[pull request]. Sono inoltre presenti altre automazioni che facilitano la gestione delle _issue_, come ad esempio la compilazione automatica di alcuni campi.
-
 - #gloss[GitHub Project]: Il gruppo lo utilizza poiché le _issues_ semplici presentano una serie limitata di campi compilabili. I _projects_ permettono di rendere le _issues_ più descrittive, aggiungendo ad esse ulteriori campi quali la data d'inizio e la data di fine dell'attività, le ore di lavoro previste e le ore effettive. Inoltre, i _projects_ permettono di raggruppare le issue provenienti da diverse #gloss[repository].
-
-- #gloss[Pull Request]: Il gruppo utilizza il sistema di _Pull Request_ di #gloss[GitHub] come strumento di verifica per garantire che tutte le modifiche al codice e alla documentazione siano verificate da un altro membro del gruppo, in modo tale da assicurare la conformità delle modifiche effettuate rispetto agli standard di qualità stabiliti dal gruppo.
 
 === Attività previste <gestione-processi-attivita-previste>
 Le attività previste nella gestione di processi sono le seguenti:
@@ -850,8 +837,7 @@ Le attività previste nella gestione di processi sono le seguenti:
 - #link(<gestione-processi-revisione-valutazione>)[Revisione e valutazione]
 - #link(<gestione-processi-conclusione>)[Conclusione]
 
-// TODO: Linkato il verbale del 24 febbraio anche se non esiste ancora, penso di aver scritto la path correttamente 
-Si noti che la descrizione di questo processo riguarda le attività rendicontabili il cui sviluppo produce prodotti di progetto "esterni", ovvero tutto il codice e la documentazione richiesta dal capitolato e dalle specifiche del progetto didattico. Inoltre, in ogni successiva sottosezione si riportano i passaggi da seguire per gestire le #gloss[GitHub Issues] relative a specifiche _task_, secondo quanto deciso dal gruppo nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[*verbale interno del 30 gennaio 2026*] e nel #link("https://glitchhub-team.github.io/pdf/PB/VerbaliInterni/2026-02-24.pdf")[*verbale interno del 24 febbraio 2026*].
+Si noti che la descrizione di questo processo riguarda le attività rendicontabili il cui sviluppo produce prodotti di progetto "esterni", ovvero tutto il codice e la documentazione richiesta dal capitolato e dalle specifiche del progetto didattico. Inoltre, in ogni successiva sottosezione si riportano i passaggi da seguire per gestire le #gloss[GitHub Issues] relative a specifiche _task_, secondo quanto deciso dal gruppo nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[*verbale interno del 30 gennaio 2026*]
 
 Le attività non rendicontabili o di "palestra", ovvero il cui svolgimento non influisce sul budget fissato dal gruppo, seguono un ciclo di vita simile ma che spesso non comprende la fase di #link(<gestione-processi-revisione-valutazione>)[revisione e valutazione] e una fase di #link(<gestione-processi-conclusione>)[conclusione] più semplificata, ma ciononostante vengono tracciate con le #gloss[GitHub Issues].
 
@@ -877,9 +863,6 @@ Quando si deve pianificare lo svolgimento di una specifica _task_, il #gloss[res
 
 Inoltre, lo stato dell'_issue_ rilevata dev'essere impostato a *"Ready"*, il quale indica che l'issue è pronta per essere svolta dall'assegnatario nell'iterazione corrente.
 
-Infine, l'assegnazione della issue scatena l'esecuzione della #gloss[GitHub Action] che crea un _branch_ specifico per l'_issue_ stessa: in questo modo l'assegnatario può lavorare sulla _task_ in modo isolato, senza interferire con il lavoro degli altri membri del gruppo, e può facilmente tenere traccia del lavoro svolto per quella specifica _task_.
-Le convenzioni di nomenclatura usate nella creazione automatica del branch sono descritte nella @infrastruttura-creazione-github-branches.
-
 Il gruppo applica la procedura di tracciamento sopra descritta anche alle _task_ di "palestra" citate in precedenza con lo scopo di tenere traccia del carico effettivo di ogni membro del gruppo, il quale non può essere rappresentato fedelmente dal numero di ore spese su attività solamente rendicontabili.
 
 === Esecuzione e controllo <gestione-processi-esecuzione-controllo>
@@ -893,15 +876,10 @@ Una volta che l'attività è stata svolta, è fondamentale che questa venga veri
 // TODO: (post-RTB) aggiungere riferimento a processo di verifica codice
 Il flusso di lavoro per le attività di verifica di documentazione è descritto nella @doc-verifica.
 
-Il processo di verifica di un'_issue_ segue lo stesso *workflow* sia per _issue_ che apportano modifiche che si riscontrano immediatamente nella #gloss[repository] pubblica (ossia il sito web), sia per _issue_ che non apportano modifiche immediate (come nel caso di #gloss[documenti incrementali]).
+Il processo di verifica di un'_issue_ può avvenire in più modi:
+- Per _issue_ che apportano modifiche che si riscontrano immediatamente nella #gloss[repository] pubblica (ovvero il sito web), allora è importante aprire una #gloss[Pull Request] (PR) che descrive la modifica apportata e segnare l'issue come *"In review"* sul _project_.
 
-Il processo di verifica avviene nel seguente modo:
-- L'assegnatario dell'_issue_ notifica al #gloss[verificatore] che l'attività è stata completata e che è pronta per essere verificata, aprendo di conseguenza la relativa #gloss[pull request];
-- Nella #gloss[pull request] devono essere indicati:
-  - il _reviewer_, assegnando il #gloss[verificatore] individuato per la _issue_;
-  - l'_assignee_, in cui deve essere indicato l'assegnatario originale dell'_issue_ che ha svolto la _task_;
-  - la _milestone_ corrispondente all'iterazione in cui è stata svolta la _task_;
-- La relativa _issue_ deve essere segnata come *"In review"* sul _project_.
+- Altrimenti, se l'attività non apporta modifiche immediate sulla repository pubblica, ad esempio nel caso della modifica di un #gloss[documento incrementale], allora è necessario segnare comunque l'issue come *"In review"*, ma anche creare un'ulteriore _issue_ relativa alla _task_ di verifica e segnarla come *"In progress"*, finché il processo di verifica non finisce.
 
 === Conclusione <gestione-processi-conclusione>
 Per utilizzare una linea di lavoro comune, il gruppo applica una _Definition of Done_, ovvero una definizione di cosa determina se un'attività sia conclusa o meno, ben precisa: _Un attività è conclusa quando è stata approvata definitivamente da un verificatore diverso dall'assegnatario originale_.
@@ -911,7 +889,7 @@ Questa definizione garantisce che il gruppo possa determinare in ogni momento qu
 Quando una _task_ viene conclusa, il suo assegnatario deve modificare la relativa _issue_ impostando i seguenti campi:
 - _End Date_: data effettiva di fine della _task_
 - _Worked Hours_: le ore effettive di lavoro sulla _task_
-  - L'_issue_ relativa alla _task_ deve essere impostata come *"Done"*.
+  - L'_issue_ relativa alla _task_ e l'eventuale _issue_ relativa alla sua verifica devono essere impostate come *"Done"*
 
 #set heading(outlined: true)
 === Ruoli <divisione-ruoli>
@@ -1071,7 +1049,7 @@ Inoltre, la cartella `src/` contiene al suo interno:
 - La cartella `assets/`, che contiene tutti gli asset usati nei documenti, tra cui immagini, diagrammi e font personalizzati;
 - La cartella `lib/`, che contiene le librerie usate dai file Typst;
 - La cartella `tracciamento/`, che contiene tutti i file JSON di tracciamento dei requisiti descritti nella @validazione-implementazione-processo;
-- Il file `glossary.json`, che contiene tutti i termini del glossario usati nei documenti, con le relative definizioni e link alle sezioni in cui sono descritti.
+- Il file `glossary.json`, che contiene
 
 ===== Repository PoC (#repo("poc")[`GlitchHub-Team/PoC`]) <infrastruttura-github-repo-poc>
 La #gloss[repository] che contiene il codice sorgente del #gloss[PoC] contiene al suo interno:
@@ -1083,7 +1061,7 @@ La #gloss[repository] che contiene il codice sorgente del #gloss[PoC] contiene a
 - Il file `docker-compose.yml` che contiene la configurazione di *Docker Compose* per l'esecuzione del PoC su qualunque computer.
 
 ===== Repository GitHub Actions (#repo("actions")[`GlitchHub-Team/actions`])
-Questa #gloss[repository] viene usata dal gruppo per raggruppare tutte le #gloss[GitHub Actions] comuni a tutte le altre repository.
+Questa #gloss[repository] viene usata dal gruppo per raggruppare tutte le #gloss[GitHub ]Actions comuni a tutte le altre repository.
 
 Si nota principalmente l'_action_ `.github/workflows/issue-action.yml` che consente di assegnare automaticamente qualunque #gloss[Github Issue] al #gloss[GitHub Project] del gruppo, compilando in modo automatico i campi _Sprint_ e _Sprint Role_ dell'_issue_.
 
@@ -1101,14 +1079,6 @@ Dove:
 - *`attività`* rappresenta una breve descrizione delle modifiche apportate dall'_issue_.
 
 Per maggiori informazioni riguardanti la gestione delle _issues_ durante lo svolgimento della relativa _task_, si consiglia di consultare la @gestione-processi-attivita-previste.
-
-===== GitHub branches <infrastruttura-creazione-github-branches>
-Come specificato nella sezione @gestione-processi-attivita-previste, la creazione di una _issue_ legata ad una _task_ scatena l'esecuzione di una #gloss[GitHub Action] che crea un _branch_ specifico per l'_issue_ stessa, con il nome che segue la convenzione:
-#align(center)[*`issue-number_scope_issue-title`*] 
-Dove:
-- *`issue-number`* rappresenta il numero identificativo dell'_issue_ a cui il _branch_ è legato, che viene assegnato automaticamente da GitHub al momento della creazione dell'_issue_.
-- *`scope`* rappresenta ciò che l'issue tracciata dal nuovo _branch_ modifica, seguendo la stessa convenzione di nomenclatura usata nella creazione delle _issue_.
-- *`issue-title`* rappresenta il titolo dell'_issue_ a cui il _branch_ è legato, in cui gli spazi sono rimpiazzati dai trattini bassi (quindi un titolo come `Aggiornamento documentazione` diventa `Aggiornamento_documentazione`).
 
 ===== GitHub Project
 Il gruppo ha deciso di utilizzare un #gloss[GitHub Project] per raggruppare tutte le _issue_ delle diverse #gloss[repository] in un luogo unico e per assegnare a ogni _issue_ dei campi aggiuntivi che descrivono l'organizzazione delle relative _task_. La descrizione dei campi aggiuntivi forniti dal _project_ è presente nella @gestione-processi-attivita-previste.
