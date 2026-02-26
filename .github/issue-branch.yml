@@ -1,2 +1,6 @@
-branchName: '${issue.number}${issue.title}'
+# Formatta il nome del branch come issue-number
+branchName: short
+# Evita di inserire commenti automatici da parte dell'automation
 silent: true
+# Elimina branch dopo chiusura issue
+autoDeleteBranch: true
