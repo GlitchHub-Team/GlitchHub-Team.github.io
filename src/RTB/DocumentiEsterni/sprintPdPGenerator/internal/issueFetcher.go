@@ -1,4 +1,4 @@
-package main
+package internal
 
 import (
 	"bytes"
@@ -109,7 +109,7 @@ type FieldValue struct {
 	} `json:"users,omitempty"`
 }
 
-func fetchProjectIssues(token, owner string, projectNumber int, isOrg bool, sprint int) ([]Issue, time.Time, time.Time, error) {
+func FetchProjectIssues(token, owner string, projectNumber int, isOrg bool, sprint int) ([]Issue, time.Time, time.Time, error) {
 	var allIssues []Issue
 	var cursor *string
 	sprintStartDate := time.Time{}

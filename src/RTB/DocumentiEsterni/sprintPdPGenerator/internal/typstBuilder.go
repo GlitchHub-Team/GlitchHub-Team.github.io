@@ -1,4 +1,4 @@
-package main
+package internal
 
 import (
 	"bytes"
@@ -10,7 +10,7 @@ import (
 
 const (
 	SPRINT_TEMPLATE = `
-	#import "../../../Templates/templateDocumentiGenerici.typ": *
+	#import "../../../../../Templates/templateDocumentiGenerici.typ": *
 	#import "@preview/cetz:0.4.2"
 	#import "@preview/cetz-plot:0.1.3": chart, plot
 
@@ -275,6 +275,16 @@ var nameToUsername = map[string]string{
 	"Elia Ernesto Stellin": "elia-stellin-unipd",
 }
 
+var usernameToName = map[string]string{
+	"jaumebernardi":        "Jaume Bernardi",
+	"aledinato":            "Alessandro Dinato",
+	"MicheleDioli":         "Michele Dioli",
+	"NotHoss":              "Hossam Ezzemouri",
+	"Riccardo-Graziani-04": "Riccardo Graziani",
+	"SalvaSiria3":          "Siria Salvalaio",
+	"elia-stellin-unipd":   "Elia Ernesto Stellin",
+}
+
 func formatDate(t time.Time) string {
 	if t.IsZero() {
 		return ""
@@ -407,9 +417,9 @@ func buildCosts(content string, resources *map[string]map[string]int, prevResour
 	return strings.Replace(content, placeholder, table, 1)
 }
 
-func removeTaskPalestraIssues(issues []Issue) []Issue {
+func removeTaskPalestraIssues(issues *[]Issue) []Issue {
 	var filteredIssues []Issue
-	for _, issue := range issues {
+	for _, issue := range *issues {
 		isTaskPalestra := false
 		for _, label := range issue.Labels {
 			if label == "task-palestra" {
@@ -424,12 +434,12 @@ func removeTaskPalestraIssues(issues []Issue) []Issue {
 	return filteredIssues
 }
 
-func generateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time, sprintEndDate time.Time) string {
+func GenerateTypstContent(issues *[]Issue, sprint int, sprintStartDate time.Time, sprintEndDate time.Time) string {
 	var buf bytes.Buffer
 
 	var content = fmt.Sprintf(SPRINT_TEMPLATE, sprint, sprint, formatDate(sprintStartDate), formatDate(sprintEndDate), sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint, sprint)
 
-	issuesFiltered := removeTaskPalestraIssues(*issues)
+	issuesFiltered := removeTaskPalestraIssues(issues)
 
 	expSprintUsage := ResourceUsage(&issuesFiltered, sprint, Expected)
 	effSprintUsage := ResourceUsage(&issuesFiltered, sprint, Effective)
