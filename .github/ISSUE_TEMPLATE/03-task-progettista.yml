@@ -9,3 +9,11 @@ body:
   id: description
   attributes:
     label: Descrizione della Task
+
+- type: checkboxes
+  id: create-branch
+  attributes:
+    label: Issue Branch
+    options:
+    - label: "**NON** creare branch per questa issue"
+      required: false
