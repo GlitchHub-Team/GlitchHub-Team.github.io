@@ -35,6 +35,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	//fmt.Print(issues)
+
 	content := internal.GenerateTypstContent(&issues, sprint, sprintStartDate, sprintEndDate)
 
 	outputFile := fmt.Sprintf("sprint%d.typ", sprint)

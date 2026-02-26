@@ -14,6 +14,7 @@ import (
 const graphqlEndpoint = "https://api.github.com/graphql"
 
 type Issue struct {
+	Type                string
 	Title               string
 	Number              int
 	State               string
@@ -174,8 +175,9 @@ func FetchProjectIssues(token, owner string, projectNumber int, isOrg bool, spri
 		}
 
 		for _, node := range projectData.Items.Nodes {
-			if node.Content.TypeName == "Issue" {
+			if node.Content.TypeName == "Issue" || node.Content.TypeName == "PullRequest" {
 				issue := Issue{
+					Type:      node.Content.TypeName,
 					Title:     node.Content.Title,
 					Number:    node.Content.Number,
 					State:     node.Content.State,
@@ -184,7 +186,6 @@ func FetchProjectIssues(token, owner string, projectNumber int, isOrg bool, spri
 					Author:    node.Content.Author.Login,
 				}
 
-				// Assignees from issue
 				for _, a := range node.Content.Assignees.Nodes {
 					issue.Assignees = append(issue.Assignees, a.Login)
 				}
@@ -311,6 +312,20 @@ func buildQuery(ownerType string) string {
 										nodes { name }
 									}
 								}
+								... on PullRequest {
+									title
+									number
+									state
+									url
+									createdAt
+									author { login }
+									assignees(first: 10) {
+										nodes { login }
+									}
+									labels(first: 20) {
+										nodes { name }
+									}
+								}
 							}
 						}
 						pageInfo {
@@ -326,7 +341,8 @@ func buildQuery(ownerType string) string {
 
 func (i Issue) String() string {
 	return fmt.Sprintf(
-		"Issue{Title:%q, Number:%d, State:%q, URL:%q, Author:%q, Assignees:%v, Priority:%q, StartDate:%v, TargetDate:%v, EndDate:%v, Sprint:%d, SprintStartDate:%v, SprintEndDate:%v, SprintRole:%q, ExpectedWorkedHours:%d, WorkedHours:%d}",
+		"Issue{Type:%q, Title:%q, Number:%d, State:%q, URL:%q, Author:%q, Assignees:%v, Priority:%q, StartDate:%v, TargetDate:%v, EndDate:%v, Sprint:%d, SprintStartDate:%v, SprintEndDate:%v, SprintRole:%q, ExpectedWorkedHours:%d, WorkedHours:%d}",
+		i.Type,
 		i.Title,
 		i.Number,
 		i.State,
