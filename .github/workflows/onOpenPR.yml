@@ -1,0 +1,22 @@
+name: "Edit opened PR's project fields"
+on:
+  pull_request:
+    types:
+      - opened
+
+permissions:
+  contents: read
+  issues: write
+  repository-projects: write
+
+env:
+  GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
+
+jobs:
+  call-automation:
+    uses: GlitchHub-Team/actions/.github/workflows/issue-action.yml@main
+    with:
+      issue-event: open-pr
+      project: GlitchHub-Team/2
+    secrets: 
+      inherit
