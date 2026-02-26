@@ -1,7 +1,7 @@
 name: Compile Typst
 on:
   push:
-    branches: [ "Documentation-**", "Documentation" ]
+    branches: [ "**" ]
   workflow_dispatch:
 
 permissions:
@@ -30,13 +30,6 @@ jobs:
         run: go mod tidy
         working-directory: script/scriptHomePage
       
-      - name: Pull latest changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config pull.rebase false
-          git pull origin ${{ github.ref_name }}
-      
       - name: Run bash
         run: | 
           chmod +x compile.sh
@@ -44,11 +37,3 @@ jobs:
       
       - name: Check Git status
         run: git status
-      
-      - name: Upload website and PDFs as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: website-pdf-files
-          path: website/
-          retention-days: 1
-          if-no-files-found: error
