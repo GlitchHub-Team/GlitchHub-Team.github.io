@@ -44,7 +44,7 @@ Il presente documento attesta che, in data *24 febbraio 2026* dalle ore 15:30 al
 = Resoconto della riunione
 
 == Applicazione di migliorie nell'organizzazione del gruppo
-Il gruppo ha rienuto ideale l'utilizzo di _issue branch_ tramite l'apposita #gloss[GitHub Action], al fine di automatizzare la creazione di branch associati alle singole #gloss[Issue] e migliorare la tracciabilità del lavoro svolto.\
+Il gruppo ha ritenuto ideale l'utilizzo di _issue branch_ tramite l'apposita #gloss[GitHub Action], al fine di automatizzare la creazione di branch associati alle singole #gloss[Issue] e migliorare la tracciabilità del lavoro svolto.\
 Inoltre, si è deciso di adottare le _Pull Request_ come strumento per tracciare l'attività di verifica direttamente all'interno del Project, eliminando la necessità di creare #gloss[Issue] dedicate alla verifica.\
 Infine, è stato predisposto un calendario condiviso delle disponibilità dei membri del gruppo, con l'obiettivo di facilitare la pianificazione delle attività.
 
