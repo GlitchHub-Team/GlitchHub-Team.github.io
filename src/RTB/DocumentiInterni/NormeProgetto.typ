@@ -918,10 +918,9 @@ Quando una _task_ viene conclusa, il suo assegnatario deve modificare la relativ
 - _Worked Hours_: le ore effettive di lavoro sulla _task_;
   - L'_issue_ relativa alla _task_ deve essere impostata come *"Done"*.
 
-Il #gloss[verificatore] che ha approvato la #gloss[pull request] relativa alla _task_ deve modificare i seguenti campi:
+Il #gloss[verificatore] che ha approvato la #gloss[pull request] relativa alla _task_ deve modificarne i seguenti campi:
 - _End Date_: data effettiva di fine della _task_ di verifica;
 - _Worked Hours_: le ore effettive di lavoro sulla _task_ di verifica;
-  - La #gloss[pull request] relativa alla _task_ deve essere chiusa.
 
 La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato.
 
@@ -1098,7 +1097,7 @@ La #gloss[repository] che contiene il codice sorgente del #gloss[PoC] contiene a
 Questa #gloss[repository] viene usata dal gruppo per raggruppare tutte le #gloss[GitHub Actions] comuni a tutte le altre repository.
 
 Si notano principalmente le seguenti _action_:
-- `.github/workflows/issue-action.yml` che consente di assegnare automaticamente qualunque #gloss[Github Issue] al #gloss[GitHub Project] del gruppo, compilando in modo automatico i campi _Sprint_ e _Sprint Role_ dell'_issue_;
+- `.github/workflows/issue-action.yml` che consente di assegnare automaticamente qualunque #gloss[Github Issue] e #gloss[pull request] al #gloss[GitHub Project] del gruppo, compilando in modo automatico i campi _Sprint_ e _Sprint Role_ dell'_issue_;
 - `.github/workflows/branch-action.yml` che consente di creare un _branch_ specifico per ogni #gloss[GitHub Issue] creata, con il nome che segue la convenzione descritta nella @infrastruttura-creazione-github-branches;
 In generale per utilizzare queste _action_ in una #gloss[repository] specifica, è necessario inserire sul branch `main` di quest'ultima un file nella cartella `.github/workflows/` che descriva il flusso dell'action.
 
@@ -1119,9 +1118,9 @@ Per maggiori informazioni riguardanti la gestione delle _issues_ durante lo svol
 Il gruppo ha deciso di affiancare la creazione di un _branch_ dedicato ad ogni _issue_, in modo da rendere più semplice isolare le modifiche effettuate da ogni singolo membro e tenere traccia del lavoro svolto.
 
 Il nome di un _branch_ dedicato a un'_issue_ segue la seguente convenzione:
-#align(center)[*`issue-issue_number`*] 
+#align(center)[*`issue-[issue-number]`*] 
 Dove:
-- *`issue_number`* rappresenta il numero identificativo dell'_issue_ a cui il _branch_ è legato, che viene assegnato automaticamente da GitHub al momento della creazione dell'_issue_. 
+- *`[issue-number]`* rappresenta il numero identificativo dell'_issue_ a cui il _branch_ è legato, che viene assegnato automaticamente da GitHub al momento della creazione dell'_issue_. 
 
 Per maggiori informazioni riguardanti la gestione dei _branch_ durante lo svolgimento della relativa _issue_, si consiglia di consultare la @gestione-processi-attivita-previste.
 
