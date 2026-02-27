@@ -4,13 +4,13 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Da Verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.3.0",
       "26/02/2026",
       "Riccardo Graziani",
-      "-",
+      "Elia Ernesto Stellin",
       [Modificata @gestione-processi-attivita-previste per riflettere il nuovo workflow basato su _issue-branch_ e _pull request_;
       Aggiunta @infrastruttura-creazione-github-branches per descrivere convenzioni di nomenclatura dei branch automatici
       ]
@@ -122,8 +122,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "RTB-DocumentiInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Norme di Progetto",
 )
 
