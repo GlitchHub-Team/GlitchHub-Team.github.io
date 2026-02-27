@@ -98,4 +98,4 @@ Per ciascuna repository sarà necessario:
 - *Responsabile*: Michele Dioli
 - *Amministratore*: Riccardo Graziani, Hossam Ezzemouri
 - *Verificatore*: Alessandro Dinato, Riccardo Graziani, Jaume Bernardi, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin
-- *Analista*: Alessandro Dinato, Riccardo Graziani, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin, Hossam Ezzemouri
+- *Analista*: Alessandro Dinato, Riccardo Graziani, Siria Salvalaio, Michele Dioli, Elia Ernesto Stellin
