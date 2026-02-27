@@ -10,6 +10,11 @@ permissions:
   id-token: write
 
 jobs:
+  install-fonts:
+    uses: GlitchHub-Team/actions/.github/workflows/ubuntu-install-fonts.yml@main
+    with:
+      folder: "src/assets/fonts"
+
   build:
     runs-on: self-hosted
     steps:
