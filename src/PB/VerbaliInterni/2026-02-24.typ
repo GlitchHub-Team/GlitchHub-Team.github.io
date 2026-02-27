@@ -85,6 +85,10 @@ Per ciascuna repository sarà necessario:
 
   [Dividere servizio gateway per funzionalità], [Elia Ernesto Stellin], [#issue(330)],
 
+  [Creazione delle repository per l'MVP], [Hossam Ezzemouri],[#issue(337)],
+
+  [Setting delle automation delle issue,branch e PR nelle repository dell'MVP], [Hossam Ezzemouri], [#issue(338)],
+
   [Dividere servizio dashboard frontend per funzionalità], [Jaume Bernardi], [#issue(331)],
 
   [Dividere servizio dashboard backend per funzionalità], [Michele Dioli], [#issue(332)],
