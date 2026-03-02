@@ -36,22 +36,22 @@
       "0.0.2",
       "02/03/2026",
       "Siria Salvalaio",
-      "",
+      "Alessandro Dinato",
       "Piccole modifiche suggerite dal verificatore e stesura sezione <archit-deploy>",
     ),
     (
       "0.0.1",
       "01/03/2026",
       "Siria Salvalaio",
-      "",
+      "Alessandro Dinato",
       "Bozza struttura documento, sezioni <introduzione>, <riferimenti> e inizio <tecnologie>",
     ),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
-  htmlId: "RTB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  htmlId: "PB-DocumentiEsterni",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Specifica tecnica",
 )
 
