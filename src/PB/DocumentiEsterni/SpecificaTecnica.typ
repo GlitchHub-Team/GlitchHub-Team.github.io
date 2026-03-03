@@ -33,18 +33,25 @@
   stato: "Bozza",
   registro-modifiche: (
       (
-      "0.0.2",
+      "0.2.0",
+      "03/03/2026",
+      "Siria Salvalaio",
+      "Alessandro Dinato",
+      [Inizio stesura sezione @design-pattern],
+    ),
+    (
+      "0.1.0",
       "02/03/2026",
       "Siria Salvalaio",
       "Alessandro Dinato",
-      "Piccole modifiche suggerite dal verificatore e stesura sezione <archit-deploy>",
+      [Piccole modifiche suggerite dal verificatore e stesura sezione @archit-deploy],
     ),
     (
       "0.0.1",
       "01/03/2026",
       "Siria Salvalaio",
       "Alessandro Dinato",
-      "Bozza struttura documento, sezioni <introduzione>, <riferimenti> e inizio <tecnologie>",
+      [Bozza struttura documento, sezioni @introduzione, @riferimenti e inizio @tecnologie],
     ),
   ),
 
@@ -111,10 +118,9 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 - *Documentazione linguaggio #gloss[Gin]*:
   - #link("https://gin-gonic.com/en/docs/")[https://gin-gonic.com/en/docs/]
   - *Ultimo accesso*: 01/03/2026
-//non so se TimescaleDB ha senso nei riferimenti, e se a senso sto link
-//- *Documentazione linguaggio TimescaleDB*:
-  //- #link("https://docs.timescale.com/")[https://docs.timescale.com/]
-  //- *Ultimo accesso*: 01/03/2026
+- *Documentazione linguaggio TimescaleDB*:
+  - #link("https://docs.timescale.com/")[https://docs.timescale.com/]
+  - *Ultimo accesso*: 01/03/2026
 - *Documentazione linguaggio #gloss[NATS]*:
   - #link("https://docs.nats.io/")[https://docs.nats.io/]
   - *Ultimo accesso*: 01/03/2026
@@ -295,7 +301,76 @@ Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permet
 La comunicazione tra i microservizi è mediata da NATS, che funge da #gloss[message broker] asincrono, permettendo un disaccoppiamento efficace tra la fase di ricezione dei dati e quella di elaborazione. Infine, il sistema prevede la segregazione logica dei dati per supportare una gestione multi-tenant, assicurando che ogni cliente possa accedere esclusivamente alle proprie risorse.
 
 == Design Pattern <design-pattern>
-=== Tipi ...
+I design pattern sono stati selezionati per garantire che l'architettura a microservizi sia flessibile e scalabile, rispettando gli obiettivi di manutenibilità definiti nel capitolato.
+
+=== Strategy
+==== Descrizione
+Il pattern Strategy è un design pattern comportamentale che permette di definire una famiglia di algoritmi, incapsularli in strutture separate e renderli intercambiabili a runtime. Questo approccio consente di variare il comportamento di un componente senza modificarne la logica di controllo principale.
+
+==== Motivi per la scelta
+Nel nostro sistema, il #gloss[Gateway] simulato deve gestire l'invio di dati #gloss[IoT] provenienti da sensori con caratteristiche profondamente diverse. L'uso dello Strategy permette di isolare la logica di generazione del dato di ogni specifico sensore, rendendo il gateway scalabile e pronto a supportare nuovi profili BLE senza dover riscrivere il core del simulatore.
+
+==== Utilizzo nel progetto
+//TODO: più avanti quando l'architettura è più stabile
+
+=== Command
+==== Descrizione
+Il pattern _Command_ è un design pattern comportamentale che incapsula una richiesta come un oggetto, permettendo così di parametrizzare i client con diverse richieste, instradarle o metterle in coda. Questo approccio separa l'oggetto che invoca l'operazione da quello che sa come eseguirla, facilitando la gestione di operazioni complesse e asincrone.
+
+==== Motivi per la scelta 
+La scelta del pattern _Command_ è fondamentale per gestire la comunicazione tra il #gloss[Cloud] Layer e l'Edge Layer. Poiché l'invio di istruzioni ai gateway avviene tramite un Message broker (NATS) in modalità asincrona, il pattern permette di trattare ogni comando come un'entità autonoma. Ciò garantisce la tracciabilità delle operazioni, la possibilità di gestire i log degli esiti e assicura che il Cloud Backend rimanga reattivo senza dover attendere l'esecuzione immediata sul gateway fisico o simulato.
+
+==== Utilizzo nel progetto
+//TODO: più avanti quando l'architettura è più stabile
+
+=== Adapter
+==== Descrizione
+L'Adapter è un design pattern strutturale che funge da intermediario tra due componenti con interfacce incompatibili. Agisce come un wrapper (involucro) che traduce i dati o le chiamate di un "fornitore" nel formato atteso dal "ricevente", permettendo loro di collaborare senza dover modificare il codice originale delle parti coinvolte.
+
+==== Motivi per la scelta 
+La scelta di questo pattern è dettata dalla necessità di gestire l'eterogeneità dei sensori fisici simulati. Poiché ogni sensore può esporre dati secondo profili #gloss[BLE] differenti o protocolli specifici, l'Adapter permette di uniformare queste informazioni prima che entrino nel cuore del sistema. Questo garantisce che il #gloss[Cloud] Layer sia completamente agnostico rispetto alla sorgente fisica del dato, semplificando la manutenzione e l'aggiunta di nuovi dispositivi.
+
+==== Utilizzo nel progetto
+//TODO: più avanti quando l'architettura è più stabile
+
+=== Dependency injection
+==== Descrizione
+Il pattern Dependency InjectionG è un design pattern strutturale che consente di rendere
+esplicite le dipendenze di un oggetto.
+Invece di creare direttamente le dipendenze all’interno delle classi o dei componenti, queste
+possono essere fornite dall’esterno: in questo modo, un componente dichiara le sue
+dipendenze senza doversi preoccupare di istanziarle, permettendo dunque una maggiore
+modularità tra i diversi componenti del Sistema. Esistono principalmente due tipi di
+dependency injectionG:
+• Constructor Injection: le dipendenze vengono passate attraverso il costruttore;
+• Setter Injection: le dipendenze vengono impostate tramite metodi setter.
+Nel progetto viene utilizzata la Constructor Injection.
+
+
+La _Dependency injection_ è un design pattern che permette di rendere esplicite le dipendenze di un oggetto, favorendo l'inversione del controllo (IoC). Invece di creare e gestire le dipendenze internamente a una classe o a un componente, queste vengono fornite dall'esterno. In questo modo, un modulo dichiara semplicemente "cosa gli serve" per funzionare, senza doversi occupare di come istanziarlo o configurarlo, garantendo un elevato grado di modularità e disaccoppiamento tra le componenti del sistema.
+
+Esistono principalmente due modalità di implementazione:
+- *Constructor Injection*: le dipendenze vengono passate attraverso il costruttore al momento della creazione dell'oggetto.
+- *Setter Injection*: le dipendenze vengono impostate tramite metodi specifici (setter) dopo l'istanziazione.
+
+Nel progetto è stato usato il ... .
+
+==== Motivi per la scelta
+//TODO: questo non lo so
+
+==== Utilizzo nel progetto
+//TODO: più avanti quando l'architettura è più stabile
+
+
+
+
+=== Altro Pattern
+==== Descrizione
+
+==== Motivi per la scelta 
+
+==== Utilizzo nel progetto
+
 
 
 == Microservizi sviluppati <microservizi>
