@@ -3,15 +3,15 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 24/02/2026",
-  stato: "da verificare",
-  versione: "0.1.0",
+  stato: "Verificato",
+  versione: "1.0.0",
   registro-modifiche: (
     (
-      "0.1.0",
+      "1.0.0",
       "25/02/2026",
       "Michele Dioli",
-      "-",
-      "Prima stesura verbale interno del 24/02/2026",
+      "Jaume Bernardi",
+      "Stesura verbale interno del 24/02/2026",
     ),
   ),
   partecipanti: (
@@ -33,8 +33,8 @@
     [Organizzazione del nuovo sprint],
   ),
   htmlId: "RTB-VerbaliInterni",
-  verificatore-interno: "-",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Jaume Bernardi",
+  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   tipo-verbale: "Interno",
 )
 
