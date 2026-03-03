@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
+  stato: "da verificare",
   registro-modifiche: (
+    (
+      "1.2.0",
+      "02/03/2026",
+      "Jaume Bernardi",
+      "",
+      [Stesura sprint 10 (@sprint-10)],
+    ),
     (
       "1.1.0",
       "18/02/2026",
@@ -211,7 +218,7 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
+  verificatore-interno: "",
   left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Progetto",
 )
@@ -2637,4 +2644,187 @@ L'esecuzione parallela delle attività di sviluppo e redazione documentale ha ri
   ),
   [Sprint 9 - Aggiornamento costi],
   label-id: "spr9-agg-costi",
+)
+
+
+== Sprint 10 <sprint-10>
+Inizio: 13/02/2026 \
+Fine:  24/02/2026\
+
+Il presente sprint ha lo scopo di ultimare e verificare la documentazione, obiettivo intrapreso durante lo sprint precedente, per il rilascio nella _repository_ nella versione *1.x.x*, in vista della fine dell'#gloss[RTB].
+
+Viene inoltre preparata la presentazione necessaria in vista della *seconda riunione* di valutazione relativa alla #gloss[RTB], concordata con il professor Vardanega.
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+- La creazione degli indici delle tabelle e delle figure (#issue(271)):
+  - Per il documento #gloss[AdR] (#issue(284))
+  - Per il documento #gloss[PdP] (#issue(286))
+  - Per il documento #gloss[PdQ] (#issue(288))
+- La revisione del PdP:
+  - Verifica delle sezioni adibite agli sprint precedenti (#issue(282))
+  - Revisione parte introduttiva (#issue(269))
+- La revisione del PdQ:
+  - Integrazione del cruscotto di valutazione (#issue(247))
+  - Verifica sulla stesura dei Test (#issue(251))
+  - Definizione dei Test di Accettazione (#issue(292))
+  - Conversione dei Test di Sistema in JSON (#issue(302))
+- La stesura di una lettera di presentazione della RTB (#issue(260))
+- Creazione delle diapositive per la presentazione della RTB al professor Vardanega (#issue(270))
+- La verifica di ciascuna delle attività precedenti
+
+=== Rischi attesi
+- *RP1* (@RP1): diversi membri del gruppo parteciperanno ad uno o più prove d'esame durane il periodo di questo sprint, con quindi la possibilità di descremento nella capacità produttiva.
+
+=== Preventivo
+==== Preventivo risorse da utilizzare
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "-", "2", "-", "-", "4", "-", [*6*],
+    "Alessandro Dinato", "-", "-", "-", "-", "7", "2", [*9*],
+    "Michele Dioli", "-", "2", "2", "-", "4", "-", [*8*],
+    "Hossam Ezzemouri", "-", "2", "-", "-", "4", "-", [*6*],
+    "Riccardo Graziani", "3", "-", "-", "-", "9", "2", [*14*],
+    "Siria Salvalaio", "-", "2", "-", "-", "-", "-", [*2*],
+    "Elia Ernesto Stellin", "-", "1", "2", "-", "3", "-", [*6*],
+    table.footer([*Totale*], [*3*], [*9*], [*4*], [*0*], [*31*], [*4*], [*51*]),
+  ),
+  [Sprint 10 - Preventivo risorse da utilizzare],
+  label-id: "spr10-prev-risorse",
+)
+
+==== Grafico a torta della suddivisione oraria prevista
+
+#let orePrevSprint10 = (
+  ("Responsabile", 3),
+  ("Amministratore", 9),
+  ("Analista", 4),
+  ("Progettista", 0),
+  ("Programmatore", 31),
+  ("Verificatore", 4),
+)
+#graficoTorta("Sprint 10 - Ore produttive previste per ogni ruolo", orePrevSprint10)
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti nello sprint 10, alcuni dei quali sono stati identificati e portati a termine durante la il periodo dello sprint:
+- [PdQ] Integrazione *cruscotto di valutazione* (#issue(247))
+- [PdQ] Verificare la stesura di tutti i test (#issue(251))
+- [RTB] Lettera di presentazione RTB (#issue(260))
+- [PdP] Sezioni mancanti introduzione (#issue(269))
+- [RTB] Presentazione RTB parte 2 (#issue(270))
+- Sistemare didascalie per immagini, tabelle e grafici (#issue(271)) e relative _sub-issue_
+- [PdP] Aggiornare definizione e struttura Consuntivo a Finire e Consuntivo di Periodo (#issue(279))
+- [Glossario] Aggiornare definizione Consuntivo a finire e Consuntivo di Periodo (#issue(280))
+- [PdP] Verificare gli sprint (#issue(282))
+- [PdQ] Definizione Test di Accettazione (#issue(292))
+- [AdR] Portare requisiti in JSON (#issue(294))
+- [AdR] Revisione RTB: approfondire casi d'uso (#issue(295))
+- [AdR] Revisione RTB: Sistemare RNF, RD (#issue(296))
+- [AdR] Revisione RTB: Tracciamento casi d'uso - requisiti (#issue(297))
+- [AdR] Revisione RTB: vincoli su tecnologie, requisiti minimi e requisiti di qualità (#issue(298))
+- [PdQ] Portare Test di Sistema in JSON (#issue(302))
+- [NdP] Inserire metriche nelle Norme invece che nel PdQ (#issue(303))
+- [NdP] Adattare norme a modifiche alla repo (#issue(307))
+
+
+=== Retrospettiva
+All'inizio dello sprint sono stati completamente assorbiti gli ultimi ritardi, in forma delle prime due *issue* elencate nel paragrafo precedente.
+
+Lo sprint ha rappresentato un punto di svolta nel progetto, poiché ha coinciso con la conclusione del periodo RTB e con il conseguente ribilanciamento delle ore previste per ruolo e componente. L’obiettivo principale dello sprint era consolidare quanto prodotto nei nove sprint precedenti, completare le ultime attività di analisi e predisporre una base stabile per la fase successiva del progetto.
+
+Anche la *seconda riunione* con il professore Vardanega è andata a buon fine, con successiva valutazione positiva della presentazione ed esposizione degli argomenti prefissati da discutere.
+
+=== Rischi occorsi
+Il gruppo è riuscito a portare a termine le attività prefissate e quelle successivamente identificate, evitando quindi di incappare in ritardi. Ciò è stato possibile anche perché i compiti principali per questo sprint si limitano alla scrittura di documentazione, il che esulano da qualsiasi tipo di rischio tecnologico.
+
+=== Consuntivo di periodo
+==== Risorse utilizzate
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "-", "3 (+1)", "-", "-", "4", "-", [*7*],
+    "Alessandro Dinato", "-", "-", "-", "-", "6 (-1)", "-", [*6*],
+    "Michele Dioli", "-", "2", "-", "-", "3 (-1)", "-", [*5*],
+    "Hossam Ezzemouri", "-", "2", "-", "-", "4", "-", [*6*],
+    "Riccardo Graziani", "3", "-", "-", "-", "10 (+1)", "2", [*15*],
+    "Siria Salvalaio", "-", "2", "-", "-", "-", "-", [*2*],
+    "Elia Ernesto Stellin", "-", "2 (+1)", "1 (-1)", "-", "4 (+1)", "-", [*7*],
+    table.footer([*Totale*], [*3*], [*11*], [*1*], [*0*], [*31*], [*2*], [*48*]),
+  ),
+  [Sprint 10 - Risorse utilizzate],
+  label-id: "spr10-risorse-utiliz",
+)
+
+==== Grafico a torta della suddivisione oraria effettiva
+
+#let oreEffettiveSprint10 = (
+  ("Responsabile", 3),
+  ("Amministratore", 11),
+  ("Analista", 1),
+  ("Progettista", 0),
+  ("Programmatore", 31),
+  ("Verificatore", 2),
+)
+#graficoTorta(
+  "Sprint 10 - Ore produttive complessive ed effettive per ogni ruolo",
+  oreEffettiveSprint10,
+)
+
+=== Preventivo a finire
+==== Aggiornamento ore rimanenti
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "8", "4 (-3)", "4", "21", "20 (-4)", "21", [*78*],
+    "Alessandro Dinato", "1", "7", "-3", "21", "17 (-6)", "24", [*67*],
+    "Michele Dioli", "4", "1 (-2)", "-", "21", "21 (-3)", "23", [*70*],
+    "Hossam Ezzemouri", "5", "2 (-2)", "-4", "20", "20 (-4)", "23", [*66*],
+    "Riccardo Graziani", "5 (-3)", "8", "-3", "20", "13 (-10)", "22 (-2)", [*65*],
+    "Siria Salvalaio", "6", "-1 (-2)", "3", "21", "24", "21", [*74*],
+    "Elia Ernesto Stellin", "6", "-", "-3 (-1)", "21", "19 (-4)", "24", [*67*],
+    table.footer([*Totale*], [*35*], [*21*], [*-6*], [*145*], [*134*], [*158*], [*487*]),
+  ),
+  [Sprint 10 - Aggiornamento ore rimanenti],
+  label-id: "spr10-agg-ore-rim",
+)
+
+==== Aggiornamento costi
+#tabella-paginata(
+  table(
+    columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+    "Responsabile", "35 (-3)", "30 €/h", "1050 € (-90 €)",
+    "Amministratore", "21 (-11)", "20 €/h", "420 € (-220 €)",
+    "Analista", "-6 (-1)", "25 €/h", "-150 € (-25 €)",
+    "Progettista", "145 ", "25 €/h", "3625 € ",
+    "Programmatore", "134 (-31)", "15 €/h", "2010 € (-465 €)",
+    "Verificatore", "158 (-2)", "15 €/h", "2370 € (-30 €)",
+    table.footer([*Totale*], [*487*], [-], [*9325 €*]),
+  ),
+  [Sprint 10 - Aggiornamento costi],
+  label-id: "spr10-agg-costi",
 )
