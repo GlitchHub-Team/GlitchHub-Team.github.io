@@ -6,6 +6,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.5.1",
+      "03/03/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Rimozione numerazione per sezioni di "raggruppamento" dei termini]
+    ),
+    (
       "0.5.0",
       "18/02/2026",
       "Alessandro Dinato",
@@ -159,7 +166,7 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
 
 #{
   for letter in grouped_terms.keys().sorted() {
-    heading(level: 1)[#letter]
+    heading(level: 1, numbering: none)[#letter]
     v(0.5em)
 
     for entry in grouped_terms.at(letter) {
