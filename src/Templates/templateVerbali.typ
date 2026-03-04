@@ -26,7 +26,7 @@
 ) = [
   #show link: underline
 
-  #let versione-auto = if versione != none { versione } else { "" }
+  #let versione-auto = if versione != none { versione } else { "1.0.0" }
 
   #set document(
     title: titolo,
@@ -131,29 +131,32 @@
       if x > 0 { center } else { left }
     ),
   )
+  
+  #if registro-modifiche != none and registro-modifiche.len() > 0 {
+    block()[
+      #text(size: 12pt, weight: "bold")[
+        #h(0.5em)
+        #heading(outlined: false, numbering: none)[Registro Modifiche]
+        #h(0.5em)
+      ]
 
-  #block()[
-    #text(size: 12pt, weight: "bold")[
-      #h(0.5em)
-      #heading(outlined: false, numbering: none)[Registro Modifiche]
-      #h(0.5em)
+      #table(
+        columns: (0.1fr, 0.14fr, 0.22fr, 0.22fr, 0.32fr),
+        align: left,
+        stroke: (x, y) => (
+          bottom: if y == 0 { 1pt + black } else { 0.8pt + black },
+        ),
+        table.header([*Ver.*], [*Data*], [*Autore*], [*Verificatore*], [*Descrizione*]),
+        ..for (ver, data, autore, verificatore, descrizione) in registro-modifiche {
+          ([#ver], [#data], [#autore], [#verificatore], [#descrizione])
+        },
+      )
+
     ]
 
-    #table(
-      columns: (0.1fr, 0.14fr, 0.22fr, 0.22fr, 0.32fr),
-      align: left,
-      stroke: (x, y) => (
-        bottom: if y == 0 { 1pt + black } else { 0.8pt + black },
-      ),
-      table.header([*Ver.*], [*Data*], [*Autore*], [*Verificatore*], [*Descrizione*]),
-      ..for (ver, data, autore, verificatore, descrizione) in registro-modifiche {
-        ([#ver], [#data], [#autore], [#verificatore], [#descrizione])
-      },
-    )
+    pagebreak()
 
-  ]
-
-  #pagebreak()
+  }
 
   #v(1em)
   #outline(indent: 0.8em)
