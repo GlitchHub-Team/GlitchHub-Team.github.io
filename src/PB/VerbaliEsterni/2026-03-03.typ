@@ -2,16 +2,7 @@
 
 #show: report.with(
   titolo: "Verbale esterno 03/03/2026 (M31)",
-  stato: "da verificare",
-  registro-modifiche: (
-    (
-      "0.1.0",
-      "03/03/2026",
-      "Michele Dioli",
-      "-",
-      "Stesura verbale esterno del 03/03/2026",
-    ),
-  ),
+  stato: "Verificato",
   partecipanti: (
     "Alessandro Dinato",
     "Riccardo Graziani",
@@ -25,7 +16,7 @@
     [Discussione su dev container],
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "-",
+  verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   verificatore-esterno: "-",
   right-signature: "",
