@@ -26,12 +26,17 @@
 ) = [
   #show link: underline
 
+
   #let versione-auto = versione
 
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-    keywords: (htmlId, versione-auto, index),
+    keywords: (
+    if htmlId != none { htmlId } else { "" },
+    versione-auto,
+    index,
+    ),
   )
 
   #set page(
