@@ -46,7 +46,7 @@ Il gruppo ha illustrato alla proponente il design logico in fase di sviluppo, ba
 - rimangono alcuni dubbi aperti sui diagrammi di Component e Code, discussi nei punti successivi.
 
 === Design del Gateway
-Sono emersi dubbi bloccantanti relativi al componente _gateway_, la cui gestione prevede un elevato grado di multithreading tramite l'uso di goroutine.
+Sono emersi dubbi bloccanti relativi al componente _gateway_, la cui gestione prevede un elevato grado di multithreading tramite l'uso di goroutine.
 
 === Component Diagram 
 Il gruppo ha esposto il dubbio riguardante la tecnologia da adottare per il _buffer_ del _gateway_, che necessita di supporto alla persistenza dei dati.
