@@ -26,11 +26,7 @@
 ) = [
   #show link: underline
 
-  #let versione-auto = if registro-modifiche != none and registro-modifiche.len() > 0 {
-    registro-modifiche.first().at(0)
-  } else {
-    ""
-  }
+  #let versione-auto = versione
 
   #set document(
     title: titolo,
