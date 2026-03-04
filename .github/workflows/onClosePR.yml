@@ -1,0 +1,19 @@
+name: "Delete old Issue Branches"
+on:
+  pull_request:
+    types:
+      - closed
+
+permissions:
+  contents: read
+  issues: write
+  repository-projects: write
+
+env:
+  GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}
+
+jobs:
+  call-automation:
+    uses: GlitchHub-Team/actions/.github/workflows/delete-issue-branches.yml@main
+    secrets: 
+      inherit
