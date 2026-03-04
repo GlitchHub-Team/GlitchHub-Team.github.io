@@ -26,11 +26,7 @@
 ) = [
   #show link: underline
 
-  #let versione-auto = if registro-modifiche.len() > 0 {
-    registro-modifiche.first().at(0)
-  } else {
-    ""
-  }
+  #let versione-auto = if versione != none { versione } else { "" }
 
   #set document(
     title: titolo,
@@ -55,8 +51,6 @@
     leading: 0.75em,
     spacing: 1.2em,
   )
-
-
 
   #show: hwr.with(
     language: "it",
