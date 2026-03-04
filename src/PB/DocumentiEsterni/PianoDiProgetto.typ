@@ -7,6 +7,13 @@
   stato: "da verificare",
   registro-modifiche: (
     (
+      "1.2.1",
+      "04/03/2026",
+      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
+      [Implementazione suggerimenti forniti durante la fase di verifica],
+    ),
+    (
       "1.2.0",
       "02/03/2026",
       "Jaume Bernardi",
@@ -218,8 +225,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -2674,7 +2681,7 @@ Di seguito sono elencati i compiti individuati:
 - La verifica di ciascuna delle attività precedenti
 
 === Rischi attesi
-- *RP1* (@RP1): diversi membri del gruppo parteciperanno ad uno o più prove d'esame durane il periodo di questo sprint, con quindi la possibilità di descremento nella capacità produttiva.
+- *RP1* (@RP1): diversi membri del gruppo parteciperanno ad una o più prove d'esame durante il periodo di questo sprint, potenzialmente riducendo la capacità produttiva.
 
 === Preventivo
 ==== Preventivo risorse da utilizzare
@@ -2713,7 +2720,7 @@ Di seguito sono elencati i compiti individuati:
 #graficoTorta("Sprint 10 - Ore produttive previste per ogni ruolo", orePrevSprint10)
 
 === Compiti svolti
-Il gruppo ha svolto con successo i seguenti compiti nello sprint 10, alcuni dei quali sono stati identificati e portati a termine durante la il periodo dello sprint:
+Il gruppo ha svolto con successo i seguenti compiti nello sprint 10, alcuni dei quali sono stati identificati e portati a termine durante il periodo dello sprint:
 - [PdQ] Integrazione *cruscotto di valutazione* (#issue(247))
 - [PdQ] Verificare la stesura di tutti i test (#issue(251))
 - [RTB] Lettera di presentazione RTB (#issue(260))
@@ -2735,14 +2742,16 @@ Il gruppo ha svolto con successo i seguenti compiti nello sprint 10, alcuni dei 
 
 
 === Retrospettiva
-All'inizio dello sprint sono stati completamente assorbiti gli ultimi ritardi, in forma delle prime due *issue* elencate nel paragrafo precedente.
+All'inizio dello sprint sono stati completamente assorbiti gli ultimi ritardi, tramite le prime *issue* elencate nel paragrafo precedente.
 
 Lo sprint ha rappresentato un punto di svolta nel progetto, poiché ha coinciso con la conclusione del periodo RTB e con il conseguente ribilanciamento delle ore previste per ruolo e componente. L’obiettivo principale dello sprint era consolidare quanto prodotto nei nove sprint precedenti, completare le ultime attività di analisi e predisporre una base stabile per la fase successiva del progetto.
 
-Anche la *seconda riunione* con il professore Vardanega è andata a buon fine, con successiva valutazione positiva della presentazione ed esposizione degli argomenti prefissati da discutere.
+Anche la *seconda riunione* con il professore Vardanega è andata a buon fine, con esposizione degli argomenti prefissati da discutere e successiva valutazione positiva della presentazione. In particolar modo è stata apprezzata la sezione sull'autovalutazione e le modifiche apportate al nostro #gloss[Way of Working]. Si è rivelato efficace ridefinita il *workflow* per la gestione delle #gloss[issue] e la individuazione e suddivisione delle attività da solgere. Con questo sprint abbiamo inoltre ristrutturato la nostra #gloss[repository], separando diversi contesti che, anche se ovviamente collegati, possono ora essere sviluppati e seguiti in modo più chiaro e preciso. Per lo stesso motivo il gruppo ha deciso di cambiare approccio per le attività di verifica, ora eseguite tramite #gloss[Pull Request], rendendo l'intero procedimento più tracciabile.
+
+Dopo il ridefinimento del #gloss[Way of Working], il gruppo ha deciso di ribilanciare la suddivisione oraria prevista per componente e ruolo.
 
 === Rischi occorsi
-Il gruppo è riuscito a portare a termine le attività prefissate e quelle successivamente identificate, evitando quindi di incappare in ritardi. Ciò è stato possibile anche perché i compiti principali per questo sprint si limitano alla scrittura di documentazione, il che esulano da qualsiasi tipo di rischio tecnologico.
+Nonostante la presenza del rischio *RP1* (@RP1), il gruppo è riuscito a portare a termine le attività prefissate e quelle successivamente identificate, mitigandone l'impatto ed evitando quindi di incappare in ritardi. Ciò è stato possibile sia grazie ad una maggior organizzazione da parte dei membri non affetti, sia perché i compiti principali per questo sprint si limitano alla scrittura di documentazione, il che esulano da qualsiasi tipo di rischio tecnologico.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
