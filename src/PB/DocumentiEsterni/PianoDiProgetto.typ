@@ -7,6 +7,13 @@
   stato: "da verificare",
   registro-modifiche: (
     (
+      "1.2.2",
+      "04/03/2026",
+      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
+      [Implementazione suggerimenti forniti durante la fase di verifica],
+    ),
+    (
       "1.2.1",
       "04/03/2026",
       "Jaume Bernardi",
@@ -2720,7 +2727,7 @@ Di seguito sono elencati i compiti individuati:
 #graficoTorta("Sprint 10 - Ore produttive previste per ogni ruolo", orePrevSprint10)
 
 === Compiti svolti
-Il gruppo ha svolto con successo i seguenti compiti nello sprint 10, alcuni dei quali sono stati identificati e portati a termine durante il periodo dello sprint:
+Il gruppo ha svolto con successo i seguenti compiti nello sprint 10, alcuni dei quali sono stati identificati e portati a termine:
 - [PdQ] Integrazione *cruscotto di valutazione* (#issue(247))
 - [PdQ] Verificare la stesura di tutti i test (#issue(251))
 - [RTB] Lettera di presentazione RTB (#issue(260))
@@ -2746,12 +2753,12 @@ All'inizio dello sprint sono stati completamente assorbiti gli ultimi ritardi, t
 
 Lo sprint ha rappresentato un punto di svolta nel progetto, poiché ha coinciso con la conclusione del periodo RTB e con il conseguente ribilanciamento delle ore previste per ruolo e componente. L’obiettivo principale dello sprint era consolidare quanto prodotto nei nove sprint precedenti, completare le ultime attività di analisi e predisporre una base stabile per la fase successiva del progetto.
 
-Anche la *seconda riunione* con il professore Vardanega è andata a buon fine, con esposizione degli argomenti prefissati da discutere e successiva valutazione positiva della presentazione. In particolar modo è stata apprezzata la sezione sull'autovalutazione e le modifiche apportate al nostro #gloss[Way of Working]. Si è rivelato efficace ridefinita il *workflow* per la gestione delle #gloss[issue] e la individuazione e suddivisione delle attività da solgere. Con questo sprint abbiamo inoltre ristrutturato la nostra #gloss[repository], separando diversi contesti che, anche se ovviamente collegati, possono ora essere sviluppati e seguiti in modo più chiaro e preciso. Per lo stesso motivo il gruppo ha deciso di cambiare approccio per le attività di verifica, ora eseguite tramite #gloss[Pull Request], rendendo l'intero procedimento più tracciabile.
+Anche la *seconda riunione* con il professor Vardanega è andata a buon fine: dopo aver esposto gli argomenti prefissati, la presentazione del gruppo ha ottenuto una valutazione positiva. In particolar modo è stata apprezzata la sezione sull'autovalutazione e le modifiche apportate al nostro #gloss[Way of Working]. Si è rivelato efficace ridefinire il *workflow* per la gestione delle #gloss[issue] e l' individuazione e suddivisione delle attività da svolgere. Con questo sprint il gruppo ha inoltre ristrutturato la nostra #gloss[repository], separando diversi contesti che, anche se ovviamente collegati, possono ora essere sviluppati e seguiti in modo più chiaro e preciso. Per lo stesso motivo il gruppo ha deciso di cambiare approccio per le attività di verifica, ora eseguite tramite #gloss[Pull Request], rendendo l'intero procedimento più tracciabile.
 
 Dopo il ridefinimento del #gloss[Way of Working], il gruppo ha deciso di ribilanciare la suddivisione oraria prevista per componente e ruolo.
 
 === Rischi occorsi
-Nonostante la presenza del rischio *RP1* (@RP1), il gruppo è riuscito a portare a termine le attività prefissate e quelle successivamente identificate, mitigandone l'impatto ed evitando quindi di incappare in ritardi. Ciò è stato possibile sia grazie ad una maggior organizzazione da parte dei membri non affetti, sia perché i compiti principali per questo sprint si limitano alla scrittura di documentazione, il che esulano da qualsiasi tipo di rischio tecnologico.
+Nonostante la presenza del rischio *RP1* (@RP1), il gruppo è riuscito a portare a termine le attività individuate inizialmente, nonché quelle emerse successivamente, mitigandone l'impatto ed evitando quindi di incappare in ritardi. Ciò è stato possibile sia grazie ad una maggior organizzazione da parte dai membri con maggior disponibilità oraria per le attività di progetto, sia perché i compiti principali per lo sprint corrente si sono limitati alla scrittura di documentazione.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
