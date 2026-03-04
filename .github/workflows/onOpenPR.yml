@@ -5,8 +5,8 @@ on:
       - opened
 
 permissions:
-  contents: write
-  issues: read
+  contents: read
+  issues: write
 
 env:
   GH_TOKEN: ${{ secrets.PROJECT_ACCESS_TOKEN }}

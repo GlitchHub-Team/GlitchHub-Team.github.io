@@ -5,8 +5,8 @@ on:
       - closed
 
 permissions:
-  contents: read
-  issues: write
+  contents: write
+  issues: read
   repository-projects: write
 
 env:
