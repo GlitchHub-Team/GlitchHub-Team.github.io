@@ -3,22 +3,7 @@
 #show: report.with(
   titolo: "Verbale esterno 24/02/2026 (M31)",
   stato: "Verificato",
-  registro-modifiche: (
-    (
-      "1.0.0",
-      "2/03/2026",
-      "Michele Dioli",
-      "Jaume Bernardi",
-      "Correzione alcuni errori grammaticali",
-    ),
-    (
-      "0.1.0",
-      "24/02/2026",
-      "Michele Dioli",
-      "Jaume Bernardi",
-      "Prima stesura verbale esterno del 24/02/2026",
-    ),
-  ),
+  registro-modifiche: (),
   partecipanti: (
     "Alessandro Dinato",
     "Riccardo Graziani",
