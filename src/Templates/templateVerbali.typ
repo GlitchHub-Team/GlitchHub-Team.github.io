@@ -31,7 +31,7 @@
   #set document(
     title: titolo,
     author: "GlitchHub Team",
-    keywords: (htmlId, versione, index),
+    keywords: (htmlId, versione-auto, index),
   )
 
   #set page(
