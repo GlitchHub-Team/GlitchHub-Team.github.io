@@ -26,11 +26,7 @@
 ) = [
   #show link: underline
 
-  #let versione-auto = if registro-modifiche.len() > 0 {
-    registro-modifiche.first().at(0)
-  } else {
-    ""
-  }
+  #let versione-auto = if versione != none { versione } else { "" }
 
   #set document(
     title: titolo,
@@ -138,7 +134,9 @@
     ),
   )
 
-  #block()[
+  #if registro-modifiche != none and registro-modifiche.len() > 0 {
+
+    block()[
     #text(size: 12pt, weight: "bold")[
       #h(0.5em)
       #heading(outlined: false, numbering: none)[Registro Modifiche]
@@ -158,8 +156,10 @@
     )
 
   ]
+  pagebreak()
+  }
 
-  #pagebreak()
+  
 
   #v(1em)
   #outline(indent: 0.8em)
