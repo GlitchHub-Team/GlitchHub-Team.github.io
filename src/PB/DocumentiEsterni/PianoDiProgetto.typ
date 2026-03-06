@@ -4,7 +4,7 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.2.2",
