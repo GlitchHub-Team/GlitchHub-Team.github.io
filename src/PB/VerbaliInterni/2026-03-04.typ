@@ -3,8 +3,7 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 04/03/2026",
-  stato: "da verificare",
-  versione: "0.1.0",
+  stato: "Verificato",
   registro-modifiche: (
   ),
   partecipanti: (
@@ -33,34 +32,34 @@
 )
 
 = Introduzione
-Il presente documento attesta che, in data *04 marzo 2026* dalle ore 14:30 alle ore 15:40, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
+Il presente documento attesta che, in data *4 marzo 2026* dalle ore 14:30 alle ore 15:40, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 == Revisione durata sprint
-Vista il poco tempo a dispososizione, il gruppo ha deciso di non creare un nuovo sprint ma di effettuare comunque una revisione intermedia del lavoro svolto, con l'obiettivo di identificare ulteriori task. Avendo comunque l'intenzione di passare a sprint di una settimana a fine delle sprint corrente. La scelta di fare durare l'attuale sprint 2 settimane è motivata principalmente dalla necessità di acquisire maggiore esperienza nella progettazione, consolidando le competenze tramite attività di palestra.
+Vista il poco tempo a disposizione, il gruppo ha deciso di non creare un nuovo #gloss("sprint") ma di effettuare comunque una revisione intermedia del lavoro svolto, con l'obiettivo di identificare ulteriori task. Avendo comunque l'intenzione di passare a #gloss("sprint") di una settimana a fine delle #gloss("sprint") corrente. La scelta di fare durare l'attuale #gloss("sprint") 2 settimane è motivata principalmente dalla necessità di acquisire maggiore esperienza nella progettazione, consolidando le competenze tramite attività di palestra.
 
 == Revisione del lavoro a metà sprint
 
 === Progettazione del Gateway
-È stato realizzato un _code diagram_ del servizio Gateway, che ha rappresentato un buon punto di avanzamento sia in termini di esercizio progettuale sia di progettazione effettiva.
+È stato realizzato un _code diagram_ del servizio #gloss("gateway"), che ha rappresentato un buon punto di avanzamento sia in termini di esercizio progettuale sia di progettazione effettiva.
 
 === Progettazione del Cloud
-È stato avviato il _component diagram_ relativo alla parte _cloud_ e si prevede la fine entro fine settimana corrente, sarà poi iniziato il _code diagram_.
+È stato avviato il _component diagram_ relativo alla parte #gloss("cloud") e si prevede la fine entro fine settimana corrente, sarà poi iniziato il _code diagram_.
 
 === Impostazione delle nuove repository
-L'attività di impostazione delle repository per i servizi dell'MVP prosegue come stabilito e confemato nel verbale in data 24-02-26.
+L'attività di impostazione delle #gloss("repository") per i servizi dell'#gloss("MVP") prosegue come stabilito e confermato nel verbale in data 24-02-26.
 
 === Deployment diagram
 La realizzazione del _deployment diagram_ ha subito dei ritardi rispetto alla pianificazione prevista.
 
 == Aggiornamento del workflow delle Issue
 Sono state presentate al gruppo le nuove automazioni introdotte nel _workflow_: 
-- La cancellazione automatica dei branch associati alle issue chiuse, 
-- il collegamento automatico tra issue e _Pull Request_, 
-- il collegamento automatico alle issue padre tramite sintassi corretta del titolo della issue, ovvero deve contenere la sigla del documento tra parentesi quadre\
-È stato inoltre proposto l'utilizzo di una label _epic_ per le issue di raggruppamento.
+- La cancellazione automatica dei branch associati alle #gloss("issue") chiuse, 
+- il collegamento automatico tra #gloss("issue") e #gloss("Pull Request"), 
+- il collegamento automatico alle #gloss("issue") padre tramite sintassi corretta del titolo della #gloss("issue"), ovvero deve contenere la sigla del documento tra parentesi quadre\
+È stato inoltre proposto l'utilizzo di una label _epic_ per le #gloss("issue") di raggruppamento.
 
 == Impostazione dei dev container
-È emersa la necessità di configurare i dev container in modo da garantire un ambiente di sviluppo condiviso con versioni allineate degli strumenti utilizzati. Per questo il gruppo terra un file condiviso interno per il coordinamento delle versioni. 
+È emersa la necessità di configurare i dev container in modo da garantire un ambiente di sviluppo condiviso con versioni allineate degli strumenti utilizzati. Per questo il gruppo avrà un file condiviso interno per il coordinamento delle versioni. 
 È stato sottolineato che i dev container dovranno specificare versioni esatte degli strumenti, evitando l'uso di _latest_ per prevenire aggiornamenti indesiderati.
 
 = Assegnazione delle prossime task basate sulle decisioni prese

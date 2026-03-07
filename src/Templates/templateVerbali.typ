@@ -26,7 +26,7 @@
 ) = [
   #show link: underline
 
-  #let versione-auto = if versione != none { versione } else { "" }
+  #let versione-auto = if versione != none { versione } else { "1.0.0" }
 
   #set document(
     title: titolo,
