@@ -1,3 +1,30 @@
+
+/*
+  Ritorna la descrizione di una repository secondo una stringa di partenza.
+
+  = Parametri
+  == repo
+  Stringa che rappresenta una repository, può essere una tra le seguenti:
+  - "docs": repo documentazione
+  - "poc": repo PoC
+  - "obs" o "observability": repo Observability
+  - "gw" o "gateway": repo Gateway
+  - "dc", "dataconsumer" o "data consumer": repo DataConsumer
+  - "dash" o "dashboard": repo Dashboard
+  - "nats": repo NATS Server
+  - "action" o "actions": repo GitHub Actions
+
+  = Valore di ritorno
+  Tupla (repo-desc, repo-name, repo-long)
+  == repo-desc
+  Descrizione breve della repository
+
+  == repo-name
+  Nome della repository (come appare su GitHub)
+
+  == repo-long
+  Descrizione lunga della repository
+*/
 #let repo-description-from-str(repo) = {
   repo = lower(repo)
   let repo-name
@@ -24,7 +51,7 @@
     repo-desc = "Gateway"
     repo-long = "gateway"
   }
-  else if (repo == "dc" or repo == "dataconsumer") {
+  else if (repo == "dc" or repo == "dataconsumer" or repo == "data consumer") {
     repo-name = "DataConsumer-TimescaleDB"
     repo-desc = "DataConsumer"
     repo-long = "data consumer"
@@ -51,6 +78,27 @@
   return (repo-desc, repo-name, repo-long)
 }
 
+/*
+  Ritorna lo URL di una repository specifica
+  = Parametri
+  == url-type
+  Una stringa tra:
+  - "base": url di repository base
+  - "issue": url di pagina di lista issues o issue singola
+  - "pr": url di pagina di pull request *singola*
+  - "prs": url di pagina di *lista* pull request
+
+  == repo-string
+  Stringa che rappresenta una repository, può essere una tra le seguenti:
+  - "docs": repo documentazione
+  - "poc": repo PoC
+  - "obs" o "observability": repo Observability
+  - "gw" o "gateway": repo Gateway
+  - "dc", "dataconsumer" o "data consumer": repo DataConsumer
+  - "dash" o "dashboard": repo Dashboard
+  - "nats": repo NATS Server
+  - "action" o "actions": repo GitHub Actions
+*/
 #let get-url(url-type, repo-string) = {
 
   let (repo-desc, repo-name, repo-long) = repo-description-from-str(repo-string)
@@ -73,6 +121,27 @@
   }
 }
 
+/*
+  Ritorna link cliccabile a una issue specifica
+
+  = Parametri
+  == number
+  Numero della issue
+
+  == repo
+  Stringa che rappresenta una repository, può essere una tra le seguenti:
+  - "docs": repo documentazione
+  - "poc": repo PoC
+  - "obs" o "observability": repo Observability
+  - "gw" o "gateway": repo Gateway
+  - "dc", "dataconsumer" o "data consumer": repo DataConsumer
+  - "dash" o "dashboard": repo Dashboard
+  - "nats": repo NATS Server
+  - "action" o "actions": repo GitHub Actions
+
+  = Valore di ritorno
+  Oggetto `#link()`
+*/
 #let issue(number, repo: "docs") = {
   let (repo-desc, _, _) = repo-description-from-str(repo)
   let issue-url = get-url("issue", repo) + "/" + str(number)
@@ -87,6 +156,27 @@
   link(issue-url)[*Issue \##number (repo #repo-long)*]
 }
 
+/*
+  Ritorna link cliccabile a una PR specifica
+
+  = Parametri
+  == number
+  Numero della PR
+
+  == repo
+  Stringa che rappresenta una repository, può essere una tra le seguenti:
+  - "docs": repo documentazione
+  - "poc": repo PoC
+  - "obs" o "observability": repo Observability
+  - "gw" o "gateway": repo Gateway
+  - "dc", "dataconsumer" o "data consumer": repo DataConsumer
+  - "dash" o "dashboard": repo Dashboard
+  - "nats": repo NATS Server
+  - "action" o "actions": repo GitHub Actions
+
+  = Valore di ritorno
+  Oggetto `#link()`
+*/
 #let pr(number, repo: "docs") = {
   let (repo-desc, _, _) = repo-description-from-str(repo)
   let pr-url = get-url("pr", repo) + "/" + str(number)
@@ -94,6 +184,27 @@
   link(pr-url)[*#repo-desc/\##number*]
 }
 
+/*
+  Ritorna link cliccabile a una repository specifica
+
+  = Parametri
+  == quale
+  Stringa che rappresenta una repository, può essere una tra le seguenti:
+  - "docs": repo documentazione
+  - "poc": repo PoC
+  - "obs" o "observability": repo Observability
+  - "gw" o "gateway": repo Gateway
+  - "dc", "dataconsumer" o "data consumer": repo DataConsumer
+  - "dash" o "dashboard": repo Dashboard
+  - "nats": repo NATS Server
+  - "action" o "actions": repo GitHub Actions
+
+  == body
+  Corpo del link, da sostituire all'indirizzo plain della repo
+
+  = Valore di ritorno
+  Oggetto `#link()`
+*/
 #let repo(quale, body) = {
   let repo-url = get-url("base", quale)
   link(repo-url, body)
