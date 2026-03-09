@@ -7,6 +7,14 @@
   stato: "Da verificare",
   registro-modifiche: (
     (
+      "1.4.1",
+      "09/03/2026",
+      "Riccardo Graziani",
+      "-",
+      [Modificata @gestione-processi-attivita-previste includendo workflow relativo alla chiusura automatica degli _issue branch_ e il collegamento automatico delle _issue_ alle relative _pull request_ e _parent issue_. Definizione della label _epic_ per _parent issue_
+      ]
+    ),
+    (
       "1.4.0",
       "09/03/2026",
       "Riccardo Graziani",
@@ -873,7 +881,7 @@ Innanzitutto, è necessario stabilire i requisiti e le risorse necessarie per co
 
 Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in "_task_" assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento. Una _parent issue_ è riconoscibile dalla presenza della label *`epic`*.
 
-Alla creazione di una _issue_ deve essere specificato nel titolo la *sigla* del documento a cui fa riferimento, inserendo tale sigla tra parentesi quadre: in base a ciò un'automazione assegnerà la nuova _issue_ alla rispettiva _parent issue_. Le convenzioni di nomenclatura utilizzate per i titoli delle _issue_ sono descritte nella @infrastruttura-creazione-github-issues.
+Alla creazione di un'_issue_ deve essere specificato nel titolo la *sigla* del documento a cui fa riferimento, inserendo tale sigla tra parentesi quadre: in base a ciò un'automazione assegnerà la nuova _issue_ alla rispettiva _parent issue_. Le convenzioni di nomenclatura utilizzate per i titoli delle _issue_ sono descritte nella @infrastruttura-creazione-github-issues.
 
 Si noti che le _issue_ in questo stato devono essere associate allo stato di *"backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
 
@@ -937,7 +945,7 @@ Il #gloss[verificatore] che ha approvato la #gloss[pull request] relativa alla _
 
 L'approvazione definitiva della #gloss[pull request] comporta la chiusura automatica dell'_issue_ associata: un'automation, infatti, imposterà l'issue associata come *"Done"*, facilitando il processo di tracciamento delle attività svolte e riducendo il rischio di dimenticanze da parte dei membri del gruppo.
 
-La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato: tutto ciò avviene tramite un'automazione di #gloss[GitHub Actions] che, a partire dal numero relativo all'_issue_ legata alla #gloss[pull request], identifica il _branch_ da eliminare e procede alla sua eliminazione. 
+La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato: tutto ciò avviene tramite un'automazione di #gloss[GitHub Actions] che, a partire dal numero relativo all'_issue_ legata alla #gloss[pull request], identifica il _branch_ da eliminare e lo elimina. 
 
 === Ruoli <divisione-ruoli>
 Di seguito, sono riportate le descrizioni dei compiti, delle responsabilità e del valore del lavoro di tutti i ruoli che i membri del gruppo possono assumere durante l'esecuzione del progetto.
@@ -1130,7 +1138,7 @@ Dove:
     - "`PdP`", ossia #gloss[Piano di Progetto];
     - "`PdQ`", ossia #gloss[Piano di Qualifica];
     - "`ST`", ossia #gloss[Specifica Tecnica];
-    - "`Gloss/Glossario`"
+    - "`Gloss`" o "`Glossario`"
   - Se l'issue concerne il #gloss[PoC], allora si userà la dicitura "`PoC`"
 - *`attività`* rappresenta una breve descrizione delle modifiche apportate dall'_issue_.
 
