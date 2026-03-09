@@ -1,0 +1,15 @@
+site_name: GlitchHub - Manuale Utente
+copyright: Copyright &copy; 2026 GlitchHub
+docs_dir: src/PB/ManualeUtente
+site_dir: 'ManualeUtente'
+site_url: https://glitchhub-team.github.io/ManualeUtente/
+
+theme:
+  name: material
+  language: it
+  palette:
+    primary: deep-purple
+    accent: cyan
+
+nav:
+  - Home: index.md
