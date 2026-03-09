@@ -4,13 +4,13 @@
 // NOTA: se dovete riferirvi a delle sezioni del testo (ad es. scrivere Sezione 1.2.3), usate ref e label
 #show: report.with(
   titolo: "Norme di Progetto",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.4.1",
       "09/03/2026",
       "Riccardo Graziani",
-      "-",
+      "Elia Ernesto Stellin",
       [Applicate correzioni a @gestione-processi-attivita-previste rilevate durante la verifica
       ]
     ),
@@ -18,7 +18,7 @@
       "1.4.0",
       "09/03/2026",
       "Riccardo Graziani",
-      "-",
+      "Elia Ernesto Stellin",
       [Modificata @gestione-processi-attivita-previste includendo workflow relativo alla chiusura automatica degli _issue branch_ e il collegamento automatico delle _issue_ alle relative _pull request_ e _parent issue_. Definizione della label _epic_ per _parent issue_
       ]
     ),
