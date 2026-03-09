@@ -11,7 +11,7 @@
       "09/03/2026",
       "Riccardo Graziani",
       "-",
-      [Modificata @gestione-processi-attivita-previste includendo workflow relativo alla chiusura automatica degli _issue branch_ e il collegamento automatico delle _issue_ alle relative _pull request_ e _parent issue_. Definizione della label _epic_ per _parent issue_
+      [Applicate correzioni a @gestione-processi-attivita-previste rilevate durante la verifica
       ]
     ),
     (
