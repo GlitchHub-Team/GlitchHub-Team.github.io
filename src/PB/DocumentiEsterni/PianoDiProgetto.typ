@@ -10,7 +10,7 @@
       "1.2.3",
       "09/03/2026",
       "Jaume Bernardi",
-      "",
+      "Michele Dioli",
       [Aggiornamento tabelle sprint 10],
     ),
     (
