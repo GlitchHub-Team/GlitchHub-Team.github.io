@@ -25,7 +25,7 @@ for typ_file in "${typ_files[@]}"; do
     if [ ! -f "$pdf_file" ] || [ "$typ_file" -nt "$pdf_file" ]; then
         mkdir -p "$(dirname "$pdf_file")"
         echo "Compiling: $typ_file -> $pdf_file"
-        typst compile --root . "$typ_file" "$pdf_file" --font-path $SRC_DIR/assets/fonts
+        typst compile --root . "$typ_file" "$pdf_file" --font-path "$SRC_DIR/assets/fonts"
     else
         echo "Skipping: $typ_file (up to date)"
     fi
