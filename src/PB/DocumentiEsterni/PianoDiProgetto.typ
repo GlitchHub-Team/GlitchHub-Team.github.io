@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
+  stato: "da verificare",
   registro-modifiche: (
+    (
+      "1.2.3",
+      "09/03/2026",
+      "Jaume Bernardi",
+      "",
+      [Aggiornamento tabelle sprint 10],
+    ),
     (
       "1.2.2",
       "04/03/2026",
@@ -232,7 +239,7 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Elia Ernesto Stellin",
+  verificatore-interno: "",
   left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Piano di Progetto",
 )
