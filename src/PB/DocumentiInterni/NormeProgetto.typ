@@ -7,6 +7,22 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.4.1",
+      "09/03/2026",
+      "Riccardo Graziani",
+      "Elia Ernesto Stellin",
+      [Applicate correzioni a @gestione-processi-attivita-previste rilevate durante la verifica
+      ]
+    ),
+    (
+      "1.4.0",
+      "09/03/2026",
+      "Riccardo Graziani",
+      "Elia Ernesto Stellin",
+      [Modificata @gestione-processi-attivita-previste includendo workflow relativo alla chiusura automatica degli _issue branch_ e il collegamento automatico delle _issue_ alle relative _pull request_ e _parent issue_. Definizione della label _epic_ per _parent issue_
+      ]
+    ),
+    (
       "1.3.0",
       "26/02/2026",
       "Riccardo Graziani",
@@ -121,7 +137,7 @@
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
-  htmlId: "RTB-DocumentiInterni",
+  htmlId: "PB-DocumentiInterni",
   verificatore-interno: "Elia Ernesto Stellin",
   left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Norme di Progetto",
@@ -259,6 +275,9 @@ La *Lettera di Presentazione* è il documento tramite il quale *GlitchHub Team* 
 ==== Analisi dei Requisiti <doc-fornita-analisi-requisiti>
 L'#link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[*Analisi dei Requisiti*] è il documento in cui *GlitchHub Team* definisce in dettaglio tutti i #gloss[requisiti] del progetto, classificandoli in obbligatori, desiderabili e opzionali.
 Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[casi d'uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
+
+==== Specifica Tecnica <doc-fornita-specifica-tecnica>
+La *Specifica Tecnica* è il documento in cui *GlitchHub Team* descrive in dettaglio l'architettura del sistema, i componenti software che lo compongono e le interfacce tra di essi. Partendo da un'introduzione sul contesto operativo, la specifica tecnica descrive l'architettura di alto livello del sistema, per poi scendere in dettaglio sui singoli componenti software.
 
 ==== Piano di Progetto <doc-fornita-piano-progetto>
 Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[*Piano di Progetto*] è il documento in cui *GlitchHub Team* documenta
@@ -860,7 +879,9 @@ Le attività non rendicontabili o di "palestra", ovvero il cui svolgimento non i
 === Avvio dell'attività e definizione della portata <gestione-processi-avvio>
 Innanzitutto, è necessario stabilire i requisiti e le risorse necessarie per completare l'attività. Dopodiché il #gloss[responsabile] del gruppo deve stabilire la fattibilità del processo controllando la disponibilità delle risorse del gruppo, ovvero controllando che l'attività sia fattibile nell'intervallo temporale fissato. Si noti che i requisiti del processo possono essere discussi con i loro assegnatari.
 
-Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in "_task_" assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento.
+Il #gloss[responsabile] individua le attività che il gruppo deve svolgere e le divide in "_task_" assicurandosi che queste siano *atomiche*, *rapide* ed *eseguibili singolarmente*. A ogni _task_ corrisponde un'_issue_ e un gruppo di _task_ correlate possono essere raggruppate in una _parent issue_ che ha come assegnatari tutte le persone coinvolte, ma che non viene utilizzata per il conteggio delle risorse consumate per il suo svolgimento. Una _parent issue_ è riconoscibile dalla presenza della label *`epic`*.
+
+Alla creazione di un'_issue_ deve essere specificato nel titolo la *sigla* del documento a cui fa riferimento, inserendo tale sigla tra parentesi quadre: in base a ciò un'automazione assegnerà la nuova _issue_ alla rispettiva _parent issue_. Le convenzioni di nomenclatura utilizzate per i titoli delle _issue_ sono descritte nella @infrastruttura-creazione-github-issues.
 
 Si noti che le _issue_ in questo stato devono essere associate allo stato di *"backlog"*, il quale indice che l'issue è stata rilevata ma ancora non pianificata.
 
@@ -901,12 +922,13 @@ Il processo di verifica avviene nel seguente modo:
 - Nella #gloss[pull request] devono essere indicati:
   - il _reviewer_ e l'_assignee_, assegnando ad entrambi il #gloss[verificatore] individuato per la _issue_; 
   - la _milestone_ corrispondente all'iterazione in cui è stata svolta la _task_;
-  - la _issue_ che è stata svolta, collegandola alla #gloss[pull request] nella sezione *`development`*;
 - La relativa _issue_ deve essere segnata come *"In review"* sul _project_.
 
 Quando viene creata la #gloss[pull request], un'_automation_ di #gloss[GitHub Actions] assegna automaticamente gli stessi campi previsti per le issue (vedi @gestione-processi-pianificazione). In seguito è compito del #gloss[responsabile] compilare tali campi con le stesse modalità usate durante la creazione delle issue.
 
 L'unica eccezione riguarda lo _sprint role_: essendo la #gloss[pull request] uno strumento di *verifica*, l'_automation_ assegna automaticamente a questo campo il ruolo di #gloss[verificatore].
+
+Inoltre l'automation assegna automaticamente alla #gloss[pull request] aperta la rispettiva _issue_ nel campo *development*, migliorando la tracciabilità tra _issue_ e relative _task_ di verifica.
 
 === Conclusione <gestione-processi-conclusione>
 Per utilizzare una linea di lavoro comune, il gruppo applica una _Definition of Done_, ovvero una definizione di cosa determina se un'attività sia conclusa o meno, ben precisa: _Un attività è conclusa quando è stata approvata definitivamente da un verificatore diverso dall'assegnatario originale_.
@@ -916,13 +938,14 @@ Questa definizione garantisce che il gruppo possa determinare in ogni momento qu
 Quando una _task_ viene conclusa, il suo assegnatario deve modificare la relativa _issue_ impostando i seguenti campi:
 - _End Date_: data effettiva di fine della _task_;
 - _Worked Hours_: le ore effettive di lavoro sulla _task_;
-  - L'_issue_ relativa alla _task_ deve essere impostata come *"Done"*.
 
 Il #gloss[verificatore] che ha approvato la #gloss[pull request] relativa alla _task_ deve modificarne i seguenti campi:
 - _End Date_: data effettiva di fine della _task_ di verifica;
 - _Worked Hours_: le ore effettive di lavoro sulla _task_ di verifica;
 
-La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato.
+L'approvazione definitiva della #gloss[pull request] comporta la chiusura automatica dell'_issue_ associata: un'automation, infatti, imposterà l'issue associata come *"Done"*, facilitando il processo di tracciamento delle attività svolte e riducendo il rischio di dimenticanze da parte dei membri del gruppo.
+
+La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato: tutto ciò avviene tramite un'automazione di #gloss[GitHub Actions] che, a partire dal numero relativo all'_issue_ legata alla #gloss[pull request], identifica il _branch_ da eliminare e lo elimina. 
 
 === Ruoli <divisione-ruoli>
 Di seguito, sono riportate le descrizioni dei compiti, delle responsabilità e del valore del lavoro di tutti i ruoli che i membri del gruppo possono assumere durante l'esecuzione del progetto.
@@ -1099,16 +1122,23 @@ Questa #gloss[repository] viene usata dal gruppo per raggruppare tutte le #gloss
 Si notano principalmente le seguenti _action_:
 - `.github/workflows/issue-action.yml` che consente di assegnare automaticamente qualunque #gloss[Github Issue] e #gloss[pull request] al #gloss[GitHub Project] del gruppo, compilando in modo automatico i campi _Sprint_ e _Sprint Role_ dell'_issue_;
 - `.github/workflows/branch-action.yml` che consente di creare un _branch_ specifico per ogni #gloss[GitHub Issue] creata, con il nome che segue la convenzione descritta nella @infrastruttura-creazione-github-branches;
+- `.github/workflows/delete-issue-branches.yml` che consente di eliminare il _branch_ relativo a un'_issue_ quando questa viene chiusa attraverso l'approvazione della relativa #gloss[pull request].
 In generale per utilizzare queste _action_ in una #gloss[repository] specifica, è necessario inserire sul branch `main` di quest'ultima un file nella cartella `.github/workflows/` che descriva il flusso dell'action.
 
-===== GitHub Issues
+===== GitHub Issues <infrastruttura-creazione-github-issues>
 Il gruppo ha deciso di utilizzare le #gloss[GitHub Issues] per il tracciamento delle attività su tutte le #gloss[repository], disponendo una serie di #gloss[issue templates] per facilitarne la creazione.
 
 Il nome di un'_issue_ segue la seguente convenzione:
 #align(center)[*`[scope] attività`*]
 Dove:
 - *`scope`* rappresenta ciò che l'issue modifica:
-  - Se l'issue modifica un documento, allora sarà l'abbreviazione del suo nome, come ad esempio "`AdR`" per l'#gloss[Analisi dei Requisiti] o "`PdQ`" per il #gloss[Piano di Qualifica].
+  - Se l'issue modifica un documento, allora sarà l'abbreviazione del suo nome tra parentesi quadre. I possibili `scope` sono:
+    - "`NdP`", ossia #gloss[Norme di Progetto];
+    - "`AdR`", ossia #gloss[Analisi dei Requisiti];
+    - "`PdP`", ossia #gloss[Piano di Progetto];
+    - "`PdQ`", ossia #gloss[Piano di Qualifica];
+    - "`ST`", ossia #gloss[Specifica Tecnica];
+    - "`Gloss`" o "`Glossario`"
   - Se l'issue concerne il #gloss[PoC], allora si userà la dicitura "`PoC`"
 - *`attività`* rappresenta una breve descrizione delle modifiche apportate dall'_issue_.
 
