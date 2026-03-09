@@ -3,22 +3,6 @@
 #show: report.with(
   titolo: "Verbale esterno 24/02/2026 (M31)",
   stato: "Verificato",
-  registro-modifiche: (
-    (
-      "1.0.0",
-      "2/03/2026",
-      "Michele Dioli",
-      "Jaume Bernardi",
-      "Correzione alcuni errori grammaticali",
-    ),
-    (
-      "0.1.0",
-      "24/02/2026",
-      "Michele Dioli",
-      "Jaume Bernardi",
-      "Prima stesura verbale esterno del 24/02/2026",
-    ),
-  ),
   partecipanti: (
     "Alessandro Dinato",
     "Riccardo Graziani",
@@ -33,10 +17,10 @@
     [Pianificazione per i prossimi sprint],
   ),
   htmlId: "RTB-VerbaliEsterni",
-  verificatore-interno: "-",
+  verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
-  verificatore-esterno: "Jaume Bernardi",
-  right-signature: "",
+  verificatore-esterno: "Cristian Pirlog",
+  right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
   tipo-verbale: "Esterno",
 )
 
