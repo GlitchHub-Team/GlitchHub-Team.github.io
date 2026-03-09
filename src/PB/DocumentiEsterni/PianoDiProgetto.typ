@@ -4,7 +4,7 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.2.3",
@@ -239,8 +239,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Michele Dioli",
+  left-signature: "../assets/firme/firma_Michele_Dioli.png",
   tipo-documento: "Piano di Progetto",
 )
 
