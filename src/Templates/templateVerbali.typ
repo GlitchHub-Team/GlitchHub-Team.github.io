@@ -27,6 +27,7 @@
   #show link: underline
 
   #let versione-auto = if versione != none { versione } else { "1.0.0" }
+  #let versione-auto = if versione != none { versione } else { "1.0.0" }
 
   #set document(
     title: titolo,
@@ -51,8 +52,6 @@
     leading: 0.75em,
     spacing: 1.2em,
   )
-
-
 
   #show: hwr.with(
     language: "it",
@@ -143,17 +142,17 @@
       #h(0.5em)
     ]
 
-    #table(
-      columns: (0.1fr, 0.14fr, 0.22fr, 0.22fr, 0.32fr),
-      align: left,
-      stroke: (x, y) => (
-        bottom: if y == 0 { 1pt + black } else { 0.8pt + black },
-      ),
-      table.header([*Ver.*], [*Data*], [*Autore*], [*Verificatore*], [*Descrizione*]),
-      ..for (ver, data, autore, verificatore, descrizione) in registro-modifiche {
-        ([#ver], [#data], [#autore], [#verificatore], [#descrizione])
-      },
-    )
+      #table(
+        columns: (0.1fr, 0.14fr, 0.22fr, 0.22fr, 0.32fr),
+        align: left,
+        stroke: (x, y) => (
+          bottom: if y == 0 { 1pt + black } else { 0.8pt + black },
+        ),
+        table.header([*Ver.*], [*Data*], [*Autore*], [*Verificatore*], [*Descrizione*]),
+        ..for (ver, data, autore, verificatore, descrizione) in registro-modifiche {
+          ([#ver], [#data], [#autore], [#verificatore], [#descrizione])
+        },
+      )
 
   ]
   pagebreak()

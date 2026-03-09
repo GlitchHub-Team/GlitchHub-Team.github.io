@@ -25,7 +25,7 @@
     [Aggiornamento workflow per issue],
     [Impostazione dev container],
   ),
-  htmlId: "RTB-VerbaliInterni",
+  htmlId: "PB-VerbaliInterni",
   verificatore-interno: "Alessandro Dinato",
   left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-verbale: "Interno",

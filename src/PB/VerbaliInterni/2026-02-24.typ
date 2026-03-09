@@ -24,7 +24,7 @@
     [Progettazione],
     [Organizzazione del nuovo sprint],
   ),
-  htmlId: "RTB-VerbaliInterni",
+  htmlId: "PB-VerbaliInterni",
   verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   tipo-verbale: "Interno",
