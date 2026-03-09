@@ -3,6 +3,7 @@
 #show: report.with(
   titolo: "Verbale esterno 03/03/2026 (M31)",
   stato: "Verificato",
+  versione: "1.0.0",
   partecipanti: (
     "Alessandro Dinato",
     "Riccardo Graziani",
@@ -15,7 +16,7 @@
     [Presentazione e dubbi su design],
     [Discussione su dev container],
   ),
-  htmlId: "RTB-VerbaliEsterni",
+  htmlId: "PB-VerbaliEsterni",
   verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   verificatore-esterno: "Cristian Pirlog",

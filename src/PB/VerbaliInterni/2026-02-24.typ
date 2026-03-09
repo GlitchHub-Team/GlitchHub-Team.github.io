@@ -5,15 +5,7 @@
   titolo: "Verbale interno 24/02/2026",
   stato: "Verificato",
   versione: "1.0.0",
-  registro-modifiche: (
-    (
-      "1.0.0",
-      "25/02/2026",
-      "Michele Dioli",
-      "Jaume Bernardi",
-      "Stesura verbale interno del 24/02/2026",
-    ),
-  ),
+  registro-modifiche: (),
   partecipanti: (
     "Alessandro Dinato",
     "Elia Ernesto Stellin",
@@ -32,7 +24,7 @@
     [Progettazione],
     [Organizzazione del nuovo sprint],
   ),
-  htmlId: "RTB-VerbaliInterni",
+  htmlId: "PB-VerbaliInterni",
   verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   tipo-verbale: "Interno",

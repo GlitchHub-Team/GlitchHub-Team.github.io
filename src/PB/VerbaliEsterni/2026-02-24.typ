@@ -3,6 +3,8 @@
 #show: report.with(
   titolo: "Verbale esterno 24/02/2026 (M31)",
   stato: "Verificato",
+  versione: "1.0.0",
+  registro-modifiche: (),
   partecipanti: (
     "Alessandro Dinato",
     "Riccardo Graziani",
@@ -16,7 +18,7 @@
     [Resoconto incontri con i professori Cardin e Vardanega],
     [Pianificazione per i prossimi sprint],
   ),
-  htmlId: "RTB-VerbaliEsterni",
+  htmlId: "PB-VerbaliEsterni",
   verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   verificatore-esterno: "Cristian Pirlog",
