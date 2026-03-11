@@ -44,7 +44,7 @@ Secondo la #gloss("proponente"), è prioritario concentrarsi sulla corretta impl
 === Frequenza di invio dati
 Il gruppo ha discusso il problema della frequenza d’invio variabile. In precedenza era stato stabilito che ogni tipo di sensore (#gloss("profilo GATT")) avrebbe potuto avere una frequenza d’invio dedicata. \ Tuttavia questa soluzione risulta complessa da implementare, dato l’utilizzo di #gloss("SQLite") come buffer interno e la necessità di un data sender per ogni tipo di sensore, il che rende difficile propagare e gestire lo stato a livello di #gloss("gateway").\
 La #gloss("proponente") ha approvato il compromesso proposto dal gruppo, ovvero l'implementazione di una frequenza di trasmissione variabile per singolo #gloss("gateway"). Il parametro di frequenza sarà applicato all'intera istanza, garantendo l'invio complessivo indipendentemente dalla natura del dato.
-\ L’obiettivo finale del prodotto sarebbe avere precisione a livello di #gloss("gateway") e poi propagare la configurazione ai sensori in vari modi, tuttavia questa ottimizzazione è stata rimandata a una fase successiva.
+\ L'obiettivo finale è garantire la precisione direttamente sul #gloss("gateway") per poi distribuire la configurazione ai sensori. Al momento, questa ottimizzazione è stata esclusa dal rilascio attuale e rimandata a sviluppi futuri.
 
 === Creazione nuovi tenant
 Il gruppo, data la difficoltà implementativa, ha chiesto alla #gloss("proponente") come gestire la creazione di nuovi #gloss("tenant"), dato che la gestione tramite #gloss("NATS") risulterebbe troppo onerosa in termini di tempo. La proposta di una figura dedicata alla creazione delle credenziali è stata accettata dalla #gloss("proponente"), con la presenza di una nota indicante la futura miglioria.
