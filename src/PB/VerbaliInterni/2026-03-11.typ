@@ -24,8 +24,8 @@
     [Revisione del lavoro svolto],
   ),
   htmlId: "PB-VerbaliInterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-verbale: "Interno",
 )
 
@@ -34,22 +34,23 @@ Il presente documento attesta che, in data *11 marzo 2026* dalle ore 14:45 alle 
 
 == Revisione del lavoro
 === Codifica della progettazione del Gateway
-Lo sviluppo del Gateway è in fasa avanzata. Se non emergono eventuali problemi si prevede di concludere la codifica per il 14 marzo.
+Lo sviluppo del Gateway è in fase avanzata. Se non emergeranno eventuali problemi si prevede di concludere la codifica per il 14 marzo.
 
 === Impostazione dei devcontainer (ambienti di sviluppo) e della continuous integration (CI)
-In merito all'ottimizzazione del workflow di sviluppo, il gruppo ha definito l'integrazione di un file _ci.yml_ per ogni repository che fa:
-- *Per il linguaggio Go*: installa le dipendenze (_go download_), formatta il codice tramite _gofumpt_, l'analisi statica per errori di compilazione (_go vet_) e l'esecuzione dei test unitari (_go test_).
-- *Per Node.js*: installa _npm_ e le relative dipendenze, seguita poi dalle fasi di compilazione e build per l'individuazione di eventuali errori.
-- *Per Prometheus e Grafana*: valida automaticamente focalizzata sulla corretta indentazione dei file .yml.
+In merito all'ottimizzazione del workflow di sviluppo, il gruppo ha definito l'integrazione di un file _ci.yml_ per ogni #gloss("repository"), con le seguenti specifiche:
+- *linguaggio Go*: gestione delle dipendenze (_go download_), formattazione del codice tramite _gofumpt_, analisi statica per errori di compilazione (_go vet_) ed esecuzione dei test unitari (_go test_).
+- *Node.js*: installazione _npm_ e relative dipendenze, seguita dalle fasi di compilazione e build per l'individuazione di eventuali errori.
+- *Prometheus e Grafana*: validazione automaticamente focalizzata sulla corretta indentazione dei file _.yml_.
 
-A seguito di un'analisi comparativa, il team ha stabilito di adottare _golang-ci_ come strumento principale di analisi statica per il codice in Go, infatti questa scelta è motivata dalla maggiore efficacia dello strumento.
+A seguito di un'analisi comparativa, il team ha stabilito di adottare _golang-ci_ come strumento principale di analisi statica per il codice in Go; tale scelta è motivata dalla maggiore efficacia dello strumento nel raggruppare i controlli necessari.
 
 == Sviluppo dashboard front-end
-La fase di progettazione della dashboard è in fase avanzata. Si è stabilito che Riccardo e Siria si dedicheranno allo sviluppo del front-end.
+La fase di progettazione della #gloss("dashboard") è in fase avanzata. Si è stabilito che Riccardo e Siria si dedicheranno prioritariamente allo sviluppo del front-end.
 
 == Sviluppo dashboard back-end
-La fase di progettazione della dashboard back-end è in via di completamento; restano da implementare alcune modifiche strutturali suggerite dal Prof. Cardin per ottimizzare l'architettura. \
-Il gruppo ha analizzato l'opportunità di utilizzare il linguaggio UML in relazione a Go. È emerso che l'applicazione rigorosa dei diagrammi delle classi UML può risultare una forzatura, dato che Go non segue il paradigma di programmazione orientata agli oggetti (OOP) in senso stretto (mancanza di ereditarietà classica, gerarchie di classi, ecc.). Si è pertanto deciso di utilizzare la notazione UML in modo flessibile e non troppo vincolante.
+La progettazione della #gloss("dashboard") back-end è in via di completamento; restano da implementare alcune modifiche strutturali suggerite dal Prof. Cardin per ottimizzare l'architettura. \
+
+Il gruppo ha analizzato l'opportunità di utilizzare il linguaggio UML in relazione a Go. È emerso che l'applicazione rigorosa dei diagrammi delle classi UML può risultare una forzatura, dato che Go non segue il paradigma di programmazione orientata agli oggetti (OOP) in senso stretto (mancanza di ereditarietà classica, gerarchie di classi, ecc.). Si è pertanto deciso di utilizzare la notazione UML in modo flessibile, privilegiando la chiarezza logica rispetto al formalismo standard.
 
 = Assegnazione delle prossime task basate sulle decisioni prese
 #table(
