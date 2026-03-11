@@ -7,19 +7,16 @@
   stato: "da verificato",
   registro-modifiche: (
     (
-<<<<<<< issue-390
       "1.3.0",
       "11/03/2026",
       "Michele Dioli",
       "",
       [Stesura sprint 11 (@sprint-11)],
-=======
       "1.2.3",
       "09/03/2026",
       "Jaume Bernardi",
       "Michele Dioli",
       [Aggiornamento tabelle sprint 10],
->>>>>>> main
     ),
     (
       "1.2.2",
