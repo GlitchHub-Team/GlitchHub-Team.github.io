@@ -12,7 +12,7 @@
     "Jaume Bernardi",
     "Michele Dioli",
     "Hossam Ezzemouri",
-    "Siria Salvalaio",
+  "Riccardo Graziani",
   ),
   distribuzione: (
     "GlitchHub Team",
