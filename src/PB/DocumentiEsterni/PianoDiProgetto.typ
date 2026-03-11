@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
+  stato: "da verificato",
   registro-modifiche: (
+    (
+      "1.3.0",
+      "11/03/2026",
+      "Michele Dioli",
+      "",
+      [Stesura sprint 11 (@sprint-11)],
+    ),
     (
       "1.2.2",
       "04/03/2026",
@@ -2844,3 +2851,211 @@ Nonostante la presenza del rischio *RP1* (@RP1), il gruppo è riuscito a portare
   [Sprint 10 - Aggiornamento costi],
   label-id: "spr10-agg-costi",
 )
+
+== Sprint 11 <sprint-11>
+Inizio: 24/02/2026 \
+Fine:  11/03/2026\
+
+Il presente #gloss("sprint") ha lo scopo di iniziare e concludere la prima fase di progettazione, completando i #gloss("diagrammi C4") del sistema, per poi avviare la fase di coding dei vari microservizi.\ È inoltre necessario configurare tutte le #gloss("repository") con i rispettivi #gloss("dev container"), così da garantire un ambiente di sviluppo funzionante e il più fluido possibile.
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+- Aggiornare il _workflow_ per ottimizzare il lavoro asincrono ((#issue(328)))
+- La indifiduazione dei servizi per la progettazione:
+  - Dividere servizio #gloss("data consumer") per funzionalità  (#issue(329))
+  - Dividere servizio #gloss("gateway") per funzionalità (#issue(330))
+  - Dividere servizio #gloss("dashboard") #gloss("frontend") per funzionalità (#issue(331))
+  - Dividere servizio dashboard backend per funzionalità (#issue(332))
+- Impostazione #gloss("dev container") e integrazione con #gloss("CI") (#issue(392))
+- Aggiornare con _file_ onClosePR.yml in tutte le #gloss("repo") (#issue(393))
+- Creare e impostare _label_ «epic» per #gloss("issue") di raggruppamento (#issue(394))
+- Togliere sezioni #gloss("RTB") e candidatura da #gloss("repository") pubblico (#issue(395))
+- Codifica componenti stabili (#issue(396))
+- Impostare #gloss("MkDocs") per sito _web_ (#issue(398))
+- Cambiare funzione issue() su #gloss("Typst") (#issue(399))
+- Creare funzione pr() su #gloss("Typst") (#issue(400))
+- Aggiornare _workflow_ #gloss("NdP") (#issue(401))
+- Codifica componenti stabili Gateway (#issue(2, repo:"gw"))
+- [Angular] Setup struttura dashboard frontend (#issue(3,repo:"dash"))
+
+=== Rischi attesi
+- *RT1* (@RT1): La scelta del gruppo di rappresentare il sistema con i #gloss("diagrammi C4") rapprensta un rischio tecnologico data la non famigliarità con tale tecnologia.
+
+=== Preventivo
+	==== Preventivo risorse da utilizzare
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "3", "-", "-", [*3*],
+"Alessandro Dinato", "-", "1", "-", "8", "5", "-", [*14*],
+"Michele Dioli", "4", "1", "-", "9", "-", "-", [*14*],
+"Hossam Ezzemouri", "-", "5", "-", "-", "-", "-", [*5*],
+"Riccardo Graziani", "-", "3", "-", "9", "3", "-", [*15*],
+"Siria Salvalaio", "-", "2", "-", "-", "-", "-", [*2*],
+"Elia Ernesto Stellin", "-", "4", "-", "11", "-", "-", [*15*],
+table.footer([*Totale*], [*4*], [*16*], [*0*], [*40*], [*8*], [*0*], [*68*]),
+		),
+		[Sprint 11 - Preventivo risorse da utilizzare],
+		label-id: "spr11-prev-risorse",
+	)
+	==== Grafico a torta della suddivisione oraria prevista
+
+	#let orePrevSprint11 = (
+		
+	("Responsabile", 4),
+	("Amministratore", 16),
+	("Analista", 0),
+  	("Progettista", 40),
+  	("Programmatore", 8),
+  	("Verificatore", 0),
+	
+	)
+	#graficoTorta("Sprint 11 - Ore produttive previste per ogni ruolo", orePrevSprint11)
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+	Issue relative a sprint 11: \
+  - [NdP] Aggiornare workflow per nuove automazioni (#issue(401))
+  - Specifica Tecnica (#issue(327))
+  - [ST] Code Diagram container gateway (#issue(354))
+  - Progettazione cloud (#issue(397))
+  - [ST] Code Diagram per Angular SPA (UML) (#issue(365))
+  - Codifica componenti stabili Gateway (#issue(2, repo:"gw"))
+  - [ST] Code Diagram user service, tenant s, gateway s, data s (#issue(416))
+  - [ST] Code Diagram user service, tenant s, gateway s, data s (#issue(417))
+  - [ST] Code Diagram cloud backend (#issue(415))
+  - Creazione delle repo per l'MVP e automation (#issue(336))
+  - Creazione Component Diagram per Data Consumer (#issue(329))
+  - [ST] Component Diagram per Gateway (#issue(330))
+  - Creazione Component Diagram per Frontend Angular (#issue(331))
+  - [Actions] Integrazione dell'action issue-branch (#issue(335))
+  - Code Diagram per Data Partitioner (#issue(345))
+  - [PdP] Script Piano di Progetto includendo PR (#issue(347))
+  - [ST] code diagram componenti gate manager, gate agent (#issue(355))
+  - [ST] code diagram sim. sens, config. manager, gate command, data pubbl. (#issue(356))
+  - [ST] Creazione Deployment diagram (#issue(360))
+  - [Action] Aggiungere onClosePR.yml a tutte le repo (#issue(388))
+  - Cambiare funzione issue() e creare pr() su Typst  (#issue(399))
+  - Togliere sezioni RTB e candidatura da repo pubblico (#issue(395))
+  - Impostazione dev container e integrazione con CI (#issue(392))
+  - Impostare MkDocs per sito web (#issue(398))
+  - Creazione delle repo (#issue(337))
+  - setting automation (#issue(338))
+  - [ST] Component Diagram per Backend Gin (#issue(332))
+  - [Action] GH Action per rimozione issue branch "stale" (#issue(374))
+  - [Action] Action per assegnare issue a living task relativa (se possibile) (#issue(375))
+  - [Action] GH Action per impostare sez. "Development" delle PR (#issue(376))
+  - [VI/VE] Fix template verbali per registro modifiche (#issue(403))
+  - [Action] Fix compilazione font su Typst (#issue(423))
+  - [Action] Compilazione MkDocs (#issue(424))
+  - [Angular] Setup struttura dashboard frontend (#issue(3,repo:"dash"))
+
+
+=== Retrospettiva
+Lo sprint è coinciso con l'inizio della #gloss("PB"), il gruppo si è dovuto organizzare per capire come procedere al meglio. La  #gloss("PB") richiede un livello di progettazione più fine rispetto a quello svolto per il PoC, di conseguenza, il gruppo si è dovuto specializzare nella progettazione del sistema previsto dal capitolato.\
+Il gruppo ha raggiunto un livello di #gloss("Way of Working") che si può considerare ottimale: il nuovo sistema di #gloss("issue-branch") introdotto ha avuto una risposta positiva da parte del gruppo e si è riusciti a utilizzare le #gloss("pull request") come strumento di verifica.\
+La progettazione ha necessitato uno studio iniziale della sintassi appropriata per realizzare i #gloss("diagrammi C4"). Una volta completato lo studio, si è suddiviso il carico di lavoro in singole persone o gruppi di persone, come nel caso del sistema backend, hanno costruito i rispettivi #gloss("diagrammi C4").\
+Per le domande sorte durante la progettazione, si è deciso di chiedere consiglio al professor Cardin, il quale ci ha concesso un ricevimento di gruppo utile a chiarire i dubbi relativi alla progettazione.\
+È stata inoltre completata la configurazione delle varie #gloss("repository") con i rispettivi #gloss("dev container"), così da garantire un ambiente di sviluppo uniforme per tutto il gruppo.\
+È stato introdotto il #gloss("framework") #gloss("MkDocs") per la visualizzazione del manuale utente.\
+È stata avviata la scrittura delle parti iniziali e descrittive del documento di specifica tecnica.
+
+=== Rischi occorsi
+
+Nella realizzazione delle attività durante lo sprint 11 si sono verificati rallentamenti legati a RP1 (@RP1)(Indisponibilità di membri) e RT1(@RT1) (Apprendimento nuove tecnologie).\
+
+Gestione RP1(@RP1): Il rallentamento causato da problemi personali di alcuni membri è stato assorbito ridistribuendo il carico di lavoro sui componenti attivi. L'efficacia della strategia è confermata dal fatto che tutte le #gloss("issue") critiche previste per lo sprint sono state completate senza sforare le scadenze interne, dimostrando un'ottima resilienza organizzativa del gruppo.\
+
+Gestione RT1(@RT1): La criticità legata alla complessità dei #gloss("diagrammi C4") è stata gestita anticipando la fase di studio individuale. L'autoformazione tempestiva ha permesso di affrontare la progettazione con consapevolezza delle metodologie da applicare.
+
+=== Consuntivo di periodo
+	==== Risorse utilizzate
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "5 (+2)", "-", "-", [*5*],
+"Alessandro Dinato", "-", "-", "-", "6 (-2)", "7 (+2)", "-", [*13*],
+"Michele Dioli", "4", "1", "-", "9", "-", "-", [*14*],
+"Hossam Ezzemouri", "-", "6 (+1)", "-", "-", "-", "-", [*6*],
+"Riccardo Graziani", "-", "4 (+1)", "-", "12 (+3)", "-", "-", [*16*],
+"Siria Salvalaio", "-", "2", "-", "-", "-", "-", [*2*],
+"Elia Ernesto Stellin", "-", "2 (-2)", "-", "11", "-", "-", [*13*],
+table.footer([*Totale*], [*4*], [*15*], [*0*], [*43*], [*7*], [*0*], [*69*]),
+		),
+		[Sprint 11 - Risorse utilizzate],
+		label-id: "spr11-risorse-utiliz",
+	)
+	==== Grafico a torta della suddivisione oraria effettiva
+
+	#let oreEffettiveSprint11 = (
+		
+	("Responsabile", 4),
+	("Amministratore", 15),
+	("Analista", 0),
+  	("Progettista", 43),
+  	("Programmatore", 7),
+  	("Verificatore", 0),
+	
+	)
+	#graficoTorta(
+	"Sprint 11 - Ore produttive complessive ed effettive per ogni ruolo",
+	oreEffettiveSprint11,
+	)
+
+	=== Preventivo a finire
+	==== Aggiornamento ore rimanenti
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "4", "4", "13 (-5)", "24", "25", [*70*],
+"Alessandro Dinato", "-", "4", "-", "12 (-6)", "12 (-7)", "22", [*50*],
+"Michele Dioli", "-", "-1 (-1)", "-", "9 (-9)", "24", "25", [*57*],
+"Hossam Ezzemouri", "-", "-3 (-6)", "-", "17", "23", "25", [*62*],
+"Riccardo Graziani", "-", "4 (-4)", "-", "5 (-12)", "17", "17", [*43*],
+"Siria Salvalaio", "4", "-2 (-2)", "4", "18", "25", "25", [*74*],
+"Elia Ernesto Stellin", "3", "-2 (-2)", "-", "7 (-11)", "23", "25", [*56*],
+table.footer([*Totale*], [*7*], [*4*], [*8*], [*81*], [*148*], [*164*], [*412*]),
+		),
+		[Sprint 11 - Aggiornamento ore rimanenti],
+		label-id: "spr11-agg-ore-rim",
+	)
+
+	==== Aggiornamento costi
+	#tabella-paginata(
+	table(
+		columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+			"Responsabile", "7 (-4)" ,"30 €/h", "210 € (-120 €)",
+"Amministratore", "4 (-15)" ,"20 €/h", "80 € (-300 €)",
+"Analista", "8 " ,"25 €/h", "200 € ",
+"Progettista", "81 (-43)" ,"25 €/h", "2025 € (-1075 €)",
+"Programmatore", "148 (-7)" ,"15 €/h", "2220 € (-105 €)",
+"Verificatore", "164 " ,"15 €/h", "2460 € ",
+table.footer([*Totale*], [*412*], [-], [*7195 €*]),
+		),
+		[Sprint 11 - Aggiornamento costi],
+		label-id: "spr11-agg-costi",
+	)
