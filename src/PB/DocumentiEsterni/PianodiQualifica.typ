@@ -463,7 +463,8 @@ La copertura del codice (detta anche *Code Coverage*) misura la percentuale di c
 Il valore minimo accettabile è fissato all' 80%
 
 == Test di unità
-I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate. \
+I test di unità hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate.
+
 L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
 
 #let markup = eval.with(mode: "markup")
@@ -499,7 +500,7 @@ L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-
     ..tabella-TU
   ),
   [Test di Sistema con descrizione e requisito di riferimento],
-  label-id: "tab-test-sistema",
+  label-id: "tab-test-unità",
 )
 
 == Test di integrazione
