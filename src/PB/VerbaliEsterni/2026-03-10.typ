@@ -3,7 +3,7 @@
 #show: report.with(
   titolo: "Verbale esterno 10/03/2026 (M31)",
   stato: "Da verificare",
-  versione: "0.1.0",
+  versione: "1.0.0",
   partecipanti: (
     "Alessandro Dinato",
     "Riccardo Graziani",
