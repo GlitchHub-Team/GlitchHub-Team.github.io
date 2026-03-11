@@ -20,7 +20,7 @@
     [Consigli per il futuro e utilizzo di modelli ad agenti],
   ),
   htmlId: "PB-VerbaliEsterni",
-  verificatore-interno: "-",
+  verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   verificatore-esterno: "-",
   right-signature: "",
@@ -38,11 +38,13 @@ Durante l'incontro il gruppo ha mostrato l'avanzamento dei diagrammi C4 del sist
 
 Il gruppo ha presentato il code diagram aggiornato del #gloss("gateway"), illustrando le nuove implementazioni corrette a seguito dell’incontro con il Prof. Cardin. \
 Il gruppo ha posto il seguente dubbio: ha senso che il GatewayManagerService mantenga uno stato per quanto riguarda la configurazione, al fine di far partire il data sender e i sensori simulati?\
-La #gloss("proponente") ha risposto dicendo che è opportuno che il #gloss("gateway") mantenga uno stato a runtime in modalità “push”, in modo che ogni modifica alla configurazione si rifletta direttamente sullo stato del #gloss("gateway").\ Per la #gloss("proponente"), l’importante è che le funzionalità vengano implementate correttamente, tenendo a mente che si tratta di un simulatore e che funzionalità come la creazione di #gloss("gateway") non esisteranno in un ipotetico prodotto finale
+La #gloss("proponente") ha risposto dicendo che è opportuno che il #gloss("gateway") mantenga uno stato a runtime in modalità “push”, in modo che ogni modifica alla configurazione si rifletta direttamente sullo stato del #gloss("gateway").\ 
+Secondo la #gloss("proponente"), è prioritario concentrarsi sulla corretta implementazione delle funzionalità destinate al prodotto finale, considerando che componenti come il simulatore e i gateway non troverebbero applicazione in un futuro contesto reale.
 
 === Frequenza di invio dati
 Il gruppo ha discusso il problema della frequenza d’invio variabile. In precedenza era stato stabilito che ogni tipo di sensore (#gloss("profilo GATT")) avrebbe potuto avere una frequenza d’invio dedicata. \ Tuttavia questa soluzione risulta complessa da implementare, dato l’utilizzo di #gloss("SQLite") come buffer interno e la necessità di un data sender per ogni tipo di sensore, il che rende difficile propagare e gestire lo stato a livello di #gloss("gateway").\
-La #gloss("proponente") ha concordato con il compromesso proposto dal gruppo, si può  adottare un sistema di frequenza variabile per #gloss("gateway"), impostando la frequenza d’invio complessiva per ciascuna istanza di #gloss("gateway"), indipendentemente dal tipo di dato trasmesso.\ L’obiettivo finale del prodotto sarebbe avere precisione a livello di #gloss("gateway") e poi propagare la configurazione ai sensori in vari modi, tuttavia questa ottimizzazione è stata rimandata a una fase successiva.
+La #gloss("proponente") ha approvato il compromesso proposto dal gruppo, ovvero l'implementazione di una frequenza di trasmissione variabile per singolo #gloss("gateway"). Il parametro di frequenza sarà applicato all'intera istanza, garantendo l'invio complessivo indipendentemente dalla natura del dato.
+\ L’obiettivo finale del prodotto sarebbe avere precisione a livello di #gloss("gateway") e poi propagare la configurazione ai sensori in vari modi, tuttavia questa ottimizzazione è stata rimandata a una fase successiva.
 
 === Creazione nuovi tenant
 Il gruppo, data la difficoltà implementativa, ha chiesto alla #gloss("proponente") come gestire la creazione di nuovi #gloss("tenant"), dato che la gestione tramite #gloss("NATS") risulterebbe troppo onerosa in termini di tempo. La proposta di una figura dedicata alla creazione delle credenziali è stata accettata dalla #gloss("proponente"), con la presenza di una nota indicante la futura miglioria.
