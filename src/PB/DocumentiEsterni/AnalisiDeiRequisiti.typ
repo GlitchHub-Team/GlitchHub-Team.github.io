@@ -211,6 +211,15 @@
   titolo: "Analisi dei Requisiti",
   stato: "Verificato",
   registro-modifiche: (
+      (
+      "1.2.3",
+      "11/03/2026",
+      "Siria Salvalaio",
+      "Elia Ernesto Stellin",
+      [
+        Sistemate alcune urgenze dei requisiti @lista-requisiti-funzionali
+      ],
+    ),
     (
       "1.2.2",
       "22/02/2026",
@@ -609,8 +618,8 @@
 
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Jaume Bernardi",
-  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Analisi dei Requisiti",
 )
 
