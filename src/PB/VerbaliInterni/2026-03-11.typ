@@ -44,10 +44,10 @@ In merito all'ottimizzazione del workflow di sviluppo, il gruppo ha definito l'i
 
 A seguito di un'analisi comparativa, il team ha stabilito di adottare _golang-ci_ come strumento principale di analisi statica per il codice in Go; tale scelta è motivata dalla maggiore efficacia dello strumento nel raggruppare i controlli necessari.
 
-== Sviluppo dashboard front-end
+=== Sviluppo dashboard front-end
 La fase di progettazione della #gloss("dashboard") è in fase avanzata. Si è stabilito che Riccardo e Siria si dedicheranno prioritariamente allo sviluppo del front-end.
 
-== Sviluppo dashboard back-end
+=== Sviluppo dashboard back-end
 La progettazione della #gloss("dashboard") back-end è in via di completamento; restano da implementare alcune modifiche strutturali suggerite dal Prof. Cardin per ottimizzare l'architettura. \
 
 Il gruppo ha analizzato l'opportunità di utilizzare il linguaggio UML in relazione a Go. È emerso che l'applicazione rigorosa dei diagrammi delle classi UML può risultare una forzatura, dato che Go non segue il paradigma di programmazione orientata agli oggetti (OOP) in senso stretto (mancanza di ereditarietà classica, gerarchie di classi, ecc.). Si è pertanto deciso di utilizzare la notazione UML in modo flessibile, privilegiando la chiarezza logica rispetto al formalismo standard.
@@ -80,13 +80,13 @@ Il gruppo ha analizzato l'opportunità di utilizzare il linguaggio UML in relazi
 
   [Aggiornare le NdP con il workflow della codifica], [Hossam Ezzemouri], [#issue(444)],
 
-  [Sistemare le automazioni del Continuous Integration], [Hossam Ezzemouri], [#issue(445)],
+  [Sistemare le automazioni della Continuous Integration], [Hossam Ezzemouri], [#issue(445)],
 
   [Scrivere gli unit test del gateway], [Hossam Ezzemouri], [#issue(6, repo:"gw")],
 
   [Scrivere gli unit test del gateway nel PdQ], [Hossam Ezzemouri], [#issue(446)],
 
-  [Scrivere codifica autenticazione del front-end], [Riccardo Graziani], [#issue(1, repo:"dash")],
+  [Codifica autenticazione del front-end], [Riccardo Graziani], [#issue(1, repo:"dash")],
 
   [Ruolo da responsabile], [Siria Salvalaio], [#issue(436)],
 
@@ -103,3 +103,11 @@ Il gruppo ha analizzato l'opportunità di utilizzare il linguaggio UML in relazi
   [Inserire versioni tecnologie e tecnologie mancanti nella ST], [Jaume Bernardi], [#issue(448)],
 
 ) 
+
+= Assegnazione ruoli per le prossima settimana
+- *Responsabile*: Siria Salvalaio
+- *Amministratore*: Elia Ernesto Stellin, Hossam Ezzemouri
+- *Progettista*: Michele Dioli, Elia Ernesto Stellin, Hossam Ezzemouri, Jaume Bernardi
+- *Programmatore*: Alessandro Dinato, Michele Dioli, Elia Ernesto Stellin, Riccardo Graziani, Siria Salvalaio
+- *Verificatore*: Siria Salvalaio, Hossam Ezzemouri, Alessandro Dinato, Michele Dioli, Elia Ernesto Stellin, Riccardo Graziani, Jaume Bernardi
+- *Analista*: Siria Salvalaio
