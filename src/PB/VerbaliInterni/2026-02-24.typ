@@ -84,7 +84,7 @@ Per ciascuna repository sarà necessario:
 
 = Assegnazione ruoli per le prossima settimana
 - *Responsabile*: Michele Dioli
-- *Amministratore*: Riccardo Graziani, Alessandro Dinato, Riccardo Graziani
+- *Amministratore*: Riccardo Graziani, Alessandro Dinato
 - *Verificatore*: Jaume Bernardi, Hossam Ezzemouri
 - *Analista*: Siria Salvalaio
 - *Progettista*: Alessandro Dinato, Riccardo Graziani, Michele Dioli, Elia Ernesto Stellin, Hossam Ezzemouri
