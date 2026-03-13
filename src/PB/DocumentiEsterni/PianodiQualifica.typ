@@ -462,9 +462,46 @@ La copertura del codice (detta anche *Code Coverage*) misura la percentuale di c
 
 Il valore minimo accettabile è fissato all' 80%
 
-== Test unitari
-I test unitari hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate. \
+== Test di unità
+I test di unità hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate.
+
 L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
+
+#let markup = eval.with(mode: "markup")
+
+#let tu-counter = counter("tu-counter")
+#tu-counter.update(1)
+
+#let LISTA-TU = json("../../tracciamento/TU.json")
+#let tabella-TU = ()
+
+#let tu = id => context {
+  tu-counter.step()
+  let tu-name = tu-counter.display(value => "TU-" + str(value))
+  [#tu-name]
+}
+
+
+#for test in LISTA-TU {
+  let new-code = tu(test.id)
+  tabella-TU.push(new-code)
+  tabella-TU.push(markup(test.descr))
+  tabella-TU.push(markup(test.expected))
+  tabella-TU.push(markup(test.state))
+}
+
+#tabella-paginata(
+  table(
+    columns: (1fr, 2fr, 2fr, 0.5fr),
+    align: center + horizon,
+    inset: 8pt,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
+    ..tabella-TU
+  ),
+  [Test di Sistema con descrizione e requisito di riferimento],
+  label-id: "tab-test-unità",
+)
 
 == Test di integrazione
 I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
@@ -610,7 +647,7 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
       .map(((i, test)) => {
         (
           [*#context ts(test.id)*],
-          [#eval(test.descr, mode: "markup")],
+          [#markup(test.descr)],
           [
             #if test.ref-req in tracciamento-RF {
               context rf(

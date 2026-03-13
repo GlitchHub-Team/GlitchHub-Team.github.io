@@ -1,0 +1,14 @@
+[
+    {
+        "id": "TU-Test-1",
+        "descr": "Questo è un TU di test (come esempio!)",
+        "expected": "42",
+        "state": "NI"
+    },
+    {
+        "id": "TU-Test-2",
+        "descr": "Questo è un altro TU di test (come esempio!)",
+        "expected": "42",
+        "state": "NI"
+    }
+]
