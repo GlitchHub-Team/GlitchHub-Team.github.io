@@ -10,7 +10,7 @@
       "1.3.0",
       "11/03/2026",
       "Michele Dioli",
-      "",
+      "Siria Salvalaio",
       [Stesura sprint 11 (@sprint-11)],
       ),
      (
@@ -246,8 +246,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Michele Dioli",
-  left-signature: "../assets/firme/firma_Michele_Dioli.png",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -2927,16 +2927,8 @@ table.footer([*Totale*], [*4*], [*16*], [*0*], [*40*], [*8*], [*0*], [*68*]),
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-	Issue relative a sprint 11: \
-  - [NdP] Aggiornare workflow per nuove automazioni (#issue(401))
-  - Specifica Tecnica (#issue(327))
-  - [ST] Code Diagram container gateway (#issue(354))
-  - Progettazione cloud (#issue(397))
-  - [ST] Code Diagram per Angular SPA (UML) (#issue(365))
-  - Codifica componenti stabili Gateway (#issue(2, repo:"gw"))
-  - [ST] Code Diagram user service, tenant s, gateway s, data s (#issue(416))
-  - [ST] Code Diagram user service, tenant s, gateway s, data s (#issue(417))
-  - [ST] Code Diagram cloud backend (#issue(415))
+Issue relative a sprint 11: \
+
   - Creazione delle repo per l'MVP e automation (#issue(336))
   - Creazione Component Diagram per Data Consumer (#issue(329))
   - [ST] Component Diagram per Gateway (#issue(330))
@@ -2944,25 +2936,32 @@ Il gruppo ha svolto con successo i seguenti compiti: \
   - [Actions] Integrazione dell'action issue-branch (#issue(335))
   - Code Diagram per Data Partitioner (#issue(345))
   - [PdP] Script Piano di Progetto includendo PR (#issue(347))
+  - [Action] Action per campi PR (#issue(348))
   - [ST] code diagram componenti gate manager, gate agent (#issue(355))
   - [ST] code diagram sim. sens, config. manager, gate command, data pubbl. (#issue(356))
   - [ST] Creazione Deployment diagram (#issue(360))
-  - [Action] Aggiungere onClosePR.yml a tutte le repo (#issue(388))
-  - Cambiare funzione issue() e creare pr() su Typst  (#issue(399))
   - Togliere sezioni RTB e candidatura da repo pubblico (#issue(395))
   - Impostazione dev container e integrazione con CI (#issue(392))
   - Impostare MkDocs per sito web (#issue(398))
   - Creazione delle repo (#issue(337))
   - setting automation (#issue(338))
+  - [ST] Code Diagram per Angular SPA (UML) (#issue(365))
+  - Progettazione cloud (#issue(397))
   - [ST] Component Diagram per Backend Gin (#issue(332))
   - [Action] GH Action per rimozione issue branch "stale" (#issue(374))
   - [Action] Action per assegnare issue a living task relativa (se possibile) (#issue(375))
   - [Action] GH Action per impostare sez. "Development" delle PR (#issue(376))
+  - Codifica componenti stabili Gateway (#issue(2, repo:"gw"))
   - [VI/VE] Fix template verbali per registro modifiche (#issue(403))
+  - test label (#issue(3, repo:"gw"))
+  - [ST] Code Diagram user service, tenant s, gateway s, data s (#issue(416))
+  - [ST] Code Diagram user service, tenant s, gateway s, data s (#issue(417))
   - [Action] Fix compilazione font su Typst (#issue(423))
   - [Action] Compilazione MkDocs (#issue(424))
-  - [Angular] Setup struttura dashboard frontend (#issue(3,repo:"dash"))
-
+  - [website] FIx mkdoc per sito (#issue(427))
+  - [Angular] Setup struttura dashboard frontend (#issue(3, repo: "dash"))
+  - [ST] Code Diagram container gateway (#issue(354))
+  - [ST] Code Diagram cloud backend (#issue(415))
 
 === Retrospettiva
 Lo sprint è coinciso con l'inizio della #gloss("PB"), il gruppo si è dovuto organizzare per capire come procedere al meglio. La  #gloss("PB") richiede un livello di progettazione più fine rispetto a quello svolto per il PoC, di conseguenza, il gruppo si è dovuto specializzare nella progettazione del sistema previsto dal capitolato.\
