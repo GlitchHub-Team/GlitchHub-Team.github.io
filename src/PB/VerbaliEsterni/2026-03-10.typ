@@ -2,7 +2,7 @@
 
 #show: report.with(
   titolo: "Verbale esterno 10/03/2026 (M31)",
-  stato: "Da verificare",
+  stato: "Verificato",
   versione: "1.0.0",
   partecipanti: (
     "Alessandro Dinato",
@@ -10,20 +10,20 @@
     "Elia Ernesto Stellin",
     "Jaume Bernardi",
     "Michele Dioli",
-    "Silvia Salvalaio"
+    "Siria Salvalaio"
   ),
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Cardin Riccardo", "Prof. Vardanega Tullio"),
   odg: (
     [Presentazione design del #gloss("gateway") e dubbi correlati],
-    [Ritrattazione di alcuni requisiti],
     [Presentazione design del backend #gloss("cloud")],
+    [Ritrattazione di alcuni requisiti],
     [Consigli per il futuro e utilizzo di modelli ad agenti],
   ),
   htmlId: "PB-VerbaliEsterni",
   verificatore-interno: "Jaume Bernardi",
   left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
-  verificatore-esterno: "-",
-  right-signature: "",
+  verificatore-esterno: "Cristian Pirlog",
+  right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
   tipo-verbale: "Esterno",
 )
 
@@ -76,7 +76,7 @@ Riguardo all’utilizzo di #gloss("LLM") nello sviluppo, la #gloss("proponente")
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
 
-  [Modificare AdR con requisiti ritrattati], [Silvia Salvalaio], [#issue(429)],
+  [Modificare AdR con requisiti ritrattati], [Siria Salvalaio], [#issue(429)],
 
   [Modificare code diagram con frequenza d'invio variabile per gateway], [Alessandro Dinato], [#issue(431)],
 
