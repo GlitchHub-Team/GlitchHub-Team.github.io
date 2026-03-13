@@ -204,7 +204,7 @@
     },
     {
         "id": "RF-Visualizzazione-lista-alert",
-        "urgenza": "Obb",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant",
         "ref_uc": [
             "<Visualizzazione-dashboard-generica>",
@@ -702,7 +702,7 @@
     },
     {
         "id": "RF-Visualizzazione-lista-alert-admin",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "Il Tenant Admin, visualizzando la propria dashboard personale, deve visualizzare la lista degli alert relativi al proprio Tenant",
         "ref_uc": [
             "<Visualizzazione-dashboard-tenant-admin>",
@@ -780,7 +780,7 @@
     },
     {
         "id": "RF-Sospensione-sensore-tenant-admin",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Tenant Admin deve poter sospendere l'invio di dati da parte di un sensore appartenente al proprio Tenant",
         "ref_uc": [
             "<Sospensione-sensore-tenant-admin>"
@@ -789,7 +789,7 @@
     },
     {
         "id": "RF-Sospensione-sensore-fallita-gateway-irraggiungibile",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore",
         "ref_uc": [
             "<Sospensione-sensore-tenant-admin>",
@@ -799,7 +799,7 @@
     },
     {
         "id": "RF-Riattivazione-sensore-tenant-admin",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Tenant Admin deve poter riattivare l'invio di dati da parte di un sensore appartenente al proprio Tenant",
         "ref_uc": [
             "<Riattivazione-sensore-tenant-admin>"
@@ -808,7 +808,7 @@
     },
     {
         "id": "RF-Riattivazione-sensore-fallita-gateway-irraggiungibile",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del sensore selezionato poiché il gateway a cui esso è associato è in stato di errore",
         "ref_uc": [
             "<Riattivazione-sensore-tenant-admin>",
@@ -818,7 +818,7 @@
     },
     {
         "id": "RF-Sospensione-gateway-tenant-admin",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Tenant Admin deve poter sospendere l'invio di dati da parte di un gateway appartenente al proprio Tenant",
         "ref_uc": [
             "<Sospensione-gateway-tenant-admin>",
@@ -828,7 +828,7 @@
     },
     {
         "id": "RF-Sospensione-gateway-fallita-gateway-irraggiungibile",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Sistema deve notificare che non è stato possibile sospendere l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore",
         "ref_uc": [
             "<Sospensione-gateway-tenant-admin>",
@@ -838,7 +838,7 @@
     },
     {
         "id": "RF-Riattivazione-gateway-tenant-admin",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Tenant Admin deve poter riattivare l'invio di dati da parte di un gateway appartenente al proprio Tenant",
         "ref_uc": [
             "<Riattivazione-gateway-tenant-admin>",
@@ -848,7 +848,7 @@
     },
     {
         "id": "RF-Riattivazione-gateway-fallita-gateway-irraggiungibile",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Sistema deve notificare che non è stato possibile riattivare l'invio di dati da parte del gateway selezionato poiché esso è in stato di errore",
         "ref_uc": [
             "<Riattivazione-gateway-tenant-admin>",
@@ -858,7 +858,7 @@
     },
     {
         "id": "RF-Riavvio-gateway-tenant-admin",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Tenant Admin deve poter riavviare un gateway appartenente al proprio Tenant",
         "ref_uc": [
             "<Riavvio-gateway-tenant-admin>",
@@ -868,7 +868,7 @@
     },
     {
         "id": "RF-Modifica-target-freq-invio-dati-tenant-admin",
-        "urgenza": "Obb",
+        "urgenza": "Des",
         "desc": "Il Tenant Admin deve poter modificare il target di frequenza d'invio dati per tipologia di sensore di un gateway associato al proprio tenant",
         "ref_uc": [
             "<Modifica-target-freq-invio-dati-tenant-admin>"
@@ -877,7 +877,7 @@
     },
     {
         "id": "RF-Riavvio-gateway-fallita-gateway-irraggiungibile",
-        "urgenza": "Obb",
+        "urgenza": "Des",
         "desc": "Il Sistema deve notificare che non è stato possibile riavviare il gateway selezionato poiché esso è in stato di errore",
         "ref_uc": [
             "<Riavvio-gateway-tenant-admin>",
@@ -977,7 +977,7 @@
     },
     {
         "id": "RF-Errore-riavvio",
-        "urgenza": "Obb",
+        "urgenza": "Des",
         "desc": "Il Cloud deve accorgersi se dopo un comando di riavvio presso un gateway simulato egli non risponde dopo un timeout specifico. Di conseguenza deve considerare il gateway in stato di errore e notificare gli utenti del tenant associato",
         "ref_uc": [
             "<Errore-riavvio>"
@@ -1004,7 +1004,7 @@
     },
     {
         "id": "RF-Conferma-comando-sospensione-invio-dati",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il gateway simulato deve poter confermare la sospensione di invio dei dati al Cloud in seguito al comando di sospensione ricevuto dallo stesso",
         "ref_uc": [
             "<Conferma-comando-sospensione-invio-dati>"
@@ -1013,7 +1013,7 @@
     },
     {
         "id": "RF-Conferma-comando-riattivazione-invio-dati",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il gateway simulato deve poter confermare la riattivazione dell'invio dei dati al Cloud in seguito al comando di riattivazione ricevuto dallo stesso",
         "ref_uc": [
             "<Conferma-comando-riattivazione-invio-dati>"
@@ -1022,7 +1022,7 @@
     },
     {
         "id": "RF-Conferma-comando-sospensione-sensore",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il gateway simulato deve poter confermare la sospensione dell'invio dei dati di un sensore simulato specifico in seguito al comando di sospensione ricevuto dal Cloud",
         "ref_uc": [
             "<Conferma-comando-sospensione-sensore>"
@@ -1031,7 +1031,7 @@
     },
     {
         "id": "RF-Conferma-comando-riattivazione-sensore",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il gateway simulato deve poter confermare la riattivazione dell'invio dei dati di un sensore simulato specifico in seguito al comando di riattivazione ricevuto dal Cloud",
         "ref_uc": [
             "<Conferma-comando-riattivazione-sensore>"
@@ -1040,7 +1040,7 @@
     },
     {
         "id": "RF-Conferma-comando-modifica-frequenza-invio-dati",
-        "urgenza": "Obb",
+        "urgenza": "Des",
         "desc": "Il gateway simulato deve poter inviare la conferma del cambiamento della frequenza di invio dati al Cloud in seguito al comando di modifica ricevuto dallo stesso",
         "ref_uc": [
             "<Conferma-comando-modifica-frequenza-invio-dati>"
@@ -1356,7 +1356,7 @@
     },
     {
         "id": "RF-Sospensione-sensore-simulato",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Cloud deve poter inviare al gateway il comando di sospensione di un Sensore simulato non sospeso specifico. In seguito alla ricezione del comandi il gateway deve interrompere l'invio di dati IoT crittografati relativi a tale Sensore",
         "ref_uc": [
             "<Sospensione-sensore-simulato>"
@@ -1365,7 +1365,7 @@
     },
     {
         "id": "RF-Riattivazione-gateway",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Cloud deve poter inviare, al gateway sospeso, il comando di riattivazione. In seguito alla ricezione del comando il gateway deve ricominciare l'invio di tutti i dati IoT crittografati",
         "ref_uc": [
             "<Riattivazione-gateway>"
@@ -1374,7 +1374,7 @@
     },
     {
         "id": "RF-Sospensione-gateway",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Cloud deve poter inviare, al gateway attivo, il comando di sospensione. In seguito alla ricezione del comando il gateway deve interrompere l'invio di tutti i dati IoT crittografati",
         "ref_uc": [
             "<Sospensione-gateway>"
@@ -1383,7 +1383,7 @@
     },
     {
         "id": "RF-Riavvio-gateway-cloud",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Cloud deve poter inviare al gateway il comando di riavvio. In seguito alla ricezione del comando il gateway deve spegnersi e riaccendersi, mantenendo le configurazioni e i dati salvati localmente",
         "ref_uc": [
             "<Riavvio-gateway-cloud>"
@@ -1392,7 +1392,7 @@
     },
     {
         "id": "RF-Modifica-frequenza-invio-dati-gateway",
-        "urgenza": "Obb",
+        "urgenza": "Des",
         "desc": "Il Cloud deve poter inviare al gateway il comando di modifica della frequenza di invio dati per uno specifico tipo di sensore. In seguito alla ricezione di tale comando il gateway deve aggiornare la configurazione della frequenza di invio dati per i dati inviati al Cloud relativi a tutti i sensori di tale tipologia, così da inviare un dato ogni intervallo di tempo specificato nel comando.",
         "ref_uc": [
             "<Modifica-frequenza-invio-dati-gateway>"
@@ -1466,7 +1466,7 @@
     },
     {
         "id": "RF-Visualizzazione-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato deve poter visualizzare i dettagli di un singolo alert",
         "ref_uc": [
             "<Visualizzazione-alert>"
@@ -1475,7 +1475,7 @@
     },
     {
         "id": "RF-Visualizzazione-titolo-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert, deve poter vedere il titolo dell'alert",
         "ref_uc": [
             "<Visualizzazione-titolo-alert>"
@@ -1484,7 +1484,7 @@
     },
     {
         "id": "RF-Visualizzazione-descrizione-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert, deve poter vedere la descrizione dell'alert",
         "ref_uc": [
             "<Visualizzazione-descrizione-alert>"
@@ -1493,7 +1493,7 @@
     },
     {
         "id": "RF-Mancata-ricezione-gateway",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un Gateway",
         "ref_uc": [
             "<Mancata-ricezione-gateway>"
@@ -1502,7 +1502,7 @@
     },
     {
         "id": "RF-Visualizzazione-id-gateway-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere l'identificativo del gateway",
         "ref_uc": [
             "<Visualizzazione-id-gateway-alert>"
@@ -1511,7 +1511,7 @@
     },
     {
         "id": "RF-Visualizzazione-timestamp-ultimo-dato-gateway-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il timestamp dell'ultimo dato ricevuto",
         "ref_uc": [
             "<Visualizzazione-timestamp-ultimo-dato-gateway-alert>"
@@ -1520,7 +1520,7 @@
     },
     {
         "id": "RF-Visualizzazione-tempo-inattivita-gateway-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da Gateway, deve poter vedere il tempo di inattività",
         "ref_uc": [
             "<Visualizzazione-tempo-inattivita-gateway-alert>"
@@ -1529,7 +1529,7 @@
     },
     {
         "id": "RF-Mancata-ricezione-sensore",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato deve poter visualizzare gli alert relativi alla mancata ricezione dati da un sensore",
         "ref_uc": [
             "<Mancata-ricezione-sensore>"
@@ -1538,7 +1538,7 @@
     },
     {
         "id": "RF-Visualizzazione-id-sensore-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere l'identificativo del sensore",
         "ref_uc": [
             "<Visualizzazione-id-sensore-alert>"
@@ -1547,7 +1547,7 @@
     },
     {
         "id": "RF-Visualizzazione-timestamp-ultimo-dato-sensore-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il timestamp dell'ultimo dato ricevuto",
         "ref_uc": [
             "<Visualizzazione-timestamp-ultimo-dato-sensore-alert>"
@@ -1556,7 +1556,7 @@
     },
     {
         "id": "RF-Visualizzazione-tempo-inattivita-sensore-alert",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "L'Utente autenticato, visualizzando un alert di mancata ricezione dati da sensore, deve poter vedere il tempo di inattività",
         "ref_uc": [
             "<Visualizzazione-tempo-inattivita-sensore-alert>"
@@ -1913,7 +1913,7 @@
     },
     {
         "id": "RF-Sospensione-gateway-super-admin",
-        "urgenza": "Des",
+        "urgenza": "Opt",
         "desc": "Il Super Admin deve poter sospendere l'invio dati di un Gateway",
         "ref_uc": [
             "<Sospensione-gateway-super-admin>"
@@ -1922,7 +1922,7 @@
     },
     {
         "id": "RF-Riattivazione-gateway-super-admin",
-        "urgenza": "Des",
+        "urgenza": "Opt",
         "desc": "Il Super Admin deve poter riattivare l'invio dati di un Gateway sospeso",
         "ref_uc": [
             "<Riattivazione-gateway-super-admin>"
@@ -2401,7 +2401,7 @@
     },
     {
         "id": "RF-Inserimento-timeout-alert-sensore-simulato",
-        "urgenza": "Opt",
+        "urgenza": "Des",
         "desc": "Il Super Admin, creando un sensore simulato, deve inserire il timeout per gli alert",
         "ref_uc": [
             "<Inserimento-timeout-alert-sensore-simulato>"

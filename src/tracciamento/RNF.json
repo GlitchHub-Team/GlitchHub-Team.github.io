@@ -20,7 +20,7 @@
     },
     {
         "id": "RNF-Presenza-alert-gateway",
-        "urgenza": "Obb",
+        "urgenza": "Des",
         "desc": "Devono essere presenti alert di base per individuare gateway non funzionanti o non raggiungibili.",
         "ref_uc": [],
         "ref_capitolato": [
