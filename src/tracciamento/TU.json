@@ -1,14 +1,458 @@
 [
     {
-        "id": "TU-Test-1",
-        "descr": "Questo è un TU di test (come esempio!)",
-        "expected": "42",
-        "state": "NI"
+        "id": "TU-buffered-data-sender-factory-create-returns-publisher-that-uses-provided-jetstream",
+        "descr": "Verificare che la factory crei un publisher che utilizzi il JetStream fornito.",
+        "expected": "Il publisher usa il JetStream passato alla factory per pubblicare i messaggi.",
+        "state": "I"
     },
     {
-        "id": "TU-Test-2",
-        "descr": "Questo è un altro TU di test (come esempio!)",
-        "expected": "42",
-        "state": "NI"
+        "id": "TU-buffered-data-sender-factory-reload-returns-connection-error-when-nats-is-unavailable",
+        "descr": "Verificare che Reload restituisca un errore contestualizzato quando NATS non è raggiungibile.",
+        "expected": "Viene restituito un errore di connessione a NATS con un messaggio contestualizzato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-publisher-send-publishes-expected-subject-and-payload",
+        "descr": "Verificare che Send pubblichi il subject e il payload corretti per un dato buffered.",
+        "expected": "Il messaggio viene pubblicato sul subject atteso con un DTO coerente con i dati caricati dal buffer.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-publisher-hello-publishes-expected-payload",
+        "descr": "Verificare che Hello pubblichi il subject e il payload attesi per il gateway.",
+        "expected": "Il messaggio di hello viene pubblicato sul subject corretto con il public identifier atteso.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-publisher-hello-returns-wrapped-publish-error",
+        "descr": "Verificare che Hello propaghi l'errore di publish mantenendo la causa originaria.",
+        "expected": "Viene restituito un errore wrappato che include anche il gatewayId coinvolto.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-repository-get-ordered-buffered-data-returns-rows-ordered-by-timestamp",
+        "descr": "Verificare che GetOrderedBufferedData restituisca i dati buffered ordinati per timestamp.",
+        "expected": "Le righe vengono restituite in ordine temporale crescente mantenendo payload e identificativi corretti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-repository-get-ordered-buffered-data-returns-query-error",
+        "descr": "Verificare che GetOrderedBufferedData restituisca un errore contestualizzato quando la query fallisce.",
+        "expected": "Viene restituito un errore che segnala il fallimento della query di lettura del buffer.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-repository-clean-buffered-data-returns-nil-when-slice-is-empty",
+        "descr": "Verificare che CleanBufferedData termini senza errore quando l'elenco dei dati da pulire è vuoto.",
+        "expected": "La funzione restituisce `nil` senza eseguire cancellazioni.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-repository-clean-whole-buffer-deletes-rows-for-gateway",
+        "descr": "Verificare che CleanWholeBuffer elimini solo le righe del gateway specificato.",
+        "expected": "Dal buffer vengono rimosse soltanto le righe associate al gateway richiesto.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-start-executes-command-and-forwards-error",
+        "descr": "Verificare che il servizio esegua i comandi ricevuti e inoltri gli errori sul canale dedicato.",
+        "expected": "Il comando viene eseguito e l'eventuale errore viene inoltrato su `errCh`.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-start-publishes-and-cleans-buffered-data-on-tick-when-active",
+        "descr": "Verificare che, a ogni tick, il servizio pubblichi i dati buffered e pulisca il buffer quando il gateway è attivo.",
+        "expected": "I dati buffered vengono pubblicati con il DTO corretto e il buffer del gateway viene svuotato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-start-skips-publishing-when-gateway-is-inactive",
+        "descr": "Verificare che il servizio non pubblichi dati buffered quando il gateway è inattivo.",
+        "expected": "Nessun dato viene pubblicato e il buffer resta invariato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-hello-publishes-using-send-port",
+        "descr": "Verificare che Hello del servizio utilizzi il port di invio configurato.",
+        "expected": "Il messaggio di hello viene pubblicato tramite il sender configurato nel servizio.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-decommission-cleans-buffer-and-switches-sender",
+        "descr": "Verificare che Decommission pulisca il buffer, aggiorni lo stato del gateway e sostituisca il sender.",
+        "expected": "Il gateway passa a decommissioned, il buffer viene svuotato e i successivi hello usano il nuovo sender.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-decommission-returns-error-when-buffer-cleanup-fails",
+        "descr": "Verificare che Decommission restituisca errore quando la pulizia del buffer fallisce.",
+        "expected": "Viene restituito un errore e il decommissioning non può completarsi correttamente.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-commission-returns-error-when-reload-fails",
+        "descr": "Verificare che Commission restituisca errore quando il reload del sender fallisce.",
+        "expected": "Viene restituito un errore e lo stato del gateway resta invariato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-reset-updates-interval-and-cleans-buffer",
+        "descr": "Verificare che Reset aggiorni l'intervallo del gateway e pulisca il buffer associato.",
+        "expected": "L'intervallo viene aggiornato e il buffer del gateway viene svuotato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-buffered-data-sender-service-stop-interrupt-and-resume-update-gateway-status",
+        "descr": "Verificare che Stop, Interrupt e Resume aggiornino correttamente lo stato del gateway.",
+        "expected": "Interrupt, Resume e Stop impostano rispettivamente gli stati inactive, active e stopped.",
+        "state": "I"
+    },
+    {
+        "id": "TU-add-sensor-cmd-execute",
+        "descr": "Verificare che AddSensorCmd salvi il sensore e avvii lo starter.",
+        "expected": "Il sensore viene salvato e lo starter viene avviato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-add-sensor-cmd-execute-returns-adder-error",
+        "descr": "Verificare che AddSensorCmd propaghi l'errore del port di add.",
+        "expected": "L'errore del port di add viene propagato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-commission-gateway-cmd-execute",
+        "descr": "Verificare che CommissionGatewayCmd salvi il commissioning e poi commissioni il sender.",
+        "expected": "Il commissioning viene salvato e il sender viene commissionato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-commission-gateway-cmd-execute-returns-commissioning-error",
+        "descr": "Verificare che CommissionGatewayCmd non commissioni il sender se il port fallisce.",
+        "expected": "Il sender non viene commissionato se il port fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-commission-gateway-cmd-execute-returns-sender-error",
+        "descr": "Verificare che CommissionGatewayCmd propaghi l'errore del sender.",
+        "expected": "L'errore del sender viene propagato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-create-gateway-cmd-execute",
+        "descr": "Verificare che CreateGatewayCmd crei il gateway, invii il messaggio di hello e avvii il sender.",
+        "expected": "Il gateway viene creato, il messaggio di hello viene inviato e il sender viene avviato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-create-gateway-cmd-execute-returns-create-error",
+        "descr": "Verificare che CreateGatewayCmd non invii hello né avvii il sender se la creazione fallisce.",
+        "expected": "Il messaggio di hello non viene inviato e il sender non viene avviato se la creazione fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-create-gateway-cmd-execute-returns-hello-error",
+        "descr": "Verificare che CreateGatewayCmd non avvii il sender se Hello fallisce.",
+        "expected": "Il sender non viene avviato se il messaggio di hello fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-decommission-gateway-cmd-execute",
+        "descr": "Verificare che DecommissionGatewayCmd salvi il decommissioning, decommissioni il sender e invii hello.",
+        "expected": "Il decommissioning viene salvato, il sender viene decommissionato e il messaggio di hello viene inviato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-decommission-gateway-cmd-execute-returns-decommissioning-error",
+        "descr": "Verificare che DecommissionGatewayCmd non chiami sender o greeter se il port fallisce.",
+        "expected": "Il sender e il greeter non vengono chiamati se il port fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-decommission-gateway-cmd-execute-returns-sender-error",
+        "descr": "Verificare che DecommissionGatewayCmd non invii hello se il sender fallisce.",
+        "expected": "Il messaggio di hello non viene inviato se il sender fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-decommission-gateway-cmd-execute-returns-hello-error",
+        "descr": "Verificare che DecommissionGatewayCmd propaghi l'errore di Hello.",
+        "expected": "L'errore del messaggio di hello viene propagato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-delete-gateway-cmd-execute",
+        "descr": "Verificare che DeleteGatewayCmd elimini il gateway e poi fermi il sender.",
+        "expected": "Il gateway viene eliminato e il sender viene fermato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-delete-gateway-cmd-execute-returns-delete-error",
+        "descr": "Verificare che DeleteGatewayCmd non fermi il sender se la delete fallisce.",
+        "expected": "Il sender non viene fermato se l'eliminazione fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-delete-sensor-cmd-execute",
+        "descr": "Verificare che DeleteSensorCmd elimini il sensore e poi lo fermi.",
+        "expected": "Il sensore viene eliminato e poi fermato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-delete-sensor-cmd-execute-returns-delete-error",
+        "descr": "Verificare che DeleteSensorCmd non fermi il sensore se la delete fallisce.",
+        "expected": "Il sensore non viene fermato se l'eliminazione fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-interrupt-gateway-cmd-execute",
+        "descr": "Verificare che InterruptGatewayCmd aggiorni lo stato e interrompa il sender.",
+        "expected": "Lo stato viene aggiornato e il sender viene interrotto.",
+        "state": "I"
+    },
+    {
+        "id": "TU-interrupt-gateway-cmd-execute-returns-interrupt-error",
+        "descr": "Verificare che InterruptGatewayCmd non interrompa il sender se il port fallisce.",
+        "expected": "Il sender non viene interrotto se il port fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-interrupt-sensor-cmd-execute",
+        "descr": "Verificare che InterruptSensorCmd aggiorni lo stato e interrompa il sensore.",
+        "expected": "Lo stato viene aggiornato e il sensore viene interrotto.",
+        "state": "I"
+    },
+    {
+        "id": "TU-interrupt-sensor-cmd-execute-returns-interrupt-error",
+        "descr": "Verificare che InterruptSensorCmd non interrompa il sensore se il port fallisce.",
+        "expected": "Il sensore non viene interrotto se il port fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-reboot-gateway-cmd-execute",
+        "descr": "Verificare che RebootGatewayCmd fermi il sender, invii hello e lo riavvii.",
+        "expected": "Il sender viene fermato, il messaggio di hello viene inviato e il sender viene riavviato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-reboot-gateway-cmd-execute-returns-hello-error",
+        "descr": "Verificare che RebootGatewayCmd non riavvii il sender se Hello fallisce.",
+        "expected": "Il sender non viene riavviato se il messaggio di hello fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-reset-gateway-cmd-execute",
+        "descr": "Verificare che ResetGatewayCmd passi l'intervallo di default al port e al sender.",
+        "expected": "L'intervallo di default viene passato sia al port sia al sender.",
+        "state": "I"
+    },
+    {
+        "id": "TU-reset-gateway-cmd-execute-returns-port-error",
+        "descr": "Verificare che ResetGatewayCmd non chiami il sender se il port fallisce.",
+        "expected": "Il sender non viene chiamato se il port fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-reset-gateway-cmd-execute-returns-sender-error",
+        "descr": "Verificare che ResetGatewayCmd propaghi l'errore del sender.",
+        "expected": "L'errore del sender viene propagato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-resume-gateway-cmd-execute",
+        "descr": "Verificare che ResumeGatewayCmd aggiorni lo stato e riprenda il sender.",
+        "expected": "Lo stato viene aggiornato e il sender viene ripreso.",
+        "state": "I"
+    },
+    {
+        "id": "TU-resume-gateway-cmd-execute-returns-resume-error",
+        "descr": "Verificare che ResumeGatewayCmd non riprenda il sender se il port fallisce.",
+        "expected": "Il sender non viene ripreso se il port fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-resume-sensor-cmd-execute",
+        "descr": "Verificare che ResumeSensorCmd aggiorni lo stato e riprenda il sensore.",
+        "expected": "Lo stato viene aggiornato e il sensore viene ripreso.",
+        "state": "I"
+    },
+    {
+        "id": "TU-resume-sensor-cmd-execute-returns-resume-error",
+        "descr": "Verificare che ResumeSensorCmd non riprenda il sensore se il port fallisce.",
+        "expected": "Il sensore non viene ripreso se il port fallisce.",
+        "state": "I"
+    },
+    {
+        "id": "TU-stop-sensor-cmd-execute",
+        "descr": "Verificare che StopSensorCmd fermi il sensore.",
+        "expected": "Il sensore viene fermato.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-create-gateway-persists-gateway-row",
+        "descr": "Verificare che CreateGateway persista correttamente la riga del gateway nel repository di configurazione.",
+        "expected": "La riga del gateway viene salvata con stato, intervallo e credenziali attesi.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-commission-gateway-updates-tenant-token-and-status",
+        "descr": "Verificare che CommissionGateway aggiorni tenantId, token e stato del gateway.",
+        "expected": "TenantId, token e stato vengono aggiornati con i valori attesi.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-decommission-gateway-clears-tenant-token-and-updates-status",
+        "descr": "Verificare che DecommissionGateway azzeri tenantId e token aggiornando lo stato del gateway.",
+        "expected": "TenantId e token vengono rimossi e lo stato passa a decommissioned.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-interrupt-and-resume-gateway-update-status",
+        "descr": "Verificare che InterruptGateway e ResumeGateway aggiornino correttamente lo stato del gateway.",
+        "expected": "Lo stato del gateway passa prima a inactive e poi a active.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-reset-gateway-updates-interval",
+        "descr": "Verificare che ResetGateway aggiorni l'intervallo persistito del gateway.",
+        "expected": "L'intervallo salvato nel repository viene aggiornato al valore richiesto.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-add-sensor-persists-sensor-row",
+        "descr": "Verificare che AddSensor persista correttamente la riga del sensore.",
+        "expected": "Il sensore viene salvato con profilo, stato e intervallo attesi.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-interrupt-and-resume-sensor-update-status",
+        "descr": "Verificare che InterruptSensor e ResumeSensor aggiornino correttamente lo stato del sensore.",
+        "expected": "Lo stato del sensore passa prima a inactive e poi a active.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-delete-sensor-deletes-row",
+        "descr": "Verificare che DeleteSensor elimini la riga del sensore dal repository di configurazione.",
+        "expected": "La riga del sensore viene rimossa dal repository.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-delete-gateway-deletes-gateway-and-cascades-sensors",
+        "descr": "Verificare che DeleteGateway elimini il gateway e tutte le righe sensore collegate.",
+        "expected": "Il gateway viene eliminato e la cancellazione si propaga ai sensori associati.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-get-gateway-by-id-loads-gateway-and-sensors",
+        "descr": "Verificare che GetGatewayById carichi gateway e sensori associati con tutti i campi attesi.",
+        "expected": "Vengono restituiti il gateway richiesto e i suoi sensori con identità, stato, intervalli e profili corretti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-get-gateway-by-id-returns-error-when-gateway-missing",
+        "descr": "Verificare che GetGatewayById restituisca un errore contestualizzato quando il gateway non esiste.",
+        "expected": "Viene restituito un errore che segnala il fallimento del recupero del gateway.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-get-all-gateways-loads-all-gateways-and-their-sensors",
+        "descr": "Verificare che GetAllGateways carichi tutti i gateway e i rispettivi sensori.",
+        "expected": "Tutti i gateway presenti vengono restituiti con i sensori e i profili corretti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-config-repository-get-all-gateways-returns-error-when-sensor-profile-is-invalid",
+        "descr": "Verificare che GetAllGateways restituisca errore se un sensore ha un profilo non valido.",
+        "expected": "Viene restituito un errore contestualizzato durante il caricamento dei sensori del gateway.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-service-stop",
+        "descr": "Verificare che Stop porti il sensore nello stato stopped.",
+        "expected": "Il sensore passa allo stato stopped.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-service-interrupt",
+        "descr": "Verificare che Interrupt imposti il sensore nello stato inactive.",
+        "expected": "Il sensore passa allo stato inactive.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-service-resume",
+        "descr": "Verificare che Resume riporti il sensore nello stato active.",
+        "expected": "Il sensore torna allo stato active.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-service-start-executes-command-and-forwards-error",
+        "descr": "Verificare che Start esegua i comandi ricevuti e inoltri gli errori sul canale dedicato.",
+        "expected": "Il comando viene eseguito e l'errore viene inoltrato su `errChannel`.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-service-start-generates-data-on-tick",
+        "descr": "Verificare che Start generi e salvi dati a ogni tick quando il sensore è attivo.",
+        "expected": "Il profilo genera dati che vengono salvati con il gatewayId corretto.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-service-start-skips-generation-when-inactive",
+        "descr": "Verificare che Start non generi né salvi dati quando il sensore è inattivo.",
+        "expected": "Non viene eseguito alcun salvataggio finché il sensore resta inactive.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-service-start-stops-on-context-done",
+        "descr": "Verificare che Start termini quando il contesto viene cancellato.",
+        "expected": "Il servizio si arresta correttamente alla cancellazione del contesto.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-parse-sensor-profile",
+        "descr": "Verificare che ogni nome profilo valido venga tradotto nel tipo concreto corretto.",
+        "expected": "Ogni nome valido produce un profilo non nullo del tipo atteso con dati generati coerenti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-parse-sensor-profile-unknown",
+        "descr": "Verificare che un nome profilo non supportato restituisca `nil`.",
+        "expected": "Un profilo non supportato produce `nil`.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-ecg-generate",
+        "descr": "Verificare che il profilo ECG generi dati coerenti con il generatore casuale e con i metadati del sensore.",
+        "expected": "Viene generato un payload ECG con waveform attesa, sensorId corretto e timestamp recente.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-environmental-sensing-generate",
+        "descr": "Verificare che il profilo EnvironmentalSensing generi il payload atteso e conservi i metadati del sensore.",
+        "expected": "Vengono generati temperatura, umidità e pressione attese con sensorId e timestamp corretti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-health-thermometer-generate",
+        "descr": "Verificare che il profilo HealthThermometer generi la temperatura attesa a partire dal valore casuale.",
+        "expected": "La temperatura generata corrisponde al valore atteso con sensorId e timestamp corretti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-heart-rate-generate",
+        "descr": "Verificare che il profilo HeartRate converta il valore casuale nel BPM previsto.",
+        "expected": "Il BPM generato corrisponde al valore atteso con sensorId e timestamp corretti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-pulse-oximeter-generate",
+        "descr": "Verificare che il profilo PulseOximeter generi saturazione e battito con i valori attesi.",
+        "expected": "Saturazione e battito corrispondono ai valori attesi con sensorId e timestamp corretti.",
+        "state": "I"
+    },
+    {
+        "id": "TU-sensor-profiles-serialize",
+        "descr": "Verificare che ogni payload sensore venga serializzato in JSON senza errori.",
+        "expected": "Ogni payload produce la stringa JSON attesa senza errori di serializzazione.",
+        "state": "I"
     }
 ]
