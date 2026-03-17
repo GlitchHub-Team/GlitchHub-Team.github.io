@@ -302,7 +302,7 @@ L’architettura logica del sistema è documentata seguendo il modello C4, utile
 L’analisi dell'architettura logica inizia con il diagramma di System Context, che definisce il perimetro del progetto. In questa fase, definita dal livello di astrazione più alto, non si analizzano le tecnologie interne o implementative ma ci si focalizza esclusivamente sulle interazioni sistemiche: come il software comunica con gli utenti umani e con gli altri sistemi software o hardware esterni, fornendo loro valore.
 
 #figure(
-  image("../../assets/c4/system_context.pdf", width: 80%),
+  image("../../assets/c4/system_context.svg", width: 80%),
   caption: [System Context diagram],
 )
 
@@ -317,7 +317,7 @@ Il Sistema Cloud è il fulcro dell'intero ambiente ed interagisce con tutti gli 
 In questo contesto, un container è inteso come applicazione o data store (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un digramma di questo tipo mostra l'architettura del software ancora ad un alto livello ma definendo anche la distribuzione delle responsabilità, alcune scelte tecnologiche e di comunicazione tra i container.
 
 #figure(
-  image("../../assets/c4/container.pdf", width: 100%),
+  image("../../assets/c4/container.svg", width: 100%),
   caption: [Container diagram],
 )
 
@@ -329,8 +329,9 @@ Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti
 Un diagramma Component rappresenta l'ultimo livello di astrazione dell'architettura logica prima di scendere nel dettaglio del codice sorgente. Un componente è inteso come un raggruppamento di funzionalità correlate esposte tramite un'interfaccia definita, che risiede all'interno di un container. Ripetto al livello precedente del modello C4, qui si descrivono le responsabilità interne, le dipendenze e le scelte implementative dei quattro container principali che orchestrano il sistema.
 
 ==== Gateway <comp-gateway>
+
 #figure(
-  image("../../assets/c4/component_gateway.pdf", width: 100%),
+  image("../../assets/c4/component_gateway.svg", width: 100%),
   caption: [Gateway Component diagram],
 )
 
@@ -340,7 +341,7 @@ Il Gateway Manager orchestra le istanze dei gateway simulati tramite #gloss[goro
 
 ==== Data Consumer <comp-data>
 #figure(
-  image("../../assets/c4/component_data_consumer.pdf", width: 100%),
+  image("../../assets/c4/component_data_consumer.svg", width: 100%),
   caption: [Data Consumer Component diagram],
 )
 
@@ -350,7 +351,7 @@ L'IoT Data Writer riceve la struttura generata e scrive i dati aggregati nel dat
 
 ==== Angular <comp-angular>
 #figure(
-  image("../../assets/c4/component_angular.pdf", width: 100%),
+  image("../../assets/c4/component_angular.svg", width: 100%),
   caption: [Angular Component diagram],
 )
 
@@ -360,7 +361,7 @@ Qui si dirama anche la Dashboard in vari componenti specializzati nel rappresent
 
 ==== Backend <comp-backend>
 #figure(
-  image("../../assets/c4/component_backend.pdf", width: 100%),
+  image("../../assets/c4/component_backend.svg", width: 100%),
   caption: [Backend Component diagram],
 )
 
@@ -390,7 +391,7 @@ Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permet
 Il Deployment Diagram illustra come le istanze dei container siano effettivamente distribuite sull'infrastruttura fisica o virtuale all'interno di un determinato ambiente. Questo livello permette di mappare i componenti logici su nodi di deployment, i quali rappresentano le risorse computazionali dove il software viene eseguito, ad esempio: infrastrutture fisiche, macchine virtuali, container Docker o ambienti di esecuzione specifici (come database server o browser web).
 
 #figure(
-  image("../../assets/c4/deployment.pdf", width: 100%),
+  image("../../assets/c4/deployment.svg", width: 100%),
   caption: [Deployment diagram],
 )
 
