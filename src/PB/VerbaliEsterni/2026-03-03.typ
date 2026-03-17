@@ -55,6 +55,5 @@ La proponente ha fatto notare che sono state impiegate numerose risorse sul _des
 Il gruppo ha presentato alla proponente il design sviluppato fino a questo momento per il Data Consumer, illustrando i _services_ e i _components_ di Angular elaborati. Non sono emersi dubbi particolari in merito al _frontend_.
 
 == Discussione su dev container
-
 La proponente ha suggerito caldamente di adottare i Dev Container al fine di garantire una linea di sviluppo comune, basata su ambienti di sviluppo virtualizzati e indipendenti dal sistema operativo. Come alternativa ai Dev Container, è stato consigliato lo strumento ASDF per la gestione degli strumenti di lavoro.
 
