@@ -33,10 +33,17 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.3.1",
+      "16/03/2026",
+      "Jaume Bernardi",
+      "Elia_Ernesto_Stellin",
+      [Applicazione modifiche richieste in verifica],
+    ),
+    (
       "0.3.0",
       "16/03/2026",
       "Jaume Bernardi",
-      "",
+      "Elia_Ernesto_Stellin",
       [Prima stesura dei paragrafi di architettura System Context, Container, Component e Deployment],
     ),
       (
@@ -64,8 +71,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Specifica tecnica",
 )
 
@@ -306,13 +313,14 @@ L’analisi dell'architettura logica inizia con il diagramma di System Context, 
   caption: [System Context diagram],
 )
 
-Il Sistema Cloud è il fulcro dell'intero ambiente ed interagisce con tutti gli altri utenti ed elementi presenti, ovvero:
-- Super Admin, tipo di utente con molta influenza sull'ecosistema, con poteri sulla configurazione di Tenant, loro amministratori e API key del sistema.
-- Admin generico, opera all'interno del perimetro di un singolo Tenant, gestendo i Tenant User e coordinando la comunicazione del sistema Cloud con i gateway assegnati.
-- Utente generico, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
-- API Client, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
-- Sistema observability, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
-- Gateway simulato, entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
+Il Sistema Cloud è il fulcro dell'intero ambiente in quanto principale fornitore dei servizi del software, quali la ricezione e memorizzazione dei dati di qualsiasi natura (nel database più opportuno) e il loro invio verso la dashboard, nonché la definizione dei perimetri di sicurezza e correlata autenticazione degli utenti.
+ ed interagisce con tutti gli altri utenti ed elementi presenti, ovvero:
+- Super Admin, tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
+- Admin generico, opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
+- Utente generico, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influnzare l'ambiente ma ha solo i permessi per osservarne una porzione.
+- API Client, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato, permettendo inoltre la comunicazione con piattaforme terze.
+- Sistema observability, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, permettendo al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
+- Gateway simulato, entità che rappresenta il flusso di dati proveniente dai sensori, riportati al Cloud. Rimane inoltre in ascolto per ricevere comandi.
 === Container <container>
 In questo contesto, un container è inteso come una parte del sistema o data store (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
 
@@ -321,10 +329,18 @@ In questo contesto, un container è inteso come una parte del sistema o data sto
   caption: [Container diagram],
 )
 
-Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti nel Context, il livello di astrazione precedente, in particolare:
-- Nel Sistema Cloud sono ora rappresentati due database, il CloudDB e l'IoT Data DB, il frontend dell'applicazione, ovvero UI Dashboard (in Angular), Data Consumer e Message Broker per una corretta gestione del flusso di dati IoT e Cloud Backend (in Go e Gin) che rimane il fulcro dell'applicazione.
-- Il Sistema observability ora presenta un container NATS Exporter che raccoglie le metriche di sistema e le inoltra a Observability DB (Prometheus) per il monitoraggio, con visualizzazione finale tramite Observability Dashboard (Grafana).
-- Il Gateway simulato comprende un database a scopo di buffer. Interagisce con il Message Broker del Sistema Cloud tramite il protocollo nativo di NATS.
+Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti nel Context, il livello di astrazione precedente.
+==== Sistema Cloud 
+Sono ora rappresentati:
+- due database, il IoT Data DB e il CloudDB, il primo per i dati prodotti dai sensori simulati e il secondo per tutte le altre informazioni utili, ad esempio dati di tenant o API keys.
+- il frontend dell'applicazione, ovvero UI Dashboard (in Angular), con il compito di fornire un'interfaccia per le funzionalità offerte dal Cloud Backend ad utenti umani.
+- Message Broker permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway.
+- Data Consumer ha il compito di ricevere i valori generati dai sensori, leggerli e formattarli prima di inserirli nel database.
+- Cloud Backend (in Go e Gin) che rimane il fulcro dell'applicazione. Come riportato sopra, emette i principali servizi del software.
+==== Il Sistema observability 
+Ora presenta un container NATS Exporter che raccoglie le metriche di sistema e le inoltra a Observability DB (Prometheus) per il monitoraggio, con visualizzazione finale fornita tramite Observability Dashboard (Grafana).
+==== Il Gateway simulato 
+Comprende un database a scopo di buffer. Interagisce con il Message Broker del Sistema Cloud tramite protocolli NATS per inviare i dati prodotti e ricevere e rispondere a comandi.
 === Component <component>
 Un diagramma Component rappresenta l'ultimo livello di astrazione dell'architettura logica prima di scendere nel dettaglio del codice sorgente. Un componente è inteso come un raggruppamento di funzionalità correlate esposte tramite un'interfaccia definita, che risiede all'interno di un container. Rispetto al livello precedente del modello C4, in questo strato si descrivono le responsabilità interne, le dipendenze e le scelte implementative dei container principali che orchestrano il sistema.
 
@@ -335,7 +351,6 @@ I container principali descritti in questa sezione sono:
 - Cloud Backend
 
 ==== Gateway <comp-gateway>
-
 #figure(
   image("../../assets/c4/component_gateway.svg", width: 100%),
   caption: [Gateway Component diagram],
@@ -382,13 +397,13 @@ Questa area gestisce il ciclo di vita degli utenti, il loro accesso alla piattaf
 Vi sono component dedicati alla generazione e alla validazione di chiavi di accesso per gli API Client esterni, il che permette l'integrazione sicura di sistemi terzi che possono consultare i dati senza passare dall'interfaccia web.
 
 ===== Gestione dati e flussi real-time <comp-back-dati>
-Il backend funge da ponte tra i database persistenti e i consumatori di dati. Ciò include sia la capacità di estrarre i dati storici dei sensori dal database IoT Data DB per rispondere alle query di visualizzazione dati, servendoli in formato JSON tramite HTTPS, sia la capacità di ricevere i dati pubblicati dal Message Broker e inoltrarli in tempo reale ai client connessi via WebSocket, minimizzando la latenza di visualizzazione.
-Il NATS Command Server è il componente utile ad inviare comandi ricevuti dagli utenti verso un gateway o sensore specifico, tramite il Message Broker.
+Il backend si posiziona come strato di mediazione tra il frontend e i database di persistenza. Ciò include sia la capacità di estrarre le telemetrie storiche dal database IoT Data DB per rispondere alle query di visualizzazione dei trend nel tempo, servendo i dati in formato JSON tramite HTTPS, sia ricevere i dati appena pubblicati dal Message Broker e inoltrarli ai client connessi, minimizzando la latenza di visualizzazione.
+Il NATS Command Server è il componente utile ad inviare comandi ricevuti verso il gateway o sensore specifico, passando per il Message Broker.
 
 ===== Servizi di background <comp-back-background>
 Sono inoltre presenti componenti che operano indipendentemente dalle richieste dirette degli utenti per mantenere l'integrità e la sicurezza del sistema, ad esempio:
-- Alert Detection Component, che analizza i flussi di dati in transito per identificare anomalie o superamenti di soglie predefinite, attivando logicamente gli alert visibili sulla Dashboard.
-- Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
+- Alert Detection Component, utilizzato per rilevare l'assenza di dati durante la comunicazione con un gateway o sensore specifico.
+- Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login) scrivendo sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
 
