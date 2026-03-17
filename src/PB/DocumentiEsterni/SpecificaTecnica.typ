@@ -334,7 +334,7 @@ Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti
 Sono ora rappresentati:
 - due database, il IoT Data DB e il CloudDB, il primo per i dati prodotti dai sensori simulati e il secondo per tutte le altre informazioni utili, ad esempio dati di tenant o API keys.
 - il frontend dell'applicazione, ovvero UI Dashboard (in Angular), con il compito di fornire un'interfaccia per le funzionalità offerte dal Cloud Backend ad utenti umani.
-- Message Broker permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway.
+- Message Broker, che permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway.
 - Data Consumer ha il compito di ricevere i valori generati dai sensori, leggerli e formattarli prima di inserirli nel database.
 - Cloud Backend (in Go e Gin) che rimane il fulcro dell'applicazione. Come riportato sopra, emette i principali servizi del software.
 ==== Il Sistema observability 
