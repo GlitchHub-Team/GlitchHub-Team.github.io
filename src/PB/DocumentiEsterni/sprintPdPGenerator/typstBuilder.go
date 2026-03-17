@@ -354,14 +354,13 @@ func buildUsage(content string, usage *map[string]map[string]int, prevUsage *map
 	return strings.Replace(strings.Replace(content, tablePlaceholder, table, 1), chartPlaceholder, chart, 1)
 }
 
-func buildSprintIssues(content string, issuesCodes *map[string][]int, placeholder string) string {
+func buildSprintIssues(content string, issuesCodes *map[string][]IssueSummary, placeholder string) string {
 	sprintIssues := ""
-	for state, codes := range *issuesCodes {
-		sprintIssues += state + ": "
-		for _, code := range codes {
-			sprintIssues += fmt.Sprintf(`#link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/%d")[\#%d], `, code, code)
+	for state, issues := range *issuesCodes {
+		sprintIssues += "- " + state + ":\n"
+		for _, issue := range issues {
+			sprintIssues += fmt.Sprintf("  - %s (#issue(%d))\n", issue.Title, issue.Number)
 		}
-		sprintIssues += "\n"
 	}
 	return strings.Replace(content, placeholder, sprintIssues, 1)
 }

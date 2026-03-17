@@ -14,8 +14,7 @@ PROJECT_NUMBER = 2
 OUTPUT_FILE = "report_sprint_gerarchico.xlsx"
 
 PR_REPOS = [
-    "GlitchHub-Team.github.io",
-    
+    "GlitchHub-Team.github.io",  
 ]
 
 EXPECTED_HOURS_FIELD = "Expected Worked Hours"

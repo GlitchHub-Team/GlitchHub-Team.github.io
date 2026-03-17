@@ -14,6 +14,11 @@ var costPerHourPerRole = map[string]int{
 	"Verificatore":   15,
 }
 
+type IssueSummary struct {
+	Number int
+	Title  string
+}
+
 /*var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
 		"Jaume Bernardi":       8,
@@ -160,11 +165,11 @@ func ResourceUsage(issues *[]Issue, sprint int, expected bool) map[string]map[st
 	return result
 }
 
-func GroupIssuesByState(issues *[]Issue, sprint int) map[string][]int {
-	result := make(map[string][]int)
+func GroupIssuesByState(issues *[]Issue, sprint int) map[string][]IssueSummary {
+	result := make(map[string][]IssueSummary)
 	for _, issue := range *issues {
 		if issue.Sprint == sprint {
-			result[issue.State] = append(result[issue.State], issue.Number)
+			result[issue.State] = append(result[issue.State], IssueSummary{Number: issue.Number, Title: issue.Title})
 		}
 	}
 	return result
