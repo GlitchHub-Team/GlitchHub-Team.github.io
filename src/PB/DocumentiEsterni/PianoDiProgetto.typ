@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "da verificato",
+  stato: "Da Verificare",
   registro-modifiche: (
+      (
+      "1.4.0",
+      "11/03/2026",
+      "Siria Salvalaio",
+      "",
+      [Stesura sprint 12 (@sprint-12)],
+      ),
     (
       "1.3.0",
       "11/03/2026",
@@ -246,8 +253,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
+  verificatore-interno: "",
+  left-signature: "",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -2886,7 +2893,7 @@ Di seguito sono elencati i compiti individuati:
 - [Angular] Setup struttura dashboard frontend (#issue(3,repo:"dash"))
 
 === Rischi attesi
-- *RT1* (@RT1): La scelta del gruppo di rappresentare il sistema con i #gloss("diagrammi C4") rapprensta un rischio tecnologico data la non famigliarità con tale tecnologia.
+- *RT1* (@RT1): La scelta del gruppo di rappresentare il sistema con i #gloss("diagrammi C4") rappresenta un rischio tecnologico data la non familiarità con tale tecnologia.
 
 === Preventivo
 	==== Preventivo risorse da utilizzare
@@ -2966,7 +2973,7 @@ Issue relative a sprint 11: \
 === Retrospettiva
 Lo sprint è coinciso con l'inizio della #gloss("PB"), il gruppo si è dovuto organizzare per capire come procedere al meglio. La  #gloss("PB") richiede un livello di progettazione più fine rispetto a quello svolto per il PoC, di conseguenza, il gruppo si è dovuto specializzare nella progettazione del sistema previsto dal capitolato.\
 Il gruppo ha raggiunto un livello di #gloss("Way of Working") che si può considerare ottimale: il nuovo sistema di #gloss("issue-branch") introdotto ha avuto una risposta positiva da parte del gruppo e si è riusciti a utilizzare le #gloss("pull request") come strumento di verifica.\
-La progettazione ha necessitato uno studio iniziale della sintassi appropriata per realizzare i #gloss("diagrammi C4"). Una volta completato lo studio, si è suddiviso il carico di lavoro in singole persone o gruppi di persone, come nel caso del sistema backend, hanno costruito i rispettivi #gloss("diagrammi C4").\
+La progettazione ha necessitato di uno studio iniziale della sintassi appropriata per realizzare i #gloss("diagrammi C4"). Una volta completato lo studio, si è suddiviso il carico di lavoro in singole persone o gruppi di persone, come nel caso del sistema backend, hanno costruito i rispettivi #gloss("diagrammi C4").\
 Per le domande sorte durante la progettazione, si è deciso di chiedere consiglio al professor Cardin, il quale ci ha concesso un ricevimento di gruppo utile a chiarire i dubbi relativi alla progettazione.\
 È stata inoltre completata la configurazione delle varie #gloss("repository") con i rispettivi #gloss("dev container"), così da garantire un ambiente di sviluppo uniforme per tutto il gruppo.\
 È stato introdotto il #gloss("framework") #gloss("MkDocs") per la visualizzazione del manuale utente.\
@@ -3065,3 +3072,108 @@ table.footer([*Totale*], [*412*], [-], [*7195 €*]),
 		[Sprint 11 - Aggiornamento costi],
 		label-id: "spr11-agg-costi",
 	)
+
+
+== Sprint 12 <sprint-12>
+Inizio: 11/03/2026 \
+Fine:  18/03/2026\
+
+Il presente #gloss("sprint") mira a consolidare la progettazione architettonica e avviare la codifica dei microservizi più importanti che stanno alla base del progetto, completando i #gloss("diagrammi C4") e i #gloss("DTO") della #gloss("Specifica Tecnica").\ È inoltre necessario procedere con l'implementazione del #gloss("Frontend") per l'autenticazione, configurando al contempo le automazioni di #gloss("CI") e il tracciamento degli #gloss("unit test") per garantire la qualità dei componenti Gateway e Backend.
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+- [AdR] Sistemare urgenze requisiti (#issue(429))
+- [Backend] Classi comuni per DTO, DI e richieste (#issue(21))
+- [Backend] Codifica - Elia (#issue(4))
+- [Backend] Codifica - Michele (#issue(5))
+- [Backend] Codifica backend/internal/user (#issue(17))
+- [Backend] Impostazione Router con Gin (#issue(15))
+- [Backend] Impostazione struttura cartelle e package (#issue(2))
+- [Backend] Impostazione Uber Fx (#issue(14))
+- [CI] Fix automazioni CI (#issue(445))
+- [DataConsumer] Codifica (#issue(1))
+- [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2))
+- [Frontend] Codifica - Tenant Page (#issue(24))
+- [Frontend] Codifica - User Page (#issue(25))
+- [Frontend] Codifica auth (#issue(6))
+- [Frontend] Codifica Dashboard - Grafici real-time e storici (#issue(23))
+- [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20))
+- [Frontend] Codifica sezione di autenticazione (#issue(1))
+- [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5))
+- [Gateway] Scrittura unit test (#issue(6))
+- [PdP] Responsabile 12 (#issue(440))
+- [PdQ] Impostare tracciamento TU (#issue(442))
+- [PdQ] Scrittura unit test per Gateway (#issue(446))
+Rendicontazione responsabile (Sprint 12) (#issue(436))
+- [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
+- [ST] Aggiungere ResponseDTO - Michele (#issue(443))
+- [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
+- [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
+
+
+=== Rischi attesi
+- *RT2* (@RT2): La fase di codifica potrebbe rivelarsi più complessa del previsto, soprattutto per quanto riguarda l'integrazione tra i vari componenti, potenzialmente causando ritardi.
+
+=== Preventivo
+	==== Preventivo risorse da utilizzare
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "3", "-", "-", [*3*],
+      "Alessandro Dinato", "-", "-", "-", "2", "7", "2", [*11*],
+      "Michele Dioli", "2", "-", "-", "2", "9", "-", [*13*],
+      "Hossam Ezzemouri", "-", "2", "-", "1", "-", "3", [*6*],
+      "Riccardo Graziani", "-", "-", "-", "-", "9", "-", [*9*],
+      "Siria Salvalaio", "3", "-", "1", "-", "9", "-", [*13*],
+      "Elia Ernesto Stellin", "-", "3", "-", "-", "12", "-", [*15*],
+      table.footer([*Totale*], [*5*], [*5*], [*1*], [*8*], [*46*], [*5*], [*70*]),
+		),
+		[Sprint 12 - Preventivo risorse da utilizzare],
+		label-id: "spr12-prev-risorse",
+	)
+
+	==== Grafico a torta della suddivisione oraria prevista
+
+	#let orePrevSprint12 = (
+		
+	("Responsabile", 5),
+	("Amministratore", 5),
+	("Analista", 1),
+  ("Progettista", 8),
+  ("Programmatore", 46),
+  ("Verificatore", 5),
+	
+	)
+	#graficoTorta("Sprint 12 - Ore produttive previste per ogni ruolo", orePrevSprint12)
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 12: \
+
+=== Retrospettiva
+
+
+=== Rischi occorsi
+
+
+=== Consuntivo di periodo
+  ==== Risorse utilizzate
+
+  ==== Grafico a torta della suddivisione oraria effettiva
+
+  
+
+  === Preventivo a finire
+  ==== Aggiornamento ore rimanenti
+
+
+  ==== Aggiornamento costi
+
+
+
