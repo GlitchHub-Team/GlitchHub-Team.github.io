@@ -32,6 +32,20 @@
   titolo: "Specifica Tecnica",
   stato: "Bozza",
   registro-modifiche: (
+    (
+      "0.3.1",
+      "16/03/2026",
+      "Jaume Bernardi",
+      "Elia_Ernesto_Stellin",
+      [Applicazione modifiche richieste in verifica],
+    ),
+    (
+      "0.3.0",
+      "16/03/2026",
+      "Jaume Bernardi",
+      "Elia_Ernesto_Stellin",
+      [Prima stesura dei paragrafi di architettura System Context, Container, Component e Deployment],
+    ),
       (
       "0.2.0",
       "03/03/2026",
@@ -57,8 +71,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Specifica tecnica",
 )
 
@@ -288,17 +302,127 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
 
 = Architettura <architettura>
+L'architettura del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema.
 == Architettura logica <archit-log>
+L’architettura logica del sistema è documentata seguendo il modello C4, utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti. 
+=== Context <system-context>
+L’analisi dell'architettura logica inizia con il diagramma di System Context, che definisce il perimetro del progetto. In questa fase, definita dal livello di astrazione più alto, non si analizzano le tecnologie interne o implementative ma ci si focalizza esclusivamente sulle interazioni tra i componenti interni del sistema e le interazioni coi componenti esterni e utenti umani.
 
-== Architettura di deployment <archit-deploy>
-L'architettura di deployment del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema. Nello specifico, il Control & Management Layer (#gloss[Cloud]) è strutturato per ospitare i seguenti moduli:
-- #gloss[Gateway] simulato: un programma basato su #gloss[goroutine] che emula il comportamento dei sensori sul campo, inviando dati al cloud tramite protocolli sicuri.
-- #gloss[Data Consumer]: il modulo incaricato di ricevere i messaggi dal message broker (#gloss[NATS]), validarne il contenuto e assicurarne la persistenza su #gloss[TimescaleDB].
-- Backend della dashboard: il servizio che espone le #gloss[API] per la consultazione dei dati e la gestione del sistema.
+#figure(
+  image("../../assets/c4/system_context.svg", width: 80%),
+  caption: [System Context diagram],
+)
+
+Il Sistema Cloud è il fulcro dell'intero ambiente in quanto principale fornitore dei servizi del software, quali la ricezione e memorizzazione dei dati di qualsiasi natura (nel database più opportuno) e il loro invio verso la dashboard, nonché la definizione dei perimetri di sicurezza e correlata autenticazione degli utenti.
+ ed interagisce con tutti gli altri utenti ed elementi presenti, ovvero:
+- Super Admin, tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
+- Admin generico, opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
+- Utente generico, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
+- API Client, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
+- Sistema observability, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
+- Gateway simulato, entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
+=== Container <container>
+In questo contesto, un container è inteso come una parte del sistema o data store (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
+
+#figure(
+  image("../../assets/c4/container.svg", width: 100%),
+  caption: [Container diagram],
+)
+
+Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti nel Context, il livello di astrazione precedente.
+==== Sistema Cloud 
+Sono ora rappresentati:
+- due database, il IoT Data DB e il CloudDB, il primo per i dati prodotti dai sensori simulati e il secondo per tutte le altre informazioni utili, ad esempio dati di tenant o API keys.
+- il frontend dell'applicazione, ovvero UI Dashboard (in Angular), con il compito di fornire un'interfaccia per le funzionalità offerte dal Cloud Backend ad utenti umani.
+- Message Broker, che permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway.
+- Data Consumer ha il compito di ricevere i valori generati dai sensori, leggerli e formattarli prima di inserirli nel database.
+- Cloud Backend (in Go e Gin) che rimane il fulcro dell'applicazione. Come riportato sopra, emette i principali servizi del software.
+==== Il Sistema observability 
+Ora presenta un container NATS Exporter che raccoglie le metriche di sistema e le inoltra a Observability DB (Prometheus) per il monitoraggio, con visualizzazione finale fornita tramite Observability Dashboard (Grafana).
+==== Il Gateway simulato 
+Comprende un database a scopo di buffer. Interagisce con il Message Broker del Sistema Cloud tramite protocolli NATS per inviare i dati prodotti e ricevere e rispondere a comandi.
+=== Component <component>
+Un diagramma Component rappresenta l'ultimo livello di astrazione dell'architettura logica prima di scendere nel dettaglio del codice sorgente. Un componente è inteso come un raggruppamento di funzionalità correlate esposte tramite un'interfaccia definita, che risiede all'interno di un container. Rispetto al livello precedente del modello C4, in questo strato si descrivono le responsabilità interne, le dipendenze e le scelte implementative dei container principali che orchestrano il sistema.
+
+I container principali descritti in questa sezione sono:
+- Gateway simulato
+- Data Consumer
+- Angular SPA
+- Cloud Backend
+
+==== Gateway <comp-gateway>
+#figure(
+  image("../../assets/c4/component_gateway.svg", width: 100%),
+  caption: [Gateway Component diagram],
+)
+
+Come riportato sopra, questa parte del software ha il compito di simulare più gateway e i sensori ad essi associati, gestendo, per entrambi, le variabili di configurazione e condividendo i dati quando richiesto.
+Ogni Simulated Sensor genera dati specifici che vengono salvati temporaneamente in un Gateway Internal Buffer per prevenire perdite in caso di disconnessione o altri casi eccezionali.
+Il Gateway Manager orchestra le istanze dei gateway simulati tramite #gloss[goroutine], mentre il Gateway Agent coordina l'avvio dei sensori in base alla configurazione gestita dal Config Manager, ascolta i comandi ricevuti dal Gateway Command Receiver e inizia a inviare i dati del singolo gateway simulato verso il Message Broker, il cui onere ricade sul Buffered Data Sender.
+
+==== Data Consumer <comp-data>
+#figure(
+  image("../../assets/c4/component_data_consumer.svg", width: 100%),
+  caption: [Data Consumer Component diagram],
+)
+
+Il #gloss[Data Consumer] è un *microservizio* specializzato con l'unico scopo di gestire l'arrivo di dati IoT dal message broker (#gloss[NATS]), validarne il contenuto e assicurarne la persistenza su #gloss[TimescaleDB].
+Il processo inizia con l'IoT Data Subscriber, un client NATS che si iscrive in modalità Pull sui dati prodotti dai gateway. Da qui il Data Partitioner (tramite Go) riceve i dati grezzi e li aggrega per tenant e sensore, inserendoli in strutture dati ottimizzate per il sistema di persistenza in TimescaleDB.
+L'IoT Data Writer riceve la struttura generata e scrive i dati aggregati nel database TimescaleDB, inviando un segnale di conferma (ACK) al broker per confermare la corretta ricezione degli stessi.
+
+==== Angular <comp-angular>
+#figure(
+  image("../../assets/c4/component_angular.svg", width: 100%),
+  caption: [Angular Component diagram],
+)
+
+Il componente Angular SPA ha lo scopo di fornire un'interfaccia visiva che permette di visualizzare i dati raccolti dai gateway e i relativi alert e gestire tenant, gateway, sensori e chiavi API di accesso.
+Il cuore della navigazione è affidato all'Angular Router, che coordina il caricamento dei componenti in base all'URL e permette all'utente di autenticarsi tramite il componente Autenthication Management. La sicurezza è garantita dal Role Guard, che verifica i privilegi dell'utente (Admin o utente generico) prima di inizializzare il layout.
+Dall'Angular Router, il container si dirama in vari componenti che rappresentano ciascuno un unico tipo di servizio, e che a loro volta si collegano con i rispettivi elementi all'interno dell'infrastruttura API adibiti alla comunicazione con il backend.
+
+==== Backend <comp-backend>
+#figure(
+  image("../../assets/c4/component_backend.svg", width: 100%),
+  caption: [Backend Component diagram],
+)
+
+Il Cloud Backend (Control & Management Layer) rappresenta il motore decisionale e l'orchestratore del sistema. Sviluppato in Go usando il framework Gin, è progettato per gestire un carico elevato di richieste contemporanee. Il suo scopo è esporre le #gloss[API] per la consultazione dei dati e la gestione del sistema, tramite un sistema di controllo degli accessi gerarchico. Questi servizi vengono forniti agli utenti finali tramite l'interfaccia front-end descritta prima, la quale ha la responsabilità di chiamare e gestire le risposte del componente presente.
+
+La comunicazione tra i microservizi è mediata da NATS, che funge da #gloss[message broker] asincrono, permettendo un disaccoppiamento efficace tra la fase di ricezione dei dati e quella di elaborazione. Infine, il sistema prevede la segregazione logica dei dati per supportare una gestione multi-tenant, assicurando che ogni cliente possa accedere esclusivamente alle proprie risorse.
+
+Le componenti interne possono essere suddivise in macro-aree funzionali:
+
+===== Gestione degli accessi <comp-back-accessi>
+Questa area gestisce il ciclo di vita degli utenti, il loro accesso alla piattaforma, la creazione di nuovi profili e la configurazione dei tenant, garantendo che ogni operazione sia isolata nel perimetro del cliente corretto.
+Vi sono component dedicati alla generazione e alla validazione di chiavi di accesso per gli API Client esterni, il che permette l'integrazione sicura di sistemi terzi che possono consultare i dati senza passare dall'interfaccia web.
+
+===== Gestione dati e flussi real-time <comp-back-dati>
+Il backend si posiziona come strato di mediazione tra il frontend e i database di persistenza. Ciò include sia la capacità di estrarre i dati storici dei sensori dal database IoT Data DB per rispondere alle query di visualizzazione di dati, servendoli in formato JSON tramite HTTPS, sia la capacità di ricevere i dati appena pubblicati dal Message Broker e inoltrarli in tempo reale ai client connessi via WebSocket, minimizzando la latenza di visualizzazione.
+Il NATS Command Server è il componente utile ad inviare comandi ricevuti dagli utenti verso un gateway o sensore specifico, tramite il Message Broker.
+
+===== Servizi di background <comp-back-background>
+Sono inoltre presenti componenti che operano indipendentemente dalle richieste dirette degli utenti per mantenere l'integrità e la sicurezza del sistema, ad esempio:
+- Alert Detection Component, utilizzato per rilevare l'assenza di dati durante la comunicazione con un gateway o sensore specifico.
+- Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
 
-La comunicazione tra i microservizi è mediata da NATS, che funge da #gloss[message broker] asincrono, permettendo un disaccoppiamento efficace tra la fase di ricezione dei dati e quella di elaborazione. Infine, il sistema prevede la segregazione logica dei dati per supportare una gestione multi-tenant, assicurando che ogni cliente possa accedere esclusivamente alle proprie risorse.
+== Architettura di deployment <archit-deploy>
+=== Diagramma di deployment <deploy-diagram>
+Il Deployment Diagram illustra come le istanze dei container siano effettivamente distribuite sull'infrastruttura fisica o virtuale all'interno di un determinato ambiente. Questo livello permette di mappare i componenti logici su nodi di deployment, i quali rappresentano le risorse computazionali dove il software viene eseguito, quali infrastrutture fisiche, macchine virtuali, container Docker o ambienti di esecuzione specifici (come database server o browser web).
+
+#figure(
+  image("../../assets/c4/deployment.svg", width: 100%),
+  caption: [Deployment diagram],
+)
+
+Le responsabilità sono separate tra l'Edge Node, il Cloud e l'interfaccia utente (User Device).
+Nel primo risiede l'istanza del Gateway Simulator, che viene rappresentata come un'entità autonoma al di fuori del nodo centrale, in modo da rappresentare in modo più realistico l'infrastruttura su cui si dovrebbe basare il sistema. Qualora si decidesse di implementare quest'ultima in una successiva iterazione del progetto, ciò impedirebbe di causare modifiche a cascata obbligatorie verso altre aree dell'architettura.
+L'infrastruttura Cloud rimane l'ambiente di esecuzione principale dove vivono i diversi *microservizi*, per lo più in nodi indipendenti. Oltre ai database per la persistenza dei dati e al nodo di monitoraggio (che ospita Prometheus e Grafana), sono presenti nodi con componenti multi-istanza, ovvero:
+- Message Broker, che ospita istanze di NATS JetStream.
+- API Backend e Data Consumer, dedicati all'esecuzione dei container di business logic.
+User Device rappresenta l'ambiente di esecuzione lato client. Qui il nodo è il Web Browser, all'interno del quale viene distribuita ed eseguita l'istanza della Dashboard Angular.
+
 
 == Design Pattern <design-pattern>
 I design pattern sono stati selezionati per garantire che l'architettura a microservizi sia flessibile e scalabile, rispettando gli obiettivi di manutenibilità definiti nel capitolato.
