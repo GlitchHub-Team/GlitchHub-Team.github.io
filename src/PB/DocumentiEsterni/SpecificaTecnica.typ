@@ -397,7 +397,7 @@ Questa area gestisce il ciclo di vita degli utenti, il loro accesso alla piattaf
 Vi sono component dedicati alla generazione e alla validazione di chiavi di accesso per gli API Client esterni, il che permette l'integrazione sicura di sistemi terzi che possono consultare i dati senza passare dall'interfaccia web.
 
 ===== Gestione dati e flussi real-time <comp-back-dati>
-Il backend si posiziona come strato di mediazione tra il frontend e i database di persistenza. Ciò include sia la capacità di estrarre le telemetrie storiche dal database IoT Data DB per rispondere alle query di visualizzazione dei trend nel tempo, servendo i dati in formato JSON tramite HTTPS, sia ricevere i dati appena pubblicati dal Message Broker e inoltrarli ai client connessi, minimizzando la latenza di visualizzazione.
+Il backend si posiziona come strato di mediazione tra il frontend e i database di persistenza. Ciò include sia la capacità di estrarre i dati storici dei sensori dal database IoT Data DB per rispondere alle query di visualizzazione di dati, servendoli in formato JSON tramite HTTPS, sia la capacità di ricevere i dati appena pubblicati dal Message Broker e inoltrarli in tempo reale ai client connessi via WebSocket, minimizzando la latenza di visualizzazione.
 Il NATS Command Server è il componente utile ad inviare comandi ricevuti dagli utenti verso un gateway o sensore specifico, tramite il Message Broker.
 
 ===== Servizi di background <comp-back-background>
