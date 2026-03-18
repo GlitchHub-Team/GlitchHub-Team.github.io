@@ -34,6 +34,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.1.0",
+      "15/03/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Scrittura test unitari],
+    ),
+    (
       "1.0.0",
       "18/02/2026",
       "Michele Dioli",
