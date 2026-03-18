@@ -33,17 +33,24 @@
   stato: "Bozza",
   registro-modifiche: (
     (
-      "0.3.1",
-      "16/03/2026",
+      "0.4.0",
+      "17/03/2026",
       "Jaume Bernardi",
-      "Elia_Ernesto_Stellin",
+      "Alessandro Dinato",
+      [Prima stesura aggiornamento tecnologie e versioni],
+    ),
+    (
+      "0.3.1",
+      "17/03/2026",
+      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
       [Applicazione modifiche richieste in verifica],
     ),
     (
       "0.3.0",
       "16/03/2026",
       "Jaume Bernardi",
-      "Elia_Ernesto_Stellin",
+      "Elia Ernesto Stellin",
       [Prima stesura dei paragrafi di architettura System Context, Container, Component e Deployment],
     ),
       (
