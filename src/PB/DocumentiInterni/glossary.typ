@@ -6,11 +6,18 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.6.0",
+      "18/03/2026",
+      "Alessandro Dinato",
+      "Jaume Bernardi",
+      [Definizione termini: "Devcontainer", "GitHub Secret", "Golangci-lint", "Gofumpt","MKDocs","Deployment Diagram","Code Diagram","Component Diagram","Container Diagram","Context Diagram","C4 Model", "Manuale utente", "Specifica tecnica"],
+    ),
+    (
       "0.5.1",
       "03/03/2026",
       "Elia Ernesto Stellin",
-      "-",
-      [Rimozione numerazione per sezioni di "raggruppamento" dei termini]
+      "Jaume Bernardi",
+      [Rimozione numerazione per sezioni di "raggruppamento" dei termini],
     ),
     (
       "0.5.0",
@@ -101,8 +108,8 @@
     "Pubblica",
   ),
   htmlId: "PB-DocumentiInterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Jaume Bernardi",
+  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
   tipo-documento: "Glossario",
 )
 
@@ -128,7 +135,7 @@ Il documento è destinato ad essere un riferimento per tutti i membri del gruppo
  * NOTA: Per scrivere il glossario, modificare solamente il file src/glossary.json!!!
  * Non inserirli più qua, ma modificare solo il registro modifiche!
  */
-#let glossary_terms = json("../../glossary.json")
+#let glossary_terms = json("../../glossaryPB.json")
 
 #let group_by_letter(terms) = {
   let grouped = (:)
