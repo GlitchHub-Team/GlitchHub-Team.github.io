@@ -7,6 +7,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.4.2",
+      "18/03/2026",
+      "Hossam Ezzemouri",
+      "-",
+      [Aggiunta sezione relativa al workflow di codifica e all' utilizzo dei Dev Containers]
+    ),
+    (
       "1.4.1",
       "09/03/2026",
       "Riccardo Graziani",
@@ -307,6 +314,7 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 
 === Strumenti a supporto <sviluppo-strumenti-supporto>
 - #gloss[Angular]: come framework di sviluppo frontend;
+- *Dev Containers*: per definire ambienti di sviluppo isolati,condivisi e riproducibili tra tutti i membri del gruppo;
 - #gloss[Gin]: come framework di sviluppo backend;
 - #gloss[Go]: come linguaggio di programmazione per lo sviluppo dei servizi di publish e subscribe;
 - *Visual Studio Code*: per la codifica del software;
@@ -370,6 +378,17 @@ L'attività di *codifica*, svolta dai programmatori, consiste nel tradurre la pr
 - *Ottimizzare* la revisione: velocizzare le attività di verifica e collaudo del codice attraverso una scrittura più chiara.
 - *Assicurare* l'evoluzione del sistema: migliorare la manutenibilità e la futura estensibilità del software prodotto.
 - *Garantire l'uniformità* qualitativa: certificare che il codice sia conforme agli standard di qualità precedentemente fissati.
+
+==== Workflow di codifica <workflow-codifica>
+Il gruppo applica un workflow di codifica uniforme per tutte le #gloss[repository] software del progetto,in modo tale da ridurre le differenze tra gli ambienti locali dei membri e rendere più semplice la verifica del codice prodotto.
+
+I passaggi previsti sono i seguenti:
+
+1. L'attività di codifica ha inizio a partire da una #gloss[issue] pianificata e assegnata a un membro del gruppo; il lavoro viene svolto nel relativo #gloss[branch] dedicato, secondo quanto descritto nella @gestione-processi-attivita-previste.
+2. Se la #gloss[repository] mette a disposizione una cartella `.devcontainer/`, il programmatore deve aprire il progetto tramite *Visual Studio Code* all'interno del relativo *Dev Container*. In questo modo il gruppo utilizza un ambiente di sviluppo standardizzato, versionato assieme al codice e comprensivo degli strumenti necessari alla codifica, all'analisi statica e all'esecuzione locale dei componenti richiesti.
+3. La codifica avviene nel rispetto della progettazione definita, delle convenzioni di nomenclatura descritte in questa sezione e degli strumenti di formattazione e analisi configurati nella #gloss[repository]
+4. Prima di notificare il completamento dell'attività,il programmat0re deve eseguire localmente i controlli previsti dalla #gloss[repository], quali compilazione, test automatici, analisi statica e verifica della corretta esecuzione dei servizi coinvolti.
+5. Una volta completate le modifiche, il programmatore effettua il _push_ sul proprio #gloss[branch] e apre la relativa #gloss[pull request], collegandola all'#gloss[issue] di partenza e richiedendo la verifica secondo il workflow definito nella @gestione-processi-attivita-previste.
 
 ==== Stile di codifica Typescript <codifica-typescript>
 In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Typescript* all'interno del framework Angular, al fine di garantire l'uniformità del codice prodotto dal team.
