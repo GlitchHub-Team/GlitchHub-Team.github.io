@@ -33,6 +33,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.4.1",
+      "17/03/2026",
+      "Jaume Bernardi",
+      "Alessandro Dinato",
+      [Applicazione correzioni nate dalla verifica],
+    ),
+    (
       "0.4.0",
       "17/03/2026",
       "Jaume Bernardi",
@@ -218,7 +225,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [TimescaleDB], [2.25.2-pg17], [#gloss[TimescaleDB] è un database open-source per serie temporali costruito su #gloss[PostgreSQL], che ottimizza l'archiviazione e la velocità di interrogazione di dati indicizzati nel tempo. La sua architettura permette di gestire grandi volumi di informazioni mantenendo la piena compatibilità con il linguaggio SQL. È stato scelto per archiviare i dati provenienti dai sensori #gloss[BLE], garantendo l'ingestione rapida e la persistenza necessarie per il monitoraggio in tempo reale e le analisi storiche previste dal sistema.],
+    [TimescaleDB], [2.25.2-pg18], [#gloss[TimescaleDB] è un database open-source per serie temporali costruito su #gloss[PostgreSQL], che ottimizza l'archiviazione e la velocità di interrogazione di dati indicizzati nel tempo. La sua architettura permette di gestire grandi volumi di informazioni mantenendo la piena compatibilità con il linguaggio SQL. È stato scelto per archiviare i dati provenienti dai sensori #gloss[BLE], garantendo l'ingestione rapida e la persistenza necessarie per il monitoraggio in tempo reale e le analisi storiche previste dal sistema.],
     [SQLite], [3.51.2], [SQLite è un motore di database relazionale leggero, autonomo e basato su file, progettato per essere incorporato direttamente nelle applicazioni senza richiedere un server esterno. Utilizza un singolo file come archivio dati e implementa gran parte dello standard SQL, offrendo un database transazionale, affidabile e altamente portabile.],
     [PostgreSQL], [18.3], [#gloss[PostgreSQL] è un sistema di gestione di database relazionali open‑source e progettato per garantire affidabilità, estensibilità e conformità ACID. È noto per la sua robustezza, la ricchezza delle funzionalità e la capacità di gestire carichi di lavoro complessi in ambienti enterprise, nonché dati complessi e query analitiche avanzate. Nel progetto viene utilizzato come motore di persistenza principale nel #gloss[Cloud] Layer, sfruttando la sua architettura robusta per garantire l'integrità dei dati e la scalabilità necessaria a gestire l'archiviazione a lungo termine delle informazioni.],
   ),
