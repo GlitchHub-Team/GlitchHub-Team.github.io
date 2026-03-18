@@ -2,7 +2,7 @@
 
 #show: report.with(
   titolo: "Verbale esterno 17/03/2026 (M31)",
-  stato: "Da Verificare",
+  stato: "Verificato",
   versione: "1.0.0",
   partecipanti: (
     "Alessandro Dinato",
@@ -17,7 +17,7 @@
     [Presentazione stato avanzamento lavori],
     [Discussione dubbi tecnici su microservizi e persistenza],
     [Gestione accessi e sicurezza],
-    [Pianificazione e date di consegna],
+    [Pianificazione e data di consegna],
   ),
   htmlId: "PB-VerbaliEsterni",
   verificatore-interno: "Riccardo Graziani",
@@ -28,9 +28,9 @@
 )
 
 = Introduzione
-Il presente verbale attesta che in data 3 marzo 2026 dalle 14:35 alle 15:00, si è svolto l'incontro con la proponente *M31 SRL*, in modalità remota.
+Il presente verbale attesta che in data 17 marzo 2026 dalle 14:35 alle 15:00, si è svolto l'incontro con la proponente *M31 SRL*, in modalità remota.
 
-Durante l'incontro il gruppo ha esposto l'avanzamento della codifica dei vari moduli e ha discusso con la proponente alcune scelte implementative riguardanti l'architettura dei microservizi, la gestione del database e le politiche di sicurezza.
+Durante l'incontro il gruppo ha esposto l'avanzamento della codifica dei vari moduli e ha discusso con la proponente circa alcune scelte implementative riguardanti l'architettura dei microservizi, la gestione del database e le politiche di sicurezza.
 
 = Resoconto
 == Presentazione stato avanzamento lavori
@@ -59,7 +59,7 @@ La soluzione approvata prevede l'utilizzo di file `.env` per lo sviluppo locale 
 === Gestione Super Admin e Tenant Admin
 È emersa la necessità di gestire correttamente la gerarchia amministrativa. La proponente ha indicato che ogni Tenant Admin deve poter gestire gli altri, garantendo però l'impossibilità di eliminare l'ultimo Super Admin del sistema. Si è concordato di implementare una funzione di migrazione per la creazione del primo Super Admin durante l'inizializzazione del database.
 
-== Pianificazione e date di consegna
+== Pianificazione e data di consegna
 Il gruppo ha evidenziato l'infattibilità della consegna prevista per il 27 marzo a causa della mole di lavoro residua. *M31* si è mostrata favorevole a uno slittamento della data, riconoscendo l'ampiezza dello scope progettuale. Il gruppo comunicherà la nuova data stimata dopo un'analisi interna.
 
 = Riunioni future
