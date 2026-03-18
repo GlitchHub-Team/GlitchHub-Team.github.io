@@ -33,17 +33,31 @@
   stato: "Bozza",
   registro-modifiche: (
     (
-      "0.3.1",
-      "16/03/2026",
+      "0.4.1",
+      "17/03/2026",
       "Jaume Bernardi",
-      "Elia_Ernesto_Stellin",
+      "Alessandro Dinato",
+      [Applicazione correzioni nate dalla verifica],
+    ),
+    (
+      "0.4.0",
+      "17/03/2026",
+      "Jaume Bernardi",
+      "Alessandro Dinato",
+      [Prima stesura aggiornamento tecnologie e versioni],
+    ),
+    (
+      "0.3.1",
+      "17/03/2026",
+      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
       [Applicazione modifiche richieste in verifica],
     ),
     (
       "0.3.0",
       "16/03/2026",
       "Jaume Bernardi",
-      "Elia_Ernesto_Stellin",
+      "Elia Ernesto Stellin",
       [Prima stesura dei paragrafi di architettura System Context, Container, Component e Deployment],
     ),
       (
@@ -157,7 +171,7 @@ Per lo sviluppo del sistema abbiamo scelto uno stack tecnologico moderno e solid
 Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione delle loro caratteristiche principali.
 //TODO aggiungere le versioni dei linguaggi
 //TODO: aggiungere goroutine al glossario
-== Linguaggi di programmazione
+== Linguaggi e ambienti di programmazione
 #tabella-paginata(
   table(
     columns: (auto, 1fr, 6fr),
@@ -165,10 +179,12 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [Go], [], [#gloss[Go] è un linguaggio compilato e staticamente tipizzato che combina semplicità sintattica e prestazioni di alto livello in contesti distribuiti. La sua gestione nativa della concorrenza permette di eseguire numerosi processi simultanei con un consumo minimo di risorse hardware. Nel progetto viene utilizzato per realizzare il #gloss[Gateway] simulato, in cui diverse #gloss[goroutine] operano in parallelo per emulare il comportamento simultaneo dei sensori #gloss[BLE]. È inoltre impiegato per lo sviluppo del Data consumer, incaricato di processare i flussi dati in ingresso, e per il Backend della dashboard, garantendo velocità e scalabilità nella gestione delle richieste #gloss[API] del #gloss[Cloud] Layer.],
+    [Go], [1.26.0], [#gloss[Go] è un linguaggio compilato e staticamente tipizzato che combina semplicità sintattica e prestazioni di alto livello in contesti distribuiti. La sua gestione nativa della concorrenza permette di eseguire numerosi processi simultanei con un consumo minimo di risorse hardware. Nel progetto viene utilizzato per realizzare il #gloss[Gateway] simulato, in cui diverse #gloss[goroutine] operano in parallelo per emulare il comportamento simultaneo dei sensori #gloss[BLE]. È inoltre impiegato per lo sviluppo del Data consumer, incaricato di processare i flussi dati in ingresso, e per il Backend della dashboard, garantendo velocità e scalabilità nella gestione delle richieste #gloss[API] del #gloss[Cloud] Layer.],
     [Typescript], [], [#gloss[TypeScript] è un superset tipizzato di #gloss[JavaScript] che introduce il controllo statico dei tipi, migliorando drasticamente la leggibilità e la manutenibilità del codice. Compila in #gloss[JavaScript] standard, garantendo piena compatibilità con l'ecosistema #gloss[Node.js] e i browser moderni. Viene adottato per lo sviluppo dei microservizi e del frontend #gloss[Angular], poiché permette di rilevare errori in fase di scrittura, assicurando la robustezza e la qualità del codice necessarie per superare i test di validazione richiesti dal capitolato],
+    [Node.js], [20.19.0], [#gloss[Node.js] è un ambiente di runtime open-source e multipiattaforma basato sul motore V8 di Google, progettato per l'esecuzione di codice #gloss[JavaScript] lato server. Grazie al suo modello di I/O non bloccante e orientato agli eventi, garantisce un'elevata efficienza nella gestione di connessioni simultanee con un overhead minimo. Nel progetto viene utilizzato come base per l'esecuzione dei microservizi e per la gestione delle dipendenze tramite #gloss[npm], assicurando un ambiente stabile e scalabile per l'integrazione dei diversi componenti del sistema e la comunicazione con il #gloss[Cloud] Layer.],
+    [npm], [10.8.2], [npm (Node Package Manager) è il gestore di pacchetti predefinito per l’ecosistema #gloss[Node.js]. Fornisce un registro pubblico di librerie e strumenti JavaScript e un client da riga di comando che permette di installare, aggiornare, pubblicare e gestire dipendenze all’interno di un progetto.],
   ),
-  [Linguaggi di programmazione.],
+  [Linguaggi e ambienti di programmazione.],
   label-id: "ling-progr",
 )\
 
@@ -180,7 +196,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [Gin], [], [#gloss[Gin] è un framework web HTTP ad alte prestazioni per Go che sfrutta un router ottimizzato per garantire velocità di esecuzione superiori e un utilizzo ridotto di risorse. Offre funzionalità predefinite per la gestione di middleware e la validazione dei dati, accelerando lo sviluppo di interfacce affidabili. È stato scelto per implementare le #gloss[API] e la logica backend del #gloss[Cloud] Layer, assicurando risposte rapide alle richieste degli utenti e un'integrazione fluida tra i vari servizi del sistema.],
+    [Gin], [1.11.0], [#gloss[Gin] è un framework web HTTP ad alte prestazioni per Go che sfrutta un router ottimizzato per garantire velocità di esecuzione superiori e un utilizzo ridotto di risorse. Offre funzionalità predefinite per la gestione di middleware e la validazione dei dati, accelerando lo sviluppo di interfacce affidabili. È stato scelto per implementare le #gloss[API] e la logica backend del #gloss[Cloud] Layer, assicurando risposte rapide alle richieste degli utenti e un'integrazione fluida tra i vari servizi del sistema.],
     //[fx?], [], [],
   ),
   [Framework per la codifica per il backend della dashboard.],
@@ -195,7 +211,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [Angular], [], [#gloss[Angular] è un framework open-source per lo sviluppo di applicazioni web Single Page #gloss[SPA]. Utilizza un'architettura basata su componenti che garantisce modularità e manutenibilità del codice. Viene impiegato per la realizzazione dell'interfaccia utente della dashboard, permettendo la visualizzazione in tempo reale dei dati acquisiti dai sensori e la configurazione semplificata di nuovi gateway o sensori simulati.],
+    [Angular], [21.0], [#gloss[Angular] è un framework open-source per lo sviluppo di applicazioni web Single Page #gloss[SPA]. Utilizza un'architettura basata su componenti che garantisce modularità e manutenibilità del codice. Viene impiegato per la realizzazione dell'interfaccia utente della dashboard, permettendo la visualizzazione in tempo reale dei dati acquisiti dai sensori e la configurazione semplificata di nuovi gateway o sensori simulati.],
   ),
   [Framework per lo sviluppo del frontend.],
   label-id: "framework-frontend",
@@ -209,7 +225,9 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [TimescaleDB], [], [#gloss[TimescaleDB] è un database open-source per serie temporali costruito su #gloss[PostgreSQL], che ottimizza l'archiviazione e la velocità di interrogazione di dati indicizzati nel tempo. La sua architettura permette di gestire grandi volumi di informazioni mantenendo la piena compatibilità con il linguaggio SQL. È stato scelto per archiviare i dati provenienti dai sensori #gloss[BLE], garantendo l'ingestione rapida e la persistenza necessarie per il monitoraggio in tempo reale e le analisi storiche previste dal sistema.],
+    [TimescaleDB], [2.25.2-pg18], [#gloss[TimescaleDB] è un database open-source per serie temporali costruito su #gloss[PostgreSQL], che ottimizza l'archiviazione e la velocità di interrogazione di dati indicizzati nel tempo. La sua architettura permette di gestire grandi volumi di informazioni mantenendo la piena compatibilità con il linguaggio SQL. È stato scelto per archiviare i dati provenienti dai sensori #gloss[BLE], garantendo l'ingestione rapida e la persistenza necessarie per il monitoraggio in tempo reale e le analisi storiche previste dal sistema.],
+    [SQLite], [3.51.2], [SQLite è un motore di database relazionale leggero, autonomo e basato su file, progettato per essere incorporato direttamente nelle applicazioni senza richiedere un server esterno. Utilizza un singolo file come archivio dati e implementa gran parte dello standard SQL, offrendo un database transazionale, affidabile e altamente portabile.],
+    [PostgreSQL], [18.3], [#gloss[PostgreSQL] è un sistema di gestione di database relazionali open‑source e progettato per garantire affidabilità, estensibilità e conformità ACID. È noto per la sua robustezza, la ricchezza delle funzionalità e la capacità di gestire carichi di lavoro complessi in ambienti enterprise, nonché dati complessi e query analitiche avanzate. Nel progetto viene utilizzato come motore di persistenza principale nel #gloss[Cloud] Layer, sfruttando la sua architettura robusta per garantire l'integrità dei dati e la scalabilità necessaria a gestire l'archiviazione a lungo termine delle informazioni.],
   ),
   [Tecnologie per la gestione di dati temporali.],
   label-id: "tecn-dati-temp",
@@ -223,7 +241,8 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [NATS], [], [#gloss[NATS] è un message broker e sistema di messaggistica distribuito ad alte prestazioni, progettato per lo scambio di dati rapido e affidabile tra servizi indipendenti. La sua architettura leggera supporta modelli di comunicazione asincrona, garantendo bassa latenza e alta scalabilità nel transito delle informazioni. È stato selezionato per orchestrare il flusso di dati tra i microservizi del #gloss[Cloud] Layer, assicurando uno smistamento efficiente dei pacchetti provenienti dai #gloss[gateway] verso i sistemi di persistenza e monitoraggio.],
+    [NATS], [2.12.5], [#gloss[NATS] è un message broker e sistema di messaggistica distribuito ad alte prestazioni, progettato per lo scambio di dati rapido e affidabile tra servizi indipendenti. La sua architettura leggera supporta modelli di comunicazione asincrona, garantendo bassa latenza e alta scalabilità nel transito delle informazioni. È stato selezionato per orchestrare il flusso di dati tra i microservizi del #gloss[Cloud] Layer, assicurando uno smistamento efficiente dei pacchetti provenienti dai #gloss[gateway] verso i sistemi di persistenza e monitoraggio.],
+    [nsc], [2.12.0], [nsc è lo strumento ufficiale per la gestione delle identità, delle autorizzazioni e delle configurazioni di sicurezza nell’ecosistema NATS. Permette di creare e amministrare operatori, account, utenti, chiavi e JWT utilizzati dal sistema di autenticazione e autorizzazione di NATS],
   ),
   [Tecnologie per la comunicazione e messaggistica.],
   label-id: "tecn-com-mess",
@@ -238,6 +257,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
     [Docker], [], [#gloss[Docker] è una piattaforma di containerizzazione che permette di pacchettizzare i microservizi e le loro dipendenze in unità isolate e portatili. Garantisce che il software funzioni in modo identico in ogni ambiente, eliminando i problemi di configurazione tra sviluppo e produzione. È stato scelto per semplificare il deployment dell'infrastruttura #gloss[Cloud] e facilitare l'orchestrazione dei servizi, assicurando la scalabilità e la manutenibilità richieste dal capitolato.],
+    [Ubuntu], [24.04 LTS], [Ubuntu è una distribuzione #gloss[Linux] basata su Debian, scelta come immagine di base per la containerizzazione dei microservizi del sistema. Grazie al supporto a lungo termine, garantisce un ambiente di esecuzione estremamente stabile, sicuro e costantemente aggiornato. Nel progetto viene utilizzata per creare container leggeri e standardizzati, assicurando che i vari componenti operino su una base software coerente, riducendo le discrepanze tra l'ambiente di sviluppo locale e il deployment finale.],
   ),
   [Tecnologie per la virtualizzazione e deployment.],
   label-id: "tecn-virt-deploy",
@@ -266,7 +286,15 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [], [], [],
+    [gomock], [v0.6.0], [gomock è un framework di mocking per il linguaggio #gloss[Go], utilizzato per facilitare la scrittura di unit test isolati e affidabili. Permette di generare automaticamente implementazioni fittizie di interfacce complesse, consentendo agli sviluppatori di simulare e verificare le interazioni tra i diversi componenti del sistema, come la comunicazione tra il #gloss[Gateway] e i servizi di backend, senza la necessità di dipendenze esterne attive durante la fase di test.],
+    [GORM], [1.31.1], [GORM è una libreria di ORM (Object-Relational Mapping) per il linguaggio #gloss[Go], progettata per astrarre e semplificare l'interazione tra il codice applicativo e i database relazionali. Fornisce un livello di astrazione sopra SQL, permettendo di definire modelli, eseguire query, gestire relazioni e operazioni CRUD attraverso un’API idiomatica e coerente con lo stile di Go.],
+    [GORM PostgresSQL Driver], [1.6.0], [GORM PostgresSQL Driver è l'interfaccia tra il framework GORM e il database #gloss[PostgreSQL]. Nel progetto svolge il ruolo fondamentale di tradurre le operazioni definite nel codice #gloss[Go] in dialetto SQL compatibile con #gloss[TimescaleDB].],
+    [jwt], [4.5.2], [jwt è una versione della libreria Go dedicata alla creazione, firma, validazione e gestione dei JSON Web Token. Fornisce un’implementazione conforme agli standard RFC 7519, permettendo di generare token sicuri per l’autenticazione e l’autorizzazione nelle applicazioni scritte in #gloss[Go].],
+    [GoDotEnv], [1.5.1], [GoDotEnv è una libreria per il linguaggio #gloss[Go] che permette di caricare variabili d’ambiente da file .env all’interno dell’applicazione. Replica il comportamento del pacchetto dotenv diffuso in altri ecosistemi, facilitando la gestione di configurazioni esterne al codice sorgente.],
+    [google/uuid], [1.6.0], [uuid è una libreria per il linguaggio #gloss[Go] che fornisce un’implementazione completa e conforme agli standard RFC 4122 per la gestione degli UUID (Universally Unique Identifier), ovvero identificatori univoci a livello globale. Può effettuare la loro generazione il parsing da stringa, la validazione, la serializzazione e la manipolazione in vari formati.],
+    [Uber Fx], [1.24.0], [Fx è un framework di dependency injection per il linguaggio #gloss[Go], progettato fornire una struttura modulare e dichiarativa per inizializzare, configurare e orchestrare i diversi elementi di un’applicazione in modo sicuro, scalabile e facilmente testabile. Nel progetto viene utilizzato per orchestrare l'avvio e lo spegnimento dei vari servizi del backend, come il server #gloss[Gin], la connessione a #gloss[TimescaleDB] e il client #gloss[NATS].],
+    [Uber Zap], [1.27.1], [Zap è una libreria di logging ad alte prestazioni per applicazioni scritte in #gloss[Go]. È progettata per offrire log strutturati, veloci e a basso overhead, rendendola particolarmente adatta a sistemi ad alta scalabilità, microservizi e applicazioni con requisiti di osservabilità rigorosi.],
+    [NATS Client], [1.49.0], [NATS Client è la libreria ufficiale per il linguaggio #gloss[Go] che permette l'interazione tra i servizi applicativi e il sistema di messaggistica #gloss[NATS]. Nel progetto viene impiegata per implementare i pattern di comunicazione asincrona, permettendo al #gloss[Gateway] simulato di pubblicare i dati dei sensori e al Data consumer di sottoscriversi ai flussi in ingresso.],
   ),
   [Librerie.],
   label-id: "librerie",
@@ -280,7 +308,9 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [], [], [],
+    [Golangci-lint], [2.10.1], [Golangci-lint è un aggregatore di #gloss[linter] per il linguaggio #gloss[Go], progettato per analizzare il codice sorgente alla ricerca di errori sintattici, problemi di stile e potenziali bug logici. Tra le altre funzionalità, aiuta anche nell'identificare tempestivamente porzioni di codice inefficienti o non sicure.],
+    [gofumpt], [0.9.2], [gofumpt è uno strumento di formattazione del codice per il linguaggio #gloss[Go], progettato come una versione più rigorosa e coerente di gofmt. Applica regole aggiuntive di stile e formattazione per garantire un codice più uniforme, leggibile e conforme a linee guida più restrittive rispetto allo standard. Rimane pienamente compatibile con gofmt.],
+    [Gopls], [0.21.1], [Gopls è il language server ufficiale per il linguaggio #gloss[Go], sviluppato dal team Go per fornire funzionalità avanzate agli editor tramite il protocollo LSP (Language Server Protocol). Offre servizi come autocompletamento, navigazione del codice, refactoring, analisi statica, suggerimenti in tempo reale e gestione intelligente dei moduli Go.],
   ),
   [Tecnologie per analisi statica.],
   label-id: "tecn-anal-stat",
@@ -294,7 +324,8 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
-    [], [], [],
+    [Delve], [1.26.0], [Delve è il debugger ufficiale per il linguaggio #gloss[Go] progettato per fornire un'ispezione profonda dello stato interno delle applicazioni durante la loro esecuzione. A differenza dei debugger generici, è ottimizzato per comprendere le strutture dati native di #gloss[Go], come le #gloss[goroutine], i canali e le mappe.],
+    [NATS CLI], [2.12.0], [NATS Command Line Interface è lo strumento da riga di comando ufficiale per interagire con un server o un cluster NATS. Permette di gestire connessioni, pubblicare e ricevere messaggi, amministrare account e utenti, monitorare lo stato del sistema e lavorare con funzionalità avanzate.],
   ),
   [Tecnologie per analisi dinamica.],
   label-id: "tecn-anal-din",
