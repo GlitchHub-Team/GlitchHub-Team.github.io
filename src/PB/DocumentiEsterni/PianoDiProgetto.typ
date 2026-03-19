@@ -8,9 +8,9 @@
   registro-modifiche: (
       (
       "1.4.0",
-      "11/03/2026",
+      "19/03/2026",
       "Siria Salvalaio",
-      "",
+      "Riccardo Graziani",
       [Stesura sprint 12 (@sprint-12)],
       ),
     (
@@ -253,8 +253,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Piano di Progetto",
 )
 
