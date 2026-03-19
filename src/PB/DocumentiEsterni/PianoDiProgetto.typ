@@ -3082,33 +3082,36 @@ Il presente #gloss("sprint") mira a consolidare la progettazione architettonica 
 
 === Compiti da svolgere
 Di seguito sono elencati i compiti individuati:
-- [AdR] Sistemare urgenze requisiti (#issue(429))
-- [Backend] Classi comuni per DTO, DI e richieste (#issue(21))
-- [Backend] Codifica - Elia (#issue(4))
-- [Backend] Codifica - Michele (#issue(5))
-- [Backend] Codifica backend/internal/user (#issue(17))
-- [Backend] Impostazione Router con Gin (#issue(15))
-- [Backend] Impostazione struttura cartelle e package (#issue(2))
-- [Backend] Impostazione Uber Fx (#issue(14))
-- [CI] Fix automazioni CI (#issue(445))
-- [DataConsumer] Codifica (#issue(1))
-- [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2))
-- [Frontend] Codifica - Tenant Page (#issue(24))
-- [Frontend] Codifica - User Page (#issue(25))
-- [Frontend] Codifica auth (#issue(6))
-- [Frontend] Codifica Dashboard - Grafici real-time e storici (#issue(23))
-- [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20))
-- [Frontend] Codifica sezione di autenticazione (#issue(1))
-- [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5))
-- [Gateway] Scrittura unit test (#issue(6))
-- [PdP] Responsabile 12 (#issue(440))
-- [PdQ] Impostare tracciamento TU (#issue(442))
-- [PdQ] Scrittura unit test per Gateway (#issue(446))
-Rendicontazione responsabile (Sprint 12) (#issue(436))
-- [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
-- [ST] Aggiungere ResponseDTO - Michele (#issue(443))
-- [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
-- [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
+  - [PdP] Sprint 11 (#issue(390))
+  - [Frontend] Codifica sezione di autenticazione (#issue(1))
+  - [AdR] Sistemare urgenze requisiti (#issue(429))
+  - [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
+  - [Backend] Impostazione struttura cartelle e package (#issue(2))
+  - Rendicontazione responsabile (Sprint 12) (#issue(436))
+  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5))
+  - [DataConsumer] Codifica (#issue(1))
+  - [PdQ] Impostare tracciamento TU (#issue(442))
+  - [ST] Aggiungere ResponseDTO - Michele (#issue(443))
+  - [CI] Fix automazioni CI (#issue(445))
+  - [Gateway] Scrittura unit test (#issue(6))
+  - [PdQ] Scrittura unit test per Gateway (#issue(446))
+  - [Frontend] Codifica auth (#issue(6))
+  - [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
+  - [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
+  - [Backend] Impostazione Uber Fx (#issue(14))
+  - [Backend] Impostazione Router con Gin (#issue(15))
+  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20))
+  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21))
+  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2))
+  - [Frontend] Codifica - Tenant Page (#issue(24))
+  - [Frontend] Codifica - User Page (#issue(25))
+  - [backend] codifica servizio tenant (#issue(27))
+  - [Frontend] Scrittura test per autenticazione (#issue(29))
+  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30))
+  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31))
+  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32))
+  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34))
+  - [Frontend] Test di unità - Tenant e User (#issue(26))
 
 
 === Rischi attesi
@@ -3155,25 +3158,132 @@ Rendicontazione responsabile (Sprint 12) (#issue(436))
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
 Issue relative a sprint 12: \
+  - [PdP] Sprint 11 (#issue(390))
+  - [Frontend] Codifica sezione di autenticazione (#issue(1))
+  - [AdR] Sistemare urgenze requisiti (#issue(429))
+  - [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
+  - [Backend] Impostazione struttura cartelle e package (#issue(2))
+  - Rendicontazione responsabile (Sprint 12) (#issue(436))
+  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5))
+  - [DataConsumer] Codifica (#issue(1))
+  - [PdQ] Impostare tracciamento TU (#issue(442))
+  - [ST] Aggiungere ResponseDTO - Michele (#issue(443))
+  - [CI] Fix automazioni CI (#issue(445))
+  - [Gateway] Scrittura unit test (#issue(6))
+  - [PdQ] Scrittura unit test per Gateway (#issue(446))
+  - [Frontend] Codifica auth (#issue(6))
+  - [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
+  - [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
+  - [Backend] Impostazione Uber Fx (#issue(14))
+  - [Backend] Impostazione Router con Gin (#issue(15))
+  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20))
+  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21))
+  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2))
+  - [Frontend] Codifica - Tenant Page (#issue(24))
+  - [Frontend] Codifica - User Page (#issue(25))
+  - [backend] codifica servizio tenant (#issue(27))
+  - [Frontend] Scrittura test per autenticazione (#issue(29))
+  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30))
+  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31))
+  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32))
+  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34))
+
 
 === Retrospettiva
+Lo Sprint 12 è stato estremamente produttivo, con la chiusura di molte issue che hanno consolidato l'intera infrastruttura. Abbiamo completato l'architettura del Backend integrando Uber Fx e Gin, e finalizzato il Frontend con l'autenticazione, buona parte della Dashboard e le pagine gestionali (Tenant/User). Parallelamente, abbiamo aggiornato la documentazione tecnica (diagrammi C4 e specifiche tecnologiche) e ottimizzato le automazioni di CI. \
+Sebbene lo sviluppo delle funzionalità sia proceduto spedito, la fase di verifica e la stesura dei test unitari per i vari moduli hanno richiesto tempi più lunghi del previsto.
 
 
 === Rischi occorsi
+Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbene avessimo previsto possibili ritardi generici nella fase di sviluppo, la criticità si è manifestata nello specifico durante la scrittura dei test unitari. Questa attività si è rivelata più complessa del previsto, richiedendo tempi di esecuzione superiori alle stime iniziali. Nonostante ciò, siamo riusciti a completare la maggior parte delle task previste, garantendo la solidità del codice a scapito di un leggero ritardo sulla pianificazione.
 
 
 === Consuntivo di periodo
-  ==== Risorse utilizzate
+	==== Risorse utilizzate
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "12 (+9)", "-", "-", [*12*],
+      "Alessandro Dinato", "-", "-", "-", "2", "8 (+1)", "3 (+1)", [*13*],
+      "Michele Dioli", "2", "-", "-", "2", "5 (-9)", "3 (+1)", [*12*],
+      "Hossam Ezzemouri", "-", "1 (-1)", "-", "7 (+6)", "-", "10 (+7)", [*18*],
+      "Riccardo Graziani", "-", "-", "-", "-", "6", "5", [*11*],
+      "Siria Salvalaio", "2", "-", "1", "-", "11 (+2)", "-", [*14*],
+      "Elia Ernesto Stellin", "-", "1 (-2)", "-", "-", "11 (+2)", "-", [*12*],
+      table.footer([*Totale*], [*4*], [*2*], [*1*], [*23*], [*41*], [*21*], [*92*]),
+		),
+		[Sprint 12 - Risorse utilizzate],
+		label-id: "spr12-risorse-utiliz",
+	)
+	==== Grafico a torta della suddivisione oraria effettiva
 
-  ==== Grafico a torta della suddivisione oraria effettiva
+	#let oreEffettiveSprint12 = (
+		
+	("Responsabile", 4),
+	("Amministratore", 2),
+	("Analista", 1),
+  ("Progettista", 23),
+  ("Programmatore", 41),
+  ("Verificatore", 21),
+	
+	)
+	#graficoTorta(
+	"Sprint 12 - Ore produttive complessive ed effettive per ogni ruolo",
+	oreEffettiveSprint12,
+	)
 
-  
+	=== Preventivo a finire
+	==== Aggiornamento ore rimanenti
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "4", "4", "1 (-12)", "24", "25", [*58*],
+      "Alessandro Dinato", "-", "4", "-", "10 (-2)", "4 (-8)", "19 (-3)", [*37*],
+      "Michele Dioli", "-2 (-2)", "-1", "-", "7 (-2)", "19 (-5)", "22 (-3)", [*45*],
+      "Hossam Ezzemouri", "-", "-4 (-1)", "-", "10 (-7)", "23", "15 (-10)", [*44*],
+      "Riccardo Graziani", "-", "4", "-", "5", "11 (-6)", "12 (-5)", [*32*],
+      "Siria Salvalaio", "2 (-2)", "-2", "3 (-1)", "18", "14 (-11)", "25", [*60*],
+      "Elia Ernesto Stellin", "3", "-3 (-1)", "-", "7", "12 (-11)", "25", [*44*],
+    table.footer([*Totale*], [*3*], [*2*], [*7*], [*58*], [*107*], [*143*], [*320*]),
+		),
+		[Sprint 12 - Aggiornamento ore rimanenti],
+		label-id: "spr12-agg-ore-rim",
+	)
 
-  === Preventivo a finire
-  ==== Aggiornamento ore rimanenti
-
-
-  ==== Aggiornamento costi
+	==== Aggiornamento costi
+	#tabella-paginata(
+	  table(
+		columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+			"Responsabile", "3 (-4)" ,"30 €/h", "90 € (-120 €)",
+      "Amministratore", "2 (-2)" ,"20 €/h", "40 € (-40 €)",
+      "Analista", "7 (-1)" ,"25 €/h", "175 € (-25 €)",
+      "Progettista", "58 (-23)" ,"25 €/h", "1450 € (-575 €)",
+      "Programmatore", "107 (-41)" ,"15 €/h", "1605 € (-615 €)",
+      "Verificatore", "143 (-21)" ,"15 €/h", "2145 € (-315 €)",
+    table.footer([*Totale*], [*319*], [-], [*5505 €*]),
+		),
+		[Sprint 12 - Aggiornamento costi],
+		label-id: "spr12-agg-costi",
+	)
+	
 
 
 
