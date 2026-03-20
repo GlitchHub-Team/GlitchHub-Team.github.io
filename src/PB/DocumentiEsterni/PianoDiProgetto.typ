@@ -45,7 +45,7 @@
       "1.2.0",
       "02/03/2026",
       "Jaume Bernardi",
-      "",
+      "Elia Ernesto Stellin",
       [Stesura sprint 10 (@sprint-10)],
     ),
     (
