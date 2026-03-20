@@ -35,34 +35,34 @@ Il presente documento attesta che, in data *18 marzo 2026* dalle ore 16:00 alle 
 
 == Revisione del lavoro
 === Infrastruttura NATS e Messaggistica
-Il comparto relativo ai servizi Data Consumer è stato sviluppato e verificato con successo mediante Test Unitari (TU) e Test di Integrazione (TI). Per garantire la sicurezza delle comunicazioni, è stata implementata l'autorizzazione del message broker tramite JWT e protocollo TLS. Inoltre, sono stati configurati i GitHub Secrets per ottimizzare la catena di CI/CD.
+Il comparto relativo ai servizi di Data Consumer è stato sviluppato e verificato con successo mediante test unitari (TU) e test di integrazione (TI). Per garantire la sicurezza delle comunicazioni, è stata implementata l'autorizzazione del message broker tramite #gloss[JWT] e protocollo #gloss[TLS]. Inoltre, sono stati configurati i #gloss[GitHub Secrets] per ottimizzare la catena di #gloss[CI]/#gloss[CD].
 
 === Sviluppo Gateway
-Lo stato del simulatore di Gateway necessita di un intervento di stabilizzazione. Parallelamente, è stata completata la scrittura dei Test Unitari per il Gateway, i quali sono stati ufficialmente integrati nel Piano di Qualifica (PdQ).
+Lo stato del simulatore di gateway necessita di un intervento di stabilizzazione. Parallelamente, è stata completata la scrittura dei test unitari per il gateway, i quali sono stati ufficialmente integrati nel Piano di Qualifica (PdQ).
 
 === Cloud: back-end
 Il lavoro sul back-end ha prodotto i seguenti risultati:
-- _CRUD Utente_: codifica ultimata e Test Unitari in fase di conclusione.
-- _CRUD Tenant_: codifica ultimata con Test Unitari attualmente in corso.
+- _CRUD Utente_: codifica ultimata e test unitari in fase di conclusione.
+- _CRUD Tenant_: codifica ultimata con test unitari attualmente in corso.
 Sebbene il codice richieda un successivo processo di refactoring per raggiungere uno stato ottimale, il team ritiene l'attuale versione accettabile per la prima iterazione.
 
 === Cloud: front-end e Dashboard
-È stata completata la visualizzazione dei Tenant, mentre è in corso quella relativa agli utenti. La Dashboard è stata strutturata secondo una logica gerarchica basata sui ruoli:
+È stata completata la visualizzazione dei tenant, mentre è in corso quella relativa agli utenti. La dashboard è stata strutturata secondo una logica gerarchica basata sui ruoli:
 - _Tenant User_: visualizza i dati relativi ai sensori.
-- _Admin Tenant User_: ha visibilità sulla lista dei gateway di competenza.
+- _Tenant admin_: ha visibilità sulla lista dei gateway associati al tenant a cui appartiene.
 
 === Norme di Progetto e Specifica Tecnica
 In merito alla documentazione e ai processi:
 - _Workflow_: aggiornate le Norme di Progetto (NdP) con il nuovo flusso di lavoro relativo alla codifica.
-- _Automazioni_: l'automation di CI è stata perfezionata integrando golangci-lint per l'analisi statica del codice.
+- _Automazioni_: l'automation di #gloss[CI] è stata perfezionata integrando golangci-lint per l'analisi statica del codice.
 - _Specifica Tecnica_: il documento è stato aggiornato con l'inserimento dei diagrammi relativi ai primi tre livelli del modello C4. Sono state inoltre aggiornate le versioni delle tecnologie utilizzate nel progetto.
 
 
 == Modifica data di consegna
-A seguito di un'analisi dettagliata dello stato di avanzamento dei lavori e delle pendenze residue, il gruppo ha rinegoziato la data di consegna interna, fissandola per il 13 aprile 2026. Tale decisione scaturisce dalle seguenti stime temporali relative alle macro-aree di sviluppo:
-- _Front-end Dashboard_: Lo sviluppo dei componenti della dashboard, affidato a Riccardo G. e Siria S., prevede una conclusione stimata per la fine della settimana del 23-29 marzo.
-- _Back-end Dashboard_: Il carico di lavoro per Elia E.S. e Michele D. è stato quantificato in circa 21-23 giorni totali; distribuendo equamente i task (circa 13 giorni a testa), la chiusura della componente è prevista intorno al 1 aprile. Si è stabilito che Jaume B. si aggiungerà al team di sviluppo back-end per supportare Elia e Michele, permettendo così di velocizzare i passaggi critici e garantire il rispetto delle tempistiche.
-- _Gateway e Infrastruttura_: Le attività di Alessandro D. (integrazione NATS) e Hossam E. (configurazione Grafana e Prometheus) procedono in parallelo, con una data di completamento prevista per la settimana del 23-29 marzo.
+A seguito di un'analisi dettagliata dello stato di avanzamento dei lavori e delle pendenze residue, il gruppo ha rinegoziato la data di consegna interna, fissandola al 13 aprile 2026. Tale decisione scaturisce dalle seguenti stime temporali relative alle macro-aree di sviluppo:
+- _Front-end dashboard_: Lo sviluppo dei componenti della dashboard, affidato a Riccardo Graziani e Siria Salvalaio, prevede una conclusione stimata per la fine della settimana del 23-29 marzo.
+- _Back-end dashboard_: Il carico di lavoro per Elia Ernesto Stellin e Michele Dioli è stato quantificato in circa 21-23 giorni totali; distribuendo equamente le task (circa 13 giorni a testa), la chiusura del componente è prevista intorno al 1 aprile. Si è stabilito che Jaume Bernardi si aggiungerà al team di sviluppo back-end per supportare Stellin e Dioli, permettendo così di velocizzare i passaggi critici e garantire il rispetto delle tempistiche.
+- _Gateway e infrastruttura_: Le attività di Alessandro Dinato (integrazione NATS) e Hossam Ezzemouri (configurazione Grafana e Prometheus) procedono in parallelo, con una data di completamento prevista per la settimana del 23-29 marzo.
 Il margine temporale tra la chiusura delle singole componenti e la data del 13 aprile sarà impiegato per le fasi di integrazione finale, testing sistemico e rifinitura della documentazione.
 
 = Assegnazione delle prossime task basate sulle decisioni prese
