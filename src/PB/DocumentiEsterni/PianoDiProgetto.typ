@@ -4,7 +4,7 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Da Verificare",
+  stato: "Verificato",
   registro-modifiche: (
       (
       "1.4.0",
@@ -3078,40 +3078,40 @@ table.footer([*Totale*], [*412*], [-], [*7195 €*]),
 Inizio: 11/03/2026 \
 Fine:  18/03/2026\
 
-Il presente #gloss("sprint") mira a consolidare la progettazione architettonica e avviare la codifica dei microservizi più importanti che stanno alla base del progetto, completando i #gloss("diagrammi C4") e i #gloss("DTO") della #gloss("Specifica Tecnica").\ È inoltre necessario procedere con l'implementazione del #gloss("Frontend") per l'autenticazione, configurando al contempo le automazioni di #gloss("CI") e il tracciamento degli #gloss("unit test") per garantire la qualità dei componenti Gateway e Backend.
+Il presente #gloss("sprint") mira a consolidare la progettazione architettonica, completando i #gloss("diagrammi C4") e i #gloss("DTO") della #gloss("specifica tecnica"), e ad avviare la codifica dei microservizi che stanno alla base del progetto.\ È inoltre necessario procedere con l'implementazione del #gloss("frontend") per l'autenticazione, configurando al contempo le automazioni di #gloss("CI") e il tracciamento degli #gloss("unit test") per garantire la qualità dei componenti gateway e backend.
 
 === Compiti da svolgere
 Di seguito sono elencati i compiti individuati:
   - [PdP] Sprint 11 (#issue(390))
-  - [Frontend] Codifica sezione di autenticazione (#issue(1))
+  - [Frontend] Codifica sezione di autenticazione (#issue(1, repo:"dash"))
   - [AdR] Sistemare urgenze requisiti (#issue(429))
   - [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
-  - [Backend] Impostazione struttura cartelle e package (#issue(2))
+  - [Backend] Impostazione struttura cartelle e package (#issue(2, repo:"dash"))
   - Rendicontazione responsabile (Sprint 12) (#issue(436))
-  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5))
-  - [DataConsumer] Codifica (#issue(1))
+  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5, repo: "gw"))
+  - [DataConsumer] Codifica (#issue(1, repo:"dc"))
   - [PdQ] Impostare tracciamento TU (#issue(442))
   - [ST] Aggiungere ResponseDTO - Michele (#issue(443))
   - [CI] Fix automazioni CI (#issue(445))
-  - [Gateway] Scrittura unit test (#issue(6))
+  - [Gateway] Scrittura unit test (#issue(6, repo: "gw"))
   - [PdQ] Scrittura unit test per Gateway (#issue(446))
-  - [Frontend] Codifica auth (#issue(6))
+  - [Frontend] Codifica auth (#issue(6, repo:"dash"))
   - [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
   - [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
-  - [Backend] Impostazione Uber Fx (#issue(14))
-  - [Backend] Impostazione Router con Gin (#issue(15))
-  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20))
-  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21))
-  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2))
-  - [Frontend] Codifica - Tenant Page (#issue(24))
-  - [Frontend] Codifica - User Page (#issue(25))
-  - [backend] codifica servizio tenant (#issue(27))
-  - [Frontend] Scrittura test per autenticazione (#issue(29))
-  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30))
-  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31))
-  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32))
-  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34))
-  - [Frontend] Test di unità - Tenant e User (#issue(26))
+  - [Backend] Impostazione Uber Fx (#issue(14, repo:"dash"))
+  - [Backend] Impostazione Router con Gin (#issue(15, repo:"dash"))
+  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20, repo:"dash"))
+  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21, repo:"dash"))
+  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2, repo:"dc"))
+  - [Frontend] Codifica - Tenant Page (#issue(24, repo:"dash"))
+  - [Frontend] Codifica - User Page (#issue(25, repo:"dash"))
+  - [backend] codifica servizio tenant (#issue(27, repo:"dash"))
+  - [Frontend] Scrittura test per autenticazione (#issue(29, repo:"dash"))
+  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30, repo:"dash"))
+  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31, repo:"dash"))
+  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32, repo:"dash"))
+  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34, repo:"dash"))
+  - [Frontend] Test di unità - Tenant e User (#issue(26, repo:"dash"))
 
 
 === Rischi attesi
@@ -3159,46 +3159,46 @@ Di seguito sono elencati i compiti individuati:
 Il gruppo ha svolto con successo i seguenti compiti: \
 Issue relative a sprint 12: \
   - [PdP] Sprint 11 (#issue(390))
-  - [Frontend] Codifica sezione di autenticazione (#issue(1))
+  - [Frontend] Codifica sezione di autenticazione (#issue(1, repo:"dash"))
   - [AdR] Sistemare urgenze requisiti (#issue(429))
   - [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
-  - [Backend] Impostazione struttura cartelle e package (#issue(2))
+  - [Backend] Impostazione struttura cartelle e package (#issue(2, repo:"dash"))
   - Rendicontazione responsabile (Sprint 12) (#issue(436))
-  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5))
-  - [DataConsumer] Codifica (#issue(1))
+  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5, repo:"gw"))
+  - [DataConsumer] Codifica (#issue(1, repo:"dc"))
   - [PdQ] Impostare tracciamento TU (#issue(442))
   - [ST] Aggiungere ResponseDTO - Michele (#issue(443))
   - [CI] Fix automazioni CI (#issue(445))
-  - [Gateway] Scrittura unit test (#issue(6))
+  - [Gateway] Scrittura unit test (#issue(6, repo:"gw"))
   - [PdQ] Scrittura unit test per Gateway (#issue(446))
-  - [Frontend] Codifica auth (#issue(6))
+  - [Frontend] Codifica auth (#issue(6, repo:"dash"))
   - [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
   - [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
-  - [Backend] Impostazione Uber Fx (#issue(14))
-  - [Backend] Impostazione Router con Gin (#issue(15))
-  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20))
-  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21))
-  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2))
-  - [Frontend] Codifica - Tenant Page (#issue(24))
-  - [Frontend] Codifica - User Page (#issue(25))
-  - [backend] codifica servizio tenant (#issue(27))
-  - [Frontend] Scrittura test per autenticazione (#issue(29))
-  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30))
-  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31))
-  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32))
-  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34))
+  - [Backend] Impostazione Uber Fx (#issue(14, repo:"dash"))
+  - [Backend] Impostazione Router con Gin (#issue(15, repo:"dash"))
+  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20, repo:"dash"))
+  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21, repo:"dash"))
+  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2, repo:"dc"))
+  - [Frontend] Codifica - Tenant Page (#issue(24, repo:"dash"))
+  - [Frontend] Codifica - User Page (#issue(25, repo:"dash"))
+  - [backend] codifica servizio tenant (#issue(27, repo:"dash"))
+  - [Frontend] Scrittura test per autenticazione (#issue(29, repo:"dash"))
+  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30, repo:"dash"))
+  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31, repo:"dash"))
+  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32, repo:"dash"))
+  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34, repo:"dash"))
 
 
 === Retrospettiva
-Lo Sprint 12 è stato estremamente produttivo, con la chiusura di molte issue che hanno consolidato l'intera infrastruttura. Abbiamo completato l'architettura del Backend integrando Uber Fx e Gin, e finalizzato il Frontend con l'autenticazione, buona parte della Dashboard e le pagine gestionali (Tenant/User). Parallelamente, abbiamo aggiornato la documentazione tecnica (diagrammi C4 e specifiche tecnologiche) e ottimizzato le automazioni di CI. \
+Lo Sprint 12 è stato estremamente produttivo, con la chiusura di molte issue che hanno consolidato l'intera infrastruttura. Abbiamo completato l'architettura del backend integrando Uber Fx e Gin, e finalizzato il frontend con l'autenticazione, buona parte della dashboard e le pagine gestionali (tenant/user). Parallelamente, abbiamo aggiornato la documentazione tecnica (diagrammi C4 e specifica tecnica) e ottimizzato le automazioni di CI. \
 Sebbene lo sviluppo delle funzionalità sia proceduto spedito, la fase di verifica e la stesura dei test unitari per i vari moduli hanno richiesto tempi più lunghi del previsto.
 
 
 === Rischi occorsi
-Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbene avessimo previsto possibili ritardi generici nella fase di sviluppo, la criticità si è manifestata nello specifico durante la scrittura dei test unitari. Questa attività si è rivelata più complessa del previsto, richiedendo tempi di esecuzione superiori alle stime iniziali. Nonostante ciò, siamo riusciti a completare la maggior parte delle task previste, garantendo la solidità del codice a scapito di un leggero ritardo sulla pianificazione.
+Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbene avessimo previsto possibili ritardi generici nella fase di sviluppo, la criticità si è manifestata nello specifico durante la scrittura dei test unitari. Questa attività si è rivelata più complessa del previsto, richiedendo tempi di esecuzione superiori alle stime iniziali. Nonostante ciò, siamo riusciti a completare la maggior parte delle task previste, garantendo la solidità del codice a scapito di un leggero ritardo sulla pianificazione e quindi sulla data prevista di consegna.
 
 
-=== Consuntivo di periodo
+	=== Consuntivo di periodo
 	==== Risorse utilizzate
 	#tabella-paginata(
   	table(
@@ -3216,7 +3216,7 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
       "Riccardo Graziani", "-", "-", "-", "-", "6", "5", [*11*],
       "Siria Salvalaio", "2", "-", "1", "-", "11 (+2)", "-", [*14*],
       "Elia Ernesto Stellin", "-", "1 (-2)", "-", "-", "11 (+2)", "-", [*12*],
-      table.footer([*Totale*], [*4*], [*2*], [*1*], [*23*], [*41*], [*21*], [*92*]),
+    table.footer([*Totale*], [*4*], [*2*], [*1*], [*23*], [*41*], [*21*], [*92*]),
 		),
 		[Sprint 12 - Risorse utilizzate],
 		label-id: "spr12-risorse-utiliz",
@@ -3228,9 +3228,9 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
 	("Responsabile", 4),
 	("Amministratore", 2),
 	("Analista", 1),
-  ("Progettista", 23),
-  ("Programmatore", 41),
-  ("Verificatore", 21),
+  	("Progettista", 23),
+  	("Programmatore", 41),
+  	("Verificatore", 21),
 	
 	)
 	#graficoTorta(
@@ -3264,7 +3264,7 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
 
 	==== Aggiornamento costi
 	#tabella-paginata(
-	  table(
+	table(
 		columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
 			align: left,
 			stroke: (x, y) => (
@@ -3278,12 +3278,9 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
       "Progettista", "58 (-23)" ,"25 €/h", "1450 € (-575 €)",
       "Programmatore", "107 (-41)" ,"15 €/h", "1605 € (-615 €)",
       "Verificatore", "143 (-21)" ,"15 €/h", "2145 € (-315 €)",
-    table.footer([*Totale*], [*319*], [-], [*5505 €*]),
+    table.footer([*Totale*], [*320*], [-], [*5505 €*]),
 		),
 		[Sprint 12 - Aggiornamento costi],
 		label-id: "spr12-agg-costi",
 	)
 	
-
-
-
