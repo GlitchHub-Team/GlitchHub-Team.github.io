@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "da verificato",
+  stato: "Verificato",
   registro-modifiche: (
+      (
+      "1.4.0",
+      "19/03/2026",
+      "Siria Salvalaio",
+      "Riccardo Graziani",
+      [Stesura sprint 12 (@sprint-12)],
+      ),
     (
       "1.3.0",
       "11/03/2026",
@@ -38,7 +45,7 @@
       "1.2.0",
       "02/03/2026",
       "Jaume Bernardi",
-      "",
+      "Elia Ernesto Stellin",
       [Stesura sprint 10 (@sprint-10)],
     ),
     (
@@ -246,8 +253,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -2886,7 +2893,7 @@ Di seguito sono elencati i compiti individuati:
 - [Angular] Setup struttura dashboard frontend (#issue(3,repo:"dash"))
 
 === Rischi attesi
-- *RT1* (@RT1): La scelta del gruppo di rappresentare il sistema con i #gloss("diagrammi C4") rapprensta un rischio tecnologico data la non famigliarità con tale tecnologia.
+- *RT1* (@RT1): La scelta del gruppo di rappresentare il sistema con i #gloss("diagrammi C4") rappresenta un rischio tecnologico data la non familiarità con tale tecnologia.
 
 === Preventivo
 	==== Preventivo risorse da utilizzare
@@ -2966,7 +2973,7 @@ Issue relative a sprint 11: \
 === Retrospettiva
 Lo sprint è coinciso con l'inizio della #gloss("PB"), il gruppo si è dovuto organizzare per capire come procedere al meglio. La  #gloss("PB") richiede un livello di progettazione più fine rispetto a quello svolto per il PoC, di conseguenza, il gruppo si è dovuto specializzare nella progettazione del sistema previsto dal capitolato.\
 Il gruppo ha raggiunto un livello di #gloss("Way of Working") che si può considerare ottimale: il nuovo sistema di #gloss("issue-branch") introdotto ha avuto una risposta positiva da parte del gruppo e si è riusciti a utilizzare le #gloss("pull request") come strumento di verifica.\
-La progettazione ha necessitato uno studio iniziale della sintassi appropriata per realizzare i #gloss("diagrammi C4"). Una volta completato lo studio, si è suddiviso il carico di lavoro in singole persone o gruppi di persone, come nel caso del sistema backend, hanno costruito i rispettivi #gloss("diagrammi C4").\
+La progettazione ha necessitato di uno studio iniziale della sintassi appropriata per realizzare i #gloss("diagrammi C4"). Una volta completato lo studio, si è suddiviso il carico di lavoro in singole persone o gruppi di persone, come nel caso del sistema backend, hanno costruito i rispettivi #gloss("diagrammi C4").\
 Per le domande sorte durante la progettazione, si è deciso di chiedere consiglio al professor Cardin, il quale ci ha concesso un ricevimento di gruppo utile a chiarire i dubbi relativi alla progettazione.\
 È stata inoltre completata la configurazione delle varie #gloss("repository") con i rispettivi #gloss("dev container"), così da garantire un ambiente di sviluppo uniforme per tutto il gruppo.\
 È stato introdotto il #gloss("framework") #gloss("MkDocs") per la visualizzazione del manuale utente.\
@@ -3065,3 +3072,215 @@ table.footer([*Totale*], [*412*], [-], [*7195 €*]),
 		[Sprint 11 - Aggiornamento costi],
 		label-id: "spr11-agg-costi",
 	)
+
+
+== Sprint 12 <sprint-12>
+Inizio: 11/03/2026 \
+Fine:  18/03/2026\
+
+Il presente #gloss("sprint") mira a consolidare la progettazione architettonica, completando i #gloss("diagrammi C4") e i #gloss("DTO") della #gloss("specifica tecnica"), e ad avviare la codifica dei microservizi che stanno alla base del progetto.\ È inoltre necessario procedere con l'implementazione del #gloss("frontend") per l'autenticazione, configurando al contempo le automazioni di #gloss("CI") e il tracciamento degli #gloss("unit test") per garantire la qualità dei componenti gateway e backend.
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+  - [PdP] Sprint 11 (#issue(390))
+  - [Frontend] Codifica sezione di autenticazione (#issue(1, repo:"dash"))
+  - [AdR] Sistemare urgenze requisiti (#issue(429))
+  - [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
+  - [Backend] Impostazione struttura cartelle e package (#issue(2, repo:"dash"))
+  - Rendicontazione responsabile (Sprint 12) (#issue(436))
+  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5, repo: "gw"))
+  - [DataConsumer] Codifica (#issue(1, repo:"dc"))
+  - [PdQ] Impostare tracciamento TU (#issue(442))
+  - [ST] Aggiungere ResponseDTO - Michele (#issue(443))
+  - [CI] Fix automazioni CI (#issue(445))
+  - [Gateway] Scrittura unit test (#issue(6, repo: "gw"))
+  - [PdQ] Scrittura unit test per Gateway (#issue(446))
+  - [Frontend] Codifica auth (#issue(6, repo:"dash"))
+  - [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
+  - [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
+  - [Backend] Impostazione Uber Fx (#issue(14, repo:"dash"))
+  - [Backend] Impostazione Router con Gin (#issue(15, repo:"dash"))
+  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20, repo:"dash"))
+  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21, repo:"dash"))
+  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2, repo:"dc"))
+  - [Frontend] Codifica - Tenant Page (#issue(24, repo:"dash"))
+  - [Frontend] Codifica - User Page (#issue(25, repo:"dash"))
+  - [backend] codifica servizio tenant (#issue(27, repo:"dash"))
+  - [Frontend] Scrittura test per autenticazione (#issue(29, repo:"dash"))
+  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30, repo:"dash"))
+  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31, repo:"dash"))
+  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32, repo:"dash"))
+  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34, repo:"dash"))
+  - [Frontend] Test di unità - Tenant e User (#issue(26, repo:"dash"))
+
+
+=== Rischi attesi
+- *RT2* (@RT2): La fase di codifica potrebbe rivelarsi più complessa del previsto, soprattutto per quanto riguarda l'integrazione tra i vari componenti, potenzialmente causando ritardi.
+
+=== Preventivo
+	==== Preventivo risorse da utilizzare
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "3", "-", "-", [*3*],
+      "Alessandro Dinato", "-", "-", "-", "2", "7", "2", [*11*],
+      "Michele Dioli", "2", "-", "-", "2", "9", "-", [*13*],
+      "Hossam Ezzemouri", "-", "2", "-", "1", "-", "3", [*6*],
+      "Riccardo Graziani", "-", "-", "-", "-", "9", "-", [*9*],
+      "Siria Salvalaio", "3", "-", "1", "-", "9", "-", [*13*],
+      "Elia Ernesto Stellin", "-", "3", "-", "-", "12", "-", [*15*],
+      table.footer([*Totale*], [*5*], [*5*], [*1*], [*8*], [*46*], [*5*], [*70*]),
+		),
+		[Sprint 12 - Preventivo risorse da utilizzare],
+		label-id: "spr12-prev-risorse",
+	)
+
+	==== Grafico a torta della suddivisione oraria prevista
+
+	#let orePrevSprint12 = (
+		
+	("Responsabile", 5),
+	("Amministratore", 5),
+	("Analista", 1),
+  ("Progettista", 8),
+  ("Programmatore", 46),
+  ("Verificatore", 5),
+	
+	)
+	#graficoTorta("Sprint 12 - Ore produttive previste per ogni ruolo", orePrevSprint12)
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 12: \
+  - [PdP] Sprint 11 (#issue(390))
+  - [Frontend] Codifica sezione di autenticazione (#issue(1, repo:"dash"))
+  - [AdR] Sistemare urgenze requisiti (#issue(429))
+  - [ST] Modificare code diagram con nuovi diagrammi (#issue(431))
+  - [Backend] Impostazione struttura cartelle e package (#issue(2, repo:"dash"))
+  - Rendicontazione responsabile (Sprint 12) (#issue(436))
+  - [Gateway] Aggiornare ConfigManager, GatewayManager, credenziali (#issue(5, repo:"gw"))
+  - [DataConsumer] Codifica (#issue(1, repo:"dc"))
+  - [PdQ] Impostare tracciamento TU (#issue(442))
+  - [ST] Aggiungere ResponseDTO - Michele (#issue(443))
+  - [CI] Fix automazioni CI (#issue(445))
+  - [Gateway] Scrittura unit test (#issue(6, repo:"gw"))
+  - [PdQ] Scrittura unit test per Gateway (#issue(446))
+  - [Frontend] Codifica auth (#issue(6, repo:"dash"))
+  - [ST] Aggiornare arch. con testo e diagrammi System Context, Container, Component e Deployment (#issue(447))
+  - [ST] Inserire versioni tecnologie e tecnologie mancanti (Sez. Tecnologie) (#issue(448))
+  - [Backend] Impostazione Uber Fx (#issue(14, repo:"dash"))
+  - [Backend] Impostazione Router con Gin (#issue(15, repo:"dash"))
+  - [Frontend] Codifica Dashboard - Visualizzazione gateway/sensori (#issue(20, repo:"dash"))
+  - [Backend] Classi comuni per DTO, DI e richieste (#issue(21, repo:"dash"))
+  - [DataConsumer] Verifica - Test Unità e Integrazione (#issue(2, repo:"dc"))
+  - [Frontend] Codifica - Tenant Page (#issue(24, repo:"dash"))
+  - [Frontend] Codifica - User Page (#issue(25, repo:"dash"))
+  - [backend] codifica servizio tenant (#issue(27, repo:"dash"))
+  - [Frontend] Scrittura test per autenticazione (#issue(29, repo:"dash"))
+  - [backend] scrittura test unita servizio tenant (sprint 12) (#issue(30, repo:"dash"))
+  - [Frontend] Scrittura test per visualizzazione gateway/sensori (#issue(31, repo:"dash"))
+  - [Backend] Codifica package backend/internal/user (sprint 12) (#issue(32, repo:"dash"))
+  - [Backend] Test di unità backend/internal/user (sprint 12) (#issue(34, repo:"dash"))
+
+
+=== Retrospettiva
+Lo Sprint 12 è stato estremamente produttivo, con la chiusura di molte issue che hanno consolidato l'intera infrastruttura. Abbiamo completato l'architettura del backend integrando Uber Fx e Gin, e finalizzato il frontend con l'autenticazione, buona parte della dashboard e le pagine gestionali (tenant/user). Parallelamente, abbiamo aggiornato la documentazione tecnica (diagrammi C4 e specifica tecnica) e ottimizzato le automazioni di CI. \
+Sebbene lo sviluppo delle funzionalità sia proceduto spedito, la fase di verifica e la stesura dei test unitari per i vari moduli hanno richiesto tempi più lunghi del previsto.
+
+
+=== Rischi occorsi
+Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbene avessimo previsto possibili ritardi generici nella fase di sviluppo, la criticità si è manifestata nello specifico durante la scrittura dei test unitari. Questa attività si è rivelata più complessa del previsto, richiedendo tempi di esecuzione superiori alle stime iniziali. Nonostante ciò, siamo riusciti a completare la maggior parte delle task previste, garantendo la solidità del codice a scapito di un leggero ritardo sulla pianificazione e quindi sulla data prevista di consegna.
+
+
+	=== Consuntivo di periodo
+	==== Risorse utilizzate
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "12 (+9)", "-", "-", [*12*],
+      "Alessandro Dinato", "-", "-", "-", "2", "8 (+1)", "3 (+1)", [*13*],
+      "Michele Dioli", "2", "-", "-", "2", "5 (-9)", "3 (+1)", [*12*],
+      "Hossam Ezzemouri", "-", "1 (-1)", "-", "7 (+6)", "-", "10 (+7)", [*18*],
+      "Riccardo Graziani", "-", "-", "-", "-", "6", "5", [*11*],
+      "Siria Salvalaio", "2", "-", "1", "-", "11 (+2)", "-", [*14*],
+      "Elia Ernesto Stellin", "-", "1 (-2)", "-", "-", "11 (+2)", "-", [*12*],
+    table.footer([*Totale*], [*4*], [*2*], [*1*], [*23*], [*41*], [*21*], [*92*]),
+		),
+		[Sprint 12 - Risorse utilizzate],
+		label-id: "spr12-risorse-utiliz",
+	)
+	==== Grafico a torta della suddivisione oraria effettiva
+
+	#let oreEffettiveSprint12 = (
+		
+	("Responsabile", 4),
+	("Amministratore", 2),
+	("Analista", 1),
+  	("Progettista", 23),
+  	("Programmatore", 41),
+  	("Verificatore", 21),
+	
+	)
+	#graficoTorta(
+	"Sprint 12 - Ore produttive complessive ed effettive per ogni ruolo",
+	oreEffettiveSprint12,
+	)
+
+	=== Preventivo a finire
+	==== Aggiornamento ore rimanenti
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "4", "4", "1 (-12)", "24", "25", [*58*],
+      "Alessandro Dinato", "-", "4", "-", "10 (-2)", "4 (-8)", "19 (-3)", [*37*],
+      "Michele Dioli", "-2 (-2)", "-1", "-", "7 (-2)", "19 (-5)", "22 (-3)", [*45*],
+      "Hossam Ezzemouri", "-", "-4 (-1)", "-", "10 (-7)", "23", "15 (-10)", [*44*],
+      "Riccardo Graziani", "-", "4", "-", "5", "11 (-6)", "12 (-5)", [*32*],
+      "Siria Salvalaio", "2 (-2)", "-2", "3 (-1)", "18", "14 (-11)", "25", [*60*],
+      "Elia Ernesto Stellin", "3", "-3 (-1)", "-", "7", "12 (-11)", "25", [*44*],
+    table.footer([*Totale*], [*3*], [*2*], [*7*], [*58*], [*107*], [*143*], [*320*]),
+		),
+		[Sprint 12 - Aggiornamento ore rimanenti],
+		label-id: "spr12-agg-ore-rim",
+	)
+
+	==== Aggiornamento costi
+	#tabella-paginata(
+	table(
+		columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+			"Responsabile", "3 (-4)" ,"30 €/h", "90 € (-120 €)",
+      "Amministratore", "2 (-2)" ,"20 €/h", "40 € (-40 €)",
+      "Analista", "7 (-1)" ,"25 €/h", "175 € (-25 €)",
+      "Progettista", "58 (-23)" ,"25 €/h", "1450 € (-575 €)",
+      "Programmatore", "107 (-41)" ,"15 €/h", "1605 € (-615 €)",
+      "Verificatore", "143 (-21)" ,"15 €/h", "2145 € (-315 €)",
+    table.footer([*Totale*], [*320*], [-], [*5505 €*]),
+		),
+		[Sprint 12 - Aggiornamento costi],
+		label-id: "spr12-agg-costi",
+	)
+	
