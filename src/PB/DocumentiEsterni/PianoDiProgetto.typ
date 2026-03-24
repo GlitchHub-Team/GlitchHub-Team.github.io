@@ -3283,4 +3283,107 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
 		[Sprint 12 - Aggiornamento costi],
 		label-id: "spr12-agg-costi",
 	)
+
+
+== Sprint 13 <sprint-13>
+Inizio: 19/03/2026 \
+Fine:  26/03/2026\
+
+Il presente #gloss("sprint") ha lo scopo di portare avanti in modo sostanziale l'implementazione e la verifica del prodotto, concentrandosi sia sul lato #gloss("back-end") che sul lato #gloss("front-end"). Per il back-end è prevista la codifica e il testing di svariati package essenziali all'interno della dashboard (user, auth, email, gateway, tenant). Sul fronte frontend, gli sforzi si concentreranno sull'aggiornamento dell'autenticazione, la visualizzazione dei grafici (real-time e storici) e la gestione di gateway e sensori. \
+Contemporaneamente, il gruppo si dedicherà alla configurazione dell'infrastruttura di osservabilità (#gloss("Grafana"), #gloss("Prometheus"), e relativi exporter per #gloss("NATS")) e all'aggiunta di test di unità e di integrazione per il simulatore gateway. Infine, è previsto un aggiornamento documentale relativo alle metriche nell'#gloss("Analisi dei Requisiti") e la periodica stesura del #gloss("Piano di Progetto").
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+  - [Backend] Scrittura test unità servizio tenant (sprint 13) (#issue(33, repo:"dash"))
+  - [Backend] Codifica backend/internal/user (sprint 13) (#issue(17, repo:"dash"))
+  - [TI] Gateway (#issue(8, repo:"gw"))
+  - [AdR] Aggiornamento metriche (RNF, RD) (#issue(461))
+  - [Backend] Codifica package backend/internal/auth (#issue(35, repo:"dash"))
+  - [Backend] Verifica package backend/internal/auth (#issue(36, repo:"dash"))
+  - [Backend] Codifica package backend/internal/email (#issue(37, repo:"dash"))
+  - [Backend] Verifica package backend/internal/email (#issue(38, repo:"dash"))
+  - [Backend] Codifica package backend/internal/gateway (#issue(39, repo:"dash"))
+  - [Backend] Verifica package backend/internal/gateway (#issue(40, repo:"dash"))
+  - [Backend] Codifica componente hello (#issue(45, repo:"dash"))
+  - [Backend] Verifica componente hello (#issue(46, repo:"dash"))
+  - Rendicontazione responsabile (Sprint 13) (#issue(463))
+  - [Frontend] Aggiornare sezione di autenticazione (#issue(53, repo:"dash"))
+  - [PdP] Sprint 12 (#issue(440))
+  - [Frontend] Codifica Dashboard - Grafici real-time e storici (#issue(23, repo:"dash"))
+  - [Frontend] Test di unità - Tenant e User (#issue(26, repo:"dash"))
+  - [Backend] Test di unità backend/internal/user (sprint 13) (#issue(28, repo:"dash"))
+  - Setup config. NATS (nsc, etc.) (#issue(4, repo:"dc"))
+  - Setup Grafana, Prometheus, NATS Exporter (#issue(1, repo:"obs"))
+  - [Frontend] Verifica Dashboard - Grafici real-time e storici (#issue(41, repo:"dash"))
+  - [Frontend] Codifica Gateway/sensori (#issue(42, repo:"dash"))
+  - [Frontend] Verifica Gateway/sensori (#issue(43, repo:"dash"))
+  - [TU] Aggiungere test unitari (#issue(9, repo:"gw"))
+  - [Frontend] Modifiche pagination e file (#issue(48, repo:"dash"))
+  - [Frontend] Sistemare dashboard super-admin (#issue(49, repo:"dash"))
+
+=== Rischi attesi //
+- *RT2* (@RT2): Lo sviluppo e l'integrazione dei numerosi servizi richiesti incrementano la possibilità di incorrere in *bug di programmazione* o difetti d'integrazione del software. Il dispendio di ore aggiuntive necessarie per la risoluzione di queste problematiche rischia di superare il tempo inizialmente stimato per lo sviluppo.
+- *RO1* (@RO1): L'eventuale concretizzarsi dei rischi tecnologici appena descritti potrebbe portare a un mancato rispetto delle scadenze prefissate, specialmente per le consegne interne dei moduli #gloss("back-end"). Sebbene attualmente lo sviluppo del #gloss("front-end") proceda in modo indipendente, un ritardo nella finalizzazione dei servizi back-end ostacolerebbe a cascata le future attività di integrazione e testing, obbligando il team a un forte sforzo di riorganizzazione per scongiurare ritardi in vista della consegna finale.
+
+
+	=== Preventivo
+	==== Preventivo risorse da utilizzare
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "-", "4", "4", [*8*],
+      "Alessandro Dinato", "-", "4", "-", "-", "-", "4", [*8*],
+      "Michele Dioli", "-", "-", "-", "-", "8", "8", [*16*],
+      "Hossam Ezzemouri", "-", "-", "1", "-", "3", "2", [*6*],
+      "Riccardo Graziani", "-", "-", "-", "-", "9", "6", [*15*],
+      "Siria Salvalaio", "3", "-", "-", "-", "3", "2", [*8*],
+      "Elia Ernesto Stellin", "-", "-", "-", "-", "7", "7", [*14*],
+    table.footer([*Totale*], [*3*], [*4*], [*1*], [*0*], [*34*], [*33*], [*75*]),
+		),
+		[Sprint 13 - Preventivo risorse da utilizzare],
+		label-id: "spr13-prev-risorse",
+	)
+	==== Grafico a torta della suddivisione oraria prevista
+
+	#let orePrevSprint13 = (
+		
+	("Responsabile", 3),
+	("Amministratore", 4),
+	("Analista", 1),
+  ("Progettista", 0),
+  ("Programmatore", 34),
+  ("Verificatore", 33),
 	
+	)
+	#graficoTorta("Sprint 13 - Ore produttive previste per ogni ruolo", orePrevSprint13)
+
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 13: \
+
+
+=== Retrospettiva
+
+
+
+=== Rischi occorsi
+
+
+
+=== Consuntivo di periodo
+  ==== Risorse utilizzate
+
+  ==== Grafico a torta della suddivisione oraria effettiva
+
+
+=== Preventivo a finire
+  ==== Aggiornamento ore rimanenti
+
+  ==== Aggiornamento costi
