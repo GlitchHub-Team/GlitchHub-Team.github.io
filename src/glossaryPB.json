@@ -728,7 +728,7 @@
         "definition": "Strumento di GitHub che permette di memorizzare in modo sicuro variabili d'ambiente e credenziali, che possono essere utilizzate nei workflow di GitHub Actions senza esporre informazioni sensibili nel codice sorgente."
     },
     {
-        "term": "Devcontainer",
+        "term": "Dev Container",
         "definition": "Strumento che consente di definire un ambiente di sviluppo completo all'interno di un container Docker, facilitando la configurazione e la condivisione dell'ambiente di sviluppo tra i membri del team."
     },
     {
@@ -738,5 +738,25 @@
     {
         "term": "Manuale utente",
         "definition": "Documento che ha lo scopo di spiegare ai diversi tipi di utenti finali come utilizzare il prodotto software, illustrando le funzionalità disponibili e fornendo istruzioni passo-passo per eseguire operazioni specifiche."
+    },
+    {
+        "term": "Apidog",
+        "definition": "Strumento di documentazione API che consente di generare documentazione interattiva e facilmente navigabile per le API di un sistema, supportando l'importazione di specifiche OpenAPI e la personalizzazione del layout e dello stile della documentazione."
+    },
+    {
+        "term": "Endpoint",
+        "definition": "Punto di accesso a una risorsa o funzionalità specifica esposta da un'API, che consente ai client di interagire con il sistema tramite richieste HTTP."
+    },
+    {
+        "term": "Fire-and-forget",
+        "definition": "Modalità di comunicazione in cui un client invia una richiesta a un server senza attendere una risposta ed in cui il server deve essere in ascolto in quell'esatto momento per ricevere la richiesta, altrimenti questa viene persa. Un esempio di comunicazione fire-and-forget è @{NATS}"
+    },
+    {
+        "term": "Dependency Injection",
+        "definition": "Pattern di progettazione in cui le dipendenze di un componente vengono fornite dall'esterno, invece di essere create internamente, facilitando la modularità, la testabilità e la manutenibilità del codice."
+    },
+    {
+        "term": "Uber Fx",
+        "definition": "Framework di Dependency Injection per il linguaggio Go, che semplifica la gestione delle dipendenze e l'organizzazione del codice, promuovendo un'architettura modulare e testabile."
     }
 ]
