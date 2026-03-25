@@ -12,7 +12,7 @@
 #content-slide(title: "Questioni aperte")[
   #icon-list(
     icon: "•",
-      "Continuare la stesura della specifica tecnica",
+      "Continuare stesura della specifica tecnica",
       "Iniziare stesura del test book richiesto dalla proponente",
       "Continuo sviluppo del back-end e affinamento del front-end",
       "Selezione metriche rilevanti per observability"
