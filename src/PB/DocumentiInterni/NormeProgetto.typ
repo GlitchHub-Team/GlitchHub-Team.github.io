@@ -7,12 +7,19 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.5.0",
+      "25/03/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Aggiunte norme per l'utilizzo di #gloss[Apidog] (@apidog)],
+    ),
+    (
       "1.4.1",
       "09/03/2026",
       "Riccardo Graziani",
       "Elia Ernesto Stellin",
       [Applicate correzioni a @gestione-processi-attivita-previste rilevate durante la verifica
-      ]
+      ],
     ),
     (
       "1.4.0",
@@ -20,7 +27,7 @@
       "Riccardo Graziani",
       "Elia Ernesto Stellin",
       [Modificata @gestione-processi-attivita-previste includendo workflow relativo alla chiusura automatica degli _issue branch_ e il collegamento automatico delle _issue_ alle relative _pull request_ e _parent issue_. Definizione della label _epic_ per _parent issue_
-      ]
+      ],
     ),
     (
       "1.3.0",
@@ -28,8 +35,8 @@
       "Riccardo Graziani",
       "Elia Ernesto Stellin",
       [Modificata @gestione-processi-attivita-previste per riflettere il nuovo workflow basato su _issue-branch_ e _pull request_;
-      Aggiunta @infrastruttura-creazione-github-branches per descrivere convenzioni di nomenclatura dei branch automatici
-      ]
+        Aggiunta @infrastruttura-creazione-github-branches per descrivere convenzioni di nomenclatura dei branch automatici
+      ],
     ),
     (
       "1.2.0",
@@ -869,7 +876,7 @@ Le attività previste nella gestione di processi sono le seguenti:
 - #link(<gestione-processi-revisione-valutazione>)[Revisione e valutazione]
 - #link(<gestione-processi-conclusione>)[Conclusione]
 
-// TODO: Linkato il verbale del 24 febbraio anche se non esiste ancora, penso di aver scritto la path correttamente 
+// TODO: Linkato il verbale del 24 febbraio anche se non esiste ancora, penso di aver scritto la path correttamente
 Si noti che la descrizione di questo processo riguarda le attività rendicontabili il cui sviluppo produce prodotti di progetto "esterni", ovvero tutto il codice e la documentazione richiesta dal capitolato e dalle specifiche del progetto didattico. Inoltre, in ogni successiva sottosezione si riportano i passaggi da seguire per gestire le #gloss[GitHub Issues] relative a specifiche _task_, secondo quanto deciso dal gruppo nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[*verbale interno del 30 gennaio 2026*] e nel #link("https://glitchhub-team.github.io/pdf/PB/VerbaliInterni/2026-02-24.pdf")[*verbale interno del 24 febbraio 2026*].
 
 Le attività non rendicontabili o di "palestra", ovvero il cui svolgimento non influisce sul budget fissato dal gruppo, seguono un ciclo di vita simile ma che spesso non comprende la fase di #link(<gestione-processi-revisione-valutazione>)[revisione e valutazione] e una fase di #link(<gestione-processi-conclusione>)[conclusione] più semplificata, ma ciononostante vengono tracciate con le #gloss[GitHub Issues].
@@ -920,7 +927,7 @@ Il processo di verifica di un'_issue_ segue lo stesso *workflow* sia per _issue_
 Il processo di verifica avviene nel seguente modo:
 - L'assegnatario dell'_issue_ notifica al #gloss[verificatore] che l'attività è stata completata e che è pronta per essere verificata, aprendo di conseguenza la relativa #gloss[pull request];
 - Nella #gloss[pull request] devono essere indicati:
-  - il _reviewer_ e l'_assignee_, assegnando ad entrambi il #gloss[verificatore] individuato per la _issue_; 
+  - il _reviewer_ e l'_assignee_, assegnando ad entrambi il #gloss[verificatore] individuato per la _issue_;
   - la _milestone_ corrispondente all'iterazione in cui è stata svolta la _task_;
 - La relativa _issue_ deve essere segnata come *"In review"* sul _project_.
 
@@ -945,7 +952,7 @@ Il #gloss[verificatore] che ha approvato la #gloss[pull request] relativa alla _
 
 L'approvazione definitiva della #gloss[pull request] comporta la chiusura automatica dell'_issue_ associata: un'automation, infatti, imposterà l'issue associata come *"Done"*, facilitando il processo di tracciamento delle attività svolte e riducendo il rischio di dimenticanze da parte dei membri del gruppo.
 
-La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato: tutto ciò avviene tramite un'automazione di #gloss[GitHub Actions] che, a partire dal numero relativo all'_issue_ legata alla #gloss[pull request], identifica il _branch_ da eliminare e lo elimina. 
+La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato: tutto ciò avviene tramite un'automazione di #gloss[GitHub Actions] che, a partire dal numero relativo all'_issue_ legata alla #gloss[pull request], identifica il _branch_ da eliminare e lo elimina.
 
 === Ruoli <divisione-ruoli>
 Di seguito, sono riportate le descrizioni dei compiti, delle responsabilità e del valore del lavoro di tutti i ruoli che i membri del gruppo possono assumere durante l'esecuzione del progetto.
@@ -1039,6 +1046,8 @@ Il processo d'infrastruttura è composto dalle seguenti attività:
 === Implementazione <infrastruttura-implementazione>
 Durante lo svolgimento del progetto, il gruppo ha appreso i seguenti strumenti che hanno consentito un'organizzazione più efficace delle attività e dei processi di progetto:
 
+- *Apidog*: È un servizio web che facilita la condivisione e la consultazione delle API stabilite per il progetto, consentendo di documentare in maniera chiara e accessibile tutte le API che il prodotto software espone.
+
 - *ClickUp*: È un servizio web che consente una gestione totale dell'organizzazione delle _task_ di gruppo. Inizialmente, _GlitchHub Team_ ha provato ad utilizzarlo per pianificare le  _task_ degli _sprint_, ma lo strumento si è rivelato troppo macchinoso e inefficiente da usare, per cui è utilizzato dal gruppo principalmente per la condivisione degli appunti delle riunioni e della pianificazione degli eventi, quali i meeting esterni ed interni.
 
 - *Discord*: È un servizio di messaggistica istantanea e videoconferenza usato da _GlitchHub Team_ per svolgere le riunioni interne in maniera virtuale.
@@ -1067,6 +1076,17 @@ Durante lo svolgimento del progetto, il gruppo ha appreso i seguenti strumenti c
 
 === Creazione <infrastruttura-creazione>
 La creazione dell'infrastruttura è l'attività iniziale di impostazione degli strumenti infrastrutturali usati dal gruppo. Di seguito sono riportati i dettagli per ogni strumento utilizzato.
+
+==== Apidog <apidog>
+Per l'utilizzo di *Apidog*, il gruppo ha creato un ambiente condiviso, nel quale sono stati creati 3 progetti:
+- *Gin Backend*: in cui sono documentate tutte le API del server *HTTP* scritto in #gloss[Gin]. Sono utili per mantenere coerenza tra le chiamate API dal frontend e gli endpoint effettivamente esposti dal backend.
+- *NATS*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione #gloss[Fire-and-Forget] attraverso #gloss[NATS], così da mantenere coerenza tra i messaggi inviati e quelli effettivamente ricevuti. È importante distinguere l'utilizzo di NATS o NATS JetStream per dare indicare il client da utilizzare.
+- *NATS JetStream*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione via #gloss[NATS JetStream], ovvero il classico NATS ma con la persistenza dei messaggi.
+
+La definizione degli #gloss[endpoint] avviene tramite 3 step:
+1. Scelta del nome dell'endpoint e il protocollo utilizzato (NATS, HTTP, ...);
+2. Definizione schema per la *richiesta* dell'endpoint in questione, comprendente di nome, tipo, dominio e descrizione dei campi;
+3. Definizione schema per la *risposta* dell'endpoint in questione (se necessaria), comprendente di nome, tipo, dominio e descrizione dei campi.
 
 ==== ClickUp
 Per usare *ClickUp*, il gruppo ha creato un ambiente condiviso, nel quale è possibile condividere documenti testuali e pianificare, assegnare e gestire attività.
@@ -1148,9 +1168,9 @@ Per maggiori informazioni riguardanti la gestione delle _issues_ durante lo svol
 Il gruppo ha deciso di affiancare la creazione di un _branch_ dedicato ad ogni _issue_, in modo da rendere più semplice isolare le modifiche effettuate da ogni singolo membro e tenere traccia del lavoro svolto.
 
 Il nome di un _branch_ dedicato a un'_issue_ segue la seguente convenzione:
-#align(center)[*`issue-[issue-number]`*] 
+#align(center)[*`issue-[issue-number]`*]
 Dove:
-- *`[issue-number]`* rappresenta il numero identificativo dell'_issue_ a cui il _branch_ è legato, che viene assegnato automaticamente da GitHub al momento della creazione dell'_issue_. 
+- *`[issue-number]`* rappresenta il numero identificativo dell'_issue_ a cui il _branch_ è legato, che viene assegnato automaticamente da GitHub al momento della creazione dell'_issue_.
 
 Per maggiori informazioni riguardanti la gestione dei _branch_ durante lo svolgimento della relativa _issue_, si consiglia di consultare la @gestione-processi-attivita-previste.
 
