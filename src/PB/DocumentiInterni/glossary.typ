@@ -7,7 +7,7 @@
   registro-modifiche: (
     (
       "0.6.0",
-      "18/03/2026",
+      "25/03/2026",
       "Alessandro Dinato",
       "Michele Dioli",
       [Definizione termini: "Apidog", "Endpoint", "Fire-and-forget","Dependency Injection", "Uber Fx"],
