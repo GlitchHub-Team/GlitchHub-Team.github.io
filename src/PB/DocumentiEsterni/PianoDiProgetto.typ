@@ -3297,7 +3297,7 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
 	Inizio: 18/03/2026 \
 	Fine: 25/03/2026 \
 
-Il presente #gloss("sprint") ha lo scopo di portare avanti in modo sostanziale l'implementazione e la verifica del prodotto, concentrandosi sia sul lato #gloss("back-end") che sul lato #gloss("front-end"). Per il back-end è prevista la codifica e il testing di svariati package essenziali all'interno della dashboard (user, auth, email, gateway, tenant). Sul fronte frontend, gli sforzi si concentreranno sull'aggiornamento dell'autenticazione, la visualizzazione dei grafici (real-time e storici) e la gestione di gateway e sensori. \
+Il presente #gloss("sprint") ha lo scopo di portare avanti in modo sostanziale l'implementazione e la verifica del prodotto, concentrandosi sia sul lato #gloss("backend") che sul lato #gloss("frontend"). Per il backend è prevista la codifica e il testing di svariati package essenziali all'interno della dashboard (user, auth, email, gateway, tenant). Sul fronte frontend, gli sforzi si concentreranno sull'aggiornamento dell'autenticazione, la visualizzazione dei grafici (real-time e storici) e la gestione di gateway e sensori. \
 Contemporaneamente, il gruppo si dedicherà alla configurazione dell'infrastruttura di osservabilità (#gloss("Grafana"), #gloss("Prometheus"), e relativi exporter per #gloss("NATS")) e all'aggiunta di test di unità e di integrazione per il simulatore gateway. Infine, è previsto un aggiornamento documentale relativo alle metriche nell'#gloss("Analisi dei Requisiti") e la periodica stesura del #gloss("Piano di Progetto").
 
 === Compiti da svolgere
@@ -3331,7 +3331,7 @@ Di seguito sono elencati i compiti individuati:
 
 === Rischi attesi
 - *RT2* (@RT2): Lo sviluppo e l'integrazione dei numerosi servizi richiesti incrementano la possibilità di incorrere in *bug di programmazione* o difetti d'integrazione del software. Il dispendio di ore aggiuntive necessarie per la risoluzione di queste problematiche rischia di superare il tempo inizialmente stimato per lo sviluppo.
-- *RO1* (@RO1): L'eventuale concretizzarsi dei rischi tecnologici appena descritti potrebbe portare a un mancato rispetto delle scadenze prefissate, specialmente per le consegne interne dei moduli #gloss("back-end"). Sebbene attualmente lo sviluppo del #gloss("front-end") proceda in modo indipendente, un ritardo nella finalizzazione dei servizi back-end ostacolerebbe a cascata le future attività di integrazione e testing, obbligando il team a un forte sforzo di riorganizzazione per scongiurare ritardi in vista della consegna finale.
+- *RO1* (@RO1): L'eventuale concretizzarsi dei rischi tecnologici appena descritti potrebbe portare a un mancato rispetto delle scadenze prefissate, specialmente per le consegne interne dei moduli #gloss("backend"). Sebbene attualmente lo sviluppo del #gloss("frontend") proceda in modo indipendente, un ritardo nella finalizzazione dei servizi backend ostacolerebbe a cascata le future attività di integrazione e testing, obbligando il team a un forte sforzo di riorganizzazione per scongiurare ritardi in vista della consegna finale.
 
 
 	=== Preventivo
@@ -3414,13 +3414,13 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 		),
 		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
 			"Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
-"Alessandro Dinato", "-", "5 (-1)", "-", "-", "-", "4", [*9*],
-"Michele Dioli", "-", "-", "-", "-", "5", "-", [*5*],
-"Hossam Ezzemouri", "-", "-", "1", "-", "5 (+2)", "2", [*8*],
-"Riccardo Graziani", "-", "-", "-", "-", "6", "6", [*12*],
-"Siria Salvalaio", "3", "-", "-", "-", "4 (+1)", "5 (+3)", [*12*],
-"Elia Ernesto Stellin", "-", "-", "-", "-", "5", "3 (+1)", [*8*],
-table.footer([*Totale*], [*3*], [*5*], [*1*], [*0*], [*25*], [*20*], [*54*]),
+      "Alessandro Dinato", "-", "5 (-1)", "-", "-", "-", "4", [*9*],
+      "Michele Dioli", "-", "-", "-", "-", "5", "-", [*5*],
+      "Hossam Ezzemouri", "-", "-", "1", "-", "5 (+2)", "2", [*8*],
+      "Riccardo Graziani", "-", "-", "-", "-", "6", "6", [*12*],
+      "Siria Salvalaio", "3", "-", "-", "-", "4 (+1)", "5 (+3)", [*12*],
+      "Elia Ernesto Stellin", "-", "-", "-", "-", "5", "3 (+1)", [*8*],
+    table.footer([*Totale*], [*3*], [*5*], [*1*], [*0*], [*25*], [*20*], [*54*]),
 		),
 		[Sprint 13 - Risorse utilizzate],
 		label-id: "spr13-risorse-utiliz",
@@ -3432,9 +3432,9 @@ table.footer([*Totale*], [*3*], [*5*], [*1*], [*0*], [*25*], [*20*], [*54*]),
 	("Responsabile", 3),
 	("Amministratore", 5),
 	("Analista", 1),
-  	("Progettista", 0),
-  	("Programmatore", 25),
-  	("Verificatore", 20),
+  ("Progettista", 0),
+  ("Programmatore", 25),
+  ("Verificatore", 20),
 	
 	)
 	#graficoTorta(
@@ -3454,13 +3454,13 @@ table.footer([*Totale*], [*3*], [*5*], [*1*], [*0*], [*25*], [*20*], [*54*]),
 		),
 		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
 			"Jaume Bernardi", "-", "4", "4", "1", "24", "25", [*58*],
-"Alessandro Dinato", "-", "-1 (-5)", "-", "10", "4", "15 (-4)", [*28*],
-"Michele Dioli", "-2", "-1", "-", "7", "14 (-5)", "22", [*40*],
-"Hossam Ezzemouri", "-", "-4", "-1 (-1)", "10", "18 (-5)", "13 (-2)", [*36*],
-"Riccardo Graziani", "-", "4", "-", "5", "5 (-6)", "6 (-6)", [*20*],
-"Siria Salvalaio", "-1 (-3)", "-2", "3", "18", "10 (-4)", "20 (-5)", [*48*],
-"Elia Ernesto Stellin", "3", "-3", "-", "7", "12 (-5)", "16 (-3)", [*35*],
-table.footer([*Totale*], [*0*], [*-3*], [*6*], [*58*], [*87*], [*117*], [*265*]),
+      "Alessandro Dinato", "-", "-1 (-5)", "-", "10", "4", "15 (-4)", [*28*],
+      "Michele Dioli", "-2", "-1", "-", "7", "14 (-5)", "22", [*40*],
+      "Hossam Ezzemouri", "-", "-4", "-1 (-1)", "10", "18 (-5)", "13 (-2)", [*36*],
+      "Riccardo Graziani", "-", "4", "-", "5", "5 (-6)", "6 (-6)", [*20*],
+      "Siria Salvalaio", "-1 (-3)", "-2", "3", "18", "10 (-4)", "20 (-5)", [*48*],
+      "Elia Ernesto Stellin", "3", "-3", "-", "7", "12 (-5)", "16 (-3)", [*35*],
+    table.footer([*Totale*], [*0*], [*-3*], [*6*], [*58*], [*87*], [*117*], [*265*]),
 		),
 		[Sprint 13 - Aggiornamento ore rimanenti],
 		label-id: "spr13-agg-ore-rim",
@@ -3477,12 +3477,12 @@ table.footer([*Totale*], [*0*], [*-3*], [*6*], [*58*], [*87*], [*117*], [*265*])
 		),
 		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
 			"Responsabile", "0 (-3)" ,"30 €/h", "0 € (-90 €)",
-"Amministratore", "-3 (-5)" ,"20 €/h", "-60 € (-100 €)",
-"Analista", "6 (-1)" ,"25 €/h", "150 € (-25 €)",
-"Progettista", "58 " ,"25 €/h", "1450 € ",
-"Programmatore", "87 (-25)" ,"15 €/h", "1305 € (-375 €)",
-"Verificatore", "117 (-20)" ,"15 €/h", "1755 € (-300 €)",
-table.footer([*Totale*], [*265*], [-], [*4600 €*]),
+      "Amministratore", "-3 (-5)" ,"20 €/h", "-60 € (-100 €)",
+      "Analista", "6 (-1)" ,"25 €/h", "150 € (-25 €)",
+      "Progettista", "58 " ,"25 €/h", "1450 € ",
+      "Programmatore", "87 (-25)" ,"15 €/h", "1305 € (-375 €)",
+      "Verificatore", "117 (-20)" ,"15 €/h", "1755 € (-300 €)",
+    table.footer([*Totale*], [*265*], [-], [*4600 €*]),
 		),
 		[Sprint 13 - Aggiornamento costi],
 		label-id: "spr13-agg-costi",
