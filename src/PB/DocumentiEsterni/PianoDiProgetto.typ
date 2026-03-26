@@ -3137,12 +3137,12 @@ Di seguito sono elencati i compiti individuati:
 			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
 			"Jaume Bernardi", "-", "-", "-", "3", "-", "-", [*3*],
       "Alessandro Dinato", "-", "-", "-", "2", "7", "2", [*11*],
-      "Michele Dioli", "2", "-", "-", "2", "9", "-", [*13*],
+      "Michele Dioli", "2", "-", "-", "2", "14", "2", [*20*],
       "Hossam Ezzemouri", "-", "2", "-", "1", "-", "3", [*6*],
-      "Riccardo Graziani", "-", "-", "-", "-", "9", "-", [*9*],
-      "Siria Salvalaio", "3", "-", "1", "-", "9", "-", [*13*],
-      "Elia Ernesto Stellin", "-", "3", "-", "-", "12", "-", [*15*],
-      table.footer([*Totale*], [*5*], [*5*], [*1*], [*8*], [*46*], [*5*], [*70*]),
+      "Riccardo Graziani", "-", "-", "-", "-", "6", "5", [*11*],
+      "Siria Salvalaio", "2", "-", "1", "-", "9", "-", [*12*],
+      "Elia Ernesto Stellin", "-", "3", "-", "-", "5", "4", [*12*],
+    table.footer([*Totale*], [*4*], [*5*], [*1*], [*8*], [*41*], [*16*], [*75*]),
 		),
 		[Sprint 12 - Preventivo risorse da utilizzare],
 		label-id: "spr12-prev-risorse",
@@ -3152,12 +3152,12 @@ Di seguito sono elencati i compiti individuati:
 
 	#let orePrevSprint12 = (
 		
-	("Responsabile", 5),
+	("Responsabile", 4),
 	("Amministratore", 5),
 	("Analista", 1),
   ("Progettista", 8),
-  ("Programmatore", 46),
-  ("Verificatore", 5),
+  ("Programmatore", 41),
+  ("Verificatore", 16),
 	
 	)
 	#graficoTorta("Sprint 12 - Ore produttive previste per ogni ruolo", orePrevSprint12)
@@ -3222,8 +3222,8 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
       "Hossam Ezzemouri", "-", "1 (-1)", "-", "7 (+6)", "-", "10 (+7)", [*18*],
       "Riccardo Graziani", "-", "-", "-", "-", "6", "5", [*11*],
       "Siria Salvalaio", "2", "-", "1", "-", "11 (+2)", "-", [*14*],
-      "Elia Ernesto Stellin", "-", "1 (-2)", "-", "-", "11 (+2)", "-", [*12*],
-    table.footer([*Totale*], [*4*], [*2*], [*1*], [*23*], [*41*], [*21*], [*92*]),
+      "Elia Ernesto Stellin", "-", "1 (-2)", "-", "-", "6 (+1)", "6 (+2)", [*13*],
+    table.footer([*Totale*], [*4*], [*2*], [*1*], [*23*], [*36*], [*27*], [*93*]),
 		),
 		[Sprint 12 - Risorse utilizzate],
 		label-id: "spr12-risorse-utiliz",
@@ -3235,9 +3235,9 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
 	("Responsabile", 4),
 	("Amministratore", 2),
 	("Analista", 1),
-  	("Progettista", 23),
-  	("Programmatore", 41),
-  	("Verificatore", 21),
+  ("Progettista", 23),
+  ("Programmatore", 36),
+  ("Verificatore", 27),
 	
 	)
 	#graficoTorta(
@@ -3262,8 +3262,8 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
       "Hossam Ezzemouri", "-", "-4 (-1)", "-", "10 (-7)", "23", "15 (-10)", [*44*],
       "Riccardo Graziani", "-", "4", "-", "5", "11 (-6)", "12 (-5)", [*32*],
       "Siria Salvalaio", "2 (-2)", "-2", "3 (-1)", "18", "14 (-11)", "25", [*60*],
-      "Elia Ernesto Stellin", "3", "-3 (-1)", "-", "7", "12 (-11)", "25", [*44*],
-    table.footer([*Totale*], [*3*], [*2*], [*7*], [*58*], [*107*], [*143*], [*320*]),
+      "Elia Ernesto Stellin", "3", "-3 (-1)", "-", "7", "17 (-6)", "19 (-6)", [*43*],
+    table.footer([*Totale*], [*3*], [*2*], [*7*], [*58*], [*112*], [*137*], [*319*]),
 		),
 		[Sprint 12 - Aggiornamento ore rimanenti],
 		label-id: "spr12-agg-ore-rim",
@@ -3283,13 +3283,14 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
       "Amministratore", "2 (-2)" ,"20 €/h", "40 € (-40 €)",
       "Analista", "7 (-1)" ,"25 €/h", "175 € (-25 €)",
       "Progettista", "58 (-23)" ,"25 €/h", "1450 € (-575 €)",
-      "Programmatore", "107 (-41)" ,"15 €/h", "1605 € (-615 €)",
-      "Verificatore", "143 (-21)" ,"15 €/h", "2145 € (-315 €)",
-    table.footer([*Totale*], [*320*], [-], [*5505 €*]),
+      "Programmatore", "112 (-36)" ,"15 €/h", "1680 € (-540 €)",
+      "Verificatore", "137 (-27)" ,"15 €/h", "2055 € (-405 €)",
+    table.footer([*Totale*], [*319*], [-], [*5490 €*]),
 		),
 		[Sprint 12 - Aggiornamento costi],
 		label-id: "spr12-agg-costi",
 	)
+	
 
 
 == Sprint 13 <sprint-13>
