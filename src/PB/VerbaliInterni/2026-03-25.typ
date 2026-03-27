@@ -63,14 +63,47 @@ Lo sviluppo procede secondo i tempi previsti. La visualizzazione dei tenant è s
   columns: (3fr, 2fr, 1fr),
   align: center + horizon,
   [*Task*], [*Assegnatari*], [*Issue*],
-
-
+  [[Backend] Verifica TU package backend/internal/auth], [Elia Ernesto Stellin], [(#issue(36, repo:"dash"))],
+  [[Backend] Codifica package backend/internal/email ], [Elia Ernesto Stellin], [(#issue(37, repo:"dash"))],
+  [[Backend] Verifica TU package backend/internal/email ], [Elia Ernesto Stellin], [(#issue(38, repo:"dash"))],
+  [[Backend] Codifica package backend/internal/gateway ], [Michele Dioli], [(#issue(39, repo:"dash"))],
+  [[Backend] Verifica package backend/internal/gateway ], [Michele Dioli], [(#issue(40, repo:"dash"))],
+  [[Backend] Codifica componente hello ], [Jaume Bernardi], [(#issue(45, repo:"dash"))],
+  [[Backend] Verifica componente hello ], [Jaume Bernardi], [(#issue(46, repo:"dash"))],
+  [[PdP] Sprint 14 ], [Siria Salvalaio], [(#issue(462))],
+  [Rendicontazione responsabile sprint 14 ], [Siria Salvalaio], [(#issue(471))],
+  [[Frontend] Cambiare lingua (italiano) e migliorare CSS ], [Siria Salvalaio], [(#issue(59, repo:"dash"))],
+  [[Frontend] Controllare endpoint con i model ], [Siria Salvalaio], [(#issue(60, repo:"dash"))],
+  [[Frontend] Aggiungere sezione SUPER ADMIN MANAGEMENT ], [Siria Salvalaio], [(#issue(61, repo:"dash"))],
+  [[Frontend] TENANT USER MANAGEMENT (e raggruppare con dashboard in basso alla Side bar) ], [Siria Salvalaio], [(#issue(62, repo:"dash"))],
+  [[Frontend] Aggiornare sezione di autenticazione ], [Riccardo Graziani], [(#issue(63, repo:"dash"))],
+  [[Frontend] Verificare gestione enums tra frontend/backend ], [Riccardo Graziani], [(#issue(64, repo:"dash"))],
+  [[Frontend] Scrittura TU per la cartella adapters ], [Riccardo Graziani], [(#issue(65, repo:"dash"))],
+  [[Backend] TU backend/internal/user/adapters.go ], [Elia Ernesto Stellin], [(#issue(67, repo:"dash"))],
+  [[Backend] TI backend/internal/auth ], [Elia Ernesto Stellin], [(#issue(69, repo:"dash"))],
+  [[Backend] TI backend/internal/email ], [Elia Ernesto Stellin], [(#issue(70, repo:"dash"))],
+  [[Backend] TI backend/internal/user ], [Elia Ernesto Stellin], [(#issue(71, repo:"dash"))],
+  [[Backend] Codifica backend/internal/sensor ], [Alessandro Dinato], [(#issue(73, repo:"dash"))],
+  [[Backend] TU backend/internal/sensor ], [Alessandro Dinato], [(#issue(74, repo:"dash"))],
+  [[Backend] TI backend/internal/sensor ], [Alessandro Dinato], [(#issue(75, repo:"dash"))],
+  [[NdP] Aggiungere API Dog come strumento usato ], [Alessandro Dinato], [(#issue(473))],
+  [[NdP] Aggiungere convenzioni di codifica ], [Alessandro Dinato], [(#issue(474))],
+  [[Gloss] aggiungere API Dog al glossario ], [Alessandro Dinato], [(#issue(477))],
+  [[Backend] Codifica backend/internal/real_time_data ], [], [(#issue(76, repo:"dash"))],
+  [[Backend] TU backend/internal/real_time_data ], [], [(#issue(77, repo:"dash"))],
+  [[Backend] TI backend/internal/real_time_data ], [], [(#issue(78, repo:"dash"))],
+  [[Backend] Codifica backend/internal/historical_data ], [Hossam Ezzemouri], [(#issue(80, repo:"dash"))],
+  [[Backend] TU backend/internal/historical_data ], [Hossam Ezzemouri], [(#issue(81, repo:"dash"))],
+  [[Backend] TI backend/internal/historical_data ], [Hossam Ezzemouri], [(#issue(82, repo:"dash"))],
+  [[ST] Architettura hexagonal ], [Jaume Bernardi], [(#issue(475))],
+  [[Backend] Aggiornamento logica eliminazione super admin / tenant admin ], [Elia Ernesto Stellin], [(#issue(66, repo:"dash"))],
+  [[Dashboard] Aggiornare endpoint su API dog relativamente a gateway commissioning ], [Elia Ernesto Stellin], [(#issue(68, repo:"dash"))],
 
 ) 
 
 = Assegnazione ruoli per le prossima settimana
 - *Responsabile*: Siria Salvalaio
-- *Amministratore*: Alessandro Dinato
-- *Programmatore*: Jaume Bernardi, Riccardo Graziani, Hossam Ezzemouri, Michele Dioli, Elia Ernesto Stellin, Siria Salvalaio
-- *Verificatore*: Jaume Bernardi, Riccardo Graziani, Michele Dioli, Elia Ernesto Stellin, Siria Salvalaio, Alessandro Dinato
-- *Analista*: Hossam Ezzemouri
+- *Progettista*: Elia Ernesto Stellin, Jaume Bernardi
+- *Programmatore*: Siria Salvalaio, Alessandro Dinato, Elia Ernesto Stellin, Jaume Bernardi, Michele Dioli, Hossam Ezzemouri, Riccardo Graziani
+- *Verificatore*: Alessandro Dinato, Elia Ernesto Stellin, Jaume Bernardi, Michele Dioli, Hossam Ezzemouri, Riccardo Graziani
+- *Analista*: Alessandro Dinato
