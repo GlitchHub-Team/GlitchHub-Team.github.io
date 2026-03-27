@@ -7,10 +7,17 @@
   registro-modifiche: (
     (
       "0.6.0",
+      "25/03/2026",
+      "Alessandro Dinato",
+      "Michele Dioli",
+      [Definizione termini: "Apidog", "Endpoint", "Fire-and-forget","Dependency Injection", "Uber Fx"],
+    ),
+    (
+      "0.6.0",
       "18/03/2026",
       "Alessandro Dinato",
       "Jaume Bernardi",
-      [Definizione termini: "Devcontainer", "GitHub Secret", "Golangci-lint", "Gofumpt","MKDocs","Deployment Diagram","Code Diagram","Component Diagram","Container Diagram","Context Diagram","C4 Model", "Manuale utente", "Specifica tecnica"],
+      [Definizione termini: "Dev Container", "GitHub Secret", "Golangci-lint", "Gofumpt","MKDocs","Deployment Diagram","Code Diagram","Component Diagram","Container Diagram","Context Diagram","C4 Model", "Manuale utente", "Specifica tecnica"],
     ),
     (
       "0.5.1",
