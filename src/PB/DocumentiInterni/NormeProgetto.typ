@@ -7,12 +7,19 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.6.0",
+      "25/03/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Aggiornamento delle norme di codifica],
+    ),
+    (
       "1.4.1",
       "09/03/2026",
       "Riccardo Graziani",
       "Elia Ernesto Stellin",
       [Applicate correzioni a @gestione-processi-attivita-previste rilevate durante la verifica
-      ]
+      ],
     ),
     (
       "1.4.0",
@@ -20,7 +27,7 @@
       "Riccardo Graziani",
       "Elia Ernesto Stellin",
       [Modificata @gestione-processi-attivita-previste includendo workflow relativo alla chiusura automatica degli _issue branch_ e il collegamento automatico delle _issue_ alle relative _pull request_ e _parent issue_. Definizione della label _epic_ per _parent issue_
-      ]
+      ],
     ),
     (
       "1.3.0",
@@ -28,8 +35,8 @@
       "Riccardo Graziani",
       "Elia Ernesto Stellin",
       [Modificata @gestione-processi-attivita-previste per riflettere il nuovo workflow basato su _issue-branch_ e _pull request_;
-      Aggiunta @infrastruttura-creazione-github-branches per descrivere convenzioni di nomenclatura dei branch automatici
-      ]
+        Aggiunta @infrastruttura-creazione-github-branches per descrivere convenzioni di nomenclatura dei branch automatici
+      ],
     ),
     (
       "1.2.0",
@@ -311,6 +318,8 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - #gloss[Go]: come linguaggio di programmazione per lo sviluppo dei servizi di publish e subscribe;
 - *Visual Studio Code*: per la codifica del software;
 - *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[casi d'uso]*.
+- *Gofumpt*: come strumento per la formattazione del codice Go;
+- *Golangci-Lint*: come strumento per l'analisi del codice Go;
 
 === Attività previste <attivita-previste-sviluppo>
 - *Implementazione del processo*: in cui viene stabilita l'articolazione delle fasi di ingegnerizzazione, garantendo che ogni attività di sviluppo sia coerente con la strategia di realizzazione scelta;
@@ -371,6 +380,14 @@ L'attività di *codifica*, svolta dai programmatori, consiste nel tradurre la pr
 - *Assicurare* l'evoluzione del sistema: migliorare la manutenibilità e la futura estensibilità del software prodotto.
 - *Garantire l'uniformità* qualitativa: certificare che il codice sia conforme agli standard di qualità precedentemente fissati.
 
+==== Dev Container
+Per ogni *repository* del progetto sono stati configurati dei #gloss[Dev Container] per garantire un ambiente di sviluppo uguale per ogni membro del gruppo e con tutti gli strumenti a supporto già definiti a monte.
+I diversi #gloss[Dev Container] hanno bisogno di una configurazione minima o in alcuni casi nulla, in ogni caso si può trovare i passi per il setup nel file *README.md* presente in ogni repository.
+
+L'avvio di un #gloss[Dev Container] avviene tramite l'estensione #link("https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers")[*Dev Containers*] di Visual Studio Code, infatti una volta installata sarà necessario premere *Cmd+Shift+P* (su MacOS) o *Ctrl+Shift+P* (su Windows e Linux) per aprire la Command Palette e scegliere l'opzione *Reopen in Container*.
+
+Una volta aperto il #gloss[Dev Container] sarà possibile accedere a tutti gli strumenti a supporto già configurati, e iniziare a lavorare sul codice del progetto.
+
 ==== Stile di codifica Typescript <codifica-typescript>
 In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Typescript* all'interno del framework Angular, al fine di garantire l'uniformità del codice prodotto dal team.
 
@@ -383,11 +400,48 @@ In questa sezione vengono definiti gli standard implementativi per lo sviluppo i
 ==== Stile di codifica Go <codifica-go>
 In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Go* al fine di garantire l'uniformità del codice prodotto dal team.
 
+===== Best practice
+- *Funzioni*: Scrivere funzioni e metodi con una singola responsabilità, evitando di creare funzioni troppo lunghe o complesse;
+- *Gestione degli errori*: Gestire gli errori in modo esplicito e coerente, utilizzando il pattern di ritorno degli errori di Go;
+- *Variabili*: Utilizzare nomi di variabili, funzioni e tipi descrittivi e significativi, evitando abbreviazioni non comuni o ambigue;
+- *Commenti*: Commentare il codice dove il codice non può essere autoesplicativo, evitando di riempire il codice di commenti;
+- *Lingua*: scrivere il codice in inglese per evitare nomi ambigui come `GetUtente()`
+
+===== Dependency Injection
+In ogni microservizio è utilizzata il pattern della #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx].
+È fondamentale il suo utilizzo per evitare l'accoppiamento tra i componenti software, migliorare la testabilità e la manutenibilità del codice.
+
+===== Architettura esagonale
+I seguenti componenti appartenenti all'architettura esagonale seguiranno le seguenti regole:
+- *Inbound adapter*: la struttura terminerà con *Controller*;
+- *Inbound port*: l'interfaccia terminerà con *UseCase*;
+- *Service*: la struttura terminerà con *Service*;
+- *Outbound port*: l'interfaccia terminerà con *Port*;
+- *Outbound adapter*: la struttura terminerà con *Adapter*;
+- *DTO*: la struttura terminerà con *DTO* e potrà essere utilizzata solo negli *adapter*;
+
 ===== Convenzioni di nomenclatura
-- *File*: utilizzare il formato `camelCase` (es. `writeToDatabase.go`, `apiController.go`);
-- *Struct*: utilizzare il formato `PascalCase` (es. `PulseOxData`);
-- *Variabili e Metodi*: utilizzare il formato `camelCase` per le variabili e il formato `PascalCase` per i metodi;
+- *File*: utilizzare il formato `camelCase` (es. `writeToDatabase.go`, `apiController.go`), eccetto nei file di test in cui bisogna aggiungere il suffisso `*_test.go` (es. `writeToDatabase_test.go`);
+- *Struct*: utilizzare il formato `PascalCase` nel caso di esportazione dal package, altrimenti utilizzare il formato `camelCase` (es. `type SensorData struct { ... }`);
+- *Variabili e Metodi*: utilizzare il formato `CamelCase` per le variabili e i metodi esportati dal package, altrimenti utilizzare il formato `camelCase` (es. `func GetSensorData() { ... }`, `func writeToDatabase() { ... }`);
 - *Costanti*: utilizzare il formato `UPPER_SNAKE_CASE` per valori immutabili definiti a livello globale o di package;
+
+===== Strumenti di supporto <codifica-strumenti-supporto>
+- *Gofumpt*: è lo strumento di formattazione del codice Go adottato dal team. Gofumpt applica regole più rigorose rispetto a `gofmt`, come l'aggiunta di spazi bianchi per migliorare la chiarezza, e supporta opzioni configurabili per adattarsi alle preferenze del team.
+
+- *Golangci-Lint*: è lo strumento di analisi del codice Go adottato dal team. Golangci-Lint fornisce un insieme di regole per identificare problemi di qualità e stile nel codice, migliorando la manutenibilità e la consistenza del progetto.\
+  Gli strumenti di *Golangci-lint* utilizzati sono:
+  - *gocyclo*: per misurare la complessità ciclomatica del codice, identificando funzioni e metodi che potrebbero essere troppo complessi e difficili da mantenere;
+  - *staticcheck*: per identificare pattern di codice che potrebbero essere migliorati;
+  - *errcheck*: per assicurarsi che tutti gli errori siano gestiti;
+  - *govet*: per identificare problemi di stile e qualità nel codice;
+  - *unused*: per individuare variabili e funzioni non utilizzate;
+  - *bodyclose*: per assicurarsi che i body delle richieste HTTP siano chiusi;
+  - *noctx*: per evitare l'uso di context.Background() o context.TODO();
+  - *asasalint*: per applicare regole di stile e qualità specifiche del team.
+
+
+
 
 = Processi di supporto <processi-di-supporto>
 
@@ -869,7 +923,7 @@ Le attività previste nella gestione di processi sono le seguenti:
 - #link(<gestione-processi-revisione-valutazione>)[Revisione e valutazione]
 - #link(<gestione-processi-conclusione>)[Conclusione]
 
-// TODO: Linkato il verbale del 24 febbraio anche se non esiste ancora, penso di aver scritto la path correttamente 
+// TODO: Linkato il verbale del 24 febbraio anche se non esiste ancora, penso di aver scritto la path correttamente
 Si noti che la descrizione di questo processo riguarda le attività rendicontabili il cui sviluppo produce prodotti di progetto "esterni", ovvero tutto il codice e la documentazione richiesta dal capitolato e dalle specifiche del progetto didattico. Inoltre, in ogni successiva sottosezione si riportano i passaggi da seguire per gestire le #gloss[GitHub Issues] relative a specifiche _task_, secondo quanto deciso dal gruppo nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[*verbale interno del 30 gennaio 2026*] e nel #link("https://glitchhub-team.github.io/pdf/PB/VerbaliInterni/2026-02-24.pdf")[*verbale interno del 24 febbraio 2026*].
 
 Le attività non rendicontabili o di "palestra", ovvero il cui svolgimento non influisce sul budget fissato dal gruppo, seguono un ciclo di vita simile ma che spesso non comprende la fase di #link(<gestione-processi-revisione-valutazione>)[revisione e valutazione] e una fase di #link(<gestione-processi-conclusione>)[conclusione] più semplificata, ma ciononostante vengono tracciate con le #gloss[GitHub Issues].
@@ -920,7 +974,7 @@ Il processo di verifica di un'_issue_ segue lo stesso *workflow* sia per _issue_
 Il processo di verifica avviene nel seguente modo:
 - L'assegnatario dell'_issue_ notifica al #gloss[verificatore] che l'attività è stata completata e che è pronta per essere verificata, aprendo di conseguenza la relativa #gloss[pull request];
 - Nella #gloss[pull request] devono essere indicati:
-  - il _reviewer_ e l'_assignee_, assegnando ad entrambi il #gloss[verificatore] individuato per la _issue_; 
+  - il _reviewer_ e l'_assignee_, assegnando ad entrambi il #gloss[verificatore] individuato per la _issue_;
   - la _milestone_ corrispondente all'iterazione in cui è stata svolta la _task_;
 - La relativa _issue_ deve essere segnata come *"In review"* sul _project_.
 
@@ -945,7 +999,7 @@ Il #gloss[verificatore] che ha approvato la #gloss[pull request] relativa alla _
 
 L'approvazione definitiva della #gloss[pull request] comporta la chiusura automatica dell'_issue_ associata: un'automation, infatti, imposterà l'issue associata come *"Done"*, facilitando il processo di tracciamento delle attività svolte e riducendo il rischio di dimenticanze da parte dei membri del gruppo.
 
-La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato: tutto ciò avviene tramite un'automazione di #gloss[GitHub Actions] che, a partire dal numero relativo all'_issue_ legata alla #gloss[pull request], identifica il _branch_ da eliminare e lo elimina. 
+La conclusione di una _task_ comporta inoltre l'_eliminazione_ del _branch_ relativo alla _task_ stessa, se questo è stato creato: tutto ciò avviene tramite un'automazione di #gloss[GitHub Actions] che, a partire dal numero relativo all'_issue_ legata alla #gloss[pull request], identifica il _branch_ da eliminare e lo elimina.
 
 === Ruoli <divisione-ruoli>
 Di seguito, sono riportate le descrizioni dei compiti, delle responsabilità e del valore del lavoro di tutti i ruoli che i membri del gruppo possono assumere durante l'esecuzione del progetto.
@@ -1148,9 +1202,9 @@ Per maggiori informazioni riguardanti la gestione delle _issues_ durante lo svol
 Il gruppo ha deciso di affiancare la creazione di un _branch_ dedicato ad ogni _issue_, in modo da rendere più semplice isolare le modifiche effettuate da ogni singolo membro e tenere traccia del lavoro svolto.
 
 Il nome di un _branch_ dedicato a un'_issue_ segue la seguente convenzione:
-#align(center)[*`issue-[issue-number]`*] 
+#align(center)[*`issue-[issue-number]`*]
 Dove:
-- *`[issue-number]`* rappresenta il numero identificativo dell'_issue_ a cui il _branch_ è legato, che viene assegnato automaticamente da GitHub al momento della creazione dell'_issue_. 
+- *`[issue-number]`* rappresenta il numero identificativo dell'_issue_ a cui il _branch_ è legato, che viene assegnato automaticamente da GitHub al momento della creazione dell'_issue_.
 
 Per maggiori informazioni riguardanti la gestione dei _branch_ durante lo svolgimento della relativa _issue_, si consiglia di consultare la @gestione-processi-attivita-previste.
 
