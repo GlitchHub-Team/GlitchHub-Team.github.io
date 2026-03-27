@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
+      (
+      "1.6.0",
+      "27/03/2026",
+      "Siria Salvalaio",
+      "Alessandro Dinato",
+      [Stesura sprint 14 (@sprint-14)],
+      ),
       (
       "1.5.0",
       "26/03/2026",
@@ -3487,4 +3494,111 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 		[Sprint 13 - Aggiornamento costi],
 		label-id: "spr13-agg-costi",
 	)
+	
+
+== Sprint 14 <sprint-14>
+Inizio: 25/03/2026 \
+Fine: 01/04/2026 \
+
+Il presente #gloss("sprint") si focalizza sulla codifica e verifica (TU/TI) di package essenziali per sensori, gateway e gestione dati (real-time e storici). Lato #gloss("backend") si affina inoltre l'architettura esagonale e la logica degli admin, mentre sul fronte #gloss("frontend") gli sforzi mirano all'integrazione delle sezioni Super Admin e Tenant User, migliorando al contempo l'interfaccia e la coerenza dei modelli. \
+Parallelamente, il gruppo si occuperà dell'aggiornamento dell'autenticazione e dei test per la cartella adapters.
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+  - [Backend] Verifica TU package backend/internal/auth (#issue(36, repo:"dash"))
+  - [Backend] Codifica package backend/internal/email (#issue(37, repo:"dash"))
+  - [Backend] Verifica TU package backend/internal/email (#issue(38, repo:"dash"))
+  - [Backend] Codifica package backend/internal/gateway (#issue(39, repo:"dash"))
+  - [Backend] Verifica package backend/internal/gateway (#issue(40, repo:"dash"))
+  - [Backend] Codifica componente hello (#issue(45, repo:"dash"))
+  - [Backend] Verifica componente hello (#issue(46, repo:"dash"))
+  - Rendicontazione responsabile sprint 14 (#issue(471))
+  - [Frontend] Cambiare lingua (italiano) e migliorare CSS (#issue(59, repo:"dash"))
+  - [Frontend] Controllare endpoint con i model (#issue(60, repo:"dash"))
+  - [Frontend] Aggiungere sezione SUPER ADMIN MANAGEMENT (#issue(61, repo:"dash"))
+  - [Frontend] TENANT USER MANAGEMENT (e raggruppare con dashboard in basso alla Side bar) (#issue(62, repo:"dash"))
+  - [Frontend] Aggiornare sezione di autenticazione (#issue(63, repo:"dash"))
+  - [Frontend] Verificare gestione enums tra frontend/backend (#issue(64, repo:"dash"))
+  - [Frontend] Scrittura TU per la cartella adapters (#issue(65, repo:"dash"))
+  - [Backend] TU backend/internal/user/adapters.go (#issue(67, repo:"dash"))
+  - [Backend] TI backend/internal/auth (#issue(69, repo:"dash"))
+  - [Backend] TI backend/internal/email (#issue(70, repo:"dash"))
+  - [Backend] TI backend/internal/user (#issue(71, repo:"dash")
+  - [Backend] Codifica backend/internal/sensor (#issue(73, repo:"dash"))
+  - [Backend] TU backend/internal/sensor (#issue(74, repo:"dash"))
+  - [Backend] TI backend/internal/sensor (#issue(75, repo:"dash"))
+  - [Backend] Codifica backend/internal/real_time_data (#issue(76, repo:"dash"))
+  - [Backend] TU backend/internal/real_time_data (#issue(77, repo:"dash"))
+  - [Backend] TI backend/internal/real_time_data (#issue(78, repo:"dash"))
+  - [Backend] Codifica backend/internal/historical_data (#issue(80, repo:"dash"))
+  - [Backend] TU backend/internal/historical_data (#issue(81, repo:"dash"))
+  - [Backend] TI backend/internal/historical_data (#issue(82, repo:"dash"))
+  - [ST] Architettura hexagonal (#issue(475))
+  - [PdP] Sprint 13 (#issue(462))
+  - [Backend] Aggiornamento logica eliminazione super admin / tenant admin (#issue(66, repo:"dash"))
+  - [Dashboard] Aggiornare endpoint su API dog relativamente a gateway commissioning (#issue(68, repo:"dash"))
+
+=== Rischi attesi
+- *RT2* (@RT2): L'elevata mole di codifica e verifica dei package core (#gloss("gateway"), sensor, real time data e historical data) e il passaggio all'architettura esagonale aumentano il rischio di bug strutturali e incongruenze tra i modelli #gloss("frontend") e #gloss("backend"). La risoluzione di questi difetti potrebbe richiedere più ore del previsto, rallentando la chiusura delle numerose issue di testing (TU/TI).
+- *RO1* (@RO1): Eventuali ritardi nella finalizzazione dei servizi di backend e nel controllo degli endpoint potrebbero ostacolare l'integrazione delle nuove sezioni gestionali (Super Admin e Tenant User). Tale situazione obbligherebbe a una riorganizzazione dei compiti per garantire la coerenza tra le interfacce e i dati reali entro il termine dello #gloss("sprint").
+
+	=== Preventivo
+	==== Preventivo risorse da utilizzare
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "3", "4", "4", [*11*],
+"Alessandro Dinato", "-", "-", "-", "-", "4", "6", [*10*],
+"Michele Dioli", "-", "-", "-", "-", "8", "8", [*16*],
+"Hossam Ezzemouri", "-", "-", "-", "-", "4", "6", [*10*],
+"Riccardo Graziani", "-", "-", "-", "-", "4", "2", [*6*],
+"Siria Salvalaio", "3", "-", "-", "-", "7", "-", [*10*],
+"Elia Ernesto Stellin", "-", "-", "-", "-", "3", "15", [*18*],
+table.footer([*Totale*], [*3*], [*0*], [*0*], [*3*], [*34*], [*41*], [*81*]),
+		),
+		[Sprint 14 - Preventivo risorse da utilizzare],
+		label-id: "spr14-prev-risorse",
+	)
+	==== Grafico a torta della suddivisione oraria prevista
+
+	#let orePrevSprint14 = (
+		
+	("Responsabile", 3),
+	("Amministratore", 0),
+	("Analista", 0),
+  	("Progettista", 3),
+  	("Programmatore", 34),
+  	("Verificatore", 41),
+	
+	)
+	#graficoTorta("Sprint 14 - Ore produttive previste per ogni ruolo", orePrevSprint14)
+
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 14: \
+
+
+=== Retrospettiva
+
+
+=== Rischi occorsi
+
+
+	=== Consuntivo di periodo
+	==== Risorse utilizzate
+	
+
+	=== Preventivo a finire
+	==== Aggiornamento ore rimanenti
+
+
+	==== Aggiornamento costi
+
 	
