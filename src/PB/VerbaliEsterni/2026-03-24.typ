@@ -5,7 +5,6 @@
   stato: "Verificato",
   versione: "1.0.0",
   partecipanti: (
-    "Alessandro Dinato",
     "Riccardo Graziani",
     "Elia Ernesto Stellin",
     "Jaume Bernardi",
@@ -35,7 +34,7 @@ Durante l'incontro, il gruppo ha aggiornato la proponente sullo stato di avanzam
 == Presentazione stato avanzamento lavori
 Il gruppo ha presentato l'attuale stato di sviluppo, sottolineando che il progetto si sta avvicinando alla metà del ciclo produttivo:
 - *Backend Dashboard*: Il lavoro procede in modo lineare dopo una fase iniziale di assestamento. Si è scelto di procedere con uno sviluppo "orizzontale": i test di integrazione verranno eseguiti alla fine del processo, evitando per ora verticalizzazioni eccessive su singoli package.
-- *Interfacce*: Sono stati definiti e stabiliti gli endpoint di comunicazione tra Backend e Frontend.
+- *Interfacce*: Sono stati definiti e stabiliti gli endpoint di comunicazione tra backend e frontend.
 - *Frontend*: Lo sviluppo della dashboard prosegue come previsto, integrando le componenti precedentemente avviate.
 
 == Stesura del Test Book
@@ -49,7 +48,7 @@ La proponente ha richiesto formalmente la redazione di un *Test Book*, specifica
 Sono stati chiariti i seguenti punti tecnici e logistici:
 - *Modalità di Deploy*: Non è richiesto un deploy formale su server esterno. È sufficiente fornire la repository GitHub accompagnata da un file `README` esaustivo per un'esecuzione "plug&play".
 - *Gestione Credenziali*: Per la produzione, i segreti di GitHub dovranno essere inviati tramite un archivio `.zip` criptato insieme al link della repository.
-- *Gestione Tenant ID*: È stata approvata la soluzione di inserire il Tenant ID tramite un campo `select` nei form, trattandosi di un prototipo funzionale.
+- *Gestione Tenant ID*: È stata approvata la soluzione di inserire il tenant ID tramite un campo `select` nei form, trattandosi di un prototipo funzionale.
 
 = Riunioni future
 La prossima riunione è confermata per il giorno *31 marzo 2026*, come precedentemente concordato.
