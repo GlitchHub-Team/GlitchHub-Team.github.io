@@ -408,7 +408,7 @@ In questa sezione vengono definiti gli standard implementativi per lo sviluppo i
 - *Lingua*: scrivere il codice in inglese per evitare nomi ambigui come `GetUtente()`
 
 ===== Dependency injection
-In ogni microservizio è utilizzata il pattern della #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx].
+In ogni microservizio è utilizzata il pattern #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx].
 È fondamentale il suo utilizzo per evitare l'accoppiamento tra i componenti software, migliorare la testabilità e la manutenibilità del codice.
 
 ===== Architettura esagonale
