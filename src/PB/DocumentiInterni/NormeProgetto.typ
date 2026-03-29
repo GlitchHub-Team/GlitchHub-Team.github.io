@@ -400,7 +400,7 @@ In questa sezione vengono definiti gli standard implementativi per lo sviluppo i
 ==== Stile di codifica Go <codifica-go>
 In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Go* al fine di garantire l'uniformità del codice prodotto dal team.
 
-===== Best practice
+===== Best practices
 - *Funzioni*: Scrivere funzioni e metodi con una singola responsabilità, evitando di creare funzioni troppo lunghe o complesse;
 - *Gestione degli errori*: Gestire gli errori in modo esplicito e coerente, utilizzando il pattern di ritorno degli errori di Go;
 - *Variabili*: Utilizzare nomi di variabili, funzioni e tipi descrittivi e significativi, evitando abbreviazioni non comuni o ambigue;
