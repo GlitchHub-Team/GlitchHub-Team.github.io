@@ -7,6 +7,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.7.0",
+      "29/03/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Applicazione correzioni segnalate durante la verifica],
+    ),
+    (
       "1.6.0",
       "25/03/2026",
       "Alessandro Dinato",
@@ -404,11 +411,13 @@ In questa sezione vengono definiti gli standard implementativi per lo sviluppo i
 - *Funzioni*: Scrivere funzioni e metodi con una singola responsabilità, evitando di creare funzioni troppo lunghe o complesse;
 - *Gestione degli errori*: Gestire gli errori in modo esplicito e coerente, utilizzando il pattern di ritorno degli errori di Go;
 - *Variabili*: Utilizzare nomi di variabili, funzioni e tipi descrittivi e significativi, evitando abbreviazioni non comuni o ambigue;
-- *Commenti*: Commentare il codice dove il codice non può essere autoesplicativo, evitando di riempire il codice di commenti superflui;
+- *Commenti*: Commentare il codice dove non può essere autoesplicativo, evitando di riempirlo di commenti superflui;
 - *Lingua*: scrivere il codice in inglese per evitare nomi ambigui come `GetUtente()`
+- *DIP (Dependency Inversion Principle)*: evitare di dipendere da implementazioni concrete, ma piuttosto da astrazioni, come interfacce o tipi di dati generici.
+- *DRY (Don't Repeat Yourself)*: evitare la duplicazione del codice, creando funzioni o metodi riutilizzabili per le operazioni comuni.
 
 ===== Dependency injection
-In ogni microservizio è utilizzata il pattern #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx].
+In ogni microservizio è utilizzato il pattern #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx].
 È fondamentale il suo utilizzo per evitare l'accoppiamento tra i componenti software, migliorare la testabilità e la manutenibilità del codice.
 
 ===== Architettura esagonale
@@ -418,7 +427,21 @@ I seguenti componenti appartenenti all'architettura esagonale seguiranno le segu
 - *Service*: la struttura terminerà con *Service*;
 - *Outbound port*: l'interfaccia terminerà con *Port*;
 - *Outbound adapter*: la struttura terminerà con *Adapter*;
-- *DTO*: la struttura terminerà con *DTO* e potrà essere utilizzata solo negli *adapter*;
+- *DTO*: la struttura terminerà con *DTO* e potrà essere utilizzata solo negli *inbound adapter*;
+- *Entity*: la struttura terminerà con *Entity* e potrà essere creata negli *outbound adapter* ed utilizzata nelle *repository*;
+
+===== Organizzazione cartelle
+L'organizzazione delle cartelle si basa sul concetto di *Package by Feature*, dove la maggior parte del codice necessario per una feature risiede all'interno della stessa cartella e, conseguentemente, dello stesso *package*.
+
+In ogni microservizio le repository sono organizzate in questo modo:
+- cartella *internal*: contiene il codice dell'applicazione, organizzato per feature. Inoltre sono presenti ulteriori cartelle per il codice condiviso tra feature:
+  - cartella *infra*: codice condiviso fuori dalla business logic
+  - cartella *shared*: codice condiviso all'interno della business logic
+- cartella *tests*: contiene i test di unità e di integrazione, organizzati per feature;
+- file *.env*: contenente le variabili d'ambiente per la configurazione del microservizio;
+- file *main.go*: contiene le istruzioni di avvio del microservizio
+- file *\<name\>.creds*: credenziali per l'accesso a NATS
+- file *ca.pem*: certificato per l'accesso a NATS via TLS
 
 ===== Convenzioni di nomenclatura
 - *File*: utilizzare il formato `camelCase` (es. `writeToDatabase.go`, `apiController.go`), eccetto nei file di test in cui bisogna aggiungere il suffisso `*_test.go` (es. `writeToDatabase_test.go`);
