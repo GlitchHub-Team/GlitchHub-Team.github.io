@@ -404,7 +404,7 @@ In questa sezione vengono definiti gli standard implementativi per lo sviluppo i
 - *Funzioni*: Scrivere funzioni e metodi con una singola responsabilità, evitando di creare funzioni troppo lunghe o complesse;
 - *Gestione degli errori*: Gestire gli errori in modo esplicito e coerente, utilizzando il pattern di ritorno degli errori di Go;
 - *Variabili*: Utilizzare nomi di variabili, funzioni e tipi descrittivi e significativi, evitando abbreviazioni non comuni o ambigue;
-- *Commenti*: Commentare il codice dove il codice non può essere autoesplicativo, evitando di riempire il codice di commenti;
+- *Commenti*: Commentare il codice dove il codice non può essere autoesplicativo, evitando di riempire il codice di commenti superflui;
 - *Lingua*: scrivere il codice in inglese per evitare nomi ambigui come `GetUtente()`
 
 ===== Dependency Injection
