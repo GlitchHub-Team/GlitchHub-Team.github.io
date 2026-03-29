@@ -923,7 +923,6 @@ Le attività previste nella gestione di processi sono le seguenti:
 - #link(<gestione-processi-revisione-valutazione>)[Revisione e valutazione]
 - #link(<gestione-processi-conclusione>)[Conclusione]
 
-// TODO: Linkato il verbale del 24 febbraio anche se non esiste ancora, penso di aver scritto la path correttamente
 Si noti che la descrizione di questo processo riguarda le attività rendicontabili il cui sviluppo produce prodotti di progetto "esterni", ovvero tutto il codice e la documentazione richiesta dal capitolato e dalle specifiche del progetto didattico. Inoltre, in ogni successiva sottosezione si riportano i passaggi da seguire per gestire le #gloss[GitHub Issues] relative a specifiche _task_, secondo quanto deciso dal gruppo nel #link("https://glitchhub-team.github.io/pdf/RTB/VerbaliInterni/2026-01-30.pdf")[*verbale interno del 30 gennaio 2026*] e nel #link("https://glitchhub-team.github.io/pdf/PB/VerbaliInterni/2026-02-24.pdf")[*verbale interno del 24 febbraio 2026*].
 
 Le attività non rendicontabili o di "palestra", ovvero il cui svolgimento non influisce sul budget fissato dal gruppo, seguono un ciclo di vita simile ma che spesso non comprende la fase di #link(<gestione-processi-revisione-valutazione>)[revisione e valutazione] e una fase di #link(<gestione-processi-conclusione>)[conclusione] più semplificata, ma ciononostante vengono tracciate con le #gloss[GitHub Issues].
