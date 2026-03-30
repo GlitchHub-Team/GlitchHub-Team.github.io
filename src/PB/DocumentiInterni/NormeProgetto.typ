@@ -1157,7 +1157,7 @@ La creazione dell'infrastruttura è l'attività iniziale di impostazione degli s
 Per l'utilizzo di *Apidog*, il gruppo ha creato un ambiente condiviso, nel quale sono stati creati 3 progetti:
 - *Gin Backend*: in cui sono documentate tutte le API del server *HTTP* scritto in #gloss[Gin]. Sono utili per mantenere coerenza tra le chiamate API dal frontend e gli endpoint effettivamente esposti dal backend.
 - *NATS*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione #gloss[Fire-and-Forget] attraverso #gloss[NATS], così da mantenere coerenza tra i messaggi inviati e quelli effettivamente ricevuti. È importante distinguere l'utilizzo di NATS o NATS JetStream per dare indicare il client da utilizzare.
-- *NATS JetStream*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione via #gloss[NATS JetStream], ovvero il classico NATS ma con la persistenza dei messaggi.
+- *NATS JetStream*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione via #gloss[NATS JetStream].
 
 La definizione degli #gloss[endpoint] avviene tramite 3 step:
 1. Scelta del nome dell'endpoint e il protocollo utilizzato (NATS, HTTP, ...);
