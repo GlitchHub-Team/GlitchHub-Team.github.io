@@ -1160,7 +1160,7 @@ Per l'utilizzo di *Apidog*, il gruppo ha creato un ambiente condiviso, nel quale
 - *NATS JetStream*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione via #gloss[NATS JetStream].
 
 La definizione degli #gloss[endpoint] avviene tramite 3 step:
-1. Scelta del nome dell'endpoint e il protocollo utilizzato (NATS, HTTP, ...);
+1. Scelta del nome dell'endpoint e il protocollo utilizzato (NATS, HTTP, etc.);
 2. Definizione schema per la *richiesta* dell'endpoint in questione, comprendente di nome, tipo, dominio e descrizione dei campi;
 3. Definizione schema per la *risposta* dell'endpoint in questione (se necessaria), comprendente di nome, tipo, dominio e descrizione dei campi.
 
