@@ -11,7 +11,7 @@
       "29/03/2026",
       "Alessandro Dinato",
       "Elia Ernesto Stellin",
-      [Applicazione correzioni segnalate durante la verifica],
+      [Applicazione correzioni segnalate durante la verifica di v1.6.0],
     ),
     (
       "1.6.0",
@@ -19,6 +19,13 @@
       "Alessandro Dinato",
       "Elia Ernesto Stellin",
       [Aggiornamento delle norme di codifica],
+    ),
+    (
+      "1.5.0",
+      "25/03/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Aggiunte norme per l'utilizzo di #gloss[Apidog] (@apidog)],
     ),
     (
       "1.4.1",
@@ -1115,6 +1122,8 @@ Il processo d'infrastruttura è composto dalle seguenti attività:
 === Implementazione <infrastruttura-implementazione>
 Durante lo svolgimento del progetto, il gruppo ha appreso i seguenti strumenti che hanno consentito un'organizzazione più efficace delle attività e dei processi di progetto:
 
+- *Apidog*: È un servizio web che facilita la condivisione e la consultazione delle API stabilite per il progetto, consentendo di documentare in maniera chiara e accessibile tutte le API che il prodotto software espone.
+
 - *ClickUp*: È un servizio web che consente una gestione totale dell'organizzazione delle _task_ di gruppo. Inizialmente, _GlitchHub Team_ ha provato ad utilizzarlo per pianificare le  _task_ degli _sprint_, ma lo strumento si è rivelato troppo macchinoso e inefficiente da usare, per cui è utilizzato dal gruppo principalmente per la condivisione degli appunti delle riunioni e della pianificazione degli eventi, quali i meeting esterni ed interni.
 
 - *Discord*: È un servizio di messaggistica istantanea e videoconferenza usato da _GlitchHub Team_ per svolgere le riunioni interne in maniera virtuale.
@@ -1143,6 +1152,17 @@ Durante lo svolgimento del progetto, il gruppo ha appreso i seguenti strumenti c
 
 === Creazione <infrastruttura-creazione>
 La creazione dell'infrastruttura è l'attività iniziale di impostazione degli strumenti infrastrutturali usati dal gruppo. Di seguito sono riportati i dettagli per ogni strumento utilizzato.
+
+==== Apidog <apidog>
+Per l'utilizzo di *Apidog*, il gruppo ha creato un ambiente condiviso, nel quale sono stati creati 3 progetti:
+- *Gin Backend*: in cui sono documentate tutte le API del server *HTTP* scritto in #gloss[Gin]. Sono utili per mantenere coerenza tra le chiamate API dal frontend e gli endpoint effettivamente esposti dal backend.
+- *NATS*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione #gloss[Fire-and-Forget] attraverso #gloss[NATS], così da mantenere coerenza tra i messaggi inviati e quelli effettivamente ricevuti. È importante distinguere l'utilizzo di NATS o NATS JetStream per dare indicare il client da utilizzare.
+- *NATS JetStream*: in cui sono documentati tutti i #gloss[subject] usati per la comunicazione via #gloss[NATS JetStream].
+
+La definizione degli #gloss[endpoint] avviene tramite 3 step:
+1. Scelta del nome dell'endpoint e il protocollo utilizzato (NATS, HTTP, etc.);
+2. Definizione schema per la *richiesta* dell'endpoint in questione, comprendente di nome, tipo, dominio e descrizione dei campi;
+3. Definizione schema per la *risposta* dell'endpoint in questione (se necessaria), comprendente di nome, tipo, dominio e descrizione dei campi.
 
 ==== ClickUp
 Per usare *ClickUp*, il gruppo ha creato un ambiente condiviso, nel quale è possibile condividere documenti testuali e pianificare, assegnare e gestire attività.
