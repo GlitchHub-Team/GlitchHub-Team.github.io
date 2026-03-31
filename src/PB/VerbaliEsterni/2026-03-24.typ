@@ -20,8 +20,8 @@
   htmlId: "PB-VerbaliEsterni",
   verificatore-interno: "Riccardo Graziani",
   left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
-  verificatore-esterno: "",
-  right-signature: "",
+  verificatore-esterno: "Cristian Pirlog",
+  right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
   tipo-verbale: "Esterno",
 )
 
