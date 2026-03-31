@@ -7,7 +7,21 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.7.1",
+      "31/03/2026",
+      "Riccardo Graziani",
+      "Siria Salvalaio",
+      [Applicati suggerimenti forniti durante la verifica della v1.7.0],
+    ),
+    (
       "1.7.0",
+      "31/03/2026",
+      "Riccardo Graziani",
+      "Siria Salvalaio",
+      [Descritte le norme di codifica per il codice Typescript nella @codifica-typescript],
+    ),
+    (
+      "1.6.1",
       "29/03/2026",
       "Alessandro Dinato",
       "Elia Ernesto Stellin",
@@ -159,8 +173,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiInterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-documento: "Norme di Progetto",
 )
 
@@ -334,6 +348,8 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[casi d'uso]*.
 - *Gofumpt*: come strumento per la formattazione del codice Go;
 - *Golangci-Lint*: come strumento per l'analisi del codice Go;
+- *ESLint*: come strumento per l'analisi del codice Typescript;
+- *Prettier*: come strumento per la formattazione del codice Typescript.
 
 === Attività previste <attivita-previste-sviluppo>
 - *Implementazione del processo*: in cui viene stabilita l'articolazione delle fasi di ingegnerizzazione, garantendo che ogni attività di sviluppo sia coerente con la strategia di realizzazione scelta;
@@ -403,13 +419,60 @@ L'avvio di un #gloss[Dev Container] avviene tramite l'estensione #link("https://
 Una volta aperto il #gloss[Dev Container] sarà possibile accedere a tutti gli strumenti a supporto già configurati, e iniziare a lavorare sul codice del progetto.
 
 ==== Stile di codifica Typescript <codifica-typescript>
-In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Typescript* all'interno del framework Angular, al fine di garantire l'uniformità del codice prodotto dal team.
+In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Typescript* all'interno del framework #gloss[Angular], al fine di garantire l'uniformità del codice prodotto dal team.
+
+===== Best practices <typescript-best-practices>
+- *Signals*: i servizi devono esporre lo stato dell'applicazione tramite *signals*, rispettando l'approccio di programmazione reattiva *signal-first* introdotta da #gloss[Angular] nella versione 17+;
+- *Livelli di accesso*: il progetto segue una rigorosa politica di accesso, riassunta nelle seguenti regole:
+  - applicare sempre `readonly` alle dipendenze iniettate con `inject()` e ai signal;
+  - usare `private` come livello di accesso predefinito; elevare a `protected` solo ciò che il template richiede;
+  - non usare `public` per campi o metodi dei componenti, ad eccezione di input, output e hook del ciclo di vita (`NgOnInit`, `NgOnDestroy`, etc...);
+  - nei servizi, esporre lo stato esclusivamente tramite `.asReadonly()` o `computed()`, mai il signal scrivibile;
+  - nei servizi, i metodi che costituiscono l'API pubblica sono marcati `public` mentre i metodi ausiliari interni sono `private`;
+  - nei componenti, i metodi richiamati dal template sono `protected` mentre quelli usati solo nella classe sono `private`;
+  - i signal interni dei servizi usano il prefisso `_`, mentre l'alias pubblico corrispondente è `public readonly`;
+- *SRP (Single Responsibility Principle)*: ogni classe, interfaccia o modulo deve avere una singola responsabilità, evitando di creare elementi troppo complessi o con responsabilità multiple;
+- *HTTP pattern*: l'interazione con il backend avviene attraverso una struttura a tre livelli, in cui i *componenti* comunicano con i servizi, i *servizi* comunicano con gli adapters e gli *adapters* comunicano con il backend;
+- *Smart/Dumb components*: i componenti devono essere suddivisi in *smart* e *dumb*, in cui i primi gestiscono la logica di business e le comunicazioni con i servizi, mentre i secondi si occupano esclusivamente della presentazione dei dati ricevuti dai componenti smart.
+- *Self-contained dialogs*: le finestre di dialogo sono trattate come componenti *smart* che comunicano con i servizi e gestiscono il proprio stato di errore.
+- *Commenti*: commentare il codice dove non può essere autoesplicativo, evitando di riempirlo di commenti superflui;
+- *Lingua*: scrivere il codice in inglese per evitare nomi ambigui.
+
+===== Dependency Injection <typescript-dependency-injection>
+Il pattern di #gloss[Dependency Injection] è ampiamente utilizzato all'interno del framework #gloss[Angular], e rappresenta un principio fondamentale per la progettazione e lo sviluppo di applicazioni modulari, scalabili e manutenibili.
+
+Nel progetto, viene ampiamente utilizzato attraverso la funzione `inject()` di #gloss[Angular], che consente di accedere ai servizi e alle dipendenze in modo semplice e diretto all'interno dei componenti, dei servizi e di altri elementi dell'applicazione.
+
+===== Angular Signals <typescript-signals>
+I *signals* di #gloss[Angular] rappresentano un paradigma reattivo per la gestione dello stato e dei dati all'interno dell'applicazione. Essi consentono di creare flussi di dati reattivi che si aggiornano automaticamente quando i dati sottostanti cambiano, migliorando la reattività e la manutenibilità del codice.
+
+Nel progetto, i *signals* vengono utilizzati per gestire lo stato dell'applicazione in modo efficiente e reattivo, consentendo ai componenti di aggiornarsi automaticamente quando i dati cambiano.
+
+===== Organizzazione cartelle <typescript-organizzazione-cartelle>
+L'organizzazione delle cartelle si basa sul raggruppamento per *tipologia* di file, in cui ogni cartella contiene file con la stessa estensione. In particolare, all'interno di ogni repository, i file sono organizzati in questo modo:
+- `src/app/adapters`: contiene le definizioni degli *adapters* utilizzati per tradurre dati inviati dal backend in formati definiti nel frontend;
+- `src/app/guards`: contiene le definizioni dei *guards* utilizzati per proteggere le rotte dell'applicazione;
+- `src/app/interceptors`: contiene le definizioni degli *interceptors* utilizzati per intercettare le richieste `HTTP` e modificare le intestazioni o gestire gli errori;
+- `src/app/models`: contiene le definizioni dei *modelli* utilizzati per rappresentare i dati all'interno dell'applicazione. I modelli sono inoltre raggruppati in sotto-cartelle organizzate per dominio (es. `auth`, `gateway`, `sensor`, etc...);
+- `src/app/pages`: contiene le definizioni delle *pagine* dell'applicazione, organizzate in sotto-cartelle per feature (es. `dashboard`, `login`, `tenant`, etc...). Inoltre, all'interno di ogni cartella di feature possono essere presenti le seguenti sotto-cartelle:
+  - `pages/components`: contiene le definizioni dei *componenti* utilizzati all'interno della pagina;
+  - `pages/dialogs`: contiene le definizioni delle *finestre di dialogo* utilizzate all'interno della pagina;
+- `src/app/services`: contiene le definizioni dei *servizi* utilizzati per gestire la logica di business e le comunicazioni con il backend, organizzati in sotto-cartelle per dominio (es. `auth`, `gateway`, `sensor`, etc...);
+- `src/app/utils`: contiene le definizioni delle *funzioni di utilità* utilizzate all'interno dell'applicazione;
+- `src/environments`: contiene la definizione dei file di *configurazione* dell'applicazione, come ad esempio `environment.ts`.
+
+I file di test (con estensione `.spec.ts`) sono organizzati in modo speculare alla struttura dei file di codice, e si trovano all'interno della stessa cartella del file di codice a cui si riferiscono.
 
 ===== Convenzioni di nomenclatura <convenzioni-nomenclatura-typescript>
-- *File*: utilizzare il formato `kebab-case` separando il nome dal tipo di feature (es. `sensor-chart.component.ts`, `sensor-data.service.ts`);
-- *Classi e Interfacce*: utilizzare il formato `PascalCase` (es. `DashboardComponent`);
-- *Variabili e Metodi*: utilizzare il formato `camelCase`;
+- *File*: utilizzare il formato `kebab-case`, indicando inoltre il tipo di file attraverso un suffisso (es. `dashboard.page.ts`, `auth.service.ts`, `sensor.model.ts`, `login-form.component.ts` etc...);
+- *Classi e interfacce*: utilizzare il formato `PascalCase` (es. `DashboardPage`, `AuthService`, `SensorModel`, `LoginFormComponent` etc...);
+- *Variabili e metodi*: utilizzare il formato `camelCase` (es. `getUsers()`, `currentUserSession`, etc...);
+- *Signals privati*: indicare i signal privati con il prefisso `_` (es. `private _userSignal`);
 - *Costanti*: utilizzare il formato `UPPER_SNAKE_CASE` per valori immutabili definiti a livello globale o di modulo;
+
+===== Strumenti di supporto <typescript-strumenti-supporto>
+- *ESLint*: è lo strumento di analisi del codice Typescript adottato dal team. ESLint fornisce un insieme di regole per identificare problemi di qualità e stile nel codice, migliorando la manutenibilità e la consistenza del progetto.\
+- *Prettier*: è lo strumento di formattazione del codice Typescript adottato dal team. Prettier applica regole di formattazione rigorose e configurabili per garantire un aspetto uniforme del codice.
 
 ==== Stile di codifica Go <codifica-go>
 In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Go* al fine di garantire l'uniformità del codice prodotto dal team.
