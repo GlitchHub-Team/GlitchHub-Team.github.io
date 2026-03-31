@@ -7,6 +7,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.7.1",
+      "31/03/2026",
+      "Riccardo Graziani",
+      "Siria Salvalaio",
+      [Applicati suggerimenti forniti durante la verifica della v1.7.0],
+    ),
+    (
       "1.7.0",
       "31/03/2026",
       "Riccardo Graziani",
@@ -415,7 +422,7 @@ Una volta aperto il #gloss[Dev Container] sarà possibile accedere a tutti gli s
 In questa sezione vengono definiti gli standard implementativi per lo sviluppo in linguaggio *Typescript* all'interno del framework #gloss[Angular], al fine di garantire l'uniformità del codice prodotto dal team.
 
 ===== Best practices <typescript-best-practices>
-- *Signals*: i servizi devono esporre lo stato dell'applicazione tramite *signals*, rispettando l'approccio di programmazione reattiva *signal-first* introdotta da #gloss[Angular] nella versione 16;
+- *Signals*: i servizi devono esporre lo stato dell'applicazione tramite *signals*, rispettando l'approccio di programmazione reattiva *signal-first* introdotta da #gloss[Angular] nella versione 17+;
 - *Livelli di accesso*: il progetto segue una rigorosa politica di accesso, riassunta nelle seguenti regole:
   - applicare sempre `readonly` alle dipendenze iniettate con `inject()` e ai signal;
   - usare `private` come livello di accesso predefinito; elevare a `protected` solo ciò che il template richiede;
