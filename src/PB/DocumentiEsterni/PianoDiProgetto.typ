@@ -8,7 +8,7 @@
   registro-modifiche: (
       (
       "1.6.0",
-      "27/03/2026",
+      "02/04/2026",
       "Siria Salvalaio",
       "Alessandro Dinato",
       [Stesura sprint 14 (@sprint-14)],
@@ -3583,22 +3583,127 @@ table.footer([*Totale*], [*3*], [*0*], [*0*], [*3*], [*34*], [*41*], [*81*]),
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
 Issue relative a sprint 14: \
-
+  - [Backend] Verifica TU package backend/internal/auth (#issue(36))
+  - [Backend] Codifica package backend/internal/email (#issue(37))
+  - [Backend] Verifica TU package backend/internal/email (#issue(38))
+  - [Backend] Codifica componente hello (#issue(45))
+  - [Backend] Verifica componente hello (#issue(46))
+  - [PdP] Sprint 13 (#issue(462))
+  - Rendicontazione responsabile sprint 14 (#issue(471))
+  - [Frontend] Cambiare lingua (italiano) e migliorare CSS (#issue(59))
+  - [Frontend] Controllare endpoint con i model (#issue(60))
+  - [Frontend] Aggiungere sezione SUPER ADMIN MANAGEMENT (#issue(61))
+  - [Frontend] TENANT USER MANAGEMENT (e raggruppare con dashboard in basso alla Side bar) (#issue(62))
+  - [Frontend] Aggiornare sezione di autenticazione (#issue(63))
+  - [Frontend] Verificare gestione enums tra frontend/backend (#issue(64))
+  - [Frontend] Scrittura TU per la cartella adapters (#issue(65))
+  - [Backend] Aggiornamento logica eliminazione super admin / tenant admin (#issue(66))
+  - [Backend] TU backend/internal/user/adapters.go (#issue(67))
+  - [Dashboard] Aggiornare endpoint su API dog relativamente a gateway commissioning (#issue(68))
+  - [Backend] Codifica backend/internal/sensor (#issue(73))
+  - [Backend] TU backend/internal/sensor (#issue(74))
+  - [Backend] TI backend/internal/sensor (#issue(75))
+  - Codifica - Hoss (#issue(79))
+  - [Backend] Codifica backend/internal/historical_data (#issue(80))
+  - [Backend] TU backend/internal/historical_data (#issue(81))
+  - [Backend] TI backend/internal/historical_data (#issue(82))
+  - [Backend] Refactoring in issue #67 (#issue(87))
+  - [Frontend] Test vari (#issue(92))
+  - [Backend] Aggiornamento go_coverage.sh (#issue(95))
 
 === Retrospettiva
+Lo #gloss("sprint") 14 ha confermato un ritmo sostenuto, portando a termine la codifica e la verifica di package fondamentali come _email_, _hello_, _sensor_ e _historical_data_. Il frontend ha registrato progressi significativi, completando l'internazionalizzazione e l'implementazione delle sezioni di management per Super Admin e Tenant User. È stata inoltre rifinita la logica di gestione dei permessi admin e aggiornata l'infrastruttura di testing.
 
+Nonostante l'ampio volume di task completati, la componente _gateway_, il modulo _real time data_ e i test di integrazione per _auth_, _email_ e _user_ hanno subito dei rallentamenti e sono stati ripianificati per il prossimo sprint. L'attenzione rimane alta sulla qualità del codice, come dimostrato dai refactoring effettuati e dall'allineamento costante tra modelli frontend e backend.
 
 === Rischi occorsi
-
+- *RT2* (@RT2): Difficoltà tecniche nella codifica e nel testing dei moduli di backend hanno richiesto tempi di risoluzione superiori alle stime, rallentando la chiusura delle issue relative a gateway e real_time_data.
+- *RO1* (@RO1): Il ritardo su alcuni moduli core ha impedito di completare il piano di test previsto, obbligando a una riorganizzazione delle task per non bloccare l'integrazione futura tra #gloss("frontend") e #gloss("backend").
+- *RP3* (@RP3): La ridotta disponibilità di un componente per impegni personali ha contratto la capacità produttiva del team, rallentando l'evasione dei task di sviluppo e contribuendo al ritardo complessivo dello #gloss("sprint").
 
 	=== Consuntivo di periodo
 	==== Risorse utilizzate
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "-", "-", "-", "13 (+9)", "6 (+2)", [*19*],
+"Alessandro Dinato", "-", "-", "-", "-", "5 (+1)", "5 (-1)", [*10*],
+"Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
+"Hossam Ezzemouri", "-", "-", "-", "-", "6 (+2)", "7 (+1)", [*13*],
+"Riccardo Graziani", "-", "-", "-", "-", "2 (-2)", "1 (-1)", [*3*],
+"Siria Salvalaio", "3", "-", "-", "-", "7", "3", [*13*],
+"Elia Ernesto Stellin", "-", "-", "-", "-", "5", "7 (+1)", [*12*],
+table.footer([*Totale*], [*3*], [*0*], [*0*], [*0*], [*38*], [*29*], [*70*]),
+		),
+		[Sprint 14 - Risorse utilizzate],
+		label-id: "spr14-risorse-utiliz",
+	)
+	==== Grafico a torta della suddivisione oraria effettiva
+
+	#let oreEffettiveSprint14 = (
+		
+	("Responsabile", 3),
+	("Amministratore", 0),
+	("Analista", 0),
+  	("Progettista", 0),
+  	("Programmatore", 38),
+  	("Verificatore", 29),
 	
+	)
+	#graficoTorta(
+	"Sprint 14 - Ore produttive complessive ed effettive per ogni ruolo",
+	oreEffettiveSprint14,
+	)
 
 	=== Preventivo a finire
 	==== Aggiornamento ore rimanenti
-
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-", "4", "4", "1", "11 (-13)", "19 (-6)", [*39*],
+"Alessandro Dinato", "-", "-1", "-", "10", "-1 (-5)", "10 (-5)", [*18*],
+"Michele Dioli", "-", "-1", "-", "7", "14", "22", [*42*],
+"Hossam Ezzemouri", "-", "-4", "-1", "10", "12 (-6)", "6 (-7)", [*23*],
+"Riccardo Graziani", "-", "4", "-", "5", "3 (-2)", "5 (-1)", [*17*],
+"Siria Salvalaio", "-4 (-3)", "-2", "3", "18", "3 (-7)", "17 (-3)", [*35*],
+"Elia Ernesto Stellin", "3", "-3", "-", "7", "7 (-5)", "9 (-7)", [*23*],
+table.footer([*Totale*], [*-1*], [*-3*], [*6*], [*58*], [*49*], [*88*], [*197*]),
+		),
+		[Sprint 14 - Aggiornamento ore rimanenti],
+		label-id: "spr14-agg-ore-rim",
+	)
 
 	==== Aggiornamento costi
-
+	#tabella-paginata(
+	table(
+		columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+			"Responsabile", "-1 (-3)" ,"30 €/h", "-30 € (-90 €)",
+"Amministratore", "-3 " ,"20 €/h", "-60 € ",
+"Analista", "6 " ,"25 €/h", "150 € ",
+"Progettista", "58 " ,"25 €/h", "1450 € ",
+"Programmatore", "49 (-38)" ,"15 €/h", "735 € (-570 €)",
+"Verificatore", "88 (-29)" ,"15 €/h", "1320 € (-435 €)",
+table.footer([*Totale*], [*197*], [-], [*3565 €*]),
+		),
+		[Sprint 14 - Aggiornamento costi],
+		label-id: "spr14-agg-costi",
+	)
 	
