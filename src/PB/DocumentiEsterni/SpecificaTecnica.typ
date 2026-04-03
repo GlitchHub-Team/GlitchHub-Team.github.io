@@ -33,6 +33,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.6.0",
+      "02/04/2026",
+      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
+      [Aggiunto paragrafo per Architettura Esagonale],
+    ),
+    (
       "0.5.0",
       "02/04/2026",
       "Riccardo Graziani",
@@ -92,8 +99,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Jaume Bernardi",
-  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Specifica tecnica",
 )
 
@@ -476,6 +483,14 @@ Sono inoltre presenti componenti che operano indipendentemente dalle richieste d
 - Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
+=== Architettura esagonale <architettura-esagonale>
+L'architettura esagonale è un modello che separa nettamente la logica di dominio dal codice dell'infrastruttura correlato, definendo un nucleo applicativo indipendente da dettagli tecnici come protocolli di comunicazione, database o framework. Il nucleo comunica con componenti esterni tramite interfacce chiamate porte e utilizza adattatori per tradurre gli scambi tecnici con questi componenti; in questo modo la logica di business rimane testabile, sostituibile e stabile nel tempo: ciò consente di progettare i sistemi e le applicazioni in base allo scopo anziché in base alla tecnologia. 
+Questa strategia si traduce in componenti applicativi facilmente intercambiabili come database, UX e componenti di servizio, che possono essere testati in modo indipendente.
+
+Il sistema sfrutta i principi di questa architettura proprio per disaccoppiare le sue parti in maniera coerente soprattutto al livello Component del modello C4, isolando ad esempio la logica di aggregazione dal codice di persistenza, come TimescaleDB, e dal message broker, ovvero NATS. Tra i vantaggi di questo approccio si possono sottolineare:
+- Una maggiore semplicità nello scrivere test unitari in modo isolato, tramite l'uso di astrazioni per input e/o output;
+- Più tipi di client, o tenant in questo contesto, possono utilizzare la stessa logica di dominio.
+- Se i componenti dell'interfaccia utente e del database richiedono aggiornamenti tecnologici, questi non influiranno sulla logica dell'applicazione.
 
 == Architettura di deployment <archit-deploy>
 === Diagramma di deployment <deploy-diagram>
