@@ -3612,14 +3612,15 @@ Issue relative a sprint 14: \
   - [Backend] Aggiornamento go_coverage.sh (#issue(95))
 
 === Retrospettiva
-Lo #gloss("sprint") 14 ha confermato un ritmo sostenuto, portando a termine la codifica e la verifica di package fondamentali come _email_, _hello_, _sensor_ e _historical_data_. Il frontend ha registrato progressi significativi, completando l'internazionalizzazione e l'implementazione delle sezioni di management per Super Admin e Tenant User. È stata inoltre rifinita la logica di gestione dei permessi admin e aggiornata l'infrastruttura di testing.
+Lo #gloss("sprint") 14 ha confermato un ritmo sostenuto, portando a termine la codifica e la verifica di package fondamentali come _email_, _hello_, _sensor_ e _historical_data_. Il frontend ha registrato progressi significativi, completando la traduzione in italiano di tutte le interfacce utente e l'implementazione delle sezioni di management per Super Admin e Tenant User. È stata inoltre rifinita la logica di gestione dei permessi admin e definito un metodo comune  per lo sviluppo di test di integrazione lato backend, volto a uniformare le procedure di verifica.
 
 Nonostante l'ampio volume di task completati, la componente _gateway_, il modulo _real time data_ e i test di integrazione per _auth_, _email_ e _user_ hanno subito dei rallentamenti e sono stati ripianificati per il prossimo sprint. L'attenzione rimane alta sulla qualità del codice, come dimostrato dai refactoring effettuati e dall'allineamento costante tra modelli frontend e backend.
 
 === Rischi occorsi
 - *RT2* (@RT2): Difficoltà tecniche nella codifica e nel testing dei moduli di backend hanno richiesto tempi di risoluzione superiori alle stime, rallentando la chiusura delle issue relative a gateway e real_time_data.
 - *RO1* (@RO1): Il ritardo su alcuni moduli core ha impedito di completare il piano di test previsto, obbligando a una riorganizzazione delle task per non bloccare l'integrazione futura tra #gloss("frontend") e #gloss("backend").
-- *RP3* (@RP3): La ridotta disponibilità di un componente per impegni personali ha contratto la capacità produttiva del team, rallentando l'evasione dei task di sviluppo e contribuendo al ritardo complessivo dello #gloss("sprint").
+- *RP3* (@RP3): La ridotta disponibilità di un componente per impegni personali ha contratto la capacità produttiva del team, rallentando l'evasione dei task di sviluppo e contribuendo al ritardo complessivo dello #gloss("sprint"). \
+L'accumulo di queste criticità ha causato lo slittamento di alcune scadenze interne, generando un leggero debito tecnico per i moduli non completati. Per mitigare l'impatto, il gruppo ha ridistribuito i carichi di lavoro tra i membri disponibili e ha definito nuove priorità per le attività dello sprint successivo, concentrando gli sforzi sull'integrazione dei moduli core per garantire la stabilità dell'architettura finale.
 
 	=== Consuntivo di periodo
 	==== Risorse utilizzate
