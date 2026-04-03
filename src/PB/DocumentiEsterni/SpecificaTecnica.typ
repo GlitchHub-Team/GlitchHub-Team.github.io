@@ -588,6 +588,35 @@ Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permet
 === Gateway
 === Data Consumer
 === Frontend
+/*
+  TODO: Da migliorare sicuramente l'introduzione. Possibili spunti:
+  - descrivere meglio l'organizzazione del frontend in moduli funzionali 
+  - descrivere la struttura delle cartelle (???)
+  - descrivere le principali scelte architetturali applicate, tipo
+    - Smart/Dumb components: le pages sono orchestratori mentre i components sono puramente visivi
+    - Services HTTP (chiamano effettivamente il backend) -> Services injectati nei componenti (sono quelli che i componenti usano quando devono fare una chiamata al backend)
+    - Self contained dialogs 
+*/
+Il *frontend* dell'applicazione è sviluppato con #gloss[Angular 21], adottando integralmente il modello a _Standalone Components_ introdotto nelle versioni recenti del framework: non sono presenti `NgModule`, e ogni componente, pagina e dialog è dichiarato in modo autonomo e autosufficiente.
+
+L'organizzazione del codice sorgente segue una suddivisione per _responsabilità_ chiara e ben delimitata. La cartella `pages/` raggruppa le viste dell'applicazione secondo un pattern *feature-by-page*: ogni pagina è una cartella autonoma che incapsula i propri componenti figli e i propri dialog, evitando accoppiamenti non necessari tra funzionalità distinte.
+
+Le dipendenze _trasversali_ — modelli di dominio, servizi, guard, interceptor, adapter e utility — sono organizzate in cartelle dedicate a livello `app/`, accessibili dall'intera applicazione.
+
+==== Login
+
+==== Conferma account
+
+==== Reset password
+
+==== Dashboard
+
+==== Gateway-sensor 
+
+==== Tenant
+
+==== User
+
 === Cloud Backend
 
 == Architettura di deployment <archit-deploy>
