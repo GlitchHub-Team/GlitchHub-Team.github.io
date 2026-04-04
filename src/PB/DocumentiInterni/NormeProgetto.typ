@@ -464,7 +464,7 @@ L'organizzazione delle cartelle si basa sul raggruppamento per *tipologia* di fi
 - `src/app/pages`: contiene le definizioni delle *pagine* dell'applicazione, organizzate in sotto-cartelle per feature (es. `dashboard`, `login`, `tenant`, etc...). Inoltre, all'interno di ogni cartella di feature possono essere presenti le seguenti sotto-cartelle:
   - `pages/components`: contiene le definizioni dei *componenti* utilizzati all'interno della pagina;
   - `pages/dialogs`: contiene le definizioni delle *finestre di dialogo* utilizzate all'interno della pagina;
-  I *componenti* e *finestre di dialogo* che sono condivisi tra più pagine, invece, sono situati nella sotto-cartella `pages/shared`.
+  I *componenti* e le *finestre di dialogo* che sono condivisi tra più pagine, invece, sono situati nella sotto-cartella `pages/shared`.
 - `src/app/services`: contiene le definizioni dei *servizi* utilizzati per gestire la logica di business e le comunicazioni con il backend, organizzati in sotto-cartelle per dominio (es. `auth`, `gateway`, `sensor`, etc...);
 - `src/app/utils`: contiene le definizioni delle *funzioni di utilità* utilizzate all'interno dell'applicazione;
 - `src/environments`: contiene la definizione dei file di *configurazione* dell'applicazione, come ad esempio `environment.ts`.
