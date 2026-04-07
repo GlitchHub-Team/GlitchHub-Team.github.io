@@ -489,7 +489,7 @@ L'architettura esagonale è un modello architetturale che separa nettamente la l
  In questo modo la logica di business rimane testabile e disaccoppiata dal resto, consentendo di progettare e sviluppare la logica fondamentale dell'applicativo in maniera pura e indipendente dalle tecnologie infrastrutturale scelte, le quali diventano potenzialmente sostituibili in futuro.
 Questa strategia si traduce in componenti applicativi facilmente intercambiabili come database, UX e componenti di servizio, che possono essere testati in modo indipendente.
 
-Il sistema sfrutta i principi di questa architettura proprio per disaccoppiare le sue parti in maniera coerente soprattutto al livello Component del modello C4, isolando ad esempio la logica di aggregazione dal codice di persistenza, come TimescaleDB, e dal message broker, ovvero NATS. Tra i vantaggi di questo approccio si possono sottolineare:
+Il sistema sviluppato sfrutta i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
 - Una maggiore semplicità nello scrivere test unitari in modo isolato, tramite l'uso di astrazioni per input e/o output;
 - Più tipi di client, o tenant in questo contesto, possono utilizzare la stessa logica di dominio.
 - Se i componenti dell'interfaccia utente e del database richiedono aggiornamenti tecnologici, questi non influiranno sulla logica dell'applicazione.
