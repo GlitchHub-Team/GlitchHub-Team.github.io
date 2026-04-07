@@ -32,10 +32,10 @@
   stato: "Bozza",
   registro-modifiche: (
     (
-      "0.5.0",
+      "0.6.0",
       "03/04/2026",
       "Alessandro Dinato",
-      "-",
+      "Riccardo Graziani",
       [Code diagram del Data Consumer],
     ),
     (
@@ -91,8 +91,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Specifica tecnica",
 )
 
