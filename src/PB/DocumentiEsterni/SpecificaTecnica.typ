@@ -610,7 +610,7 @@ L'*IoT Data Writer* riceve la struttura generata e scrive i dati aggregati nel d
 )
 
 Il componente Angular SPA ha lo scopo di fornire un'interfaccia visiva che permette di visualizzare i dati raccolti dai gateway e i relativi alert e gestire tenant, gateway, sensori e chiavi API di accesso.
-Il cuore della navigazione è affidato all'Angular Router, che coordina il caricamento dei componenti in base all'URL e permette all'utente di autenticarsi tramite il componente Autenthication Management. La sicurezza è garantita dal Role Guard, che verifica i privilegi dell'utente (Admin o utente generico) prima di inizializzare il layout.
+Il cuore della navigazione è affidato all'Angular Router, che coordina il caricamento dei componenti in base all'URL e permette all'utente di autenticarsi tramite il componente Authentication Management. La sicurezza è garantita dal Role Guard, che verifica i privilegi dell'utente (Admin o utente generico) prima di inizializzare il layout.
 La struttura del frontend è organizzata in moduli funzionali, ognuno dedicato a una specifica area di funzionalità:
 
 ===== Dashboard <comp-angular-dashboard>
@@ -685,7 +685,7 @@ In ognuno di essi è presente:
 - *useCase*: riferimento all'inbound port dello strato di business logic che si occupa di eseguire il comando ricevuto. I controller una volta eseguito il parsing del comando invieranno alla inbound port i dati necessari per eseguire il comando, e riceveranno da essa una *Response* che conterrà l'esito dell'operazione e un eventuale messaggio.
 
 #figure(
-  image("../../assets/c4/gateway/GatewayControllersCodeDiagram.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/GatewayControllersCodeDiagram.pdf", width: 100%),
   caption: [Code Diagram dei command controllers del microservizio Gateway],
 )
 
@@ -773,7 +773,7 @@ Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è compost
 ==== GatewayManagerService
 Il *GatewayManagerService* è il componente centrale del microservizio, in quanto ha lo scopo di orchestrare le istanze dei gateway e dei sensori simulati, creando e distribuendo i comandi in entrata verso il corretto destinatario.
 #figure(
-  image("../../assets/c4/gateway/GatewayManagerCodeDiagram.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/GatewayManagerCodeDiagram.pdf", width: 100%),
   caption: [Code Diagram del GatewayManagerService],
 )
 
@@ -882,7 +882,7 @@ Ogni comando ha un'implementazione specifica, ma tutti condividono la stessa int
 Essi vengono eseguiti tutti nel gateway simulato o nel sensore simulato destinatario del comando, così da garantire l'esecuzione di un comando alla volta per componente. Eccezione fatta per i comandi *CreateGatewayCmd* e *AddSensorCmd* che vengono eseguiti direttamente dal *GatewayManagerService* per poter aggiungere il nuovo gateway o sensore alle strutture dati del servizio e far partire l'esecuzione dello stesso.
 
 #figure(
-  image("../../assets/c4/gateway/CommandsCodeDiagram.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/CommandsCodeDiagram.pdf", width: 100%),
   caption: [Code Diagram dei comandi dei gateway e dei sensori simulati],
 )
 
@@ -1031,7 +1031,7 @@ Ogni gateway simulato ha due *channel*: uno per ricevere i comandi di tipo *Base
 
 
 #figure(
-  image("../../assets/c4/gateway/GatewayCodeDiagram.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/GatewayCodeDiagram.pdf", width: 100%),
   caption: [Code Diagram del gateway simulato],
 )
 
@@ -1074,7 +1074,7 @@ L'enum *GatewayStatus* rappresenta lo stato del gateway simulato, i possibili st
 - *Stopped*: il gateway simulato è interrotto permanentemente, non invia dati IoT e non può essere riattivato successivamente.
 
 #figure(
-  image("../../assets/c4/gateway/GatewayStatus.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/GatewayStatus.pdf", width: 100%),
   caption: [Workflow dei possibili stati del gateway simulato],
 )
 
@@ -1123,7 +1123,7 @@ Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una *gorout
 Ogni sensore simulato ha due channel: uno per ricevere i comandi di tipo *BaseCommand* e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
 #figure(
-  image("../../assets/c4/gateway/SensorCodeDiagram.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/SensorCodeDiagram.pdf", width: 100%),
   caption: [Code Diagram del sensore simulato],
 )
 
@@ -1194,7 +1194,7 @@ Il *GatewayManagerService* utilizza un sistema di persistenza per salvare la con
 Il sistema di persistenza si basa sulla definizione di un'interfaccia *ConfigPort* che aggrega interfacce più specifiche, in questo modo il *GatewayManagerService* passa *ConfigPort* ai comandi per operare sul database di configurazione, mentre ciascun comando dipende solo dall'interfaccia specifica di cui ha bisogno, nel rispetto dell'Interface Segregation Principle.
 
 #figure(
-  image("../../assets/c4/gateway/ConfigCodeDiagram.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/ConfigCodeDiagram.pdf", width: 100%),
   caption: [Code Diagram della configurazione persistente dei gateway e dei sensori simulati],
 )
 
@@ -1237,7 +1237,7 @@ Inoltre ogni istanza ha due parametri all'avvio che ne definiscono il comportame
 - *Subject*: definisce il subject NATS a cui il consumer si iscrive per ricevere i dati, più il subject è specifico più il carico sul consumer è ridotto, viceversa un subject più generico permette di ricevere più dati ma aumenta il carico sul consumer e sul database. È possibile così configurare i data consumer in base al carico di ogni sensore, gateway o addirittura tenant.
 
 #figure(
-  image("../../assets/c4/DataConsumerCodeDiagram.drawio.svg", width: 100%),
+  image("../../assets/c4/DataConsumerCodeDiagram.pdf", width: 100%),
   caption: [Code diagram del microservizio Data Consumer],
 )
 
@@ -1287,7 +1287,7 @@ La struct in questione ha i seguenti attributi e metodi:
 == Database design <db-design>
 === Buffer database
 #figure(
-  image("../../assets/c4/gateway/BufferER.drawio.svg", width: 40%),
+  image("../../assets/c4/gateway/BufferER.pdf", width: 40%),
   caption: [Diagramma ER del database per il buffer interno del gateway simulato],
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] come buffer interno per i dati prodotti dai sensori simulati associati a ciascun gateway, in modo da poterli recuperare e inviare periodicamente tramite #gloss[NATS JetStream].
@@ -1301,7 +1301,7 @@ Il database perciò avrà un'entità principale con i seguenti attributi:
 
 === Configuration database
 #figure(
-  image("../../assets/c4/gateway/GatewaySensorER.drawio.svg", width: 100%),
+  image("../../assets/c4/gateway/GatewaySensorER.pdf", width: 100%),
   caption: [Diagramma ER del database per la configurazione dei gateway e dei sensori simulati],
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] per salvare la configurazione dei gateway e dei sensori simulati, in modo da poterla recuperare in caso di riavvio del servizio o di crash.
@@ -1325,7 +1325,7 @@ Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un
 
 === Sensor data database
 #figure(
-  image("../../assets/c4/TimescaleER.drawio.svg", width: 60%),
+  image("../../assets/c4/TimescaleER.pdf", width: 60%),
   caption: [Diagramma ER del database per il salvataggio dei dati IoT prodotti],
 )
 
