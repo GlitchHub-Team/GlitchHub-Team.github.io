@@ -492,7 +492,7 @@ Questa strategia si traduce in componenti applicativi facilmente intercambiabili
 Il sistema sviluppato sfrutta i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
 - Una maggiore semplicità nello scrivere test unitari in modo isolato per ogni componente ad ogni strato, tramite l'uso dei _mock_ per i relativi input e output;
 - Più tipi di client, o tenant in questo contesto, possono utilizzare la stessa logica di dominio.
-- Se i componenti dell'interfaccia utente e del database richiedono aggiornamenti tecnologici, questi non influiranno sulla logica dell'applicazione.
+- Eventuali aggiornamenti alle tecnologie non influiscono sulla logica di business dell'applicazione.
 
 == Architettura di deployment <archit-deploy>
 === Diagramma di deployment <deploy-diagram>
