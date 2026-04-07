@@ -484,13 +484,16 @@ Sono inoltre presenti componenti che operano indipendentemente dalle richieste d
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
 === Architettura esagonale <architettura-esagonale>
-L'architettura esagonale è un modello che separa nettamente la logica di dominio dal codice dell'infrastruttura correlato, definendo un nucleo applicativo indipendente da dettagli tecnici come protocolli di comunicazione, database o framework. Il nucleo comunica con componenti esterni tramite interfacce chiamate porte e utilizza adattatori per tradurre gli scambi tecnici con questi componenti; in questo modo la logica di business rimane testabile, sostituibile e stabile nel tempo: ciò consente di progettare i sistemi e le applicazioni in base allo scopo anziché in base alla tecnologia. 
+L'architettura esagonale è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. Il nucleo, infatti, comunica con tali componenti esterni tramite delle interfacce dette _ports_, implementate da oggetti concreti detti _adapters_ che permettono alla _business logic_ dell'applicazione di comunicare con le componenti esterne usando un linguaggio disaccoppiato dalle specifiche infrastrutturale delle componenti esterne.
+
+In questo modo la logica di business rimane testabile e disaccoppiata dal resto, consentendo di progettare e sviluppare la logica fondamentale dell'applicativo in maniera pura e indipendente dalle tecnologie infrastrutturale scelte, le quali diventano potenzialmente sostituibili in futuro.
+
 Questa strategia si traduce in componenti applicativi facilmente intercambiabili come database, UX e componenti di servizio, che possono essere testati in modo indipendente.
 
-Il sistema sfrutta i principi di questa architettura proprio per disaccoppiare le sue parti in maniera coerente soprattutto al livello Component del modello C4, isolando ad esempio la logica di aggregazione dal codice di persistenza, come TimescaleDB, e dal message broker, ovvero NATS. Tra i vantaggi di questo approccio si possono sottolineare:
-- Una maggiore semplicità nello scrivere test unitari in modo isolato, tramite l'uso di astrazioni per input e/o output;
-- Più tipi di client, o tenant in questo contesto, possono utilizzare la stessa logica di dominio.
-- Se i componenti dell'interfaccia utente e del database richiedono aggiornamenti tecnologici, questi non influiranno sulla logica dell'applicazione.
+Il sistema sviluppato sfrutta i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
+- Una maggiore semplicità nello scrivere test unitari in modo isolato per ogni componente ad ogni strato, tramite l'uso dei _mock_ per i relativi input e output;
+- La stessa logica di dominio è riutilizzabile da più tipi di client grazie all'interscambiabilità di porte e adapter, che isolano il core dalle specifiche interfacce;
+- Eventuali aggiornamenti alle tecnologie non influiscono sulla logica di business dell'applicazione.
 
 == Architettura di deployment <archit-deploy>
 === Diagramma di deployment <deploy-diagram>
