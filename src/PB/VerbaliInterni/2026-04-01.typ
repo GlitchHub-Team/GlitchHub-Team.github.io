@@ -34,36 +34,34 @@
 Il presente documento attesta che, in data *01 aprile 2026* dalle ore 18:00 alle ore 19:30, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 == Allineamento tecnico: Workflow Commissioning
-È stato rispiegato il flusso operativo per l'associazione di un nuovo gateway al sistema a solo scopo di allineamento e comprensione di tutti i membri del gruppo.
+Il team ha effettuato un ripasso del flusso operativo per l'associazione di nuovi gateway al sistema. L'attività ha avuto scopo puramente didattico e di allineamento interno, garantendo che ogni membro abbia piena comprensione della procedura di commissioning.
 
 == Revisione della distribuzione delle ore di lavoro
 Il gruppo ha discusso la possibilità di revisionare la distribuzione delle ore di lavoro tra i membri e il totale per i ruoli. Si è arrivati alla conclusione di rimandare l'argomento ad un incontro successivo, dando la precedenza all'assegnazione dei compiti da svolgere.
 
 === Test di sistema
-Dopo il Diario di Bordo svolto durante la stessa mattinata, il gruppo ha analizzato la propria capacità di stilare tutti i test di sistema nei modi e termini descritti dal Prof. Vardanega Tullio, ovvero test riguardo l'interazione tra più componenti per ogni servizio destinato all'utente finale, entro la scadenza prevista per la consegna. Per quanto ci sarà l'impegno nel portare a termine la sfida imprevista, non è possibile garantire la sua qualità e/o completezza.
+Dopo il Diario di Bordo svolto durante la stessa mattinata, il gruppo ha analizzato la propria capacità di stilare tutti i test di sistema nei modi e termini descritti dal Prof. Vardanega Tullio. Nonostante il massimo impegno nel rispondere a questa sfida entro la scadenza, il team è giusto alla conclusione che potrebbe non essere possibile garantire la copertura completa o l'ottimale livello qualitativo dei test a causa delle tempistiche ristrette.
 
 == Revisione del lavoro
 
 === Stato di avanzamento Frontend
 Questi sono i compiti più notevoli portati a termine durante lo sprint precedente, riguardo il frontend:
 - Correzioni all'interfaccia, tra cui il CSS e la lingua principale.
-- Aggiunte sezioni per gestire utenti Super Admin, visibile solo dagli stessi.
-- Aggiunte sezioni per gestire utenti Tenant, utilizzabile da un Super Admin che impersona un Tenant Admin.
-- Sviluppati test unitari (TU) per adapters.
+- Aggiunta la sezione per gestire utenti Super Admin, visibile solo dagli stessi.
+- Aggiunta la sezione per gestire utenti Tenant, utilizzabile da un Super Admin che impersona un Tenant Admin.
+- Sviluppati test unitari (TU) per gli adapters.
 
 
 === Stato di avanzamento Backend
-Questi sono i compiti più notevoli portati a termine durante lo sprint precedente, riguardo il frontend:
-- Sviluppati TU per il componente `auth` e adapter per componente `user`.
+Questi sono i compiti più importanti portati a termine durante lo sprint precedente, riguardo il backend:
+- Sviluppati i TU per il componente `auth` e gli adapter per componente `user`.
 - Codifica del package `email` e suoi relativi TU.
 - Codifica dei componenti `historical_data`, `sensor` e `hello` e loro relativi test.
 
 Rimane da implementare il package `real_time_data`.
 
 === Altri documenti
-Sono state apportate modifiche anche ai seguenti documenti:
-- Glossario, con l'aggiunta di termini.
-- Norme di Progetto, con la stesura di norme e convenzioni di codifica.
+Sono state apportate modifiche anche al Glossario, con l’aggiunta di nuovi termini, e alle Norme di Progetto, con la stesura delle convenzioni e delle regole di codifica.
 
 
 = Assegnazione delle prossime task basate sulle decisioni prese
