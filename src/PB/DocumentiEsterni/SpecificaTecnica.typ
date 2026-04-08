@@ -1400,11 +1400,11 @@ Espone ai componenti i seguenti metodi _pubblici_:
 - `logout()`: metodo che effettua il logout dell'utente, rimuovendo il token JWT, resettando lo stato della sessione utente e navigando verso la pagina di login;
 - `clearError()`: metodo che resetta lo stato di errore, utilizzato ad esempio per chiudere i messaggi di errore visualizzati all'utente.
 
-====== AuthActionService <angular-authactionservice>
+====== AuthActionService
 `AuthActionService` è il servizio dedicato ad orchestrare le azioni di autenticazione che coinvolgono più servizi, come ad esempio il reset della password o la conferma della creazione dell'account. \
 Viene utilizzato dal dialog component `ForgotPasswordDialog` per gestire le operazioni di reset della password. Una sua descrizione più dettagliata è presente nella sezione ... dedicata alla pagina di reimpostazione della password.
 
-====== TenantService <angular-tenantservice>
+====== TenantService
 `TenantService` è il servizio dedicato alla gestione dei tenant, utilizzato per recuperare la lista dei tenant disponibili in caso di selezione di un ruolo che richiede l'associazione a un tenant specifico, come ad esempio `TENANT_ADMIN` o `TENANT_USER`. \
 Una sua descrizione più dettagliata è presente nella sezione ... dedicata alla pagina di gestione dei tenant.
 
@@ -1450,7 +1450,7 @@ La pagina gestisce tre metodi principali:
 Inietta tramite _dependency injection_ le seguenti dipendenze:
 - `FormBuilder`: servizio di Angular per la creazione e gestione dei form reattivi, utilizzato per definire la struttura del form di login e le relative validazioni.
 - `DestroyRef`: riferimento alla distruzione del componente, utilizzato per gestire correttamente la pulizia delle risorse e delle sottoscrizioni quando il componente viene distrutto.
-- `TenantService`: servizio descritto nella @angular-tenantservice, usato per recuperare la lista dei tenant disponibili.
+- `TenantService`: servizio descritto nella ..., usato per recuperare la lista dei tenant disponibili.
 
 Il component presenta i seguenti attributi:
 - `loginForm`: rappresenta il form di login, definito come un `FormGroup` che contiene i campi `email`, `password`, `ruolo` e `tenant`, con le relative validazioni;
@@ -1472,7 +1472,7 @@ Inietta tramite _dependency injection_ le seguenti dipendenze:
 - `FormBuilder`: servizio di Angular per la creazione e gestione dei form reattivi, utilizzato per definire la struttura del form di reset della password e le relative validazioni.
 - `DestroyRef`: riferimento alla distruzione del componente, utilizzato per gestire correttamente la pulizia delle risorse e delle sottoscrizioni quando il componente viene distrutto.
 - `DialogRef`: riferimento al dialogo aperto, utilizzato per gestire la chiusura del dialogo e il passaggio dei dati tra il dialogo e il componente chiamante.
-- `TenantService`: servizio descritto nella @angular-tenantservice, usato per recuperare la lista dei tenant disponibili.
+- `TenantService`: servizio descritto nella ..., usato per recuperare la lista dei tenant disponibili.
 - `AuthActionsService`: servizio descritto nella ..., dedicato alla gestione delle azioni di autenticazione, utilizzato per inviare le richieste di _reset password_, _modifica password_ e _conferma account_ al backend.
 
 Il dialog presenta i seguenti attributi:
@@ -1489,10 +1489,79 @@ Il dialog presenta i seguenti metodi _protected_, ovvero:
 - `dismissError()`, che si occupa di gestire la chiusura dei messaggi di errore visualizzati all'utente.
 
 ==== Conferma account
+La seguente sezione ha lo scopo di descrivere in dettaglio il diagramma della pagina di *conferma account*, che rappresenta la schermata che l'utente incontra al momento di confermare la creazione del proprio account tramite il link ricevuto via email.
 
-===== ConfirmAccountPage
+===== Modelli dati
+====== ConfirmAccountResponse <angular-confirmaccountresponse-model>
+Rappresenta la richiesta di conferma della creazione dell'account inviata al backend, contiene i seguenti campi:
+  - `token: string` rappresenta il token di conferma dell'account ricevuto via email, necessario per verificare la validità della richiesta di conferma account;
+  - `tenantId?: string` rappresenta il tenant di appartenenza dell'utente, richiesto solo se il ruolo è `TENANT_ADMIN` o `TENANT_USER`;
+  - `newPassword: string` rappresenta la nuova password scelta dall'utente, necessaria per completare la creazione dell'account.
 
-===== ConfirmAccountFormComponent
+===== Servizi e adapters
+// TODO: da finire
+====== AuthActionsService <angular-authactionservice>
+`AuthActionsService` è il servizio dedicato ad orchestrare le azioni di autenticazione che coinvolgono più servizi, come ad esempio il reset della password o la conferma della creazione dell'account. \
+Viene utilizzato dal dialog component `ForgotPasswordDialog` per gestire le operazioni di reset della password, e dal dialog component `ConfirmAccountDialog` per gestire le operazioni di conferma della creazione dell'account.
+
+Inietta tramite _dependency injection_ le seguenti dipendenze:
+- `AuthApiClientService`: servizio descritto nella @angular-authapiclientservice, utilizzato per inviare le richieste di autenticazione al backend;
+- `TokenStorageService`: servizio descritto nella @angular-tokenstorageservice, utilizzato per salvare e rimuovere il token JWT dalla memoria locale del browser;
+- `UserSessionService`: servizio descritto nella @angular-usersessionservice, utilizzato per inizializzare e resettare la sessione utente in base alle operazioni di autenticazione;
+
+Espone all'esterno i seguenti _signals_ pubblici:
+- `loading`: booleano che indica se è in corso una richiesta di autenticazione, utile per mostrare indicatori di caricamento nell'interfaccia utente;
+- `error`: stringa che contiene eventuali messaggi di errore ricevuti durante le operazioni di autenticazione, utile per mostrare feedback all'utente.
+- `passwordChangeResult`: booleano che contiene il risultato dell'operazione di cambio password, utile per mostrare feedback all'utente.
+
+// TODO: mettiamo riferimenti agli altri modelli dati utilizzati
+Espone i seguenti metodi _pubblici_:
+- `forgotPassword(forgotPasswordRequest: ForgotPasswordRequest)`: metodo che riceve una `ForgotPasswordRequest` (vedi ...) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo aggiorna lo stato interno con un messaggio di successo, in caso di errore aggiorna lo stato con il messaggio di errore ricevuto;
+- `confirmPasswordChange(data: PasswordChange)`: metodo che riceve una `PasswordChange` (vedi ...) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo aggiorna lo stato interno con un messaggio di successo, in caso di errore aggiorna lo stato con il messaggio di errore ricevuto;
+- `confirmPasswordReset(req: ForgotPasswordResponse)`: metodo che riceve una `ForgotPasswordResponse` (vedi ...) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo aggiorna lo stato interno con un messaggio di successo, in caso di errore aggiorna lo stato con il messaggio di errore ricevuto;
+- `confirmAccount(req: ConfirmAccountResponse)`: metodo che riceve una `ConfirmAccountResponse` (vedi @angular-confirmaccountresponse-model) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo: 
+  - inizializza la sessione utente tramite lo `UserSessionService`;
+  - salva il token JWT inviato dal backend nel `TokenStorageService`;
+  in caso di errore aggiorna lo stato con il messaggio di errore ricevuto.
+
+===== Componenti UI
+====== ConfirmAccountPage
+ConfirmAccountPage è il componente responsabile di orchestrare l'interfaccia utente e gestire le interazioni con l'utente durante il processo di conferma della creazione dell'account. \
+La pagina incapsula al suo interno il componente `ConfirmAccountFormComponent`, che si occupa di gestire il form di conferma account. 
+Il compito di `ConfirmAccountPage` è di fornire in input al `ConfirmAccountFormComponent` eventuali messaggi di errore o feedback relativi al processo di conferma account, e di gestire la navigazione verso le altre pagine del sistema in caso di successo.
+
+Inietta tramite _dependency injection_ le seguenti dipendenze:
+- `AuthActionsService`: servizio descritto nella @angular-authactionservice, usato per gestire le operazioni di conferma della creazione dell'account, e per recuperare lo stato dell'operazione.
+- `Router`: servizio di navigazione di Angular, utilizzato per gestire la transizione tra le pagine dell'applicazione in base alle azioni dell'utente e allo stato di autenticazione.
+- `DestroyRef`: riferimento alla distruzione del componente, utilizzato per gestire correttamente la pulizia delle risorse e delle sottoscrizioni quando il componente viene distrutto.
+- `ActivatedRoute`: servizio di Angular per accedere ai parametri della route, utilizzato per recuperare il token di conferma account e l'eventuale tenantId dai parametri dell'URL.
+
+Legge i seguenti _signals_ dall'`AuthActionsService` e li fornisce in input al `ConfirmAccountFormComponent`:
+- `loading`: booleano che indica se è in corso una richiesta di conferma account, utile per mostrare indicatori di caricamento nell'interfaccia utente;
+- `error`: stringa che contiene eventuali messaggi di errore ricevuti durante le operazioni di conferma account, utile per mostrare feedback all'utente;
+
+La pagina presenta i seguenti attributi:
+- `token`: stringa che rappresenta il token di conferma account, recuperato dai _map params_ dell'URL;
+- `tenantId?`: stringa opzionale che rappresenta l'eventuale tenantId, recuperato dai _query params_ dell'URL.
+
+La pagina gestisce due metodi principali:
+- `onConfirmAccount(req: ConfirmAccountRequest)`: riceve una `ConfirmAccountRequest` dal `ConfirmAccountFormComponent` e la inoltra al servizio di autenticazione per avviare il processo di conferma della creazione dell'account. In caso di successo, naviga verso la dashboard; in caso di errore, aggiorna lo stato con il messaggio di errore ricevuto;
+- `onDismissError()`: gestisce la chiusura dei messaggi di errore visualizzati all'utente;
+
+====== ConfirmAccountFormComponent
+ConfirmAccountFormComponent è il componente responsabile di gestire il form di conferma account, inclusa la validazione dei campi e l'invio della richiesta di conferma account al `ConfirmAccountPage`.
+
+Inietta tramite _dependency injection_ le seguenti dipendenze:
+- `FormBuilder`: servizio di Angular per la creazione e gestione dei form reattivi, utilizzato per definire la struttura del form di conferma account e le relative validazioni.
+
+Il component presenta i seguenti attributi:
+- `confirmAccountForm`: rappresenta il form di conferma account, definito come un `FormGroup` che contiene il campo `newPassword` e `confirmNewPassword`, con le relative validazioni;
+
+Il form di conferma account richiede all'utente di inserire:
+- `newPassword`: un campo di input testuale per la nuova password dell'utente, con validazione per assicurarsi che rispetti i criteri di complessità (ad esempio lunghezza minima);
+- `confirmNewPassword`: un campo di input testuale per la conferma della nuova password, con validazione per assicurarsi che sia uguale al campo `newPassword`. Tale validazione sfrutta un metodo _privato_ chiamato `passwordsMatchValidator`, che confronta i valori dei campi `newPassword` e `confirmNewPassword` e restituisce un errore di validazione se non corrispondono.
+
+Il component presenta un solo metodo _protetto_, ovvero `onSubmit()`, che viene chiamato al momento dell'invio del form, e si occupa di validare i campi, costruire una `ConfirmAccountRequest` e inviarla al componente genitore `ConfirmAccountPage` tramite l'output `submitConfirmAccount`.
 
 ==== Reset password
 
