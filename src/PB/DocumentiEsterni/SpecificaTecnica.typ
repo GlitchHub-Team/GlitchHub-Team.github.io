@@ -1281,6 +1281,7 @@ La struct in questione ha i seguenti attributi e metodi:
 
 
 === Frontend
+//TODO MODIFICARE
 La seguente sezione descrive in dettaglio il #gloss[Code Diagram] del frontend #gloss[Angular], che rappresenta l'interfaccia utente del sistema.
 
 L'architettura logica del frontend si basa sui principi della *component based architecture* e del pattern *smart/dumb component*: l'adozione di questo modello permette di mantenere una chiara separazione tra la logica di presentazione e quella di business, facilitando la manutenibilità e la scalabilità del codice.
@@ -1304,11 +1305,8 @@ Il frontend verrà descritto a partire dal livello delle _pages_, illustrando pe
 
 Per comodità, ogni sezione includerà esclusivamente la propria porzione del #gloss[Code Diagram], ma saranno comunque presenti riferimenti ad altri componenti e servizi coinvolti.
 
-==== Login
-La seguente sezione ha lo scopo di descrivere in dettaglio il diagramma della pagina di *login*, che rappresenta la prima schermata che l'utente incontra al momento dell'accesso al sistema.
-
-===== Modelli dati
-====== Permission <angular-permission-model>
+==== Modelli dati
+===== Permission <angular-permission-model>
 Rappresenta l'enum che stabilisce i permessi disponibili all'interno del sistema. Prevede i seguenti valori:
 - `DASHBOARD_ACCESS`;
 - `GATEWAY_MANAGEMENT`;
@@ -1320,258 +1318,33 @@ Rappresenta l'enum che stabilisce i permessi disponibili all'interno del sistema
 - `TENANT_MANAGEMENT`;
 - `APIKEY_MANAGEMENT`;
 
-====== UserRole <angular-userrole-model>
+===== UserRole <angular-userrole-model>
 Rappresenta l'enum che stabilisce i ruoli disponibili all'interno del sistema, ossia `SUPER_ADMIN`, `TENANT_ADMIN` e `TENANT_USER`.
 
-====== LoginRequest <angular-loginrequest-model>
+===== LoginRequest <angular-loginrequest-model>
 Rappresenta la richiesta di login inviata al backend, contiene i seguenti campi:
   - `email: string` rappresenta l'indirizzo email dell'utente che effettua il login;
   - `password: string` rappresenta la password dell'utente che effettua il login;
   - `tenantId?: string` rappresenta il tenant di appartenenza dell'utente, richiesto solo se il ruolo è `TENANT_ADMIN` o `TENANT_USER`.
 
-====== AuthResponse <angular-authresponse-model>
+===== AuthResponse <angular-authresponse-model>
 Rappresenta la risposta del backend alla richiesta di login, contiene il seguente campo:
   - `jwt: string` rappresenta il token JWT da utilizzare per autenticare le richieste successive al backend. Contiene codificate all'interno del payload le seguenti informazioni:
     - `uid: string` rappresenta l'identificativo univoco dell'utente;
     - `tid: string` rappresenta l'identificativo del tenant dell'utente;
     - `rol: string` rappresenta il ruolo dell'utente;
 
-====== UserSession <angular-usersession-model>
+===== UserSession <angular-usersession-model>
 Rappresenta la sessione dell'utente autenticato, contiene le seguenti informazioni:
   - `userId: string` rappresenta l'indirizzo email dell'utente autenticato;
   - `tenantId?: string` rappresenta l'identificativo del tenant dell'utente autenticato, se presente;
   - `role: UserRole` rappresenta il ruolo dell'utente autenticato, i valori possibili sono `SUPER_ADMIN`, `TENANT_ADMIN` e `TENANT_USER`;
 
-===== Servizi e adapters
-====== AuthApiClientService <angular-authapiclientservice>
-`AuthApiClientService` è il servizio dedicato alla comunicazione con il backend per le operazioni di autenticazione, come ad esempio il login e il logout. \
-Inietta tramite _dependency injection_ il servizio `HttpClient` di Angular, che permette di inviare richieste HTTP al backend in modo semplice e coerente. \
-Costruisce l'URL delle API di autenticazione utilizzando un valore di base URL definito nelle variabili d'ambiente `environment.ts` e lo salva nella variabile `apiURL`.
+==== Adapters e utils
 
-Espone i seguenti metodi _pubblici_:
-- `login(request: LoginRequest)`: metodo che riceve una `LoginRequest` (vedi @angular-loginrequest-model) e la inoltra al backend tramite una richiesta HTTP POST, restituendo un `Observable<AuthResponse>`;
-- `logout()`: metodo che invia una richiesta HTTP POST al backend per effettuare il logout dell'utente, restituendo un `Observable<void>`;
-- `verifyForgotPasswordToken(token: string, tenantId?: string)`: metodo che invia una richiesta HTTP POST al backend per verificare la validità di un token di reset della password, restituendo un `Observable<void>`;
-- `forgotPasswordRequest(forgotPasswordRequest: ForgotPasswordRequest)`: metodo che invia una richiesta HTTP POST al backend per richiedere l'invio di un'email di reset della password, restituendo un `Observable<void>`;
-- `confirmPasswordReset(req: ForgotPasswordResponse)`: metodo che invia una richiesta HTTP POST al backend per confermare il reset della password, restituendo un `Observable<void>`;
-- `confirmPasswordChange(data: PasswordChange)`: metodo che invia una richiesta HTTP POST al backend per confermare la modifica della password, restituendo un `Observable<void>`;
-- `verifyAccountToken(token: string, tenantId?: string)`: metodo che invia una richiesta HTTP POST al backend per verificare la validità di un token di verifica dell'account, restituendo un `Observable<void>`;
-- `confirmAccountCreation(req: ConfirmAccountResponse)`: metodo che invia una richiesta HTTP POST al backend per confermare la creazione dell'account, restituendo un `Observable<void>`.
+==== Services
 
-====== TokenStorageService <angular-tokenstorageservice>
-`TokenStorageService` è il servizio dedicato alla gestione del token JWT, che si occupa di salvare, recuperare e rimuovere il token dalla memoria locale del browser. \
-
-Espone i seguenti metodi _pubblici_:
-- `saveToken(token: string)`: metodo che riceve un token JWT e lo salva nella _sessionStorage_ del browser;
-- `getToken()`: metodo che recupera il token JWT dalla _sessionStorage_ del browser, restituendo una stringa o null se il token non è presente;
-- `clearToken()`: metodo che rimuove il token JWT dalla _sessionStorage_ del browser;
-- `isTokenValid()`: metodo che verifica se il token JWT presente nella _sessionStorage_ è valido, restituendo un booleano.
-
-====== UserSessionService <angular-usersessionservice>
-`UserSessionService` è il servizio dedicato alla gestione della sessione dell'utente autenticato, che si occupa di mantenere le informazioni sull'utente durante la navigazione. \
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `TokenStorageService`: servizio descritto nella @angular-tokenstorageservice, utilizzato per recuperare il token JWT dalla memoria locale.
-
-Espone all'esterno un _signal_ pubblico _readonly_ `currentUser` di tipo `UserSession | null`, che racchiude le informazioni sulla sessione dell'utente autenticato.
-
-Espone ai componenti i seguenti metodi _pubblici_:
-- `initSession(token: string)`: metodo che riceve un token JWT, lo decodifica chiamando il metodo `decodeToken(token: string)` per estrarre le informazioni sull'utente e aggiorna il _signal_ della sessione utente con queste informazioni;
-- `clearSession()`: metodo che resetta il _signal_ della sessione utente, rimuovendo tutte le informazioni sull'utente.
-
-I principali metodi _privati_ del servizio sono i seguenti:
-- `decodeToken(token: string)`, il quale ha il compito di decodificare il token JWT ricevuto dal backend, e mappare i campi estratti all'interfaccia `UserSession` (vedi @angular-usersession-model). 
-- `restoreSession()`, il quale ha il compito di ristabilire la sessione utente in caso di refresh della pagina, recuperando il token JWT dalla memoria locale.
-
-====== AuthSessionService <angular-authsessionservice>
-`AuthSessionService` è il servizio dedicato alla gestione della sessione di autenticazione, che si occupa di inviare le richieste di _login_ e _logout_ al backend. \
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `AuthApiClientService`: servizio descritto nella @angular-authapiclientservice, utilizzato per inviare le richieste di login e logout al backend;
-- `TokenStorageService`: servizio descritto nella @angular-tokenstorageservice, utilizzato per salvare e rimuovere il token JWT dalla memoria locale del browser;
-- `UserSessionService`: servizio descritto nella @angular-usersessionservice, utilizzato per inizializzare e resettare la sessione utente in base alle operazioni di login e logout;
-- `Router`: servizio di navigazione di Angular, utilizzato per gestire la transizione tra le pagine dell'applicazione in base alle azioni dell'utente e allo stato di autenticazione.
-
-Espone all'esterno i seguenti _signals_ pubblici:
-- `isAuthenticated`: booleano che indica se l'utente è autenticato o meno, basato sulla presenza di un token JWT valido nella memoria locale;
-- `loading`: booleano che indica se è in corso una richiesta di login o logout, utile per mostrare indicatori di caricamento nell'interfaccia utente;
-- `error`: stringa che contiene eventuali messaggi di errore ricevuti durante le operazioni di login o logout, utile per mostrare feedback all'utente.
-
-Espone ai componenti i seguenti metodi _pubblici_:
-- `login(request: LoginRequest)`: metodo che riceve una `LoginRequest` (vedi @angular-loginrequest-model) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo salva il token JWT ricevuto tramite il `TokenStorageService`, aggiorna lo stato della sessione utente tramite lo `UserSessionService` e naviga verso la dashboard, in caso di errore aggiorna il proprio stato interno con il messaggio di errore ricevuto;
-- `logout()`: metodo che effettua il logout dell'utente, rimuovendo il token JWT, resettando lo stato della sessione utente e navigando verso la pagina di login;
-- `clearError()`: metodo che resetta lo stato di errore, utilizzato ad esempio per chiudere i messaggi di errore visualizzati all'utente.
-
-====== AuthActionService
-`AuthActionService` è il servizio dedicato ad orchestrare le azioni di autenticazione che coinvolgono più servizi, come ad esempio il reset della password o la conferma della creazione dell'account. \
-Viene utilizzato dal dialog component `ForgotPasswordDialog` per gestire le operazioni di reset della password. Una sua descrizione più dettagliata è presente nella sezione ... dedicata alla pagina di reimpostazione della password.
-
-====== TenantService
-`TenantService` è il servizio dedicato alla gestione dei tenant, utilizzato per recuperare la lista dei tenant disponibili in caso di selezione di un ruolo che richiede l'associazione a un tenant specifico, come ad esempio `TENANT_ADMIN` o `TENANT_USER`. \
-Una sua descrizione più dettagliata è presente nella sezione ... dedicata alla pagina di gestione dei tenant.
-
-====== PermissionService <angular-permissionservice>
-`PermissionService` è il servizio dedicato alla gestione dei permessi, utilizzato per verificare se l'utente autenticato ha i permessi necessari per accedere a determinate funzionalità dell'applicazione. \
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `UserSessionService`: servizio descritto nella @angular-usersessionservice, utilizzato per recuperare il ruolo dell'utente autenticato.
-
-Mantiene al suo interno la costante `ROLE_PERMISSIONS` di tipo `Record<UserRole, Permission[]>` che mappa ad ogni ruolo utente i permessi che detiene.
-
-Espone ai componenti i seguenti metodi _pubblici_:
-- `can(permission: Permission)`: metodo che riceve un permesso e verifica se l'utente autenticato ha quel permesso, restituendo un booleano;
-- `canAny(permission: Permission[])`: metodo che riceve una lista di permessi e verifica se l'utente autenticato ha almeno uno di quei permessi, restituendo un booleano;
-- `canAll(permission: Permission[])`: metodo che riceve una lista di permessi e verifica se l'utente autenticato ha tutti quei permessi, restituendo un booleano.
-
-====== UserRoleMapperJWT <angular-userrolemapperjwt>
-`UserRoleMapperJWT` è un mapper che associa il valore del campo `rol`, presente nel JWT di risposta del backend, al corrispondente ruolo definito nell'enum `UserRole` (vedi @angular-userrole-model).\
-
-===== Componenti UI
-====== LoginPage
-`LoginPage` è il componente principale della pagina di login, responsabile di orchestrare l'interfaccia utente e gestire le interazioni con l'utente.
-La pagina incapsula al suo interno il componente `LoginFormComponent`, che si occupa di gestire il form di login. 
-Il compito di `LoginPage` è di fornire in input al `LoginFormComponent` eventuali messaggi di errore o feedback relativi al processo di autenticazione, e di gestire la navigazione verso le altre pagine del sistema in caso di successo.
-
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `AuthSessionService`: servizio descritto nella @angular-authsessionservice, usato per gestire le operazioni di login e logout, e per recuperare lo stato dell'autenticazione;
-- `Router`: servizio di navigazione di Angular, utilizzato per gestire la transizione tra le pagine dell'applicazione in base alle azioni dell'utente e allo stato di autenticazione.
-- `Dialog`: servizio di Angular Material per la gestione dei dialoghi modali, utilizzato per aprire il dialogo di reset della password in caso di richiesta da parte dell'utente.
-- `DestroyRef`: riferimento alla distruzione del componente, utilizzato per gestire correttamente la pulizia delle risorse e delle sottoscrizioni quando il componente viene distrutto.
-
-Legge i seguenti _signals_ dall'`AuthSessionService` e li fornisce in input al `LoginFormComponent`:
-- `loading`: booleano che indica se è in corso una richiesta di login, utile per mostrare indicatori di caricamento nell'interfaccia utente;
-- `error`: stringa che contiene eventuali messaggi di errore ricevuti durante le operazioni di login, utile per mostrare feedback all'utente.
-
-La pagina gestisce tre metodi principali:
-- `onLogin(req: LoginRequest)`: riceve una `LoginRequest` dal `LoginFormComponent` e la inoltra al servizio di autenticazione per avviare il processo di login. In caso di successo, naviga verso la dashboard; in caso di errore, aggiorna lo stato con il messaggio di errore ricevuto.
-- `onForgotPassword()`: gestisce la richiesta di reset della password, aprendo il dialog `ForgotPasswordDialog`.
-- `onDismissError()`: gestisce la chiusura dei messaggi di errore visualizzati all'utente.
-
-====== LoginFormComponent
-`LoginFormComponent` è il componente responsabile di gestire il form di login, inclusa la validazione dei campi e l'invio della richiesta di autenticazione al `LoginPage`.
-
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `FormBuilder`: servizio di Angular per la creazione e gestione dei form reattivi, utilizzato per definire la struttura del form di login e le relative validazioni.
-- `DestroyRef`: riferimento alla distruzione del componente, utilizzato per gestire correttamente la pulizia delle risorse e delle sottoscrizioni quando il componente viene distrutto.
-- `TenantService`: servizio descritto nella ..., usato per recuperare la lista dei tenant disponibili.
-
-Il component presenta i seguenti attributi:
-- `loginForm`: rappresenta il form di login, definito come un `FormGroup` che contiene i campi `email`, `password`, `ruolo` e `tenant`, con le relative validazioni;
-- `displayedTenants`: array di tenant recuperati tramite il `TenantService`, utilizzato per popolare il dropdown di selezione del tenant in caso di selezione di un ruolo che richiede l'associazione a un tenant specifico.
-- `roles`: array di coppie valore/etichetta che rappresentano i ruoli disponibili per la selezione nel form di login, utilizzato per popolare il dropdown di selezione del ruolo.
-
-Il form di login richiede all'utente di inserire:
-- `email`: un campo di input testuale per l'indirizzo email dell'utente, con validazione per assicurarsi che sia un formato email valido;
-- `password`: un campo di input testuale per la password dell'utente, con validazione per assicurarsi che non sia vuoto;
-- `ruolo`: un campo di input dropdown per il ruolo dell'utente, la cui scelta determina se sia necessario richiedere anche il _tenant_ di appartenenza;
-- `tenant`: un campo di input dropdown per il tenant dell'utente, richiesto solo se il ruolo selezionato è "Tenant Admin" o "Tenant User".
-
-Il component presenta un solo metodo _protected_, ovvero `onSubmit()`, che viene chiamato al momento dell'invio del form, e si occupa di validare i campi, costruire una `LoginRequest` e inviarla al componente genitore `LoginPage` tramite l'output `submitLogin`.
-
-====== ForgotPasswordDialog
-`ForgotPasswordDialog` è il componente di dialogo responsabile di gestire la richiesta di reset della password da parte dell'utente.
-
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `FormBuilder`: servizio di Angular per la creazione e gestione dei form reattivi, utilizzato per definire la struttura del form di reset della password e le relative validazioni.
-- `DestroyRef`: riferimento alla distruzione del componente, utilizzato per gestire correttamente la pulizia delle risorse e delle sottoscrizioni quando il componente viene distrutto.
-- `DialogRef`: riferimento al dialogo aperto, utilizzato per gestire la chiusura del dialogo e il passaggio dei dati tra il dialogo e il componente chiamante.
-- `TenantService`: servizio descritto nella ..., usato per recuperare la lista dei tenant disponibili.
-- `AuthActionsService`: servizio descritto nella ..., dedicato alla gestione delle azioni di autenticazione, utilizzato per inviare le richieste di _reset password_, _modifica password_ e _conferma account_ al backend.
-
-Il dialog presenta i seguenti attributi:
-- `forgotPasswordForm`: rappresenta il form di reset della password, definito come un `FormGroup` che contiene i campi `email` e `tenant`, con le relative validazioni;
-- `displayedTenants`: array di tenant recuperati tramite il `TenantService`, utilizzato per popolare il dropdown di selezione del tenant in caso di selezione di un ruolo che richiede l'associazione a un tenant specifico.
-
-Il form di reset della password richiede all'utente di inserire:
-- `email`: un campo di input testuale per l'indirizzo email dell'utente, con validazione per assicurarsi che sia un formato email valido;
-- `tenant`: un campo di input dropdown _opzionale_ per il tenant dell'utente, richiesto solo se l'utente è un "Tenant Admin" o "Tenant User".
-
-Il dialog presenta i seguenti metodi _protected_, ovvero:
-- `onSubmit()`, che viene chiamato al momento dell'invio del form, e si occupa di validare i campi, costruire una `ForgotPasswordRequest` e inviarla al servizio `AuthActionsService` per avviare il processo di reset della password;
-- `onCancel()`, che si occupa di gestire la chiusura del dialogo senza inviare alcuna richiesta;
-- `dismissError()`, che si occupa di gestire la chiusura dei messaggi di errore visualizzati all'utente.
-
-==== Conferma account
-La seguente sezione ha lo scopo di descrivere in dettaglio il diagramma della pagina di *conferma account*, che rappresenta la schermata che l'utente incontra al momento di confermare la creazione del proprio account tramite il link ricevuto via email.
-
-===== Modelli dati
-====== ConfirmAccountResponse <angular-confirmaccountresponse-model>
-Rappresenta la richiesta di conferma della creazione dell'account inviata al backend, contiene i seguenti campi:
-  - `token: string` rappresenta il token di conferma dell'account ricevuto via email, necessario per verificare la validità della richiesta di conferma account;
-  - `tenantId?: string` rappresenta il tenant di appartenenza dell'utente, richiesto solo se il ruolo è `TENANT_ADMIN` o `TENANT_USER`;
-  - `newPassword: string` rappresenta la nuova password scelta dall'utente, necessaria per completare la creazione dell'account.
-
-===== Servizi e adapters
-// TODO: da finire
-====== AuthActionsService <angular-authactionservice>
-`AuthActionsService` è il servizio dedicato ad orchestrare le azioni di autenticazione che coinvolgono più servizi, come ad esempio il reset della password o la conferma della creazione dell'account. \
-Viene utilizzato dal dialog component `ForgotPasswordDialog` per gestire le operazioni di reset della password, e dal dialog component `ConfirmAccountDialog` per gestire le operazioni di conferma della creazione dell'account.
-
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `AuthApiClientService`: servizio descritto nella @angular-authapiclientservice, utilizzato per inviare le richieste di autenticazione al backend;
-- `TokenStorageService`: servizio descritto nella @angular-tokenstorageservice, utilizzato per salvare e rimuovere il token JWT dalla memoria locale del browser;
-- `UserSessionService`: servizio descritto nella @angular-usersessionservice, utilizzato per inizializzare e resettare la sessione utente in base alle operazioni di autenticazione;
-
-Espone all'esterno i seguenti _signals_ pubblici:
-- `loading`: booleano che indica se è in corso una richiesta di autenticazione, utile per mostrare indicatori di caricamento nell'interfaccia utente;
-- `error`: stringa che contiene eventuali messaggi di errore ricevuti durante le operazioni di autenticazione, utile per mostrare feedback all'utente.
-- `passwordChangeResult`: booleano che contiene il risultato dell'operazione di cambio password, utile per mostrare feedback all'utente.
-
-// TODO: mettiamo riferimenti agli altri modelli dati utilizzati
-Espone i seguenti metodi _pubblici_:
-- `forgotPassword(forgotPasswordRequest: ForgotPasswordRequest)`: metodo che riceve una `ForgotPasswordRequest` (vedi ...) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo aggiorna lo stato interno con un messaggio di successo, in caso di errore aggiorna lo stato con il messaggio di errore ricevuto;
-- `confirmPasswordChange(data: PasswordChange)`: metodo che riceve una `PasswordChange` (vedi ...) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo aggiorna lo stato interno con un messaggio di successo, in caso di errore aggiorna lo stato con il messaggio di errore ricevuto;
-- `confirmPasswordReset(req: ForgotPasswordResponse)`: metodo che riceve una `ForgotPasswordResponse` (vedi ...) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo aggiorna lo stato interno con un messaggio di successo, in caso di errore aggiorna lo stato con il messaggio di errore ricevuto;
-- `confirmAccount(req: ConfirmAccountResponse)`: metodo che riceve una `ConfirmAccountResponse` (vedi @angular-confirmaccountresponse-model) e la inoltra al backend tramite l'`AuthApiClientService`, in caso di successo: 
-  - inizializza la sessione utente tramite lo `UserSessionService`;
-  - salva il token JWT inviato dal backend nel `TokenStorageService`;
-  in caso di errore aggiorna lo stato con il messaggio di errore ricevuto.
-
-===== Componenti UI
-====== ConfirmAccountPage
-ConfirmAccountPage è il componente responsabile di orchestrare l'interfaccia utente e gestire le interazioni con l'utente durante il processo di conferma della creazione dell'account. \
-La pagina incapsula al suo interno il componente `ConfirmAccountFormComponent`, che si occupa di gestire il form di conferma account. 
-Il compito di `ConfirmAccountPage` è di fornire in input al `ConfirmAccountFormComponent` eventuali messaggi di errore o feedback relativi al processo di conferma account, e di gestire la navigazione verso le altre pagine del sistema in caso di successo.
-
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `AuthActionsService`: servizio descritto nella @angular-authactionservice, usato per gestire le operazioni di conferma della creazione dell'account, e per recuperare lo stato dell'operazione.
-- `Router`: servizio di navigazione di Angular, utilizzato per gestire la transizione tra le pagine dell'applicazione in base alle azioni dell'utente e allo stato di autenticazione.
-- `DestroyRef`: riferimento alla distruzione del componente, utilizzato per gestire correttamente la pulizia delle risorse e delle sottoscrizioni quando il componente viene distrutto.
-- `ActivatedRoute`: servizio di Angular per accedere ai parametri della route, utilizzato per recuperare il token di conferma account e l'eventuale tenantId dai parametri dell'URL.
-
-Legge i seguenti _signals_ dall'`AuthActionsService` e li fornisce in input al `ConfirmAccountFormComponent`:
-- `loading`: booleano che indica se è in corso una richiesta di conferma account, utile per mostrare indicatori di caricamento nell'interfaccia utente;
-- `error`: stringa che contiene eventuali messaggi di errore ricevuti durante le operazioni di conferma account, utile per mostrare feedback all'utente;
-
-La pagina presenta i seguenti attributi:
-- `token`: stringa che rappresenta il token di conferma account, recuperato dai _map params_ dell'URL;
-- `tenantId?`: stringa opzionale che rappresenta l'eventuale tenantId, recuperato dai _query params_ dell'URL.
-
-La pagina gestisce due metodi principali:
-- `onConfirmAccount(req: ConfirmAccountRequest)`: riceve una `ConfirmAccountRequest` dal `ConfirmAccountFormComponent` e la inoltra al servizio di autenticazione per avviare il processo di conferma della creazione dell'account. In caso di successo, naviga verso la dashboard; in caso di errore, aggiorna lo stato con il messaggio di errore ricevuto;
-- `onDismissError()`: gestisce la chiusura dei messaggi di errore visualizzati all'utente;
-
-====== ConfirmAccountFormComponent
-ConfirmAccountFormComponent è il componente responsabile di gestire il form di conferma account, inclusa la validazione dei campi e l'invio della richiesta di conferma account al `ConfirmAccountPage`.
-
-Inietta tramite _dependency injection_ le seguenti dipendenze:
-- `FormBuilder`: servizio di Angular per la creazione e gestione dei form reattivi, utilizzato per definire la struttura del form di conferma account e le relative validazioni.
-
-Il component presenta i seguenti attributi:
-- `confirmAccountForm`: rappresenta il form di conferma account, definito come un `FormGroup` che contiene il campo `newPassword` e `confirmNewPassword`, con le relative validazioni;
-
-Il form di conferma account richiede all'utente di inserire:
-- `newPassword`: un campo di input testuale per la nuova password dell'utente, con validazione per assicurarsi che rispetti i criteri di complessità (ad esempio lunghezza minima);
-- `confirmNewPassword`: un campo di input testuale per la conferma della nuova password, con validazione per assicurarsi che sia uguale al campo `newPassword`. Tale validazione sfrutta un metodo _privato_ chiamato `passwordsMatchValidator`, che confronta i valori dei campi `newPassword` e `confirmNewPassword` e restituisce un errore di validazione se non corrispondono.
-
-Il component presenta un solo metodo _protetto_, ovvero `onSubmit()`, che viene chiamato al momento dell'invio del form, e si occupa di validare i campi, costruire una `ConfirmAccountRequest` e inviarla al componente genitore `ConfirmAccountPage` tramite l'output `submitConfirmAccount`.
-
-==== Reset password
-
-==== Dashboard
-
-==== Gateway-sensor 
-
-==== Tenant
-
-==== User
+==== Componenti UI
 
 === Cloud Backend
 
