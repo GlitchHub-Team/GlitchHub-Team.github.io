@@ -3,7 +3,7 @@
 #show: report.with(
   title: "GlitchHub Team",
   subtitle: "Diario di bordo",
-  date: "01/04/2026",
+  date: "09/04/2026",
   htmlId: "Diapositive",
 )
 
