@@ -1,0 +1,68 @@
+site_name: Manuale Utente
+copyright: Copyright &copy; 2025 - 2026 GlitchHub-Team
+docs_dir: PB/ManualeUtente
+site_dir: dist/docs
+
+nav:
+  - Introduzione: index.md
+  - Concetti:
+      - Tipi di utenti: concetti/tipi-utenti.md
+      - Architettura del Sistema: concetti/architettura-sistema.md
+      - Microservizi:
+          - Gateway: concetti/microservizi/gateway.md
+          - Data Consumer: concetti/microservizi/data-consumer.md
+          - Dashboard: concetti/microservizi/dashboard.md
+          - Auth: concetti/microservizi/auth.md
+          - User: concetti/microservizi/user.md
+          - Tenant: concetti/microservizi/tenant.md
+  - Installazione:
+      - Requisiti:
+          - Requisiti Hardware: installazione/requisiti/requisiti-hw.md
+          - Requisiti Software: installazione/requisiti/requisiti-sw.md
+      - Preparazione del Sistema:
+          - Installazione del Software: installazione/preparazione-del-sistema/01-installazione-sw.md
+          - Personalizzare la configurazione: installazione/preparazione-del-sistema/02-configurare-ms.md
+          - Avviare il Sistema: installazione/preparazione-del-sistema/03-avvio-sistema.md
+  - Guide:
+      - Effettuare il login: guide/login.md
+  - Telemetria:
+      - Configurazione di Grafana: telemetria/config.md
+      - Importare e modificare una dashboard: telemetria/dashboard.md
+#  - Riferimento API:
+#      -
+
+theme:
+  name: material
+  language: it
+
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - toc.follow
+
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/GlitchHub-Team
+    - icon: material/web
+      link: https://glitchhub-team.github.io/
