@@ -3,22 +3,22 @@
 
 #show: report.with(
   titolo: "Manuale Utente",
-  stato: "Verificato",
+  stato: "da verificare",
   registro-modifiche: (
     (
-      "0.1.0",
+      "1.0.0",
       "31/03/2026",
-      "Riccardo Graziani",
-      "Siria Salvalaio",
-      [Applicati suggerimenti forniti durante la verifica della v1.7.0],
+      "Jaume Bernarid",
+      "Alessandro Dinato",
+      [Prima Stesura],
     ),
   ),
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
-  htmlId: "PB-DocumentiInterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
-  tipo-documento: "Norme di Progetto",
+  htmlId: "PB-DocumentiEsterni",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  tipo-documento: "Manuale Utente",
 )
 
 #let is-inside-raw-typst(content, position) = {
