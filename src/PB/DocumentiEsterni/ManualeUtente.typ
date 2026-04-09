@@ -7,7 +7,7 @@
   registro-modifiche: (
     (
       "0.1.0",
-      "31/03/2026",
+      "09/04/2026",
       "Jaume Bernarid",
       "Alessandro Dinato",
       [Prima Stesura],
