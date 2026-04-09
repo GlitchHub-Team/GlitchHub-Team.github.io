@@ -6,7 +6,7 @@
   stato: "da verificare",
   registro-modifiche: (
     (
-      "1.0.0",
+      "0.1.0",
       "31/03/2026",
       "Jaume Bernarid",
       "Alessandro Dinato",
