@@ -8,7 +8,7 @@
     (
       "0.1.0",
       "09/04/2026",
-      "Jaume Bernarid",
+      "Jaume Bernardi",
       "Alessandro Dinato",
       [Prima Stesura],
     ),
