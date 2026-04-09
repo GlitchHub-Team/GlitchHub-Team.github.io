@@ -6,16 +6,18 @@ site_url: https://glitchhub-team.github.io/ManualeUtente/
 
 nav:
   - Introduzione: index.md
-  - Concetti:
-      - Tipi di utenti: concetti/tipi-utenti.md
-      - Architettura del Sistema: concetti/architettura-sistema.md
+  - Concetti di dominio:
+      - Autenticazione: concetti/autenticazione.md
+      - Ruoli utente: concetti/ruoli-utente.md
+      - Gateway: concetti/gateway.md
+      - Sensore: concetti/sensore.md
+      - Comandi per gateway e sensori: concetti/comandi.md
+      - Profili GATT supportati: concetti/profili.md
       - Microservizi:
           - Gateway: concetti/microservizi/gateway.md
           - Data Consumer: concetti/microservizi/data-consumer.md
           - Dashboard: concetti/microservizi/dashboard.md
-          - Auth: concetti/microservizi/auth.md
-          - User: concetti/microservizi/user.md
-          - Tenant: concetti/microservizi/tenant.md
+          - Observability: concetti/microservizi/observability.md
   - Installazione:
       - Requisiti:
           - Requisiti Hardware: installazione/requisiti/requisiti-hw.md

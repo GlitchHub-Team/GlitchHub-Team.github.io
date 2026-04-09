@@ -1,22 +1,13 @@
 # Gateway
-
-Il microservizio **Gateway** riceve i dati dai sensori e li inoltra al bus di messaggistica che connette i microservizi.
+Il microservizio **Gateway** ha lo scopo di gestire più gateway e sensori simulati, fungendo da punto di ingresso per i comandi per questi ultimi e da punti di uscita per i dati prodotti dai sensori.
 
 ## Funzioni principali
-
-- acquisizione dei messaggi dai sensori
-- validazione e normalizzazione del payload
-- invio dei dati verso il bus di messaggistica (es. NATS<!--gloss[NATS]-->)
-- gestione del commissioning dei gateway
-- associazione del gateway al tenant corretto
-- segnalazione dello stato operativo
-
-## Dipendenze
-
-- broker di messaggistica per la pubblicazione degli eventi
-- database o store per lo stato del gateway
-- servizi di autenticazione e autorizzazione per l'associazione tenant
+- Creazione e eliminazione di gateway e sensori simulati.
+- Pubblicazione dei dati prodotti dai sensori simulati sul message broker NATS JetStream{{gloss}}.
+- Commissioning e decommissioning dei gateway alla ricezione dei relativi comandi
+- Ricezione di comandi per i gateway e i sensori simulati, e conseguente instradamento verso i destinatari corretti.
+- Configurazione persistente dei gateway e dei sensori simulati.
+- Buffering interno dei dati prodotti dai sensori simulati.
 
 ## Scopo
-
-Fornire un punto di raccolta affidabile e scalabile per i dati sensoriali, garantendo che ogni messaggio sia instradato verso il tenant corretto e verso i servizi downstream.
+Offrire un servizio di simulazione gateway e sensori che consenta di simulare le principali funzionalità di questi ultimi in assenza di dispositivi fisici.
