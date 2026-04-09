@@ -1,6 +1,6 @@
 # Tipi di utenti <!--raw-typst <tipiutenti> -->
 
-Nel sistema multi-tenant, ogni Tenant<!--gloss[Tenant]--> accede ai propri dati isolati dagli altri tenant.
+Nel sistema multi-tenant, ogni Tenant{{gloss}} accede ai propri dati isolati dagli altri tenant.
 
 Le principali tipologie di utente sono:
 
@@ -10,7 +10,7 @@ Le principali tipologie di utente sono:
 
 ## Tenant User
 
-Il **Tenant User** è l'utente finale del tenant. Può utilizzare l'interfaccia e le API<!--gloss[API]--> per accedere ai dati del proprio tenant.
+Il **Tenant User** è l'utente finale del tenant. Può utilizzare l'interfaccia e le API{{gloss}} per accedere ai dati del proprio tenant.
 
 Azioni tipiche del Tenant User:
 

@@ -32,6 +32,7 @@ nav:
 #  - Riferimento API:
 #      -
 
+
 theme:
   name: material
   language: it
@@ -39,7 +40,11 @@ theme:
     primary: deep-purple
     accent: cyan
 
+plugins:
+  - markdownextradata
+
 extra:
+  gloss: '<sub>G</sub>'
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/GlitchHub-Team

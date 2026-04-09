@@ -64,6 +64,8 @@
              match => match.captures.first() + "<!--raw-typst <" + match.captures.at(1) + ">-->")
     .replace(regex(`\[([^\]]+)\]\(https://glitchhub-team\.github\.io/glossary\.html#[^\)]+\)`.text),
              match => "#gloss(\"" + match.captures.at(0) + "\")")
+    .replace(regex(`([^\s]+)\{\{\s*gloss\s*\}\}`.text),
+             match => "#gloss(\"" + match.captures.at(0) + "\")")
     .replace(regex(`[^\s<]+<!--gloss\[[^\]]+\]-->`.text),
              match => {
                let text = match.text
