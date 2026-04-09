@@ -105,4 +105,4 @@
   }
 }
 
-#walk_nav(yaml("../../mkdocs.yml").nav, 1)
+#walk_nav(yaml("../../../mkdocs.yml").nav, 1)

@@ -1,8 +1,36 @@
 site_name: GlitchHub - Manuale Utente
-copyright: Copyright &copy; 2026 GlitchHub
+copyright: Copyright &copy; 2026 GlitchHub-Team
 docs_dir: src/PB/ManualeUtente
 site_dir: 'website/ManualeUtente'
 site_url: https://glitchhub-team.github.io/ManualeUtente/
+
+nav:
+  - Introduzione: index.md
+  - Concetti:
+      - Tipi di utenti: concetti/tipi-utenti.md
+      - Architettura del Sistema: concetti/architettura-sistema.md
+      - Microservizi:
+          - Gateway: concetti/microservizi/gateway.md
+          - Data Consumer: concetti/microservizi/data-consumer.md
+          - Dashboard: concetti/microservizi/dashboard.md
+          - Auth: concetti/microservizi/auth.md
+          - User: concetti/microservizi/user.md
+          - Tenant: concetti/microservizi/tenant.md
+  - Installazione:
+      - Requisiti:
+          - Requisiti Hardware: installazione/requisiti/requisiti-hw.md
+          - Requisiti Software: installazione/requisiti/requisiti-sw.md
+      - Preparazione del Sistema:
+          - Installazione del Software: installazione/preparazione-del-sistema/01-installazione-sw.md
+          - Personalizzare la configurazione: installazione/preparazione-del-sistema/02-configurare-ms.md
+          - Avviare il Sistema: installazione/preparazione-del-sistema/03-avvio-sistema.md
+  - Guide:
+      - Effettuare il login: guide/login.md
+  - Telemetria:
+      - Configurazione di Grafana: telemetria/config.md
+      - Importare e modificare una dashboard: telemetria/dashboard.md
+#  - Riferimento API:
+#      -
 
 theme:
   name: material
@@ -11,5 +39,9 @@ theme:
     primary: deep-purple
     accent: cyan
 
-nav:
-  - Home: index.md
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/GlitchHub-Team
+    - icon: material/web
+      link: https://glitchhub-team.github.io/
