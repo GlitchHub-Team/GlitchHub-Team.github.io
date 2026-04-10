@@ -9,8 +9,6 @@ nav:
   - Concetti di dominio:
       - Autenticazione: concetti/autenticazione.md
       - Ruoli utente: concetti/ruoli-utente.md
-      - Gateway: concetti/gateway.md
-      - Sensore: concetti/sensore.md
       - Comandi per gateway e sensori: concetti/comandi.md
       - Profili GATT supportati: concetti/profili.md
       - Microservizi:
