@@ -7,6 +7,20 @@
   stato: "Verificato",
   registro-modifiche: (
       (
+      "1.7.1",
+      "11/04/2026",
+      "Jaume Bernardi",
+      "Siria Salvalaio",
+      [Implementazione suggerimenti forniti durante la fase di verifica],
+      ),
+      (
+      "1.7.0",
+      "11/04/2026",
+      "Jaume Bernardi",
+      "Siria Salvalaio",
+      [Stesura sprint 15 (@sprint-15) e preventivo sprint 16 (@sprint-16)],
+      ),
+      (
       "1.6.0",
       "02/04/2026",
       "Siria Salvalaio",
@@ -267,8 +281,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Siria Salvalaio",
+  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -3421,13 +3435,13 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 		),
 		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
 			"Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
-      "Alessandro Dinato", "-", "5 (-1)", "-", "-", "-", "4", [*9*],
-      "Michele Dioli", "-", "-", "-", "-", "5", "-", [*5*],
-      "Hossam Ezzemouri", "-", "-", "1", "-", "5 (+2)", "2", [*8*],
-      "Riccardo Graziani", "-", "-", "-", "-", "6", "6", [*12*],
-      "Siria Salvalaio", "3", "-", "-", "-", "4 (+1)", "5 (+3)", [*12*],
-      "Elia Ernesto Stellin", "-", "-", "-", "-", "5", "3 (+1)", [*8*],
-    table.footer([*Totale*], [*3*], [*5*], [*1*], [*0*], [*25*], [*20*], [*54*]),
+"Alessandro Dinato", "-", "5 (-1)", "-", "-", "-", "4", [*9*],
+"Michele Dioli", "-", "-", "-", "-", "5", "-", [*5*],
+"Hossam Ezzemouri", "-", "-", "1", "-", "5 (+2)", "2", [*8*],
+"Riccardo Graziani", "-", "-", "-", "-", "6", "6", [*12*],
+"Siria Salvalaio", "2", "-", "-", "-", "4 (+1)", "5 (+3)", [*11*],
+"Elia Ernesto Stellin", "-", "-", "-", "-", "5", "3 (+1)", [*8*],
+table.footer([*Totale*], [*2*], [*5*], [*1*], [*0*], [*25*], [*20*], [*53*]),
 		),
 		[Sprint 13 - Risorse utilizzate],
 		label-id: "spr13-risorse-utiliz",
@@ -3436,12 +3450,12 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 
 	#let oreEffettiveSprint13 = (
 		
-	("Responsabile", 3),
+	("Responsabile", 2),
 	("Amministratore", 5),
 	("Analista", 1),
-  ("Progettista", 0),
-  ("Programmatore", 25),
-  ("Verificatore", 20),
+  	("Progettista", 0),
+  	("Programmatore", 25),
+  	("Verificatore", 20),
 	
 	)
 	#graficoTorta(
@@ -3461,13 +3475,13 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 		),
 		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
 			"Jaume Bernardi", "-", "4", "4", "1", "24", "25", [*58*],
-      "Alessandro Dinato", "-", "-1 (-5)", "-", "10", "4", "15 (-4)", [*28*],
-      "Michele Dioli", "-2", "-1", "-", "7", "14 (-5)", "22", [*40*],
-      "Hossam Ezzemouri", "-", "-4", "-1 (-1)", "10", "18 (-5)", "13 (-2)", [*36*],
-      "Riccardo Graziani", "-", "4", "-", "5", "5 (-6)", "6 (-6)", [*20*],
-      "Siria Salvalaio", "-1 (-3)", "-2", "3", "18", "10 (-4)", "20 (-5)", [*48*],
-      "Elia Ernesto Stellin", "3", "-3", "-", "7", "12 (-5)", "16 (-3)", [*35*],
-    table.footer([*Totale*], [*0*], [*-3*], [*6*], [*58*], [*87*], [*117*], [*265*]),
+"Alessandro Dinato", "-", "-1 (-5)", "-", "10", "4", "15 (-4)", [*28*],
+"Michele Dioli", "-", "-1", "-", "7", "14 (-5)", "22", [*42*],
+"Hossam Ezzemouri", "-", "-4", "-1 (-1)", "10", "18 (-5)", "13 (-2)", [*36*],
+"Riccardo Graziani", "-", "4", "-", "5", "5 (-6)", "6 (-6)", [*20*],
+"Siria Salvalaio", "-", "-2", "3", "18", "10 (-4)", "20 (-5)", [*49*],
+"Elia Ernesto Stellin", "3", "-3", "-", "7", "12 (-5)", "16 (-3)", [*35*],
+table.footer([*Totale*], [*3*], [*-3*], [*6*], [*58*], [*87*], [*117*], [*268*]),
 		),
 		[Sprint 13 - Aggiornamento ore rimanenti],
 		label-id: "spr13-agg-ore-rim",
@@ -3483,13 +3497,13 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 			left: if x == 0 { 0pt } else { 0.5pt + black },
 		),
 		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
-			"Responsabile", "0 (-3)" ,"30 €/h", "0 € (-90 €)",
-      "Amministratore", "-3 (-5)" ,"20 €/h", "-60 € (-100 €)",
-      "Analista", "6 (-1)" ,"25 €/h", "150 € (-25 €)",
-      "Progettista", "58 " ,"25 €/h", "1450 € ",
-      "Programmatore", "87 (-25)" ,"15 €/h", "1305 € (-375 €)",
-      "Verificatore", "117 (-20)" ,"15 €/h", "1755 € (-300 €)",
-    table.footer([*Totale*], [*265*], [-], [*4600 €*]),
+			"Responsabile", "3 (-2)" ,"30 €/h", "90 € (-60 €)",
+"Amministratore", "-3 (-5)" ,"20 €/h", "-60 € (-100 €)",
+"Analista", "6 (-1)" ,"25 €/h", "150 € (-25 €)",
+"Progettista", "58 " ,"25 €/h", "1450 € ",
+"Programmatore", "87 (-25)" ,"15 €/h", "1305 € (-375 €)",
+"Verificatore", "117 (-20)" ,"15 €/h", "1755 € (-300 €)",
+table.footer([*Totale*], [*268*], [-], [*4690 €*]),
 		),
 		[Sprint 13 - Aggiornamento costi],
 		label-id: "spr13-agg-costi",
@@ -3638,9 +3652,9 @@ L'accumulo di queste criticità ha causato lo slittamento di alcune scadenze int
 "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
 "Hossam Ezzemouri", "-", "-", "-", "-", "6 (+2)", "7 (+1)", [*13*],
 "Riccardo Graziani", "-", "-", "-", "-", "2 (-2)", "1 (-1)", [*3*],
-"Siria Salvalaio", "3", "-", "-", "-", "7", "3", [*13*],
+"Siria Salvalaio", "2", "-", "-", "-", "8 (+1)", "5 (+2)", [*15*],
 "Elia Ernesto Stellin", "-", "-", "-", "-", "5", "7 (+1)", [*12*],
-table.footer([*Totale*], [*3*], [*0*], [*0*], [*0*], [*38*], [*29*], [*70*]),
+table.footer([*Totale*], [*2*], [*0*], [*0*], [*0*], [*39*], [*31*], [*72*]),
 		),
 		[Sprint 14 - Risorse utilizzate],
 		label-id: "spr14-risorse-utiliz",
@@ -3649,12 +3663,12 @@ table.footer([*Totale*], [*3*], [*0*], [*0*], [*0*], [*38*], [*29*], [*70*]),
 
 	#let oreEffettiveSprint14 = (
 		
-	("Responsabile", 3),
+	("Responsabile", 2),
 	("Amministratore", 0),
 	("Analista", 0),
   	("Progettista", 0),
-  	("Programmatore", 38),
-  	("Verificatore", 29),
+  	("Programmatore", 39),
+  	("Verificatore", 31),
 	
 	)
 	#graficoTorta(
@@ -3678,9 +3692,9 @@ table.footer([*Totale*], [*3*], [*0*], [*0*], [*0*], [*38*], [*29*], [*70*]),
 "Michele Dioli", "-", "-1", "-", "7", "14", "22", [*42*],
 "Hossam Ezzemouri", "-", "-4", "-1", "10", "12 (-6)", "6 (-7)", [*23*],
 "Riccardo Graziani", "-", "4", "-", "5", "3 (-2)", "5 (-1)", [*17*],
-"Siria Salvalaio", "-4 (-3)", "-2", "3", "18", "3 (-7)", "17 (-3)", [*35*],
+"Siria Salvalaio", "-2 (-2)", "-2", "3", "18", "2 (-8)", "15 (-5)", [*34*],
 "Elia Ernesto Stellin", "3", "-3", "-", "7", "7 (-5)", "9 (-7)", [*23*],
-table.footer([*Totale*], [*-1*], [*-3*], [*6*], [*58*], [*49*], [*88*], [*197*]),
+table.footer([*Totale*], [*1*], [*-3*], [*6*], [*58*], [*48*], [*86*], [*196*]),
 		),
 		[Sprint 14 - Aggiornamento ore rimanenti],
 		label-id: "spr14-agg-ore-rim",
@@ -3696,15 +3710,304 @@ table.footer([*Totale*], [*-1*], [*-3*], [*6*], [*58*], [*49*], [*88*], [*197*])
 			left: if x == 0 { 0pt } else { 0.5pt + black },
 		),
 		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
-			"Responsabile", "-1 (-3)" ,"30 €/h", "-30 € (-90 €)",
+			"Responsabile", "1 (-2)" ,"30 €/h", "30 € (-60 €)",
 "Amministratore", "-3 " ,"20 €/h", "-60 € ",
 "Analista", "6 " ,"25 €/h", "150 € ",
 "Progettista", "58 " ,"25 €/h", "1450 € ",
-"Programmatore", "49 (-38)" ,"15 €/h", "735 € (-570 €)",
-"Verificatore", "88 (-29)" ,"15 €/h", "1320 € (-435 €)",
-table.footer([*Totale*], [*197*], [-], [*3565 €*]),
+"Programmatore", "48 (-39)" ,"15 €/h", "720 € (-585 €)",
+"Verificatore", "86 (-31)" ,"15 €/h", "1290 € (-465 €)",
+table.footer([*Totale*], [*196*], [-], [*3580 €*]),
 		),
 		[Sprint 14 - Aggiornamento costi],
 		label-id: "spr14-agg-costi",
 	)
+
+
+== Sprint 15 <sprint-15>
+Inizio: 01/04/2026 \
+Fine: 08/04/2026 \
+
+Il presente #gloss("sprint") ha l’obiettivo primario di assorbire il leggero debito tecnico accumulato durante il ciclo precedente, focalizzando gli sforzi sull'implementazione dei package di backend mancanti (_user_, _auth_ e _real_time_) e dei loro test di integrazione (TI), nonché attività come la sincronizzazione del frontend con le risorse #gloss("cloud"). Parallelamente alla verifica tecnica, viene avviato il setup dell'infrastruttura per l'MVP e l'implementazione delle metriche di osservabilità, fondamentali per il monitoraggio della qualità tramite il cruscotto di valutazione. Infine, lo sprint segna l’inizio effettivo della stesura del Manuale Utente.
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+ - [ST] Completamento Specifica Tecnica per frontend (#issue(495))
+ - [PdQ] Aggiornare metriche (#issue(496))
+ - [Frontend] Integrazione con Cloud (#issue(100, repo:"dashboard"))
+ - [Backend] TI historical_data (#issue(101, repo:"dashboard"))
+ - [Backend] TI backend/internal/email (#issue(70, repo:"dashboard"))
+ - [Backend] TI backend/internal/user (#issue(71, repo:"dashboard"))
+ - [Backend] TI backend/internal/auth (#issue(69, repo:"dashboard"))
+ - [ST] Aggiornamento librerie frontend (#issue(491))
+ - [ST] Descrizione pattern frontend (#issue(494))
+ - [Backend] Codifica package backend/internal/gateway (#issue(39, repo:"dashboard"))
+ - [ST] Architettura hexagonal (#issue(475))
+ - [Backend] Verifica package backend/internal/gateway (#issue(40, repo:"dashboard"))
+ - [PdP] Sprint 14 (#issue(472))
+ - [MU] Ricerca su come scrivere Manuale Utente (#issue(484))
+ - [Frontend] Modificare Modello C4 sul codice attuale (#issue(94, repo:"dashboard"))
+ - [ST] Scrittura parte gateway e data consumer (#issue(493))
+ - [MVP] Setup sistema (#issue(1, repo:"poc"))
+ - [Obs] Implementazione metriche (#issue(2, repo:"observability"))
+ - [Backend] modifica codice historical_data (#issue(102, repo:"dashboard"))
+ - Rendicontazione ore responsabile sprint 15 (#issue(497))
+ - [NdP] Aggiungere gomail v2 come tecnologia (#issue(488))
+ - [Backend] Codifica backend/internal/real_time_data (#issue(76, repo:"dashboard"))
+ - [Backend] TU backend/internal/real_time_data (#issue(77, repo:"dashboard"))
+ - [Backend] TI backend/internal/real_time_data (#issue(78, repo:"dashboard"))
+
+=== Rischi attesi
+- *RT2* (@RT2): L'elevata concentrazione di test di integrazione (TI) previsti per i package di backend (historical_data, email, user, auth) e l'integrazione del frontend con il Cloud potrebbero far emergere bug di programmazione o errori di design. La risoluzione di tali problematiche potrebbe richiedere un impegno superiore al previsto, rallentando il completamento delle relative issue.
+- *RO1* (@RO1): Attività fondamentali come il setup dell'MVP e l'implementazione delle metriche di osservabilità sono propedeutiche alla verifica finale della qualità. Un ritardo nel loro completamento potrebbe incidere sui tempi necessari alla validazione del sistema e richiedere un aggiornamento dei costi/ore.
+
+	=== Preventivo
+	==== Preventivo risorse da utilizzare
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "1", "-", "-", "8", "-", "-", [*9*],
+"Alessandro Dinato", "-", "2", "-", "2", "1", "-", [*5*],
+"Michele Dioli", "-", "-", "-", "-", "8", "8", [*16*],
+"Hossam Ezzemouri", "-", "-", "-", "-", "4", "3", [*7*],
+"Riccardo Graziani", "-", "-", "-", "9", "6", "-", [*15*],
+"Siria Salvalaio", "-", "-", "-", "8", "3", "-", [*11*],
+"Elia Ernesto Stellin", "-", "-", "-", "-", "1", "6", [*7*],
+table.footer([*Totale*], [*1*], [*2*], [*0*], [*27*], [*23*], [*17*], [*70*]),
+		),
+		[Sprint 15 - Preventivo risorse da utilizzare],
+		label-id: "spr15-prev-risorse",
+	)
+	==== Grafico a torta della suddivisione oraria prevista
+
+	#let orePrevSprint15 = (
+		
+	("Responsabile", 1),
+	("Amministratore", 2),
+	("Analista", 0),
+  	("Progettista", 27),
+  	("Programmatore", 23),
+  	("Verificatore", 17),
 	
+	)
+	#graficoTorta("Sprint 15 - Ore produttive previste per ogni ruolo", orePrevSprint15)
+
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 15: \
+ - [Backend] TI backend/internal/user (#issue(71, repo:"dashboard"))
+ - [Frontend] Modifica sezione di Historical Data e Real Time Data (#issue(114, repo:"dashboard"))
+ - [Backend] TI backend/internal/auth (#issue(69, repo:"dashboard"))
+ - [ST] Aggiornamento librerie frontend (#issue(491))
+ - [ST] Descrizione pattern frontend (#issue(494))
+ - [NdP] Aggiornare sezione "Struttura cartelle" per linguaggio Typescript (#issue(505))
+ - [Backend] Codifica package backend/internal/gateway (#issue(39, repo:"dashboard"))
+ - [ST] Architettura hexagonal (#issue(475))
+ - [Backend] Verifica package backend/internal/gateway (#issue(40, repo:"dashboard"))
+ - [PdP] Sprint 14 (#issue(472))
+ - [MU] Ricerca su come scrivere Manuale Utente (#issue(484))
+ - [Frontend] Modificare Modello C4 sul codice attuale (#issue(94, repo:"dashboard"))
+ - [ST] Scrittura parte gateway e data consumer (#issue(493))
+ - [MVP] Setup sistema (#issue(1, repo:"poc"))
+ - [Obs] Implementazione metriche (#issue(2, repo:"observability"))
+ - [Backend] modifica codice historical_data (#issue(102, repo:"dashboard"))
+ - Rendicontazione ore responsabile sprint 15 (#issue(497))
+
+=== Retrospettiva
+Lo #gloss("sprint") 15 è stato focalizzato principalmente sul consolidamento delle funzionalità necessarie per il raggiungimento dell'MVP. Sebbene sia stati portati a termine gran parte dei test di integrazione per i package di backend, ovvero _user_ e _auth_, il ciclo si conclude con alcune attività non terminate per una questione di tempistiche, ovvero quelle legate al package _real_time_data_, i test di integrazione per il modulo _email_ e l'integrazione del frontend con il Cloud. Il gruppo ha preferito concentrare gli sforzi sulla stabilità di altri moduli sviluppati durante il periodo.
+
+Sono comunque stati portati a termini diversi compiti significativi, in particolare sul lato frontend, sono state affinate le sezioni relative a _historical_data_ e _real_time_data_ ed è stato riallineato il modello C4 allo stato attuale del codice. Il setup per il sistema MVP è andato a buon fine così come l'implementazione delle metriche di osservabilità. La documentazione ha visto un corposo aggiornamento della specifica tecnica, che è stata arricchita con molteplici sezioni, oltre all'adeguamento delle norme di progetto per la struttura typescript e l'avvio della preparazione per il manuale utente.
+
+=== Rischi occorsi
+*RT2* (@RT2): Lo sviluppo e l'integrazione dei componenti software hanno richiesto tempistiche superiori a quelle preventivate. Per garantire la qualità dei moduli svilupapti, non è stato possibile completare le attività su _real_time_data_ e sui test di integrazione delle _email_.
+
+=== Consuntivo di periodo
+	==== Risorse utilizzate
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "1", "-", "-", "8", "-", "-", [*9*],
+"Alessandro Dinato", "-", "2", "-", "3 (+1)", "1", "-", [*6*],
+"Michele Dioli", "-", "-", "-", "-", "12 (+4)", "-", [*12*],
+"Hossam Ezzemouri", "-", "-", "-", "-", "7 (+3)", "3", [*10*],
+"Riccardo Graziani", "-", "-", "-", "1 (-8)", "3 (-3)", "-", [*4*],
+"Siria Salvalaio", "-", "-", "-", "8", "-", "-", [*8*],
+"Elia Ernesto Stellin", "-", "-", "-", "-", "1", "10 (+4)", [*11*],
+table.footer([*Totale*], [*1*], [*2*], [*0*], [*20*], [*24*], [*13*], [*60*]),
+		),
+		[Sprint 15 - Risorse utilizzate],
+		label-id: "spr15-risorse-utiliz",
+	)
+	==== Grafico a torta della suddivisione oraria effettiva
+
+	#let oreEffettiveSprint15 = (
+		
+	("Responsabile", 1),
+	("Amministratore", 2),
+	("Analista", 0),
+  	("Progettista", 20),
+  	("Programmatore", 24),
+  	("Verificatore", 13),
+	
+	)
+	#graficoTorta(
+	"Sprint 15 - Ore produttive complessive ed effettive per ogni ruolo",
+	oreEffettiveSprint15,
+	)
+
+	=== Preventivo a finire
+	==== Aggiornamento ore rimanenti
+	#tabella-paginata(
+  	table(
+		columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "-1 (-1)", "4", "4", "-7 (-8)", "11", "19", [*30*],
+"Alessandro Dinato", "-", "-3 (-2)", "-", "7 (-3)", "-2 (-1)", "10", [*12*],
+"Michele Dioli", "-", "-1", "-", "7", "2 (-12)", "22", [*30*],
+"Hossam Ezzemouri", "-", "-4", "-1", "10", "5 (-7)", "3 (-3)", [*13*],
+"Riccardo Graziani", "-", "4", "-", "4 (-1)", "-", "5", [*13*],
+"Siria Salvalaio", "-2", "-2", "3", "10 (-8)", "2", "15", [*26*],
+"Elia Ernesto Stellin", "3", "-3", "-", "7", "6 (-1)", "-1 (-10)", [*12*],
+table.footer([*Totale*], [*0*], [*-5*], [*6*], [*38*], [*24*], [*73*], [*136*]),
+		),
+		[Sprint 15 - Aggiornamento ore rimanenti],
+		label-id: "spr15-agg-ore-rim",
+	)
+
+	==== Aggiornamento costi
+	#tabella-paginata(
+	table(
+		columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+		),
+		table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+			"Responsabile", "0 (-1)" ,"30 €/h", "0 € (-30 €)",
+"Amministratore", "-5 (-2)" ,"20 €/h", "-100 € (-40 €)",
+"Analista", "6 " ,"25 €/h", "150 € ",
+"Progettista", "38 (-20)" ,"25 €/h", "950 € (-500 €)",
+"Programmatore", "24 (-24)" ,"15 €/h", "360 € (-360 €)",
+"Verificatore", "73 (-13)" ,"15 €/h", "1095 € (-195 €)",
+table.footer([*Totale*], [*136*], [-], [*2455 €*]),
+		),
+		[Sprint 15 - Aggiornamento costi],
+		label-id: "spr15-agg-costi",
+	)
+
+== Sprint 16 <sprint-16>
+Inizio: 08/04/2026 \
+Fine: 15/04/2026 \
+
+L'obiettivo principale dello #gloss("sprint") 16 è l'estensione delle funzionalità del sistema in ottica #gloss("MVP") e il completamento della documentazione tecnica e utente. Il gruppo si focalizzerà sul recupero del debito tecnico accumulato.
+
+Sul fronte della documentazione, il ciclo prevede un impegno significativo nella stesura dell'architettura di dettaglio del frontend, nel tracciamento dei requisiti e nella stesura di diverse sezioni del Manuale Utente. Sarà inoltre avviata l'infrastruttura del Test Book e il controllo dei test nel sistema reale, garantendo la coerenza con quanto definito nel Piano di Qualifica e nell'Analisi dei Rischi.
+
+=== Compiti da svolgere
+Di seguito sono elencati i compiti individuati:
+ - [ST] Completamento Specifica Tecnica per frontend (#issue(495))
+ - [PdQ] Aggiornare metriche (#issue(496))
+ - [Frontend] Integrazione con Cloud (#issue(100, repo:"dashboard"))
+ - [Backend] TI historical_data (#issue(101, repo:"dashboard"))
+ - [Backend] TI backend/internal/email (#issue(70, repo:"dashboard"))
+ - [NdP] Aggiungere gomail v2 come tecnologia (#issue(488))
+ - [Backend] Codifica backend/internal/real_time_data (#issue(76, repo:"dashboard"))
+ - [Backend] TU backend/internal/real_time_data (#issue(77, repo:"dashboard"))
+ - [Backend] TI backend/internal/real_time_data (#issue(78, repo:"dashboard"))
+ - [MU] Perfezionamento manuale utente Gateway, Data Consumer (#issue(520))
+ - [MU] Perfezionamento sezione Observability (#issue(528))
+ - [Backend] Fix backend gateway (#issue(130, repo:"dashboard"))
+ - [Backend] Fix bug per login su utente inesistente (#issue(121, repo:"dashboard"))
+ - [ST] Cloud Backend (#issue(522))
+ - [ST] Tracciamento requisiti (#issue(525))
+ - [Backend] Togliere requester check da GetTenantList (#issue(120, repo:"dashboard"))
+ - [TB] Stesura infrastruttura del Test Book (#issue(518))
+ - [PdP] Sprint 15 (#issue(498))
+ - [MU] Compilazione di più file possibile (#issue(513))
+ - Rendicontazione ore responsabile sprint 16 (#issue(516))
+ - [TB] Controllo test singoli del test book nel sistema reale (#issue(519))
+ - [Backend] Fix backend modulo gateway (#issue(128, repo:"dashboard"))
+ - [Backend] Review backend/internal/tenant (#issue(129, repo:"dashboard"))
+ - [AdR] Controllo coerenza AdR e eventuali correzioni (#issue(521))
+ - Definizione metriche Gin-Prometheus (#issue(3, repo:"infrastructure"))
+ - [Backend] recupero files gateway (#issue(124, repo:"dashboard"))
+ - [Backend] Fix monitoring (#issue(126, repo:"dashboard"))
+
+=== Rischi attesi
+*RO1* (@RO1): Anche se la maggior parte delle issue sono di breve durata, in quanto attività di rifinitura, verifica o già in lavorazione dallo sprint precedente, il loro elevato numero potrebbe causare dei ritardi.
+
+=== Preventivo
+	==== Preventivo risorse da utilizzare
+	#tabella-paginata(
+		table(
+			columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+			align: left,
+			stroke: (x, y) => (
+			top: if y == 0 { 0pt } else { 0.5pt + black },
+			left: if x == 0 { 0pt } else { 0.5pt + black },
+			),
+			table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+			"Jaume Bernardi", "1", "-", "-", "4", "-", "-", [*5*],
+"Alessandro Dinato", "-", "-", "-", "4", "2", "1", [*7*],
+"Michele Dioli", "-", "-", "-", "11", "1", "-", [*12*],
+"Hossam Ezzemouri", "-", "-", "-", "1", "2", "-", [*3*],
+"Riccardo Graziani", "-", "-", "-", "3", "-", "1", [*4*],
+"Siria Salvalaio", "-", "-", "-", "7", "-", "-", [*7*],
+"Elia Ernesto Stellin", "-", "-", "-", "8", "4", "9", [*21*],
+table.footer([*Totale*], [*1*], [*0*], [*0*], [*38*], [*9*], [*11*], [*59*]),
+		),
+		[Sprint 16 - Preventivo risorse da utilizzare],
+		label-id: "spr16-prev-risorse",
+	)
+	==== Grafico a torta della suddivisione oraria prevista
+
+	#let orePrevSprint16 = (
+		
+	("Responsabile", 1),
+	("Amministratore", 0),
+	("Analista", 0),
+  	("Progettista", 38),
+  	("Programmatore", 9),
+  	("Verificatore", 11),
+	
+	)
+	#graficoTorta("Sprint 16 - Ore produttive previste per ogni ruolo", orePrevSprint16)
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 14: \
+
+
+=== Retrospettiva
+
+
+=== Rischi occorsi
+
+
+	=== Consuntivo di periodo
+	==== Risorse utilizzate
+	
+
+	=== Preventivo a finire
+	==== Aggiornamento ore rimanenti
+
+
+	==== Aggiornamento costi
