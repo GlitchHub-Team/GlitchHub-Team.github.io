@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
+  stato: "da verificare",
   registro-modifiche: (
+      (
+      "1.7.1",
+      "11/04/2026",
+      "Jaume Bernardi",
+      "Siria Salvalaio",
+      [Implementazione suggerimenti forniti durante la fase di verifica],
+      ),
       (
       "1.7.0",
       "11/04/2026",
@@ -3720,7 +3727,7 @@ table.footer([*Totale*], [*196*], [-], [*3580 €*]),
 Inizio: 01/04/2026 \
 Fine: 08/04/2026 \
 
-Il presente #gloss("sprint") ha l’obiettivo primario di assorbire il leggero debito tecnico accumulato durante il ciclo precedente, focalizzando gli sforzi sull'implementazione dei package di backend mancanti (_user_, _auth_ e _real_time_) e dei loro test di integrazione (TI), nonché attività come la sincronizzazione del frontend con le risorse #gloss("Cloud"). Parallelamente alla verifica tecnica, viene avviato il setup dell'infrastruttura per l'MVP e l'implementazione delle metriche di osservabilità, fondamentali per il monitoraggio della qualità tramite il cruscotto di valutazione. Infine, lo sprint segna l’inizio effettivo della stesura del Manuale Utente.
+Il presente #gloss("sprint") ha l’obiettivo primario di assorbire il leggero debito tecnico accumulato durante il ciclo precedente, focalizzando gli sforzi sull'implementazione dei package di backend mancanti (_user_, _auth_ e _real_time_) e dei loro test di integrazione (TI), nonché attività come la sincronizzazione del frontend con le risorse #gloss("cloud"). Parallelamente alla verifica tecnica, viene avviato il setup dell'infrastruttura per l'MVP e l'implementazione delle metriche di osservabilità, fondamentali per il monitoraggio della qualità tramite il cruscotto di valutazione. Infine, lo sprint segna l’inizio effettivo della stesura del Manuale Utente.
 
 === Compiti da svolgere
 Di seguito sono elencati i compiti individuati:
@@ -3813,14 +3820,12 @@ Issue relative a sprint 15: \
  - Rendicontazione ore responsabile sprint 15 (#issue(497))
 
 === Retrospettiva
-Lo #gloss("sprint") 15 è stato focalizzato principalmente sul consolidamento delle funzionalità necessarie per il raggiungimento dell'MVP. Sebbene sia stati portati a termine gran parte dei test di integrazione per i package di backend, ovvero _user_ e _auth_, il ciclo si conclude con alcune attività non terminate che andranno a costituire un debito tecnico per il prossimo incremento.
-Nello specifico, le attività legate al package _real_time_data_, i test di integrazione per il modulo _email_ e l'integrazione del frontend con il Cloud non sono state portate a termine per una questione di tempistiche: il gruppo ha preferito concentrare gli sforzi sulla stabilità di altri moduli sviluppati durante il periodo.
+Lo #gloss("sprint") 15 è stato focalizzato principalmente sul consolidamento delle funzionalità necessarie per il raggiungimento dell'MVP. Sebbene sia stati portati a termine gran parte dei test di integrazione per i package di backend, ovvero _user_ e _auth_, il ciclo si conclude con alcune attività non terminate per una questione di tempistiche, ovvero quelle legate al package _real_time_data_, i test di integrazione per il modulo _email_ e l'integrazione del frontend con il Cloud. Il gruppo ha preferito concentrare gli sforzi sulla stabilità di altri moduli sviluppati durante il periodo.
 
-Sono comunque stati portati a termini diversi compiti significativi, in particolare sul lato frontend, sono state affinate le sezioni relative a Historical e Real Time Data ed è stato riallineato il modello C4 allo stato attuale del codice. Il setup per il sistema MVP è andato a buon fine così come l'implementazione delle metriche di osservabilità. La documentazione ha visto un corposo aggiornamento della Specifica Tecnica, che è stata arricchita con sezioni riguardo i pattern e librerie frontend, l'architettura esagonale, gateway e data consumer, oltre all'adeguamento delle Norme di Progetto per la struttura Typescript e l'avvio della preparazione per il Manuale Utente.
+Sono comunque stati portati a termini diversi compiti significativi, in particolare sul lato frontend, sono state affinate le sezioni relative a _historical_data_ e _real_time_data_ ed è stato riallineato il modello C4 allo stato attuale del codice. Il setup per il sistema MVP è andato a buon fine così come l'implementazione delle metriche di osservabilità. La documentazione ha visto un corposo aggiornamento della specifica tecnica, che è stata arricchita con molteplici sezioni, oltre all'adeguamento delle norme di progetto per la struttura typescript e l'avvio della preparazione per il manuale utente.
 
 === Rischi occorsi
-- *RT2* (@RT2): Lo sviluppo e l'integrazione dei componenti software hanno richiesto tempistiche superiori a quelle preventivate. Per garantire la qualità dei moduli svilupapti, non è stato possibile completare le attività su _real_time_data_ e sui test di integrazione delle _email_.
-- *RO1* (@RO1): Al di fuori dello sviluppo del backend, non si sono verificate altre inefficienze nella pianificazione o ritardi dovuti a cause organizzative.
+*RT2* (@RT2): Lo sviluppo e l'integrazione dei componenti software hanno richiesto tempistiche superiori a quelle preventivate. Per garantire la qualità dei moduli svilupapti, non è stato possibile completare le attività su _real_time_data_ e sui test di integrazione delle _email_.
 
 === Consuntivo di periodo
 	==== Risorse utilizzate
@@ -3947,7 +3952,7 @@ Di seguito sono elencati i compiti individuati:
  - [Backend] Fix monitoring (#issue(126, repo:"dashboard"))
 
 === Rischi attesi
-- *RO1* (@RO1): Anche se la maggior parte delle issue sono di breve durata, in quanto attività di rifinitura, verifica o già in lavorazione dallo sprint precedente, il loro elevato numero potrebbe causare dei ritardi.
+*RO1* (@RO1): Anche se la maggior parte delle issue sono di breve durata, in quanto attività di rifinitura, verifica o già in lavorazione dallo sprint precedente, il loro elevato numero potrebbe causare dei ritardi.
 
 === Preventivo
 	==== Preventivo risorse da utilizzare
