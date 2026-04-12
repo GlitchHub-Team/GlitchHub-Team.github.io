@@ -380,6 +380,10 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     [7.8.0],
     [RxJS è una libreria per la programmazione reattiva in #gloss[JavaScript] e #gloss[TypeScript], che consente di gestire flussi di dati asincroni e basati su eventi attraverso l'uso di _Observable_. Nel progetto viene utilizzata principalmente nel frontend #gloss[Angular] per orchestrare la gestione dei dati in tempo reale provenienti dai sensori #gloss[BLE], facilitando la sincronizzazione tra le interfacce utente e i servizi backend.],
 
+    [Angular Material],
+    [21.2.1],
+    [Angular Material è una libreria di componenti UI per #gloss[Angular] che implementa le linee guida di design _Material Design_ di Google. Fornisce una vasta gamma di componenti predefiniti, come bottoni, form, tabelle e layout, che permettono di creare interfacce utente moderne, responsive e accessibili in modo rapido e coerente. Nel progetto viene utilizzata per costruire la dashboard, garantendo un aspetto professionale e una user experience intuitiva.],
+
     [tslib],
     [2.3.0],
     [tslib è una libreria per il linguaggio #gloss[TypeScript] che fornisce helper runtime per le funzionalità del linguaggio, come l'estensione delle classi, la gestione dei decoratori e altre operazioni comuni. Nel progetto viene utilizzata per ottimizzare il codice #gloss[TypeScript] compilato e ridurre la duplicazione di codice tra i moduli.],
@@ -1350,7 +1354,7 @@ Per ogni servizio viene fornita una descrizione dettagliata dei suoi metodi, att
 Il `TokenStorageService` è un servizio dedicato alla gestione del token JWT all'interno del frontend. Si occupa di salvare, recuperare e rimuovere il token JWT utilizzando il `sessionStorage` del browser, garantendo così la persistenza del token durante la sessione dell'utente.\
 
 Il servizio presenta i seguenti attributi:
-- `_isValid` e `isValid`: rappresentano lo stato di validità del token JWT, ovvero se è presente e non è scaduto. Il campo `_isValid` è privato e viene aggiornato ogni volta che il token viene salvato o rimosso, mentre `isValid` è il _signal readonly_ pubblico che restituisce il valore di `_isValid`.
+- `_isValid` e `isValid`: `_isValid` è il signal _privato_ che tiene traccia della validità del token JWT (presenza e scadenza), mentre `isValid` è la sua controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi:
 - `saveToken(token: string): void`: salva il token JWT nel `sessionStorage` e aggiorna lo stato di validità del token.
@@ -1359,22 +1363,22 @@ Il servizio presenta i seguenti metodi:
 - `isTokenValid(): boolean`: verifica se il token JWT è presente e non è scaduto.
 
 ===== UserSessionService <angular-user-session-service>
-Lo `UserSessionService` è un servizio dedicato alla gestione della sessione dell'utente autenticato all'interno del frontend. Si occupa di mantenere lo stato della sessione dell'utente, inclusi i dati dell'utente autenticato (vedi TODO USER SESSION MODEL), e di fornire un'interfaccia semplice per accedere a queste informazioni da parte dei componenti dell'applicazione.\
+Lo `UserSessionService` è un servizio dedicato alla gestione della sessione dell'utente all'interno del frontend. Si occupa di mantenere lo stato della sessione, inclusi i dati dell'utente autenticato (vedi TODO USER SESSION MODEL), e di fornire un'interfaccia semplice per accedere a queste informazioni da parte dei componenti dell'applicazione.\
 
 Il servizio presenta i seguenti attributi:
-- `_currentUser` e `currentUser`: rappresentano lo stato della sessione dell'utente autenticato, ovvero se è presente un utente autenticato e quali sono i suoi dati. Il campo `_currentUser` è privato e viene aggiornato ogni volta che l'utente effettua il login o il logout, mentre `currentUser` è il _signal readonly_ pubblico che restituisce il valore di `_currentUser`.
+- `_currentUser` e `currentUser`: `_currentUser` è il signal _privato_ che tiene traccia dello stato della sessione dell'utente autenticato (se presente e quali sono i suoi dati), mentre `currentUser` è la sua controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi:
-- `initSession(token: string): void`: inizializza la sessione dell'utente autenticato decodificando il token JWT, salvando i dati dell'utente nella variabile `_currentUser` e nel `sessionStorage`.
-- `clearSession(): void`: termina la sessione dell'utente autenticato, rimuovendo i dati dell'utente dalla variabile `_currentUser` e dal `sessionStorage`.
-- `restoreSession(): void`: ripristina la sessione dell'utente autenticato, se presente, pescando i dati dal `sessionStorage`, altrimenti ripristina la sessione decodificando il token JWT presente nel `TokenStorageService`.
-- `decodeToken(token: string): UserSession | null`: decodifica il token JWT e restituisce i dati dell'utente autenticato, oppure `null` se il token non è valido.
+- `initSession(token: string): void`: inizializza la sessione dell'utente decodificando il token JWT, salvando i dati estratti nella variabile `_currentUser` e nel `sessionStorage`.
+- `clearSession(): void`: termina la sessione dell'utente, rimuovendo i dati dalla variabile `_currentUser` e dal `sessionStorage`.
+- `restoreSession(): void`: ripristina la sessione dell'utente, se presente, pescando i dati dal `sessionStorage`, altrimenti ripristina la sessione decodificando il token JWT presente nel `TokenStorageService`.
+- `decodeToken(token: string): UserSession | null`: decodifica il token JWT, estraendo l'ID dell'utente, il suo ruolo e l'eventuale _tenant_ di appartenenza e li restituisce come `UserSession`, oppure `null` se il token non è valido.
 
 ===== PermissionService <angular-permission-service>
 Il `PermissionService` è un servizio dedicato alla verifica dei permessi dell'utente all'interno del frontend. Si occupa di verificare se l'utente autenticato ha i permessi necessari per accedere a determinate funzionalità dell'applicazione, basandosi sui dati della sessione dell'utente forniti dallo `UserSessionService` e sui permessi associati al ruolo dell'utente (vedi @angular-permission-model e @angular-userrole-model).\
 
 Il servizio inietta tramite _dependency injection_:
-- `UserSessionService`: per accedere ai dati della sessione dell'utente autenticato e verificare il suo ruolo.
+- `UserSessionService`: per verificare il ruolo dell'utente autenticato.
 
 Il servizio presenta i seguenti attributi:
 - `ROLE_PERMISSION`: un `Record<UserRole, Permission[]>` che mappa ogni ruolo utente ad un array di permessi associati a quel ruolo, ad esempio il ruolo `SUPER_ADMIN` ha tutti i permessi, mentre il ruolo `TENANT_USER` ha solo il permesso di visualizzazione dashboard.
@@ -1394,14 +1398,14 @@ Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
 
 Il servizio presenta i seguenti metodi:
-- `login(req: LoginRequest): Observable<AuthResponse>`: è il metodo che invia la richiesta di login al backend, riceve un oggetto di tipo `LoginRequest` (vedi @angular-loginrequest-model) e restituisce un `Observable` di `AuthResponse` (vedi @angular-authresponse-model) in caso di successo, altrimenti restituisce un errore.
-- `logout(): Observable<void>`: è il metodo che invia la richiesta di logout al backend, restituendo un `Observable` di tipo `void` in caso di successo, altrimenti restituisce un errore.
-- `verifyForgotPasswordToken(token: string, tenantId?: string): Observable<void>`: è il metodo che verifica la validità del token per il reset della password, restituendo un `Observable` di tipo `void` in caso di successo, altrimenti restituisce un errore.
-- `forgotPasswordRequest(req: ForgotPasswordRequest): Observable<void>`: è il metodo che invia la richiesta di reset della password al backend, riceve un oggetto di tipo `ForgotPasswordRequest` (vedi TODO) e restituisce un `Observable` di tipo `void` in caso di successo, altrimenti restituisce un errore.
-- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: è il metodo che conferma il reset della password, riceve un oggetto di tipo `ForgotPasswordResponse` (vedi TODO) e restituisce un `Observable` di tipo `void` in caso di successo, altrimenti restituisce un errore.
-- `confirmPasswordChange(req: PasswordChange): Observable<void>`: è il metodo che conferma il cambio della password, riceve un oggetto di tipo `PasswordChange` (vedi TODO) e restituisce un `Observable` di tipo `void` in caso di successo, altrimenti restituisce un errore.
-- `verifyAccountToken(token: string, tenantId?: string): Observable<void>`: è il metodo che verifica la validità del token per la creazione dell'account, restituendo un `Observable` di tipo `void` in caso di successo, altrimenti restituisce un errore.
-- `confirmAccountCreation(req: ConfirmAccountResponse): Observable<AuthResponse>`: è il metodo che conferma la creazione dell'account, riceve un oggetto di tipo `ConfirmAccountResponse` (vedi TODO) e restituisce un `Observable` di tipo `AuthResponse` in caso di successo, altrimenti restituisce un errore.
+- `login(req: LoginRequest): Observable<AuthResponse>`: invia la richiesta di login al backend.
+- `logout(): Observable<void>`: invia la richiesta di logout al backend.
+- `verifyForgotPasswordToken(token: string, tenantId?: string): Observable<void>`: verifica la validità del token per il reset della password.
+- `forgotPasswordRequest(req: ForgotPasswordRequest): Observable<void>`: invia la richiesta di reset della password al backend.
+- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: conferma il reset della password.
+- `confirmPasswordChange(req: PasswordChange): Observable<void>`: conferma il cambio della password.
+- `verifyAccountToken(token: string, tenantId?: string): Observable<void>`: verifica la validità del token per la creazione dell'account.
+- `confirmAccountCreation(req: ConfirmAccountResponse): Observable<AuthResponse>`: conferma la creazione dell'account.
 
 ===== AuthSessionService <angular-auth-session-service>
 L'`AuthSessionService` è un servizio dedicato alla gestione della sessione di autenticazione dell'utente all'interno del frontend. Si occupa di coordinare le operazioni di login e logout, gestire lo stato della sessione dell'utente e fornire un'interfaccia semplice per accedere a queste funzionalità da parte dei componenti dell'applicazione.\
@@ -1413,16 +1417,16 @@ Il servizio inietta tramite _dependency injection_:
 - `Router`: servizio di Angular per gestire la navigazione tra le pagine dell'applicazione.
 
 Il servizio presenta i seguenti attributi:
-- `_loading` e `loading`: rappresentano lo stato di caricamento delle operazioni di autenticazione, `_loading` è privato e `loading` è il _signal readonly_ pubblico.
-- `_error` e `error`: rappresentano lo stato di errore delle operazioni di autenticazione, `_error` è privato e `error` è il _signal readonly_ pubblico.
+- `_loading` e `loading`: `_loading` è il _signal_ privato che tiene traccia dello stato di caricamento delle operazioni di autenticazione, mentre `loading` è la sua controparte _readonly_ pubblica.
+- `_error` e `error`: `_error` è il _signal_ privato che tiene traccia dello stato di errore delle operazioni di autenticazione, mentre `error` è la sua controparte _readonly_ pubblica.
 - `isAuthenticated`: rappresenta lo stato di autenticazione dell'utente, restituisce `true` se è presente un token valido e una sessione utente attiva, altrimenti restituisce `false`.
 
 Il servizio presenta i seguenti metodi:
-- `login(req: LoginRequest): void`: è il metodo che gestisce l'operazione di login, riceve un oggetto di tipo `LoginRequest` (vedi @angular-loginrequest-model), imposta lo stato di caricamento a `true`, chiama il metodo `login` dell'`AuthApiClientService`, se la richiesta va a buon fine, salva il token JWT tramite il `TokenStorageService`, inizializza la sessione utente tramite il `UserSessionService`, imposta lo stato di caricamento a `false` e reindirizza l'utente alla dashboard, altrimenti imposta lo stato di errore con il messaggio restituito dal backend e imposta lo stato di caricamento a `false`.
-- `logout(): void`: è il metodo che gestisce l'operazione di logout, cancella il token JWT tramite il `TokenStorageService`, termina la sessione utente tramite il `UserSessionService` e reindirizza l'utente alla pagina di login.
-- `clearError(): void`: è il metodo che cancella lo stato di errore delle operazioni di autenticazione.
-- `setLoadingState(): void`: è il metodo che imposta lo stato di caricamento delle operazioni di autenticazione a `true` e ripulisce eventuali errori precedenti.
-- `clearAndRedirect(): void`: un metodo ausiliario che pulisce sia la sessione utente che il token di autenticazione e reindirizza l'utente alla pagina di login.  
+- `login(req: LoginRequest): void`: gestisce l'operazione di login, riceve un oggetto di tipo `LoginRequest`, imposta lo stato di caricamento a `true`, chiama il metodo `login` dell'`AuthApiClientService`, se la richiesta va a buon fine salva il token JWT tramite il `TokenStorageService`, inizializza la sessione utente tramite il `UserSessionService`, imposta lo stato di caricamento a `false` e reindirizza l'utente alla dashboard, altrimenti imposta lo stato di errore.
+- `logout(): void`: cancella il token JWT tramite il `TokenStorageService`, termina la sessione utente tramite il `UserSessionService` e reindirizza l'utente alla pagina di login.
+- `clearError(): void`: cancella lo stato di errore delle operazioni di autenticazione.
+- `setLoadingState(): void`: imposta lo stato di caricamento a `true` e ripulisce eventuali errori precedenti.
+- `clearAndRedirect(): void`: metodo ausiliario che pulisce la sessione utente e il token di autenticazione e reindirizza l'utente alla pagina di login.
 
 ===== AuthActionsService <angular-auth-actions-service>
 L'`AuthActionsService` è un servizio dedicato alla gestione delle azioni di autenticazione dell'utente all'interno del frontend. Si occupa di fornire un'interfaccia semplice per eseguire operazioni correlate all'autenticazione, come ad esempio il cambio della password, il reset della password e la conferma della creazione dell'account, coordinando le chiamate ai servizi necessari per completare queste operazioni.\
@@ -1433,17 +1437,17 @@ Il servizio inietta tramite _dependency injection_:
 - `UserSessionService`: per accedere ai dati della sessione dell'utente autenticato.
 
 Il servizio presenta i seguenti attributi:
-- `_loading` e `loading`: rappresentano lo stato di caricamento delle operazioni di autenticazione, `_loading` è privato e `loading` è il _signal readonly_ pubblico.
-- `_error` e `error`: rappresentano lo stato di errore delle operazioni di autenticazione, `_error` è privato e `error` è il _signal readonly_ pubblico
-- `_passwordChangeResult` e `passwordChangeResult`: rappresentano il risultato dell'operazione di cambio password, `_passwordChangeResult` è privato e `passwordChangeResult` è il _signal readonly_ pubblico che restituisce un valore booleano che rispecchia l'esito dell'operazione.
+- `_loading` e `loading`: `_loading` è il _signal_ privato che tiene traccia dello stato di caricamento delle operazioni di autenticazione, mentre `loading` è la sua controparte _readonly_ pubblica.
+- `_error` e `error`: `_error` è il _signal_ privato che tiene traccia dello stato di errore delle operazioni di autenticazione, mentre `error` è la sua controparte _readonly_ pubblica.
+- `_passwordChangeResult` e `passwordChangeResult`: `_passwordChangeResult` è il _signal_ privato che tiene traccia dell'esito dell'operazione di cambio password, mentre `passwordChangeResult` è la sua controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi:
-- `forgotPassword(req: ForgotPasswordRequest): Observable<void>`: è il metodo che gestisce l'operazione di richiesta di reset della password, riceve un oggetto di tipo `ForgotPasswordRequest` (vedi TODO), imposta lo stato di caricamento a `true`, chiama il metodo `forgotPasswordRequest` dell'`AuthApiClientService`, se la richiesta va a buon fine, imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore con il messaggio restituito dal backend e imposta lo stato di caricamento a `false`.
-- `confirmPasswordChange(req: PasswordChange): Observable<void>`: è il metodo che gestisce l'operazione di conferma del cambio password, riceve un oggetto di tipo `PasswordChange` (vedi TODO), imposta lo stato di caricamento a `true`, chiama il metodo `confirmPasswordChange` dell'`AuthApiClientService`, se la richiesta va a buon fine, imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore con il messaggio restituito dal backend e imposta lo stato di caricamento a `false`.
-- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: è il metodo che gestisce l'operazione di conferma del reset della password, riceve un oggetto di tipo `ForgotPasswordResponse` (vedi TODO), verifica la validità del token di reset tramite l'`AuthApiClientService`, imposta lo stato di caricamento a `true`, chiama il metodo `confirmPasswordReset` dell'`AuthApiClientService`, se la richiesta va a buon fine, imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore con il messaggio restituito dal backend e imposta lo stato di caricamento a `false`.
-- `confirmAccount(req: ConfirmAccountResponse): Observable<AuthResponse>`: è il metodo che gestisce l'operazione di conferma della creazione dell'account, riceve un oggetto di tipo `ConfirmAccountResponse` (vedi TODO), verifica la validità del token di conferma tramite l'`AuthApiClientService`, imposta lo stato di caricamento a `true`, chiama il metodo `confirmAccount` dell'`AuthApiClientService`, se la richiesta va a buon fine, imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore con il messaggio restituito dal backend e imposta lo stato di caricamento a `false`.
-- `clearMessages(): void`: è il metodo che cancella i messaggi di errore e di successo delle operazioni di autenticazione.
-- `setLoadingState(): void`: è il metodo che imposta lo stato di caricamento delle operazioni di autenticazione a `true` e ripulisce eventuali errori precedenti.
+- `forgotPassword(req: ForgotPasswordRequest): Observable<void>`: gestisce la richiesta di reset della password, riceve un oggetto di tipo `ForgotPasswordRequest` (vedi TODO), imposta lo stato di caricamento a `true`, chiama il metodo `forgotPasswordRequest` dell'`AuthApiClientService`, se la richiesta va a buon fine imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore.
+- `confirmPasswordChange(req: PasswordChange): Observable<void>`: gestisce la conferma del cambio password, riceve un oggetto di tipo `PasswordChange` (vedi TODO), imposta lo stato di caricamento a `true`, chiama il metodo `confirmPasswordChange` dell'`AuthApiClientService`, se la richiesta va a buon fine imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore.
+- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: gestisce la conferma del reset della password, riceve un oggetto di tipo `ForgotPasswordResponse` (vedi TODO), verifica la validità del token di reset tramite l'`AuthApiClientService`, imposta lo stato di caricamento a `true`, chiama il metodo `confirmPasswordReset` dell'`AuthApiClientService`, se la richiesta va a buon fine imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore.
+- `confirmAccount(req: ConfirmAccountResponse): Observable<AuthResponse>`: gestisce la conferma della creazione dell'account, riceve un oggetto di tipo `ConfirmAccountResponse` (vedi TODO), verifica la validità del token di conferma tramite l'`AuthApiClientService`, imposta lo stato di caricamento a `true`, chiama il metodo `confirmAccount` dell'`AuthApiClientService`, se la richiesta va a buon fine imposta lo stato di caricamento a `false`, altrimenti imposta lo stato di errore.
+- `clearMessages(): void`: cancella i messaggi di errore e di successo delle operazioni di autenticazione.
+- `setLoadingState(): void`: imposta lo stato di caricamento a `true` e ripulisce eventuali errori precedenti.
 
 ===== TenantApiClientService <angular-tenant-api-client-service>
 Il `TenantApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei tenant del backend. Si occupa di inviare le richieste HTTP al backend per effettuare operazioni di creazione, eliminazione e recupero dei tenant, e di gestire le risposte del backend, ad esempio restituendo i dati dei tenant o gestendo gli errori.\
@@ -1455,11 +1459,10 @@ Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
 
 Il servizio presenta i seguenti metodi:
-- `getTenant(id: string): Observable<TenantBackend>`: è il metodo che invia la richiesta di recupero di un tenant specifico al backend, riceve l'identificativo del tenant da recuperare e restituisce un `Observable` di `TenantBackend` in caso di successo, altrimenti restituisce un errore.
-- `getTenants(page: number, limit: number): 
-Observable<PaginatedTenantResponse<TenantBackend>>`: è il metodo che invia la richiesta di recupero di una lista di tenant al backend, riceve i parametri di paginazione `page` e `limit` e restituisce un `Observable` di `PaginatedTenantResponse<TenantBackend>` in caso di successo, altrimenti restituisce un errore.
-- `createTenant(config: TenantConfig): Observable<TenantBackend>`: è il metodo che invia la richiesta di creazione di un nuovo tenant al backend, riceve un oggetto di tipo `TenantConfig` e restituisce un `Observable` di `TenantBackend` in caso di successo, altrimenti restituisce un errore.
-- `deleteTenant(id: string): Observable<void>`: è il metodo che invia la richiesta di eliminazione di un tenant specifico al backend, riceve l'identificativo del tenant da eliminare e restituisce un `Observable` di `void` in caso di successo, altrimenti restituisce un errore.
+- `getTenant(id: string): Observable<TenantBackend>`: invia la richiesta di recupero di un tenant specifico.
+- `getTenants(page: number, limit: number): Observable<PaginatedTenantResponse<TenantBackend>>`: invia la richiesta di recupero della lista paginata di tenant dal backend.
+- `createTenant(config: TenantConfig): Observable<TenantBackend>`: invia la richiesta di creazione di un nuovo tenant .
+- `deleteTenant(id: string): Observable<void>`: invia la richiesta di eliminazione di un tenant specifico.
 
 ===== TenantService <angular-tenant-service>
 Il `TenantService` è un servizio dedicato alla gestione dello stato dei tenant all'interno del frontend. Si occupa di mantenere lo stato dei tenant recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni da parte dei componenti dell'applicazione e di coordinare le operazioni di creazione ed eliminazione dei tenant.\
@@ -1469,22 +1472,23 @@ Il servizio inietta tramite _dependency injection_:
 - `TenantApiAdapter`: per adattare i dati dei tenant restituiti dal backend al formato utilizzato all'interno del frontend.
 
 Il servizio presenta i seguenti attributi:
-- `_loading` e `loading`: rappresentano lo stato di caricamento delle operazioni correlate ai tenant, `_loading` è privato e `loading` è il _signal readonly_ pubblico.
-- `_error` e `error`: rappresentano lo stato di errore delle operazioni correlate ai tenant, `_error` è privato e `error` è il _signal readonly_ pubblico.
-- `_tenantList` e `tenantList`: rappresentano lo stato della lista dei tenant, `_tenantList` è privato e `tenantList` è il _signal readonly_ pubblico che restituisce un array di tenant.
-- `_total` e `total`: rappresentano il numero totale di tenant presenti nel sistema, utilizzato per la paginazione. `_total` è privato e `total` è il _signal readonly_ pubblico.
-- `_pageIndex` e `pageIndex`: rappresentano l'indice della pagina corrente nella paginazione dei tenant, `_pageIndex` è privato e `pageIndex` è il _signal readonly_ pubblico.
-- `_limit` e `limit`: rappresentano il numero di tenant da visualizzare per pagina nella paginazione dei tenant, `_limit` è privato e `limit` è il _signal readonly_ pubblico.
+- `_loading` e `loading`: `_loading` è il _signal_ privato dello stato di caricamento, `loading` è la controparte _readonly_ pubblica.
+- `_error` e `error`: `_error` è il _signal_ privato dello stato di errore, `error` è la controparte _readonly_ pubblica.
+- `_tenantList` e `tenantList`: `_tenantList` è il _signal_ privato della lista tenant, `tenantList` è la controparte _readonly_ pubblica.
+- `_total` e `total`: `_total` è il _signal_ privato del totale tenant per la paginazione, `total` è la controparte _readonly_ pubblica.
+- `_pageIndex` e `pageIndex`: `_pageIndex` è il _signal_ privato dell'indice di pagina corrente, `pageIndex` è la controparte _readonly_ pubblica.
+- `_limit` e `limit`: `_limit` è il _signal_ privato del numero di tenant per pagina, `limit` è la controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi:
-- `getTenant(id: string): Observable<Tenant>`: è il metodo che gestisce l'operazione di recupero di un tenant specifico, riceve l'identificativo del tenant da recuperare, chiama il metodo `getTenant` del `TenantApiClientService`, adatta i dati restituiti dal backend tramite il `TenantApiAdapter`, e restituisce un `Observable` di `Tenant` in caso di successo, altrimenti restituisce un errore.
-- `retrieveTenants(needAll: boolean): void`: è il metodo che gestisce l'operazione di recupero della lista dei tenant, riceve un booleano `needAll` che indica se recuperare tutti i tenant o solo quelli della pagina corrente, chiama il metodo `retrieveTenants` del `TenantApiClientService`, adatta i dati restituiti dal backend tramite il `TenantApiAdapter`, e aggiorna lo stato interno del servizio.
-- `changePage(pageIndex: number, limit: number): void`: è il metodo che gestisce il cambio di pagina nella paginazione dei tenant, riceve l'indice della nuova pagina e il numero di tenant per pagina, aggiorna lo stato interno del servizio e richiama il metodo `retrieveTenants` per recuperare i tenant della nuova pagina.
-- `addNewTenant(config: TenantConfig): Observable<Tenant>`: è il metodo che gestisce l'operazione di creazione di un nuovo tenant, riceve un oggetto di tipo `TenantConfig`, chiama il metodo `createTenant` del `TenantApiClientService`, adatta i dati restituiti dal backend tramite il `TenantApiAdapter`, e restituisce un `Observable` di `Tenant` in caso di successo.
-- `removeTenant(id: string): Observable<void>`: è il metodo che gestisce l'operazione di eliminazione di un tenant specifico, riceve l'identificativo del tenant da eliminare, chiama il metodo `deleteTenant` del `TenantApiClientService`, e restituisce un `Observable` di `void` in caso di successo, altrimenti restituisce un errore.
-- `refetchCurrentPage(): void`: è il metodo permette di ricaricare la pagina di tenant mostrati, richiama il metodo `retrieveTenants` con il parametro `needAll` impostato a `false`.
-- `setGettingTenantsState(): void`: è il metodo che imposta lo stato interno del servizio per indicare che si sta recuperando la lista dei tenant.
-- `setLoadingState(): void`: è il metodo che imposta lo stato interno del servizio per indicare che si sta eseguendo un'operazione di caricamento.
+- `getTenant(id: string): Observable<Tenant>`: recupera un tenant per ID tramite `TenantApiClientService`, adatta la risposta con `TenantApiAdapter` e restituisce `Observable<Tenant>`, in caso di problemi imposta lo stato di errore interno.
+- `getAllTenants(): Observable<Tenant[]>`: recupera la lista completa dei tenant tramite `TenantApiClientService`, adatta la risposta con `TenantApiAdapter` e restituisce `Observable<Tenant[]>`, in caso di problemi imposta lo stato di errore interno.
+- `retrieveTenants(needAll: boolean): void`: recupera la lista tenant (completa o paginata in base a `needAll`), adatta i dati e aggiorna lo stato interno.
+- `changePage(pageIndex: number, limit: number): void`: aggiorna i parametri di paginazione e richiama `retrieveTenants`.
+- `addNewTenant(config: TenantConfig): Observable<Tenant>`: crea un tenant tramite `TenantApiClientService`, adatta la risposta e restituisce `Observable<Tenant>`.
+- `removeTenant(id: string): Observable<void>`: elimina un tenant per ID tramite `TenantApiClientService` e restituisce `Observable<void>`, in caso di problemi imposta lo stato di errore interno.
+- `refetchCurrentPage(): void`: ricarica la pagina corrente dei tenant (`needAll: false`).
+- `setGettingTenantsState(): void`: imposta lo stato interno per il recupero della lista tenant.
+- `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
 ===== UserApiClientService <angular-user-api-client-service>
 Lo `UserApiClientService` è un servizio dedicato alla comunicazione con le API di gestione degli utenti del backend. Si occupa di inviare le richieste HTTP al backend per effettuare operazioni di creazione, eliminazione e recupero degli utenti, e di gestire le risposte del backend, ad esempio restituendo i dati degli utenti o gestendo gli errori.\
@@ -1496,11 +1500,11 @@ Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
 
 Il servizio presenta i seguenti metodi:
-- `getBaseUrl(role: UserRole, tenantId?: string, isPlural = false): string`: è un metodo ausiliario che restituisce l'URL base per le richieste HTTP al backend in base al ruolo dell'utente, differenziando in base ai ruoli presenti nel modello `UserRole` (vedi TODO).
-- `getUser(id: string, role: UserRole, tenantId?: string): Observable<UserBackend>`: è il metodo che invia la richiesta di recupero di un utente specifico al backend, riceve l'identificativo dell'utente da recuperare, il ruolo dell'utente e l'identificativo del tenant (se presente), costrusce l'URL tramite `getBaseUrl()` e restituisce un `Observable` di `UserBackend` in caso di successo, altrimenti restituisce un errore.
-- `getUsers(role: UserRole, page: number, limit: number, tenantId?: string): Observable<PaginatedUserResponse<UserBackend>>`: è il metodo che invia la richiesta di recupero di una lista di utenti al backend, riceve il ruolo degli utenti da recuperare, l'identificativo del tenant (se presente) e i parametri di paginazione `page` e `limit`, costruisce l'URL tramite `getBaseUrl()` e restituisce un `Observable` di `PaginatedUserResponse<UserBackend>` in caso di successo, altrimenti restituisce un errore.
-- `createUser(user: UserBackend, role: UserRole, tenantId?: string): Observable<UserBackend>`: è il metodo che invia la richiesta di creazione di un nuovo utente al backend, riceve l'oggetto `UserBackend` contenente i dati dell'utente da creare, il ruolo dell'utente e l'identificativo del tenant (se presente), costruisce l'URL tramite `getBaseUrl()` e restituisce un `Observable` di `UserBackend` in caso di successo, altrimenti restituisce un errore.
-- `deleteUser(id: string, role: UserRole, tenantId?: string): Observable<void>`: è il metodo che invia la richiesta di eliminazione di un utente specifico al backend, riceve l'identificativo dell'utente da eliminare, il ruolo dell'utente e l'identificativo del tenant (se presente), costruisce l'URL tramite `getBaseUrl()` e restituisce un `Observable` di `void` in caso di successo, altrimenti restituisce un errore.
+- `getBaseUrl(role: UserRole, tenantId?: string, isPlural = false): string`: metodo ausiliario che costruisce l'URL base delle richieste in base a ruolo, tenant ed endpoint singolare/plurale.
+- `getUser(id: string, role: UserRole, tenantId?: string): Observable<UserBackend>`: invia la richiesta di recupero di un utente specifico costruendo l'URL tramite `getBaseUrl()`.
+- `getUsers(role: UserRole, page: number, limit: number, tenantId?: string): Observable<PaginatedUserResponse<UserBackend>>`: invia la richiesta di recupero di una lista paginata di utenti costruendo l'URL tramite `getBaseUrl()`.
+- `createUser(user: UserBackend, role: UserRole, tenantId?: string): Observable<UserBackend>`: invia la richiesta di creazione di un nuovo utente costruendo l'URL tramite `getBaseUrl()`.
+- `deleteUser(id: string, role: UserRole, tenantId?: string): Observable<void>`: invia la richiesta di eliminazione di un utente specifico costruendo l'URL tramite `getBaseUrl()`.
 
 ===== UserService <angular-user-service>
 Lo `UserService` è un servizio dedicato alla gestione dello stato degli utenti all'interno del frontend. Si occupa di mantenere lo stato degli utenti recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni da parte dei componenti dell'applicazione e di coordinare le operazioni di creazione ed eliminazione degli utenti.\
@@ -1510,44 +1514,241 @@ Il servizio inietta tramite _dependency injection_:
 - `UserApiAdapter`: per adattare i dati degli utenti restituiti dal backend al formato utilizzato all'interno del frontend.
 
 Il servizio presenta i seguenti attributi:
-- `_loading` e `loading`: rappresentano lo stato di caricamento delle operazioni correlate agli utenti, `_loading` è privato e `loading` è il _signal readonly_ pubblico.
-- `_error` e `error`: rappresentano lo stato di errore delle operazioni correlate agli utenti, `_error` è privato e `error` è il _signal readonly_ pubblico.
-- `_userList` e `userList`: rappresentano lo stato della lista degli utenti, `_userList` è privato e `userList` è il _signal readonly_ pubblico che restituisce un array di utenti.
-- `_total` e `total`: rappresentano il numero totale di utenti presenti nel sistema, utilizzato per la paginazione. `_total` è privato e `total` è il _signal readonly_ pubblico.
-- `_pageIndex` e `pageIndex`: rappresentano l'indice della pagina corrente nella paginazione degli utenti, `_pageIndex` è privato e `pageIndex` è il _signal readonly_ pubblico.
-- `_limit` e `limit`: rappresentano il numero di utenti da visualizzare per pagina nella paginazione degli utenti, `_limit` è privato e `limit` è il _signal readonly_ pubblico.
+- `_loading` e `loading`: `_loading` è il _signal_ privato dello stato di caricamento, `loading` è la controparte _readonly_ pubblica.
+- `_error` e `error`: `_error` è il _signal_ privato dello stato di errore, `error` è la controparte _readonly_ pubblica.
+- `_userList` e `userList`: `_userList` è il _signal_ privato della lista utenti, `userList` è la controparte _readonly_ pubblica.
+- `_total` e `total`: `_total` è il _signal_ privato del totale utenti per la paginazione, `total` è la controparte _readonly_ pubblica.
+- `_pageIndex` e `pageIndex`: `_pageIndex` è il _signal_ privato dell'indice di pagina corrente, `pageIndex` è la controparte _readonly_ pubblica.
+- `_limit` e `limit`: `_limit` è il _signal_ privato del numero di utenti per pagina, `limit` è la controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi:
-- `getUser(id: string, role: UserRole, tenantId?: string): Observable<User>`: è il metodo che gestisce l'operazione di recupero di un utente specifico, riceve l'identificativo dell'utente da recuperare, il ruolo dell'utente e l'identificativo del tenant (se presente), chiama il metodo `getUser` del `UserApiClientService`, adatta i dati restituiti dal backend tramite il `UserApiAdapter`, e restituisce un `Observable` di `User` in caso di successo, altrimenti restituisce un errore.
-- `retrieveUsers(role: UserRole, tenantId?: string): void`: è il metodo che gestisce l'operazione di recupero della lista degli utenti, riceve il ruolo degli utenti da recuperare e l'identificativo del tenant (se presente), chiama il metodo `getUsers` del `UserApiClientService`, adatta i dati restituiti dal backend tramite il `UserApiAdapter`, e aggiorna lo stato interno del servizio.
-- `changePage(role: UserRole, pageIndex: number, limit: number, tenantId?: string): void`: è il metodo che gestisce il cambio di pagina nella paginazione degli utenti, riceve il ruolo degli utenti da recuperare, l'indice della nuova pagina, il numero di utenti per pagina e l'identificativo del tenant (se presente), aggiorna lo stato interno del servizio e richiama il metodo `retrieveUsers` per recuperare gli utenti della nuova pagina.
-- `addNewUser(user: UserBackend, role: UserRole, tenantId?: string): Observable<User>`: è il metodo che gestisce l'operazione di creazione di un nuovo utente, riceve un oggetto di tipo `UserBackend` contenente i dati dell'utente da creare, il ruolo dell'utente e l'identificativo del tenant (se presente), chiama il metodo `createUser` del `UserApiClientService`, adatta i dati restituiti dal backend tramite il `UserApiAdapter`, e restituisce un `Observable` di `User` in caso di successo.
-- `removeUser(id: string, role: UserRole, tenantId?: string): Observable<void>`: è il metodo che gestisce l'operazione di eliminazione di un utente specifico, riceve l'identificativo dell'utente da eliminare, il ruolo dell'utente e l'identificativo del tenant (se presente), chiama il metodo `deleteUser` del `UserApiClientService`, e restituisce un `Observable` di `void` in caso di successo, altrimenti restituisce un errore.
-- `refetchCurrentPage(role: UserRole, tenantId?: string): void`: è il metodo permette di ricaricare la pagina di utenti mostrati, richiama il metodo `retrieveUsers` con i parametri `role` e `tenantId` (se presente).
-- `setGettingUsersState(): void`: è il metodo che imposta lo stato interno del servizio per indicare che si sta recuperando la lista degli utenti.
-- `setLoadingState(): void`: è il metodo che imposta lo stato interno del servizio per indicare che si sta eseguendo un'operazione di caricamento.
+- `getUser(id: string, role: UserRole, tenantId?: string): Observable<User>`: recupera un utente tramite `UserApiClientService`, adatta la risposta con `UserApiAdapter` e restituisce `Observable<User>`, in caso di problemi imposta lo stato di errore interno.
+- `retrieveUsers(role: UserRole, tenantId?: string): void`: recupera la lista utenti tramite `UserApiClientService`, adatta la risposta con `UserApiAdapter` e aggiorna lo stato interno, in caso di problemi imposta lo stato di errore interno.
+- `changePage(role: UserRole, pageIndex: number, limit: number, tenantId?: string): void`: aggiorna i parametri di paginazione e richiama `retrieveUsers`.
+- `addNewUser(user: UserBackend, role: UserRole, tenantId?: string): Observable<User>`: crea un utente tramite `UserApiClientService`, adatta la risposta e restituisce `Observable<User>`.
+- `removeUser(id: string, role: UserRole, tenantId?: string): Observable<void>`: elimina un utente tramite `UserApiClientService` e restituisce `Observable<void>`, in caso di problemi imposta lo stato di errore interno.
+- `refetchCurrentPage(role: UserRole, tenantId?: string): void`: ricarica la pagina corrente degli utenti.
+- `setGettingUsersState(): void`: imposta lo stato interno per il recupero della lista utenti.
+- `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
 ===== GatewayApiClientService <angular-gateway-api-client-service>
+Il `GatewayApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei gateway del backend. Si occupa di inviare le richieste HTTP al backend per effettuare operazioni di creazione, eliminazione e recupero dei gateway, e di gestire le risposte del backend, ad esempio restituendo i dati dei gateway o gestendo gli errori.\
+
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi:
+- `getGatewayListByTenant(tenantId: string, page: number, limit: number): Observable<PaginatedGatewayResponse<GatewayBackend>>`: recupera la lista paginata dei gateway associati a uno specifico tenant.
+- `getGatewayList(page: number, limit: number): Observable<PaginatedGatewayResponse<GatewayBackend>>`: recupera la lista paginata di tutti i gateway.
+- `addNewGateway(config: GatewayConfig): Observable<GatewayBackend>`: invia la richiesta di creazione di un nuovo gateway.
+- `deleteGateway(id: string): Observable<void>`: invia la richiesta di eliminazione di un gateway specifico.
 
 ===== GatewayCommandApiClientService <angular-gateway-command-api-client-service>
+Il `GatewayCommandApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei comandi dei gateway del backend. Si occupa di inviare le richieste HTTP al backend per effettuare operazioni di invio di comandi ai gateway, e di gestire le risposte del backend, ad esempio restituendo i risultati dei comandi o gestendo gli errori.\
+
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi:
+- `commissionGateway(gatewayId: string, tenantId: string, token: string): Observable<GatewayBackend>`: invia la richiesta di commissionamento di un gateway e restituisce `Observable<GatewayBackend>`.
+- `decommissionGateway(gatewayId: string): Observable<void>`: invia la richiesta di decommissionamento di un gateway e restituisce `Observable<void>`.
+- `resetGateway(gatewayId: string): Observable<void>`: invia la richiesta di reset di un gateway e restituisce `Observable<void>`.
+- `rebootGateway(gatewayId: string): Observable<void>`: invia la richiesta di riavvio di un gateway e restituisce `Observable<void>`.
+- `interruptGateway(gatewayId: string): Observable<void>`: invia la richiesta di interruzione di un gateway e restituisce `Observable<void>`.
+- `resumeGateway(gatewayId: string): Observable<void>`: invia la richiesta di ripresa di un gateway e restituisce `Observable<void>`.
 
 ===== GatewayService <angular-gateway-service>
+Il `GatewayService` è un servizio dedicato alla gestione dello stato dei gateway all'interno del frontend. Si occupa di mantenere lo stato dei gateway recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni da parte dei componenti dell'applicazione e di coordinare le operazioni di creazione, eliminazione e invio di comandi ai gateway.\
+
+Il servizio inietta tramite _dependency injection_:
+- `GatewayApiClientService`: per comunicare con le API di gestione dei gateway del backend e gestire le operazioni correlate ai gateway.
+- `GatewayCommandApiClientService`: per comunicare con le API di gestione dei comandi dei gateway del backend e gestire le operazioni correlate ai comandi dei gateway.
+- `GatewayApiAdapter`: per adattare i dati dei gateway restituiti dal backend al formato utilizzato all'interno del frontend.
+
+Il servizio presenta i seguenti attributi:
+- `_gatewayList` e `gatewayList`: `_gatewayList` è il _signal_ privato della lista gateway, `gatewayList` è la controparte _readonly_ pubblica.
+- `_total` e `total`: `_total` è il _signal_ privato del totale gateway per la paginazione, `total` è la controparte _readonly_ pubblica.
+- `_pageIndex` e `pageIndex`: `_pageIndex` è il _signal_ privato del'’indice di pagina corrente, `pageIndex` è la controparte _readonly_ pubblica.
+- `_limit` e `limit`: `_limit` è il _signal_ privato del numero di gateway per pagina, `limit` è la controparte _readonly_ pubblica.
+- `_loading` e `loading`: `_loading` è il _signal_ privato dello stato di caricamento, `loading` è la controparte _readonly_ pubblica.
+- `_error` e `error`: `_error` è il _signal_ privato dello stato di errore, `error` è la controparte _readonly_ pubblica.
+- `_currentTenantId`: identificativo del tenant selezionato usato per filtrare i gateway.
+
+Il servizio presenta i seguenti metodi:
+- `getGatewayListByTenant(tenantId: string, page: number, limit: number): void`: recupera la lista paginata dei gateway di un tenant, adatta i dati e aggiorna lo stato interno.
+- `getGateways(page: number, limit: number): void`: recupera la lista paginata di tutti i gateway, adatta i dati e aggiorna lo stato interno.
+- `addNewGateway(config: GatewayConfig): Observable<Gateway>`: crea un gateway tramite `GatewayApiClientService`, adatta la risposta e restituisce `Observable<Gateway>`.
+- `deleteGateway(id: string): Observable<void>`: elimina un gateway tramite `GatewayApiClientService` e restituisce `Observable<void>`.
+- `commissionGateway(gatewayId: string, tenantId: string, token: string): Observable<Gateway>`: commissiona un gateway tramite `GatewayCommandApiClientService`, adatta la risposta e restituisce `Observable<Gateway>`.
+- `decommissionGateway(gatewayId: string): Observable<void>`: decommissiona un gateway tramite `GatewayCommandApiClientService` e restituisce `Observable<void>`.
+- `resetGateway(gatewayId: string): Observable<void>`: resetta un gateway tramite `GatewayCommandApiClientService` e restituisce `Observable<void>`.
+- `rebootGateway(gatewayId: string): Observable<void>`: riavvia un gateway tramite `GatewayCommandApiClientService` e restituisce `Observable<void>`.
+- `interruptGateway(gatewayId: string): Observable<void>`: interrompe un gateway tramite `GatewayCommandApiClientService` e restituisce `Observable<void>`.
+- `resumeGateway(gatewayId: string): Observable<void>`: riattiva un gateway tramite `GatewayCommandApiClientService` e restituisce `Observable<void>`.
+- `refetchCurrentPage(): void`: ricarica la pagina corrente dei gateway in base al tenant selezionato.
+- `setGettingGatewaysState(): void`: imposta lo stato interno per il recupero della lista gateway.
+- `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
 ===== SensorApiClientService <angular-sensor-api-client-service>
+Il `SensorApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei sensori del backend. Si occupa di inviare le richieste HTTP al backend per effettuare operazioni di creazione, eliminazione e recupero dei sensori, e di gestire le risposte del backend, ad esempio restituendo i dati dei sensori o gestendo gli errori.\
+
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi:
+- `getSensorListByGateway(gatewayId: string, page: number, limit: number): Observable<PaginatedSensorResponse<SensorBackend>>`: recupera la lista paginata dei sensori associati a uno specifico gateway.
+- `getSensorListByTenant(page: number, limit: number): Observable<PaginatedSensorResponse<SensorBackend>>`: recupera la lista paginata dei sensori associati a un tenant specifico.
+- `addNewSensor(config: SensorConfig): Observable<SensorBackend>`: invia la richiesta di creazione di un nuovo sensore.
+- `deleteSensor(id: string): Observable<void>`: invia la richiesta di eliminazione di un sensore specifico.
 
 ===== SensorCommandApiClientService <angular-sensor-command-api-client-service>
+Il `SensorCommandApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei comandi dei sensori del backend. Si occupa di inviare le richieste HTTP al backend per effettuare operazioni di invio di comandi ai sensori, e di gestire le risposte del backend, ad esempio restituendo i risultati dei comandi o gestendo gli errori.\
+
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi:
+- `interruptSensor(sensorId: string): Observable<void>`: invia la richiesta di interruzione di un sensore e restituisce `Observable<void>`.
+- `resumeSensor(sensorId: string): Observable<void>`: invia la richiesta di ripresa di un sensore e restituisce `Observable<void>`.
 
 ===== SensorService <angular-sensor-service>
+Il `SensorService` è un servizio dedicato alla gestione dello stato dei sensori all'interno del frontend. Si occupa di mantenere lo stato dei sensori recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni da parte dei componenti dell'applicazione e di coordinare le operazioni di creazione, eliminazione e invio di comandi ai sensori.\
+
+Il servizio inietta tramite _dependency injection_:
+- `SensorApiClientService`: per comunicare con le API di gestione dei sensori del backend e gestire le operazioni correlate ai sensori.
+- `SensorCommandApiClientService`: per comunicare con le API di gestione dei comandi dei sensori del backend e gestire le operazioni correlate ai comandi dei sensori.
+- `SensorApiAdapter`: per adattare i dati dei sensori restituiti dal backend al formato utilizzato all'interno del frontend.
+
+Il servizio presenta i seguenti attributi:
+- `_sensorList` e `sensorList`: `_sensorList` è il _signal_ privato della lista sensori, `sensorList` è  la controparte _readonly_ pubblica.
+- `_total` e `total`: `_total` è il _signal_ privato del totale sensori per la paginazione, `total` è la controparte _readonly_ pubblica.
+- `_pageIndex` e `pageIndex`: `_pageIndex` è il _signal_ privato dell'indice di pagina corrente, `pageIndex` è la controparte _readonly_ pubblica.
+- `_limit` e `limit`: `_limit` è il _signal_ privato del numero di sensori per pagina, `limit` è la controparte _readonly_ pubblica.
+- `_loading` e `loading`: `_loading` è il _signal_ privato dello stato di caricamento, `loading` è la controparte _readonly_ pubblica.
+- `_error` e `error`: `_error` è il _signal_ privato dello stato di errore, `error` è la controparte _readonly_ pubblica.
+- `_currentGatewayId`: identificativo del gateway selezionato usato per filtrare i sensori.
+- `_currentTenantId`: identificativo del tenant selezionato usato per filtrare i sensori.
+
+Il servizio presenta i seguenti metodi:
+- `getSensorsByGateway(gatewayId: string, page: number, limit: number): void`: recupera la lista paginata dei sensori di un gateway, adatta i dati e aggiorna lo stato interno.
+- `getSensorsByTenant(page: number, limit: number): void`: recupera la lista paginata dei sensori di un tenant, adatta i dati e aggiorna lo stato interno.
+- `addNewSensor(config: SensorConfig): Observable<Sensor>`: crea un sensore tramite `SensorApiClientService`, adatta la risposta e restituisce `Observable<Sensor>`.
+- `deleteSensor(id: string): Observable<void>`: elimina un sensore tramite `SensorApiClientService` e restituisce `Observable<void>`.
+- `interruptSensor(sensorId: string): Observable<void>`: interrompe un sensore tramite `SensorCommandApiClientService` e restituisce `Observable<void>`.
+- `resumeSensor(sensorId: string): Observable<void>`: riattiva un sensore tramite `SensorCommandApiClientService` e restituisce `Observable<void>`.
+- `refetchCurrentPage(): void`: ricarica la pagina corrente dei sensori in base al gateway o tenant selezionato.
+- `clearSensors(): void`: metodo ausiliario che pulisce la lista dei sensori e i parametri di paginazione.
+- `setGettingSensorsState(): void`: imposta lo stato interno per il recupero della lista sensori.
+- `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
 ===== SensorLiveReadingsApiService <angular-sensor-live-readings-api-service>
+Il `SensorLiveReadingsApiService` è un servizio dedicato alla comunicazione tramite _WebSocket_ con il backend. Si occupa aprire la connessione al backend per recuperare le letture in tempo reale dei sensori.\
+
+Il servizio inietta tramite _dependency injection_:
+- `tokenService`: per accedere al token di autenticazione necessario per autenticare la richiesta e stabilire la connessione con il backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+- `socket$`: è un _WebSocketSubject_ utilizzato per gestire la comunicazione in tempo reale con il backend.
+- `disconnect$`: è un _Subject_ utilizzato per gestire la disconnessione dal backend.
+
+Il servizio presenta i seguenti metodi:
+- `connect(req: ChartRequest): Observable<RealTimeReading>`: stabilisce la connessione con il backend, autenticando la richiesta tramite il token _JWT_ e costruendo il _WebSocket_ tramite `createWebSocket` e ritornando le letture ricevute dal backend.
+- `disconnect(): void`: chiude la connessione con il backend emettendo un evento sul `disconnect$` che viene ascoltato dal `socket$` per chiudere la connessione.
+- `createWebSocket(url: string): string`: metodo ausiliario che costruisce il _Websocket_ tramite il metodo `webSocket`.
 
 ===== SensorHistoricApiService <angular-sensor-historic-api-service>
+Il `SensorHistoricApiService` è un servizio dedicato alla comunicazione con le API di gestione delle letture storiche dei sensori del backend. Si occupa di inviare le richieste HTTP al backend per recuperare le letture storiche dei sensori, e di gestire le risposte del backend, ad esempio restituendo i dati delle letture o gestendo gli errori.\
+
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi:
+- `getHistoricData(req: ChartRequest): Observable<HistoricResponse>`: invia la richiesta di recupero delle letture storiche dei sensori, costruendo l'URL con i parametri della richiesta, e restituisce `Observable<HistoricResponse>` con i dati delle letture.
 
 ===== SensorChartService <angular-sensor-chart-service>
+Il `SensorChartService` è un servizio dedicato alla gestione dello stato dei dati dei sensori necessari per la visualizzazione dei grafici all'interno del frontend. Si occupa di coordinare le operazioni di recupero dei dati in tempo reale e storici dei sensori, di adattare i dati ricevuti dal backend al formato necessario per la visualizzazione nei grafici e di mantenere lo stato di questi dati per renderli accessibili ai componenti dell'applicazione.\
+
+Il servizio inietta tramite _dependency injection_:
+- `SensorLiveReadingsApiService`: per comunicare con il backend e recuperare le letture in tempo reale dei sensori.
+- `SensorHistoricApiService`: per comunicare con il backend e recuperare le letture storiche dei sensori.
+- `SensorAdapterFactory`: factory utilizzata per istanizare il corretto tipo di adapter in base al tipo di sensore.
+
+Il servizio presenta i seguenti attributi:
+- `_historicReadings` e `historicReadings`: `_historicReadings` è il _signal_ privato dei dati storici dei sensori, `historicReadings` è la controparte _readonly_ pubblica.
+- `_liveReadings` e `liveReadings`: `_liveReadings` è il _signal_ privato dei dati in tempo reale dei sensori, `liveReadings` è la controparte _readonly_ pubblica.
+- `_loading` e `loading`: `_loading` è il _signal_ privato dello stato di caricamento, `loading` è la controparte _readonly_ pubblica.
+- `_error` e `error`: `_error` è il _signal_ privato dello stato di errore, `error` è la controparte _readonly_ pubblica.
+- `_connectionStatus` e `connectionStatus`: `_connectionStatus` è il _signal_ privato dello stato della connessione (che può assumere valori: `connected`, `disconnected`, `connecting`, `reconnecting`), `connectionStatus` è la controparte _readonly_ pubblica.
+- `_fields` e `fields`: `_fields` è il _signal_ privato stabilisce l'unità di misura e il nome del valore letto per ogni tipo di sensore, `fields` è la controparte _readonly_ pubblica.
+- `_samplesPerPacket` e `samplesPerPacket`: `_samplesPerPacket` è il _signal_ privato del numero di campioni per pacchetto (utilizzato nel caso di sensori `ECG_CUSTOM`), `samplesPerPacket` è la controparte _readonly_ pubblica.
+
+Il servizio presenta i seguenti metodi:
+- `startChart(req: ChartRequest): void`: avvia il processo di recupero dei dati dei sensori, sia in tempo reale che storici, istanziando il corretto adapter in base al tipo di sensore e avviando il chart richiesto.
+- `stopChart(): void`: interrompe il processo di recupero dei dati dei sensori, disconnettendosi dal backend per i dati in tempo reale e pulendo i dati storici e in tempo reale.
+- `startHistoricChart(req: ChartRequest): void`: avvia il processo di recupero dei dati storici dei sensori, adattando i dati ricevuti dal backend e aggiornando lo stato interno.
+- `startLiveChart(req: ChartRequest): void`: avvia il processo di recupero dei dati in tempo reale dei sensori, adattando i dati ricevuti dal backend e aggiornando lo stato interno, gestendo anche lo stato della connessione.
+- `reset(): void`: metodo ausiliario che pulisce i dati storici e in tempo reale dei sensori, e reimposta i campi e il numero di campioni per pacchetto ai valori di default.
 
 ===== DashboardService <angular-dashboard-service>
+Il `DashboardService` è un servizio dedicato alla gestione dello stato dei dati e delle informazioni visualizzate nella dashboard del frontend. Si occupa di coordinare le operazioni di recupero dei dati necessari per la visualizzazione della dashboard, di adattare i dati ricevuti dal backend al formato necessario per la visualizzazione e di mantenere lo stato di questi dati per renderli accessibili ai componenti dell'applicazione.\
+
+Il servizio inietta tramite _dependency injection_:
+- `GatewayService`: per accedere alle informazioni sui gateway e sui sensori associati, necessarie per la visualizzazione della dashboard.
+- `SensorService`: per accedere alle informazioni sui sensori, necessarie per la visualizzazione della dashboard.
+- `PermissionService`: per determinare se l'utente ha il permesso di inviare comandi ai gateway.
+
+Il servizio presenta i seguenti attributi:
+- `_expandedGateway` e `expandedGateway`: `_expandedGateway` è il _signal_ privato del gateway attualmente espanso nella dashboard, `expandedGateway` è la controparte _readonly_ pubblica.
+- `_selectedChart` e `selectedChart`: `_selectedChart` è il _signal_ privato del tipo di grafico attualmente selezionato per la visualizzazione, `selectedChart` è la controparte _readonly_ pubblica.
+- `canSendCommands`: `canSendCommands` è il _signal computed_ utilizzato per determinare se l'utente ha il permesso di inviare comandi ai gateway.
+Il servizio inoltre espone tutti gli attributi del `GatewayService` e `SensorService` attraverso attributi _readonly_, in modo che i componenti della dashboard possano accedervi direttamente.
+
+Il servizio presenta i seguenti metodi:
+- `loadDashboard(tenantId?: string): void`: metodo utilizzato per recuperare la lista di gateway (se `canSendCommands` è `true`) o la lista di sensori, filtrando tali liste per _tenant_.
+- `changeGatewayPage(pageIndex: number, limit: number): void`: metodo utilizzato per cambiare la pagina della lista gateway, richiama il metodo `changePage` del `GatewayService`.
+- `changeSensorPage(pageIndex: number, limit: number): void`: metodo utilizzato per cambiare la pagina della lista sensori, richiama il metodo `changePage` del `SensorService`.
+- `toggleExpandedGateway(gateway: Gateway): void`: metodo utilizzato per espandere o chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway`.
+- `openChart(request: ChartRequest): void`: metodo utilizzato per aprire il grafico di un sensore, aggiorna lo stato di `selectedChart` con la richiesta ricevuta.
+- `closeChart(): void`: metodo utilizzato per chiudere il grafico di un sensore, aggiorna lo stato di `selectedChart` a `null`.
+- `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`. 
 
 ===== GatewaySensorManagerService <angular-gateway-sensor-manager-service>
+Il `GatewaySensorManagerService` è un servizio dedicato alla gestione delle azioni _CRUD_ effettuabili su gateway e sensori. Si occupa di coordinare le operazioni di creazione, eliminazione e invio di comandi ai gateway e ai sensori, e di gestire eventuali errori che possono verificarsi durante queste operazioni.\
+
+Il servizio inietta tramite _dependency injection_:
+- `GatewayService`: per comunicare con le API di gestione dei gateway del backend e gestire le operazioni correlate ai gateway.
+- `SensorService`: per comunicare con le API di gestione dei sensori del backend e gestire le operazioni correlate ai sensori.
+
+Il servizio presenta i seguenti attributi:
+- `_expandedGateway` e `expandedGateway`: `_expandedGateway` è il _signal_ privato del gateway attualmente espanso, `expandedGateway` è la controparte _readonly_ pubblica.
+Il servizio inoltre espone tutti gli attributi del `GatewayService` e `SensorService` attraverso attributi _readonly_, in modo che i componenti della dashboard possano accedervi direttamente.
+
+Il servizio presenta i seguenti metodi:
+- `loadGateways(): void`: metodo utilizzato per recuperare la lista di gateway, richiama il metodo `getGateways` del `GatewayService`.
+- `toggleExpandedGateway(gateway: Gateway): void`: metodo utilizzato per espandere o chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway`.
+- `deleteGateway(gateway: Gateway): void`: metodo utilizzato per eliminare un gateway, richiama il metodo `deleteGateway` del `GatewayService` e gestisce eventuali errori.
+- `deleteSensor(sensor: Sensor): void`: metodo utilizzato per eliminare un sensore, richiama il metodo `deleteSensor` del `SensorService` e gestisce eventuali errori.
+- `changeGatewayPage(pageIndex: number, limit: number): void`: metodo utilizzato per cambiare la pagina della lista gateway, richiama il metodo `changePage` del `GatewayService`.
+- `changeSensorPage(pageIndex: number, limit: number): void`: metodo utilizzato per cambiare la pagina della lista sensori, richiama il metodo `changePage` del `SensorService`.
+- `refreshGateways(): void`: metodo utilizzato per ricaricare la lista di gateway, richiama il metodo `refetchCurrentPage` del `GatewayService`.
+- `refreshSensors(): void`: metodo utilizzato per ricaricare la lista di sensori, richiama il metodo `refetchCurrentPage` del `SensorService`.
+- `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`.
 
 ==== Componenti UI
 
