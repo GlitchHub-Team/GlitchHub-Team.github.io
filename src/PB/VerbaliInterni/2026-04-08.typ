@@ -31,7 +31,7 @@
 )
 
 = Introduzione
-Il presente documento attesta che, in data *08 aprile 2026* dalle ore 14:30 alle ore 16:30, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
+Il presente documento attesta che, in data *8 aprile 2026* dalle ore 14:30 alle ore 16:30, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 === Gestione delle Issue
 In seguito a una revisione dello stato di avanzamento, il gruppo ha riscontrato che alcune issue sono state chiuse manualmente anziché tramite l'integrazione automatica delle #gloss[pull request]. Questa procedura ha inizialmente causato la chiusura automatica di alcune PR e il mancato merge di alcune componenti del lavoro nel ramo principale. Nonostante l'incongruenza procedurale, il team è intervenuto tempestivamente risolvendo i conflitti e allineando i rami manualmente.
