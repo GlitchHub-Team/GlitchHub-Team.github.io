@@ -136,7 +136,6 @@
 
 #pagebreak()
 
-
 = Introduzione <introduzione>
 == Scopo del documento
 Il presente documento definisce in modo analitico l'architettura del sistema software, offrendo una scomposizione accurata delle sue componenti, delle logiche di interazione e della loro distribuzione nel sistema. Esso è il sostegno progettuale per la fase di realizzazione, garantendo continuità con i risultati ottenuti nel #gloss("PoC") e introducendo accorgimenti necessari per elevare il grado di maturità e robustezza architetturale.
@@ -836,6 +835,59 @@ In ogni microservizio è stata applicata l'*architettura esagonale* per garantir
 Inoltre ai diversi microservizi è stato applicato un pattern di #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx] o #gloss[Angular], che permette di iniettare le dipendenze necessarie (ad esempio la connessione al database) in modo semplice, sicuro e testabile, garantendo una maggiore modularità e manutenibilità del codice.\
 Infatti la maggior parte delle componenti di ogni microservizio ha le dipendenze iniettate tramite costruttore, le dipendenze di tipo *composition* e *aggregation* sono raramente utilizzate.
 
+=== Convenzioni di notazione
+La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 2.5, il quale è stato pensato originariamente per linguaggi propriamente orientati agli oggetti. Di fatto, però, Go non è un linguaggio _object-oriented_, per cui il gruppo ha adottato una serie di convenzioni comuni per rendere agevole la scrittura di diagrammi UML, usando *draw.io* come strumento. Le convenzioni sono le seguenti:
+
+- Si usa una classe UML per rappresentare uno _struct_ concreto;
+
+- Si usa la notazione UML per indicare la visibilità di un attributo o metodo, avendo cura che gli attributi o metodi privati siano indicati con l'iniziale minuscola e tenendo conto che in Go la visibilità è definita solamente al _package-level_;
+
+- Si utilizza la notazione originale per descrivere le interfacce con `<<interface>>` invece che la _lollipop notation_, poiché quest'ultima non è presente all'interno di *draw.io*;
+
+- Si utilizza la normale sintassi per implementazione delle interfacce da parte di classi concrete, sebbene in Go le interfacce vengono implementate implicitamente (ovvero senza dichiarare l'implementazione con una keyword quale `implements`);
+
+- Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno _struct_ all'interno di un altro, senza alcuna ereditarietà nei metodi
+
+- La sintassi per le _signature_ delle funzioni con più tipi di ritorno è la seguente:
+  #align(center,
+    ```
+    <visibility> Func(<params>): Tipo1, Tipo2, Tipo3, ...
+    ```
+  )
+  In questo esempio, `<visibility>` e `<params>` vanno sostituiti rispettivamente con la visibilità del metodo e con la lista dei suoi parametri
+
+- Ogni diagramma è visto dalla prospettiva del _package_ a cui esso appartiene, per cui ogni riferimento a _package_ esterni viene specificato con la sintassi di Go: `package.Name` dove `package` è il nome del _package_ e `Name` il nome del simbolo preso in considerazione.
+
+- Si utilizza la sintassi UML per indicare un _enum_ (usando `<<enum>>`) sebbene essi non esistano in Go: questi saranno tradotti nel sorgente come insiemi di variabili costanti che condividono un tipo comune non primitivo. \
+  Ad esempio il diagramma nella @code-sensor.SensorProfile, può essere tradotto nel seguente codice Go:
+  #block(breakable: false,
+    ```go
+    type SensorProfile string
+    const (
+      ECG_CUSTOM            SensorProfile = "ecg_custom"
+      ENVIRONMENTAL_SENSING SensorProfile = "environmental_sensing"
+      HEALTH_THERMOMETER    SensorProfile = "health_thermometer"
+      HEART_RATE            SensorProfile = "heart_rate"
+      PULSE_OXIMETER        SensorProfile = "pulse_oximeter"
+    )
+    ```
+  )
+
+- Siccome in Go non esistono i costruttori, per ognuno degli _struct_ inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
+  #align(center, ```go
+    type NewExample struct{
+      Value1 int
+      Value2 string
+    }
+    func NewExample(value1 int, value2 string) *NewExample {
+      return &NewExample{
+        Value1: value1,
+        Value2: value2,
+      }
+    }
+  ```)
+  In ciascuno dei diagrammi seguenti, se non specificato, si assume che esista un costruttore per ogni _struct_ specificato che prende come parametri in input gli stessi attributi dello struct, come definito nell'esempio.
+
 === Gateway
 La seguente sezione ha lo scopo di descrivere il #gloss[Code Diagram] del microservizio *Gateway*.
 
@@ -1467,7 +1519,7 @@ Il codice sorgente del Cloud Backend, presente nella #repo("dash")[repository `D
 - *`auth`*, per le funzionalità dell'autenticazione degli utenti;
 - *`email`*, per le funzionalità d'invio email;
 - *`gateway`*, per le funzionalità CRUD sui gateway e di invio comandi ad essi;
-- *`gateway_connection`*, per le funzionalità di hello dei gateway;
+  - *`gateway/hello`*, per le funzionalità di ricezione di messaggi di hello dai gateway;
 - *`historical_data`*, per le funzionalità di accesso ai dati storici dei sensori;
 - *`real_time_data`*, per le funzionalità di accesso ai dati dei sensori in tempo reale;
 - *`sensor`*, per le funzionalità CRUD sui sensori e di invio comandi ad essi;
@@ -1476,29 +1528,155 @@ Il codice sorgente del Cloud Backend, presente nella #repo("dash")[repository `D
 
 Inoltre, i seguenti _package_ contengono codice condiviso con tutti gli altri, sopra menzionati:
 - *`infra`* contiene il codice _platform-dependent_ condiviso tra gli altri package
-- *`shared`* contiene interfacce e metodi di dominio condivisi tra gli altri package;
+- *`shared`* contiene interfacce e metodi di dominio condivisi tra gli altri package.
+  - *`shared/config`* contiene la _struct_ `Config` utilizzata come singolo aggregatore delle impostazioni di configurazione dell'applicativo;
+  - *`shared/crypto`* contiene le interfacce condivise per la gestione della crittografia, le cui implementazioni risiedono in *`infra/crypto`*;
+  - *`shared/identity`* contiene la _struct_ `Requester` utilizzata all'interno dell'applicativo per identificare i dati di autenticazione dell'utente che ha richiesto un comando specifico, in modo tale da applicare meccanismi di Role-Based Access Control (RBAC).
 
 ==== Package `auth`
+// Michele
 
 ===== Controller
 
 ==== Package `email`
+Il package `email` non presenta controller poiché non viene chiamato direttamente dal client, ma ne vengono chiamate solamente le _outbound ports_.
+
+#figure(
+  image("../../assets/c4/backend/email/email.svg", width: 100%),
+  caption: [Cloud Backend -- Code Diagram per package `email`]
+)
+
+===== `SendEmailPort`
+Outbound port per inviare le email di conferma account (`SendConfirmAccountEmail()`) e di password dimenticata (`SendForgotPasswordEmail()`).
+
+- *`SendConfirmAccountEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+
+- *`SendForgotPasswordEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` da `fromAddress` un'email contenente il link di cambio password dimenticata, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+
+
+===== `SendEmailSMTPAdapter`
+Struct che implementa `SendEmailPort` e presenta i seguenti attributi:
+- `fromAddress`: L'indirizzo da cui inviare i messaggi email
+- `sender`: Il riferimento a un oggetto che implementa l'interfaccia *`smtpSender`*
+- `createMsgStrategy`: Il riferimento alla _strategy_ usata per comporre il messaggio
+- `appUrl`: L'URL dell'applicativo a cui devono associare i link di conferma account / cambio password
+
+Questa struct è costruita con la seguente funzione di costruzione:
+#align(center)[
+*```go
+NewSendEmailSMTPAdapter(cfg *config.Config, sender smtpSender, createMsgStrategy createMessageStrategy) *SendEmailSMTPAdapter
+```*
+]
+
+===== `createMessageStrategy`
+Interfaccia che implementa lo *strategy pattern* per determinare come costruire il messaggio da inviare al client email. Si è scelto di utilizzare questo pattern in modo tale da permettere la creazione degli stessi messaggi in modi diversi, ad esempio usando HTML.
+
+Il metodo *`CreateMessage(fromAddress, toAddress, subject, body string) *gomail.Message`* costruisce un oggetto di tipo *`*gomail.Message`* da usare in tandem con l'interfaccia *`smtpSender`*, che rappresenta un messaggio inviato dall'indirizzo `fromAddress` all'indirizzo `toAddress` con oggetto `subject` e corpo `body`.
+
+===== `smtpSender`
+Rappresenta un'interfaccia che astrae il metodo *`DialAndSend(m ...*gomail.Message) error`* implementato dallo struct *`gomail.Dialer`*
+
+Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *`smtpSender`* tramite la funzione *`newDialer(cfg *config.Config) *gomail.Dialer`* che legge la configurazione passata (`cfg`) per determinare le coordinate #gloss[SMTP] da contattare per inviare i messaggi email.
 
 ==== Package `gateway`
+// Michele
 
-==== Package `gateway_connection`
+==== Package `gateway/hello`
+Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di ascoltare un subject #gloss[NATS] specifico in attesa di messaggi di hello da parte dei gateway e lo struct `Service` che si occupa di processare i messaggi ricevuti e validarli.
+
+#figure(
+  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+)
+
+===== Inbound adapter -- `NATSWorker`, `GatewayHelloMessageDTO`
+Lo struct `NATSWorker` ha la responsabilità di istanziare una #gloss[goroutine] per rimanere in attesa su #gloss[NATS JetStream] di messaggi di "hello" inviati dai gateway in fase di commissioning. I suoi attributi sono i seguenti:
+- *`consumer`*: Riferimento a un oggetto `jetstream.Consumer`, il quale consente di ascoltare e processare messaggi su una specifica _stream_ #gloss[JetStream]
+- *`gatewayHelloUseCase`*: Riferimento allo _use case_ implementato dal service; poiché comunica in input con la _business logic_, `NATSWorker` è un'_inbound adapter_
+- *`logger`*: Riferimento a logger zap
+
+Eseguendo il metodo `Run(lc fx.Lifecycle)` è possibile istanziare il worker, il quale istanzierà a sua volta `ListenHelloMessages(ctx context.Context)` in una goroutine, la quale applicherà il metodo `ProcessMsg(msg jetstream.Msg)` a ogni messaggio ricevuto su #gloss[JetStream].
+
+// TODO: Forse sarebbe bene spiegare meglio come funziona il tutto?
+*`GatewayHelloMessageDTO`* è il tipo del DTO creato da `NATSWorker` corrispondente a un messaggio di hello su #gloss[NATS Jetstream]. Esso consiste di:
+- *`GatewayId`*: Stringa contenente lo UUID del gateway richiedente
+- *`PublicIdentifier`*: L'identificativo pubblico del gateway, usato in fase di commissioning
+
+===== Inbound port -- `GatewayHelloUseCase`, `GatewayHelloMessageCommand`
+L'_inbound port_ implementata da `GatewayHelloService`. Contiene il metodo *`ProcessHello(cmd GatewayHelloMessageCommand) error`*, il quale consente di processare un messaggio di hello, le cui specifiche sono descritte da `cmd`.
+
+*`GatewayHelloMessageCommand`* è il tipo dello struct che rappresenta il comando da inviare al `Service`, contenente i dati specifici di un messaggio di hello da processare. Contiene i seguenti attributi:
+- *`GatewayId`*: UUID del gateway richiedente
+- *`PublicIdentifier`*: L'identificativo pubblico del gateway, usato in fase di commissioning
+
+===== Service -- `GatewayHelloService`
+Struct di dominio che implementa *`GatewayHelloUseCase`*. Contiene i seguenti attributi:
+- *`getGateway`*: _Outbound port_ usata per ottenere informazioni su uno specifico gateway
+- *`saveGateway`*: _Outbound prot_ usata per aggiungere un nuovo gateway al Cloud DB o modificarne uno esistente
+- *`logger`*: Riferimento al logger zap
 
 ==== Package `historical_data`
+// Michele
 
 ==== Package `infra`
+// Michele
 
 ==== Package `real_time_data`
+Il package `real_time_data` presenta le funzionalità per ricevere in tempo reale i dati direttamente da un sensore specifico via #gloss[NATS] ed eventualmente presentarli a un client #gloss[Websocket].
 
-==== Package `sensor`
+Di seguito si riporta il Code Diagram degli struct di dominio rappresentati un dato o un errore ottenuti in tempo reale.
+#figure(
+  image("../../assets/c4/backend/real_time_data/real_time_data_datastructs.svg", width:100%),
+  caption: [Cloud Backend -- Code Diagram di data structs per `real_time_data`],
+)
 
-==== Package `shared`
+Di seguito, invece, si riporta il Code Diagram per tutti gli altri struct presenti nel package.
+#figure(
+  image("../../assets/c4/backend/real_time_data/real_time_data_structs.svg", width:90%),
+  caption: [Cloud Backend -- Code Diagram di Controller, UseCase, Service, Port, Adapter e Reader per `real_time_data`],
+)
+
+===== Inbound adapter -- `Controller`
+- Controller
+- vari DTO
+
+===== Inbound port -- `GetRealTimeDataUseCase`
+- Use Case
+- command
+
+===== Dominio -- `RealTimeDataService`
+- Service
+- Classi di dominio
+
+===== Outbound port -- `RealTimeDataPort`
+- Port
+
+===== Outbound adapter -- `RealTimeDataNATSAdapter`
+- Adapter
+
+===== Reader -- `RealTimeDataNATSReader`
+- Reader
+- Goroutine varie
+- lastTimestampContainer
+
+
+==== Package `sensor` <code-sensor>
+
+==== Package `sensor/profile`
+Questo package è stato creato separatamente da `sensor` per evitare la creazione di import cycles.
+
+===== `SensorProfile` <code-sensor.SensorProfile>
+#figure(
+  image("../../assets/c4/backend/sensor/SensorProfile.svg", width:30%),
+  caption: [Code Diagram per `sensor.SensorProfile`],
+)
+
+==== Package `shared` -- E
 
 ==== Package `tenant`
+// Michele
+
+
 
 ==== Package `user`
 
