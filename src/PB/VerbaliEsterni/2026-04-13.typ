@@ -15,7 +15,7 @@
   ),
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Cardin Riccardo", "Prof. Vardanega Tullio"),
   odg: (
-    [Presentazione stato avanzamento lavori],
+    [Presentazione MVP],
   ),
   htmlId: "PB-VerbaliEsterni",
   verificatore-interno: "Alessandro Dinato",
