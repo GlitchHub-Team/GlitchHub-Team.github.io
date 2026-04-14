@@ -25,13 +25,25 @@ nav:
           - Personalizzare la configurazione: installazione/preparazione-del-sistema/02-configurare-ms.md
           - Avviare il Sistema: installazione/preparazione-del-sistema/03-avvio-sistema.md
   - Guide:
-      - Effettuare il login: guide/login.md
-  - Telemetria:
-      - Configurazione di Grafana: telemetria/config.md
-      - Importare e modificare una dashboard: telemetria/dashboard.md
-#  - Riferimento API:
-#      -
-
+      - Gateway:
+          - Comandi per gateway e sensori: guide/gateway/comandi.md
+          - Creazione ed eliminazione gateway: guide/gateway/create-delete-gateway.md
+          - Creazione ed eliminazione sensore: guide/gateway/create-delete-sensor.md
+          - Commissioning e decommissioning gateway: guide/gateway/commission-decommission-gateway.md
+          - Interruzione e ripresa gateway: guide/gateway/interrupt-resume-gateway.md
+          - Interruzione e ripresa sensore: guide/gateway/interrupt-resume-sensor.md
+          - Reset e riavvio gateway: guide/gateway/reboot-reset-gateway.md
+          - Invio dati IoT: guide/gateway/invio-dati.md
+          - Invio messaggio Hello: guide/gateway/hello.md 
+      - Data Consumer:
+          - Ricezione dati IoT: guide/data-consumer/ricezione-dati.md
+      - Dashboard Frontend:
+          - Login: guide/dashboard-frontend/login.md
+      - Dashboard Backend:
+          - Login: guide/dashboard-backend/login.md
+  - Observability:
+      - Configurazione di Grafana: observability/config.md
+      - Importare e modificare una dashboard: observability/dashboard.md
 
 theme:
   name: material
