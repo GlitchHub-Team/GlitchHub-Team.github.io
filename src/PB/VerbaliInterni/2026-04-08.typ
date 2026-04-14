@@ -40,7 +40,7 @@ In seguito a una revisione dello stato di avanzamento, il gruppo ha riscontrato 
 
 === Stato di avanzamento Frontend
 Le attività più rilevanti portate a termine per il frontend e la relativa architettura includono:
-- Modifiche sostanziali alle sezioni di _historical_data_ e _real_time_data_ per allinearle alle nuove specifiche.
+- Modifiche sostanziali alle funzionalità relative ai dati storici e ai dati in tempo reale per allinearle alle nuove specifiche.
 - Aggiornamento al modello C4 sulla base del codice attuale per garantirne la coerenza.
 
 === Stato di avanzamento Backend e Infrastruttura
