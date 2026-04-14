@@ -51,7 +51,7 @@ Il lavoro sul backend si è concentrato sul consolidamento e la verifica dei _pa
 - Avviata l'implementazione delle metriche di _observability_ all'interno del repository dedicato.
 
 === Altri documenti
-Diversi documenti sono stati aggiornati o estesi, tra cui la specifica tecnica, le norme i progetto e il manuale utente.
+Diversi documenti sono stati aggiornati o estesi, tra cui la #gloss[specifica tecnica], le #gloss[norme i progetto] e il #gloss[manuale utente].
 
 = Assegnazione delle prossime task basate sulle decisioni prese
 #table(
