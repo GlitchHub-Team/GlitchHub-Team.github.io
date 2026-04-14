@@ -32,11 +32,25 @@
   stato: "Bozza",
   registro-modifiche: (
     (
-      "0.6.0",
+      "0.7.1",
+      "07/04/2026",
+      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
+      [Applicazione verifica su architettura esagonale],
+    ),
+    (
+      "0.7.0",
       "03/04/2026",
       "Alessandro Dinato",
       "Riccardo Graziani",
       [Code diagram del Data Consumer e Gateway, database design],
+    ),
+    (
+      "0.6.0",
+      "02/04/2026",
+      "Jaume Bernardi",
+      "Elia Ernesto Stellin",
+      [Aggiunto paragrafo per Architettura Esagonale],
     ),
     (
       "0.5.0",
@@ -98,8 +112,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Specifica tecnica",
 )
 
@@ -664,6 +678,17 @@ Sono inoltre presenti componenti che operano indipendentemente dalle richieste d
 - Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
+=== Architettura esagonale <architettura-esagonale>
+L'architettura esagonale è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. Il nucleo, infatti, comunica con tali componenti esterni tramite delle interfacce dette _ports_, implementate da oggetti concreti detti _adapters_ che permettono alla _business logic_ dell'applicazione di comunicare con le componenti esterne usando un linguaggio disaccoppiato dalle specifiche infrastrutturale delle componenti esterne.
+
+In questo modo la logica di business rimane testabile e disaccoppiata dal resto, consentendo di progettare e sviluppare la logica fondamentale dell'applicativo in maniera pura e indipendente dalle tecnologie infrastrutturale scelte, le quali diventano potenzialmente sostituibili in futuro.
+
+Questa strategia si traduce in componenti applicativi facilmente intercambiabili come database, UX e componenti di servizio, che possono essere testati in modo indipendente.
+
+Il sistema sviluppato sfrutta i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
+- Una maggiore semplicità nello scrivere test unitari in modo isolato per ogni componente ad ogni strato, tramite l'uso dei _mock_ per i relativi input e output;
+- La stessa logica di dominio è riutilizzabile da più tipi di client grazie all'interscambiabilità di porte e adapter, che isolano il core dalle specifiche interfacce;
+- Eventuali aggiornamenti alle tecnologie non influiscono sulla logica di business dell'applicazione.
 
 == Architettura di dettaglio <archit-dett>
 In ogni microservizio è stata applicata un'*architettura esagonale* per garantire un elevato isolamento della logica di business e garantire una facile sostituibilità dei componenti esterni, come il database o il message broker, senza dover modificare la logica centrale del servizio.\
