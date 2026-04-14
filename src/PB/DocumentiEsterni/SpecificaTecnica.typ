@@ -32,6 +32,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.7.2",
+      "14/04/2026",
+      "Elia Ernesto Stellin",
+      "-",
+      [Tracciate nuove librerie usate lato backend; Inserimento versioni mancanti per tecnologie esistenti],
+    ),
+    (
       "0.7.1",
       "07/04/2026",
       "Jaume Bernardi",
