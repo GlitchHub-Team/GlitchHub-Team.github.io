@@ -46,7 +46,7 @@ Le attività più rilevanti portate a termine per il frontend e la relativa arch
 === Stato di avanzamento Backend e Infrastruttura
 Il lavoro sul backend si è concentrato sul consolidamento e la verifica dei _package_ ancora da verificare:
 - Completata la codifica e la successiva verifica del package `gateway`.
-- Sviluppati i test di integrazione per i package _user_ e _auth_.
+- Sviluppati i test di integrazione per i package `user` e `auth`.
 - Completato il setup iniziale del sistema per l'#gloss[MVP].
 - Avviata l'implementazione delle metriche di _observability_ all'interno del repository dedicato.
 
