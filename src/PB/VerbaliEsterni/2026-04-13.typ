@@ -11,7 +11,7 @@
     "Jaume Bernardi",
     "Michele Dioli",
     "Siria Salvalaio",
-    "Hossan Ezzemouri",
+    "Hossam Ezzemouri",
   ),
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Cardin Riccardo", "Prof. Vardanega Tullio"),
   odg: (
