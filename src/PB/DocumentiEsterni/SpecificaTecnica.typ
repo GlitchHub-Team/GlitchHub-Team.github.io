@@ -475,6 +475,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 L'architettura del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema.
 
 
+// TODO: li inserirei dove sono serviti, non come collezione di cose usate. poiché sono degli strumenti atti a risolvere dei problemi. 
 == Design Patterns <design-patterns>
 I design pattern sono stati selezionati per garantire che l'architettura a microservizi sia flessibile e scalabile, rispettando gli obiettivi di manutenibilità definiti nel capitolato.
 
@@ -550,10 +551,13 @@ I componenti dell'interfaccia utente possono quindi sottoscriversi a tale istanz
 
 ==== Utilizzo nel progetto
 
-== Architettura logica <archit-log>
-L'architettura logica del sistema è documentata seguendo il modello C4, utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti.
-=== Context <system-context>
-L'analisi dell'architettura logica inizia con il diagramma di System Context, che definisce il perimetro del progetto. In questa fase, definita dal livello di astrazione più alto, non si analizzano le tecnologie interne o implementative ma ci si focalizza esclusivamente sulle interazioni tra i componenti interni del sistema e le interazioni coi componenti esterni e utenti umani.
+== Design architetturale ad alto livello <design-architetturale>
+L'architettura ad alto livello del sistema sviluppato è documentata seguendo il modello C4, utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti.
+
+=== System Context <c4-system-context>
+Il primo livello di astrazione del modello C4 è rappresentato dal diagramma di System Context, che definisce il perimetro del progetto, focalizzandosi sulle interazioni tra i sistemi principali individuati e le loro interazioni con gli utenti.
+
+Un "sistema", per come definito da tale livello del modello C4, rappresenta in termini generici un insieme di componenti con uno scopo preciso e che producono valore per i suoi utenti umani e non.
 
 #figure(
   image("../../assets/c4/system_context.svg", width: 80%),
@@ -562,14 +566,15 @@ L'analisi dell'architettura logica inizia con il diagramma di System Context, ch
 
 Il Sistema Cloud è il fulcro dell'intero ambiente in quanto principale fornitore dei servizi del software, quali la ricezione e memorizzazione dei dati di qualsiasi natura (nel database più opportuno) e il loro invio verso la dashboard, nonché la definizione dei perimetri di sicurezza e correlata autenticazione degli utenti.
 ed interagisce con tutti gli altri utenti ed elementi presenti, ovvero:
-- Super Admin, tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
-- Admin generico, opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
-- Utente generico, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
-- API Client, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
-- Sistema observability, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
-- Gateway simulato, entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
-=== Container <container>
-In questo contesto, un container è inteso come una parte del sistema o data store (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
+- *Super Admin*, tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
+- *Admin generico*, opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
+- *Utente generico*, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
+- *API Client*, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
+- *Sistema observability*, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
+- *Gateway simulato*, entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
+
+=== Container <c4-container>
+In questo contesto, un "container" è inteso come un applicativo o un _data store_ (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
 
 #figure(
   image("../../assets/c4/container.svg", width: 100%),
@@ -577,6 +582,7 @@ In questo contesto, un container è inteso come una parte del sistema o data sto
 )
 
 Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti nel Context, il livello di astrazione precedente.
+
 ==== Sistema Cloud
 Sono ora rappresentati:
 - due database, il IoT Data DB e il CloudDB, il primo per i dati prodotti dai sensori simulati e il secondo per tutte le altre informazioni utili, ad esempio dati di tenant o API keys.
@@ -584,11 +590,14 @@ Sono ora rappresentati:
 - Message Broker, che permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway.
 - Data Consumer ha il compito di ricevere i valori generati dai sensori, leggerli e formattarli prima di inserirli nel database.
 - Cloud Backend (in Go e Gin) che rimane il fulcro dell'applicazione. Come riportato sopra, emette i principali servizi del software.
-==== Il Sistema observability
+
+==== Sistema Observability
 Ora presenta un container NATS Exporter che raccoglie le metriche di sistema e le inoltra a Observability DB (Prometheus) per il monitoraggio, con visualizzazione finale fornita tramite Observability Dashboard (Grafana).
-==== Il Gateway simulato
+
+==== Sistema Gateway simulato
 Comprende un database a scopo di buffer. Interagisce con il Message Broker del Sistema Cloud tramite protocolli NATS per inviare i dati prodotti e ricevere e rispondere a comandi.
-=== Component <component>
+
+=== Component <c4-component>
 Un diagramma Component rappresenta l'ultimo livello di astrazione dell'architettura logica prima di scendere nel dettaglio del codice sorgente. Un componente è inteso come un raggruppamento di funzionalità correlate esposte tramite un'interfaccia definita, che risiede all'interno di un container. Rispetto al livello precedente del modello C4, in questo strato si descrivono le responsabilità interne, le dipendenze e le scelte implementative dei container principali che orchestrano il sistema.
 
 I container principali descritti in questa sezione sono:
@@ -674,21 +683,122 @@ Sono inoltre presenti componenti che operano indipendentemente dalle richieste d
 - Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
-=== Architettura esagonale <architettura-esagonale>
-L'architettura esagonale è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. Il nucleo, infatti, comunica con tali componenti esterni tramite delle interfacce dette _ports_, implementate da oggetti concreti detti _adapters_ che permettono alla _business logic_ dell'applicazione di comunicare con le componenti esterne usando un linguaggio disaccoppiato dalle specifiche infrastrutturale delle componenti esterne.
+
+
+== Architettura logica <archit-log>
+Per tutti i microservizi sviluppati in #gloss[Go], si è scelto di utilizzare l'*architettura esagonale* come architettura logica. Nelle successive sottosezioni, verrà introdotto questo pattern architetturale, per poi descriverne l'applicazione effettiva nel codice sorgente.
+
+=== Introduzione
+Essa è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. 
+
+Questo sistema architetturale definisce delle interfacce dette _port_ e delle classi concrete dette _adapter_, i quali possono essere sia _inbound_ ("in entrata") che _outbound_ ("in uscita"), i quali sono completamente separati dalla _business logic_, la quale è totalmente indipendente da essi. Più nello specifico:
+
+- Gli _*inbound adapter*_ sono _struct_ concrete che rappresentano gli utilizzatori della business logic e utilizzano le _inbound port_ tramite composizione per accedere a quest'ultima;
+
+- Le _*inbound port*_, o _"use case"_#footnote[Da non confondere con gli use cases definiti nel documento di #gloss[analisi dei requisiti]], rappresentano le funzionalità esposte dallo strato di business logic dell'applicativo; queste interfacce sono costituite da un solo metodo che prende in input un _command_, ovvero un _data struct_ che contiene i parametri ad esso passati;
+
+- Le _*outbound port*_ sono interfacce che vengono usate dalla business logic per comunicare con i sistemi software esterni;
+
+- Gli _*outbound adapter*_ sono _struct_ concrete che implementano la rispettiva _outbound port_ e hanno l'onere di tradurre l'interfaccia di dominio che espongono verso la _business logic_ nell'interfaccia comprensibile dal sistema esterno con cui comunicano.
 
 In questo modo la logica di business rimane testabile e disaccoppiata dal resto, consentendo di progettare e sviluppare la logica fondamentale dell'applicativo in maniera pura e indipendente dalle tecnologie infrastrutturale scelte, le quali diventano potenzialmente sostituibili in futuro.
 
 Questa strategia si traduce in componenti applicativi facilmente intercambiabili come database, UX e componenti di servizio, che possono essere testati in modo indipendente.
 
-Il sistema sviluppato sfrutta i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
+I sistemi sviluppati sfruttano i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
 - Una maggiore semplicità nello scrivere test unitari in modo isolato per ogni componente ad ogni strato, tramite l'uso dei _mock_ per i relativi input e output;
 - La stessa logica di dominio è riutilizzabile da più tipi di client grazie all'interscambiabilità di porte e adapter, che isolano il core dalle specifiche interfacce;
 - Eventuali aggiornamenti alle tecnologie non influiscono sulla logica di business dell'applicazione.
 
-== Architettura di dettaglio <archit-dett>
-In ogni microservizio è stata applicata un'*architettura esagonale* per garantire un elevato isolamento della logica di business e garantire una facile sostituibilità dei componenti esterni, come il database o il message broker, senza dover modificare la logica centrale del servizio.\
+// ==== Cloud Backend <architettura-esagonale-cloud-backend>
+// Il backend della piattaforma #gloss[Cloud] utilizza l'architettura esagonale per diminuire il coupling delle sue componenti, in modo tale da poter essere sostituite in iterazioni future del prodotto.
 
+
+=== Organizzazione del codice
+#let pkg-by-comp-footnote = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni componente, come definito nella @c4-component.]
+#let pkg-by-feature = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni insieme  ben distinto di funzionalità del sistema.]
+
+Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by-comp-footnote oppure _"package by feature/bounded context"_#pkg-by-feature come metodo di _packaging_, ovvero di suddivisione del codice sorgente in sottocartelle. All'interno di ciascuno dei package *non condivisi* dei microservizi si ha una struttura "piatta", in cui i costrutti dei vari strati dell'architettura esagonale sono tipicamente così suddivisi:
+#tabella-paginata(
+  table(
+    columns: 2,
+    align: (horizon+left, horizon+left),
+    [*Nome file*], [*Contenuti*],
+    [`adapters.go`], [
+      _Outbound adapters_ sotto forma di _struct_ chiamate `Adapter`: queste comunicano direttamente con le _struct_ `Repository`, che astraggono lo strato di persistenza, e traducono l'interfaccia da loro esposta in un'interfaccia utilizzabile dagli _struct_ di dominio
+    ],
+    [`commands.go`], [Comandi usati nello strato di dominio per interfacciarsi con gli struct `Service`],
+    [`controller.go`], [
+      - Definizione _Inbound adapter_ principale del package, sottoforma di struct `Controller` usato dal _router_ #gloss[Gin]
+      - Definizione delle _inbound port_ che vengono implementate dal `Service`
+    ],
+    [`domain.go`], [_Data struct_ usate nello strato di dominio, indipendenti dagli altri strati],
+    [`dto.go`], ["Data Transfer Object" o DTO, ovvero tutti gli _struct_ utilizzati per il puro trasferimento di dati tra client e server via web],
+    [`errors.go`], [Lista di variabili di errore correlate al _package_],
+    [`mapper.go`], [Funzioni di _mapping_ tra le _struct_ di dominio e le _struct_ usate nello strato di persistenza],
+    [`module.go`], [Modulo di Fx associato al _package_: questo consente di raggruppare in un unico punto tutte le interfacce e variabili inserite nel sistema di #gloss[dependency injection] dal _package_],
+    [`repository.go`], [
+      - Le _struct_ `Entity`, che rappresentano le entità nel sistema di persistenza, dette 
+      - Le _struct_ `Repository`, che astraggono l'accesso al sistema di persistenza, indipendentemente dalla tecnologia SQL scelta
+    
+    ],
+    [`service.go`], [
+      - Le _struct_ dello strato di dominio che contengono i metodi di _business logic_ chiamati dall'applicativo e le definizioni degli _inbound adapters_ chiamati dalle classi `Service`
+      - _Outbound ports_ utilizzate dal `Service`, sotto forma di interfacce chiamate `Port`  
+    ],
+  ),
+  [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
+  label-id: "descrizione-struttura-package",
+)
+
+Si noti, che la struttura sopra definita è approssimativa ed è soggetta a cambiamenti a seconda delle necessità del singolo _package_. Ad esempio, in alcuni package di dimensione ridotta potrebbe essere troppo oneroso separare le _struct_ `Adapter` e `Repository`, per cui si potrebbe decidere di utilizzare un unico _struct_ che implementi la rispettiva _outbound port_.
+
+Di seguito viene riportata la stessa tabella, associando a ciascuno "strato" dell'architettura esagonale i relativi file all'interno di un package tipico.
+#tabella-paginata(
+  table(
+    columns: 2,
+    align: (horizon+left, horizon+left),
+    [*Strato*], [*File relativi*],
+
+    [Inbound adapter], 
+    [
+      - La _struct_ `Controller` è definita in `controller.go`
+      - I DTO utilizzati dal `Controller` sono definiti in `dto.go`
+    ],
+
+    [Inbound port], 
+    [Le interfacce `UseCase` sono definite in `service.go` #footnote[
+  In Go, la prassi comune è di utilizzare le "Consumer-Defined Interfaces", ovvero delle interfacce definite nello stesso package o stesso file del loro utilizzatore. Per tale motivo, non si utilizza un file separato per definire gli use cases, quale `useCases.go`
+] <fn>],
+    
+    [Dominio], [
+      - La struct di business logic (detta `Service`) è definita in `service.go`
+      - I comandi utilizzati dai metodi del `Service` sono definiti in `commands.go`
+      - Le struct di dominio sono definite in `domain.go`
+      - Le variabili di errore sono definite in `errors.go`
+    ],
+    
+    [Outbound adapter], [
+      - Le _struct_ `Adapter` sono definite in `adapters.go`
+      - Le funzioni di _mapping_ che permettono di tradurre oggetti `Entity` in oggetti di dominio e viceversa sono definite in `mappers.go`
+    ],
+    
+    [Outbound port], [Le interfacce `Port` sono definite in `adapters.go` @fn],
+
+    [Persistence layer], [Le _struct_ `Repository` e le relative _struct_ `Entity` sono definite in `repository.go`],
+
+  ),
+  [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
+  label-id: "descrizione-struttura-package-inverso",
+)
+
+== Pattern architetturale GUI <pattern-architetturale-gui>
+// TODO: Scrivere di MVVM
+
+== Architettura di dettaglio <archit-dett>
+In ogni microservizio è stata applicata l'*architettura esagonale* per garantire un elevato isolamento della logica di business e garantire una facile sostituibilità dei componenti esterni, come il database o il message broker, senza dover modificare la logica centrale del servizio.\
+
+// TODO: specificherei che uber fx per le parti fatte in go e angular per le parti fatte in angular
 Inoltre ai diversi microservizi è stato applicato un pattern di #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx] o #gloss[Angular], che permette di iniettare le dipendenze necessarie (ad esempio la connessione al database) in modo semplice, sicuro e testabile, garantendo una maggiore modularità e manutenibilità del codice.\
 Infatti la maggior parte delle componenti di ogni microservizio ha le dipendenze iniettate tramite costruttore, le dipendenze di tipo *composition* e *aggregation* sono raramente utilizzate.
 
@@ -704,6 +814,7 @@ La seguente sezione ha lo scopo di descrivere i controller che si occupano di ri
 
 Ogni controller è specializzato in un comando specifico, ha il compito di ricevere i comandi e trasformarli in dati pronti per la business logic, la quale eseguirà il comando.
 
+// TODO: "in ognuno di essi" vuol dire che stiamo elencando i membri dello struct?
 In ognuno di essi è presente:
 - *natsConnection*: riferimento alla connessione NATS (iniettata tramite dependency injection) per ricevere i comandi e rispondere con l'esito dell'operazione. I comandi sono inviati tramite il meccanismo *Request-Reply* di NATS.
 - *subject*: stringa che rappresenta il subject NATS a cui il controller si iscrive per ricevere i comandi, anch'esso iniettato tramite dependency injection.
@@ -1306,8 +1417,56 @@ La struct in questione ha i seguenti attributi e metodi:
 
 
 === Frontend
-=== Cloud Backend
 
+
+=== Cloud Backend
+- Architettura esagonale
+- Suddivisione "package by feature/bounded context"
+- Uber Fx per DI
+
+==== Organizzazione package
+
+// TODO: riferimento a manuale utente?
+Gli _endpoint_ esposti dal backend concernono diverse aree semantiche del dominio del progetto, per cui il codice del backend è suddiviso in _package_ usando la metodologia "package by feature/bounded context", secondo la quale a un package corrisponde un insieme di funzionalità correlate sotto lo stesso significato semantico. Ad esempio, tutte le funzionalità di CRUD sugli utenti del sistema appartengono al package `user`, mentre tutte le funzionalità di autenticazione appartengono al package `auth`.
+
+Il codice sorgente del Cloud Backend, presente nella #repo("dash")[repository `Dashboard`] all'interno della sottocartella `backend/internal` è suddiviso nei seguenti _package_:
+- *`auth`*, per le funzionalità dell'autenticazione degli utenti;
+- *`email`*, per le funzionalità d'invio email;
+- *`gateway`*, per le funzionalità CRUD sui gateway e di invio comandi ad essi;
+- *`gateway_connection`*, per le funzionalità di hello dei gateway;
+- *`historical_data`*, per le funzionalità di accesso ai dati storici dei sensori;
+- *`real_time_data`*, per le funzionalità di accesso ai dati dei sensori in tempo reale;
+- *`sensor`*, per le funzionalità CRUD sui sensori e di invio comandi ad essi;
+- *`tenant`*, per le funzionalità CRUD sui tenant
+- *`user`*, per le funzionalità CRUD sugli utenti
+
+Inoltre, i seguenti _package_ contengono codice condiviso con tutti gli altri, sopra menzionati:
+- *`infra`* contiene il codice _platform-dependent_ condiviso tra gli altri package
+- *`shared`* contiene interfacce e metodi di dominio condivisi tra gli altri package;
+
+==== Package `auth`
+
+===== Controller
+
+==== Package `email`
+
+==== Package `gateway`
+
+==== Package `gateway_connection`
+
+==== Package `historical_data`
+
+==== Package `infra`
+
+==== Package `real_time_data`
+
+==== Package `sensor`
+
+==== Package `shared`
+
+==== Package `tenant`
+
+==== Package `user`
 
 == Database design <db-design>
 === Buffer database
