@@ -45,12 +45,12 @@ All'interno del microservizio **Gateway**, il gateway simulato interromperà l'i
 
 I gateway possono essere interrotti solo dagli utenti con ruolo di **Super Admin** o **Tenant Admin** in cui il gateway è commissionato verso il proprio tenant e solo se il gateway è in stato Active{{gloss}}.
 
-### Ripristino di un gateway
-Per ripristinare l'invio dei dati di un gateway, è necessario selezionare il **gateway** da ripristinare.
+### Ripresa di un gateway
+Per riprendere l'invio dei dati di un gateway, è necessario selezionare il **gateway** da riprendere.
 
 All'interno del microservizio **Gateway**, il gateway simulato riprenderà l'invio dei dati all'interno del buffer interno verso il message broker NATS JetStream{{gloss}} e verrà messo in stato Active{{gloss}}.
 
-I gateway possono essere ripristinati solo dagli utenti con ruolo di **Super Admin** o **Tenant Admin** in cui il gateway è commissionato verso il proprio tenant e solo se il gateway è in stato Inactive{{gloss}}.
+I gateway possono essere ripresi solo dagli utenti con ruolo di **Super Admin** o **Tenant Admin** in cui il gateway è commissionato verso il proprio tenant e solo se il gateway è in stato Inactive{{gloss}}.
 
 ### Commission di un gateway
 Per commissionare un gateway, è necessario selezionare il **gateway** da commissionare, il **tenant** verso cui commissionare il gateway e il JWT{{gloss}} di autenticazione. Quest'ultimo deve essere generato per permettere al gateway simulato di pubblicare i dati sul message broker NATS JetStream{{gloss}} sul subject{{gloss}} del **tenantId** specificato e a partire dalla **chiave pubblica** associata al gateway.
@@ -95,12 +95,12 @@ All'interno del microservizio **Gateway**, il sensore simulato interromperà la 
 
 I sensori possono essere interrotti solo dagli utenti con ruolo di **Super Admin** o **Tenant Admin** in cui il gateway a cui è associato il sensore è commissionato verso il proprio tenant e solo se il sensore è in stato Active{{gloss}}.
 
-### Ripristino di un sensore
-Per ripristinare la produzione di dati di un sensore, è necessario selezionare il **sensore** da ripristinare.
+### Ripresa di un sensore
+Per riprendere la produzione di dati di un sensore, è necessario selezionare il **sensore** da riprendere.
 
 All'interno del microservizio **Gateway**, il sensore simulato riprenderà la produzione di dati all'interno del buffer interno verso il message broker NATS JetStream{{gloss}} e verrà messo in stato Active{{gloss}}.
 
-I sensori possono essere ripristinati solo dagli utenti con ruolo di **Super Admin** o **Tenant Admin** in cui il gateway a cui è associato il sensore è commissionato verso il proprio tenant e solo se il sensore è in stato Inactive{{gloss}}.
+I sensori possono essere ripresi solo dagli utenti con ruolo di **Super Admin** o **Tenant Admin** in cui il gateway a cui è associato il sensore è commissionato verso il proprio tenant e solo se il sensore è in stato Inactive{{gloss}}.
 
 
 
