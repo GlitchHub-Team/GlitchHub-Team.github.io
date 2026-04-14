@@ -41,7 +41,7 @@ In seguito a una revisione dello stato di avanzamento, il gruppo ha riscontrato 
 === Stato di avanzamento Frontend
 Le attività più rilevanti portate a termine per il frontend e la relativa architettura includono:
 - Modifiche sostanziali alle funzionalità relative ai dati storici e ai dati in tempo reale per allinearle alle nuove specifiche.
-- Aggiornamento al modello C4 sulla base del codice attuale per garantirne la coerenza.
+- Aggiornamento dei diagrammi #gloss[C4] sulla base del codice attuale per garantirne la coerenza.
 
 === Stato di avanzamento Backend e Infrastruttura
 Il lavoro sul backend si è concentrato sul consolidamento del gateway e sulla verifica dei moduli:
