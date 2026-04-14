@@ -223,7 +223,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
     [npm],
     [10.8.2],
-    [npm (Node Package Manager) è il gestore di pacchetti predefinito per l’ecosistema #gloss[Node.js]. Fornisce un registro pubblico di librerie e strumenti JavaScript e un client da riga di comando che permette di installare, aggiornare, pubblicare e gestire dipendenze all’interno di un progetto.],
+    [npm (Node Package Manager) è il gestore di pacchetti predefinito per l'ecosistema #gloss[Node.js]. Fornisce un registro pubblico di librerie e strumenti JavaScript e un client da riga di comando che permette di installare, aggiornare, pubblicare e gestire dipendenze all'interno di un progetto.],
   ),
   [Linguaggi e ambienti di programmazione.],
   label-id: "ling-progr",
@@ -315,7 +315,9 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
     [Docker],
-    [],
+    [Latest#footnote[
+      Docker consente di replicare gli ambienti di sviluppo su qualunque sistema a prescindere dalla versione _minor_, per cui è importante che tutti gli sviluppatori del progetto ne utilizzino l'ultima versione disponibile.
+    ]],
     [#gloss[Docker] è una piattaforma di containerizzazione che permette di pacchettizzare i microservizi e le loro dipendenze in unità isolate e portatili. Garantisce che il software funzioni in modo identico in ogni ambiente, eliminando i problemi di configurazione tra sviluppo e produzione. È stato scelto per semplificare il deployment dell'infrastruttura #gloss[Cloud] e facilitare l'orchestrazione dei servizi, assicurando la scalabilità e la manutenibilità richieste dal capitolato.],
 
     [Ubuntu],
@@ -335,11 +337,11 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     [*Tecnologia*], [*Versione*], [*Descrizione*],
 
     [Grafana],
-    [],
+    [12.4.1],
     [#gloss[Grafana] è una piattaforma open-source per l'analisi e la visualizzazione di dati che permette di creare dashboard dinamiche e interattive. Supporta la rappresentazione grafica di metriche complesse attraverso pannelli altamente personalizzabili. È stata scelta per fornire agli utenti e agli amministratori uno strumento intuitivo per monitorare i dati raccolti dai sensori #gloss[BLE] in tempo reale. Consente di visualizzare immediatamente lo stato del sistema e identificare eventuali anomalie operative.],
 
     [Prometheus],
-    [],
+    [3.10.0],
     [#gloss[Prometheus] è un sistema di monitoraggio e allerta specializzato nella raccolta di metriche sotto forma di serie temporali. Utilizza un modello di recupero dati ottimizzato per le architetture a microservizi e ambienti cloud. Viene adottato per osservare le prestazioni dell'infrastruttura e i volumi di traffico gestiti dai #gloss[gateway]. La sua integrazione permette di generare alert automatici qualora un componente o un gateway smetta di funzionare correttamente.],
   ),
   [Tecnologie per il monitoraggio dei microservizi.],
@@ -347,12 +349,13 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 )
 
 == Librerie
+=== Librerie backend
 #tabella-paginata(
   table(
     columns: (auto, 1fr, 6fr),
     align: center + horizon,
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
-    [*Tecnologia*], [*Versione*], [*Descrizione*],
+    [*Nome*], [*Versione*], [*Descrizione*],
 
     [gomock],
     [0.6.0],
@@ -360,7 +363,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
     [GORM],
     [1.31.1],
-    [GORM è una libreria di ORM (Object-Relational Mapping) per il linguaggio #gloss[Go], progettata per astrarre e semplificare l'interazione tra il codice applicativo e i database relazionali. Fornisce un livello di astrazione sopra SQL, permettendo di definire modelli, eseguire query, gestire relazioni e operazioni CRUD attraverso un’API idiomatica e coerente con lo stile di Go.],
+    [GORM è una libreria di ORM (Object-Relational Mapping) per il linguaggio #gloss[Go], progettata per astrarre e semplificare l'interazione tra il codice applicativo e i database relazionali. Fornisce un livello di astrazione sopra SQL, permettendo di definire modelli, eseguire query, gestire relazioni e operazioni CRUD attraverso un'API idiomatica e coerente con lo stile di Go.],
 
     [GORM PostgresSQL Driver],
     [1.6.0],
@@ -368,19 +371,19 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
     [jwt],
     [4.5.2],
-    [jwt è una versione della libreria Go dedicata alla creazione, firma, validazione e gestione dei JSON Web Token. Fornisce un’implementazione conforme agli standard RFC 7519, permettendo di generare token sicuri per l’autenticazione e l’autorizzazione nelle applicazioni scritte in #gloss[Go].],
+    [jwt è una versione della libreria Go dedicata alla creazione, firma, validazione e gestione dei JSON Web Token. Fornisce un'implementazione conforme agli standard RFC 7519, permettendo di generare token sicuri per l'autenticazione e l'autorizzazione nelle applicazioni scritte in #gloss[Go].],
 
     [GoDotEnv],
     [1.5.1],
-    [GoDotEnv è una libreria per il linguaggio #gloss[Go] che permette di caricare variabili d’ambiente da file .env all’interno dell’applicazione. Replica il comportamento del pacchetto dotenv diffuso in altri ecosistemi, facilitando la gestione di configurazioni esterne al codice sorgente.],
+    [GoDotEnv è una libreria per il linguaggio #gloss[Go] che permette di caricare variabili d'ambiente da file .env all'interno dell'applicazione. Replica il comportamento del pacchetto dotenv diffuso in altri ecosistemi, facilitando la gestione di configurazioni esterne al codice sorgente.],
 
     [google/uuid],
     [1.6.0],
-    [uuid è una libreria per il linguaggio #gloss[Go] che fornisce un’implementazione completa e conforme agli standard RFC 4122 per la gestione degli UUID (Universally Unique Identifier), ovvero identificatori univoci a livello globale. Può effettuare la loro generazione il parsing da stringa, la validazione, la serializzazione e la manipolazione in vari formati.],
+    [uuid è una libreria per il linguaggio #gloss[Go] che fornisce un'implementazione completa e conforme agli standard RFC 4122 per la gestione degli UUID (Universally Unique Identifier), ovvero identificatori univoci a livello globale. Può effettuare la loro generazione il parsing da stringa, la validazione, la serializzazione e la manipolazione in vari formati.],
 
     [Uber Fx],
     [1.24.0],
-    [Fx è un framework di dependency injection per il linguaggio #gloss[Go], progettato fornire una struttura modulare e dichiarativa per inizializzare, configurare e orchestrare i diversi elementi di un’applicazione in modo sicuro, scalabile e facilmente testabile. Nel progetto viene utilizzato per orchestrare l'avvio e lo spegnimento dei vari servizi del backend, come il server #gloss[Gin], la connessione a #gloss[TimescaleDB] e il client #gloss[NATS].],
+    [Fx è un framework di dependency injection per il linguaggio #gloss[Go], progettato fornire una struttura modulare e dichiarativa per inizializzare, configurare e orchestrare i diversi elementi di un'applicazione in modo sicuro, scalabile e facilmente testabile. Nel progetto viene utilizzato per orchestrare l'avvio e lo spegnimento dei vari servizi del backend, come il server #gloss[Gin], la connessione a #gloss[TimescaleDB] e il client #gloss[NATS].],
 
     [Uber Zap],
     [1.27.1],
@@ -388,8 +391,32 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
     [NATS Client],
     [1.49.0],
-    [NATS Client è la libreria ufficiale per il linguaggio #gloss[Go] che permette l'interazione tra i servizi applicativi e il sistema di messaggistica #gloss[NATS]. Nel progetto viene impiegata per implementare i pattern di comunicazione asincrona, permettendo al #gloss[Gateway] simulato di pubblicare i dati dei sensori e al Data consumer di sottoscriversi ai flussi in ingresso.],
+    [NATS Client è la libreria ufficiale per il linguaggio #gloss[Go] che permette l'interazione tra i servizi applicativi e il sistema di messaggistica #gloss[NATS]. Nel progetto viene impiegata per implementare i pattern di comunicazione asincrona, permettendo al #gloss[gateway] simulato di pubblicare i dati dei sensori e al data consumer di sottoscriversi ai flussi in ingresso.],
 
+    [gomail],
+    [2.3.1],
+    [gomail è una libreria che permette di interagire facilmente con qualunque server #gloss[SMTP] per l'invio di messaggi di posta elettronica. Nel progetto, viene utilizzata per l'invio di email per la conferma account e il cambio della password dimenticata.],
+
+    [go-smtp-mock],
+    [2.5.4],
+    [go-smtp-mock è una libreria per istanziare server #gloss[SMTP] locali di test. Nel contesto del progetto, è utilizzato nei #gloss[test d'integrazione] per verificare il corretto invio delle email da parte del backend della piattaforma #gloss[Cloud].],
+
+    [go-gin-prometheus],
+    [1.0.3],
+    [go-gin-prometheus è una libreria utilizzata per esporre le metriche di un qualunque web server in un formato leggibile da #gloss[Prometheus]. Nel contesto del progetto, viene utilizzata per esporre le metriche del Cloud backend, in modo tale che siano visibili sulla dashboard #gloss[Grafana].]
+  ),
+  [Librerie backend],
+  label-id: "librerie-backend",
+)\
+
+=== Librerie frontend
+#tabella-paginata(
+  table(
+    columns: (auto, 1fr, 6fr),
+    align: center + horizon,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Nome*], [*Versione*], [*Descrizione*],
+    
     [RxJS],
     [7.8.0],
     [RxJS è una libreria per la programmazione reattiva in #gloss[JavaScript] e #gloss[TypeScript], che consente di gestire flussi di dati asincroni e basati su eventi attraverso l'uso di _Observable_. Nel progetto viene utilizzata principalmente nel frontend #gloss[Angular] per orchestrare la gestione dei dati in tempo reale provenienti dai sensori #gloss[BLE], facilitando la sincronizzazione tra le interfacce utente e i servizi backend.],
@@ -410,9 +437,9 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     [27.1.0],
     [jsdom è una libreria #gloss[JavaScript] che fornisce un'implementazione del DOM e di altre API web standard in ambiente #gloss[Node.js], permettendo di eseguire test e manipolazioni del DOM senza la necessità di un browser reale. Nel progetto viene utilizzata principalmente nei test di unità del frontend #gloss[Angular] per simulare l'ambiente del browser e verificare il comportamento dei componenti che interagiscono con il DOM.],
   ),
-  [Librerie.],
-  label-id: "librerie",
-)\
+  [Librerie frontend],
+  label-id: "librerie-frontend",
+)
 
 == Tecnologie per analisi statica
 #tabella-paginata(
