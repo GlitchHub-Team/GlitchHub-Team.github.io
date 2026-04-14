@@ -211,7 +211,16 @@
   titolo: "Analisi dei Requisiti",
   stato: "Verificato",
   registro-modifiche: (
-      (
+    (
+      "1.3.0",
+      "08/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [
+        Aggiornamento @lista-requisiti-funzionali secondo le modifiche delle priorità concordate con l'azienda
+      ],
+    ),
+    (
       "1.2.3",
       "11/03/2026",
       "Siria Salvalaio",
@@ -618,8 +627,8 @@
 
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Analisi dei Requisiti",
 )
 

@@ -71,6 +71,16 @@
     repo-desc = "actions"
     repo-long = "actions"
   }
+  else if (repo == "mvp") {
+    repo-name = "MVP"
+    repo-desc = "mvp"
+    repo-long = "mvp"
+  }
+  else if (repo == "infra" or repo == "infrastructure") {
+    repo-name = "Infrastructure"
+    repo-desc = "infrastructure"
+    repo-long = "infrastructure"
+  }
   else {
     panic("Valore stringa repo invalido!")
   }
