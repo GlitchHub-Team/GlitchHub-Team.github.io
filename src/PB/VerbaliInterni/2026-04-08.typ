@@ -3,7 +3,7 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 08/04/2026",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
   ),
   partecipanti: (
@@ -25,8 +25,8 @@
     [Discussione sui compiti da svolgere],
   ),
   htmlId: "PB-VerbaliInterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-verbale: "Interno",
 )
 
@@ -63,7 +63,7 @@ Diversi documenti sono stati aggiornati o estesi, tra cui la #gloss[specifica te
   [[Frontend] Integrazione con Cloud ], [Riccardo Graziani, Siria Salvalaio], [(#issue(100, repo:"dashboard"))],
   [[Backend] TI historical_data ], [Hossam Ezzemouri], [(#issue(101, repo:"dashboard"))],
   [[Backend] TI backend/internal/email ], [Elia Ernesto Stellin], [(#issue(70, repo:"dashboard"))],
-  [[NdP] Aggiungere gomail v2 come tecnologia ], [Elia Ernesto Stellin], [(#issue(488))],
+  [[ST] Aggiungere nuove librerie usate ], [Elia Ernesto Stellin], [(#issue(488))],
   [[Backend] Codifica backend/internal/real_time_data ], [Elia Ernesto Stellin], [(#issue(76, repo:"dashboard"))],
   [[Backend] TU backend/internal/real_time_data ], [Elia Ernesto Stellin], [(#issue(77, repo:"dashboard"))],
   [[Backend] TI backend/internal/real_time_data ], [Elia Ernesto Stellin], [(#issue(78, repo:"dashboard"))],
@@ -76,7 +76,6 @@ Diversi documenti sono stati aggiornati o estesi, tra cui la #gloss[specifica te
   [[Backend] Togliere requester check da GetTenantList ], [], [(#issue(120, repo:"dashboard"))],
   [[TB] Stesura infrastruttura del Test Book ], [Michele Dioli, Riccardo Graziani, Siria Salvalaio, Alessandro Dinato], [(#issue(518))],
   [[PdP] Sprint 15 ], [Jaume Bernardi], [(#issue(498))],
-  [[MU] Compilazione di più file possibile ], [Jaume Bernardi], [(#issue(513))],
   [Rendicontazione ore responsabile sprint 16 ], [Jaume Bernardi], [(#issue(516))],
   [[TB] Controllo test singoli del test book nel sistema reale ], [Michele Dioli, Riccardo Graziani, Siria Salvalaio, Alessandro Dinato], [(#issue(519))],
   [[Backend] Fix backend modulo gateway ], [Alessandro Dinato], [(#issue(128, repo:"dashboard"))],
