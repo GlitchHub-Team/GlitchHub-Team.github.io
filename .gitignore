@@ -7,3 +7,4 @@ website/pdf/
 .env.*
 __pycache__
 ManualeUtente
+!TestBook.pdf
