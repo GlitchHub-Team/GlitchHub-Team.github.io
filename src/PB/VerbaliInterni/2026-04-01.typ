@@ -3,7 +3,7 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 01/04/2026",
-  stato: "Da verificare",
+  stato: "Verificato",
   registro-modifiche: (
   ),
   partecipanti: (

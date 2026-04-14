@@ -758,5 +758,9 @@
     {
         "term": "Uber Fx",
         "definition": "Framework di Dependency Injection per il linguaggio Go, che semplifica la gestione delle dipendenze e l'organizzazione del codice, promuovendo un'architettura modulare e testabile."
+    },
+    {
+        "term": "SMTP",
+        "definition": "Acronimo di Simple Mail Transfer Protocol. È il protocollo principale utilizzato per l'invio di messaggi di posta elettronica."
     }
 ]
