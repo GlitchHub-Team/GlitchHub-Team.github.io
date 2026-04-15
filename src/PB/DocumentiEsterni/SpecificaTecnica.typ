@@ -726,13 +726,13 @@ Essa è un modello architetturale che separa nettamente la logica di dominio dal
 
 Questo sistema architetturale definisce delle interfacce dette _port_ e delle classi concrete dette _adapter_, i quali possono essere sia _inbound_ ("in entrata") che _outbound_ ("in uscita"), i quali sono completamente separati dalla _business logic_, la quale è totalmente indipendente da essi. Più nello specifico:
 
-- Gli _*inbound adapter*_ sono _struct_ concrete che rappresentano gli utilizzatori della business logic e utilizzano le _inbound port_ tramite composizione per accedere a quest'ultima;
+- Gli _*inbound adapter*_ sono struct concrete che rappresentano gli utilizzatori della business logic e utilizzano le _inbound port_ tramite composizione per accedere a quest'ultima;
 
 - Le _*inbound port*_, o _"use case"_#footnote[Da non confondere con gli use cases definiti nel documento di #gloss[analisi dei requisiti]], rappresentano le funzionalità esposte dallo strato di business logic dell'applicativo; queste interfacce sono costituite da un solo metodo che prende in input un _command_, ovvero un _data struct_ che contiene i parametri ad esso passati;
 
 - Le _*outbound port*_ sono interfacce che vengono usate dalla business logic per comunicare con i sistemi software esterni;
 
-- Gli _*outbound adapter*_ sono _struct_ concrete che implementano la rispettiva _outbound port_ e hanno l'onere di tradurre l'interfaccia di dominio che espongono verso la _business logic_ nell'interfaccia comprensibile dal sistema esterno con cui comunicano.
+- Gli _*outbound adapter*_ sono struct concrete che implementano la rispettiva _outbound port_ e hanno l'onere di tradurre l'interfaccia di dominio che espongono verso la _business logic_ nell'interfaccia comprensibile dal sistema esterno con cui comunicano.
 
 In questo modo la logica di business rimane testabile e disaccoppiata dal resto, consentendo di progettare e sviluppare la logica fondamentale dell'applicativo in maniera pura e indipendente dalle tecnologie infrastrutturale scelte, le quali diventano potenzialmente sostituibili in futuro.
 
@@ -758,7 +758,7 @@ Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by
     align: (horizon+left, horizon+left),
     [*Nome file*], [*Contenuti*],
     [`adapters.go`], [
-      _Outbound adapters_ sotto forma di _struct_ chiamate `Adapter`: queste comunicano direttamente con le _struct_ `Repository`, che astraggono lo strato di persistenza, e traducono l'interfaccia da loro esposta in un'interfaccia utilizzabile dagli _struct_ di dominio
+      _Outbound adapters_ sotto forma di struct chiamate `Adapter`: queste comunicano direttamente con le struct `Repository`, che astraggono lo strato di persistenza, e traducono l'interfaccia da loro esposta in un'interfaccia utilizzabile dagli struct di dominio
     ],
     [`commands.go`], [Comandi usati nello strato di dominio per interfacciarsi con gli struct `Service`],
     [`controller.go`], [
@@ -766,17 +766,17 @@ Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by
       - Definizione delle _inbound port_ che vengono implementate dal `Service`
     ],
     [`domain.go`], [_Data struct_ usate nello strato di dominio, indipendenti dagli altri strati],
-    [`dto.go`], ["Data Transfer Object" o DTO, ovvero tutti gli _struct_ utilizzati per il puro trasferimento di dati tra client e server via web],
+    [`dto.go`], ["Data Transfer Object" o DTO, ovvero tutti gli struct utilizzati per il puro trasferimento di dati tra client e server via web],
     [`errors.go`], [Lista di variabili di errore correlate al _package_],
-    [`mapper.go`], [Funzioni di _mapping_ tra le _struct_ di dominio e le _struct_ usate nello strato di persistenza],
+    [`mapper.go`], [Funzioni di _mapping_ tra le struct di dominio e le struct usate nello strato di persistenza],
     [`module.go`], [Modulo di Fx associato al _package_: questo consente di raggruppare in un unico punto tutte le interfacce e variabili inserite nel sistema di #gloss[dependency injection] dal _package_],
     [`repository.go`], [
-      - Le _struct_ `Entity`, che rappresentano le entità nel sistema di persistenza, dette 
-      - Le _struct_ `Repository`, che astraggono l'accesso al sistema di persistenza, indipendentemente dalla tecnologia SQL scelta
+      - Le struct `Entity`, che rappresentano le entità nel sistema di persistenza, dette 
+      - Le struct `Repository`, che astraggono l'accesso al sistema di persistenza, indipendentemente dalla tecnologia SQL scelta
     
     ],
     [`service.go`], [
-      - Le _struct_ dello strato di dominio che contengono i metodi di _business logic_ chiamati dall'applicativo e le definizioni degli _inbound adapters_ chiamati dalle classi `Service`
+      - Le struct dello strato di dominio che contengono i metodi di _business logic_ chiamati dall'applicativo e le definizioni degli _inbound adapters_ chiamati dalle classi `Service`
       - _Outbound ports_ utilizzate dal `Service`, sotto forma di interfacce chiamate `Port`  
     ],
   ),
@@ -784,7 +784,7 @@ Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by
   label-id: "descrizione-struttura-package",
 )
 
-Si noti, che la struttura sopra definita è approssimativa ed è soggetta a cambiamenti a seconda delle necessità del singolo _package_. Ad esempio, in alcuni package di dimensione ridotta potrebbe essere troppo oneroso separare le _struct_ `Adapter` e `Repository`, per cui si potrebbe decidere di utilizzare un unico _struct_ che implementi la rispettiva _outbound port_.
+Si noti, che la struttura sopra definita è approssimativa ed è soggetta a cambiamenti a seconda delle necessità del singolo _package_. Ad esempio, in alcuni package di dimensione ridotta potrebbe essere troppo oneroso separare le struct `Adapter` e `Repository`, per cui si potrebbe decidere di utilizzare un unico struct che implementi la rispettiva _outbound port_.
 
 Di seguito viene riportata la stessa tabella, associando a ciascuno "strato" dell'architettura esagonale i relativi file all'interno di un package tipico.
 #tabella-paginata(
@@ -795,7 +795,7 @@ Di seguito viene riportata la stessa tabella, associando a ciascuno "strato" del
 
     [Inbound adapter], 
     [
-      - La _struct_ `Controller` è definita in `controller.go`
+      - La struct `Controller` è definita in `controller.go`
       - I DTO utilizzati dal `Controller` sono definiti in `dto.go`
     ],
 
@@ -812,13 +812,13 @@ Di seguito viene riportata la stessa tabella, associando a ciascuno "strato" del
     ],
     
     [Outbound adapter], [
-      - Le _struct_ `Adapter` sono definite in `adapters.go`
+      - Le struct `Adapter` sono definite in `adapters.go`
       - Le funzioni di _mapping_ che permettono di tradurre oggetti `Entity` in oggetti di dominio e viceversa sono definite in `mappers.go`
     ],
     
     [Outbound port], [Le interfacce `Port` sono definite in `adapters.go` @fn],
 
-    [Persistence layer], [Le _struct_ `Repository` e le relative _struct_ `Entity` sono definite in `repository.go`],
+    [Persistence layer], [Le struct `Repository` e le relative struct `Entity` sono definite in `repository.go`],
 
   ),
   [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
@@ -838,7 +838,7 @@ Infatti la maggior parte delle componenti di ogni microservizio ha le dipendenze
 === Convenzioni di notazione
 La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 2.5, il quale è stato pensato originariamente per linguaggi propriamente orientati agli oggetti. Di fatto, però, Go non è un linguaggio _object-oriented_, per cui il gruppo ha adottato una serie di convenzioni comuni per rendere agevole la scrittura di diagrammi UML, usando *draw.io* come strumento. Le convenzioni sono le seguenti:
 
-- Si usa una classe UML per rappresentare uno _struct_ concreto;
+- Si usa una classe UML per rappresentare uno struct concreto;
 
 - Si usa la notazione UML per indicare la visibilità di un attributo o metodo, avendo cura che gli attributi o metodi privati siano indicati con l'iniziale minuscola e tenendo conto che in Go la visibilità è definita solamente al _package-level_;
 
@@ -846,7 +846,7 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
 
 - Si utilizza la normale sintassi per implementazione delle interfacce da parte di classi concrete, sebbene in Go le interfacce vengono implementate implicitamente (ovvero senza dichiarare l'implementazione con una keyword quale `implements`);
 
-- Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno _struct_ all'interno di un altro, senza alcuna ereditarietà nei metodi
+- Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno struct all'interno di un altro, senza alcuna ereditarietà nei metodi
 
 - La sintassi per le _signature_ delle funzioni con più tipi di ritorno è la seguente:
   #align(center,
@@ -873,7 +873,7 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
     ```
   )
 
-- Siccome in Go non esistono i costruttori, per ognuno degli _struct_ inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
+- Siccome in Go non esistono i costruttori, per ognuno degli struct inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
   #align(center, ```go
     type NewExample struct{
       Value1 int
@@ -886,7 +886,7 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
       }
     }
   ```)
-  In ciascuno dei diagrammi seguenti, se non specificato, si assume che esista un costruttore per ogni _struct_ specificato che prende come parametri in input gli stessi attributi dello struct, come definito nell'esempio.
+  In ciascuno dei diagrammi seguenti, se non specificato, si assume che esista un costruttore per ogni struct specificato che prende come parametri in input gli stessi attributi dello struct, come definito nell'esempio.
 
 === Gateway
 La seguente sezione ha lo scopo di descrivere il #gloss[Code Diagram] del microservizio *Gateway*.
@@ -1529,9 +1529,9 @@ Il codice sorgente del Cloud Backend, presente nella #repo("dash")[repository `D
 Inoltre, i seguenti _package_ contengono codice condiviso con tutti gli altri, sopra menzionati:
 - *`infra`* contiene il codice _platform-dependent_ condiviso tra gli altri package
 - *`shared`* contiene interfacce e metodi di dominio condivisi tra gli altri package.
-  - *`shared/config`* contiene la _struct_ `Config` utilizzata come singolo aggregatore delle impostazioni di configurazione dell'applicativo;
+  - *`shared/config`* contiene la struct `Config` utilizzata come singolo aggregatore delle impostazioni di configurazione dell'applicativo;
   - *`shared/crypto`* contiene le interfacce condivise per la gestione della crittografia, le cui implementazioni risiedono in *`infra/crypto`*;
-  - *`shared/identity`* contiene la _struct_ `Requester` utilizzata all'interno dell'applicativo per identificare i dati di autenticazione dell'utente che ha richiesto un comando specifico, in modo tale da applicare meccanismi di Role-Based Access Control (RBAC).
+  - *`shared/identity`* contiene la struct `Requester` utilizzata all'interno dell'applicativo per identificare i dati di autenticazione dell'utente che ha richiesto un comando specifico, in modo tale da applicare meccanismi di Role-Based Access Control (RBAC).
 
 ==== Package `auth`
 // Michele
@@ -1636,29 +1636,147 @@ Di seguito, invece, si riporta il Code Diagram per tutti gli altri struct presen
   caption: [Cloud Backend -- Code Diagram di Controller, UseCase, Service, Port, Adapter e Reader per `real_time_data`],
 )
 
-===== Inbound adapter -- `Controller`
-- Controller
-- vari DTO
+===== Inbound adapter -- `Controller` e DTO
+_Inbound adapter_ principale del package.
 
-===== Inbound port -- `GetRealTimeDataUseCase`
-- Use Case
-- command
+*Attributi:*
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`getRealTimeDataUseCase GetRealTimeDataUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service`
 
-===== Dominio -- `RealTimeDataService`
-- Service
-- Classi di dominio
+*Metodi*:
+- *`startClientListener(conn *websocket.Conn, errorChannel chan RealTimeError)`*: Metodo che esegue un _listener_ su #gloss[Websocket] per rilevare disconnessioni del client, in modo tale da interrompere l'esecuzione del sistema di ottenimento dati
+- *`GetRealTimeData(ctx *gin.Context)`*: Metodo che ha la responsabilità di iniziare l'ascolto dei dati in real-time su NATS chiamando lo _use case_, di eseguire `startClientListener()` su una goroutine e di inviare i dati ottenuti al client #gloss[Websocket]
+
+*Funzione di costruzione*: `NewController(log *zap.Logger, getRealTimeDataUseCase GetRealTimeDataUseCase) *Controller`
+
+
+I *DTO* usati dal `Controller` sono i seguenti:
+- *`GetRealTimeDataDTO`*: Rappresenta la richiesta GET iniziale ricevuta dal client, prima di eseguire l'upgrade della connessione al protocollo websocket. Contiene i seguenti *attributi*:
+  - *`SensorId`*: ID del sensore di cui chiedere i dati in tempo reale
+  - *`TenantId`*: ID del tenant a cui è associato il gateway a cui appartiene il sensore
+- *`RealTimeErrorOutDTO`*: Rappresenta un errore inviato al client riscontrato durante l'ascolto dei dati real-time. Contiene il seguente *attributo*:
+  - *`Error`*: Stringa che spiega l'errore avvenuto
+- *`RealTimeSampleOutDTO`*: Rappresenta un dato (_sample_) ottenuto in tempo reale inviato al client. Contiene i seguenti *attributi*:
+  - *`Profile`*: Il profilo del sensore a cui appartiene il dato
+  - *`Timestamp`*: Una stringa che rappresenta la data/ora
+
+===== Inbound port -- `GetRealTimeDataUseCase`, `GetRealTimeDataCommand`
+L'_inbound port_ principale del package.
+
+*Metodi*:
+- *`GetRealTimeData(cmd GetRealTimeDataCommand) (dataChannel chan RealTimeSample, errorChannel chan RealTimeError, err error)`*: Ha il compito di ottenere i dati in tempo reale del sensore descritto da `cmd`, ritornando:
+  - *`dataChannel chan RealTimeSample`*: _Channel_ su cui vengono inviati dati di tipo `RealTimeSample` da `RealTimeNATSReader` e consumati da `Controller`
+  - *`errorChannel chan RealTimeError`*: _Channel_ su cui vengono inviati errori di tipo `RealTimeError`, in caso si dovessero riscontrare errori nella lettura dei dati oppure disconnessioni da parte del
+  - *`err error`*: Eventuale errore nella creazione dei _channel_
+
+*`GetRealTimeDataCommand`* invece rappresenta il comando inviato all'_inbound port_ e contiene i seguenti attributi:
+- *`Requester identity.Requester`*: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC]
+- *`SensorId uuid.UUID`*: UUID del sensore di cui visualizzare i dati
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato il gateway a cui appartiene il sensore
+
+===== Struct di dominio
+====== `RealTimeDataService`
+*`RealTimeDataService`* è la struct `Service` che implementa *`GetRealTimeDataUseCase`*.
+
+*Attributi:*
+- *`tenantPort tenant.GetTenantPort`*: _Outbound port_ usata per ottenere dati relativi al tenant specificato
+- *`sensorByTenantPort sensor.GetSensorByTenantPort`*: _Outbound port_ usata per ottenere i dati di un sensore per tenant
+- *`realTimeDataPort RealTimeDataPort`*: _Outbound port_ per ottenere i dati in tempo reale di un sensore specifico
+
+====== `RealTimeSample`
+*`RealTimeSample`* è l'interfaccia di dominio che rappresenta un dato ottenuto in tempo reale.
+
+*Metodi*: 
+- *`GetData() any`*: Metodo per ottenere i dati strutturati del _sample_
+-  *`GetProfile() sensorProfile.SensorProfile`*: Metodo per ottenere il profilo a cui sono associati i dati
+- *GetTimestamp() time.Time*: Metodo per ottenere il timestamp a cui è associato il dato
+
+Tutte le struct che implementano questa interfaccia presentano i seguenti attributi:
+- *`Profile sensorProfile.SensorProfile`*: profilo del sensore a cui è associato il dato
+- *`Timestamp time.Time`*: timestamp del dato
+- *`Data`*, il quale invece è di un tipo specifico per ogni tipo concreto
+
+Le struct che implementano questa interfaccia sono le seguenti e ciascuna rappresenta un tipo di dato supportato dal sistema.
+
+- *`EcgSample`*: Rappresenta un _sample_ in formato *ECG Custom*
+  - Presenta attributo *`Data EcgSampleData`*, il quale ha come attributo:
+    - *`Waveform []int`*: Forma d'onda della misurazione ECG
+
+- *`EnvironmentalSensingSample`* Rappresenta un _sample_ in formato *Environmental Sensing Service*
+  - Presenta attributo *`Data EnvironmentalSensingSampleData`*, il quale ha come attributi:
+    - *`Temperature float64`*: Misurazione di temperatura in °C
+    - *`Humidity float64`*: Misurazione di umidità in %
+    - *`Pressure float64`*: Misurazione di pressione in hPa
+
+- *`HealthThermometerSample`*: Rappresenta un _sample_ in formato *Health Thermometer*
+  - Presenta attributo *`Data HealthThermometerSampleData`*, il quale ha come attributo:
+    - *`Temperature float64`*: Misurazione di temperatura in °C
+
+- *`HeartRateSample`*: Rappresenta un _sample_ in formato *Heart Rate*
+  - Presenta attributo *`Data HeartRateSampleData`*, il quale ha come attributo:
+    - *`BpmValue int`*: Misurazione di battiti cardiaci al minuto
+
+- *`PulseOximeterSample`*: Rappresenta un _sample_ in formato *Pulse Oximeter*
+  - Presenta attributo *`Data PulseOximeterSampleData`*, il quale ha come attributi:
+    - *`Spo2 float64`*: Misura di ossigenazione del sangue in %
+	  - *`PulseRate int`*: Misura di battiti cardiaci al minuto
+
+====== `RealTimeError`
+Rappresenta un errore ricevuto in tempo reale. Può essere un errore di disconnessione ricevuto dal client oppure un errore di mapping ricevuto dal reader NATS.
+
+*Attributi*:
+- *`Err error`*: errore rappresentato dalla struct
+- *`Timestamp time.Time`*: timestamp di rilevazione dell'errore
+
+*Metodi*:
+- *`Error() string`*: Ritorna la descrizione dell'errore. Utilizzata in modo tale da rendere `RealTimeError` compatibile con l'interfaccia standard `error`
+- *`Unwrap() error`*: Ritorna l'attributo `Err`, in modo tale da essere compatibile con il package `errors` nella stdlib.
+
+*Funzioni di costruzione*#footnote[Si noti che queste funzioni non sono usate nel sistema di #gloss[DI], ma solo per creare comodamente diversi tipi di errori real-time]:
+- *`NewErrClientDisconnected() RealTimeError`*: Crea un nuovo errore ottenuto quando il client websocket si disconnette
+- *`NewErrMappingError(err error) RealTimeError`*: Crea un nuovo errore di mapping, specificato da `err`
 
 ===== Outbound port -- `RealTimeDataPort`
-- Port
+_Outbound port_ utilizzata per comunicare con il _listener_ dei dati in tempo reale.
+
+*Metodi*:
+- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Deve istanziare asincronamente una goroutine che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
+
 
 ===== Outbound adapter -- `RealTimeDataNATSAdapter`
-- Adapter
+_Outbound adapter_ che implementa *`RealTimeDataPort`*, consentendo di creare un _listener_ dei dati real-time su NATS
+
+*Attributi*:
+- *`reader RealTimeDataNATSReader`*: Riferimento alla struct che ha la responsabilità di leggere i dati in real-time su NATS
+
+*Metodi aggiuntivi*:
+- *`getSubject(tenantId, gatewayId, sensorId uuid.UUID) (string, error)`*: Dati gli ID di un tenant, di un gateway e di un sensore, ottiene il subject #gloss[NATS] corrispondente
+
 
 ===== Reader -- `RealTimeDataNATSReader`
-- Reader
-- Goroutine varie
-- lastTimestampContainer
+*`RealTimeDataNATSReader`* è l'interfaccia che rappresenta un reader #gloss[NATS]#footnote[Si noti che questa interfaccia è stata creata per puri fini di test, i quali richiedono che ogni elemento per cui si può creare un _mock_ sia descritto da un'interfaccia.].
 
+*Metodi*:
+- *`StartSubscriber( subject string, profile sensorProfile.SensorProfile, receivingChannel chan RealTimeSample, errorChannel chan RealTimeError) error`*: Deve istanziare un subscriber #gloss[NATS] sul soggetto `subject`, rimanendo in ascolto per i dati correlati al profilo `profile` per poi inserirli in `receivingChannel` ed inserire eventuali errori di mapping in `errorChannel`.
+
+====== `concreteRealTimeDataNATSReader`
+*`concreteRealTimeDataNATSReader`* è la classe concreta che implementa `RealTimeDataNATSAdapter`.
+
+*Attributi*:
+- *`nc *nats.Conn`*: Connessione a NATS da utilizzare per leggere i dati in real time
+
+*Funzioni di costruzione*:
+- *`newConcreteRealTimeDataNATSReader(nc *nats.Conn) *concreteRealTimeDataNATSReader`*
+
+====== `lastTimestampContainer`
+Rappresenta un contenitore thread-safe per rappresentare un valore temporale crescente monotonicamente.
+
+*Attributi*:
+- *`mu sync.Mutex`*: Mutex per impedire accessi concorrenti all'oggetto
+- *`value time.Time`*: Valore temporale contenuto
+
+*Metodi*:
+- *`CompareAndSet(newTime time.Time) bool`*: Fa controllo thread-safe (usando mutex) su `newTime` rispetto a `value`: se `newTime` è più recente di `value`, allora imposta `newTime` a `value` e ritorna `true`, altrimenti ritorna `false`
 
 ==== Package `sensor` <code-sensor>
 
@@ -1671,7 +1789,9 @@ Questo package è stato creato separatamente da `sensor` per evitare la creazion
   caption: [Code Diagram per `sensor.SensorProfile`],
 )
 
-==== Package `shared` -- E
+==== Package `shared/config`
+==== Package `shared/crypto`
+==== Package `shared/identity` <code-shared-identity>
 
 ==== Package `tenant`
 // Michele
