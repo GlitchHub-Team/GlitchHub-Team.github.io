@@ -1335,41 +1335,402 @@ Il frontend verrà descritto a partire dal livello delle _pages_, illustrando pe
 Per comodità, ogni sezione includerà esclusivamente la propria porzione del #gloss[Code Diagram], ma saranno comunque presenti riferimenti ad altri componenti e servizi coinvolti.
 
 ==== Modelli dati
-===== Permission <angular-permission-model>
-Rappresenta l'enum che stabilisce i permessi disponibili all'interno del sistema. Prevede i seguenti valori:
-- `DASHBOARD_ACCESS`;
-- `GATEWAY_MANAGEMENT`;
-- `SENSOR_MANAGEMENT`;
-- `GATEWAY_COMMANDS`;
-- `TENANT_USER_MANAGEMENT`;
-- `TENANT_ADMIN_MANAGEMENT`;
-- `SUPER_ADMIN_MANAGEMENT`;
-- `TENANT_MANAGEMENT`;
-- `APIKEY_MANAGEMENT`;
+La robustezza del frontend Angular è garantita da un sistema di tipizzazione rigoroso che utilizza interfacce, tipi personalizzati ed enumerazioni per rappresentare le entità del sistema. I modelli dati sono organizzati per separare le utilità trasversali (modelli comuni) dalle entità specifiche delle aree funzionali (modelli di dominio).
 
-===== UserRole <angular-userrole-model>
-Rappresenta l'enum che stabilisce i ruoli disponibili all'interno del sistema, ossia `SUPER_ADMIN`, `TENANT_ADMIN` e `TENANT_USER`.
+===== Modelli Comuni e Globali
+In questa sezione vengono descritti i modelli utilizzati trasversalmente in diverse parti dell'applicazione per standardizzare le risposte del server, gestire gli errori e definire stati operativi condivisi.
 
-===== LoginRequest <angular-loginrequest-model>
-Rappresenta la richiesta di login inviata al backend, contiene i seguenti campi:
-  - `email: string` rappresenta l'indirizzo email dell'utente che effettua il login;
-  - `password: string` rappresenta la password dell'utente che effettua il login;
-  - `tenantId?: string` rappresenta il tenant di appartenenza dell'utente, richiesto solo se il ruolo è `TENANT_ADMIN` o `TENANT_USER`.
+====== *`Permission`* (enum)<angular-permission-model>
+Stabilisce i permessi granulari disponibili nel sistema. Ogni voce dell'enum è associata a una stringa descrittiva (`label`) utilizzata nell'interfaccia utente per mostrare all'utente le capacità associate al proprio ruolo. Include permessi per l'accesso alla dashboard, la gestione dei gateway, dei sensori, degli utenti (Super Admin, Tenant Admin, Tenant User), dei tenant e delle API Key (quest'ultimo non implementato).
 
-===== AuthResponse <angular-authresponse-model>
-Rappresenta la risposta del backend alla richiesta di login, contiene il seguente campo:
-  - `jwt: string` rappresenta il token JWT da utilizzare per autenticare le richieste successive al backend. Contiene codificate all'interno del payload le seguenti informazioni:
-    - `uid: string` rappresenta l'identificativo univoco dell'utente;
-    - `tid: string` rappresenta l'identificativo del tenant dell'utente;
-    - `rol: string` rappresenta il ruolo dell'utente;
+====== *`GatewayStatus`* e *`SensorStatus`* (enum)<angular-status-model>
+Definiscono lo stato operativo dei dispositivi.
+  - `GatewayStatus` prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) e `DECOMMISSIONED` (decommissionato) per i gateway.
+  - `SensorStatus` prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) per i sensori.
 
-===== UserSession <angular-usersession-model>
-Rappresenta la sessione dell'utente autenticato, contiene le seguenti informazioni:
-  - `userId: string` rappresenta l'indirizzo email dell'utente autenticato;
-  - `tenantId?: string` rappresenta l'identificativo del tenant dell'utente autenticato, se presente;
-  - `role: UserRole` rappresenta il ruolo dell'utente autenticato, i valori possibili sono `SUPER_ADMIN`, `TENANT_ADMIN` e `TENANT_USER`;
+====== *`PaginatedResponse`* (interface)<angular-paginatedresponse-model>
+Rappresenta l'interfaccia base per tutte le risposte API che supportano la paginazione. Contiene i campi `count` (numero di elementi nella pagina corrente) e `total` (numero totale di elementi presenti sul database), permettendo ai componenti tabella di gestire correttamente i controlli di navigazione.
+
+====== *`ApiError`* (interface)<angular-apierror-model>
+Standardizza la struttura degli errori restituiti dal backend. Include il codice di stato HTTP (`status`) e un messaggio opzionale (`message`) per facilitare la gestione delle notifiche di errore all'utente.
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliComuni.pdf", width: 85%),
+  caption: [Modelli Dati - Modelli Comuni e Globali],
+)
+\
+
+===== Modelli di Dominio: Auth
+I modelli di autenticazione strutturano lo scambio di informazioni necessario per identificare gli utenti e gestire i flussi di sicurezza del sistema.
+
+====== *`LoginRequest`* (interface)<angular-loginrequest-model>
+Rappresenta il pacchetto di dati inviato dall'utente per richiedere l'accesso al sistema.
+  - `email: string`: l'indirizzo email dell'utente che effettua il tentativo di accesso.
+  - `password: string`: la password associata all'account.
+  - `tenantId?: string`: proprietà opzionale utilizzata per identificare il contesto organizzativo (_tenant_) di appartenenza dell'utente.
+
+====== *`AuthResponse`* (interface)<angular-authresponse-model>
+Definisce la struttura della risposta restituita dal backend a seguito di un'autenticazione avvenuta con successo.
+  - `jwt: string`: il token JSON Web Token necessario per autenticare e autorizzare le successive chiamate API del frontend. Contiene codificate all'interno del payload le seguenti informazioni:
+    - `uid: string`: rappresenta l'identificativo univoco dell'utente;
+    - `tid: string`: rappresenta l'identificativo del tenant dell'utente;
+    - `rol: string`: rappresenta il ruolo dell'utente;
+
+====== *`UserSession`* (interface)<angular-usersession-model>
+Rappresenta la struttura dati utilizzata internamente al frontend per mantenere lo stato e le informazioni essenziali dell'utente attualmente autenticato.
+  - `userId: string`: l'identificativo univoco dell'utente in sessione.
+  - `tenantId?: string`: l'identificativo del tenant a cui l'utente appartiene, se applicabile.
+  - `role: UserRole`: il ruolo operativo dell'utente (@angular-userrole-model), che determina i permessi all'interno dell'applicazione.
+
+====== *`ForgotPasswordRequest`* (interface)<angular-forgotpasswordrequest-model>
+Modello utilizzato per avviare la procedura di recupero delle credenziali di accesso.
+  - `email: string`: l'indirizzo email a cui inviare le istruzioni per il ripristino della password.
+  - `tenantId?: string`: identificativo opzionale del tenant per circoscrivere la ricerca dell'utente.
+
+====== *`ForgotPasswordResponse`* (interface)<angular-forgotpasswordresponse-model>
+Modello per la finalizzazione del reset della password tramite token di sicurezza.
+  - `token: string`: il codice di verifica univoco ricevuto dall'utente (solitamente via email).
+  - `newPassword: string`: la nuova password che l'utente intende impostare per il proprio account.
+  - `tenantId?: string`: riferimento opzionale al tenant per la convalida dell'operazione.
+
+====== *`ConfirmAccountResponse`* (interface)<angular-confirmaccountresponse-model>
+Interfaccia dedicata alla conferma dell'attivazione di un nuovo account di sistema.
+  - `token: string`: l token di attivazione necessario per validare l'identità dell'utente.
+  - `newPassword: string`: la password definita dall'utente in fase di primo accesso o attivazione.
+  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+====== *`PasswordChange`* (interface)<angular-passwordchange-model>
+Rappresenta il modello per l'aggiornamento volontario della password da parte di un utente già autenticato.
+  - `oldPassword: string`: la password corrente dell'utente, richiesta per motivi di sicurezza prima di procedere alla modifica.
+  - `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioAuth.pdf", width: 100%),
+  caption: [Modelli Dati - Modelli di Dominio: Auth],
+)
+\
+
+
+===== Modelli di Dominio: Chart
+I modelli dell'area _Chart_ permettono di orchestrare la richiesta di dati storici e in tempo reale, definendo al contempo le modalità di rappresentazione visiva dei segnali biometrici.
+
+====== `ChartType` (enum)<angular-charttype-model>
+Definisce le modalità di visualizzazione dei dati supportate dal sistema.
+  - `HISTORIC`: indica la modalità di visualizzazione dei dati storici memorizzati nel database.
+  - `REALTIME`: indica la modalità di visualizzazione in tempo reale tramite stream continuo.
+
+====== *`TimeInterval`* (interface)<angular-timeinterval-model>
+Rappresenta l'intervallo temporale utilizzato per filtrare le letture dei sensori.
+  - `from: Date`: data e ora di inizio dell'intervallo richiesto.
+  - `to: Date`: data e ora di fine dell'intervallo richiesto.
+
+====== *`ChartRequest`* (interface)<angular-chartrequest-model>
+Modello utilizzato per inoltrare una richiesta completa di generazione o aggiornamento di un grafico.
+  - `sensor: Sensor`: l'oggetto contenente le informazioni del sensor (@angular-sensor-model) di cui si vogliono visualizzare i dati.
+  - `chartType: ChartType`: la modalità di grafico richiesta (storica o real-time @angular-charttype-model).
+  - `tenantId?: string`: identificativo opzionale del tenant per il controllo dell'accesso ai dati.
+  - `dataPointsCounter?: number`: proprietà opzionale per limitare il numero di campioni da recuperare o visualizzare.
+  - `timeInterval?: TimeInterval`: l'intervallo temporale specifico per le query storiche (@angular-timeinterval-model).
+
+====== *`SensorProfileDisplay`* (interface)<angular-sensorprofiledisplay-model>
+Definisce le proprietà estetiche e le unità di misura per la rappresentazione dei dati di un profilo sensore.
+  - `label: string`: l'etichetta testuale visualizzata nel grafico (es. "Heart Rate").
+  - `unit: string`: l'unità di misura associata al valore del sensore.
+
+In questo file sono definiti anche:
+  - `SENSOR_PROFILE_MAP`: Una costante di tipo `Record` che mappa ogni profilo sensore (`SensorProfiles` @angular-sensorprofiles-model) alla propria configurazione di etichetta e unità di misura.
+  - `getSensorProfileDisplay(profile): SensorProfileDisplay`: Una funzione che restituisce l'oggetto `SensorProfileDisplay` corrispondente al profilo richiesto; include una logica di protezione che restituisce il nome del profilo e una stringa vuota come unità qualora il profilo non sia presente nella mappa.
+
+====== *`SENSOR_VISIBLE_POINTS`* e *`SENSOR_MAX_LIVE_READINGS`* (constant)<angular-sensorcostants-model>
+Record di configurazione che stabiliscono i limiti di campionamento per l'interfaccia utente al fine di ottimizzare le performance di rendering.
+  - Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioChart.pdf", width: 100%),
+  caption: [Modelli Dati - Modelli di Dominio: Chart],
+)
+\
+
+===== Modelli di Dominio: Gateway
+I modelli dell'area _Gateway_ definiscono la struttura dei dispositivi centrali del sistema, gestendo sia la rappresentazione interna del frontend che il formato di scambio dati con il backend.
+====== *`Gateway`* (interface)<angular-gateway-model>
+Rappresenta il modello principale dell'entità gateway utilizzato all'interno dell'applicazione.
+  - `id: string`: identificativo univoco del gateway.
+  - `tenantId?: string`: identificativo opzionale del tenant a cui è assegnato il gateway.
+  - `name: string`: nome descrittivo assegnato al gateway.
+  - `status: GatewayStatus`: stato operativo del gateway (es. attivo, inattivo), tipizzato tramite l'enum `GatewayStatus` (@angular-status-model).
+  - `interval: number`: frequenza di comunicazione espressa in secondi.
+  - `publicIdentifier?: string`: identificativo pubblico opzionale del dispositivo.
+
+====== *`GatewayBackend`* (interface)<angular-gatewaybackend-model>
+Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
+  - `gateway_id: string`: mappa l'identificativo del gateway nel formato snake_case del database.
+  - `tenant_id?: string`: identificativo del tenant nel formato backend.
+  - `name: string`: nome del dispositivo.
+  - `status: string`: stato del dispositivo rappresentato come stringa grezza.
+  - `interval: number`: intervallo di comunicazione.
+  - `public_identifier?: string`: identificativo pubblico opzionale nel formato backend.
+
+====== *`GatewayConfig`* (interface)<angular-gatewayconfig-model>
+Modello utilizzato per le operazioni di configurazione o aggiornamento dei parametri di un gateway.
+  - `name: string`: nuovo nome da assegnare al dispositivo.
+  - `interval: number`: nuovo intervallo di comunicazione da impostare.
+
+====== *`CommandRequest`* (interface)<angular-commandrequest-model>
+Rappresenta la struttura dati necessaria per inoltrare comandi operativi a un gateway specifico.
+  - `gateway: Gateway`: l'oggetto gateway destinatario del comando ( @angular-gateway-model).
+  - `command: string`: la stringa rappresentante il comando da eseguire sul dispositivo.
+
+====== *`PaginatedGatewayResponse<T>`* (interface)<angular-paginatedgatewayresponse-model>
+Estende l'interfaccia `PaginatedResponse` per gestire liste di gateway ottenute tramite query filtrate o paginate.
+  - `gateways: T[]`: array di elementi di tipo generico `T` contenente i record della pagina corrente.
+\
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioGateway.pdf", width: 100%),
+  caption: [Modelli Dati - Modelli di Dominio: Gateway],
+)
+\
+
+===== Modelli di Dominio: Nav Items
+I modelli dell'area _Nav Items_ permettono di definire l'architettura della navigazione laterale (sidebar), integrando logiche di controllo degli accessi e raggruppamento visuale delle funzionalità.
+
+====== *`NavItem`* (interface)<angular-navitem-model>
+Definisce la struttura di una singola voce all'interno del menu di navigazione.
+  - `label: string`: l'etichetta testuale visualizzata nel menu (es. "Gestione Gateway", "Dashboard").
+  - `route: string`: il percorso di navigazione associato alla voce di menu.
+  - `icon: string`: il nome dell'icona (solitamente riferita alla libreria Material Icons) da affiancare all'etichetta.
+  - `permission?: Permission | Permission[]`: proprietà opzionale che specifica i permessi necessari per visualizzare la voce. Può essere un singolo valore dell'enum `Permission` (@angular-permission-model) o un array di permessi.
+  - `separator?: boolean`: flag opzionale che, se impostato a true, inserisce un separatore visivo prima della voce di menu.
+  - `sectionTitle?: string`: titolo opzionale utilizzato per raggruppare le voci sotto una categoria testuale.
+  - `tenantSectionTitle?: string`: titolo di sezione specifico utilizzato nei contesti di impersonificazione o visualizzazione legata al tenant.
+
+====== *`NAV_ITEMS (NavConfig)`* (constant)<angular-navitems-constant>
+Rappresenta la configurazione statica globale del menu di navigazione dell'applicazione.
+  - È un array di oggetti _NavItem_ che mappa tutte le funzionalità principali del sistema, incluse le aree di gestione (Gateway, Tenant, User) e la Dashboard operativa.
+  - Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioNavItems.pdf", width: 70%),
+  caption: [Modelli Dati - Modelli di Dominio: Nav Items],
+)
+\
+
+===== Modelli di Dominio: Sensor
+I modelli dell'area Sensor definiscono l'identità e le capacità operative di ogni dispositivo di rilevamento collegato ai gateway, gestendo la traduzione tra i formati di comunicazione grezzi e le tipizzazioni forti del frontend.
+
+====== *`Sensor`* (interface) <angular-sensor-model>
+Rappresenta il modello principale dell'entità sensore utilizzato per la logica di business e la visualizzazione nel frontend.
+  - `id: string`: identificativo univoco del sensore.
+  - `gatewayId: string`: identificativo del gateway a cui il sensore è associato.
+  - `name: string`: nome descrittivo assegnato al dispositivo.
+  - `profile: SensorProfiles`: il profilo tecnologico del sensore, tipizzato tramite l'enum `SensorProfiles`(@angular-sensorprofiles-model).
+  - `status: SensorStatus`: lo stato operativo corrente (es. attivo o inattivo), tipizzato tramite l'enum `SensorStatus` (@angular-status-model).
+  - `dataInterval: number`: la frequenza di campionamento dei dati espressa in secondi.
+
+====== *`SensorProfiles`* (enum) <angular-sensorprofiles-model>
+Stabilisce i profili tecnologici supportati dal sistema, mappando ogni servizio Bluetooth/Backend a una categoria specifica.
+  - `HEART_RATE_SERVICE`: "heart rate".
+  - `PULSE_OXIMETER_SERVICE`: "pulse oximeter".
+  - `CUSTOM_ECG_SERVICE`: "custom ecg".
+  - `HEALTH_THERMOMETER_SERVICE`: "health thermometer".
+  - `ENVIRONMENTAL_SENSING_SERVICE`: "environmental sensing".
+
+====== *`SensorConfig`* (interface) <angular-sensorconfig-model>
+Modello utilizzato per la creazione o la riconfigurazione dei parametri di un sensore.
+  - `name: string`: nome da assegnare o aggiornare.
+  - `dataInterval: number`: intervallo dati da impostare.
+  - `gatewayId: string`: riferimento al gateway ospite.
+  - `profile: string`: profilo tecnologico selezionato.
+
+====== *`SensorBackend`* (interface) <angular-sensorbackend-model>
+Definisce il formato del Data Transfer Object (DTO) ricevuto dalle API del backend, caratterizzato dall'utilizzo della convenzione snake_case.
+  - `sensor_id: string`: mappa l'identificativo del sensore.
+  - `gateway_id: string`: mappa l'identificativo del gateway di appartenenza.
+  - `sensor_name: string`: nome del dispositivo nel database.
+  - `status: string`: stato del dispositivo rappresentato come stringa.
+  - `profile: string`: identificativo testuale del profilo tecnologico.
+  - `data_interval: number`: intervallo di invio dati.
+
+====== *`PaginatedSensorResponse<T>`* (interface)<angular-paginatedsensorresponse-model>
+Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di sensori.
+  - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente della visualizzazione.
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioSensor.pdf", width: 100%),
+  caption: [Modelli Dati - Modelli di Dominio: Sensor],
+)
+\
+
+===== Modelli di Dominio: Sensor Data
+I modelli dell'area _Sensor Data_ gestiscono la complessità delle letture grezze provenienti dal backend e le organizzano in strutture leggibili per i componenti grafici dell'interfaccia utente.
+
+====== *`FieldDescriptor`* (interface)<angular-fielddescriptor-model>
+Rappresenta un metadato che descrive come interpretare e visualizzare un singolo valore all'interno di una lettura del sensore.
+  - `key: string`: la chiave tecnica del dato (es. "bpm", "temperature") utilizzata per estrarre il valore dall'oggetto della lettura.
+  - `label: string`: l'etichetta testuale descrittiva per la UI (es. "Battito cardiaco", "Umidità").
+  - `unit: string`: l'unità di misura associata al dato (es. "bpm", "°C", "%").
+
+====== *`SensorReading`* (interface)<angular-sensorreading-model>
+Definisce il modello atomico di una singola lettura sensoriale processata dal frontend.
+  - `timestamp: string`: l'istante temporale a cui si riferisce la misurazione.
+  - `value: Record<string, number>`: un oggetto contenente uno o più valori numerici associati a chiavi specifiche (es. `{ "bpm": 72 }` o `{ "temperature": 22.5, "humidity": 60 }`).
+
+====== *`HistoricResponse`* e *`HistoricSample`* (interfaces)<angular-historicresponse-model>
+Rappresentano il formato dei dati storici così come vengono trasmessi dal backend (Data Transfer Objects).
+  - `HistoricResponse`: contiene il conteggio totale dei campioni (`count`) e l'array di dati effettivi (`samples`).
+  - `HistoricSample`: rappresenta il singolo pacchetto di dati grezzi. Include informazioni come `sensor_id`, `gateway_id`, `tenant_id`, `timestamp`, `profile` e l'oggetto `data` contenente i valori grezzi in formato chiave-valore.
+
+====== *`HistoricReadings`* (interface)<angular-historicreadings-model>
+Modello strutturato utilizzato dal frontend per aggregare le letture storiche da visualizzare nei grafici.
+  - `dataCount: number`: il numero totale di letture contenute nell'oggetto.
+  - `readings: SensorReading[]`: l'elenco delle letture trasformate e pronte per il rendering (@angular-sensorreading-model).
+  - `fields: FieldDescriptor[]`: l'elenco dei descrittori di campo che indicano quali dati sono presenti e come visualizzarli (@angular-fielddescriptor-model).
+  - `samplesPerPacket?: number`: proprietà opzionale utilizzata principalmente per il segnale ECG per indicare la densità di campionamento.
+
+====== *`RealTimeReading`* (interface)<angular-realtimereading-model>
+Descrive la struttura dei dati ricevuti in tempo reale tramite stream.
+  - `timestamp: string`: il timestamp della lettura live.
+  - `profile: string`: il profilo del sensore sorgente.
+  - `data: Record<string, any>`: i dati grezzi ricevuti in tempo reale.
+
+====== Costanti di Configurazione Campi (*`HEART_RATE_FIELDS`*, *`ECG_FIELDS`*, etc.) <angular-constantsfields-constant>
+Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualizzazione per ogni tipologia di sensore.
+   - Ad esempio, `ENVIRONMENTAL_FIELDS` configura i campi "Temperatura" (°C) e "Umidità" (%), mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioSensorData.pdf", width: 100%),
+  caption: [Modelli Dati - Modelli di Dominio: Sensor Data],
+)
+\
+
+===== Modelli di Dominio: Tenant
+I modelli dell'area _Tenant_ definiscono le entità organizzative del sistema, permettendo la gestione separata dei dati e la configurazione di funzionalità avanzate come l'impersonificazione.
+
+====== *`Tenant (interface)`* <angular-tenant-model>
+Rappresenta il modello principale dell'entità tenant utilizzato all'interno della logica applicativa del frontend.
+  - `id: string`: identificativo univoco del tenant.
+  - `name: string`: nome descrittivo assegnato al tenant.
+  - `canImpersonate: boolean`: flag che indica se il tenant ha l'autorizzazione per eseguire operazioni di impersonificazione all'interno del sistema.
+
+====== *`TenantConfig (interface)`* <angular-tenantconfig-model>
+Rappresenta il modello utilizzato per le operazioni di creazione o aggiornamento dei dati di un tenant.
+  - `name: string`: il nome da assegnare o aggiornare per l'organizzazione.
+  - `canImpersonate: boolean`: la configurazione del permesso di impersonificazione da salvare nel sistema.
+
+====== *`TenantBackend (interface)`* <angular-tenantbackend-model>
+Definisce il formato del Data Transfer Object (DTO) così come viene restituito dalle API del backend, utilizzando la convenzione di naming snake_case.
+  - `tenant_id: string`: mappa l'identificativo univoco del tenant nel backend.
+  - `can_impersonate: boolean`: indica nel formato backend la capacità di impersonificazione associata al tenant.
+
+====== *`PaginatedTenantResponse<T>`* (interface) <angular-paginatedtenantresponse-model>
+Estende l'interfaccia base di paginazione per gestire liste di tenant provenienti da interrogazioni del database.
+  - `tenants: T[]`: array di elementi di tipo generico `T` che costituiscono il set di dati della pagina corrente.
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioTenant.pdf", width: 100%),
+  caption: [Modelli Dati - Modelli di Dominio: Tenant],
+)
+\
+
+===== Modelli di Dominio: User
+I modelli dell'area _User_ strutturano le informazioni relative agli account utente, garantendo una gestione tipizzata dei profili e dei relativi permessi operativi.
+
+====== *`UserRole`* (enum) <angular-userrole-model>
+Stabilisce i ruoli gerarchici disponibili nel sistema, utilizzati per determinare i permessi di accesso alle diverse funzionalità.
+  - `TENANT_USER`: rappresenta l'utente finale associato a un tenant specifico.
+  - `TENANT_ADMIN`: rappresenta l'amministratore di un tenant, con permessi di gestione locale.
+  - `SUPER_ADMIN`: rappresenta l'amministratore globale del sistema con permessi illimitati.
+
+====== *`User`* (interface)<angular-user-model>
+Rappresenta il modello principale dell'entità utente utilizzato nella logica di business del frontend.
+  - `id: string`: identificativo univoco dell'utente (normalizzato come stringa nel frontend).
+  - `username: string`: nome utente utilizzato per l'identificazione e la visualizzazione.
+  - `email: string`: indirizzo email associato all'account.
+  - `role: UserRole`: il ruolo assegnato all'utente, tipizzato tramite l'enum `UserRole`(@angular-userrole-model).
+  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+
+====== *`UserBackend`* (interface)<angular-userbackend-model>
+Definisce il formato del Data Transfer Object (DTO) ricevuto dalle API del backend.
+  - `user_id: number`: identificativo numerico dell'utente nel database.
+  - `username: string`: nome utente memorizzato nel backend.
+  - `email: string`: indirizzo email dell'utente.
+  - `user_role: string`: ruolo dell'utente trasmesso come stringa grezza.
+  - `tenant_id?: string`: riferimento al tenant nel formato backend.
+
+====== *`UserConfig`* (interface)<angular-userconfig-model>
+Modello semplificato utilizzato per le operazioni di creazione o configurazione iniziale del profilo utente.
+  - `email: string`: indirizzo email da assegnare all'account.
+  - `username: string`: nome utente desiderato per la configurazione.
+
+====== *`PaginatedUserResponse<T>`* (interface)<angular-paginateduserresponse-model>
+Estende l'interfaccia di paginazione per gestire collezioni di utenti.
+  - `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente della visualizzazione.
+
+#figure(
+  image("../../assets/c4/frontend/frontend-modelliDominioUser.pdf", width: 100%),
+  caption: [Modelli Dati - Modelli di Dominio: User],
+)
+\
+
 
 ==== Adapters e utils
+Questa sezione approfondisce lo strato di astrazione dedicato alla trasformazione e normalizzazione dei dati, posizionato tra i servizi di comunicazione API e la logica di business dei componenti. L'obiettivo primario di questo layer è garantire il disaccoppiamento tra il modello dati del backend (spesso soggetto a convenzioni di naming diverse come lo _snake_case_) e il modello dati interno del frontend, ottimizzato per la tipizzazione _TypeScript_ e l'utilizzo nei componenti _Angular_.
+
+===== Utility di mappatura (enumMapper) <angular-enummapper>
+Per la gestione coerente delle enumerazioni e delle costanti di sistema, è stata implementata una classe di utility generica denominata `EnumMapper<TFrontend, TBackend>`. Questa classe risolve il problema della discordanza tra i valori letterali utilizzati nelle API e le `definizioni` di tipo nel frontend.
+- *Funzinamento Core*: la classe accetta nel costruttore un oggetto di mappatura e un valore di _fallback_. Internamente, genera automaticamente una mappa inversa (`toFrontendMap`) per supportare la conversione bidirezionale.
+- *Gestione Errori*: il metodo `fromBackend` include una logica di protezione che restituisce il valore di _fallback_ predefinito qualora il backend invii un valore non censito, garantendo la resilienza dell'interfaccia.
+
+Sulla base di questa utility, sono stati definiti i seguenti mappatori specializzati:
+- *`statusMapper`*: gestisce la conversione dello stato dei dispositivi (attivo/inattivo) utilizzando l'enum `Status`.
+- *`sensorProfilesMapper`*: mappa le stringhe identificative dei servizi backend (es. _heart_rate_) nelle definizioni `SensorProfiles` (@angular-sensorprofiles-model) utilizzate per la logica di visualizzazione.
+- *`userRoleMapper`*: Utilizzato per la gestione utenti, mappando ruoli come _super_admin_, _tenant_admin_ o _tenant_user_.
+- *`userRoleMapperJWT`*: una versione specifica per la decodifica dei token #gloss("JWT"), dove i ruoli sono rappresentati da sigle contratte (`sa` per super admin, `ta` per tenant admin e `tu` per tenant user) nel payload del token.
+
+===== Architettura degli adapter API
+L'architettura degli adapter si basa su un pattern a due livelli: uno *strato astratto* che definisce il contratto formale e uno *strato concreto* (`ApiAdapter`) che implementa la logica di mappatura specifica.
+
+====== Definizione dei Contratti (_Abstract Adapters_)
+Le classi astratte fungono da "interfacce robuste" che assicurano che ogni trasformatore di dati esponga la medesima firma, indipendentemente dalla sorgente dati (API reali, mock o database locali). Gli adapters principali sono:
+- *`GatewayAdapter`*: definisce il contratto per la gestione dei _gateway_ di sistema. Impone l'implementazione del metodo `fromDTO(dto: GatewayBackend)`, che trasforma un singolo oggetto backend nel modello `Gateway` (@angular-gateway-model), e del metodo `fromPaginatedDTO`, che gestisce la conversione di intere collezioni preservando i metadati di paginazione.
+- *`SensorAdapter`*: stabilisce le firme per la trasformazione dell'anagrafica dei _sensori_. Richiede l'implementazione di logiche per mappare il DTO `SensorBackend` (@angular-sensorbackend-model) nell'interfaccia `Sensor`, assicurando una gestione coerente di ID, nomi e riferimenti ai gateway.
+- *`UserAdapter`* : definisce i criteri per il processamento delle entità _utente_. Il contratto garantisce che ogni implementazione sia in grado di trasformare i dati `UserBackend` nel modello `User` (@angular-user-model), includendo la gestione delle risposte paginate.
+- *`TenantAdapter`*: prescrive i metodi per la mappatura delle entità _tenant_. Impone la trasformazione dell'oggetto `TenantBackend` nel modello `Tenant` (@angular-tenant-model) utilizzato dal frontend per gestire le organizzazioni e i relativi permessi.
+
+In aggiunta agli adapter per le entità principali, il sistema prevede contratti specifici per l'elaborazione dei dati biometrici e ambientali, necessari per supportare l'eterogeneità dei sensori:
+- *`SensorHistoricAdapter`*: un'astrazione dedicata alla gestione dei dati storici. Obbliga ogni sottoclasse a definire una proprietà `fields` di tipo `FieldDescriptor[]` (@angular-fielddescriptor-model) (per la descrizione dei metadati della lettura) e a implementare il metodo `fromResponse(response: HistoricResponse): HistoricReadings` (@angular-historicresponse-model e @angular-historicreadings-model) per convertire i pacchetti di campionamento in letture storiche tipizzate.
+- *`SensorLiveReadingAdapter`*: definisce il contratto per l'elaborazione dei flussi dati in tempo reale. Analogamente all'adapter storico, richiede la definizione dei campi (`fields`), ma si focalizza sul metodo `fromDTO(dto: RealTimeReading)` (@angular-realtimereading-model), che deve restituire un array di letture normalizzate (`SensorReading[]` (@angular-sensorreading-model)) pronte per lo streaming sui grafici live.
+
+====== Implementazioni Concrete (_ApiAdapters_)
+Gli adapter API estendono i contratti sopra citati e iniettano la logica necessaria per normalizzare i DTO del backend. Gli adapter API sono:
+- *`GatewayApiAdapter`*: gestisce l'entità _gateway_. È responsabile della conversione delle proprietà del DTO `GatewayBackend` nel modello gateway, mappando l'ID del dispositivo, il nome, l'intervallo di comunicazione e il tenant ID. Utilizza lo `statusMapper` (@angular-enummapper) per convertire la stringa di stato in un valore dell'enum `Status`.
+- *`SensorApiAdapter`*: converte i dati dei sensori medicali e ambientali. Oltre alla mappatura dei campi base (ID, nome, gateway ID e l'intervallo dei dati), applica il `sensorProfilesMapper` (@angular-enummapper) per interpretare correttamente il tipo di profilo e lo `statusMapper` per lo stato operativo.
+- *`UserApiAdapter`*: si occupa della gestione dell'entità _utente_. Oltre ad applicare la mappatura dei campi di base come username, email e tenant ID, esegue il casting dell'ID utente in stringa e utilizza `userRoleMapper`  (@angular-enummapper) per tradurre il ruolo ricevuto dal backend nel formato interno `UserRole` (@angular-userrole-model).
+- *`TenantApiAdapter`*: gestisce la trasformazione dei dati dei tenant, mappando l'ID, il nome e la flag di impersonificazione.
+
+Ogni adapter implementa inoltre il metodo `fromPaginatedDTO`, che estende la trasformazione a risposte contenenti liste paginate, preservando i metadati di conteggio totale.
+
+===== Gestione avanzata dei dati sensore (Historic e Real-time)
+Oltre alla gestione dell'anagrafica, il sistema richiede un processamento specialistico per le letture (misurazioni) prodotte dai sensori. Queste letture variano drasticamente in base al profilo medico o ambientale.
+
+Ogni adapter di questa categoria definisce una proprietà `fields` (`FieldDescriptor[]` (@angular-fielddescriptor-model)) che funge da metadato per istruire i componenti UI (grafici e tabelle) su quali unità di misura e label visualizzare.
+- *`EcgHistoricAdapter`*: gestisce segnali ad alta frequenza. Poiché i dati arrivano come array di campioni (`waveform`), l'adapter ricostruisce la serie temporale calcolando il timestamp esatto per ogni punto tramite interpolazione:
+$ "timestamp"_"i" = T_"base" + (i times "1000" / "waveform.length") $
+- *`EnvironmentalHistoricAdapter`*: estrae simultaneamente valori di temperatura e umidità dalla mappa dati.
+- *`PulseOximeterHistoricAdapter`*: mappa i parametri vitali di saturazione ossigeno (`spo2`) e frequenza del polso (`pulseRate`).
+- *`HeartRateHistoricAdapter`* e  *`HealthThermometerHistoricAdapter`*: gestiscono rispettivamente la frequenza cardiaca e la temperatura corporea, mappando i valori ricevuti nei formati attesi dai componenti di visualizzazione.
+
+Analogamente, per i flussi in tempo reale, vengono utilizzati adapter basati sulla classe astratta `SensorLiveReadingAdapter` che processano i dati in arrivo tramite WebSocket.
+
+===== Sensor Adapter Factory
+Per orchestrare dinamicamente l'utilizzo di questi adapter senza appesantire i componenti con logiche condizionali, è stato implementato il `SensorAdapterFactory`.
+Questo servizio utilizza un _Pattern Registry_ per mappare ogni `SensorProfiles` (@angular-sensorprofiles-model) alla propria istanza di adapter:
+- *Registrazione*: mantiene registri interni (_historicAdapters_ e _liveAdapters_) che associano i profili (ECG, Heart Rate, etc.) alle relative classi adapter.
+- *Creazione Dinamica*: espone i metodi `createHistoricAdapter(profile)` e `createLiveAdapter(profile)`. Se un profilo richiesto non è registrato, il factory solleva un errore esplicito, garantendo la sicurezza del sistema durante l'estensione con nuovi dispositivi.
+
+Questa architettura centralizzata permette alla Dashboard di gestire qualsiasi tipo di sensore in modo trasparente, garantendo che la logica di decodifica specifica di ogni dispositivo sia isolata e facilmente estensibile.
+
+
 
 ==== Services
 In questa sezione vengono descritti in dettaglio tutti i _services_ sviluppati per il frontend, con particolare attenzione alla loro responsabilità e al loro ruolo all'interno dell'architettura dell'applicazione.\
@@ -1775,6 +2136,14 @@ Il servizio presenta i seguenti metodi:
 - `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`.
 
 ==== Componenti UI
+
+
+
+
+
+
+
+
 
 === Cloud Backend
 
