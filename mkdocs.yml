@@ -18,9 +18,9 @@ nav:
           - Gateway: concetti/microservizi/gateway.md
           - Data Consumer: concetti/microservizi/data-consumer.md
           - Dashboard: concetti/microservizi/dashboard.md
-          - Auth: concetti/microservizi/auth.md
-          - User: concetti/microservizi/user.md
-          - Tenant: concetti/microservizi/tenant.md
+          - Observability: concetti/microservizi/observability.md
+  - Test:
+      - Esecuzione test: test/esecuzione-test.md
   - Installazione:
       - Requisiti:
           - Requisiti Hardware: installazione/requisiti/requisiti-hw.md
