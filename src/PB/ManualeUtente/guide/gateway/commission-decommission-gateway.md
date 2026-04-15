@@ -8,7 +8,7 @@ Il commissioning di un gateway simulato richiede l'invio di un comando al subjec
 - Associazione del gateway simulato al tenant specificato;
 - Utilizzo del nuovo **token di commissioning** ricevuto per autenticare il gateway simulato su NATS allo scopo di inviare i dati dei sensori simulati associati attraverso il message broker in questione.
 - Scrittura del **tenantId** e del nuovo **token di commissioning** nel database SQLite{{gloss}} del microservizio in questione.
-- Modifica dello stato del gateway simulato da **commissioned** ad **active**.
+- Modifica dello stato del gateway simulato da **decommissioned** ad **active**.
 - Inizio del processo di svuotamento del buffer interno dei gateway simulati per il conseguente invio dei dati dei sensori simulati associati.
 
 Il comando deve essere inviato sul subject NATS `commands.commissiongateway` con il modello request-reply{{gloss}}, e deve contenere i seguenti parametri obbligatori:

@@ -15,10 +15,10 @@ Competenze del **Super Admin**:
 - Creazione e gestione dei **tenant**;
 - Creazione e gestione degli **utenti** di ruolo **Super Admin**, **Tenant Admin** e **Tenant User**;
 - Configurazione e gestione dei **gateway** e dei **sensori**;
-- Visualizzazione dei dati storici e real-time di ogni tenant che accettano la clausola di impersonificazione.
+- Visualizzazione dei dati storici e real-time di ogni tenant che accetta la clausola di impersonificazione.
 
 ## Tenant Admin
-L'**Tenant Admin** gestisce tutto ciò che riguarda il proprio tenant, in particolare ha competenza sui **gateway**, sui **sensori** e sugli **utenti** del proprio tenant.
+Il **Tenant Admin** gestisce tutto ciò che riguarda il proprio tenant, in particolare ha competenza sui **gateway**, sui **sensori** e sugli **utenti** del proprio tenant.
 Inoltre ha la possibilità di visualizzare i dati prodotti dai propri sensori.
 
 Competenze del Tenant Admin:

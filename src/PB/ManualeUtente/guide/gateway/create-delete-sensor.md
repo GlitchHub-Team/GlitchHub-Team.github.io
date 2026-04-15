@@ -17,7 +17,7 @@ Il comando deve essere inviato sul subject NATS `commands.addsensor` con il mode
   "gatewayId": "string", // Identificativo univoco del gateway simulato di tipo uuid a cui associare il sensore simulato
   "sensorId": "string", // Identificativo univoco del sensore simulato di tipo uuid
   "profile": "string", // Profilo GATT per il tipo di dati da generare (vedi dati supportati nel paragrafo successivo)
-  "interval": 1 // Frequenza di generazione dati, ogni X ms, deve essere un interno maggiore o uguale di 1
+  "interval": 1 // Frequenza di generazione dati, ogni X ms, deve essere un intero maggiore o uguale a 1
 }
 ```
 

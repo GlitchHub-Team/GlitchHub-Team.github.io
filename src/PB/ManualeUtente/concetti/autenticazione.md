@@ -1,8 +1,8 @@
 # Autenticazione ed autorizzazione
-Il Sistema facendo parte di un dominio multi-tenant, prevede un sistema di **autenticazione** e **autorizzazione** molto rigido per garantire la sicurezza e l'isolamento dei dati tra i diversi tenant.  
+Il Sistema, facendo parte di un dominio multi-tenant, prevede un sistema di **autenticazione** e **autorizzazione** molto rigido per garantire la sicurezza e l'isolamento dei dati tra i diversi tenant.  
 L'**autenticazione** avviene tramite JWT{{gloss}} e permette di identificare l'utente che sta accedendo al sistema, mentre l'**autorizzazione** avviene tramite i ruoli utente definiti sempre all'interno del JWT{{gloss}} e permette di definire le azioni che un utente può compiere all'interno del sistema in base al proprio ruolo e al proprio tenant di appartenenza.
 
-Nel Sistema in questione è stata scelta l'autenticazione tramite JWT{{gloss}} per permettere scalabilità orizzontale dei diversi microservizi, in quanto il JWT{{gloss}} è un token che è firmato tramite una chiave privata, la cui validità può essere verificata tramite la chiave pubblica associata, senza la necessità di dover accedere ad un database centrale o ad una sessione per verificare i permessi dell'utente.
+Nel Sistema in questione è stata scelta l'autenticazione tramite JWT{{gloss}} per permettere la scalabilità orizzontale dei diversi microservizi, in quanto il JWT{{gloss}} è un token firmato tramite una chiave privata la cui validità può essere verificata tramite la chiave pubblica associata, senza dover accedere ad un database centrale o ad una sessione per verificare i permessi dell'utente.
 
 È importante sottolineare che le informazioni all'interno del JWT{{gloss}} sono firmate e non cifrate, quindi è possibile decodificare il token per leggere le informazioni in esso contenute, ma non è possibile modificarle senza invalidare la firma. Per questo motivo, è fondamentale proteggere la chiave privata utilizzata per firmare i token e garantire che solo il microservizio responsabile dell'autenticazione abbia accesso a questa chiave. 
 

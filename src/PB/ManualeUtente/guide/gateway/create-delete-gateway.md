@@ -15,7 +15,7 @@ Il comando deve essere inviato sul subject NATS `commands.creategateway` con il 
 ```json
 {
   "gatewayId": "string", // Identificativo univoco del gateway simulato di tipo uuid
-  "interval": 1 // Invio dati ogni X ms, deve essere un interno maggiore o uguale di 1
+  "interval": 1 // Invio dati ogni X ms, deve essere un intero maggiore o uguale a 1
 }
 ```
 

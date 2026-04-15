@@ -4,7 +4,7 @@ Il microservizio **Data Consumer** ha lo scopo di ricevere i dati IoT dal messag
 ## Funzioni principali
 
 - Ricezione dei dati IoT prodotti dai sensori tramite NATS JetStream{{gloss}}.
-- Raggrupamento dati per tenant ottimizzando la query attraverso l'utilizzo di bulk insert{{gloss}}.
+- Raggruppamento dati per tenant ottimizzando le query attraverso l'utilizzo di bulk insert{{gloss}}.
 - Salvataggio dei dati in TimescaleDB{{gloss}} con divisione logica per tenant con lo scopo di garantire l'isolamento dei dati.
 
 ## Obiettivo
