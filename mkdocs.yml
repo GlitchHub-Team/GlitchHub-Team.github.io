@@ -30,7 +30,6 @@ nav:
           - Personalizzare la configurazione: installazione/preparazione-del-sistema/02-configurare-ms.md
           - Avviare il Sistema: installazione/preparazione-del-sistema/03-avvio-sistema.md
   - Guide:
-      - Casi d'uso: guide/casi-d-uso.md
       - Gateway:
           - Comandi per gateway e sensori: guide/gateway/comandi.md
           - Creazione ed eliminazione gateway: guide/gateway/create-delete-gateway.md
