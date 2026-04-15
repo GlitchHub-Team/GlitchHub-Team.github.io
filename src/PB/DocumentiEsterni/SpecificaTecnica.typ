@@ -1375,7 +1375,7 @@ Rappresenta l'interfaccia base per tutte le risposte API che supportano la pagin
 Standardizza la struttura degli errori restituiti dal backend. Include il codice di stato HTTP (`status`) e un messaggio opzionale (`message`) per facilitare la gestione delle notifiche di errore all'utente.
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliComuni.pdf", width: 85%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliComuni.pdf", width: 85%),
   caption: [Modelli Dati - Modelli Comuni e Globali],
 )
 \
@@ -1424,7 +1424,7 @@ Rappresenta il modello per l'aggiornamento volontario della password da parte di
   - `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioAuth.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioAuth.pdf", width: 100%),
   caption: [Modelli Dati - Modelli di Dominio: Auth],
 )
 \
@@ -1465,7 +1465,7 @@ Record di configurazione che stabiliscono i limiti di campionamento per l'interf
   - Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioChart.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioChart.pdf", width: 100%),
   caption: [Modelli Dati - Modelli di Dominio: Chart],
 )
 \
@@ -1506,7 +1506,7 @@ Estende l'interfaccia `PaginatedResponse` per gestire liste di gateway ottenute 
 \
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioGateway.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioGateway.pdf", width: 100%),
   caption: [Modelli Dati - Modelli di Dominio: Gateway],
 )
 \
@@ -1530,7 +1530,7 @@ Rappresenta la configurazione statica globale del menu di navigazione dell'appli
   - Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioNavItems.pdf", width: 70%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioNavItems.pdf", width: 70%),
   caption: [Modelli Dati - Modelli di Dominio: Nav Items],
 )
 \
@@ -1576,7 +1576,7 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
   - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente della visualizzazione.
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioSensor.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensor.pdf", width: 100%),
   caption: [Modelli Dati - Modelli di Dominio: Sensor],
 )
 \
@@ -1618,7 +1618,7 @@ Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualiz
    - Ad esempio, `ENVIRONMENTAL_FIELDS` configura i campi "Temperatura" (°C) e "Umidità" (%), mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioSensorData.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensorData.pdf", width: 100%),
   caption: [Modelli Dati - Modelli di Dominio: Sensor Data],
 )
 \
@@ -1647,7 +1647,7 @@ Estende l'interfaccia base di paginazione per gestire liste di tenant provenient
   - `tenants: T[]`: array di elementi di tipo generico `T` che costituiscono il set di dati della pagina corrente.
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioTenant.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioTenant.pdf", width: 100%),
   caption: [Modelli Dati - Modelli di Dominio: Tenant],
 )
 \
@@ -1687,7 +1687,7 @@ Estende l'interfaccia di paginazione per gestire collezioni di utenti.
   - `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente della visualizzazione.
 
 #figure(
-  image("../../assets/c4/frontend/frontend-modelliDominioUser.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioUser.pdf", width: 100%),
   caption: [Modelli Dati - Modelli di Dominio: User],
 )
 \
@@ -1721,7 +1721,7 @@ In aggiunta agli adapter per le entità principali, il sistema prevede contratti
 - *`SensorHistoricAdapter`*: un'astrazione dedicata alla gestione dei dati storici. Obbliga ogni sottoclasse a definire una proprietà `fields` di tipo `FieldDescriptor[]` (@angular-fielddescriptor-model) (per la descrizione dei metadati della lettura) e a implementare il metodo `fromResponse(response: HistoricResponse): HistoricReadings` (@angular-historicresponse-model e @angular-historicreadings-model) per convertire i pacchetti di campionamento in letture storiche tipizzate.
 - *`SensorLiveReadingAdapter`*: definisce il contratto per l'elaborazione dei flussi dati in tempo reale. Analogamente all'adapter storico, richiede la definizione dei campi (`fields`), ma si focalizza sul metodo `fromDTO(dto: RealTimeReading)` (@angular-realtimereading-model), che deve restituire un array di letture normalizzate (`SensorReading[]` (@angular-sensorreading-model)) pronte per lo streaming sui grafici live.
 
-====== Implementazioni Concrete (_ApiAdapters_)
+====== Implementazioni Concrete (_Api Adapters_)
 Gli adapter API estendono i contratti sopra citati e iniettano la logica necessaria per normalizzare i DTO del backend. Gli adapter API sono:
 - *`GatewayApiAdapter`*: gestisce l'entità _gateway_. È responsabile della conversione delle proprietà del DTO `GatewayBackend` nel modello gateway, mappando l'ID del dispositivo, il nome, l'intervallo di comunicazione e il tenant ID. Utilizza lo `statusMapper` (@angular-enummapper) per convertire la stringa di stato in un valore dell'enum `Status`.
 - *`SensorApiAdapter`*: converte i dati dei sensori medicali e ambientali. Oltre alla mappatura dei campi base (ID, nome, gateway ID e l'intervallo dei dati), applica il `sensorProfilesMapper` (@angular-enummapper) per interpretare correttamente il tipo di profilo e lo `statusMapper` per lo stato operativo.
@@ -1729,6 +1729,12 @@ Gli adapter API estendono i contratti sopra citati e iniettano la logica necessa
 - *`TenantApiAdapter`*: gestisce la trasformazione dei dati dei tenant, mappando l'ID, il nome e la flag di impersonificazione.
 
 Ogni adapter implementa inoltre il metodo `fromPaginatedDTO`, che estende la trasformazione a risposte contenenti liste paginate, preservando i metadati di conteggio totale.
+
+#figure(
+  image("../../assets/c4/frontend/adapters/frontend-adapters.pdf", width: 100%),
+  caption: [Adapters - Abstract Adapters e Api Adapters],
+)
+\
 
 ===== Gestione avanzata dei dati sensore (Historic e Real-time)
 Oltre alla gestione dell'anagrafica, il sistema richiede un processamento specialistico per le letture (misurazioni) prodotte dai sensori. Queste letture variano drasticamente in base al profilo medico o ambientale.
@@ -1742,6 +1748,12 @@ $ "timestamp"_"i" = T_"base" + (i times "1000" / "waveform.length") $
 
 Analogamente, per i flussi in tempo reale, vengono utilizzati adapter basati sulla classe astratta `SensorLiveReadingAdapter` che processano i dati in arrivo tramite WebSocket.
 
+#figure(
+  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorsHistoricLive.pdf", width: 100%),
+  caption: [Adapters - Abstract Adapters e Api Adapters],
+)
+\
+
 ===== Sensor Adapter Factory
 Per orchestrare dinamicamente l'utilizzo di questi adapter senza appesantire i componenti con logiche condizionali, è stato implementato il `SensorAdapterFactory`.
 Questo servizio utilizza un _Pattern Registry_ per mappare ogni `SensorProfiles` (@angular-sensorprofiles-model) alla propria istanza di adapter:
@@ -1750,6 +1762,11 @@ Questo servizio utilizza un _Pattern Registry_ per mappare ogni `SensorProfiles`
 
 Questa architettura centralizzata permette alla Dashboard di gestire qualsiasi tipo di sensore in modo trasparente, garantendo che la logica di decodifica specifica di ogni dispositivo sia isolata e facilmente estensibile.
 
+#figure(
+  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorFactory.pdf", width: 100%),
+  caption: [Adapters - Abstract Adapters e Api Adapters],
+)
+\
 
 
 ==== Services
