@@ -3,7 +3,7 @@
 
 #show: report.with(
   titolo: "Manuale Utente",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "0.3.0",
