@@ -6,3 +6,5 @@ website/pdf/
 .env
 .env.*
 __pycache__
+website/ManualeUtente
+!TestBook.pdf
