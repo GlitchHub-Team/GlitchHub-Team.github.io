@@ -3,6 +3,7 @@ Il microservizio **Gateway** ha lo scopo di gestire più gateway e sensori simul
 Inoltre garantisce che, in caso di crash o riavvio del microservizio, le configurazioni dei gateway e dei sensori simulati vengano mantenute, e che i gateway e sensori simulati riprendano a funzionare correttamente. 
 
 ## Funzioni principali
+
 - Creazione e eliminazione di gateway e sensori simulati.
 - Pubblicazione dei dati prodotti dai sensori simulati sul message broker NATS JetStream{{gloss}}.
 - Commissioning e decommissioning dei gateway alla ricezione dei relativi comandi

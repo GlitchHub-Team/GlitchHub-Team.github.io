@@ -2,6 +2,7 @@
 Nel sistema multi-tenant, ogni tenant{{gloss}} accede alla stessa infrastruttura ma con dati isolati dagli altri tenant.
 
 Le principali tipologie di utente sono:
+
 - Il **Super Admin**;
 - Il **Tenant Admin**;
 - Il **Tenant User**.
@@ -10,6 +11,7 @@ Le principali tipologie di utente sono:
 Il **Super Admin** ha competenza globale su tutto il sistema multi-tenant, infatti può gestire tenant, utenti, gateway e sensori. Inoltre può accedere ai dati di tutti i tenant che accettano la clausola di impersonificazione.
 
 Competenze del **Super Admin**:
+
 - Creazione e gestione dei **tenant**;
 - Creazione e gestione degli **utenti** di ruolo **Super Admin**, **Tenant Admin** e **Tenant User**;
 - Configurazione e gestione dei **gateway** e dei **sensori**;
@@ -20,6 +22,7 @@ L'**Tenant Admin** gestisce tutto ciò che riguarda il proprio tenant, in partic
 Inoltre ha la possibilità di visualizzare i dati prodotti dai propri sensori.
 
 Competenze del Tenant Admin:
+
 - Creazione e gestione degli **utenti** di ruolo **Tenant User** e **Tenant Admin**;
 - Gestione della configurazione dei **gateway** e dei **sensori** associati al proprio tenant;
 - Visualizzazione dei dati storici e real-time dei sensori associati al proprio tenant.
@@ -28,4 +31,5 @@ Competenze del Tenant Admin:
 Il **Tenant User** è l'utente che ha la sola responsabilità di consultare i dati prodotti dai sensori associati al proprio tenant.
 
 Competenze del **Tenant User**:
+
 - Visualizzazione dei dati storici e real-time dei sensori associati al proprio tenant.

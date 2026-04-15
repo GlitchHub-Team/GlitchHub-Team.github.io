@@ -7,6 +7,7 @@ I comandi vengono inviati tramite il microservizio **Dashboard** e vengono ricev
 
 ### Creazione di un nuovo gateway
 Per creare un nuovo gateway, è necessario fornire le seguenti informazioni:
+
 - Nome del gateway
 - Intervallo in millisecondi per l'invio dei dati (ad esempio, 1000 ms per inviare i dati ogni secondo)
 
@@ -72,6 +73,7 @@ I gateway possono essere decommissionati solo dagli utenti con ruolo di **Super 
 
 ### Creazione di un nuovo sensore
 Per creare un nuovo sensore, è necessario fornire le seguenti informazioni:
+
 - Nome del sensore
 - Profilo GATT{{gloss}} del sensore (ovvero la tipologia di dati che il sensore produrrà, ad esempio temperatura, ecg, etc...)
 - Intervallo in millisecondi per l'invio dei dati (ad esempio, 1000 ms per generare dati ogni secondo)

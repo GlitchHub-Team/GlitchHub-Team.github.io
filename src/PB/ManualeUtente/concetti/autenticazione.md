@@ -15,6 +15,7 @@ Il JWT{{gloss}} viene generato al momento del login dell'utente e contiene le in
 Per utilizzare il token, esso deve essere inserito nell'header **Authorization** in ogni futura richiesta HTTP verso il microservizio **Dashboard Backend**.
 
 Il JWT{{gloss}} in questione contiene le seguenti informazioni:
+
 - **exp**: data di scadenza del token in formato UNIX timestamp (in secondi);
 - **tid**: UUID{{gloss}} del tenant di appartenenza dell'utente;
 - **uid**: UUID{{gloss}} dell'utente che ha effettuato il login;
@@ -22,6 +23,7 @@ Il JWT{{gloss}} in questione contiene le seguenti informazioni:
 
 ## NATS
 NATS è un message broker che supporta diversi meccanismi di autenticazione e autorizzazione:
+
 - **Token-based authentication**: in questo caso i client devono fornire un token di autenticazione registrato nel server NATS per poter accedere al broker e pubblicare o sottoscrivere messaggi sui subject{{gloss}}. È sconsigliato in ambienti di produzione in quanto non è sicuro e non è facile registrarne di nuovi a runtime.
 - **Username/Password authentication**: in questo caso i client devono fornire un nome utente e una password registrati nel server NATS per poter accedere al broker e pubblicare o sottoscrivere messaggi sui subject{{gloss}}. Anche questo metodo è sconsigliato per gli stessi motivi del **token-based authentication**.
 - **mTLS**: in questo caso i client devono presentare un certificato digitale valido per poter accedere al broker e registrato nel server NATS. Questo metodo è più sicuro rispetto ai precedenti, ma richiede sempre un **reload** dei certificati per poter registrare nuovi client a runtime.
@@ -30,6 +32,7 @@ NATS è un message broker che supporta diversi meccanismi di autenticazione e au
 In questo sistema è stato scelto il metodo di autenticazione **JWT-based authentication** per garantire l'aggiunta di nuovi gateway simulati a runtime e la creazione di nuovi tenant, il meccanismo scelto comporta una complessità maggiore ma permette funzionalità come il commissioning di un gateway a runtime che non sarebbe possibile con gli altri metodi di autenticazione supportati da NATS.
 
 La trust-chain di NATS è stata implementata nel seguente modo:
+
 - L'**Operator** rappresenta l'entità che gestisce l'infrastruttura NATS e firma la validità degli **Account**. In questo sistema, l'**Operator** è registrato nel NATS server e ce ne è uno solo per tutta l'infrastruttura. Esso risiede all'interno del microservizio **nats-manager** e viene utilizzato per firmare la validità degli **Account**.
 - Gli **Account** rappresentano i tenant del sistema e sono firmati dall'**Operator** all'interno del microservizio **nats-manager**. Ogni volta che viene creato un nuovo tenant dalla **Dashboard** è fondamentale generare un nuovo **Account** per il tenant appena creato e firmarlo con l'**Operator**. Gli **Account** contengono le informazioni necessarie per identificare il tenant e i permessi associati al tenant stesso. Inoltre è presente un **Account** speciale chiamato **application_core** che rappresenta il tenant di sistema e viene utilizzato per i microservizi interni che devono comunicare tra loro tramite NATS, come ad esempio il microservizio **Dashboard** e il microservizio **Gateway**.
 - Gli **User** rappresentano i client che si connettono a NATS per pubblicare o sottoscrivere messaggi sui subject{{gloss}}.  

@@ -7,6 +7,7 @@ I dati in questione vengono generati dai sensori associati ad un gateway simulat
 
 ## Subject e stream NATS
 I dati dei sensori simulati vengono pubblicati sul subject NATS `sensor.<tenantId>.<gatewayId>.<sensorId>`, dove:
+
 - `<tenantId>` è l'identificativo del tenant a cui è associato il gateway simulato a cui sono associati i sensori simulati che producono i dati in questione;
 - `<gatewayId>` è l'identificativo del gateway simulato a cui sono associati i sensori simulati che producono la misurazione in questione;
 - `<sensorId>` è l'identificativo del sensore simulato;

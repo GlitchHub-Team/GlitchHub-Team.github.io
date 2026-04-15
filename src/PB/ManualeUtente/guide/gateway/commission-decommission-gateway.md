@@ -4,6 +4,7 @@ Questi comandi vengono ricevuti su un **subject NATS** specifico e vengono esegu
 
 ## Commissioning gateway
 Il commissioning di un gateway simulato richiede l'invio di un comando al subject NATS `commands.commissiongateway` e comporta le seguenti azioni:
+
 - Associazione del gateway simulato al tenant specificato;
 - Utilizzo del nuovo **token di commissioning** ricevuto per autenticare il gateway simulato su NATS allo scopo di inviare i dati dei sensori simulati associati attraverso il message broker in questione.
 - Scrittura del **tenantId** e del nuovo **token di commissioning** nel database SQLite{{gloss}} del microservizio in questione.
@@ -25,6 +26,7 @@ Il token di commissioning è un JWT{{gloss}} che deve essere generato dall'accou
 Il token di commissioning deve essere firmato con la **public key** del gateway simulato che si vuole commissionare.
 
 È disponibile un tool apposito per la generazione del token nel container **nats-manager**, di seguito sono riportate le istruzioni:
+
 1. Entrare nella CLI del container `nats-manager`
 2. Entrare nella root: `cd /`
 3. Eseguire lo script seguente: `./create-gateway.sh --tenant-name <tenant-name> --tenant-id <tenant-id> --gateway-name <gateway-name> --gateway-id <gateway-id> --gateway-public-key <gateway-public-key>`
@@ -37,6 +39,7 @@ Il token di commissioning deve essere firmato con la **public key** del gateway 
 
 ## Decommissioning gateway
 Il decommissioning di un gateway simulato richiede l'invio di un comando al subject NATS `commands.decommissiongateway` e comporta le seguenti azioni:
+
 - Disassociazione del gateway simulato dal tenant specificato;
 - Modifica dello stato del gateway simulato da **active** o **inactive** a **decommissioned**.
 - Terminazione del processo di invio dei dati dei sensori simulati associati al gateway simulato attraverso il message broker in questione.
