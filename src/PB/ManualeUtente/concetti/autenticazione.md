@@ -2,7 +2,7 @@
 Il Sistema facendo parte di un dominio multi-tenant, prevede un sistema di **autenticazione** e **autorizzazione** molto rigido per garantire la sicurezza e l'isolamento dei dati tra i diversi tenant.  
 L'**autenticazione** avviene tramite JWT{{gloss}} e permette di identificare l'utente che sta accedendo al sistema, mentre l'**autorizzazione** avviene tramite i ruoli utente definiti sempre all'interno del JWT{{gloss}} e permette di definire le azioni che un utente può compiere all'interno del sistema in base al proprio ruolo e al proprio tenant di appartenenza.
 
-Nel Sistema in questione è stata scelta l'autenticazione tramite JWT{{gloss}} per permettere scalabilità orizzontale dei diversi microservizi, in quanto il JWT{{gloss}} è un token che è firmato tramite una chiave privata e può essere verificata la sua validità tramite la chiave pubblica associata, senza la necessità di dover accedere ad un database centrale o ad una sessione per verificare i permessi dell'utente.
+Nel Sistema in questione è stata scelta l'autenticazione tramite JWT{{gloss}} per permettere scalabilità orizzontale dei diversi microservizi, in quanto il JWT{{gloss}} è un token che è firmato tramite una chiave privata, la cui validità può essere verificata tramite la chiave pubblica associata, senza la necessità di dover accedere ad un database centrale o ad una sessione per verificare i permessi dell'utente.
 
 È importante sottolineare che le informazioni all'interno del JWT{{gloss}} sono firmate e non cifrate, quindi è possibile decodificare il token per leggere le informazioni in esso contenute, ma non è possibile modificarle senza invalidare la firma. Per questo motivo, è fondamentale proteggere la chiave privata utilizzata per firmare i token e garantire che solo il microservizio responsabile dell'autenticazione abbia accesso a questa chiave. 
 
@@ -11,8 +11,8 @@ All'interno dei microservizi sono stati utilizzati i JWT{{gloss}} per garantire 
 ## Dashboard
 All'interno del microservizio **Dashboard**, l'autenticazione e l'autorizzazione avvengono tramite JWT{{gloss}} per permettere agli utenti di accedere alle funzionalità del sistema in base al proprio ruolo e al proprio tenant di appartenenza.
 
-Il JWT{{gloss}} viene generato al momento del login dell'utente e contiene le informazioni necessarie per identificare l'utente, il suo ruolo e il tenant di appartenenza.   
-Per utilizzare il token, esso deve essere inserito nell'header **Authorization** in ogni futura richiesta HTTP verso il microservizio **Dashboard**.
+Il JWT{{gloss}} viene generato al momento del login dell'utente e contiene le informazioni necessarie per identificarlo, il suo ruolo e il tenant di appartenenza.   
+Per utilizzare il token, esso deve essere inserito nell'header **Authorization** in ogni futura richiesta HTTP verso il microservizio **Dashboard Backend**.
 
 Il JWT{{gloss}} in questione contiene le seguenti informazioni:
 - **exp**: data di scadenza del token in formato UNIX timestamp (in secondi);
@@ -30,7 +30,7 @@ NATS è un message broker che supporta diversi meccanismi di autenticazione e au
 In questo sistema è stato scelto il metodo di autenticazione **JWT-based authentication** per garantire l'aggiunta di nuovi gateway simulati a runtime e la creazione di nuovi tenant, il meccanismo scelto comporta una complessità maggiore ma permette funzionalità come il commissioning di un gateway a runtime che non sarebbe possibile con gli altri metodi di autenticazione supportati da NATS.
 
 La trust-chain di NATS è stata implementata nel seguente modo:
-- Il **Operator** rappresenta l'entità che gestisce l'infrastruttura NATS e firma la validità degli **Account**. In questo sistema, l'**Operator** è registrato nel NATS server e ce ne è uno solo per tutta l'infrastruttura. Esso risiede all'interno del microservizio **nats-manager** e viene utilizzato per firmare la validità degli **Account**.
+- L'**Operator** rappresenta l'entità che gestisce l'infrastruttura NATS e firma la validità degli **Account**. In questo sistema, l'**Operator** è registrato nel NATS server e ce ne è uno solo per tutta l'infrastruttura. Esso risiede all'interno del microservizio **nats-manager** e viene utilizzato per firmare la validità degli **Account**.
 - Gli **Account** rappresentano i tenant del sistema e sono firmati dall'**Operator** all'interno del microservizio **nats-manager**. Ogni volta che viene creato un nuovo tenant dalla **Dashboard** è fondamentale generare un nuovo **Account** per il tenant appena creato e firmarlo con l'**Operator**. Gli **Account** contengono le informazioni necessarie per identificare il tenant e i permessi associati al tenant stesso. Inoltre è presente un **Account** speciale chiamato **application_core** che rappresenta il tenant di sistema e viene utilizzato per i microservizi interni che devono comunicare tra loro tramite NATS, come ad esempio il microservizio **Dashboard** e il microservizio **Gateway**.
 - Gli **User** rappresentano i client che si connettono a NATS per pubblicare o sottoscrivere messaggi sui subject{{gloss}}.  
 Gli **User** sono firmati dagli **Account** all'interno del microservizio **nats-manager**.   
