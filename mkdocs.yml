@@ -7,8 +7,8 @@ site_url: https://glitchhub-team.github.io/ManualeUtente/
 nav:
   - Introduzione: index.md
   - Panoramica:
-      - Panoramica sistema: panoramica-sistema.md
-      - Flusso dati: flusso-dati.md
+      - Panoramica sistema: panoramica/panoramica-sistema.md
+      - Flusso dati: panoramica/flusso-dati.md
   - Concetti di dominio:
       - Autenticazione: concetti/autenticazione.md
       - Ruoli utente: concetti/ruoli-utente.md
