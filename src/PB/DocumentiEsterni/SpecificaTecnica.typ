@@ -35,14 +35,14 @@
       "0.9.0",
       "16/04/2026",
       "Siria Salvalaio",
-      "-",
+      "Riccardo Graziani",
       [Stesura sezione Presentation Layer del frontend],
     ),
     (
       "0.8.0",
       "16/04/2026",
       "Riccardo Graziani",
-      "-",
+      "Siria Salvalaio",
       [Stesura sezione Infrastructure Layer e Domain Layer del frontend],
     ),
     (
@@ -133,8 +133,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Specifica tecnica",
 )
 
