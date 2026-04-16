@@ -6,8 +6,8 @@ Il sistema organizza i dispositivi in una gerarchia logica che riflette l'archit
 
 ### Esplorazione dei gateway e dei sensori
 L'utente può interagire con le tabelle per navigare tra le entità del proprio **tenant**:
-- **Espansione gateway**: cliccando sulla riga di un gateway nella `gateway-table`, il sistema espande una sezione nidificata (`gateway-expanded`) che mostra l'elenco dei sensori Bluetooth attualmente associati.
-- **Indicatori di stato**: Ogni dispositivo mostra un badge colorato che ne indica lo stato operativo (`ACTIVE`, `INACTIVE` o `DECOMMISSIONED`). 
+- **Espansione gateway**: cliccando sulla riga di un gateway nella tabella dei gateway, il sistema espande una sezione nidificata che mostra l'elenco dei sensori Bluetooth attualmente associati.
+- **Indicatori di stato**: Ogni dispositivo mostra un badge colorato che ne indica lo stato operativo (attivo, inattivo e decomissionato). 
 - **Filtri ruolo** (solo per i Super Admin): la dashboard permette di visualizzare i dati di un tenant specifico attraverso la procedura di impersonificazione{{gloss}} (cliccando il pulsante accanto al tenant desiderato nella sezione "Gestione Tenant"), mostrando un banner di avviso in cima alla pagina.
 
 ## Monitoraggio analitico (Grafici)
@@ -15,32 +15,20 @@ Il monitoraggio dei segnali avviene attraverso il **#gloss("chart-container")**{
 
 ### Grafici in tempo reale (Real-time)
 Attivabile tramite l'icona `ssid_chart` nella tabella sensori, questa modalità apre uno stream di dati continuo.
-- **Connessione**: il sistema stabilisce una connessione **#gloss("websocket")**{{gloss}} tramite il `SensorLiveReadingsApiService`. Lo stato della connessione (es. "Connected" o "Reconnecting") è sempre visibile nell'intestazione a destra del grafico.
-- **Selezione campi**: se un sensore invia più parametri (es. sensore ambientale con temperatura e umidità), l'utente può selezionare quale dato visualizzare tramite un menu a tendina integrato nel componente **#gloss("real-time-chart")**{{gloss}}.
+- **Connessione**: lo stato della connessione (es. "Connected" o "Reconnecting") è sempre visibile nell'intestazione a destra del grafico.
+- **Selezione campi**: se un sensore invia più parametri (es. sensore ambientale con temperatura e umidità), l'utente può selezionare quale dato visualizzare tramite un menu a tendina integrato.
 
 ### Grafici storici (Historic)
 Attivabile tramite l'icona `query_stats`, permette di analizzare le letture memorizzate nel database.
-- **Configurazione filtri**: l'apertura del grafico richiede l'interazione con il dialogo **`#gloss("HistoricChartFiltersDialog")`**{{gloss}}, dove l'utente definisce l'intervallo temporale e il numero di punti (limite massimo 300).
-- **Navigazione temporale**: il componente **#gloss("historic-chart")**{{gloss}} include uno slider inferiore e pulsanti di scorrimento per spostarsi all'interno del dataset recuperato, quando il numero di punti eccede la finestra di visualizzazione predefinita.
-
-Il comando di apertura del grafico genera una **#gloss("ChartRequest")**{{gloss}} inviata al servizio core:
-
-```json
-{
-  "sensor": "SensorObject", // L'entità sensore selezionata
-  "chartType": "REALTIME | HISTORIC", // Tipo di visualizzazione richiesta
-  "timeInterval": { "from": "Date", "to": "Date" }, // Opzionale per dati storici
-  "dataPointsCounter": 50 // Numero di campioni visibili (es. 50 per BPM, 250 per ECG)
-}
-```
+- **Configurazione filtri**: l'apertura del grafico richiede l'interazione con la finestra di dialogo dedicata, dove l'utente definisce l'intervallo temporale e il numero di punti (limite massimo 300).
+- **Navigazione temporale**: il grafico contenente dati storici include, quando il numero di punti eccede la finestra di visualizzazione predefinita, uno slider inferiore e pulsanti di scorrimento per spostarsi all'interno del dataset recuperato.
 
 ## Invio Comandi ai dispositivi
 Dalla dashboard è possibile interagire direttamente con l'hardware per modificarne il comportamento operativo in tempo reale.
 
 ### Comandi gateway
-Cliccando sull'icona `terminal` all'interno della **#gloss("gateway-table")**{{gloss}}, si apre il dialogo dei comandi del gateway (**#gloss("GatewayCommandsDialog")**{{gloss}}):
-
-- **Commissioning**: Associa un gateway simulato al tenant specificato tramite l'inserimento di un **#gloss("token")**{{gloss}} di sicurezza generato tramite il container `nats-manager`.
+Cliccando sull'icona `terminal` all'interno della tabella dei gateway, si apre la finestra di dialogo dei comandi del gateway:
+- **Commissioning**: associa un gateway simulato al tenant specificato.
 - **Manutenzione**: permette l'invio di istruzioni specifiche quali:
   - **Reboot**: riavvia il gateway;
   - **Reset**: ripristina le impostazioni di fabbrica del dispositivo;

@@ -5,22 +5,12 @@ Il sistema adotta un modello di sicurezza robusto basato su **#gloss("JWT")** (J
 La procedura di autenticazione standard consente agli utenti già registrati di accedere al proprio ambiente operativo. La richiesta di login prevede l'invio di credenziali verso le API{{gloss}} di autenticazione che, in caso di successo, restituiscono un token JWT contenente l'identità e il ruolo dell'utente.
 
 ### Procedura di login
-Per effettuare l'accesso, l'utente deve interagire con il componente **#gloss("login-form")** inserendo i seguenti parametri:
+Per effettuare l'accesso, l'utente deve interagire con la form del login inserendo i seguenti parametri:
 - **Email**: l'email associato al profilo;
 - **Password**: la password definita in fase di attivazione;
 - **Tenant**: tramite un menù a tendina, popolato tramite `TenantService`, permette di indicare il tenant di riferimento.
 
 **Nota per i Super Admin**: Gli utenti con privilegi di amministratore globale possono effettuare il login senza selezionare un tenant specifico per accedere alla gestione anagrafica generale; la visualizzazione dei dati operativi (dashboard) richiederà successivamente una procedura di impersonificazione{{gloss}}.
-
-Il comando di accesso viene inviato tramite una **#gloss("LoginRequest")** strutturata come segue:
-
-```json
-{
-  "email": "string",
-  "password": "string",
-  "tenantId": "string" // (opzionale per Super Admin)
-}
-```
 
 ## Conferma account e attivazione
 L'attivazione di un nuovo profilo è un passaggio che avviene a seguito della creazione dell'utente da parte di un amministratore.
@@ -29,7 +19,7 @@ L'attivazione di un nuovo profilo è un passaggio che avviene a seguito della cr
 Il flusso di attivazione prevede i seguenti step:
 1. **Ricezione invito**: l'utente riceve un'email (intercettabile tramite tool come #gloss("Mailtrap"){{gloss}} in ambiente di test) contenente un link di attivazione univoco.
 2. **Accesso alla pagina**: cliccando sul link, l'utente arriva sulla **ConfirmAccountPage**, che estrae automaticamente il #gloss("token"){{gloss}} e il **tenantId** dai parametri dell'URL.
-3. **Impostazione credenziali**: l'utente deve definire la propria password tramite il componente #gloss("confirm-account-form"){{gloss}}.
+3. **Impostazione credenziali**: l'utente deve definire la propria password tramite il form della conferma account.
    - La password deve essere lunga almeno 8 caratteri;
    - Il sistema convalida in tempo reale che la password di conferma coincida con quella inserita.
 4. **Finalizzazione**: al clic su "Conferma account", il sistema crea le credenziali, inizializza lo schema nel database e logga automaticamente l'utente, reindirizzandolo alla dashboard.
@@ -38,7 +28,7 @@ Il flusso di attivazione prevede i seguenti step:
 In caso di smarrimento della password, il sistema offre un flusso di ripristino basato su token temporanei.
 
 ### Richiesta di reset
-Attraverso il dialogo #gloss("ForgotPasswordDialog"){{gloss}}, l'utente può richiedere il reset inserendo la propria email e selezionando il tenant di riferimento. Se i dati corrispondono a un utente attivo, viene inviato un link di ripristino via email.
+Attraverso la finestra di dialogo dedicata, l'utente può richiedere il reset inserendo la propria email e selezionando il tenant di riferimento. Se i dati corrispondono a un utente attivo, viene inviato un link di ripristino via email.
 
 ### Reimpostazione password
 Il link ricevuto conduce alla **ResetPasswordPage**. L'utente deve:
@@ -49,11 +39,10 @@ Il link ricevuto conduce alla **ResetPasswordPage**. L'utente deve:
 Dopo l'accesso, l'utente ha a disposizione strumenti per mantenere la sicurezza del proprio account direttamente dall'interfaccia principale gestita dalla #gloss("AppShell"){{gloss}}.
 
 ### Cambio password in sessione
-È possibile aggiornare la password mentre si è autenticati aprendo il dialogo #gloss("ChangePasswordDialog"){{gloss}} dal menu utente.
+È possibile aggiornare la password mentre si è autenticati aprendo la finestra di dialogo apposito dal menu utente.
 - È obbligatorio inserire la **vecchia password** per validare l'identità dell'utente prima della modifica;
-- Il sistema invia una richiesta `confirmPasswordChange` che aggiorna le credenziali nel database senza interrompere la sessione corrente.
+- Il sistema invia una richiesta che aggiorna le credenziali nel database senza interrompere la sessione corrente.
 
-// TODO è giusto metterlo anche qui?
 ### Impersonificazione (solo Super Admin)
 Il ruolo Super Admin dispone della funzionalità di impersonificazione per supportare i diversi tenant.
 - Dalla sezione "Gestione Tenant", cliccando sull'icona della dashboard, il sistema aggiunge il parametro `tenantId` all'URL della dashboard;
@@ -62,6 +51,5 @@ Il ruolo Super Admin dispone della funzionalità di impersonificazione per suppo
 
 ### Logout
 L'azione di Logout, disponibile nell'`header`, garantisce la chiusura sicura della sessione. Il comando esegue le seguenti azioni:
-- Rimozione del **JWT**{{gloss}} dal `sessionStorage` tramite il `TokenStorageService`;
-- Pulizia dello stato dell'utente nel `UserSessionService`;
+- Pulizia dello stato dell'utente e delle sue informazioni;
 - Reindirizzamento immediato alla pagina di login, impedendo l'accesso alle rotte protette.
