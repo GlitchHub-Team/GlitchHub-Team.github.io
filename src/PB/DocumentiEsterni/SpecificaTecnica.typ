@@ -1779,6 +1779,377 @@ Rappresenta un contenitore thread-safe per rappresentare un valore temporale cre
 - *`CompareAndSet(newTime time.Time) bool`*: Fa controllo thread-safe (usando mutex) su `newTime` rispetto a `value`: se `newTime` è più recente di `value`, allora imposta `newTime` a `value` e ritorna `true`, altrimenti ritorna `false`
 
 ==== Package `sensor` <code-sensor>
+Il package `sensor` si occupa della gestione CRUD dei sensori e dell'invio di comandi ad essi. Il diagramma riportato di seguito è comprensivo dell'intero package, per cui potrebbe essere necessario usare la funzionalità di zoom per leggerne i contenuti
+#figure(
+  image("../../assets/c4/backend/sensor/sensor.svg", width:115%),
+  caption: [Cloud Backend -- Code Diagram per `sensor`],
+)
+
+===== Inbound adapter -- `Controller` e DTO
+L'_inbound adapter_ principale del package è `Controller`
+#figure(
+  image("../../assets/c4/backend/sensor/Controller.svg", width:70%),
+  caption: [Cloud Backend -- Code Diagram per `sensor.Controller`],
+)
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`createSensorUseCase CreateSensorUseCase`*: _Inbound port_ per creare un sensore
+- *`deleteSensorUseCase DeleteSensorUseCase`*: _Inbound port_ per eliminare un sensore
+- *`getSensorUseCase GetSensorUseCase`*: _Inbound port_ per ottenere un sensore per ID
+- *`getSensorsByGatewayUseCase GetSensorsByGatewayUseCase`*: _Inbound port_ per ottenere la lista dei sensori associati a un gateway specifico
+- *`getSensorsByTenantUseCase  GetSensorsByTenantUseCase`*: _Inbound port_ per ottenere la lista dei sensori associati a un tenant specifico
+- *`interruptSensorUseCase InterruptSensorUseCase`*: _Inbound port_ per interrompere l'invio dei dati di un sensore
+- *`resumeSensorUseCase ResumeSensorUseCase`*: _Inbound port_ per riattivare l'invio dei dati di un sensore
+
+*Metodi*: \
+Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
+- *`CreateSensor(ctx *gin.Context)`*: Crea un sensore
+  - Input: `CreateSensorBodyDTO`
+  - Output: `SensorResponseDTO`
+- *`DeleteSensor(ctx *gin.Context)`*: Elimina un sensore con ID specifico
+  - Output: `SensorResponseDTO`
+- *`GetSensor(ctx *gin.Context)`*: Ritorna i metadati di un sensore specifico
+  - Output: `SensorResponseDTO`
+- *`GetSensorsByGateway(ctx *gin.Context)`*: Ritorna una lista paginata di sensori appartenenti a un gateway specifico
+  - Input: `SensorQueryDTO`
+  - Output: `SensorsResponseDTO`
+- *`GetSensorsByTenant(ctx *gin.Context)`*: Ritorna una lista paginata di sensori associati a un tenant specifico
+  - Input: `SensorQueryDTO`
+  - Output: `SensorsResponseDTO`
+- *`InterruptSensor(ctx *gin.Context)`*: Interrompe un sensore specifico
+- *`ResumeSensor(ctx *gin.Context)`*: Riattiva un sensore specifico
+\
+I *DTO* usati da `Controller` sono i seguenti:
+- *`CreateSensorBodyDTO`*: Dati in input per la creazione di un sensore. Contiene i seguenti attributi:
+  - *`GatewayId string`*: UUID del gateway associato
+  - *`SensorName string`*: Nome del sensore
+  - *`Profile string`*: Profilo del sensore (vd. @code-sensor.SensorProfile per lista di valori possibili)
+  - *`Interval int64`*: Intervallo in millisecondi di generazione dati
+
+- *`SensorQueryDTO`*: Dati in input per la ricezione di dati relativi a più sensori. Contiene i seguenti attributi:
+  - *`Page int`*: Numero di pagina
+  - *`Limit int`*: Numero di elementi per pagina
+
+- *`SensorResponseDTO`*: Dati in output relativi a un singolo sensore
+  - *`SensorId string`*: UUID del sensore
+  - *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+  - *`Name string`*: Nome del sensore
+  - *`Profile string`*: Profilo del sensore
+  - *`Interval int`*: Intervallo in millisecondi di generazione dati   
+
+- *`SensorsResponseDTO`*: Lista paginata in output di più sensori
+  - *`Count int`*: Numero di elementi nella pagina corrente
+  - *`Total int`*: Numero di elementi totali
+  - *`Sensors []SensorResponseDTO`*: Lista di sensori 
+
+
+===== Inbound ports
+#figure(
+  image("../../assets/c4/backend/sensor/UseCases.svg", width:80%),
+  caption: [Cloud Backend -- Code Diagram per _inbound ports_ e _services_ in `sensor`],
+) <cloud-backend-code-inports-services>
+
+Per dettagli sui `Command`, si consulti la @code-sensor-commands.
+====== `CreateSensorUseCase`
+*Metodi*:
+- *`CreateSensor(cmd CreateSensorCommand) (Sensor, error)`*: Crea un sensore secondo le specifiche di `cmd` e lo ritorna
+
+====== `DeleteSensorUseCase`
+*Metodi*:
+- *`DeleteSensor(cmd DeleteSensorCommand) (Sensor, error)`*: Elimina un sensore secondo le specifiche di `cmd` e ritorna il sensore appena eliminato
+
+====== `GetSensorUseCase`
+*Metodi*:
+- *`GetSensorById(cmd GetSensorCommand) (Sensor, error)`*: Ritorna un sensore con ID specificato in `cmd`
+
+====== `GetSensorsByGatewayUseCase`
+*Metodi*:
+- *`GetSensorsByGateway(cmd GetSensorsByGatewayCommand) ([]Sensor, uint, error)`*: Ritorna una lista paginata di sensori associati al gateway specificato in `cmd` e il numero totale di tali sensori
+
+====== `GetSensorsByTenantUseCase`
+*Metodi*:
+- *`GetSensorsByTenant(cmd GetSensorsByTenantCommand) ([]Sensor, uint, error)`*: Ritorna una lista paginata di sensori associati al tenant specificato in `cmd` e il numero totale di tali sensori
+
+====== `InterruptSensorUseCase`
+*Metodi*:
+- *`InterruptSensor(cmd InterruptSensorCommand) error`*: Interrompe il sensore specificato in `cmd`
+
+====== `ResumeSensorUseCase`
+*Metodi*:
+- *`ResumeSensor(cmd ResumeSensorCommand) error`*: Riattiva il sensore specificato in `cmd`
+
+===== Comandi <code-sensor-commands>
+#figure(
+  image("../../assets/c4/backend/sensor/Commands.svg", width:60%),
+  caption: [Cloud Backend -- Code Diagram per comandi in `sensor`],
+)
+
+I comandi usati dallo strato di business sono i seguenti. Si noti che ciascuno di questi comandi presenta il campo *`Requester identity.Requester`* poiché ciascun comando dev'essere eseguito da un utente autorizzato, per cui per completezza non saranno ripetuti nella lista seguente.
+
+- *`CreateSensorCommand`*: Comando per creare un sensore
+  - *`GatewayId uuid.UUID`*: UUID del gateway a cui associare il sensore
+  - *`SensorName string`*: Nome del sensore
+  - *`Profile sensorProfile.SensorProfile`*: Profilo del sensore
+  - *`Interval int64`*: Intervallo in ms di generazione dati
+
+- *`DeleteSensorCommand`*: Comando per eliminare un sensore
+  - *`SensorId uuid.UUID`*: UUID del sensore da eliminare
+
+- *`GetSensorCommand`*: Comando per ottenere un sensore
+  - *`SensorId uuid.UUID`*: UUID del sensore 
+
+- *`GetSensorsByGatewayCommand`*: Comando per ottenere i sensori associati a un gateway
+  - *`GatewayId uuid.UUID`*: UUID del gateway a cui sono associati i sensori
+  - *`Page int`*: Numero di pagina 
+  - *`Limit int`*: Numero di elementi per pagina
+
+- *`GetSensorsByTenantCommand`*: Comando per ottenere i sensori associati a un tenant
+  - *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati i sensori
+  - *`Page int`*: Numero di pagina 
+  - *`Limit int`*: Numero di elementi per pagina
+
+- *`InterruptSensorCommand`*: Comando per interrompere un sensore
+    - *`SensorId uuid.UUID`*: UUID del sensore da interrompere
+
+- *`ResumeSensorCommand`*: Comando per riattivare un sensore
+    - *`SensorId uuid.UUID`*: UUID del sensore da riattivare
+
+
+===== Services
+Per consultare il #gloss[Code Diagram] dei servizi, si consulti la @cloud-backend-code-inports-services.
+
+====== `CreateSensorService`
+Implementa l'interfaccia `CreateSensorUseCase`.
+
+*Attributi*:
+- *`createSensorPort CreateSensorPort`*: _Outbound port_ per creare un sensore nel database;
+- *`sendCreateSensorCmdPort CreateSensorCmdPort`*: _Outbound port_ per inviare comando di creazione sensore al gateway simulato;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
+
+*Funzione di costruzione*: `NewCreateSensorService(createSensorPort CreateSensorPort, sendCreateSensorCmdPort CreateSensorCmdPort, getGatewayPort gateway.GetGatewayPort) *CreateSensorService`
+
+====== `DeleteSensorService`
+Implementa l'interfaccia `DeleteSensorUseCase`.
+
+*Attributi*:
+- *`deleteSensorPort DeleteSensorPort`*: _Outbound port_ per eliminare un sensore nel database;
+- *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+- *`deleteSensorCmdPort DeleteSensorCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di eliminazione sensore.
+
+*Funzione di costruzione*: `NewDeleteSensorService(deleteSensorPort DeleteSensorPort, getSensorByIdPort GetSensorByIdPort, deleteSensorCmdPort DeleteSensorCmdPort) *DeleteSensorService`
+
+====== `InterruptSensorService`
+Implementa l'interfaccia `InterruptSensorUseCase`.
+
+*Attributi*:
+- *`sendInterruptCmdPort SendInterruptCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di interruzione sensore;
+- *`getSensorPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
+- *`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
+
+*Funzione di costruzione*: `NewInterruptSensorService(sendInterruptCmdPort SendInterruptCmdPort, getSensorPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort, updatedSensorStatusPort UpdateSensorStatusPort) *InterruptSensorService`
+
+====== `ResumeSensorService`
+Implementa l'interfaccia `ResumeSensorUseCase`.
+
+*Attributi*:
+-	*`sendResumeCmdPort SendResumeCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di riattivazione sensore;
+-	*`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+-	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
+-	*`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
+
+*Funzione di costruzione*: `NewResumeSensorService(sendResumeCmdPort SendResumeCmdPort, getSensorPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort, updatedSensorStatusPort UpdateSensorStatusPort) *ResumeSensorService`
+
+====== `GetSensorByIdService `
+Implementa l'interfaccia `GetSensorUseCase`.
+
+*Attributi*:
+- *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+-	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
+
+*Funzione di costruzione*: `NewGetSensorByIdService(getSensorByIdPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort) *GetSensorByIdService`
+
+====== `GetSensorsByGatewayIdService`
+Implementa l'interfaccia `GetSensorsByGatewayUseCase`.
+
+*Attributi*:
+- *`getSensorsByGatewayIdPort GetSensorsByGatewayIdPort`*: _Outbound port_ per ottenere lista paginata di sensori dato lo UUID di un gateway;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere i metadati di un gateway.
+
+*Funzione di costruzione*: \
+`NewGetSensorsByGatewayIdService(getSensorsByGatewayIdPort GetSensorsByGatewayIdPort, getGatewayPort gateway.GetGatewayPort) *GetSensorsByGatewayIdService`
+
+====== `GetSensorByTenantIdService `
+Implementa l'interfaccia `GetSensorByTenantUseCase`.
+
+*Attributi*:
+- *`getSensorsByTenantPort GetSensorsByTenantIdPort`*: _Outbound port_ per ottenere la lista paginata di sensori associata a un tenant
+
+*Funzione di costruzione*: `NewGetSensorByTenantIdService(getSensorsByTenantPort GetSensorsByTenantIdPort) *GetSensorByTenantIdService`
+
+===== Dominio
+
+====== `Sensor`
+Rappresenta un sensore simulato nello strato di business logic.
+
+*Attributi*:
+- *`Id uuid.UUID`*: UUID del sensore;
+- *`Name string`*: Nome del sensore;
+- *`Interval time.Duration`*: Intervallo di tempo tra la generazione di un dato simulato e la successiva;
+- *`Profile sensorProfile.SensorProfile`*: Profilo GATT associato;
+- *`GatewayId uuid.UUID`*: UUID del gateway a cui il sensore è associato;
+- *`Status SensorStatus`*: Status del sensore.
+
+*Metodi*:
+- *`IsZero() bool`*: Ritorna true se la struct è impostata al suo _zero-value_, altrimenti ritorna false.
+
+====== `SensorStatus`
+Enumerazione che rappresenta lo stato di un sensore.
+
+*Valori possibili*:
+- *`Active`*: Indica che il sensore è attivo e sta inviando dati;
+- *`Inactive`*: Indica che il sensore è inattivo e non sta inviando dati.
+
+===== Outbound ports -- Database
+In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di comunicare con il database.
+
+#figure(
+  image("../../assets/c4/backend/sensor/PortsAdapters-Database.svg", width:100%),
+  caption: [Cloud Backend -- Code Diagram per _outbound ports_ e _outbound adapters_ per database in `sensor`],
+) <backend-code-outbound-ports-adapters-database>
+
+====== `CreateSensorPort`
+*Metodi*:
+- *`CreateSensor(sensorId uuid.UUID, gatewayId uuid.UUID, name string, interval time.Duration, profile profile.SensorProfile) (Sensor, error)
+}`*: Crea un sensore secondo i parametri specificati e lo ritorna, ritornando errore se vi sono errori durante la creazione.
+
+====== `DeleteSensorPort`
+*Metodi*:
+- *`DeleteSensor(sensorId uuid.UUID) (Sensor, error)`*: Elimina il sensore con ID `sensorId` e ritorna l'oggetto `Sensor` corrispondente al sensore eliminato, oppure errore se vi sono errori durante il processo di eliminazione.
+
+====== `GetSensorByIdPort`
+*Metodi*:
+- *`GetSensorById(sensorId uuid.UUID) (Sensor, error)`*: Ritorna l'oggetto `Sensor` relativo al sensore con ID `sensorId` e ritorna errore in caso il sensore non sia stato trovato.
+
+====== `GetSensorByTenantPort`
+*Metodi*:
+- *`GetSensorByTenant(tenantId, sensorId uuid.UUID) (sensor Sensor, sensorTenantId *uuid.UUID, err error)`*: Ritorna al sensore con ID `sensorId` associato al tenant con ID `tenantId`. Questa funzione applica nativamente il controllo sul Repository di associazione del sensore al tenant, ritornando errore in caso il sensore non sia trovato oppure non sia associato al tenant specificato.
+
+====== `GetSensorsByGatewayIdPort`
+*Metodi*:
+- *`GetSensorsByGatewayId(gatewayId uuid.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al gateway con ID `gatewayId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
+
+====== `GetSensorsByTenantIdPort`
+*Metodi*:
+- *`GetSensorsByTenant(tenantId uuid.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al tenant con ID `tenantId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
+
+====== `UpdateSensorStatusPort`
+*Metodi*:
+- *`UpdateSensorStatus(sensor Sensor, status SensorStatus) error`*: Aggiorna lo status del sensore `sensor` a `status` nel database, ritornando errore in caso il sensore non sia stato trovato o se `status` ha un valore invalido.
+
+===== Outbound ports -- Message broker
+#let fn = footnote[Si faccia attenzione a non confondere i comandi inviati al gateway simulato con i comandi utilizzati nello strato di _business logic_ per utilizzare le struct `Service`.]
+
+In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di inviare comandi#fn al gateway simulato tramite il message broker.
+
+#figure(
+  image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.svg", width:100%),
+  caption: [Cloud Backend -- Code Diagram per _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
+) <backend-code-outbound-ports-adapters-broker>
+
+====== `CreateSensorCmdPort`
+*Metodi:*
+- *`SendCreateSensorCmd(sensorId uuid.UUID, gatewayId uuid.UUID, interval time.Duration, profile profile.SensorProfile) error`*: Invia al gateway simulato un comando di creazione di un nuovo sensore secondo i parametri specificati e ritorna errore in caso la procedura d'invio o la creazione del sensore nel gateway simulato non vadano a buon fine.
+
+====== `DeleteSensorCmdPort`
+*Metodi:*
+- *`SendDeleteSensorCmd(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di eliminazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'eliminazione del sensore simulato non vadano a buon fine.
+
+====== `SendInterruptCmdPort`
+*Metodi:*
+- *`SendInterrupt(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di interruzione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'interruzione del sensore simulato non vadano a buon fine.
+
+====== `SendResumeCmdPort`
+*Metodi:*
+- *`SendResume(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di riattivazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o la riattivazione del sensore simulato non vadano a buon fine.
+
+===== Outbound adapter per database -- `DbSensorAdapter`
+Per visualizzare il #gloss[Code Diagram] relativo a `DbSensorAdapter`, si veda la @backend-code-outbound-ports-adapters-database
+
+`DbSensorAdapter` è l'_outbound port_ usata per comunicare con il database per le operazioni CRUD sui sensori, traducendo l'interfaccia di dominio nell'interfaccia di PostgreSQL e viceversa.
+
+*Interfacce implementate*:
+- `CreateSensorPort`
+- `DeleteSensorPort`
+- `GetSensorByIdPort`
+- `GetSensorByTenantPort`
+- `GetSensorsByGatewayIdPort`
+- `GetSensorsByTenantIdPort`
+- `UpdateSensorStatusPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento a logger zap;
+- *`repo DatabaseRepository`*: Riferimento a classe `Repository` di accesso al database per operazioni CRUD sui sensori.
+
+===== Outbound adapter per message broker -- `SendCmdAdapter`
+Per visualizzare il #gloss[Code Diagram] relativo a `SendCmdAdapter`, si veda la @backend-code-outbound-ports-adapters-broker
+
+`SendCmdAdapter` è l'_outbound port_ usata per inviare comandi al gateway simulato relativamente ai sensori, tramite il message broker, traducendo l'interfaccia esposta da quest'ultimo nell'interfaccia di dominio e viceversa.
+
+*Interfacce implementate*:
+- `CreateSensorCmdPort`
+- `DeleteSensorCmdPort`
+- `SendInterruptCmdPort`
+- `SendResumeCmdPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento a logger zap;
+- *`repo MessageBrokerRepository`*: Riferimento a classe `Repository` per inviare messaggi al gateway simulato tramite message broker.
+
+===== Repository per database -- `DatabaseRepository`, `SensorEntity`
+#figure(
+  image("../../assets/c4/backend/sensor/DatabaseRepository.svg", width:85%),
+  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per `sensor`],
+)
+
+Interfaccia che espone metodi per svolgere operazioni CRUD sui sensori sul database.
+
+*Metodi*:
+- *`CreateSensor(entity *SensorEntity) error`*: Aggiunge il sensore descritto da `entity` al database.
+- *`DeleteSensor(entity *SensorEntity) error`*: Elimina il sensore descritto da `entityy` dal database.
+- *`UpdateSensor(sensorId string, status string) error`*: Imposta nel database lo stato `status` al sensore con ID `sensorId`.
+- *`GetSensorById(sensorId string) (SensorEntity, error)`*: Ritorna il sensore con ID `sensorId`.
+- *`GetSensorByTenant(tenantId, sensorId string) (SensorEntity, error)`*: Ritorna il sensore con ID `sensorId` associato al tenant con ID `tenantId`, ritornando errore in caso tale sensore non esista o non sia associato al tenant specificato.
+- *`GetSensorsByGatewayId(gatewayId string, offset int, limit int) ([]SensorEntity, uint, error)`*: Ritorna la lista paginata di sensori associati al gateway con ID `gatewayId` lunga `limit` elementi, che parte dall'elemento all'indice `offset` nella tabella del database e ritorna il numero totale di sensori associati al gateway specificato.
+- *`GetSensorsByTenantId(tenantId string, offset int, limit int) ([]SensorEntity, uint, error)`*: Ritorna la lista paginata di sensori associati al tenant con ID `tenantId` lunga `limit` elementi, che parte dall'elemento all'indice `offset` nella tabella del database e ritorna il numero totale di sensori associati al tenant specificato.
+
+====== `sensorPostgreRepository`
+Struct concreta che implementa `DatabaseRepository`.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`db clouddb.CloudDBConnection`*: Connessione al Cloud DB
+
+*Funzione di costruzione*: `NewSensorPostgreRepository(log *zap.Logger, db clouddb.CloudDBConnection) *sensorPostgreRepository`
+
+====== `SensorEntity`
+`Entity` che rappresenta la tabella `sensors` nel database (vd. @er-cloud-db).
+
+*Attributi*:
+- *`ID string`*: UUID del sensore
+- *`GatewayID string`*: UUID del gateway associato
+- *`Gateway gateway.GatewayEntity`*: `GatewayEntity` associata
+- *`Name string`*: Nome del sensore
+- *`Interval int64`*: Intervallo di generazione dati in millisecondi
+- *`Profile string`*: Profilo GATT del sensore
+- *`Status string`*: Stato del sensore, può assumere uno dei valori in `SensorStatus`
+- *`CreatedAt time.Time`*: Timestamp di creazione del sensore
+- *`UpdatedAt time.Time`*: Timestamp di ultimo aggiornamento del sensore
+
+===== Repository per message broker -- `MessageBrokerRepository` e relative `Entity`
+// TODO: continuare
+
 
 ==== Package `sensor/profile`
 Questo package è stato creato separatamente da `sensor` per evitare la creazione di import cycles.
@@ -1786,7 +2157,7 @@ Questo package è stato creato separatamente da `sensor` per evitare la creazion
 ===== `SensorProfile` <code-sensor.SensorProfile>
 #figure(
   image("../../assets/c4/backend/sensor/SensorProfile.svg", width:30%),
-  caption: [Code Diagram per `sensor.SensorProfile`],
+  caption: [Cloud Backend -- Code Diagram per `sensor.SensorProfile`],
 )
 
 ==== Package `shared/config`
@@ -1858,7 +2229,9 @@ Il database avrà un'entità principale con i seguenti attributi:
 Nel database ci sarà una separazione logica dei dati per tenant, resa possibile dalla creazione di uno *schema* per ogni tenant. \
 Perciò ogni tenant dovrà accedere al proprio schema e alla propria tabella per ottenere i propri dati.
 
+=== Cloud database <er-cloud-db>
 
+// TODO: Inserire specifica ER di cloud db
 
 == Architettura di deployment <archit-deploy>
 === Diagramma di deployment <deploy-diagram>
