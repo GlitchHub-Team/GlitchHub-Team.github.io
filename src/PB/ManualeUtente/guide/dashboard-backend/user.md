@@ -28,7 +28,7 @@ La creazione di un super admin è disponibile solo ai super admin esistenti. La 
 I campi possibili per `user_role` sono: `super_admin`, `tenant_admin` e `tenant_user`.
 
 ## Creazione tenant admin
-La creazione di un tenant admin è disponibile solo ai **super admin** e ai **tenant admin**, naturalmente i tenant admin possono creare altri tenant admin all'interno del loro tenant. La richiesta crea un nuovo tenant admin nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
+La creazione di un tenant admin è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono creare nuovi tenant admin esclusivamente all'interno del proprio tenant. La richiesta crea un nuovo tenant admin nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
 
 ### Richiesta
 - **POST** `/api/v1/tenant/{tenant_id}/tenant_admin`
@@ -53,7 +53,7 @@ La creazione di un tenant admin è disponibile solo ai **super admin** e ai **te
 ```
 
 ## Creazione tenant user
-La creazione di un tenant user è disponibile solo ai **super admin** e ai **tenant admin**, naturalmente i tenant admin possono creare anche tenant user all'interno del loro tenant. La richiesta crea un nuovo tenant user nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
+La creazione di un tenant user è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono creare tenant user esclusivamente all'interno del proprio tenant. La richiesta crea un nuovo tenant user nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
 
 ### Richiesta
 - **POST** `/api/v1/tenant/{tenant_id}/tenant_user`
@@ -95,7 +95,7 @@ L'eliminazione di un super admin è disponibile solo ai super admin esistenti. L
 ```
 
 ## Eliminazione tenant admin
-L'eliminazione di un tenant admin è disponibile solo ai **super admin** e ai **tenant admin**, naturalmente i tenant admin possono eliminare solo altri tenant admin all'interno del loro tenant. La richiesta elimina il tenant admin identificato dall'ID, ma restituisce errore se si tenta di eliminare l'ultimo tenant admin presente all'interno del tenant.
+L'eliminazione di un tenant admin è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono eliminare esclusivamente altri tenant admin appartenenti al proprio tenant. La richiesta elimina il tenant admin identificato dall'ID, ma restituisce un errore se si tenta di eliminare l'ultimo tenant admin presente all'interno del tenant.
 
 ### Richiesta
 - **DELETE** `/api/v1/tenant/{tenant_id}/tenant_admin/{user_id}`
@@ -113,7 +113,7 @@ L'eliminazione di un tenant admin è disponibile solo ai **super admin** e ai **
 ```
 
 ## Eliminazione tenant user
-L'eliminazione di un tenant user è disponibile solo ai **super admin** e ai **tenant admin**, naturalmente i tenant admin possono eliminare solo altri tenant user all'interno del loro tenant. Non è presente nessun vincolo nel numero minimo di tenant user che possono esistere all'interno di un tenant. La richiesta elimina il tenant user identificato dall'ID.
+L'eliminazione di un tenant user è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono eliminare esclusivamente tenant user appartenenti al proprio tenant. Non vi è alcun vincolo sul numero minimo di tenant user che possono esistere all'interno di un tenant. La richiesta elimina il tenant user identificato dall'ID.
 
 ### Richiesta
 - **DELETE** `/api/v1/tenant/{tenant_id}/tenant_user/{user_id}`
@@ -131,7 +131,7 @@ L'eliminazione di un tenant user è disponibile solo ai **super admin** e ai **t
 ```
 
 ## Ottenimento di un tenant user per ID
-L'ottenimento di un tenant user per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono ottenere solo i tenant user associati al proprio tenant, mentre gli utenti **tenant_user** possono ottenere solo i propri dati. La richiesta restituisce i dettagli del tenant user identificato dall'ID.
+L'ottenimento di un tenant user per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant user associati al proprio tenant, mentre gli utenti **tenant user** possono visualizzare solo i propri dati. La richiesta restituisce i dettagli del tenant user identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_user/{user_id}`
@@ -149,7 +149,7 @@ L'ottenimento di un tenant user per ID è disponibile a tutti i **super admin**,
 ```
 
 ## Ottenimento di un tenant admin per ID
-L'ottenimento di un tenant admin per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono ottenere solo i tenant admin associati al proprio tenant. La richiesta restituisce i dettagli del tenant admin identificato dall'ID.
+L'ottenimento di un tenant admin per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant admin associati al proprio tenant. La richiesta restituisce i dettagli del tenant admin identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_admin/{user_id}`
@@ -184,7 +184,7 @@ L'ottenimento di un super admin per ID è disponibile solo ai super admin esiste
 ```
 
 ## Ottenimento di tutti i tenant user per tenant
-L'ottenimento di tutti i tenant user associati ad un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono ottenere solo i tenant user associati al proprio tenant. La richiesta restituisce una lista di tutti i tenant user associati al tenant identificato dall'ID.
+L'ottenimento di tutti i tenant user associati a un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant user associati al proprio tenant. La richiesta restituisce una lista di tutti i tenant user associati al tenant identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_users?page={page}&limit={limit}`
@@ -211,7 +211,7 @@ L'ottenimento di tutti i tenant user associati ad un tenant è disponibile a tut
 ```
 
 ## Ottenimento di tutti i tenant admin per tenant
-L'ottenimento di tutti i tenant admin associati ad un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono ottenere solo i tenant admin associati al proprio tenant. La richiesta restituisce una lista di tutti i tenant admin associati al tenant identificato dall'ID.
+L'ottenimento di tutti i tenant admin associati a un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant admin associati al proprio tenant. La richiesta restituisce una lista di tutti i tenant admin associati al tenant identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_admins?page={page}&limit={limit}`

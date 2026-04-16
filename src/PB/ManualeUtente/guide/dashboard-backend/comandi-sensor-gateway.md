@@ -1,5 +1,5 @@
 # Comandi per i gateway e i sensori simulati
-Il sistema offre diversi comandi per la modifica del comportamento dei gateway e dei sensori simulati. Viene fatta una richiesta HTTP al microservizio **Dashboard Backend** e quest'ultimo invia un comando, via **NATS**, al microservizio **Gateway** il quale lo esegue e ne modifica il comportamento di conseguenza.
+Il sistema offre diversi comandi per la modifica del comportamento dei gateway e dei sensori simulati. Per eseguire un comando, viene effettuata una richiesta HTTP API al microservizio **Dashboard Backend**; quest'ultimo comunica, tramite **NATS**, con il microservizio **Gateway**, il quale esegue il comando richiesto modificando il comportamento del dispositivo simulato di conseguenza.
 
 ## Creazione di un gateway simulato
 La creazione di un gateway simulato è disponibile solo agli utenti **super admin** ed invia un comando di creazione al microservizio **Gateway**. Se il comando viene eseguito con successo, il nuovo gateway simulato viene creato e messo in stato **decommissioned**{{gloss}}.
@@ -31,7 +31,7 @@ Il campo `public_identifier` è `null` al momento della creazione del gateway si
 Il campo `tenant_id` è `null` al momento della creazione del gateway simulato, ma può essere aggiornato in fase di **commissioning**{{gloss}}.
 
 ## Eliminazione di un gateway simulato
-La cancellazione di un gateway simulato è disponibile solo agli utenti **super admin** ed invia un comando di cancellazione al microservizio **Gateway**. Se il comando viene eseguito con successo, il gateway simulato viene eliminato.
+L'eliminazione di un gateway simulato è disponibile solo agli utenti **super admin** ed invia un comando di eliminazione al microservizio **Gateway**. Se il comando viene eseguito con successo, il gateway simulato viene eliminato permanentemente.
 
 ### Richiesta
 - **DELETE** `/api/v1/gateway/{gateway_id}`
@@ -63,7 +63,7 @@ Il commissioning di un gateway simulato è disponibile solo agli utenti **super 
 }
 ```
 
-Il campo `commission_token` è il token necessario al gateway simulato per inviare dati a **NATS JetStream**. È firmato dalla **public key** del gateway simulato e contiene al suo interno solo le strette autorizzazioni per inviare dati per il proprio tenant.
+Il campo `commission_token` è il token necessario al gateway simulato per inviare dati a **NATS JetStream**. È firmato dalla **public key** del gateway simulato e contiene al suo interno solo le autorizzazioni strettamente necessarie per inviare dati per il proprio tenant.
 
 ### Risposta
 ```json
@@ -185,7 +185,7 @@ I profili GATT disponibili per i sensori simulati sono: **heart_rate**, **pulse_
 ```
 
 ## Eliminazione di un sensore simulato
-La cancellazione di un sensore simulato è disponibile solo agli utenti **super admin** ed invia un comando di cancellazione al microservizio **Gateway**. Se il comando viene eseguito con successo, il sensore simulato viene eliminato e smette di produrre dati.
+L'eliminazione di un sensore simulato è disponibile solo agli utenti **super admin** ed invia un comando di eliminazione al microservizio **Gateway**. Se il comando viene eseguito con successo, il sensore simulato viene cancellato e smette di produrre dati.
 
 ### Richiesta
 - **DELETE** `/api/v1/sensor/{sensor_id}`

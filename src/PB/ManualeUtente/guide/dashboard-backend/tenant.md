@@ -1,5 +1,5 @@
 # Gestione tenant
-Il sistema prevede la possibilità di gestire tenant, che possono essere creati e cancellati dai **super admin**. I tenant rappresentano delle gateway, sensori simulati, dati IoT e utenti con ruoli **tenant admin** e **tenant user**.
+Il sistema prevede la possibilità di gestire i tenant, che possono essere creati e cancellati dai **super admin**. Ai tenant sono associati gateway, sensori simulati, dati IoT e utenti con ruoli **tenant admin** e **tenant user**.
 
 Il tenant, in particolare, rappresenta un'organizzazione che si rivolge al sistema per utilizzare i servizi offerti. È importante che i dati di ogni tenant siano isolati e accessibili solo agli utenti autorizzati, in modo da garantire la sicurezza e la privacy dei dati.
 

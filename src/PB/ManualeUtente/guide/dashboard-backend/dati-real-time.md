@@ -1,9 +1,9 @@
 # Dati real-time
 Il sistema prevede la possibilità di ricevere dati in tempo reale relativi ai sensori simulati, purché si abbiano le autorizzazioni necessarie.   
-La richiesta è effettuata tramite **WebSocket**, perciò la richiesta andrà effettuata con il protocollo `ws://` o `wss://` a seconda che la connessione sia rispettivamente non sicura o sicura, e non con il protocollo `http://` o `https://`, e sempre sulla porta `8080`.
+La connessione avviene tramite **WebSocket**, pertanto la richiesta andrà effettuata utilizzando il protocollo `ws://` (per connessioni non sicure) o `wss://` (per connessioni sicure) al posto di `http://` o `https://`, e sempre sulla porta `8080`.
 
 ## Richiesta dati in tempo reale per sensore simulato
-La richiesta di dati in tempo reale per un sensore simulato è disponibile a tutti i **super admin** dove il tenant è impersonificabile, mentre gli utenti **tenant admin** e **tenant user** possono ricevere solo i dati in tempo reale per i sensori simulati associati ad un gateway associato al proprio tenant.   
+La richiesta di dati in tempo reale per un sensore simulato è disponibile a tutti i **super admin** nel caso in cui il tenant sia impersonificabile, mentre gli utenti **tenant admin** e **tenant user** possono ricevere solo i dati in tempo reale per i sensori simulati associati a un gateway appartenente al proprio tenant.   
 La richiesta restituisce un flusso di dati in tempo reale generati dal sensore simulato identificato dall'ID.
 
 Il microservizio **Dashboard Backend** si connette a **NATS** e attraverso il subject{{gloss}} `sensor.{tenant_id}.{gateway_id}.{sensor_id}` riceve i dati in tempo reale generati dal sensore simulato identificato dall'ID, e li inoltra al client connesso tramite **WebSocket**.

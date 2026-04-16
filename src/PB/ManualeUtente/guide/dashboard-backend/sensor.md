@@ -1,8 +1,8 @@
 # Sensori
-Il sistema prevede la possibilità di visionare ogni sensore simulato presente nel sistema, purché si abbiano le autorizzazioni necessarie. In particolare, i **super admin** possono visionare tutti i sensori simulati presenti nel sistema, mentre gli utenti **tenant admin** e **tenant user** possono visionare solo i sensori simulati associati ad un gateway associato al proprio tenant.
+Il sistema prevede la possibilità di visionare ogni sensore simulato presente nel sistema, purché si abbiano le autorizzazioni necessarie. In particolare, i **super admin** possono visionare tutti i sensori simulati presenti nel sistema, mentre gli utenti **tenant admin** e **tenant user** possono visionare solo i sensori simulati associati a un gateway appartenente al proprio tenant.
 
 ## Ottenimento sensore simulato per ID
-L'ottenimento di un sensore simulato per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** e **tenant user** possono ottenere solo i sensori simulati associati ad un gateway associato al proprio tenant. La richiesta restituisce i dettagli del sensore simulato identificato dall'ID.
+L'ottenimento di un sensore simulato per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** e **tenant user** possono ottenere solo i sensori simulati associati a un gateway del proprio tenant. La richiesta restituisce i dettagli del sensore simulato identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/sensor/{sensor_id}`
@@ -51,7 +51,7 @@ L'ottenimento di tutti i sensori simulati associati ad un gateway è disponibile
 ```
 
 ## Ottenimento di tutti i sensori simulati per tenant
-L'ottenimento di tutti i sensori simulati associati ad un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** e **tenant user** possono ottenere solo i sensori simulati associati ad un gateway associato al proprio tenant. La richiesta restituisce una lista di tutti i sensori simulati associati al tenant identificato dall'ID.
+L'ottenimento di tutti i sensori simulati associati a un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** e **tenant user** possono ottenere solo i sensori simulati associati al proprio tenant. La richiesta restituisce una lista di tutti i sensori simulati associati al tenant identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/sensors?page={page}&limit={limit}`

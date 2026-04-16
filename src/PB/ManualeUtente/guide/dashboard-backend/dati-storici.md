@@ -2,7 +2,7 @@
 Il sistema prevede la possibilità di richiedere dati storici relativi ai sensori simulati, purché si abbiano le autorizzazioni necessarie. In particolare, i **super admin** possono richiedere dati storici per tutti i sensori simulati, tranne per quelli associati a tenant non impersonificabili. Inoltre gli utenti **tenant admin** e **tenant user** possono richiedere dati storici solo per i sensori simulati associati ad un gateway associato al proprio tenant.
 
 ## Ottenimento dati storici per sensore simulato
-L'ottenimento di dati storici per un sensore simulato è disponibile a tutti i **super admin** dove il tenant è impersonificabile, mentre gli utenti **tenant admin** e **tenant user** possono ottenere solo i dati storici per i sensori simulati associati al proprio tenant.
+L'ottenimento di dati storici per un sensore simulato è disponibile a tutti i **super admin** nel caso in cui il tenant sia impersonificabile, mentre gli utenti **tenant admin** e **tenant user** possono ottenere solo i dati storici per i sensori simulati associati al proprio tenant.
 
 ### Richiesta
 - **GET** `/api/v1/sensor/{sensor_id}/historical_data?max_data_points={max_data_points}&from_time={from_time}&to_time={to_time}`

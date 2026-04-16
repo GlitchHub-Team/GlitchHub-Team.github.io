@@ -6,6 +6,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.5.0",
+      "16/04/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Stesura guida Dashboard Backend (@dashboard-backend)],
+    ),
+    (
       "0.4.0",
       "15/04/2026",
       "Alessandro Dinato",
@@ -37,8 +44,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Manuale Utente",
 )
 
