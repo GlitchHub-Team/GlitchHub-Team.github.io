@@ -31,6 +31,13 @@
   titolo: "Specifica Tecnica",
   stato: "Bozza",
   registro-modifiche: (
+      (
+      "0.8.0",
+      "16/04/2026",
+      "Riccardo Graziani e Siria Salvalaio",
+      "Siria Salvalaio e Riccardo Graziani",
+      [Stesura Sezione Frontend @angular],
+    ),
     (
       "0.7.2",
       "14/04/2026",
@@ -1343,7 +1350,7 @@ La struct in questione ha i seguenti attributi e metodi:
 
 
 
-=== Frontend
+=== Frontend <angular>
 La seguente sezione descrive in dettaglio il #gloss[Code Diagram] del frontend #gloss[Angular], che rappresenta l'interfaccia utente del sistema.
 
 L'architettura logica scelta è la *Layered Architecture*, composta da tre livelli orizzontali a _dipendenza unidirezionale_: le dipendenze scorrono dalla *Presentation* verso il *Domain*, e dal *Domain* verso l'*Infrastructure*, senza mai invertirsi, garantendo che i livelli superiori rimangano indipendenti dai dettagli implementativi di quelli inferiori.
@@ -1373,6 +1380,9 @@ Rappresenta l'interfaccia base per tutte le risposte API che supportano la pagin
 
 ====== *`ApiError`* (interface)<angular-apierror-model>
 Standardizza la struttura degli errori restituiti dal backend. Include il codice di stato HTTP (`status`) e un messaggio opzionale (`message`) per facilitare la gestione delle notifiche di errore all'utente.
+
+====== *`ActionMode`* (enum)<angular-actionmode-model>
+Un tipo di unione che definisce la modalità di interazione dell'utente con l'interfaccia. Può assumere i valori 'dashboard' (visualizzazione dati) o 'manage' (gestione e configurazione), permettendo di modificare dinamicamente il comportamento dei componenti in base al contesto operativo.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliComuni.pdf", width: 85%),
@@ -1749,7 +1759,7 @@ $ "timestamp"_"i" = T_"base" + (i times "1000" / "waveform.length") $
 Analogamente, per i flussi in tempo reale, vengono utilizzati adapter basati sulla classe astratta `SensorLiveReadingAdapter` che processano i dati in arrivo tramite WebSocket.
 
 #figure(
-  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorsHistoricLive.pdf", width: 100%),
+  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorHistoricLive.pdf", width: 100%),
   caption: [Adapters - Abstract Adapters e Api Adapters],
 )
 \
@@ -2289,13 +2299,349 @@ Il servizio presenta i seguenti metodi privati:
 - `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`.
 
 ==== Componenti UI
+//TODO introduzione
+
+===== Componenti Condivisi (Shared) <angular-shared-component>
+La cartella _shared_ contiene componenti presentazionali (dumb components) e dialoghi di utilità progettati per essere riutilizzati in più moduli dell'applicazione, garantendo uniformità visiva e di comportamento.
+
+====== UI Components (Dumb Components)  <angular-shared-components>
+*`GatewayTableComponent`*: una tabella avanzata per la visualizzazione dei gateway, dotata di logica di espansione per mostrare i sensori associati.
+  - *Dinamicità*: la proprietà `actionMode` (@angular-actionmode-model) determina quali colonne visualizzare; ad esempio, la colonna di eliminazione è visibile solo in modalità gestione.
+  - *Espansione Nidificata*: utilizza la funzionalità `multiTemplateDataRows` di Angular Material per mostrare un dettaglio espanso (`GatewayExpandedComponent`) sotto la riga del gateway selezionato.
+  - *Interazioni*: gestisce la copia della Public Key negli appunti e l'apertura del dialogo per l'invio di comandi al gateway.
+  - *Input/Output*: riceve le liste di gateway e sensori, gli stati di caricamento e i parametri di paginazione; emette eventi per l'espansione, l'eliminazione, la creazione e il cambio pagina.
+
+*`SensorTableComponent`*: componente dedicato alla visualizzazione tabellare dei sensori e delle loro proprietà.
+  - *Visualizzazione Condizionale*: analogamente alla tabella gateway, adatta le proprie colonne in base all' `actionMode` (@angular-actionmode-model). In modalità 'dashboard', mostra le icone per l'apertura dei grafici storici e in tempo reale.
+  - *Gestione Grafici*: il metodo `onViewChart` distingue tra grafico in tempo reale (invio diretto della richiesta) e storico; in quest'ultimo caso, apre il dialogo `HistoricChartFiltersDialog` per permettere all'utente di selezionare l'intervallo temporale.
+  - *Sicurezza*: il pulsante per il grafico in tempo reale viene disabilitato automaticamente se il gateway o il sensore risultano inattivi.
+
+*`GatewayExpandedComponent`*: agisce come contenitore specializzato per i sensori di un gateway specifico quando la riga della tabella principale viene espansa.
+  - *Responsabilità*: incapsula una `SensorTableComponent` passandole i dati filtrati e i parametri di configurazione necessari.
+  - *Delegazione*: funge da ponte per gli eventi (creazione/eliminazione sensore, richieste grafici) emessi dalla tabella interna verso il componente padre.
+
+====== Dialogs <angular-shared-dialogs>
+*`ConfirmDeleteDialog`*: un dialogo generico e riutilizzabile per la conferma di operazioni distruttive.
+  - *Configurabilità*: riceve tramite il token `MAT_DIALOG_DATA` un oggetto contenente `title` e `message`, permettendo di personalizzare la richiesta di conferma per qualsiasi entità (gateway, sensore, utente, ecc.).
+  - *Template*: presenta un'interfaccia chiara con un pulsante di annullamento e un pulsante di conferma evidenziato con colore "warn" per indicare la pericolosità dell'azione.
 
 
+===== App Shell
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-AppShell.pdf", width: 100%),
+  caption: [Components UI - App Shell]
+) \
+
+Il modulo _App Shell_ definisce il layout persistente dell'applicazione, gestendo la navigazione principale, la visualizzazione delle informazioni dell'utente in sessione e le azioni globali come il logout e il cambio password.
+
+====== *`AppShellPage`* (Smart Component) <angular-appshell-page>
+
+La _AppShellPage_ funge da orchestratore centrale del layout. Essendo uno smart component, interagisce con molteplici servizi di dominio per inizializzare l'interfaccia e gestire i permessi di navigazione.
+  - _Responsabilità_:
+    - Recupera i dati anagrafici dell'utente loggato e del relativo tenant tramite `UserService` (@angular-user-service) e `TenantService` (@angular-tenant-service) per visualizzarne i nomi (e non solo gli ID) nell'header.
+    - Gestisce dinamicamente la lista di navigazione tramite un segnale computato (navItems), filtrando le voci definite in `NAV_ITEMS` in base ai permessi dell'utente verificati dal `PermissionService` (@angular-permission-service).
+    - Coordina le azioni globali: invoca il logout tramite `AuthSessionService` e apre il dialogo di cambio password.
+  - _Servizi Iniettati_: `UserSessionService` (@angular-user-session-service), `AuthSessionService` (@angular-auth-session-service), `UserService`, `TenantService`, `PermissionService`.
+
+====== UI Components (Dumb Components) <angular-appshell-components>
+All'interno della cartella components, l'_App Shell_ si avvale di componenti presentazionali puri per la scomposizione del layout. \
+
+*`HeaderComponent`*: rappresenta la barra superiore dell'applicazione.
+  - _Input_:
+    - `username`: il nome dell'utente da visualizzare nel menu.
+    - `currentTenant`: il nome dell'organizzazione corrente, visualizzato tramite un badge.
+    - `currentUserRole`: il ruolo dell'utente, visualizzato in formato testuale.
+  - _Output_:
+    - `logoutRequested`: emesso quando l'utente seleziona la voce di uscita.
+    - `changePasswordRequested`: emesso quando l'utente desidera aprire il dialogo di modifica password.
+
+*`SideBarComponent`*: gestisce il menu di navigazione laterale.
+  - *Input*:
+   - `navItems`: la lista filtrata di oggetti `NavItem` (@angular-navitem-model) ricevuta dalla pagina.
+  - _Funzionalità_: itera sugli elementi di navigazione gestendo graficamente separatori, titoli di sezione e link attivi tramite le direttive di routing di Angular.
+
+====== Dialogs <angular-appshell-dialogs>
+*`ChangePasswordDialog`*: un componente autonomo utilizzato per consentire all'utente autenticato di aggiornare le proprie credenziali.
+  - _Logica_: utilizza un `FormBuilder` per gestire un modulo reattivo con validazioni specifiche per la lunghezza minima della password e la corrispondenza tra "nuova password" e "conferma password".
+  - _Interazione_: comunica con `AuthActionsService` (@angular-auth-actions-service) per inviare la richiesta `confirmPasswordChange`. Gestisce internamente lo stato di caricamento e la visualizzazione di eventuali errori generali restituiti dalle API tramite un banner dedicato nel template.
 
 
+===== Confirm Account
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ConfirmAccount.pdf", width: 90%),
+  caption: [Components UI - Confirm Account]
+) \
+
+Il modulo _Confirm Account_ gestisce il processo di attivazione dell'account utente a seguito della ricezione dell'invito. La pagina permette l'impostazione della password definitiva e il contestuale primo accesso al sistema.
+
+====== ConfirmAccountPage (Smart Component) <angular-confirmaccount-page>
+La _ConfirmAccountPage_ funge da orchestratore per il processo di attivazione, recuperando i parametri di sicurezza dall'URL e gestendo il flusso di navigazione post-attivazione.
+  - _Responsabilità_: 
+    - Estrae il token di attivazione dai parametri del percorso e l'eventuale `tenantId` dai parametri di ricerca (query parameters) dell'URL.
+    - Monitora lo stato di caricamento e gli eventuali errori globali attraverso i segnali esposti da `AuthActionsService` (@angular-auth-actions-service).
+    - Inoltra la richiesta di conferma al servizio di dominio e, in caso di successo, reindirizza l'utente alla `Dashboard` (poiché la conferma implica un login automatico tramite restituzione del JWT) (@angular-dashboard-page).
+  - _Servizi Iniettati_: `AuthActionsService`, `Router`, `ActivatedRoute`.
+
+====== UI Components (Dumb Components).  <angular-confirmaccount-components>
+All'interno della cartella components, il modulo delega la logica di inserimento dati a un componente presentazionale dedicato.
+*`ConfirmAccountFormComponent`*: gestisce l'interfaccia di inserimento della nuova password e le relative validazioni.
+  - _Input_:
+    - `loading`: segnale booleano che indica se è in corso la comunicazione con il backend.
+    - `generalError`: stringa contenente eventuali errori restituiti dal server da visualizzare nel banner.
+  - _Output_:
+    - `submitConfirmAccount`: emette i dati del modulo (nuova password) verso la pagina per l'elaborazione.
+    - `dismissError`: segnala alla pagina la volontà dell'utente di chiudere il banner di errore.
+  - _Logica e Funzionalità_:
+    - Implementa un modulo reattivo (Reactive Form) che impone una lunghezza minima di 8 caratteri per la password.
+    - Include un validatore personalizzato `passwordsMatchValidator` per garantire che il campo di conferma coincida esattamente con la nuova password inserita.
+    - Gestisce la visualizzazione di messaggi di errore contestuali per i singoli campi e un indicatore di progresso (`MatProgressBar`) durante la fase di invio.
 
 
+===== Dashboard
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Dashboard.pdf", width: 100%),
+  caption: [Components UI - Dashboard]
+) \
 
+Il modulo _Dashboard_ costituisce il centro operativo dell'applicazione, offrendo una visione d'insieme dello stato dei dispositivi e permettendo il monitoraggio analitico dei dati biometrici e ambientali in tempo reale e in modalità storica.
+
+====== DashboardPage (Smart Component) <angular-dashboard-page>
+La _DashboardPage_ agisce come orchestratore principale per la visualizzazione dei dati, adattando il proprio contenuto e le funzionalità disponibili in base al ruolo dell'utente e all'eventuale contesto di impersonificazione.
+  - _Responsabilità_:
+      - Gestisce il caricamento dei dati filtrati per tenant; per il ruolo `SUPER_ADMIN`, implementa una logica di impersonificazione che permette di visualizzare i dati di un'organizzazione specifica tramite parametri dell'URL.
+      - Coordina la visualizzazione delle tabelle dei gateway e dei sensori (utilizzando i componenti shared @angular-shared-components), gestendo l'espansione dei dettagli e la paginazione dei risultati attraverso il `DashboardService` (@angular-dashboard-service).
+      - Supervisiona il ciclo di vita dei grafici, gestendo l'apertura delle richieste di monitoraggio e assicurando la corretta chiusura delle connessioni alla distruzione del componente.
+      - Fornisce feedback all'utente tramite banner informativi o notifiche in risposta all'invio di comandi ai dispositivi.
+  - _Servizi Iniettati_: `DashboardService`, `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`, `UserSessionService` (@angular-user-session-service).
+
+====== UI Components (Dumb Components) <angular-dashboard-components>
+All'interno della dashboard, la visualizzazione dei segnali è affidata a componenti presentazionali specializzati che gestiscono la complessità del rendering grafico.
+*`ChartContainerComponent`*: funge da contenitore dinamico per la visualizzazione dei grafici, isolando la logica di gestione del servizio dati dalla rappresentazione visiva.
+  - _Input_:
+    - `chartRequest`: oggetto di configurazione contenente il sensore, il tipo di grafico e gli eventuali filtri richiesti.
+  - _Output_:
+    - `chartClosed`: segnala alla pagina la chiusura della vista del grafico.
+  - _Funzionalità_:
+    - Utilizza un effect per avviare automaticamente il recupero dei dati tramite `SensorChartService`(@angular-sensor-chart-service) ogni volta che la richiesta cambia.
+    - Visualizza lo stato della connessione WebSocket (es. "Connected", "Connecting") per i grafici live e gestisce la visualizzazione di eventuali errori di caricamento.
+    - Istanzia condizionalmente i componenti `HistoricChartComponent` e/o `RealTimeChartComponent` in base al tipo di richiesta.
+
+*`RealTimeChartComponent`*: componente dedicato al rendering dei segnali biometrici e ambientali in tempo reale.
+  - _Funzionalità_: 
+    - Utilizza la libreria `chart.js` per visualizzare un grafico a linee ottimizzato per lo streaming continuo di dati.
+    - Include un selettore di campo (mat-select) qualora il sensore fornisca letture multiple simultanee (es. Temperatura e Umidità).
+    - Applica configurazioni grafiche specifiche per il segnale ECG, come l'assenza di punti dati e una tensione della linea ridotta per una rappresentazione clinica accurata.
+
+*`HistoricChartComponent`*: implementa la visualizzazione delle serie storiche, fornendo strumenti per l'analisi di dataset estesi.
+  - _Funzionalità_: 
+    - Integra controlli di scorrimento (slider e pulsanti "chevron") per navigare all'interno dei dati storici, visualizzando una finestra definita di punti (es. 50 o 250 per l'ECG).
+    - Calcola dinamicamente l'offset di visualizzazione per permettere all'utente di scorrere temporalmente lungo tutta la lettura recuperata.
+
+====== Dialogs <angular-dashboard-dialogs>
+*Nota*: Sebbene descritti in questa sezione per pertinenza funzionale con il modulo _Dashboard_, i seguenti dialoghi non sono invocati direttamente dalla pagina, ma sono attivati dalle tabelle componenti (`GatewayTable` e `SensorTable`) descritte nella sezione Shared (@angular-shared-components).
+
+*`GatewayCommandsDialog`*: interfaccia per l'invio di istruzioni operative ai gateway, con validazioni dinamiche basate sullo stato del dispositivo.
+  - _Logica_:
+    - Filtra l'elenco dei comandi disponibili in base allo stato attuale (es. "Commission" per dispositivi decommissionati, "Interrupt/Resume" per dispositivi attivi/inattivi).
+    - Gestisce l'inserimento obbligatorio del tenant e del token di sicurezza per l'attivazione dei gateway.
+  - _Interazione_: coordina l'invio tramite `GatewayService` (@angular-gateway-service) e gestisce internamente lo stato di invio e gli errori API.
+
+*`SensorCommandsDialog`*: permette l'invio di comandi di interruzione o ripresa dell'attività per i singoli sensori.
+  - _Funzionalità_: presenta opzioni contestuali allo stato del sensore e comunica con `SensorService`(@angular-sensor-service) per l'esecuzione del comando.
+
+*`HistoricChartFiltersDialog`*: fornisce un modulo per la configurazione dei parametri di recupero dei dati storici.
+  - _Logica_:
+     - Permette di selezionare un intervallo temporale tramite datepicker e selettori di orario, oltre a definire il numero massimo di punti dati (da 1 a 300).
+    - Implementa una validazione incrociata per garantire che la data di inizio sia sempre precedente alla data di fine dell'intervallo.
+
+
+===== Gateway-Sensor
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-GatewaySensor.pdf", width: 100%),
+  caption: [Components UI - Gateway-Sensor]
+) \
+
+Il modulo _Gateway-Sensor_ fornisce l'interfaccia dedicata alle operazioni di amministrazione (CRUD) sui gateway e sui sensori. A differenza della Dashboard, questa sezione è ottimizzata per la configurazione del sistema e la gestione del ciclo di vita dei dispositivi.
+
+====== GatewaySensorManagerPage (Smart Component) <angular-gatewaysensormanager-page>
+La _GatewaySensorManagerPage_ funge da orchestratore per le attività di gestione, interfacciandosi con il servizio di dominio per riflettere i cambiamenti di stato e di inventario nell'interfaccia utente.
+  - _Responsabilità_:
+    - Inizializza il caricamento dei gateway e dei sensori associati tramite il `GatewaySensorManagerService` (@angular-gateway-sensor-manager-service).
+    - Configura la tabella dei gateway in modalità "manage" (`actionMode="manage"`@angular-actionmode-model), abilitando le colonne per la visualizzazione delle chiavi pubbliche e per l'eliminazione dei record.
+    - Gestisce i flussi di creazione e cancellazione: apre i dialoghi di creazione (`CreateGatewayDialog`, `CreateSensorDialog`) o conferma eliminazione (`ConfirmDeleteDialog`) e ne elabora l'esito aggiornando i dati e notificando l'utente tramite `SnackBar`.
+    - Monitora e visualizza eventuali errori operativi derivanti dalle API, permettendo all'utente di chiudere i banner di avviso.
+  - _Servizi Iniettati_: `GatewaySensorManagerService`.
+
+====== Dialogs <angular-gatewaysensormanager-dialogs>
+Il modulo si avvale di dialoghi specializzati per l'inserimento e la validazione delle configurazioni dei nuovi dispositivi.
+
+*`CreateGatewayDialog`*: componente dedicato alla creazione di nuove entità gateway.
+  - _Logica_:
+     - Implementa un modulo reattivo per l'inserimento del name e dell'intervallo (`interval`) di comunicazione.
+     - Impone validazioni sul campo `interval`, richiedendo un valore minimo di 100ms per garantire la stabilità delle comunicazioni.
+  - _Interazione_: invia la configurazione `GatewayConfig` (@angular-gatewayconfig-model) al `GatewayService` (@angular-gateway-service) e gestisce internamente la visualizzazione degli errori.
+
+*`CreateSensorDialog`*: gestisce l'aggiunta di sensori a un gateway specifico.
+  - _Logica_:
+     - Riceve tramite `MAT_DIALOG_DATA` l'identificativo e il nome del gateway ospite per contestualizzare l'operazione.
+     - Permette la selezione del profilo tecnologico del sensore (ECG, Battito, etc.) tramite l'enumerazione `SensorProfiles` (@angular-sensorprofiles-model).
+     - Utilizza il `sensorProfilesMapper` (@angular-enummapper) per tradurre il profilo selezionato nel formato richiesto dal backend prima dell'invio.
+  - _Interazione_: comunica con `SensorService` (@angular-sensor-service) per la creazione dell'entità `SensorConfig` (@angular-sensorconfig-model) e chiude il dialogo restituendo un feedback positivo in caso di successo.
+
+
+===== Login
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Login.pdf", width: 100%),
+  caption: [Components UI - Login]
+) \
+
+Il modulo _Login_ costituisce il punto di accesso principale al sistema, gestendo l'autenticazione degli utenti e fornendo i flussi per il recupero delle credenziali dimenticate.
+
+====== LoginPage (Smart Component) <angular-login-page>
+La _LoginPage_ funge da orchestratore per la fase di accesso, collegando il modulo di inserimento dati con i servizi di sessione e gestendo la navigazione post-autenticazione.
+  - _Responsabilità_:
+    - Coordina l'operazione di accesso invocando il metodo login dell'`AuthSessionService` (@angular-auth-session-service) e, in caso di successo, reindirizza l'utente verso la `Dashboard` (@angular-dashboard-page).
+    - Gestisce l'apertura del dialogo per il recupero password (`ForgotPasswordDialog`@angular-login-dialogs).
+    - Espone lo stato di caricamento e gli eventuali errori di autenticazione recuperati dal servizio di sessione.
+  - _Servizi Iniettati_: `AuthSessionService`, `Router`.
+
+====== UI Components (Dumb Components) <angular-login-components>
+All'interno della cartella components, la logica di presentazione del modulo di accesso è isolata in un componente dedicato.
+*`LoginFormComponent`*: rappresenta l'interfaccia utente per l'inserimento delle credenziali e la selezione del contesto organizzativo.
+  - _Input_:
+    - `loading`: booleano che indica se è in corso un tentativo di autenticazione.
+    - `generalError`: stringa contenente messaggi di errore restituiti dal server.
+  - _Output_:
+    - `submitLogin`: emette la richiesta LoginRequest (email, password e tenantId) verso la pagina.
+    - `forgotPassword`: segnala l'intenzione dell'utente di avviare il recupero password.
+    - `dismissError`: emette un evento per pulire i messaggi di errore visualizzati.
+  - _Logica_ e _Funzionalità_:
+    - Utilizza il `TenantService` (@angular-tenant-service) nel costruttore per popolare dinamicamente il selettore dei tenant disponibili.
+    - Implementa validazioni reattive per garantire che l'email rispetti il formato corretto e che i campi obbligatori siano popolati prima dell'invio.
+
+====== Dialogs <angular-login-dialogs>
+*`ForgotPasswordDialog`*: gestisce il flusso di richiesta per la reimpostazione della password.
+  - _Logica_:
+    - Presenta un modulo per l'inserimento dell'email e la selezione opzionale del tenant.
+    - Include una funzione `setupAutoClear` che monitora i cambiamenti nei campi del modulo per pulire automaticamente gli errori di invio mentre l'utente digita.
+  - _Interazione_:
+    - Invia la richiesta `ForgotPasswordRequest` (@angular-forgotpasswordrequest-model) tramite l'`AuthActionsService` (@angular-auth-actions-service).
+    - In caso di esito positivo, chiude il dialogo restituendo true per confermare l'invio del link di reset.
+    - _Servizi Iniettati_: `FormBuilder`, `MatDialogRef`, `AuthActionsService`, `TenantService` (@angular-tenant-service).
+
+
+===== Reset Password
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ResetPassword.pdf", width: 100%),
+  caption: [Components UI - Reset Password]
+) \
+
+Il modulo _Reset Password_ gestisce la fase finale del recupero delle credenziali, permettendo all'utente di impostare una nuova password tramite un link di sicurezza ricevuto via email.
+
+====== ResetPasswordPage (Smart Component) <angular-resetpassword-page>
+La `ResetPasswordPage` funge da coordinatore per l'operazione di ripristino, estraendo i parametri di validazione dall'URL e gestendo lo stato dell'interfaccia in base all'esito della richiesta.
+  - _Responsabilità_:
+    - Recupera il token di sicurezza dai parametri del percorso e l'eventuale tenantId dai parametri di ricerca (query parameters) per autorizzare l'operazione.
+    - Osserva i segnali esposti da `AuthActionsService` (@angular-auth-actions-service) per monitorare lo stato di caricamento (`loading`), eventuali errori (`generalError`) e la conferma dell'avvenuta modifica (`passwordChangeResult`).
+    - Inoltra la richiesta di reset al servizio di dominio, integrando i dati ricevuti dal form con il token e il tenant ID estratti dall'URL.
+    - Gestisce la navigazione di ritorno alla pagina di login dopo il completamento con successo.
+  - _Servizi Iniettati_: `AuthActionsService`, `Router`, `ActivatedRoute`.
+
+====== UI Components (Dumb Components) <angular-resetpassword-components>
+La logica di inserimento e validazione dei dati è delegata a un componente presentazionale che separa la gestione dei messaggi di sistema dalla visualizzazione del modulo.
+*`ResetPasswordFormComponent`*: fornisce l'interfaccia per la creazione della nuova password, garantendo la correttezza dei dati inseriti tramite validazioni reattive.
+  - _Input_:
+    - `loading`: indica se la richiesta è in fase di elaborazione.
+    - `generalError`: contiene il messaggio di errore da visualizzare nel banner qualora l'operazione fallisca.
+    - `success`: booleano che, se vero, nasconde il modulo e mostra un messaggio di conferma del successo dell'operazione.
+  - _Output_:
+    - `submitReset`: emette la nuova password verso la pagina orchestratrice.
+    - `goToLogin`: segnala l'intenzione dell'utente di tornare alla pagina di accesso.
+    - `dismissError`: richiede la rimozione del banner di errore.
+  - _Logica_ e _Funzionalità_:
+    - Utilizza un `FormBuilder` per creare un modulo reattivo con controlli sulla password (obbligatoria, minimo 8 caratteri).
+    - Implementa il validatore `passwordsMatchValidator` per assicurarsi che i campi "Nuova Password" e "Conferma Password" corrispondano.
+    - Gestisce dinamicamente il template per mostrare indicatori di progresso (`MatProgressBar`) o messaggi di errore contestuali sotto i campi del form.
+
+
+===== Tenant
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Tenant.pdf", width: 100%),
+  caption: [Components UI - Tenant]
+) \
+
+Il modulo _Tenant_ fornisce l'interfaccia per la gestione delle entità organizzative (appunto i tenant) all'interno del sistema multi-tenant. Questa sezione permette agli amministratori globali di creare nuove organizzazioni, monitorare quelle esistenti ed eseguire operazioni di impersonificazione.
+
+====== TenantManagerPage (Smart Component) <angular-tenantmanager-page>
+La `TenantManagerPage` funge da orchestratore centrale per l'anagrafica dei tenant, gestendo il caricamento dei dati e coordinando le azioni di amministrazione.
+  - _Responsabilità_:
+    - Inizializza il recupero della lista dei tenant attraverso il `TenantService`.
+    - Gestisce la creazione di nuovi tenant aprendo il dialogo `TenantFormDialog` (@angular-tenant-dialogs) e aggiornando la vista in caso di successo.
+    - Coordina l'eliminazione dei tenant esistenti, richiedendo conferma tramite il dialogo condiviso `ConfirmDeleteDialog` (@angular-shared-dialogs).
+    - Implementa la logica di navigazione contestuale: permette di "entrare" nella dashboard di un tenant specifico (impersonificazione) o di accedere alla gestione degli utenti di quella specifica organizzazione.
+    - Monitora lo stato di errore globale del servizio e permette all'utente di chiudere i banner di notifica in caso di fallimento delle API.
+  - _Servizi Iniettati_: `TenantService` (@angular-tenant-service), `Router`.
+
+====== UI Components (Dumb Components) <angular-tenant-components>
+La visualizzazione dei dati è affidata a un componente presentazionale che isola la complessità della tabella di Angular Material.
+*`TenantTableComponent`*: componente dedicato alla rappresentazione tabellare dei tenant.
+  - _Input_:
+     - `tenants`: l'array di oggetti Tenant da visualizzare.
+     - `loading`: stato di caricamento per la visualizzazione dello spinner.
+     - `total`, `pageIndex`, `limit`: parametri per la gestione della paginazione integrata.
+  - _Output_:
+    - `deleteRequested`: segnala la volontà di eliminare un tenant.
+    - `dashboardRequested`: emette l'evento per avviare l'impersonificazione nella dashboard.
+    - `tenantUserManagementRequested`: richiede l'accesso alla gestione utenti del tenant.
+    - `pageChange`: notifica il cambio di pagina o della dimensione della stessa.
+  - _Funzionalità_: mostra dinamicamente le azioni di gestione (dashboard e utenti) solo se il tenant ha il flag `canImpersonate` attivo.
+
+====== Dialogs <angular-tenant-dialogs>
+*`TenantFormDialog`*: gestisce l'interfaccia di inserimento per la creazione di una nuova organizzazione.
+  - _Logica_:
+    - Utilizza un modulo reattivo per l'inserimento del `name` (obbligatorio) e la configurazione del permesso `canImpersonate` tramite checkbox.
+    - Gestisce internamente lo stato di invio (`isSubmitting`) e la visualizzazione di errori specifici restituiti dal backend durante la creazione.
+  - _Interazione_: comunica direttamente con il `TenantService` (@angular-tenant-service) per l'invio della configurazione `TenantConfig` (@angular-tenantconfig-model) e chiude il dialogo restituendo un feedback positivo alla pagina principale.
+
+
+===== User
+#figure(
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-User.pdf", width: 90%),
+  caption: [Components UI - User]
+) \
+
+Il modulo _User_ fornisce l'interfaccia per la gestione completa degli utenti del sistema. La pagina è dinamica e adatta i propri contenuti (titoli, permessi e filtri) in base al ruolo dell'utente collegato e alla tipologia di account che si sta gestendo.
+
+====== UserManagerPage (Smart Component) <angular-usermanager-page>
+La `UserManagerPage` agisce come orchestratore centrale per l'amministrazione degli utenti, gestendo la navigazione tra i diversi ruoli e il contesto organizzativo.
+  - _Responsabilità_:
+    - Determina il contesto operativo (titolo della pagina e ruolo target) analizzando il percorso di routing attivo.
+    - Gestisce la visualizzazione tabellare degli utenti tramite lo `UserService` (@angular-user-service), supportando la paginazione e il filtraggio per tenant.
+    - Implementa una logica di commutazione tramite tab per distinguere tra _Tenant User_ e _Tenant Admin_ all'interno di una specifica organizzazione.
+    - Per i _Super Admin_, fornisce una barra di selezione per filtrare gli utenti in base al tenant di appartenenza.
+    - Coordina le operazioni CRUD: apre il dialogo `UserFormDialog`(@angular-user-dialogs) per la creazione e richiede conferma tramite `ConfirmDeleteDialog` (@angular-shared-dialogs) prima della rimozione di un account.
+    - Gestisce i flussi di navigazione per tornare alla gestione dei tenant o alla dashboard.
+  - _Servizi Iniettati_: `UserService`, `UserSessionService` (@angular-user-session-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`.
+
+====== UI Components (Dumb Components) <angular-user-components>
+La visualizzazione della lista utenti è delegata a un componente specializzato che garantisce la coerenza visiva.
+*`UserTableComponent`*: componente dedicato alla rappresentazione dei dati anagrafici degli utenti.
+  - _Input_:
+     - `users`: l'array di oggetti User da visualizzare nella tabella.
+     - `loading`: segnale booleano per lo stato di caricamento.
+     - `total`, `pageIndex`, `limit`: parametri per la gestione del paginatore.
+     - `currentUserId`, `currentUserRole`: utilizzati per la logica di protezione.
+  - _Output_:
+     - `deleteRequested`: segnala l'intenzione di eliminare un record.
+     - `pageChange`: notifica la richiesta di cambio pagina o dimensione del set di dati.
+  - _Funzionalità_: implementa una misura di sicurezza nel template che nasconde il pulsante di eliminazione per l'utente attualmente loggato, impedendo l'auto-cancellazione accidentale del proprio account.
+
+====== Dialogs <angular-user-dialogs>
+*`UserFormDialogComponent`*: gestisce l'inserimento dei dati per la creazione di nuovi profili utente.
+  - _Logica_:
+    - Utilizza un modulo reattivo per acquisire username ed email (con validazione del formato).
+    - Gestisce dinamicamente il campo `tenantId`: se l'operazione avviene nel contesto di un tenant specifico, il campo viene bloccato e visualizzato come sola lettura; in caso contrario, permette la selezione da una lista caricata tramite `TenantService`(@angular-tenant-service).
+  - _Interazione_: invia i dati al servizio `UserService` (@angular-user-service) e monitora lo stato di sottomissione per visualizzare indicatori di progresso o messaggi di errore restituiti dalle API.
 
 
 === Cloud Backend
