@@ -31,18 +31,25 @@
   titolo: "Specifica Tecnica",
   stato: "Bozza",
   registro-modifiche: (
-      (
+    (
+      "0.9.0",
+      "16/04/2026",
+      "Siria Salvalaio",
+      "-",
+      [Stesura sezione Presentation Layer del frontend],
+    ),
+    (
       "0.8.0",
       "16/04/2026",
-      "Riccardo Graziani e Siria Salvalaio",
-      "Siria Salvalaio e Riccardo Graziani",
-      [Stesura Sezione Frontend @angular],
+      "Riccardo Graziani",
+      "-",
+      [Stesura sezione Infrastructure Layer e Domain Layer del frontend],
     ),
     (
       "0.7.2",
       "14/04/2026",
       "Elia Ernesto Stellin",
-      "-",
+      "Riccardo Graziani",
       [Tracciate nuove librerie usate lato backend; Inserimento versioni mancanti per tecnologie esistenti],
     ),
     (
@@ -1353,405 +1360,112 @@ La struct in questione ha i seguenti attributi e metodi:
 === Frontend <angular>
 La seguente sezione descrive in dettaglio il #gloss[Code Diagram] del frontend #gloss[Angular], che rappresenta l'interfaccia utente del sistema.
 
-L'architettura logica scelta è la *Layered Architecture*, composta da tre livelli orizzontali a _dipendenza unidirezionale_: le dipendenze scorrono dalla *Presentation* verso il *Domain*, e dal *Domain* verso l'*Infrastructure*, senza mai invertirsi, garantendo che i livelli superiori rimangano indipendenti dai dettagli implementativi di quelli inferiori.
+L'architettura logica scelta è la *Layered Architecture*, composta da tre livelli orizzontali a _dipendenza unidirezionale_: il *Domain Layer* rappresenta il nucleo dell'applicazione, il *Presentation Layer* gestisce l'interfaccia utente e l'*Infrastructure Layer* si occupa della comunicazione con il backend.
 
-- *Presentation Layer*: comprende le _pages_ e i _components_ di Angular, che si affidano esclusivamente ai servizi del livello *Domain* per accedere allo stato dell'applicazione e invocare operazioni. All'interno di questo livello l'architettura segue il pattern *MVVM*: i servizi del livello *Domain* fungono da _ViewModel_, mantenendo lo stato dell'interfaccia tramite _Angular Signals_ (`signal()`, `computed()`, `asReadonly()`) e traducendolo in una superficie reattiva che i componenti consumano direttamente nel _template_, senza contenere logica propria. Il _Model_ è rappresentato dai modelli di dominio e dallo stato incapsulato nei segnali dei servizi, mentre la _View_ corrisponde ai _template_ dei componenti Angular, che si limitano a leggere i segnali esposti dal _ViewModel_ e a inoltrare gli eventi utente ai relativi metodi — senza mai accedere direttamente ai modelli né invocare servizi di livello inferiore.
+- *Presentation Layer*: comprende le _pages_ e i _components_ di Angular, che si affidano esclusivamente ai servizi del livello *Domain* per accedere allo stato dell'applicazione e invocare operazioni.
 
-- *Domain Layer*: costituisce il nucleo dell'applicazione. Contiene i _modelli_ di dominio, che rappresentano le entità del sistema indipendentemente dal formato di trasporto, e i _services_ applicativi, che orchestrano le operazioni e mantengono lo stato condiviso. Il livello definisce inoltre, tramite classi _adapter_ astratte, i contratti che l'*Infrastructure* deve rispettare per la trasformazione dei dati, disaccoppiando così la logica applicativa da qualsiasi dettaglio implementativo legato al backend.
+  All'interno di questo livello l'architettura segue il pattern *MVVM*: il _ViewModel_ è rappresentato dalla classe TypeScript del componente (`.ts`), che inietta i servizi del livello *Domain*, gestisce lo stato specifico dell'interfaccia (ad esempio indicatori di caricamento o selezioni attive) e trasforma lo stato di dominio in una superficie reattiva consumabile dal _template_ tramite _Angular Signals_ (`signal()`, `computed()`). La _View_ corrisponde al _template_ del componente (`.html`), che si limita a leggere i segnali esposti dal _ViewModel_ e a inoltrare gli eventi utente ai relativi metodi. Il _Model_ è rappresentato dai modelli di dominio e dallo stato incapsulato nei servizi del livello *Domain*. La _View_ non accede mai direttamente ai modelli né invoca servizi di livello inferiore.
+
+- *Domain Layer*: costituisce il nucleo dell'applicazione. Contiene i _modelli_ di dominio, che rappresentano le entità del sistema indipendentemente dal formato di trasporto, e i _services_ applicativi, che orchestrano le operazioni e mantengono lo stato condiviso tramite _Angular Signals_ esposti in sola lettura (`asReadonly()`). Il livello definisce inoltre, tramite classi astratte, i contratti che l'*Infrastructure* deve rispettare per la trasformazione e il recupero dei dati, disaccoppiando così la logica applicativa da qualsiasi dettaglio implementativo legato al backend.
 
 - *Infrastructure Layer*: racchiude tutta la comunicazione con il backend. I _services_ HTTP e WebSocket inviano le richieste e restituiscono i dati nel formato _raw_ del backend, mentre gli _adapter_ concreti implementano i contratti definiti nel *Domain*, traducendo i modelli backend nei modelli di dominio. Il cablaggio tra contratti e implementazioni avviene interamente in `app.config.ts`.
 
-==== Modelli dati
-La robustezza del frontend Angular è garantita da un sistema di tipizzazione rigoroso che utilizza interfacce, tipi personalizzati ed enumerazioni per rappresentare le entità del sistema. I modelli dati sono organizzati per separare le utilità trasversali (modelli comuni) dalle entità specifiche delle aree funzionali (modelli di dominio).
+==== Infrastructure layer
+Il layer di *Infrastructure* è composto da _services_ che si occupano della comunicazione con il backend tramite HTTP e WebSocket, dai modelli dati che documentano le risposte del backend e da _adapter_ che implementano i contratti definiti nel *Domain* per la trasformazione dei dati.\
 
-===== Modelli Comuni e Globali
-In questa sezione vengono descritti i modelli utilizzati trasversalmente in diverse parti dell'applicazione per standardizzare le risposte del server, gestire gli errori e definire stati operativi condivisi.
+===== Modelli dati
+I modelli dati del layer di *Infrastructure* rappresentano le strutture dati restituite dal backend, e sono utilizzati dai _services_ HTTP e WebSocket per modellare le risposte ricevute dal backend.
 
-====== *`Permission`* (enum)<angular-permission-model>
-Stabilisce i permessi granulari disponibili nel sistema. Ogni voce dell'enum è associata a una stringa descrittiva (`label`) utilizzata nell'interfaccia utente per mostrare all'utente le capacità associate al proprio ruolo. Include permessi per l'accesso alla dashboard, la gestione dei gateway, dei sensori, degli utenti (Super Admin, Tenant Admin, Tenant User), dei tenant e delle API Key (quest'ultimo non implementato).
-
-====== *`GatewayStatus`* e *`SensorStatus`* (enum)<angular-status-model>
-Definiscono lo stato operativo dei dispositivi.
-  - `GatewayStatus` prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) e `DECOMMISSIONED` (decommissionato) per i gateway.
-  - `SensorStatus` prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) per i sensori.
-
-====== *`PaginatedResponse`* (interface)<angular-paginatedresponse-model>
-Rappresenta l'interfaccia base per tutte le risposte API che supportano la paginazione. Contiene i campi `count` (numero di elementi nella pagina corrente) e `total` (numero totale di elementi presenti sul database), permettendo ai componenti tabella di gestire correttamente i controlli di navigazione.
-
-====== *`ApiError`* (interface)<angular-apierror-model>
+====== ApiError <angular-apierror-model>
 Standardizza la struttura degli errori restituiti dal backend. Include il codice di stato HTTP (`status`) e un messaggio opzionale (`message`) per facilitare la gestione delle notifiche di errore all'utente.
 
-====== *`ActionMode`* (enum)<angular-actionmode-model>
-Un tipo di unione che definisce la modalità di interazione dell'utente con l'interfaccia. Può assumere i valori 'dashboard' (visualizzazione dati) o 'manage' (gestione e configurazione), permettendo di modificare dinamicamente il comportamento dei componenti in base al contesto operativo.
-
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliComuni.pdf", width: 85%),
-  caption: [Modelli Dati - Modelli Comuni e Globali],
-)
-\
-
-===== Modelli di Dominio: Auth
-I modelli di autenticazione strutturano lo scambio di informazioni necessario per identificare gli utenti e gestire i flussi di sicurezza del sistema.
-
-====== *`LoginRequest`* (interface)<angular-loginrequest-model>
-Rappresenta il pacchetto di dati inviato dall'utente per richiedere l'accesso al sistema.
-  - `email: string`: l'indirizzo email dell'utente che effettua il tentativo di accesso.
-  - `password: string`: la password associata all'account.
-  - `tenantId?: string`: proprietà opzionale utilizzata per identificare il contesto organizzativo (_tenant_) di appartenenza dell'utente.
-
-====== *`AuthResponse`* (interface)<angular-authresponse-model>
-Definisce la struttura della risposta restituita dal backend a seguito di un'autenticazione avvenuta con successo.
-  - `jwt: string`: il token JSON Web Token necessario per autenticare e autorizzare le successive chiamate API del frontend. Contiene codificate all'interno del payload le seguenti informazioni:
-    - `uid: string`: rappresenta l'identificativo univoco dell'utente;
-    - `tid: string`: rappresenta l'identificativo del tenant dell'utente;
-    - `rol: string`: rappresenta il ruolo dell'utente;
-
-====== *`UserSession`* (interface)<angular-usersession-model>
-Rappresenta la struttura dati utilizzata internamente al frontend per mantenere lo stato e le informazioni essenziali dell'utente attualmente autenticato.
-  - `userId: string`: l'identificativo univoco dell'utente in sessione.
-  - `tenantId?: string`: l'identificativo del tenant a cui l'utente appartiene, se applicabile.
-  - `role: UserRole`: il ruolo operativo dell'utente (@angular-userrole-model), che determina i permessi all'interno dell'applicazione.
-
-====== *`ForgotPasswordRequest`* (interface)<angular-forgotpasswordrequest-model>
-Modello utilizzato per avviare la procedura di recupero delle credenziali di accesso.
-  - `email: string`: l'indirizzo email a cui inviare le istruzioni per il ripristino della password.
-  - `tenantId?: string`: identificativo opzionale del tenant per circoscrivere la ricerca dell'utente.
-
-====== *`ForgotPasswordResponse`* (interface)<angular-forgotpasswordresponse-model>
-Modello per la finalizzazione del reset della password tramite token di sicurezza.
-  - `token: string`: il codice di verifica univoco ricevuto dall'utente (solitamente via email).
-  - `newPassword: string`: la nuova password che l'utente intende impostare per il proprio account.
-  - `tenantId?: string`: riferimento opzionale al tenant per la convalida dell'operazione.
-
-====== *`ConfirmAccountResponse`* (interface)<angular-confirmaccountresponse-model>
-Interfaccia dedicata alla conferma dell'attivazione di un nuovo account di sistema.
-  - `token: string`: l token di attivazione necessario per validare l'identità dell'utente.
-  - `newPassword: string`: la password definita dall'utente in fase di primo accesso o attivazione.
-  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
-====== *`PasswordChange`* (interface)<angular-passwordchange-model>
-Rappresenta il modello per l'aggiornamento volontario della password da parte di un utente già autenticato.
-  - `oldPassword: string`: la password corrente dell'utente, richiesta per motivi di sicurezza prima di procedere alla modifica.
-  - `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
-
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioAuth.pdf", width: 100%),
-  caption: [Modelli Dati - Modelli di Dominio: Auth],
-)
-\
-
-
-===== Modelli di Dominio: Chart
-I modelli dell'area _Chart_ permettono di orchestrare la richiesta di dati storici e in tempo reale, definendo al contempo le modalità di rappresentazione visiva dei segnali biometrici.
-
-====== `ChartType` (enum)<angular-charttype-model>
-Definisce le modalità di visualizzazione dei dati supportate dal sistema.
-  - `HISTORIC`: indica la modalità di visualizzazione dei dati storici memorizzati nel database.
-  - `REALTIME`: indica la modalità di visualizzazione in tempo reale tramite stream continuo.
-
-====== *`TimeInterval`* (interface)<angular-timeinterval-model>
-Rappresenta l'intervallo temporale utilizzato per filtrare le letture dei sensori.
-  - `from: Date`: data e ora di inizio dell'intervallo richiesto.
-  - `to: Date`: data e ora di fine dell'intervallo richiesto.
-
-====== *`ChartRequest`* (interface)<angular-chartrequest-model>
-Modello utilizzato per inoltrare una richiesta completa di generazione o aggiornamento di un grafico.
-  - `sensor: Sensor`: l'oggetto contenente le informazioni del sensor (@angular-sensor-model) di cui si vogliono visualizzare i dati.
-  - `chartType: ChartType`: la modalità di grafico richiesta (storica o real-time @angular-charttype-model).
-  - `tenantId?: string`: identificativo opzionale del tenant per il controllo dell'accesso ai dati.
-  - `dataPointsCounter?: number`: proprietà opzionale per limitare il numero di campioni da recuperare o visualizzare.
-  - `timeInterval?: TimeInterval`: l'intervallo temporale specifico per le query storiche (@angular-timeinterval-model).
-
-====== *`SensorProfileDisplay`* (interface)<angular-sensorprofiledisplay-model>
-Definisce le proprietà estetiche e le unità di misura per la rappresentazione dei dati di un profilo sensore.
-  - `label: string`: l'etichetta testuale visualizzata nel grafico (es. "Heart Rate").
-  - `unit: string`: l'unità di misura associata al valore del sensore.
-
-In questo file sono definiti anche:
-  - `SENSOR_PROFILE_MAP`: Una costante di tipo `Record` che mappa ogni profilo sensore (`SensorProfiles` @angular-sensorprofiles-model) alla propria configurazione di etichetta e unità di misura.
-  - `getSensorProfileDisplay(profile): SensorProfileDisplay`: Una funzione che restituisce l'oggetto `SensorProfileDisplay` corrispondente al profilo richiesto; include una logica di protezione che restituisce il nome del profilo e una stringa vuota come unità qualora il profilo non sia presente nella mappa.
-
-====== *`SENSOR_VISIBLE_POINTS`* e *`SENSOR_MAX_LIVE_READINGS`* (constant)<angular-sensorcostants-model>
-Record di configurazione che stabiliscono i limiti di campionamento per l'interfaccia utente al fine di ottimizzare le performance di rendering.
-  - Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
-
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioChart.pdf", width: 100%),
-  caption: [Modelli Dati - Modelli di Dominio: Chart],
-)
-\
-
-===== Modelli di Dominio: Gateway
-I modelli dell'area _Gateway_ definiscono la struttura dei dispositivi centrali del sistema, gestendo sia la rappresentazione interna del frontend che il formato di scambio dati con il backend.
-====== *`Gateway`* (interface)<angular-gateway-model>
-Rappresenta il modello principale dell'entità gateway utilizzato all'interno dell'applicazione.
-  - `id: string`: identificativo univoco del gateway.
-  - `tenantId?: string`: identificativo opzionale del tenant a cui è assegnato il gateway.
-  - `name: string`: nome descrittivo assegnato al gateway.
-  - `status: GatewayStatus`: stato operativo del gateway (es. attivo, inattivo), tipizzato tramite l'enum `GatewayStatus` (@angular-status-model).
-  - `interval: number`: frequenza di comunicazione espressa in secondi.
-  - `publicIdentifier?: string`: identificativo pubblico opzionale del dispositivo.
-
-====== *`GatewayBackend`* (interface)<angular-gatewaybackend-model>
+====== GatewayBackend <angular-gatewaybackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
-  - `gateway_id: string`: mappa l'identificativo del gateway nel formato snake_case del database.
-  - `tenant_id?: string`: identificativo del tenant nel formato backend.
+  - `gateway_id: string`: identificativo del gateway.
+  - `tenant_id?: string`: identificativo del tenant.
   - `name: string`: nome del dispositivo.
   - `status: string`: stato del dispositivo rappresentato come stringa grezza.
-  - `interval: number`: intervallo di comunicazione.
-  - `public_identifier?: string`: identificativo pubblico opzionale nel formato backend.
+  - `interval: number`: intervallo di comunicazione dati in ms.
+  - `public_identifier?: string`: chiave pubblica del gateway.
 
-====== *`GatewayConfig`* (interface)<angular-gatewayconfig-model>
-Modello utilizzato per le operazioni di configurazione o aggiornamento dei parametri di un gateway.
-  - `name: string`: nuovo nome da assegnare al dispositivo.
-  - `interval: number`: nuovo intervallo di comunicazione da impostare.
-
-====== *`CommandRequest`* (interface)<angular-commandrequest-model>
-Rappresenta la struttura dati necessaria per inoltrare comandi operativi a un gateway specifico.
-  - `gateway: Gateway`: l'oggetto gateway destinatario del comando ( @angular-gateway-model).
-  - `command: string`: la stringa rappresentante il comando da eseguire sul dispositivo.
-
-====== *`PaginatedGatewayResponse<T>`* (interface)<angular-paginatedgatewayresponse-model>
-Estende l'interfaccia `PaginatedResponse` per gestire liste di gateway ottenute tramite query filtrate o paginate.
-  - `gateways: T[]`: array di elementi di tipo generico `T` contenente i record della pagina corrente.
-\
-
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioGateway.pdf", width: 100%),
-  caption: [Modelli Dati - Modelli di Dominio: Gateway],
-)
-\
-
-===== Modelli di Dominio: Nav Items
-I modelli dell'area _Nav Items_ permettono di definire l'architettura della navigazione laterale (sidebar), integrando logiche di controllo degli accessi e raggruppamento visuale delle funzionalità.
-
-====== *`NavItem`* (interface)<angular-navitem-model>
-Definisce la struttura di una singola voce all'interno del menu di navigazione.
-  - `label: string`: l'etichetta testuale visualizzata nel menu (es. "Gestione Gateway", "Dashboard").
-  - `route: string`: il percorso di navigazione associato alla voce di menu.
-  - `icon: string`: il nome dell'icona (solitamente riferita alla libreria Material Icons) da affiancare all'etichetta.
-  - `permission?: Permission | Permission[]`: proprietà opzionale che specifica i permessi necessari per visualizzare la voce. Può essere un singolo valore dell'enum `Permission` (@angular-permission-model) o un array di permessi.
-  - `separator?: boolean`: flag opzionale che, se impostato a true, inserisce un separatore visivo prima della voce di menu.
-  - `sectionTitle?: string`: titolo opzionale utilizzato per raggruppare le voci sotto una categoria testuale.
-  - `tenantSectionTitle?: string`: titolo di sezione specifico utilizzato nei contesti di impersonificazione o visualizzazione legata al tenant.
-
-====== *`NAV_ITEMS (NavConfig)`* (constant)<angular-navitems-constant>
-Rappresenta la configurazione statica globale del menu di navigazione dell'applicazione.
-  - È un array di oggetti _NavItem_ che mappa tutte le funzionalità principali del sistema, incluse le aree di gestione (Gateway, Tenant, User) e la Dashboard operativa.
-  - Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
-
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioNavItems.pdf", width: 70%),
-  caption: [Modelli Dati - Modelli di Dominio: Nav Items],
-)
-\
-
-===== Modelli di Dominio: Sensor
-I modelli dell'area Sensor definiscono l'identità e le capacità operative di ogni dispositivo di rilevamento collegato ai gateway, gestendo la traduzione tra i formati di comunicazione grezzi e le tipizzazioni forti del frontend.
-
-====== *`Sensor`* (interface) <angular-sensor-model>
-Rappresenta il modello principale dell'entità sensore utilizzato per la logica di business e la visualizzazione nel frontend.
-  - `id: string`: identificativo univoco del sensore.
-  - `gatewayId: string`: identificativo del gateway a cui il sensore è associato.
-  - `name: string`: nome descrittivo assegnato al dispositivo.
-  - `profile: SensorProfiles`: il profilo tecnologico del sensore, tipizzato tramite l'enum `SensorProfiles`(@angular-sensorprofiles-model).
-  - `status: SensorStatus`: lo stato operativo corrente (es. attivo o inattivo), tipizzato tramite l'enum `SensorStatus` (@angular-status-model).
-  - `dataInterval: number`: la frequenza di campionamento dei dati espressa in secondi.
-
-====== *`SensorProfiles`* (enum) <angular-sensorprofiles-model>
-Stabilisce i profili tecnologici supportati dal sistema, mappando ogni servizio Bluetooth/Backend a una categoria specifica.
-  - `HEART_RATE_SERVICE`: "heart rate".
-  - `PULSE_OXIMETER_SERVICE`: "pulse oximeter".
-  - `CUSTOM_ECG_SERVICE`: "custom ecg".
-  - `HEALTH_THERMOMETER_SERVICE`: "health thermometer".
-  - `ENVIRONMENTAL_SENSING_SERVICE`: "environmental sensing".
-
-====== *`SensorConfig`* (interface) <angular-sensorconfig-model>
-Modello utilizzato per la creazione o la riconfigurazione dei parametri di un sensore.
-  - `name: string`: nome da assegnare o aggiornare.
-  - `dataInterval: number`: intervallo dati da impostare.
-  - `gatewayId: string`: riferimento al gateway ospite.
-  - `profile: string`: profilo tecnologico selezionato.
-
-====== *`SensorBackend`* (interface) <angular-sensorbackend-model>
-Definisce il formato del Data Transfer Object (DTO) ricevuto dalle API del backend, caratterizzato dall'utilizzo della convenzione snake_case.
-  - `sensor_id: string`: mappa l'identificativo del sensore.
-  - `gateway_id: string`: mappa l'identificativo del gateway di appartenenza.
+====== SensorBackend <angular-sensorbackend-model>
+Definisce il formato del Data Transfer Object (DTO) ricevuto dalle API del backend.
+  - `sensor_id: string`: identificativo del sensore.
+  - `gateway_id: string`: identificativo del gateway di appartenenza.
   - `sensor_name: string`: nome del dispositivo nel database.
   - `status: string`: stato del dispositivo rappresentato come stringa.
   - `profile: string`: identificativo testuale del profilo tecnologico.
-  - `data_interval: number`: intervallo di invio dati.
+  - `data_interval: number`: intervallo di invio dati in ms.
 
-====== *`PaginatedSensorResponse<T>`* (interface)<angular-paginatedsensorresponse-model>
-Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di sensori.
-  - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente della visualizzazione.
+====== TenantBackend <angular-tenantbackend-model>
+Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
+  - `tenant_id: string`: identificativo univoco del tenant.
+  - `can_impersonate: boolean`: indica se il tenant ha acconsentito all'impersonificazione.
 
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensor.pdf", width: 100%),
-  caption: [Modelli Dati - Modelli di Dominio: Sensor],
-)
-\
+====== UserBackend <angular-userbackend-model>
+Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
+  - `user_id: number`: identificativo numerico dell'utente.
+  - `username: string`: nome utente.
+  - `email: string`: indirizzo email dell'utente.
+  - `user_role: string`: ruolo dell'utente trasmesso come stringa grezza.
+  - `tenant_id?: string`: riferimento al tenant.
 
-===== Modelli di Dominio: Sensor Data
-I modelli dell'area _Sensor Data_ gestiscono la complessità delle letture grezze provenienti dal backend e le organizzano in strutture leggibili per i componenti grafici dell'interfaccia utente.
-
-====== *`FieldDescriptor`* (interface)<angular-fielddescriptor-model>
-Rappresenta un metadato che descrive come interpretare e visualizzare un singolo valore all'interno di una lettura del sensore.
-  - `key: string`: la chiave tecnica del dato (es. "bpm", "temperature") utilizzata per estrarre il valore dall'oggetto della lettura.
-  - `label: string`: l'etichetta testuale descrittiva per la UI (es. "Battito cardiaco", "Umidità").
-  - `unit: string`: l'unità di misura associata al dato (es. "bpm", "°C", "%").
-
-====== *`SensorReading`* (interface)<angular-sensorreading-model>
-Definisce il modello atomico di una singola lettura sensoriale processata dal frontend.
-  - `timestamp: string`: l'istante temporale a cui si riferisce la misurazione.
-  - `value: Record<string, number>`: un oggetto contenente uno o più valori numerici associati a chiavi specifiche (es. `{ "bpm": 72 }` o `{ "temperature": 22.5, "humidity": 60 }`).
-
-====== *`HistoricResponse`* e *`HistoricSample`* (interfaces)<angular-historicresponse-model>
-Rappresentano il formato dei dati storici così come vengono trasmessi dal backend (Data Transfer Objects).
+====== HistoricResponse e HistoricSample <angular-historicresponse-model>
+Rappresentano il formato dei dati storici trasmessi dal backend (Data Transfer Objects).
   - `HistoricResponse`: contiene il conteggio totale dei campioni (`count`) e l'array di dati effettivi (`samples`).
   - `HistoricSample`: rappresenta il singolo pacchetto di dati grezzi. Include informazioni come `sensor_id`, `gateway_id`, `tenant_id`, `timestamp`, `profile` e l'oggetto `data` contenente i valori grezzi in formato chiave-valore.
 
-====== *`HistoricReadings`* (interface)<angular-historicreadings-model>
-Modello strutturato utilizzato dal frontend per aggregare le letture storiche da visualizzare nei grafici.
-  - `dataCount: number`: il numero totale di letture contenute nell'oggetto.
-  - `readings: SensorReading[]`: l'elenco delle letture trasformate e pronte per il rendering (@angular-sensorreading-model).
-  - `fields: FieldDescriptor[]`: l'elenco dei descrittori di campo che indicano quali dati sono presenti e come visualizzarli (@angular-fielddescriptor-model).
-  - `samplesPerPacket?: number`: proprietà opzionale utilizzata principalmente per il segnale ECG per indicare la densità di campionamento.
-
-====== *`RealTimeReading`* (interface)<angular-realtimereading-model>
+====== RealTimeReading <angular-realtimereading-model>
 Descrive la struttura dei dati ricevuti in tempo reale tramite stream.
   - `timestamp: string`: il timestamp della lettura live.
   - `profile: string`: il profilo del sensore sorgente.
   - `data: Record<string, any>`: i dati grezzi ricevuti in tempo reale.
 
-====== Costanti di Configurazione Campi (*`HEART_RATE_FIELDS`*, *`ECG_FIELDS`*, etc.) <angular-constantsfields-constant>
-Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualizzazione per ogni tipologia di sensore.
-   - Ad esempio, `ENVIRONMENTAL_FIELDS` configura i campi "Temperatura" (°C) e "Umidità" (%), mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
-
 #figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensorData.pdf", width: 100%),
-  caption: [Modelli Dati - Modelli di Dominio: Sensor Data],
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliBackend.pdf", width: 100%),
+  caption: [Modelli dati del layer di Infrastructure],
 )
-\
 
-===== Modelli di Dominio: Tenant
-I modelli dell'area _Tenant_ definiscono le entità organizzative del sistema, permettendo la gestione separata dei dati e la configurazione di funzionalità avanzate come l'impersonificazione.
-
-====== *`Tenant (interface)`* <angular-tenant-model>
-Rappresenta il modello principale dell'entità tenant utilizzato all'interno della logica applicativa del frontend.
-  - `id: string`: identificativo univoco del tenant.
-  - `name: string`: nome descrittivo assegnato al tenant.
-  - `canImpersonate: boolean`: flag che indica se il tenant ha l'autorizzazione per eseguire operazioni di impersonificazione all'interno del sistema.
-
-====== *`TenantConfig (interface)`* <angular-tenantconfig-model>
-Rappresenta il modello utilizzato per le operazioni di creazione o aggiornamento dei dati di un tenant.
-  - `name: string`: il nome da assegnare o aggiornare per l'organizzazione.
-  - `canImpersonate: boolean`: la configurazione del permesso di impersonificazione da salvare nel sistema.
-
-====== *`TenantBackend (interface)`* <angular-tenantbackend-model>
-Definisce il formato del Data Transfer Object (DTO) così come viene restituito dalle API del backend, utilizzando la convenzione di naming snake_case.
-  - `tenant_id: string`: mappa l'identificativo univoco del tenant nel backend.
-  - `can_impersonate: boolean`: indica nel formato backend la capacità di impersonificazione associata al tenant.
-
-====== *`PaginatedTenantResponse<T>`* (interface) <angular-paginatedtenantresponse-model>
-Estende l'interfaccia base di paginazione per gestire liste di tenant provenienti da interrogazioni del database.
-  - `tenants: T[]`: array di elementi di tipo generico `T` che costituiscono il set di dati della pagina corrente.
-
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioTenant.pdf", width: 100%),
-  caption: [Modelli Dati - Modelli di Dominio: Tenant],
-)
-\
-
-===== Modelli di Dominio: User
-I modelli dell'area _User_ strutturano le informazioni relative agli account utente, garantendo una gestione tipizzata dei profili e dei relativi permessi operativi.
-
-====== *`UserRole`* (enum) <angular-userrole-model>
-Stabilisce i ruoli gerarchici disponibili nel sistema, utilizzati per determinare i permessi di accesso alle diverse funzionalità.
-  - `TENANT_USER`: rappresenta l'utente finale associato a un tenant specifico.
-  - `TENANT_ADMIN`: rappresenta l'amministratore di un tenant, con permessi di gestione locale.
-  - `SUPER_ADMIN`: rappresenta l'amministratore globale del sistema con permessi illimitati.
-
-====== *`User`* (interface)<angular-user-model>
-Rappresenta il modello principale dell'entità utente utilizzato nella logica di business del frontend.
-  - `id: string`: identificativo univoco dell'utente (normalizzato come stringa nel frontend).
-  - `username: string`: nome utente utilizzato per l'identificazione e la visualizzazione.
-  - `email: string`: indirizzo email associato all'account.
-  - `role: UserRole`: il ruolo assegnato all'utente, tipizzato tramite l'enum `UserRole`(@angular-userrole-model).
-  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
-
-====== *`UserBackend`* (interface)<angular-userbackend-model>
-Definisce il formato del Data Transfer Object (DTO) ricevuto dalle API del backend.
-  - `user_id: number`: identificativo numerico dell'utente nel database.
-  - `username: string`: nome utente memorizzato nel backend.
-  - `email: string`: indirizzo email dell'utente.
-  - `user_role: string`: ruolo dell'utente trasmesso come stringa grezza.
-  - `tenant_id?: string`: riferimento al tenant nel formato backend.
-
-====== *`UserConfig`* (interface)<angular-userconfig-model>
-Modello semplificato utilizzato per le operazioni di creazione o configurazione iniziale del profilo utente.
-  - `email: string`: indirizzo email da assegnare all'account.
-  - `username: string`: nome utente desiderato per la configurazione.
-
-====== *`PaginatedUserResponse<T>`* (interface)<angular-paginateduserresponse-model>
-Estende l'interfaccia di paginazione per gestire collezioni di utenti.
-  - `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente della visualizzazione.
-
-#figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioUser.pdf", width: 100%),
-  caption: [Modelli Dati - Modelli di Dominio: User],
-)
-\
-
-
-==== Adapters e utils
-Questa sezione approfondisce lo strato di astrazione dedicato alla trasformazione e normalizzazione dei dati, posizionato tra i servizi di comunicazione API e la logica di business dei componenti. L'obiettivo primario di questo layer è garantire il disaccoppiamento tra il modello dati del backend (spesso soggetto a convenzioni di naming diverse come lo _snake_case_) e il modello dati interno del frontend, ottimizzato per la tipizzazione _TypeScript_ e l'utilizzo nei componenti _Angular_.
-
-===== Utility di mappatura (enumMapper) <angular-enummapper>
-Per la gestione coerente delle enumerazioni e delle costanti di sistema, è stata implementata una classe di utility generica denominata `EnumMapper<TFrontend, TBackend>`. Questa classe risolve il problema della discordanza tra i valori letterali utilizzati nelle API e le `definizioni` di tipo nel frontend.
-- *Funzinamento Core*: la classe accetta nel costruttore un oggetto di mappatura e un valore di _fallback_. Internamente, genera automaticamente una mappa inversa (`toFrontendMap`) per supportare la conversione bidirezionale.
-- *Gestione Errori*: il metodo `fromBackend` include una logica di protezione che restituisce il valore di _fallback_ predefinito qualora il backend invii un valore non censito, garantendo la resilienza dell'interfaccia.
+===== Utility 
+Per la gestione coerente delle enumerazioni e delle costanti di sistema, è stata implementata una classe di utility generica denominata `EnumMapper<TFrontend, TBackend>`. Questa classe risolve il problema della discordanza tra i valori letterali utilizzati nelle API e le definizioni di tipo nel frontend.
+- *Funzinamento core*: la classe accetta nel costruttore un oggetto di mappatura e un valore di _fallback_. Internamente, genera automaticamente una mappa inversa (`toFrontendMap`) per supportare la conversione.
+- *Gestione errori*: il metodo `fromBackend` include una logica di protezione che restituisce il valore di _fallback_ predefinito qualora il backend invii un valore non valido.
 
 Sulla base di questa utility, sono stati definiti i seguenti mappatori specializzati:
-- *`statusMapper`*: gestisce la conversione dello stato dei dispositivi (attivo/inattivo) utilizzando l'enum `Status`.
+- *`gatewayStatusMapper`*: gestisce la conversione dello stato dei gateway utilizzando `GatewayStatus`.
+- *`sensorStatusMapper`*: gestisce la conversione dello stato dei sensori utilizzando `SensorStatus`.
 - *`sensorProfilesMapper`*: mappa le stringhe identificative dei servizi backend (es. _heart_rate_) nelle definizioni `SensorProfiles` (@angular-sensorprofiles-model) utilizzate per la logica di visualizzazione.
-- *`userRoleMapper`*: Utilizzato per la gestione utenti, mappando ruoli come _super_admin_, _tenant_admin_ o _tenant_user_.
-- *`userRoleMapperJWT`*: una versione specifica per la decodifica dei token #gloss("JWT"), dove i ruoli sono rappresentati da sigle contratte (`sa` per super admin, `ta` per tenant admin e `tu` per tenant user) nel payload del token.
+- *`userRoleMapper`*: gestisce la conversione dei ruoli utente usando `UserRole`.
+- *`userRoleMapperJWT`*: un mapper specifico per la decodifica dei token #gloss("JWT"), dove i ruoli sono rappresentati da sigle contratte (`sa` per super admin, `ta` per tenant admin e `tu` per tenant user).
 
-===== Architettura degli adapter API
-L'architettura degli adapter si basa su un pattern a due livelli: uno *strato astratto* che definisce il contratto formale e uno *strato concreto* (`ApiAdapter`) che implementa la logica di mappatura specifica.
+===== Adapters
+Le classi astratte fungono da "interfacce robuste" che assicurano che ogni trasformatore di dati esponga la medesima firma, indipendentemente dalla sorgente dati. 
 
-====== Definizione dei Contratti (_Abstract Adapters_)
-Le classi astratte fungono da "interfacce robuste" che assicurano che ogni trasformatore di dati esponga la medesima firma, indipendentemente dalla sorgente dati (API reali, mock o database locali). Gli adapters principali sono:
-- *`GatewayAdapter`*: definisce il contratto per la gestione dei _gateway_ di sistema. Impone l'implementazione del metodo `fromDTO(dto: GatewayBackend)`, che trasforma un singolo oggetto backend nel modello `Gateway` (@angular-gateway-model), e del metodo `fromPaginatedDTO`, che gestisce la conversione di intere collezioni preservando i metadati di paginazione.
-- *`SensorAdapter`*: stabilisce le firme per la trasformazione dell'anagrafica dei _sensori_. Richiede l'implementazione di logiche per mappare il DTO `SensorBackend` (@angular-sensorbackend-model) nell'interfaccia `Sensor`, assicurando una gestione coerente di ID, nomi e riferimenti ai gateway.
-- *`UserAdapter`* : definisce i criteri per il processamento delle entità _utente_. Il contratto garantisce che ogni implementazione sia in grado di trasformare i dati `UserBackend` nel modello `User` (@angular-user-model), includendo la gestione delle risposte paginate.
-- *`TenantAdapter`*: prescrive i metodi per la mappatura delle entità _tenant_. Impone la trasformazione dell'oggetto `TenantBackend` nel modello `Tenant` (@angular-tenant-model) utilizzato dal frontend per gestire le organizzazioni e i relativi permessi.
+Sono stati sviluppati i seguenti adapter astratti: *`GatewayAdapter`*, *`SensorAdapter`*, *`UserAdapter`* e *`TenantAdapter`*, ognuno dei quali definisce un contratto specifico per la trasformazione dei dati di una particolare entità del dominio, ossia:
+- il metodo `fromDTO(dto: XBackend)` che accetta un singolo oggetto DTO restituito dalle API del backend e lo trasforma in un modello di dominio tipizzato, mappando i campi e convertendo i valori secondo le regole di business.
+- il metodo `fromPaginatedDTO(dto: PaginatedXBackend)` che accetta una collezione paginata di oggetti DTO e li trasforma in una collezione di modelli di dominio tipizzati, preservando i metadati di paginazione.
+Dove `X` rappresenta l'oggetto di dominio in questione tra `Gateway`, `Sensor`, `Tenant` e `User`.
 
-In aggiunta agli adapter per le entità principali, il sistema prevede contratti specifici per l'elaborazione dei dati biometrici e ambientali, necessari per supportare l'eterogeneità dei sensori:
-- *`SensorHistoricAdapter`*: un'astrazione dedicata alla gestione dei dati storici. Obbliga ogni sottoclasse a definire una proprietà `fields` di tipo `FieldDescriptor[]` (@angular-fielddescriptor-model) (per la descrizione dei metadati della lettura) e a implementare il metodo `fromResponse(response: HistoricResponse): HistoricReadings` (@angular-historicresponse-model e @angular-historicreadings-model) per convertire i pacchetti di campionamento in letture storiche tipizzate.
-- *`SensorLiveReadingAdapter`*: definisce il contratto per l'elaborazione dei flussi dati in tempo reale. Analogamente all'adapter storico, richiede la definizione dei campi (`fields`), ma si focalizza sul metodo `fromDTO(dto: RealTimeReading)` (@angular-realtimereading-model), che deve restituire un array di letture normalizzate (`SensorReading[]` (@angular-sensorreading-model)) pronte per lo streaming sui grafici live.
 
-====== Implementazioni Concrete (_Api Adapters_)
-Gli adapter API estendono i contratti sopra citati e iniettano la logica necessaria per normalizzare i DTO del backend. Gli adapter API sono:
-- *`GatewayApiAdapter`*: gestisce l'entità _gateway_. È responsabile della conversione delle proprietà del DTO `GatewayBackend` nel modello gateway, mappando l'ID del dispositivo, il nome, l'intervallo di comunicazione e il tenant ID. Utilizza lo `statusMapper` (@angular-enummapper) per convertire la stringa di stato in un valore dell'enum `Status`.
-- *`SensorApiAdapter`*: converte i dati dei sensori medicali e ambientali. Oltre alla mappatura dei campi base (ID, nome, gateway ID e l'intervallo dei dati), applica il `sensorProfilesMapper` (@angular-enummapper) per interpretare correttamente il tipo di profilo e lo `statusMapper` per lo stato operativo.
-- *`UserApiAdapter`*: si occupa della gestione dell'entità _utente_. Oltre ad applicare la mappatura dei campi di base come username, email e tenant ID, esegue il casting dell'ID utente in stringa e utilizza `userRoleMapper`  (@angular-enummapper) per tradurre il ruolo ricevuto dal backend nel formato interno `UserRole` (@angular-userrole-model).
+Gli adapter API rappresentano la concretizzazione di questi contratti, implementando la logica specifica per mappare i dati restituiti dalle API del backend nei modelli di dominio utilizzati all'interno dell'applicazione\:
+- *`GatewayApiAdapter`*: gestisce la trasformazione dei dati dei _gateway_, mappando l'ID, il tenantId, il nome, lo stato, l'intervallo di invio dati e la public key.
+- *`SensorApiAdapter`*: gestisce la trasformazione dei dati dei _sensori_, mappando l'ID, il gatewayId, il nome, lo stato, l'intervallo di invio dati e il profilo GATT.
+- *`UserApiAdapter`*: gestisce la trasformazione dei dati degli _utenti_, mappando l'ID, il tenantId, lo username, l'email e il ruolo.
 - *`TenantApiAdapter`*: gestisce la trasformazione dei dati dei tenant, mappando l'ID, il nome e la flag di impersonificazione.
 
-Ogni adapter implementa inoltre il metodo `fromPaginatedDTO`, che estende la trasformazione a risposte contenenti liste paginate, preservando i metadati di conteggio totale.
-
 #figure(
-  image("../../assets/c4/frontend/adapters/frontend-adapters.pdf", width: 100%),
+  image("../../assets/c4/frontend/adapters/frontend-adapters.pdf", width: 60%),
   caption: [Adapters - Abstract Adapters e Api Adapters],
 )
 \
 
-===== Gestione avanzata dei dati sensore (Historic e Real-time)
-Oltre alla gestione dell'anagrafica, il sistema richiede un processamento specialistico per le letture (misurazioni) prodotte dai sensori. Queste letture variano drasticamente in base al profilo medico o ambientale.
+In aggiunta agli adapter per le entità principali, il sistema prevede contratti specifici per l'elaborazione dei dati biometrici e ambientali, necessari per supportare l'eterogeneità dei sensori:
+- *`SensorHistoricAdapter`*: un'astrazione dedicata alla gestione dei dati storici. Richiede di ridefinire una proprietà `fields` di tipo `FieldDescriptor[]` (per la descrizione dei metadati della lettura) e di implementare il metodo `fromResponse(response: HistoricResponse): HistoricReadings` per convertire i pacchetti di campionamento in letture storiche tipizzate.
+- *`SensorLiveReadingAdapter`*: definisce il contratto per l'elaborazione dei flussi dati in tempo reale. Analogamente all'adapter storico, richiede la definizione dei campi (`fields`), ma si focalizza sul metodo `fromDTO(dto: RealTimeReading)`, che deve restituire un array di letture normalizzate (`SensorReading[]`) pronte per lo streaming sui grafici live.
 
+Oltre alla gestione dell'anagrafica, il sistema richiede un processamento specialistico per le letture (misurazioni) prodotte dai sensori. Queste letture variano drasticamente in base al profilo medico o ambientale.
 Ogni adapter di questa categoria definisce una proprietà `fields` (`FieldDescriptor[]` (@angular-fielddescriptor-model)) che funge da metadato per istruire i componenti UI (grafici e tabelle) su quali unità di misura e label visualizzare.
-- *`EcgHistoricAdapter`*: gestisce segnali ad alta frequenza. Poiché i dati arrivano come array di campioni (`waveform`), l'adapter ricostruisce la serie temporale calcolando il timestamp esatto per ogni punto tramite interpolazione:
-$ "timestamp"_"i" = T_"base" + (i times "1000" / "waveform.length") $
+- *`EcgHistoricAdapter`*: gestisce segnali ad alta frequenza. Poiché i dati arrivano come array di campioni (`waveform`), l'adapter ricostruisce la serie temporale calcolando il timestamp esatto per ogni punto tramite interpolazione.
 - *`EnvironmentalHistoricAdapter`*: estrae simultaneamente valori di temperatura e umidità dalla mappa dati.
 - *`PulseOximeterHistoricAdapter`*: mappa i parametri vitali di saturazione ossigeno (`spo2`) e frequenza del polso (`pulseRate`).
 - *`HeartRateHistoricAdapter`* e  *`HealthThermometerHistoricAdapter`*: gestiscono rispettivamente la frequenza cardiaca e la temperatura corporea, mappando i valori ricevuti nei formati attesi dai componenti di visualizzazione.
@@ -1759,35 +1473,499 @@ $ "timestamp"_"i" = T_"base" + (i times "1000" / "waveform.length") $
 Analogamente, per i flussi in tempo reale, vengono utilizzati adapter basati sulla classe astratta `SensorLiveReadingAdapter` che processano i dati in arrivo tramite WebSocket.
 
 #figure(
-  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorHistoricLive.pdf", width: 100%),
-  caption: [Adapters - Abstract Adapters e Api Adapters],
+  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorHistoricLive.pdf", width: 80%),
+  caption: [Adapters - Adapters per dati storici e live readings],
 )
 \
 
-===== Sensor Adapter Factory
-Per orchestrare dinamicamente l'utilizzo di questi adapter senza appesantire i componenti con logiche condizionali, è stato implementato il `SensorAdapterFactory`.
-Questo servizio utilizza un _Pattern Registry_ per mappare ogni `SensorProfiles` (@angular-sensorprofiles-model) alla propria istanza di adapter:
+Per orchestrare dinamicamente l'utilizzo di questi adapter senza appesantire i componenti con logiche condizionali, è stato implementato il `SensorAdapterFactory`, usato per mappare ogni `SensorProfiles` (@angular-sensorprofiles-model) alla propria istanza di adapter:
 - *Registrazione*: mantiene registri interni (_historicAdapters_ e _liveAdapters_) che associano i profili (ECG, Heart Rate, etc.) alle relative classi adapter.
-- *Creazione Dinamica*: espone i metodi `createHistoricAdapter(profile)` e `createLiveAdapter(profile)`. Se un profilo richiesto non è registrato, il factory solleva un errore esplicito, garantendo la sicurezza del sistema durante l'estensione con nuovi dispositivi.
+- *Creazione dinamica*: espone i metodi `createHistoricAdapter(profile)` e `createLiveAdapter(profile)`. Se un profilo richiesto non è registrato, il factory solleva un errore esplicito, garantendo la sicurezza del sistema durante l'estensione con nuovi dispositivi.
 
-Questa architettura centralizzata permette alla Dashboard di gestire qualsiasi tipo di sensore in modo trasparente, garantendo che la logica di decodifica specifica di ogni dispositivo sia isolata e facilmente estensibile.
+Questa architettura centralizzata permette ai servizi relativi ai chart di gestire qualsiasi tipo di sensore in modo trasparente, garantendo che la logica di decodifica specifica di ogni dispositivo sia isolata e facilmente estensibile.
 
 #figure(
-  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorFactory.pdf", width: 100%),
-  caption: [Adapters - Abstract Adapters e Api Adapters],
+  image("../../assets/c4/frontend/adapters/frontend-adaptersSensorFactory.pdf", width: 60%),
+  caption: [Adapters - SensorAdapterFactory],
 )
 \
 
+===== Interceptors
+Gli interceptor HTTP sono componenti che intercettano le richieste e le risposte HTTP, permettendo di modificare o arricchire i dati prima che vengano inviati al backend o restituiti al frontend.
 
-==== Services
-In questa sezione vengono descritti in dettaglio tutti i _services_ sviluppati per il frontend, con particolare attenzione alla loro responsabilità e al loro ruolo all'interno dell'architettura dell'applicazione.\
-Per ogni servizio viene fornita una descrizione dettagliata dei suoi metodi, attributi e funzionalità. Verranno descritti prima i servizi che non presentano dipendenze verso altri servizi, per poi descrivere quelli che invece dipendono da altri.
+====== AuthInterceptor
+L'`AuthInterceptor` è un interceptor funzionale che intercetta tutte le richieste HTTP in uscita per aggiungere automaticamente il token di autenticazione nell'header `Authorization`.
 
-===== TokenStorageService <angular-token-storage-service>
+Garantisce che ogni richiesta verso il backend sia autenticata senza che i singoli servizi debbano gestire manualmente  l'inserimento del token.
+
+L'interceptor inietta tramite _dependency injection_:
+- `TokenStorageService`: usato per recuperare il token JWT dell'utente autenticato.
+- `UserSessionService`: usato per resettare la sessione utente se il token inviato è scaduto.
+- `Router`: usato per reindirizzare l'utente alla pagina di login se il token è scaduto.
+
+====== ErrorInterceptor
+L'*`ErrorInterceptor`* si occupa di intercettare le risposte HTTP in caso di errori, e di gestire in modo centralizzato la visualizzazione degli errori all'utente, normalizzando gli errori backend nel formato frontend.
+
 #figure(
-  image("../../assets/c4/frontend/services/TokenStorageService.pdf", width: 40%),
-  caption: [Code diagram del TokenStorageService],
+  image("../../assets/c4/frontend/interceptors/frontend-interceptors.pdf", width: 100%),
+  caption: [Code diagram dell'AuthInterceptor e dell'ErrorInterceptor],
 )
+
+===== Services
+====== AuthApiClientService <angular-auth-api-client-service>
+L'`AuthApiClientService` è un servizio dedicato alla comunicazione con le API di autenticazione del backend. Si occupa di inviare le richieste _HTTP_ per effettuare il login, il logout e altre operazioni correlate all'autenticazione, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `AuthApiClientAdapter`.\
+
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `login(req: LoginRequest): Observable<AuthResponse>`: invia la richiesta di login al backend.
+- `logout(): Observable<void>`: invia la richiesta di logout al backend.
+- `verifyForgotPasswordToken(token: string, tenantId?: string): Observable<void>`: verifica la validità del token per il reset della password.
+- `forgotPasswordRequest(req: ForgotPasswordRequest): Observable<void>`: invia la richiesta di reset della password al backend.
+- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: invia la conferma del reset della password al backend.
+- `confirmPasswordChange(req: PasswordChange): Observable<void>`: invia la conferma del cambio della password al backend.
+- `verifyAccountToken(token: string, tenantId?: string): Observable<void>`: verifica la validità del token per la creazione dell'account.
+- `confirmAccountCreation(req: ConfirmAccountResponse): Observable<AuthResponse>`: invia la conferma della creazione dell'account al backend.
+
+#figure(
+  image("../../assets/c4/frontend/services/AuthApiClientService.pdf", width: 60%),
+  caption: [Code diagram del AuthApiClientService]
+)
+
+====== TenantApiClientService <angular-tenant-api-client-service>
+Il `TenantApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei tenant del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei tenant, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `TenantApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `getTenant(id: string): Observable<Tenant>`: invia la richiesta di recupero di un tenant specifico.
+- `getTenants(page: number, limit: number): 
+Observable<PaginatedTenantResponse<Tenant>>`: invia la richiesta di recupero della lista paginata di tenant dal backend, impostando _page_ e _limit_ come _query parameters_.
+- `getAllTenants(): Observable<Tenant[]>`: invia la richiesta di recupero della lista completa di tenant dal backend.
+- `createTenant(config: TenantConfig): Observable<Tenant>`: invia la richiesta di creazione di un nuovo tenant.
+- `deleteTenant(id: string): Observable<void>`: invia la richiesta di eliminazione di un tenant specifico.
+
+#figure(
+  image("../../assets/c4/frontend/services/TenantApiClientService.pdf", width: 70%),
+  caption: [Code diagram del TenantApiClientService]
+)
+
+====== UserApiClientService <angular-user-api-client-service>
+Lo `UserApiClientService` è un servizio dedicato alla comunicazione con le API di gestione degli utenti del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero degli utenti, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `UserApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `getUser(id: string, role: UserRole, tenantId?: string): Observable<User>`: invia la richiesta di recupero di un utente specifico costruendo l'URL tramite `getBaseUrl()`.
+- `getUsers(role: UserRole, page: number, limit: number, tenantId?: string): Observable<PaginatedUserResponse<User>>`: invia la richiesta di recupero di una lista paginata di utenti costruendo l'URL tramite `getBaseUrl()`.
+- `createUser(config: UserConfig, role: UserRole, tenantId?: string): Observable<User>`: invia la richiesta di creazione di un nuovo utente costruendo l'URL tramite `getBaseUrl()`.
+- `deleteUser(id: string, role: UserRole, tenantId?: string): Observable<void>`: invia la richiesta di eliminazione di un utente specifico costruendo l'URL tramite `getBaseUrl()`.
+
+Il servizio presenta i seguenti metodi privati:
+- `getBaseUrl(role: UserRole, isPlural: boolean, tenantId?: string): string`: metodo ausiliario che costruisce l'URL base delle richieste in base a ruolo, tenant ed endpoint singolare/plurale (per recupero singolo/paginato).
+
+#figure(
+  image("../../assets/c4/frontend/services/UserApiClientService.pdf", width: 70%),
+  caption: [Code diagram del UserApiClientService]
+)
+
+====== GatewayApiClientService <angular-gateway-api-client-service>
+Il `GatewayApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei gateway del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei gateway, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `GatewayApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `getGatewayListByTenant(tenantId: string, page: number, limit: number): Observable<PaginatedGatewayResponse<Gateway>>`: recupera la lista paginata dei gateway associati a uno specifico tenant.
+- `getGatewayList(page: number, limit: number): Observable<PaginatedGatewayResponse<Gateway>>`: recupera la lista paginata di tutti i gateway.
+- `addNewGateway(config: GatewayConfig): Observable<Gateway>`: invia la richiesta di creazione di un nuovo gateway.
+- `deleteGateway(gatewayId: string): Observable<void>`: invia la richiesta di eliminazione di un gateway specifico.
+
+#figure(
+  image("../../assets/c4/frontend/services/GatewayApiClientService.pdf", width: 70%),
+  caption: [Code diagram del GatewayApiClientService]
+)
+
+====== GatewayCommandApiClientService <angular-gateway-command-api-client-service>
+Il `GatewayCommandApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei comandi dei gateway del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di invio di comandi ai gateway, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `GatewayCommandApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `commissionGateway(gatewayId: string, tenantId: string, token: string): Observable<Gateway>`: invia la richiesta di commissionamento di un gateway.
+- `decommissionGateway(gatewayId: string): Observable<void>`: invia la richiesta di decommissionamento di un gateway.
+- `resetGateway(gatewayId: string): Observable<void>`: invia la richiesta di reset di un gateway.
+- `rebootGateway(gatewayId: string): Observable<void>`: invia la richiesta di riavvio di un gateway.
+- `interruptGateway(gatewayId: string): Observable<void>`: invia la richiesta di interruzione di un gateway.
+- `resumeGateway(gatewayId: string): Observable<void>`: invia la richiesta di ripresa di un gateway.
+
+#figure(
+  image("../../assets/c4/frontend/services/GatewayCommandApiClientService.pdf", width: 70%),
+  caption: [Code diagram del GatewayCommandApiClientService]
+)
+
+====== SensorApiClientService <angular-sensor-api-client-service>
+Il `SensorApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei sensori del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei sensori, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `SensorApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `getSensorListByGateway(gatewayId: string, page: number, limit: number): Observable<PaginatedSensorResponse<Sensor>>`: recupera la lista paginata dei sensori associati a uno specifico gateway.
+- `getSensorListByTenant(tenantId: string, page: number, limit: number): Observable<PaginatedSensorResponse<Sensor>>`: recupera la lista paginata dei sensori associati a un tenant specifico.
+- `addNewSensor(config: SensorConfig): Observable<Sensor>`: invia la richiesta di creazione di un nuovo sensore.
+- `deleteSensor(id: string): Observable<void>`: invia la richiesta di eliminazione di un sensore specifico.
+
+#figure(
+  image("../../assets/c4/frontend/services/SensorApiClientService.pdf", width: 70%),
+  caption: [Code diagram del SensorApiClientService]
+)
+
+====== SensorCommandApiClientService <angular-sensor-command-api-client-service>
+Il `SensorCommandApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei comandi dei sensori del backend. Si occupa di inviare le richieste _HTTP_ al backend per effettuare operazioni di invio di comandi ai sensori, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `SensorCommandApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `interruptSensor(sensorId: string): Observable<void>`: invia la richiesta di interruzione di un sensore.
+- `resumeSensor(sensorId: string): Observable<void>`: invia la richiesta di ripresa di un sensore.
+
+#figure(
+  image("../../assets/c4/frontend/services/SensorCommandApiClientService.pdf", width: 70%),
+  caption: [Code diagram del SensorCommandApiClientService]
+)
+
+====== SensorLiveReadingsApiClientService <angular-sensor-live-readings-api-service>
+Il `SensorLiveReadingsApiClientService` è un servizio dedicato alla comunicazione tramite _WebSocket_ con il backend. Si occupa aprire la connessione al backend per recuperare le letture in tempo reale dei sensori. Implementa il contratto definito da `SensorLiveReadingsApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `tokenService`: per accedere al token di autenticazione necessario per autenticare la richiesta e stabilire la connessione con il backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+- `socket$`: è un _WebSocketSubject_ utilizzato per gestire la comunicazione in tempo reale con il backend.
+- `disconnect$`: è un _Subject_ utilizzato per gestire la disconnessione dal backend.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `connect(req: ChartRequest): Observable<SensorReading>`: stabilisce la connessione con il backend, autenticando la richiesta tramite il token JWT, costruisce il _WebSocket_ tramite `createWebSocket` e ritorna le letture ricevute dal backend.
+- `disconnect(): void`: chiude la connessione con il backend emettendo un evento sul `disconnect$` che viene ascoltato dal `socket$` per chiudere la connessione.
+
+Il servizio presenta i seguenti metodi privati:
+- `createWebSocket(url: string): WebSocketSubject<SensorReading>`: metodo ausiliario che costruisce il _WebSocketSubject_ tramite il metodo `webSocket`.
+
+#figure(
+  image("../../assets/c4/frontend/services/SensorHistoricApiService.pdf", width: 70%),
+  caption: [Code diagram del SensorHistoricApiClientService]
+)
+
+====== SensorHistoricApiClientService <angular-sensor-historic-api-service>
+Il `SensorHistoricApiClientService` è un servizio dedicato alla comunicazione con le API di gestione delle letture storiche dei sensori del backend. Si occupa di inviare le richieste _HTTP_ per recuperare le letture storiche dei sensori, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `SensorHistoricApiClientAdapter`.\
+Il servizio inietta tramite _dependency injection_:
+- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
+
+Il servizio presenta i seguenti metodi pubblici:
+- `getHistoricData(req: ChartRequest): Observable<HistoricReadings>`: invia la richiesta di recupero delle letture storiche dei sensori, costruendo l'URL con i parametri della richiesta, e restituisce `Observable<HistoricReadings>` con i dati delle letture.
+
+#figure(
+  image("../../assets/c4/frontend/services/SensorLiveReadingsApiService.pdf", width: 60%),
+  caption: [Code diagram del SensorLiveReadingsApiClientService]
+)
+
+
+==== Domain layer
+Il layer di *Domain* è il cuore dell'applicazione, contiene i modelli di dominio che rappresentano le entità del sistema in modo indipendente dal formato di trasporto, e i servizi applicativi che orchestrano le operazioni e mantengono lo stato condiviso. Il livello definisce inoltre, tramite classi _astratte_, i contratti che l'*Infrastructure* deve rispettare per la trasformazione dei dati, disaccoppiando così la logica applicativa da qualsiasi dettaglio implementativo legato al backend.
+
+===== Modelli dati
+I modelli dati del Domain layer rappresentano le entità del sistema in modo indipendente dal formato di trasporto, e sono utilizzati dai servizi applicativi per mantenere lo stato dell'applicazione e per esporre i dati ai componenti della Presentation layer.
+
+====== Permission <angular-permission-model>
+Stabilisce i permessi granulari disponibili nel sistema. Ogni voce dell'enum è associata a una stringa descrittiva (`label`) utilizzata nell'interfaccia utente per mostrare all'utente le capacità associate al proprio ruolo. Include permessi per l'accesso alla dashboard, la gestione dei gateway, dei sensori, degli utenti (Super Admin, Tenant Admin, Tenant User), dei tenant e delle API Key (quest'ultimo non implementato).
+
+====== PaginatedResponse <angular-paginatedresponse-model>
+Rappresenta l'interfaccia base per tutte le risposte API che supportano la paginazione. Contiene i campi `count` (numero di elementi nella pagina corrente) e `total` (numero totale di elementi presenti sul database), permettendo ai componenti tabella di gestire correttamente i controlli di navigazione.
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliComuni.pdf", width: 60%),
+  caption: [Modelli dati - Modelli comuni],
+)
+\
+
+====== LoginRequest <angular-loginrequest-model>
+Rappresenta il pacchetto di dati inviato dall'utente per richiedere l'accesso al sistema.
+  - `email: string`: l'indirizzo email dell'utente che effettua il tentativo di accesso.
+  - `password: string`: la password associata all'account.
+  - `tenantId?: string`: proprietà opzionale utilizzata per identificare il contesto organizzativo (_tenant_) di appartenenza dell'utente.
+
+====== AuthResponse <angular-authresponse-model>
+Definisce la struttura della risposta restituita dal backend a seguito di un'autenticazione riuscita.
+  - `jwt: string`: il token JWT necessario per autenticare e autorizzare le successive chiamate API del frontend. Contiene codificate all'interno del payload le seguenti informazioni:
+    - `uid: string`: rappresenta l'identificativo univoco dell'utente;
+    - `tid: string`: rappresenta l'identificativo del tenant dell'utente;
+    - `rol: string`: rappresenta il ruolo dell'utente;
+
+====== UserSession <angular-usersession-model>
+Rappresenta la struttura dati utilizzata internamente al frontend per mantenere lo stato e le informazioni essenziali dell'utente attualmente autenticato.
+  - `userId: string`: l'identificativo univoco dell'utente in sessione.
+  - `tenantId?: string`: l'identificativo del tenant a cui l'utente appartiene, se applicabile.
+  - `role: UserRole`: il ruolo operativo dell'utente (@angular-userrole-model), che determina i permessi all'interno dell'applicazione.
+
+====== ForgotPasswordRequest <angular-forgotpasswordrequest-model>
+Modello utilizzato per avviare la procedura di recupero delle credenziali di accesso.
+  - `email: string`: l'indirizzo email a cui inviare le istruzioni per il ripristino della password.
+  - `tenantId?: string`: identificativo opzionale del tenant per circoscrivere la ricerca dell'utente.
+
+====== ForgotPasswordResponse <angular-forgotpasswordresponse-model>
+Modello per la finalizzazione del reset della password tramite token di sicurezza.
+  - `token: string`: il codice di verifica univoco ricevuto dall'utente (solitamente via email).
+  - `newPassword: string`: la nuova password che l'utente intende impostare per il proprio account.
+  - `tenantId?: string`: riferimento opzionale al tenant per la convalida dell'operazione.
+
+====== ConfirmAccountResponse <angular-confirmaccountresponse-model>
+Interfaccia dedicata alla conferma dell'attivazione di un nuovo account di sistema.
+  - `token: string`: il token di attivazione necessario per validare l'identità dell'utente.
+  - `newPassword: string`: la password definita dall'utente in fase di primo accesso o attivazione.
+  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+
+====== PasswordChange <angular-passwordchange-model>
+Rappresenta il modello per l'aggiornamento della password da parte di un utente già autenticato.
+  - `oldPassword: string`: la password corrente dell'utente, richiesta per motivi di sicurezza prima di procedere alla modifica.
+  - `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioAuth.pdf", width: 100%),
+  caption: [Modelli dati - Autenticazione e gestione sessione],
+)
+\
+
+====== NavItem <angular-navitem-model>
+Definisce la struttura di una singola voce all'interno del menu di navigazione.
+  - `label: string`: l'etichetta testuale visualizzata nel menu (es. "Gestione Gateway", "Dashboard").
+  - `route: string`: il percorso di navigazione associato alla voce di menu.
+  - `icon: string`: il nome dell'icona (usato da *`Angular Material`*) da affiancare all'etichetta.
+  - `permission?: Permission | Permission[]`: proprietà opzionale che specifica i permessi necessari per visualizzare la voce. Può essere un singolo valore dell'enum `Permission` (@angular-permission-model) o un array di permessi.
+  - `separator?: boolean`: flag opzionale che, se impostato a true, inserisce un separatore visivo prima della voce di menu.
+  - `sectionTitle?: string`: titolo opzionale utilizzato per raggruppare le voci sotto una categoria.
+  - `tenantSectionTitle?: string`: titolo di sezione specifico utilizzato nei contesti di impersonificazione o visualizzazione legata al tenant.
+
+====== NavConfig <angular-navitems-constant>
+Rappresenta la configurazione statica globale del menu di navigazione dell'applicazione.
+  - È un array di oggetti _NavItem_ che mappa tutte le funzionalità principali del sistema, incluse le aree di gestione (Gateway, Tenant, User) e la Dashboard operativa.
+  - Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioNavItems.pdf", width: 70%),
+  caption: [Modelli dati - Barra di navigazione],
+)
+\
+
+====== ChartType <angular-charttype-model>
+Definisce le modalità di visualizzazione dei dati supportate dal sistema.
+  - `HISTORIC`: indica la modalità di visualizzazione dei dati storici memorizzati nel database.
+  - `REALTIME`: indica la modalità di visualizzazione in tempo reale tramite stream continuo.
+
+====== TimeInterval <angular-timeinterval-model>
+Rappresenta l'intervallo temporale utilizzato per filtrare le letture dei sensori.
+  - `from: Date`: data e ora di inizio dell'intervallo richiesto.
+  - `to: Date`: data e ora di fine dell'intervallo richiesto.
+
+====== ChartRequest <angular-chartrequest-model>
+Modello utilizzato per inoltrare una richiesta completa di generazione o aggiornamento di un grafico.
+  - `sensor: Sensor`: l'oggetto contenente le informazioni del sensor (@angular-sensor-model) di cui si vogliono visualizzare i dati.
+  - `chartType: ChartType`: la modalità di grafico richiesta (storica o real-time @angular-charttype-model).
+  - `tenantId?: string`: identificativo opzionale del tenant per il controllo dell'accesso ai dati.
+  - `dataPointsCounter?: number`: proprietà opzionale per limitare il numero di campioni da recuperare.
+  - `timeInterval?: TimeInterval`: l'intervallo temporale specifico per le query storiche.
+
+====== SensorProfileDisplay <angular-sensorprofiledisplay-model>
+Definisce le proprietà estetiche e le unità di misura per la rappresentazione dei dati di un profilo sensore.
+  - `label: string`: l'etichetta testuale visualizzata nel grafico (es. "Heart Rate").
+  - `unit: string`: l'unità di misura associata al valore del sensore.
+
+In questo file sono definiti anche:
+  - `SENSOR_PROFILE_MAP`: Una costante di tipo `Record` che mappa ogni profilo sensore (`SensorProfiles` @angular-sensorprofiles-model) alla propria configurazione di etichetta e unità di misura.
+  - `getSensorProfileDisplay(profile): SensorProfileDisplay`: Una funzione che restituisce l'oggetto `SensorProfileDisplay` corrispondente al profilo richiesto; include una logica di protezione che restituisce il nome del profilo e una stringa vuota qualora il profilo non sia presente nella mappa.
+
+====== SensorVisiblePoints e SensorProfileDisplay <angular-sensorcostants-model>
+Record di configurazione che stabiliscono i limiti di campionamento per l'interfaccia utente al fine di ottimizzare le performance di rendering.
+  - Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioChart.pdf", width: 100%),
+  caption: [Modelli dati - Grafici e visualizzazione dati],
+)
+\
+
+====== Gateway <angular-gateway-model>
+Rappresenta il modello principale dell'entità gateway utilizzato all'interno dell'applicazione.
+  - `id: string`: identificativo univoco del gateway.
+  - `tenantId?: string`: identificativo opzionale del tenant a cui è assegnato il gateway.
+  - `name: string`: nome descrittivo assegnato al gateway.
+  - `status: GatewayStatus`: stato operativo del gateway.
+  - `interval: number`: frequenza di comunicazione espressa in secondi.
+  - `publicIdentifier?: string`: identificativo pubblico opzionale del dispositivo.
+
+====== GatewayStatus <angular-gatewaystatus-model>
+Definisce lo stato operativo dei gateaway.
+  - Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) e `DECOMMISSIONED` (decommissionato).
+
+====== GatewayConfig <angular-gatewayconfig-model>
+Modello utilizzato per le operazioni di configurazione o aggiornamento dei parametri di un gateway.
+  - `name: string`: nuovo nome da assegnare al dispositivo.
+  - `interval: number`: nuovo intervallo di comunicazione da impostare.
+
+====== PaginatedGatewayResponse <angular-paginatedgatewayresponse-model>
+Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di gateway.
+  - `gateways: T[]`: array di elementi di tipo generico `T` contenente i record della pagina corrente.
+\
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioGateway.pdf", width: 65%),
+  caption: [Modelli dati - Gateway],
+)
+\
+
+====== Sensor <angular-sensor-model>
+Rappresenta il modello principale dell'entità sensore utilizzato per la logica di business e la visualizzazione nel frontend.
+  - `id: string`: identificativo univoco del sensore.
+  - `gatewayId: string`: identificativo del gateway a cui il sensore è associato.
+  - `name: string`: nome descrittivo assegnato al dispositivo.
+  - `profile: SensorProfiles`: il profilo GATT del sensore.
+  - `status: SensorStatus`: lo stato operativo corrente.
+  - `dataInterval: number`: la frequenza di campionamento dei dati espressa in secondi.
+
+====== SensorStatus <angular-sensorstatus-model>
+Definisce lo stato operativo dei sensori.
+  - Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo).
+
+====== SensorProfiles <angular-sensorprofiles-model>
+Stabilisce i profili GATT supportati dal sistema, mappando ogni profilo a una categoria specifica.
+  - `HEART_RATE_SERVICE`: "heart rate".
+  - `PULSE_OXIMETER_SERVICE`: "pulse oximeter".
+  - `CUSTOM_ECG_SERVICE`: "custom ecg".
+  - `HEALTH_THERMOMETER_SERVICE`: "health thermometer".
+  - `ENVIRONMENTAL_SENSING_SERVICE`: "environmental sensing".
+
+====== SensorConfig <angular-sensorconfig-model>
+Modello utilizzato per la creazione o la riconfigurazione dei parametri di un sensore.
+  - `name: string`: nome da assegnare o aggiornare.
+  - `dataInterval: number`: intervallo dati da impostare.
+  - `gatewayId: string`: riferimento al gateway ospite.
+  - `profile: string`: profilo GATT selezionato.
+
+====== PaginatedSensorResponse <angular-paginatedsensorresponse-model>
+Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di sensori.
+  - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensor.pdf", width: 100%),
+  caption: [Modelli dati - Sensor],
+)
+\
+
+====== FieldDescriptor <angular-fielddescriptor-model>
+Rappresenta un metadato che descrive come interpretare e visualizzare un singolo valore all'interno di una lettura del sensore.
+  - `key: string`: la chiave tecnica del dato (es. "bpm", "temperature") utilizzata per estrarre il valore dall'oggetto della lettura.
+  - `label: string`: l'etichetta testuale descrittiva per la UI (es. "Battito cardiaco", "Umidità").
+  - `unit: string`: l'unità di misura associata al dato (es. "bpm", "°C", "%").
+
+====== SensorReading <angular-sensorreading-model>
+Definisce il modello atomico di una singola lettura sensoriale processata dal frontend.
+  - `timestamp: string`: l'istante temporale a cui si riferisce la misurazione.
+  - `value: Record<string, number>`: un oggetto contenente uno o più valori numerici associati a chiavi specifiche (es. `{ "bpm": 72 }` o `{ "temperature": 22.5, "humidity": 60 }`).
+
+====== HistoricReadings <angular-historicreadings-model>
+Modello strutturato utilizzato dal frontend per aggregare le letture storiche da visualizzare nei grafici.
+  - `dataCount: number`: il numero totale di letture contenute nell'oggetto.
+  - `readings: SensorReading[]`: l'elenco delle letture trasformate e pronte per il rendering.
+  - `fields: FieldDescriptor[]`: l'elenco dei descrittori di campo che indicano quali dati sono presenti e come visualizzarli.
+  - `samplesPerPacket?: number`: proprietà opzionale utilizzata per il segnale ECG per indicare la densità di campionamento.
+
+====== SensorFields <angular-constantsfields-constant>
+Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualizzazione per ogni tipologia di sensore.
+   - Ad esempio, `HEALTH_THERMOMETER_FIELDS` configura il campo "Temperatura" (°C) mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensorData.pdf", width: 100%),
+  caption: [Modelli dati - Misurazioni sensori],
+)
+\
+
+====== Tenant <angular-tenant-model>
+Rappresenta il modello principale dell'entità tenant utilizzato all'interno della logica applicativa del frontend.
+  - `id: string`: identificativo univoco del tenant.
+  - `name: string`: nome descrittivo assegnato al tenant.
+  - `canImpersonate: boolean`: flag che indica se il tenant ha l'autorizzazione per eseguire operazioni di impersonificazione all'interno del sistema.
+
+====== TenantConfig <angular-tenantconfig-model>
+Rappresenta il modello utilizzato per le operazioni di creazione o aggiornamento dei dati di un tenant.
+  - `name: string`: il nome da assegnare o aggiornare per l'organizzazione.
+  - `canImpersonate: boolean`: la configurazione del permesso di impersonificazione.
+
+====== PaginatedTenantResponse <angular-paginatedtenantresponse-model>
+Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di tenant.
+  - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioTenant.pdf", width: 100%),
+  caption: [Modelli dati - Tenant],
+)
+\
+
+====== UserRole <angular-userrole-model>
+Stabilisce i ruoli gerarchici disponibili nel sistema, utilizzati per determinare i permessi di accesso alle diverse funzionalità.
+  - `TENANT_USER`: rappresenta l'utente finale associato a un tenant specifico.
+  - `TENANT_ADMIN`: rappresenta l'amministratore di un tenant, con permessi di gestione locale.
+  - `SUPER_ADMIN`: rappresenta l'amministratore globale del sistema con permessi illimitati.
+
+====== User <angular-user-model>
+Rappresenta il modello principale dell'entità utente utilizzato nella logica di business del frontend.
+  - `id: string`: identificativo univoco dell'utente (normalizzato come stringa nel frontend).
+  - `username: string`: nome utente utilizzato per l'identificazione e la visualizzazione.
+  - `email: string`: indirizzo email associato all'account.
+  - `role: UserRole`: il ruolo assegnato all'utente.
+  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+
+====== UserConfig <angular-userconfig-model>
+Modello semplificato utilizzato per le operazioni di creazione o configurazione iniziale del profilo utente.
+  - `email: string`: indirizzo email da assegnare all'account.
+  - `username: string`: nome utente desiderato per la configurazione.
+
+====== PaginatedUserResponse <angular-paginateduserresponse-model>
+Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di utenti.
+  - `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+
+#figure(
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioUser.pdf", width: 100%),
+  caption: [Modelli dati - User],
+)
+\
+
+===== Services
+====== TokenStorageService <angular-token-storage-service>
 Il `TokenStorageService` è un servizio dedicato alla gestione del token JWT. Si occupa di salvare, recuperare e rimuovere il token JWT utilizzando il `sessionStorage` del browser, garantendone così la persistenza durante la sessione.\
 
 Il servizio presenta i seguenti attributi:
@@ -1799,11 +1977,12 @@ Il servizio presenta i seguenti metodi pubblici:
 - `clearToken(): void`: rimuove il token JWT dal `sessionStorage` e aggiorna lo stato di validità del token.
 - `isTokenValid(): boolean`: verifica se il token JWT è presente e non è scaduto.
 
-===== UserSessionService <angular-user-session-service>
 #figure(
-  image("../../assets/c4/frontend/services/UserSessionService.pdf", width: 50%),
-  caption: [Code diagram del UserSessionService],
+  image("../../assets/c4/frontend/services/TokenStorageService.pdf", width: 40%),
+  caption: [Code diagram del TokenStorageService],
 )
+
+====== UserSessionService <angular-user-session-service>
 Lo `UserSessionService` è un servizio dedicato alla gestione della sessione dell'utente. Si occupa di mantenere lo stato della sessione, inclusi i dati dell'utente autenticato, e di fornire un'interfaccia semplice per accedere a queste informazioni.\
 
 Il servizio presenta i seguenti attributi:
@@ -1814,14 +1993,15 @@ Il servizio presenta i seguenti metodi pubblici:
 - `clearSession(): void`: termina la sessione dell'utente, rimuovendo i dati dalla variabile `_currentUser` e dal `sessionStorage`.
 
 Il servizio presenta i seguenti metodi privati:
-- `restoreSession(): void`: ripristina la sessione dell'utente, se presente, pescando i dati dal `sessionStorage`, altrimenti ripristina la sessione decodificando il token JWT presente nel `TokenStorageService`.
+- `restoreSession(): void`: ripristina la sessione dell'utente, se presente, pescando i dati dal `sessionStorage`, altrimenti ripristina la sessione decodificando il token JWT.
 - `decodeToken(token: string): UserSession | null`: decodifica il token JWT, estraendo l'ID dell'utente, il suo ruolo e l'eventuale _tenant_ di appartenenza e li restituisce come `UserSession`, oppure `null` se il token non è valido.
 
-===== PermissionService <angular-permission-service>
 #figure(
-  image("../../assets/c4/frontend/services/PermissionService.pdf", width: 75%),
-  caption: [Code diagram del PermissionService]
+  image("../../assets/c4/frontend/services/UserSessionService.pdf", width: 50%),
+  caption: [Code diagram del UserSessionService],
 )
+
+====== PermissionService <angular-permission-service>
 Il `PermissionService` è un servizio dedicato alla verifica dei permessi dell'utente. Si occupa di verificare se l'utente autenticato ha i permessi necessari per accedere a determinate funzionalità dell'applicazione.\
 
 Il servizio inietta tramite _dependency injection_:
@@ -1835,49 +2015,30 @@ Il servizio presenta i seguenti metodi pubblici:
 - `canAny(permissions: Permission[]): boolean`: verifica se l'utente autenticato ha almeno uno dei permessi specificati, restituendo `true` se almeno un permesso è presente, altrimenti restituisce `false`.
 - `canAll(permissions: Permission[]): boolean`: verifica se l'utente autenticato ha tutti i permessi specificati, restituendo `true` se tutti i permessi sono presenti, altrimenti restituisce `false`.
 
-===== AuthApiClientService <angular-auth-api-client-service>
 #figure(
-  image("../../assets/c4/frontend/services/AuthApiClientService.pdf", width: 60%),
-  caption: [Code diagram del AuthApiClientService]
+  image("../../assets/c4/frontend/services/PermissionService.pdf", width: 75%),
+  caption: [Code diagram del PermissionService]
 )
-L'`AuthApiClientService` è un servizio dedicato alla comunicazione con le API di autenticazione del backend. Si occupa di inviare le richieste _HTTP_ per effettuare il login, il logout e altre operazioni correlate all'autenticazione, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
 
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+====== AuthApiClientAdapter <angular-auth-api-client-adapter>
+L'`AuthApiClientAdapter` è la classe astratta che definisce il contratto per le operazioni di autenticazione.
+Per il dettaglio dei metodi esposti, si rimanda alla documentazione di `AuthApiClientService`.
 
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-
-Il servizio presenta i seguenti metodi pubblici:
-- `login(req: LoginRequest): Observable<AuthResponse>`: invia la richiesta di login al backend, mappando il contenuto di `LoginRequest` nel formato atteso dal backend.
-- `logout(): Observable<void>`: invia la richiesta di logout al backend.
-- `verifyForgotPasswordToken(token: string, tenantId?: string): Observable<void>`: verifica la validità del token per il reset della password.
-- `forgotPasswordRequest(req: ForgotPasswordRequest): Observable<void>`: invia la richiesta di reset della password al backend, mappando il contenuto di `ForgotPasswordRequest` nel formato atteso dal backend.
-- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: invia la conferma del reset della password al backend, mappando il contenuto di `ForgotPasswordResponse` nel formato atteso dal backend.
-- `confirmPasswordChange(req: PasswordChange): Observable<void>`: invia la conferma del cambio della password al backend, mappando il contenuto di `PasswordChange` nel formato atteso dal backend.
-- `verifyAccountToken(token: string, tenantId?: string): Observable<void>`: verifica la validità del token per la creazione dell'account.
-- `confirmAccountCreation(req: ConfirmAccountResponse): Observable<AuthResponse>`: invia la conferma della creazione dell'account al backend, mappando il contenuto di `ConfirmAccountResponse` nel formato atteso dal backend.
-
-===== AuthSessionService <angular-auth-session-service>
-#figure(
-  image("../../assets/c4/frontend/services/AuthSessionService.pdf", width: 70%),
-  caption: [Code diagram del AuthSessionService]
-)
+====== AuthSessionService <angular-auth-session-service>
 L'`AuthSessionService` è un servizio dedicato alla gestione della sessione di autenticazione dell'utente. Si occupa di coordinare le operazioni di login e logout, gestire lo stato della sessione dell'utente e fornire un'interfaccia semplice per accedere a queste funzionalità.\
 
 Il servizio inietta tramite _dependency injection_:
-- `AuthApiClientService`: per comunicare con le API di autenticazione del backend.
+- `AuthApiClientAdapter`: per comunicare con le API di autenticazione del backend.
 - `TokenStorageService`: per gestire il ciclo di vita del token di autenticazione.
 - `UserSessionService`: per gestire lo stato della sessione dell'utente autenticato.
 - `Router`: servizio di Angular per gestire la navigazione tra le pagine dell'applicazione.
-
 Il servizio presenta i seguenti attributi:
 - `_loading` e `loading`: `_loading` è il _signal_ privato che tiene traccia dello stato di caricamento delle operazioni di autenticazione, mentre `loading` è la sua controparte _readonly_ pubblica.
 - `_error` e `error`: `_error` è il _signal_ privato che tiene traccia dello stato di errore delle operazioni di autenticazione, mentre `error` è la sua controparte _readonly_ pubblica.
 - `isAuthenticated`: rappresenta lo stato di autenticazione dell'utente, restituisce `true` se è presente un token valido e una sessione utente attiva, altrimenti restituisce `false`.
 
 Il servizio presenta i seguenti metodi pubblici:
-- `login(req: LoginRequest): Observable<AuthResponse>`: gestisce l'operazione di login, chiamando il metodo `login` dell'`AuthApiClientService` e gestendo il risultato dell'operazione, inizializzando la sessione utente tramite lo `UserSessionService` e salvando il token JWT tramite il `TokenStorageService` in caso di successo, impostando lo stato di errore in caso di fallimento.
+- `login(req: LoginRequest): Observable<AuthResponse>`: gestisce l'operazione di login, chiamando il metodo `login` dell'`AuthApiClientAdapter` e gestendo il risultato dell'operazione, inizializzando la sessione utente tramite lo `UserSessionService` e salvando il token JWT tramite il `TokenStorageService` in caso di successo, impostando lo stato di errore in caso di fallimento.
 - `logout(): void`: cancella il token JWT tramite il `TokenStorageService`, termina la sessione utente tramite il `UserSessionService` e reindirizza l'utente alla pagina di login.
 - `clearError(): void`: cancella lo stato di errore delle operazioni di autenticazione.
 
@@ -1885,15 +2046,10 @@ Il servizio presenta i seguenti metodi privati:
 - `setLoadingState(): void`: imposta lo stato di caricamento a `true` e ripulisce eventuali errori precedenti, utilizzato in tutti i metodi del service.
 - `clearAndRedirect(): void`: metodo ausiliario che pulisce la sessione utente e il token di autenticazione e reindirizza l'utente alla pagina di login.
 
-===== AuthActionsService <angular-auth-actions-service>
-#figure(
-  image("../../assets/c4/frontend/services/AuthActionsService.pdf", width: 70%),
-  caption: [Code diagram del AuthActionsService]
-)
-L'`AuthActionsService` è un servizio dedicato alla gestione delle azioni di autenticazione dell'utente. Si occupa di fornire un'interfaccia semplice per eseguire operazioni come il cambio/reset della password e la conferma della creazione dell'account, coordinando le chiamate ai servizi necessari per completare queste operazioni.\
-
+====== AuthActionsService <angular-auth-actions-service>
+L'`AuthActionsService` è un servizio dedicato alla gestione delle azioni di autenticazione dell'utente. Si occupa di fornire un'interfaccia semplice per eseguire operazioni come il cambio/reset della password e la conferma dell'account, coordinando le chiamate ai servizi necessari per completare tali operazioni.\
 Il servizio inietta tramite _dependency injection_:
-- `AuthApiClientService`: per comunicare con le API di autenticazione del backend.
+- `AuthApiClientAdapter`: per comunicare con le API di autenticazione del backend.
 - `TokenStorageService`: per gestire il ciclo di vita del token di autenticazione.
 - `UserSessionService`: per accedere ai dati della sessione dell'utente autenticato.
 
@@ -1903,46 +2059,28 @@ Il servizio presenta i seguenti attributi:
 - `_passwordChangeResult` e `passwordChangeResult`: `_passwordChangeResult` è il _signal_ privato che tiene traccia dell'esito dell'operazione di cambio password, mentre `passwordChangeResult` è la sua controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi pubblici:
-- `forgotPassword(req: ForgotPasswordRequest): Observable<void>`: gestisce la richiesta di reset della password, chiamando il metodo `forgotPasswordRequest` dell'`AuthApiClientService` e riportando il risultato dell'operazione.
-- `confirmPasswordChange(req: PasswordChange): Observable<void>`: gestisce la conferma del cambio password, chiamando il metodo `confirmPasswordChange` dell'`AuthApiClientService` e riportando il risultato dell'operazione, impostando `passwordChangeResult` come `true` in caso di successo, `false` in caso di errore.
-- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: gestisce la conferma del reset della password, chiamando il metodo `verifyForgotPasswordToken` e `confirmPasswordReset` dell'`AuthApiClientService` e riportando il risultato dell'operazione, impostando `passwordChangeResult` come `true` in caso di successo.
-- `confirmAccount(req: ConfirmAccountResponse): Observable<AuthResponse>`: gestisce la conferma della creazione dell'account, chiamando il metodo `verifyAccountToken` e `confirmAccountCreation` dell'`AuthApiClientService` e riportando il risultato dell'operazione, inizializzando la sessione dell'utente e salvando il JWT in caso di successo.
+- `forgotPassword(req: ForgotPasswordRequest): Observable<void>`: gestisce la richiesta di reset della password, chiamando il metodo `forgotPasswordRequest` dell'`AuthApiClientAdapter` e riportando il risultato dell'operazione.
+- `confirmPasswordChange(req: PasswordChange): Observable<void>`: gestisce la conferma del cambio password, chiamando il metodo `confirmPasswordChange` dell'`AuthApiClientAdapter` e riportando il risultato dell'operazione, impostando `passwordChangeResult` come `true` in caso di successo, `false` in caso di errore.
+- `confirmPasswordReset(req: ForgotPasswordResponse): Observable<void>`: gestisce la conferma del reset della password, chiamando il metodo `verifyForgotPasswordToken` e `confirmPasswordReset` dell'`AuthApiClientAdapter` e riportando il risultato dell'operazione, impostando `passwordChangeResult` come `true` in caso di successo.
+- `confirmAccount(req: ConfirmAccountResponse): Observable<AuthResponse>`: gestisce la conferma della creazione dell'account, chiamando il metodo `verifyAccountToken` e `confirmAccountCreation` dell'`AuthApiClientAdapter` e riportando il risultato dell'operazione, inizializzando la sessione dell'utente e salvando il JWT in caso di successo.
 - `clearMessages(): void`: cancella i messaggi di errore e di successo delle operazioni di autenticazione.
 
 Il servizio presenta i seguenti metodi privati:
 - `setLoadingState(): void`: imposta lo stato di caricamento a `true` e ripulisce eventuali errori precedenti, utilizzato in tutti i metodi del service.
 
-===== TenantApiClientService <angular-tenant-api-client-service>
 #figure(
-  image("../../assets/c4/frontend/services/TenantApiClientService.pdf", width: 70%),
-  caption: [Code diagram del TenantApiClientService]
+  image("../../assets/c4/frontend/services/AuthServices.pdf", width: 100%),
+  caption: [Code diagram di AuthSessionService e AuthActionsService],
 )
-Il `TenantApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei tenant del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei tenant, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
 
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+====== TenantApiClientAdapter <angular-tenant-api-client-adapter>
+Il `TenantApiClientAdapter` è la classe astratta che definisce il contratto per le operazioni di gestione dei tenant.
+Per il dettaglio dei metodi esposti, si rimanda alla documentazione di `TenantApiClientService`.
 
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-
-Il servizio presenta i seguenti metodi pubblici:
-- `getTenant(id: string): Observable<TenantBackend>`: invia la richiesta di recupero di un tenant specifico.
-- `getTenants(page: number, limit: number): 
-Observable<PaginatedTenantResponse<TenantBackend>>`: invia la richiesta di recupero della lista paginata di tenant dal backend, impostando _page_ e _limit_ come _query parameters_.
-- `getAllTenants(): Observable<TenantBackend[]>`: invia la richiesta di recupero della lista completa di tenant dal backend.
-- `createTenant(config: TenantConfig): Observable<TenantBackend>`: invia la richiesta di creazione di un nuovo tenant, mappando i campi del `TenantConfig` al formato richiesto dal backend.
-- `deleteTenant(id: string): Observable<void>`: invia la richiesta di eliminazione di un tenant specifico.
-
-===== TenantService <angular-tenant-service>
-#figure(
-  image("../../assets/c4/frontend/services/TenantService.pdf", width: 70%),
-  caption: [Code diagram del TenantService]
-)
+====== TenantService <angular-tenant-service>
 Il `TenantService` è un servizio dedicato alla gestione dello stato dei tenant. Si occupa di mantenere lo stato dei tenant recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni e di coordinare le operazioni relative ai tenant.\
-
 Il servizio inietta tramite _dependency injection_:
-- `TenantApiClientService`: per comunicare con le API di gestione dei tenant del backend.
-- `TenantApiAdapter`: per adattare i dati dei tenant restituiti dal backend al formato utilizzato all'interno del frontend.
+- `TenantApiClientAdapter`: per comunicare con le API di gestione dei tenant del backend.
 
 Il servizio presenta i seguenti attributi:
 - `_loading` e `loading`: `_loading` è il _signal_ privato dello stato di caricamento, `loading` è la controparte _readonly_ pubblica.
@@ -1953,47 +2091,31 @@ Il servizio presenta i seguenti attributi:
 - `_limit` e `limit`: `_limit` è il _signal_ privato del numero di tenant per pagina, `limit` è la controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi pubblici:
-- `getTenant(id: string): Observable<Tenant>`: recupera un tenant per ID tramite `TenantApiClientService`, adatta la risposta con `TenantApiAdapter` e restituisce `Observable<Tenant>`, in caso di problemi imposta lo stato di errore interno.
-- `getAllTenants(): Observable<Tenant[]>`: recupera la lista completa dei tenant tramite `TenantApiClientService`, adatta la risposta con `TenantApiAdapter` e restituisce `Observable<Tenant[]>`, in caso di problemi imposta lo stato di errore interno.
-- `retrieveTenants(): void`: recupera la lista paginata dei tenant, adatta la risposta con `TenantApiAdapter` e aggiorna lo stato interno.
+- `getTenant(id: string): Observable<Tenant>`: recupera un tenant per ID tramite `TenantApiClientAdapter`, in caso di problemi imposta lo stato di errore interno.
+- `getAllTenants(): Observable<Tenant[]>`: recupera la lista completa dei tenant tramite `TenantApiClientAdapter`, in caso di problemi imposta lo stato di errore interno.
+- `retrieveTenants(): void`: recupera la lista paginata dei tenant e aggiorna lo stato interno.
 - `changePage(pageIndex: number, limit: number): void`: aggiorna i parametri di paginazione e richiama `retrieveTenants`.
-- `addNewTenant(config: TenantConfig): Observable<Tenant>`: crea un tenant tramite `TenantApiClientService`, adatta la risposta e restituisce `Observable<Tenant>`.
-- `removeTenant(id: string): Observable<void>`: elimina un tenant per ID tramite `TenantApiClientService` e restituisce `Observable<void>`, in caso di problemi imposta lo stato di errore interno.
+- `addNewTenant(config: TenantConfig): Observable<Tenant>`: crea un tenant tramite `TenantApiClientAdapter`, in caso di problemi imposta lo stato di errore interno.
+- `removeTenant(id: string): Observable<void>`: elimina un tenant per ID tramite `TenantApiClientAdapter`, in caso di problemi imposta lo stato di errore interno.
 
 Il servizio presenta i seguenti metodi privati:
 - `refetchCurrentPage(): void`: ricarica la pagina corrente dei tenant.
 - `setGettingTenantsState(): void`: imposta lo stato interno per il recupero della lista tenant.
 - `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
-===== UserApiClientService <angular-user-api-client-service>
 #figure(
-  image("../../assets/c4/frontend/services/UserApiClientService.pdf", width: 70%),
-  caption: [Code diagram del UserApiClientService]
+  image("../../assets/c4/frontend/services/TenantService.pdf", width: 50%),
+  caption: [Code diagram del TenantService]
 )
-Lo `UserApiClientService` è un servizio dedicato alla comunicazione con le API di gestione degli utenti del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero degli utenti, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
 
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+====== UserApiClientAdapter <angular-user-api-client-adapter>
+Lo `UserApiClientAdapter` è la classe astratta che definisce il contratto per le operazioni di gestione degli utenti.
+Per il dettaglio dei metodi esposti, si rimanda alla documentazione di `UserApiClientService`.
 
-Il servizio presenta i seguenti metodi pubblici:
-- `getUser(id: string, role: UserRole, tenantId?: string): Observable<UserBackend>`: invia la richiesta di recupero di un utente specifico costruendo l'URL tramite `getBaseUrl()`.
-- `getUsers(role: UserRole, page: number, limit: number, tenantId?: string): Observable<PaginatedUserResponse<UserBackend>>`: invia la richiesta di recupero di una lista paginata di utenti costruendo l'URL tramite `getBaseUrl()`.
-- `createUser(config: UserConfig, role: UserRole, tenantId?: string): Observable<UserBackend>`: invia la richiesta di creazione di un nuovo utente costruendo l'URL tramite `getBaseUrl()`, mappando i dati di `UserConfig` nel formato richiesto dal backend.
-- `deleteUser(id: string, role: UserRole, tenantId?: string): Observable<void>`: invia la richiesta di eliminazione di un utente specifico costruendo l'URL tramite `getBaseUrl()`.
-
-Il servizio presenta i seguenti metodi privati:
-- `getBaseUrl(role: UserRole, tenantId?: string, isPlural = false): string`: metodo ausiliario che costruisce l'URL base delle richieste in base a ruolo, tenant ed endpoint singolare/plurale (per recupero singolo/paginato).
-
-===== UserService <angular-user-service>
-#figure(
-  image("../../assets/c4/frontend/services/UserService.pdf", width: 70%),
-  caption: [Code diagram del UserService]
-)
+====== UserService <angular-user-service>
 Lo `UserService` è un servizio dedicato alla gestione dello stato degli utenti. Si occupa di mantenere lo stato degli utenti recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni e di coordinare le operazioni relative agli utenti.\
-
 Il servizio inietta tramite _dependency injection_:
-- `UserApiClientService`: per comunicare con le API di gestione degli utenti del backend.
-- `UserApiAdapter`: per adattare i dati degli utenti restituiti dal backend al formato utilizzato all'interno del frontend.
+- `UserApiClientAdapter`: per comunicare con le API di gestione degli utenti del backend.
 
 Il servizio presenta i seguenti attributi:
 - `_loading` e `loading`: `_loading` è il _signal_ privato dello stato di caricamento, `loading` è la controparte _readonly_ pubblica.
@@ -2004,67 +2126,31 @@ Il servizio presenta i seguenti attributi:
 - `_limit` e `limit`: `_limit` è il _signal_ privato del numero di utenti per pagina, `limit` è la controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi pubblici:
-- `getUser(id: string, role: UserRole, tenantId?: string): Observable<User>`: recupera un utente tramite `UserApiClientService`, adatta la risposta con `UserApiAdapter` e restituisce `Observable<User>`, in caso di problemi imposta lo stato di errore interno.
-- `retrieveUsers(role: UserRole, tenantId?: string): void`: recupera la lista utenti tramite `UserApiClientService`, adatta la risposta con `UserApiAdapter` e aggiorna lo stato interno, in caso di problemi imposta lo stato di errore interno.
+- `getUser(id: string, role: UserRole, tenantId?: string): Observable<User>`: recupera un utente tramite `UserApiClientAdapter`, in caso di problemi imposta lo stato di errore interno.
+- `retrieveUsers(role: UserRole, tenantId?: string): void`: recupera la lista utenti tramite `UserApiClientAdapter`, aggiorna lo stato interno e imposta lo stato di errore interno in caso di problemi.
 - `changePage(pageIndex: number, limit: number, role: UserRole, tenantId?: string): void`: aggiorna i parametri di paginazione e richiama `retrieveUsers`.
-- `addNewUser(config: UserConfig, role: UserRole, tenantId?: string): Observable<User>`: crea un utente tramite `UserApiClientService`, adatta la risposta e restituisce `Observable<User>`.
-- `removeUser(user: User): Observable<void>`: elimina un utente tramite `UserApiClientService` usando i dati dell'utente passato e restituisce `Observable<void>`, in caso di problemi imposta lo stato di errore interno.
+- `addNewUser(config: UserConfig, role: UserRole, tenantId?: string): Observable<User>`: crea un utente tramite `UserApiClientAdapter`.
+- `removeUser(user: User): Observable<void>`: elimina un utente tramite `UserApiClientAdapter` usando i dati dell'utente passato, in caso di problemi imposta lo stato di errore interno.
 
 Il servizio presenta i seguenti metodi privati:
-- `refetchCurrentPage(role: UserRole, tenantId?: string): void`: ricarica la pagina corrente degli utenti.
+- `refetchCurrentPage(role: UserRole, tenantId?: string): void`: ricarica la pagina corrente.
 - `setGettingUsersState(): void`: imposta lo stato interno per il recupero della lista utenti.
 - `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
-===== GatewayApiClientService <angular-gateway-api-client-service>
 #figure(
-  image("../../assets/c4/frontend/services/GatewayApiClientService.pdf", width: 70%),
-  caption: [Code diagram del GatewayApiClientService]
+  image("../../assets/c4/frontend/services/UserService.pdf", width: 60%),
+  caption: [Code diagram del UserService]
 )
-Il `GatewayApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei gateway del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei gateway, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
 
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+====== GatewayApiClientAdapter <angular-gateway-api-client-adapter>
+Il `GatewayApiClientAdapter` è la classe astratta che definisce il contratto per le operazioni di gestione dei gateway.
+Per il dettaglio dei metodi esposti, si rimanda alla documentazione di `GatewayApiClientService`.
 
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-
-Il servizio presenta i seguenti metodi pubblici:
-- `getGatewayListByTenant(tenantId: string, page: number, limit: number): Observable<PaginatedGatewayResponse<GatewayBackend>>`: recupera la lista paginata dei gateway associati a uno specifico tenant.
-- `getGatewayList(page: number, limit: number): Observable<PaginatedGatewayResponse<GatewayBackend>>`: recupera la lista paginata di tutti i gateway.
-- `addNewGateway(config: GatewayConfig): Observable<GatewayBackend>`: invia la richiesta di creazione di un nuovo gateway, mappando i dati di `GatewayConfig` nel formato richiesto dal backend.
-- `deleteGateway(gatewayId: string): Observable<void>`: invia la richiesta di eliminazione di un gateway specifico.
-
-===== GatewayCommandApiClientService <angular-gateway-command-api-client-service>
-#figure(
-  image("../../assets/c4/frontend/services/GatewayCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram del GatewayCommandApiClientService]
-)
-Il `GatewayCommandApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei comandi dei gateway del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di invio di comandi ai gateway, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
-
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-
-Il servizio presenta i seguenti metodi pubblici:
-- `commissionGateway(gatewayId: string, tenantId: string, token: string): Observable<GatewayBackend>`: invia la richiesta di commissionamento di un gateway, mappando i parametri nel formato richiesto dal backend.
-- `decommissionGateway(gatewayId: string): Observable<void>`: invia la richiesta di decommissionamento di un gateway.
-- `resetGateway(gatewayId: string): Observable<void>`: invia la richiesta di reset di un gateway.
-- `rebootGateway(gatewayId: string): Observable<void>`: invia la richiesta di riavvio di un gateway.
-- `interruptGateway(gatewayId: string): Observable<void>`: invia la richiesta di interruzione di un gateway.
-- `resumeGateway(gatewayId: string): Observable<void>`: invia la richiesta di ripresa di un gateway.
-
-===== GatewayService <angular-gateway-service>
-#figure(
-  image("../../assets/c4/frontend/services/GatewayService.pdf", width: 70%),
-  caption: [Code diagram del GatewayService]
-)
+====== GatewayService <angular-gateway-service>
 Il `GatewayService` è un servizio dedicato alla gestione dello stato dei gateway. Si occupa di mantenere lo stato dei gateway recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni e di coordinare le operazioni relative ai gateway.\
 Il servizio inietta tramite _dependency injection_:
-- `GatewayApiClientService`: per comunicare con le API di gestione dei gateway del backend.
-- `GatewayCommandApiClientService`: per comunicare con le API di gestione dei comandi dei gateway del backend.
-- `GatewayApiAdapter`: per adattare i dati dei gateway restituiti dal backend al formato utilizzato all'interno del frontend.
+- `GatewayApiClientAdapter`: per comunicare con le API di gestione dei gateway del backend.
+- `GatewayCommandApiClientAdapter`: per comunicare con le API di gestione dei comandi dei gateway del backend.
 
 Il servizio presenta i seguenti attributi:
 - `_gatewayList` e `gatewayList`: `_gatewayList` è il _signal_ privato della lista gateway, `gatewayList` è la controparte _readonly_ pubblica.
@@ -2076,16 +2162,16 @@ Il servizio presenta i seguenti attributi:
 - `_currentTenantId`: identificativo del tenant selezionato usato per filtrare i gateway.
 
 Il servizio presenta i seguenti metodi pubblici:
-- `getGatewaysByTenant(tenantId: string, page: number, limit: number): void`: recupera la lista paginata dei gateway di un tenant, adatta i dati tramite `GatewayApiAdapter` e aggiorna lo stato interno.
-- `getGateways(page: number, limit: number): void`: recupera la lista paginata di tutti i gateway, adatta i dati tramite `GatewayApiAdapter` e aggiorna lo stato interno.
-- `addNewGateway(config: GatewayConfig): Observable<Gateway>`: crea un gateway tramite `GatewayApiClientService`, adatta la risposta tramite `GatewayApiAdapter` e restituisce il gateway creato in caso di successo.
-- `deleteGateway(id: string): Observable<void>`: elimina un gateway tramite `GatewayApiClientService`.
-- `commissionGateway(id: string, tenantId: string, token: string): Observable<Gateway>`: commissiona un gateway tramite `GatewayCommandApiClientService`, adatta la risposta tramite `GatewayApiAdapter` e restituisce il gateway commissionato in caso di successo.
-- `decommissionGateway(id: string): Observable<void>`: decommissiona un gateway tramite `GatewayCommandApiClientService` e ricarica la lista dei gateway.
-- `resetGateway(id: string): Observable<void>`: resetta un gateway tramite `GatewayCommandApiClientService`.
-- `rebootGateway(id: string): Observable<void>`: riavvia un gateway tramite `GatewayCommandApiClientService`.
-- `interruptGateway(id: string): Observable<void>`: interrompe un gateway tramite `GatewayCommandApiClientService` e ricarica la lista dei gateway.
-- `resumeGateway(id: string): Observable<void>`: riattiva un gateway tramite `GatewayCommandApiClientService` e ricarica la lista dei gateway.
+- `getGatewaysByTenant(tenantId: string, page: number, limit: number): void`: recupera la lista paginata dei gateway di un tenant e aggiorna lo stato interno.
+- `getGateways(page: number, limit: number): void`: recupera la lista paginata di tutti i gateway e aggiorna lo stato interno.
+- `addNewGateway(config: GatewayConfig): Observable<Gateway>`: crea un gateway e restituisce il gateway creato in caso di successo.
+- `deleteGateway(id: string): Observable<void>`: elimina un gateway.
+- `commissionGateway(id: string, tenantId: string, token: string): Observable<Gateway>`: commissiona un gateway e restituisce il gateway commissionato in caso di successo.
+- `decommissionGateway(id: string): Observable<void>`: decommissiona un gateway e ricarica la lista dei gateway.
+- `resetGateway(id: string): Observable<void>`: resetta un gateway tramite `GatewayCommandApiClientAdapter`.
+- `rebootGateway(id: string): Observable<void>`: riavvia un gateway tramite `GatewayCommandApiClientAdapter`.
+- `interruptGateway(id: string): Observable<void>`: interrompe un gateway tramite `GatewayCommandApiClientAdapter` e ricarica la lista dei gateway.
+- `resumeGateway(id: string): Observable<void>`: riattiva un gateway tramite `GatewayCommandApiClientAdapter` e ricarica la lista dei gateway.
 - `changePage(page: number, limit: number): void`: ricarica la pagina corrente dei gateway in base al tenant selezionato.
 
 Il servizio presenta i seguenti metodi privati:
@@ -2093,53 +2179,20 @@ Il servizio presenta i seguenti metodi privati:
 - `setGettingGatewaysState(): void`: imposta lo stato interno per il recupero della lista gateway.
 - `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
-===== SensorApiClientService <angular-sensor-api-client-service>
 #figure(
-  image("../../assets/c4/frontend/services/SensorApiClientService.pdf", width: 70%),
-  caption: [Code diagram del SensorApiClientService]
+  image("../../assets/c4/frontend/services/GatewayService.pdf", width: 70%),
+  caption: [Code diagram del GatewayService]
 )
-Il `SensorApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei sensori del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei sensori, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
 
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
+====== SensorApiClientAdapter <angular-sensor-api-client-adapter>
+Il `SensorApiClientAdapter` è la classe astratta che definisce il contratto per le operazioni di gestione dei sensori.
+Per il dettaglio dei metodi esposti, si rimanda alla documentazione di `SensorApiClientService`.
 
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-
-Il servizio presenta i seguenti metodi pubblici:
-- `getSensorListByGateway(gatewayId: string, page: number, limit: number): Observable<PaginatedSensorResponse<SensorBackend>>`: recupera la lista paginata dei sensori associati a uno specifico gateway.
-- `getSensorListByTenant(tenantId: string, page: number, limit: number): Observable<PaginatedSensorResponse<SensorBackend>>`: recupera la lista paginata dei sensori associati a un tenant specifico.
-- `addNewSensor(config: SensorConfig): Observable<SensorBackend>`: invia la richiesta di creazione di un nuovo sensore, mappando i dati di `SensorConfig` al formato richiesto dal backend.
-- `deleteSensor(id: string): Observable<void>`: invia la richiesta di eliminazione di un sensore specifico.
-
-===== SensorCommandApiClientService <angular-sensor-command-api-client-service>
-#figure(
-  image("../../assets/c4/frontend/services/SensorCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram del SensorCommandApiClientService]
-)
-Il `SensorCommandApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei comandi dei sensori del backend. Si occupa di inviare le richieste _HTTP_ al backend per effettuare operazioni di invio di comandi ai sensori, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
-
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-
-Il servizio presenta i seguenti metodi pubblici:
-- `interruptSensor(sensorId: string): Observable<void>`: invia la richiesta di interruzione di un sensore.
-- `resumeSensor(sensorId: string): Observable<void>`: invia la richiesta di ripresa di un sensore.
-
-===== SensorService <angular-sensor-service>
-#figure(
-  image("../../assets/c4/frontend/services/SensorService.pdf", width: 70%),
-  caption: [Code diagram del SensorService]
-)
+====== SensorService <angular-sensor-service>
 Il `SensorService` è un servizio dedicato alla gestione dello stato dei sensori. Si occupa di mantenere lo stato dei sensori recuperati dal backend, di fornire un'interfaccia semplice per accedere a queste informazioni e di coordinare le operazioni relative ai sensori.\
-
 Il servizio inietta tramite _dependency injection_:
-- `SensorApiClientService`: per comunicare con le API di gestione dei sensori del backend.
-- `SensorCommandApiClientService`: per comunicare con le API di gestione dei comandi dei sensori del backend.
-- `SensorApiAdapter`: per adattare i dati dei sensori restituiti dal backend al formato utilizzato all'interno del frontend.
+- `SensorApiClientAdapter`: per comunicare con le API di gestione dei sensori del backend.
+- `SensorCommandApiClientAdapter`: per comunicare con le API di gestione dei comandi dei sensori del backend.
 
 Il servizio presenta i seguenti attributi:
 - `_sensorList` e `sensorList`: `_sensorList` è il _signal_ privato della lista sensori, `sensorList` è  la controparte _readonly_ pubblica.
@@ -2152,12 +2205,12 @@ Il servizio presenta i seguenti attributi:
 - `_currentTenantId`: identificativo del tenant selezionato usato per filtrare i sensori.
 
 Il servizio presenta i seguenti metodi pubblici:
-- `getSensorsByGateway(gatewayId: string, page: number, limit: number): void`: recupera la lista paginata dei sensori di un gateway, adatta i dati tramite `SensorApiAdapter` e aggiorna lo stato interno.
-- `getSensorsByTenant(tenantId: string, page: number, limit: number): void`: recupera la lista paginata dei sensori di un tenant, adatta i dati tramite `SensorApiAdapter` e aggiorna lo stato interno.
-- `addNewSensor(config: SensorConfig): Observable<Sensor>`: crea un sensore tramite `SensorApiClientService`, adatta la risposta tramite `SensorApiAdapter` e restituisce il sensore appena creato.
-- `deleteSensor(id: string): Observable<void>`: elimina un sensore tramite `SensorApiClientService`.
-- `interruptSensor(sensorId: string): Observable<void>`: interrompe un sensore tramite `SensorCommandApiClientService`.
-- `resumeSensor(sensorId: string): Observable<void>`: riattiva un sensore tramite `SensorCommandApiClientService`.
+- `getSensorsByGateway(gatewayId: string, page: number, limit: number): void`: recupera la lista paginata dei sensori di un gateway e aggiorna lo stato interno.
+- `getSensorsByTenant(tenantId: string, page: number, limit: number): void`: recupera la lista paginata dei sensori di un tenant e aggiorna lo stato interno.
+- `addNewSensor(config: SensorConfig): Observable<Sensor>`: crea un sensore e restituisce il sensore appena creato.
+- `deleteSensor(id: string): Observable<void>`: elimina un sensore tramite.
+- `interruptSensor(sensorId: string): Observable<void>`: interrompe un sensore tramite `SensorCommandApiClientAdapter`.
+- `resumeSensor(sensorId: string): Observable<void>`: riattiva un sensore tramite `SensorCommandApiClientAdapter`.
 - `clearSensors(): void`: metodo ausiliario che pulisce la lista dei sensori e i parametri di paginazione.
 - `changePage(page: number, limit: number): void`: ricarica la pagina corrente dei sensori in base al gateway o tenant selezionato.
 
@@ -2166,58 +2219,25 @@ Il servizio presenta i seguenti metodi privati:
 - `setGettingSensorsState(): void`: imposta lo stato interno per il recupero della lista sensori.
 - `setLoadingState(): void`: imposta lo stato interno di caricamento e pulisce eventuali errori.
 
-===== SensorLiveReadingsApiService <angular-sensor-live-readings-api-service>
 #figure(
-  image("../../assets/c4/frontend/services/SensorLiveReadingsApiService.pdf", width: 70%),
-  caption: [Code diagram del SensorLiveReadingsApiService]
+  image("../../assets/c4/frontend/services/SensorService.pdf", width: 70%),
+  caption: [Code diagram del SensorService]
 )
-Il `SensorLiveReadingsApiService` è un servizio dedicato alla comunicazione tramite _WebSocket_ con il backend. Si occupa aprire la connessione al backend per recuperare le letture in tempo reale dei sensori.\
 
-Il servizio inietta tramite _dependency injection_:
-- `tokenService`: per accedere al token di autenticazione necessario per autenticare la richiesta e stabilire la connessione con il backend.
+====== SensorHistoricApiClientAdapter <angular-sensor-historic-api-adapter>
+Il `SensorHistoricApiClientAdapter` è la classe astratta che definisce il contratto per le operazioni di recupero dei dati storici dei sensori.
+Per il dettaglio dei metodi esposti, si rimanda alla documentazione di `SensorHistoricApiClientAdapter`.
 
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-- `socket$`: è un _WebSocketSubject_ utilizzato per gestire la comunicazione in tempo reale con il backend.
-- `disconnect$`: è un _Subject_ utilizzato per gestire la disconnessione dal backend.
+====== SensorLiveReadingsApiClientAdapter <angular-sensor-live-readings-api-adapter>
+Il `SensorLiveReadingsApiClientAdapter` è la classe astratta che definisce il contratto per le operazioni di recupero dei dati in tempo reale dei sensori.
+Per il dettaglio dei metodi esposti, si rimanda alla documentazione di `SensorLiveReadingsApiClientAdapter`.
 
-Il servizio presenta i seguenti metodi pubblici:
-- `connect(req: ChartRequest): Observable<RealTimeReading>`: stabilisce la connessione con il backend, autenticando la richiesta tramite il token _JWT_ e costruendo il _WebSocket_ tramite `createWebSocket` e ritornando le letture ricevute dal backend.
-- `disconnect(): void`: chiude la connessione con il backend emettendo un evento sul `disconnect$` che viene ascoltato dal `socket$` per chiudere la connessione.
-
-Il servizio presenta i seguenti metodi privati:
-- `createWebSocket(url: string): WebSocketSubject<RealTimeReading>`: metodo ausiliario che costruisce il _WebSocketSubject_ tramite il metodo `webSocket`.
-
-===== SensorHistoricApiService <angular-sensor-historic-api-service>
-#figure(
-  image("../../assets/c4/frontend/services/SensorHistoricApiService.pdf", width: 70%),
-  caption: [Code diagram del SensorHistoricApiService]
-)
-Il `SensorHistoricApiService` è un servizio dedicato alla comunicazione con le API di gestione delle letture storiche dei sensori del backend. Si occupa di inviare le richieste _HTTP_ per recuperare le letture storiche dei sensori, e di riportare le risposte o gli errori ricevuti tramite _Observables_.\
-
-Il servizio inietta tramite _dependency injection_:
-- `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-
-Il servizio presenta i seguenti attributi:
-- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
-
-Il servizio presenta i seguenti metodi pubblici:
-- `getHistoricData(req: ChartRequest): Observable<HistoricResponse>`: invia la richiesta di recupero delle letture storiche dei sensori, costruendo l'URL con i parametri della richiesta, e restituisce `Observable<HistoricResponse>` con i dati delle letture.
-
-===== SensorChartService <angular-sensor-chart-service>
-#figure(
-  image("../../assets/c4/frontend/services/SensorChartService.pdf", width: 70%),
-  caption: [Code diagram del SensorChartService]
-)
+====== SensorChartService <angular-sensor-chart-service>
 Il `SensorChartService` è un servizio dedicato alla gestione dello stato dei dati dei sensori necessari per la visualizzazione dei grafici. Si occupa di coordinare le operazioni di recupero dei dati in tempo reale e storici dei sensori, di adattare i dati ricevuti dal backend al formato necessario e di mantenere lo stato di questi dati per renderli accessibili ai componenti dell'applicazione.\
-
 Il servizio inietta tramite _dependency injection_:
-- `SensorLiveReadingsApiService`: per comunicare con il backend e recuperare le letture in tempo reale dei sensori.
-- `SensorHistoricApiService`: per comunicare con il backend e recuperare le letture storiche dei sensori.
-- `SensorAdapterFactory`: factory utilizzata per istanziare il corretto tipo di adapter in base al tipo di sensore.
-- `maxLiveReadings`: numero massimo di letture live mantenute in memoria per il grafico corrente.
-- `isEcgLive`: flag interno che indica se il grafico live corrente appartiene a un sensore ECG.
-- `subscription`: riferimento alla subscription corrente usata per gestire il flusso dati live o storico.
+- `SensorLiveReadingsApiClientAdapter`: per comunicare con il backend e recuperare le letture in tempo reale dei sensori.
+- `SensorHistoricApiClientAdapter`: per comunicare con il backend e recuperare le letture storiche dei sensori.
+- `sensorAdapterFactory`: usato per istanziare l'adapter corretto in base al tipo di sensore di cui è stato richiesto il grafico.
 
 Il servizio presenta i seguenti attributi:
 - `_historicReadings` e `historicReadings`: `_historicReadings` è il _signal_ privato dei dati storici dei sensori, `historicReadings` è la controparte _readonly_ pubblica.
@@ -2227,26 +2247,27 @@ Il servizio presenta i seguenti attributi:
 - `_connectionStatus` e `connectionStatus`: `_connectionStatus` è il _signal_ privato dello stato della connessione (che può assumere valori: `connected`, `disconnected`, `connecting`, `reconnecting`), `connectionStatus` è la controparte _readonly_ pubblica.
 - `_fields` e `fields`: `_fields` è il _signal_ privato stabilisce l'unità di misura e il nome del valore letto per ogni tipo di sensore, `fields` è la controparte _readonly_ pubblica.
 - `_samplesPerPacket` e `samplesPerPacket`: `_samplesPerPacket` è il _signal_ privato del numero di campioni per pacchetto (utilizzato nel caso di sensori `ECG_CUSTOM`), `samplesPerPacket` è la controparte _readonly_ pubblica.
-- `historicAdapter`: riferimento alla classe astratta usata per definire gli adapters delle risposte storiche, specializzate in base al tipo di sensore.
-- `liveAdapter`: riferimento alla classe astratta usata per definire gli adapters delle risposte in tempo reale, specializzate in base al tipo di sensore.
+- `maxLiveReadings`: numero massimo di letture live mantenute in memoria per il grafico corrente.
+- `isEcgLive`: flag interno che indica se il grafico live corrente appartiene a un sensore ECG.
+- `subscription`: riferimento alla subscription corrente usata per gestire il flusso dati live o storico.
 
 Il servizio presenta i seguenti metodi pubblici:
-- `startChart(req: ChartRequest): void`: avvia il processo di recupero dei dati dei sensori, sia in tempo reale che storici, istanziando il corretto adapter in base al tipo di sensore e avviando il chart richiesto.
-- `stopChart(): void`: interrompe il processo di recupero dei dati dei sensori, annullando la subscription corrente, chiudendo la connessione live e impostando lo stato della connessione come `disconnected`.
+- `startChart(req: ChartRequest): void`: avvia il processo di recupero dei dati dei sensori, sia in tempo reale che storici, chiamando il metodo relativo privato.
+- `stopChart(): void`: interrompe il processo di recupero dei dati dei sensori, annullando la subscription corrente, chiudendo la connessione live e impostando lo stato della connessione a `disconnected`.
 
 Il servizio presenta i seguenti metodi privati:
-- `startHistoricChart(req: ChartRequest): void`: avvia il processo di recupero dei dati storici dei sensori, adattando i dati ricevuti dal backend e aggiornando lo stato interno.
-- `startLiveReadingsChart(req: ChartRequest): void`: avvia il processo di recupero dei dati in tempo reale dei sensori, adattando i dati ricevuti dal backend e aggiornando lo stato interno, gestendo anche lo stato della connessione.
+- `startHistoricChart(req: ChartRequest): void`: avvia il processo di recupero dei dati storici dei sensori.
+- `startLiveReadingsChart(req: ChartRequest): void`: avvia il processo di recupero dei dati in tempo reale dei sensori e aggiornando lo stato interno, gestendo anche lo stato della connessione.
 - `reset(): void`: metodo ausiliario che pulisce i dati storici e in tempo reale dei sensori, reimposta campi e numero di campioni per pacchetto ai valori di default e interrompe eventuali stream attivi.
 
-===== DashboardService <angular-dashboard-service>
 #figure(
-  image("../../assets/c4/frontend/services/DashboardService.pdf", width: 70%),
-  caption: [Code diagram del DashboardService]
+  image("../../assets/c4/frontend/services/SensorChartService.pdf", width: 70%),
+  caption: [Code diagram del SensorChartService]
 )
+
+====== DashboardService <angular-dashboard-service>
 Il `DashboardService` è un servizio dedicato alla gestione dello stato dei dati e delle informazioni visualizzate nella dashboard. Si occupa di coordinare le operazioni di recupero dei dati necessari per la visualizzazione della dashboard, di adattarli e di mantenere lo stato di questi ultimi per renderli accessibili ai componenti dell'applicazione.
 Offre un interfaccia unificata per la pagina `DashboardPage` che può così accedere ai dati relativi ai sensori e ai gateway in modo semplice e coerente.\
-
 Il servizio inietta tramite _dependency injection_:
 - `GatewayService`: per accedere alle informazioni sui gateway e sui sensori associati.
 - `SensorService`: per accedere alle informazioni sui sensori.
@@ -2269,11 +2290,12 @@ Il servizio presenta i seguenti metodi pubblici:
 Il servizio presenta i seguenti metodi privati:
 - `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`. 
 
-===== GatewaySensorManagerService <angular-gateway-sensor-manager-service>
 #figure(
-  image("../../assets/c4/frontend/services/GatewaySensorManagerService.pdf", width: 70%),
-  caption: [Code diagram del GatewaySensorManagerService]
+  image("../../assets/c4/frontend/services/DashboardService.pdf", width: 70%),
+  caption: [Code diagram del DashboardService]
 )
+
+====== GatewaySensorManagerService <angular-gateway-sensor-manager-service>
 Il `GatewaySensorManagerService` è un servizio dedicato alla gestione delle azioni _CRUD_ effettuabili su gateway e sensori. Si occupa di coordinare le operazioni di creazione, eliminazione e invio di comandi ai gateway e ai sensori, e di gestire eventuali errori che possono verificarsi durante queste operazioni.
 Offre un interfaccia unificata per la pagina `GatewaySensorManagerPage` che può così accedere ai dati relativi ai sensori e ai gateway in modo semplice e coerente.\
 
@@ -2288,8 +2310,8 @@ Il servizio inoltre espone tutti gli attributi del `GatewayService` e `SensorSer
 Il servizio presenta i seguenti metodi pubblici:
 - `loadGateways(): void`: metodo utilizzato per recuperare la lista di gateway, richiama il metodo `getGateways` del `GatewayService`.
 - `toggleExpandedGateway(gateway: Gateway): void`: metodo utilizzato per espandere o chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway`.
-- `deleteGateway(gateway: Gateway): Observable<void>`: metodo utilizzato per eliminare un gateway, richiama il metodo `deleteGateway` del `GatewayService` e aggiorna la lista al completamento.
-- `deleteSensor(sensor: Sensor): Observable<void>`: metodo utilizzato per eliminare un sensore, richiama il metodo `deleteSensor` del `SensorService` e aggiorna la lista dei sensori al completamento.
+- `deleteGateway(gateway: Gateway): Observable<void>`: metodo utilizzato per eliminare un gateway, richiama il metodo `deleteGateway` del `GatewayService` e aggiorna la lista dei gateway.
+- `deleteSensor(sensor: Sensor): Observable<void>`: metodo utilizzato per eliminare un sensore, richiama il metodo `deleteSensor` del `SensorService` e aggiorna la lista dei sensori.
 - `changeGatewayPage(pageIndex: number, limit: number): void`: metodo utilizzato per cambiare la pagina della lista gateway, richiama il metodo `changePage` del `GatewayService`.
 - `changeSensorPage(pageIndex: number, limit: number): void`: metodo utilizzato per cambiare la pagina della lista sensori, richiama il metodo `changePage` del `SensorService`.
 - `refreshGateways(): void`: metodo utilizzato per ricaricare la lista di gateway, richiama il metodo `refetchCurrentPage` del `GatewayService`.
@@ -2298,21 +2320,108 @@ Il servizio presenta i seguenti metodi pubblici:
 Il servizio presenta i seguenti metodi privati:
 - `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`.
 
-==== Componenti UI
-//TODO introduzione
+#figure(
+  image("../../assets/c4/frontend/services/GatewaySensorManagerService.pdf", width: 70%),
+  caption: [Code diagram del GatewaySensorManagerService]
+)
 
-===== Componenti Condivisi (Shared) <angular-shared-component>
-La cartella _shared_ contiene componenti presentazionali (dumb components) e dialoghi di utilità progettati per essere riutilizzati in più moduli dell'applicazione, garantendo uniformità visiva e di comportamento.
+==== Presentation layer
+Il *Presentation layer* dell'applicazione è organizzato in moduli funzionali che raggruppano le pagine e i componenti relativi a specifiche aree funzionali dell'applicazione, come la gestione dei tenant, degli utenti, dei gateway e dei sensori, la dashboard e la l'involucro dell'applicazione.\
 
-====== UI Components (Dumb Components)  <angular-shared-components>
-*`GatewayTableComponent`*: una tabella avanzata per la visualizzazione dei gateway, dotata di logica di espansione per mostrare i sensori associati.
-  - *Dinamicità*: la proprietà `actionMode` (@angular-actionmode-model) determina quali colonne visualizzare; ad esempio, la colonna di eliminazione è visibile solo in modalità gestione.
-  - *Espansione Nidificata*: utilizza la funzionalità `multiTemplateDataRows` di Angular Material per mostrare un dettaglio espanso (`GatewayExpandedComponent`) sotto la riga del gateway selezionato.
+===== Routes 
+#tabella-paginata(
+  table(
+    columns: (auto, 1fr, 3fr),
+    align: center + horizon,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Path*], [*Componente*], [*Descrizione*],
+
+    [/login],
+    [LoginPage],
+    [Rotta che porta alla pagina di login, accessibile agli utenti non autenticati.],
+
+    [/forgot_password/:token],
+    [ForgotPasswordPage],
+    [Rotta che porta alla pagina di recupero password, accessibile agli utenti non autenticati.],
+
+    [/confirm_account/:token],
+    [ConfirmAccountPage],
+    [Rotta che porta alla pagina di conferma account, accessibile agli utenti non autenticati.],
+  ),
+  [Rotte pubbliche],
+  label-id: "angular-public-routes",
+)\
+
+#tabella-paginata(
+  table(
+    columns: (2fr, 2.5fr, auto, 3fr),
+    align: center + horizon,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Path*], [*Componente*], [*Permessi*], [*Descrizione*],
+
+    [/dashboard],
+    [DashboardPage],
+    [DASHBOARD_ACCESS],
+    [Rotta che porta alla dashboard principale dell'applicazione. È la rotta predefinita dopo l'autenticazione.],
+
+    [/gateway-management],
+    [GatewaySensorManagerPage],
+    [GATEWAY_MANAGEMENT],
+    [Rotta che porta alla pagina di gestione dei gateway e dei sensori associati.],
+
+    [/tenant-management],
+    [TenantManagerPage],
+    [TENANT_MANAGEMENT],
+    [Rotta che porta alla pagina di gestione dei tenant.],
+
+    [/user-management/tenant-users],
+    [UserManagerPage],
+    [TENANT_USER_MANAGEMENT],
+    [Rotta che porta alla pagina di gestione degli utenti con ruolo Tenant User.],
+
+    [/user-management/tenant-admins],
+    [UserManagerPage],
+    [TENANT_ADMIN_MANAGEMENT],
+    [Rotta che porta alla pagina di gestione degli utenti con ruolo Tenant Admin.],
+
+    [/user-management/super-admins],
+    [UserManagerPage],
+    [SUPER_ADMIN_MANAGEMENT],
+    [Rotta che porta alla pagina di gestione degli utenti con ruolo Super Admin.],
+  ),
+  [Rotte protette],
+  label-id: "angular-protected-routes",
+)\
+
+#tabella-paginata(
+  table(
+    columns: (auto, 3fr),
+    align: center + horizon,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Path*], [*Comportamento*],
+
+    [/(root)],
+    [Redirect automatico a `/dashboard`.],
+
+    [\*\* (wildcard)],
+    [Redirect automatico a `/login`. Cattura tutte le rotte non definite.],
+  ),
+  [Rotte di fallback],
+  label-id: "angular-fallback-routes",
+)\
+
+===== Componenti condivisi <angular-shared-component>
+La cartella _shared_ contiene componenti presentazionali (dumb components) e dialoghi di utilità progettati per essere riutilizzati in più moduli dell'applicazione.
+
+====== UI Components <angular-shared-components>
+*`GatewayTableComponent`*: una tabella per la visualizzazione dei gateway, dotata di logica di espansione per mostrare i sensori associati.
+  - *Dinamicità*: la proprietà `actionMode` determina quali colonne visualizzare; ad esempio, la colonna di eliminazione è visibile solo in modalità gestione.
+  - *Espansione nidificata*: utilizza la funzionalità `multiTemplateDataRows` di Angular Material per mostrare un dettaglio espanso (`GatewayExpandedComponent`) sotto la riga del gateway selezionato.
   - *Interazioni*: gestisce la copia della Public Key negli appunti e l'apertura del dialogo per l'invio di comandi al gateway.
   - *Input/Output*: riceve le liste di gateway e sensori, gli stati di caricamento e i parametri di paginazione; emette eventi per l'espansione, l'eliminazione, la creazione e il cambio pagina.
 
-*`SensorTableComponent`*: componente dedicato alla visualizzazione tabellare dei sensori e delle loro proprietà.
-  - *Visualizzazione Condizionale*: analogamente alla tabella gateway, adatta le proprie colonne in base all' `actionMode` (@angular-actionmode-model). In modalità 'dashboard', mostra le icone per l'apertura dei grafici storici e in tempo reale.
+*`SensorTableComponent`*: componente dedicato alla visualizzazione tabellare dei sensori.
+  - *Visualizzazione Condizionale*: analogamente alla tabella gateway, adatta le proprie colonne in base all' `actionMode`. In modalità 'dashboard', mostra le icone per l'apertura dei grafici storici e in tempo reale.
   - *Gestione Grafici*: il metodo `onViewChart` distingue tra grafico in tempo reale (invio diretto della richiesta) e storico; in quest'ultimo caso, apre il dialogo `HistoricChartFiltersDialog` per permettere all'utente di selezionare l'intervallo temporale.
   - *Sicurezza*: il pulsante per il grafico in tempo reale viene disabilitato automaticamente se il gateway o il sensore risultano inattivi.
 
@@ -2322,29 +2431,29 @@ La cartella _shared_ contiene componenti presentazionali (dumb components) e dia
 
 ====== Dialogs <angular-shared-dialogs>
 *`ConfirmDeleteDialog`*: un dialogo generico e riutilizzabile per la conferma di operazioni distruttive.
-  - *Configurabilità*: riceve tramite il token `MAT_DIALOG_DATA` un oggetto contenente `title` e `message`, permettendo di personalizzare la richiesta di conferma per qualsiasi entità (gateway, sensore, utente, ecc.).
+  - *Configurabilità*: riceve tramite il token `MAT_DIALOG_DATA` un oggetto contenente `title` e `message`, permettendo di personalizzare la richiesta di conferma per qualsiasi entità (gateway, sensore, ecc.).
   - *Template*: presenta un'interfaccia chiara con un pulsante di annullamento e un pulsante di conferma evidenziato con colore "warn" per indicare la pericolosità dell'azione.
 
 
 ===== App Shell
 #figure(
-  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-AppShell.pdf", width: 100%),
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-AppShell.pdf", width: 80%),
   caption: [Components UI - App Shell]
 ) \
 
-Il modulo _App Shell_ definisce il layout persistente dell'applicazione, gestendo la navigazione principale, la visualizzazione delle informazioni dell'utente in sessione e le azioni globali come il logout e il cambio password.
+Il modulo `App Shell` definisce il layout persistente dell'applicazione, gestendo la navigazione principale, la visualizzazione delle informazioni dell'utente in sessione e le azioni globali come il logout e il cambio password.
 
-====== *`AppShellPage`* (Smart Component) <angular-appshell-page>
+====== AppShellPage <angular-appshell-page>
 
-La _AppShellPage_ funge da orchestratore centrale del layout. Essendo uno smart component, interagisce con molteplici servizi di dominio per inizializzare l'interfaccia e gestire i permessi di navigazione.
+La `AppShellPage` funge da orchestratore centrale del layout. Essendo uno smart component, interagisce con molteplici servizi di dominio per inizializzare l'interfaccia e gestire i permessi di navigazione.
   - _Responsabilità_:
-    - Recupera i dati anagrafici dell'utente loggato e del relativo tenant tramite `UserService` (@angular-user-service) e `TenantService` (@angular-tenant-service) per visualizzarne i nomi (e non solo gli ID) nell'header.
-    - Gestisce dinamicamente la lista di navigazione tramite un segnale computato (navItems), filtrando le voci definite in `NAV_ITEMS` in base ai permessi dell'utente verificati dal `PermissionService` (@angular-permission-service).
-    - Coordina le azioni globali: invoca il logout tramite `AuthSessionService` e apre il dialogo di cambio password.
-  - _Servizi Iniettati_: `UserSessionService` (@angular-user-session-service), `AuthSessionService` (@angular-auth-session-service), `UserService`, `TenantService`, `PermissionService`.
+    - Recupera i dati anagrafici dell'utente loggato e del relativo tenant tramite `UserService` e `TenantService` per visualizzarne i nomi nell'header.
+    - Gestisce dinamicamente la lista di navigazione tramite un segnale computato (navItems), filtrando le voci definite in `NAV_ITEMS` in base ai permessi dell'utente verificati dal `PermissionService`.
+    - Coordina le azioni globali: invoca il logout e apre il dialogo di cambio password.
+  - _Servizi Iniettati_: `UserSessionService` (@angular-user-session-service), `AuthSessionService` (@angular-auth-session-service), `UserService` (@angular-user-service), `TenantService` (@angular-tenant-service), `PermissionService` (@angular-permission-service).
 
-====== UI Components (Dumb Components) <angular-appshell-components>
-All'interno della cartella components, l'_App Shell_ si avvale di componenti presentazionali puri per la scomposizione del layout. \
+====== UI Components <angular-appshell-components>
+All'interno della cartella components, l'`App Shell` si avvale di componenti presentazionali puri per la scomposizione del layout. \
 
 *`HeaderComponent`*: rappresenta la barra superiore dell'applicazione.
   - _Input_:
@@ -2353,12 +2462,13 @@ All'interno della cartella components, l'_App Shell_ si avvale di componenti pre
     - `currentUserRole`: il ruolo dell'utente, visualizzato in formato testuale.
   - _Output_:
     - `logoutRequested`: emesso quando l'utente seleziona la voce di uscita.
-    - `changePasswordRequested`: emesso quando l'utente desidera aprire il dialogo di modifica password.
+    - `changePasswordRequested`: emesso quando l'utente apre il dialogo di cambio password.
 
 *`SideBarComponent`*: gestisce il menu di navigazione laterale.
-  - *Input*:
-   - `navItems`: la lista filtrata di oggetti `NavItem` (@angular-navitem-model) ricevuta dalla pagina.
-  - _Funzionalità_: itera sugli elementi di navigazione gestendo graficamente separatori, titoli di sezione e link attivi tramite le direttive di routing di Angular.
+  - _Input_:
+   - `navItems`: la lista filtrata di oggetti `NavItem` ricevuta dalla pagina.
+  - _Funzionalità_: 
+    - itera sugli elementi di navigazione gestendo graficamente separatori, titoli di sezione e link attivi tramite le direttive di routing di Angular.
 
 ====== Dialogs <angular-appshell-dialogs>
 *`ChangePasswordDialog`*: un componente autonomo utilizzato per consentire all'utente autenticato di aggiornare le proprie credenziali.
@@ -2372,17 +2482,17 @@ All'interno della cartella components, l'_App Shell_ si avvale di componenti pre
   caption: [Components UI - Confirm Account]
 ) \
 
-Il modulo _Confirm Account_ gestisce il processo di attivazione dell'account utente a seguito della ricezione dell'invito. La pagina permette l'impostazione della password definitiva e il contestuale primo accesso al sistema.
+Il modulo `Confirm Account` gestisce il processo di attivazione dell'account utente a seguito della ricezione dell'invito. La pagina permette l'impostazione della password definitiva e il contestuale primo accesso al sistema.
 
-====== ConfirmAccountPage (Smart Component) <angular-confirmaccount-page>
-La _ConfirmAccountPage_ funge da orchestratore per il processo di attivazione, recuperando i parametri di sicurezza dall'URL e gestendo il flusso di navigazione post-attivazione.
+====== ConfirmAccountPage <angular-confirmaccount-page>
+La `ConfirmAccountPage` funge da orchestratore per il processo di attivazione, recuperando i parametri necessari dall'URL e gestendo il flusso di navigazione post-attivazione.
   - _Responsabilità_: 
     - Estrae il token di attivazione dai parametri del percorso e l'eventuale `tenantId` dai parametri di ricerca (query parameters) dell'URL.
-    - Monitora lo stato di caricamento e gli eventuali errori globali attraverso i segnali esposti da `AuthActionsService` (@angular-auth-actions-service).
-    - Inoltra la richiesta di conferma al servizio di dominio e, in caso di successo, reindirizza l'utente alla `Dashboard` (poiché la conferma implica un login automatico tramite restituzione del JWT) (@angular-dashboard-page).
-  - _Servizi Iniettati_: `AuthActionsService`, `Router`, `ActivatedRoute`.
+    - Monitora lo stato di caricamento e gli eventuali errori globali attraverso i segnali esposti da `AuthActionsService`.
+    - Inoltra la richiesta di conferma al servizio di dominio e, in caso di successo, reindirizza l'utente alla `Dashboard` (poiché la conferma implica un login automatico tramite restituzione del JWT).
+  - _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
 
-====== UI Components (Dumb Components).  <angular-confirmaccount-components>
+====== UI Components  <angular-confirmaccount-components>
 All'interno della cartella components, il modulo delega la logica di inserimento dati a un componente presentazionale dedicato.
 *`ConfirmAccountFormComponent`*: gestisce l'interfaccia di inserimento della nuova password e le relative validazioni.
   - _Input_:
@@ -2403,26 +2513,27 @@ All'interno della cartella components, il modulo delega la logica di inserimento
   caption: [Components UI - Dashboard]
 ) \
 
-Il modulo _Dashboard_ costituisce il centro operativo dell'applicazione, offrendo una visione d'insieme dello stato dei dispositivi e permettendo il monitoraggio analitico dei dati biometrici e ambientali in tempo reale e in modalità storica.
+Il modulo `Dashboard` costituisce il centro operativo dell'applicazione, offrendo una visione d'insieme dello stato dei dispositivi e permettendo il monitoraggio analitico dei dati biometrici e ambientali in tempo reale e in modalità storica.
 
-====== DashboardPage (Smart Component) <angular-dashboard-page>
-La _DashboardPage_ agisce come orchestratore principale per la visualizzazione dei dati, adattando il proprio contenuto e le funzionalità disponibili in base al ruolo dell'utente e all'eventuale contesto di impersonificazione.
+====== DashboardPage <angular-dashboard-page>
+La `DashboardPage` agisce come orchestratore principale per la visualizzazione dei dati, adattando il proprio contenuto e le funzionalità disponibili in base al ruolo dell'utente e all'eventuale contesto di impersonificazione.
   - _Responsabilità_:
       - Gestisce il caricamento dei dati filtrati per tenant; per il ruolo `SUPER_ADMIN`, implementa una logica di impersonificazione che permette di visualizzare i dati di un'organizzazione specifica tramite parametri dell'URL.
-      - Coordina la visualizzazione delle tabelle dei gateway e dei sensori (utilizzando i componenti shared @angular-shared-components), gestendo l'espansione dei dettagli e la paginazione dei risultati attraverso il `DashboardService` (@angular-dashboard-service).
+      - Coordina la visualizzazione delle tabelle dei gateway e dei sensori (utilizzando i componenti shared @angular-shared-components), gestendo l'espansione dei dettagli e la paginazione dei risultati attraverso il `DashboardService`.
       - Supervisiona il ciclo di vita dei grafici, gestendo l'apertura delle richieste di monitoraggio e assicurando la corretta chiusura delle connessioni alla distruzione del componente.
-      - Fornisce feedback all'utente tramite banner informativi o notifiche in risposta all'invio di comandi ai dispositivi.
-  - _Servizi Iniettati_: `DashboardService`, `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`, `UserSessionService` (@angular-user-session-service).
+      - Fornisce feedback all'utente tramite banner informativi o notifiche in risposta all'invio di comandi.
+  - _Servizi Iniettati_: `DashboardService` (@angular-dashboard-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`, `UserSessionService` (@angular-user-session-service).
 
-====== UI Components (Dumb Components) <angular-dashboard-components>
+====== UI Components <angular-dashboard-components>
 All'interno della dashboard, la visualizzazione dei segnali è affidata a componenti presentazionali specializzati che gestiscono la complessità del rendering grafico.
+
 *`ChartContainerComponent`*: funge da contenitore dinamico per la visualizzazione dei grafici, isolando la logica di gestione del servizio dati dalla rappresentazione visiva.
   - _Input_:
     - `chartRequest`: oggetto di configurazione contenente il sensore, il tipo di grafico e gli eventuali filtri richiesti.
   - _Output_:
     - `chartClosed`: segnala alla pagina la chiusura della vista del grafico.
   - _Funzionalità_:
-    - Utilizza un effect per avviare automaticamente il recupero dei dati tramite `SensorChartService`(@angular-sensor-chart-service) ogni volta che la richiesta cambia.
+    - Utilizza un effect per avviare automaticamente il recupero dei dati tramite `SensorChartService` ogni volta che la richiesta cambia.
     - Visualizza lo stato della connessione WebSocket (es. "Connected", "Connecting") per i grafici live e gestisce la visualizzazione di eventuali errori di caricamento.
     - Istanzia condizionalmente i componenti `HistoricChartComponent` e/o `RealTimeChartComponent` in base al tipo di richiesta.
 
@@ -2434,11 +2545,12 @@ All'interno della dashboard, la visualizzazione dei segnali è affidata a compon
 
 *`HistoricChartComponent`*: implementa la visualizzazione delle serie storiche, fornendo strumenti per l'analisi di dataset estesi.
   - _Funzionalità_: 
+    - Utilizza la libreria `chart.js` per visualizzare un grafico a linee.
     - Integra controlli di scorrimento (slider e pulsanti "chevron") per navigare all'interno dei dati storici, visualizzando una finestra definita di punti (es. 50 o 250 per l'ECG).
     - Calcola dinamicamente l'offset di visualizzazione per permettere all'utente di scorrere temporalmente lungo tutta la lettura recuperata.
 
 ====== Dialogs <angular-dashboard-dialogs>
-*Nota*: Sebbene descritti in questa sezione per pertinenza funzionale con il modulo _Dashboard_, i seguenti dialoghi non sono invocati direttamente dalla pagina, ma sono attivati dalle tabelle componenti (`GatewayTable` e `SensorTable`) descritte nella sezione Shared (@angular-shared-components).
+*Nota*: Sebbene descritti in questa sezione per pertinenza funzionale con il modulo _Dashboard_, i seguenti dialoghi non sono invocati direttamente dalla pagina, ma sono attivati dalle tabelle componenti (`GatewayTable` e `SensorTable`) descritte nella @angular-shared-components.
 
 *`GatewayCommandsDialog`*: interfaccia per l'invio di istruzioni operative ai gateway, con validazioni dinamiche basate sullo stato del dispositivo.
   - _Logica_:
@@ -2446,8 +2558,8 @@ All'interno della dashboard, la visualizzazione dei segnali è affidata a compon
     - Gestisce l'inserimento obbligatorio del tenant e del token di sicurezza per l'attivazione dei gateway.
   - _Interazione_: coordina l'invio tramite `GatewayService` (@angular-gateway-service) e gestisce internamente lo stato di invio e gli errori API.
 
-*`SensorCommandsDialog`*: permette l'invio di comandi di interruzione o ripresa dell'attività per i singoli sensori.
-  - _Funzionalità_: presenta opzioni contestuali allo stato del sensore e comunica con `SensorService`(@angular-sensor-service) per l'esecuzione del comando.
+*`SensorCommandsDialog`*: permette l'invio di comandi di interruzione o ripresa dell'attività ai sensori.
+  - _Funzionalità_: presenta opzioni contestuali allo stato del sensore e comunica con `SensorService` (@angular-sensor-service) per l'esecuzione del comando.
 
 *`HistoricChartFiltersDialog`*: fornisce un modulo per la configurazione dei parametri di recupero dei dati storici.
   - _Logica_:
@@ -2457,53 +2569,53 @@ All'interno della dashboard, la visualizzazione dei segnali è affidata a compon
 
 ===== Gateway-Sensor
 #figure(
-  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-GatewaySensor.pdf", width: 100%),
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-GatewaySensor.pdf", width: 75%),
   caption: [Components UI - Gateway-Sensor]
 ) \
 
-Il modulo _Gateway-Sensor_ fornisce l'interfaccia dedicata alle operazioni di amministrazione (CRUD) sui gateway e sui sensori. A differenza della Dashboard, questa sezione è ottimizzata per la configurazione del sistema e la gestione del ciclo di vita dei dispositivi.
+Il modulo `Gateway-Sensor` fornisce l'interfaccia dedicata alle operazioni di amministrazione (CRUD) sui gateway e sui sensori. A differenza della `Dashboard`, questa sezione è ottimizzata per la configurazione del sistema e la gestione del ciclo di vita dei dispositivi.
 
-====== GatewaySensorManagerPage (Smart Component) <angular-gatewaysensormanager-page>
-La _GatewaySensorManagerPage_ funge da orchestratore per le attività di gestione, interfacciandosi con il servizio di dominio per riflettere i cambiamenti di stato e di inventario nell'interfaccia utente.
+====== GatewaySensorManagerPage <angular-gatewaysensormanager-page>
+La `GatewaySensorManagerPage` funge da orchestratore per le attività di gestione, interfacciandosi con il servizio di dominio per riflettere i cambiamenti di stato e di inventario nell'interfaccia utente.
   - _Responsabilità_:
-    - Inizializza il caricamento dei gateway e dei sensori associati tramite il `GatewaySensorManagerService` (@angular-gateway-sensor-manager-service).
-    - Configura la tabella dei gateway in modalità "manage" (`actionMode="manage"`@angular-actionmode-model), abilitando le colonne per la visualizzazione delle chiavi pubbliche e per l'eliminazione dei record.
+    - Inizializza il caricamento dei gateway e dei sensori associati tramite il `GatewaySensorManagerService`.
+    - Configura la tabella dei gateway in modalità "manage" (`actionMode="manage"`), abilitando le colonne per la visualizzazione delle chiavi pubbliche e per l'eliminazione dei record.
     - Gestisce i flussi di creazione e cancellazione: apre i dialoghi di creazione (`CreateGatewayDialog`, `CreateSensorDialog`) o conferma eliminazione (`ConfirmDeleteDialog`) e ne elabora l'esito aggiornando i dati e notificando l'utente tramite `SnackBar`.
     - Monitora e visualizza eventuali errori operativi derivanti dalle API, permettendo all'utente di chiudere i banner di avviso.
-  - _Servizi Iniettati_: `GatewaySensorManagerService`.
+  - _Servizi Iniettati_: `GatewaySensorManagerService` (@angular-gateway-sensor-manager-service).
 
 ====== Dialogs <angular-gatewaysensormanager-dialogs>
 Il modulo si avvale di dialoghi specializzati per l'inserimento e la validazione delle configurazioni dei nuovi dispositivi.
 
 *`CreateGatewayDialog`*: componente dedicato alla creazione di nuove entità gateway.
   - _Logica_:
-     - Implementa un modulo reattivo per l'inserimento del name e dell'intervallo (`interval`) di comunicazione.
+     - Implementa un modulo reattivo per l'inserimento del nome e dell'intervallo di invio dati.
      - Impone validazioni sul campo `interval`, richiedendo un valore minimo di 100ms per garantire la stabilità delle comunicazioni.
-  - _Interazione_: invia la configurazione `GatewayConfig` (@angular-gatewayconfig-model) al `GatewayService` (@angular-gateway-service) e gestisce internamente la visualizzazione degli errori.
+  - _Interazione_: invia la configurazione `GatewayConfig` al `GatewayService` (@angular-gateway-service) e gestisce internamente la visualizzazione degli errori.
 
 *`CreateSensorDialog`*: gestisce l'aggiunta di sensori a un gateway specifico.
   - _Logica_:
      - Riceve tramite `MAT_DIALOG_DATA` l'identificativo e il nome del gateway ospite per contestualizzare l'operazione.
-     - Permette la selezione del profilo tecnologico del sensore (ECG, Battito, etc.) tramite l'enumerazione `SensorProfiles` (@angular-sensorprofiles-model).
-     - Utilizza il `sensorProfilesMapper` (@angular-enummapper) per tradurre il profilo selezionato nel formato richiesto dal backend prima dell'invio.
-  - _Interazione_: comunica con `SensorService` (@angular-sensor-service) per la creazione dell'entità `SensorConfig` (@angular-sensorconfig-model) e chiude il dialogo restituendo un feedback positivo in caso di successo.
+     - Permette la selezione del profilo tecnologico del sensore (ECG, Battito, etc.) tramite l'enumerazione `SensorProfiles`.
+     - Utilizza il `sensorProfilesMapper` per tradurre il profilo selezionato nel formato richiesto dal backend prima dell'invio.
+  - _Interazione_: comunica con `SensorService` (@angular-sensor-service) per la creazione dell'entità `SensorConfig` e chiude il dialogo restituendo un feedback positivo in caso di successo.
 
 
 ===== Login
 #figure(
-  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Login.pdf", width: 100%),
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Login.pdf", width: 80%),
   caption: [Components UI - Login]
 ) \
 
-Il modulo _Login_ costituisce il punto di accesso principale al sistema, gestendo l'autenticazione degli utenti e fornendo i flussi per il recupero delle credenziali dimenticate.
+Il modulo `Login` costituisce il punto di accesso principale al sistema, gestendo l'autenticazione degli utenti e fornendo i flussi per il recupero delle credenziali dimenticate.
 
-====== LoginPage (Smart Component) <angular-login-page>
-La _LoginPage_ funge da orchestratore per la fase di accesso, collegando il modulo di inserimento dati con i servizi di sessione e gestendo la navigazione post-autenticazione.
+====== LoginPage <angular-login-page>
+La `LoginPage` funge da orchestratore per la fase di accesso, collegando il modulo di inserimento dati con i servizi di sessione e gestendo la navigazione post-autenticazione.
   - _Responsabilità_:
-    - Coordina l'operazione di accesso invocando il metodo login dell'`AuthSessionService` (@angular-auth-session-service) e, in caso di successo, reindirizza l'utente verso la `Dashboard` (@angular-dashboard-page).
-    - Gestisce l'apertura del dialogo per il recupero password (`ForgotPasswordDialog`@angular-login-dialogs).
-    - Espone lo stato di caricamento e gli eventuali errori di autenticazione recuperati dal servizio di sessione.
-  - _Servizi Iniettati_: `AuthSessionService`, `Router`.
+    - Coordina l'operazione di accesso invocando il metodo login dell'`AuthSessionService` e, in caso di successo, reindirizza l'utente verso la `Dashboard`.
+    - Gestisce l'apertura del dialogo per il recupero password (`ForgotPasswordDialog`).
+    - Espone lo stato di caricamento e gli eventuali errori recuperati dal servizio di sessione.
+  - _Servizi Iniettati_: `AuthSessionService` (@angular-auth-session-service), `Router`.
 
 ====== UI Components (Dumb Components) <angular-login-components>
 All'interno della cartella components, la logica di presentazione del modulo di accesso è isolata in un componente dedicato.
@@ -2525,9 +2637,9 @@ All'interno della cartella components, la logica di presentazione del modulo di 
     - Presenta un modulo per l'inserimento dell'email e la selezione opzionale del tenant.
     - Include una funzione `setupAutoClear` che monitora i cambiamenti nei campi del modulo per pulire automaticamente gli errori di invio mentre l'utente digita.
   - _Interazione_:
-    - Invia la richiesta `ForgotPasswordRequest` (@angular-forgotpasswordrequest-model) tramite l'`AuthActionsService` (@angular-auth-actions-service).
+    - Invia la richiesta `ForgotPasswordRequest` tramite l'`AuthActionsService`.
     - In caso di esito positivo, chiude il dialogo restituendo true per confermare l'invio del link di reset.
-    - _Servizi Iniettati_: `FormBuilder`, `MatDialogRef`, `AuthActionsService`, `TenantService` (@angular-tenant-service).
+    - _Servizi Iniettati_: `FormBuilder`, `MatDialogRef`, `AuthActionsService` (@angular-auth-actions-service), `TenantService` (@angular-tenant-service).
 
 
 ===== Reset Password
@@ -2536,23 +2648,23 @@ All'interno della cartella components, la logica di presentazione del modulo di 
   caption: [Components UI - Reset Password]
 ) \
 
-Il modulo _Reset Password_ gestisce la fase finale del recupero delle credenziali, permettendo all'utente di impostare una nuova password tramite un link di sicurezza ricevuto via email.
+Il modulo `ResetPassword` gestisce la fase finale del recupero delle credenziali, permettendo all'utente di impostare una nuova password tramite un link di sicurezza ricevuto via email.
 
-====== ResetPasswordPage (Smart Component) <angular-resetpassword-page>
+====== ResetPasswordPage <angular-resetpassword-page>
 La `ResetPasswordPage` funge da coordinatore per l'operazione di ripristino, estraendo i parametri di validazione dall'URL e gestendo lo stato dell'interfaccia in base all'esito della richiesta.
   - _Responsabilità_:
     - Recupera il token di sicurezza dai parametri del percorso e l'eventuale tenantId dai parametri di ricerca (query parameters) per autorizzare l'operazione.
-    - Osserva i segnali esposti da `AuthActionsService` (@angular-auth-actions-service) per monitorare lo stato di caricamento (`loading`), eventuali errori (`generalError`) e la conferma dell'avvenuta modifica (`passwordChangeResult`).
+    - Osserva i segnali esposti da `AuthActionsService` per monitorare lo stato di caricamento (`loading`), eventuali errori (`generalError`) e la conferma dell'avvenuta modifica (`passwordChangeResult`).
     - Inoltra la richiesta di reset al servizio di dominio, integrando i dati ricevuti dal form con il token e il tenant ID estratti dall'URL.
     - Gestisce la navigazione di ritorno alla pagina di login dopo il completamento con successo.
-  - _Servizi Iniettati_: `AuthActionsService`, `Router`, `ActivatedRoute`.
+  - _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
 
-====== UI Components (Dumb Components) <angular-resetpassword-components>
+====== UI Components <angular-resetpassword-components>
 La logica di inserimento e validazione dei dati è delegata a un componente presentazionale che separa la gestione dei messaggi di sistema dalla visualizzazione del modulo.
 *`ResetPasswordFormComponent`*: fornisce l'interfaccia per la creazione della nuova password, garantendo la correttezza dei dati inseriti tramite validazioni reattive.
   - _Input_:
     - `loading`: indica se la richiesta è in fase di elaborazione.
-    - `generalError`: contiene il messaggio di errore da visualizzare nel banner qualora l'operazione fallisca.
+    - `generalError`: contiene il messaggio di errore da visualizzare nel banner nel caso di errore.
     - `success`: booleano che, se vero, nasconde il modulo e mostra un messaggio di conferma del successo dell'operazione.
   - _Output_:
     - `submitReset`: emette la nuova password verso la pagina orchestratrice.
@@ -2566,13 +2678,13 @@ La logica di inserimento e validazione dei dati è delegata a un componente pres
 
 ===== Tenant
 #figure(
-  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Tenant.pdf", width: 100%),
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Tenant.pdf", width: 70%),
   caption: [Components UI - Tenant]
 ) \
 
-Il modulo _Tenant_ fornisce l'interfaccia per la gestione delle entità organizzative (appunto i tenant) all'interno del sistema multi-tenant. Questa sezione permette agli amministratori globali di creare nuove organizzazioni, monitorare quelle esistenti ed eseguire operazioni di impersonificazione.
+Il modulo `Tenant` fornisce l'interfaccia per la gestione delle entità organizzative (appunto i tenant) all'interno del sistema multi-tenant. Questa sezione permette agli amministratori globali di creare nuove organizzazioni, monitorare quelle esistenti ed eseguire operazioni di impersonificazione.
 
-====== TenantManagerPage (Smart Component) <angular-tenantmanager-page>
+====== TenantManagerPage <angular-tenantmanager-page>
 La `TenantManagerPage` funge da orchestratore centrale per l'anagrafica dei tenant, gestendo il caricamento dei dati e coordinando le azioni di amministrazione.
   - _Responsabilità_:
     - Inizializza il recupero della lista dei tenant attraverso il `TenantService`.
@@ -2582,7 +2694,7 @@ La `TenantManagerPage` funge da orchestratore centrale per l'anagrafica dei tena
     - Monitora lo stato di errore globale del servizio e permette all'utente di chiudere i banner di notifica in caso di fallimento delle API.
   - _Servizi Iniettati_: `TenantService` (@angular-tenant-service), `Router`.
 
-====== UI Components (Dumb Components) <angular-tenant-components>
+====== UI Components <angular-tenant-components>
 La visualizzazione dei dati è affidata a un componente presentazionale che isola la complessità della tabella di Angular Material.
 *`TenantTableComponent`*: componente dedicato alla rappresentazione tabellare dei tenant.
   - _Input_:
@@ -2601,31 +2713,30 @@ La visualizzazione dei dati è affidata a un componente presentazionale che isol
   - _Logica_:
     - Utilizza un modulo reattivo per l'inserimento del `name` (obbligatorio) e la configurazione del permesso `canImpersonate` tramite checkbox.
     - Gestisce internamente lo stato di invio (`isSubmitting`) e la visualizzazione di errori specifici restituiti dal backend durante la creazione.
-  - _Interazione_: comunica direttamente con il `TenantService` (@angular-tenant-service) per l'invio della configurazione `TenantConfig` (@angular-tenantconfig-model) e chiude il dialogo restituendo un feedback positivo alla pagina principale.
-
+  - _Interazione_: comunica direttamente con il `TenantService` (@angular-tenant-service) per l'invio della configurazione `TenantConfig` e chiude il dialogo restituendo un feedback positivo alla pagina principale.
 
 ===== User
 #figure(
-  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-User.pdf", width: 90%),
+  image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-User.pdf", width: 70%),
   caption: [Components UI - User]
 ) \
 
-Il modulo _User_ fornisce l'interfaccia per la gestione completa degli utenti del sistema. La pagina è dinamica e adatta i propri contenuti (titoli, permessi e filtri) in base al ruolo dell'utente collegato e alla tipologia di account che si sta gestendo.
+Il modulo `User` fornisce l'interfaccia per la gestione completa degli utenti del sistema. La pagina è dinamica e adatta i propri contenuti (titoli, permessi e filtri) in base al ruolo dell'utente collegato e alla tipologia di account che si sta gestendo.
 
-====== UserManagerPage (Smart Component) <angular-usermanager-page>
+====== UserManagerPage <angular-usermanager-page>
 La `UserManagerPage` agisce come orchestratore centrale per l'amministrazione degli utenti, gestendo la navigazione tra i diversi ruoli e il contesto organizzativo.
   - _Responsabilità_:
     - Determina il contesto operativo (titolo della pagina e ruolo target) analizzando il percorso di routing attivo.
     - Gestisce la visualizzazione tabellare degli utenti tramite lo `UserService` (@angular-user-service), supportando la paginazione e il filtraggio per tenant.
     - Implementa una logica di commutazione tramite tab per distinguere tra _Tenant User_ e _Tenant Admin_ all'interno di una specifica organizzazione.
-    - Per i _Super Admin_, fornisce una barra di selezione per filtrare gli utenti in base al tenant di appartenenza.
-    - Coordina le operazioni CRUD: apre il dialogo `UserFormDialog`(@angular-user-dialogs) per la creazione e richiede conferma tramite `ConfirmDeleteDialog` (@angular-shared-dialogs) prima della rimozione di un account.
+    - Per i _Super Admin_, fornisce un selettore per filtrare gli utenti in base al tenant di appartenenza.
+    - Coordina le operazioni CRUD: apre il dialogo `UserFormDialog` per la creazione e richiede conferma tramite `ConfirmDeleteDialog` prima della rimozione di un account.
     - Gestisce i flussi di navigazione per tornare alla gestione dei tenant o alla dashboard.
-  - _Servizi Iniettati_: `UserService`, `UserSessionService` (@angular-user-session-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`.
+  - _Servizi Iniettati_: `UserService` (@angular-user-service), `UserSessionService` (@angular-user-session-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`.
 
-====== UI Components (Dumb Components) <angular-user-components>
+====== UI Components <angular-user-components>
 La visualizzazione della lista utenti è delegata a un componente specializzato che garantisce la coerenza visiva.
-*`UserTableComponent`*: componente dedicato alla rappresentazione dei dati anagrafici degli utenti.
+*`UserTableComponent`*: componente dedicato alla rappresentazione dei dati degli utenti.
   - _Input_:
      - `users`: l'array di oggetti User da visualizzare nella tabella.
      - `loading`: segnale booleano per lo stato di caricamento.
@@ -2634,13 +2745,13 @@ La visualizzazione della lista utenti è delegata a un componente specializzato 
   - _Output_:
      - `deleteRequested`: segnala l'intenzione di eliminare un record.
      - `pageChange`: notifica la richiesta di cambio pagina o dimensione del set di dati.
-  - _Funzionalità_: implementa una misura di sicurezza nel template che nasconde il pulsante di eliminazione per l'utente attualmente loggato, impedendo l'auto-cancellazione accidentale del proprio account.
+  - _Funzionalità_: implementa una misura di sicurezza nel template che nasconde il pulsante di eliminazione per l'utente attualmente loggato, impedendo l'auto-cancellazione del proprio account.
 
 ====== Dialogs <angular-user-dialogs>
 *`UserFormDialogComponent`*: gestisce l'inserimento dei dati per la creazione di nuovi profili utente.
   - _Logica_:
     - Utilizza un modulo reattivo per acquisire username ed email (con validazione del formato).
-    - Gestisce dinamicamente il campo `tenantId`: se l'operazione avviene nel contesto di un tenant specifico, il campo viene bloccato e visualizzato come sola lettura; in caso contrario, permette la selezione da una lista caricata tramite `TenantService`(@angular-tenant-service).
+    - Gestisce dinamicamente il campo `tenantId`: se l'operazione avviene nel contesto di un tenant specifico, il campo viene bloccato e visualizzato come sola lettura; in caso contrario, permette la selezione da una lista caricata tramite `TenantService` (@angular-tenant-service).
   - _Interazione_: invia i dati al servizio `UserService` (@angular-user-service) e monitora lo stato di sottomissione per visualizzare indicatori di progresso o messaggi di errore restituiti dalle API.
 
 
