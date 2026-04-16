@@ -10,6 +10,8 @@ Per effettuare l'accesso, l'utente deve interagire con la form del login inseren
 - **Password**: la password definita in fase di attivazione;
 - **Tenant**: tramite un menù a tendina, popolato tramite `TenantService`, permette di indicare il tenant di riferimento.
 
+![Interfaccia del modulo di Login con selezione del Tenant](../../../assets/frontend-MU/Login.png "Schermata di Login standard")
+
 **Nota per i Super Admin**: Gli utenti con privilegi di amministratore globale possono effettuare il login senza selezionare un tenant specifico per accedere alla gestione anagrafica generale; la visualizzazione dei dati operativi (dashboard) richiederà successivamente una procedura di impersonificazione{{gloss}}.
 
 ## Conferma account e attivazione
