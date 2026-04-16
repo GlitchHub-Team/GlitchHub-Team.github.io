@@ -2,6 +2,7 @@
 Il microservizio **Dashboard** offre l'interfaccia utente e le API per gestire e visualizzare i dati dei sensori, i gateway, i tenant e gli utenti.
 
 ## Funzioni principali
+
 - Creazione e gestione tenant
 - Gestione utenti con ruoli diversi (super admin, tenant admin, tenant user)
 - Gestione gateway e sensori simulati, con possibilità di invio comandi per la modifica della configurazione

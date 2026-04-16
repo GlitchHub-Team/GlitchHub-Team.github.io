@@ -2,6 +2,7 @@
 Il microservizio di **Observability** ha lo scopo di raccogliere e visualizzare metriche, rispettivamente attraverso Prometheus{{gloss}} e Grafana{{gloss}}.
 
 ## Funzioni principali
+
 - Raccolta di metriche di NATS JetStream{{gloss}};
 - Raccolta di metriche di Gin{{gloss}};
 - Visualizzazione dashboard Grafana{{gloss}} con metriche di NATS JetStream{{gloss}};

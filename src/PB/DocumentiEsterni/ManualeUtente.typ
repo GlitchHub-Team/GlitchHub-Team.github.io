@@ -6,11 +6,18 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.4.0",
+      "15/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [Stesura sezione Glossario (@glossary), Introduzione, Preparazione del Sistema (@preparazione-sistema)],
+    ),
+    (
       "0.3.0",
       "14/04/2026",
       "Alessandro Dinato",
       "Riccardo Graziani",
-      [Stesura sezione Esecuzione test, @esecuzione-test],
+      [Stesura sezione Esecuzione test (@esecuzione-test)],
     ),
     (
       "0.2.0",
