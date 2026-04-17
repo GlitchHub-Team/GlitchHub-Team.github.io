@@ -1584,7 +1584,7 @@ Il package `email` non presenta controller poiché non viene chiamato direttamen
 
 #figure(
   image("../../assets/c4/backend/email/email.svg", width: 100%),
-  caption: [Cloud Backend -- Code Diagram per package `email`]
+  caption: [Cloud Backend -- Code Diagram di package `email`]
 )
 
 ===== `SendEmailPort`
@@ -1627,7 +1627,7 @@ Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di
 
 #figure(
   image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  caption: [Cloud Backend -- Code Diagram di `gateway/hello`],
 )
 
 ===== Inbound adapter -- `NATSWorker`, `GatewayHelloMessageDTO`
@@ -1671,7 +1671,7 @@ Di seguito si riporta il Code Diagram degli struct di dominio rappresentati un d
   caption: [Cloud Backend -- Code Diagram di data structs per `real_time_data`],
 )
 
-Di seguito, invece, si riporta il Code Diagram per tutti gli altri struct presenti nel package.
+Di seguito, invece, si riporta il Code Diagram di tutti gli altri struct presenti nel package.
 #figure(
   image("../../assets/c4/backend/real_time_data/real_time_data_structs.svg", width:90%),
   caption: [Cloud Backend -- Code Diagram di Controller, UseCase, Service, Port, Adapter e Reader per `real_time_data`],
@@ -1823,14 +1823,14 @@ Rappresenta un contenitore thread-safe per rappresentare un valore temporale cre
 Il package `sensor` si occupa della gestione CRUD dei sensori e dell'invio di comandi ad essi. Il diagramma riportato di seguito è comprensivo dell'intero package, per cui potrebbe essere necessario usare la funzionalità di zoom per leggerne i contenuti
 #figure(
   image("../../assets/c4/backend/sensor/sensor.svg", width:115%),
-  caption: [Cloud Backend -- Code Diagram per `sensor`],
+  caption: [Cloud Backend -- Code Diagram di `sensor`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
 L'_inbound adapter_ principale del package è `Controller`
 #figure(
   image("../../assets/c4/backend/sensor/Controller.svg", width:70%),
-  caption: [Cloud Backend -- Code Diagram per `sensor.Controller`],
+  caption: [Cloud Backend -- Code Diagram di `sensor.Controller`],
 )
 
 *Attributi*:
@@ -1888,7 +1888,7 @@ I *DTO* usati da `Controller` sono i seguenti:
 ===== Inbound ports
 #figure(
   image("../../assets/c4/backend/sensor/UseCases.svg", width:80%),
-  caption: [Cloud Backend -- Code Diagram per _inbound ports_ e _services_ in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ in `sensor`],
 ) <cloud-backend-code-inports-services>
 
 Per dettagli sui `Command`, si consulti la @code-sensor-commands.
@@ -1923,7 +1923,7 @@ Per dettagli sui `Command`, si consulti la @code-sensor-commands.
 ===== Comandi <code-sensor-commands>
 #figure(
   image("../../assets/c4/backend/sensor/Commands.svg", width:60%),
-  caption: [Cloud Backend -- Code Diagram per comandi in `sensor`],
+  caption: [Cloud Backend -- Code Diagram dei comandi in `sensor`],
 )
 
 I comandi usati dallo strato di business sono i seguenti. Si noti che ciascuno di questi comandi presenta il campo *`Requester identity.Requester`* poiché ciascun comando dev'essere eseguito da un utente autorizzato, per cui per completezza non saranno ripetuti nella lista seguente.
@@ -2057,7 +2057,7 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 
 #figure(
   image("../../assets/c4/backend/sensor/PortsAdapters-Database.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per _outbound ports_ e _outbound adapters_ per database in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per database in `sensor`],
 ) <backend-code-outbound-ports-adapters-database>
 
 ====== `CreateSensorPort`
@@ -2096,7 +2096,7 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 
 #figure(
   image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
 ) <backend-code-outbound-ports-adapters-broker>
 
 ====== `CreateSensorCmdPort`
@@ -2151,7 +2151,7 @@ Per visualizzare il #gloss[Code Diagram] relativo a `SendCmdAdapter`, si veda la
 ===== Repository per database -- `DatabaseRepository`, `SensorEntity`
 #figure(
   image("../../assets/c4/backend/sensor/DatabaseRepository.svg", width:85%),
-  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per database in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per database in `sensor`],
 )
 
 Interfaccia che espone metodi per svolgere operazioni CRUD sui sensori sul database.
@@ -2191,7 +2191,7 @@ Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare 
 ===== Repository per message broker -- `MessageBrokerRepository` e relative `Entity`
 #figure(
   image("../../assets/c4/backend/sensor/MessageBrokerRepository.svg", width:85%),
-  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per message broker in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per message broker in `sensor`],
 )
 
 Interfaccia che espone i metodi per inviare messaggi al simulatore di gateway tramite message broker.
@@ -2248,7 +2248,7 @@ Questo package è stato creato separatamente da `sensor` per evitare la creazion
 ===== `SensorProfile` <code-sensor.SensorProfile>
 #figure(
   image("../../assets/c4/backend/sensor/SensorProfile.svg", width:30%),
-  caption: [Cloud Backend -- Code Diagram per `sensor.SensorProfile`],
+  caption: [Cloud Backend -- Code Diagram di `sensor/profile.SensorProfile`],
 )
 
 L'enum `SensorProfile` rappresenta i vari profili GATT che un sensore può avere.
@@ -2268,7 +2268,7 @@ Questo package contiene la struct di configurazione del sistema, che raggruppa t
 
 #figure(
   image("../../assets/c4/backend/shared/config/config.svg", width:80%),
-  caption: [Cloud Backend -- Code Diagram per `shared/config`],
+  caption: [Cloud Backend -- Code Diagram di `shared/config`],
 )
 
 ===== `Config`
@@ -2318,7 +2318,7 @@ Il package `shared/crypto` contiene le interfacce usate nell'applicativo per int
 
 #figure(
   image("../../assets/c4/backend/shared/crypto/crypto.svg", width:70%),
-  caption: [Cloud Backend -- Code Diagram per `shared/crypto`],
+  caption: [Cloud Backend -- Code Diagram di `shared/crypto`],
 )
 
 ===== `AuthTokenManager`
@@ -2347,7 +2347,7 @@ Il package `shared/identity` contiene gli elementi per attivare le procedure di 
 
 #figure(
   image("../../assets/c4/backend/shared/identity/identity.svg", width:70%),
-  caption: [Cloud Backend -- Code Diagram per `shared/identity`],
+  caption: [Cloud Backend -- Code Diagram di `shared/identity`],
 )
 
 ===== `Requester`
@@ -2380,7 +2380,7 @@ Enumerazione che rappresenta il ruolo di un utente.
 Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
 #figure(
   image("../../assets/c4/backend/user/user.svg", width:110%),
-  caption: [Cloud Backend -- Code Diagram per `user`],
+  caption: [Cloud Backend -- Code Diagram di `user`],
 )
 
 ===== Inbound adapter -- `Controller` e relativi DTO
@@ -2782,7 +2782,7 @@ Di seguito si ripotano le specifiche dell'_outbound adapter_ principale del pack
 
 ====== `UserRepositoryGetUserBy`
 #figure(
-  image("../../assets/c4/backend/user/UserRepositoryGetUserBy.svg", width: 30%),
+  image("../../assets/c4/backend/user/UserRepositoryGetUserBy.svg", width: 25%),
   caption: [Cloud Backend -- Code diagram di `user.UserRepositoryGetUserBy`],
 )
 
@@ -2799,9 +2799,8 @@ WHERE id = 1 AND email = 'email@example.com'
 - *`ID *int`*: Effettua la ricerca per ID utente, se ha valore non-`nil`.
 - *`Email *string`*: Effettua la ricerca per email, se ha valore non-`nil`.
 
-
-===== Repository per Tenant Member -- `TenantMemberRepository`
-Interfaccia che espone i metodi per eseguire le operazioni CRUD sui Tenant Member del sistema.
+===== Repository per Tenant Member -- `TenantMemberRepository`, `TenantMemberEntity`
+Interfaccia che espone i metodi per eseguire le operazioni CRUD sui Tenant Member, ovvero sui Tenant User e Tenant Admin inseriti nel sistema.
 
 #figure(
   image("../../assets/c4/backend/user/TenantMemberRepository.svg", width: 80%),
@@ -2812,11 +2811,56 @@ Interfaccia che espone i metodi per eseguire le operazioni CRUD sui Tenant Membe
 - *`SaveTenantMember(tenantMember *TenantMemberEntity) error`*: Crea il nuovo Tenant Member `tenantMember` o aggiorna quello esistente, ritornando errore in caso di errore nella procedura di salvataggio.
 - *`DeleteTenantMember(tenantMember *TenantMemberEntity) error`*: Elimina il Tenant Member `tenantMember` esistente, ritornando errore se non è stato trovato.
 - *`GetTenantMember(tenantId string, by UserRepositoryGetUserBy) (tenantMember *TenantMemberEntity, err error)`*: Ottiene i dati del Tenant Member appartenente al tenant con UUID `tenantId`, effettuando la ricerca a seconda di quanto specificato da `by`.  
-- *`GetTenantUsers(tenantId string, offset, limit int) (tenantUsers []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata
-- *`GetTenantAdmins(tenantId string, offset, limit int) (tenantAdmins []TenantMemberEntity, total int64, err error)`*:
-- *`CountTenantAdminsByTenant(tenantId string) (total int64, err error)`*:
+- *`GetTenantUsers(tenantId string, offset, limit int) (tenantUsers []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
+- *`GetTenantAdmins(tenantId string, offset, limit int) (tenantAdmins []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
+- *`CountTenantAdminsByTenant(tenantId string) (total int64, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId`.
 
-// CONTINUA
+====== `tenantMemberPgRepository`
+Struct concreta che implementa `TenantMemberRepository`.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`db clouddb.CloudDBConnection`*: Oggetto che consente connessione al Cloud DB
+
+*Funzione di costruzione*: `newTenantMemberPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *tenantMemberPgRepository`
+
+====== `TenantMemberEntity`
+Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @er-cloud-db
+
+*Attributi*:
+- *`ID uint`*: ID dell'utente.
+- *`Email string`*: Email dell'utente.
+- *`Name string`*: Nome dell'utente.
+- *`Password *string`*: Hash della password dell'account dell'utente.
+- *`Confirmed bool`*: `true` se l'utente è stato confermato o meno.
+- *`Role string`*: Stringa che identifica il ruolo dell'utente, può assumere i valori `"tenant_user"`, `"tenant_admin"` o `"super_admin"`.
+- *`TenantId string`*: UUID del tenant a cui è associato l'utente. Si noti che questa stringa viene appositamente ignorata da GORM, poiché ha lo scopo di identificare il tenant a cui appartiene l'utente, dato che non è ripetuto nella tabella `tenant_members` del database, in quanto tale informazione è contenuta nel nome dello schema a cui la tabella appartiene.
+- *`CreatedAt time.Time`*: Data di creazione dell'utente.
+- *`UpdatedAt time.Time`*: Data di ultimo aggiornamento dell'utente.
+
+===== Repository per Super Admin -- `SuperAdminRepository`, `SuperAdminEntity`
+Interfaccia che espone i metodi per svolgere operazioni CRUD sui Super Admin nel sistema.
+
+#figure(
+  image("../../assets/c4/backend/user/SuperAdminRepository.svg", width: 80%),
+  caption: [Cloud Backend -- Code diagram di `user.SuperAdminRepository`, `user.superAdminPgRepository` e `user.SuperAdminEntity`],
+)
+
+*Metodi*:
+- *`SaveSuperAdmin(superAdmin *SuperAdminEntity) error`*: Crea un nuovo Super Admin o aggiorna un Super Admin esistente secondo le specifiche di `superAdmin` e ritorna errore in caso ci siano errori nella procedura di salvataggio.
+- *`DeleteSuperAdmin(superAdmin *SuperAdminEntity) error`*: Elimina il Super Admin `superAdmin` e ritorna errore in caso ci siano errori nella procedura d'eliminazione.
+- *`GetSuperAdmin(by UserRepositoryGetUserBy) (*SuperAdminEntity, error)`*: Ottiene l'oggetto `SuperAdminEntity` secondo i dati specificati in `by` e ritorna errore in caso il Super Admin specificato non sia presente nel database.
+- *`GetSuperAdmins(offset, limit int) (superAdmins []SuperAdminEntity, total int64, err error)`*: Ottiene una lista paginata di Super Admin secondo i parametri `offset` e `limit` e ritorna il numero totale di Super Admin nel sistema e un errore in caso di errori di comunicazione col database.
+- *`CountSuperAdmins() (total int64, err error)`*: Ritorna il numero di Super Admin nel sistema e un errore in caso di errori di comunicazione col database.
+
+====== `superAdminPgRepository`
+Struct concreta che implementa `SuperAdminRepository`.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`db clouddb.CloudDBConnection`*: Oggetto che consente connessione al Cloud DB
+
+*Funzione di costruzione*: `newSuperAdminPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *superAdminPgRepository`
 
 == Database design <db-design>
 === Buffer database
