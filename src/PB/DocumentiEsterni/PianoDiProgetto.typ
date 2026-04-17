@@ -4133,7 +4133,7 @@ table.footer([*Totale*], [*93*], [-], [*1515 €*]),
 Inizio: 15/04/2026 \
 Fine: 22/04/2026 \
 
-Gli obbiettivi principali dello #gloss("sprint") 17 sono la stesura del manuale utente e della specifica tecnica, nonché l'implementazione di più test di sistema possibile.
+Gli obbiettivi principali dello #gloss("sprint") 17 sono la stesura del #gloss("Manuale Utente") e della #gloss("Specifica Tecnica"), nonché l'implementazione di più test di sistema possibile.
 
 Altre attività includono la correzione di qualche errore con le metriche di _observability_ e l'aggiornamento e revisione del piano di qualifica e dell'analisi dei requisiti.
 
