@@ -4,6 +4,7 @@ Questi comandi vengono ricevuti su un **subject NATS** specifico e vengono esegu
 
 ## Interruzione gateway
 L'interruzione di un gateway simulato richiede l'invio di un comando al subject NATS `commands.interruptgateway` e comporta le seguenti azioni:
+
 - Modifica dello stato del gateway simulato da **active** a **inactive**;
 - Interruzione del processo di invio dei dati dei sensori simulati associati al gateway simulato attraverso il message broker in questione;
 - Scrittura del nuovo stato nel database SQLite{{gloss}} del microservizio in questione.
@@ -18,6 +19,7 @@ Il comando deve essere inviato sul subject NATS `commands.interruptgateway` con 
 
 ## Ripresa gateway
 La ripresa di un gateway simulato richiede l'invio di un comando al subject NATS `commands.resumegateway` e comporta le seguenti azioni:
+
 - Modifica dello stato del gateway simulato da **inactive** a **active**;
 - Ripresa del processo di invio dei dati dei sensori simulati associati al gateway simulato attraverso il message broker in questione;
 - Scrittura del nuovo stato nel database SQLite{{gloss}} del microservizio in questione.

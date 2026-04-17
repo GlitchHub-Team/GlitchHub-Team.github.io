@@ -11,6 +11,7 @@ Il microservizio infatti si avvia con il seguente comando:
 go run main.go -batch-size N -subject "string"
 ```
 Dove:
+
 - `N` è il numero di messaggi da richiedere a NATS JetStream{{gloss}} ad ogni richiesta, e deve essere un intero maggiore o uguale di 1, altrimenti verrà impostato a **100** di default;
 - `string` è il subject NATS su cui ascoltare per ricevere i dati dei sensori simulati.
 

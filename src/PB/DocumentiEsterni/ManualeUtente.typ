@@ -6,11 +6,25 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.5.0",
+      "16/04/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Stesura sezione Guide Observability: Metriche del backend, Metriche di NATS, Metriche di JetStream],
+    ),
+    (
+      "0.4.0",
+      "15/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [Stesura sezione Glossario (@glossary), Introduzione, Preparazione del Sistema (@preparazione-sistema)],
+    ),
+    (
       "0.3.0",
       "14/04/2026",
       "Alessandro Dinato",
       "Riccardo Graziani",
-      [Stesura sezione Esecuzione test, @esecuzione-test],
+      [Stesura sezione Esecuzione test (@esecuzione-test)],
     ),
     (
       "0.2.0",
@@ -30,8 +44,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Manuale Utente",
 )
 
@@ -95,9 +109,9 @@
     content,
     scope: (
       gloss: gloss,
-      image: (path, width: 50%, height: 30%, alt: none) => align(
+      image: (path, width: 90%, height: auto, alt: none) => align(
         center,
-        image(base + "/" + path, alt: alt, width: width, height: height, fit: "contain"),
+        image(base + "/" + path, alt: alt, width: width, fit: "contain"),
       ),
     ),
     h1-level: level,
