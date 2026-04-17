@@ -3,7 +3,7 @@
 #show link: underline
 #show: report.with(
   titolo: "Verbale interno 15/04/2026",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
   ),
   partecipanti: (
@@ -25,8 +25,8 @@
     [Riassegnazione ore],
   ),
   htmlId: "PB-VerbaliInterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Hossam Ezzemouri",
+  left-signature: "../assets/firme/firma_Hossam_Ezzemouri.png",
   tipo-verbale: "Interno",
 )
 
