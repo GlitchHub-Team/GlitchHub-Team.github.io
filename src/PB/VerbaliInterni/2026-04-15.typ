@@ -69,7 +69,7 @@ Il test book richiesto dalla proponente è stato compilato.
   [[PdP] Sprint 16], [Jaume Bernardi], [(#issue(547))], 
   [[ST] Stesura Cloud Backend - Elia], [Elia Ernesto Stellin], [(#issue(523))], 
   [Rendicontazione ore responsabile sprint 17], [Jaume Bernardi], [(#issue(545))],
-  [[PdQ ] Rendicontare test di unità/integrazione], [Jaume Bernardi], [(#issue(550))],
+  [[PdQ] Rendicontare test di unità/integrazione], [Jaume Bernardi], [(#issue(550))],
 
 ) 
 
