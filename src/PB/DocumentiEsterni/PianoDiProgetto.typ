@@ -4160,7 +4160,7 @@ Issue relative a sprint 17: \
   - [ST] Fix diagramma UserApiClientService (#issue(557))
 
 === Rischi attesi
-Descrivere i rischi attesi
+*RT2* (@RT2): L'esecuzione dei test di sistema è un'attività che potrebbe far emergere bug di integrazione imprevisti, necessitando l'investimento di tempo nella loro risoluzione. Se ciò capita spesso, potrebbe comportare un ritardo.
 
 === Preventivo
 ==== Preventivo risorse da utilizzare
