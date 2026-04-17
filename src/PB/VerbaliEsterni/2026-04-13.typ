@@ -26,7 +26,7 @@
 )
 
 = Introduzione
-Il presente verbale attesta che in data 13 aprile 2026 dalle 14:30 alle 15:50, si è svolto l’incontro con la proponente *M31 SRL*, in presenza.
+Il presente verbale attesta che in data *13 aprile 2026* dalle 14:30 alle 15:50, si è svolto l’incontro con la proponente *M31 SRL*, in presenza.
 
 L’obiettivo dell’incontro è stata l'esposizione dello stato di avanzamento del progetto tramite presentazione dedicata e l’esecuzione del *test book* richiesto sul sistema.
 

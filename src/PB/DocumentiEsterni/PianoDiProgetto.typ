@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
+  stato: "da verificare",
   registro-modifiche: (
+      (
+      "1.8.0",
+      "17/04/2026",
+      "Jaume Bernardi",
+      "",
+      [Stesura sprint 16 (@sprint-16) e preventivo sprint 17 (@sprint-17)],
+      ),
       (
       "1.7.1",
       "11/04/2026",
@@ -3993,21 +4000,201 @@ table.footer([*Totale*], [*1*], [*0*], [*0*], [*38*], [*9*], [*11*], [*59*]),
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 14: \
-
+Issue relative a sprint 16: \
+ - [ST] Completamento Specifica Tecnica per frontend (#issue(495))
+ - [Frontend] Integrazione con Cloud (#issue(100, repo:"dashboard"))
+ - [Backend] TI historical_data (#issue(101, repo:"dashboard"))
+ - [Backend] TI backend/internal/email (#issue(70, repo:"dashboard"))
+ - [ST] Aggiungere nuove librerie usate (#issue(488))
+ - [Backend] Codifica backend/internal/real_time_data (#issue(76, repo:"dashboard"))
+ - [Backend] TU backend/internal/real_time_data (#issue(77, repo:"dashboard"))
+ - [Backend] TI backend/internal/real_time_data (#issue(78, repo:"dashboard"))
+ - [MU] Perfezionamento manuale utente Gateway, Data Consumer (#issue(520))
+ - [MU] Perfezionamento sezione Observability (#issue(528))
+ - [Backend] Fix backend gateway (#issue(130, repo:"dashboard"))
+ - [Backend] Fix bug per login su utente inesistente (#issue(121, repo:"dashboard"))
+ - [TB] Stesura infrastruttura del Test Book (#issue(518))
+ - [PdP] Sprint 15 (#issue(498))
+ - Rendicontazione ore responsabile sprint 16 (#issue(516))
+ - [TB] Controllo test singoli del test book nel sistema reale (#issue(519))
+ - [Backend] Fix backend modulo gateway (#issue(128, repo:"dashboard"))
+ - [Backend] Review backend/internal/tenant (#issue(129, repo:"dashboard"))
+ - [AdR] Controllo coerenza AdR e eventuali correzioni (#issue(521))
+ - Definizione metriche Gin-Prometheus (#issue(3, repo:"infrastructure"))
+ - [Backend] recupero files gateway (#issue(124, repo:"dashboard"))
+ - [Backend] Fix monitoring (#issue(126, repo:"dashboard"))
+ - [Backend] Fix token conferma account (#issue(138, repo:"dashboard"))
+ - [Backend] Fix Reset password per tenant members (#issue(145, repo:"dashboard"))
+ - [Backend] Fix logica per gestione Tenant Admin (#issue(136, repo:"dashboard"))
+ - [Backend] Fix crea schema in sensor_db (#issue(139, repo:"dashboard"))
+ - [Backend] Fix GetTenant dovrebbe fare bind su URI params (#issue(141, repo:"dashboard"))
+ - [Backend] Fix invio dati al front-end (real_time_data) (#issue(148, repo:"dashboard"))
+ - [Frontend] Fix stile e UI (#issue(149, repo:"dashboard"))
+ - [Frontend] Fix grafici e aggiunta colonna interval a gateway e sensori (#issue(152, repo:"dashboard"))
+ - [Backend] Sistemare posizionamento package (#issue(156, repo:"dashboard"))
 
 === Retrospettiva
+Durante #gloss("sprint") il gruppo ha mantenuto un buon ritmo di lavoro, completando la maggior parte delle attività previste. Si è osservato un lieve aumento delle attività non pianificate, principalmente per la risoluzione di errori imprevisti.
+Nonostante ciò, sono stati completati tutti i package necessari per il funzionamento dell'applicazione finale, con tanto di quasi tutti i test di unità e di integrazione. Mancano i test di sistema.
 
+Per il resto del periodo, il gruppo si è quindi focalizzato nella stesura di diversi documenti, tra cui il test book richiesto dalla proponente ed utilizzato durante la riunione riguardo lo stato del prodotto avvenuta in data 13 aprile e documentata nell'apposito verbale.
 
 === Rischi occorsi
+*RO1* (@RO1): Come previsto il numero delle attività da svolgere e la scoperta di qualche bug ha impedito di completare tutte le issue programmate, ma il gruppo è riuscito a mantere basso il numero di quelle da posticipare.
+
+=== Consuntivo di periodo
+==== Risorse utilizzate
+#tabella-paginata(
+  table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "1", "-", "-", "-", "-", "-", [*1*],
+"Alessandro Dinato", "-", "-", "-", "4", "2", "1", [*7*],
+"Michele Dioli", "-", "-", "-", "3 (-4)", "-", "-", [*3*],
+"Hossam Ezzemouri", "-", "-", "-", "3 (+2)", "2", "-", [*5*],
+"Riccardo Graziani", "-", "-", "-", "7", "-", "1", [*8*],
+"Siria Salvalaio", "-", "-", "-", "9 (+2)", "-", "-", [*9*],
+"Elia Ernesto Stellin", "-", "-", "-", "-", "4 (-1)", "7", [*11*],
+table.footer([*Totale*], [*1*], [*0*], [*0*], [*26*], [*8*], [*9*], [*44*]),
+  ),
+  [Sprint 16 - Risorse utilizzate],
+  label-id: "spr16-risorse-utiliz",
+)
+==== Grafico a torta della suddivisione oraria effettiva
+
+#let oreEffettiveSprint16 = (
+  
+("Responsabile", 1),
+("Amministratore", 0),
+("Analista", 0),
+  ("Progettista", 26),
+  ("Programmatore", 8),
+  ("Verificatore", 9),
+
+)
+#graficoTorta(
+"Sprint 16 - Ore produttive complessive ed effettive per ogni ruolo",
+oreEffettiveSprint16,
+)
+
+=== Preventivo a finire
+==== Aggiornamento ore rimanenti
+#tabella-paginata(
+  table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "-2 (-1)", "4", "4", "-7", "11", "19", [*29*],
+"Alessandro Dinato", "-", "-3", "-", "3 (-4)", "-4 (-2)", "9 (-1)", [*5*],
+"Michele Dioli", "-", "-1", "-", "4 (-3)", "2", "22", [*27*],
+"Hossam Ezzemouri", "-", "-4", "-1", "7 (-3)", "3 (-2)", "3", [*8*],
+"Riccardo Graziani", "-", "4", "-", "-4 (-7)", "-2", "4 (-1)", [*2*],
+"Siria Salvalaio", "-2", "-2", "3", "-", "-", "15", [*14*],
+"Elia Ernesto Stellin", "3", "-3", "-", "7", "2 (-4)", "-1 (-7)", [*8*],
+table.footer([*Totale*], [*-1*], [*-5*], [*6*], [*10*], [*12*], [*71*], [*93*]),
+  ),
+  [Sprint 16 - Aggiornamento ore rimanenti],
+  label-id: "spr16-agg-ore-rim",
+)
+
+==== Aggiornamento costi
+#tabella-paginata(
+table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+    align: left,
+    stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+    "Responsabile", "-1 (-1)" ,"30 €/h", "-30 € (-30 €)",
+"Amministratore", "-5 " ,"20 €/h", "-100 € ",
+"Analista", "6 " ,"25 €/h", "150 € ",
+"Progettista", "10 (-26)" ,"25 €/h", "250 € (-650 €)",
+"Programmatore", "12 (-8)" ,"15 €/h", "180 € (-120 €)",
+"Verificatore", "71 (-9)" ,"15 €/h", "1065 € (-135 €)",
+table.footer([*Totale*], [*93*], [-], [*1515 €*]),
+  ),
+  [Sprint 16 - Aggiornamento costi],
+  label-id: "spr16-agg-costi",
+)
 
 
-	=== Consuntivo di periodo
-	==== Risorse utilizzate
-	
+== Sprint 17 <sprint-17>
+Inizio: 15/04/2026 \
+Fine: 22/04/2026 \
 
-	=== Preventivo a finire
-	==== Aggiornamento ore rimanenti
+Gli obbiettivi principali dello #gloss("sprint") 17 sono la stesura del manuale utente e della specifica tecnica, nonché l'implementazione di più test di sistema possibile.
 
+Altre attività includono la correzione di qualche errore con le metriche di _observability_ e l'aggiornamento e revisione del piano di qualifica e dell'analisi dei requisiti.
 
-	==== Aggiornamento costi
+=== Compiti da svolgere
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 17: \
+	- [PdQ] Aggiornare metriche (#issue(496))
+  - [ST] Cloud Backend (#issue(522))
+  - [ST] Tracciamento requisiti (#issue(525))
+  - [Backend] Togliere requester check da GetTenantList (#issue(120, repo:"dashboard"))
+  - [Backend] creazione test get gateway (#issue(143, repo:"dashboard"))
+  - Risolvere problema di scraping delle metrice gin (#issue(6, repo:"infra"))
+  - [Backend] Fixare scraping metriche gin  (#issue(153, repo:"dashboard"))
+  - Test di Sistema (#issue(158, repo:"dashboard"))
+  - [AdR] Revisione (#issue(543))
+  - [PdP] Sprint 16 (#issue(547))
+  - [MU] Perfezionamento manuale utente backend, installazione (#issue(544))
+  - Rendicontazione ore responsabile sprint 17 (#issue(545))
+  - [MU] Sezione frontend (#issue(549))
+  - [PdQ] Rendicontare test di unità/integrazione (#issue(550))
+  - [ST] Revisione primi 3 livelli C4 model (#issue(553))
+  - [ST] Sezione su Cloud DB (#issue(559))
+  - [MU] Perfezionamento manuale utente observability (#issue(548))
+  - [ST] Fix diagramma UserApiClientService (#issue(557))
+
+=== Rischi attesi
+Descrivere i rischi attesi
+
+=== Preventivo
+==== Preventivo risorse da utilizzare
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "1", "-", "-", "4", "-", "-", [*5*],
+"Alessandro Dinato", "-", "-", "-", "-", "4", "3", [*7*],
+"Michele Dioli", "-", "-", "-", "8", "4", "-", [*12*],
+"Hossam Ezzemouri", "-", "-", "-", "1", "-", "-", [*1*],
+"Riccardo Graziani", "-", "-", "-", "3", "4", "-", [*7*],
+"Siria Salvalaio", "-", "-", "-", "3", "6", "-", [*9*],
+"Elia Ernesto Stellin", "-", "-", "-", "6", "4", "-", [*10*],
+table.footer([*Totale*], [*1*], [*0*], [*0*], [*25*], [*22*], [*3*], [*51*]),
+  ),
+  [Sprint 17 - Preventivo risorse da utilizzare],
+  label-id: "spr17-prev-risorse",
+)
+==== Grafico a torta della suddivisione oraria prevista
+
+#let orePrevSprint17 = (
+  
+("Responsabile", 1),
+("Amministratore", 0),
+("Analista", 0),
+  ("Progettista", 25),
+  ("Programmatore", 22),
+  ("Verificatore", 3),
+
+)
+#graficoTorta("Sprint 17 - Ore produttive previste per ogni ruolo", orePrevSprint17)
