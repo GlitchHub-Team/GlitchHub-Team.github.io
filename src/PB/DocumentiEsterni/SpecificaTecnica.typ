@@ -743,9 +743,6 @@ I sistemi sviluppati sfruttano i principi sopra menzionati per disaccoppiarne le
 - La stessa logica di dominio è riutilizzabile da più tipi di client grazie all'interscambiabilità di porte e adapter, che isolano il core dalle specifiche interfacce;
 - Eventuali aggiornamenti alle tecnologie non influiscono sulla logica di business dell'applicazione.
 
-// ==== Cloud Backend <architettura-esagonale-cloud-backend>
-// Il backend della piattaforma #gloss[Cloud] utilizza l'architettura esagonale per diminuire il coupling delle sue componenti, in modo tale da poter essere sostituite in iterazioni future del prodotto.
-
 
 === Organizzazione del codice
 #let pkg-by-comp-footnote = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni componente, come definito nella @c4-component.]
@@ -835,30 +832,32 @@ In ogni microservizio è stata applicata l'*architettura esagonale* per garantir
 Inoltre ai diversi microservizi è stato applicato un pattern di #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx] o #gloss[Angular], che permette di iniettare le dipendenze necessarie (ad esempio la connessione al database) in modo semplice, sicuro e testabile, garantendo una maggiore modularità e manutenibilità del codice.\
 Infatti la maggior parte delle componenti di ogni microservizio ha le dipendenze iniettate tramite costruttore, le dipendenze di tipo *composition* e *aggregation* sono raramente utilizzate.
 
-=== Convenzioni di notazione
+=== Convenzioni di notazione per Go
 La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 2.5, il quale è stato pensato originariamente per linguaggi propriamente orientati agli oggetti. Di fatto, però, Go non è un linguaggio _object-oriented_, per cui il gruppo ha adottato una serie di convenzioni comuni per rendere agevole la scrittura di diagrammi UML, usando *draw.io* come strumento. Le convenzioni sono le seguenti:
 
-- Si usa una classe UML per rappresentare uno struct concreto;
+1. Si usa una classe UML per rappresentare uno struct concreto, dove:
+  - Gli attributi della classe sono gli attributi dello struct
+  - I metodi della classe sono le funzioni che hanno come _pointer receiver_ lo struct
 
-- Si usa la notazione UML per indicare la visibilità di un attributo o metodo, avendo cura che gli attributi o metodi privati siano indicati con l'iniziale minuscola e tenendo conto che in Go la visibilità è definita solamente al _package-level_;
+2. Si usa la notazione UML per indicare la visibilità di un attributo o metodo, avendo cura che gli attributi o metodi privati siano indicati con l'iniziale minuscola e tenendo conto che in Go la visibilità è definita solamente al _package-level_;
 
-- Si utilizza la notazione originale per descrivere le interfacce con `<<interface>>` invece che la _lollipop notation_, poiché quest'ultima non è presente all'interno di *draw.io*;
+3. Si utilizza la notazione originale per descrivere le interfacce con `<<interface>>` invece che la _lollipop notation_, poiché quest'ultima non è presente all'interno di *draw.io*;
 
-- Si utilizza la normale sintassi per implementazione delle interfacce da parte di classi concrete, sebbene in Go le interfacce vengono implementate implicitamente (ovvero senza dichiarare l'implementazione con una keyword quale `implements`);
+4. Si utilizza la normale sintassi per implementazione delle interfacce da parte di classi concrete, sebbene in Go le interfacce vengono implementate implicitamente (ovvero senza dichiarare l'implementazione con una keyword quale `implements`): si mostrano esplicitamente le implementazioni dove semanticamente rilevante;
 
-- Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno struct all'interno di un altro, senza alcuna ereditarietà nei metodi
+5. Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno struct all'interno di un altro, senza alcuna ereditarietà nei metodi
 
-- La sintassi per le _signature_ delle funzioni con più tipi di ritorno è la seguente:
+6. La sintassi per le _signature_ delle funzioni con più tipi di ritorno è la seguente:
   #align(center,
     ```
-    <visibility> Func(<params>): Tipo1, Tipo2, Tipo3, ...
+    <visibility> Func(<params>): Type1, Type2, Type3, ...
     ```
   )
   In questo esempio, `<visibility>` e `<params>` vanno sostituiti rispettivamente con la visibilità del metodo e con la lista dei suoi parametri
 
-- Ogni diagramma è visto dalla prospettiva del _package_ a cui esso appartiene, per cui ogni riferimento a _package_ esterni viene specificato con la sintassi di Go: `package.Name` dove `package` è il nome del _package_ e `Name` il nome del simbolo preso in considerazione.
+7. Ogni diagramma è visto dalla prospettiva del _package_ a cui esso appartiene, per cui ogni riferimento a _package_ esterni viene specificato con la sintassi di Go: `package.Name` dove `package` è il nome del _package_ e `Name` il nome del simbolo preso in considerazione.
 
-- Si utilizza la sintassi UML per indicare un _enum_ (usando `<<enum>>`) sebbene essi non esistano in Go: questi saranno tradotti nel sorgente come insiemi di variabili costanti che condividono un tipo comune non primitivo. \
+8. Si utilizza la sintassi UML per indicare un _enum_ (usando `<<enum>>`) sebbene essi non esistano in Go: questi saranno tradotti nel sorgente come insiemi di variabili costanti che condividono un tipo comune non primitivo. \
   Ad esempio il diagramma nella @code-sensor.SensorProfile, può essere tradotto nel seguente codice Go:
   #block(breakable: false,
     ```go
@@ -873,7 +872,7 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
     ```
   )
 
-- Siccome in Go non esistono i costruttori, per ognuno degli struct inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
+9. Siccome in Go non esistono i costruttori, per ognuno degli struct inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
   #align(center, ```go
     type NewExample struct{
       Value1 int
@@ -887,6 +886,14 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
     }
   ```)
   In ciascuno dei diagrammi seguenti, se non specificato, si assume che esista un costruttore per ogni struct specificato che prende come parametri in input gli stessi attributi dello struct, come definito nell'esempio.
+
+10. Le funzioni top-level di un package vengono specificate usando una singola classe UML con stereotype _`<<global function>>`_ in cui la funzione stessa è l'unico metodo statico della classe. Ad esempio, la funzione ` ReadConfigFromEnv(log *zap.Logger) (*Config, error)` nel package `config`, si può rappresentare col seguente diagramma:
+  #figure(
+    image("../../assets/c4/backend/shared/config/ReadConfigFromEnv.svg", width: 60%
+    ),
+    caption: [Esempio di diagramma per top-level function],
+  )
+
 
 === Gateway
 La seguente sezione ha lo scopo di descrivere il #gloss[Code Diagram] del microservizio *Gateway*.
@@ -1506,11 +1513,13 @@ La struct in questione ha i seguenti attributi e metodi:
 
 
 === Cloud Backend
-- Architettura esagonale
-- Suddivisione "package by feature/bounded context"
-- Uber Fx per DI
+Il backend della piattaforma #gloss[Cloud] è stato sviluppato in #gloss[Go] usando il framework #gloss[Gin] per la gestione delle route HTTP.
 
-==== Organizzazione package
+Il codice è stato organizzato secondo l'*architettura esagonale*, come descritto nella @archit-log, usando la suddivisione "package by feature/bounded context", come descritto nella @cloud-backend-org-package.
+
+Infine, per gestire la grande mole di dipendenze interconnesse tra package, è stato scelto di applicare il pattern della #gloss[dependency injection] tramite il framework *Uber Fx*. Si veda @cloud-backend-uso-DI per ulteriori dettagli su come viene gestita la #gloss[dependency injection] all'interno del Cloud Backend.
+
+==== Organizzazione package <cloud-backend-org-package>
 
 // TODO: riferimento a manuale utente?
 Gli _endpoint_ esposti dal backend concernono diverse aree semantiche del dominio del progetto, per cui il codice del backend è suddiviso in _package_ usando la metodologia "package by feature/bounded context", secondo la quale a un package corrisponde un insieme di funzionalità correlate sotto lo stesso significato semantico. Ad esempio, tutte le funzionalità di CRUD sugli utenti del sistema appartengono al package `user`, mentre tutte le funzionalità di autenticazione appartengono al package `auth`.
@@ -1532,6 +1541,38 @@ Inoltre, i seguenti _package_ contengono codice condiviso con tutti gli altri, s
   - *`shared/config`* contiene la struct `Config` utilizzata come singolo aggregatore delle impostazioni di configurazione dell'applicativo;
   - *`shared/crypto`* contiene le interfacce condivise per la gestione della crittografia, le cui implementazioni risiedono in *`infra/crypto`*;
   - *`shared/identity`* contiene la struct `Requester` utilizzata all'interno dell'applicativo per identificare i dati di autenticazione dell'utente che ha richiesto un comando specifico, in modo tale da applicare meccanismi di Role-Based Access Control (RBAC).
+
+==== Utilizzo della dependency injection <cloud-backend-uso-DI>
+Ciascuno dei package descritti nella @cloud-backend-org-package presenta al suo interno il file `module.go` contenente il modulo Fx che inserisce nel sistema di #gloss[dependency injection] tutte le interfacce o le struct rilevanti, descritto da una variabile chiamata `Module`.
+
+Per aumentare la coesione e diminuire il coupling tra i componenti del sistema, tutte le struct che vengono iniettate nel sistema vengono "annotate" con le relative interfacce che rispettano: in tal modo, ogni componente nel sistema dipende solamente da interfacce e non da struct concrete.
+
+Una tipica variabile `Module` ha questa struttura:
+
+```go
+var Module = fx.Module(
+  "nome_modulo",  // Nome con cui viene riconosciuto il modulo nel sistema di DI
+  fx.Provide(
+    // Costruttore del controller del package (se presente):
+    //   Non viene annotato come interfaccia, poiché 
+    //   è sufficiente iniettare la struct concreta
+    NewController,  // Ritorna *Controller
+
+    // Costruttore di ExampleService, il quale implementa 
+    // ExampleUseCase1, ExampleUseCase2 e ExampleUseCase3:
+    //   In questo caso, si annota il costruttore con ciascuna delle
+    //   interfacce che ExampleSerivce implementa
+    fx.Annotate(
+      NewExampleService,  // Ritorna *ExampleService
+      fx.As(new(ExampleUseCase1)),
+      fx.As(new(ExampleUseCase2)),
+      fx.As(new(ExampleUseCase3)),
+    ),
+    
+    // ...
+  ),
+)
+```
 
 ==== Package `auth`
 // Michele
@@ -2110,7 +2151,7 @@ Per visualizzare il #gloss[Code Diagram] relativo a `SendCmdAdapter`, si veda la
 ===== Repository per database -- `DatabaseRepository`, `SensorEntity`
 #figure(
   image("../../assets/c4/backend/sensor/DatabaseRepository.svg", width:85%),
-  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per `sensor`],
+  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per database in `sensor`],
 )
 
 Interfaccia che espone metodi per svolgere operazioni CRUD sui sensori sul database.
@@ -2125,7 +2166,7 @@ Interfaccia che espone metodi per svolgere operazioni CRUD sui sensori sul datab
 - *`GetSensorsByTenantId(tenantId string, offset int, limit int) ([]SensorEntity, uint, error)`*: Ritorna la lista paginata di sensori associati al tenant con ID `tenantId` lunga `limit` elementi, che parte dall'elemento all'indice `offset` nella tabella del database e ritorna il numero totale di sensori associati al tenant specificato.
 
 ====== `sensorPostgreRepository`
-Struct concreta che implementa `DatabaseRepository`.
+Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare con PostgreSQL.
 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
@@ -2148,7 +2189,57 @@ Struct concreta che implementa `DatabaseRepository`.
 - *`UpdatedAt time.Time`*: Timestamp di ultimo aggiornamento del sensore
 
 ===== Repository per message broker -- `MessageBrokerRepository` e relative `Entity`
-// TODO: continuare
+#figure(
+  image("../../assets/c4/backend/sensor/MessageBrokerRepository.svg", width:85%),
+  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per message broker in `sensor`],
+)
+
+Interfaccia che espone i metodi per inviare messaggi al simulatore di gateway tramite message broker.
+
+*Metodi*:
+- *`SendCreateSensorCmd(cmd *CreateSensorCmdEntity) error`*: Invia il comando di creazione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId` con intervallo `cmd.Interval` e profilo `cmd.Profile`.
+- *`SendDeleteSensorCmd(cmd *DeleteSensorCmdEntity) error`*: Invia il comando di eliminazione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId`.
+- *`SendInterruptSensorCmd(cmd *InterruptSensorCmdEntity) error`*: Invia il comando di interruzione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId`.
+- *`SendResumeSensorCmd(cmd *ResumeSensorCmdEntity) error`*: Invia il comando di riattivazione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId`.
+
+====== `sensorNatsRepository`
+Struct concreta che implementa `MessageBrokerRepository`, in modo tale da comunicare con NATS.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento a logger zap
+- *`nc *nats.Conn`* : Riferimento a connessione al message broker NATS
+
+*Funzione di costruzione*: `NewSensorNatsRepository(log *zap.Logger, nc *nats.Conn) *sensorNatsRepository`
+
+====== `CreateSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di creazione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da creare
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+- *`Interval int64`*: Intervallo in millisecondi di generazione dati del sensore
+- *`Profile string`*: Profilo GATT del sensore
+
+====== `DeleteSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di eliminazione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da eliminare
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+
+====== `InterruptSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di interruzione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da interrompere
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+
+====== `ResumeSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di riattivazione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da riattivare
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
 
 
 ==== Package `sensor/profile`
@@ -2160,16 +2251,473 @@ Questo package è stato creato separatamente da `sensor` per evitare la creazion
   caption: [Cloud Backend -- Code Diagram per `sensor.SensorProfile`],
 )
 
+L'enum `SensorProfile` rappresenta i vari profili GATT che un sensore può avere.
+
+*Possibili valori*:
+- `HEART_RATE_SERVICE`: Profilo per la misurazione di dati relativi al battito cardiaco.
+- `PULSE_OXIMETER_SERVICE`: Profilo per la misurazione di dati relativi alla pulsossimetria sanguigna.
+- `ECG_CUSTOM_PROFILE`: Profilo custom per le rilevazioni di dati ECG.
+- `HEALTH_THERMOMETER_SERVICE`: Profilo per la misurazione di dati di temperatura in ambito medico
+- `ENVIRONMENTAL_SENSING_SERVICE`: Profilo per la misurazione ambientale di umidità, pressione e temperatura 
+
+==== Cartella `shared`
+Tutti i package dentro la cartella `shared` contengono le struct o le interfacce usate da più package. Fatta eccezione per `config.Config` e `identity.Requester`, è bene che tutti gli elementi dentro eventuali package in `shared` presentino solo interfacce e che le loro implementazioni siano posizionate in un apposito package in `infra`. Inoltre, è bene che tutti i package dipendano dalle interfacce definite in `shared` e non dalle specifiche implementazioni.
+
 ==== Package `shared/config`
+Questo package contiene la struct di configurazione del sistema, che raggruppa tutte le informazioni di configurazione in un punto unico.
+
+#figure(
+  image("../../assets/c4/backend/shared/config/config.svg", width:80%),
+  caption: [Cloud Backend -- Code Diagram per `shared/config`],
+)
+
+===== `Config`
+Struct di configurazione dell'applicativo. Quasi tutti i suoi attributi sono campi configurabili tramite variabili d'ambiente o file `.env`.
+
+#let fn = footnote[Si noti che il secret deve essere lungo almeno 512 bit da decoded, per cui la codifica base 64 ha lunghezza maggiore]
+*Attributi*:
+- *`AppURL string`*: URL su cui si trova il front-end dell'applicativo. Viene usato dal package email per l'invio dei token di conferma/cambio password
+- *`Port string`*: Porta su cui aprire il backend
+- *`MailAdapter string`*: Quale mail adapter utilizzare, può assumere i valori:
+  - `"terminal"` per evitare di inviare email, ma mostrarne il contenuto su terminale
+  - `"smtp"` per inviare i messaggi email alle coordinate SMTP specificate nei campi che iniziano con `SMTP`
+- *`BcryptCost StringInt`*: Fattore di costo per algoritmo bcrypt per hashing delle password
+- *`TokenLength StringInt`*: Lunghezza in byte di un token di sicurezza
+- *`TokenDuration StringInt`*: Durata di un token di sicurezza in secondi
+- *`AuthTokenDuration StringInt`*: Durata di un token di autenticazione in secondi
+- *`AuthTokenSecret string`*: Secret per fare firma di token di autenticazione. Dev'essere codificato in base 64 URL-safe senza encoding (`base64.RawURLEncoding`) ed essere lungo 512 bit#fn.
+- *`CloudDBHost string`*: Host del Cloud DB
+- *`CloudDBPort StringInt`*: Porta del Cloud DB
+- *`CloudDBUser string`*: Nome utente per accedere a Cloud DB
+- *`CloudDBPassword string`*: Password per accedere a Cloud DB
+- *`CloudDBName string`*: Nome del Cloud DB
+- *`CloudDBTest bool`*: `true` se si usa il Cloud DB di test temporaneo. Questa variabile non si può impostare tramite ENV.
+- *`SensorDBHost string`*: Host del Sensor DB
+- *`SensorDBPort StringInt`*: Porta del Sensor DB
+- *`SensorDBUser string`*: Nome utente per accedere a Sensor DB
+- *`SensorDBPassword string`*: Password per accedere a Sensor DB
+- *`SensorDBName string`*: Nome del Sensor DB
+- *`SensorDBTest bool`*: `true` se si usa il Sensor DB di test temporaneo. Questa variabile non si può impostare tramite ENV.
+- *`SMTPHost string`* : Hostname dell'URL SMTP
+- *`SMTPPort StringInt`* : Numero porta URL SMTP
+- *`SMTPUser string`* : Nome utente per accedere al server SMTP
+- *`SMTPPass string`* : Password per accedere al server SMTP
+- *`SMTPFrom string`* : Indirizzo email da cui inviare email tramite SMTP
+
+===== `StringInt`
+Tipo basato su `int` utilizzato per rappresentare un intero deserializzabile con la funzione `json.Unmarshal`.
+
+*Metodi*:
+- *`UnmarshalJSON(b []byte) error`*: permette di serializzare una stringa contenente un numero intero in uno `StringInt`, poi convertibile in intero con `int()`.
+
+===== `ReadConfigFromEnv(log *zap.Logger) (*Config, error) `
+Funzione globale che ritorna uno oggetto `Config` costruito secondo i parametri di configurazione specificati dalle variabili d'ambiente e dal file `.env`, se presente, dando priorità ai valori inseriti dentro quest'ultimo, 
+
 ==== Package `shared/crypto`
+Il package `shared/crypto` contiene le interfacce usate nell'applicativo per interfacciarsi con le principali procedure crittografiche. 
+
+#figure(
+  image("../../assets/c4/backend/shared/crypto/crypto.svg", width:70%),
+  caption: [Cloud Backend -- Code Diagram per `shared/crypto`],
+)
+
+===== `AuthTokenManager`
+Interfaccia che consente di gestire i token di autenticazione.
+
+*Metodi*:
+- *`GenerateForRequester(requester identity.Requester) (string, error)`*: Deve generare un token valido per uno specifico `Requester`
+- *`GetRequesterFromToken(token string) (identity.Requester, error)`*: Deve ritornare il `Requester` associato al token di autenticazione `token`.
+
+===== `SecretHasher`
+Interfaccia che consente di generare un hash crittografico per un segreto _plaintext_ e paragonare un _plaintext_ a un hash già generato.
+
+*Metodi*: 
+- *`HashSecret(plaintext string) (string, error)`*: Genera l'hash crittografico associato a `plaintext` e un eventuale errore in caso la procedura di hashing fallisca.
+- *`CompareHashAndSecret(hashed string, plaintext string) error`*: Controlla che l'hash di `plaintext` sia uguale a `hashed`. È fondamentale che le implementazioni di questo metodo utilizzino funzioni sicure da timing attacks, quali `bcrypt.CompareHashAndPassword`. Se il controllo passa, allora viene ritornato `nil`, altrimenti viene ritornato un errore non-`nil`.
+
+===== `SecurityTokenGenerator`
+Interfaccia che consente di generare token generici di sicurezza con data di scadenza, quali i token di conferma account o di cambio password dimenticata.
+
+*Metodi*:
+- *`GenerateToken() (encodedToken string, hashedToken string, err error)`*: Genera un token casuale, il suo hash e un eventuale errore in caso ci siano problemi durante la generazione.
+- *`ExpiryFromNow() time.Time`*: Ritorna la data di scadenza del token da adesso. La scadenza non è associata al singolo token, ma ciascun token ha un tempo di scadenza fisso dal momento della sua generazione.
+
 ==== Package `shared/identity` <code-shared-identity>
+Il package `shared/identity` contiene gli elementi per attivare le procedure di #gloss[RBAC] nel sistema.
+
+#figure(
+  image("../../assets/c4/backend/shared/identity/identity.svg", width:70%),
+  caption: [Cloud Backend -- Code Diagram per `shared/identity`],
+)
+
+===== `Requester`
+Struct che rappresenta l'utente che richiede una specifica azione, da utilizzare per eventuali controlli di #gloss[RBAC].
+
+*Attributi*:
+- *`RequesterUserId uint`*: ID dell'utente richiedente
+- *`RequesterTenantId *uuid.UUID`*: UUID del tenant a cui è associato l'utente richiedente, `nil` se l'utente è un *Super Admin* (ovvero abbia `RequesterRole == ROLE_SUPER_ADMIN`)
+- *`RequesterRole UserRole`*: Ruolo dell'utente richiedente
+
+*Metodi*:
+- *`CanTenantUserAccess(accessedTenantId uuid.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_USER` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
+- *`CanTenantAdminAccess(accessedTenantId uuid.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_ADMIN` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
+- *`IsSuperAdmin() bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_SUPER_ADMIN`
+
+===== `UserRole`
+Enumerazione che rappresenta il ruolo di un utente.
+
+*Possibili valori*:
+- `ROLE_TENANT_USER`: Ruolo Tenant User 
+- `ROLE_TENANT_ADMIN`: Ruolo Tenant Admin
+- `ROLE_SUPER_ADMIN`: Ruolo Super Admin
 
 ==== Package `tenant`
 // Michele
 
 
-
 ==== Package `user`
+
+Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
+#figure(
+  image("../../assets/c4/backend/user/user.svg", width:110%),
+  caption: [Cloud Backend -- Code Diagram per `user`],
+)
+
+===== Inbound adapter -- `Controller` e relativi DTO
+#figure(
+  image("../../assets/c4/backend/user/Controller.svg", width:90%),
+  caption: [Cloud Backend -- Code Diagram di `user.Controller`],
+)
+
+La struct `Controller` è l'unico _inbound adapter_ del package e gestisce la comunicazione con il router HTTP relativamente alle operazioni CRUD sugli utenti.
+
+*Attributi*:
+- *`createTenantUserUseCase CreateTenantUserUseCase`*: _Inbound port_ per creare un nuovo Tenant User.
+- *`createTenantAdminUseCase CreateTenantAdminUseCase`*: _Inbound port_ per creare un nuovo Tenant Admin.
+- *`createSuperAdminUseCase CreateSuperAdminUseCase`*: _Inbound port_ per creare un nuovo Super Admin.
+- *`deleteTenantUserUseCase DeleteTenantUserUseCase`*: _Inbound port_ per eliminare un Tenant User esistente.
+- *`deleteTenantAdminCase DeleteTenantAdminUseCase`*: _Inbound port_ per eliminare un Tenant Admin esistente.
+- *`deleteSuperAdminCase DeleteSuperAdminUseCase`*: _Inbound port_ per eliminare un Super Admin esistente.
+- *`getTenantUserUseCase GetTenantUserUseCase`*: _Inbound port_ per ottenere i dati di un Tenant User esistente.
+- *`getTenantAdminUseCase GetTenantAdminUseCase`*: _Inbound port_ per ottenere i dati di un Tenant Admin esistente.
+- *`getSuperAdminUseCase GetSuperAdminUseCase`*: _Inbound port_ per ottenere i dati di un Super Admin esistente.
+- *`getTenantUsersByTenantUseCase GetTenantUsersByTenantUseCase`*: _Inbound port_ per ottenere una lista paginata di Tenant User appartenenti a un tenant specifico.
+- *`getTenantAdminsByTenantUseCase GetTenantAdminsByTenantUseCase`*: _Inbound port_ per ottenere una lista paginata di Tenant Admin appartenenti a un tenant specifico.
+- *`getSuperAdminListUseCase GetSuperAdminListUseCase`*: _Inbound port_ per ottenere una lista paginata contenente i Super Admin del sistema.
+
+*Metodi*: \
+Per ogni metodo vengono elencate le struct DTO utilizzate in input e il DTO ritornato in output al client HTTP chiamante.
+- *`CreateTenantUser(ctx *gin.Context)`*: Crea un nuovo Tenant User
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `CreateUserBodyDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`CreateTenantAdmin(ctx *gin.Context)`*: Crea un nuovo Tenant Admin
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `CreateUserBodyDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`CreateSuperAdmin(ctx *gin.Context)`*: Crea un nuovo Super Admin
+  - *Input*: `CreateUserBodyDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`DeleteTenantUser(ctx *gin.Context)`*: Elimina un nuovo Tenant User
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`DeleteTenantAdmin(ctx *gin.Context)`*: Elimina un nuovo Tenant Admin
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`DeleteSuperAdmin(ctx *gin.Context)`*: Elimina un nuovo Super Admin
+  - *Input*: `infra/transport/http/dto.SuperAdminUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetTenantUser(ctx *gin.Context)`*: Ottiene i dati di un Tenant User esistente
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetTenantAdmin(ctx *gin.Context)`*: Ottiene i dati di un Tenant Admin esistente
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetSuperAdmin(ctx *gin.Context)`*: Ottiene i dati di un Super Admin esistente
+  - *Input*: `infra/transport/http/dto.SuperAdminUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetTenantUsers(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant User 
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `GetUserListQueryDTO`
+  - *Output*: `UserListResponseDTO`
+
+- *`GetTenantAdmins(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant Admin
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `GetUserListQueryDTO`
+  - *Output*: `UserListResponseDTO`
+
+- *`GetSuperAdmins(ctx *gin.Context)`*: Ottiene una lista paginata di Super Admin
+  - *Input*: `GetUserListQueryDTO`
+  - *Output*: `UserListResponseDTO`
+
+I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguenti: 
+- *`CreateUserBodyDTO`*: DTO che rappresenta i dati in input di creazione di un nuovo utente
+  - `Username string`: Nome utente
+  - `Email string`: Email del nuovo utente
+
+- *`GetUserListQueryDTO`*: DTO che rappresenta i dati di paginazione per ottenere una lista paginata di utenti
+  - `Page int`: Numero della pagina
+  - `Limit int`: Numero di elementi per pagina
+
+- *`UserResponseDTO`*: DTO in output che rappresenta un utente
+  - `UserId int`: ID dell'utente
+  - `Email string`: Email dell'utente
+  - `Username string`: Nome dell'utente
+  - `UserRole string`: Ruolo dell'utente
+  - `TenantId string`: UUID del tenant a cui appartiene l'utente
+
+- *`UserListResponseDTO`*: DTO in output che rappresenta una lista paginata di utenti
+  - `Count int`: Numero di utenti nella pagina
+  - `Total int`: Numero totale di utenti nel sistema di persistenza
+  - `Users []UserResponseDTO`: L'effettiva lista di utenti
+
+===== Inbound ports
+#figure(
+  image("../../assets/c4/backend/user/UseCases.svg", width:90%),
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ di `user`],
+) <backend-code-user-usecases-services>
+
+Di seguito sono riportate le _inbound ports_ del package. 
+
+====== `CreateTenantUserUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`CreateTenantUser(cmd CreateTenantUserCommand) (User, error)`*: Crea un nuovo Tenant User secondo i dettagli specificati in `cmd` e ritorna lo `User` creato.
+
+====== `CreateTenantAdminUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`CreateTenantAdmin(cmd CreateTenantAdminCommand) (User, error)`*: Crea un nuovo Tenant Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` creato.
+
+====== `CreateSuperAdminUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`CreateSuperAdmin(cmd CreateSuperAdminCommand) (User, error)`*: Crea un nuovo Super Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` creato.
+
+====== `DeleteTenantUserUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`DeleteTenantUser(cmd DeleteTenantUserCommand) (User, error)`*: Elimina il Tenant User secondo i dettagli specificati in `cmd` e ritorna lo `User` eliminato.
+
+====== `DeleteTenantAdminUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`DeleteTenantAdmin(cmd DeleteTenantAdminCommand) (User, error)`*: Elimina il Tenant Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` eliminato.
+
+====== `DeleteSuperAdminUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`DeleteSuperAdmin(cmd DeleteSuperAdminCommand) (User, error)`*: Elimina il Super Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` eliminato.
+
+====== `GetTenantUserUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`GetTenantUser(cmd GetTenantUserCommand) (User, error)`*: Ritorna il Tenant User appartenente al tenant con UUID `cmd.TenantId` e con ID `cmd.UserId`.
+
+====== `GetTenantAdminUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`GetTenantAdmin(cmd GetTenantAdminCommand) (User, error)`*: Ritorna il Tenant Admin appartenente al tenant con UUID `cmd.TenantId` e con ID `cmd.UserId`.
+
+====== `GetSuperAdminUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`GetSuperAdmin(cmd GetSuperAdminCommand) (User, error)`*: Ritorna il Super Admin con ID `cmd.UserId`.
+
+====== `GetTenantUsersByTenantUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`GetTenantUsersByTenant(cmd GetTenantUsersByTenantCommand) (tenantUsers []User, total uint, err error)`*: Ritorna la lista paginata di Tenant User associati al tenant con UUID `cmd.TenantId` e il numero totale di Tenant User associati a tale tenant.
+
+====== `GetTenantAdminsByTenantUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`GetTenantAdminsByTenant(cmd GetTenantAdminsByTenantCommand) (tenantAdmins []User, total uint, err error)`*: Ritorna la lista paginata di Tenant Admin associati al tenant con UUID `cmd.TenantId` e il numero totale di Tenant User associati a tale tenant.
+
+====== `GetSuperAdminListUseCase`
+_Inbound port_ per 
+*Metodi*:
+- *`GetSuperAdminList(cmd GetSuperAdminListCommand) (superAdmins []User, total uint, err error)`*: Ritorna la lista paginata di Super Admin e il numero totale di Super Admin.
+
+===== Comandi
+#figure(
+  image("../../assets/c4/backend/user/Commands.svg", width: 100%),
+  caption: [Cloud Backend -- Code Diagram dei comandi per `user`],
+)
+
+Di seguito si riportano i comandi utilizzati nel _business layer_ del package, notando che ciascuno di essi include l'attributo `Requester identity.Requester`, il quale non sarà ripetuto nelle successive sottosezioni in quanto ridondante.
+
+====== `CreateTenantUserCommand`
+Comando per creare un nuovo Tenant User.
+
+*Attributi*:
+- *`Email string`*: Email del nuovo utente.
+-	*`Username string`*: Nome del nuovo utente.
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+
+====== `CreateTenantAdminCommand`
+Comando per creare un nuovo Tenant Admin.
+
+*Attributi*:
+- *`Email string`*: Email del nuovo utente.
+-	*`Username string`*: Nome del nuovo utente.
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+
+====== `CreateSuperAdminCommand`
+Comando per creare un nuovo Super Admin.
+
+*Attributi*:
+- *`Email string`*: Email del nuovo utente.
+-	*`Username string`*: Nome del nuovo utente.
+
+====== `DeleteTenantUserCommand`
+Comando per eliminare un Tenant User esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente da eliminare
+
+====== `DeleteTenantAdminCommand`
+Comando per eliminare un Tenant Admin esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente da eliminare
+
+====== `DeleteSuperAdminCommand`
+Comando per eliminare un Super Admin esistente.
+
+*Attributi*:
+- *`UserId uint`*: ID dell'utente da eliminare
+
+====== `GetTenantUserCommand`
+Comando per ottenere i dati di un Tenant User esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente in esame.
+
+====== `GetTenantAdminCommand`
+Comando per ottenere i dati di un Tenant Admin esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente in esame.
+
+====== `GetSuperAdminCommand`
+Comando per ottenere i dati di un Super Admin esistente.
+
+*Attributi*:
+- *`UserId uint`*: ID dell'utente in esame.
+
+====== `GetTenantUsersByTenantCommand`
+Comando per ottenere una lista paginata di Tenant User associati a un tenant specifico.
+
+*Attributi*:
+- *`Page int`*: Numero della pagina
+- *`Limit int`*: Numero di elementi per pagina
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+
+====== `GetTenantAdminsByTenantCommand`
+Comando per ottenere una lista paginata di Tenant Admin associati a un tenant specifico.
+
+*Attributi*:
+- *`Page int`*: Numero della pagina
+- *`Limit int`*: Numero di elementi per pagina
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+
+====== `GetSuperAdminListCommand`
+Comando per ottenere una lista paginata di Super Admin associati a un tenant specifico.
+
+*Attributi*:
+- *`Page int`*: Numero della pagina
+- *`Limit int`*: Numero di elementi per pagina
+
+===== Services
+Per visualizzare il #gloss[Code Diagram] delle struct _service_, si visualizzi la @backend-code-user-usecases-services.
+
+====== `CreateUserService`
+Struct con la responsabilità di creare utenti nuovi per ogni ruolo.
+
+*Interfacce implementate*:
+- `CreateTenantUserUseCase`
+- `CreateTenantAdminUseCase`
+- `CreateSuperAdminUseCase`
+
+*Attributi*:
+- *`createUserPort SaveUserPort`*: _Outbound port_ usata per creare o aggiornare uno `User` nel sistema di persistenza.
+- *`deleteUserPort DeleteUserPort`*: _Outbound port_ usata per eliminare uno `User` nel sistema di persistenza.
+- *`getUserPort GetUserPort`*: _Outbound port_ per ottenere i dati di un utente specifico.
+- *`getTenantPort tenant.GetTenantPort`*: _Outbound port_ per ottenere i dati di un tenant specifico.
+- *`confirmAccountTokenPort GenerateTokenPort`*: _Outbound port_ per generare token di conferma account.
+- *`sendEmailPort SendConfirmAccountEmailPort`*: _Outbound port_ per inviare email di conferma account all'indirizzo email degli utenti creati di recente.
+
+*Funzione di costruzione*: `func NewCreateUserService( createUserPort SaveUserPort, deleteUserPort DeleteUserPort, getUserPort GetUserPort, getTenantPort tenant.GetTenantPort, confirmAccountTokenPort GenerateTokenPort, sendEmailPort SendConfirmAccountEmailPort)  *CreateUserService`
+
+====== `DeleteUserService`
+Struct con la responsabilità di eliminare utenti esistenti per ogni ruolo.
+
+*Interfacce implementate*:
+- `DeleteTenantUserUseCase`
+- `DeleteTenantAdminUseCase`
+- `DeleteSuperAdminUseCase`
+
+*Attributi*:
+- *`deleteUserPort DeleteUserPort`*: _Outbound port_ per eliminare gli utenti esistenti.
+- *`getUserPort GetUserPort`*: _Outbound port_ per ottenere i dati di un utente specifico.
+- *`getTenantPort tenant.GetTenantPort`*: _Outbound port_ per ottenere i dati di un tenant specifico.
+
+*Funzione di costruzione*: `NewDeleteUserService( deleteUserPort DeleteUserPort, getUserPort GetUserPort, getTenantPort tenant.GetTenantPort)  *DeleteUserService`
+
+====== `GetUserService`
+Struct con la responsabilità di fornire dati relativi a uno o più utenti specifici.
+
+*Interfacce implementate*:
+- `GetTenantUserUseCase`
+- `GetTenantAdminUseCase`
+- `GetSuperAdminUseCase`
+- `GetTenantUsersByTenantUseCase`
+- `GetTenantAdminsByTenantUseCase`
+- `GetSuperAdminListUseCase`
+
+*Attributi*:
+- *`getUserPort GetUserPort`*: _Outbound port_ per ottenere i dati di un utente specifico.
+- *`getTenantPort tenant.GetTenantPort`*: _Outbound port_ per ottenere i dati di un tenant specifico.
+
+*Funzione di costruzione*: `NewGetUserService(getUserPort GetUserPort, getTenantPort tenant.GetTenantPort) *GetUserService`
+
+===== Dominio
+#figure(
+  image("../../assets/c4/backend/user/UserStruct.svg", width: 40%),
+  caption: [Cloud backend -- Code Diagram di `user.User`],
+)
+
+*Attributi*:
+- *`Id uint`*: ID dell'utente.
+- *`Name string`*: Nome dell'utente.
+- *`Email string`*: Email dell'utente.
+- *`PasswordHash *string`*: Hash della password dell'utente, è pari a nil se l'utente non è stato confermato (`Confirmed == false`).
+- *`Role identity.UserRole`*: Ruolo dell'utente.
+- *`TenantId *uuid.UUID`*: UUID del tenant a cui è associato l'utente se è un Tenant User o un Tenant Admin, altrimenti è pari a `nil`.
+- *`Confirmed bool`*: `true` se l'utente ha svolto con successo la procedura di conferma account.
+
+*Metodi*:
+- *`IsZero() bool`*: Ritorna `true` se lo struct ha valore pari al suo _zero-value_
+- *`SetPasswordHash(newPasswordHash string) error`*: Imposta l'hash della password a `newPasswordHash`, controllando che tale hash non sia nullo o pari all'hash corrente dell'utente.
+
+// CONTINUA
+
+===== Outbound ports
+
+===== Outbound adapter
+
+===== Repository
+
 
 == Database design <db-design>
 === Buffer database
