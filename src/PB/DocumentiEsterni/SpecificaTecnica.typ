@@ -32,6 +32,15 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.10.0",
+      "17/04/2026",
+      "Elia Ernesto Stellin",
+      "",
+      [
+        Spostate sezioni sul diagramma C4 in @design-architetturale; Migliorata sezione @archit-log; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
+      ]
+    ),
+    (
       "0.9.0",
       "16/04/2026",
       "Siria Salvalaio",
@@ -2932,7 +2941,7 @@ La visualizzazione della lista utenti è delegata a un componente specializzato 
 
 
 
-=== Cloud Backend
+=== Cloud Backend <cloud-backend>
 La seguente sezione descrive il #gloss[Code Diagram] del backend della piattaforma #gloss[Cloud], il quale è stato sviluppato in #gloss[Go] usando il framework #gloss[Gin] per la gestione delle route HTTP.
 
 Il codice è stato organizzato secondo l'*architettura esagonale*, come descritto nella @archit-log, usando la suddivisione "package by feature/bounded context", come descritto nella @cloud-backend-org-package.
@@ -2995,11 +3004,9 @@ var Module = fx.Module(
 ```
 
 ==== Package `auth`
-// Michele
+// TODO
 
-===== Controller
-
-==== Package `email`
+==== Package `email` <backend-email>
 Il package `email` non presenta controller poiché non viene chiamato direttamente dal client, ma ne vengono chiamate solamente le _outbound ports_.
 
 #figure(
@@ -3039,10 +3046,10 @@ Rappresenta un'interfaccia che astrae il metodo *`DialAndSend(m ...*gomail.Messa
 
 Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *`smtpSender`* tramite la funzione *`newDialer(cfg *config.Config) *gomail.Dialer`* che legge la configurazione passata (`cfg`) per determinare le coordinate #gloss[SMTP] da contattare per inviare i messaggi email.
 
-==== Package `gateway`
-// Michele
+==== Package `gateway` 
+// TODO
 
-==== Package `gateway/hello`
+==== Package `gateway/hello` <backend-gateway-hello>
 Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di ascoltare un subject #gloss[NATS] specifico in attesa di messaggi di hello da parte dei gateway e lo struct `Service` che si occupa di processare i messaggi ricevuti e validarli.
 
 #figure(
@@ -3077,12 +3084,12 @@ Struct di dominio che implementa *`GatewayHelloUseCase`*. Contiene i seguenti at
 - *`logger`*: Riferimento al logger zap
 
 ==== Package `historical_data`
-// Michele
+// TODO
 
 ==== Package `infra`
-// Michele
+// TODO
 
-==== Package `real_time_data`
+==== Package `real_time_data` <backend-real_time_data>
 Il package `real_time_data` presenta le funzionalità per ricevere in tempo reale i dati direttamente da un sensore specifico via #gloss[NATS] ed eventualmente presentarli a un client #gloss[Websocket].
 
 Di seguito si riporta il Code Diagram degli struct di dominio rappresentati un dato o un errore ottenuti in tempo reale.
@@ -3131,7 +3138,7 @@ L'_inbound port_ principale del package.
   - *`err error`*: Eventuale errore nella creazione dei _channel_
 
 *`GetRealTimeDataCommand`* invece rappresenta il comando inviato all'_inbound port_ e contiene i seguenti attributi:
-- *`Requester identity.Requester`*: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC]
+- *`Requester identity.Requester`*: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC]
 - *`SensorId uuid.UUID`*: UUID del sensore di cui visualizzare i dati
 - *`TenantId uuid.UUID`*: UUID del tenant a cui è associato il gateway a cui appartiene il sensore
 
@@ -3239,7 +3246,7 @@ Rappresenta un contenitore thread-safe per rappresentare un valore temporale cre
 *Metodi*:
 - *`CompareAndSet(newTime time.Time) bool`*: Fa controllo thread-safe (usando mutex) su `newTime` rispetto a `value`: se `newTime` è più recente di `value`, allora imposta `newTime` a `value` e ritorna `true`, altrimenti ritorna `false`
 
-==== Package `sensor` <code-sensor>
+==== Package `sensor` <backend-sensor>
 Il package `sensor` si occupa della gestione CRUD dei sensori e dell'invio di comandi ad essi. Il diagramma riportato di seguito è comprensivo dell'intero package, per cui potrebbe essere necessario usare la funzionalità di zoom per leggerne i contenuti
 #figure(
   image("../../assets/c4/backend/sensor/sensor.svg", width:115%),
@@ -3662,7 +3669,7 @@ Struct `Entity` che rappresenta un comando di riattivazione di un sensore specif
 - *`GatewayId string`*: UUID del gateway a cui il sensore è associato
 
 
-==== Package `sensor/profile`
+==== Package `sensor/profile` <backend-sensor-profile>
 Questo package è stato creato separatamente da `sensor` per evitare la creazione di import cycles.
 
 ===== `SensorProfile` <code-sensor.SensorProfile>
@@ -3680,10 +3687,10 @@ L'enum `SensorProfile` rappresenta i vari profili GATT che un sensore può avere
 - `HEALTH_THERMOMETER_SERVICE`: Profilo per la misurazione di dati di temperatura in ambito medico
 - `ENVIRONMENTAL_SENSING_SERVICE`: Profilo per la misurazione ambientale di umidità, pressione e temperatura 
 
-==== Cartella `shared`
+==== Cartella `shared` <backend-shared>
 Tutti i package dentro la cartella `shared` contengono le struct o le interfacce usate da più package. Fatta eccezione per `config.Config` e `identity.Requester`, è bene che tutti gli elementi dentro eventuali package in `shared` presentino solo interfacce e che le loro implementazioni siano posizionate in un apposito package in `infra`. Inoltre, è bene che tutti i package dipendano dalle interfacce definite in `shared` e non dalle specifiche implementazioni.
 
-==== Package `shared/config`
+==== Package `shared/config` <backend-shared-config>
 Questo package contiene la struct di configurazione del sistema, che raggruppa tutte le informazioni di configurazione in un punto unico.
 
 #figure(
@@ -3733,7 +3740,7 @@ Tipo basato su `int` utilizzato per rappresentare un intero deserializzabile con
 ===== `ReadConfigFromEnv(log *zap.Logger) (*Config, error) `
 Funzione globale che ritorna uno oggetto `Config` costruito secondo i parametri di configurazione specificati dalle variabili d'ambiente e dal file `.env`, se presente, dando priorità ai valori inseriti dentro quest'ultimo, 
 
-==== Package `shared/crypto`
+==== Package `shared/crypto` <backend-shared-crypto>
 Il package `shared/crypto` contiene le interfacce usate nell'applicativo per interfacciarsi con le principali procedure crittografiche. 
 
 #figure(
@@ -3762,7 +3769,7 @@ Interfaccia che consente di generare token generici di sicurezza con data di sca
 - *`GenerateToken() (encodedToken string, hashedToken string, err error)`*: Genera un token casuale, il suo hash e un eventuale errore in caso ci siano problemi durante la generazione.
 - *`ExpiryFromNow() time.Time`*: Ritorna la data di scadenza del token da adesso. La scadenza non è associata al singolo token, ma ciascun token ha un tempo di scadenza fisso dal momento della sua generazione.
 
-==== Package `shared/identity` <code-shared-identity>
+==== Package `shared/identity` <backend-shared-identity>
 Il package `shared/identity` contiene gli elementi per attivare le procedure di #gloss[RBAC] nel sistema.
 
 #figure(
@@ -3792,11 +3799,9 @@ Enumerazione che rappresenta il ruolo di un utente.
 - `ROLE_SUPER_ADMIN`: Ruolo Super Admin
 
 ==== Package `tenant`
-// Michele
+// TODO
 
-
-==== Package `user`
-
+==== Package `user` <backend-user>
 Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
 #figure(
   image("../../assets/c4/backend/user/user.svg", width:110%),
@@ -4245,7 +4250,7 @@ Struct concreta che implementa `TenantMemberRepository`.
 *Funzione di costruzione*: `newTenantMemberPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *tenantMemberPgRepository`
 
 ====== `TenantMemberEntity`
-Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @er-cloud-db
+Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @er-cloud-db.
 
 *Attributi*:
 - *`ID uint`*: ID dell'utente.
@@ -4281,6 +4286,18 @@ Struct concreta che implementa `SuperAdminRepository`.
 - *`db clouddb.CloudDBConnection`*: Oggetto che consente connessione al Cloud DB
 
 *Funzione di costruzione*: `newSuperAdminPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *superAdminPgRepository`
+
+====== `SuperAdminEntity`
+Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super Admin inserito nel sistema. 
+
+*Attributi*:
+- *`ID uint`*: ID dell'utente.
+- *`Email string`*: Email dell'utente.
+- *`Name string`*: Nome dell'utente.
+- *`Password *string`*: Hash della password dell'account dell'utente.
+- *`Confirmed bool`*: `true` se l'utente è stato confermato o meno.
+- *`CreatedAt time.Time`*: Data di creazione dell'utente.
+- *`UpdatedAt time.Time`*: Data di ultimo aggiornamento dell'utente.
 
 == Database design <db-design>
 === Buffer database
