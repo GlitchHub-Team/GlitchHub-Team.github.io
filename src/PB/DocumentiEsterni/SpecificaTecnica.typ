@@ -1422,8 +1422,8 @@ Descrive la struttura dei dati ricevuti in tempo reale tramite stream.
   - `data: Record<string, any>`: i dati grezzi ricevuti in tempo reale.
 
 #figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliBackend.pdf", width: 100%),
-  caption: [Modelli dati del layer di Infrastructure],
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliBackend.pdf", width: 80%),
+  caption: [Modelli dati - Infrastructure layer],
 )
 
 ===== Utility 
@@ -1508,7 +1508,7 @@ L'*`ErrorInterceptor`* si occupa di intercettare le risposte HTTP in caso di err
 
 #figure(
   image("../../assets/c4/frontend/interceptors/frontend-interceptors.pdf", width: 100%),
-  caption: [Code diagram dell'AuthInterceptor e dell'ErrorInterceptor],
+  caption: [Code diagram - AuthInterceptor e ErrorInterceptor],
 )
 
 ===== Services
@@ -1533,14 +1533,14 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/AuthApiClientService.pdf", width: 60%),
-  caption: [Code diagram del AuthApiClientService]
+  caption: [Code diagram - AuthApiClientService]
 )
 
 ====== TenantApiClientService <angular-tenant-api-client-service>
 Il `TenantApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei tenant del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei tenant, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `TenantApiClientAdapter`.\
 Il servizio inietta tramite _dependency injection_:
 - `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+- `TenantApiAdapter`: mapper utilizzato per portare le risposte del backend nel formato frontend.
 
 Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
@@ -1555,14 +1555,17 @@ Observable<PaginatedTenantResponse<Tenant>>`: invia la richiesta di recupero del
 
 #figure(
   image("../../assets/c4/frontend/services/TenantApiClientService.pdf", width: 70%),
-  caption: [Code diagram del TenantApiClientService]
+  caption: [Code diagram - TenantApiClientService]
 )
 
 ====== UserApiClientService <angular-user-api-client-service>
 Lo `UserApiClientService` è un servizio dedicato alla comunicazione con le API di gestione degli utenti del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero degli utenti, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `UserApiClientAdapter`.\
 Il servizio inietta tramite _dependency injection_:
 - `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+- `UserApiAdapter`: mapper utilizzato per portare le risposte del backend nel formato frontend.
+
+Il servizio presenta i seguenti attributi:
+- `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
 
 Il servizio presenta i seguenti metodi pubblici:
 - `getUser(id: string, role: UserRole, tenantId?: string): Observable<User>`: invia la richiesta di recupero di un utente specifico costruendo l'URL tramite `getBaseUrl()`.
@@ -1575,14 +1578,14 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/UserApiClientService.pdf", width: 70%),
-  caption: [Code diagram del UserApiClientService]
+  caption: [Code diagram - UserApiClientService]
 )
 
 ====== GatewayApiClientService <angular-gateway-api-client-service>
 Il `GatewayApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei gateway del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei gateway, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `GatewayApiClientAdapter`.\
 Il servizio inietta tramite _dependency injection_:
 - `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+- `GatewayApiAdapter`: mapper utilizzato per portare le risposte del backend nel formato frontend.
 
 Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
@@ -1595,14 +1598,14 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayApiClientService.pdf", width: 70%),
-  caption: [Code diagram del GatewayApiClientService]
+  caption: [Code diagram - GatewayApiClientService]
 )
 
 ====== GatewayCommandApiClientService <angular-gateway-command-api-client-service>
 Il `GatewayCommandApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei comandi dei gateway del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di invio di comandi ai gateway, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `GatewayCommandApiClientAdapter`.\
 Il servizio inietta tramite _dependency injection_:
 - `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+- `GatewayApiAdapter`: mapper utilizzato per portare le risposte del backend nel formato frontend.
 
 Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
@@ -1617,14 +1620,14 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram del GatewayCommandApiClientService]
+  caption: [Code diagram - GatewayCommandApiClientService]
 )
 
 ====== SensorApiClientService <angular-sensor-api-client-service>
 Il `SensorApiClientService` è un servizio dedicato alla comunicazione con le API di gestione dei sensori del backend. Si occupa di inviare le richieste _HTTP_ per effettuare operazioni di creazione, eliminazione e recupero dei sensori, e di riportare le risposte o gli errori ricevuti tramite _Observables_. Implementa il contratto definito da `SensorApiClientAdapter`.\
 Il servizio inietta tramite _dependency injection_:
 - `HttpClient`: servizio di Angular per inviare richieste HTTP al backend.
-- `mapper`: mapper utilizzato per portare le risposte del backend nel formato usato dal frontend.
+- `SensorApiAdapter`: mapper utilizzato per portare le risposte del backend nel formato frontend.
 
 Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
@@ -1633,11 +1636,11 @@ Il servizio presenta i seguenti metodi pubblici:
 - `getSensorListByGateway(gatewayId: string, page: number, limit: number): Observable<PaginatedSensorResponse<Sensor>>`: recupera la lista paginata dei sensori associati a uno specifico gateway.
 - `getSensorListByTenant(tenantId: string, page: number, limit: number): Observable<PaginatedSensorResponse<Sensor>>`: recupera la lista paginata dei sensori associati a un tenant specifico.
 - `addNewSensor(config: SensorConfig): Observable<Sensor>`: invia la richiesta di creazione di un nuovo sensore.
-- `deleteSensor(id: string): Observable<void>`: invia la richiesta di eliminazione di un sensore specifico.
+- `deleteSensor(sensorId: string): Observable<void>`: invia la richiesta di eliminazione di un sensore specifico.
 
 #figure(
   image("../../assets/c4/frontend/services/SensorApiClientService.pdf", width: 70%),
-  caption: [Code diagram del SensorApiClientService]
+  caption: [Code diagram - SensorApiClientService]
 )
 
 ====== SensorCommandApiClientService <angular-sensor-command-api-client-service>
@@ -1654,13 +1657,13 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram del SensorCommandApiClientService]
+  caption: [Code diagram - SensorCommandApiClientService]
 )
 
 ====== SensorLiveReadingsApiClientService <angular-sensor-live-readings-api-service>
 Il `SensorLiveReadingsApiClientService` è un servizio dedicato alla comunicazione tramite _WebSocket_ con il backend. Si occupa aprire la connessione al backend per recuperare le letture in tempo reale dei sensori. Implementa il contratto definito da `SensorLiveReadingsApiClientAdapter`.\
 Il servizio inietta tramite _dependency injection_:
-- `tokenService`: per accedere al token di autenticazione necessario per autenticare la richiesta e stabilire la connessione con il backend.
+- `TokenStorageService`: per accedere al token di autenticazione necessario per autenticare la richiesta e stabilire la connessione con il backend.
 
 Il servizio presenta i seguenti attributi:
 - `apiUrl`: rappresenta l'URL base utilizzato dagli endpoint esposti dal backend, viene recuperato dalla variabile d'ambiente `environment.ts`.
@@ -1676,7 +1679,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorHistoricApiService.pdf", width: 70%),
-  caption: [Code diagram del SensorHistoricApiClientService]
+  caption: [Code diagram - SensorHistoricApiClientService]
 )
 
 ====== SensorHistoricApiClientService <angular-sensor-historic-api-service>
@@ -1692,7 +1695,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorLiveReadingsApiService.pdf", width: 60%),
-  caption: [Code diagram del SensorLiveReadingsApiClientService]
+  caption: [Code diagram - SensorLiveReadingsApiClientService]
 )
 
 
@@ -1909,7 +1912,7 @@ Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualiz
    - Ad esempio, `HEALTH_THERMOMETER_FIELDS` configura il campo "Temperatura" (°C) mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
 
 #figure(
-  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensorData.pdf", width: 100%),
+  image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensorData.pdf", width: 80%),
   caption: [Modelli dati - Misurazioni sensori],
 )
 \
@@ -1927,7 +1930,7 @@ Rappresenta il modello utilizzato per le operazioni di creazione o aggiornamento
 
 ====== PaginatedTenantResponse <angular-paginatedtenantresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di tenant.
-  - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+  - `tenants: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioTenant.pdf", width: 100%),
@@ -1969,6 +1972,7 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
 Il `TokenStorageService` è un servizio dedicato alla gestione del token JWT. Si occupa di salvare, recuperare e rimuovere il token JWT utilizzando il `sessionStorage` del browser, garantendone così la persistenza durante la sessione.\
 
 Il servizio presenta i seguenti attributi:
+- `TOKEN_KEY: string`: costante che rappresenta la chiave utilizzata per salvare il token JWT nel `sessionStorage`.
 - `_isValid` e `isValid`: `_isValid` è il signal _privato_ che tiene traccia della validità del token JWT (presenza e scadenza), mentre `isValid` è la sua controparte _readonly_ pubblica.
 
 Il servizio presenta i seguenti metodi pubblici:
@@ -1979,11 +1983,13 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/TokenStorageService.pdf", width: 40%),
-  caption: [Code diagram del TokenStorageService],
+  caption: [Code diagram - TokenStorageService],
 )
 
 ====== UserSessionService <angular-user-session-service>
 Lo `UserSessionService` è un servizio dedicato alla gestione della sessione dell'utente. Si occupa di mantenere lo stato della sessione, inclusi i dati dell'utente autenticato, e di fornire un'interfaccia semplice per accedere a queste informazioni.\
+Il servizio inietta tramite _dependency injection_:
+- `TokenStorageService`: per accedere al token JWT.
 
 Il servizio presenta i seguenti attributi:
 - `_currentUser` e `currentUser`: `_currentUser` è il signal _privato_ che tiene traccia dello stato della sessione dell'utente autenticato (se presente e quali sono i suoi dati), mentre `currentUser` è la sua controparte _readonly_ pubblica.
@@ -1998,12 +2004,11 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/UserSessionService.pdf", width: 50%),
-  caption: [Code diagram del UserSessionService],
+  caption: [Code diagram - UserSessionService],
 )
 
 ====== PermissionService <angular-permission-service>
 Il `PermissionService` è un servizio dedicato alla verifica dei permessi dell'utente. Si occupa di verificare se l'utente autenticato ha i permessi necessari per accedere a determinate funzionalità dell'applicazione.\
-
 Il servizio inietta tramite _dependency injection_:
 - `UserSessionService`: per verificare il ruolo dell'utente autenticato.
 
@@ -2017,7 +2022,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/PermissionService.pdf", width: 75%),
-  caption: [Code diagram del PermissionService]
+  caption: [Code diagram - PermissionService]
 )
 
 ====== AuthApiClientAdapter <angular-auth-api-client-adapter>
@@ -2032,6 +2037,7 @@ Il servizio inietta tramite _dependency injection_:
 - `TokenStorageService`: per gestire il ciclo di vita del token di autenticazione.
 - `UserSessionService`: per gestire lo stato della sessione dell'utente autenticato.
 - `Router`: servizio di Angular per gestire la navigazione tra le pagine dell'applicazione.
+
 Il servizio presenta i seguenti attributi:
 - `_loading` e `loading`: `_loading` è il _signal_ privato che tiene traccia dello stato di caricamento delle operazioni di autenticazione, mentre `loading` è la sua controparte _readonly_ pubblica.
 - `_error` e `error`: `_error` è il _signal_ privato che tiene traccia dello stato di errore delle operazioni di autenticazione, mentre `error` è la sua controparte _readonly_ pubblica.
@@ -2070,7 +2076,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/AuthServices.pdf", width: 100%),
-  caption: [Code diagram di AuthSessionService e AuthActionsService],
+  caption: [Code diagram - AuthSessionService e AuthActionsService],
 )
 
 ====== TenantApiClientAdapter <angular-tenant-api-client-adapter>
@@ -2105,7 +2111,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/TenantService.pdf", width: 50%),
-  caption: [Code diagram del TenantService]
+  caption: [Code diagram - TenantService]
 )
 
 ====== UserApiClientAdapter <angular-user-api-client-adapter>
@@ -2139,7 +2145,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/UserService.pdf", width: 60%),
-  caption: [Code diagram del UserService]
+  caption: [Code diagram - UserService]
 )
 
 ====== GatewayApiClientAdapter <angular-gateway-api-client-adapter>
@@ -2181,7 +2187,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayService.pdf", width: 70%),
-  caption: [Code diagram del GatewayService]
+  caption: [Code diagram - GatewayService]
 )
 
 ====== SensorApiClientAdapter <angular-sensor-api-client-adapter>
@@ -2221,7 +2227,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorService.pdf", width: 70%),
-  caption: [Code diagram del SensorService]
+  caption: [Code diagram - SensorService]
 )
 
 ====== SensorHistoricApiClientAdapter <angular-sensor-historic-api-adapter>
@@ -2237,7 +2243,7 @@ Il `SensorChartService` è un servizio dedicato alla gestione dello stato dei da
 Il servizio inietta tramite _dependency injection_:
 - `SensorLiveReadingsApiClientAdapter`: per comunicare con il backend e recuperare le letture in tempo reale dei sensori.
 - `SensorHistoricApiClientAdapter`: per comunicare con il backend e recuperare le letture storiche dei sensori.
-- `sensorAdapterFactory`: usato per istanziare l'adapter corretto in base al tipo di sensore di cui è stato richiesto il grafico.
+- `SensorAdapterFactory`: usato per istanziare l'adapter corretto in base al tipo di sensore di cui è stato richiesto il grafico.
 
 Il servizio presenta i seguenti attributi:
 - `_historicReadings` e `historicReadings`: `_historicReadings` è il _signal_ privato dei dati storici dei sensori, `historicReadings` è la controparte _readonly_ pubblica.
@@ -2262,7 +2268,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorChartService.pdf", width: 70%),
-  caption: [Code diagram del SensorChartService]
+  caption: [Code diagram - SensorChartService]
 )
 
 ====== DashboardService <angular-dashboard-service>
@@ -2292,7 +2298,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/DashboardService.pdf", width: 70%),
-  caption: [Code diagram del DashboardService]
+  caption: [Code diagram - DashboardService]
 )
 
 ====== GatewaySensorManagerService <angular-gateway-sensor-manager-service>
@@ -2322,7 +2328,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewaySensorManagerService.pdf", width: 70%),
-  caption: [Code diagram del GatewaySensorManagerService]
+  caption: [Code diagram - GatewaySensorManagerService]
 )
 
 ==== Presentation layer
@@ -2438,7 +2444,7 @@ La cartella _shared_ contiene componenti presentazionali (dumb components) e dia
 ===== App Shell
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-AppShell.pdf", width: 80%),
-  caption: [Components UI - App Shell]
+  caption: [Code diagram - App Shell]
 ) \
 
 Il modulo `App Shell` definisce il layout persistente dell'applicazione, gestendo la navigazione principale, la visualizzazione delle informazioni dell'utente in sessione e le azioni globali come il logout e il cambio password.
@@ -2479,7 +2485,7 @@ All'interno della cartella components, l'`App Shell` si avvale di componenti pre
 ===== Confirm Account
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ConfirmAccount.pdf", width: 90%),
-  caption: [Components UI - Confirm Account]
+  caption: [Code diagram - Confirm Account]
 ) \
 
 Il modulo `Confirm Account` gestisce il processo di attivazione dell'account utente a seguito della ricezione dell'invito. La pagina permette l'impostazione della password definitiva e il contestuale primo accesso al sistema.
@@ -2510,7 +2516,7 @@ All'interno della cartella components, il modulo delega la logica di inserimento
 ===== Dashboard
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Dashboard.pdf", width: 100%),
-  caption: [Components UI - Dashboard]
+  caption: [Code diagram - Dashboard]
 ) \
 
 Il modulo `Dashboard` costituisce il centro operativo dell'applicazione, offrendo una visione d'insieme dello stato dei dispositivi e permettendo il monitoraggio analitico dei dati biometrici e ambientali in tempo reale e in modalità storica.
@@ -2570,7 +2576,7 @@ All'interno della dashboard, la visualizzazione dei segnali è affidata a compon
 ===== Gateway-Sensor
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-GatewaySensor.pdf", width: 75%),
-  caption: [Components UI - Gateway-Sensor]
+  caption: [Code diagram - Gateway-Sensor]
 ) \
 
 Il modulo `Gateway-Sensor` fornisce l'interfaccia dedicata alle operazioni di amministrazione (CRUD) sui gateway e sui sensori. A differenza della `Dashboard`, questa sezione è ottimizzata per la configurazione del sistema e la gestione del ciclo di vita dei dispositivi.
@@ -2604,7 +2610,7 @@ Il modulo si avvale di dialoghi specializzati per l'inserimento e la validazione
 ===== Login
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Login.pdf", width: 80%),
-  caption: [Components UI - Login]
+  caption: [Code diagram - Login]
 ) \
 
 Il modulo `Login` costituisce il punto di accesso principale al sistema, gestendo l'autenticazione degli utenti e fornendo i flussi per il recupero delle credenziali dimenticate.
@@ -2645,7 +2651,7 @@ All'interno della cartella components, la logica di presentazione del modulo di 
 ===== Reset Password
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ResetPassword.pdf", width: 100%),
-  caption: [Components UI - Reset Password]
+  caption: [Code diagram - Reset Password]
 ) \
 
 Il modulo `ResetPassword` gestisce la fase finale del recupero delle credenziali, permettendo all'utente di impostare una nuova password tramite un link di sicurezza ricevuto via email.
@@ -2679,7 +2685,7 @@ La logica di inserimento e validazione dei dati è delegata a un componente pres
 ===== Tenant
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Tenant.pdf", width: 70%),
-  caption: [Components UI - Tenant]
+  caption: [Code diagram - Tenant page]
 ) \
 
 Il modulo `Tenant` fornisce l'interfaccia per la gestione delle entità organizzative (appunto i tenant) all'interno del sistema multi-tenant. Questa sezione permette agli amministratori globali di creare nuove organizzazioni, monitorare quelle esistenti ed eseguire operazioni di impersonificazione.
@@ -2718,7 +2724,7 @@ La visualizzazione dei dati è affidata a un componente presentazionale che isol
 ===== User
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-User.pdf", width: 70%),
-  caption: [Components UI - User]
+  caption: [Code diagram - User page]
 ) \
 
 Il modulo `User` fornisce l'interfaccia per la gestione completa degli utenti del sistema. La pagina è dinamica e adatta i propri contenuti (titoli, permessi e filtri) in base al ruolo dell'utente collegato e alla tipologia di account che si sta gestendo.
