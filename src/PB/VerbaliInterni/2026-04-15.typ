@@ -34,7 +34,7 @@
 Il presente documento attesta che, in data *15 aprile 2026* dalle ore 14:30 alle ore 17:00, si è tenuta in modalità virtuale la riunione del gruppo *GlitchHub Team*.
 
 == Revisione della distribuzione delle ore di lavoro
-Il gruppo ha investito del tempo nel controllare e ridistribuire le ore rimanenti tra i ruoli dei singoli membri, in vista dei compiti da svolgere durante le fasi finali del progetto. È importante sottolineare che questo processo non ha incrementato il costo totale, ne ha modificato il numero di ore complessive di lavoro che ogni membro deve svolgere.
+Il gruppo ha dedicato del tempo a controllare e ridistribuire le ore rimanenti tra i vari ruoli, in vista delle fasi finali del progetto. È importante sottolineare che questo processo non ha incrementato il costo totale, né ha modificato il numero complessivo di ore di lavoro previste per ogni membro.
 
 == Revisione del lavoro
 
