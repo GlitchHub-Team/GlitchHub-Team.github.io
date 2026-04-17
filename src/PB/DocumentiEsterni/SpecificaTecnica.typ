@@ -1595,7 +1595,7 @@ Outbound port per inviare le email di conferma account (`SendConfirmAccountEmail
 - *`SendForgotPasswordEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` da `fromAddress` un'email contenente il link di cambio password dimenticata, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
 
 
-===== `SendEmailSMTPAdapter`
+===== `SendEmailSMTPAdapter` <code-email.SendEmailSMTPAdapter>
 Struct che implementa `SendEmailPort` e presenta i seguenti attributi:
 - `fromAddress`: L'indirizzo da cui inviare i messaggi email
 - `sender`: Il riferimento a un oggetto che implementa l'interfaccia *`smtpSender`*
@@ -1781,7 +1781,7 @@ Rappresenta un errore ricevuto in tempo reale. Può essere un errore di disconne
 _Outbound port_ utilizzata per comunicare con il _listener_ dei dati in tempo reale.
 
 *Metodi*:
-- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Deve istanziare asincronamente una goroutine che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
+- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Istanzia asincronamente una goroutine che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
 
 
 ===== Outbound adapter -- `RealTimeDataNATSAdapter`
@@ -1798,7 +1798,7 @@ _Outbound adapter_ che implementa *`RealTimeDataPort`*, consentendo di creare un
 *`RealTimeDataNATSReader`* è l'interfaccia che rappresenta un reader #gloss[NATS]#footnote[Si noti che questa interfaccia è stata creata per puri fini di test, i quali richiedono che ogni elemento per cui si può creare un _mock_ sia descritto da un'interfaccia.].
 
 *Metodi*:
-- *`StartSubscriber( subject string, profile sensorProfile.SensorProfile, receivingChannel chan RealTimeSample, errorChannel chan RealTimeError) error`*: Deve istanziare un subscriber #gloss[NATS] sul soggetto `subject`, rimanendo in ascolto per i dati correlati al profilo `profile` per poi inserirli in `receivingChannel` ed inserire eventuali errori di mapping in `errorChannel`.
+- *`StartSubscriber( subject string, profile sensorProfile.SensorProfile, receivingChannel chan RealTimeSample, errorChannel chan RealTimeError) error`*: Istanzia un subscriber #gloss[NATS] sul soggetto `subject`, rimanendo in ascolto per i dati correlati al profilo `profile` per poi inserirli in `receivingChannel` ed inserire eventuali errori di mapping in `errorChannel`.
 
 ====== `concreteRealTimeDataNATSReader`
 *`concreteRealTimeDataNATSReader`* è la classe concreta che implementa `RealTimeDataNATSAdapter`.
@@ -2325,8 +2325,8 @@ Il package `shared/crypto` contiene le interfacce usate nell'applicativo per int
 Interfaccia che consente di gestire i token di autenticazione.
 
 *Metodi*:
-- *`GenerateForRequester(requester identity.Requester) (string, error)`*: Deve generare un token valido per uno specifico `Requester`
-- *`GetRequesterFromToken(token string) (identity.Requester, error)`*: Deve ritornare il `Requester` associato al token di autenticazione `token`.
+- *`GenerateForRequester(requester identity.Requester) (string, error)`*: Genera un token valido per uno specifico `Requester`
+- *`GetRequesterFromToken(token string) (identity.Requester, error)`*: Ritorna il `Requester` associato al token di autenticazione `token`.
 
 ===== `SecretHasher`
 Interfaccia che consente di generare un hash crittografico per un segreto _plaintext_ e paragonare un _plaintext_ a un hash già generato.
@@ -2384,12 +2384,12 @@ Il package `user` contiene le struct e interfacce che rappresentano le operazion
 )
 
 ===== Inbound adapter -- `Controller` e relativi DTO
+La struct `Controller` è l'unico _inbound adapter_ del package e gestisce la comunicazione con il router HTTP relativamente alle operazioni CRUD sugli utenti.
+
 #figure(
   image("../../assets/c4/backend/user/Controller.svg", width:90%),
   caption: [Cloud Backend -- Code Diagram di `user.Controller`],
 )
-
-La struct `Controller` è l'unico _inbound adapter_ del package e gestisce la comunicazione con il router HTTP relativamente alle operazioni CRUD sugli utenti.
 
 *Attributi*:
 - *`createTenantUserUseCase CreateTenantUserUseCase`*: _Inbound port_ per creare un nuovo Tenant User.
@@ -2477,12 +2477,12 @@ I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguent
   - `Users []UserResponseDTO`: L'effettiva lista di utenti
 
 ===== Inbound ports
+Di seguito sono riportate le _inbound ports_ del package. 
+
 #figure(
   image("../../assets/c4/backend/user/UseCases.svg", width:90%),
   caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ di `user`],
 ) <backend-code-user-usecases-services>
-
-Di seguito sono riportate le _inbound ports_ del package. 
 
 ====== `CreateTenantUserUseCase`
 _Inbound port_ per 
@@ -2545,12 +2545,14 @@ _Inbound port_ per
 - *`GetSuperAdminList(cmd GetSuperAdminListCommand) (superAdmins []User, total uint, err error)`*: Ritorna la lista paginata di Super Admin e il numero totale di Super Admin.
 
 ===== Comandi
+Di seguito si riportano i comandi utilizzati nel _business layer_ del package.
+
 #figure(
   image("../../assets/c4/backend/user/Commands.svg", width: 100%),
   caption: [Cloud Backend -- Code Diagram dei comandi per `user`],
 )
 
-Di seguito si riportano i comandi utilizzati nel _business layer_ del package, notando che ciascuno di essi include l'attributo `Requester identity.Requester`, il quale non sarà ripetuto nelle successive sottosezioni in quanto ridondante.
+Si noti che ciascuno dei comandi descritti presenta l'attributo `Requester identity.Requester`, il quale non sarà ripetuto nelle successive sottosezioni in quanto ridondante.
 
 ====== `CreateTenantUserCommand`
 Comando per creare un nuovo Tenant User.
@@ -2639,7 +2641,7 @@ Comando per ottenere una lista paginata di Super Admin associati a un tenant spe
 - *`Limit int`*: Numero di elementi per pagina
 
 ===== Services
-Per visualizzare il #gloss[Code Diagram] delle struct _service_, si visualizzi la @backend-code-user-usecases-services.
+Di seguito sono riportate le struct della _business logic_ del package. Per visualizzarne il #gloss[Code Diagram], si visualizzi la @backend-code-user-usecases-services.
 
 ====== `CreateUserService`
 Struct con la responsabilità di creare utenti nuovi per ogni ruolo.
@@ -2691,7 +2693,9 @@ Struct con la responsabilità di fornire dati relativi a uno o più utenti speci
 
 *Funzione di costruzione*: `NewGetUserService(getUserPort GetUserPort, getTenantPort tenant.GetTenantPort) *GetUserService`
 
-===== Dominio
+===== Dominio -- `User`
+Lo struct `User` rappresenta un utente all'interno del sistema.
+
 #figure(
   image("../../assets/c4/backend/user/UserStruct.svg", width: 40%),
   caption: [Cloud backend -- Code Diagram di `user.User`],
@@ -2710,14 +2714,109 @@ Struct con la responsabilità di fornire dati relativi a uno o più utenti speci
 - *`IsZero() bool`*: Ritorna `true` se lo struct ha valore pari al suo _zero-value_
 - *`SetPasswordHash(newPasswordHash string) error`*: Imposta l'hash della password a `newPasswordHash`, controllando che tale hash non sia nullo o pari all'hash corrente dell'utente.
 
-// CONTINUA
-
 ===== Outbound ports
+Di seguito si riportano le _outbound port_ del package.
 
-===== Outbound adapter
+#figure(
+  image("../../assets/c4/backend/user/PortsAdapters.svg", width: 90%),
+  caption: [Cloud Backend -- Code diagram di _outbound ports_ e _outbound adapters_ di `user`],
+) <backend-code-user-outports-adapters>
 
-===== Repository
+====== `SendConfirmAccountEmailPort`
+_Outbound port_ per inviare email di conferma account all'indirizzo email degli utenti appena creati. Si noti che viene usata un'interfaccia locale e non `email.SendEmailPort` per evitare di creare import cycles.
 
+Nonostante ciò, quest'interfaccia viene rispettata da `email.SendEmailSMTPAdapter` (vd. @code-email.SendEmailSMTPAdapter).
+
+*Metodi*:
+- *`SendConfirmAccountEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+
+====== `GenerateTokenPort`
+_Outbound port_ per la generazione di token di sicurezza usati nella procedura di conferma account. Si noti che viene usata tale interfaccia locale al posto di `auth.ConfirmAccountTokenPort` per evitare di creare import cycles.
+
+// TODO: Inserire riferimento ad auth.ConfirmAccountTokenPort
+Nonostante ciò, quest'interfaccia viene rispettata da `auth.ConfirmAccountTokenPgAdapter` (vd. )
+
+*Metodi*:
+- *`NewConfirmAccountToken(user User) (string, error)`*: Crea un nuovo token di conferma account associato all'utente `User`
+
+====== `SaveUserPort`
+_Outbound port_ con la responsabilità di creare un nuovo utente nel sistema o di aggiornarne uno esistente.
+
+*Metodi*:
+- *`SaveUser(user User) (User, error)`*: Crea o aggiorna l'utente `User` e ritorna la struct `User` relativa all'utente appena creato.
+
+====== `DeleteUserPort`
+_Outbound port_ che offre metodi per eliminare un utente esistente specifico per ogni ruolo.
+
+*Metodi*:
+- *`DeleteTenantUser(tenantId uuid.UUID, userId uint) (User, error)`*: Elimina il Tenant User appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
+- *`DeleteTenantAdmin(tenantId uuid.UUID, userId uint) (User, error)`*: Elimina il Tenant Admin appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
+- *`DeleteSuperAdmin(userId uint) (User, error)`*: Elimina il Super Admin con ID `userId` e ritorna lo `User` eliminato.
+
+====== `GetUserPort`
+_Outbound port_ che offre metodi per ottenere uno o più utenti specifici.
+
+*Metodi*:
+- *`GetUser(tenantId *uuid.UUID, userId uint) (User, error)`*: Ritorna lo `User` associato all'utente con ID `userId` appartenente al tenant con UUID `tenantId`.
+- *`GetUserByEmail(tenantId *uuid.UUID, email string) (User, error)`*: Ritorna lo `User` associato all'utente con email `email` appartenente al tenant con UUID `tenantId`.
+- *`GetTenantUsersByTenant(tenantId uuid.UUID, page, limit int) (tenantUsers []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
+- *`GetTenantAdminsByTenant(tenantId uuid.UUID, page, limit int) (tenantAdmins []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
+- *`GetSuperAdminList(page, limit int) (superAdmins []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Super Admin e il numero totale di Super Admin associati a tale tenant.
+- *`CountTenantAdminsByTenant(tenantId uuid.UUID) (total uint, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId` nel sistema.
+- *`CountSuperAdmins() (total uint, err error)`*: Ritorna il numero totale di Super Admin nel sistema.
+
+===== Outbound adapter -- `UserPostgreAdapter`
+Di seguito si ripotano le specifiche dell'_outbound adapter_ principale del package, il quale permette di comunicare con il sistema di persistenza, traducendo l'interfaccia di PostgreSQL nell'interfaccia di dominio e viceversa. Per visualizzarne il #gloss[Code Diagram], si consulti la @backend-code-user-outports-adapters.
+
+*Interfacce implementate*:
+- `SaveUserPort`
+- `DeleteUserPort`
+- `GetUserPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap.
+- *`tenantMemberRepo TenantMemberRepository`*: Riferimento all'interfaccia `Repository` associata ai Tenant Member, ovvero a Tenant User e Tenant Admin.
+- *`superAdminRepo SuperAdminRepository`*: Riferimento all'interfaccia `Repository` associata ai Super Admin del sistema.
+
+===== Struct comuni per repository
+
+====== `UserRepositoryGetUserBy`
+#figure(
+  image("../../assets/c4/backend/user/UserRepositoryGetUserBy.svg", width: 30%),
+  caption: [Cloud Backend -- Code diagram di `user.UserRepositoryGetUserBy`],
+)
+
+Struct che consente di specificare i parametri da usare per effettuare una ricerca utente. I parametri che vengono scelti corrispondono ai campi non-`nil` della struct: se viene scelto più di un campo, allora verrà effettuato l'`AND` sui parametri specificati.
+
+Ad esempio, se si utilizza una struct con valore puntato da `ID` pari a 1 e valore puntato da `Email` pari a `email@example.com`, allora la condizione `WHERE` in un'eventuale query SQL sarà la seguente:
+#align(center)[
+```sql
+WHERE id = 1 AND email = 'email@example.com'
+```
+]
+
+*Attributi*:
+- *`ID *int`*: Effettua la ricerca per ID utente, se ha valore non-`nil`.
+- *`Email *string`*: Effettua la ricerca per email, se ha valore non-`nil`.
+
+
+===== Repository per Tenant Member -- `TenantMemberRepository`
+Interfaccia che espone i metodi per eseguire le operazioni CRUD sui Tenant Member del sistema.
+
+#figure(
+  image("../../assets/c4/backend/user/TenantMemberRepository.svg", width: 80%),
+  caption: [Cloud Backend -- Code diagram di `user.TenantMemberRepository`, `user.tenantMemberPgRepository` e `user.TenantMemberEntity`],
+)
+
+*Metodi*:
+- *`SaveTenantMember(tenantMember *TenantMemberEntity) error`*: Crea il nuovo Tenant Member `tenantMember` o aggiorna quello esistente, ritornando errore in caso di errore nella procedura di salvataggio.
+- *`DeleteTenantMember(tenantMember *TenantMemberEntity) error`*: Elimina il Tenant Member `tenantMember` esistente, ritornando errore se non è stato trovato.
+- *`GetTenantMember(tenantId string, by UserRepositoryGetUserBy) (tenantMember *TenantMemberEntity, err error)`*: Ottiene i dati del Tenant Member appartenente al tenant con UUID `tenantId`, effettuando la ricerca a seconda di quanto specificato da `by`.  
+- *`GetTenantUsers(tenantId string, offset, limit int) (tenantUsers []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata
+- *`GetTenantAdmins(tenantId string, offset, limit int) (tenantAdmins []TenantMemberEntity, total int64, err error)`*:
+- *`CountTenantAdminsByTenant(tenantId string) (total int64, err error)`*:
+
+// CONTINUA
 
 == Database design <db-design>
 === Buffer database
