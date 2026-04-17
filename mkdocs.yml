@@ -31,7 +31,12 @@ nav:
       - Data Consumer:
           - Ricezione dati IoT: guide/data-consumer/ricezione-dati.md
       - Dashboard Frontend:
-          - Login: guide/dashboard-frontend/login.md
+          - Accesso e autenticazione: guide/dashboard-frontend/01-accesso-autenticazione.md
+          - Interfaccia principale: guide/dashboard-frontend/02-interfaccia-principale.md
+          - Dashboard e monitoraggio: guide/dashboard-frontend/03-dashboard-monitoraggio.md
+          - Gestione gateway e sensori: guide/dashboard-frontend/04-gestione-gateway-sensor.md
+          - Gestione tenant e utenti: guide/dashboard-frontend/05-gestione-tenant-user.md
+          - Problemi: guide/dashboard-frontend/06-problemi.md
       - Dashboard Backend:
           - Autenticazione: guide/dashboard-backend/auth.md
           - Gestione utenti: guide/dashboard-backend/user.md

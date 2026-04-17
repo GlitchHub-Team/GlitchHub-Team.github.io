@@ -15,6 +15,13 @@ La lista dei collegamenti è generata dinamicamente.
 - **Organizzazione visiva** (solo per i Super Admin): il menu ha due titoli utili per raggruppare visivamente l'area generica dall'area dedicata all'impersonificazione.
 - **Feedback di navigazione**: la pagina attualmente visualizzata è evidenziata nel menu.
 
+![Dashboard di un Super Admin](../../../../assets/frontend-MU/SchermataSuperAdmin.png "Dashboard di un Super Admin")
+_Figura 7: Dashboard di un Super Admin._
+
+![Dashboard di un Tenant Admin](../../../../assets/frontend-MU/SchermataTenantAdmin.png "Dashboard di un Tenant Admin")
+_Figura 8: Dashboard di un Tenant Admin._
+
+
 ## Barra degli strumenti (Header)
 L'**`header`** posizionato nella parte superiore fornisce informazioni contestuali sulla sessione e l'identità dell'utente loggato.
 

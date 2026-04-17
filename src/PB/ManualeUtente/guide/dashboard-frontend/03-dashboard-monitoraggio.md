@@ -18,26 +18,21 @@ Attivabile tramite l'icona `ssid_chart` nella tabella sensori, questa modalità 
 - **Connessione**: lo stato della connessione (es. "Connected" o "Reconnecting") è sempre visibile nell'intestazione a destra del grafico.
 - **Selezione campi**: se un sensore invia più parametri (es. sensore ambientale con temperatura e umidità), l'utente può selezionare quale dato visualizzare tramite un menu a tendina integrato.
 
+![Visualizzazione grafico con dati real time](../../../../assets/frontend-MU/DatiRealTime.png "Visualizzazione grafico con dati real time")
+_Figura 9: Visualizzazione grafico con dati real time._
+
 ### Grafici storici (Historic)
 Attivabile tramite l'icona `query_stats`, permette di analizzare le letture memorizzate nel database.
 - **Configurazione filtri**: l'apertura del grafico richiede l'interazione con la finestra di dialogo dedicata, dove l'utente definisce l'intervallo temporale e il numero di punti (limite massimo 300).
 - **Navigazione temporale**: il grafico contenente dati storici include, quando il numero di punti eccede la finestra di visualizzazione predefinita, uno slider inferiore e pulsanti di scorrimento per spostarsi all'interno del dataset recuperato.
 
+![Visualizzazione grafico con dati storici](../../../../assets/frontend-MU/DatiStorici.png "Visualizzazione grafico con dati storici")
+_Figura 10: Visualizzazione grafico con dati storici._
+
+![Form dei filtri sui dati storici](../../../../assets/frontend-MU/FiltroDatiStorici.png "Form dei filtri sui dati storici")
+_Figura 11: Form dei filtri sui dati storici._
+
 ## Invio Comandi ai dispositivi
 Dalla dashboard è possibile interagire direttamente con l'hardware per modificarne il comportamento operativo in tempo reale.
 
-### Comandi gateway
-Cliccando sull'icona `terminal` all'interno della tabella dei gateway, si apre la finestra di dialogo dei comandi del gateway:
-- **Commissioning**: associa un gateway simulato al tenant specificato.
-- **Manutenzione**: permette l'invio di istruzioni specifiche quali:
-  - **Reboot**: riavvia il gateway;
-  - **Reset**: ripristina le impostazioni di fabbrica del dispositivo;
-  - **Interrupt**: sospende temporaneamente l'invio dei dati dei sensori associati;
-  - **Resume**: riprende la trasmissione dei dati dopo un'interruzione.
-
-### Comandi sensore
-Analogamente, per i singoli sensori Bluetooth è possibile gestire l'attivazione della trasmissione attraverso una finestra di dialogo dedicata:
-- **Interrupt**: sospende il campionamento e l'invio delle letture biometriche o ambientali per lo specifico sensore;
-- **Resume**: riattiva il flusso dati del sensore verso il gateway.
-
-Al termine di ogni operazione, il sistema mostra una notifica nella parte inferiore della schermata per confermare che la richiesta è stata correttamente presa in carico dal backend.
+Guarda sezione "Gestione Gateway e Sensor" del presente Manuale Utente per maggiori informazioni sui comandi dei gateway e dei sensori.
