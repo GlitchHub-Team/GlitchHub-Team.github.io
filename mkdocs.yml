@@ -35,8 +35,6 @@ nav:
       - Dashboard Backend:
           - Login: guide/dashboard-backend/login.md
       - Observability:
-          - Configurazione di Grafana: guide/observability/config.md
-          - Importare e modificare una dashboard: guide/observability/dashboard.md
           - Metriche del backend: guide/observability/metriche-backend.md
           - Metriche di NATS: guide/observability/metriche-nats.md
           - Metriche di JetStream: guide/observability/metriche-jetstream.md
