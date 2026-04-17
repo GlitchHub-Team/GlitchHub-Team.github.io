@@ -45,7 +45,7 @@ Inoltre, sono state definite ed implementate delle metriche di _observability_ t
 
 === Stato della documentazione
 Il test book richiesto dalla proponente è stato compilato.
-È stata iniziata la stesura del #gloss[manuale utente], nonché il continuo popolamento e revisione di paragrafi per documenti come #gloss[analisi dei requisiti] e #gloss[specifica tecnica].
+Parallelamente, è iniziata la stesura del #gloss[Manuale Utente], unitamente alle attività di aggiornamento e revisione dei documenti di #gloss[Analisi dei Requisiti] e #gloss[Specifica Tecnica].
 
 = Assegnazione delle prossime task basate sulle decisioni prese
 #table(
