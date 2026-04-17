@@ -3,8 +3,36 @@
 
 #show: report.with(
   titolo: "Manuale Utente",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "0.5.0",
+      "16/04/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Stesura sezione Guide Observability: Metriche del backend, Metriche di NATS, Metriche di JetStream],
+    ),
+    (
+      "0.4.0",
+      "15/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [Stesura sezione Glossario (@glossary), Introduzione, Preparazione del Sistema (@preparazione-sistema)],
+    ),
+    (
+      "0.3.0",
+      "14/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [Stesura sezione Esecuzione test (@esecuzione-test)],
+    ),
+    (
+      "0.2.0",
+      "12/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [Stesura sezione Concetti, Guide per microservizi Gateway e Data Consumer],
+    ),
     (
       "0.1.0",
       "09/04/2026",
@@ -34,7 +62,7 @@
     if end_rel == none {
       return false
     }
-    let end = start + end_rel + 3  // -->
+    let end = start + end_rel + 3 // -->
 
     if start < position and position < end {
       return true
@@ -60,30 +88,30 @@
   let content = read("../ManualeUtente/" + filepath)
 
   content = content
-    .replace(regex(`(?m)^(#+.*)<([\w:\.]+)>\n`.text),
-             match => match.captures.first() + "<!--raw-typst <" + match.captures.at(1) + ">-->")
-    .replace(regex(`\[([^\]]+)\]\(https://glitchhub-team\.github\.io/glossary\.html#[^\)]+\)`.text),
-             match => "#gloss(\"" + match.captures.at(0) + "\")")
-    .replace(regex(`[^\s<]+<!--gloss\[[^\]]+\]-->`.text),
-             match => {
-               let text = match.text
-               let open = text.position("<!--gloss[")
-               let close = text.position("]-->")
-               let inner = text.slice(open + 10, close)
-               "#gloss(\"" + inner + "\")"
-             })
-    .replace(regex(`#gloss\[[^\]]+\]`.text),
-             wrap-replacer(content, match => "<!--raw-typst " + match.text + "-->"))
-    .replace(regex(`#gloss\("([^"]+)"\)`.text),
-             wrap-replacer(content, match => "<!--raw-typst " + match.text + "-->"))
+    .replace(regex(`(?m)^(#+.*)<([\w:\.]+)>\n`.text), match => (
+      match.captures.first() + "<!--raw-typst <" + match.captures.at(1) + ">-->"
+    ))
+    .replace(regex(`\[([^\]]+)\]\(https://glitchhub-team\.github\.io/glossary\.html#[^\)]+\)`.text), match => (
+      "#gloss(\"" + match.captures.at(0) + "\")"
+    ))
+    .replace(regex(`([^\s]+)\{\{\s*gloss\s*\}\}`.text), match => "#gloss(\"" + match.captures.at(0) + "\")")
+    .replace(regex(`[^\s<]+<!--gloss\[[^\]]+\]-->`.text), match => {
+      let text = match.text
+      let open = text.position("<!--gloss[")
+      let close = text.position("]-->")
+      let inner = text.slice(open + 10, close)
+      "#gloss(\"" + inner + "\")"
+    })
+    .replace(regex(`#gloss\[[^\]]+\]`.text), wrap-replacer(content, match => "<!--raw-typst " + match.text + "-->"))
+    .replace(regex(`#gloss\("([^"]+)"\)`.text), wrap-replacer(content, match => "<!--raw-typst " + match.text + "-->"))
 
   cmarker.render(
     content,
     scope: (
       gloss: gloss,
-      image: (path, width: 50%, height: 30%, alt: none) => align(
+      image: (path, width: 90%, height: auto, alt: none) => align(
         center,
-        image(base + "/" + path, alt: alt, width: width, height: height, fit: "contain"),
+        image(base + "/" + path, alt: alt, width: width, fit: "contain"),
       ),
     ),
     h1-level: level,
