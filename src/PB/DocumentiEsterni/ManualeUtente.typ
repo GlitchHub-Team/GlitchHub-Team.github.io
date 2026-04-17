@@ -9,7 +9,7 @@
       "0.5.0",
       "16/04/2026",
       "Hossam Ezzemouri",
-      "-",
+      "Alessandro Dinato",
       [Stesura sezione Guide Observability: Metriche del backend, Metriche di NATS, Metriche di JetStream],
     ),
     (
@@ -44,8 +44,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Manuale Utente",
 )
 
