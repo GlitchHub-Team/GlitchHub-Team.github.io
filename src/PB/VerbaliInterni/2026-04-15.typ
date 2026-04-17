@@ -25,8 +25,8 @@
     [Riassegnazione ore],
   ),
   htmlId: "PB-VerbaliInterni",
-  verificatore-interno: "Hossam Ezzemouri",
-  left-signature: "../assets/firme/firma_Hossam_Ezzemouri.png",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-verbale: "Interno",
 )
 
