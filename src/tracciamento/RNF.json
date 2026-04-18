@@ -6,7 +6,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.5 -- RQ 15"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Monitoraggio-prestazioni",
@@ -16,7 +17,8 @@
         "ref_capitolato": [
             "Capitolato §5.5 -- RQ 16",
             "Capitolato §3.3"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Presenza-alert-gateway",
@@ -25,7 +27,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.5 -- RQ 16"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Versionamento",
@@ -34,7 +37,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.5 -- RQ 17"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Cifratura-dati",
@@ -43,7 +47,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.3 -- RQ 9"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Autenticazione-robusta",
@@ -52,7 +57,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.3 -- RQ 8"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Autenticazione-tenant-granulare",
@@ -61,7 +67,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.3 -- RQ 8"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Isolamento-logico-tenant",
@@ -70,7 +77,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §5.3 -- RQ 10"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-Provisioning-sicuro-gateway",
@@ -79,7 +87,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §3.2"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-doc-diagrammi",
@@ -88,7 +97,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §8"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-doc-tecnica",
@@ -97,7 +107,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §8"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-manuale-test",
@@ -106,7 +117,8 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §8"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RNF-manuale-utente-amm",
@@ -115,6 +127,7 @@
         "ref_uc": [],
         "ref_capitolato": [
             "Capitolato §8"
-        ]
+        ],
+        "stato": "S"
     }
 ]

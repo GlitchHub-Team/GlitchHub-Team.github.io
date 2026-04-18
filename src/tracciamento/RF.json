@@ -6,7 +6,8 @@
         "ref_uc": [
             "<Autenticazione-utente>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-email-auth",
@@ -15,7 +16,8 @@
         "ref_uc": [
             "<Inserimento-email-auth>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-password",
@@ -25,7 +27,8 @@
             "<Autenticazione-utente>",
             "<Inserimento-password>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-tenant",
@@ -34,7 +37,8 @@
         "ref_uc": [
             "<Autenticazione-utente>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Autenticazione-non-riuscita",
@@ -43,7 +47,8 @@
         "ref_uc": [
             "<Autenticazione-non-riuscita>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Account-sospeso",
@@ -52,7 +57,8 @@
         "ref_uc": [
             "<Account-sospeso>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Re-invio-codice-2FA",
@@ -61,7 +67,8 @@
         "ref_uc": [
             "<Re-invio-codice-2FA>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Autenticazione-2FA",
@@ -70,7 +77,8 @@
         "ref_uc": [
             "<Autenticazione-2FA>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Inserimento-codice-2FA",
@@ -79,7 +87,8 @@
         "ref_uc": [
             "<Inserimento-codice-2FA>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Codice-2FA-errato",
@@ -89,7 +98,8 @@
             "<Codice-2FA-errato>",
             "<Codice-2FA-scaduto>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Impostazione-password",
@@ -98,7 +108,8 @@
         "ref_uc": [
             "<Impostazione-password>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-nuova-password",
@@ -107,7 +118,8 @@
         "ref_uc": [
             "<Inserimento-nuova-password>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-password",
@@ -116,7 +128,8 @@
         "ref_uc": [
             "<Conferma-password>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Password-non-coincidenti",
@@ -125,7 +138,8 @@
         "ref_uc": [
             "<Password-non-coincidenti>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Password-non-conforme-criteri-sicurezza",
@@ -134,7 +148,8 @@
         "ref_uc": [
             "<Password-non-conforme-criteri-sicurezza>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Link-impostazione-password-scaduto",
@@ -143,7 +158,8 @@
         "ref_uc": [
             "<Link-impostazione-password-scaduto>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Password-dimenticata",
@@ -152,7 +168,8 @@
         "ref_uc": [
             "<Password-dimenticata>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-indirizzo-email",
@@ -161,7 +178,8 @@
         "ref_uc": [
             "<Inserimento-indirizzo-email>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-tenant-password-dimenticata",
@@ -170,7 +188,8 @@
         "ref_uc": [
             "<Password-dimenticata>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Indirizzo-email-non-associato-account",
@@ -179,7 +198,8 @@
         "ref_uc": [
             "<Indirizzo-email-non-associato-account>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Reimpostazione-password-dimenticata",
@@ -188,7 +208,8 @@
         "ref_uc": [
             "<Reimpostazione-password-dimenticata>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-lista-sensori-associati-tenant",
@@ -197,7 +218,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-sensori-associati-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-identificativo-sensore-in-lista",
@@ -207,7 +229,8 @@
             "<Visualizzazione-singolo-sensore-associato-tenant-in-lista>",
             "<Visualizzazione-identificativo-sensore-in-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-dashboard-generica",
@@ -218,7 +241,8 @@
             "<Visualizzazione-numero-sensori-attivi-non-attivi>",
             "<Visualizzazione-numero-gateway-attivi-non-attivi>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-lista-alert",
@@ -228,7 +252,8 @@
             "<Visualizzazione-dashboard-generica>",
             "<Visualizzazione-lista-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-sensori-attivi-non-attivi",
@@ -238,7 +263,8 @@
             "<Visualizzazione-dashboard-generica>",
             "<Visualizzazione-numero-sensori-attivi-non-attivi>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-gateway-attivi-non-attivi",
@@ -248,7 +274,8 @@
             "<Visualizzazione-dashboard-generica>",
             "<Visualizzazione-numero-gateway-attivi-non-attivi>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Gateway-non-raggiungibile",
@@ -257,7 +284,8 @@
         "ref_uc": [
             "<Gateway-non-raggiungibile>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Email-gia-utilizzata",
@@ -266,7 +294,8 @@
         "ref_uc": [
             "<Email-gia-utilizzata>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-email",
@@ -275,7 +304,8 @@
         "ref_uc": [
             "<Inserimento-email>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-tenant-user",
@@ -284,7 +314,8 @@
         "ref_uc": [
             "<Sospensione-tenant-user>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Conferma-sospensione-tenant-user",
@@ -293,7 +324,8 @@
         "ref_uc": [
             "<Conferma-sospensione-tenant-user>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Riattivazione-tenant-user",
@@ -302,7 +334,8 @@
         "ref_uc": [
             "<Riattivazione-tenant-user>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Conferma-riattivazione-tenant-user",
@@ -311,7 +344,8 @@
         "ref_uc": [
             "<Conferma-riattivazione-tenant-user>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Eliminazione-tenant-user",
@@ -320,7 +354,8 @@
         "ref_uc": [
             "<Eliminazione-tenant-user>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-eliminazione-tenant-user",
@@ -329,7 +364,8 @@
         "ref_uc": [
             "<Conferma-eliminazione-tenant-user>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-lista-richieste-commissioning-decommissioning-gateway",
@@ -338,7 +374,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-richieste-commissioning-decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-richiesta-di-commissioning-decommissioning-gateway",
@@ -347,7 +384,8 @@
         "ref_uc": [
             "<Visualizzazione-richiesta-di-commissioning-decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-lista-utenti-tenant",
@@ -356,7 +394,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-utenti-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-email-utente-lista",
@@ -366,7 +405,8 @@
             "<Visualizzazione-singolo-utente-in-lista>",
             "<Visualizzazione-email-utente-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-stato-utente-lista",
@@ -376,7 +416,8 @@
             "<Visualizzazione-singolo-utente-in-lista>",
             "<Visualizzazione-stato-utente-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-lista-gateway-associati",
@@ -385,7 +426,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-gateway-associati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-nome-gateway-lista",
@@ -395,7 +437,8 @@
             "<Visualizzazione-singolo-gateway-in-lista>",
             "<Visualizzazione-nome-gateway-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-stato-gateway-lista",
@@ -405,7 +448,8 @@
             "<Visualizzazione-singolo-gateway-in-lista>",
             "<Visualizzazione-stato-gateway-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-gateway-associato",
@@ -414,7 +458,8 @@
         "ref_uc": [
             "<Visualizzazione-gateway-associato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-nome-gateway-associato",
@@ -423,7 +468,8 @@
         "ref_uc": [
             "<Visualizzazione-nome-gateway-associato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-stato-gateway-associato",
@@ -432,7 +478,8 @@
         "ref_uc": [
             "<Visualizzazione-stato-gateway-associato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-sensori-collegati-gateway-associato",
@@ -441,7 +488,8 @@
         "ref_uc": [
             "<Visualizzazione-sensori-collegati-gateway-associato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista",
@@ -450,7 +498,8 @@
         "ref_uc": [
             "<Visualizzazione-identificativo-sensore-collegato-gateway-associato-in-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Registrazione-nuova-api-key",
@@ -459,7 +508,8 @@
         "ref_uc": [
             "<Registrazione-nuova-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Inserimento-nome-api-key",
@@ -468,7 +518,8 @@
         "ref_uc": [
             "<Inserimento-nome-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Inserimento-scadenza-api-key",
@@ -477,7 +528,8 @@
         "ref_uc": [
             "<Inserimento-scadenza-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Nome-api-key-gia-utilizzato",
@@ -488,7 +540,8 @@
             "<Inserimento-nome-api-key>",
             "<Nome-api-key-gia-utilizzato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Scadenza-api-key-data-passata",
@@ -499,7 +552,8 @@
             "<Inserimento-scadenza-api-key>",
             "<Scadenza-api-key-data-passata>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-lista-api-key",
@@ -508,7 +562,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-nome-singola-api-key-lista",
@@ -519,7 +574,8 @@
             "<Visualizzazione-singola-api-key-lista>",
             "<Visualizzazione-nome-singola-api-key-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-data-creazione-singola-api-key-lista",
@@ -530,7 +586,8 @@
             "<Visualizzazione-singola-api-key-lista>",
             "<Visualizzazione-data-creazione-singola-api-key-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-data-scadenza-singola-api-key-lista",
@@ -541,7 +598,8 @@
             "<Visualizzazione-singola-api-key-lista>",
             "<Visualizzazione-data-scadenza-singola-api-key-lista>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-dettagli-api-key",
@@ -550,7 +608,8 @@
         "ref_uc": [
             "<Visualizzazione-dettagli-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-nome-api-key",
@@ -560,7 +619,8 @@
             "<Visualizzazione-dettagli-api-key>",
             "<Visualizzazione-nome-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-data-creazione-api-key",
@@ -570,7 +630,8 @@
             "<Visualizzazione-dettagli-api-key>",
             "<Visualizzazione-data-creazione-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-data-scadenza-api-key",
@@ -580,7 +641,8 @@
             "<Visualizzazione-dettagli-api-key>",
             "<Visualizzazione-data-scadenza-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Grafico-utilizzo-api-key",
@@ -590,7 +652,8 @@
             "<Visualizzazione-dettagli-api-key>",
             "<Grafico-utilizzo-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Eliminazione-api-key",
@@ -599,7 +662,8 @@
         "ref_uc": [
             "<Eliminazione-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Conferma-eliminazione-api-key",
@@ -609,7 +673,8 @@
             "<Eliminazione-api-key>",
             "<Conferma-eliminazione-api-key>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-audit-log",
@@ -618,7 +683,8 @@
         "ref_uc": [
             "<Visualizzazione-audit-log>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-nome-utente-audit-log",
@@ -629,7 +695,8 @@
             "<Visualizzazione-singolo-audit-log>",
             "<Visualizzazione-nome-utente-audit-log>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-tipo-azione-audit-log",
@@ -640,7 +707,8 @@
             "<Visualizzazione-singolo-audit-log>",
             "<Visualizzazione-tipo-azione-audit-log>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-timestamp-azione-audit-log",
@@ -651,7 +719,8 @@
             "<Visualizzazione-singolo-audit-log>",
             "<Visualizzazione-timestamp-azione-audit-log>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Filtraggio-log-per-tipologia",
@@ -660,7 +729,8 @@
         "ref_uc": [
             "<Filtraggio-log-per-tipologia>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Filtraggio-log-per-intervallo-temporale",
@@ -669,7 +739,8 @@
         "ref_uc": [
             "<Filtraggio-log-per-intervallo-temporale>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Filtraggio-log-per-utente",
@@ -678,7 +749,8 @@
         "ref_uc": [
             "<Filtraggio-log-per-utente>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Esportazione-log",
@@ -687,7 +759,8 @@
         "ref_uc": [
             "<Esportazione-log>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-dashboard-tenant-admin",
@@ -696,7 +769,8 @@
         "ref_uc": [
             "<Visualizzazione-dashboard-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-numero-sensori-attivi-non-attivi-admin",
@@ -706,7 +780,8 @@
             "<Visualizzazione-dashboard-tenant-admin>",
             "<Visualizzazione-numero-sensori-attivi-non-attivi>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-gateway-attivi-non-attivi-admin",
@@ -716,7 +791,8 @@
             "<Visualizzazione-dashboard-tenant-admin>",
             "<Visualizzazione-numero-gateway-attivi-non-attivi>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-lista-alert-admin",
@@ -726,7 +802,8 @@
             "<Visualizzazione-dashboard-tenant-admin>",
             "<Visualizzazione-lista-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-api-key-valide-scadute",
@@ -736,7 +813,8 @@
             "<Visualizzazione-dashboard-tenant-admin>",
             "<Visualizzazione-numero-api-key-valide-scadute>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-stato-richieste-commissioning-gateway",
@@ -746,7 +824,8 @@
             "<Visualizzazione-dashboard-tenant-admin>",
             "<Visualizzazione-stato-richieste-commissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-stato-richieste-decommissioning-gateway",
@@ -756,7 +835,8 @@
             "<Visualizzazione-dashboard-tenant-admin>",
             "<Visualizzazione-stato-richieste-decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Creazione-richiesta-commissioning-gateway",
@@ -765,7 +845,8 @@
         "ref_uc": [
             "<Creazione-richiesta-commissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Creazione-richiesta-decommissioning-gateway",
@@ -775,7 +856,8 @@
             "<Creazione-richiesta-decommissioning-gateway>",
             "<Selezione-gateway-decommissioning-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Eliminazione-richiesta-commissioning-decommissioning-gateway",
@@ -784,7 +866,8 @@
         "ref_uc": [
             "<Eliminazione-richiesta-commissioning-decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Conferma-eliminazione-richiesta-commissioning-decommissioning",
@@ -794,7 +877,8 @@
             "<Eliminazione-richiesta-commissioning-decommissioning-gateway>",
             "<Conferma-eliminazione-richiesta-commissioning-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Sospensione-sensore-tenant-admin",
@@ -803,7 +887,8 @@
         "ref_uc": [
             "<Sospensione-sensore-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-sensore-fallita-gateway-irraggiungibile",
@@ -813,7 +898,8 @@
             "<Sospensione-sensore-tenant-admin>",
             "<Gateway-non-raggiungibile>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-sensore-tenant-admin",
@@ -822,7 +908,8 @@
         "ref_uc": [
             "<Riattivazione-sensore-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-sensore-fallita-gateway-irraggiungibile",
@@ -832,7 +919,8 @@
             "<Riattivazione-sensore-tenant-admin>",
             "<Gateway-non-raggiungibile>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-gateway-tenant-admin",
@@ -842,7 +930,8 @@
             "<Sospensione-gateway-tenant-admin>",
             "<Seleziona-gateway-per-invio-comando-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-gateway-fallita-gateway-irraggiungibile",
@@ -852,7 +941,8 @@
             "<Sospensione-gateway-tenant-admin>",
             "<Gateway-non-raggiungibile>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-gateway-tenant-admin",
@@ -862,7 +952,8 @@
             "<Riattivazione-gateway-tenant-admin>",
             "<Seleziona-gateway-per-invio-comando-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-gateway-fallita-gateway-irraggiungibile",
@@ -872,7 +963,8 @@
             "<Riattivazione-gateway-tenant-admin>",
             "<Gateway-non-raggiungibile>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riavvio-gateway-tenant-admin",
@@ -882,7 +974,8 @@
             "<Riavvio-gateway-tenant-admin>",
             "<Seleziona-gateway-per-invio-comando-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Modifica-target-freq-invio-dati-tenant-admin",
@@ -891,7 +984,8 @@
         "ref_uc": [
             "<Modifica-target-freq-invio-dati-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Riavvio-gateway-fallita-gateway-irraggiungibile",
@@ -901,7 +995,8 @@
             "<Riavvio-gateway-tenant-admin>",
             "<Gateway-non-raggiungibile>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-commissioning",
@@ -910,7 +1005,8 @@
         "ref_uc": [
             "<Conferma-comando-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Avvio-invio-dati-post-commissioning",
@@ -919,7 +1015,8 @@
         "ref_uc": [
             "<Conferma-comando-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Errore-commissioning",
@@ -928,7 +1025,8 @@
         "ref_uc": [
             "<Errore-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-decommissioning",
@@ -937,7 +1035,8 @@
         "ref_uc": [
             "<Conferma-comando-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Rimozione-associazione-post-decommissioning",
@@ -946,7 +1045,8 @@
         "ref_uc": [
             "<Conferma-comando-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Nuovo-commissioning-post-decommissioning",
@@ -955,7 +1055,8 @@
         "ref_uc": [
             "<Conferma-comando-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Errore-decommissioning",
@@ -964,7 +1065,8 @@
         "ref_uc": [
             "<Errore-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Annullamento-decommissioning-errore",
@@ -973,7 +1075,8 @@
         "ref_uc": [
             "<Errore-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Notifica-errore-decommissioning",
@@ -982,7 +1085,8 @@
         "ref_uc": [
             "<Errore-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-riavvio",
@@ -991,7 +1095,8 @@
         "ref_uc": [
             "<Conferma-comando-riavvio>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Errore-riavvio",
@@ -1000,7 +1105,8 @@
         "ref_uc": [
             "<Errore-riavvio>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-reset",
@@ -1009,7 +1115,8 @@
         "ref_uc": [
             "<Conferma-comando-reset>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-successo-reset",
@@ -1018,7 +1125,8 @@
         "ref_uc": [
             "<Conferma-comando-reset>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-sospensione-invio-dati",
@@ -1027,7 +1135,8 @@
         "ref_uc": [
             "<Conferma-comando-sospensione-invio-dati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-riattivazione-invio-dati",
@@ -1036,7 +1145,8 @@
         "ref_uc": [
             "<Conferma-comando-riattivazione-invio-dati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-sospensione-sensore",
@@ -1045,7 +1155,8 @@
         "ref_uc": [
             "<Conferma-comando-sospensione-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-riattivazione-sensore",
@@ -1054,7 +1165,8 @@
         "ref_uc": [
             "<Conferma-comando-riattivazione-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-comando-modifica-frequenza-invio-dati",
@@ -1063,7 +1175,8 @@
         "ref_uc": [
             "<Conferma-comando-modifica-frequenza-invio-dati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Invio-comando-hello",
@@ -1072,7 +1185,8 @@
         "ref_uc": [
             "<Invio-comando-hello>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Autenticazione-gateway-fallita",
@@ -1081,7 +1195,8 @@
         "ref_uc": [
             "<Autenticazione-gateway-fallita>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Identificativo-gateway-non-trovato",
@@ -1090,7 +1205,8 @@
         "ref_uc": [
             "<Identificativo-gateway-non-trovato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dati-crittografati",
@@ -1099,7 +1215,8 @@
         "ref_uc": [
             "<Invio-dati-crittografati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Buffer-dati-sensori",
@@ -1108,7 +1225,8 @@
         "ref_uc": [
             "<Invio-dati-crittografati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Eliminazione-dati-buffer-pieno",
@@ -1117,7 +1235,8 @@
         "ref_uc": [
             "<Invio-dati-crittografati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dati-fallito",
@@ -1126,7 +1245,8 @@
         "ref_uc": [
             "<Invio-dati-fallito>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Errore-gateway-assenza-dati",
@@ -1135,7 +1255,8 @@
         "ref_uc": [
             "<Invio-dati-fallito>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Assenza-prolungata-dati-sensori",
@@ -1144,7 +1265,8 @@
         "ref_uc": [
             "<Assenza-prolungata-dati-sensori>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Notifica-assenza-dati-sensore",
@@ -1153,7 +1275,8 @@
         "ref_uc": [
             "<Assenza-prolungata-dati-sensori>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Richiesta-dati-real-time-sensore",
@@ -1162,7 +1285,8 @@
         "ref_uc": [
             "<Richiesta-dati-real-time-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Ricezione-dati-real-time-sensore",
@@ -1171,7 +1295,8 @@
         "ref_uc": [
             "<Ricezione-dati-real-time-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Richiesta-storico-dati-sensore",
@@ -1180,7 +1305,8 @@
         "ref_uc": [
             "<Richiesta-storico-dati-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Ricezione-storico-dati-sensore",
@@ -1189,7 +1315,8 @@
         "ref_uc": [
             "<Ricezione-storico-dati-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Sensore-non-trovato",
@@ -1198,7 +1325,8 @@
         "ref_uc": [
             "<Sensore-non-trovato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Nessun-dato-disponibile-sensore-richiesto",
@@ -1207,7 +1335,8 @@
         "ref_uc": [
             "<Nessun-dato-disponibile-sensore-richiesto>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Sensore-non-associato-tenant-API-Client",
@@ -1216,7 +1345,8 @@
         "ref_uc": [
             "<Sensore-non-associato-tenant-API-Client>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Autenticazione-API-Client",
@@ -1225,7 +1355,8 @@
         "ref_uc": [
             "<Autenticazione-API-Client>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Credenziali-API-Client-errate",
@@ -1234,7 +1365,8 @@
         "ref_uc": [
             "<Credenziali-API-Client-errate>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Credenziali-API-Client-scadute",
@@ -1243,7 +1375,8 @@
         "ref_uc": [
             "<Credenziali-API-Client-scadute>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Invio-nuovo-dato-gateway",
@@ -1252,7 +1385,8 @@
         "ref_uc": [
             "<Invio-nuovo-dato-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Normalizzazione-dati-gateway",
@@ -1261,7 +1395,8 @@
         "ref_uc": [
             "<Invio-nuovo-dato-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Formattazione-dati-gateway",
@@ -1270,7 +1405,8 @@
         "ref_uc": [
             "<Invio-nuovo-dato-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Salvataggio-buffer-gateway",
@@ -1279,7 +1415,8 @@
         "ref_uc": [
             "<Invio-nuovo-dato-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dati-eccessivi-gateway",
@@ -1288,7 +1425,8 @@
         "ref_uc": [
             "<Invio-dati-eccessivi-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dato-heart-rate-service",
@@ -1297,7 +1435,8 @@
         "ref_uc": [
             "<Invio-dato-heart-rate-service>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dato-pulse-oximeter-service",
@@ -1306,7 +1445,8 @@
         "ref_uc": [
             "<Invio-dato-pulse-oximeter-service>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dato-ecg-custom",
@@ -1315,7 +1455,8 @@
         "ref_uc": [
             "<Invio-dato-ecg-custom>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dato-health-thermometer-service",
@@ -1324,7 +1465,8 @@
         "ref_uc": [
             "<Invio-dato-health-thermometer-service>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Invio-dato-environmental-sensing-service",
@@ -1333,7 +1475,8 @@
         "ref_uc": [
             "<Invio-dato-environmental-sensing-service>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-autenticazione-gateway",
@@ -1342,7 +1485,8 @@
         "ref_uc": [
             "<Conferma-autenticazione-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Rifiuto-autenticazione-gateway",
@@ -1351,7 +1495,8 @@
         "ref_uc": [
             "<Rifiuto-autenticazione-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Assegnazione-tenant-gateway",
@@ -1361,7 +1506,8 @@
             "<Assegnazione-tenant-gateway>",
             "<Invio-tenant-associato-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-sensore-simulato",
@@ -1370,7 +1516,8 @@
         "ref_uc": [
             "<Riattivazione-sensore-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-sensore-simulato",
@@ -1379,7 +1526,8 @@
         "ref_uc": [
             "<Sospensione-sensore-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-gateway",
@@ -1388,7 +1536,8 @@
         "ref_uc": [
             "<Riattivazione-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-gateway",
@@ -1397,7 +1546,8 @@
         "ref_uc": [
             "<Sospensione-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riavvio-gateway-cloud",
@@ -1406,7 +1556,8 @@
         "ref_uc": [
             "<Riavvio-gateway-cloud>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Modifica-frequenza-invio-dati-gateway",
@@ -1415,7 +1566,8 @@
         "ref_uc": [
             "<Modifica-frequenza-invio-dati-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Decommissioning-gateway-cloud",
@@ -1426,7 +1578,8 @@
             "<Disassociazione-tenant-gateway>",
             "<Reset-gateway-cloud>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Reset-gateway-cloud",
@@ -1435,7 +1588,8 @@
         "ref_uc": [
             "<Reset-gateway-cloud>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Logout",
@@ -1444,7 +1598,8 @@
         "ref_uc": [
             "<Logout>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Logout-audit-log",
@@ -1453,7 +1608,8 @@
         "ref_uc": [
             "<Logout>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Modifica-password",
@@ -1462,7 +1618,8 @@
         "ref_uc": [
             "<Modifica-password>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-vecchia-password",
@@ -1471,7 +1628,8 @@
         "ref_uc": [
             "<Inserimento-vecchia-password>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Vecchia-password-non-corretta",
@@ -1480,7 +1638,8 @@
         "ref_uc": [
             "<Vecchia-password-non-corretta>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-alert",
@@ -1489,7 +1648,8 @@
         "ref_uc": [
             "<Visualizzazione-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-titolo-alert",
@@ -1498,7 +1658,8 @@
         "ref_uc": [
             "<Visualizzazione-titolo-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-descrizione-alert",
@@ -1507,7 +1668,8 @@
         "ref_uc": [
             "<Visualizzazione-descrizione-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Mancata-ricezione-gateway",
@@ -1516,7 +1678,8 @@
         "ref_uc": [
             "<Mancata-ricezione-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-id-gateway-alert",
@@ -1525,7 +1688,8 @@
         "ref_uc": [
             "<Visualizzazione-id-gateway-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-timestamp-ultimo-dato-gateway-alert",
@@ -1534,7 +1698,8 @@
         "ref_uc": [
             "<Visualizzazione-timestamp-ultimo-dato-gateway-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-tempo-inattivita-gateway-alert",
@@ -1543,7 +1708,8 @@
         "ref_uc": [
             "<Visualizzazione-tempo-inattivita-gateway-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Mancata-ricezione-sensore",
@@ -1552,7 +1718,8 @@
         "ref_uc": [
             "<Mancata-ricezione-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-id-sensore-alert",
@@ -1561,7 +1728,8 @@
         "ref_uc": [
             "<Visualizzazione-id-sensore-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-timestamp-ultimo-dato-sensore-alert",
@@ -1570,7 +1738,8 @@
         "ref_uc": [
             "<Visualizzazione-timestamp-ultimo-dato-sensore-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-tempo-inattivita-sensore-alert",
@@ -1579,7 +1748,8 @@
         "ref_uc": [
             "<Visualizzazione-tempo-inattivita-sensore-alert>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-dati-real-time-sensore",
@@ -1588,7 +1758,8 @@
         "ref_uc": [
             "<Visualizzazione-dati-real-time-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-grafico-real-time-sensore",
@@ -1597,7 +1768,8 @@
         "ref_uc": [
             "<Visualizzazione-grafico-real-time-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Aggiornamento-grafico-real-time-sensore",
@@ -1606,7 +1778,8 @@
         "ref_uc": [
             "<Visualizzazione-grafico-real-time-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-storico-dati-sensore",
@@ -1615,7 +1788,8 @@
         "ref_uc": [
             "<Visualizzazione-storico-dati-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-grafico-storico-sensore",
@@ -1624,7 +1798,8 @@
         "ref_uc": [
             "<Visualizzazione-grafico-storico-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Filtraggio-dati-storico-sensore",
@@ -1633,7 +1808,8 @@
         "ref_uc": [
             "<Filtraggio-dati-storico-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-grafico-filtrato-temporale-sensore",
@@ -1642,7 +1818,8 @@
         "ref_uc": [
             "<Visualizzazione-grafico-filtrato-temporale-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Intervallo-temporale-non-valido",
@@ -1651,7 +1828,8 @@
         "ref_uc": [
             "<Intervallo-temporale-non-valido>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Filtraggio-dati-sensore-intervallo-valori",
@@ -1660,7 +1838,8 @@
         "ref_uc": [
             "<Filtraggio-dati-sensore-intervallo-valori>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-grafico-filtrato-valori-sensore",
@@ -1669,7 +1848,8 @@
         "ref_uc": [
             "<Visualizzazione-grafico-filtrato-valori-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Intervallo-di-valori-non-valido",
@@ -1678,7 +1858,8 @@
         "ref_uc": [
             "<Intervallo-di-valori-non-valido>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Dati-non-disponibili-sensore-selezionato",
@@ -1687,7 +1868,8 @@
         "ref_uc": [
             "<Dati-non-disponibili-sensore-selezionato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Creazione-tenant",
@@ -1696,7 +1878,8 @@
         "ref_uc": [
             "<Creazione-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-nome-tenant",
@@ -1705,7 +1888,8 @@
         "ref_uc": [
             "<Creazione-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Clausola-impersonificazione",
@@ -1714,7 +1898,8 @@
         "ref_uc": [
             "<Clausola-impersonificazione>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-nome-nuovo-tenant",
@@ -1723,7 +1908,8 @@
         "ref_uc": [
             "<Inserimento-nome-nuovo-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Nome-tenant-gia-utilizzato",
@@ -1732,7 +1918,8 @@
         "ref_uc": [
             "<Nome-tenant-gia-utilizzato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Eliminazione-tenant",
@@ -1741,7 +1928,8 @@
         "ref_uc": [
             "<Eliminazione-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-e-conferma-tenant-da-eliminare",
@@ -1750,7 +1938,8 @@
         "ref_uc": [
             "<Selezione-e-conferma-tenant-da-eliminare>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Decommissioning-gateway-fallito",
@@ -1759,7 +1948,8 @@
         "ref_uc": [
             "<Decommissioning-gateway-fallito>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-dashboard-super-admin",
@@ -1770,7 +1960,8 @@
         ],
         "ref_capitolato": [
             "Capitolato §5.1 -- RQ 5"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-stato-globale-dei-gateway",
@@ -1779,7 +1970,8 @@
         "ref_uc": [
             "<Visualizzazione-stato-globale-dei-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-di-tenant",
@@ -1788,7 +1980,8 @@
         "ref_uc": [
             "<Visualizzazione-numero-di-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-lista-gateway-super-admin",
@@ -1797,7 +1990,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-gateway-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-identificativo-univoco-gateway",
@@ -1806,7 +2000,8 @@
         "ref_uc": [
             "<Visualizzazione-identificativo-univoco-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-stato-autenticazione-gateway",
@@ -1815,7 +2010,8 @@
         "ref_uc": [
             "<Visualizzazione-stato-autenticazione-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-stato-operativo-gateway",
@@ -1824,7 +2020,8 @@
         "ref_uc": [
             "<Visualizzazione-stato-operativo-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-tenant-associato-gateway",
@@ -1833,7 +2030,8 @@
         "ref_uc": [
             "<Visualizzazione-tenant-associato-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-gateway-super-admin",
@@ -1842,7 +2040,8 @@
         "ref_uc": [
             "<Visualizzazione-gateway-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Autenticazione-gateway",
@@ -1853,7 +2052,8 @@
         ],
         "ref_capitolato": [
             "Capitolato §5.1 -- RQ 5"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RF-Certificato-non-valido",
@@ -1862,7 +2062,8 @@
         "ref_uc": [
             "<Certificato-non-valido>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Identificativo-gateway-gia-utilizzato",
@@ -1871,7 +2072,8 @@
         "ref_uc": [
             "<Identificativo-gateway-gia-utilizzato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Associazione-gateway-tenant",
@@ -1882,7 +2084,8 @@
         ],
         "ref_capitolato": [
             "Capitolato §5.1 -- RQ 5"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-gateway-super-admin",
@@ -1891,7 +2094,8 @@
         "ref_uc": [
             "<Selezione-gateway-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-tenant-super-admin",
@@ -1900,7 +2104,8 @@
         "ref_uc": [
             "<Selezione-tenant-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Decommissioning-gateway",
@@ -1909,7 +2114,8 @@
         "ref_uc": [
             "<Decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Reset-gateway",
@@ -1918,7 +2124,8 @@
         "ref_uc": [
             "<Reset-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riavvio-gateway-super-admin",
@@ -1927,7 +2134,8 @@
         "ref_uc": [
             "<Riavvio-gateway-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-gateway-super-admin",
@@ -1936,7 +2144,8 @@
         "ref_uc": [
             "<Sospensione-gateway-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-gateway-super-admin",
@@ -1945,7 +2154,8 @@
         "ref_uc": [
             "<Riattivazione-gateway-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Modifica-freq-invio-dati-gateway-super-admin",
@@ -1954,7 +2164,8 @@
         "ref_uc": [
             "<Modifica-freq-invio-dati-gateway-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Sospensione-sensore-super-admin",
@@ -1963,7 +2174,8 @@
         "ref_uc": [
             "<Sospensione-sensore-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Riattivazione-sensore-super-admin",
@@ -1972,7 +2184,8 @@
         "ref_uc": [
             "<Riattivazione-sensore-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-gateway-per-invio-comando-super-admin",
@@ -1981,7 +2194,8 @@
         "ref_uc": [
             "<Selezione-gateway-per-invio-comando-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-sensore-invio-comando-super-admin",
@@ -1990,7 +2204,8 @@
         "ref_uc": [
             "<Selezione-sensore-invio-comando-super-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-lista-tenant",
@@ -1999,7 +2214,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-identificativo-tenant",
@@ -2009,7 +2225,8 @@
             "<Visualizzazione-singolo-tenant-lista>",
             "<Visualizzazione-identificativo-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Impersonificazione-tenant",
@@ -2018,7 +2235,8 @@
         "ref_uc": [
             "<Impersonificazione-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-tenant",
@@ -2027,7 +2245,8 @@
         "ref_uc": [
             "<Visualizzazione-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-identificativo-del-tenant",
@@ -2036,7 +2255,8 @@
         "ref_uc": [
             "<Visualizzazione-identificativo-del-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-lista-richieste-in-corso-commissioning-gateway",
@@ -2045,7 +2265,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-richieste-in-corso-commissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-data-ora-richiesta-commissioning",
@@ -2055,7 +2276,8 @@
             "<Visualizzazione-singola-richiesta-commissioning-in-lista>",
             "<Visualizzazione-data-ora-richiesta-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-tenant-richiesta-commissioning",
@@ -2065,7 +2287,8 @@
             "<Visualizzazione-singola-richiesta-commissioning-in-lista>",
             "<Visualizzazione-tenant-richiesta-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-gateway-richiesta-commissioning",
@@ -2075,7 +2298,8 @@
             "<Visualizzazione-singola-richiesta-commissioning-in-lista>",
             "<Visualizzazione-numero-gateway-richiesta-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-lista-richieste-in-corso-decommissioning-gateway",
@@ -2084,7 +2308,8 @@
         "ref_uc": [
             "<Visualizzazione-lista-richieste-in-corso-decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-data-ora-richiesta-decommissioning",
@@ -2093,7 +2318,8 @@
         "ref_uc": [
             "<Visualizzazione-data-ora-richiesta-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-tenant-richiesta-decommissioning",
@@ -2102,7 +2328,8 @@
         "ref_uc": [
             "<Visualizzazione-tenant-richiesta-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-gateway-richiesta-decommissioning",
@@ -2111,7 +2338,8 @@
         "ref_uc": [
             "<Visualizzazione-numero-gateway-richiesta-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-stato-richiesta-decommissioning",
@@ -2120,7 +2348,8 @@
         "ref_uc": [
             "<Visualizzazione-stato-richiesta-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-storico-richieste-commissioning-gateway",
@@ -2129,7 +2358,8 @@
         "ref_uc": [
             "<Visualizzazione-storico-richieste-commissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-singola-richiesta-storico-commissioning-gateway",
@@ -2139,7 +2369,8 @@
             "<Visualizzazione-singola-richiesta-storico-commissioning-gateway>",
             "<Visualizzazione-data-ora-richiesta-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-tenant-richiesta-commissioning-storico",
@@ -2149,7 +2380,8 @@
             "<Visualizzazione-singola-richiesta-storico-commissioning-gateway>",
             "<Visualizzazione-tenant-richiesta-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-gateway-richiesta-commissioning-storico",
@@ -2159,7 +2391,8 @@
             "<Visualizzazione-singola-richiesta-storico-commissioning-gateway>",
             "<Visualizzazione-numero-gateway-richiesta-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-stato-richiesta-storico-commissioning",
@@ -2168,7 +2401,8 @@
         "ref_uc": [
             "<Visualizzazione-stato-richiesta-storico-commissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-storico-richieste-decommissioning-gateway",
@@ -2177,7 +2411,8 @@
         "ref_uc": [
             "<Visualizzazione-storico-richieste-decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-richiesta-commissioning-gateway",
@@ -2186,7 +2421,8 @@
         "ref_uc": [
             "<Visualizzazione-richiesta-commissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-data-ora-richiesta",
@@ -2195,7 +2431,8 @@
         "ref_uc": [
             "<Visualizzazione-data-ora-richiesta>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-tenant-richiedente-richiesta",
@@ -2204,7 +2441,8 @@
         "ref_uc": [
             "<Visualizzazione-tenant-richiedente-richiesta>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-numero-gateway-richiesti",
@@ -2213,7 +2451,8 @@
         "ref_uc": [
             "<Visualizzazione-numero-gateway-richiesti>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-richiesta-decommissioning-gateway",
@@ -2222,7 +2461,8 @@
         "ref_uc": [
             "<Visualizzazione-richiesta-decommissioning-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-gateway-da-decommissioning",
@@ -2231,7 +2471,8 @@
         "ref_uc": [
             "<Visualizzazione-gateway-da-decommissioning>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Accettazione-richiesta-fornitura-gateway",
@@ -2240,7 +2481,8 @@
         "ref_uc": [
             "<Accettazione-richiesta-fornitura-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Rifiuto-richiesta-fornitura-gateway",
@@ -2249,7 +2491,8 @@
         "ref_uc": [
             "<Rifiuto-richiesta-fornitura-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Creazione-utente-tenant-admin",
@@ -2258,7 +2501,8 @@
         "ref_uc": [
             "<Creazione-utente-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-tenant",
@@ -2267,7 +2511,8 @@
         "ref_uc": [
             "<Selezione-tenant>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-email-nuovo-tenant-admin",
@@ -2276,7 +2521,8 @@
         "ref_uc": [
             "<Inserimento-email-nuovo-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Sospensione-account-tenant-admin",
@@ -2285,7 +2531,8 @@
         "ref_uc": [
             "<Sospensione-account-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Selezione-tenant-admin-da-sospendere",
@@ -2294,7 +2541,8 @@
         "ref_uc": [
             "<Selezione-tenant-admin-da-sospendere>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Conferma-sospensione-account-tenant-admin",
@@ -2303,7 +2551,8 @@
         "ref_uc": [
             "<Conferma-sospensione-account-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Riattivazione-account-tenant-admin",
@@ -2312,7 +2561,8 @@
         "ref_uc": [
             "<Riattivazione-account-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Selezione-tenant-admin-da-riattivare",
@@ -2321,7 +2571,8 @@
         "ref_uc": [
             "<Selezione-tenant-admin-da-riattivare>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Conferma-riattivazione-account-tenant-admin",
@@ -2330,7 +2581,8 @@
         "ref_uc": [
             "<Conferma-riattivazione-account-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Eliminazione-account-tenant-admin",
@@ -2339,7 +2591,8 @@
         "ref_uc": [
             "<Eliminazione-account-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-tenant-admin-da-eliminare",
@@ -2348,7 +2601,8 @@
         "ref_uc": [
             "<Selezione-tenant-admin-da-eliminare>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-eliminazione-account-tenant-admin",
@@ -2357,7 +2611,8 @@
         "ref_uc": [
             "<Conferma-eliminazione-account-tenant-admin>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Creazione-gateway-simulato",
@@ -2368,7 +2623,8 @@
         ],
         "ref_capitolato": [
             "Capitolato §5.1 -- RQ 5"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-nome-gateway-simulato",
@@ -2377,7 +2633,8 @@
         "ref_uc": [
             "<Inserimento-nome-gateway-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-timeout-inattivita-gateway-simulato",
@@ -2386,7 +2643,8 @@
         "ref_uc": [
             "<Inserimento-timeout-inattivita-gateway-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Inserimento-dimensione-buffer-gateway-simulato",
@@ -2395,7 +2653,8 @@
         "ref_uc": [
             "<Inserimento-dimensione-buffer-gateway-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Creazione-sensore-simulato",
@@ -2406,7 +2665,8 @@
         ],
         "ref_capitolato": [
             "Capitolato §5.1 -- RQ 5"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RF-Selezione-servizi-sensore-simulato",
@@ -2415,7 +2675,8 @@
         "ref_uc": [
             "<Selezione-servizi-sensore-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Inserimento-timeout-alert-sensore-simulato",
@@ -2424,7 +2685,8 @@
         "ref_uc": [
             "<Inserimento-timeout-alert-sensore-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Inserimento-associazione-gateway-simulato",
@@ -2433,7 +2695,8 @@
         "ref_uc": [
             "<Inserimento-associazione-gateway-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Eliminazione-gateway-simulato",
@@ -2442,7 +2705,8 @@
         "ref_uc": [
             "<Eliminazione-gateway-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Seleziona-gateway-simulato-da-eliminare",
@@ -2451,7 +2715,8 @@
         "ref_uc": [
             "<Seleziona-gateway-simulato-da-eliminare>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-eliminazione-gateway-simulato",
@@ -2460,7 +2725,8 @@
         "ref_uc": [
             "<Conferma-eliminazione-gateway-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Eliminazione-sensore-simulato",
@@ -2469,7 +2735,8 @@
         "ref_uc": [
             "<Eliminazione-sensore-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Seleziona-sensore-simulato-da-eliminare",
@@ -2478,7 +2745,8 @@
         "ref_uc": [
             "<Seleziona-sensore-simulato-da-eliminare>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Conferma-eliminazione-sensore-simulato",
@@ -2487,7 +2755,8 @@
         "ref_uc": [
             "<Conferma-eliminazione-sensore-simulato>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Monitoraggio-metriche-di-sistema",
@@ -2498,7 +2767,8 @@
         ],
         "ref_capitolato": [
             "Capitolato §5.5 -- RQ 16"
-        ]
+        ],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-gateway-offline-online",
@@ -2507,7 +2777,8 @@
         "ref_uc": [
             "<Visualizzazione-gateway-offline-online>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-throughput-dati",
@@ -2516,7 +2787,8 @@
         "ref_uc": [
             "<Visualizzazione-throughput-dati>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-utilizzo-risorse-nodi-cloud",
@@ -2525,7 +2797,8 @@
         "ref_uc": [
             "<Visualizzazione-utilizzo-risorse-nodi-cloud>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-frequenza-disconnessioni-gateway",
@@ -2534,7 +2807,8 @@
         "ref_uc": [
             "<Visualizzazione-frequenza-disconnessioni-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-dimensioni-payload-pacchetti",
@@ -2543,16 +2817,18 @@
         "ref_uc": [
             "<Visualizzazione-dimensioni-payload-pacchetti>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "S"
     },
     {
         "id": "RF-Visualizzazione-data-staleness",
-        "urgenza": "Obb",
+        "urgenza": "Opt",
         "desc": "Il Sistema deve permettere al Super Admin di visualizzare la data staleness dei dati",
         "ref_uc": [
             "<Visualizzazione-data-staleness>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-valori-out-of-range",
@@ -2561,7 +2837,8 @@
         "ref_uc": [
             "<Visualizzazione-valori-out-of-range>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-storico-possessori-sensore",
@@ -2570,7 +2847,8 @@
         "ref_uc": [
             "<Visualizzazione-storico-possessori-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-singolo-tenant-possessore-sensore",
@@ -2580,7 +2858,8 @@
             "<Visualizzazione-singolo-tenant-possessore-sensore>",
             "<Visualizzazione-tenant-possessore-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-periodo-associazione-sensore",
@@ -2590,7 +2869,8 @@
             "<Visualizzazione-singolo-tenant-possessore-sensore>",
             "<Visualizzazione-periodo-associazione-sensore>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-storico-possessori-gateway",
@@ -2599,7 +2879,8 @@
         "ref_uc": [
             "<Visualizzazione-storico-possessori-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-singolo-tenant-possessore-gateway",
@@ -2609,7 +2890,8 @@
             "<Visualizzazione-singolo-tenant-possessore-gateway>",
             "<Visualizzazione-tenant-possessore-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     },
     {
         "id": "RF-Visualizzazione-periodo-associazione-gateway",
@@ -2619,6 +2901,7 @@
             "<Visualizzazione-singolo-tenant-possessore-gateway>",
             "<Visualizzazione-periodo-associazione-gateway>"
         ],
-        "ref_capitolato": []
+        "ref_capitolato": [],
+        "stato": "NS"
     }
 ]
