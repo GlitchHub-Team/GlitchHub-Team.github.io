@@ -1359,19 +1359,17 @@ La struct in questione ha i seguenti attributi e metodi:
 
 === Frontend <angular>
 La seguente sezione descrive in dettaglio il #gloss[Code Diagram] del frontend #gloss[Angular], che rappresenta l'interfaccia utente del sistema.
+ 
+L'applicazione adotta il paradigma *MVVM* (Model-View-ViewModel), un pattern nativamente supportato da #gloss[Angular] che permette di separare la logica di _presentazione_ dalla logica di _business_. In questo contesto, l'architettura sfrutta il sistema di *data-binding* del framework per creare un legame reattivo tra i componenti. L'uso di *Angular Signals* potenzia questo paradigma, agendo come il motore di sincronizzazione che permette a ciascuna parte del sistema di reagire ai cambiamenti di stato in modo _granulare_ e _sincrono_.
 
-L'architettura logica scelta è la *Layered Architecture*, composta da tre livelli orizzontali a _dipendenza unidirezionale_: il *Domain Layer* rappresenta il nucleo dell'applicazione, il *Presentation Layer* gestisce l'interfaccia utente e l'*Infrastructure Layer* si occupa della comunicazione con il backend.
+Il *Model* rappresenta il cuore logico dell'app ed è il detentore dello stato dell'applicazione. È implementato attraverso servizi di _dominio_ che gestiscono lo stato applicativo tramite _Signals privati_. Il suo ruolo principale è l'orchestrazione della business logic, mantenendosi totalmente indipendente dall'interfaccia utente. Un pilastro di questo strato è l'integrazione del *Dependency Inversion Principle*: il Model non dipende da implementazioni concrete per il recupero dei dati, ma inietta classi _astratte_ che definiscono i contratti di comunicazione. Questo permette al Model di ignorare i dettagli del backend (come i protocolli HTTP), delegando l'implementazione ai servizi _infrastrutturali_. In questo modo, la logica di business rimane protetta, testabile in isolamento e facilmente estensibile.
 
-- *Presentation Layer*: comprende le _pages_ e i _components_ di Angular, che si affidano esclusivamente ai servizi del livello *Domain* per accedere allo stato dell'applicazione e invocare operazioni.
+La *View* costituisce il livello di interfaccia con l'utente ed è implementata dai _template_ HTML e dai _fogli di stile_ CSS. Il suo ruolo nell'architettura è quello di *Passive View*: non possiede intelligenza propria e non conosce l'esistenza del Model o dei servizi di backend. Essa si limita a visualizzare lo stato esposto dal ViewModel e a intercettare le interazioni dell'utente, inoltrandole al ViewModel stesso.
 
-  All'interno di questo livello l'architettura segue il pattern *MVVM*: il _ViewModel_ è rappresentato dalla classe TypeScript del componente (`.ts`), che inietta i servizi del livello *Domain*, gestisce lo stato specifico dell'interfaccia (ad esempio indicatori di caricamento o selezioni attive) e trasforma lo stato di dominio in una superficie reattiva consumabile dal _template_ tramite _Angular Signals_ (`signal()`, `computed()`). La _View_ corrisponde al _template_ del componente (`.html`), che si limita a leggere i segnali esposti dal _ViewModel_ e a inoltrare gli eventi utente ai relativi metodi. Il _Model_ è rappresentato dai modelli di dominio e dallo stato incapsulato nei servizi del livello *Domain*. La _View_ non accede mai direttamente ai modelli né invoca servizi di livello inferiore.
+Il *ViewModel* agisce come mediatore tra la View e il Model ed è implementato dalla classe _TypeScript_ del componente (`.ts`). Inietta privatamente i servizi del Model per accedervi, ma non li espone direttamente alla View per preservare l'incapsulamento. Il ViewModel legge i _Signals_ dal Model e ne espone i valori al template tramite variabili locali, eventualmente trasformando i dati grezzi in formati pronti per la visualizzazione. Questo strato garantisce che la View non debba mai gestire la complessità dei servizi di dominio, isolando le responsabilità e permettendo di modificare la logica di visualizzazione senza alterare la logica di business sottostante.
 
-- *Domain Layer*: costituisce il nucleo dell'applicazione. Contiene i _modelli_ di dominio, che rappresentano le entità del sistema indipendentemente dal formato di trasporto, e i _services_ applicativi, che orchestrano le operazioni e mantengono lo stato condiviso tramite _Angular Signals_ esposti in sola lettura (`asReadonly()`). Il livello definisce inoltre, tramite classi astratte, i contratti che l'*Infrastructure* deve rispettare per la trasformazione e il recupero dei dati, disaccoppiando così la logica applicativa da qualsiasi dettaglio implementativo legato al backend.
-
-- *Infrastructure Layer*: racchiude tutta la comunicazione con il backend. I _services_ HTTP e WebSocket inviano le richieste e restituiscono i dati nel formato _raw_ del backend, mentre gli _adapter_ concreti implementano i contratti definiti nel *Domain*, traducendo i modelli backend nei modelli di dominio. Il cablaggio tra contratti e implementazioni avviene interamente in `app.config.ts`.
-
-==== Infrastructure layer
-Il layer di *Infrastructure* è composto da _services_ che si occupano della comunicazione con il backend tramite HTTP e WebSocket, dai modelli dati che documentano le risposte del backend e da _adapter_ che implementano i contratti definiti nel *Domain* per la trasformazione dei dati.\
+==== Logica di comunicazione con il backend
+In questa sezione vengono descritte le modalità con cui l'applicazione interagisce con le sorgenti dati esterne: essa è implementata dai servizi _infrastrutturali_, il cui compito è quello di gestire le chiamate _HTTP_, le connessioni _WebSocket_ e la trasformazione dei dati grezzi in modelli di _dominio_.
 
 ===== Modelli dati
 I modelli dati del layer di *Infrastructure* rappresentano le strutture dati restituite dal backend, e sono utilizzati dai _services_ HTTP e WebSocket per modellare le risposte ricevute dal backend.
@@ -1699,8 +1697,8 @@ Il servizio presenta i seguenti metodi pubblici:
 )
 
 
-==== Domain layer
-Il layer di *Domain* è il cuore dell'applicazione, contiene i modelli di dominio che rappresentano le entità del sistema in modo indipendente dal formato di trasporto, e i servizi applicativi che orchestrano le operazioni e mantengono lo stato condiviso. Il livello definisce inoltre, tramite classi _astratte_, i contratti che l'*Infrastructure* deve rispettare per la trasformazione dei dati, disaccoppiando così la logica applicativa da qualsiasi dettaglio implementativo legato al backend.
+==== Logica di business
+In questa sezione viene descritto il nucleo decisionale dell'applicazione. Questa componente è implementata dai servizi di _dominio_, il cui ruolo è coordinare le regole applicative, le validazioni e la coerenza dei dati attraverso l'uso degli *Angular Signals*. Agendo come gestore centralizzato dello stato dell'applicazione, la logica di business opera esclusivamente tramite i contratti (classi astratte) definiti dalla logica di _comunicazione_, rimanendo così totalmente agnostica rispetto alla provenienza dei dati o ai protocolli di trasporto.
 
 ===== Modelli dati
 I modelli dati del Domain layer rappresentano le entità del sistema in modo indipendente dal formato di trasporto, e sono utilizzati dai servizi applicativi per mantenere lo stato dell'applicazione e per esporre i dati ai componenti della Presentation layer.
@@ -2331,8 +2329,8 @@ Il servizio presenta i seguenti metodi privati:
   caption: [Code diagram - GatewaySensorManagerService]
 )
 
-==== Presentation layer
-Il *Presentation layer* dell'applicazione è organizzato in moduli funzionali che raggruppano le pagine e i componenti relativi a specifiche aree funzionali dell'applicazione, come la gestione dei tenant, degli utenti, dei gateway e dei sensori, la dashboard e la l'involucro dell'applicazione.\
+==== Logica di presentazione
+Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di esporre lo stato del Model in modo ottimizzato per la visualizzazione. Il ViewModel agisce come un mediatore che incapsula la logica di business e offre alla View dati pronti per il consumo tramite _data-binding_ reattivo. Questa separazione assicura che la View rimanga passiva e focalizzata sul layout, mentre il ViewModel gestisce l'orchestrazione degli eventi utente e la trasformazione dei dati necessari alla UI.
 
 ===== Routes 
 #tabella-paginata(
