@@ -1584,7 +1584,7 @@ Il package `auth` contiene tutte le funzionalità relative alla gestione dell'au
   caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
 )
 */
-==== Inbound adapter -- `Controller` e DTO
+===== Inbound adapter -- `Controller` e DTO
 Il package `auth` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
 
 //TODO: mettere svg 
@@ -2025,7 +2025,7 @@ Il package `gateway` contiene tutte le funzionalità relative alla gestione dei 
   caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
 )
 */
-==== Inbound adapter -- `Controller` e DTO
+===== Inbound adapter -- `Controller` e DTO
 Il package `gateway` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
 
 //TODO: mettere svg 
@@ -2446,7 +2446,7 @@ Il package `historical_data` contiene tutte le funzionalità per poter accedere 
   caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
 )
 */
-==== Inbound adapter -- `Controller` e DTO
+===== Inbound adapter -- `Controller` e DTO
 Il package `historical_data` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
 
 //TODO: mettere svg 
