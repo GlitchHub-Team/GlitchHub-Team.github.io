@@ -7,6 +7,27 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "2.0.0",
+      "19/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Creazione versione stabile],
+    ),
+    (
+      "1.8.1",
+      "19/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Applicate correzioni rilevate durante la verifica della v1.8.0],
+    ),
+    (
+      "1.8.0",
+      "19/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Stesura della sezione @attivita-progettazione e relative sottosezioni],
+    ),
+    (
       "1.7.2",
       "03/04/2026",
       "Riccardo Graziani",
@@ -180,8 +201,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiInterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Norme di Progetto",
 )
 
@@ -230,7 +251,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
 - #link(
     "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
   )[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`]
-  - *Ultimo accesso*: 17 febbraio 2025
+  - *Ultimo accesso*: 19 aprile 2026
 
 === Riferimenti informativi
 
@@ -238,7 +259,7 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf`]
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 19 aprile 2026
   - *Note*: Questo documento ha una struttura che si ispira a questo standard, ma non ha la pretesa di rispettarlo pienamente.
 
 // NOTA: Importante tenere aggiornato questo numero
@@ -246,19 +267,19 @@ Per una buona comprensione del dominio da parte del gruppo, è fondamentale che 
   - #link(
       "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf",
     )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`]
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 19 aprile 2026
 
 - *Verifica e validazione: introduzione* -- Lezione T9 del prof. Vardanega
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf`]
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 19 aprile 2026
 
 - *Verifica e validazione: analisi dinamica* -- Lezione T11 del prof. Vardanega
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T11.pdf`]
-  - *Ultimo accesso*: 17 febbraio 2026
+  - *Ultimo accesso*: 19 aprile 2026
 
 
 = Processi primari <processi-primari>
@@ -315,20 +336,20 @@ Il documento espone le stime relative all'impegno *orario* suddiviso per singoli
 La *Lettera di Presentazione* è il documento tramite il quale *GlitchHub Team* intende formalizzare la propria candidatura alle revisioni di avanzamento legate alle #gloss[baseline] del progetto didattico, ossia la *Requirements and Technology Baseline (#gloss[RTB])* e la *Product Baseline (#gloss[PB])*.
 
 ==== Analisi dei Requisiti <doc-fornita-analisi-requisiti>
-L'#link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[*Analisi dei Requisiti*] è il documento in cui *GlitchHub Team* definisce in dettaglio tutti i #gloss[requisiti] del progetto, classificandoli in obbligatori, desiderabili e opzionali.
+L'#link("https://glitchhub-team.github.io/pdf/PB/DocumentiEsterni/AnalisiDeiRequisiti.pdf")[*Analisi dei Requisiti*] è il documento in cui *GlitchHub Team* definisce in dettaglio tutti i #gloss[requisiti] del progetto, classificandoli in obbligatori, desiderabili e opzionali.
 Partendo da un'introduzione sul contesto operativo, l'analisi descrive i #gloss[casi d'uso] individuati e i relativi #gloss[requisiti] specifici, per poi mappare la corrispondenza tra questi elementi attraverso un'apposita tabella di tracciamento
 
 ==== Specifica Tecnica <doc-fornita-specifica-tecnica>
-La *Specifica Tecnica* è il documento in cui *GlitchHub Team* descrive in dettaglio l'architettura del sistema, i componenti software che lo compongono e le interfacce tra di essi. Partendo da un'introduzione sul contesto operativo, la specifica tecnica descrive l'architettura di alto livello del sistema, per poi scendere in dettaglio sui singoli componenti software.
+La #link("https://glitchhub-team.github.io/pdf/PB/DocumentiEsterni/SpecificaTecnica.pdf")[*Specifica Tecnica*] è il documento in cui *GlitchHub Team* descrive in dettaglio l'architettura del sistema, i componenti software che lo compongono e le interfacce tra di essi. Partendo da un'introduzione sul contesto operativo, la specifica tecnica descrive l'architettura di alto livello del sistema, per poi scendere in dettaglio sui singoli componenti software.
 
 ==== Piano di Progetto <doc-fornita-piano-progetto>
-Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf")[*Piano di Progetto*] è il documento in cui *GlitchHub Team* documenta
+Il #link("https://glitchhub-team.github.io/pdf/PB/DocumentiEsterni/PianoDiProgetto.pdf")[*Piano di Progetto*] è il documento in cui *GlitchHub Team* documenta
 l'evoluzione di ogni #gloss[sprint] confrontando la fase previsionale con quella consuntiva. Per ciascuno #gloss[sprint], infatti, vengono inizialmente definite le *attività* previste,
 i *rischi* potenziali e il *preventivo* delle risorse; successivamente, il documento registra le attività effettivamente svolte, il consumo reale delle risorse (con relativo aggiornamento di quelle residue) e gli esiti della *retrospettiva* del gruppo.
 
 ==== Piano di Qualifica <doc-fornita-piano-qualifica>
 // NOTA: il link è già segnato come esterno
-Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiQualifica.pdf")[*Piano di Qualifica*] illustra le strategie e le attività operative volte a garantire la *qualità* del prodotto finale da parte del gruppo *GlitchHub Team*.
+Il #link("https://glitchhub-team.github.io/pdf/PB/DocumentiEsterni/PianodiQualifica.pdf")[*Piano di Qualifica*] illustra le strategie e le attività operative volte a garantire la *qualità* del prodotto finale da parte del gruppo *GlitchHub Team*.
 Nello specifico, il documento stabilisce le *metriche* di valutazione applicate sia ai *processi* che al *prodotto* stesso, riportando inoltre i dettagli sui *test* di verifica effettuati
 
 ==== Norme di Progetto <doc-fornita-norme-progetto>
@@ -336,7 +357,7 @@ Le *Norme di Progetto* definiscono il #gloss[Way of Working] del gruppo *GlitchH
 stabilendo gli *strumenti* da utilizzare, le convenzioni per la *stesura* del codice e della documentazione, e le procedure operative necessarie a garantire uniformità ed efficienza nello sviluppo.
 
 ==== Glossario <doc-fornita-glossario>
-Il #link("https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf")[*glossario*] raccoglie e definisce la *terminologia* tecnica adottata nel corso del progetto. Il suo obiettivo è costituire un punto di *riferimento* univoco per tutti i membri del gruppo, garantendo una comunicazione chiara e priva di ambiguità.
+Il #link("https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/glossary.pdf")[*glossario*] raccoglie e definisce la *terminologia* tecnica adottata nel corso del progetto. Il suo obiettivo è costituire un punto di *riferimento* univoco per tutti i membri del gruppo, garantendo una comunicazione chiara e priva di ambiguità.
 
 ==== Verbali interni <doc-fornita-verb-interni>
 Rappresentano i *verbali* delle riunioni svolte con la sola presenza dei membri del gruppo.
@@ -353,6 +374,7 @@ Il processo di *sviluppo* definisce le attività per la realizzazione del softwa
 - #gloss[Go]: come linguaggio di programmazione per lo sviluppo dei servizi di publish e subscribe;
 - *Visual Studio Code*: per la codifica del software;
 - *StarUML*: come strumento per la redazione dei *diagrammi dei #gloss[casi d'uso]*.
+- *Draw.io*: come strumento per la redazione dei diagrammi del *C4 Model* e del diagramma di *deployment*.
 - *Gofumpt*: come strumento per la formattazione del codice Go;
 - *Golangci-Lint*: come strumento per l'analisi del codice Go;
 - *ESLint*: come strumento per l'analisi del codice Typescript;
@@ -410,7 +432,59 @@ in cui:
   - *Opt* per *Opzionale*.
 Per una descrizione più approfondita della tipologia e della priorità di un #gloss[requisito], si rimanda alla sezione introduttiva sui #gloss[requisiti] del documento di #gloss[analisi dei requisiti].
 
-//TODO: post-RTB sarà da aggiungere sezione relativa alla progettazione ed espandere su queste norme di codifica
+=== Progettazione <attivita-progettazione>
+L'attività di *progettazione* consiste nel tradurre i #gloss[requisiti] individuati durante l'attività di analisi in un'architettura software che descriva la struttura del sistema, identificando i componenti software e le interfacce esterne ed interne. In questa sezione vengono illustrate le *norme* e le *convenzioni* che i progettisti sono tenuti a rispettare, con l'obiettivo di:
+- *Assicurare l'evoluzione del sistema:* migliorare la manutenibilità e la futura estensibilità del software prodotto attraverso una progettazione più modulare e scalabile;
+- *Garantire l'uniformità qualitativa:* certificare che la progettazione sia conforme agli standard di qualità precedentemente fissati;
+- *Garantire la tracciabilità:* assicurare che ogni elemento progettato risponda a uno o più requisiti precedentemente approvati.
+
+Per la descrizione dell'architettura software il team ha deciso di adottare la notazione del *C4 Model*, in quanto consente di rappresentare il software a diversi livelli di astrazione, facilitando la comprensione e la comunicazione tra i membri del team e con gli _stakeholder_ esterni.
+
+==== Convenzioni grafiche <convenzioni-grafiche-c4>
+Nonostante il modello C4 non imponga una notazione grafica rigida come l'UML, il team deve rispettare le seguenti convenzioni per garantire la chiarezza:
+- *Elementi (Box):* ogni elemento rappresentato nei diagrammi di Livello 1, 2 e 3 deve obbligatoriamente contenere:
+  1. Un *nome* chiaro ed esplicativo.
+  2. Il *tipo* di elemento e la *tecnologia* tra parentesi quadre (es. `[Software System]`, `[Container: Go/Gin]`).
+  3. Una breve *descrizione* delle sue responsabilità.
+- *Codice colore:* si raccomanda l'utilizzo del colore *azzurro* per identificare il sistema o i componenti interni (di cui il team ha il controllo) e il colore *grigio* per i sistemi software esterni o di terze parti.
+- *Relazioni:* ogni freccia direzionale deve essere accompagnata da un'etichetta testuale che descriva l'azione (es. "Invia dati a", "Effettua query su") e, se applicabile, il protocollo utilizzato (es. `[HTTPS/REST]`).
+
+==== Progettazione logica <attivita-progettazione-architettura>
+L'attività di *progettazione logica* ha lo scopo di definire la struttura di _alto livello_ del sistema, identificando le unità applicative principali e le interfacce con l'esterno.
+
+In questa fase il team svilupperà i seguenti livelli del modello C4:
+- *System context diagram*: rappresenta il primo livello ed ha lo scopo di illustrare il sistema nel suo intero ambiente. Vede il sistema come una _scatola nera_ (non contiene dettagli tecnici) e si focalizza unicamente sulle interazioni tra gli utenti (definiti _Personas_ o Attori) e i *sistemi software esterni* con cui il prodotto deve integrarsi.
+- *Container diagram*: rappresenta il secondo livello ed ha lo scopo di illustrare le unità eseguibili principali. In questo contesto, per *Container* non si intende un raggruppamento logico, ma un'unità applicativa separatamente distribuibile (es. un'applicazione web, un database, un microservizio, etc.). Per ogni Container deve essere esplicitata la _tecnologia_ ad alto livello utilizzata e il _protocollo_ di comunicazione tra di essi (es. REST/HTTPS).
+- *Component diagram*: rappresenta il terzo livello ed ha lo scopo di illustrare i moduli software (Componenti) che costituiscono l'interno di un singolo "Container". Deve illustrare le _responsabilità_ di ciascun componente, come essi sono cablati tra loro e quali _design pattern_ implementano. 
+
+Sulla base delle interazioni definite nel _container diagram_, il progettista deve redigere i requisiti preliminari per i *test di integrazione* (ovvero le modalità con cui i vari container verranno testati assieme per verificarne la corretta comunicazione).
+
+Per ogni componente individuato nel _component diagram_, devono essere stabiliti i requisiti per i *test di unità*, definendo i casi di test necessari a verificare il corretto funzionamento del singolo modulo in isolamento.
+
+==== Progettazione di dettaglio <attivita-progettazione-dettaglio>
+La *progettazione di dettaglio* ha lo scopo di raffinare l'architettura espandendo i singoli _Container_ in componenti di livello inferiore, fornendo un livello di dettaglio sufficiente a permetterne la _codifica_ e il _testing_.
+
+In questa fase si scende nel dettaglio dei singoli applicativi. Il team svilupperà i seguenti livelli del modello C4:
+- *Code diagram*: rappresenta il quarto livello ed illustra la struttura implementativa interna di un singolo componente (mostrando _classi_, _interfacce_ e le loro _relazioni_ tramite diagrammi UML).
+
+==== Principi architetturali e design pattern <principi-design>
+Durante la fase di progettazione di dettaglio (Livello 3 e 4), il team è tenuto ad applicare e documentare i *design pattern* scelti (es. Architettura MVVM, Adapter, Strategy, etc.) qualora questi risolvano problemi noti in modo standardizzato. 
+Inoltre, la progettazione dei componenti e delle classi deve rispettare i principi fondamentali dell'ingegneria del software:
+- *Principi SOLID:* per garantire un design orientato agli oggetti pulito, flessibile e manutenibile;
+- *Alta coesione e basso accoppiamento:* ogni componente o classe deve avere una singola responsabilità ben definita (alta coesione) e dipendere il meno possibile dall'implementazione interna di altri componenti (basso accoppiamento).
+
+==== Progettazione di deployment <attivita-progettazione-deployment>
+La *progettazione di deployment* (o di distribuzione) ha lo scopo di illustrare come l'architettura software verrà fisicamente installata ed eseguita nell'infrastruttura di produzione. Questa fase è fondamentale per definire la topologia di rete, le dipendenze hardware, i servizi cloud e le logiche di scalabilità.
+
+Pur rappresentando informalmente il "Livello 5" del percorso di scomposizione del sistema, questa fase segna il passaggio dalla struttura logica alla realtà infrastrutturale. Per questo motivo, il team non utilizzerà il _modello C4_, bensì lo standard *UML (Deployment Diagram)*, più idoneo a descrivere con precisione nodi fisici, artefatti e protocolli di comunicazione tra le macchine.
+
+Nella stesura del diagramma di deployment, i progettisti sono tenuti a rispettare le seguenti convenzioni grafiche e strutturali:
+- *Nodi (Deployment Nodes):* le entità infrastrutturali (server fisici, macchine virtuali, dispositivi utente o servizi cloud) devono essere rappresentate utilizzando la notazione UML a "cubo 3D".
+- *Mappatura dei container:* all'interno dei nodi devono essere posizionati i software in esecuzione. Questi devono corrispondere in modo univoco ai _Container_ precedentemente individuati durante la progettazione logica (Livello 2 del modello C4).
+- *Molteplicità e scalabilità:* se un componente è soggetto a replicazione (es. per _load balancing_ o _high availability_), la molteplicità deve essere esplicitata all'interno del nodo utilizzando l'apposita notazione (es. `[1...*]`).
+- *Boundary di rete:* raggruppamenti logici o confini di rete (es. l'ambiente "Cloud" generale o una specifica VPC) devono essere rappresentati racchiudendo i nodi interessati all'interno di riquadri con bordo tratteggiato.
+- *Relazioni di comunicazione:* le frecce che collegano i vari nodi o artefatti devono indicare la direzione della comunicazione e, se rilevante ai fini architetturali, il protocollo di rete utilizzato.
+
 === Codifica <attivita-codifica>
 L'attività di *codifica*, svolta dai programmatori, consiste nel tradurre la progettazione definita dai *progettisti* nel prodotto software finale. In questa sezione vengono illustrate le *norme* e le *convenzioni* che i programmatori sono tenuti a rispettare, con l'obiettivo di:
 - *Ottimizzare* la revisione: velocizzare le attività di verifica e collaudo del codice attraverso una scrittura più chiara.
@@ -445,12 +519,12 @@ In questa sezione vengono definiti gli standard implementativi per lo sviluppo i
 - *Commenti*: commentare il codice dove non può essere autoesplicativo, evitando di riempirlo di commenti superflui;
 - *Lingua*: scrivere il codice in inglese per evitare nomi ambigui.
 
-===== Dependency Injection <typescript-dependency-injection>
+===== Dependency injection <typescript-dependency-injection>
 Il pattern di #gloss[Dependency Injection] è ampiamente utilizzato all'interno del framework #gloss[Angular], e rappresenta un principio fondamentale per la progettazione e lo sviluppo di applicazioni modulari, scalabili e manutenibili.
 
 Nel progetto, viene ampiamente utilizzato attraverso la funzione `inject()` di #gloss[Angular], che consente di accedere ai servizi e alle dipendenze in modo semplice e diretto all'interno dei componenti, dei servizi e di altri elementi dell'applicazione.
 
-===== Angular Signals <typescript-signals>
+===== Angular signals <typescript-signals>
 I *signals* di #gloss[Angular] rappresentano un paradigma reattivo per la gestione dello stato e dei dati all'interno dell'applicazione. Essi consentono di creare flussi di dati reattivi che si aggiornano automaticamente quando i dati sottostanti cambiano, migliorando la reattività e la manutenibilità del codice.
 
 Nel progetto, i *signals* vengono utilizzati per gestire lo stato dell'applicazione in modo efficiente e reattivo, consentendo ai componenti di aggiornarsi automaticamente quando i dati cambiano.
@@ -1410,6 +1484,10 @@ Le attività previste da questo processo sono:
 Secondo lo standard _ISO/IEC 12207:1995_, per poter attuare il processo di formazione è fondamentale condurre una revisione dei requisiti del progetto, in modo tale da acquisire e sviluppare le risorse e abilità necessarie per il suo buon svolgimento.
 
 Dopo un'attenta analisi dei requisiti del progetto, il gruppo ha stabilito che è necessario studiare e approfondire le seguenti tecnologie:
+- Per la stesura dell'architettura del progetto:
+  - Il linguaggio di modellazione #gloss[UML]
+  - Lo standard di modellazione #gloss[C4]
+
 - Per lo sviluppo del codice del progetto:
   - Il linguaggio di programmazione #gloss[Go] e il framework #gloss[Gin]
   - Il linguaggio #gloss[Typescript] insieme al framework #gloss[Angular.js] e alla libreria Chart.js
@@ -1428,6 +1506,10 @@ Dopo un'attenta analisi dei requisiti del progetto, il gruppo ha stabilito che �
 
 === Sviluppo del materiale di formazione <formazione-sviluppo>
 Di seguito sono riportate le risorse utilizzate dal gruppo per imparare le tecnologie identificate.
+
+==== UML e C4
+- #link("https://www.uml-diagrams.org/")[Documentazione ufficiale di _UML_]
+- #link("https://c4model.com/")[Documentazione ufficiale del _C4 Model_]
 
 ==== Angular e Typescript
 - #link("https://www.typescriptlang.org/docs/")[Documentazione ufficiale di _Typescript_ ]
