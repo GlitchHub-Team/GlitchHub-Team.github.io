@@ -1,8 +1,8 @@
-# Amministrazione di Sistema
+# Amministrazione di sistema
 Le funzionalità di amministrazione sono riservate agli utenti con privilegi elevati (Super Admin e Tenant Admin) e consentono la gestione delle entità fondamentali che compongono l'ecosistema multi-tenant.
 
-## Gestione tenant (Tenant Management)
-Il modulo **#gloss("Tenant Manager")**{{gloss}} permette ai Super Admin di amministrare le organizzazioni censite nel sistema.
+## Gestione tenant
+Il modulo di **gestione tenant** permette ai Super Admin di amministrare le organizzazioni censite nel sistema.
 
 ![Sezione dedicata alla gestione dei tenant](../../../../assets/frontend-MU/TenantSection.png "Sezione dedicata alla gestione dei tenant")
 _Figura 22: Sezione dedicata alla gestione dei tenant._
@@ -20,12 +20,12 @@ _Figura 24: Finestra di dialogo di eliminazione di un Tenant._
 
 
 ### Impersonificazione e navigazione contestuale
-La **#gloss("tenant-table")**{{gloss}} espone azioni specifiche per ogni organizzazione:
+La **tabella** di gestione espone le azioni specifiche per ogni tenant:
 - **Accesso dashboard**: Cliccando sull'icona `dashboard`, il Super Admin "entra" nell'ambiente del tenant selezionato. Il sistema aggiunge il `tenantId` ai parametri di ricerca dell'URL per filtrare gateway e sensori.
 - **Gestione utenti tenant**: l'icona `people` reindirizza direttamente alla gestione degli utenti specifica per quel tenant.
 
-## Gestione utenti (User Management)
-Il modulo **#gloss("User Manager")**{{gloss}} gestisce l'anagrafica degli account, supportando flussi di lavoro diversi per Super Admin e Tenant Admin.
+## Gestione utenti
+Il modulo di **gestione utenti** gestisce l'anagrafica degli account, supportando flussi di lavoro diversi per Super Admin e Tenant Admin.
 
 ### Creazione e invito
 La creazione di un utente non prevede l'impostazione immediata di una password, ma attiva un processo di invito:

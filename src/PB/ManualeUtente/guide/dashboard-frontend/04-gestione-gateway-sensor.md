@@ -1,5 +1,5 @@
 # Gestione Gateway e Sensor
-Il modulo **#gloss("Gateway-Sensor Manager")**{{gloss}} è l'ambiente dedicato all'amministrazione hardware del sistema. In questa sezione, gli utenti autorizzati possono censire nuovi dispositivi, configurarne i parametri operativi e gestire il loro intero ciclo di vita.
+Il modulo di gestione dei **gateway** e dei *sensori* è l'ambiente dedicato all'amministrazione hardware del sistema. In questa sezione, gli utenti autorizzati possono censire nuovi dispositivi, configurarne i parametri operativi e gestire il loro intero ciclo di vita.
 
 ## Operazioni sui gateway
 I gateway fungono da concentratori per i sensori Bluetooth; la loro corretta configurazione è fondamentale per garantire il flusso dati verso il backend.

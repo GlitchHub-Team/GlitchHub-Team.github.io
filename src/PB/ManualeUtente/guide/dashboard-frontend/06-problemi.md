@@ -1,16 +1,16 @@
-# Risoluzione Problemi e Segnalazioni
+# Risoluzione problemi e segnalazioni
 Il sistema è progettato per fornire feedback immediati in caso di anomalie operative o errori di configurazione, utilizzando banner informativi e indicatori di stato dinamici.
 
 ## Gestione degli errori nell'interfaccia
 In presenza di errori restituiti dalle **#gloss("API")**{{gloss}} (es. permessi insufficienti, timeout del server o parametri non validi), l'applicazione mostra un banner rosso nella parte superiore dell'area di lavoro.
 - **Visualizzazione**: il banner riporta il messaggio d'errore specifico fornito dal backend.
-- **Chiusura**: l'utente può rimuovere l'avviso cliccando sull'icona `close`. Questa azione invoca il metodo `dismissError()`, che pulisce lo stato d'errore nel servizio di riferimento e ripristina la visualizzazione standard.
+- **Chiusura**: l'utente può rimuovere l'avviso cliccando sull'icona `close`. Questa azione pulisce lo stato d'errore nel servizio di riferimento e ripristina la visualizzazione standard.
 
-## Anomalie nel monitoraggio (Grafici)
-Il **#gloss("chart-container")**{{gloss}} monitora costantemente la qualità della connessione dati per garantire l'affidabilità delle letture biometriche.
+## Anomalie nella visualizzazione dei grafici
+Il componente di **visualizzazione** dei grafici monitora costantemente la qualità della connessione dati per garantire l'affidabilità delle letture biometriche.
 
 ### Stati della connessione live
-Nella parte superiore dei grafici in tempo reale viene visualizzato lo stato della **#gloss("websocket")**{{gloss}}:
+Nella parte superiore dei grafici in tempo reale viene visualizzato lo stato della connessione **#gloss("websocket")**{{gloss}}:
 - **Connected**: la ricezione dati è ottimale.
 - **Reconnecting...**: il sistema ha rilevato una perdita temporanea di segnale e sta tentando il ripristino automatico. In questa fase, il grafico potrebbe mostrare un avviso.
 - **Disconnected**: la connessione è interrotta. Verificare lo stato del gateway o la connettività di rete.

@@ -1,17 +1,17 @@
-# Interfaccia Principale (App Shell)
-L'interfaccia utente è costruita attorno a un componente di layout fisso denominato **`#gloss("AppShell")`**{{gloss}}, che definisce la struttura globale della piattaforma e garantisce una navigazione coerente tra i vari moduli operativi.
+# Interfaccia principale
+L'interfaccia utente è costruita attorno a un componente di layout fisso denominato, che definisce la struttura globale della piattaforma e garantisce una navigazione coerente tra i vari moduli operativi.
 
 ## Layout globale
 Il layout è diviso in due macro-aree principali:
 1. **Navigazione laterale**: una barra fissa a sinistra che ospita i collegamenti alle funzionalità di sistema.
 2. **Contenuto principale**: l'area centrale dove vengono caricati dinamicamente i moduli (Dashboard, Gestione Gateway, etc.) e che include nella parte superiore la barra degli strumenti (**header**).
 
-## Barra di navigazione (Side-bar)
+## Barra di navigazione
 La **`side-bar`** permette all'utente di spostarsi tra le diverse aree della piattaforma in base ai propri permessi di accesso.
 
 ### Gestione delle voci di menu
 La lista dei collegamenti è generata dinamicamente.
-- **Accesso condizionale**: ogni voce viene visualizzata solo se il `PermissionService` conferma che l'utente possiede i permessi richiesti.
+- **Accesso condizionale**: ogni voce viene visualizzata solo se il sistema conferma che l'utente possiede i permessi richiesti.
 - **Organizzazione visiva** (solo per i Super Admin): il menu ha due titoli utili per raggruppare visivamente l'area generica dall'area dedicata all'impersonificazione.
 - **Feedback di navigazione**: la pagina attualmente visualizzata è evidenziata nel menu.
 
@@ -22,7 +22,7 @@ _Figura 7: Dashboard di un Super Admin._
 _Figura 8: Dashboard di un Tenant Admin._
 
 
-## Barra degli strumenti (Header)
+## Barra degli strumenti
 L'**`header`** posizionato nella parte superiore fornisce informazioni contestuali sulla sessione e l'identità dell'utente loggato.
 
 ### Indicatori di stato e identità
