@@ -4,13 +4,20 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
+    (
+      "1.8.1",
+      "19/04/2026",
+      "Jaume Bernardi",
+      "Alessandro Dinato",
+      [Implementazione suggerimenti forniti durante la fase di verifica],
+    ),
     (
       "1.8.0",
       "17/04/2026",
       "Jaume Bernardi",
-      "",
+      "Alessandro Dinato",
       [Stesura sprint 16 (@sprint-16) e preventivo sprint 17 (@sprint-17)],
     ),
     (
@@ -288,8 +295,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Siria Salvalaio",
-  left-signature: "../assets/firme/firma_Siria_Salvalaio.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Progetto",
 )
 
@@ -3906,7 +3913,7 @@ Fine: 15/04/2026 \
 
 L'obiettivo principale dello #gloss("sprint") 16 è l'estensione delle funzionalità del sistema in ottica #gloss("MVP") e il completamento della documentazione tecnica e utente. Il gruppo si focalizzerà sul recupero del debito tecnico accumulato.
 
-Sul fronte della documentazione, il ciclo prevede un impegno significativo nella stesura dell'architettura di dettaglio del frontend, nel tracciamento dei requisiti e nella stesura di diverse sezioni del Manuale Utente. Sarà inoltre avviata l'infrastruttura del Test Book e il controllo dei test nel sistema reale, garantendo la coerenza con quanto definito nel Piano di Qualifica e nell'Analisi dei Rischi.
+Sul fronte della documentazione, il ciclo prevede un impegno significativo nella stesura dell'architettura di dettaglio del frontend, nel tracciamento dei requisiti e nella stesura di diverse sezioni del Manuale Utente. Sarà inoltre avviata l'infrastruttura del Test Book e il controllo dei test nel sistema reale, garantendo la coerenza con quanto definito nel Piano di Qualifica e nell'Analisi dei Requisiti.
 
 === Compiti da svolgere
 Di seguito sono elencati i compiti individuati:
@@ -4018,7 +4025,7 @@ Nonostante ciò, sono stati completati tutti i package necessari per il funziona
 Per il resto del periodo, il gruppo si è quindi focalizzato nella stesura di diversi documenti, tra cui il test book richiesto dalla proponente ed utilizzato durante la riunione riguardo lo stato del prodotto avvenuta in data 13 aprile e documentata nell'apposito verbale.
 
 === Rischi occorsi
-*RO1* (@RO1): Come previsto il numero delle attività da svolgere e la scoperta di qualche bug ha impedito di completare tutte le issue programmate, ma il gruppo è riuscito a mantenere basso il numero di quelle da posticipare.
+*RO1* (@RO1): Come previsto il numero delle attività da svolgere e la scoperta di qualche bug ha impedito di completare tutte le issue programmate, ma il gruppo è riuscito a mantenere basso il numero di quelle da posticipare. L'obiettivo principale dello sprint, ovvero completare la parte funzionale di condice, rimane comunque compiuto, grazie al tempestivo intervento dei membri. Infatti, le issue da recuperare nel prossimo sprint sono principalmente di documentazione.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
@@ -4109,14 +4116,14 @@ Per il resto del periodo, il gruppo si è quindi focalizzato nella stesura di di
 Inizio: 15/04/2026 \
 Fine: 22/04/2026 \
 
-Gli obbiettivi principali dello #gloss("sprint") 17 sono la stesura del #gloss("Manuale Utente") e della #gloss("Specifica Tecnica"), nonché l'implementazione di più test di sistema possibile.
+Gli obiettivi principali dello #gloss("sprint") 17 sono la stesura del #gloss("Manuale Utente") e della #gloss("Specifica Tecnica"), nonché l'implementazione di più test di sistema possibile via Playwright e progettati durante RTB.
 
-Altre attività includono la correzione di qualche errore con le metriche di _observability_ e l'aggiornamento e revisione del piano di qualifica e dell'analisi dei requisiti.
+Altre attività includono la correzione di qualche errore con le metriche di _observability_ e l'aggiornamento e revisione del #gloss("Piano di Qualifica") e dell'#gloss("Analisi dei Requisiti").
 
 === Compiti da svolgere
 Il gruppo ha svolto con successo i seguenti compiti: \
 Issue relative a sprint 17: \
-- [PdQ] Aggiornare metriche (#issue(496))
+  - [PdQ] Aggiornare metriche (#issue(496))
   - [ST] Cloud Backend (#issue(522))
   - [ST] Tracciamento requisiti (#issue(525))
   - [Backend] Togliere requester check da GetTenantList (#issue(120, repo: "dashboard"))
