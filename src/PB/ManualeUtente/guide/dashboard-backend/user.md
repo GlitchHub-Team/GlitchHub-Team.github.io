@@ -28,7 +28,7 @@ La creazione di un super admin è disponibile solo ai super admin esistenti. La 
 I campi possibili per `user_role` sono: `super_admin`, `tenant_admin` e `tenant_user`.
 
 ## Creazione tenant admin
-La creazione di un tenant admin è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono creare nuovi tenant admin esclusivamente all'interno del proprio tenant. La richiesta crea un nuovo tenant admin nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
+La creazione di un **Tenant Admin** è disponibile solo ai **Super Admin** e ai **Tenant Admin** all'interno dello stesso tenant dell'admin creato. La richiesta crea un nuovo **Tenant Admin** nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
 
 ### Richiesta
 - **POST** `/api/v1/tenant/{tenant_id}/tenant_admin`
