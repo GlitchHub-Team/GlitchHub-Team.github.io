@@ -12,14 +12,14 @@ All'interno dei microservizi sono stati utilizzati i JWT{{gloss}} per garantire 
 All'interno del microservizio **Dashboard**, l'autenticazione e l'autorizzazione avvengono tramite JWT{{gloss}} per permettere agli utenti di accedere alle funzionalità del sistema in base al proprio ruolo e al proprio tenant di appartenenza.
 
 Il JWT{{gloss}} viene generato al momento del login dell'utente e contiene le informazioni necessarie per identificarlo, il suo ruolo e il tenant di appartenenza.   
-Per utilizzare il token, esso deve essere inserito nell'header **Authorization** in ogni futura richiesta HTTP verso il microservizio **Dashboard Backend**.
+Per utilizzare il token, esso deve essere inserito nell'header **Authorization** in ogni futura richiesta HTTP verso il microservizio **Cloud Backend**.
 
 Il JWT{{gloss}} in questione contiene le seguenti informazioni:
 
 - **exp**: data di scadenza del token in formato UNIX timestamp (in secondi);
 - **tid**: UUID{{gloss}} del tenant di appartenenza dell'utente;
 - **uid**: UUID{{gloss}} dell'utente che ha effettuato il login;
-- **rol**: ruolo dell'utente che ha effettuato il login, può essere **sa** per Super Admin, **ta** per Tenant Admin e **tu** per Tenant User.
+- **rol**: ruolo dell'utente che ha effettuato il login, può essere **sa** per **Super Admin**, **ta** per **Tenant Admin** e **tu** per **Tenant User**.
 
 ## NATS
 NATS è un message broker che supporta diversi meccanismi di autenticazione e autorizzazione:

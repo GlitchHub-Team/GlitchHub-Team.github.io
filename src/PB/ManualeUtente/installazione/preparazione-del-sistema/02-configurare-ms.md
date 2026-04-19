@@ -114,8 +114,8 @@ Sono configurabili le seguenti variabili:
 - `DATA_CONSUMER_CREDS_PATH`: percorso del file **.creds** con cui il microservizio si autentica per ricevere i dati dei sensori simulati pubblicati su NATS JetStream{{gloss}};
 - `CA_PEM_PATH`: percorso del file **ca.pem** necessario per controllare l'identità del server NATS JetStream{{gloss}} a cui il microservizio si connette.
 
-## Microservizio Dashboard Backend
-Il microservizio **Dashboard Backend** è configurato attraverso il file `docker-compose.yml` presente nella cartella `MVP`.
+## Microservizio Cloud Backend
+Il microservizio **Cloud Backend** è configurato attraverso il file `docker-compose.yml` presente nella cartella `MVP`.
 
 Sono configurabili le seguenti variabili:
 
@@ -146,5 +146,5 @@ Il microservizio **Dashboard Frontend** è configurato attraverso il file `envir
 
 Sono configurabili le seguenti variabili:
 
-- `apiUrl`: URL del microservizio **Dashboard Backend** a cui il frontend si connette per inviare le richieste HTTP;
-- `wsUrl`: URL del microservizio **Dashboard Backend** a cui il frontend si connette per ricevere i dati dei sensori simulati in real-time tramite WebSocket{{gloss}}.
+- `apiUrl`: URL del microservizio **Cloud Backend** a cui il frontend si connette per inviare le richieste HTTP;
+- `wsUrl`: URL del microservizio **Cloud Backend** a cui il frontend si connette per ricevere i dati dei sensori simulati in real-time tramite WebSocket{{gloss}}.
