@@ -1,4 +1,4 @@
-# Profili GATT supportati
+# Profili GATT supportati <!--raw-typst <profili-gatt> -->
 I sensori simulati possono generare diversi tipi di dati.
 Questi tipi di dati sono definiti attraverso i profili GATT{{gloss}}. Nelle sezioni sottostanti sono elencati i profili GATT supportati dai sensori simulati, con una breve descrizione di ciascuno.
 
