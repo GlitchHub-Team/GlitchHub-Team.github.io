@@ -6,11 +6,18 @@
   stato: "Verificato",
   registro-modifiche: (
     (
-      "0.5.0",
+      "0.6.0",
       "16/04/2026",
       "Alessandro Dinato",
       "Elia Ernesto Stellin",
       [Stesura guida Dashboard Backend (@dashboard-backend)],
+    ),
+    (
+      "0.5.0",
+      "16/04/2026",
+      "Hossam Ezzemouri",
+      "Alessandro Dinato",
+      [Stesura sezione Guide Observability: Metriche del backend, Metriche di NATS, Metriche di JetStream],
     ),
     (
       "0.4.0",
@@ -109,9 +116,9 @@
     content,
     scope: (
       gloss: gloss,
-      image: (path, width: 50%, height: 30%, alt: none) => align(
+      image: (path, width: 90%, height: auto, alt: none) => align(
         center,
-        image(base + "/" + path, alt: alt, width: width, height: height, fit: "contain"),
+        image(base + "/" + path, alt: alt, width: width, fit: "contain"),
       ),
     ),
     h1-level: level,
