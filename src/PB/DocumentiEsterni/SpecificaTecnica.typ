@@ -37,8 +37,8 @@
       "Elia Ernesto Stellin",
       "",
       [
-        Spostate sezioni sul diagramma C4 in @design-architetturale; Migliorata sezione @archit-log; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
-      ]
+        Spostate sezioni sul diagramma C4 in @architettura; Migliorata sezione @archit-esagonale; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
+      ],
     ),
     (
       "0.9.0",
@@ -345,8 +345,8 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
     [Docker],
     [Latest#footnote[
-      Docker consente di replicare gli ambienti di sviluppo su qualunque sistema a prescindere dalla versione _minor_, per cui è importante che tutti gli sviluppatori del progetto ne utilizzino l'ultima versione disponibile.
-    ]],
+        Docker consente di replicare gli ambienti di sviluppo su qualunque sistema a prescindere dalla versione _minor_, per cui è importante che tutti gli sviluppatori del progetto ne utilizzino l'ultima versione disponibile.
+      ]],
     [#gloss[Docker] è una piattaforma di containerizzazione che permette di pacchettizzare i microservizi e le loro dipendenze in unità isolate e portatili. Garantisce che il software funzioni in modo identico in ogni ambiente, eliminando i problemi di configurazione tra sviluppo e produzione. È stato scelto per semplificare il deployment dell'infrastruttura #gloss[Cloud] e facilitare l'orchestrazione dei servizi, assicurando la scalabilità e la manutenibilità richieste dal capitolato.],
 
     [Ubuntu],
@@ -432,7 +432,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
     [go-gin-prometheus],
     [1.0.3],
-    [go-gin-prometheus è una libreria utilizzata per esporre le metriche di un qualunque web server in un formato leggibile da #gloss[Prometheus]. Nel contesto del progetto, viene utilizzata per esporre le metriche del Cloud backend, in modo tale che siano visibili sulla dashboard #gloss[Grafana].]
+    [go-gin-prometheus è una libreria utilizzata per esporre le metriche di un qualunque web server in un formato leggibile da #gloss[Prometheus]. Nel contesto del progetto, viene utilizzata per esporre le metriche del Cloud backend, in modo tale che siano visibili sulla dashboard #gloss[Grafana].],
   ),
   [Librerie backend],
   label-id: "librerie-backend",
@@ -445,7 +445,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     align: center + horizon,
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Nome*], [*Versione*], [*Descrizione*],
-    
+
     [RxJS],
     [7.8.0],
     [RxJS è una libreria per la programmazione reattiva in #gloss[JavaScript] e #gloss[TypeScript], che consente di gestire flussi di dati asincroni e basati su eventi attraverso l'uso di _Observable_. Nel progetto viene utilizzata principalmente nel frontend #gloss[Angular] per orchestrare la gestione dei dati in tempo reale provenienti dai sensori #gloss[BLE], facilitando la sincronizzazione tra le interfacce utente e i servizi backend.],
@@ -535,7 +535,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 L'architettura del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema.
 
 
-// TODO: li inserirei dove sono serviti, non come collezione di cose usate. poiché sono degli strumenti atti a risolvere dei problemi. 
+// TODO: li inserirei dove sono serviti, non come collezione di cose usate. poiché sono degli strumenti atti a risolvere dei problemi.
 == Design Patterns <design-patterns>
 I design pattern sono stati selezionati per garantire che l'architettura a microservizi sia flessibile e scalabile, rispettando gli obiettivi di manutenibilità definiti nel capitolato.
 
@@ -611,70 +611,70 @@ I componenti dell'interfaccia utente possono quindi sottoscriversi a tale istanz
 
 ==== Utilizzo nel progetto
 
-== Design architetturale ad alto livello <design-architetturale>
-L'architettura ad alto livello del sistema sviluppato è documentata seguendo il modello C4, utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti.
-
-=== System Context <c4-system-context>
-Il primo livello di astrazione del modello C4 è rappresentato dal diagramma di System Context, che definisce il perimetro del progetto, focalizzandosi sulle interazioni tra i sistemi principali individuati e le loro interazioni con gli utenti.
-
-Un "sistema", per come definito da tale livello del modello C4, rappresenta in termini generici un insieme di componenti con uno scopo preciso e che producono valore per i suoi utenti umani e non.
+== Architettura logica <archit-log>
+L'architettura logica del sistema è documentata seguendo il #link("https://c4model.com")[modello C4], utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti.
+=== Context <system-context>
+L'analisi dell'architettura logica inizia con il diagramma di #gloss[System Context], che definisce il perimetro del progetto. In questa fase, definita dal livello di astrazione più alto, non si analizzano le tecnologie interne o implementative, ma ci si focalizza esclusivamente sulle interazioni tra i componenti interni del sistema e gli attori esterni, quali componenti o attori umani.
 
 #figure(
   image("../../assets/c4/system_context.svg", width: 80%),
   caption: [System Context diagram],
 )
 
-Il Sistema Cloud è il fulcro dell'intero ambiente in quanto principale fornitore dei servizi del software, quali la ricezione e memorizzazione dei dati di qualsiasi natura (nel database più opportuno) e il loro invio verso la dashboard, nonché la definizione dei perimetri di sicurezza e correlata autenticazione degli utenti.
-ed interagisce con tutti gli altri utenti ed elementi presenti, ovvero:
-- *Super Admin*, tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
-- *Admin generico*, opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
-- *Utente generico*, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
-- *API Client*, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
-- *Sistema observability*, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
-- *Gateway simulato*, entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
-
-=== Container <c4-container>
-In questo contesto, un "container" è inteso come un applicativo o un _data store_ (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
+Il Sistema Cloud è il fulcro dell'intero ambiente in quanto principale fornitore dei servizi del software, quali la ricezione e memorizzazione dei dati di qualsiasi natura (nel database più opportuno) e il loro invio verso la dashboard, nonché la definizione dei perimetri di sicurezza e correlata autenticazione degli utenti, inoltre interagisce con tutti gli altri utenti ed elementi presenti, ovvero:
+- *Super Admin*: tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
+- *Admin generico*: opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
+- *Utente generico*: abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
+- *API Client*: un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
+- *Sistema observability*: un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
+- *Gateway simulato*: entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
+=== Container <container>
+In questo contesto, un container è inteso come una parte del sistema o data store (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
 
 #figure(
-  image("../../assets/c4/container.svg", width: 100%),
+  image("../../assets/c4/container.pdf", width: 100%),
   caption: [Container diagram],
 )
 
 Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti nel Context, il livello di astrazione precedente.
 
 ==== Sistema Cloud
-Sono ora rappresentati:
-- due database, il IoT Data DB e il CloudDB, il primo per i dati prodotti dai sensori simulati e il secondo per tutte le altre informazioni utili, ad esempio dati di tenant o API keys.
-- il frontend dell'applicazione, ovvero UI Dashboard (in Angular), con il compito di fornire un'interfaccia per le funzionalità offerte dal Cloud Backend ad utenti umani.
-- Message Broker, che permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway.
-- Data Consumer ha il compito di ricevere i valori generati dai sensori, leggerli e formattarli prima di inserirli nel database.
-- Cloud Backend (in Go e Gin) che rimane il fulcro dell'applicazione. Come riportato sopra, emette i principali servizi del software.
+Nel diagramma *Container* del Sistema Cloud vengono evidenziati i principali componenti che lo costituiscono e con cui interagisce, ovvero:
+- due database, il IoT Data DB e il CloudDB, il primo per i dati prodotti dai sensori simulati e il secondo per tutte le altre informazioni utili, ad esempio dati di tenant o API keys;
+- il frontend dell'applicazione, ovvero UI Dashboard (in Angular), con il compito di fornire un'interfaccia per le funzionalità offerte dal Cloud Backend ad utenti umani;
+- Message Broker, che permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway;
+- Data Consumer ha il compito di ricevere i valori generati dai sensori, leggerli e formattarli prima di inserirli nel database;
+- Cloud Backend (sviluppato in Go e Gin) il quale rimane il fulcro dell'applicazione. Come riportato sopra, emette i principali servizi del software.
+==== Sistema observability
+Presenta un container NATS Exporter il quale raccoglie le metriche di sistema convertendole in formati compatibili e le inoltra a Observability DB (Prometheus) per il salvataggio, con visualizzazione finale fornita tramite Observability Dashboard (Grafana).
+==== Gateway simulato
+Il container del gateway è costituito da due database interni:
+- *Buffer interno*: salva i dati prodotti da sensori per permettere al gateway di inviarli in un secondo momento in caso di disconnessione o altri casi eccezionali;
+- *Configurazione gateway/sensori*: salva le configurazioni dei gateway e dei sensori, i quali possono essere ripristinati in caso di riavvio o crash del container.
 
-==== Sistema Observability
-Ora presenta un container NATS Exporter che raccoglie le metriche di sistema e le inoltra a Observability DB (Prometheus) per il monitoraggio, con visualizzazione finale fornita tramite Observability Dashboard (Grafana).
-
-==== Sistema Gateway simulato
-Comprende un database a scopo di buffer. Interagisce con il Message Broker del Sistema Cloud tramite protocolli NATS per inviare i dati prodotti e ricevere e rispondere a comandi.
-
-=== Component <c4-component>
-Un diagramma Component rappresenta l'ultimo livello di astrazione dell'architettura logica prima di scendere nel dettaglio del codice sorgente. Un componente è inteso come un raggruppamento di funzionalità correlate esposte tramite un'interfaccia definita, che risiede all'interno di un container. Rispetto al livello precedente del modello C4, in questo strato si descrivono le responsabilità interne, le dipendenze e le scelte implementative dei container principali che orchestrano il sistema.
+=== Component <component>
+Un diagramma *Component* rappresenta l'ultimo livello di astrazione dell'architettura logica prima di scendere nell'architettura di dettaglio del codice.\
+Un componente è inteso come un raggruppamento di funzionalità correlate esposte tramite un'interfaccia definita, che risiede all'interno di un container. Rispetto al livello precedente del modello C4, in questo strato si descrivono le responsabilità interne, le dipendenze e le scelte implementative dei container principali che orchestrano il sistema.
 
 I container principali descritti in questa sezione sono:
-- Gateway simulato
+- Gateway
 - Data Consumer
-- Angular SPA
+- Angular
 - Cloud Backend
 
 ==== Gateway <comp-gateway>
 #figure(
-  image("../../assets/c4/component_gateway.svg", width: 100%),
+  image("../../assets/c4/component_gateway.pdf", width: 100%),
   caption: [Gateway Component diagram],
 )
 
-Come riportato sopra, questa parte del software ha il compito di simulare più gateway e i sensori ad essi associati, gestendo, per entrambi, le variabili di configurazione e condividendo i dati quando richiesto.
-Ogni Simulated Sensor genera dati specifici che vengono salvati temporaneamente in un Gateway Internal Buffer per prevenire perdite in caso di disconnessione o altri casi eccezionali.
-Il Gateway Manager orchestra le istanze dei gateway simulati tramite #gloss[goroutine], mentre il Gateway Agent coordina l'avvio dei sensori in base alla configurazione gestita dal Config Manager, ascolta i comandi ricevuti dal Gateway Command Receiver e inizia a inviare i dati del singolo gateway simulato verso il Message Broker, il cui onere ricade sul Buffered Data Sender.
+Il container sovrastante è costituito da diversi componenti interni, ognuno con responsabilità specifiche:
+- *Command Receiver*: ha lo scopo di ascoltare dal #gloss[message broker] i comandi destinati ai gateway o ai sensori, successivamente li interpreta e li inoltra al *Gateway Manager*;
+- *Gateway Manager*: è l'orchestratore del container, riceve i comandi interpretati dal Command Receiver e coordina l'esecuzione degli stessi, inoltre all'avvio riceve dal *Config Manager* la configurazione dei gateway e dei sensori da simulare così da ripristinarli in caso di riavvio o crash del container;
+- *Config Manager*: è il componente dedicato alla gestione della configurazione dei gateway e dei sensori, salva le configurazioni in un database interno e le fornisce al *Gateway Manager* all'avvio del container;
+- *Buffered Data Sender*: è il componente responsabile dell'invio dei dati IoT verso il message broker leggendo i dati dal *buffer interno*, inoltre riceve comandi dal *Gateway Manager* e li esegue. All'avvio invia un *messaggio di hello* per comunicare al sistema le proprie credenziali;
+- *Simulated Sensor*: è un componente che simula il comportamento di un sensore fisico, generando dati secondo i profili #gloss[GATT] e le configurazioni specificate. I dati prodotti vengono salvati nel buffer interno e inviati al message broker tramite il *Buffered Data Sender*.
+
 
 ==== Data Consumer <comp-data>
 #figure(
@@ -682,9 +682,9 @@ Il Gateway Manager orchestra le istanze dei gateway simulati tramite #gloss[goro
   caption: [Data Consumer Component diagram],
 )
 
-Il #gloss[Data Consumer] è un *microservizio* specializzato con l'unico scopo di richiedere un batch di dati IoT dal message broker (#gloss[NATS]), raggrupparli per tenant di appartenenza e assicurarne la persistenza su #gloss[TimescaleDB].
-Il processo inizia con l'*IoT Data Subscriber*, un client NATS che si iscrive in modalità Pull sui dati prodotti dai gateway. Da qui il *Data Partitioner* riceve i dati grezzi e li aggrega per tenant, attraverso una struttura dati apposita.
-L'*IoT Data Writer* riceve la struttura generata e scrive i dati aggregati nel database #gloss[TimescaleDB], inviando un segnale di conferma (ACK) al broker per confermare la corretta scrittura degli stessi.
+Il #gloss[Data Consumer] è un *container* con l'unico scopo di richiedere un batch di dati IoT dal message broker #gloss[NATS], raggrupparli per tenant di appartenenza e assicurarne la persistenza su #gloss[TimescaleDB].
+Il processo inizia con l'*IoT Data Subscriber*, un client NATS che si iscrive in modalità Pull sui dati prodotti dai sensori. Da qui il *Data Partitioner* riceve i dati grezzi e li raggruppa per tenant, attraverso una struttura dati apposita.
+L'*IoT Data Writer* riceve la struttura generata e scrive i dati con un inserimento massivo nel database #gloss[TimescaleDB], inviando un segnale di conferma (ACK) al broker per confermare la corretta scrittura degli stessi.
 
 ==== Angular <comp-angular>
 #figure(
@@ -692,13 +692,13 @@ L'*IoT Data Writer* riceve la struttura generata e scrive i dati aggregati nel d
   caption: [Angular Component diagram],
 )
 
-Il componente Angular SPA ha lo scopo di fornire un'interfaccia visiva che permette di visualizzare i dati raccolti dai gateway e i relativi alert e gestire tenant, gateway, sensori e chiavi API di accesso.
-Il cuore della navigazione è affidato all'Angular Router, che coordina il caricamento dei componenti in base all'URL e permette all'utente di autenticarsi tramite il componente Authentication Management. La sicurezza è garantita dal Role Guard, che verifica i privilegi dell'utente (Admin o utente generico) prima di inizializzare il layout.
-La struttura del frontend è organizzata in moduli funzionali, ognuno dedicato a una specifica area di funzionalità:
+Il *container Angular* ha lo scopo di fornire un'interfaccia visiva che permette di visualizzare i dati raccolti dai gateway e i relativi alert e gestire tenant, gateway, sensori e chiavi API di accesso.
+Il cuore della navigazione è affidato all'*Angular Router*, che coordina il caricamento dei componenti in base all'URL e permette all'utente di autenticarsi tramite il componente *Authentication Management*. La sicurezza è garantita dal *Role Guard*, che verifica i privilegi dell'utente (admin o utente generico) prima di inizializzare il layout.
+La struttura del frontend è organizzata in moduli funzionali, ognuno dedicato a una specifica area di funzionalità.
 
 ===== Dashboard <comp-angular-dashboard>
-Il modulo dashboard rappresenta la schermata principale della SPA Angular, in cui l'utente può visualizzare:
-- dati in tempo reale: grafici dinamici che mostrano i valori dei sensori aggiornati in tempo reale, grazie alla sottoscrizione a flussi di dati via webSocket;
+Il modulo dashboard rappresenta la schermata principale di *Angular*, in cui l'utente può visualizzare:
+- dati in tempo reale: grafici dinamici che mostrano i valori dei sensori aggiornati in tempo reale, grazie alla sottoscrizione a flussi di dati via *WebSocket*;
 - dati storici: grafici e tabelle che permettono di esplorare i dati raccolti nel tempo, con filtri per intervalli temporali, tipi di sensori e gateway specifici;
 - elenco dei gateway e dei sensori: una panoramica dei dispositivi attivi, con la possibilità di visualizzare dettagli specifici e lo stato di salute di ciascuno.
 
@@ -723,33 +723,33 @@ Il modulo gestione gateway e sensori consente agli amministratori di configurare
   caption: [Backend Component diagram],
 )
 
-Il Cloud Backend (Control & Management Layer) rappresenta il motore decisionale e l'orchestratore del sistema. Sviluppato in Go usando il framework Gin, è progettato per gestire un carico elevato di richieste contemporanee. Il suo scopo è esporre le #gloss[API] per la consultazione dei dati e la gestione del sistema, tramite un sistema di controllo degli accessi gerarchico. Questi servizi vengono forniti agli utenti finali tramite l'interfaccia front-end descritta prima, la quale ha la responsabilità di chiamare e gestire le risposte del componente presente.
+Il *Cloud Backend* rappresenta il motore decisionale e l'orchestratore del sistema. Sviluppato in Go utilizzando il framework #gloss[Gin], è progettato per gestire un carico elevato di richieste contemporanee. Il suo scopo è esporre le #gloss[API] per la consultazione dei dati e la gestione del sistema, tramite un sistema di controllo degli accessi gerarchico. Questi servizi vengono forniti agli utenti finali tramite l'interfaccia front-end descritta nella sezione precedente, la quale ha la responsabilità di chiamare e gestire le risposte del componente presente.
 
 La comunicazione tra i microservizi è mediata da NATS, che funge da #gloss[message broker] asincrono, permettendo un disaccoppiamento efficace tra la fase di ricezione dei dati e quella di elaborazione. Infine, il sistema prevede la segregazione logica dei dati per supportare una gestione multi-tenant, assicurando che ogni cliente possa accedere esclusivamente alle proprie risorse.
 
-Le componenti interne possono essere suddivise in macro-aree funzionali:
+Le componenti interne possono essere suddivise in macro-aree funzionali.
 
 ===== Gestione degli accessi <comp-back-accessi>
 Questa area gestisce il ciclo di vita degli utenti, il loro accesso alla piattaforma, la creazione di nuovi profili e la configurazione dei tenant, garantendo che ogni operazione sia isolata nel perimetro del cliente corretto.
-Vi sono component dedicati alla generazione e alla validazione di chiavi di accesso per gli API Client esterni, il che permette l'integrazione sicura di sistemi terzi che possono consultare i dati senza passare dall'interfaccia web.
+Vi sono component dedicati alla generazione e alla validazione di chiavi di accesso per gli *API Client* esterni, il che permette l'integrazione sicura di sistemi terzi che possono consultare i dati senza passare dall'interfaccia web.
 
 ===== Gestione dati e flussi real-time <comp-back-dati>
-Il backend si posiziona come strato di mediazione tra il frontend e i database di persistenza. Ciò include sia la capacità di estrarre i dati storici dei sensori dal database IoT Data DB per rispondere alle query di visualizzazione di dati, servendoli in formato JSON tramite HTTPS, sia la capacità di ricevere i dati appena pubblicati dal Message Broker e inoltrarli in tempo reale ai client connessi via WebSocket, minimizzando la latenza di visualizzazione.
-Il NATS Command Server è il componente utile ad inviare comandi ricevuti dagli utenti verso un gateway o sensore specifico, tramite il Message Broker.
+Il backend si posiziona come strato di mediazione tra il frontend e i database di persistenza. Ciò include sia la capacità di estrarre i dati storici dei sensori dal database *IoT Data DB* per rispondere alle query di visualizzazione di dati storici, servendoli in formato JSON tramite HTTPS, sia la capacità di ricevere i dati appena pubblicati dal message broker e inoltrarli in tempo reale ai client connessi via *WebSocket*, minimizzando la latenza di visualizzazione.
+Il *NATS Command Server* è il componente utile ad inviare comandi ricevuti dagli utenti verso un gateway o sensore specifico, tramite il message broker.
 
 ===== Servizi di background <comp-back-background>
 Sono inoltre presenti componenti che operano indipendentemente dalle richieste dirette degli utenti per mantenere l'integrità e la sicurezza del sistema, ad esempio:
-- Alert Detection Component, utilizzato per rilevare l'assenza di dati durante la comunicazione con un gateway o sensore specifico.
-- Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
+- *Alert Detection Component*: utilizzato per rilevare l'assenza di dati durante la comunicazione con un gateway o sensore specifico.
+- *Audit Log Writer*: che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul *Cloud DB* attraverso l'*Audit Log API*, garantendo la tracciabilità completa delle azioni amministrative.
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
 
 
-== Architettura logica <archit-log>
+== Architettura esagonale <archit-esagonale>
 Per tutti i microservizi sviluppati in #gloss[Go], si è scelto di utilizzare l'*architettura esagonale* come architettura logica. Nelle successive sottosezioni, verrà introdotto questo pattern architetturale, per poi descriverne l'applicazione effettiva nel codice sorgente.
 
 === Introduzione
-Essa è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. 
+Essa è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework.
 
 Questo sistema architetturale definisce delle interfacce dette _port_ e delle classi concrete dette _adapter_, i quali possono essere sia _inbound_ ("in entrata") che _outbound_ ("in uscita"), i quali sono completamente separati dalla _business logic_, la quale è totalmente indipendente da essi. Più nello specifico:
 
@@ -772,36 +772,47 @@ I sistemi sviluppati sfruttano i principi sopra menzionati per disaccoppiarne le
 
 
 === Organizzazione del codice
-#let pkg-by-comp-footnote = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni componente, come definito nella @c4-component.]
+#let pkg-by-comp-footnote = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni componente, come definito nella @component.]
 #let pkg-by-feature = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni insieme  ben distinto di funzionalità del sistema.]
 
 Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by-comp-footnote oppure _"package by feature/bounded context"_#pkg-by-feature come metodo di _packaging_, ovvero di suddivisione del codice sorgente in sottocartelle. All'interno di ciascuno dei package *non condivisi* dei microservizi si ha una struttura "piatta", in cui i costrutti dei vari strati dell'architettura esagonale sono tipicamente così suddivisi:
 #tabella-paginata(
   table(
     columns: 2,
-    align: (horizon+left, horizon+left),
+    align: (horizon + left, horizon + left),
     [*Nome file*], [*Contenuti*],
-    [`adapters.go`], [
+    [`adapters.go`],
+    [
       _Outbound adapters_ sotto forma di struct chiamate `Adapter`: queste comunicano direttamente con le struct `Repository`, che astraggono lo strato di persistenza, e traducono l'interfaccia da loro esposta in un'interfaccia utilizzabile dagli struct di dominio
     ],
+
     [`commands.go`], [Comandi usati nello strato di dominio per interfacciarsi con gli struct `Service`],
-    [`controller.go`], [
+    [`controller.go`],
+    [
       - Definizione _Inbound adapter_ principale del package, sottoforma di struct `Controller` usato dal _router_ #gloss[Gin]
       - Definizione delle _inbound port_ che vengono implementate dal `Service`
     ],
+
     [`domain.go`], [_Data struct_ usate nello strato di dominio, indipendenti dagli altri strati],
-    [`dto.go`], ["Data Transfer Object" o DTO, ovvero tutti gli struct utilizzati per il puro trasferimento di dati tra client e server via web],
+    [`dto.go`],
+    ["Data Transfer Object" o DTO, ovvero tutti gli struct utilizzati per il puro trasferimento di dati tra client e server via web],
+
     [`errors.go`], [Lista di variabili di errore correlate al _package_],
     [`mapper.go`], [Funzioni di _mapping_ tra le struct di dominio e le struct usate nello strato di persistenza],
-    [`module.go`], [Modulo di Fx associato al _package_: questo consente di raggruppare in un unico punto tutte le interfacce e variabili inserite nel sistema di #gloss[dependency injection] dal _package_],
-    [`repository.go`], [
-      - Le struct `Entity`, che rappresentano le entità nel sistema di persistenza, dette 
+    [`module.go`],
+    [Modulo di Fx associato al _package_: questo consente di raggruppare in un unico punto tutte le interfacce e variabili inserite nel sistema di #gloss[dependency injection] dal _package_],
+
+    [`repository.go`],
+    [
+      - Le struct `Entity`, che rappresentano le entità nel sistema di persistenza, dette
       - Le struct `Repository`, che astraggono l'accesso al sistema di persistenza, indipendentemente dalla tecnologia SQL scelta
-    
+
     ],
-    [`service.go`], [
+
+    [`service.go`],
+    [
       - Le struct dello strato di dominio che contengono i metodi di _business logic_ chiamati dall'applicativo e le definizioni degli _inbound adapters_ chiamati dalle classi `Service`
-      - _Outbound ports_ utilizzate dal `Service`, sotto forma di interfacce chiamate `Port`  
+      - _Outbound ports_ utilizzate dal `Service`, sotto forma di interfacce chiamate `Port`
     ],
   ),
   [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
@@ -814,36 +825,37 @@ Di seguito viene riportata la stessa tabella, associando a ciascuno "strato" del
 #tabella-paginata(
   table(
     columns: 2,
-    align: (horizon+left, horizon+left),
+    align: (horizon + left, horizon + left),
     [*Strato*], [*File relativi*],
 
-    [Inbound adapter], 
+    [Inbound adapter],
     [
       - La struct `Controller` è definita in `controller.go`
       - I DTO utilizzati dal `Controller` sono definiti in `dto.go`
     ],
 
-    [Inbound port], 
+    [Inbound port],
     [Le interfacce `UseCase` sono definite in `service.go` #footnote[
-  In Go, la prassi comune è di utilizzare le "Consumer-Defined Interfaces", ovvero delle interfacce definite nello stesso package o stesso file del loro utilizzatore. Per tale motivo, non si utilizza un file separato per definire gli use cases, quale `useCases.go`
-] <fn>],
-    
-    [Dominio], [
+        In Go, la prassi comune è di utilizzare le "Consumer-Defined Interfaces", ovvero delle interfacce definite nello stesso package o stesso file del loro utilizzatore. Per tale motivo, non si utilizza un file separato per definire gli use cases, quale `useCases.go`
+      ] <fn>],
+
+    [Dominio],
+    [
       - La struct di business logic (detta `Service`) è definita in `service.go`
       - I comandi utilizzati dai metodi del `Service` sono definiti in `commands.go`
       - Le struct di dominio sono definite in `domain.go`
       - Le variabili di errore sono definite in `errors.go`
     ],
-    
-    [Outbound adapter], [
+
+    [Outbound adapter],
+    [
       - Le struct `Adapter` sono definite in `adapters.go`
       - Le funzioni di _mapping_ che permettono di tradurre oggetti `Entity` in oggetti di dominio e viceversa sono definite in `mappers.go`
     ],
-    
+
     [Outbound port], [Le interfacce `Port` sono definite in `adapters.go` @fn],
 
     [Persistence layer], [Le struct `Repository` e le relative struct `Entity` sono definite in `repository.go`],
-
   ),
   [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
   label-id: "descrizione-struttura-package-inverso",
@@ -875,29 +887,25 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
 5. Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno struct all'interno di un altro, senza alcuna ereditarietà nei metodi
 
 6. La sintassi per le _signature_ delle funzioni con più tipi di ritorno è la seguente:
-  #align(center,
-    ```
-    <visibility> Func(<params>): Type1, Type2, Type3, ...
-    ```
-  )
+  #align(center, ```
+  <visibility> Func(<params>): Type1, Type2, Type3, ...
+  ```)
   In questo esempio, `<visibility>` e `<params>` vanno sostituiti rispettivamente con la visibilità del metodo e con la lista dei suoi parametri
 
 7. Ogni diagramma è visto dalla prospettiva del _package_ a cui esso appartiene, per cui ogni riferimento a _package_ esterni viene specificato con la sintassi di Go: `package.Name` dove `package` è il nome del _package_ e `Name` il nome del simbolo preso in considerazione.
 
 8. Si utilizza la sintassi UML per indicare un _enum_ (usando `<<enum>>`) sebbene essi non esistano in Go: questi saranno tradotti nel sorgente come insiemi di variabili costanti che condividono un tipo comune non primitivo. \
   Ad esempio il diagramma nella @code-sensor.SensorProfile, può essere tradotto nel seguente codice Go:
-  #block(breakable: false,
-    ```go
-    type SensorProfile string
-    const (
-      ECG_CUSTOM            SensorProfile = "ecg_custom"
-      ENVIRONMENTAL_SENSING SensorProfile = "environmental_sensing"
-      HEALTH_THERMOMETER    SensorProfile = "health_thermometer"
-      HEART_RATE            SensorProfile = "heart_rate"
-      PULSE_OXIMETER        SensorProfile = "pulse_oximeter"
-    )
-    ```
+  #block(breakable: false, ```go
+  type SensorProfile string
+  const (
+    ECG_CUSTOM            SensorProfile = "ecg_custom"
+    ENVIRONMENTAL_SENSING SensorProfile = "environmental_sensing"
+    HEALTH_THERMOMETER    SensorProfile = "health_thermometer"
+    HEART_RATE            SensorProfile = "heart_rate"
+    PULSE_OXIMETER        SensorProfile = "pulse_oximeter"
   )
+  ```)
 
 9. Siccome in Go non esistono i costruttori, per ognuno degli struct inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
   #align(center, ```go
@@ -916,8 +924,7 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
 
 10. Le funzioni top-level di un package vengono specificate usando una singola classe UML con stereotype _`<<global function>>`_ in cui la funzione stessa è l'unico metodo statico della classe. Ad esempio, la funzione ` ReadConfigFromEnv(log *zap.Logger) (*Config, error)` nel package `config`, si può rappresentare col seguente diagramma:
   #figure(
-    image("../../assets/c4/backend/shared/config/ReadConfigFromEnv.pdf", width: 60%
-    ),
+    image("../../assets/c4/backend/shared/config/ReadConfigFromEnv.pdf", width: 60%),
     caption: [Esempio di diagramma per top-level function],
   )
 
@@ -936,9 +943,9 @@ Ogni controller è specializzato in un comando specifico, ha il compito di ricev
 
 // TODO: "in ognuno di essi" vuol dire che stiamo elencando i membri dello struct?
 In ognuno di essi è presente:
-- *natsConnection*: riferimento alla connessione NATS (iniettata tramite dependency injection) per ricevere i comandi e rispondere con l'esito dell'operazione. I comandi sono inviati tramite il meccanismo *Request-Reply* di NATS.
-- *subject*: stringa che rappresenta il subject NATS a cui il controller si iscrive per ricevere i comandi, anch'esso iniettato tramite dependency injection.
-- *useCase*: riferimento all'inbound port dello strato di business logic che si occupa di eseguire il comando ricevuto. I controller una volta eseguito il parsing del comando invieranno alla inbound port i dati necessari per eseguire il comando, e riceveranno da essa una *Response* che conterrà l'esito dell'operazione e un eventuale messaggio.
+- `natsConnection`: riferimento alla connessione NATS (iniettata tramite dependency injection) per ricevere i comandi e rispondere con l'esito dell'operazione. I comandi sono inviati tramite il meccanismo *Request-Reply* di NATS.
+- `subject`: stringa che rappresenta il subject NATS a cui il controller si iscrive per ricevere i comandi, anch'esso iniettato tramite dependency injection.
+- `useCase`: riferimento all'inbound port dello strato di business logic che si occupa di eseguire il comando ricevuto. I controller una volta eseguito il parsing del comando invieranno alla inbound port i dati necessari per eseguire il comando, e riceveranno da essa una *Response* che conterrà l'esito dell'operazione e un eventuale messaggio.
 
 #figure(
   image("../../assets/c4/gateway/GatewayControllersCodeDiagram.pdf", width: 100%),
@@ -947,84 +954,84 @@ In ognuno di essi è presente:
 
 ===== NATSAddSensorController
 Ha lo scopo di ricevere il comando di aggiunta di un nuovo sensore simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.addsensor*.\
+Il subject su cui il controller rimane in ascolto è `commands.addsensor`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway a cui associare il nuovo sensore.
-- *SensorId*: UUID del nuovo sensore.
-- *Profile*: profile BLE del nuovo sensore da aggiungere, il quale definisce il tipo di dati che il sensore genererà.
-- *Interval*: intervallo di tempo in ms tra una generazione di dati e l'altra del nuovo sensore.
+- `GatewayId`: UUID del gateway a cui associare il nuovo sensore.
+- `SensorId`: UUID del nuovo sensore.
+- `Profile`: profile BLE del nuovo sensore da aggiungere, il quale definisce il tipo di dati che il sensore genererà.
+- `Interval`: intervallo di tempo in ms tra una generazione di dati e l'altra del nuovo sensore.
 
 ===== NATSCommissionGatewayController
 Ha lo scopo di ricevere il comando di commissioning di un gateway simulato, associandolo al tenant corretto e impostando il token di commissioning (JWT basato sulla public key del gateway).\
-Il subject su cui il controller rimane in ascolto è *commands.commissiongateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.commissiongateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway da commissionare.
-- *TenantId*: UUID del tenant a cui associare il gateway.
-- *CommissionedToken*: token di commissioning assegnato al gateway per consentirne l'invio di dati IoT.
+- `GatewayId`: UUID del gateway da commissionare.
+- `TenantId`: UUID del tenant a cui associare il gateway.
+- `CommissionedToken`: token di commissioning assegnato al gateway per consentirne l'invio di dati IoT.
 
 ===== NATSCreateGatewayController
 Ha lo scopo di ricevere il comando di creazione di un nuovo gateway simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.creategateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.creategateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del nuovo gateway da creare.
-- *Interval*: intervallo di tempo in ms con cui il gateway svuota il buffer interno dai dati generati dai sensori simulati associati ad esso.
+- `GatewayId`: UUID del nuovo gateway da creare.
+- `Interval`: intervallo di tempo in ms con cui il gateway svuota il buffer interno dai dati generati dai sensori simulati associati ad esso.
 
 ===== NATSDecommissionGatewayController
 Ha lo scopo di ricevere il comando di decommissioning di un gateway simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.decommissiongateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.decommissiongateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway da decommissionare.
+- `GatewayId`: UUID del gateway da decommissionare.
 
 ===== NATSDeleteGatewayController
 Ha lo scopo di ricevere il comando di eliminazione di un gateway simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.deletegateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.deletegateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway da eliminare.
+- `GatewayId`: UUID del gateway da eliminare.
 
 ===== NATSDeleteSensorController
 Ha lo scopo di ricevere il comando di eliminazione di un sensore simulato associato a un gateway.\
-Il subject su cui il controller rimane in ascolto è *commands.deletesensor*.\
+Il subject su cui il controller rimane in ascolto è `commands.deletesensor`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway a cui il sensore è associato.
-- *SensorId*: UUID del sensore da eliminare.
+- `GatewayId`: UUID del gateway a cui il sensore è associato.
+- `SensorId`: UUID del sensore da eliminare.
 
 ===== NATSInterruptGatewayController
 Ha lo scopo di ricevere il comando di interruzione temporanea di un gateway simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.interruptgateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.interruptgateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway da interrompere.
+- `GatewayId`: UUID del gateway da interrompere.
 
 ===== NATSResumeGatewayController
 Ha lo scopo di ricevere il comando di ripresa delle attività di un gateway simulato precedentemente interrotto.\
-Il subject su cui il controller rimane in ascolto è *commands.resumegateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.resumegateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway da riattivare.
+- `GatewayId`: UUID del gateway da riattivare.
 
 ===== NATSInterruptSensorController
 Ha lo scopo di ricevere il comando di interruzione temporanea di un sensore simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.interruptsensor*.\
+Il subject su cui il controller rimane in ascolto è `commands.interruptsensor`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway a cui il sensore è associato.
-- *SensorId*: UUID del sensore da interrompere.
+- `GatewayId`: UUID del gateway a cui il sensore è associato.
+- `SensorId`: UUID del sensore da interrompere.
 
 ===== NATSResumeSensorController
 Ha lo scopo di ricevere il comando di ripresa delle attività di un sensore simulato precedentemente interrotto.\
-Il subject su cui il controller rimane in ascolto è *commands.resumesensor*.\
+Il subject su cui il controller rimane in ascolto è `commands.resumesensor`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway a cui il sensore è associato.
-- *SensorId*: UUID del sensore da riattivare.
+- `GatewayId`: UUID del gateway a cui il sensore è associato.
+- `SensorId`: UUID del sensore da riattivare.
 
 ===== NATSRebootGatewayController
 Ha lo scopo di ricevere il comando di riavvio di un gateway simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.rebootgateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.rebootgateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway da riavviare.
+- `GatewayId`: UUID del gateway da riavviare.
 
 ===== NATSResetGatewayController
 Ha lo scopo di ricevere il comando di reset di un gateway simulato.\
-Il subject su cui il controller rimane in ascolto è *commands.resetgateway*.\
+Il subject su cui il controller rimane in ascolto è `commands.resetgateway`.\
 Il *dto* su cui avverrà il marshalling del comando ricevuto via NATS è composto dai seguenti campi:
-- *GatewayId*: UUID del gateway da resettare.
+- `GatewayId`: UUID del gateway da resettare.
 
 ==== GatewayManagerService
 Il *GatewayManagerService* è il componente centrale del microservizio, in quanto ha lo scopo di orchestrare le istanze dei gateway e dei sensori simulati, creando e distribuendo i comandi in entrata verso il corretto destinatario.
@@ -1034,106 +1041,106 @@ Il *GatewayManagerService* è il componente centrale del microservizio, in quant
 )
 
 È l'implementazione delle seguenti interfacce:
-- *CreateGatewayUseCase*
-- *DeleteGatewayUseCase*
-- *CommissionGatewayUseCase*
-- *DecommissionGatewayUseCase*
-- *RebootGatewayUseCase*
-- *ResetGatewayUseCase*
-- *ResumeGatewayUseCase*
-- *InterruptGatewayUseCase*
-- *AddSensorUseCase*
-- *DeleteSensorUseCase*
-- *ResumeSensorUseCase*
-- *InterruptSensorUseCase*
-- *GatewaysLoader*
+- `CreateGatewayUseCase`
+- `DeleteGatewayUseCase`
+- `CommissionGatewayUseCase`
+- `DecommissionGatewayUseCase`
+- `RebootGatewayUseCase`
+- `ResetGatewayUseCase`
+- `ResumeGatewayUseCase`
+- `InterruptGatewayUseCase`
+- `AddSensorUseCase`
+- `DeleteSensorUseCase`
+- `ResumeSensorUseCase`
+- `InterruptSensorUseCase`
+- `GatewaysLoader`
 
 Esso presenta i seguenti metodi e attributi:
-- *gateways*: struttura dati che contiene:
-  - Una *mappa dei gateway simulati* di tipo *map[uuid.UUID]GatewayWorker*, dove la chiave è l'UUID del gateway e il valore è una struct contenente l'istanza del gateway simulato, il canale per inviare comandi al gateway e il canale per ricevere gli errori del gateway.
-  - Un *mutex* di tipo *sync.RWMutex* per garantire la sicurezza in caso di accessi concorrenti alla mappa dei gateway.
-- *sensors*: struttura dati che contiene:
-  - Una *mappa dei sensori simulati* di tipo *map[uuid.UUID]map[uuid.UUID]SensorWorker*, dove la prima chiave è l'UUID del gateway, la seconda chiave è l'UUID del sensore e il valore è una struct contenente l'istanza del sensore simulato, il canale per inviare comandi al sensore e il canale per ricevere gli errori del sensore.
-  - Un *mutex* di tipo *sync.RWMutex* per garantire la sicurezza in caso di accessi concorrenti alla mappa dei sensori.
-- *saveSensorDataPort*: riferimento all'interfaccia *SaveSensorDataPort*, utile a salvare i dati generati dai sensori simulati nel buffer interno del gateway, in modo da prevenire perdite di dati in caso di disconnessione o altri casi eccezionali.
-- *bufferedDataPort*: riferimento all'interfaccia *BufferedDataPort*, utile ad ottenere i dati all'interno del buffer per un gateway specifico.
-- *sendSensorDataPortFactory*: riferimento all'interfaccia *SendSensorDataPortFactory*, utile a creare una nuova istanza di tipo *SendSensorDataPort* per ogni gateway simulato, in modo che tutti i gateway abbiano un'istanza dedicata per inviare eventualmente i dati via NATS con credenziali che cambiano a runtime.
-- *configPort*: riferimento all'interfaccia *ConfigPort*, la quale è la composizione di tante sotto interfacce più singolari. È fondamentale per passare ai comandi le interfacce con meno metodi disponibili possibili (Interface Segregation Principle). Essa ha lo scopo di gestire la configurazione dei gateway e dei sensori simulati nel sistema di persistenza, così da mantenere lo stato anche al riavvio del microservizio.
-- *AddSensor(cmdData \*AddSensor) Response*: implementazione dell'interfaccia *AddSensorUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `gateways`: struttura dati che contiene:
+  - Una *mappa dei gateway simulati* di tipo `map[uuid.UUID]GatewayWorker`, dove la chiave è l'UUID del gateway e il valore è una struct contenente l'istanza del gateway simulato, il canale per inviare comandi al gateway e il canale per ricevere gli errori del gateway.
+  - Un *mutex* di tipo `sync.RWMutex` per garantire la sicurezza in caso di accessi concorrenti alla mappa dei gateway.
+- `sensors`: struttura dati che contiene:
+  - Una *mappa dei sensori simulati* di tipo `map[uuid.UUID]map[uuid.UUID]SensorWorker`, dove la prima chiave è l'UUID del gateway, la seconda chiave è l'UUID del sensore e il valore è una struct contenente l'istanza del sensore simulato, il canale per inviare comandi al sensore e il canale per ricevere gli errori del sensore.
+  - Un *mutex* di tipo `sync.RWMutex` per garantire la sicurezza in caso di accessi concorrenti alla mappa dei sensori.
+- `saveSensorDataPort`: riferimento all'interfaccia `SaveSensorDataPort`, utile a salvare i dati generati dai sensori simulati nel buffer interno del gateway, in modo da prevenire perdite di dati in caso di disconnessione o altri casi eccezionali.
+- `bufferedDataPort`: riferimento all'interfaccia `BufferedDataPort`, utile ad ottenere i dati all'interno del buffer per un gateway specifico.
+- `sendSensorDataPortFactory`: riferimento all'interfaccia `SendSensorDataPortFactory`, utile a creare una nuova istanza di tipo `SendSensorDataPort` per ogni gateway simulato, in modo che tutti i gateway abbiano un'istanza dedicata per inviare eventualmente i dati via NATS con credenziali che cambiano a runtime.
+- `configPort`: riferimento all'interfaccia `ConfigPort`, la quale è la composizione di tante sotto interfacce più singolari. È fondamentale per passare ai comandi le interfacce con meno metodi disponibili possibili (Interface Segregation Principle). Essa ha lo scopo di gestire la configurazione dei gateway e dei sensori simulati nel sistema di persistenza, così da mantenere lo stato anche al riavvio del microservizio.
+- `AddSensor(cmdData *AddSensor) Response`: implementazione dell'interfaccia `AddSensorUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista e che il *sensorId* non sia già associato a quel gateway, in caso contrario restituisce un errore.
   - Crea il comando *AddSensorCmd* e lo esegue, facendo partire il sensore simulato.
   - All'esecuzione positiva del comando il nuovo sensore viene aggiunto alla struttura dati del *GatewayManagerService*.
   - Invia la *Response* in base alla presenza di errori o no.
-- *CommissionGateway(cmdData \*CommissionGateway) Response*: implementazione dell'interfaccia *CommissionGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `CommissionGateway(cmdData *CommissionGateway) Response`: implementazione dell'interfaccia `CommissionGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista.
   - Crea il comando *CommissionGatewayCmd* e lo invia al gateway simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *CreateGateway(cmdData \*CreateGateway) Response*: implementazione dell'interfaccia *CreateGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `CreateGateway(cmdData *CreateGateway) Response`: implementazione dell'interfaccia `CreateGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gatewayId* non sia già associato a un gateway simulato.
   - Genera una coppia di chiavi pubblica-privata per il nuovo gateway simulato.
   - Crea il comando *CreateGatewayCmd* e lo esegue, facendo partire il gateway simulato.
   - All'esecuzione positiva del comando il nuovo gateway viene aggiunto alla struttura dati del *GatewayManagerService*.
   - Invia la *Response* in base alla presenza di errori o no.
-- *DecommissionGateway(cmdData \*DecommissionGateway) Response*: implementazione dell'interfaccia *DecommissionGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `DecommissionGateway(cmdData *DecommissionGateway) Response`: implementazione dell'interfaccia `DecommissionGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista.
   - Crea il comando *DecommissionGatewayCmd* e lo invia al gateway simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *DeleteGateway(cmdData \*DeleteGateway) Response*: implementazione dell'interfaccia *DeleteGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `DeleteGateway(cmdData *DeleteGateway) Response`: implementazione dell'interfaccia `DeleteGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista.
   - Crea il comando *DeleteGatewayCmd* e lo esegue, facendo terminare il gateway simulato.
   - Attende l'esito del comando, se positivo rimuove il gateway e i sensori associati dalla struttura dati del *GatewayManagerService*, inoltre interrompe permanentemente l'esecuzione dei sensori associati al gateway in questione.
   - Invia la *Response* in base alla presenza di errori o no.
-- *DeleteSensor(cmdData \*DeleteSensor) Response*: implementazione dell'interfaccia *DeleteSensorUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `DeleteSensor(cmdData *DeleteSensor) Response`: implementazione dell'interfaccia `DeleteSensorUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* e il *sensor* esistano.
   - Crea il comando *DeleteSensorCmd* e lo esegue, facendo terminare il sensore simulato.
   - Attende l'esito del comando, se positivo rimuove il sensore dalla struttura dati del *GatewayManagerService*.
   - Invia la *Response* in base alla presenza di errori o no.
-- *InterruptGateway(cmdData \*InterruptGateway) Response*: implementazione dell'interfaccia *InterruptGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `InterruptGateway(cmdData *InterruptGateway) Response`: implementazione dell'interfaccia `InterruptGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista.
   - Crea il comando *InterruptGatewayCmd* e lo invia al gateway simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *ResumeGateway(cmdData \*ResumeGateway) Response*: implementazione dell'interfaccia *ResumeGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `ResumeGateway(cmdData *ResumeGateway) Response`: implementazione dell'interfaccia `ResumeGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista.
   - Crea il comando *ResumeGatewayCmd* e lo invia al gateway simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *InterruptSensor(cmdData \*InterruptSensor) Response*: implementazione dell'interfaccia *InterruptSensorUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `InterruptSensor(cmdData *InterruptSensor) Response`: implementazione dell'interfaccia `InterruptSensorUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* e il *sensor* esistano.
   - Crea il comando *InterruptSensorCmd* e lo invia al sensore simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *ResumeSensor(cmdData \*ResumeSensor) Response*: implementazione dell'interfaccia *ResumeSensorUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `ResumeSensor(cmdData *ResumeSensor) Response`: implementazione dell'interfaccia `ResumeSensorUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* e il *sensor* esistano.
   - Crea il comando *ResumeSensorCmd* e lo invia al sensore simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *RebootGateway(cmdData \*RebootGateway) Response*: implementazione dell'interfaccia *RebootGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `RebootGateway(cmdData *RebootGateway) Response`: implementazione dell'interfaccia `RebootGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista.
   - Crea il comando *RebootGatewayCmd* e lo invia al gateway simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *ResetGateway(cmdData \*ResetGateway) Response*: implementazione dell'interfaccia *ResetGatewayUseCase*, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
+- `ResetGateway(cmdData *ResetGateway) Response`: implementazione dell'interfaccia `ResetGatewayUseCase`, riceve i dati del comando dall'outbound adapter ed esegue i seguenti passi:
   - Verifica che il *gateway* esista.
   - Crea il comando *ResetGatewayCmd* e lo invia al gateway simulato.
   - Attende l'esito del comando e invia la *Response*.
-- *LoadGatewayWorkers() error*: implementazione dell'interfaccia *GatewaysLoader*, è il metodo che viene eseguito all'avvio del microservizio per caricare i gateway e i sensori simulati presenti nel sistema di persistenza, in modo da mantenere lo stato anche al riavvio del microservizio. Ogni gateway e sensore simulato viene caricato nelle strutture dati del *GatewayManagerService* e viene fatto partire, in modo da ripristinare lo stato precedente al riavvio del servizio.
+- `LoadGatewayWorkers() error`: implementazione dell'interfaccia `GatewaysLoader`, è il metodo che viene eseguito all'avvio del microservizio per caricare i gateway e i sensori simulati presenti nel sistema di persistenza, in modo da mantenere lo stato anche al riavvio del microservizio. Ogni gateway e sensore simulato viene caricato nelle strutture dati del *GatewayManagerService* e viene fatto partire, in modo da ripristinare lo stato precedente al riavvio del servizio.
 
 ===== GatewayWorker <gateway-worker>
 Il *GatewayWorker* è la struct che rappresenta un singolo gateway simulato dal punto di vista del *GatewayManagerService*.
 
 Contiene i seguenti campi:
-- *Sender*: riferimento all'interfaccia *DataSender*, contiene tutti i metodi che il gateway simulato può eseguire, tuttavia viene utilizzato per passare ai comandi un'interfaccia con meno metodi disponibili (Interface Segregation Principle). Un esempio può essere quando si passa *DataSender* al comando *CommissionGatewayCmd*, il quale per eseguire il commissioning del gateway ha bisogno solo del metodo *Commission()*, infatti *DataSender* è contiene l'interfaccia *DataSenderCommissioner* la quale possiede solo quel metodo.
-- *CmdChannel*: canale di tipo *chan BaseCommand* per comunicare o ricevere i comandi da eseguire.
-- *ErrChannel*: canale di tipo *chan error* per ascoltare o inviare eventuali errori avvenuti durante l'esecuzione dei comandi.
+- `Sender`: riferimento all'interfaccia *DataSender*, contiene tutti i metodi che il gateway simulato può eseguire, tuttavia viene utilizzato per passare ai comandi un'interfaccia con meno metodi disponibili (Interface Segregation Principle). Un esempio può essere quando si passa *DataSender* al comando *CommissionGatewayCmd*, il quale per eseguire il commissioning del gateway ha bisogno solo del metodo `Commission()`, infatti *DataSender* è contiene l'interfaccia *DataSenderCommissioner* la quale possiede solo quel metodo.
+- `CmdChannel`: canale di tipo `chan BaseCommand` per comunicare o ricevere i comandi da eseguire.
+- `ErrChannel`: canale di tipo `chan error` per ascoltare o inviare eventuali errori avvenuti durante l'esecuzione dei comandi.
 
 ===== SensorWorker <sensor-worker>
 Il *SensorWorker* è la struct che rappresenta un singolo sensore simulato dal punto di vista del *GatewayManagerService*.
 
 Contiene i seguenti campi:
-- *SimulatedSensor*: riferimento all'interfaccia *SimulatedSensor*, contiene tutti i metodi che il sensore simulato può eseguire e viene utilizzato con lo stesso principio di *Sender* in *GatewayWorker*.
-- *CmdChannel*: canale di tipo *chan BaseCommand* per comunicare o ricevere i comandi da eseguire.
-- *ErrChannel*: canale di tipo *chan error* per ascoltare o inviare eventuali errori avvenuti durante l'esecuzione dei comandi.
+- `SimulatedSensor`: riferimento all'interfaccia *SimulatedSensor*, contiene tutti i metodi che il sensore simulato può eseguire e viene utilizzato con lo stesso principio di *Sender* in *GatewayWorker*.
+- `CmdChannel`: canale di tipo `chan BaseCommand` per comunicare o ricevere i comandi da eseguire.
+- `ErrChannel`: canale di tipo `chan error` per ascoltare o inviare eventuali errori avvenuti durante l'esecuzione dei comandi.
 
 ==== Comandi dei gateway e dei sensori simulati
-Come abbiamo visto nella sezione precedente il *GatewayManagerService* riceve i dati dei comandi dai controller ed ha il compito di creare l'istanza del comando attraverso un'interfaccia comune *BaseCommand*, ciò per permettere di inviare ogni comando attraverso il *channel* specifico del *Gateway Worker* o *Sensor Worker* destinatario.
+Come abbiamo visto nella sezione precedente il *GatewayManagerService* riceve i dati dei comandi dai controller ed ha il compito di creare l'istanza del comando attraverso un'interfaccia comune `BaseCommand`, ciò per permettere di inviare ogni comando attraverso il *channel* specifico del *Gateway Worker* o *Sensor Worker* destinatario.
 
-Ogni comando ha un'implementazione specifica, ma tutti condividono la stessa interfaccia *BaseCommand* che prevede un unico metodo *Execute() error*, il quale esegue il comando e restituisce un eventuale errore.\
+Ogni comando ha un'implementazione specifica, ma tutti condividono la stessa interfaccia `BaseCommand` che prevede un unico metodo `Execute() error`, il quale esegue il comando e restituisce un eventuale errore.\
 
 Essi vengono eseguiti tutti nel gateway simulato o nel sensore simulato destinatario del comando, così da garantire l'esecuzione di un comando alla volta per componente. Eccezione fatta per i comandi *CreateGatewayCmd* e *AddSensorCmd* che vengono eseguiti direttamente dal *GatewayManagerService* per poter aggiungere il nuovo gateway o sensore alle strutture dati del servizio e far partire l'esecuzione dello stesso.
 
@@ -1145,145 +1152,145 @@ Essi vengono eseguiti tutti nel gateway simulato o nel sensore simulato destinat
 ===== AddSensorCmd
 Il comando *AddSensorCmd* ha lo scopo di avviare un nuovo sensore simulato e salvare la sua configurazione nel sistema di persistenza.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *AddSensor* contenente i dati necessari per l'esecuzione del comando, ovvero *GatewayId*, *SensorId*, *Profile* e *Interval*.
-- *sensorAdder*: riferimento all'interfaccia *SensorAdderPort*, ovvero l'outbound port per l'aggiunta del sensore nel sistema di persistenza.
-- *sensorStarter*: riferimento all'interfaccia *SensorStarter*, ovvero l'interfaccia responsabile di avviare l'esecuzione del sensore simulato.
-- *status*: enum di tipo *SensorStatus*, rappresenta lo stato che deve avere il sensore all'avvio. Gli stati possibili sono: *Active*, *Inactive* e *Stopped*
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Salva la configurazione del nuovo sensore nel sistema di persistenza tramite il metodo *AddSensor(cmd \*AddSensor, status SensorStatus)* dell'interfaccia *SensorAdderPort*.
-  - Avvia l'esecuzione del nuovo sensore simulato con una *goroutine* attraverso il metodo *Start()* dell'interfaccia *SensorStarter*.
+- `cmdData`: riferimento alla struct di tipo *AddSensor* contenente i dati necessari per l'esecuzione del comando, ovvero *GatewayId*, *SensorId*, *Profile* e *Interval*.
+- `sensorAdder`: riferimento all'interfaccia *SensorAdderPort*, ovvero l'outbound port per l'aggiunta del sensore nel sistema di persistenza.
+- `sensorStarter`: riferimento all'interfaccia *SensorStarter*, ovvero l'interfaccia responsabile di avviare l'esecuzione del sensore simulato.
+- `status`: enum di tipo *SensorStatus*, rappresenta lo stato che deve avere il sensore all'avvio. Gli stati possibili sono: *Active*, *Inactive* e *Stopped*
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Salva la configurazione del nuovo sensore nel sistema di persistenza tramite il metodo `AddSensor(cmd *AddSensor, status SensorStatus)` dell'interfaccia `SensorAdderPort`.
+  - Avvia l'esecuzione del nuovo sensore simulato con una *goroutine* attraverso il metodo `Start()` dell'interfaccia `SensorStarter`.
 
 ===== CommissionGatewayCmd
 Il comando *CommissionGatewayCmd* ha lo scopo di commissionare un gateway simulato, associandolo ad un tenant e impostando il nuovo token ricevuto (JWT basato sulla public key del gateway).
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *CommissionGateway* contenente i dati necessari per l'esecuzione del comando, ovvero *GatewayId*, *TenantId* e *CommissionedToken* (di tipo string).
-- *configService*: riferimento all'interfaccia *GatewayCommissionerPort*, la quale rappresenta l'outbound port per il salvataggio delle informazioni di commissioning all'interno del sistema di persistenza.
-- *commissioner*: riferimento all'interfaccia *DataSenderCommissioner*, la quale ha il compito di aggiornare le credenziali del gateway e di associarlo al nuovo tenant.
-- *status*: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo il commissioning. Gli stati possibili sono: *Active*, *Inactive*, *Decommissioned* e *Stopped*.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Salva le informazioni di commissioning del gateway nel sistema di persistenza tramite il metodo *CommissionGateway(cmd \*CommissionGateway, status GatewayStatus)* dell'interfaccia *GatewayCommissionerPort*.
-  - Aggiorna le credenziali del gateway e lo associa al nuovo tenant tramite il metodo *Commission(gatewayId uuid.UUID, tenantId uuid.UUID, token string)* dell'interfaccia *DataSenderCommissioner*.
+- `cmdData`: riferimento alla struct di tipo *CommissionGateway* contenente i dati necessari per l'esecuzione del comando, ovvero *GatewayId*, *TenantId* e *CommissionedToken* (di tipo string).
+- `configService`: riferimento all'interfaccia *GatewayCommissionerPort*, la quale rappresenta l'outbound port per il salvataggio delle informazioni di commissioning all'interno del sistema di persistenza.
+- `commissioner`: riferimento all'interfaccia *DataSenderCommissioner*, la quale ha il compito di aggiornare le credenziali del gateway e di associarlo al nuovo tenant.
+- `status`: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo il commissioning. Gli stati possibili sono: *Active*, *Inactive*, *Decommissioned* e *Stopped*.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Salva le informazioni di commissioning del gateway nel sistema di persistenza tramite il metodo `CommissionGateway(cmd *CommissionGateway, status GatewayStatus)` dell'interfaccia `GatewayCommissionerPort`.
+  - Aggiorna le credenziali del gateway e lo associa al nuovo tenant tramite il metodo `Commission(gatewayId uuid.UUID, tenantId uuid.UUID, token string)` dell'interfaccia `DataSenderCommissioner`.
 
 ===== CreateGatewayCmd
 Il comando *CreateGatewayCmd* ha lo scopo di creare un nuovo gateway simulato e salvarne la configurazione nel sistema di persistenza.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *CreateGateway* contenente i dati necessari per l'esecuzione del comando, ovvero *GatewayId* e *Interval*.
-- *configPort*: riferimento all'interfaccia *GatewayCreatorPort*, ovvero l'outbound port per la creazione del gateway nel sistema di persistenza.
-- *starter*: riferimento all'interfaccia *DataSenderStarter*, ovvero l'interfaccia responsabile di avviare l'esecuzione del gateway simulato.
-- *greeter*: riferimento all'interfaccia *GatewayGreeter*, ovvero l'outbound port con il compito di inviare un messaggio di hello dal nuovo gateway simulato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica*.
-- *credentials*: struct contenente la coppia chiave pubblica-privata generata per il nuovo gateway simulato, utile per il salvataggio sul sistema di persistenza.
-- *status*: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway all'avvio.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Salva la configurazione del nuovo gateway nel sistema di persistenza tramite il metodo *CreateGateway(cmdData \*CreateGateway, credentials \*Credentials, status GatewayStatus)* dell'interfaccia *GatewayCreatorPort*.
-  - Invia un messaggio di hello dal nuovo gateway simulato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica* attraverso il metodo *Hello()*. dell'interfaccia *GatewayGreeter*.
-  - Avvia l'esecuzione del nuovo gateway simulato con una *goroutine* attraverso il metodo *Start()* dell'interfaccia *DataSenderStarter*.
+- `cmdData`: riferimento alla struct di tipo *CreateGateway* contenente i dati necessari per l'esecuzione del comando, ovvero *GatewayId* e *Interval*.
+- `configPort`: riferimento all'interfaccia *GatewayCreatorPort*, ovvero l'outbound port per la creazione del gateway nel sistema di persistenza.
+- `starter`: riferimento all'interfaccia *DataSenderStarter*, ovvero l'interfaccia responsabile di avviare l'esecuzione del gateway simulato.
+- `greeter`: riferimento all'interfaccia *GatewayGreeter*, ovvero l'outbound port con il compito di inviare un messaggio di hello dal nuovo gateway simulato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica*.
+- `credentials`: struct contenente la coppia chiave pubblica-privata generata per il nuovo gateway simulato, utile per il salvataggio sul sistema di persistenza.
+- `status`: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway all'avvio.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Salva la configurazione del nuovo gateway nel sistema di persistenza tramite il metodo `CreateGateway(cmdData *CreateGateway, credentials *Credentials, status GatewayStatus)` dell'interfaccia `GatewayCreatorPort`.
+  - Invia un messaggio di hello dal nuovo gateway simulato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica* attraverso il metodo `Hello()`. dell'interfaccia `GatewayGreeter`.
+  - Avvia l'esecuzione del nuovo gateway simulato con una *goroutine* attraverso il metodo `Start()` dell'interfaccia `DataSenderStarter`.
 
 ===== DecommissionGatewayCmd
 Il comando *DecommissionGatewayCmd* ha lo scopo di decommissionare un gateway simulato, modificandone lo stato e impedendogli di inviare dati IoT.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *DecommissionGateway* contenente il *gatewayId* del gateway da decommissionare.
-- *configService*: riferimento all'interfaccia *GatewayDecommissionerPort*, la quale rappresenta l'outbound port per aggiornare il gateway nel sistema di persistenza dopo il decommissioning.
-- *decommissioner*: riferimento all'interfaccia *DataSenderDecommissioner*, la quale ha il compito di aggiornare le credenziali e lo stato del gateway per impedirgli di inviare dati IoT.
-- *greeter*: riferimento all'interfaccia *GatewayGreeter*, ovvero l'outbound port con il compito di inviare un messaggio di hello dal gateway decommissionato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica*.
-- *status*: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo il decommissioning.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Aggiorna le informazioni del gateway nel sistema di persistenza tramite il metodo *DecommissionGateway(cmdData \*DecommissionGateway, status GatewayStatus)* dell'interfaccia *GatewayDecommissionerPort*.
-  - Aggiorna le credenziali e lo stato del gateway per impedirgli di inviare dati IoT tramite il metodo *Decommission()* dell'interfaccia *DataSenderDecommissioner*.
-  - Invia un messaggio di hello dal gateway decommissionato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica* attraverso il metodo *Hello()*. dell'interfaccia *GatewayGreeter*.
+- `cmdData`: riferimento alla struct di tipo *DecommissionGateway* contenente il *gatewayId* del gateway da decommissionare.
+- `configService`: riferimento all'interfaccia *GatewayDecommissionerPort*, la quale rappresenta l'outbound port per aggiornare il gateway nel sistema di persistenza dopo il decommissioning.
+- `decommissioner`: riferimento all'interfaccia *DataSenderDecommissioner*, la quale ha il compito di aggiornare le credenziali e lo stato del gateway per impedirgli di inviare dati IoT.
+- `greeter`: riferimento all'interfaccia *GatewayGreeter*, ovvero l'outbound port con il compito di inviare un messaggio di hello dal gateway decommissionato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica*.
+- `status`: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo il decommissioning.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Aggiorna le informazioni del gateway nel sistema di persistenza tramite il metodo `DecommissionGateway(cmdData *DecommissionGateway, status GatewayStatus)` dell'interfaccia `GatewayDecommissionerPort`.
+  - Aggiorna le credenziali e lo stato del gateway per impedirgli di inviare dati IoT tramite il metodo `Decommission()` dell'interfaccia `DataSenderDecommissioner`.
+  - Invia un messaggio di hello dal gateway decommissionato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica* attraverso il metodo `Hello()`. dell'interfaccia `GatewayGreeter`.
 
 ===== DeleteGatewayCmd
 Il comando *DeleteGatewayCmd* ha lo scopo di eliminare un gateway simulato e i sensori simulati associati.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *DeleteGateway* contenente il *gatewayId* del gateway da eliminare.
-- *configService*: riferimento all'interfaccia *GatewayDeleterPort*, la quale rappresenta l'outbound port per eliminare il gateway nel sistema di persistenza.
-- *senderStopper*: riferimento all'interfaccia *DataSenderStopper*, la quale ha il compito di interrompere permanentemente l'esecuzione del gateway simulato.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Elimina il gateway nel sistema di persistenza tramite il metodo *DeleteGateway(cmdData \*DeleteGateway)* dell'interfaccia *GatewayDeleterPort*.
-  - Interrompe permanentemente l'esecuzione del gateway simulato tramite il metodo *Stop()* dell'interfaccia *DataSenderStopper*.
+- `cmdData`: riferimento alla struct di tipo *DeleteGateway* contenente il *gatewayId* del gateway da eliminare.
+- `configService`: riferimento all'interfaccia *GatewayDeleterPort*, la quale rappresenta l'outbound port per eliminare il gateway nel sistema di persistenza.
+- `senderStopper`: riferimento all'interfaccia *DataSenderStopper*, la quale ha il compito di interrompere permanentemente l'esecuzione del gateway simulato.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Elimina il gateway nel sistema di persistenza tramite il metodo `DeleteGateway(cmdData *DeleteGateway)` dell'interfaccia `GatewayDeleterPort`.
+  - Interrompe permanentemente l'esecuzione del gateway simulato tramite il metodo `Stop()` dell'interfaccia `DataSenderStopper`.
 
 
 ===== DeleteSensorCmd
 Il comando *DeleteSensorCmd* ha lo scopo di eliminare un sensore simulato.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *DeleteSensor* contenente il *sensorId* e il *gatewayId* del sensore da eliminare.
-- *configService*: riferimento all'interfaccia *SensorDeleterPort*, la quale rappresenta l'outbound port per eliminare il sensore nel sistema di persistenza.
-- *sensorStopper*: riferimento all'interfaccia *SensorStopper*, la quale ha il compito di interrompere permanentemente l'esecuzione del sensore simulato.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Elimina il sensore nel sistema di persistenza tramite il metodo *DeleteSensor(cmdData \*DeleteSensor)* dell'interfaccia *SensorDeleterPort*.
-  - Interrompe permanentemente l'esecuzione del sensore simulato tramite il metodo *Stop()* dell'interfaccia *SensorStopper*.
+- `cmdData`: riferimento alla struct di tipo *DeleteSensor* contenente il *sensorId* e il *gatewayId* del sensore da eliminare.
+- `configService`: riferimento all'interfaccia *SensorDeleterPort*, la quale rappresenta l'outbound port per eliminare il sensore nel sistema di persistenza.
+- `sensorStopper`: riferimento all'interfaccia *SensorStopper*, la quale ha il compito di interrompere permanentemente l'esecuzione del sensore simulato.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Elimina il sensore nel sistema di persistenza tramite il metodo `DeleteSensor(cmdData *DeleteSensor)` dell'interfaccia `SensorDeleterPort`.
+  - Interrompe permanentemente l'esecuzione del sensore simulato tramite il metodo `Stop()` dell'interfaccia `SensorStopper`.
 
 ===== InterruptGatewayCmd
 Il comando *InterruptGatewayCmd* ha lo scopo di interrompere temporaneamente l'esecuzione di un gateway simulato, mettendolo in uno stato in cui non invia dati IoT ma può essere riattivato successivamente.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *InterruptGateway* contenente il *gatewayId* del gateway da interrompere.
-- *gatewayInterrupterPort*: riferimento all'interfaccia *GatewayInterrupterPort*, la quale rappresenta l'outbound port per interrompere il gateway nel sistema di persistenza.
-- *sender*: riferimento all'interfaccia *DataSenderInterrupter*, la quale ha il compito di interrompere temporaneamente l'invio di dati IoT.
-- *status*: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo l'interruzione.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Aggiorna le informazioni del gateway nel sistema di persistenza tramite il metodo *InterruptGateway(cmdData \*InterruptGateway, status GatewayStatus)* dell'interfaccia *GatewayInterrupterPort*.
-  - Interrompe temporaneamente l'invio di dati IoT tramite il metodo *Interrupt()* dell'interfaccia *DataSenderInterrupter*.
+- `cmdData`: riferimento alla struct di tipo *InterruptGateway* contenente il *gatewayId* del gateway da interrompere.
+- `gatewayInterrupterPort`: riferimento all'interfaccia *GatewayInterrupterPort*, la quale rappresenta l'outbound port per interrompere il gateway nel sistema di persistenza.
+- `sender`: riferimento all'interfaccia *DataSenderInterrupter*, la quale ha il compito di interrompere temporaneamente l'invio di dati IoT.
+- `status`: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo l'interruzione.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Aggiorna le informazioni del gateway nel sistema di persistenza tramite il metodo `InterruptGateway(cmdData *InterruptGateway, status GatewayStatus)` dell'interfaccia `GatewayInterrupterPort`.
+  - Interrompe temporaneamente l'invio di dati IoT tramite il metodo `Interrupt()` dell'interfaccia *DataSenderInterrupter*.
 
 ===== InterruptSensorCmd
 Il comando *InterruptSensorCmd* ha lo scopo di interrompere temporaneamente l'esecuzione di un sensore simulato, mettendolo in uno stato in cui non genera dati IoT ma può essere riattivato successivamente.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *InterruptSensor* contenente il *sensorId* e il *gatewayId* del sensore da interrompere.
-- *sensorInterrupterPort*: riferimento all'interfaccia *SensorInterrupterPort*, la quale rappresenta l'outbound port per interrompere il sensore nel sistema di persistenza.
-- *simulatedSensor*: riferimento all'interfaccia di tipo *SensorInterrupter* che ha il compito di interrompere temporaneamente la generazione di dati IoT nel sensore simulato.
-- *status*: enum di tipo *SensorStatus*, rappresenta lo stato che deve avere il sensore dopo l'interruzione.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Aggiorna le informazioni del sensore nel sistema di persistenza tramite il metodo *InterruptSensor(cmdData \*InterruptSensor, status SensorStatus)* dell'interfaccia *SensorInterrupterPort*.
-  - Interrompe temporaneamente la generazione di dati IoT tramite il metodo *Interrupt()* dell'interfaccia *SensorInterrupter*.
+- `cmdData`: riferimento alla struct di tipo *InterruptSensor* contenente il *sensorId* e il *gatewayId* del sensore da interrompere.
+- `sensorInterrupterPort`: riferimento all'interfaccia *SensorInterrupterPort*, la quale rappresenta l'outbound port per interrompere il sensore nel sistema di persistenza.
+- `simulatedSensor`: riferimento all'interfaccia di tipo *SensorInterrupter* che ha il compito di interrompere temporaneamente la generazione di dati IoT nel sensore simulato.
+- `status`: enum di tipo *SensorStatus*, rappresenta lo stato che deve avere il sensore dopo l'interruzione.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Aggiorna le informazioni del sensore nel sistema di persistenza tramite il metodo `InterruptSensor(cmdData *InterruptSensor, status SensorStatus)` dell'interfaccia `SensorInterrupterPort`.
+  - Interrompe temporaneamente la generazione di dati IoT tramite il metodo `Interrupt()` dell'interfaccia *SensorInterrupter*.
 
 ===== RebootGatewayCmd
 Il comando *RebootGatewayCmd* ha lo scopo di simulare un riavvio del gateway simulato, in realtà invia solamente un nuovo messaggio di hello.
 La struct ha i seguenti attributi e metodi:
-- *greeter*: riferimento all'interfaccia *GatewayGreeter*, ovvero l'outbound port con il compito di inviare un messaggio di hello dal gateway simulato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica*.
-- *Execute() error*: è il metodo che esegue il comando inviando un messaggio di hello dal gateway simulato attraverso il metodo *Hello()*. dell'interfaccia *GatewayGreeter*.
+- `greeter`: riferimento all'interfaccia *GatewayGreeter*, ovvero l'outbound port con il compito di inviare un messaggio di hello dal gateway simulato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica*.
+- `Execute() error`: è il metodo che esegue il comando inviando un messaggio di hello dal gateway simulato attraverso il metodo `Hello()`. dell'interfaccia *GatewayGreeter*.
 
 ===== ResetGatewayCmd
 Il comando *ResetGatewayCmd* ha lo scopo di simulare un reset del gateway simulato riportando le sue configurazioni alle impostazioni di default. Ciò che fa è resettare solamente l'intervallo di invio dei dati al valore di default (5 secondi).
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *ResetGateway* contenente il *gatewayId* del gateway da resettare.
-- *gatewayResetterPort*: riferimento all'interfaccia *GatewayResetterPort*, la quale rappresenta l'outbound port per resettare la configurazione del gateway nel sistema di persistenza.
-- *sender*: riferimento all'interfaccia *DataSenderResetter*, la quale ha il compito di resettare la configurazione del gateway simulato.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Resetta la configurazione del gateway nel sistema di persistenza tramite il metodo *ResetGateway(cmdData \*ResetGateway, defaultInterval time.Duration)* dell'interfaccia *GatewayResetterPort*.
-  - Resetta l'intervallo di invio del gateway simulato tramite il metodo *Reset(defaultInterval time.Duration)* dell'interfaccia *DataSenderResetter*.
+- `cmdData`: riferimento alla struct di tipo *ResetGateway* contenente il *gatewayId* del gateway da resettare.
+- `gatewayResetterPort`: riferimento all'interfaccia *GatewayResetterPort*, la quale rappresenta l'outbound port per resettare la configurazione del gateway nel sistema di persistenza.
+- `sender`: riferimento all'interfaccia *DataSenderResetter*, la quale ha il compito di resettare la configurazione del gateway simulato.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Resetta la configurazione del gateway nel sistema di persistenza tramite il metodo `ResetGateway(cmdData *ResetGateway, defaultInterval time.Duration)` dell'interfaccia `GatewayResetterPort`.
+  - Resetta l'intervallo di invio del gateway simulato tramite il metodo `Reset(defaultInterval time.Duration)` dell'interfaccia *DataSenderResetter*.
 
 ===== ResumeGatewayCmd
 Il comando *ResumeGatewayCmd* ha lo scopo di riattivare un gateway simulato precedentemente interrotto, permettendogli di inviare nuovamente dati IoT.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *ResumeGateway* contenente il *gatewayId* del gateway da riattivare.
-- *resumerPort*: riferimento all'interfaccia *GatewayResumerPort*, la quale rappresenta l'outbound port per riattivare il gateway nel sistema di persistenza.
-- *sender*: riferimento all'interfaccia *DataSenderResumer*, la quale ha il compito di riattivare l'invio di dati IoT.
-- *status*: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo la riattivazione.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Aggiorna le informazioni del gateway nel sistema di persistenza tramite il metodo *ResumeGateway(cmdData \*ResumeGateway, status GatewayStatus)* dell'interfaccia *GatewayResumerPort*.
-  - Riattiva l'invio di dati IoT tramite il metodo *Resume()* dell'interfaccia *DataSenderResumer*.
+- `cmdData`: riferimento alla struct di tipo *ResumeGateway* contenente il *gatewayId* del gateway da riattivare.
+- `resumerPort`: riferimento all'interfaccia *GatewayResumerPort*, la quale rappresenta l'outbound port per riattivare il gateway nel sistema di persistenza.
+- `sender`: riferimento all'interfaccia *DataSenderResumer*, la quale ha il compito di riattivare l'invio di dati IoT.
+- `status`: enum di tipo *GatewayStatus*, rappresenta lo stato che deve avere il gateway dopo la riattivazione.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Aggiorna le informazioni del gateway nel sistema di persistenza tramite il metodo `ResumeGateway(cmdData *ResumeGateway, status GatewayStatus)` dell'interfaccia `GatewayResumerPort`.
+  - Riattiva l'invio di dati IoT tramite il metodo `Resume()` dell'interfaccia `DataSenderResumer`.
 
 ===== ResumeSensorCmd
 Il comando *ResumeSensorCmd* ha lo scopo di riattivare un sensore simulato precedentemente interrotto, permettendogli di generare nuovamente dati IoT.
 La struct ha i seguenti attributi e metodi:
-- *cmdData*: riferimento alla struct di tipo *ResumeSensor* contenente il *sensorId* e il *gatewayId* del sensore da riattivare.
-- *resumerPort*: riferimento all'interfaccia *SensorResumerPort*, la quale rappresenta l'outbound port per riattivare il sensore nel sistema di persistenza.
-- *simulatedSensor*: riferimento all'interfaccia di tipo *SensorResumer* che ha il compito di riattivare la generazione di dati IoT nel sensore simulato.
-- *status*: enum di tipo *SensorStatus*, rappresenta lo stato che deve avere il sensore dopo la riattivazione.
-- *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
-  - Aggiorna le informazioni del sensore nel sistema di persistenza tramite il metodo *ResumeSensor(cmdData \*ResumeSensor, status SensorStatus)* dell'interfaccia *SensorResumerPort*.
-  - Riattiva la generazione di dati IoT tramite il metodo *Resume()* dell'interfaccia *SensorResumer*.
+- `cmdData`: riferimento alla struct di tipo *ResumeSensor* contenente il *sensorId* e il *gatewayId* del sensore da riattivare.
+- `resumerPort`: riferimento all'interfaccia *SensorResumerPort*, la quale rappresenta l'outbound port per riattivare il sensore nel sistema di persistenza.
+- `simulatedSensor`: riferimento all'interfaccia di tipo *SensorResumer* che ha il compito di riattivare la generazione di dati IoT nel sensore simulato.
+- `status`: enum di tipo *SensorStatus*, rappresenta lo stato che deve avere il sensore dopo la riattivazione.
+- `Execute() error`: è il metodo che esegue il comando svolgendo i seguenti passi:
+  - Aggiorna le informazioni del sensore nel sistema di persistenza tramite il metodo `ResumeSensor(cmdData *ResumeSensor, status SensorStatus)` dell'interfaccia `SensorResumerPort`.
+  - Riattiva la generazione di dati IoT tramite il metodo `Resume()` dell'interfaccia `SensorResumer`.
 
 ===== StopSensorCmd
 Il comando *StopSensorCmd* ha lo scopo di interrompere permanentemente un sensore simulato, mettendolo in uno stato in cui non genera più dati IoT e non può essere riattivato successivamente.
 La struct ha i seguenti attributi e metodi:
-- *sensorStopper*: riferimento all'interfaccia *SensorStopperPort*, la quale rappresenta l'outbound port per interrompere permanentemente l'invio dei dati IoT da parte del sensore simulato
-- *Execute() error*: è il metodo che esegue il comando interrompendo permanentemente l'invio dei dati IoT tramite il metodo *Stop()* dell'interfaccia *SensorStopper*.
+- `sensorStopper`: riferimento all'interfaccia *SensorStopperPort*, la quale rappresenta l'outbound port per interrompere permanentemente l'invio dei dati IoT da parte del sensore simulato
+- `Execute() error`: è il metodo che esegue il comando interrompendo permanentemente l'invio dei dati IoT tramite il metodo `Stop()` dell'interfaccia `SensorStopper`.
 
 ==== Gateway simulato
 Il gateway simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un gateway IoT reale, ascoltando comandi in ingresso e di svuotare periodicamente un buffer interno di dati generati dai sensori simulati associati, inviandoli via #gloss[NATS JetStream].
 
 Il gateway simulato è fatto partire dal comando *CreateGatewayCmd* come una *goroutine* separata, in modo da eseguire ogni gateway simulato in parallelo e garantire l'esecuzione di un comando alla volta per gateway.\
 
-Ogni gateway simulato ha due *channel*: uno per ricevere i comandi di tipo *BaseCommand* e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
+Ogni gateway simulato ha due *channel*: uno per ricevere i comandi di tipo `BaseCommand` e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
 
 #figure(
@@ -1295,39 +1302,39 @@ Ogni gateway simulato ha due *channel*: uno per ricevere i comandi di tipo *Base
 Il *BufferedDataSenderService* è il componente che rappresenta l'effettivo gateway simulato e le azioni che può eseguire. È l'implementazione dell'interfaccia *DataSender* la quale ha incorporato le seguenti interfacce: *DataSenderStarter*, *DataSenderStopper*,*DataSenderInterrupter*, *DataSenderResumer*, *DataSenderResetter*, *DataSenderCommissioner*, *DataSenderDecommissioner* e *DataSenderGreeter*, le quali rappresentano le azioni che si possono eseguire sul gateway simulato per modificarne il comportamento.
 
 La struct ha i seguenti attributi e metodi:
-- *gateway*: è una struct di tipo *Gateway* che contiene la configurazione del gateway simulato (@gateway-struct).
-- *sendDataPort*: riferimento all'interfaccia *SendSensorDataPort*, la quale rappresenta l'outbound port per inviare i dati generati dai sensori simulati e il messaggio di hello associati al gateway tramite NATS JetStream.
-- *sendSensorDataPortFactory*: riferimento all'interfaccia *SendSensorDataPortFactory*, utile a creare una nuova istanza di tipo *SendSensorDataPort* per ogni gateway simulato, in modo che tutti i gateway abbiano un'istanza dedicata per inviare eventualmente i dati via NATS con credenziali che cambiano a runtime.
-- *bufferedDataPort*: riferimento all'interfaccia *BufferedDataPort*, utile ad ottenere i dati all'interno del buffer per il gateway simulato, in modo da svuotarlo periodicamente inviando i dati generati dai sensori simulati associati tramite NATS JetStream.
-- *cmdChannel*: canale di tipo *chan BaseCommand* per ricevere i comandi da eseguire sul gateway simulato.
-- *errChannel*: canale di tipo *chan error* per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
-- *ticker*: riferimento ad una struct di tipo *time.Ticker* per gestire l'intervallo di tempo tra gli invii dei dati generati dai sensori simulati associati al gateway.
-- *Start()*: è il metodo che avvia l'esecuzione del gateway simulato. Ascolta costantemente i comandi in arrivo dal *cmdChannel* e li esegue, inoltre svuota periodicamente il buffer interno secondo il *ticker* definito inviando i dati tramite l'interfaccia *SendSensorDataPort*.
-- *Hello()*: è il metodo che invia un messaggio di hello tramite il metodo *Hello(gatewayId uuid.UUID, publicIdentifier string)* dell'interfaccia *SendSensorDataPort*.
-- *Decommission()*: è il metodo che decommissiona il gateway simulato, cambia lo stato del gateway, pulisce il buffer interno e reimposta le credenziali di base.
-- *Commission(tenantId uuid.UUID, commissionedToken string)*: è il metodo che commissiona il gateway simulato. Dato un *tenantId* e un *commissionedToken* (JWT basato sulla public key del gateway), aggiorna le credenziali del gateway simulato e lo associa al nuovo tenant.
-- *Reset()*: è il metodo che resetta la configurazione del gateway simulato, in questo caso resetta l'intervallo di invio dei dati al valore di default (5 secondi) e svuota il buffer interno.
-- *Interrupt()*: è il metodo che interrompe temporaneamente l'esecuzione del gateway simulato, cambia lo stato del gateway in *inactive*.
-- *Resume()*: è il metodo che riattiva un gateway simulato precedentemente interrotto, cambia lo stato del gateway in *active*.
-- *Stop()*: è il metodo che interrompe permanentemente l'esecuzione del gateway simulato, cambia lo stato del gateway in *stopped*.
+- `gateway`: è una struct di tipo *Gateway* che contiene la configurazione del gateway simulato (@gateway-struct).
+- `sendDataPort`: riferimento all'interfaccia *SendSensorDataPort*, la quale rappresenta l'outbound port per inviare i dati generati dai sensori simulati e il messaggio di hello associati al gateway tramite NATS JetStream.
+- `sendSensorDataPortFactory`: riferimento all'interfaccia `SendSensorDataPortFactory`, utile a creare una nuova istanza di tipo `SendSensorDataPort` per ogni gateway simulato, in modo che tutti i gateway abbiano un'istanza dedicata per inviare eventualmente i dati via NATS con credenziali che cambiano a runtime.
+- `bufferedDataPort`: riferimento all'interfaccia `BufferedDataPort`, utile ad ottenere i dati all'interno del buffer per il gateway simulato, in modo da svuotarlo periodicamente inviando i dati generati dai sensori simulati associati tramite NATS JetStream.
+- `cmdChannel`: canale di tipo `chan BaseCommand` per ricevere i comandi da eseguire sul gateway simulato.
+- `errChannel`: canale di tipo `chan error` per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
+- `ticker`: riferimento ad una struct di tipo `time.Ticker` per gestire l'intervallo di tempo tra gli invii dei dati generati dai sensori simulati associati al gateway.
+- `Start()`: è il metodo che avvia l'esecuzione del gateway simulato. Ascolta costantemente i comandi in arrivo dal *cmdChannel* e li esegue, inoltre svuota periodicamente il buffer interno secondo il *ticker* definito inviando i dati tramite l'interfaccia *SendSensorDataPort*.
+- `Hello()`: è il metodo che invia un messaggio di hello tramite il metodo `Hello(gatewayId uuid.UUID, publicIdentifier string)` dell'interfaccia *SendSensorDataPort*.
+- `Decommission()`: è il metodo che decommissiona il gateway simulato, cambia lo stato del gateway, pulisce il buffer interno e reimposta le credenziali di base.
+- `Commission(tenantId uuid.UUID, commissionedToken string)`: è il metodo che commissiona il gateway simulato. Dato un *tenantId* e un *commissionedToken* (JWT basato sulla public key del gateway), aggiorna le credenziali del gateway simulato e lo associa al nuovo tenant.
+- `Reset()`: è il metodo che resetta la configurazione del gateway simulato, in questo caso resetta l'intervallo di invio dei dati al valore di default (5 secondi) e svuota il buffer interno.
+- `Interrupt()`: è il metodo che interrompe temporaneamente l'esecuzione del gateway simulato, cambia lo stato del gateway in *inactive*.
+- `Resume()`: è il metodo che riattiva un gateway simulato precedentemente interrotto, cambia lo stato del gateway in *active*.
+- `Stop()`: è il metodo che interrompe permanentemente l'esecuzione del gateway simulato, cambia lo stato del gateway in *stopped*.
 
 ===== Gateway <gateway-struct>
 La struct *Gateway* rappresenta la configurazione del gateway simulato, contiene i seguenti campi:
-- *Id*: UUID del gateway simulato.
-- *TenantId*: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
-- *Sensors*: mappa dei sensori associati al gateway con chiave UUID e valore di tipo *Sensor* che contiene la configurazione del sensore (@sensor-struct).
-- *Status*: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway.
-- *Interval*: intervallo di tempo tra gli invii di dati.
-- *PublicIdentifier*: stringa rappresentante la chiave pubblica del gateway.
-- *SecretKey*: stringa rappresentante la chiave privata del gateway.
-- *Token*: stringa rappresentante il token (JWT) di autenticazione del gateway.
+- `Id`: UUID del gateway simulato.
+- `TenantId`: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
+- `Sensors`: mappa dei sensori associati al gateway con chiave UUID e valore di tipo *Sensor* che contiene la configurazione del sensore (@sensor-struct).
+- `Status`: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway.
+- `Interval`: intervallo di tempo tra gli invii di dati.
+- `PublicIdentifier`: stringa rappresentante la chiave pubblica del gateway.
+- `SecretKey`: stringa rappresentante la chiave privata del gateway.
+- `Token`: stringa rappresentante il token (JWT) di autenticazione del gateway.
 
 ===== GatewayStatus <gateway-status-enum>
 L'enum *GatewayStatus* rappresenta lo stato del gateway simulato, i possibili stati sono:
-- *Active*: il gateway simulato è attivo e può inviare regolarmente dati IoT.
-- *Inactive*: il gateway simulato è interrotto temporaneamente e non invia dati IoT, ma può essere riattivato successivamente.
-- *Decommissioned*: il gateway simulato è decommissionato, ovvero non è associato a nessun tenant. Inoltre non invia dati IoT, ma può ricevere comandi, come ad esempio il comando di commissioning per essere associato ad un tenant e tornare attivo.
-- *Stopped*: il gateway simulato è interrotto permanentemente, non invia dati IoT e non può essere riattivato successivamente.
+- `Active`: il gateway simulato è attivo e può inviare regolarmente dati IoT.
+- `Inactive`: il gateway simulato è interrotto temporaneamente e non invia dati IoT, ma può essere riattivato successivamente.
+- `Decommissioned`: il gateway simulato è decommissionato, ovvero non è associato a nessun tenant. Inoltre non invia dati IoT, ma può ricevere comandi, come ad esempio il comando di commissioning per essere associato ad un tenant e tornare attivo.
+- `Stopped`: il gateway simulato è interrotto permanentemente, non invia dati IoT e non può essere riattivato successivamente.
 
 #figure(
   image("../../assets/c4/gateway/GatewayStatus.pdf", width: 100%),
@@ -1337,46 +1344,46 @@ L'enum *GatewayStatus* rappresenta lo stato del gateway simulato, i possibili st
 ===== NATSDataPublisherFactory
 Il *NATSDataPublisherFactory* è l'implementazione dell'interfaccia *SendSensorDataPortFactory* che ha lo scopo di creare una nuova istanza di tipo *SendSensorDataPort* per ogni gateway simulato, in modo che tutti i gateway abbiano un'istanza dedicata per inviare eventualmente i dati via NATS con credenziali che cambiano a runtime.\
 La struct ha i seguenti attributi e metodi:
-- *nc*: riferimento a *nats.Conn* rappresentante la connessione a NATS. Viene passata la connessione di base (permette messaggi di hello e ricezione comandi) via #gloss[dependency injection] al momento della creazione della *NATSDataPublisherFactory*.
-- *js*: riferimento a *jetstream.JetStream* che rappresenta il contesto JetStream per l'invio dei dati tramite #gloss[NATS JetStream]. Viene creato a partire dalla connessione a NATS.
-- *caPemPath*: stringa rappresentante il percorso del certificato CA in formato *.pem* per la connessione via *TLS* con NATS.
-- *address*: stringa rappresentante l'indirizzo del server NATS.
-- *port*: stringa rappresentante la porta del server NATS.
-- *Create() SendSensorDataPort*: è il metodo che crea e restituisce una nuova istanza di tipo *SendSensorDataPort* (ovvero *NATSDataPublisherRepository*) con le credenziali di base, utile per inviare i messaggi di hello e per l'ascolto di comandi per i gateway o sensori simulati.
-- *Reload(token string, seed string) (SendSensorDataPort, error)*: è il metodo che dato il nuovo token (JWT basato sulla public key del gateway) e la chiave privata del gateway, crea e restituisce una nuova istanza di tipo *SendSensorDataPort* (ovvero *NATSDataPublisherRepository*) con le nuove credenziali.
+- `nc`: riferimento a `nats.Conn` rappresentante la connessione a NATS. Viene passata la connessione di base (permette messaggi di hello e ricezione comandi) via #gloss[dependency injection] al momento della creazione della *NATSDataPublisherFactory*.
+- `js`: riferimento a `jetstream.JetStream` che rappresenta il contesto JetStream per l'invio dei dati tramite #gloss[NATS JetStream]. Viene creato a partire dalla connessione a NATS.
+- `caPemPath`: stringa rappresentante il percorso del certificato CA in formato *.pem* per la connessione via *TLS* con NATS.
+- `address`: stringa rappresentante l'indirizzo del server NATS.
+- `port`: stringa rappresentante la porta del server NATS.
+- `Create() SendSensorDataPort`: è il metodo che crea e restituisce una nuova istanza di tipo *SendSensorDataPort* (ovvero *NATSDataPublisherRepository*) con le credenziali di base, utile per inviare i messaggi di hello e per l'ascolto di comandi per i gateway o sensori simulati.
+- `Reload(token string, seed string) (SendSensorDataPort, error)`: è il metodo che dato il nuovo token (JWT basato sulla public key del gateway) e la chiave privata del gateway, crea e restituisce una nuova istanza di tipo *SendSensorDataPort* (ovvero *NATSDataPublisherRepository*) con le nuove credenziali.
 
 ===== NATSDataPublisherRepository
 La struct *NATSDataPublisherRepository* è l'implementazione dell'interfaccia *SendSensorDataPort* che ha lo scopo di inviare i dati IoT e i messaggi di hello tramite *NATS JetStream*.
 
 La struct ha i seguenti attributi e metodi:
-- *nc*: riferimento a *nats.Conn* rappresentante la connessione a NATS.
-- *js*: riferimento a *jetstream.JetStream* la quale rappresenta il contesto JetStream per l'invio dei dati tramite #gloss[NATS JetStream].
-- *Send(d \*sensorData, tenantId uuid.UUID) error*: è il metodo che, data una misurazione IoT di tipo *sensorData* (vedi @sensor-data-struct), la invia tramite *NATS* al subject specifico per il tenant di appartenenza del gateway simulato.
-- *Hello(gatewayId uuid.UUID, publicIdentifier string) error*: è il metodo che invia un messaggio di hello tramite *NATS JetStream* al subject specifico per i messaggi di hello, comunicando il *gatewayId* e la *chiave pubblica* del gateway simulato.
+- `nc`: riferimento a `nats.Conn` rappresentante la connessione a NATS.
+- `js`: riferimento a `jetstream.JetStream` la quale rappresenta il contesto JetStream per l'invio dei dati tramite #gloss[NATS JetStream].
+- `Send(d *sensorData, tenantId uuid.UUID) error`: è il metodo che, data una misurazione IoT di tipo *sensorData* (vedi @sensor-data-struct), la invia tramite *NATS* al subject specifico per il tenant di appartenenza del gateway simulato.
+- `Hello(gatewayId uuid.UUID, publicIdentifier string) error`: è il metodo che invia un messaggio di hello tramite *NATS JetStream* al subject specifico per i messaggi di hello, comunicando il *gatewayId* e la *chiave pubblica* del gateway simulato.
 
 ===== BufferedDataRepository
 La struct *BufferedDataRepository* è l'implementazione dell'interfaccia *BufferedDataPort* che ha lo scopo di gestire un buffer interno di dati generati dai sensori simulati associati al gateway, in modo da ottenerne i dati e svuotarlo periodicamente.
 
 La struct ha i seguenti attributi e metodi:
-- *dbConnection*: riferimento a *BufferDbConnection*, rappresentante la connessione al database per il buffer interno dei dati generati dai sensori simulati associati al gateway.
-- *GetOrderedBufferedData(gatewayId uuid.UUID) ([]\*sensorData, error)*: è il metodo che dato un *gatewayId* restituisce un array ordinato di *sensorData* rappresentante i dati presenti nel buffer interno del gateway simulato.
-- *CleanBufferedData(data []\*sensorData) error*: è il metodo che dato un array di *sensorData* li elimina dal database del buffer interno.
-- *CleanWholeBuffer(gatewayId uuid.UUID) error*: è il metodo che dato un *gatewayId* elimina tutti i dati presenti nel buffer interno del gateway simulato.
+- `dbConnection`: riferimento a *BufferDbConnection*, rappresentante la connessione al database per il buffer interno dei dati generati dai sensori simulati associati al gateway.
+- `GetOrderedBufferedData(gatewayId uuid.UUID) ([]*sensorData, error)`: è il metodo che dato un *gatewayId* restituisce un array ordinato di *sensorData* rappresentante i dati presenti nel buffer interno del gateway simulato.
+- `CleanBufferedData(data []*sensorData) error`: è il metodo che dato un array di *sensorData* li elimina dal database del buffer interno.
+- `CleanWholeBuffer(gatewayId uuid.UUID) error`: è il metodo che dato un *gatewayId* elimina tutti i dati presenti nel buffer interno del gateway simulato.
 
 ===== SensorData <sensor-data-struct>
 La struct *sensorData* rappresenta la misurazione IoT generata da un sensore simulato, contiene i seguenti campi:
-- *SensorId*: UUID del sensore simulato che ha generato la misurazione
-- *GatewayId*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- *Timestamp*: timestamp rappresentante il momento in cui è stata generata la misurazione.
-- *Profile*: stringa rappresentante il profilo del sensore simulato che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- *Value*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+- `SensorId`: UUID del sensore simulato che ha generato la misurazione
+- `GatewayId`: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- `Timestamp`: timestamp rappresentante il momento in cui è stata generata la misurazione.
+- `Profile`: stringa rappresentante il profilo del sensore simulato che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- `Value`: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
 
 ==== Sensore simulato
 Il sensore simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un sensore IoT reale, generando periodicamente delle misurazioni IoT e salvandole nel buffer interno del gateway simulato.
 
 Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una *goroutine* separata, in modo da eseguire ogni sensore simulato in parallelo.
 
-Ogni sensore simulato ha due channel: uno per ricevere i comandi di tipo *BaseCommand* e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
+Ogni sensore simulato ha due channel: uno per ricevere i comandi di tipo `BaseCommand` e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
 #figure(
   image("../../assets/c4/gateway/SensorCodeDiagram.pdf", width: 100%),
@@ -1387,60 +1394,60 @@ Ogni sensore simulato ha due channel: uno per ricevere i comandi di tipo *BaseCo
 Il *SensorService* è l'implementazione dell'interfaccia *SimulatedSensor* la quale definisce le azioni che un sensore simulato può eseguire per modificare il proprio comportamento.\
 
 La struct ha i seguenti attributi e metodi:
-- *sensor*: è una struct di tipo *Sensor* che contiene la configurazione del sensore simulato (@sensor-struct).
-- *bufferedDataPort*: riferimento all'interfaccia *SaveSensorDataPort*, la quale rappresenta l'outbound port per salvare i dati generati dal sensore simulato nel buffer interno del gateway simulato.
-- *cmdChannel*: riferimento al canale di tipo *chan BaseCommand* per ricevere i comandi.
-- *errChannel*: riferimento al canale di tipo *chan error* per inviare eventuali errori in caso di problemi durante l'esecuzione dei comandi.
-- *Start()*: è il metodo che avvia l'esecuzione del sensore simulato. Genera periodicamente delle misurazioni IoT secondo la configurazione del sensore e le salva nel buffer interno del gateway simulato tramite l'interfaccia *SaveSensorDataPort*. Inoltre ascolta costantemente i comandi in arrivo dal *cmdChannel* e li esegue.
-- *Stop()*: è il metodo che interrompe permanentemente l'esecuzione del sensore simulato cambiando lo stato del sensore in *stopped*.
-- *Interrupt()*: è il metodo che interrompe temporaneamente l'esecuzione del sensore simulato cambiando lo stato del sensore in *inactive*.
-- *Resume()*: è il metodo che riattiva un sensore simulato precedentemente interrotto cambiando lo stato del sensore in *active*.
+- `sensor`: è una struct di tipo *Sensor* che contiene la configurazione del sensore simulato (@sensor-struct).
+- `bufferedDataPort`: riferimento all'interfaccia *SaveSensorDataPort*, la quale rappresenta l'outbound port per salvare i dati generati dal sensore simulato nel buffer interno del gateway simulato.
+- `cmdChannel`: riferimento al canale di tipo `chan BaseCommand` per ricevere i comandi.
+- `errChannel`: riferimento al canale di tipo `chan error` per inviare eventuali errori in caso di problemi durante l'esecuzione dei comandi.
+- `Start()`: è il metodo che avvia l'esecuzione del sensore simulato. Genera periodicamente delle misurazioni IoT secondo la configurazione del sensore e le salva nel buffer interno del gateway simulato tramite l'interfaccia *SaveSensorDataPort*. Inoltre ascolta costantemente i comandi in arrivo dal *cmdChannel* e li esegue.
+- `Stop()`: è il metodo che interrompe permanentemente l'esecuzione del sensore simulato cambiando lo stato del sensore in *stopped*.
+- `Interrupt()`: è il metodo che interrompe temporaneamente l'esecuzione del sensore simulato cambiando lo stato del sensore in *inactive*.
+- `Resume()`: è il metodo che riattiva un sensore simulato precedentemente interrotto cambiando lo stato del sensore in *active*.
 
 ===== Sensor <sensor-struct>
 La struct *Sensor* rappresenta la configurazione del sensore simulato, contiene i seguenti campi:
-- *Id*: UUID del sensore simulato.
-- *GatewayId*: UUID del gateway simulato a cui è associato il sensore.
-- *Profile*: interfaccia rappresentante il profilo del sensore simulato, utile per identificare il tipo di dato generato e per la generazione delle misurazioni (vedi @sensor-profile).
-- *Interval*: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
-- *Status*: enum di tipo *SensorStatus* (vedi @sensor-status-enum) rappresentante lo stato corrente del sensore.
+- `Id`: UUID del sensore simulato.
+- `GatewayId`: UUID del gateway simulato a cui è associato il sensore.
+- `Profile`: interfaccia rappresentante il profilo del sensore simulato, utile per identificare il tipo di dato generato e per la generazione delle misurazioni (vedi @sensor-profile).
+- `Interval`: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
+- `Status`: enum di tipo *SensorStatus* (vedi @sensor-status-enum) rappresentante lo stato corrente del sensore.
 
 ===== SensorStatus <sensor-status-enum>
 L'enum *SensorStatus* rappresenta lo stato del sensore simulato, i possibili stati sono:
-- *Active*: il sensore simulato è attivo e può generare misurazioni IoT. È lo stato di default alla creazione
-- *Inactive*: il sensore simulato è interrotto temporaneamente e non può generare misurazioni IoT, ma può essere riattivato successivamente.
-- *Stopped*: il sensore simulato è interrotto permanentemente, non può generare misurazioni IoT e non può essere riattivato successivamente.
+- `Active`: il sensore simulato è attivo e può generare misurazioni IoT. È lo stato di default alla creazione
+- `Inactive`: il sensore simulato è interrotto temporaneamente e non può generare misurazioni IoT, ma può essere riattivato successivamente.
+- `Stopped`: il sensore simulato è interrotto permanentemente, non può generare misurazioni IoT e non può essere riattivato successivamente.
 
 ===== SensorProfile <sensor-profile>
-L'interfaccia *SensorProfile* rappresenta il profilo del sensore simulato e definisce il metodo *Generate() \*GeneratedSensorData*, che produce una nuova misurazione in base al profilo selezionato.\
-Espone inoltre il metodo *String() string* per ottenere il nome del profilo in forma testuale, utile per identificare in modo univoco il tipo di dato generato.
+L'interfaccia *SensorProfile* rappresenta il profilo del sensore simulato e definisce il metodo `Generate() *GeneratedSensorData`, che produce una nuova misurazione in base al profilo selezionato.\
+Espone inoltre il metodo `String() string` per ottenere il nome del profilo in forma testuale, utile per identificare in modo univoco il tipo di dato generato.
 
 I profili supportati sono i seguenti:
-- *ECG*: genera un tracciato elettrocardiografico simulato, rappresentato da un array di interi che rappresentano i valori del tracciato in *uV*.
-- *EnvironmentalSensing*: genera misure ambientali, come temperatura, umidità e pressione atmosferica. Le rispettive unità di misura sono: temperatura in *°C*, umidità in *%* e pressione atmosferica in *Pascal*.
-- *HealthThermometer*: genera la temperatura corporea e specifica l'unità di misura per differenziare eventuali formati di misura.
-- *HeartRate*: genera la frequenza cardiaca in *bpm*.
-- *PulseOximeter*: genera saturazione di ossigeno (*SpO2*) e frequenza cardiaca.
+- `ECG`: genera un tracciato elettrocardiografico simulato, rappresentato da un array di interi che rappresentano i valori del tracciato in *uV*.
+- `EnvironmentalSensing`: genera misure ambientali, come temperatura, umidità e pressione atmosferica. Le rispettive unità di misura sono: temperatura in *°C*, umidità in *%* e pressione atmosferica in *Pascal*.
+- `HealthThermometer`: genera la temperatura corporea e specifica l'unità di misura per differenziare eventuali formati di misura.
+- `HeartRate`: genera la frequenza cardiaca in *bpm*.
+- `PulseOximeter`: genera saturazione di ossigeno (*SpO2*) e frequenza cardiaca.
 
-Ogni profilo implementa il metodo *Generate()* in modo da ritornare una struct di tipo *GeneratedSensorData* (vedi @generated-sensor-data).
+Ogni profilo implementa il metodo `Generate()` in modo da ritornare una struct di tipo *GeneratedSensorData* (vedi @generated-sensor-data).
 
 ===== GeneratedSensorData <generated-sensor-data>
 La struct *GeneratedSensorData* rappresenta il contenitore comune di una misurazione prodotta da qualunque profilo sensore.
 Contiene i seguenti campi:
-- *SensorId*: UUID del sensore simulato che ha generato la misurazione.
-- *Timestamp*: istante di generazione della misurazione.
-- *Profile*: nome del profilo che ha prodotto il dato.
-- *Data*: payload della misurazione, tipizzato come interfaccia *SerializableData* (vedi @serializable-data).
+- `SensorId`: UUID del sensore simulato che ha generato la misurazione.
+- `Timestamp`: istante di generazione della misurazione.
+- `Profile`: nome del profilo che ha prodotto il dato.
+- `Data`: payload della misurazione, tipizzato come interfaccia *SerializableData* (vedi @serializable-data).
 
 ===== SerializableData <serializable-data>
-L'interfaccia *SerializableData* definisce il contratto di serializzazione dei dati di misura tramite il metodo *Serialize() ([]byte, error)*.
+L'interfaccia *SerializableData* definisce il contratto di serializzazione dei dati di misura tramite il metodo `Serialize() ([]byte, error)*`.
 Ogni struttura dati specifica di profilo implementa questo metodo serializzando il contenuto in formato JSON, così da ottenere una rappresentazione uniforme e trasportabile indipendentemente dal tipo concreto della misurazione.
 
 ===== SQLiteSaveSensorDataRepository
 La struct *SQLiteSaveSensorDataRepository* è l'implementazione dell'interfaccia *SaveSensorDataPort* che ha lo scopo di salvare i dati generati dai sensori simulati nel buffer interno del gateway simulato, utilizzando un database SQLite come sistema di persistenza per il buffer interno.
 
 La struct ha i seguenti attributi e metodi:
-- *dbConnection*: riferimento a *BufferDbConnection*, rappresentante la connessione al database per il buffer interno dei dati generati dai sensori simulati associati al gateway.
-- *Save(data \*GeneratedSensorData, gatewayId uuid.UUID) error*: è il metodo che data una misurazione di tipo *GeneratedSensorData* e un *gatewayId*, lo salva nel database del buffer interno serializzando il campo *Data* della struct tramite il metodo *Serialize()* dell'interfaccia *SerializableData*.
+- `dbConnection`: riferimento a `BufferDbConnection`, rappresentante la connessione al database per il buffer interno dei dati generati dai sensori simulati associati al gateway.
+- `Save(data *GeneratedSensorData, gatewayId uuid.UUID) error`: è il metodo che data una misurazione di tipo `GeneratedSensorData` e un `gatewayId`, lo salva nel database del buffer interno serializzando il campo `Data` della struct tramite il metodo `Serialize()` dell'interfaccia `SerializableData`.
 
 
 
@@ -1456,41 +1463,41 @@ Il sistema di persistenza si basa sulla definizione di un'interfaccia *ConfigPor
 
 ===== SQLiteConfigRepository
 La struct *SQLiteConfigRepository* è l'implementazione dell'interfaccia *ConfigPort* la quale contiene le seguenti interfacce:
-- *GatewaysFetcherPort*:
-- *GatewayCommissionerPort*:
-- *GatewayCreatorPort*
-- *GatewayDecommissionerPort*
-- *GatewayDeleterPort*
-- *GatewayInterrupterPort*
-- *GatewayResetterPort*
-- *GatewayResumerPort*
-- *SensorInterrupterPort*
-- *SensorResumerPort*
-- *SensorAdderPort*
-- *SensorDeleterPort*
+- `GatewaysFetcherPort`:
+- `GatewayCommissionerPort`:
+- `GatewayCreatorPort`
+- `GatewayDecommissionerPort`
+- `GatewayDeleterPort`
+- `GatewayInterrupterPort`
+- `GatewayResetterPort`
+- `GatewayResumerPort`
+- `SensorInterrupterPort`
+- `SensorResumerPort`
+- `SensorAdderPort`
+- `SensorDeleterPort`
 
 Contiene i seguenti attributi e metodi:
-- *dbConnection*: riferimento a *ConfigDbConnection*, rappresentante la connessione al database per la configurazione dei gateway e dei sensori simulati.
-- *AddSensor(cmdData \*AddSensor, status SensorStatus) error*: è il metodo che salva la configurazione di un nuovo sensore nel database. Implementazione dell'interfaccia *SensorAdderPort*.
-- *DeleteSensor(cmdData \*DeleteSensor) error*: è il metodo che elimina il sensore dal database. Implementazione dell'interfaccia *SensorDeleterPort*.
-- *InterruptSensor(cmdData \*InterruptSensor, status SensorStatus) error*: è il metodo che aggiorna lo stato del sensore nel database dopo un'interruzione temporanea (vedi @sensor-status-enum). Implementazione dell'interfaccia *SensorInterrupterPort*.
-- *ResumeSensor(cmdData \*ResumeSensor, status SensorStatus) error*: è il metodo che aggiorna lo stato del sensore nel database dopo una riattivazione (vedi @sensor-status-enum). Implementazione dell'interfaccia *SensorResumerPort*.
-- *CommissionGateway(cmdData \*CommissionGateway, status GatewayStatus) error*: è il metodo che salva le informazioni di commissioning di un gateway nel database (vedi @gateway-status-enum). Implementazione dell'interfaccia *GatewayCommissionerPort*.
-- *CreateGateway(cmdData \*CreateGateway, credentials \*Credentials, status GatewayStatus) error*: è il metodo che salva la configurazione di un nuovo gateway e le sue credenziali nel database (vedi @gateway-struct). Implementazione dell'interfaccia *GatewayCreatorPort*.
-- *DecommissionGateway(cmdData \*DecommissionGateway, status GatewayStatus) error*: è il metodo che decommissiona un gateway nel database, ovvero lo disassocia dal tenant (vedi @gateway-status-enum). Implementazione dell'interfaccia *GatewayDecommissionerPort*.
-- *DeleteGateway(cmdData \*DeleteGateway) error*: è il metodo che elimina un gateway dal database. Implementazione dell'interfaccia *GatewayDeleterPort*.
-- *InterruptGateway(cmdData \*InterruptGateway, status GatewayStatus) error*: è il metodo che aggiorna lo stato del gateway nel database dopo un'interruzione temporanea (vedi @gateway-status-enum). Implementazione dell'interfaccia *GatewayInterrupterPort*.
-- *ResetGateway(cmdData \*ResetGateway, defaultInterval time.Duration) error*: è il metodo che resetta la configurazione del gateway nel database, in questo caso resetta l'intervallo di invio dei dati al valore di default. Implementazione dell'interfaccia *GatewayResetterPort*.
-- *ResumeGateway(cmdData \*ResumeGateway, status GatewayStatus) error*: è il metodo che aggiorna lo stato del gateway nel database dopo una riattivazione (vedi @gateway-status-enum). Implementazione dell'interfaccia *GatewayResumerPort*.
-- *GetAllGateways() (map[uuid.UUID]\*Gateway, error)*: è il metodo che recupera tutti i gateway salvati nel database e li restituisce come mappa indicizzata per *gatewayId* (vedi @gateway-struct). Implementazione dell'interfaccia *GatewaysFetcherPort*.
+- `dbConnection`: riferimento a `ConfigDbConnection`, rappresentante la connessione al database per la configurazione dei gateway e dei sensori simulati.
+- `AddSensor(cmdData *AddSensor, status SensorStatus) error`: è il metodo che salva la configurazione di un nuovo sensore nel database. Implementazione dell'interfaccia `SensorAdderPort`.
+- `DeleteSensor(cmdData *DeleteSensor) error`: è il metodo che elimina il sensore dal database. Implementazione dell'interfaccia `SensorDeleterPort`.
+- `InterruptSensor(cmdData *InterruptSensor, status SensorStatus) error`: è il metodo che aggiorna lo stato del sensore nel database dopo un'interruzione temporanea (vedi @sensor-status-enum). Implementazione dell'interfaccia `SensorInterrupterPort`.
+- `ResumeSensor(cmdData *ResumeSensor, status SensorStatus) error`: è il metodo che aggiorna lo stato del sensore nel database dopo una riattivazione (vedi @sensor-status-enum). Implementazione dell'interfaccia `SensorResumerPort`.
+- `CommissionGateway(cmdData *CommissionGateway, status GatewayStatus) error`: è il metodo che salva le informazioni di commissioning di un gateway nel database (vedi @gateway-status-enum). Implementazione dell'interfaccia `GatewayCommissionerPort`.
+- `CreateGateway(cmdData *CreateGateway, credentials *Credentials, status GatewayStatus) error`: è il metodo che salva la configurazione di un nuovo gateway e le sue credenziali nel database (vedi @gateway-struct). Implementazione dell'interfaccia `GatewayCreatorPort`.
+- `DecommissionGateway(cmdData *DecommissionGateway, status GatewayStatus) error`: è il metodo che decommissiona un gateway nel database, ovvero lo disassocia dal tenant (vedi @gateway-status-enum). Implementazione dell'interfaccia `GatewayDecommissionerPort`.
+- `DeleteGateway(cmdData *DeleteGateway) error`: è il metodo che elimina un gateway dal database. Implementazione dell'interfaccia `GatewayDeleterPort`.
+- `InterruptGateway(cmdData *InterruptGateway, status GatewayStatus) error`: è il metodo che aggiorna lo stato del gateway nel database dopo un'interruzione temporanea (vedi @gateway-status-enum). Implementazione dell'interfaccia `GatewayInterrupterPort`.
+- `ResetGateway(cmdData *ResetGateway, defaultInterval time.Duration) error`: è il metodo che resetta la configurazione del gateway nel database, in questo caso resetta l'intervallo di invio dei dati al valore di default. Implementazione dell'interfaccia `GatewayResetterPort`.
+- `ResumeGateway(cmdData *ResumeGateway, status GatewayStatus) error`: è il metodo che aggiorna lo stato del gateway nel database dopo una riattivazione (vedi @gateway-status-enum). Implementazione dell'interfaccia `GatewayResumerPort`.
+- `GetAllGateways() (map[uuid.UUID]*Gateway, error)`: è il metodo che recupera tutti i gateway salvati nel database e li restituisce come mappa indicizzata per *gatewayId* (vedi @gateway-struct). Implementazione dell'interfaccia `GatewaysFetcherPort`.
 
 === Data Consumer
 La seguente sezione ha lo scopo di descrivere il #gloss[Code Diagram] del microservizio *Data Consumer*, in continuità con il livello Component (vedi @comp-data).\
 
 Il microservizio è *stateless* il che lo rende facilmente scalabile orizzontalmente, poiché non mantiene alcuna informazione tra le richieste. Perciò è possibile eseguire più istanze del servizio in parallelo, per aumentare la capacità di *consuming* dei dati IoT.\
 Inoltre ogni istanza ha due parametri all'avvio che ne definiscono il comportamento, ovvero:
-- *Batch size*: definisce la dimensione del batch che il consumer richiede a NATS, un batch più grande ottimizza gli inserimenti su TimescaleDB ma aumenta la latenza di visualizzazione dei dati, viceversa un batch più piccolo permette di visualizzare i dati quasi in tempo reale ma aumenta il carico sul database.
-- *Subject*: definisce il subject NATS a cui il consumer si iscrive per ricevere i dati, più il subject è specifico più il carico sul consumer è ridotto, viceversa un subject più generico permette di ricevere più dati ma aumenta il carico sul consumer e sul database. È possibile così configurare i data consumer in base al carico di ogni sensore, gateway o addirittura tenant.
+- `Batch size`: definisce la dimensione del batch che il consumer richiede a NATS, un batch più grande ottimizza gli inserimenti su TimescaleDB ma aumenta la latenza di visualizzazione dei dati, viceversa un batch più piccolo permette di visualizzare i dati quasi in tempo reale ma aumenta il carico sul database.
+- `Subject`: definisce il subject NATS a cui il consumer si iscrive per ricevere i dati, più il subject è specifico più il carico sul consumer è ridotto, viceversa un subject più generico permette di ricevere più dati ma aumenta il carico sul consumer e sul database. È possibile così configurare i data consumer in base al carico di ogni sensore, gateway o addirittura tenant.
 
 #figure(
   image("../../assets/c4/DataConsumerCodeDiagram.pdf", width: 100%),
@@ -1500,28 +1507,28 @@ Inoltre ogni istanza ha due parametri all'avvio che ne definiscono il comportame
 ==== NATSDataSubscriberController
 Il *NATSDataSubscriberController* è l'inbound adapter del microservizio, il quale si occupa di fare *pull subscription* di N dati dal subject NATS specificato all'avvio.
 La struct in questione ha i seguenti attributi e metodi:
-- *processor*: riferimento all'interfaccia *BatchProcessor* che ha lo scopo una volta ricevuto il *MessageBatch* di processarlo ed inviarlo allo strato di business logic.
-- *consumer*: riferimento all'interfaccia *jetstream.Consumer*, rappresenta il *Consumer* di #gloss[NATS JetStream]. Per crearlo è necessario fornire il contesto JetStream e il subject a cui iscriversi. Inoltre come policy di ACK è stato scelto *AckExplicit* per garantire che i messaggi vengano rimossi dalla coda solo dopo che sono stati salvati correttamente a database, evitando così perdite di dati in caso di errori o crash del servizio.
-- *batchSize*: rappresenta la dimensione del batch in numero di messaggi che il consumer richiede a NATS ad ogni ciclo di consumo, è un parametro configurabile all'avvio del servizio.
-- *logger*: riferimento alla struct *zap.Logger* per la gestione dei log del servizio.
-- *Listen()*: è il metodo che ascolta costantemente i messaggi in arrivo da NATS, quando riceve un batch sufficientemente grande o quando scade un timeout, chiama il metodo *ProcessBatch* per processare il batch ricevuto e salvarli a database.
+- `processor`: riferimento all'interfaccia *BatchProcessor* che ha lo scopo una volta ricevuto il *MessageBatch* di processarlo ed inviarlo allo strato di business logic.
+- `consumer`: riferimento all'interfaccia `jetstream.Consumer`, rappresenta il *Consumer* di #gloss[NATS JetStream]. Per crearlo è necessario fornire il contesto JetStream e il subject a cui iscriversi. Inoltre come policy di ACK è stato scelto *AckExplicit* per garantire che i messaggi vengano rimossi dalla coda solo dopo che sono stati salvati correttamente a database, evitando così perdite di dati in caso di errori o crash del servizio.
+- `batchSize`: rappresenta la dimensione del batch in numero di messaggi che il consumer richiede a NATS ad ogni ciclo di consumo, è un parametro configurabile all'avvio del servizio.
+- `logger`: riferimento alla struct `zap.Logger` per la gestione dei log del servizio.
+- `Listen()`: è il metodo che ascolta costantemente i messaggi in arrivo da NATS, quando riceve un batch sufficientemente grande o quando scade un timeout, chiama il metodo *ProcessBatch* per processare il batch ricevuto e salvarli a database.
 
 ==== NATSBatchProcessor
 Il *NATSBatchProcessor* è il componente che si occupa di processare i batch di messaggi ricevuti dal *NATSDataSubscriberController* ed è l'implementazione dell'interfaccia *BatchProcessor*.
 Il suo scopo è quello di raggruppare i dati per tenant di appartenenza, in modo da poter fare un inserimento massivo su TimescaleDB per tenant. In caso di inserimento andato a buon fine ha lo scopo di inviare un ACK per ogni messaggio del batch.
 
 La struct in questione ha i seguenti attributi e metodi:
-- *StoreDataUseCase*: riferimento all'interfaccia *StoreDataUseCase* che rappresenta l'inbound port dello strato di business logic, il quale si occupa di salvare i dati a database.
-- *ProcessBatch(batch jetstream.MessageBatch)*: è il metodo che processa il batch di messaggi ricevuto. Per ogni *tenant* crea un array di *SensorData*, struttura rappresentante il dato IoT, e un array di *jetstream.Msg*, interfaccia utile per inviare l'ACK a NATS. Una volta suddivisi i dati per tenant, il metodo chiama lo *StoreDataUseCase* inviando l'array di *SensorData* un tenant alla volta, se l'inserimento a database va a buon fine, invia un ACK per ogni messaggio del batch, altrimenti logga l'errore e non invia l'ACK, in modo da permettere a NATS JetStream di ritentare la consegna dei messaggi non processati.
+- `StoreDataUseCase`: riferimento all'interfaccia *StoreDataUseCase* che rappresenta l'inbound port dello strato di business logic, il quale si occupa di salvare i dati a database.
+- `ProcessBatch(batch jetstream.MessageBatch)`: è il metodo che processa il batch di messaggi ricevuto. Per ogni *tenant* crea un array di *SensorData*, struttura rappresentante il dato IoT, e un array di `jetstream.Msg`, interfaccia utile per inviare l'ACK a NATS. Una volta suddivisi i dati per tenant, il metodo chiama lo *StoreDataUseCase* inviando l'array di *SensorData* un tenant alla volta, se l'inserimento a database va a buon fine, invia un ACK per ogni messaggio del batch, altrimenti logga l'errore e non invia l'ACK, in modo da permettere a NATS JetStream di ritentare la consegna dei messaggi non processati.
 
 ==== SensorData <dc-sensor-data>
 La struct *SensorData* rappresenta la singola misurazione IoT che viene salvata a database, è composta dai seguenti campi:
-- *SensorId*: rappresenta lo UUID del sensore che ha generato il dato;
-- *GatewayId*: rappresenta lo UUID del gateway a cui il sensore era collegato al momento della generazione del dato;
-- *TenantId*: rappresenta lo UUID del tenant a cui il gateway appartiene;
-- *Profile*: rappresenta il profilo BLE del sensore che ha generato il dato. I valori supportati sono: *ECG*, *EnvironmentalSensing*, *HealthThermometer*, *HeartRate* e *PulseOximeter* (in coerenza con @sensor-profile);
-- *Timestamp*: rappresenta il timestamp di generazione del dato ed ha una precisione al millisecondo;
-- *Value*: rappresenta il valore della misurazione, è un array di byte in quanto ogni profilo BLE ha un formato di dato diverso, ad esempio il profilo *ECG* genera un array di interi che rappresenta un tracciato ECG, mentre il profilo *HealthThermometer* genera un array di byte che rappresenta la temperatura corporea.
+- `SensorId`: rappresenta lo UUID del sensore che ha generato il dato;
+- `GatewayId`: rappresenta lo UUID del gateway a cui il sensore era collegato al momento della generazione del dato;
+- `TenantId`: rappresenta lo UUID del tenant a cui il gateway appartiene;
+- `Profile`: rappresenta il profilo BLE del sensore che ha generato il dato. I valori supportati sono: *ECG*, *EnvironmentalSensing*, *HealthThermometer*, *HeartRate* e *PulseOximeter* (in coerenza con @sensor-profile);
+- `Timestamp`: rappresenta il timestamp di generazione del dato ed ha una precisione al millisecondo;
+- `Value`: rappresenta il valore della misurazione, è un array di byte in quanto ogni profilo BLE ha un formato di dato diverso, ad esempio il profilo *ECG* genera un array di interi che rappresenta un tracciato ECG, mentre il profilo *HealthThermometer* genera un array di byte che rappresenta la temperatura corporea.
 
 ==== DataConsumerService
 Il *DataConsumerService* è la parte di business logic del microservizio, è l'implementazione dell'interfaccia *StoreDataUseCase* e si occupa di inoltrare l'array di *SensorData* (vedi @dc-sensor-data) ricevuto dal *NATSBatchProcessor* all'outbound port *WriteDataPort*.\
@@ -1531,13 +1538,13 @@ Non ha un ruolo fondamentale, tuttavia è stato implementato per rispettare l'ar
 Il *TimescaleWriteDataRepository* è l'outbound adapter del microservizio, è l'implementazione dell'interfaccia *WriteDataPort* e si occupa di scrivere i dati a database tramite *bulk insert* per sfruttare al meglio le potenzialità di TimescaleDB.\
 
 La struct in questione ha i seguenti attributi e metodi:
-- *dbConnection*: riferimento alla connessione a #gloss[TimescaleDB] di tipo *sql.DB*, utile per eseguire la query di inserimento massivo dei dati a database.
-- *WriteData(data []\*SensorData, tenantId uuid.UUID) error*: metodo che si occupa dell'inserimento massivo dei dati a database, riceve un array di *SensorData* e il *tenantId* di appartenenza, costruisce una query di inserimento massivo e la esegue tramite la connessione a database, se l'inserimento va a buon fine restituisce nil, altrimenti restituisce l'errore riscontrato.
+- `dbConnection`: riferimento alla connessione a #gloss[TimescaleDB] di tipo *sql.DB*, utile per eseguire la query di inserimento massivo dei dati a database.
+- `WriteData(data []*SensorData, tenantId uuid.UUID) error`: metodo che si occupa dell'inserimento massivo dei dati a database, riceve un array di *SensorData* e il *tenantId* di appartenenza, costruisce una query di inserimento massivo e la esegue tramite la connessione a database, se l'inserimento va a buon fine restituisce nil, altrimenti restituisce l'errore riscontrato.
 
 
 === Cloud Frontend <angular>
 La seguente sezione descrive in dettaglio il #gloss[Code Diagram] del frontend #gloss[Angular], che rappresenta l'interfaccia utente del sistema.
- 
+
 L'applicazione adotta il paradigma *MVVM* (Model-View-ViewModel), un pattern nativamente supportato da #gloss[Angular] che permette di separare la logica di _presentazione_ dalla logica di _business_. In questo contesto, l'architettura sfrutta il sistema di *data-binding* del framework per creare un legame reattivo tra i componenti. L'uso di *Angular Signals* potenzia questo paradigma, agendo come il motore di sincronizzazione che permette a ciascuna parte del sistema di reagire ai cambiamenti di stato in modo _granulare_ e _sincrono_.
 
 Il *Model* rappresenta il cuore logico dell'app ed è il detentore dello stato dell'applicazione. È implementato attraverso servizi di _dominio_ che gestiscono lo stato applicativo tramite _Signals privati_. Il suo ruolo principale è l'orchestrazione della business logic, mantenendosi totalmente indipendente dall'interfaccia utente. Un pilastro di questo strato è l'integrazione del *Dependency Inversion Principle*: il Model non dipende da implementazioni concrete per il recupero dei dati, ma inietta classi _astratte_ che definiscono i contratti di comunicazione. Questo permette al Model di ignorare i dettagli del backend (come i protocolli HTTP), delegando l'implementazione ai servizi _infrastrutturali_. In questo modo, la logica di business rimane protetta, testabile in isolamento e facilmente estensibile.
@@ -1557,52 +1564,52 @@ Standardizza la struttura degli errori restituiti dal backend. Include il codice
 
 ====== GatewayBackend <angular-gatewaybackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
-  - `gateway_id: string`: identificativo del gateway.
-  - `tenant_id?: string`: identificativo del tenant.
-  - `name: string`: nome del dispositivo.
-  - `status: string`: stato del dispositivo rappresentato come stringa grezza.
-  - `interval: number`: intervallo di comunicazione dati in ms.
-  - `public_identifier?: string`: chiave pubblica del gateway.
+- `gateway_id: string`: identificativo del gateway.
+- `tenant_id?: string`: identificativo del tenant.
+- `name: string`: nome del dispositivo.
+- `status: string`: stato del dispositivo rappresentato come stringa grezza.
+- `interval: number`: intervallo di comunicazione dati in ms.
+- `public_identifier?: string`: chiave pubblica del gateway.
 
 ====== SensorBackend <angular-sensorbackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dalle API del backend.
-  - `sensor_id: string`: identificativo del sensore.
-  - `gateway_id: string`: identificativo del gateway di appartenenza.
-  - `sensor_name: string`: nome del dispositivo nel database.
-  - `status: string`: stato del dispositivo rappresentato come stringa.
-  - `profile: string`: identificativo testuale del profilo tecnologico.
-  - `data_interval: number`: intervallo di invio dati in ms.
+- `sensor_id: string`: identificativo del sensore.
+- `gateway_id: string`: identificativo del gateway di appartenenza.
+- `sensor_name: string`: nome del dispositivo nel database.
+- `status: string`: stato del dispositivo rappresentato come stringa.
+- `profile: string`: identificativo testuale del profilo tecnologico.
+- `data_interval: number`: intervallo di invio dati in ms.
 
 ====== TenantBackend <angular-tenantbackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
-  - `tenant_id: string`: identificativo univoco del tenant.
-  - `can_impersonate: boolean`: indica se il tenant ha acconsentito all'impersonificazione.
+- `tenant_id: string`: identificativo univoco del tenant.
+- `can_impersonate: boolean`: indica se il tenant ha acconsentito all'impersonificazione.
 
 ====== UserBackend <angular-userbackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
-  - `user_id: number`: identificativo numerico dell'utente.
-  - `username: string`: nome utente.
-  - `email: string`: indirizzo email dell'utente.
-  - `user_role: string`: ruolo dell'utente trasmesso come stringa grezza.
-  - `tenant_id?: string`: riferimento al tenant.
+- `user_id: number`: identificativo numerico dell'utente.
+- `username: string`: nome utente.
+- `email: string`: indirizzo email dell'utente.
+- `user_role: string`: ruolo dell'utente trasmesso come stringa grezza.
+- `tenant_id?: string`: riferimento al tenant.
 
 ====== HistoricResponse e HistoricSample <angular-historicresponse-model>
 Rappresentano il formato dei dati storici trasmessi dal backend (Data Transfer Objects).
-  - `HistoricResponse`: contiene il conteggio totale dei campioni (`count`) e l'array di dati effettivi (`samples`).
-  - `HistoricSample`: rappresenta il singolo pacchetto di dati grezzi. Include informazioni come `sensor_id`, `gateway_id`, `tenant_id`, `timestamp`, `profile` e l'oggetto `data` contenente i valori grezzi in formato chiave-valore.
+- `HistoricResponse`: contiene il conteggio totale dei campioni (`count`) e l'array di dati effettivi (`samples`).
+- `HistoricSample`: rappresenta il singolo pacchetto di dati grezzi. Include informazioni come `sensor_id`, `gateway_id`, `tenant_id`, `timestamp`, `profile` e l'oggetto `data` contenente i valori grezzi in formato chiave-valore.
 
 ====== RealTimeReading <angular-realtimereading-model>
 Descrive la struttura dei dati ricevuti in tempo reale tramite stream.
-  - `timestamp: string`: il timestamp della lettura live.
-  - `profile: string`: il profilo del sensore sorgente.
-  - `data: Record<string, any>`: i dati grezzi ricevuti in tempo reale.
+- `timestamp: string`: il timestamp della lettura live.
+- `profile: string`: il profilo del sensore sorgente.
+- `data: Record<string, any>`: i dati grezzi ricevuti in tempo reale.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliBackend.pdf", width: 80%),
   caption: [Modelli dati - Infrastructure layer],
 )
 
-===== Utility 
+===== Utility
 Per la gestione coerente delle enumerazioni e delle costanti di sistema, è stata implementata una classe di utility generica denominata `EnumMapper<TFrontend, TBackend>`. Questa classe risolve il problema della discordanza tra i valori letterali utilizzati nelle API e le definizioni di tipo nel frontend.
 - *Funzinamento core*: la classe accetta nel costruttore un oggetto di mappatura e un valore di _fallback_. Internamente, genera automaticamente una mappa inversa (`toFrontendMap`) per supportare la conversione.
 - *Gestione errori*: il metodo `fromBackend` include una logica di protezione che restituisce il valore di _fallback_ predefinito qualora il backend invii un valore non valido.
@@ -1615,7 +1622,7 @@ Sulla base di questa utility, sono stati definiti i seguenti mappatori specializ
 - *`userRoleMapperJWT`*: un mapper specifico per la decodifica dei token #gloss("JWT"), dove i ruoli sono rappresentati da sigle contratte (`sa` per super admin, `ta` per tenant admin e `tu` per tenant user).
 
 ===== Adapters
-Le classi astratte fungono da "interfacce robuste" che assicurano che ogni trasformatore di dati esponga la medesima firma, indipendentemente dalla sorgente dati. 
+Le classi astratte fungono da "interfacce robuste" che assicurano che ogni trasformatore di dati esponga la medesima firma, indipendentemente dalla sorgente dati.
 
 Sono stati sviluppati i seguenti adapter astratti: *`GatewayAdapter`*, *`SensorAdapter`*, *`UserAdapter`* e *`TenantAdapter`*, ognuno dei quali definisce un contratto specifico per la trasformazione dei dati di una particolare entità del dominio, ossia:
 - il metodo `fromDTO(dto: XBackend)` che accetta un singolo oggetto DTO restituito dalle API del backend e lo trasforma in un modello di dominio tipizzato, mappando i campi e convertendo i valori secondo le regole di business.
@@ -1709,7 +1716,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/AuthApiClientService.pdf", width: 60%),
-  caption: [Code diagram - AuthApiClientService]
+  caption: [Code diagram - AuthApiClientService],
 )
 
 ====== TenantApiClientService <angular-tenant-api-client-service>
@@ -1723,7 +1730,7 @@ Il servizio presenta i seguenti attributi:
 
 Il servizio presenta i seguenti metodi pubblici:
 - `getTenant(id: string): Observable<Tenant>`: invia la richiesta di recupero di un tenant specifico.
-- `getTenants(page: number, limit: number): 
+- `getTenants(page: number, limit: number):
 Observable<PaginatedTenantResponse<Tenant>>`: invia la richiesta di recupero della lista paginata di tenant dal backend, impostando _page_ e _limit_ come _query parameters_.
 - `getAllTenants(): Observable<Tenant[]>`: invia la richiesta di recupero della lista completa di tenant dal backend.
 - `createTenant(config: TenantConfig): Observable<Tenant>`: invia la richiesta di creazione di un nuovo tenant.
@@ -1731,7 +1738,7 @@ Observable<PaginatedTenantResponse<Tenant>>`: invia la richiesta di recupero del
 
 #figure(
   image("../../assets/c4/frontend/services/TenantApiClientService.pdf", width: 70%),
-  caption: [Code diagram - TenantApiClientService]
+  caption: [Code diagram - TenantApiClientService],
 )
 
 ====== UserApiClientService <angular-user-api-client-service>
@@ -1754,7 +1761,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/UserApiClientService.pdf", width: 70%),
-  caption: [Code diagram - UserApiClientService]
+  caption: [Code diagram - UserApiClientService],
 )
 
 ====== GatewayApiClientService <angular-gateway-api-client-service>
@@ -1774,7 +1781,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayApiClientService.pdf", width: 70%),
-  caption: [Code diagram - GatewayApiClientService]
+  caption: [Code diagram - GatewayApiClientService],
 )
 
 ====== GatewayCommandApiClientService <angular-gateway-command-api-client-service>
@@ -1796,7 +1803,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram - GatewayCommandApiClientService]
+  caption: [Code diagram - GatewayCommandApiClientService],
 )
 
 ====== SensorApiClientService <angular-sensor-api-client-service>
@@ -1816,7 +1823,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorApiClientService.pdf", width: 70%),
-  caption: [Code diagram - SensorApiClientService]
+  caption: [Code diagram - SensorApiClientService],
 )
 
 ====== SensorCommandApiClientService <angular-sensor-command-api-client-service>
@@ -1833,7 +1840,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram - SensorCommandApiClientService]
+  caption: [Code diagram - SensorCommandApiClientService],
 )
 
 ====== SensorLiveReadingsApiClientService <angular-sensor-live-readings-api-service>
@@ -1855,7 +1862,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorHistoricApiService.pdf", width: 70%),
-  caption: [Code diagram - SensorHistoricApiClientService]
+  caption: [Code diagram - SensorHistoricApiClientService],
 )
 
 ====== SensorHistoricApiClientService <angular-sensor-historic-api-service>
@@ -1871,7 +1878,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorLiveReadingsApiService.pdf", width: 60%),
-  caption: [Code diagram - SensorLiveReadingsApiClientService]
+  caption: [Code diagram - SensorLiveReadingsApiClientService],
 )
 
 
@@ -1895,44 +1902,44 @@ Rappresenta l'interfaccia base per tutte le risposte API che supportano la pagin
 
 ====== LoginRequest <angular-loginrequest-model>
 Rappresenta il pacchetto di dati inviato dall'utente per richiedere l'accesso al sistema.
-  - `email: string`: l'indirizzo email dell'utente che effettua il tentativo di accesso.
-  - `password: string`: la password associata all'account.
-  - `tenantId?: string`: proprietà opzionale utilizzata per identificare il contesto organizzativo (_tenant_) di appartenenza dell'utente.
+- `email: string`: l'indirizzo email dell'utente che effettua il tentativo di accesso.
+- `password: string`: la password associata all'account.
+- `tenantId?: string`: proprietà opzionale utilizzata per identificare il contesto organizzativo (_tenant_) di appartenenza dell'utente.
 
 ====== AuthResponse <angular-authresponse-model>
 Definisce la struttura della risposta restituita dal backend a seguito di un'autenticazione riuscita.
-  - `jwt: string`: il token JWT necessario per autenticare e autorizzare le successive chiamate API del frontend. Contiene codificate all'interno del payload le seguenti informazioni:
-    - `uid: string`: rappresenta l'identificativo univoco dell'utente;
-    - `tid: string`: rappresenta l'identificativo del tenant dell'utente;
-    - `rol: string`: rappresenta il ruolo dell'utente;
+- `jwt: string`: il token JWT necessario per autenticare e autorizzare le successive chiamate API del frontend. Contiene codificate all'interno del payload le seguenti informazioni:
+  - `uid: string`: rappresenta l'identificativo univoco dell'utente;
+  - `tid: string`: rappresenta l'identificativo del tenant dell'utente;
+  - `rol: string`: rappresenta il ruolo dell'utente;
 
 ====== UserSession <angular-usersession-model>
 Rappresenta la struttura dati utilizzata internamente al frontend per mantenere lo stato e le informazioni essenziali dell'utente attualmente autenticato.
-  - `userId: string`: l'identificativo univoco dell'utente in sessione.
-  - `tenantId?: string`: l'identificativo del tenant a cui l'utente appartiene, se applicabile.
-  - `role: UserRole`: il ruolo operativo dell'utente (@angular-userrole-model), che determina i permessi all'interno dell'applicazione.
+- `userId: string`: l'identificativo univoco dell'utente in sessione.
+- `tenantId?: string`: l'identificativo del tenant a cui l'utente appartiene, se applicabile.
+- `role: UserRole`: il ruolo operativo dell'utente (@angular-userrole-model), che determina i permessi all'interno dell'applicazione.
 
 ====== ForgotPasswordRequest <angular-forgotpasswordrequest-model>
 Modello utilizzato per avviare la procedura di recupero delle credenziali di accesso.
-  - `email: string`: l'indirizzo email a cui inviare le istruzioni per il ripristino della password.
-  - `tenantId?: string`: identificativo opzionale del tenant per circoscrivere la ricerca dell'utente.
+- `email: string`: l'indirizzo email a cui inviare le istruzioni per il ripristino della password.
+- `tenantId?: string`: identificativo opzionale del tenant per circoscrivere la ricerca dell'utente.
 
 ====== ForgotPasswordResponse <angular-forgotpasswordresponse-model>
 Modello per la finalizzazione del reset della password tramite token di sicurezza.
-  - `token: string`: il codice di verifica univoco ricevuto dall'utente (solitamente via email).
-  - `newPassword: string`: la nuova password che l'utente intende impostare per il proprio account.
-  - `tenantId?: string`: riferimento opzionale al tenant per la convalida dell'operazione.
+- `token: string`: il codice di verifica univoco ricevuto dall'utente (solitamente via email).
+- `newPassword: string`: la nuova password che l'utente intende impostare per il proprio account.
+- `tenantId?: string`: riferimento opzionale al tenant per la convalida dell'operazione.
 
 ====== ConfirmAccountResponse <angular-confirmaccountresponse-model>
 Interfaccia dedicata alla conferma dell'attivazione di un nuovo account di sistema.
-  - `token: string`: il token di attivazione necessario per validare l'identità dell'utente.
-  - `newPassword: string`: la password definita dall'utente in fase di primo accesso o attivazione.
-  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+- `token: string`: il token di attivazione necessario per validare l'identità dell'utente.
+- `newPassword: string`: la password definita dall'utente in fase di primo accesso o attivazione.
+- `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
 
 ====== PasswordChange <angular-passwordchange-model>
 Rappresenta il modello per l'aggiornamento della password da parte di un utente già autenticato.
-  - `oldPassword: string`: la password corrente dell'utente, richiesta per motivi di sicurezza prima di procedere alla modifica.
-  - `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
+- `oldPassword: string`: la password corrente dell'utente, richiesta per motivi di sicurezza prima di procedere alla modifica.
+- `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioAuth.pdf", width: 100%),
@@ -1942,18 +1949,18 @@ Rappresenta il modello per l'aggiornamento della password da parte di un utente 
 
 ====== NavItem <angular-navitem-model>
 Definisce la struttura di una singola voce all'interno del menu di navigazione.
-  - `label: string`: l'etichetta testuale visualizzata nel menu (es. "Gestione Gateway", "Dashboard").
-  - `route: string`: il percorso di navigazione associato alla voce di menu.
-  - `icon: string`: il nome dell'icona (usato da *`Angular Material`*) da affiancare all'etichetta.
-  - `permission?: Permission | Permission[]`: proprietà opzionale che specifica i permessi necessari per visualizzare la voce. Può essere un singolo valore dell'enum `Permission` (@angular-permission-model) o un array di permessi.
-  - `separator?: boolean`: flag opzionale che, se impostato a true, inserisce un separatore visivo prima della voce di menu.
-  - `sectionTitle?: string`: titolo opzionale utilizzato per raggruppare le voci sotto una categoria.
-  - `tenantSectionTitle?: string`: titolo di sezione specifico utilizzato nei contesti di impersonificazione o visualizzazione legata al tenant.
+- `label: string`: l'etichetta testuale visualizzata nel menu (es. "Gestione Gateway", "Dashboard").
+- `route: string`: il percorso di navigazione associato alla voce di menu.
+- `icon: string`: il nome dell'icona (usato da *`Angular Material`*) da affiancare all'etichetta.
+- `permission?: Permission | Permission[]`: proprietà opzionale che specifica i permessi necessari per visualizzare la voce. Può essere un singolo valore dell'enum `Permission` (@angular-permission-model) o un array di permessi.
+- `separator?: boolean`: flag opzionale che, se impostato a true, inserisce un separatore visivo prima della voce di menu.
+- `sectionTitle?: string`: titolo opzionale utilizzato per raggruppare le voci sotto una categoria.
+- `tenantSectionTitle?: string`: titolo di sezione specifico utilizzato nei contesti di impersonificazione o visualizzazione legata al tenant.
 
 ====== NavConfig <angular-navitems-constant>
 Rappresenta la configurazione statica globale del menu di navigazione dell'applicazione.
-  - È un array di oggetti _NavItem_ che mappa tutte le funzionalità principali del sistema, incluse le aree di gestione (Gateway, Tenant, User) e la Dashboard operativa.
-  - Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
+- È un array di oggetti _NavItem_ che mappa tutte le funzionalità principali del sistema, incluse le aree di gestione (Gateway, Tenant, User) e la Dashboard operativa.
+- Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioNavItems.pdf", width: 70%),
@@ -1963,34 +1970,34 @@ Rappresenta la configurazione statica globale del menu di navigazione dell'appli
 
 ====== ChartType <angular-charttype-model>
 Definisce le modalità di visualizzazione dei dati supportate dal sistema.
-  - `HISTORIC`: indica la modalità di visualizzazione dei dati storici memorizzati nel database.
-  - `REALTIME`: indica la modalità di visualizzazione in tempo reale tramite stream continuo.
+- `HISTORIC`: indica la modalità di visualizzazione dei dati storici memorizzati nel database.
+- `REALTIME`: indica la modalità di visualizzazione in tempo reale tramite stream continuo.
 
 ====== TimeInterval <angular-timeinterval-model>
 Rappresenta l'intervallo temporale utilizzato per filtrare le letture dei sensori.
-  - `from: Date`: data e ora di inizio dell'intervallo richiesto.
-  - `to: Date`: data e ora di fine dell'intervallo richiesto.
+- `from: Date`: data e ora di inizio dell'intervallo richiesto.
+- `to: Date`: data e ora di fine dell'intervallo richiesto.
 
 ====== ChartRequest <angular-chartrequest-model>
 Modello utilizzato per inoltrare una richiesta completa di generazione o aggiornamento di un grafico.
-  - `sensor: Sensor`: l'oggetto contenente le informazioni del sensor (@angular-sensor-model) di cui si vogliono visualizzare i dati.
-  - `chartType: ChartType`: la modalità di grafico richiesta (storica o real-time @angular-charttype-model).
-  - `tenantId?: string`: identificativo opzionale del tenant per il controllo dell'accesso ai dati.
-  - `dataPointsCounter?: number`: proprietà opzionale per limitare il numero di campioni da recuperare.
-  - `timeInterval?: TimeInterval`: l'intervallo temporale specifico per le query storiche.
+- `sensor: Sensor`: l'oggetto contenente le informazioni del sensor (@angular-sensor-model) di cui si vogliono visualizzare i dati.
+- `chartType: ChartType`: la modalità di grafico richiesta (storica o real-time @angular-charttype-model).
+- `tenantId?: string`: identificativo opzionale del tenant per il controllo dell'accesso ai dati.
+- `dataPointsCounter?: number`: proprietà opzionale per limitare il numero di campioni da recuperare.
+- `timeInterval?: TimeInterval`: l'intervallo temporale specifico per le query storiche.
 
 ====== SensorProfileDisplay <angular-sensorprofiledisplay-model>
 Definisce le proprietà estetiche e le unità di misura per la rappresentazione dei dati di un profilo sensore.
-  - `label: string`: l'etichetta testuale visualizzata nel grafico (es. "Heart Rate").
-  - `unit: string`: l'unità di misura associata al valore del sensore.
+- `label: string`: l'etichetta testuale visualizzata nel grafico (es. "Heart Rate").
+- `unit: string`: l'unità di misura associata al valore del sensore.
 
 In questo file sono definiti anche:
-  - `SENSOR_PROFILE_MAP`: Una costante di tipo `Record` che mappa ogni profilo sensore (`SensorProfiles` @angular-sensorprofiles-model) alla propria configurazione di etichetta e unità di misura.
-  - `getSensorProfileDisplay(profile): SensorProfileDisplay`: Una funzione che restituisce l'oggetto `SensorProfileDisplay` corrispondente al profilo richiesto; include una logica di protezione che restituisce il nome del profilo e una stringa vuota qualora il profilo non sia presente nella mappa.
+- `SENSOR_PROFILE_MAP`: Una costante di tipo `Record` che mappa ogni profilo sensore (`SensorProfiles` @angular-sensorprofiles-model) alla propria configurazione di etichetta e unità di misura.
+- `getSensorProfileDisplay(profile): SensorProfileDisplay`: Una funzione che restituisce l'oggetto `SensorProfileDisplay` corrispondente al profilo richiesto; include una logica di protezione che restituisce il nome del profilo e una stringa vuota qualora il profilo non sia presente nella mappa.
 
 ====== SensorVisiblePoints e SensorProfileDisplay <angular-sensorcostants-model>
 Record di configurazione che stabiliscono i limiti di campionamento per l'interfaccia utente al fine di ottimizzare le performance di rendering.
-  - Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
+- Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioChart.pdf", width: 100%),
@@ -2000,25 +2007,25 @@ Record di configurazione che stabiliscono i limiti di campionamento per l'interf
 
 ====== Gateway <angular-gateway-model>
 Rappresenta il modello principale dell'entità gateway utilizzato all'interno dell'applicazione.
-  - `id: string`: identificativo univoco del gateway.
-  - `tenantId?: string`: identificativo opzionale del tenant a cui è assegnato il gateway.
-  - `name: string`: nome descrittivo assegnato al gateway.
-  - `status: GatewayStatus`: stato operativo del gateway.
-  - `interval: number`: frequenza di comunicazione espressa in secondi.
-  - `publicIdentifier?: string`: identificativo pubblico opzionale del dispositivo.
+- `id: string`: identificativo univoco del gateway.
+- `tenantId?: string`: identificativo opzionale del tenant a cui è assegnato il gateway.
+- `name: string`: nome descrittivo assegnato al gateway.
+- `status: GatewayStatus`: stato operativo del gateway.
+- `interval: number`: frequenza di comunicazione espressa in secondi.
+- `publicIdentifier?: string`: identificativo pubblico opzionale del dispositivo.
 
 ====== GatewayStatus <angular-gatewaystatus-model>
 Definisce lo stato operativo dei gateaway.
-  - Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) e `DECOMMISSIONED` (decommissionato).
+- Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) e `DECOMMISSIONED` (decommissionato).
 
 ====== GatewayConfig <angular-gatewayconfig-model>
 Modello utilizzato per le operazioni di configurazione o aggiornamento dei parametri di un gateway.
-  - `name: string`: nuovo nome da assegnare al dispositivo.
-  - `interval: number`: nuovo intervallo di comunicazione da impostare.
+- `name: string`: nuovo nome da assegnare al dispositivo.
+- `interval: number`: nuovo intervallo di comunicazione da impostare.
 
 ====== PaginatedGatewayResponse <angular-paginatedgatewayresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di gateway.
-  - `gateways: T[]`: array di elementi di tipo generico `T` contenente i record della pagina corrente.
+- `gateways: T[]`: array di elementi di tipo generico `T` contenente i record della pagina corrente.
 \
 
 #figure(
@@ -2029,35 +2036,35 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
 
 ====== Sensor <angular-sensor-model>
 Rappresenta il modello principale dell'entità sensore utilizzato per la logica di business e la visualizzazione nel frontend.
-  - `id: string`: identificativo univoco del sensore.
-  - `gatewayId: string`: identificativo del gateway a cui il sensore è associato.
-  - `name: string`: nome descrittivo assegnato al dispositivo.
-  - `profile: SensorProfiles`: il profilo GATT del sensore.
-  - `status: SensorStatus`: lo stato operativo corrente.
-  - `dataInterval: number`: la frequenza di campionamento dei dati espressa in secondi.
+- `id: string`: identificativo univoco del sensore.
+- `gatewayId: string`: identificativo del gateway a cui il sensore è associato.
+- `name: string`: nome descrittivo assegnato al dispositivo.
+- `profile: SensorProfiles`: il profilo GATT del sensore.
+- `status: SensorStatus`: lo stato operativo corrente.
+- `dataInterval: number`: la frequenza di campionamento dei dati espressa in secondi.
 
 ====== SensorStatus <angular-sensorstatus-model>
 Definisce lo stato operativo dei sensori.
-  - Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo).
+- Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo).
 
 ====== SensorProfiles <angular-sensorprofiles-model>
 Stabilisce i profili GATT supportati dal sistema, mappando ogni profilo a una categoria specifica.
-  - `HEART_RATE_SERVICE`: "heart rate".
-  - `PULSE_OXIMETER_SERVICE`: "pulse oximeter".
-  - `CUSTOM_ECG_SERVICE`: "custom ecg".
-  - `HEALTH_THERMOMETER_SERVICE`: "health thermometer".
-  - `ENVIRONMENTAL_SENSING_SERVICE`: "environmental sensing".
+- `HEART_RATE_SERVICE`: "heart rate".
+- `PULSE_OXIMETER_SERVICE`: "pulse oximeter".
+- `CUSTOM_ECG_SERVICE`: "custom ecg".
+- `HEALTH_THERMOMETER_SERVICE`: "health thermometer".
+- `ENVIRONMENTAL_SENSING_SERVICE`: "environmental sensing".
 
 ====== SensorConfig <angular-sensorconfig-model>
 Modello utilizzato per la creazione o la riconfigurazione dei parametri di un sensore.
-  - `name: string`: nome da assegnare o aggiornare.
-  - `dataInterval: number`: intervallo dati da impostare.
-  - `gatewayId: string`: riferimento al gateway ospite.
-  - `profile: string`: profilo GATT selezionato.
+- `name: string`: nome da assegnare o aggiornare.
+- `dataInterval: number`: intervallo dati da impostare.
+- `gatewayId: string`: riferimento al gateway ospite.
+- `profile: string`: profilo GATT selezionato.
 
 ====== PaginatedSensorResponse <angular-paginatedsensorresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di sensori.
-  - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+- `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensor.pdf", width: 100%),
@@ -2067,25 +2074,25 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
 
 ====== FieldDescriptor <angular-fielddescriptor-model>
 Rappresenta un metadato che descrive come interpretare e visualizzare un singolo valore all'interno di una lettura del sensore.
-  - `key: string`: la chiave tecnica del dato (es. "bpm", "temperature") utilizzata per estrarre il valore dall'oggetto della lettura.
-  - `label: string`: l'etichetta testuale descrittiva per la UI (es. "Battito cardiaco", "Umidità").
-  - `unit: string`: l'unità di misura associata al dato (es. "bpm", "°C", "%").
+- `key: string`: la chiave tecnica del dato (es. "bpm", "temperature") utilizzata per estrarre il valore dall'oggetto della lettura.
+- `label: string`: l'etichetta testuale descrittiva per la UI (es. "Battito cardiaco", "Umidità").
+- `unit: string`: l'unità di misura associata al dato (es. "bpm", "°C", "%").
 
 ====== SensorReading <angular-sensorreading-model>
 Definisce il modello atomico di una singola lettura sensoriale processata dal frontend.
-  - `timestamp: string`: l'istante temporale a cui si riferisce la misurazione.
-  - `value: Record<string, number>`: un oggetto contenente uno o più valori numerici associati a chiavi specifiche (es. `{ "bpm": 72 }` o `{ "temperature": 22.5, "humidity": 60 }`).
+- `timestamp: string`: l'istante temporale a cui si riferisce la misurazione.
+- `value: Record<string, number>`: un oggetto contenente uno o più valori numerici associati a chiavi specifiche (es. `{ "bpm": 72 }` o `{ "temperature": 22.5, "humidity": 60 }`).
 
 ====== HistoricReadings <angular-historicreadings-model>
 Modello strutturato utilizzato dal frontend per aggregare le letture storiche da visualizzare nei grafici.
-  - `dataCount: number`: il numero totale di letture contenute nell'oggetto.
-  - `readings: SensorReading[]`: l'elenco delle letture trasformate e pronte per il rendering.
-  - `fields: FieldDescriptor[]`: l'elenco dei descrittori di campo che indicano quali dati sono presenti e come visualizzarli.
-  - `samplesPerPacket?: number`: proprietà opzionale utilizzata per il segnale ECG per indicare la densità di campionamento.
+- `dataCount: number`: il numero totale di letture contenute nell'oggetto.
+- `readings: SensorReading[]`: l'elenco delle letture trasformate e pronte per il rendering.
+- `fields: FieldDescriptor[]`: l'elenco dei descrittori di campo che indicano quali dati sono presenti e come visualizzarli.
+- `samplesPerPacket?: number`: proprietà opzionale utilizzata per il segnale ECG per indicare la densità di campionamento.
 
 ====== SensorFields <angular-constantsfields-constant>
 Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualizzazione per ogni tipologia di sensore.
-   - Ad esempio, `HEALTH_THERMOMETER_FIELDS` configura il campo "Temperatura" (°C) mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
+- Ad esempio, `HEALTH_THERMOMETER_FIELDS` configura il campo "Temperatura" (°C) mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensorData.pdf", width: 80%),
@@ -2095,18 +2102,18 @@ Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualiz
 
 ====== Tenant <angular-tenant-model>
 Rappresenta il modello principale dell'entità tenant utilizzato all'interno della logica applicativa del frontend.
-  - `id: string`: identificativo univoco del tenant.
-  - `name: string`: nome descrittivo assegnato al tenant.
-  - `canImpersonate: boolean`: flag che indica se il tenant ha l'autorizzazione per eseguire operazioni di impersonificazione all'interno del sistema.
+- `id: string`: identificativo univoco del tenant.
+- `name: string`: nome descrittivo assegnato al tenant.
+- `canImpersonate: boolean`: flag che indica se il tenant ha l'autorizzazione per eseguire operazioni di impersonificazione all'interno del sistema.
 
 ====== TenantConfig <angular-tenantconfig-model>
 Rappresenta il modello utilizzato per le operazioni di creazione o aggiornamento dei dati di un tenant.
-  - `name: string`: il nome da assegnare o aggiornare per l'organizzazione.
-  - `canImpersonate: boolean`: la configurazione del permesso di impersonificazione.
+- `name: string`: il nome da assegnare o aggiornare per l'organizzazione.
+- `canImpersonate: boolean`: la configurazione del permesso di impersonificazione.
 
 ====== PaginatedTenantResponse <angular-paginatedtenantresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di tenant.
-  - `tenants: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+- `tenants: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioTenant.pdf", width: 100%),
@@ -2116,26 +2123,26 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
 
 ====== UserRole <angular-userrole-model>
 Stabilisce i ruoli gerarchici disponibili nel sistema, utilizzati per determinare i permessi di accesso alle diverse funzionalità.
-  - `TENANT_USER`: rappresenta l'utente finale associato a un tenant specifico.
-  - `TENANT_ADMIN`: rappresenta l'amministratore di un tenant, con permessi di gestione locale.
-  - `SUPER_ADMIN`: rappresenta l'amministratore globale del sistema con permessi illimitati.
+- `TENANT_USER`: rappresenta l'utente finale associato a un tenant specifico.
+- `TENANT_ADMIN`: rappresenta l'amministratore di un tenant, con permessi di gestione locale.
+- `SUPER_ADMIN`: rappresenta l'amministratore globale del sistema con permessi illimitati.
 
 ====== User <angular-user-model>
 Rappresenta il modello principale dell'entità utente utilizzato nella logica di business del frontend.
-  - `id: string`: identificativo univoco dell'utente (normalizzato come stringa nel frontend).
-  - `username: string`: nome utente utilizzato per l'identificazione e la visualizzazione.
-  - `email: string`: indirizzo email associato all'account.
-  - `role: UserRole`: il ruolo assegnato all'utente.
-  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+- `id: string`: identificativo univoco dell'utente (normalizzato come stringa nel frontend).
+- `username: string`: nome utente utilizzato per l'identificazione e la visualizzazione.
+- `email: string`: indirizzo email associato all'account.
+- `role: UserRole`: il ruolo assegnato all'utente.
+- `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
 
 ====== UserConfig <angular-userconfig-model>
 Modello semplificato utilizzato per le operazioni di creazione o configurazione iniziale del profilo utente.
-  - `email: string`: indirizzo email da assegnare all'account.
-  - `username: string`: nome utente desiderato per la configurazione.
+- `email: string`: indirizzo email da assegnare all'account.
+- `username: string`: nome utente desiderato per la configurazione.
 
 ====== PaginatedUserResponse <angular-paginateduserresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di utenti.
-  - `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+- `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioUser.pdf", width: 100%),
@@ -2198,7 +2205,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/PermissionService.pdf", width: 75%),
-  caption: [Code diagram - PermissionService]
+  caption: [Code diagram - PermissionService],
 )
 
 ====== AuthApiClientAdapter <angular-auth-api-client-adapter>
@@ -2287,7 +2294,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/TenantService.pdf", width: 50%),
-  caption: [Code diagram - TenantService]
+  caption: [Code diagram - TenantService],
 )
 
 ====== UserApiClientAdapter <angular-user-api-client-adapter>
@@ -2321,7 +2328,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/UserService.pdf", width: 60%),
-  caption: [Code diagram - UserService]
+  caption: [Code diagram - UserService],
 )
 
 ====== GatewayApiClientAdapter <angular-gateway-api-client-adapter>
@@ -2363,7 +2370,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayService.pdf", width: 70%),
-  caption: [Code diagram - GatewayService]
+  caption: [Code diagram - GatewayService],
 )
 
 ====== SensorApiClientAdapter <angular-sensor-api-client-adapter>
@@ -2403,7 +2410,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorService.pdf", width: 70%),
-  caption: [Code diagram - SensorService]
+  caption: [Code diagram - SensorService],
 )
 
 ====== SensorHistoricApiClientAdapter <angular-sensor-historic-api-adapter>
@@ -2444,7 +2451,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorChartService.pdf", width: 70%),
-  caption: [Code diagram - SensorChartService]
+  caption: [Code diagram - SensorChartService],
 )
 
 ====== DashboardService <angular-dashboard-service>
@@ -2470,11 +2477,11 @@ Il servizio presenta i seguenti metodi pubblici:
 - `closeChart(): void`: metodo utilizzato per chiudere il grafico di un sensore, aggiorna lo stato di `selectedChart` a `null`.
 
 Il servizio presenta i seguenti metodi privati:
-- `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`. 
+- `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`.
 
 #figure(
   image("../../assets/c4/frontend/services/DashboardService.pdf", width: 70%),
-  caption: [Code diagram - DashboardService]
+  caption: [Code diagram - DashboardService],
 )
 
 ====== GatewaySensorManagerService <angular-gateway-sensor-manager-service>
@@ -2504,13 +2511,13 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewaySensorManagerService.pdf", width: 70%),
-  caption: [Code diagram - GatewaySensorManagerService]
+  caption: [Code diagram - GatewaySensorManagerService],
 )
 
 ==== Logica di presentazione
 Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di esporre lo stato del Model in modo ottimizzato per la visualizzazione. Il ViewModel agisce come un mediatore che incapsula la logica di business e offre alla View dati pronti per il consumo tramite _data-binding_ reattivo. Questa separazione assicura che la View rimanga passiva e focalizzata sul layout, mentre il ViewModel gestisce l'orchestrazione degli eventi utente e la trasformazione dei dati necessari alla UI.
 
-===== Routes 
+===== Routes
 #tabella-paginata(
   table(
     columns: (auto, 1fr, 3fr),
@@ -2518,9 +2525,7 @@ Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di es
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Path*], [*Componente*], [*Descrizione*],
 
-    [/login],
-    [LoginPage],
-    [Rotta che porta alla pagina di login, accessibile agli utenti non autenticati.],
+    [/login], [LoginPage], [Rotta che porta alla pagina di login, accessibile agli utenti non autenticati.],
 
     [/forgot_password/:token],
     [ForgotPasswordPage],
@@ -2582,11 +2587,9 @@ Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di es
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Path*], [*Comportamento*],
 
-    [/(root)],
-    [Redirect automatico a `/dashboard`.],
+    [/(root)], [Redirect automatico a `/dashboard`.],
 
-    [\*\* (wildcard)],
-    [Redirect automatico a `/login`. Cattura tutte le rotte non definite.],
+    [\*\* (wildcard)], [Redirect automatico a `/login`. Cattura tutte le rotte non definite.],
   ),
   [Rotte di fallback],
   label-id: "angular-fallback-routes",
@@ -2597,30 +2600,30 @@ La cartella _shared_ contiene componenti presentazionali (dumb components) e dia
 
 ====== UI Components <angular-shared-components>
 *`GatewayTableComponent`*: una tabella per la visualizzazione dei gateway, dotata di logica di espansione per mostrare i sensori associati.
-  - *Dinamicità*: la proprietà `actionMode` determina quali colonne visualizzare; ad esempio, la colonna di eliminazione è visibile solo in modalità gestione.
-  - *Espansione nidificata*: utilizza la funzionalità `multiTemplateDataRows` di Angular Material per mostrare un dettaglio espanso (`GatewayExpandedComponent`) sotto la riga del gateway selezionato.
-  - *Interazioni*: gestisce la copia della Public Key negli appunti e l'apertura del dialogo per l'invio di comandi al gateway.
-  - *Input/Output*: riceve le liste di gateway e sensori, gli stati di caricamento e i parametri di paginazione; emette eventi per l'espansione, l'eliminazione, la creazione e il cambio pagina.
+- *Dinamicità*: la proprietà `actionMode` determina quali colonne visualizzare; ad esempio, la colonna di eliminazione è visibile solo in modalità gestione.
+- *Espansione nidificata*: utilizza la funzionalità `multiTemplateDataRows` di Angular Material per mostrare un dettaglio espanso (`GatewayExpandedComponent`) sotto la riga del gateway selezionato.
+- *Interazioni*: gestisce la copia della Public Key negli appunti e l'apertura del dialogo per l'invio di comandi al gateway.
+- *Input/Output*: riceve le liste di gateway e sensori, gli stati di caricamento e i parametri di paginazione; emette eventi per l'espansione, l'eliminazione, la creazione e il cambio pagina.
 
 *`SensorTableComponent`*: componente dedicato alla visualizzazione tabellare dei sensori.
-  - *Visualizzazione Condizionale*: analogamente alla tabella gateway, adatta le proprie colonne in base all' `actionMode`. In modalità 'dashboard', mostra le icone per l'apertura dei grafici storici e in tempo reale.
-  - *Gestione Grafici*: il metodo `onViewChart` distingue tra grafico in tempo reale (invio diretto della richiesta) e storico; in quest'ultimo caso, apre il dialogo `HistoricChartFiltersDialog` per permettere all'utente di selezionare l'intervallo temporale.
-  - *Sicurezza*: il pulsante per il grafico in tempo reale viene disabilitato automaticamente se il gateway o il sensore risultano inattivi.
+- *Visualizzazione Condizionale*: analogamente alla tabella gateway, adatta le proprie colonne in base all' `actionMode`. In modalità 'dashboard', mostra le icone per l'apertura dei grafici storici e in tempo reale.
+- *Gestione Grafici*: il metodo `onViewChart` distingue tra grafico in tempo reale (invio diretto della richiesta) e storico; in quest'ultimo caso, apre il dialogo `HistoricChartFiltersDialog` per permettere all'utente di selezionare l'intervallo temporale.
+- *Sicurezza*: il pulsante per il grafico in tempo reale viene disabilitato automaticamente se il gateway o il sensore risultano inattivi.
 
 *`GatewayExpandedComponent`*: agisce come contenitore specializzato per i sensori di un gateway specifico quando la riga della tabella principale viene espansa.
-  - *Responsabilità*: incapsula una `SensorTableComponent` passandole i dati filtrati e i parametri di configurazione necessari.
-  - *Delegazione*: funge da ponte per gli eventi (creazione/eliminazione sensore, richieste grafici) emessi dalla tabella interna verso il componente padre.
+- *Responsabilità*: incapsula una `SensorTableComponent` passandole i dati filtrati e i parametri di configurazione necessari.
+- *Delegazione*: funge da ponte per gli eventi (creazione/eliminazione sensore, richieste grafici) emessi dalla tabella interna verso il componente padre.
 
 ====== Dialogs <angular-shared-dialogs>
 *`ConfirmDeleteDialog`*: un dialogo generico e riutilizzabile per la conferma di operazioni distruttive.
-  - *Configurabilità*: riceve tramite il token `MAT_DIALOG_DATA` un oggetto contenente `title` e `message`, permettendo di personalizzare la richiesta di conferma per qualsiasi entità (gateway, sensore, ecc.).
-  - *Template*: presenta un'interfaccia chiara con un pulsante di annullamento e un pulsante di conferma evidenziato con colore "warn" per indicare la pericolosità dell'azione.
+- *Configurabilità*: riceve tramite il token `MAT_DIALOG_DATA` un oggetto contenente `title` e `message`, permettendo di personalizzare la richiesta di conferma per qualsiasi entità (gateway, sensore, ecc.).
+- *Template*: presenta un'interfaccia chiara con un pulsante di annullamento e un pulsante di conferma evidenziato con colore "warn" per indicare la pericolosità dell'azione.
 
 
 ===== App Shell
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-AppShell.pdf", width: 80%),
-  caption: [Code diagram - App Shell]
+  caption: [Code diagram - App Shell],
 ) \
 
 Il modulo `App Shell` definisce il layout persistente dell'applicazione, gestendo la navigazione principale, la visualizzazione delle informazioni dell'utente in sessione e le azioni globali come il logout e il cambio password.
@@ -2628,313 +2631,313 @@ Il modulo `App Shell` definisce il layout persistente dell'applicazione, gestend
 ====== AppShellPage <angular-appshell-page>
 
 La `AppShellPage` funge da orchestratore centrale del layout. Essendo uno smart component, interagisce con molteplici servizi di dominio per inizializzare l'interfaccia e gestire i permessi di navigazione.
-  - _Responsabilità_:
-    - Recupera i dati anagrafici dell'utente loggato e del relativo tenant tramite `UserService` e `TenantService` per visualizzarne i nomi nell'header.
-    - Gestisce dinamicamente la lista di navigazione tramite un segnale computato (navItems), filtrando le voci definite in `NAV_ITEMS` in base ai permessi dell'utente verificati dal `PermissionService`.
-    - Coordina le azioni globali: invoca il logout e apre il dialogo di cambio password.
-  - _Servizi Iniettati_: `UserSessionService` (@angular-user-session-service), `AuthSessionService` (@angular-auth-session-service), `UserService` (@angular-user-service), `TenantService` (@angular-tenant-service), `PermissionService` (@angular-permission-service).
+- _Responsabilità_:
+  - Recupera i dati anagrafici dell'utente loggato e del relativo tenant tramite `UserService` e `TenantService` per visualizzarne i nomi nell'header.
+  - Gestisce dinamicamente la lista di navigazione tramite un segnale computato (navItems), filtrando le voci definite in `NAV_ITEMS` in base ai permessi dell'utente verificati dal `PermissionService`.
+  - Coordina le azioni globali: invoca il logout e apre il dialogo di cambio password.
+- _Servizi Iniettati_: `UserSessionService` (@angular-user-session-service), `AuthSessionService` (@angular-auth-session-service), `UserService` (@angular-user-service), `TenantService` (@angular-tenant-service), `PermissionService` (@angular-permission-service).
 
 ====== UI Components <angular-appshell-components>
 All'interno della cartella components, l'`App Shell` si avvale di componenti presentazionali puri per la scomposizione del layout. \
 
 *`HeaderComponent`*: rappresenta la barra superiore dell'applicazione.
-  - _Input_:
-    - `username`: il nome dell'utente da visualizzare nel menu.
-    - `currentTenant`: il nome dell'organizzazione corrente, visualizzato tramite un badge.
-    - `currentUserRole`: il ruolo dell'utente, visualizzato in formato testuale.
-  - _Output_:
-    - `logoutRequested`: emesso quando l'utente seleziona la voce di uscita.
-    - `changePasswordRequested`: emesso quando l'utente apre il dialogo di cambio password.
+- _Input_:
+  - `username`: il nome dell'utente da visualizzare nel menu.
+  - `currentTenant`: il nome dell'organizzazione corrente, visualizzato tramite un badge.
+  - `currentUserRole`: il ruolo dell'utente, visualizzato in formato testuale.
+- _Output_:
+  - `logoutRequested`: emesso quando l'utente seleziona la voce di uscita.
+  - `changePasswordRequested`: emesso quando l'utente apre il dialogo di cambio password.
 
 *`SideBarComponent`*: gestisce il menu di navigazione laterale.
-  - _Input_:
-   - `navItems`: la lista filtrata di oggetti `NavItem` ricevuta dalla pagina.
-  - _Funzionalità_: 
-    - itera sugli elementi di navigazione gestendo graficamente separatori, titoli di sezione e link attivi tramite le direttive di routing di Angular.
+- _Input_:
+  - `navItems`: la lista filtrata di oggetti `NavItem` ricevuta dalla pagina.
+- _Funzionalità_:
+  - itera sugli elementi di navigazione gestendo graficamente separatori, titoli di sezione e link attivi tramite le direttive di routing di Angular.
 
 ====== Dialogs <angular-appshell-dialogs>
 *`ChangePasswordDialog`*: un componente autonomo utilizzato per consentire all'utente autenticato di aggiornare le proprie credenziali.
-  - _Logica_: utilizza un `FormBuilder` per gestire un modulo reattivo con validazioni specifiche per la lunghezza minima della password e la corrispondenza tra "nuova password" e "conferma password".
-  - _Interazione_: comunica con `AuthActionsService` (@angular-auth-actions-service) per inviare la richiesta `confirmPasswordChange`. Gestisce internamente lo stato di caricamento e la visualizzazione di eventuali errori generali restituiti dalle API tramite un banner dedicato nel template.
+- _Logica_: utilizza un `FormBuilder` per gestire un modulo reattivo con validazioni specifiche per la lunghezza minima della password e la corrispondenza tra "nuova password" e "conferma password".
+- _Interazione_: comunica con `AuthActionsService` (@angular-auth-actions-service) per inviare la richiesta `confirmPasswordChange`. Gestisce internamente lo stato di caricamento e la visualizzazione di eventuali errori generali restituiti dalle API tramite un banner dedicato nel template.
 
 
 ===== Confirm Account
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ConfirmAccount.pdf", width: 90%),
-  caption: [Code diagram - Confirm Account]
+  caption: [Code diagram - Confirm Account],
 ) \
 
 Il modulo `Confirm Account` gestisce il processo di attivazione dell'account utente a seguito della ricezione dell'invito. La pagina permette l'impostazione della password definitiva e il contestuale primo accesso al sistema.
 
 ====== ConfirmAccountPage <angular-confirmaccount-page>
 La `ConfirmAccountPage` funge da orchestratore per il processo di attivazione, recuperando i parametri necessari dall'URL e gestendo il flusso di navigazione post-attivazione.
-  - _Responsabilità_: 
-    - Estrae il token di attivazione dai parametri del percorso e l'eventuale `tenantId` dai parametri di ricerca (query parameters) dell'URL.
-    - Monitora lo stato di caricamento e gli eventuali errori globali attraverso i segnali esposti da `AuthActionsService`.
-    - Inoltra la richiesta di conferma al servizio di dominio e, in caso di successo, reindirizza l'utente alla `Dashboard` (poiché la conferma implica un login automatico tramite restituzione del JWT).
-  - _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
+- _Responsabilità_:
+  - Estrae il token di attivazione dai parametri del percorso e l'eventuale `tenantId` dai parametri di ricerca (query parameters) dell'URL.
+  - Monitora lo stato di caricamento e gli eventuali errori globali attraverso i segnali esposti da `AuthActionsService`.
+  - Inoltra la richiesta di conferma al servizio di dominio e, in caso di successo, reindirizza l'utente alla `Dashboard` (poiché la conferma implica un login automatico tramite restituzione del JWT).
+- _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
 
 ====== UI Components  <angular-confirmaccount-components>
 All'interno della cartella components, il modulo delega la logica di inserimento dati a un componente presentazionale dedicato.
 *`ConfirmAccountFormComponent`*: gestisce l'interfaccia di inserimento della nuova password e le relative validazioni.
-  - _Input_:
-    - `loading`: segnale booleano che indica se è in corso la comunicazione con il backend.
-    - `generalError`: stringa contenente eventuali errori restituiti dal server da visualizzare nel banner.
-  - _Output_:
-    - `submitConfirmAccount`: emette i dati del modulo (nuova password) verso la pagina per l'elaborazione.
-    - `dismissError`: segnala alla pagina la volontà dell'utente di chiudere il banner di errore.
-  - _Logica e Funzionalità_:
-    - Implementa un modulo reattivo (Reactive Form) che impone una lunghezza minima di 8 caratteri per la password.
-    - Include un validatore personalizzato `passwordsMatchValidator` per garantire che il campo di conferma coincida esattamente con la nuova password inserita.
-    - Gestisce la visualizzazione di messaggi di errore contestuali per i singoli campi e un indicatore di progresso (`MatProgressBar`) durante la fase di invio.
+- _Input_:
+  - `loading`: segnale booleano che indica se è in corso la comunicazione con il backend.
+  - `generalError`: stringa contenente eventuali errori restituiti dal server da visualizzare nel banner.
+- _Output_:
+  - `submitConfirmAccount`: emette i dati del modulo (nuova password) verso la pagina per l'elaborazione.
+  - `dismissError`: segnala alla pagina la volontà dell'utente di chiudere il banner di errore.
+- _Logica e Funzionalità_:
+  - Implementa un modulo reattivo (Reactive Form) che impone una lunghezza minima di 8 caratteri per la password.
+  - Include un validatore personalizzato `passwordsMatchValidator` per garantire che il campo di conferma coincida esattamente con la nuova password inserita.
+  - Gestisce la visualizzazione di messaggi di errore contestuali per i singoli campi e un indicatore di progresso (`MatProgressBar`) durante la fase di invio.
 
 
 ===== Dashboard
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Dashboard.pdf", width: 100%),
-  caption: [Code diagram - Dashboard]
+  caption: [Code diagram - Dashboard],
 ) \
 
 Il modulo `Dashboard` costituisce il centro operativo dell'applicazione, offrendo una visione d'insieme dello stato dei dispositivi e permettendo il monitoraggio analitico dei dati biometrici e ambientali in tempo reale e in modalità storica.
 
 ====== DashboardPage <angular-dashboard-page>
 La `DashboardPage` agisce come orchestratore principale per la visualizzazione dei dati, adattando il proprio contenuto e le funzionalità disponibili in base al ruolo dell'utente e all'eventuale contesto di impersonificazione.
-  - _Responsabilità_:
-      - Gestisce il caricamento dei dati filtrati per tenant; per il ruolo `SUPER_ADMIN`, implementa una logica di impersonificazione che permette di visualizzare i dati di un'organizzazione specifica tramite parametri dell'URL.
-      - Coordina la visualizzazione delle tabelle dei gateway e dei sensori (utilizzando i componenti shared @angular-shared-components), gestendo l'espansione dei dettagli e la paginazione dei risultati attraverso il `DashboardService`.
-      - Supervisiona il ciclo di vita dei grafici, gestendo l'apertura delle richieste di monitoraggio e assicurando la corretta chiusura delle connessioni alla distruzione del componente.
-      - Fornisce feedback all'utente tramite banner informativi o notifiche in risposta all'invio di comandi.
-  - _Servizi Iniettati_: `DashboardService` (@angular-dashboard-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`, `UserSessionService` (@angular-user-session-service).
+- _Responsabilità_:
+  - Gestisce il caricamento dei dati filtrati per tenant; per il ruolo `SUPER_ADMIN`, implementa una logica di impersonificazione che permette di visualizzare i dati di un'organizzazione specifica tramite parametri dell'URL.
+  - Coordina la visualizzazione delle tabelle dei gateway e dei sensori (utilizzando i componenti shared @angular-shared-components), gestendo l'espansione dei dettagli e la paginazione dei risultati attraverso il `DashboardService`.
+  - Supervisiona il ciclo di vita dei grafici, gestendo l'apertura delle richieste di monitoraggio e assicurando la corretta chiusura delle connessioni alla distruzione del componente.
+  - Fornisce feedback all'utente tramite banner informativi o notifiche in risposta all'invio di comandi.
+- _Servizi Iniettati_: `DashboardService` (@angular-dashboard-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`, `UserSessionService` (@angular-user-session-service).
 
 ====== UI Components <angular-dashboard-components>
 All'interno della dashboard, la visualizzazione dei segnali è affidata a componenti presentazionali specializzati che gestiscono la complessità del rendering grafico.
 
 *`ChartContainerComponent`*: funge da contenitore dinamico per la visualizzazione dei grafici, isolando la logica di gestione del servizio dati dalla rappresentazione visiva.
-  - _Input_:
-    - `chartRequest`: oggetto di configurazione contenente il sensore, il tipo di grafico e gli eventuali filtri richiesti.
-  - _Output_:
-    - `chartClosed`: segnala alla pagina la chiusura della vista del grafico.
-  - _Funzionalità_:
-    - Utilizza un effect per avviare automaticamente il recupero dei dati tramite `SensorChartService` ogni volta che la richiesta cambia.
-    - Visualizza lo stato della connessione WebSocket (es. "Connected", "Connecting") per i grafici live e gestisce la visualizzazione di eventuali errori di caricamento.
-    - Istanzia condizionalmente i componenti `HistoricChartComponent` e/o `RealTimeChartComponent` in base al tipo di richiesta.
+- _Input_:
+  - `chartRequest`: oggetto di configurazione contenente il sensore, il tipo di grafico e gli eventuali filtri richiesti.
+- _Output_:
+  - `chartClosed`: segnala alla pagina la chiusura della vista del grafico.
+- _Funzionalità_:
+  - Utilizza un effect per avviare automaticamente il recupero dei dati tramite `SensorChartService` ogni volta che la richiesta cambia.
+  - Visualizza lo stato della connessione WebSocket (es. "Connected", "Connecting") per i grafici live e gestisce la visualizzazione di eventuali errori di caricamento.
+  - Istanzia condizionalmente i componenti `HistoricChartComponent` e/o `RealTimeChartComponent` in base al tipo di richiesta.
 
 *`RealTimeChartComponent`*: componente dedicato al rendering dei segnali biometrici e ambientali in tempo reale.
-  - _Funzionalità_: 
-    - Utilizza la libreria `chart.js` per visualizzare un grafico a linee ottimizzato per lo streaming continuo di dati.
-    - Include un selettore di campo (mat-select) qualora il sensore fornisca letture multiple simultanee (es. Temperatura e Umidità).
-    - Applica configurazioni grafiche specifiche per il segnale ECG, come l'assenza di punti dati e una tensione della linea ridotta per una rappresentazione clinica accurata.
+- _Funzionalità_:
+  - Utilizza la libreria `chart.js` per visualizzare un grafico a linee ottimizzato per lo streaming continuo di dati.
+  - Include un selettore di campo (mat-select) qualora il sensore fornisca letture multiple simultanee (es. Temperatura e Umidità).
+  - Applica configurazioni grafiche specifiche per il segnale ECG, come l'assenza di punti dati e una tensione della linea ridotta per una rappresentazione clinica accurata.
 
 *`HistoricChartComponent`*: implementa la visualizzazione delle serie storiche, fornendo strumenti per l'analisi di dataset estesi.
-  - _Funzionalità_: 
-    - Utilizza la libreria `chart.js` per visualizzare un grafico a linee.
-    - Integra controlli di scorrimento (slider e pulsanti "chevron") per navigare all'interno dei dati storici, visualizzando una finestra definita di punti (es. 50 o 250 per l'ECG).
-    - Calcola dinamicamente l'offset di visualizzazione per permettere all'utente di scorrere temporalmente lungo tutta la lettura recuperata.
+- _Funzionalità_:
+  - Utilizza la libreria `chart.js` per visualizzare un grafico a linee.
+  - Integra controlli di scorrimento (slider e pulsanti "chevron") per navigare all'interno dei dati storici, visualizzando una finestra definita di punti (es. 50 o 250 per l'ECG).
+  - Calcola dinamicamente l'offset di visualizzazione per permettere all'utente di scorrere temporalmente lungo tutta la lettura recuperata.
 
 ====== Dialogs <angular-dashboard-dialogs>
 *Nota*: Sebbene descritti in questa sezione per pertinenza funzionale con il modulo _Dashboard_, i seguenti dialoghi non sono invocati direttamente dalla pagina, ma sono attivati dalle tabelle componenti (`GatewayTable` e `SensorTable`) descritte nella @angular-shared-components.
 
 *`GatewayCommandsDialog`*: interfaccia per l'invio di istruzioni operative ai gateway, con validazioni dinamiche basate sullo stato del dispositivo.
-  - _Logica_:
-    - Filtra l'elenco dei comandi disponibili in base allo stato attuale (es. "Commission" per dispositivi decommissionati, "Interrupt/Resume" per dispositivi attivi/inattivi).
-    - Gestisce l'inserimento obbligatorio del tenant e del token di sicurezza per l'attivazione dei gateway.
-  - _Interazione_: coordina l'invio tramite `GatewayService` (@angular-gateway-service) e gestisce internamente lo stato di invio e gli errori API.
+- _Logica_:
+  - Filtra l'elenco dei comandi disponibili in base allo stato attuale (es. "Commission" per dispositivi decommissionati, "Interrupt/Resume" per dispositivi attivi/inattivi).
+  - Gestisce l'inserimento obbligatorio del tenant e del token di sicurezza per l'attivazione dei gateway.
+- _Interazione_: coordina l'invio tramite `GatewayService` (@angular-gateway-service) e gestisce internamente lo stato di invio e gli errori API.
 
 *`SensorCommandsDialog`*: permette l'invio di comandi di interruzione o ripresa dell'attività ai sensori.
-  - _Funzionalità_: presenta opzioni contestuali allo stato del sensore e comunica con `SensorService` (@angular-sensor-service) per l'esecuzione del comando.
+- _Funzionalità_: presenta opzioni contestuali allo stato del sensore e comunica con `SensorService` (@angular-sensor-service) per l'esecuzione del comando.
 
 *`HistoricChartFiltersDialog`*: fornisce un modulo per la configurazione dei parametri di recupero dei dati storici.
-  - _Logica_:
-     - Permette di selezionare un intervallo temporale tramite datepicker e selettori di orario, oltre a definire il numero massimo di punti dati (da 1 a 300).
-    - Implementa una validazione incrociata per garantire che la data di inizio sia sempre precedente alla data di fine dell'intervallo.
+- _Logica_:
+  - Permette di selezionare un intervallo temporale tramite datepicker e selettori di orario, oltre a definire il numero massimo di punti dati (da 1 a 300).
+  - Implementa una validazione incrociata per garantire che la data di inizio sia sempre precedente alla data di fine dell'intervallo.
 
 
 ===== Gateway-Sensor
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-GatewaySensor.pdf", width: 75%),
-  caption: [Code diagram - Gateway-Sensor]
+  caption: [Code diagram - Gateway-Sensor],
 ) \
 
 Il modulo `Gateway-Sensor` fornisce l'interfaccia dedicata alle operazioni di amministrazione (CRUD) sui gateway e sui sensori. A differenza della `Dashboard`, questa sezione è ottimizzata per la configurazione del sistema e la gestione del ciclo di vita dei dispositivi.
 
 ====== GatewaySensorManagerPage <angular-gatewaysensormanager-page>
 La `GatewaySensorManagerPage` funge da orchestratore per le attività di gestione, interfacciandosi con il servizio di dominio per riflettere i cambiamenti di stato e di inventario nell'interfaccia utente.
-  - _Responsabilità_:
-    - Inizializza il caricamento dei gateway e dei sensori associati tramite il `GatewaySensorManagerService`.
-    - Configura la tabella dei gateway in modalità "manage" (`actionMode="manage"`), abilitando le colonne per la visualizzazione delle chiavi pubbliche e per l'eliminazione dei record.
-    - Gestisce i flussi di creazione e cancellazione: apre i dialoghi di creazione (`CreateGatewayDialog`, `CreateSensorDialog`) o conferma eliminazione (`ConfirmDeleteDialog`) e ne elabora l'esito aggiornando i dati e notificando l'utente tramite `SnackBar`.
-    - Monitora e visualizza eventuali errori operativi derivanti dalle API, permettendo all'utente di chiudere i banner di avviso.
-  - _Servizi Iniettati_: `GatewaySensorManagerService` (@angular-gateway-sensor-manager-service).
+- _Responsabilità_:
+  - Inizializza il caricamento dei gateway e dei sensori associati tramite il `GatewaySensorManagerService`.
+  - Configura la tabella dei gateway in modalità "manage" (`actionMode="manage"`), abilitando le colonne per la visualizzazione delle chiavi pubbliche e per l'eliminazione dei record.
+  - Gestisce i flussi di creazione e cancellazione: apre i dialoghi di creazione (`CreateGatewayDialog`, `CreateSensorDialog`) o conferma eliminazione (`ConfirmDeleteDialog`) e ne elabora l'esito aggiornando i dati e notificando l'utente tramite `SnackBar`.
+  - Monitora e visualizza eventuali errori operativi derivanti dalle API, permettendo all'utente di chiudere i banner di avviso.
+- _Servizi Iniettati_: `GatewaySensorManagerService` (@angular-gateway-sensor-manager-service).
 
 ====== Dialogs <angular-gatewaysensormanager-dialogs>
 Il modulo si avvale di dialoghi specializzati per l'inserimento e la validazione delle configurazioni dei nuovi dispositivi.
 
 *`CreateGatewayDialog`*: componente dedicato alla creazione di nuove entità gateway.
-  - _Logica_:
-     - Implementa un modulo reattivo per l'inserimento del nome e dell'intervallo di invio dati.
-     - Impone validazioni sul campo `interval`, richiedendo un valore minimo di 100ms per garantire la stabilità delle comunicazioni.
-  - _Interazione_: invia la configurazione `GatewayConfig` al `GatewayService` (@angular-gateway-service) e gestisce internamente la visualizzazione degli errori.
+- _Logica_:
+  - Implementa un modulo reattivo per l'inserimento del nome e dell'intervallo di invio dati.
+  - Impone validazioni sul campo `interval`, richiedendo un valore minimo di 100ms per garantire la stabilità delle comunicazioni.
+- _Interazione_: invia la configurazione `GatewayConfig` al `GatewayService` (@angular-gateway-service) e gestisce internamente la visualizzazione degli errori.
 
 *`CreateSensorDialog`*: gestisce l'aggiunta di sensori a un gateway specifico.
-  - _Logica_:
-     - Riceve tramite `MAT_DIALOG_DATA` l'identificativo e il nome del gateway ospite per contestualizzare l'operazione.
-     - Permette la selezione del profilo tecnologico del sensore (ECG, Battito, etc.) tramite l'enumerazione `SensorProfiles`.
-     - Utilizza il `sensorProfilesMapper` per tradurre il profilo selezionato nel formato richiesto dal backend prima dell'invio.
-  - _Interazione_: comunica con `SensorService` (@angular-sensor-service) per la creazione dell'entità `SensorConfig` e chiude il dialogo restituendo un feedback positivo in caso di successo.
+- _Logica_:
+  - Riceve tramite `MAT_DIALOG_DATA` l'identificativo e il nome del gateway ospite per contestualizzare l'operazione.
+  - Permette la selezione del profilo tecnologico del sensore (ECG, Battito, etc.) tramite l'enumerazione `SensorProfiles`.
+  - Utilizza il `sensorProfilesMapper` per tradurre il profilo selezionato nel formato richiesto dal backend prima dell'invio.
+- _Interazione_: comunica con `SensorService` (@angular-sensor-service) per la creazione dell'entità `SensorConfig` e chiude il dialogo restituendo un feedback positivo in caso di successo.
 
 
 ===== Login
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Login.pdf", width: 80%),
-  caption: [Code diagram - Login]
+  caption: [Code diagram - Login],
 ) \
 
 Il modulo `Login` costituisce il punto di accesso principale al sistema, gestendo l'autenticazione degli utenti e fornendo i flussi per il recupero delle credenziali dimenticate.
 
 ====== LoginPage <angular-login-page>
 La `LoginPage` funge da orchestratore per la fase di accesso, collegando il modulo di inserimento dati con i servizi di sessione e gestendo la navigazione post-autenticazione.
-  - _Responsabilità_:
-    - Coordina l'operazione di accesso invocando il metodo login dell'`AuthSessionService` e, in caso di successo, reindirizza l'utente verso la `Dashboard`.
-    - Gestisce l'apertura del dialogo per il recupero password (`ForgotPasswordDialog`).
-    - Espone lo stato di caricamento e gli eventuali errori recuperati dal servizio di sessione.
-  - _Servizi Iniettati_: `AuthSessionService` (@angular-auth-session-service), `Router`.
+- _Responsabilità_:
+  - Coordina l'operazione di accesso invocando il metodo login dell'`AuthSessionService` e, in caso di successo, reindirizza l'utente verso la `Dashboard`.
+  - Gestisce l'apertura del dialogo per il recupero password (`ForgotPasswordDialog`).
+  - Espone lo stato di caricamento e gli eventuali errori recuperati dal servizio di sessione.
+- _Servizi Iniettati_: `AuthSessionService` (@angular-auth-session-service), `Router`.
 
 ====== UI Components (Dumb Components) <angular-login-components>
 All'interno della cartella components, la logica di presentazione del modulo di accesso è isolata in un componente dedicato.
 *`LoginFormComponent`*: rappresenta l'interfaccia utente per l'inserimento delle credenziali e la selezione del contesto organizzativo.
-  - _Input_:
-    - `loading`: booleano che indica se è in corso un tentativo di autenticazione.
-    - `generalError`: stringa contenente messaggi di errore restituiti dal server.
-  - _Output_:
-    - `submitLogin`: emette la richiesta LoginRequest (email, password e tenantId) verso la pagina.
-    - `forgotPassword`: segnala l'intenzione dell'utente di avviare il recupero password.
-    - `dismissError`: emette un evento per pulire i messaggi di errore visualizzati.
-  - _Logica_ e _Funzionalità_:
-    - Utilizza il `TenantService` (@angular-tenant-service) nel costruttore per popolare dinamicamente il selettore dei tenant disponibili.
-    - Implementa validazioni reattive per garantire che l'email rispetti il formato corretto e che i campi obbligatori siano popolati prima dell'invio.
+- _Input_:
+  - `loading`: booleano che indica se è in corso un tentativo di autenticazione.
+  - `generalError`: stringa contenente messaggi di errore restituiti dal server.
+- _Output_:
+  - `submitLogin`: emette la richiesta LoginRequest (email, password e tenantId) verso la pagina.
+  - `forgotPassword`: segnala l'intenzione dell'utente di avviare il recupero password.
+  - `dismissError`: emette un evento per pulire i messaggi di errore visualizzati.
+- _Logica_ e _Funzionalità_:
+  - Utilizza il `TenantService` (@angular-tenant-service) nel costruttore per popolare dinamicamente il selettore dei tenant disponibili.
+  - Implementa validazioni reattive per garantire che l'email rispetti il formato corretto e che i campi obbligatori siano popolati prima dell'invio.
 
 ====== Dialogs <angular-login-dialogs>
 *`ForgotPasswordDialog`*: gestisce il flusso di richiesta per la reimpostazione della password.
-  - _Logica_:
-    - Presenta un modulo per l'inserimento dell'email e la selezione opzionale del tenant.
-    - Include una funzione `setupAutoClear` che monitora i cambiamenti nei campi del modulo per pulire automaticamente gli errori di invio mentre l'utente digita.
-  - _Interazione_:
-    - Invia la richiesta `ForgotPasswordRequest` tramite l'`AuthActionsService`.
-    - In caso di esito positivo, chiude il dialogo restituendo true per confermare l'invio del link di reset.
-    - _Servizi Iniettati_: `FormBuilder`, `MatDialogRef`, `AuthActionsService` (@angular-auth-actions-service), `TenantService` (@angular-tenant-service).
+- _Logica_:
+  - Presenta un modulo per l'inserimento dell'email e la selezione opzionale del tenant.
+  - Include una funzione `setupAutoClear` che monitora i cambiamenti nei campi del modulo per pulire automaticamente gli errori di invio mentre l'utente digita.
+- _Interazione_:
+  - Invia la richiesta `ForgotPasswordRequest` tramite l'`AuthActionsService`.
+  - In caso di esito positivo, chiude il dialogo restituendo true per confermare l'invio del link di reset.
+  - _Servizi Iniettati_: `FormBuilder`, `MatDialogRef`, `AuthActionsService` (@angular-auth-actions-service), `TenantService` (@angular-tenant-service).
 
 
 ===== Reset Password
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ResetPassword.pdf", width: 100%),
-  caption: [Code diagram - Reset Password]
+  caption: [Code diagram - Reset Password],
 ) \
 
 Il modulo `ResetPassword` gestisce la fase finale del recupero delle credenziali, permettendo all'utente di impostare una nuova password tramite un link di sicurezza ricevuto via email.
 
 ====== ResetPasswordPage <angular-resetpassword-page>
 La `ResetPasswordPage` funge da coordinatore per l'operazione di ripristino, estraendo i parametri di validazione dall'URL e gestendo lo stato dell'interfaccia in base all'esito della richiesta.
-  - _Responsabilità_:
-    - Recupera il token di sicurezza dai parametri del percorso e l'eventuale tenantId dai parametri di ricerca (query parameters) per autorizzare l'operazione.
-    - Osserva i segnali esposti da `AuthActionsService` per monitorare lo stato di caricamento (`loading`), eventuali errori (`generalError`) e la conferma dell'avvenuta modifica (`passwordChangeResult`).
-    - Inoltra la richiesta di reset al servizio di dominio, integrando i dati ricevuti dal form con il token e il tenant ID estratti dall'URL.
-    - Gestisce la navigazione di ritorno alla pagina di login dopo il completamento con successo.
-  - _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
+- _Responsabilità_:
+  - Recupera il token di sicurezza dai parametri del percorso e l'eventuale tenantId dai parametri di ricerca (query parameters) per autorizzare l'operazione.
+  - Osserva i segnali esposti da `AuthActionsService` per monitorare lo stato di caricamento (`loading`), eventuali errori (`generalError`) e la conferma dell'avvenuta modifica (`passwordChangeResult`).
+  - Inoltra la richiesta di reset al servizio di dominio, integrando i dati ricevuti dal form con il token e il tenant ID estratti dall'URL.
+  - Gestisce la navigazione di ritorno alla pagina di login dopo il completamento con successo.
+- _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
 
 ====== UI Components <angular-resetpassword-components>
 La logica di inserimento e validazione dei dati è delegata a un componente presentazionale che separa la gestione dei messaggi di sistema dalla visualizzazione del modulo.
 *`ResetPasswordFormComponent`*: fornisce l'interfaccia per la creazione della nuova password, garantendo la correttezza dei dati inseriti tramite validazioni reattive.
-  - _Input_:
-    - `loading`: indica se la richiesta è in fase di elaborazione.
-    - `generalError`: contiene il messaggio di errore da visualizzare nel banner nel caso di errore.
-    - `success`: booleano che, se vero, nasconde il modulo e mostra un messaggio di conferma del successo dell'operazione.
-  - _Output_:
-    - `submitReset`: emette la nuova password verso la pagina orchestratrice.
-    - `goToLogin`: segnala l'intenzione dell'utente di tornare alla pagina di accesso.
-    - `dismissError`: richiede la rimozione del banner di errore.
-  - _Logica_ e _Funzionalità_:
-    - Utilizza un `FormBuilder` per creare un modulo reattivo con controlli sulla password (obbligatoria, minimo 8 caratteri).
-    - Implementa il validatore `passwordsMatchValidator` per assicurarsi che i campi "Nuova Password" e "Conferma Password" corrispondano.
-    - Gestisce dinamicamente il template per mostrare indicatori di progresso (`MatProgressBar`) o messaggi di errore contestuali sotto i campi del form.
+- _Input_:
+  - `loading`: indica se la richiesta è in fase di elaborazione.
+  - `generalError`: contiene il messaggio di errore da visualizzare nel banner nel caso di errore.
+  - `success`: booleano che, se vero, nasconde il modulo e mostra un messaggio di conferma del successo dell'operazione.
+- _Output_:
+  - `submitReset`: emette la nuova password verso la pagina orchestratrice.
+  - `goToLogin`: segnala l'intenzione dell'utente di tornare alla pagina di accesso.
+  - `dismissError`: richiede la rimozione del banner di errore.
+- _Logica_ e _Funzionalità_:
+  - Utilizza un `FormBuilder` per creare un modulo reattivo con controlli sulla password (obbligatoria, minimo 8 caratteri).
+  - Implementa il validatore `passwordsMatchValidator` per assicurarsi che i campi "Nuova Password" e "Conferma Password" corrispondano.
+  - Gestisce dinamicamente il template per mostrare indicatori di progresso (`MatProgressBar`) o messaggi di errore contestuali sotto i campi del form.
 
 
 ===== Tenant
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Tenant.pdf", width: 70%),
-  caption: [Code diagram - Tenant page]
+  caption: [Code diagram - Tenant page],
 ) \
 
 Il modulo `Tenant` fornisce l'interfaccia per la gestione delle entità organizzative (appunto i tenant) all'interno del sistema multi-tenant. Questa sezione permette agli amministratori globali di creare nuove organizzazioni, monitorare quelle esistenti ed eseguire operazioni di impersonificazione.
 
 ====== TenantManagerPage <angular-tenantmanager-page>
 La `TenantManagerPage` funge da orchestratore centrale per l'anagrafica dei tenant, gestendo il caricamento dei dati e coordinando le azioni di amministrazione.
-  - _Responsabilità_:
-    - Inizializza il recupero della lista dei tenant attraverso il `TenantService`.
-    - Gestisce la creazione di nuovi tenant aprendo il dialogo `TenantFormDialog` (@angular-tenant-dialogs) e aggiornando la vista in caso di successo.
-    - Coordina l'eliminazione dei tenant esistenti, richiedendo conferma tramite il dialogo condiviso `ConfirmDeleteDialog` (@angular-shared-dialogs).
-    - Implementa la logica di navigazione contestuale: permette di "entrare" nella dashboard di un tenant specifico (impersonificazione) o di accedere alla gestione degli utenti di quella specifica organizzazione.
-    - Monitora lo stato di errore globale del servizio e permette all'utente di chiudere i banner di notifica in caso di fallimento delle API.
-  - _Servizi Iniettati_: `TenantService` (@angular-tenant-service), `Router`.
+- _Responsabilità_:
+  - Inizializza il recupero della lista dei tenant attraverso il `TenantService`.
+  - Gestisce la creazione di nuovi tenant aprendo il dialogo `TenantFormDialog` (@angular-tenant-dialogs) e aggiornando la vista in caso di successo.
+  - Coordina l'eliminazione dei tenant esistenti, richiedendo conferma tramite il dialogo condiviso `ConfirmDeleteDialog` (@angular-shared-dialogs).
+  - Implementa la logica di navigazione contestuale: permette di "entrare" nella dashboard di un tenant specifico (impersonificazione) o di accedere alla gestione degli utenti di quella specifica organizzazione.
+  - Monitora lo stato di errore globale del servizio e permette all'utente di chiudere i banner di notifica in caso di fallimento delle API.
+- _Servizi Iniettati_: `TenantService` (@angular-tenant-service), `Router`.
 
 ====== UI Components <angular-tenant-components>
 La visualizzazione dei dati è affidata a un componente presentazionale che isola la complessità della tabella di Angular Material.
 *`TenantTableComponent`*: componente dedicato alla rappresentazione tabellare dei tenant.
-  - _Input_:
-     - `tenants`: l'array di oggetti Tenant da visualizzare.
-     - `loading`: stato di caricamento per la visualizzazione dello spinner.
-     - `total`, `pageIndex`, `limit`: parametri per la gestione della paginazione integrata.
-  - _Output_:
-    - `deleteRequested`: segnala la volontà di eliminare un tenant.
-    - `dashboardRequested`: emette l'evento per avviare l'impersonificazione nella dashboard.
-    - `tenantUserManagementRequested`: richiede l'accesso alla gestione utenti del tenant.
-    - `pageChange`: notifica il cambio di pagina o della dimensione della stessa.
-  - _Funzionalità_: mostra dinamicamente le azioni di gestione (dashboard e utenti) solo se il tenant ha il flag `canImpersonate` attivo.
+- _Input_:
+  - `tenants`: l'array di oggetti Tenant da visualizzare.
+  - `loading`: stato di caricamento per la visualizzazione dello spinner.
+  - `total`, `pageIndex`, `limit`: parametri per la gestione della paginazione integrata.
+- _Output_:
+  - `deleteRequested`: segnala la volontà di eliminare un tenant.
+  - `dashboardRequested`: emette l'evento per avviare l'impersonificazione nella dashboard.
+  - `tenantUserManagementRequested`: richiede l'accesso alla gestione utenti del tenant.
+  - `pageChange`: notifica il cambio di pagina o della dimensione della stessa.
+- _Funzionalità_: mostra dinamicamente le azioni di gestione (dashboard e utenti) solo se il tenant ha il flag `canImpersonate` attivo.
 
 ====== Dialogs <angular-tenant-dialogs>
 *`TenantFormDialog`*: gestisce l'interfaccia di inserimento per la creazione di una nuova organizzazione.
-  - _Logica_:
-    - Utilizza un modulo reattivo per l'inserimento del `name` (obbligatorio) e la configurazione del permesso `canImpersonate` tramite checkbox.
-    - Gestisce internamente lo stato di invio (`isSubmitting`) e la visualizzazione di errori specifici restituiti dal backend durante la creazione.
-  - _Interazione_: comunica direttamente con il `TenantService` (@angular-tenant-service) per l'invio della configurazione `TenantConfig` e chiude il dialogo restituendo un feedback positivo alla pagina principale.
+- _Logica_:
+  - Utilizza un modulo reattivo per l'inserimento del `name` (obbligatorio) e la configurazione del permesso `canImpersonate` tramite checkbox.
+  - Gestisce internamente lo stato di invio (`isSubmitting`) e la visualizzazione di errori specifici restituiti dal backend durante la creazione.
+- _Interazione_: comunica direttamente con il `TenantService` (@angular-tenant-service) per l'invio della configurazione `TenantConfig` e chiude il dialogo restituendo un feedback positivo alla pagina principale.
 
 ===== User
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-User.pdf", width: 70%),
-  caption: [Code diagram - User page]
+  caption: [Code diagram - User page],
 ) \
 
 Il modulo `User` fornisce l'interfaccia per la gestione completa degli utenti del sistema. La pagina è dinamica e adatta i propri contenuti (titoli, permessi e filtri) in base al ruolo dell'utente collegato e alla tipologia di account che si sta gestendo.
 
 ====== UserManagerPage <angular-usermanager-page>
 La `UserManagerPage` agisce come orchestratore centrale per l'amministrazione degli utenti, gestendo la navigazione tra i diversi ruoli e il contesto organizzativo.
-  - _Responsabilità_:
-    - Determina il contesto operativo (titolo della pagina e ruolo target) analizzando il percorso di routing attivo.
-    - Gestisce la visualizzazione tabellare degli utenti tramite lo `UserService` (@angular-user-service), supportando la paginazione e il filtraggio per tenant.
-    - Implementa una logica di commutazione tramite tab per distinguere tra _Tenant User_ e _Tenant Admin_ all'interno di una specifica organizzazione.
-    - Per i _Super Admin_, fornisce un selettore per filtrare gli utenti in base al tenant di appartenenza.
-    - Coordina le operazioni CRUD: apre il dialogo `UserFormDialog` per la creazione e richiede conferma tramite `ConfirmDeleteDialog` prima della rimozione di un account.
-    - Gestisce i flussi di navigazione per tornare alla gestione dei tenant o alla dashboard.
-  - _Servizi Iniettati_: `UserService` (@angular-user-service), `UserSessionService` (@angular-user-session-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`.
+- _Responsabilità_:
+  - Determina il contesto operativo (titolo della pagina e ruolo target) analizzando il percorso di routing attivo.
+  - Gestisce la visualizzazione tabellare degli utenti tramite lo `UserService` (@angular-user-service), supportando la paginazione e il filtraggio per tenant.
+  - Implementa una logica di commutazione tramite tab per distinguere tra _Tenant User_ e _Tenant Admin_ all'interno di una specifica organizzazione.
+  - Per i _Super Admin_, fornisce un selettore per filtrare gli utenti in base al tenant di appartenenza.
+  - Coordina le operazioni CRUD: apre il dialogo `UserFormDialog` per la creazione e richiede conferma tramite `ConfirmDeleteDialog` prima della rimozione di un account.
+  - Gestisce i flussi di navigazione per tornare alla gestione dei tenant o alla dashboard.
+- _Servizi Iniettati_: `UserService` (@angular-user-service), `UserSessionService` (@angular-user-session-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`.
 
 ====== UI Components <angular-user-components>
 La visualizzazione della lista utenti è delegata a un componente specializzato che garantisce la coerenza visiva.
 *`UserTableComponent`*: componente dedicato alla rappresentazione dei dati degli utenti.
-  - _Input_:
-     - `users`: l'array di oggetti User da visualizzare nella tabella.
-     - `loading`: segnale booleano per lo stato di caricamento.
-     - `total`, `pageIndex`, `limit`: parametri per la gestione del paginatore.
-     - `currentUserId`, `currentUserRole`: utilizzati per la logica di protezione.
-  - _Output_:
-     - `deleteRequested`: segnala l'intenzione di eliminare un record.
-     - `pageChange`: notifica la richiesta di cambio pagina o dimensione del set di dati.
-  - _Funzionalità_: implementa una misura di sicurezza nel template che nasconde il pulsante di eliminazione per l'utente attualmente loggato, impedendo l'auto-cancellazione del proprio account.
+- _Input_:
+  - `users`: l'array di oggetti User da visualizzare nella tabella.
+  - `loading`: segnale booleano per lo stato di caricamento.
+  - `total`, `pageIndex`, `limit`: parametri per la gestione del paginatore.
+  - `currentUserId`, `currentUserRole`: utilizzati per la logica di protezione.
+- _Output_:
+  - `deleteRequested`: segnala l'intenzione di eliminare un record.
+  - `pageChange`: notifica la richiesta di cambio pagina o dimensione del set di dati.
+- _Funzionalità_: implementa una misura di sicurezza nel template che nasconde il pulsante di eliminazione per l'utente attualmente loggato, impedendo l'auto-cancellazione del proprio account.
 
 ====== Dialogs <angular-user-dialogs>
 *`UserFormDialogComponent`*: gestisce l'inserimento dei dati per la creazione di nuovi profili utente.
-  - _Logica_:
-    - Utilizza un modulo reattivo per acquisire username ed email (con validazione del formato).
-    - Gestisce dinamicamente il campo `tenantId`: se l'operazione avviene nel contesto di un tenant specifico, il campo viene bloccato e visualizzato come sola lettura; in caso contrario, permette la selezione da una lista caricata tramite `TenantService` (@angular-tenant-service).
-  - _Interazione_: invia i dati al servizio `UserService` (@angular-user-service) e monitora lo stato di sottomissione per visualizzare indicatori di progresso o messaggi di errore restituiti dalle API.
+- _Logica_:
+  - Utilizza un modulo reattivo per acquisire username ed email (con validazione del formato).
+  - Gestisce dinamicamente il campo `tenantId`: se l'operazione avviene nel contesto di un tenant specifico, il campo viene bloccato e visualizzato come sola lettura; in caso contrario, permette la selezione da una lista caricata tramite `TenantService` (@angular-tenant-service).
+- _Interazione_: invia i dati al servizio `UserService` (@angular-user-service) e monitora lo stato di sottomissione per visualizzare indicatori di progresso o messaggi di errore restituiti dalle API.
 
 
 
@@ -2981,11 +2984,11 @@ var Module = fx.Module(
   "nome_modulo",  // Nome con cui viene riconosciuto il modulo nel sistema di DI
   fx.Provide(
     // Costruttore del controller del package (se presente):
-    //   Non viene annotato come interfaccia, poiché 
+    //   Non viene annotato come interfaccia, poiché
     //   è sufficiente iniettare la struct concreta
     NewController,  // Ritorna *Controller
 
-    // Costruttore di ExampleService, il quale implementa 
+    // Costruttore di ExampleService, il quale implementa
     // ExampleUseCase1, ExampleUseCase2 e ExampleUseCase3:
     //   In questo caso, si annota il costruttore con ciascuna delle
     //   interfacce che ExampleSerivce implementa
@@ -2995,7 +2998,7 @@ var Module = fx.Module(
       fx.As(new(ExampleUseCase2)),
       fx.As(new(ExampleUseCase3)),
     ),
-    
+
     // ...
   ),
 )
@@ -3009,7 +3012,7 @@ Il package `email` non presenta controller poiché non viene chiamato direttamen
 
 #figure(
   image("../../assets/c4/backend/email/email.pdf", width: 100%),
-  caption: [Cloud Backend -- Code Diagram di package `email`]
+  caption: [Cloud Backend -- Code Diagram di package `email`],
 )
 
 ===== `SendEmailPort`
@@ -3029,9 +3032,9 @@ Struct che implementa `SendEmailPort` e presenta i seguenti attributi:
 
 Questa struct è costruita con la seguente funzione di costruzione:
 #align(center)[
-*```go
-NewSendEmailSMTPAdapter(cfg *config.Config, sender smtpSender, createMsgStrategy createMessageStrategy) *SendEmailSMTPAdapter
-```*
+  *```go
+  NewSendEmailSMTPAdapter(cfg *config.Config, sender smtpSender, createMsgStrategy createMessageStrategy) *SendEmailSMTPAdapter
+  ```*
 ]
 
 ===== `createMessageStrategy`
@@ -3044,14 +3047,14 @@ Rappresenta un'interfaccia che astrae il metodo *`DialAndSend(m ...*gomail.Messa
 
 Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *`smtpSender`* tramite la funzione *`newDialer(cfg *config.Config) *gomail.Dialer`* che legge la configurazione passata (`cfg`) per determinare le coordinate #gloss[SMTP] da contattare per inviare i messaggi email.
 
-==== Package `gateway` 
+==== Package `gateway`
 // TODO
 
 ==== Package `gateway/hello` <backend-gateway-hello>
 Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di ascoltare un subject #gloss[NATS] specifico in attesa di messaggi di hello da parte dei gateway e lo struct `Service` che si occupa di processare i messaggi ricevuti e validarli.
 
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.pdf", width:100%),
+  image("../../assets/c4/backend/gateway/hello/hello.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di `gateway/hello`],
 )
 
@@ -3092,13 +3095,13 @@ Il package `real_time_data` presenta le funzionalità per ricevere in tempo real
 
 Di seguito si riporta il Code Diagram degli struct di dominio rappresentati un dato o un errore ottenuti in tempo reale.
 #figure(
-  image("../../assets/c4/backend/real_time_data/real_time_data_datastructs.pdf", width:100%),
+  image("../../assets/c4/backend/real_time_data/real_time_data_datastructs.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di data structs per `real_time_data`],
 )
 
 Di seguito, invece, si riporta il Code Diagram di tutti gli altri struct presenti nel package.
 #figure(
-  image("../../assets/c4/backend/real_time_data/real_time_data_structs.pdf", width:90%),
+  image("../../assets/c4/backend/real_time_data/real_time_data_structs.pdf", width: 90%),
   caption: [Cloud Backend -- Code Diagram di Controller, UseCase, Service, Port, Adapter e Reader per `real_time_data`],
 )
 
@@ -3152,9 +3155,9 @@ L'_inbound port_ principale del package.
 ====== `RealTimeSample`
 *`RealTimeSample`* è l'interfaccia di dominio che rappresenta un dato ottenuto in tempo reale.
 
-*Metodi*: 
+*Metodi*:
 - *`GetData() any`*: Metodo per ottenere i dati strutturati del _sample_
--  *`GetProfile() sensorProfile.SensorProfile`*: Metodo per ottenere il profilo a cui sono associati i dati
+- *`GetProfile() sensorProfile.SensorProfile`*: Metodo per ottenere il profilo a cui sono associati i dati
 - *`GetTimestamp() time.Time`*: Metodo per ottenere il timestamp a cui è associato il dato
 
 Tutte le struct che implementano questa interfaccia presentano i seguenti attributi:
@@ -3185,7 +3188,7 @@ Le struct che implementano questa interfaccia sono le seguenti e ciascuna rappre
 - *`PulseOximeterSample`*: Rappresenta un _sample_ in formato *Pulse Oximeter*
   - Presenta attributo *`Data PulseOximeterSampleData`*, il quale ha come attributi:
     - *`Spo2 float64`*: Misura di ossigenazione del sangue in %
-	  - *`PulseRate int`*: Misura di battiti cardiaci al minuto
+    - *`PulseRate int`*: Misura di battiti cardiaci al minuto
 
 ====== `RealTimeError`
 Rappresenta un errore ricevuto in tempo reale. Può essere un errore di disconnessione ricevuto dal client oppure un errore di mapping ricevuto dal reader NATS.
@@ -3247,14 +3250,14 @@ Rappresenta un contenitore thread-safe per rappresentare un valore temporale cre
 ==== Package `sensor` <backend-sensor>
 Il package `sensor` si occupa della gestione CRUD dei sensori e dell'invio di comandi ad essi. Il diagramma riportato di seguito è comprensivo dell'intero package, per cui potrebbe essere necessario usare la funzionalità di zoom per leggerne i contenuti
 #figure(
-  image("../../assets/c4/backend/sensor/sensor.pdf", width:115%),
+  image("../../assets/c4/backend/sensor/sensor.pdf", width: 115%),
   caption: [Cloud Backend -- Code Diagram di `sensor`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
 L'_inbound adapter_ principale del package è `Controller`
 #figure(
-  image("../../assets/c4/backend/sensor/Controller.pdf", width:70%),
+  image("../../assets/c4/backend/sensor/Controller.pdf", width: 70%),
   caption: [Cloud Backend -- Code Diagram di `sensor.Controller`],
 )
 
@@ -3302,17 +3305,17 @@ I *DTO* usati da `Controller` sono i seguenti:
   - *`GatewayId string`*: UUID del gateway a cui il sensore è associato
   - *`Name string`*: Nome del sensore
   - *`Profile string`*: Profilo del sensore
-  - *`Interval int`*: Intervallo in millisecondi di generazione dati   
+  - *`Interval int`*: Intervallo in millisecondi di generazione dati
 
 - *`SensorsResponseDTO`*: Lista paginata in output di più sensori
   - *`Count int`*: Numero di elementi nella pagina corrente
   - *`Total int`*: Numero di elementi totali
-  - *`Sensors []SensorResponseDTO`*: Lista di sensori 
+  - *`Sensors []SensorResponseDTO`*: Lista di sensori
 
 
 ===== Inbound ports
 #figure(
-  image("../../assets/c4/backend/sensor/UseCases.pdf", width:80%),
+  image("../../assets/c4/backend/sensor/UseCases.pdf", width: 80%),
   caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ in `sensor`],
 ) <cloud-backend-code-inports-services>
 
@@ -3347,7 +3350,7 @@ Per dettagli sui `Command`, si consulti la @code-sensor-commands.
 
 ===== Comandi <code-sensor-commands>
 #figure(
-  image("../../assets/c4/backend/sensor/Commands.pdf", width:60%),
+  image("../../assets/c4/backend/sensor/Commands.pdf", width: 60%),
   caption: [Cloud Backend -- Code Diagram dei comandi in `sensor`],
 )
 
@@ -3363,23 +3366,23 @@ I comandi usati dallo strato di business sono i seguenti. Si noti che ciascuno d
   - *`SensorId uuid.UUID`*: UUID del sensore da eliminare
 
 - *`GetSensorCommand`*: Comando per ottenere un sensore
-  - *`SensorId uuid.UUID`*: UUID del sensore 
+  - *`SensorId uuid.UUID`*: UUID del sensore
 
 - *`GetSensorsByGatewayCommand`*: Comando per ottenere i sensori associati a un gateway
   - *`GatewayId uuid.UUID`*: UUID del gateway a cui sono associati i sensori
-  - *`Page int`*: Numero di pagina 
+  - *`Page int`*: Numero di pagina
   - *`Limit int`*: Numero di elementi per pagina
 
 - *`GetSensorsByTenantCommand`*: Comando per ottenere i sensori associati a un tenant
   - *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati i sensori
-  - *`Page int`*: Numero di pagina 
+  - *`Page int`*: Numero di pagina
   - *`Limit int`*: Numero di elementi per pagina
 
 - *`InterruptSensorCommand`*: Comando per interrompere un sensore
-    - *`SensorId uuid.UUID`*: UUID del sensore da interrompere
+  - *`SensorId uuid.UUID`*: UUID del sensore da interrompere
 
 - *`ResumeSensorCommand`*: Comando per riattivare un sensore
-    - *`SensorId uuid.UUID`*: UUID del sensore da riattivare
+  - *`SensorId uuid.UUID`*: UUID del sensore da riattivare
 
 
 ===== Services
@@ -3420,10 +3423,10 @@ Implementa l'interfaccia `InterruptSensorUseCase`.
 Implementa l'interfaccia `ResumeSensorUseCase`.
 
 *Attributi*:
--	*`sendResumeCmdPort SendResumeCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di riattivazione sensore;
--	*`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
--	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
--	*`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
+- *`sendResumeCmdPort SendResumeCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di riattivazione sensore;
+- *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
+- *`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
 
 *Funzione di costruzione*: `NewResumeSensorService(sendResumeCmdPort SendResumeCmdPort, getSensorPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort, updatedSensorStatusPort UpdateSensorStatusPort) *ResumeSensorService`
 
@@ -3432,7 +3435,7 @@ Implementa l'interfaccia `GetSensorUseCase`.
 
 *Attributi*:
 - *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
--	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
 
 *Funzione di costruzione*: `NewGetSensorByIdService(getSensorByIdPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort) *GetSensorByIdService`
 
@@ -3481,7 +3484,7 @@ Enumerazione che rappresenta lo stato di un sensore.
 In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di comunicare con il database.
 
 #figure(
-  image("../../assets/c4/backend/sensor/PortsAdapters-Database.pdf", width:100%),
+  image("../../assets/c4/backend/sensor/PortsAdapters-Database.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per database in `sensor`],
 ) <backend-code-outbound-ports-adapters-database>
 
@@ -3520,7 +3523,7 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di inviare comandi#fn al gateway simulato tramite il message broker.
 
 #figure(
-  image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.pdf", width:100%),
+  image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
 ) <backend-code-outbound-ports-adapters-broker>
 
@@ -3575,7 +3578,7 @@ Per visualizzare il #gloss[Code Diagram] relativo a `SendCmdAdapter`, si veda la
 
 ===== Repository per database -- `DatabaseRepository`, `SensorEntity`
 #figure(
-  image("../../assets/c4/backend/sensor/DatabaseRepository.pdf", width:85%),
+  image("../../assets/c4/backend/sensor/DatabaseRepository.pdf", width: 85%),
   caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per database in `sensor`],
 )
 
@@ -3615,7 +3618,7 @@ Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare 
 
 ===== Repository per message broker -- `MessageBrokerRepository` e relative `Entity`
 #figure(
-  image("../../assets/c4/backend/sensor/MessageBrokerRepository.pdf", width:85%),
+  image("../../assets/c4/backend/sensor/MessageBrokerRepository.pdf", width: 85%),
   caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per message broker in `sensor`],
 )
 
@@ -3672,7 +3675,7 @@ Questo package è stato creato separatamente da `sensor` per evitare la creazion
 
 ===== `SensorProfile` <code-sensor.SensorProfile>
 #figure(
-  image("../../assets/c4/backend/sensor/SensorProfile.pdf", width:30%),
+  image("../../assets/c4/backend/sensor/SensorProfile.pdf", width: 30%),
   caption: [Cloud Backend -- Code Diagram di `sensor/profile.SensorProfile`],
 )
 
@@ -3683,7 +3686,7 @@ L'enum `SensorProfile` rappresenta i vari profili GATT che un sensore può avere
 - `PULSE_OXIMETER_SERVICE`: Profilo per la misurazione di dati relativi alla pulsossimetria sanguigna.
 - `ECG_CUSTOM_PROFILE`: Profilo custom per le rilevazioni di dati ECG.
 - `HEALTH_THERMOMETER_SERVICE`: Profilo per la misurazione di dati di temperatura in ambito medico
-- `ENVIRONMENTAL_SENSING_SERVICE`: Profilo per la misurazione ambientale di umidità, pressione e temperatura 
+- `ENVIRONMENTAL_SENSING_SERVICE`: Profilo per la misurazione ambientale di umidità, pressione e temperatura
 
 ==== Cartella `shared` <backend-shared>
 Tutti i package dentro la cartella `shared` contengono le struct o le interfacce usate da più package. Fatta eccezione per `config.Config` e `identity.Requester`, è bene che tutti gli elementi dentro eventuali package in `shared` presentino solo interfacce e che le loro implementazioni siano posizionate in un apposito package in `infra`. Inoltre, è bene che tutti i package dipendano dalle interfacce definite in `shared` e non dalle specifiche implementazioni.
@@ -3692,7 +3695,7 @@ Tutti i package dentro la cartella `shared` contengono le struct o le interfacce
 Questo package contiene la struct di configurazione del sistema, che raggruppa tutte le informazioni di configurazione in un punto unico.
 
 #figure(
-  image("../../assets/c4/backend/shared/config/config.pdf", width:80%),
+  image("../../assets/c4/backend/shared/config/config.pdf", width: 80%),
   caption: [Cloud Backend -- Code Diagram di `shared/config`],
 )
 
@@ -3736,13 +3739,13 @@ Tipo basato su `int` utilizzato per rappresentare un intero deserializzabile con
 - *`UnmarshalJSON(b []byte) error`*: permette di serializzare una stringa contenente un numero intero in uno `StringInt`, poi convertibile in intero con `int()`.
 
 ===== `ReadConfigFromEnv(log *zap.Logger) (*Config, error) `
-Funzione globale che ritorna uno oggetto `Config` costruito secondo i parametri di configurazione specificati dalle variabili d'ambiente e dal file `.env`, se presente, dando priorità ai valori inseriti dentro quest'ultimo, 
+Funzione globale che ritorna uno oggetto `Config` costruito secondo i parametri di configurazione specificati dalle variabili d'ambiente e dal file `.env`, se presente, dando priorità ai valori inseriti dentro quest'ultimo,
 
 ==== Package `shared/crypto` <backend-shared-crypto>
-Il package `shared/crypto` contiene le interfacce usate nell'applicativo per interfacciarsi con le principali procedure crittografiche. 
+Il package `shared/crypto` contiene le interfacce usate nell'applicativo per interfacciarsi con le principali procedure crittografiche.
 
 #figure(
-  image("../../assets/c4/backend/shared/crypto/crypto.pdf", width:70%),
+  image("../../assets/c4/backend/shared/crypto/crypto.pdf", width: 70%),
   caption: [Cloud Backend -- Code Diagram di `shared/crypto`],
 )
 
@@ -3756,7 +3759,7 @@ Interfaccia che consente di gestire i token di autenticazione.
 ===== `SecretHasher`
 Interfaccia che consente di generare un hash crittografico per un segreto _plaintext_ e paragonare un _plaintext_ a un hash già generato.
 
-*Metodi*: 
+*Metodi*:
 - *`HashSecret(plaintext string) (string, error)`*: Genera l'hash crittografico associato a `plaintext` e un eventuale errore in caso la procedura di hashing fallisca.
 - *`CompareHashAndSecret(hashed string, plaintext string) error`*: Controlla che l'hash di `plaintext` sia uguale a `hashed`. È fondamentale che le implementazioni di questo metodo utilizzino funzioni sicure da timing attacks, quali `bcrypt.CompareHashAndPassword`. Se il controllo passa, allora viene ritornato `nil`, altrimenti viene ritornato un errore non-`nil`.
 
@@ -3771,7 +3774,7 @@ Interfaccia che consente di generare token generici di sicurezza con data di sca
 Il package `shared/identity` contiene gli elementi per attivare le procedure di #gloss[RBAC] nel sistema.
 
 #figure(
-  image("../../assets/c4/backend/shared/identity/identity.pdf", width:70%),
+  image("../../assets/c4/backend/shared/identity/identity.pdf", width: 70%),
   caption: [Cloud Backend -- Code Diagram di `shared/identity`],
 )
 
@@ -3792,7 +3795,7 @@ Struct che rappresenta l'utente che richiede una specifica azione, da utilizzare
 Enumerazione che rappresenta il ruolo di un utente.
 
 *Possibili valori*:
-- `ROLE_TENANT_USER`: Ruolo Tenant User 
+- `ROLE_TENANT_USER`: Ruolo Tenant User
 - `ROLE_TENANT_ADMIN`: Ruolo Tenant Admin
 - `ROLE_SUPER_ADMIN`: Ruolo Super Admin
 
@@ -3802,7 +3805,7 @@ Enumerazione che rappresenta il ruolo di un utente.
 ==== Package `user` <backend-user>
 Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
 #figure(
-  image("../../assets/c4/backend/user/user.pdf", width:110%),
+  image("../../assets/c4/backend/user/user.pdf", width: 110%),
   caption: [Cloud Backend -- Code Diagram di `user`],
 )
 
@@ -3810,7 +3813,7 @@ Il package `user` contiene le struct e interfacce che rappresentano le operazion
 La struct `Controller` è l'unico _inbound adapter_ del package e gestisce la comunicazione con il router HTTP relativamente alle operazioni CRUD sugli utenti.
 
 #figure(
-  image("../../assets/c4/backend/user/Controller.pdf", width:90%),
+  image("../../assets/c4/backend/user/Controller.pdf", width: 90%),
   caption: [Cloud Backend -- Code Diagram di `user.Controller`],
 )
 
@@ -3866,7 +3869,7 @@ Per ogni metodo vengono elencate le struct DTO utilizzate in input e il DTO rito
   - *Input*: `infra/transport/http/dto.SuperAdminUriDTO`
   - *Output*: `UserResponseDTO`
 
-- *`GetTenantUsers(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant User 
+- *`GetTenantUsers(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant User
   - *Input*: `infra/transport/http/dto.TenantUriDTO`, `GetUserListQueryDTO`
   - *Output*: `UserListResponseDTO`
 
@@ -3878,7 +3881,7 @@ Per ogni metodo vengono elencate le struct DTO utilizzate in input e il DTO rito
   - *Input*: `GetUserListQueryDTO`
   - *Output*: `UserListResponseDTO`
 
-I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguenti: 
+I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguenti:
 - *`CreateUserBodyDTO`*: DTO che rappresenta i dati in input di creazione di un nuovo utente
   - `Username string`: Nome utente
   - `Email string`: Email del nuovo utente
@@ -3900,10 +3903,10 @@ I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguent
   - `Users []UserResponseDTO`: L'effettiva lista di utenti
 
 ===== Inbound ports
-Di seguito sono riportate le _inbound ports_ del package. 
+Di seguito sono riportate le _inbound ports_ del package.
 
 #figure(
-  image("../../assets/c4/backend/user/UseCases.pdf", width:90%),
+  image("../../assets/c4/backend/user/UseCases.pdf", width: 90%),
   caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ di `user`],
 ) <backend-code-user-usecases-services>
 
@@ -3994,36 +3997,36 @@ Comando per creare un nuovo Tenant User.
 
 *Attributi*:
 - *`Email string`*: Email del nuovo utente.
--	*`Username string`*: Nome del nuovo utente.
--	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+- *`Username string`*: Nome del nuovo utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
 
 ====== `CreateTenantAdminCommand`
 Comando per creare un nuovo Tenant Admin.
 
 *Attributi*:
 - *`Email string`*: Email del nuovo utente.
--	*`Username string`*: Nome del nuovo utente.
--	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+- *`Username string`*: Nome del nuovo utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
 
 ====== `CreateSuperAdminCommand`
 Comando per creare un nuovo Super Admin.
 
 *Attributi*:
 - *`Email string`*: Email del nuovo utente.
--	*`Username string`*: Nome del nuovo utente.
+- *`Username string`*: Nome del nuovo utente.
 
 ====== `DeleteTenantUserCommand`
 Comando per eliminare un Tenant User esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente da eliminare
 
 ====== `DeleteTenantAdminCommand`
 Comando per eliminare un Tenant Admin esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente da eliminare
 
 ====== `DeleteSuperAdminCommand`
@@ -4036,14 +4039,14 @@ Comando per eliminare un Super Admin esistente.
 Comando per ottenere i dati di un Tenant User esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente in esame.
 
 ====== `GetTenantAdminCommand`
 Comando per ottenere i dati di un Tenant Admin esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente in esame.
 
 ====== `GetSuperAdminCommand`
@@ -4058,7 +4061,7 @@ Comando per ottenere una lista paginata di Tenant User associati a un tenant spe
 *Attributi*:
 - *`Page int`*: Numero della pagina
 - *`Limit int`*: Numero di elementi per pagina
--	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
 
 ====== `GetTenantAdminsByTenantCommand`
 Comando per ottenere una lista paginata di Tenant Admin associati a un tenant specifico.
@@ -4066,7 +4069,7 @@ Comando per ottenere una lista paginata di Tenant Admin associati a un tenant sp
 *Attributi*:
 - *`Page int`*: Numero della pagina
 - *`Limit int`*: Numero di elementi per pagina
--	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
 
 ====== `GetSuperAdminListCommand`
 Comando per ottenere una lista paginata di Super Admin associati a un tenant specifico.
@@ -4225,9 +4228,9 @@ Struct che consente di specificare i parametri da usare per effettuare una ricer
 
 Ad esempio, se si utilizza una struct con valore puntato da `ID` pari a 1 e valore puntato da `Email` pari a `email@example.com`, allora la condizione `WHERE` in un'eventuale query SQL sarà la seguente:
 #align(center)[
-```sql
-WHERE id = 1 AND email = 'email@example.com'
-```
+  ```sql
+  WHERE id = 1 AND email = 'email@example.com'
+  ```
 ]
 
 *Attributi*:
@@ -4245,7 +4248,7 @@ Interfaccia che espone i metodi per eseguire le operazioni CRUD sui Tenant Membe
 *Metodi*:
 - *`SaveTenantMember(tenantMember *TenantMemberEntity) error`*: Crea il nuovo Tenant Member `tenantMember` o aggiorna quello esistente, ritornando errore in caso di errore nella procedura di salvataggio.
 - *`DeleteTenantMember(tenantMember *TenantMemberEntity) error`*: Elimina il Tenant Member `tenantMember` esistente, ritornando errore se non è stato trovato.
-- *`GetTenantMember(tenantId string, by UserRepositoryGetUserBy) (tenantMember *TenantMemberEntity, err error)`*: Ottiene i dati del Tenant Member appartenente al tenant con UUID `tenantId`, effettuando la ricerca a seconda di quanto specificato da `by`.  
+- *`GetTenantMember(tenantId string, by UserRepositoryGetUserBy) (tenantMember *TenantMemberEntity, err error)`*: Ottiene i dati del Tenant Member appartenente al tenant con UUID `tenantId`, effettuando la ricerca a seconda di quanto specificato da `by`.
 - *`GetTenantUsers(tenantId string, offset, limit int) (tenantUsers []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
 - *`GetTenantAdmins(tenantId string, offset, limit int) (tenantAdmins []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
 - *`CountTenantAdminsByTenant(tenantId string) (total int64, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId`.
@@ -4298,7 +4301,7 @@ Struct concreta che implementa `SuperAdminRepository`.
 *Funzione di costruzione*: `newSuperAdminPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *superAdminPgRepository`
 
 ====== `SuperAdminEntity`
-Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super Admin inserito nel sistema. 
+Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super Admin inserito nel sistema.
 
 *Attributi*:
 - *`ID uint`*: ID dell'utente.
@@ -4318,11 +4321,11 @@ Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super 
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] come buffer interno per i dati prodotti dai sensori simulati associati a ciascun gateway, in modo da poterli recuperare e inviare periodicamente tramite #gloss[NATS JetStream].
 
 Il database perciò avrà un'entità principale con i seguenti attributi:
-- *sensorId*: UUID del sensore simulato che ha generato la misurazione.
-- *gatewayId*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- *timestamp*: timestamp rappresentante il momento in cui è stata generata la misurazione.
-- *profile*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- *value*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+- `sensorId`: UUID del sensore simulato che ha generato la misurazione.
+- `gatewayId`: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- `timestamp`: timestamp rappresentante il momento in cui è stata generata la misurazione.
+- `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- `value`: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
 
 === Configuration database
 #figure(
@@ -4332,19 +4335,19 @@ Il database perciò avrà un'entità principale con i seguenti attributi:
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] per salvare la configurazione dei gateway e dei sensori simulati, in modo da poterla recuperare in caso di riavvio del servizio o di crash.
 
 Il database perciò avrà due entità principali, ovvero *Gateway* e *Sensor*, con i seguenti attributi:
-- *Gateway*:
-  - *id*: UUID del gateway simulato.
-  - *tenantId*: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
-  - *status*: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
-  - *interval*: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
-  - *publicIdentifier*: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
-  - *secretKey*: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
-  - *token*: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
-- *Sensor*:
-  - *id*: UUID del sensore simulato.
-  - *profile*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
-  - *interval*: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
-  - *status*: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
+- `Gateway`:
+  - `id`: UUID del gateway simulato.
+  - `tenantId`: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
+  - `status`: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
+  - `interval`: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
+  - `publicIdentifier`: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
+  - `secretKey`: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
+  - `token`: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
+- `Sensor`:
+  - `id`: UUID del sensore simulato.
+  - `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
+  - `interval`: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
+  - `status`: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
 
 Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un gateway può avere più sensori associati (o anche nessuno), mentre un sensore deve essere associato ad un gateway.
 
@@ -4357,12 +4360,12 @@ Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un
 Il microservizio *Data Consumer* e il microservizio *Cloud Backend* utilizzano un database #gloss[TimescaleDB] per salvare i dati IoT prodotti dai sensori simulati, in modo da poterne visualizzare lo storico.
 
 Il database avrà un'entità principale con i seguenti attributi:
-- *sensorId*: UUID del sensore simulato che ha generato la misurazione.
-- *gatewayId*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- *tenantId*: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
-- *profile*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- *timestamp*: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
-- *value*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+- `sensorId`: UUID del sensore simulato che ha generato la misurazione.
+- `gatewayId`: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- `tenantId`: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
+- `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- `timestamp`: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
+- `value`: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
 
 Nel database ci sarà una separazione logica dei dati per tenant, resa possibile dalla creazione di uno *schema* per ogni tenant. \
 Perciò ogni tenant dovrà accedere al proprio schema e alla propria tabella per ottenere i propri dati.
