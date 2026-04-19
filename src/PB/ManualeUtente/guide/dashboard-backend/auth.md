@@ -91,7 +91,7 @@ Il sistema prevede la funzionalità di verifica del token per il cambio password
 ```
 
 ## Cambio password dimenticata
-Il sistema prevede la funzionalità di cambio password, che consente agli utenti di impostare una nuova password utilizzando un token valido ricevuto tramite email. La richiesta aggiorna la password dell'utente associato al token e restituisce una risposta di successo.
+Il sistema prevede la funzionalità di cambio password dimenticata, che consente agli utenti di impostare una nuova password utilizzando un token valido ricevuto tramite email, in caso non si ricordino la password originale. La richiesta aggiorna la password dell'utente associato al token e restituisce una risposta di successo.
 
 ### Richiesta
 - **POST** `/api/v1/auth/forgot_password`
