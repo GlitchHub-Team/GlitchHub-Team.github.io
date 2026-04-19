@@ -32,6 +32,13 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.12.0",
+      "17/04/2026",
+      "Michele Dioli",
+      "-",
+      [],
+    ),
+    (
       "0.7.2",
       "14/04/2026",
       "Elia Ernesto Stellin",
@@ -1580,7 +1587,7 @@ Il package `auth` contiene tutte le funzionalità relative alla gestione dell'au
 
 #figure(
   image("../../assets/c4/backend/auth/auth.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/auth`],
+  caption: [Cloud Backend -- Code Diagram per `auth`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
@@ -1589,7 +1596,7 @@ Il package `auth` presenta un controller che si occupa di ricevere le richieste 
 
 #figure(
   image("../../assets/c4/backend/auth/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/auth`],
+  caption: [Cloud Backend -- Code Diagram per `auth - Controller e DTO`],
 )
 
 
@@ -1668,11 +1675,9 @@ I DTO usati da `Controller` sono i seguenti:
   - `Result`: booleano che indica se l'operazione è stata eseguita con successo o meno
 
 ===== Inbound ports
-
-
 #figure(
   image("../../assets/c4/backend/auth/service.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/auth` - Inbound ports],
+  caption: [Cloud Backend -- Code Diagram per `auth - Inbound ports`],
 )
 
 
@@ -1809,18 +1814,6 @@ Rappresenta un token per la conferma di un account appena creato.
 =====  Outbound ports – Database
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
 
-
-#figure(
-  image("../../assets/c4/backend/auth/adaConfi.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
-)
-
-#figure(
-  image("../../assets/c4/backend/auth/adaPass.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
-)
-
-
 ====== ForgotPasswordTokenPort
 *Metodi*
 - *`NewForgotPasswordToken(user user.User) (string, error)`*: Crea un nuovo token per la reimpostazione della password. Restituisce il token creato o un errore in caso di fallimento.
@@ -1841,6 +1834,11 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 
 
 ===== Outbound adapter per database – ConfirmTokenAdapter
+#figure(
+  image("../../assets/c4/backend/auth/adaPass.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway - database outbound ConfirmTokenAdapter`],
+)
+
 ConfirmTokenAdapter è l’outbound port usata per comunicare con il database per le operazioni CRUD sui token di conferma, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
 *Interfaccie implementate*
@@ -1850,6 +1848,12 @@ ConfirmTokenAdapter è l’outbound port usata per comunicare con il database pe
 - *`repo ConfirmTokenPostgreRepository`*: Riferimento al repository per i token di conferma
 
 ===== Outbound adapter per database – ChangePasswordTokenPgAdapter
+
+#figure(
+  image("../../assets/c4/backend/auth/adaConfi.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway - database outbound ChangePasswordTokenPgAdapter`],
+)
+
 ChangePasswordTokenPgAdapter è l’outbound port usata per comunicare con il database per le operazioni CRUD sui token di cambio password, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
 *Interfaccie implementate*
@@ -2029,7 +2033,7 @@ Il package `gateway` presenta un controller che si occupa di ricevere le richies
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway`],
+  caption: [Cloud Backend -- Code Diagram per `gateway - Controller`],
 )
 
 
@@ -2093,8 +2097,7 @@ I DTO usati da `gateway/Controller` sono i seguenti:
   - `GatewayId`: UUID del gateway
   - `GatewayName`: stringa rappresentante il nome del gateway
   - `TenantId`: UUID del tenant a cui il gateway è associato, se il gateway è commissionto
-  //TODO: -> fixare frase hello
-  -`PubblicIdentifier`: stringa rappresentante l'identificativo pubblico del gateway, se il gateway ha fatto l'hello
+  -`PubblicIdentifier`: stringa rappresentante l'identificativo pubblico del gateway, se il gateway ha fatto l'hello e il backend ha scritto in database la pubblic key dichiarata
   - `Interval`: Frequenza di invio dei dati al cloud in millisecondi
   - `Status`: Stato del gateway (Commissioned, Decommissioned, Interrupted)
 - *`GatewayListResponseDTO`*: DTO usato per restituire una lista di gateway, contiene i seguenti campi:
@@ -2114,9 +2117,13 @@ I DTO usati da `gateway/Controller` sono i seguenti:
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/gwservice.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway`],
+  caption: [Cloud Backend -- Code Diagram per `gateway - Inbound ports e GatewayService`],
 )
 
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/NATSservice.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway - Inbound ports e CommandService`],
+)
 
 ====== CreateGatewayUseCase
 *Metodi:*
@@ -2271,7 +2278,7 @@ comunicare con il database.
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/pgAdapter.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  caption: [Cloud Backend -- Code Diagram per `gateway - Outbound ports`],
 )
 
 ====== SaveGatewayPort
@@ -2302,7 +2309,7 @@ comunicare con NATS.
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/natsAdapeter.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  caption: [Cloud Backend -- Code Diagram per `gateway - Outbound ports`],
 )
 
 ====== GatewayCommandPort
@@ -2434,7 +2441,7 @@ Il package `historical_data` contiene tutte le funzionalità per poter accedere 
 
 #figure(
   image("../../assets/c4/backend/historical_data/historical.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/historical_data`],
+  caption: [Cloud Backend -- Code Diagram per `historical_data`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
@@ -3698,7 +3705,7 @@ Il package `tenant` contiene tutte le funzionalità relative alla gestione dei t
 
 #figure(
   image("../../assets/c4/backend/tenant/tenant.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/tenant`],
+  caption: [Cloud Backend -- Code Diagram per `tenant`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
@@ -3706,7 +3713,7 @@ Il package `tenant` presenta un controller che si occupa di ricevere le richiest
 
 #figure(
   image("../../assets/c4/backend/tenant/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `tenant/Controller`],
+  caption: [Cloud Backend -- Code Diagram per `tenant - Controller`],
 )
 
 
@@ -3768,7 +3775,7 @@ Di seguito sono riportate le _inbound ports_ del package.
 
 #figure(
   image("../../assets/c4/backend/tenant/service.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `tenant /inbound ports`],
+  caption: [Cloud Backend -- Code Diagram per `tenant - inbound ports`],
 )
 
 
@@ -3847,7 +3854,7 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 
 #figure(
   image("../../assets/c4/backend/tenant/adapter.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `tenant / outbound ports`],
+  caption: [Cloud Backend -- Code Diagram per `tenant - outbound ports`],
 )
 
 
