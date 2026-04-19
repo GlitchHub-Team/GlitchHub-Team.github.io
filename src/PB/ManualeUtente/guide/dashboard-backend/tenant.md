@@ -87,6 +87,8 @@ L'ottenimento di tutti i tenant è disponibile solo ai **super admin**. La richi
 ## Ottenimento di tutti i tenant per login
 L'ottenimento di tutti i tenant per la funzionalità di login è utile per popolare la lista dei tenant disponibili al momento dell'accesso. La richiesta non prevede autenticazione e restituisce una lista di tutti i tenant presenti nel sistema, in modo che gli utenti possano selezionare il tenant di appartenenza al momento del login.
 
+Si noti che questa funzionalità è stata creata puramente ai fini di creare una pagina di login unificata per l'MVP{{gloss}}. In un contesto di progetto reale, si metterebbe a disposizione una pagina di login diversa per ogni tenant, che permetterebbe solamente agli utenti appartenenti a quest'ultimo di accedere al sistema.
+
 ### Richiesta
 - **GET** `/api/v1/all_tenants`
 - Autenticazione: non richiesta
