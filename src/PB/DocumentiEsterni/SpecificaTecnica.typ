@@ -2121,7 +2121,7 @@ I DTO usati da `gateway/Controller` sono i seguenti:
 )
 
 #figure(
-  image("../../assets/c4/backend/gateway/gateway/NATSservice.pdf", width:100%),
+  image("../../assets/c4/backend/gateway/gateway/natsservice.pdf", width:100%),
   caption: [Cloud Backend -- Code Diagram per `gateway - Inbound ports e CommandService`],
 )
 
