@@ -6,6 +6,7 @@ site_url: https://glitchhub-team.github.io/ManualeUtente/
 
 nav:
   - Introduzione: index.md
+  - Glossario: glossary.md
   - Concetti di dominio:
       - Autenticazione: concetti/autenticazione.md
       - Ruoli utente: concetti/ruoli-utente.md
@@ -16,16 +17,6 @@ nav:
           - Data Consumer: concetti/microservizi/data-consumer.md
           - Dashboard: concetti/microservizi/dashboard.md
           - Observability: concetti/microservizi/observability.md
-  - Test:
-      - Esecuzione test: test/esecuzione-test.md
-  - Installazione:
-      - Requisiti:
-          - Requisiti Hardware: installazione/requisiti/requisiti-hw.md
-          - Requisiti Software: installazione/requisiti/requisiti-sw.md
-      - Preparazione del Sistema:
-          - Installazione del Software: installazione/preparazione-del-sistema/01-installazione-sw.md
-          - Personalizzare la configurazione: installazione/preparazione-del-sistema/02-configurare-ms.md
-          - Avviare il Sistema: installazione/preparazione-del-sistema/03-avvio-sistema.md
   - Guide:
       - Gateway:
           - Comandi per gateway e sensori: guide/gateway/comandi.md
@@ -43,9 +34,19 @@ nav:
           - Login: guide/dashboard-frontend/login.md
       - Dashboard Backend:
           - Login: guide/dashboard-backend/login.md
-  - Observability:
-      - Configurazione di Grafana: observability/config.md
-      - Importare e modificare una dashboard: observability/dashboard.md
+      - Observability:
+          - Metriche del backend: guide/observability/metriche-backend.md
+          - Metriche di NATS: guide/observability/metriche-nats.md
+          - Metriche di JetStream: guide/observability/metriche-jetstream.md
+  - Test:
+      - Esecuzione test: test/esecuzione-test.md
+  - Installazione:
+      - Requisiti:
+          - Requisiti Hardware: installazione/requisiti/requisiti-hw.md
+          - Requisiti Software: installazione/requisiti/requisiti-sw.md
+      - Preparazione del Sistema:
+          - Installazione del Software: installazione/preparazione-del-sistema/01-installazione-sw.md
+          - Personalizzare la configurazione: installazione/preparazione-del-sistema/02-configurare-ms.md
 
 theme:
   name: material

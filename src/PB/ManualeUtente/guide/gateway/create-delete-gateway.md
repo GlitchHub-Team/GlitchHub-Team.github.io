@@ -4,6 +4,7 @@ Questi comandi vengono ricevuti su un **subject NATS** specifico e vengono esegu
 
 ## Creazione gateway
 La creazione di un gateway simulato richiede l'invio di un comando al subject NATS `commands.creategateway` e comporta le seguenti azioni:
+
 - Creazione di una **goroutine** che simula il funzionamento del gateway;
 - Aggiunta nella mappa dei gateway attivi;
 - Scrittura della configurazione nel database SQLite{{gloss}} del microservizio in questione;
@@ -14,12 +15,13 @@ Il comando deve essere inviato sul subject NATS `commands.creategateway` con il 
 ```json
 {
   "gatewayId": "string", // Identificativo univoco del gateway simulato di tipo uuid
-  "interval": 1 // Invio dati ogni X ms, deve essere un interno maggiore o uguale di 1
+  "interval": 1 // Invio dati ogni X ms, deve essere un intero maggiore o uguale a 1
 }
 ```
 
 ## Eliminazione gateway
 L'eliminazione di un gateway simulato richiede l'invio di un comando al subject NATS `commands.deletegateway` e comporta le seguenti azioni:
+
 - Terminazione della **goroutine** che simula il funzionamento del gateway;
 - Rimozione dalla mappa dei gateway attivi;
 - Eliminazione della configurazione dal database SQLite{{gloss}} del microservizio in questione.

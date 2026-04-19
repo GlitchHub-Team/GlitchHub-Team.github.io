@@ -4,6 +4,7 @@ Questi comandi vengono ricevuti su un **subject NATS** specifico e vengono esegu
 
 ## Interruzione sensore
 L'interruzione di un sensore simulato richiede l'invio di un comando al subject NATS `commands.interruptsensor` e comporta le seguenti azioni:
+
 - Modifica dello stato del sensore simulato da **active** a **inactive**;
 - Interruzione della scrittura dei dati dei sensori simulati nel database SQLite{{gloss}} del microservizio in questione.
 - Scrittura del nuovo stato nel database SQLite{{gloss}} del microservizio in questione.
@@ -19,6 +20,7 @@ Il comando deve essere inviato sul subject NATS `commands.interruptsensor` con i
 
 ## Ripresa sensore
 La ripresa di un sensore simulato richiede l'invio di un comando al subject NATS `commands.resumesensor` e comporta le seguenti azioni:
+
 - Modifica dello stato del sensore simulato da **inactive** a **active**;
 - Ripresa della scrittura dei dati dei sensori simulati nel database SQLite{{gloss}} del microservizio in questione.
 - Scrittura del nuovo stato nel database SQLite{{gloss}} del microservizio in questione.

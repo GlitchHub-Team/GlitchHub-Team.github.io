@@ -212,6 +212,15 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "2.0.0",
+      "18/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [
+        Aggiornamento stato requisiti in soddisfatto o non soddisfatto, e conseguente creazione versione stabile
+      ],
+    ),
+    (
       "1.3.0",
       "08/04/2026",
       "Alessandro Dinato",
