@@ -762,5 +762,25 @@
     {
         "term": "SMTP",
         "definition": "Acronimo di Simple Mail Transfer Protocol. È il protocollo principale utilizzato per l'invio di messaggi di posta elettronica."
+    },
+    {
+        "term": "Role-Based Access Control",
+        "definition": "Modello per autorizzare accesso dell'utente finale a risorse specifiche in base al ruolo da questi ricoperto. Nel contesto del progetto, i ruoli sono @{Tenant User}, @{Tenant Admin}, @{Super Admin}"
+    },
+    {
+        "term": "RBAC",
+        "definition": "Acronimo di @{Role-Based Access Control}."
+    },
+    {
+        "term": "Websocket",
+        "definition": "Protocollo di comunicazione bidirezionale basato su TCP comunemente utilizzato per far comunicare un client con un web server. La comunicazione inizia con una richiesta GET da parte del client, sulla quale si fa un Upgrade al protocollo websocket."
+    },
+    {
+        "term": "Goroutine",
+        "definition": "Primitiva di @{Go} che consente di eseguire una qualunque funzione, nominata o anonima, su un thread di esecuzione concorrente leggero senza doverla dichiarare esplicitamente come asincrona."
+    },
+    {
+        "term": "Schema (SQL)",
+        "definition": "Nel contesto dei database SQL, corrisponde a un raggruppamento nominato di tabelle e viste separato dal resto a cui si possono assegnare regole di accesso specifiche."
     }
 ]

@@ -1,4 +1,5 @@
 #import "../../Templates/templateDocumentiGenerici.typ": *
+#import "../../lib/libRequisiti.typ": LISTA-RD, LISTA-RF, LISTA-RNF, get-req-by-id
 #show ref: underline
 
 
@@ -31,6 +32,24 @@
   titolo: "Specifica Tecnica",
   stato: "Bozza",
   registro-modifiche: (
+    (
+      "0.11.0",
+      "18/04/2026",
+      "Elia Ernesto Stellin",
+      "",
+      [
+        Aggiunta sezione @cloud-db.
+      ]
+    ),
+    (
+      "0.10.0",
+      "17/04/2026",
+      "Elia Ernesto Stellin",
+      "",
+      [
+        Spostate sezioni sul diagramma C4 in @design-architetturale; Migliorata sezione @archit-log; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
+      ]
+    ),
     (
       "0.9.0",
       "16/04/2026",
@@ -150,7 +169,6 @@
 
 #pagebreak()
 
-
 = Introduzione <introduzione>
 == Scopo del documento
 Il presente documento definisce in modo analitico l'architettura del sistema software, offrendo una scomposizione accurata delle sue componenti, delle logiche di interazione e della loro distribuzione nel sistema. Esso è il sostegno progettuale per la fase di realizzazione, garantendo continuità con i risultati ottenuti nel #gloss("PoC") e introducendo accorgimenti necessari per elevare il grado di maturità e robustezza architetturale.
@@ -220,8 +238,7 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 Per lo sviluppo del sistema abbiamo scelto uno stack tecnologico moderno e solido, selezionando ogni strumento con l'obiettivo di supportare bene un'architettura a microservizi che sia facile da gestire e capace di crescere nel tempo. Le nostre scelte sono state condotte dalla necessità di creare un'infrastruttura per la gestione dei dati IoT che funzioni bene anche sotto carico, garantendo che il flusso di informazioni dai sensori BLE sia sempre veloce e affidabile.
 
 Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione delle loro caratteristiche principali.
-//TODO aggiungere le versioni dei linguaggi
-//TODO: aggiungere goroutine al glossario
+
 == Linguaggi e ambienti di programmazione
 #tabella-paginata(
   table(
@@ -527,6 +544,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 L'architettura del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema.
 
 
+// TODO: li inserirei dove sono serviti, non come collezione di cose usate. poiché sono degli strumenti atti a risolvere dei problemi. 
 == Design Patterns <design-patterns>
 I design pattern sono stati selezionati per garantire che l'architettura a microservizi sia flessibile e scalabile, rispettando gli obiettivi di manutenibilità definiti nel capitolato.
 
@@ -602,10 +620,13 @@ I componenti dell'interfaccia utente possono quindi sottoscriversi a tale istanz
 
 ==== Utilizzo nel progetto
 
-== Architettura logica <archit-log>
-L'architettura logica del sistema è documentata seguendo il modello C4, utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti.
-=== Context <system-context>
-L'analisi dell'architettura logica inizia con il diagramma di System Context, che definisce il perimetro del progetto. In questa fase, definita dal livello di astrazione più alto, non si analizzano le tecnologie interne o implementative ma ci si focalizza esclusivamente sulle interazioni tra i componenti interni del sistema e le interazioni coi componenti esterni e utenti umani.
+== Design architetturale ad alto livello <design-architetturale>
+L'architettura ad alto livello del sistema sviluppato è documentata seguendo il modello C4, utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti.
+
+=== System Context <c4-system-context>
+Il primo livello di astrazione del modello C4 è rappresentato dal diagramma di System Context, che definisce il perimetro del progetto, focalizzandosi sulle interazioni tra i sistemi principali individuati e le loro interazioni con gli utenti.
+
+Un "sistema", per come definito da tale livello del modello C4, rappresenta in termini generici un insieme di componenti con uno scopo preciso e che producono valore per i suoi utenti umani e non.
 
 #figure(
   image("../../assets/c4/system_context.svg", width: 80%),
@@ -614,14 +635,15 @@ L'analisi dell'architettura logica inizia con il diagramma di System Context, ch
 
 Il Sistema Cloud è il fulcro dell'intero ambiente in quanto principale fornitore dei servizi del software, quali la ricezione e memorizzazione dei dati di qualsiasi natura (nel database più opportuno) e il loro invio verso la dashboard, nonché la definizione dei perimetri di sicurezza e correlata autenticazione degli utenti.
 ed interagisce con tutti gli altri utenti ed elementi presenti, ovvero:
-- Super Admin, tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
-- Admin generico, opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
-- Utente generico, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
-- API Client, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
-- Sistema observability, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
-- Gateway simulato, entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
-=== Container <container>
-In questo contesto, un container è inteso come una parte del sistema o data store (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
+- *Super Admin*, tipo di utente con poteri di amministrazione globale su tutti i tenant che hanno accettato la clausola d'impersonificazione.
+- *Admin generico*, opera all'interno del perimetro di un singolo tenant, gestendo gli utenti finali e coordinando la comunicazione con i gateway assegnati.
+- *Utente generico*, abilitato alla consultazione dei dati storici e in tempo reale e alla ricezione degli alert. Non può quindi influenzare l'ambiente ma ha solo i permessi per osservarne una porzione.
+- *API Client*, un attore non umano che interagisce con il sistema tramite interfacce REST per uno scambio di informazioni automatizzato.
+- *Sistema observability*, un componente esterno dedicato alla raccolta di metriche e log provenienti dal Cloud, che permette al Super Admin di verificare che lo stato di salute e le prestazioni del sistema siano nei parametri ottimali.
+- *Gateway simulato*, entità che simula il flusso di dati proveniente dai sensori, generandoli internamente e riportandoli al Cloud. Rimane inoltre in ascolto per ricevere comandi.
+
+=== Container <c4-container>
+In questo contesto, un "container" è inteso come un applicativo o un _data store_ (ad esempio un database) che necessita di rimanere in esecuzione perché l'ecosistema complessivo funzioni correttamente. Un diagramma di questo tipo mostra l'architettura del software ad alto livello, definendo anche la distribuzione delle responsabilità, le scelte tecnologiche infrastrutturali principali e le scelte relative alla comunicazione tra i container.
 
 #figure(
   image("../../assets/c4/container.svg", width: 100%),
@@ -629,6 +651,7 @@ In questo contesto, un container è inteso come una parte del sistema o data sto
 )
 
 Qui viene definito con più dettaglio il contenuto di alcuni componenti presenti nel Context, il livello di astrazione precedente.
+
 ==== Sistema Cloud
 Sono ora rappresentati:
 - due database, il IoT Data DB e il CloudDB, il primo per i dati prodotti dai sensori simulati e il secondo per tutte le altre informazioni utili, ad esempio dati di tenant o API keys.
@@ -636,11 +659,14 @@ Sono ora rappresentati:
 - Message Broker, che permette una corretta gestione del flusso di dati IoT e comandi destinati al gateway.
 - Data Consumer ha il compito di ricevere i valori generati dai sensori, leggerli e formattarli prima di inserirli nel database.
 - Cloud Backend (in Go e Gin) che rimane il fulcro dell'applicazione. Come riportato sopra, emette i principali servizi del software.
-==== Il Sistema observability
+
+==== Sistema Observability
 Ora presenta un container NATS Exporter che raccoglie le metriche di sistema e le inoltra a Observability DB (Prometheus) per il monitoraggio, con visualizzazione finale fornita tramite Observability Dashboard (Grafana).
-==== Il Gateway simulato
+
+==== Sistema Gateway simulato
 Comprende un database a scopo di buffer. Interagisce con il Message Broker del Sistema Cloud tramite protocolli NATS per inviare i dati prodotti e ricevere e rispondere a comandi.
-=== Component <component>
+
+=== Component <c4-component>
 Un diagramma Component rappresenta l'ultimo livello di astrazione dell'architettura logica prima di scendere nel dettaglio del codice sorgente. Un componente è inteso come un raggruppamento di funzionalità correlate esposte tramite un'interfaccia definita, che risiede all'interno di un container. Rispetto al livello precedente del modello C4, in questo strato si descrivono le responsabilità interne, le dipendenze e le scelte implementative dei container principali che orchestrano il sistema.
 
 I container principali descritti in questa sezione sono:
@@ -726,23 +752,184 @@ Sono inoltre presenti componenti che operano indipendentemente dalle richieste d
 - Audit Log Writer, che registra ogni operazione critica (modifica utenti, invio comandi, login, etc.) sul Cloud DB attraverso l'Audit Log API, garantendo la tracciabilità completa delle azioni amministrative.
 
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
-=== Architettura esagonale <architettura-esagonale>
-L'architettura esagonale è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. Il nucleo, infatti, comunica con tali componenti esterni tramite delle interfacce dette _ports_, implementate da oggetti concreti detti _adapters_ che permettono alla _business logic_ dell'applicazione di comunicare con le componenti esterne usando un linguaggio disaccoppiato dalle specifiche infrastrutturale delle componenti esterne.
+
+
+== Architettura logica <archit-log>
+Per tutti i microservizi sviluppati in #gloss[Go], si è scelto di utilizzare l'*architettura esagonale* come architettura logica. Nelle successive sottosezioni, verrà introdotto questo pattern architetturale, per poi descriverne l'applicazione effettiva nel codice sorgente.
+
+=== Introduzione
+Essa è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. 
+
+Questo sistema architetturale definisce delle interfacce dette _port_ e delle classi concrete dette _adapter_, i quali possono essere sia _inbound_ ("in entrata") che _outbound_ ("in uscita"), i quali sono completamente separati dalla _business logic_, la quale è totalmente indipendente da essi. Più nello specifico:
+
+- Gli _*inbound adapter*_ sono struct concrete che rappresentano gli utilizzatori della business logic e utilizzano le _inbound port_ tramite composizione per accedere a quest'ultima;
+
+- Le _*inbound port*_, o _"use case"_#footnote[Da non confondere con gli use cases definiti nel documento di #gloss[analisi dei requisiti]], rappresentano le funzionalità esposte dallo strato di business logic dell'applicativo; queste interfacce sono costituite da un solo metodo che prende in input un _command_, ovvero un _data struct_ che contiene i parametri ad esso passati;
+
+- Le _*outbound port*_ sono interfacce che vengono usate dalla business logic per comunicare con i sistemi software esterni;
+
+- Gli _*outbound adapter*_ sono struct concrete che implementano la rispettiva _outbound port_ e hanno l'onere di tradurre l'interfaccia di dominio che espongono verso la _business logic_ nell'interfaccia comprensibile dal sistema esterno con cui comunicano.
 
 In questo modo la logica di business rimane testabile e disaccoppiata dal resto, consentendo di progettare e sviluppare la logica fondamentale dell'applicativo in maniera pura e indipendente dalle tecnologie infrastrutturale scelte, le quali diventano potenzialmente sostituibili in futuro.
 
 Questa strategia si traduce in componenti applicativi facilmente intercambiabili come database, UX e componenti di servizio, che possono essere testati in modo indipendente.
 
-Il sistema sviluppato sfrutta i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
+I sistemi sviluppati sfruttano i principi sopra menzionati per disaccoppiarne le parti in maniera coerente con il component diagram, isolando ad esempio la logica di aggregazione dalla logica di persistenza e dal codice che comunica con il message broker. Tra i vantaggi di questo approccio si possono sottolineare:
 - Una maggiore semplicità nello scrivere test unitari in modo isolato per ogni componente ad ogni strato, tramite l'uso dei _mock_ per i relativi input e output;
 - La stessa logica di dominio è riutilizzabile da più tipi di client grazie all'interscambiabilità di porte e adapter, che isolano il core dalle specifiche interfacce;
 - Eventuali aggiornamenti alle tecnologie non influiscono sulla logica di business dell'applicazione.
 
-== Architettura di dettaglio <archit-dett>
-In ogni microservizio è stata applicata un'*architettura esagonale* per garantire un elevato isolamento della logica di business e garantire una facile sostituibilità dei componenti esterni, come il database o il message broker, senza dover modificare la logica centrale del servizio.\
 
+=== Organizzazione del codice
+#let pkg-by-comp-footnote = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni componente, come definito nella @c4-component.]
+#let pkg-by-feature = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni insieme  ben distinto di funzionalità del sistema.]
+
+Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by-comp-footnote oppure _"package by feature/bounded context"_#pkg-by-feature come metodo di _packaging_, ovvero di suddivisione del codice sorgente in sottocartelle. All'interno di ciascuno dei package *non condivisi* dei microservizi si ha una struttura "piatta", in cui i costrutti dei vari strati dell'architettura esagonale sono tipicamente così suddivisi:
+#tabella-paginata(
+  table(
+    columns: 2,
+    align: (horizon+left, horizon+left),
+    [*Nome file*], [*Contenuti*],
+    [`adapters.go`], [
+      _Outbound adapters_ sotto forma di struct chiamate `Adapter`: queste comunicano direttamente con le struct `Repository`, che astraggono lo strato di persistenza, e traducono l'interfaccia da loro esposta in un'interfaccia utilizzabile dagli struct di dominio
+    ],
+    [`commands.go`], [Comandi usati nello strato di dominio per interfacciarsi con gli struct `Service`],
+    [`controller.go`], [
+      - Definizione _Inbound adapter_ principale del package, sottoforma di struct `Controller` usato dal _router_ #gloss[Gin]
+      - Definizione delle _inbound port_ che vengono implementate dal `Service`
+    ],
+    [`domain.go`], [_Data struct_ usate nello strato di dominio, indipendenti dagli altri strati],
+    [`dto.go`], ["Data Transfer Object" o DTO, ovvero tutti gli struct utilizzati per il puro trasferimento di dati tra client e server via web],
+    [`errors.go`], [Lista di variabili di errore correlate al _package_],
+    [`mapper.go`], [Funzioni di _mapping_ tra le struct di dominio e le struct usate nello strato di persistenza],
+    [`module.go`], [Modulo di Fx associato al _package_: questo consente di raggruppare in un unico punto tutte le interfacce e variabili inserite nel sistema di #gloss[dependency injection] dal _package_],
+    [`repository.go`], [
+      - Le struct `Entity`, che rappresentano le entità nel sistema di persistenza, dette 
+      - Le struct `Repository`, che astraggono l'accesso al sistema di persistenza, indipendentemente dalla tecnologia SQL scelta
+    
+    ],
+    [`service.go`], [
+      - Le struct dello strato di dominio che contengono i metodi di _business logic_ chiamati dall'applicativo e le definizioni degli _inbound adapters_ chiamati dalle classi `Service`
+      - _Outbound ports_ utilizzate dal `Service`, sotto forma di interfacce chiamate `Port`  
+    ],
+  ),
+  [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
+  label-id: "descrizione-struttura-package",
+)
+
+Si noti, che la struttura sopra definita è approssimativa ed è soggetta a cambiamenti a seconda delle necessità del singolo _package_. Ad esempio, in alcuni package di dimensione ridotta potrebbe essere troppo oneroso separare le struct `Adapter` e `Repository`, per cui si potrebbe decidere di utilizzare un unico struct che implementi la rispettiva _outbound port_.
+
+Di seguito viene riportata la stessa tabella, associando a ciascuno "strato" dell'architettura esagonale i relativi file all'interno di un package tipico.
+#tabella-paginata(
+  table(
+    columns: 2,
+    align: (horizon+left, horizon+left),
+    [*Strato*], [*File relativi*],
+
+    [Inbound adapter], 
+    [
+      - La struct `Controller` è definita in `controller.go`
+      - I DTO utilizzati dal `Controller` sono definiti in `dto.go`
+    ],
+
+    [Inbound port], 
+    [Le interfacce `UseCase` sono definite in `service.go` #footnote[
+  In Go, la prassi comune è di utilizzare le "Consumer-Defined Interfaces", ovvero delle interfacce definite nello stesso package o stesso file del loro utilizzatore. Per tale motivo, non si utilizza un file separato per definire gli use cases, quale `useCases.go`
+] <fn>],
+    
+    [Dominio], [
+      - La struct di business logic (detta `Service`) è definita in `service.go`
+      - I comandi utilizzati dai metodi del `Service` sono definiti in `commands.go`
+      - Le struct di dominio sono definite in `domain.go`
+      - Le variabili di errore sono definite in `errors.go`
+    ],
+    
+    [Outbound adapter], [
+      - Le struct `Adapter` sono definite in `adapters.go`
+      - Le funzioni di _mapping_ che permettono di tradurre oggetti `Entity` in oggetti di dominio e viceversa sono definite in `mappers.go`
+    ],
+    
+    [Outbound port], [Le interfacce `Port` sono definite in `adapters.go` @fn],
+
+    [Persistence layer], [Le struct `Repository` e le relative struct `Entity` sono definite in `repository.go`],
+
+  ),
+  [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
+  label-id: "descrizione-struttura-package-inverso",
+)
+
+== Pattern architetturale GUI <pattern-architetturale-gui>
+// TODO: Scrivere di MVVM
+
+== Architettura di dettaglio <archit-dett>
+In ogni microservizio è stata applicata l'*architettura esagonale* per garantire un elevato isolamento della logica di business e garantire una facile sostituibilità dei componenti esterni, come il database o il message broker, senza dover modificare la logica centrale del servizio.\
+
+// TODO: specificherei che uber fx per le parti fatte in go e angular per le parti fatte in angular
 Inoltre ai diversi microservizi è stato applicato un pattern di #gloss[Dependency Injection] tramite il framework #gloss[Uber Fx] o #gloss[Angular], che permette di iniettare le dipendenze necessarie (ad esempio la connessione al database) in modo semplice, sicuro e testabile, garantendo una maggiore modularità e manutenibilità del codice.\
 Infatti la maggior parte delle componenti di ogni microservizio ha le dipendenze iniettate tramite costruttore, le dipendenze di tipo *composition* e *aggregation* sono raramente utilizzate.
+
+=== Convenzioni di notazione per Go
+La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 2.5, il quale è stato pensato originariamente per linguaggi propriamente orientati agli oggetti. Di fatto, però, Go non è un linguaggio _object-oriented_, per cui il gruppo ha adottato una serie di convenzioni comuni per rendere agevole la scrittura di diagrammi UML, usando *draw.io* come strumento. Le convenzioni sono le seguenti:
+
+1. Si usa una classe UML per rappresentare uno struct concreto, dove:
+  - Gli attributi della classe sono gli attributi dello struct
+  - I metodi della classe sono le funzioni che hanno come _pointer receiver_ lo struct
+
+2. Si usa la notazione UML per indicare la visibilità di un attributo o metodo, avendo cura che gli attributi o metodi privati siano indicati con l'iniziale minuscola e tenendo conto che in Go la visibilità è definita solamente al _package-level_;
+
+3. Si utilizza la notazione originale per descrivere le interfacce con `<<interface>>` invece che la _lollipop notation_, poiché quest'ultima non è presente all'interno di *draw.io*;
+
+4. Si utilizza la normale sintassi per implementazione delle interfacce da parte di classi concrete, sebbene in Go le interfacce vengono implementate implicitamente (ovvero senza dichiarare l'implementazione con una keyword quale `implements`): si mostrano esplicitamente le implementazioni dove semanticamente rilevante;
+
+5. Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno struct all'interno di un altro, senza alcuna ereditarietà nei metodi
+
+6. La sintassi per le _signature_ delle funzioni con più tipi di ritorno è la seguente:
+  #align(center,
+    ```
+    <visibility> Func(<params>): Type1, Type2, Type3, ...
+    ```
+  )
+  In questo esempio, `<visibility>` e `<params>` vanno sostituiti rispettivamente con la visibilità del metodo e con la lista dei suoi parametri
+
+7. Ogni diagramma è visto dalla prospettiva del _package_ a cui esso appartiene, per cui ogni riferimento a _package_ esterni viene specificato con la sintassi di Go: `package.Name` dove `package` è il nome del _package_ e `Name` il nome del simbolo preso in considerazione.
+
+8. Si utilizza la sintassi UML per indicare un _enum_ (usando `<<enum>>`) sebbene essi non esistano in Go: questi saranno tradotti nel sorgente come insiemi di variabili costanti che condividono un tipo comune non primitivo. \
+  Ad esempio il diagramma nella @code-sensor.SensorProfile, può essere tradotto nel seguente codice Go:
+  #block(breakable: false,
+    ```go
+    type SensorProfile string
+    const (
+      ECG_CUSTOM            SensorProfile = "ecg_custom"
+      ENVIRONMENTAL_SENSING SensorProfile = "environmental_sensing"
+      HEALTH_THERMOMETER    SensorProfile = "health_thermometer"
+      HEART_RATE            SensorProfile = "heart_rate"
+      PULSE_OXIMETER        SensorProfile = "pulse_oximeter"
+    )
+    ```
+  )
+
+9. Siccome in Go non esistono i costruttori, per ognuno degli struct inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
+  #align(center, ```go
+    type NewExample struct{
+      Value1 int
+      Value2 string
+    }
+    func NewExample(value1 int, value2 string) *NewExample {
+      return &NewExample{
+        Value1: value1,
+        Value2: value2,
+      }
+    }
+  ```)
+  In ciascuno dei diagrammi seguenti, se non specificato, si assume che esista un costruttore per ogni struct specificato che prende come parametri in input gli stessi attributi dello struct, come definito nell'esempio.
+
+10. Le funzioni top-level di un package vengono specificate usando una singola classe UML con stereotype _`<<global function>>`_ in cui la funzione stessa è l'unico metodo statico della classe. Ad esempio, la funzione ` ReadConfigFromEnv(log *zap.Logger) (*Config, error)` nel package `config`, si può rappresentare col seguente diagramma:
+  #figure(
+    image("../../assets/c4/backend/shared/config/ReadConfigFromEnv.pdf", width: 60%
+    ),
+    caption: [Esempio di diagramma per top-level function],
+  )
+
 
 === Gateway
 La seguente sezione ha lo scopo di descrivere il #gloss[Code Diagram] del microservizio *Gateway*.
@@ -756,6 +943,7 @@ La seguente sezione ha lo scopo di descrivere i controller che si occupano di ri
 
 Ogni controller è specializzato in un comando specifico, ha il compito di ricevere i comandi e trasformarli in dati pronti per la business logic, la quale eseguirà il comando.
 
+// TODO: "in ognuno di essi" vuol dire che stiamo elencando i membri dello struct?
 In ognuno di essi è presente:
 - *natsConnection*: riferimento alla connessione NATS (iniettata tramite dependency injection) per ricevere i comandi e rispondere con l'esito dell'operazione. I comandi sono inviati tramite il meccanismo *Request-Reply* di NATS.
 - *subject*: stringa che rappresenta il subject NATS a cui il controller si iscrive per ricevere i comandi, anch'esso iniettato tramite dependency injection.
@@ -972,7 +1160,7 @@ La struct ha i seguenti attributi e metodi:
 - *status*: enum di tipo *SensorStatus*, rappresenta lo stato che deve avere il sensore all'avvio. Gli stati possibili sono: *Active*, *Inactive* e *Stopped*
 - *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
   - Salva la configurazione del nuovo sensore nel sistema di persistenza tramite il metodo *AddSensor(cmd \*AddSensor, status SensorStatus)* dell'interfaccia *SensorAdderPort*.
-  - Avvia l'esecuzione del nuovo sensore simulato con una *goroutine* attraverso il metodo *Start()* dell'interfaccia *SensorStarter*.
+  - Avvia l'esecuzione del nuovo sensore simulato con una #gloss[goroutine] attraverso il metodo *Start()* dell'interfaccia *SensorStarter*.
 
 ===== CommissionGatewayCmd
 Il comando *CommissionGatewayCmd* ha lo scopo di commissionare un gateway simulato, associandolo ad un tenant e impostando il nuovo token ricevuto (JWT basato sulla public key del gateway).
@@ -997,7 +1185,7 @@ La struct ha i seguenti attributi e metodi:
 - *Execute() error*: è il metodo che esegue il comando svolgendo i seguenti passi:
   - Salva la configurazione del nuovo gateway nel sistema di persistenza tramite il metodo *CreateGateway(cmdData \*CreateGateway, credentials \*Credentials, status GatewayStatus)* dell'interfaccia *GatewayCreatorPort*.
   - Invia un messaggio di hello dal nuovo gateway simulato tramite NATS comunicando il proprio *gatewayId* e la propria *chiave pubblica* attraverso il metodo *Hello()*. dell'interfaccia *GatewayGreeter*.
-  - Avvia l'esecuzione del nuovo gateway simulato con una *goroutine* attraverso il metodo *Start()* dell'interfaccia *DataSenderStarter*.
+  - Avvia l'esecuzione del nuovo gateway simulato con una #gloss[goroutine] attraverso il metodo *Start()* dell'interfaccia *DataSenderStarter*.
 
 ===== DecommissionGatewayCmd
 Il comando *DecommissionGatewayCmd* ha lo scopo di decommissionare un gateway simulato, modificandone lo stato e impedendogli di inviare dati IoT.
@@ -1102,7 +1290,7 @@ La struct ha i seguenti attributi e metodi:
 ==== Gateway simulato
 Il gateway simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un gateway IoT reale, ascoltando comandi in ingresso e di svuotare periodicamente un buffer interno di dati generati dai sensori simulati associati, inviandoli via #gloss[NATS JetStream].
 
-Il gateway simulato è fatto partire dal comando *CreateGatewayCmd* come una *goroutine* separata, in modo da eseguire ogni gateway simulato in parallelo e garantire l'esecuzione di un comando alla volta per gateway.\
+Il gateway simulato è fatto partire dal comando *CreateGatewayCmd* come una #gloss[goroutine] separata, in modo da eseguire ogni gateway simulato in parallelo e garantire l'esecuzione di un comando alla volta per gateway.\
 
 Ogni gateway simulato ha due *channel*: uno per ricevere i comandi di tipo *BaseCommand* e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
@@ -1195,7 +1383,7 @@ La struct *sensorData* rappresenta la misurazione IoT generata da un sensore sim
 ==== Sensore simulato
 Il sensore simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un sensore IoT reale, generando periodicamente delle misurazioni IoT e salvandole nel buffer interno del gateway simulato.
 
-Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una *goroutine* separata, in modo da eseguire ogni sensore simulato in parallelo.
+Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una #gloss[goroutine] separata, in modo da eseguire ogni sensore simulato in parallelo.
 
 Ogni sensore simulato ha due channel: uno per ricevere i comandi di tipo *BaseCommand* e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
@@ -1356,8 +1544,7 @@ La struct in questione ha i seguenti attributi e metodi:
 - *WriteData(data []\*SensorData, tenantId uuid.UUID) error*: metodo che si occupa dell'inserimento massivo dei dati a database, riceve un array di *SensorData* e il *tenantId* di appartenenza, costruisce una query di inserimento massivo e la esegue tramite la connessione a database, se l'inserimento va a buon fine restituisce nil, altrimenti restituisce l'errore riscontrato.
 
 
-
-=== Frontend <angular>
+=== Cloud Frontend <angular>
 La seguente sezione descrive in dettaglio il #gloss[Code Diagram] del frontend #gloss[Angular], che rappresenta l'interfaccia utente del sistema.
 
 L'architettura logica scelta è la *Layered Architecture*, composta da tre livelli orizzontali a _dipendenza unidirezionale_: il *Domain Layer* rappresenta il nucleo dell'applicazione, il *Presentation Layer* gestisce l'interfaccia utente e l'*Infrastructure Layer* si occupa della comunicazione con il backend.
@@ -2761,10 +2948,1381 @@ La visualizzazione della lista utenti è delegata a un componente specializzato 
   - _Interazione_: invia i dati al servizio `UserService` (@angular-user-service) e monitora lo stato di sottomissione per visualizzare indicatori di progresso o messaggi di errore restituiti dalle API.
 
 
-=== Cloud Backend
 
+
+=== Cloud Backend <cloud-backend>
+La seguente sezione descrive il #gloss[Code Diagram] del backend della piattaforma #gloss[Cloud], il quale è stato sviluppato in #gloss[Go] usando il framework #gloss[Gin] per la gestione delle route HTTP.
+
+Il codice è stato organizzato secondo l'*architettura esagonale*, come descritto nella @archit-log, usando la suddivisione "package by feature/bounded context", come descritto nella @cloud-backend-org-package.
+
+Infine, per gestire la grande mole di dipendenze interconnesse tra package, è stato scelto di applicare il pattern della #gloss[dependency injection] tramite il framework *Uber Fx*. Si veda @cloud-backend-uso-DI per ulteriori dettagli su come viene gestita la #gloss[dependency injection] all'interno del Cloud Backend.
+
+==== Organizzazione package <cloud-backend-org-package>
+
+// TODO: riferimento a manuale utente?
+Gli _endpoint_ esposti dal backend concernono diverse aree semantiche del dominio del progetto, per cui il codice del backend è suddiviso in _package_ usando la metodologia "package by feature/bounded context", secondo la quale a un package corrisponde un insieme di funzionalità correlate sotto lo stesso significato semantico. Ad esempio, tutte le funzionalità di CRUD sugli utenti del sistema appartengono al package `user`, mentre tutte le funzionalità di autenticazione appartengono al package `auth`.
+
+Il codice sorgente del Cloud Backend, presente nella #repo("dash")[repository `Dashboard`] all'interno della sottocartella `backend/internal` è suddiviso nei seguenti _package_:
+- *`auth`*, per le funzionalità dell'autenticazione degli utenti;
+- *`email`*, per le funzionalità d'invio email;
+- *`gateway`*, per le funzionalità CRUD sui gateway e di invio comandi ad essi;
+  - *`gateway/hello`*, per le funzionalità di ricezione di messaggi di hello dai gateway;
+- *`historical_data`*, per le funzionalità di accesso ai dati storici dei sensori;
+- *`real_time_data`*, per le funzionalità di accesso ai dati dei sensori in tempo reale;
+- *`sensor`*, per le funzionalità CRUD sui sensori e di invio comandi ad essi;
+- *`tenant`*, per le funzionalità CRUD sui tenant
+- *`user`*, per le funzionalità CRUD sugli utenti
+
+Inoltre, i seguenti _package_ contengono codice condiviso con tutti gli altri, sopra menzionati:
+- *`infra`* contiene il codice _platform-dependent_ condiviso tra gli altri package
+- *`shared`* contiene interfacce e metodi di dominio condivisi tra gli altri package.
+  - *`shared/config`* contiene la struct `Config` utilizzata come singolo aggregatore delle impostazioni di configurazione dell'applicativo;
+  - *`shared/crypto`* contiene le interfacce condivise per la gestione della crittografia, le cui implementazioni risiedono in *`infra/crypto`*;
+  - *`shared/identity`* contiene la struct `Requester` utilizzata all'interno dell'applicativo per identificare i dati di autenticazione dell'utente che ha richiesto un comando specifico, in modo tale da applicare meccanismi di Role-Based Access Control (RBAC).
+
+==== Utilizzo della dependency injection <cloud-backend-uso-DI>
+Ciascuno dei package descritti nella @cloud-backend-org-package presenta al suo interno il file `module.go` contenente il modulo Fx che inserisce nel sistema di #gloss[dependency injection] tutte le interfacce o le struct rilevanti, descritto da una variabile chiamata `Module`.
+
+Per aumentare la coesione e diminuire il coupling tra i componenti del sistema, tutte le struct che vengono iniettate nel sistema vengono "annotate" con le relative interfacce che rispettano: in tal modo, ogni componente nel sistema dipende solamente da interfacce e non da struct concrete.
+
+Una tipica variabile `Module` ha questa struttura:
+
+```go
+var Module = fx.Module(
+  "nome_modulo",  // Nome con cui viene riconosciuto il modulo nel sistema di DI
+  fx.Provide(
+    // Costruttore del controller del package (se presente):
+    //   Non viene annotato come interfaccia, poiché 
+    //   è sufficiente iniettare la struct concreta
+    NewController,  // Ritorna *Controller
+
+    // Costruttore di ExampleService, il quale implementa 
+    // ExampleUseCase1, ExampleUseCase2 e ExampleUseCase3:
+    //   In questo caso, si annota il costruttore con ciascuna delle
+    //   interfacce che ExampleSerivce implementa
+    fx.Annotate(
+      NewExampleService,  // Ritorna *ExampleService
+      fx.As(new(ExampleUseCase1)),
+      fx.As(new(ExampleUseCase2)),
+      fx.As(new(ExampleUseCase3)),
+    ),
+    
+    // ...
+  ),
+)
+```
+
+==== Package `auth`
+// TODO
+
+==== Package `email` <backend-email>
+Il package `email` non presenta controller poiché non viene chiamato direttamente dal client, ma ne vengono chiamate solamente le _outbound ports_.
+
+#figure(
+  image("../../assets/c4/backend/email/email.pdf", width: 100%),
+  caption: [Cloud Backend -- Code Diagram di package `email`]
+)
+
+===== `SendEmailPort`
+Outbound port per inviare le email di conferma account (`SendConfirmAccountEmail()`) e di password dimenticata (`SendForgotPasswordEmail()`).
+
+- *`SendConfirmAccountEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+
+- *`SendForgotPasswordEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` da `fromAddress` un'email contenente il link di cambio password dimenticata, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+
+
+===== `SendEmailSMTPAdapter` <code-email.SendEmailSMTPAdapter>
+Struct che implementa `SendEmailPort` e presenta i seguenti attributi:
+- `fromAddress`: L'indirizzo da cui inviare i messaggi email
+- `sender`: Il riferimento a un oggetto che implementa l'interfaccia *`smtpSender`*
+- `createMsgStrategy`: Il riferimento alla _strategy_ usata per comporre il messaggio
+- `appUrl`: L'URL dell'applicativo a cui devono associare i link di conferma account / cambio password
+
+Questa struct è costruita con la seguente funzione di costruzione:
+#align(center)[
+*```go
+NewSendEmailSMTPAdapter(cfg *config.Config, sender smtpSender, createMsgStrategy createMessageStrategy) *SendEmailSMTPAdapter
+```*
+]
+
+===== `createMessageStrategy`
+Interfaccia che implementa lo *strategy pattern* per determinare come costruire il messaggio da inviare al client email. Si è scelto di utilizzare questo pattern in modo tale da permettere la creazione degli stessi messaggi in modi diversi, ad esempio usando HTML.
+
+Il metodo *`CreateMessage(fromAddress, toAddress, subject, body string) *gomail.Message`* costruisce un oggetto di tipo *`*gomail.Message`* da usare in tandem con l'interfaccia *`smtpSender`*, che rappresenta un messaggio inviato dall'indirizzo `fromAddress` all'indirizzo `toAddress` con oggetto `subject` e corpo `body`.
+
+===== `smtpSender`
+Rappresenta un'interfaccia che astrae il metodo *`DialAndSend(m ...*gomail.Message) error`* implementato dallo struct *`gomail.Dialer`*
+
+Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *`smtpSender`* tramite la funzione *`newDialer(cfg *config.Config) *gomail.Dialer`* che legge la configurazione passata (`cfg`) per determinare le coordinate #gloss[SMTP] da contattare per inviare i messaggi email.
+
+==== Package `gateway` 
+// TODO
+
+==== Package `gateway/hello` <backend-gateway-hello>
+Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di ascoltare un subject #gloss[NATS] specifico in attesa di messaggi di hello da parte dei gateway e lo struct `Service` che si occupa di processare i messaggi ricevuti e validarli.
+
+#figure(
+  image("../../assets/c4/backend/gateway/hello/hello.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway/hello`],
+)
+
+===== Inbound adapter -- `NATSWorker`, `GatewayHelloMessageDTO`
+Lo struct `NATSWorker` ha la responsabilità di istanziare una #gloss[goroutine] per rimanere in attesa su #gloss[NATS JetStream] di messaggi di "hello" inviati dai gateway in fase di commissioning. I suoi attributi sono i seguenti:
+- *`consumer`*: Riferimento a un oggetto `jetstream.Consumer`, il quale consente di ascoltare e processare messaggi su una specifica _stream_ #gloss[JetStream]
+- *`gatewayHelloUseCase`*: Riferimento allo _use case_ implementato dal service; poiché comunica in input con la _business logic_, `NATSWorker` è un'_inbound adapter_
+- *`logger`*: Riferimento a logger zap
+
+Eseguendo il metodo `Run(lc fx.Lifecycle)` è possibile istanziare il worker, il quale istanzierà a sua volta `ListenHelloMessages(ctx context.Context)` in una #gloss[goroutine], la quale applicherà il metodo `ProcessMsg(msg jetstream.Msg)` a ogni messaggio ricevuto su #gloss[JetStream].
+
+// TODO: Forse sarebbe bene spiegare meglio come funziona il tutto?
+*`GatewayHelloMessageDTO`* è il tipo del DTO creato da `NATSWorker` corrispondente a un messaggio di hello su #gloss[NATS Jetstream]. Esso consiste di:
+- *`GatewayId`*: Stringa contenente lo UUID del gateway richiedente
+- *`PublicIdentifier`*: L'identificativo pubblico del gateway, usato in fase di commissioning
+
+===== Inbound port -- `GatewayHelloUseCase`, `GatewayHelloMessageCommand`
+L'_inbound port_ implementata da `GatewayHelloService`. Contiene il metodo *`ProcessHello(cmd GatewayHelloMessageCommand) error`*, il quale consente di processare un messaggio di hello, le cui specifiche sono descritte da `cmd`.
+
+*`GatewayHelloMessageCommand`* è il tipo dello struct che rappresenta il comando da inviare al `Service`, contenente i dati specifici di un messaggio di hello da processare. Contiene i seguenti attributi:
+- *`GatewayId`*: UUID del gateway richiedente
+- *`PublicIdentifier`*: L'identificativo pubblico del gateway, usato in fase di commissioning
+
+===== Service -- `GatewayHelloService`
+Struct di dominio che implementa *`GatewayHelloUseCase`*. Contiene i seguenti attributi:
+- *`getGateway`*: _Outbound port_ usata per ottenere informazioni su uno specifico gateway
+- *`saveGateway`*: _Outbound prot_ usata per aggiungere un nuovo gateway al Cloud DB o modificarne uno esistente
+- *`logger`*: Riferimento al logger zap
+
+==== Package `historical_data`
+// TODO
+
+==== Package `infra`
+// TODO
+
+==== Package `real_time_data` <backend-real_time_data>
+Il package `real_time_data` presenta le funzionalità per ricevere in tempo reale i dati direttamente da un sensore specifico via #gloss[NATS] ed eventualmente presentarli a un client #gloss[Websocket].
+
+Di seguito si riporta il Code Diagram degli struct di dominio rappresentati un dato o un errore ottenuti in tempo reale.
+#figure(
+  image("../../assets/c4/backend/real_time_data/real_time_data_datastructs.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di data structs per `real_time_data`],
+)
+
+Di seguito, invece, si riporta il Code Diagram di tutti gli altri struct presenti nel package.
+#figure(
+  image("../../assets/c4/backend/real_time_data/real_time_data_structs.pdf", width:90%),
+  caption: [Cloud Backend -- Code Diagram di Controller, UseCase, Service, Port, Adapter e Reader per `real_time_data`],
+)
+
+===== Inbound adapter -- `Controller` e DTO
+_Inbound adapter_ principale del package.
+
+*Attributi:*
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`getRealTimeDataUseCase GetRealTimeDataUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service`
+
+*Metodi*:
+- *`startClientListener(conn *websocket.Conn, errorChannel chan RealTimeError)`*: Metodo che esegue un _listener_ su #gloss[Websocket] per rilevare disconnessioni del client, in modo tale da interrompere l'esecuzione del sistema di ottenimento dati
+- *`GetRealTimeData(ctx *gin.Context)`*: Metodo che ha la responsabilità di iniziare l'ascolto dei dati in real-time su NATS chiamando lo _use case_, di eseguire `startClientListener()` su una #gloss[goroutine] e di inviare i dati ottenuti al client #gloss[Websocket]
+
+*Funzione di costruzione*: `NewController(log *zap.Logger, getRealTimeDataUseCase GetRealTimeDataUseCase) *Controller`
+
+
+I *DTO* usati dal `Controller` sono i seguenti:
+- *`GetRealTimeDataDTO`*: Rappresenta la richiesta GET iniziale ricevuta dal client, prima di eseguire l'upgrade della connessione al protocollo websocket. Contiene i seguenti *attributi*:
+  - *`SensorId`*: ID del sensore di cui chiedere i dati in tempo reale
+  - *`TenantId`*: ID del tenant a cui è associato il gateway a cui appartiene il sensore
+- *`RealTimeErrorOutDTO`*: Rappresenta un errore inviato al client riscontrato durante l'ascolto dei dati real-time. Contiene il seguente *attributo*:
+  - *`Error`*: Stringa che spiega l'errore avvenuto
+- *`RealTimeSampleOutDTO`*: Rappresenta un dato (_sample_) ottenuto in tempo reale inviato al client. Contiene i seguenti *attributi*:
+  - *`Profile`*: Il profilo del sensore a cui appartiene il dato
+  - *`Timestamp`*: Una stringa che rappresenta la data/ora
+
+===== Inbound port -- `GetRealTimeDataUseCase`, `GetRealTimeDataCommand`
+L'_inbound port_ principale del package.
+
+*Metodi*:
+- *`GetRealTimeData(cmd GetRealTimeDataCommand) (dataChannel chan RealTimeSample, errorChannel chan RealTimeError, err error)`*: Ha il compito di ottenere i dati in tempo reale del sensore descritto da `cmd`, ritornando:
+  - *`dataChannel chan RealTimeSample`*: _Channel_ su cui vengono inviati dati di tipo `RealTimeSample` da `RealTimeNATSReader` e consumati da `Controller`
+  - *`errorChannel chan RealTimeError`*: _Channel_ su cui vengono inviati errori di tipo `RealTimeError`, in caso si dovessero riscontrare errori nella lettura dei dati oppure disconnessioni da parte del
+  - *`err error`*: Eventuale errore nella creazione dei _channel_
+
+*`GetRealTimeDataCommand`* invece rappresenta il comando inviato all'_inbound port_ e contiene i seguenti attributi:
+- *`Requester identity.Requester`*: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC]
+- *`SensorId uuid.UUID`*: UUID del sensore di cui visualizzare i dati
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato il gateway a cui appartiene il sensore
+
+===== Struct di dominio
+====== `RealTimeDataService`
+*`RealTimeDataService`* è la struct `Service` che implementa *`GetRealTimeDataUseCase`*.
+
+*Attributi:*
+- *`tenantPort tenant.GetTenantPort`*: _Outbound port_ usata per ottenere dati relativi al tenant specificato
+- *`sensorByTenantPort sensor.GetSensorByTenantPort`*: _Outbound port_ usata per ottenere i dati di un sensore per tenant
+- *`realTimeDataPort RealTimeDataPort`*: _Outbound port_ per ottenere i dati in tempo reale di un sensore specifico
+
+====== `RealTimeSample`
+*`RealTimeSample`* è l'interfaccia di dominio che rappresenta un dato ottenuto in tempo reale.
+
+*Metodi*: 
+- *`GetData() any`*: Metodo per ottenere i dati strutturati del _sample_
+-  *`GetProfile() sensorProfile.SensorProfile`*: Metodo per ottenere il profilo a cui sono associati i dati
+- *`GetTimestamp() time.Time`*: Metodo per ottenere il timestamp a cui è associato il dato
+
+Tutte le struct che implementano questa interfaccia presentano i seguenti attributi:
+- *`Profile sensorProfile.SensorProfile`*: profilo del sensore a cui è associato il dato
+- *`Timestamp time.Time`*: timestamp del dato
+- *`Data`*, il quale invece è di un tipo specifico per ogni tipo concreto
+
+Le struct che implementano questa interfaccia sono le seguenti e ciascuna rappresenta un tipo di dato supportato dal sistema.
+
+- *`EcgSample`*: Rappresenta un _sample_ in formato *ECG Custom*
+  - Presenta attributo *`Data EcgSampleData`*, il quale ha come attributo:
+    - *`Waveform []int`*: Forma d'onda della misurazione ECG
+
+- *`EnvironmentalSensingSample`* Rappresenta un _sample_ in formato *Environmental Sensing Service*
+  - Presenta attributo *`Data EnvironmentalSensingSampleData`*, il quale ha come attributi:
+    - *`Temperature float64`*: Misurazione di temperatura in °C
+    - *`Humidity float64`*: Misurazione di umidità in %
+    - *`Pressure float64`*: Misurazione di pressione in hPa
+
+- *`HealthThermometerSample`*: Rappresenta un _sample_ in formato *Health Thermometer*
+  - Presenta attributo *`Data HealthThermometerSampleData`*, il quale ha come attributo:
+    - *`Temperature float64`*: Misurazione di temperatura in °C
+
+- *`HeartRateSample`*: Rappresenta un _sample_ in formato *Heart Rate*
+  - Presenta attributo *`Data HeartRateSampleData`*, il quale ha come attributo:
+    - *`BpmValue int`*: Misurazione di battiti cardiaci al minuto
+
+- *`PulseOximeterSample`*: Rappresenta un _sample_ in formato *Pulse Oximeter*
+  - Presenta attributo *`Data PulseOximeterSampleData`*, il quale ha come attributi:
+    - *`Spo2 float64`*: Misura di ossigenazione del sangue in %
+	  - *`PulseRate int`*: Misura di battiti cardiaci al minuto
+
+====== `RealTimeError`
+Rappresenta un errore ricevuto in tempo reale. Può essere un errore di disconnessione ricevuto dal client oppure un errore di mapping ricevuto dal reader NATS.
+
+*Attributi*:
+- *`Err error`*: errore rappresentato dalla struct
+- *`Timestamp time.Time`*: timestamp di rilevazione dell'errore
+
+*Metodi*:
+- *`Error() string`*: Ritorna la descrizione dell'errore. Utilizzata in modo tale da rendere `RealTimeError` compatibile con l'interfaccia standard `error`
+- *`Unwrap() error`*: Ritorna l'attributo `Err`, in modo tale da essere compatibile con il package `errors` nella stdlib.
+
+*Funzioni di costruzione*#footnote[Si noti che queste funzioni non sono usate nel sistema di #gloss[DI], ma solo per creare comodamente diversi tipi di errori real-time]:
+- *`NewErrClientDisconnected() RealTimeError`*: Crea un nuovo errore ottenuto quando il client websocket si disconnette
+- *`NewErrMappingError(err error) RealTimeError`*: Crea un nuovo errore di mapping, specificato da `err`
+
+===== Outbound port -- `RealTimeDataPort`
+_Outbound port_ utilizzata per comunicare con il _listener_ dei dati in tempo reale.
+
+*Metodi*:
+- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Istanzia asincronamente una #gloss[goroutine] che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
+
+
+===== Outbound adapter -- `RealTimeDataNATSAdapter`
+_Outbound adapter_ che implementa *`RealTimeDataPort`*, consentendo di creare un _listener_ dei dati real-time su NATS
+
+*Attributi*:
+- *`reader RealTimeDataNATSReader`*: Riferimento alla struct che ha la responsabilità di leggere i dati in real-time su NATS
+
+*Metodi aggiuntivi*:
+- *`getSubject(tenantId, gatewayId, sensorId uuid.UUID) (string, error)`*: Dati gli ID di un tenant, di un gateway e di un sensore, ottiene il subject #gloss[NATS] corrispondente
+
+
+===== Reader -- `RealTimeDataNATSReader`
+*`RealTimeDataNATSReader`* è l'interfaccia che rappresenta un reader #gloss[NATS]#footnote[Si noti che questa interfaccia è stata creata per puri fini di test, i quali richiedono che ogni elemento per cui si può creare un _mock_ sia descritto da un'interfaccia.].
+
+*Metodi*:
+- *`StartSubscriber( subject string, profile sensorProfile.SensorProfile, receivingChannel chan RealTimeSample, errorChannel chan RealTimeError) error`*: Istanzia un subscriber #gloss[NATS] sul soggetto `subject`, rimanendo in ascolto per i dati correlati al profilo `profile` per poi inserirli in `receivingChannel` ed inserire eventuali errori di mapping in `errorChannel`.
+
+====== `concreteRealTimeDataNATSReader`
+*`concreteRealTimeDataNATSReader`* è la classe concreta che implementa `RealTimeDataNATSAdapter`.
+
+*Attributi*:
+- *`nc *nats.Conn`*: Connessione a NATS da utilizzare per leggere i dati in real time
+
+*Funzioni di costruzione*:
+- *`newConcreteRealTimeDataNATSReader(nc *nats.Conn) *concreteRealTimeDataNATSReader`*
+
+====== `lastTimestampContainer`
+Rappresenta un contenitore thread-safe per rappresentare un valore temporale crescente monotonicamente.
+
+*Attributi*:
+- *`mu sync.Mutex`*: Mutex per impedire accessi concorrenti all'oggetto
+- *`value time.Time`*: Valore temporale contenuto
+
+*Metodi*:
+- *`CompareAndSet(newTime time.Time) bool`*: Fa controllo thread-safe (usando mutex) su `newTime` rispetto a `value`: se `newTime` è più recente di `value`, allora imposta `newTime` a `value` e ritorna `true`, altrimenti ritorna `false`
+
+==== Package `sensor` <backend-sensor>
+Il package `sensor` si occupa della gestione CRUD dei sensori e dell'invio di comandi ad essi. Il diagramma riportato di seguito è comprensivo dell'intero package, per cui potrebbe essere necessario usare la funzionalità di zoom per leggerne i contenuti
+#figure(
+  image("../../assets/c4/backend/sensor/sensor.pdf", width:115%),
+  caption: [Cloud Backend -- Code Diagram di `sensor`],
+)
+
+===== Inbound adapter -- `Controller` e DTO
+L'_inbound adapter_ principale del package è `Controller`
+#figure(
+  image("../../assets/c4/backend/sensor/Controller.pdf", width:70%),
+  caption: [Cloud Backend -- Code Diagram di `sensor.Controller`],
+)
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`createSensorUseCase CreateSensorUseCase`*: _Inbound port_ per creare un sensore
+- *`deleteSensorUseCase DeleteSensorUseCase`*: _Inbound port_ per eliminare un sensore
+- *`getSensorUseCase GetSensorUseCase`*: _Inbound port_ per ottenere un sensore per ID
+- *`getSensorsByGatewayUseCase GetSensorsByGatewayUseCase`*: _Inbound port_ per ottenere la lista dei sensori associati a un gateway specifico
+- *`getSensorsByTenantUseCase  GetSensorsByTenantUseCase`*: _Inbound port_ per ottenere la lista dei sensori associati a un tenant specifico
+- *`interruptSensorUseCase InterruptSensorUseCase`*: _Inbound port_ per interrompere l'invio dei dati di un sensore
+- *`resumeSensorUseCase ResumeSensorUseCase`*: _Inbound port_ per riattivare l'invio dei dati di un sensore
+
+*Metodi*: \
+Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
+- *`CreateSensor(ctx *gin.Context)`*: Crea un sensore
+  - Input: `CreateSensorBodyDTO`
+  - Output: `SensorResponseDTO`
+- *`DeleteSensor(ctx *gin.Context)`*: Elimina un sensore con ID specifico
+  - Output: `SensorResponseDTO`
+- *`GetSensor(ctx *gin.Context)`*: Ritorna i metadati di un sensore specifico
+  - Output: `SensorResponseDTO`
+- *`GetSensorsByGateway(ctx *gin.Context)`*: Ritorna una lista paginata di sensori appartenenti a un gateway specifico
+  - Input: `SensorQueryDTO`
+  - Output: `SensorsResponseDTO`
+- *`GetSensorsByTenant(ctx *gin.Context)`*: Ritorna una lista paginata di sensori associati a un tenant specifico
+  - Input: `SensorQueryDTO`
+  - Output: `SensorsResponseDTO`
+- *`InterruptSensor(ctx *gin.Context)`*: Interrompe un sensore specifico
+- *`ResumeSensor(ctx *gin.Context)`*: Riattiva un sensore specifico
+\
+I *DTO* usati da `Controller` sono i seguenti:
+- *`CreateSensorBodyDTO`*: Dati in input per la creazione di un sensore. Contiene i seguenti attributi:
+  - *`GatewayId string`*: UUID del gateway associato
+  - *`SensorName string`*: Nome del sensore
+  - *`Profile string`*: Profilo del sensore (vd. @code-sensor.SensorProfile per lista di valori possibili)
+  - *`Interval int64`*: Intervallo in millisecondi di generazione dati
+
+- *`SensorQueryDTO`*: Dati in input per la ricezione di dati relativi a più sensori. Contiene i seguenti attributi:
+  - *`Page int`*: Numero di pagina
+  - *`Limit int`*: Numero di elementi per pagina
+
+- *`SensorResponseDTO`*: Dati in output relativi a un singolo sensore
+  - *`SensorId string`*: UUID del sensore
+  - *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+  - *`Name string`*: Nome del sensore
+  - *`Profile string`*: Profilo del sensore
+  - *`Interval int`*: Intervallo in millisecondi di generazione dati   
+
+- *`SensorsResponseDTO`*: Lista paginata in output di più sensori
+  - *`Count int`*: Numero di elementi nella pagina corrente
+  - *`Total int`*: Numero di elementi totali
+  - *`Sensors []SensorResponseDTO`*: Lista di sensori 
+
+
+===== Inbound ports
+#figure(
+  image("../../assets/c4/backend/sensor/UseCases.pdf", width:80%),
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ in `sensor`],
+) <cloud-backend-code-inports-services>
+
+Per dettagli sui `Command`, si consulti la @code-sensor-commands.
+====== `CreateSensorUseCase`
+*Metodi*:
+- *`CreateSensor(cmd CreateSensorCommand) (Sensor, error)`*: Crea un sensore secondo le specifiche di `cmd` e lo ritorna
+
+====== `DeleteSensorUseCase`
+*Metodi*:
+- *`DeleteSensor(cmd DeleteSensorCommand) (Sensor, error)`*: Elimina un sensore secondo le specifiche di `cmd` e ritorna il sensore appena eliminato
+
+====== `GetSensorUseCase`
+*Metodi*:
+- *`GetSensorById(cmd GetSensorCommand) (Sensor, error)`*: Ritorna un sensore con ID specificato in `cmd`
+
+====== `GetSensorsByGatewayUseCase`
+*Metodi*:
+- *`GetSensorsByGateway(cmd GetSensorsByGatewayCommand) ([]Sensor, uint, error)`*: Ritorna una lista paginata di sensori associati al gateway specificato in `cmd` e il numero totale di tali sensori
+
+====== `GetSensorsByTenantUseCase`
+*Metodi*:
+- *`GetSensorsByTenant(cmd GetSensorsByTenantCommand) ([]Sensor, uint, error)`*: Ritorna una lista paginata di sensori associati al tenant specificato in `cmd` e il numero totale di tali sensori
+
+====== `InterruptSensorUseCase`
+*Metodi*:
+- *`InterruptSensor(cmd InterruptSensorCommand) error`*: Interrompe il sensore specificato in `cmd`
+
+====== `ResumeSensorUseCase`
+*Metodi*:
+- *`ResumeSensor(cmd ResumeSensorCommand) error`*: Riattiva il sensore specificato in `cmd`
+
+===== Comandi <code-sensor-commands>
+#figure(
+  image("../../assets/c4/backend/sensor/Commands.pdf", width:60%),
+  caption: [Cloud Backend -- Code Diagram dei comandi in `sensor`],
+)
+
+I comandi usati dallo strato di business sono i seguenti. Si noti che ciascuno di questi comandi presenta il campo *`Requester identity.Requester`* poiché ciascun comando dev'essere eseguito da un utente autorizzato, per cui per completezza non saranno ripetuti nella lista seguente.
+
+- *`CreateSensorCommand`*: Comando per creare un sensore
+  - *`GatewayId uuid.UUID`*: UUID del gateway a cui associare il sensore
+  - *`SensorName string`*: Nome del sensore
+  - *`Profile sensorProfile.SensorProfile`*: Profilo del sensore
+  - *`Interval int64`*: Intervallo in ms di generazione dati
+
+- *`DeleteSensorCommand`*: Comando per eliminare un sensore
+  - *`SensorId uuid.UUID`*: UUID del sensore da eliminare
+
+- *`GetSensorCommand`*: Comando per ottenere un sensore
+  - *`SensorId uuid.UUID`*: UUID del sensore 
+
+- *`GetSensorsByGatewayCommand`*: Comando per ottenere i sensori associati a un gateway
+  - *`GatewayId uuid.UUID`*: UUID del gateway a cui sono associati i sensori
+  - *`Page int`*: Numero di pagina 
+  - *`Limit int`*: Numero di elementi per pagina
+
+- *`GetSensorsByTenantCommand`*: Comando per ottenere i sensori associati a un tenant
+  - *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati i sensori
+  - *`Page int`*: Numero di pagina 
+  - *`Limit int`*: Numero di elementi per pagina
+
+- *`InterruptSensorCommand`*: Comando per interrompere un sensore
+    - *`SensorId uuid.UUID`*: UUID del sensore da interrompere
+
+- *`ResumeSensorCommand`*: Comando per riattivare un sensore
+    - *`SensorId uuid.UUID`*: UUID del sensore da riattivare
+
+
+===== Services
+Per consultare il #gloss[Code Diagram] dei servizi, si consulti la @cloud-backend-code-inports-services.
+
+====== `CreateSensorService`
+Implementa l'interfaccia `CreateSensorUseCase`.
+
+*Attributi*:
+- *`createSensorPort CreateSensorPort`*: _Outbound port_ per creare un sensore nel database;
+- *`sendCreateSensorCmdPort CreateSensorCmdPort`*: _Outbound port_ per inviare comando di creazione sensore al gateway simulato;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
+
+*Funzione di costruzione*: `NewCreateSensorService(createSensorPort CreateSensorPort, sendCreateSensorCmdPort CreateSensorCmdPort, getGatewayPort gateway.GetGatewayPort) *CreateSensorService`
+
+====== `DeleteSensorService`
+Implementa l'interfaccia `DeleteSensorUseCase`.
+
+*Attributi*:
+- *`deleteSensorPort DeleteSensorPort`*: _Outbound port_ per eliminare un sensore nel database;
+- *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+- *`deleteSensorCmdPort DeleteSensorCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di eliminazione sensore.
+
+*Funzione di costruzione*: `NewDeleteSensorService(deleteSensorPort DeleteSensorPort, getSensorByIdPort GetSensorByIdPort, deleteSensorCmdPort DeleteSensorCmdPort) *DeleteSensorService`
+
+====== `InterruptSensorService`
+Implementa l'interfaccia `InterruptSensorUseCase`.
+
+*Attributi*:
+- *`sendInterruptCmdPort SendInterruptCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di interruzione sensore;
+- *`getSensorPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
+- *`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
+
+*Funzione di costruzione*: `NewInterruptSensorService(sendInterruptCmdPort SendInterruptCmdPort, getSensorPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort, updatedSensorStatusPort UpdateSensorStatusPort) *InterruptSensorService`
+
+====== `ResumeSensorService`
+Implementa l'interfaccia `ResumeSensorUseCase`.
+
+*Attributi*:
+-	*`sendResumeCmdPort SendResumeCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di riattivazione sensore;
+-	*`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+-	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
+-	*`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
+
+*Funzione di costruzione*: `NewResumeSensorService(sendResumeCmdPort SendResumeCmdPort, getSensorPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort, updatedSensorStatusPort UpdateSensorStatusPort) *ResumeSensorService`
+
+====== `GetSensorByIdService`
+Implementa l'interfaccia `GetSensorUseCase`.
+
+*Attributi*:
+- *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+-	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
+
+*Funzione di costruzione*: `NewGetSensorByIdService(getSensorByIdPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort) *GetSensorByIdService`
+
+====== `GetSensorsByGatewayIdService`
+Implementa l'interfaccia `GetSensorsByGatewayUseCase`.
+
+*Attributi*:
+- *`getSensorsByGatewayIdPort GetSensorsByGatewayIdPort`*: _Outbound port_ per ottenere lista paginata di sensori dato lo UUID di un gateway;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere i metadati di un gateway.
+
+*Funzione di costruzione*: \
+`NewGetSensorsByGatewayIdService(getSensorsByGatewayIdPort GetSensorsByGatewayIdPort, getGatewayPort gateway.GetGatewayPort) *GetSensorsByGatewayIdService`
+
+====== `GetSensorByTenantIdService`
+Implementa l'interfaccia `GetSensorByTenantUseCase`.
+
+*Attributi*:
+- *`getSensorsByTenantPort GetSensorsByTenantIdPort`*: _Outbound port_ per ottenere la lista paginata di sensori associata a un tenant
+
+*Funzione di costruzione*: `NewGetSensorByTenantIdService(getSensorsByTenantPort GetSensorsByTenantIdPort) *GetSensorByTenantIdService`
+
+===== Dominio
+
+====== `Sensor`
+Rappresenta un sensore simulato nello strato di business logic.
+
+*Attributi*:
+- *`Id uuid.UUID`*: UUID del sensore;
+- *`Name string`*: Nome del sensore;
+- *`Interval time.Duration`*: Intervallo di tempo tra la generazione di un dato simulato e la successiva;
+- *`Profile sensorProfile.SensorProfile`*: Profilo GATT associato;
+- *`GatewayId uuid.UUID`*: UUID del gateway a cui il sensore è associato;
+- *`Status SensorStatus`*: Status del sensore.
+
+*Metodi*:
+- *`IsZero() bool`*: Ritorna true se la struct è impostata al suo _zero-value_, altrimenti ritorna false.
+
+====== `SensorStatus`
+Enumerazione che rappresenta lo stato di un sensore.
+
+*Valori possibili*:
+- *`Active`*: Indica che il sensore è attivo e sta inviando dati;
+- *`Inactive`*: Indica che il sensore è inattivo e non sta inviando dati.
+
+===== Outbound ports -- Database
+In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di comunicare con il database.
+
+#figure(
+  image("../../assets/c4/backend/sensor/PortsAdapters-Database.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per database in `sensor`],
+) <backend-code-outbound-ports-adapters-database>
+
+====== `CreateSensorPort`
+*Metodi*:
+- *`CreateSensor(sensorId uuid.UUID, gatewayId uuid.UUID, name string, interval time.Duration, profile profile.SensorProfile) (Sensor, error)
+}`*: Crea un sensore secondo i parametri specificati e lo ritorna, ritornando errore se vi sono errori durante la creazione.
+
+====== `DeleteSensorPort`
+*Metodi*:
+- *`DeleteSensor(sensorId uuid.UUID) (Sensor, error)`*: Elimina il sensore con ID `sensorId` e ritorna l'oggetto `Sensor` corrispondente al sensore eliminato, oppure errore se vi sono errori durante il processo di eliminazione.
+
+====== `GetSensorByIdPort`
+*Metodi*:
+- *`GetSensorById(sensorId uuid.UUID) (Sensor, error)`*: Ritorna l'oggetto `Sensor` relativo al sensore con ID `sensorId` e ritorna errore in caso il sensore non sia stato trovato.
+
+====== `GetSensorByTenantPort`
+*Metodi*:
+- *`GetSensorByTenant(tenantId, sensorId uuid.UUID) (sensor Sensor, sensorTenantId *uuid.UUID, err error)`*: Ritorna al sensore con ID `sensorId` associato al tenant con ID `tenantId`. Questa funzione applica nativamente il controllo sul Repository di associazione del sensore al tenant, ritornando errore in caso il sensore non sia trovato oppure non sia associato al tenant specificato.
+
+====== `GetSensorsByGatewayIdPort`
+*Metodi*:
+- *`GetSensorsByGatewayId(gatewayId uuid.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al gateway con ID `gatewayId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
+
+====== `GetSensorsByTenantIdPort`
+*Metodi*:
+- *`GetSensorsByTenant(tenantId uuid.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al tenant con ID `tenantId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
+
+====== `UpdateSensorStatusPort`
+*Metodi*:
+- *`UpdateSensorStatus(sensor Sensor, status SensorStatus) error`*: Aggiorna lo status del sensore `sensor` a `status` nel database, ritornando errore in caso il sensore non sia stato trovato o se `status` ha un valore invalido.
+
+===== Outbound ports -- Message broker
+#let fn = footnote[Si faccia attenzione a non confondere i comandi inviati al gateway simulato con i comandi utilizzati nello strato di _business logic_ per utilizzare le struct `Service`.]
+
+In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di inviare comandi#fn al gateway simulato tramite il message broker.
+
+#figure(
+  image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
+) <backend-code-outbound-ports-adapters-broker>
+
+====== `CreateSensorCmdPort`
+*Metodi:*
+- *`SendCreateSensorCmd(sensorId uuid.UUID, gatewayId uuid.UUID, interval time.Duration, profile profile.SensorProfile) error`*: Invia al gateway simulato un comando di creazione di un nuovo sensore secondo i parametri specificati e ritorna errore in caso la procedura d'invio o la creazione del sensore nel gateway simulato non vadano a buon fine.
+
+====== `DeleteSensorCmdPort`
+*Metodi:*
+- *`SendDeleteSensorCmd(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di eliminazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'eliminazione del sensore simulato non vadano a buon fine.
+
+====== `SendInterruptCmdPort`
+*Metodi:*
+- *`SendInterrupt(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di interruzione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'interruzione del sensore simulato non vadano a buon fine.
+
+====== `SendResumeCmdPort`
+*Metodi:*
+- *`SendResume(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di riattivazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o la riattivazione del sensore simulato non vadano a buon fine.
+
+===== Outbound adapter per database -- `DbSensorAdapter`
+Per visualizzare il #gloss[Code Diagram] relativo a `DbSensorAdapter`, si veda la @backend-code-outbound-ports-adapters-database
+
+`DbSensorAdapter` è l'_outbound port_ usata per comunicare con il database per le operazioni CRUD sui sensori, traducendo l'interfaccia di dominio nell'interfaccia di PostgreSQL e viceversa.
+
+*Interfacce implementate*:
+- `CreateSensorPort`
+- `DeleteSensorPort`
+- `GetSensorByIdPort`
+- `GetSensorByTenantPort`
+- `GetSensorsByGatewayIdPort`
+- `GetSensorsByTenantIdPort`
+- `UpdateSensorStatusPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento a logger zap;
+- *`repo DatabaseRepository`*: Riferimento a classe `Repository` di accesso al database per operazioni CRUD sui sensori.
+
+===== Outbound adapter per message broker -- `SendCmdAdapter`
+Per visualizzare il #gloss[Code Diagram] relativo a `SendCmdAdapter`, si veda la @backend-code-outbound-ports-adapters-broker
+
+`SendCmdAdapter` è l'_outbound port_ usata per inviare comandi al gateway simulato relativamente ai sensori, tramite il message broker, traducendo l'interfaccia esposta da quest'ultimo nell'interfaccia di dominio e viceversa.
+
+*Interfacce implementate*:
+- `CreateSensorCmdPort`
+- `DeleteSensorCmdPort`
+- `SendInterruptCmdPort`
+- `SendResumeCmdPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento a logger zap;
+- *`repo MessageBrokerRepository`*: Riferimento a classe `Repository` per inviare messaggi al gateway simulato tramite message broker.
+
+===== Repository per database -- `DatabaseRepository`, `SensorEntity`
+#figure(
+  image("../../assets/c4/backend/sensor/DatabaseRepository.pdf", width:85%),
+  caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per database in `sensor`],
+)
+
+Interfaccia che espone metodi per svolgere operazioni CRUD sui sensori sul database.
+
+*Metodi*:
+- *`CreateSensor(entity *SensorEntity) error`*: Aggiunge il sensore descritto da `entity` al database.
+- *`DeleteSensor(entity *SensorEntity) error`*: Elimina il sensore descritto da `entityy` dal database.
+- *`UpdateSensor(sensorId string, status string) error`*: Imposta nel database lo stato `status` al sensore con ID `sensorId`.
+- *`GetSensorById(sensorId string) (SensorEntity, error)`*: Ritorna il sensore con ID `sensorId`.
+- *`GetSensorByTenant(tenantId, sensorId string) (SensorEntity, error)`*: Ritorna il sensore con ID `sensorId` associato al tenant con ID `tenantId`, ritornando errore in caso tale sensore non esista o non sia associato al tenant specificato.
+- *`GetSensorsByGatewayId(gatewayId string, offset int, limit int) ([]SensorEntity, uint, error)`*: Ritorna la lista paginata di sensori associati al gateway con ID `gatewayId` lunga `limit` elementi, che parte dall'elemento all'indice `offset` nella tabella del database e ritorna il numero totale di sensori associati al gateway specificato.
+- *`GetSensorsByTenantId(tenantId string, offset int, limit int) ([]SensorEntity, uint, error)`*: Ritorna la lista paginata di sensori associati al tenant con ID `tenantId` lunga `limit` elementi, che parte dall'elemento all'indice `offset` nella tabella del database e ritorna il numero totale di sensori associati al tenant specificato.
+
+====== `sensorPostgreRepository`
+Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare con PostgreSQL.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`db clouddb.CloudDBConnection`*: Connessione al Cloud DB
+
+*Funzione di costruzione*: `NewSensorPostgreRepository(log *zap.Logger, db clouddb.CloudDBConnection) *sensorPostgreRepository`
+
+====== `SensorEntity`
+`Entity` che rappresenta la tabella `sensors` nel database (vd. @cloud-db).
+
+*Attributi*:
+- *`ID string`*: UUID del sensore
+- *`GatewayID string`*: UUID del gateway associato
+- *`Gateway gateway.GatewayEntity`*: `GatewayEntity` associata
+- *`Name string`*: Nome del sensore
+- *`Interval int64`*: Intervallo di generazione dati in millisecondi
+- *`Profile string`*: Profilo GATT del sensore
+- *`Status string`*: Stato del sensore, può assumere uno dei valori in `SensorStatus`
+- *`CreatedAt time.Time`*: Timestamp di creazione del sensore
+- *`UpdatedAt time.Time`*: Timestamp di ultimo aggiornamento del sensore
+
+===== Repository per message broker -- `MessageBrokerRepository` e relative `Entity`
+#figure(
+  image("../../assets/c4/backend/sensor/MessageBrokerRepository.pdf", width:85%),
+  caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per message broker in `sensor`],
+)
+
+Interfaccia che espone i metodi per inviare messaggi al simulatore di gateway tramite message broker.
+
+*Metodi*:
+- *`SendCreateSensorCmd(cmd *CreateSensorCmdEntity) error`*: Invia il comando di creazione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId` con intervallo `cmd.Interval` e profilo `cmd.Profile`.
+- *`SendDeleteSensorCmd(cmd *DeleteSensorCmdEntity) error`*: Invia il comando di eliminazione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId`.
+- *`SendInterruptSensorCmd(cmd *InterruptSensorCmdEntity) error`*: Invia il comando di interruzione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId`.
+- *`SendResumeSensorCmd(cmd *ResumeSensorCmdEntity) error`*: Invia il comando di riattivazione del sensore con UUID `cmd.SensorId` associato al gateway con UUID `cmd.GatewayId`.
+
+====== `sensorNatsRepository`
+Struct concreta che implementa `MessageBrokerRepository`, in modo tale da comunicare con NATS.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento a logger zap
+- *`nc *nats.Conn`* : Riferimento a connessione al message broker NATS
+
+*Funzione di costruzione*: `NewSensorNatsRepository(log *zap.Logger, nc *nats.Conn) *sensorNatsRepository`
+
+====== `CreateSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di creazione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da creare
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+- *`Interval int64`*: Intervallo in millisecondi di generazione dati del sensore
+- *`Profile string`*: Profilo GATT del sensore
+
+====== `DeleteSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di eliminazione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da eliminare
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+
+====== `InterruptSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di interruzione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da interrompere
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+
+====== `ResumeSensorCmdEntity`
+Struct `Entity` che rappresenta un comando di riattivazione di un sensore specifico.
+
+*Attributi*:
+- *`SensorId string`*: UUID del sensore da riattivare
+- *`GatewayId string`*: UUID del gateway a cui il sensore è associato
+
+
+==== Package `sensor/profile` <backend-sensor-profile>
+Questo package è stato creato separatamente da `sensor` per evitare la creazione di import cycles.
+
+===== `SensorProfile` <code-sensor.SensorProfile>
+#figure(
+  image("../../assets/c4/backend/sensor/SensorProfile.pdf", width:30%),
+  caption: [Cloud Backend -- Code Diagram di `sensor/profile.SensorProfile`],
+)
+
+L'enum `SensorProfile` rappresenta i vari profili GATT che un sensore può avere.
+
+*Possibili valori*:
+- `HEART_RATE_SERVICE`: Profilo per la misurazione di dati relativi al battito cardiaco.
+- `PULSE_OXIMETER_SERVICE`: Profilo per la misurazione di dati relativi alla pulsossimetria sanguigna.
+- `ECG_CUSTOM_PROFILE`: Profilo custom per le rilevazioni di dati ECG.
+- `HEALTH_THERMOMETER_SERVICE`: Profilo per la misurazione di dati di temperatura in ambito medico
+- `ENVIRONMENTAL_SENSING_SERVICE`: Profilo per la misurazione ambientale di umidità, pressione e temperatura 
+
+==== Cartella `shared` <backend-shared>
+Tutti i package dentro la cartella `shared` contengono le struct o le interfacce usate da più package. Fatta eccezione per `config.Config` e `identity.Requester`, è bene che tutti gli elementi dentro eventuali package in `shared` presentino solo interfacce e che le loro implementazioni siano posizionate in un apposito package in `infra`. Inoltre, è bene che tutti i package dipendano dalle interfacce definite in `shared` e non dalle specifiche implementazioni.
+
+==== Package `shared/config` <backend-shared-config>
+Questo package contiene la struct di configurazione del sistema, che raggruppa tutte le informazioni di configurazione in un punto unico.
+
+#figure(
+  image("../../assets/c4/backend/shared/config/config.pdf", width:80%),
+  caption: [Cloud Backend -- Code Diagram di `shared/config`],
+)
+
+===== `Config`
+Struct di configurazione dell'applicativo. Quasi tutti i suoi attributi sono campi configurabili tramite variabili d'ambiente o file `.env`.
+
+#let fn = footnote[Si noti che il secret deve essere lungo almeno 512 bit da decoded, per cui la codifica base 64 ha lunghezza maggiore]
+*Attributi*:
+- *`AppURL string`*: URL su cui si trova il front-end dell'applicativo. Viene usato dal package email per l'invio dei token di conferma/cambio password
+- *`Port string`*: Porta su cui aprire il backend
+- *`MailAdapter string`*: Quale mail adapter utilizzare, può assumere i valori:
+  - `"terminal"` per evitare di inviare email, ma mostrarne il contenuto su terminale
+  - `"smtp"` per inviare i messaggi email alle coordinate SMTP specificate nei campi che iniziano con `SMTP`
+- *`BcryptCost StringInt`*: Fattore di costo per algoritmo bcrypt per hashing delle password
+- *`TokenLength StringInt`*: Lunghezza in byte di un token di sicurezza
+- *`TokenDuration StringInt`*: Durata di un token di sicurezza in secondi
+- *`AuthTokenDuration StringInt`*: Durata di un token di autenticazione in secondi
+- *`AuthTokenSecret string`*: Secret per fare firma di token di autenticazione. Dev'essere codificato in base 64 URL-safe senza encoding (`base64.RawURLEncoding`) ed essere lungo 512 bit#fn.
+- *`CloudDBHost string`*: Host del Cloud DB
+- *`CloudDBPort StringInt`*: Porta del Cloud DB
+- *`CloudDBUser string`*: Nome utente per accedere a Cloud DB
+- *`CloudDBPassword string`*: Password per accedere a Cloud DB
+- *`CloudDBName string`*: Nome del Cloud DB
+- *`CloudDBTest bool`*: `true` se si usa il Cloud DB di test temporaneo. Questa variabile non si può impostare tramite ENV.
+- *`SensorDBHost string`*: Host del Sensor DB
+- *`SensorDBPort StringInt`*: Porta del Sensor DB
+- *`SensorDBUser string`*: Nome utente per accedere a Sensor DB
+- *`SensorDBPassword string`*: Password per accedere a Sensor DB
+- *`SensorDBName string`*: Nome del Sensor DB
+- *`SensorDBTest bool`*: `true` se si usa il Sensor DB di test temporaneo. Questa variabile non si può impostare tramite ENV.
+- *`SMTPHost string`* : Hostname dell'URL SMTP
+- *`SMTPPort StringInt`* : Numero porta URL SMTP
+- *`SMTPUser string`* : Nome utente per accedere al server SMTP
+- *`SMTPPass string`* : Password per accedere al server SMTP
+- *`SMTPFrom string`* : Indirizzo email da cui inviare email tramite SMTP
+
+===== `StringInt`
+Tipo basato su `int` utilizzato per rappresentare un intero deserializzabile con la funzione `json.Unmarshal`.
+
+*Metodi*:
+- *`UnmarshalJSON(b []byte) error`*: permette di serializzare una stringa contenente un numero intero in uno `StringInt`, poi convertibile in intero con `int()`.
+
+===== `ReadConfigFromEnv(log *zap.Logger) (*Config, error) `
+Funzione globale che ritorna uno oggetto `Config` costruito secondo i parametri di configurazione specificati dalle variabili d'ambiente e dal file `.env`, se presente, dando priorità ai valori inseriti dentro quest'ultimo, 
+
+==== Package `shared/crypto` <backend-shared-crypto>
+Il package `shared/crypto` contiene le interfacce usate nell'applicativo per interfacciarsi con le principali procedure crittografiche. 
+
+#figure(
+  image("../../assets/c4/backend/shared/crypto/crypto.pdf", width:70%),
+  caption: [Cloud Backend -- Code Diagram di `shared/crypto`],
+)
+
+===== `AuthTokenManager`
+Interfaccia che consente di gestire i token di autenticazione.
+
+*Metodi*:
+- *`GenerateForRequester(requester identity.Requester) (string, error)`*: Genera un token valido per uno specifico `Requester`
+- *`GetRequesterFromToken(token string) (identity.Requester, error)`*: Ritorna il `Requester` associato al token di autenticazione `token`.
+
+===== `SecretHasher`
+Interfaccia che consente di generare un hash crittografico per un segreto _plaintext_ e paragonare un _plaintext_ a un hash già generato.
+
+*Metodi*: 
+- *`HashSecret(plaintext string) (string, error)`*: Genera l'hash crittografico associato a `plaintext` e un eventuale errore in caso la procedura di hashing fallisca.
+- *`CompareHashAndSecret(hashed string, plaintext string) error`*: Controlla che l'hash di `plaintext` sia uguale a `hashed`. È fondamentale che le implementazioni di questo metodo utilizzino funzioni sicure da timing attacks, quali `bcrypt.CompareHashAndPassword`. Se il controllo passa, allora viene ritornato `nil`, altrimenti viene ritornato un errore non-`nil`.
+
+===== `SecurityTokenGenerator`
+Interfaccia che consente di generare token generici di sicurezza con data di scadenza, quali i token di conferma account o di cambio password dimenticata.
+
+*Metodi*:
+- *`GenerateToken() (encodedToken string, hashedToken string, err error)`*: Genera un token casuale, il suo hash e un eventuale errore in caso ci siano problemi durante la generazione.
+- *`ExpiryFromNow() time.Time`*: Ritorna la data di scadenza del token da adesso. La scadenza non è associata al singolo token, ma ciascun token ha un tempo di scadenza fisso dal momento della sua generazione.
+
+==== Package `shared/identity` <backend-shared-identity>
+Il package `shared/identity` contiene gli elementi per attivare le procedure di #gloss[RBAC] nel sistema.
+
+#figure(
+  image("../../assets/c4/backend/shared/identity/identity.pdf", width:70%),
+  caption: [Cloud Backend -- Code Diagram di `shared/identity`],
+)
+
+===== `Requester`
+Struct che rappresenta l'utente che richiede una specifica azione, da utilizzare per eventuali controlli di #gloss[RBAC].
+
+*Attributi*:
+- *`RequesterUserId uint`*: ID dell'utente richiedente
+- *`RequesterTenantId *uuid.UUID`*: UUID del tenant a cui è associato l'utente richiedente, `nil` se l'utente è un *Super Admin* (ovvero abbia `RequesterRole == ROLE_SUPER_ADMIN`)
+- *`RequesterRole UserRole`*: Ruolo dell'utente richiedente
+
+*Metodi*:
+- *`CanTenantUserAccess(accessedTenantId uuid.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_USER` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
+- *`CanTenantAdminAccess(accessedTenantId uuid.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_ADMIN` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
+- *`IsSuperAdmin() bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_SUPER_ADMIN`
+
+===== `UserRole`
+Enumerazione che rappresenta il ruolo di un utente.
+
+*Possibili valori*:
+- `ROLE_TENANT_USER`: Ruolo Tenant User 
+- `ROLE_TENANT_ADMIN`: Ruolo Tenant Admin
+- `ROLE_SUPER_ADMIN`: Ruolo Super Admin
+
+==== Package `tenant`
+// TODO
+
+==== Package `user` <backend-user>
+Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
+#figure(
+  image("../../assets/c4/backend/user/user.pdf", width:110%),
+  caption: [Cloud Backend -- Code Diagram di `user`],
+)
+
+===== Inbound adapter -- `Controller` e relativi DTO
+La struct `Controller` è l'unico _inbound adapter_ del package e gestisce la comunicazione con il router HTTP relativamente alle operazioni CRUD sugli utenti.
+
+#figure(
+  image("../../assets/c4/backend/user/Controller.pdf", width:90%),
+  caption: [Cloud Backend -- Code Diagram di `user.Controller`],
+)
+
+*Attributi*:
+- *`createTenantUserUseCase CreateTenantUserUseCase`*: _Inbound port_ per creare un nuovo Tenant User.
+- *`createTenantAdminUseCase CreateTenantAdminUseCase`*: _Inbound port_ per creare un nuovo Tenant Admin.
+- *`createSuperAdminUseCase CreateSuperAdminUseCase`*: _Inbound port_ per creare un nuovo Super Admin.
+- *`deleteTenantUserUseCase DeleteTenantUserUseCase`*: _Inbound port_ per eliminare un Tenant User esistente.
+- *`deleteTenantAdminCase DeleteTenantAdminUseCase`*: _Inbound port_ per eliminare un Tenant Admin esistente.
+- *`deleteSuperAdminCase DeleteSuperAdminUseCase`*: _Inbound port_ per eliminare un Super Admin esistente.
+- *`getTenantUserUseCase GetTenantUserUseCase`*: _Inbound port_ per ottenere i dati di un Tenant User esistente.
+- *`getTenantAdminUseCase GetTenantAdminUseCase`*: _Inbound port_ per ottenere i dati di un Tenant Admin esistente.
+- *`getSuperAdminUseCase GetSuperAdminUseCase`*: _Inbound port_ per ottenere i dati di un Super Admin esistente.
+- *`getTenantUsersByTenantUseCase GetTenantUsersByTenantUseCase`*: _Inbound port_ per ottenere una lista paginata di Tenant User appartenenti a un tenant specifico.
+- *`getTenantAdminsByTenantUseCase GetTenantAdminsByTenantUseCase`*: _Inbound port_ per ottenere una lista paginata di Tenant Admin appartenenti a un tenant specifico.
+- *`getSuperAdminListUseCase GetSuperAdminListUseCase`*: _Inbound port_ per ottenere una lista paginata contenente i Super Admin del sistema.
+
+*Metodi*: \
+Per ogni metodo vengono elencate le struct DTO utilizzate in input e il DTO ritornato in output al client HTTP chiamante.
+- *`CreateTenantUser(ctx *gin.Context)`*: Crea un nuovo Tenant User
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `CreateUserBodyDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`CreateTenantAdmin(ctx *gin.Context)`*: Crea un nuovo Tenant Admin
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `CreateUserBodyDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`CreateSuperAdmin(ctx *gin.Context)`*: Crea un nuovo Super Admin
+  - *Input*: `CreateUserBodyDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`DeleteTenantUser(ctx *gin.Context)`*: Elimina un nuovo Tenant User
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`DeleteTenantAdmin(ctx *gin.Context)`*: Elimina un nuovo Tenant Admin
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`DeleteSuperAdmin(ctx *gin.Context)`*: Elimina un nuovo Super Admin
+  - *Input*: `infra/transport/http/dto.SuperAdminUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetTenantUser(ctx *gin.Context)`*: Ottiene i dati di un Tenant User esistente
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetTenantAdmin(ctx *gin.Context)`*: Ottiene i dati di un Tenant Admin esistente
+  - *Input*: `infra/transport/http/dto.TenantMemberUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetSuperAdmin(ctx *gin.Context)`*: Ottiene i dati di un Super Admin esistente
+  - *Input*: `infra/transport/http/dto.SuperAdminUriDTO`
+  - *Output*: `UserResponseDTO`
+
+- *`GetTenantUsers(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant User 
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `GetUserListQueryDTO`
+  - *Output*: `UserListResponseDTO`
+
+- *`GetTenantAdmins(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant Admin
+  - *Input*: `infra/transport/http/dto.TenantUriDTO`, `GetUserListQueryDTO`
+  - *Output*: `UserListResponseDTO`
+
+- *`GetSuperAdmins(ctx *gin.Context)`*: Ottiene una lista paginata di Super Admin
+  - *Input*: `GetUserListQueryDTO`
+  - *Output*: `UserListResponseDTO`
+
+I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguenti: 
+- *`CreateUserBodyDTO`*: DTO che rappresenta i dati in input di creazione di un nuovo utente
+  - `Username string`: Nome utente
+  - `Email string`: Email del nuovo utente
+
+- *`GetUserListQueryDTO`*: DTO che rappresenta i dati di paginazione per ottenere una lista paginata di utenti
+  - `Page int`: Numero della pagina
+  - `Limit int`: Numero di elementi per pagina
+
+- *`UserResponseDTO`*: DTO in output che rappresenta un utente
+  - `UserId int`: ID dell'utente
+  - `Email string`: Email dell'utente
+  - `Username string`: Nome dell'utente
+  - `UserRole string`: Ruolo dell'utente
+  - `TenantId string`: UUID del tenant a cui appartiene l'utente
+
+- *`UserListResponseDTO`*: DTO in output che rappresenta una lista paginata di utenti
+  - `Count int`: Numero di utenti nella pagina
+  - `Total int`: Numero totale di utenti nel sistema di persistenza
+  - `Users []UserResponseDTO`: L'effettiva lista di utenti
+
+===== Inbound ports
+Di seguito sono riportate le _inbound ports_ del package. 
+
+#figure(
+  image("../../assets/c4/backend/user/UseCases.pdf", width:90%),
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ di `user`],
+) <backend-code-user-usecases-services>
+
+====== `CreateTenantUserUseCase`
+_Inbound port_ per creare un nuovo Tenant User.
+
+*Metodi*:
+- *`CreateTenantUser(cmd CreateTenantUserCommand) (User, error)`*: Crea un nuovo Tenant User secondo i dettagli specificati in `cmd` e ritorna lo `User` creato.
+
+====== `CreateTenantAdminUseCase`
+_Inbound port_ per creare un nuovo Tenant Admin.
+
+*Metodi*:
+- *`CreateTenantAdmin(cmd CreateTenantAdminCommand) (User, error)`*: Crea un nuovo Tenant Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` creato.
+
+====== `CreateSuperAdminUseCase`
+_Inbound port_ per creare un nuovo Super Admin.
+
+*Metodi*:
+- *`CreateSuperAdmin(cmd CreateSuperAdminCommand) (User, error)`*: Crea un nuovo Super Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` creato.
+
+====== `DeleteTenantUserUseCase`
+_Inbound port_ per eliminare un Tenant User esistente.
+
+*Metodi*:
+- *`DeleteTenantUser(cmd DeleteTenantUserCommand) (User, error)`*: Elimina il Tenant User secondo i dettagli specificati in `cmd` e ritorna lo `User` eliminato.
+
+====== `DeleteTenantAdminUseCase`
+_Inbound port_ per eliminare un Tenant Admin esistente.
+
+*Metodi*:
+- *`DeleteTenantAdmin(cmd DeleteTenantAdminCommand) (User, error)`*: Elimina il Tenant Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` eliminato.
+
+====== `DeleteSuperAdminUseCase`
+_Inbound port_ per eliminare un Super Admin esistente.
+
+*Metodi*:
+- *`DeleteSuperAdmin(cmd DeleteSuperAdminCommand) (User, error)`*: Elimina il Super Admin secondo i dettagli specificati in `cmd` e ritorna lo `User` eliminato.
+
+====== `GetTenantUserUseCase`
+_Inbound port_ per ottenere i dati di un Tenant User esistente.
+
+*Metodi*:
+- *`GetTenantUser(cmd GetTenantUserCommand) (User, error)`*: Ritorna il Tenant User appartenente al tenant con UUID `cmd.TenantId` e con ID `cmd.UserId`.
+
+====== `GetTenantAdminUseCase`
+_Inbound port_ per ottenere i dati di un Tenant Admin esistente.
+
+*Metodi*:
+- *`GetTenantAdmin(cmd GetTenantAdminCommand) (User, error)`*: Ritorna il Tenant Admin appartenente al tenant con UUID `cmd.TenantId` e con ID `cmd.UserId`.
+
+====== `GetSuperAdminUseCase`
+_Inbound port_ per ottenere i dati di un Super Admin esistente.
+
+*Metodi*:
+- *`GetSuperAdmin(cmd GetSuperAdminCommand) (User, error)`*: Ritorna il Super Admin con ID `cmd.UserId`.
+
+====== `GetTenantUsersByTenantUseCase`
+_Inbound port_ per ottenere una lista paginata di Tenant User appartenenti a un tenant specifico.
+
+*Metodi*:
+- *`GetTenantUsersByTenant(cmd GetTenantUsersByTenantCommand) (tenantUsers []User, total uint, err error)`*: Ritorna la lista paginata di Tenant User associati al tenant con UUID `cmd.TenantId` e il numero totale di Tenant User associati a tale tenant.
+
+====== `GetTenantAdminsByTenantUseCase`
+_Inbound port_ per ottenere una lista paginata di Tenant Admin appartenenti a un tenant specifico.
+
+*Metodi*:
+- *`GetTenantAdminsByTenant(cmd GetTenantAdminsByTenantCommand) (tenantAdmins []User, total uint, err error)`*: Ritorna la lista paginata di Tenant Admin associati al tenant con UUID `cmd.TenantId` e il numero totale di Tenant User associati a tale tenant.
+
+====== `GetSuperAdminListUseCase`
+_Inbound port_ per ottenere una lista paginata contenente i Super Admin del sistema.
+
+*Metodi*:
+- *`GetSuperAdminList(cmd GetSuperAdminListCommand) (superAdmins []User, total uint, err error)`*: Ritorna la lista paginata di Super Admin e il numero totale di Super Admin.
+
+===== Comandi
+Di seguito si riportano i comandi utilizzati nel _business layer_ del package.
+
+#figure(
+  image("../../assets/c4/backend/user/Commands.pdf", width: 100%),
+  caption: [Cloud Backend -- Code Diagram dei comandi per `user`],
+)
+
+Si noti che ciascuno dei comandi descritti presenta l'attributo `Requester identity.Requester`, il quale non sarà ripetuto nelle successive sottosezioni in quanto ridondante.
+
+====== `CreateTenantUserCommand`
+Comando per creare un nuovo Tenant User.
+
+*Attributi*:
+- *`Email string`*: Email del nuovo utente.
+-	*`Username string`*: Nome del nuovo utente.
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+
+====== `CreateTenantAdminCommand`
+Comando per creare un nuovo Tenant Admin.
+
+*Attributi*:
+- *`Email string`*: Email del nuovo utente.
+-	*`Username string`*: Nome del nuovo utente.
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+
+====== `CreateSuperAdminCommand`
+Comando per creare un nuovo Super Admin.
+
+*Attributi*:
+- *`Email string`*: Email del nuovo utente.
+-	*`Username string`*: Nome del nuovo utente.
+
+====== `DeleteTenantUserCommand`
+Comando per eliminare un Tenant User esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente da eliminare
+
+====== `DeleteTenantAdminCommand`
+Comando per eliminare un Tenant Admin esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente da eliminare
+
+====== `DeleteSuperAdminCommand`
+Comando per eliminare un Super Admin esistente.
+
+*Attributi*:
+- *`UserId uint`*: ID dell'utente da eliminare
+
+====== `GetTenantUserCommand`
+Comando per ottenere i dati di un Tenant User esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente in esame.
+
+====== `GetTenantAdminCommand`
+Comando per ottenere i dati di un Tenant Admin esistente.
+
+*Attributi*:
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`UserId uint`*: ID dell'utente in esame.
+
+====== `GetSuperAdminCommand`
+Comando per ottenere i dati di un Super Admin esistente.
+
+*Attributi*:
+- *`UserId uint`*: ID dell'utente in esame.
+
+====== `GetTenantUsersByTenantCommand`
+Comando per ottenere una lista paginata di Tenant User associati a un tenant specifico.
+
+*Attributi*:
+- *`Page int`*: Numero della pagina
+- *`Limit int`*: Numero di elementi per pagina
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+
+====== `GetTenantAdminsByTenantCommand`
+Comando per ottenere una lista paginata di Tenant Admin associati a un tenant specifico.
+
+*Attributi*:
+- *`Page int`*: Numero della pagina
+- *`Limit int`*: Numero di elementi per pagina
+-	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+
+====== `GetSuperAdminListCommand`
+Comando per ottenere una lista paginata di Super Admin associati a un tenant specifico.
+
+*Attributi*:
+- *`Page int`*: Numero della pagina
+- *`Limit int`*: Numero di elementi per pagina
+
+===== Services
+Di seguito sono riportate le struct della _business logic_ del package. Per visualizzarne il #gloss[Code Diagram], si visualizzi la @backend-code-user-usecases-services.
+
+====== `CreateUserService`
+Struct con la responsabilità di creare utenti nuovi per ogni ruolo.
+
+*Interfacce implementate*:
+- `CreateTenantUserUseCase`
+- `CreateTenantAdminUseCase`
+- `CreateSuperAdminUseCase`
+
+*Attributi*:
+- *`createUserPort SaveUserPort`*: _Outbound port_ usata per creare o aggiornare uno `User` nel sistema di persistenza.
+- *`deleteUserPort DeleteUserPort`*: _Outbound port_ usata per eliminare uno `User` nel sistema di persistenza.
+- *`getUserPort GetUserPort`*: _Outbound port_ per ottenere i dati di un utente specifico.
+- *`getTenantPort tenant.GetTenantPort`*: _Outbound port_ per ottenere i dati di un tenant specifico.
+- *`confirmAccountTokenPort GenerateTokenPort`*: _Outbound port_ per generare token di conferma account.
+- *`sendEmailPort SendConfirmAccountEmailPort`*: _Outbound port_ per inviare email di conferma account all'indirizzo email degli utenti creati di recente.
+
+*Funzione di costruzione*: `func NewCreateUserService( createUserPort SaveUserPort, deleteUserPort DeleteUserPort, getUserPort GetUserPort, getTenantPort tenant.GetTenantPort, confirmAccountTokenPort GenerateTokenPort, sendEmailPort SendConfirmAccountEmailPort)  *CreateUserService`
+
+====== `DeleteUserService`
+Struct con la responsabilità di eliminare utenti esistenti per ogni ruolo.
+
+*Interfacce implementate*:
+- `DeleteTenantUserUseCase`
+- `DeleteTenantAdminUseCase`
+- `DeleteSuperAdminUseCase`
+
+*Attributi*:
+- *`deleteUserPort DeleteUserPort`*: _Outbound port_ per eliminare gli utenti esistenti.
+- *`getUserPort GetUserPort`*: _Outbound port_ per ottenere i dati di un utente specifico.
+- *`getTenantPort tenant.GetTenantPort`*: _Outbound port_ per ottenere i dati di un tenant specifico.
+
+*Funzione di costruzione*: `NewDeleteUserService( deleteUserPort DeleteUserPort, getUserPort GetUserPort, getTenantPort tenant.GetTenantPort)  *DeleteUserService`
+
+====== `GetUserService`
+Struct con la responsabilità di fornire dati relativi a uno o più utenti specifici.
+
+*Interfacce implementate*:
+- `GetTenantUserUseCase`
+- `GetTenantAdminUseCase`
+- `GetSuperAdminUseCase`
+- `GetTenantUsersByTenantUseCase`
+- `GetTenantAdminsByTenantUseCase`
+- `GetSuperAdminListUseCase`
+
+*Attributi*:
+- *`getUserPort GetUserPort`*: _Outbound port_ per ottenere i dati di un utente specifico.
+- *`getTenantPort tenant.GetTenantPort`*: _Outbound port_ per ottenere i dati di un tenant specifico.
+
+*Funzione di costruzione*: `NewGetUserService(getUserPort GetUserPort, getTenantPort tenant.GetTenantPort) *GetUserService`
+
+===== Dominio -- `User`
+Lo struct `User` rappresenta un utente all'interno del sistema.
+
+#figure(
+  image("../../assets/c4/backend/user/UserStruct.pdf", width: 40%),
+  caption: [Cloud backend -- Code Diagram di `user.User`],
+)
+
+*Attributi*:
+- *`Id uint`*: ID dell'utente.
+- *`Name string`*: Nome dell'utente.
+- *`Email string`*: Email dell'utente.
+- *`PasswordHash *string`*: Hash della password dell'utente, è pari a nil se l'utente non è stato confermato (`Confirmed == false`).
+- *`Role identity.UserRole`*: Ruolo dell'utente.
+- *`TenantId *uuid.UUID`*: UUID del tenant a cui è associato l'utente se è un Tenant User o un Tenant Admin, altrimenti è pari a `nil`.
+- *`Confirmed bool`*: `true` se l'utente ha svolto con successo la procedura di conferma account.
+
+*Metodi*:
+- *`IsZero() bool`*: Ritorna `true` se lo struct ha valore pari al suo _zero-value_
+- *`SetPasswordHash(newPasswordHash string) error`*: Imposta l'hash della password a `newPasswordHash`, controllando che tale hash non sia nullo o pari all'hash corrente dell'utente.
+
+===== Outbound ports
+Di seguito si riportano le _outbound port_ del package.
+
+#figure(
+  image("../../assets/c4/backend/user/PortsAdapters.pdf", width: 90%),
+  caption: [Cloud Backend -- Code diagram di _outbound ports_ e _outbound adapters_ di `user`],
+) <backend-code-user-outports-adapters>
+
+====== `SendConfirmAccountEmailPort`
+_Outbound port_ per inviare email di conferma account all'indirizzo email degli utenti appena creati. Si noti che viene usata un'interfaccia locale e non `email.SendEmailPort` per evitare di creare import cycles.
+
+Nonostante ciò, quest'interfaccia viene rispettata da `email.SendEmailSMTPAdapter` (vd. @code-email.SendEmailSMTPAdapter).
+
+*Metodi*:
+- *`SendConfirmAccountEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+
+====== `GenerateTokenPort`
+_Outbound port_ per la generazione di token di sicurezza usati nella procedura di conferma account. Si noti che viene usata tale interfaccia locale al posto di `auth.ConfirmAccountTokenPort` per evitare di creare import cycles.
+
+// TODO: Inserire riferimento ad auth.ConfirmAccountTokenPort
+Nonostante ciò, quest'interfaccia viene rispettata da `auth.ConfirmAccountTokenPgAdapter` (vd. )
+
+*Metodi*:
+- *`NewConfirmAccountToken(user User) (string, error)`*: Crea un nuovo token di conferma account associato all'utente `User`
+
+====== `SaveUserPort`
+_Outbound port_ con la responsabilità di creare un nuovo utente nel sistema o di aggiornarne uno esistente.
+
+*Metodi*:
+- *`SaveUser(user User) (User, error)`*: Crea o aggiorna l'utente `User` e ritorna la struct `User` relativa all'utente appena creato.
+
+====== `DeleteUserPort`
+_Outbound port_ che offre metodi per eliminare un utente esistente specifico per ogni ruolo.
+
+*Metodi*:
+- *`DeleteTenantUser(tenantId uuid.UUID, userId uint) (User, error)`*: Elimina il Tenant User appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
+- *`DeleteTenantAdmin(tenantId uuid.UUID, userId uint) (User, error)`*: Elimina il Tenant Admin appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
+- *`DeleteSuperAdmin(userId uint) (User, error)`*: Elimina il Super Admin con ID `userId` e ritorna lo `User` eliminato.
+
+====== `GetUserPort`
+_Outbound port_ che offre metodi per ottenere uno o più utenti specifici.
+
+*Metodi*:
+- *`GetUser(tenantId *uuid.UUID, userId uint) (User, error)`*: Ritorna lo `User` associato all'utente con ID `userId` appartenente al tenant con UUID `tenantId`.
+- *`GetUserByEmail(tenantId *uuid.UUID, email string) (User, error)`*: Ritorna lo `User` associato all'utente con email `email` appartenente al tenant con UUID `tenantId`.
+- *`GetTenantUsersByTenant(tenantId uuid.UUID, page, limit int) (tenantUsers []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
+- *`GetTenantAdminsByTenant(tenantId uuid.UUID, page, limit int) (tenantAdmins []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
+- *`GetSuperAdminList(page, limit int) (superAdmins []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Super Admin e il numero totale di Super Admin associati a tale tenant.
+- *`CountTenantAdminsByTenant(tenantId uuid.UUID) (total uint, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId` nel sistema.
+- *`CountSuperAdmins() (total uint, err error)`*: Ritorna il numero totale di Super Admin nel sistema.
+
+===== Outbound adapter -- `UserPostgreAdapter`
+Di seguito si ripotano le specifiche dell'_outbound adapter_ principale del package, il quale permette di comunicare con il sistema di persistenza, traducendo l'interfaccia di PostgreSQL nell'interfaccia di dominio e viceversa. Per visualizzarne il #gloss[Code Diagram], si consulti la @backend-code-user-outports-adapters.
+
+*Interfacce implementate*:
+- `SaveUserPort`
+- `DeleteUserPort`
+- `GetUserPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap.
+- *`tenantMemberRepo TenantMemberRepository`*: Riferimento all'interfaccia `Repository` associata ai Tenant Member, ovvero a Tenant User e Tenant Admin.
+- *`superAdminRepo SuperAdminRepository`*: Riferimento all'interfaccia `Repository` associata ai Super Admin del sistema.
+
+===== Struct comuni per repository
+
+====== `UserRepositoryGetUserBy`
+#figure(
+  image("../../assets/c4/backend/user/UserRepositoryGetUserBy.pdf", width: 25%),
+  caption: [Cloud Backend -- Code diagram di `user.UserRepositoryGetUserBy`],
+)
+
+Struct che consente di specificare i parametri da usare per effettuare una ricerca utente. I parametri che vengono scelti corrispondono ai campi non-`nil` della struct: se viene scelto più di un campo, allora verrà effettuato l'`AND` sui parametri specificati.
+
+Ad esempio, se si utilizza una struct con valore puntato da `ID` pari a 1 e valore puntato da `Email` pari a `email@example.com`, allora la condizione `WHERE` in un'eventuale query SQL sarà la seguente:
+#align(center)[
+```sql
+WHERE id = 1 AND email = 'email@example.com'
+```
+]
+
+*Attributi*:
+- *`ID *int`*: Effettua la ricerca per ID utente, se ha valore non-`nil`.
+- *`Email *string`*: Effettua la ricerca per email, se ha valore non-`nil`.
+
+===== Repository per Tenant Member -- `TenantMemberRepository`, `TenantMemberEntity`
+Interfaccia che espone i metodi per eseguire le operazioni CRUD sui Tenant Member, ovvero sui Tenant User e Tenant Admin inseriti nel sistema.
+
+#figure(
+  image("../../assets/c4/backend/user/TenantMemberRepository.pdf", width: 80%),
+  caption: [Cloud Backend -- Code diagram di `user.TenantMemberRepository`, `user.tenantMemberPgRepository` e `user.TenantMemberEntity`],
+)
+
+*Metodi*:
+- *`SaveTenantMember(tenantMember *TenantMemberEntity) error`*: Crea il nuovo Tenant Member `tenantMember` o aggiorna quello esistente, ritornando errore in caso di errore nella procedura di salvataggio.
+- *`DeleteTenantMember(tenantMember *TenantMemberEntity) error`*: Elimina il Tenant Member `tenantMember` esistente, ritornando errore se non è stato trovato.
+- *`GetTenantMember(tenantId string, by UserRepositoryGetUserBy) (tenantMember *TenantMemberEntity, err error)`*: Ottiene i dati del Tenant Member appartenente al tenant con UUID `tenantId`, effettuando la ricerca a seconda di quanto specificato da `by`.  
+- *`GetTenantUsers(tenantId string, offset, limit int) (tenantUsers []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
+- *`GetTenantAdmins(tenantId string, offset, limit int) (tenantAdmins []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
+- *`CountTenantAdminsByTenant(tenantId string) (total int64, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId`.
+
+====== `tenantMemberPgRepository`
+Struct concreta che implementa `TenantMemberRepository`.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`db clouddb.CloudDBConnection`*: Oggetto che consente connessione al Cloud DB
+
+*Funzione di costruzione*: `newTenantMemberPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *tenantMemberPgRepository`
+
+====== `TenantMemberEntity`
+Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @cloud-db.
+
+*Attributi*:
+- *`ID uint`*: ID dell'utente.
+- *`Email string`*: Email dell'utente.
+- *`Name string`*: Nome dell'utente.
+- *`Password *string`*: Hash della password dell'account dell'utente.
+- *`Confirmed bool`*: `true` se l'utente è stato confermato o meno.
+- *`Role string`*: Stringa che identifica il ruolo dell'utente, può assumere i valori `"tenant_user"`, `"tenant_admin"` o `"super_admin"`.
+- *`TenantId string`*: UUID del tenant a cui è associato l'utente. Si noti che questa stringa viene appositamente ignorata da GORM, poiché ha lo scopo di identificare il tenant a cui appartiene l'utente, dato che non è ripetuto nella tabella `tenant_members` del database, in quanto tale informazione è contenuta nel nome dello schema a cui la tabella appartiene.
+- *`CreatedAt time.Time`*: Data di creazione dell'utente.
+- *`UpdatedAt time.Time`*: Data di ultimo aggiornamento dell'utente.
+
+===== Repository per Super Admin -- `SuperAdminRepository`, `SuperAdminEntity`
+Interfaccia che espone i metodi per svolgere operazioni CRUD sui Super Admin nel sistema.
+
+#figure(
+  image("../../assets/c4/backend/user/SuperAdminRepository.pdf", width: 80%),
+  caption: [Cloud Backend -- Code diagram di `user.SuperAdminRepository`, `user.superAdminPgRepository` e `user.SuperAdminEntity`],
+)
+
+*Metodi*:
+- *`SaveSuperAdmin(superAdmin *SuperAdminEntity) error`*: Crea un nuovo Super Admin o aggiorna un Super Admin esistente secondo le specifiche di `superAdmin` e ritorna errore in caso ci siano errori nella procedura di salvataggio.
+- *`DeleteSuperAdmin(superAdmin *SuperAdminEntity) error`*: Elimina il Super Admin `superAdmin` e ritorna errore in caso ci siano errori nella procedura d'eliminazione.
+- *`GetSuperAdmin(by UserRepositoryGetUserBy) (*SuperAdminEntity, error)`*: Ottiene l'oggetto `SuperAdminEntity` secondo i dati specificati in `by` e ritorna errore in caso il Super Admin specificato non sia presente nel database.
+- *`GetSuperAdmins(offset, limit int) (superAdmins []SuperAdminEntity, total int64, err error)`*: Ottiene una lista paginata di Super Admin secondo i parametri `offset` e `limit` e ritorna il numero totale di Super Admin nel sistema e un errore in caso di errori di comunicazione col database.
+- *`CountSuperAdmins() (total int64, err error)`*: Ritorna il numero di Super Admin nel sistema e un errore in caso di errori di comunicazione col database.
+
+====== `superAdminPgRepository`
+Struct concreta che implementa `SuperAdminRepository`.
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`db clouddb.CloudDBConnection`*: Oggetto che consente connessione al Cloud DB
+
+*Funzione di costruzione*: `newSuperAdminPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *superAdminPgRepository`
+
+====== `SuperAdminEntity`
+Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super Admin inserito nel sistema. 
+
+*Attributi*:
+- *`ID uint`*: ID dell'utente.
+- *`Email string`*: Email dell'utente.
+- *`Name string`*: Nome dell'utente.
+- *`Password *string`*: Hash della password dell'account dell'utente.
+- *`Confirmed bool`*: `true` se l'utente è stato confermato o meno.
+- *`CreatedAt time.Time`*: Data di creazione dell'utente.
+- *`UpdatedAt time.Time`*: Data di ultimo aggiornamento dell'utente.
 
 == Database design <db-design>
+Di seguito si riporta il design di tutti i database utilizzati nel sistema, riportando per ognuno i relativi schemi ER e descrizioni delle tabelle. La descrizione di ogni tabella comprende una breve sinossi del suo scopo e la lista dei suoi attributi, comprendenti di nome e tipo.
+
 === Buffer database
 #figure(
   image("../../assets/c4/gateway/BufferER.pdf", width: 40%),
@@ -2772,12 +4330,14 @@ La visualizzazione della lista utenti è delegata a un componente specializzato 
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] come buffer interno per i dati prodotti dai sensori simulati associati a ciascun gateway, in modo da poterli recuperare e inviare periodicamente tramite #gloss[NATS JetStream].
 
-Il database perciò avrà un'entità principale con i seguenti attributi:
-- *sensorId*: UUID del sensore simulato che ha generato la misurazione.
-- *gatewayId*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- *timestamp*: timestamp rappresentante il momento in cui è stata generata la misurazione.
-- *profile*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- *value*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+Il database presenta, infatti, una tabella `buffer` coi seguenti attributi:
+- *`sensorId TEXT NOT NULL`*: UUID del sensore simulato che ha generato la misurazione.
+- *`gatewayId TEXT NOT NULL`*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- *`timestamp DATETIME NOT NULL`*: timestamp rappresentante il momento in cui è stata generata la misurazione.
+- *`profile TEXT NOT NULL`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- *`value BLOB NOT NULL`*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+
+La primary key della tabella è composta dagli attributi `(sensorId, gatewayId, timestamp)`.
 
 === Configuration database
 #figure(
@@ -2786,20 +4346,25 @@ Il database perciò avrà un'entità principale con i seguenti attributi:
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] per salvare la configurazione dei gateway e dei sensori simulati, in modo da poterla recuperare in caso di riavvio del servizio o di crash.
 
-Il database perciò avrà due entità principali, ovvero *Gateway* e *Sensor*, con i seguenti attributi:
-- *Gateway*:
-  - *id*: UUID del gateway simulato.
-  - *tenantId*: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
-  - *status*: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
-  - *interval*: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
-  - *publicIdentifier*: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
-  - *secretKey*: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
-  - *token*: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
-- *Sensor*:
-  - *id*: UUID del sensore simulato.
-  - *profile*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
-  - *interval*: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
-  - *status*: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
+Il database perciò avrà due entità principali, ovvero *Gateway* e *Sensor*.
+
+==== Gateway
+L'entità Gateway descrive la tabella `gateways` che rappresenta i gateway simulati dal microservizio e presenta i seguenti attributi:
+- *`id VARCHAR(255)`*: Primary key, UUID del gateway simulato.
+- *`tenantId VARCHAR(255) NOT NULL`*: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
+- *`status VARCHAR(255) NOT NULL`*: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
+- *`interval INT NOT NULL`*: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
+- *`publicIdentifier VARCHAR(255) NOT NULL`*: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
+- *`secretKey VARCHAR(255) NOT NULL`*: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
+- *`token VARCHAR(255)`*: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
+
+==== Sensor
+L'entità Sensor descrive la tabella `sensors` che rappresenta i sensori simulati dal microservizio e presenta i seguenti attributi:
+- *`id VARCHAR(255)`*: Primary, UUID del sensore simulato.
+- *`gatewayId VARCHAR(255) NOT NULL`*: UUID del sensore simulato.
+- *`profile VARCHAR(255) NOT NULL`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
+- *`interval INT NOT NULL`*: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
+- *`status VARCHAR(255) NOT NULL`*: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
 
 Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un gateway può avere più sensori associati (o anche nessuno), mentre un sensore deve essere associato ad un gateway.
 
@@ -2812,16 +4377,119 @@ Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un
 Il microservizio *Data Consumer* e il microservizio *Cloud Backend* utilizzano un database #gloss[TimescaleDB] per salvare i dati IoT prodotti dai sensori simulati, in modo da poterne visualizzare lo storico.
 
 Il database avrà un'entità principale con i seguenti attributi:
-- *sensorId*: UUID del sensore simulato che ha generato la misurazione.
-- *gatewayId*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- *tenantId*: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
-- *profile*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- *timestamp*: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
-- *value*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+- *`sensorId UUID`*: UUID del sensore simulato che ha generato la misurazione.
+- *`gatewayId UUID`*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- *`tenantId UUID`*: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
+- *`profile VARCHAR`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- *`timestamp TIMESTAMPTZ`*: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
+- *`value JSONB`*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
 
 Nel database ci sarà una separazione logica dei dati per tenant, resa possibile dalla creazione di uno *schema* per ogni tenant. \
 Perciò ogni tenant dovrà accedere al proprio schema e alla propria tabella per ottenere i propri dati.
 
+=== Cloud database <cloud-db>
+
+#figure(
+  image("../../assets/c4/cloud_db_ER.pdf", width: 100%),
+  caption: [Schema ER per Cloud Database],
+) <cloud-db-er>
+
+Il microservizio *Cloud Backend* utilizza un database #gloss[PostgreSQL], le cui tabelle sono rappresentate dallo schema ER in @cloud-db-er, dove i riquadri azzurri rappresentano gli elementi che sono stati implementati, mentre i riquadri rossi gli elementi che sono stati originariamente progettati ma non implementati nell'#gloss[MVP].
+
+#let req = get-req-by-id(LISTA-RD, "RD-Dati-logicamente-separati-per-tenant").codice
+La separazione logica dei dati tra tenant, richiesta dal requisito #req, è stata ottenuta tramite l'utilizzo degli #gloss[schema] offerti da #gloss[PostgreSQL], i quali permettono di raggruppare un insieme di tabelle sotto uno stesso _namespace_. Nel *Cloud Database*, i dati sono così divisi:
+- Nello schema di nome `public` sono presenti le tabelle *non* associate a un tenant, ovvero:
+  - `gateways`
+  - `sensors`
+  - `super_admin_confirm_tokens`
+  - `super_admin_forgot_password_tokens`
+  - `super_admins`
+  - `tenants`
+- In ogni schema di nome `tenant_<uuid>` sono presenti le tabelle associate al tenant con ID pari a `<uuid>` e ai relativi Tenant User e Tenant Member, ovvero:
+  - `confirm_tokens`
+  - `forgot_password_tokens`
+  - `tenant_members`
+
+==== Tabelle nello schema `public`
+
+===== `gateways`
+La tabella `gateways` rappresenta l'insieme di gateway inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del gateway.
+- *`name VARCHAR(255) NOT NULL`*: Nome del gateway.
+- *`tenant_id UUID`*: UUID del tenant a cui è associato, se pari a `NULL` il gateway non è associato ad alcun gateway.
+- *`status VARCHAR(50) NOT NULL`*: Stato del gateway, può assumere i valori `'inactive'` o `'active'`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
+- *`public_identifier VARCHAR(255)`*: Stringa che identifica pubblicamente il gateway, se pari a `NULL` significa che il gateway non ha inviato il messaggio di hello al Cloud Backend.
+- *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
+
+===== `sensors`
+La tabella `sensors` rappresenta l'insieme dei sensori inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del sensore.
+- *`gateway_id UUID`*: UUID del gateway a cui il sensore è associato, chiave esterna su `gateways.id`.
+- *`name VARCHAR(255) NOT NULL`*: Nome del sensore.
+- *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
+- *`profile VARCHAR(50)`*: Profilo GATT del sensore.
+- *`status VARCHAR(50) NOT NULL`*: Stato del sensore, può assumere i valori `'inactive'` o `'active'`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
+
+===== `super_admin_confirm_tokens`
+La tabella `super_admin_confirm_tokens` rappresenta i token di conferma account creati per i Super Admin e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `super_admin_forgot_password_tokens`
+La tabella `super_admin_forgot_password_tokens` rappresenta i token di modifica password dimenticata creati per i Super Admin e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `super_admins`
+La tabella `super_admins` rappresenta l'insieme dei Super Admin inseriti nel sistema e presenta i seguenti attributi:
+- *`id BIGINT`*: Primary key, ID autoincrementale dell'utente.
+- *`email VARCHAR(256) NOT NULL`*: Indirizzo email dell'utente, unico nella tabella
+- *`name VARCHAR(128) NOT NULL`*: Nome dell'utente.
+- *`password VARCHAR(128)`*: Password dell'utente, pari a `NULL` se l'utente non è ancora stato confermato (vd. campo `confirmed`).
+- *`confirmed BOOLEAN`*: `true` se l'utente è stato confermato, `false` altrimenti.
+- *`created_at TIMESTAMPTZ`*: Data di creazione dell'utente.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento dei dati dell'utente.
+
+===== `tenants`
+La tabella `tenants` rappresenta l'insieme dei tenant inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del tenant.
+- *`name VARCHAR(256) NOT NULL`*: Nome del tenant.
+- *`can_impersonate BOOLEAN NOT NULL`*: `true` se il tenant è impersonabile, `false` altrimenti.
+
+==== Tabelle nello schema `tenant_<uuid>`
+
+===== `confirm_tokens`
+La tabella `confirm_tokens` rappresenta i token di conferma account creati per i Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `forgot_password_tokens`
+La tabella `super_admin_forgot_password_tokens` rappresenta i token di modifica password dimenticata creati per i Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `tenant_members`
+La tabella `tenant_members` rappresenta l'insieme dei Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`id BIGINT`*: Primary key, ID autoincrementale dell'utente.
+- *`email VARCHAR(256) NOT NULL`*: Indirizzo email dell'utente, unico nella tabella
+- *`name VARCHAR(128) NOT NULL`*: Nome dell'utente.
+- *`password VARCHAR(128)`*: Password dell'utente, pari a `NULL` se l'utente non è ancora stato confermato (vd. campo `confirmed`).
+- *`confirmed BOOLEAN`*: `true` se l'utente è stato confermato, `false` altrimenti.
+- *`role VARCHAR(32)`*: Il ruolo specifico dell'utente, può assumere il valore `tenant_user` o `tenant_member`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione dell'utente.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento dei dati dell'utente.
 
 
 == Architettura di deployment <archit-deploy>
