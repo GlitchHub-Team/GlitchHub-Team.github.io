@@ -37,8 +37,8 @@
       "Elia Ernesto Stellin",
       "",
       [
-        Spostate sezioni sul diagramma C4 in @design-architetturale; Migliorata sezione @archit-log; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
-      ]
+        Spostate sezioni sul diagramma C4 in @architettura; Migliorata sezione @archit-esagonale; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
+      ],
     ),
     (
       "0.9.0",
@@ -535,7 +535,7 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 L'architettura del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema.
 
 
-// TODO: li inserirei dove sono serviti, non come collezione di cose usate. poiché sono degli strumenti atti a risolvere dei problemi. 
+// TODO: li inserirei dove sono serviti, non come collezione di cose usate. poiché sono degli strumenti atti a risolvere dei problemi.
 == Design Patterns <design-patterns>
 I design pattern sono stati selezionati per garantire che l'architettura a microservizi sia flessibile e scalabile, rispettando gli obiettivi di manutenibilità definiti nel capitolato.
 
@@ -745,11 +745,11 @@ Sono inoltre presenti componenti che operano indipendentemente dalle richieste d
 Questa scelta progettuale garantisce un'elevata scalabilità orizzontale, permettendo di potenziare o aggiornare singole parti del sistema senza compromettere la stabilità dell'intera infrastruttura. Ogni microservizio è containerizzato tramite #gloss[Docker], assicurando la portabilità tra i diversi ambienti di esecuzione e semplificando le procedure di manutenzione.
 
 
-== Architettura logica <archit-log>
+== Architettura esagonale <archit-esagonale>
 Per tutti i microservizi sviluppati in #gloss[Go], si è scelto di utilizzare l'*architettura esagonale* come architettura logica. Nelle successive sottosezioni, verrà introdotto questo pattern architetturale, per poi descriverne l'applicazione effettiva nel codice sorgente.
 
 === Introduzione
-Essa è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework. 
+Essa è un modello architetturale che separa nettamente la logica di dominio dal codice infrastrutturale correlato, definendo un nucleo applicativo indipendente da dettagli tecnici quali protocolli di comunicazione, database o framework.
 
 Questo sistema architetturale definisce delle interfacce dette _port_ e delle classi concrete dette _adapter_, i quali possono essere sia _inbound_ ("in entrata") che _outbound_ ("in uscita"), i quali sono completamente separati dalla _business logic_, la quale è totalmente indipendente da essi. Più nello specifico:
 
@@ -772,36 +772,47 @@ I sistemi sviluppati sfruttano i principi sopra menzionati per disaccoppiarne le
 
 
 === Organizzazione del codice
-#let pkg-by-comp-footnote = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni componente, come definito nella @c4-component.]
+#let pkg-by-comp-footnote = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni componente, come definito nella @component.]
 #let pkg-by-feature = footnote[Sistema di suddivisione dei package in cui si associa un _package_ a ogni insieme  ben distinto di funzionalità del sistema.]
 
 Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by-comp-footnote oppure _"package by feature/bounded context"_#pkg-by-feature come metodo di _packaging_, ovvero di suddivisione del codice sorgente in sottocartelle. All'interno di ciascuno dei package *non condivisi* dei microservizi si ha una struttura "piatta", in cui i costrutti dei vari strati dell'architettura esagonale sono tipicamente così suddivisi:
 #tabella-paginata(
   table(
     columns: 2,
-    align: (horizon+left, horizon+left),
+    align: (horizon + left, horizon + left),
     [*Nome file*], [*Contenuti*],
-    [`adapters.go`], [
+    [`adapters.go`],
+    [
       _Outbound adapters_ sotto forma di struct chiamate `Adapter`: queste comunicano direttamente con le struct `Repository`, che astraggono lo strato di persistenza, e traducono l'interfaccia da loro esposta in un'interfaccia utilizzabile dagli struct di dominio
     ],
+
     [`commands.go`], [Comandi usati nello strato di dominio per interfacciarsi con gli struct `Service`],
-    [`controller.go`], [
+    [`controller.go`],
+    [
       - Definizione _Inbound adapter_ principale del package, sottoforma di struct `Controller` usato dal _router_ #gloss[Gin]
       - Definizione delle _inbound port_ che vengono implementate dal `Service`
     ],
+
     [`domain.go`], [_Data struct_ usate nello strato di dominio, indipendenti dagli altri strati],
-    [`dto.go`], ["Data Transfer Object" o DTO, ovvero tutti gli struct utilizzati per il puro trasferimento di dati tra client e server via web],
+    [`dto.go`],
+    ["Data Transfer Object" o DTO, ovvero tutti gli struct utilizzati per il puro trasferimento di dati tra client e server via web],
+
     [`errors.go`], [Lista di variabili di errore correlate al _package_],
     [`mapper.go`], [Funzioni di _mapping_ tra le struct di dominio e le struct usate nello strato di persistenza],
-    [`module.go`], [Modulo di Fx associato al _package_: questo consente di raggruppare in un unico punto tutte le interfacce e variabili inserite nel sistema di #gloss[dependency injection] dal _package_],
-    [`repository.go`], [
-      - Le struct `Entity`, che rappresentano le entità nel sistema di persistenza, dette 
+    [`module.go`],
+    [Modulo di Fx associato al _package_: questo consente di raggruppare in un unico punto tutte le interfacce e variabili inserite nel sistema di #gloss[dependency injection] dal _package_],
+
+    [`repository.go`],
+    [
+      - Le struct `Entity`, che rappresentano le entità nel sistema di persistenza, dette
       - Le struct `Repository`, che astraggono l'accesso al sistema di persistenza, indipendentemente dalla tecnologia SQL scelta
-    
+
     ],
-    [`service.go`], [
+
+    [`service.go`],
+    [
       - Le struct dello strato di dominio che contengono i metodi di _business logic_ chiamati dall'applicativo e le definizioni degli _inbound adapters_ chiamati dalle classi `Service`
-      - _Outbound ports_ utilizzate dal `Service`, sotto forma di interfacce chiamate `Port`  
+      - _Outbound ports_ utilizzate dal `Service`, sotto forma di interfacce chiamate `Port`
     ],
   ),
   [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
@@ -814,36 +825,37 @@ Di seguito viene riportata la stessa tabella, associando a ciascuno "strato" del
 #tabella-paginata(
   table(
     columns: 2,
-    align: (horizon+left, horizon+left),
+    align: (horizon + left, horizon + left),
     [*Strato*], [*File relativi*],
 
-    [Inbound adapter], 
+    [Inbound adapter],
     [
       - La struct `Controller` è definita in `controller.go`
       - I DTO utilizzati dal `Controller` sono definiti in `dto.go`
     ],
 
-    [Inbound port], 
+    [Inbound port],
     [Le interfacce `UseCase` sono definite in `service.go` #footnote[
-  In Go, la prassi comune è di utilizzare le "Consumer-Defined Interfaces", ovvero delle interfacce definite nello stesso package o stesso file del loro utilizzatore. Per tale motivo, non si utilizza un file separato per definire gli use cases, quale `useCases.go`
-] <fn>],
-    
-    [Dominio], [
+        In Go, la prassi comune è di utilizzare le "Consumer-Defined Interfaces", ovvero delle interfacce definite nello stesso package o stesso file del loro utilizzatore. Per tale motivo, non si utilizza un file separato per definire gli use cases, quale `useCases.go`
+      ] <fn>],
+
+    [Dominio],
+    [
       - La struct di business logic (detta `Service`) è definita in `service.go`
       - I comandi utilizzati dai metodi del `Service` sono definiti in `commands.go`
       - Le struct di dominio sono definite in `domain.go`
       - Le variabili di errore sono definite in `errors.go`
     ],
-    
-    [Outbound adapter], [
+
+    [Outbound adapter],
+    [
       - Le struct `Adapter` sono definite in `adapters.go`
       - Le funzioni di _mapping_ che permettono di tradurre oggetti `Entity` in oggetti di dominio e viceversa sono definite in `mappers.go`
     ],
-    
+
     [Outbound port], [Le interfacce `Port` sono definite in `adapters.go` @fn],
 
     [Persistence layer], [Le struct `Repository` e le relative struct `Entity` sono definite in `repository.go`],
-
   ),
   [Descrizione della struttura tipica di un _package_ in un microservizio in Go],
   label-id: "descrizione-struttura-package-inverso",
@@ -875,29 +887,25 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
 5. Si utilizza la sintassi UML di estensione di classe per indicare lo _struct embedding_ il quale, al contrario di un normale `extends` in un linguaggio OO, consente solo di inserire gli attributi di uno struct all'interno di un altro, senza alcuna ereditarietà nei metodi
 
 6. La sintassi per le _signature_ delle funzioni con più tipi di ritorno è la seguente:
-  #align(center,
-    ```
-    <visibility> Func(<params>): Type1, Type2, Type3, ...
-    ```
-  )
+  #align(center, ```
+  <visibility> Func(<params>): Type1, Type2, Type3, ...
+  ```)
   In questo esempio, `<visibility>` e `<params>` vanno sostituiti rispettivamente con la visibilità del metodo e con la lista dei suoi parametri
 
 7. Ogni diagramma è visto dalla prospettiva del _package_ a cui esso appartiene, per cui ogni riferimento a _package_ esterni viene specificato con la sintassi di Go: `package.Name` dove `package` è il nome del _package_ e `Name` il nome del simbolo preso in considerazione.
 
 8. Si utilizza la sintassi UML per indicare un _enum_ (usando `<<enum>>`) sebbene essi non esistano in Go: questi saranno tradotti nel sorgente come insiemi di variabili costanti che condividono un tipo comune non primitivo. \
   Ad esempio il diagramma nella @code-sensor.SensorProfile, può essere tradotto nel seguente codice Go:
-  #block(breakable: false,
-    ```go
-    type SensorProfile string
-    const (
-      ECG_CUSTOM            SensorProfile = "ecg_custom"
-      ENVIRONMENTAL_SENSING SensorProfile = "environmental_sensing"
-      HEALTH_THERMOMETER    SensorProfile = "health_thermometer"
-      HEART_RATE            SensorProfile = "heart_rate"
-      PULSE_OXIMETER        SensorProfile = "pulse_oximeter"
-    )
-    ```
+  #block(breakable: false, ```go
+  type SensorProfile string
+  const (
+    ECG_CUSTOM            SensorProfile = "ecg_custom"
+    ENVIRONMENTAL_SENSING SensorProfile = "environmental_sensing"
+    HEALTH_THERMOMETER    SensorProfile = "health_thermometer"
+    HEART_RATE            SensorProfile = "heart_rate"
+    PULSE_OXIMETER        SensorProfile = "pulse_oximeter"
   )
+  ```)
 
 9. Siccome in Go non esistono i costruttori, per ognuno degli struct inseriti nel sistema di #gloss[dependency injection] si definisce una funzione di costruzione che ritorna un puntatore all'oggetto costruito. Ad esempio, per uno struct chiamato `Example` si definirebbe la funzione `NewExample()` in questo modo:
   #align(center, ```go
@@ -916,8 +924,7 @@ La specifica usata per i #gloss[Code Diagram] presenti in questa sezione è UML 
 
 10. Le funzioni top-level di un package vengono specificate usando una singola classe UML con stereotype _`<<global function>>`_ in cui la funzione stessa è l'unico metodo statico della classe. Ad esempio, la funzione ` ReadConfigFromEnv(log *zap.Logger) (*Config, error)` nel package `config`, si può rappresentare col seguente diagramma:
   #figure(
-    image("../../assets/c4/backend/shared/config/ReadConfigFromEnv.pdf", width: 60%
-    ),
+    image("../../assets/c4/backend/shared/config/ReadConfigFromEnv.pdf", width: 60%),
     caption: [Esempio di diagramma per top-level function],
   )
 
@@ -1537,7 +1544,7 @@ La struct in questione ha i seguenti attributi e metodi:
 
 === Cloud Frontend <angular>
 La seguente sezione descrive in dettaglio il #gloss[Code Diagram] del frontend #gloss[Angular], che rappresenta l'interfaccia utente del sistema.
- 
+
 L'applicazione adotta il paradigma *MVVM* (Model-View-ViewModel), un pattern nativamente supportato da #gloss[Angular] che permette di separare la logica di _presentazione_ dalla logica di _business_. In questo contesto, l'architettura sfrutta il sistema di *data-binding* del framework per creare un legame reattivo tra i componenti. L'uso di *Angular Signals* potenzia questo paradigma, agendo come il motore di sincronizzazione che permette a ciascuna parte del sistema di reagire ai cambiamenti di stato in modo _granulare_ e _sincrono_.
 
 Il *Model* rappresenta il cuore logico dell'app ed è il detentore dello stato dell'applicazione. È implementato attraverso servizi di _dominio_ che gestiscono lo stato applicativo tramite _Signals privati_. Il suo ruolo principale è l'orchestrazione della business logic, mantenendosi totalmente indipendente dall'interfaccia utente. Un pilastro di questo strato è l'integrazione del *Dependency Inversion Principle*: il Model non dipende da implementazioni concrete per il recupero dei dati, ma inietta classi _astratte_ che definiscono i contratti di comunicazione. Questo permette al Model di ignorare i dettagli del backend (come i protocolli HTTP), delegando l'implementazione ai servizi _infrastrutturali_. In questo modo, la logica di business rimane protetta, testabile in isolamento e facilmente estensibile.
@@ -1557,52 +1564,52 @@ Standardizza la struttura degli errori restituiti dal backend. Include il codice
 
 ====== GatewayBackend <angular-gatewaybackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
-  - `gateway_id: string`: identificativo del gateway.
-  - `tenant_id?: string`: identificativo del tenant.
-  - `name: string`: nome del dispositivo.
-  - `status: string`: stato del dispositivo rappresentato come stringa grezza.
-  - `interval: number`: intervallo di comunicazione dati in ms.
-  - `public_identifier?: string`: chiave pubblica del gateway.
+- `gateway_id: string`: identificativo del gateway.
+- `tenant_id?: string`: identificativo del tenant.
+- `name: string`: nome del dispositivo.
+- `status: string`: stato del dispositivo rappresentato come stringa grezza.
+- `interval: number`: intervallo di comunicazione dati in ms.
+- `public_identifier?: string`: chiave pubblica del gateway.
 
 ====== SensorBackend <angular-sensorbackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dalle API del backend.
-  - `sensor_id: string`: identificativo del sensore.
-  - `gateway_id: string`: identificativo del gateway di appartenenza.
-  - `sensor_name: string`: nome del dispositivo nel database.
-  - `status: string`: stato del dispositivo rappresentato come stringa.
-  - `profile: string`: identificativo testuale del profilo tecnologico.
-  - `data_interval: number`: intervallo di invio dati in ms.
+- `sensor_id: string`: identificativo del sensore.
+- `gateway_id: string`: identificativo del gateway di appartenenza.
+- `sensor_name: string`: nome del dispositivo nel database.
+- `status: string`: stato del dispositivo rappresentato come stringa.
+- `profile: string`: identificativo testuale del profilo tecnologico.
+- `data_interval: number`: intervallo di invio dati in ms.
 
 ====== TenantBackend <angular-tenantbackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
-  - `tenant_id: string`: identificativo univoco del tenant.
-  - `can_impersonate: boolean`: indica se il tenant ha acconsentito all'impersonificazione.
+- `tenant_id: string`: identificativo univoco del tenant.
+- `can_impersonate: boolean`: indica se il tenant ha acconsentito all'impersonificazione.
 
 ====== UserBackend <angular-userbackend-model>
 Definisce il formato del Data Transfer Object (DTO) ricevuto dal backend.
-  - `user_id: number`: identificativo numerico dell'utente.
-  - `username: string`: nome utente.
-  - `email: string`: indirizzo email dell'utente.
-  - `user_role: string`: ruolo dell'utente trasmesso come stringa grezza.
-  - `tenant_id?: string`: riferimento al tenant.
+- `user_id: number`: identificativo numerico dell'utente.
+- `username: string`: nome utente.
+- `email: string`: indirizzo email dell'utente.
+- `user_role: string`: ruolo dell'utente trasmesso come stringa grezza.
+- `tenant_id?: string`: riferimento al tenant.
 
 ====== HistoricResponse e HistoricSample <angular-historicresponse-model>
 Rappresentano il formato dei dati storici trasmessi dal backend (Data Transfer Objects).
-  - `HistoricResponse`: contiene il conteggio totale dei campioni (`count`) e l'array di dati effettivi (`samples`).
-  - `HistoricSample`: rappresenta il singolo pacchetto di dati grezzi. Include informazioni come `sensor_id`, `gateway_id`, `tenant_id`, `timestamp`, `profile` e l'oggetto `data` contenente i valori grezzi in formato chiave-valore.
+- `HistoricResponse`: contiene il conteggio totale dei campioni (`count`) e l'array di dati effettivi (`samples`).
+- `HistoricSample`: rappresenta il singolo pacchetto di dati grezzi. Include informazioni come `sensor_id`, `gateway_id`, `tenant_id`, `timestamp`, `profile` e l'oggetto `data` contenente i valori grezzi in formato chiave-valore.
 
 ====== RealTimeReading <angular-realtimereading-model>
 Descrive la struttura dei dati ricevuti in tempo reale tramite stream.
-  - `timestamp: string`: il timestamp della lettura live.
-  - `profile: string`: il profilo del sensore sorgente.
-  - `data: Record<string, any>`: i dati grezzi ricevuti in tempo reale.
+- `timestamp: string`: il timestamp della lettura live.
+- `profile: string`: il profilo del sensore sorgente.
+- `data: Record<string, any>`: i dati grezzi ricevuti in tempo reale.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliBackend.pdf", width: 80%),
   caption: [Modelli dati - Infrastructure layer],
 )
 
-===== Utility 
+===== Utility
 Per la gestione coerente delle enumerazioni e delle costanti di sistema, è stata implementata una classe di utility generica denominata `EnumMapper<TFrontend, TBackend>`. Questa classe risolve il problema della discordanza tra i valori letterali utilizzati nelle API e le definizioni di tipo nel frontend.
 - *Funzinamento core*: la classe accetta nel costruttore un oggetto di mappatura e un valore di _fallback_. Internamente, genera automaticamente una mappa inversa (`toFrontendMap`) per supportare la conversione.
 - *Gestione errori*: il metodo `fromBackend` include una logica di protezione che restituisce il valore di _fallback_ predefinito qualora il backend invii un valore non valido.
@@ -1615,7 +1622,7 @@ Sulla base di questa utility, sono stati definiti i seguenti mappatori specializ
 - *`userRoleMapperJWT`*: un mapper specifico per la decodifica dei token #gloss("JWT"), dove i ruoli sono rappresentati da sigle contratte (`sa` per super admin, `ta` per tenant admin e `tu` per tenant user).
 
 ===== Adapters
-Le classi astratte fungono da "interfacce robuste" che assicurano che ogni trasformatore di dati esponga la medesima firma, indipendentemente dalla sorgente dati. 
+Le classi astratte fungono da "interfacce robuste" che assicurano che ogni trasformatore di dati esponga la medesima firma, indipendentemente dalla sorgente dati.
 
 Sono stati sviluppati i seguenti adapter astratti: *`GatewayAdapter`*, *`SensorAdapter`*, *`UserAdapter`* e *`TenantAdapter`*, ognuno dei quali definisce un contratto specifico per la trasformazione dei dati di una particolare entità del dominio, ossia:
 - il metodo `fromDTO(dto: XBackend)` che accetta un singolo oggetto DTO restituito dalle API del backend e lo trasforma in un modello di dominio tipizzato, mappando i campi e convertendo i valori secondo le regole di business.
@@ -1709,7 +1716,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/AuthApiClientService.pdf", width: 60%),
-  caption: [Code diagram - AuthApiClientService]
+  caption: [Code diagram - AuthApiClientService],
 )
 
 ====== TenantApiClientService <angular-tenant-api-client-service>
@@ -1723,7 +1730,7 @@ Il servizio presenta i seguenti attributi:
 
 Il servizio presenta i seguenti metodi pubblici:
 - `getTenant(id: string): Observable<Tenant>`: invia la richiesta di recupero di un tenant specifico.
-- `getTenants(page: number, limit: number): 
+- `getTenants(page: number, limit: number):
 Observable<PaginatedTenantResponse<Tenant>>`: invia la richiesta di recupero della lista paginata di tenant dal backend, impostando _page_ e _limit_ come _query parameters_.
 - `getAllTenants(): Observable<Tenant[]>`: invia la richiesta di recupero della lista completa di tenant dal backend.
 - `createTenant(config: TenantConfig): Observable<Tenant>`: invia la richiesta di creazione di un nuovo tenant.
@@ -1731,7 +1738,7 @@ Observable<PaginatedTenantResponse<Tenant>>`: invia la richiesta di recupero del
 
 #figure(
   image("../../assets/c4/frontend/services/TenantApiClientService.pdf", width: 70%),
-  caption: [Code diagram - TenantApiClientService]
+  caption: [Code diagram - TenantApiClientService],
 )
 
 ====== UserApiClientService <angular-user-api-client-service>
@@ -1754,7 +1761,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/UserApiClientService.pdf", width: 70%),
-  caption: [Code diagram - UserApiClientService]
+  caption: [Code diagram - UserApiClientService],
 )
 
 ====== GatewayApiClientService <angular-gateway-api-client-service>
@@ -1774,7 +1781,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayApiClientService.pdf", width: 70%),
-  caption: [Code diagram - GatewayApiClientService]
+  caption: [Code diagram - GatewayApiClientService],
 )
 
 ====== GatewayCommandApiClientService <angular-gateway-command-api-client-service>
@@ -1796,7 +1803,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram - GatewayCommandApiClientService]
+  caption: [Code diagram - GatewayCommandApiClientService],
 )
 
 ====== SensorApiClientService <angular-sensor-api-client-service>
@@ -1816,7 +1823,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorApiClientService.pdf", width: 70%),
-  caption: [Code diagram - SensorApiClientService]
+  caption: [Code diagram - SensorApiClientService],
 )
 
 ====== SensorCommandApiClientService <angular-sensor-command-api-client-service>
@@ -1833,7 +1840,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorCommandApiClientService.pdf", width: 70%),
-  caption: [Code diagram - SensorCommandApiClientService]
+  caption: [Code diagram - SensorCommandApiClientService],
 )
 
 ====== SensorLiveReadingsApiClientService <angular-sensor-live-readings-api-service>
@@ -1855,7 +1862,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorHistoricApiService.pdf", width: 70%),
-  caption: [Code diagram - SensorHistoricApiClientService]
+  caption: [Code diagram - SensorHistoricApiClientService],
 )
 
 ====== SensorHistoricApiClientService <angular-sensor-historic-api-service>
@@ -1871,7 +1878,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorLiveReadingsApiService.pdf", width: 60%),
-  caption: [Code diagram - SensorLiveReadingsApiClientService]
+  caption: [Code diagram - SensorLiveReadingsApiClientService],
 )
 
 
@@ -1895,44 +1902,44 @@ Rappresenta l'interfaccia base per tutte le risposte API che supportano la pagin
 
 ====== LoginRequest <angular-loginrequest-model>
 Rappresenta il pacchetto di dati inviato dall'utente per richiedere l'accesso al sistema.
-  - `email: string`: l'indirizzo email dell'utente che effettua il tentativo di accesso.
-  - `password: string`: la password associata all'account.
-  - `tenantId?: string`: proprietà opzionale utilizzata per identificare il contesto organizzativo (_tenant_) di appartenenza dell'utente.
+- `email: string`: l'indirizzo email dell'utente che effettua il tentativo di accesso.
+- `password: string`: la password associata all'account.
+- `tenantId?: string`: proprietà opzionale utilizzata per identificare il contesto organizzativo (_tenant_) di appartenenza dell'utente.
 
 ====== AuthResponse <angular-authresponse-model>
 Definisce la struttura della risposta restituita dal backend a seguito di un'autenticazione riuscita.
-  - `jwt: string`: il token JWT necessario per autenticare e autorizzare le successive chiamate API del frontend. Contiene codificate all'interno del payload le seguenti informazioni:
-    - `uid: string`: rappresenta l'identificativo univoco dell'utente;
-    - `tid: string`: rappresenta l'identificativo del tenant dell'utente;
-    - `rol: string`: rappresenta il ruolo dell'utente;
+- `jwt: string`: il token JWT necessario per autenticare e autorizzare le successive chiamate API del frontend. Contiene codificate all'interno del payload le seguenti informazioni:
+  - `uid: string`: rappresenta l'identificativo univoco dell'utente;
+  - `tid: string`: rappresenta l'identificativo del tenant dell'utente;
+  - `rol: string`: rappresenta il ruolo dell'utente;
 
 ====== UserSession <angular-usersession-model>
 Rappresenta la struttura dati utilizzata internamente al frontend per mantenere lo stato e le informazioni essenziali dell'utente attualmente autenticato.
-  - `userId: string`: l'identificativo univoco dell'utente in sessione.
-  - `tenantId?: string`: l'identificativo del tenant a cui l'utente appartiene, se applicabile.
-  - `role: UserRole`: il ruolo operativo dell'utente (@angular-userrole-model), che determina i permessi all'interno dell'applicazione.
+- `userId: string`: l'identificativo univoco dell'utente in sessione.
+- `tenantId?: string`: l'identificativo del tenant a cui l'utente appartiene, se applicabile.
+- `role: UserRole`: il ruolo operativo dell'utente (@angular-userrole-model), che determina i permessi all'interno dell'applicazione.
 
 ====== ForgotPasswordRequest <angular-forgotpasswordrequest-model>
 Modello utilizzato per avviare la procedura di recupero delle credenziali di accesso.
-  - `email: string`: l'indirizzo email a cui inviare le istruzioni per il ripristino della password.
-  - `tenantId?: string`: identificativo opzionale del tenant per circoscrivere la ricerca dell'utente.
+- `email: string`: l'indirizzo email a cui inviare le istruzioni per il ripristino della password.
+- `tenantId?: string`: identificativo opzionale del tenant per circoscrivere la ricerca dell'utente.
 
 ====== ForgotPasswordResponse <angular-forgotpasswordresponse-model>
 Modello per la finalizzazione del reset della password tramite token di sicurezza.
-  - `token: string`: il codice di verifica univoco ricevuto dall'utente (solitamente via email).
-  - `newPassword: string`: la nuova password che l'utente intende impostare per il proprio account.
-  - `tenantId?: string`: riferimento opzionale al tenant per la convalida dell'operazione.
+- `token: string`: il codice di verifica univoco ricevuto dall'utente (solitamente via email).
+- `newPassword: string`: la nuova password che l'utente intende impostare per il proprio account.
+- `tenantId?: string`: riferimento opzionale al tenant per la convalida dell'operazione.
 
 ====== ConfirmAccountResponse <angular-confirmaccountresponse-model>
 Interfaccia dedicata alla conferma dell'attivazione di un nuovo account di sistema.
-  - `token: string`: il token di attivazione necessario per validare l'identità dell'utente.
-  - `newPassword: string`: la password definita dall'utente in fase di primo accesso o attivazione.
-  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+- `token: string`: il token di attivazione necessario per validare l'identità dell'utente.
+- `newPassword: string`: la password definita dall'utente in fase di primo accesso o attivazione.
+- `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
 
 ====== PasswordChange <angular-passwordchange-model>
 Rappresenta il modello per l'aggiornamento della password da parte di un utente già autenticato.
-  - `oldPassword: string`: la password corrente dell'utente, richiesta per motivi di sicurezza prima di procedere alla modifica.
-  - `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
+- `oldPassword: string`: la password corrente dell'utente, richiesta per motivi di sicurezza prima di procedere alla modifica.
+- `newPassword: string`: la nuova stringa segreta da impostare come password di accesso.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioAuth.pdf", width: 100%),
@@ -1942,18 +1949,18 @@ Rappresenta il modello per l'aggiornamento della password da parte di un utente 
 
 ====== NavItem <angular-navitem-model>
 Definisce la struttura di una singola voce all'interno del menu di navigazione.
-  - `label: string`: l'etichetta testuale visualizzata nel menu (es. "Gestione Gateway", "Dashboard").
-  - `route: string`: il percorso di navigazione associato alla voce di menu.
-  - `icon: string`: il nome dell'icona (usato da *`Angular Material`*) da affiancare all'etichetta.
-  - `permission?: Permission | Permission[]`: proprietà opzionale che specifica i permessi necessari per visualizzare la voce. Può essere un singolo valore dell'enum `Permission` (@angular-permission-model) o un array di permessi.
-  - `separator?: boolean`: flag opzionale che, se impostato a true, inserisce un separatore visivo prima della voce di menu.
-  - `sectionTitle?: string`: titolo opzionale utilizzato per raggruppare le voci sotto una categoria.
-  - `tenantSectionTitle?: string`: titolo di sezione specifico utilizzato nei contesti di impersonificazione o visualizzazione legata al tenant.
+- `label: string`: l'etichetta testuale visualizzata nel menu (es. "Gestione Gateway", "Dashboard").
+- `route: string`: il percorso di navigazione associato alla voce di menu.
+- `icon: string`: il nome dell'icona (usato da *`Angular Material`*) da affiancare all'etichetta.
+- `permission?: Permission | Permission[]`: proprietà opzionale che specifica i permessi necessari per visualizzare la voce. Può essere un singolo valore dell'enum `Permission` (@angular-permission-model) o un array di permessi.
+- `separator?: boolean`: flag opzionale che, se impostato a true, inserisce un separatore visivo prima della voce di menu.
+- `sectionTitle?: string`: titolo opzionale utilizzato per raggruppare le voci sotto una categoria.
+- `tenantSectionTitle?: string`: titolo di sezione specifico utilizzato nei contesti di impersonificazione o visualizzazione legata al tenant.
 
 ====== NavConfig <angular-navitems-constant>
 Rappresenta la configurazione statica globale del menu di navigazione dell'applicazione.
-  - È un array di oggetti _NavItem_ che mappa tutte le funzionalità principali del sistema, incluse le aree di gestione (Gateway, Tenant, User) e la Dashboard operativa.
-  - Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
+- È un array di oggetti _NavItem_ che mappa tutte le funzionalità principali del sistema, incluse le aree di gestione (Gateway, Tenant, User) e la Dashboard operativa.
+- Ogni elemento dell'array è configurato con il relativo requisito di sicurezza tramite la proprietà permission, garantendo che l'utente visualizzi solo le rotte per le quali è effettivamente autorizzato.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioNavItems.pdf", width: 70%),
@@ -1963,34 +1970,34 @@ Rappresenta la configurazione statica globale del menu di navigazione dell'appli
 
 ====== ChartType <angular-charttype-model>
 Definisce le modalità di visualizzazione dei dati supportate dal sistema.
-  - `HISTORIC`: indica la modalità di visualizzazione dei dati storici memorizzati nel database.
-  - `REALTIME`: indica la modalità di visualizzazione in tempo reale tramite stream continuo.
+- `HISTORIC`: indica la modalità di visualizzazione dei dati storici memorizzati nel database.
+- `REALTIME`: indica la modalità di visualizzazione in tempo reale tramite stream continuo.
 
 ====== TimeInterval <angular-timeinterval-model>
 Rappresenta l'intervallo temporale utilizzato per filtrare le letture dei sensori.
-  - `from: Date`: data e ora di inizio dell'intervallo richiesto.
-  - `to: Date`: data e ora di fine dell'intervallo richiesto.
+- `from: Date`: data e ora di inizio dell'intervallo richiesto.
+- `to: Date`: data e ora di fine dell'intervallo richiesto.
 
 ====== ChartRequest <angular-chartrequest-model>
 Modello utilizzato per inoltrare una richiesta completa di generazione o aggiornamento di un grafico.
-  - `sensor: Sensor`: l'oggetto contenente le informazioni del sensor (@angular-sensor-model) di cui si vogliono visualizzare i dati.
-  - `chartType: ChartType`: la modalità di grafico richiesta (storica o real-time @angular-charttype-model).
-  - `tenantId?: string`: identificativo opzionale del tenant per il controllo dell'accesso ai dati.
-  - `dataPointsCounter?: number`: proprietà opzionale per limitare il numero di campioni da recuperare.
-  - `timeInterval?: TimeInterval`: l'intervallo temporale specifico per le query storiche.
+- `sensor: Sensor`: l'oggetto contenente le informazioni del sensor (@angular-sensor-model) di cui si vogliono visualizzare i dati.
+- `chartType: ChartType`: la modalità di grafico richiesta (storica o real-time @angular-charttype-model).
+- `tenantId?: string`: identificativo opzionale del tenant per il controllo dell'accesso ai dati.
+- `dataPointsCounter?: number`: proprietà opzionale per limitare il numero di campioni da recuperare.
+- `timeInterval?: TimeInterval`: l'intervallo temporale specifico per le query storiche.
 
 ====== SensorProfileDisplay <angular-sensorprofiledisplay-model>
 Definisce le proprietà estetiche e le unità di misura per la rappresentazione dei dati di un profilo sensore.
-  - `label: string`: l'etichetta testuale visualizzata nel grafico (es. "Heart Rate").
-  - `unit: string`: l'unità di misura associata al valore del sensore.
+- `label: string`: l'etichetta testuale visualizzata nel grafico (es. "Heart Rate").
+- `unit: string`: l'unità di misura associata al valore del sensore.
 
 In questo file sono definiti anche:
-  - `SENSOR_PROFILE_MAP`: Una costante di tipo `Record` che mappa ogni profilo sensore (`SensorProfiles` @angular-sensorprofiles-model) alla propria configurazione di etichetta e unità di misura.
-  - `getSensorProfileDisplay(profile): SensorProfileDisplay`: Una funzione che restituisce l'oggetto `SensorProfileDisplay` corrispondente al profilo richiesto; include una logica di protezione che restituisce il nome del profilo e una stringa vuota qualora il profilo non sia presente nella mappa.
+- `SENSOR_PROFILE_MAP`: Una costante di tipo `Record` che mappa ogni profilo sensore (`SensorProfiles` @angular-sensorprofiles-model) alla propria configurazione di etichetta e unità di misura.
+- `getSensorProfileDisplay(profile): SensorProfileDisplay`: Una funzione che restituisce l'oggetto `SensorProfileDisplay` corrispondente al profilo richiesto; include una logica di protezione che restituisce il nome del profilo e una stringa vuota qualora il profilo non sia presente nella mappa.
 
 ====== SensorVisiblePoints e SensorProfileDisplay <angular-sensorcostants-model>
 Record di configurazione che stabiliscono i limiti di campionamento per l'interfaccia utente al fine di ottimizzare le performance di rendering.
-  - Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
+- Definiscono il numero massimo di punti visibili simultaneamente (es. 50 per la frequenza cardiaca, 250 per l'ECG) e la dimensione del buffer per le letture live (fino a 625 campioni per il segnale ECG).
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioChart.pdf", width: 100%),
@@ -2000,25 +2007,25 @@ Record di configurazione che stabiliscono i limiti di campionamento per l'interf
 
 ====== Gateway <angular-gateway-model>
 Rappresenta il modello principale dell'entità gateway utilizzato all'interno dell'applicazione.
-  - `id: string`: identificativo univoco del gateway.
-  - `tenantId?: string`: identificativo opzionale del tenant a cui è assegnato il gateway.
-  - `name: string`: nome descrittivo assegnato al gateway.
-  - `status: GatewayStatus`: stato operativo del gateway.
-  - `interval: number`: frequenza di comunicazione espressa in secondi.
-  - `publicIdentifier?: string`: identificativo pubblico opzionale del dispositivo.
+- `id: string`: identificativo univoco del gateway.
+- `tenantId?: string`: identificativo opzionale del tenant a cui è assegnato il gateway.
+- `name: string`: nome descrittivo assegnato al gateway.
+- `status: GatewayStatus`: stato operativo del gateway.
+- `interval: number`: frequenza di comunicazione espressa in secondi.
+- `publicIdentifier?: string`: identificativo pubblico opzionale del dispositivo.
 
 ====== GatewayStatus <angular-gatewaystatus-model>
 Definisce lo stato operativo dei gateaway.
-  - Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) e `DECOMMISSIONED` (decommissionato).
+- Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo) e `DECOMMISSIONED` (decommissionato).
 
 ====== GatewayConfig <angular-gatewayconfig-model>
 Modello utilizzato per le operazioni di configurazione o aggiornamento dei parametri di un gateway.
-  - `name: string`: nuovo nome da assegnare al dispositivo.
-  - `interval: number`: nuovo intervallo di comunicazione da impostare.
+- `name: string`: nuovo nome da assegnare al dispositivo.
+- `interval: number`: nuovo intervallo di comunicazione da impostare.
 
 ====== PaginatedGatewayResponse <angular-paginatedgatewayresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di gateway.
-  - `gateways: T[]`: array di elementi di tipo generico `T` contenente i record della pagina corrente.
+- `gateways: T[]`: array di elementi di tipo generico `T` contenente i record della pagina corrente.
 \
 
 #figure(
@@ -2029,35 +2036,35 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
 
 ====== Sensor <angular-sensor-model>
 Rappresenta il modello principale dell'entità sensore utilizzato per la logica di business e la visualizzazione nel frontend.
-  - `id: string`: identificativo univoco del sensore.
-  - `gatewayId: string`: identificativo del gateway a cui il sensore è associato.
-  - `name: string`: nome descrittivo assegnato al dispositivo.
-  - `profile: SensorProfiles`: il profilo GATT del sensore.
-  - `status: SensorStatus`: lo stato operativo corrente.
-  - `dataInterval: number`: la frequenza di campionamento dei dati espressa in secondi.
+- `id: string`: identificativo univoco del sensore.
+- `gatewayId: string`: identificativo del gateway a cui il sensore è associato.
+- `name: string`: nome descrittivo assegnato al dispositivo.
+- `profile: SensorProfiles`: il profilo GATT del sensore.
+- `status: SensorStatus`: lo stato operativo corrente.
+- `dataInterval: number`: la frequenza di campionamento dei dati espressa in secondi.
 
 ====== SensorStatus <angular-sensorstatus-model>
 Definisce lo stato operativo dei sensori.
-  - Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo).
+- Prevede gli stati `ACTIVE` (attivo), `INACTIVE` (inattivo).
 
 ====== SensorProfiles <angular-sensorprofiles-model>
 Stabilisce i profili GATT supportati dal sistema, mappando ogni profilo a una categoria specifica.
-  - `HEART_RATE_SERVICE`: "heart rate".
-  - `PULSE_OXIMETER_SERVICE`: "pulse oximeter".
-  - `CUSTOM_ECG_SERVICE`: "custom ecg".
-  - `HEALTH_THERMOMETER_SERVICE`: "health thermometer".
-  - `ENVIRONMENTAL_SENSING_SERVICE`: "environmental sensing".
+- `HEART_RATE_SERVICE`: "heart rate".
+- `PULSE_OXIMETER_SERVICE`: "pulse oximeter".
+- `CUSTOM_ECG_SERVICE`: "custom ecg".
+- `HEALTH_THERMOMETER_SERVICE`: "health thermometer".
+- `ENVIRONMENTAL_SENSING_SERVICE`: "environmental sensing".
 
 ====== SensorConfig <angular-sensorconfig-model>
 Modello utilizzato per la creazione o la riconfigurazione dei parametri di un sensore.
-  - `name: string`: nome da assegnare o aggiornare.
-  - `dataInterval: number`: intervallo dati da impostare.
-  - `gatewayId: string`: riferimento al gateway ospite.
-  - `profile: string`: profilo GATT selezionato.
+- `name: string`: nome da assegnare o aggiornare.
+- `dataInterval: number`: intervallo dati da impostare.
+- `gatewayId: string`: riferimento al gateway ospite.
+- `profile: string`: profilo GATT selezionato.
 
 ====== PaginatedSensorResponse <angular-paginatedsensorresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di sensori.
-  - `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+- `sensors: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensor.pdf", width: 100%),
@@ -2067,25 +2074,25 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
 
 ====== FieldDescriptor <angular-fielddescriptor-model>
 Rappresenta un metadato che descrive come interpretare e visualizzare un singolo valore all'interno di una lettura del sensore.
-  - `key: string`: la chiave tecnica del dato (es. "bpm", "temperature") utilizzata per estrarre il valore dall'oggetto della lettura.
-  - `label: string`: l'etichetta testuale descrittiva per la UI (es. "Battito cardiaco", "Umidità").
-  - `unit: string`: l'unità di misura associata al dato (es. "bpm", "°C", "%").
+- `key: string`: la chiave tecnica del dato (es. "bpm", "temperature") utilizzata per estrarre il valore dall'oggetto della lettura.
+- `label: string`: l'etichetta testuale descrittiva per la UI (es. "Battito cardiaco", "Umidità").
+- `unit: string`: l'unità di misura associata al dato (es. "bpm", "°C", "%").
 
 ====== SensorReading <angular-sensorreading-model>
 Definisce il modello atomico di una singola lettura sensoriale processata dal frontend.
-  - `timestamp: string`: l'istante temporale a cui si riferisce la misurazione.
-  - `value: Record<string, number>`: un oggetto contenente uno o più valori numerici associati a chiavi specifiche (es. `{ "bpm": 72 }` o `{ "temperature": 22.5, "humidity": 60 }`).
+- `timestamp: string`: l'istante temporale a cui si riferisce la misurazione.
+- `value: Record<string, number>`: un oggetto contenente uno o più valori numerici associati a chiavi specifiche (es. `{ "bpm": 72 }` o `{ "temperature": 22.5, "humidity": 60 }`).
 
 ====== HistoricReadings <angular-historicreadings-model>
 Modello strutturato utilizzato dal frontend per aggregare le letture storiche da visualizzare nei grafici.
-  - `dataCount: number`: il numero totale di letture contenute nell'oggetto.
-  - `readings: SensorReading[]`: l'elenco delle letture trasformate e pronte per il rendering.
-  - `fields: FieldDescriptor[]`: l'elenco dei descrittori di campo che indicano quali dati sono presenti e come visualizzarli.
-  - `samplesPerPacket?: number`: proprietà opzionale utilizzata per il segnale ECG per indicare la densità di campionamento.
+- `dataCount: number`: il numero totale di letture contenute nell'oggetto.
+- `readings: SensorReading[]`: l'elenco delle letture trasformate e pronte per il rendering.
+- `fields: FieldDescriptor[]`: l'elenco dei descrittori di campo che indicano quali dati sono presenti e come visualizzarli.
+- `samplesPerPacket?: number`: proprietà opzionale utilizzata per il segnale ECG per indicare la densità di campionamento.
 
 ====== SensorFields <angular-constantsfields-constant>
 Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualizzazione per ogni tipologia di sensore.
-   - Ad esempio, `HEALTH_THERMOMETER_FIELDS` configura il campo "Temperatura" (°C) mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
+- Ad esempio, `HEALTH_THERMOMETER_FIELDS` configura il campo "Temperatura" (°C) mentre `PULSE_OXIMETER_FIELDS` configura "Ossigeno nel sangue" (%) e "Frequenza cardiaca" (bpm).
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioSensorData.pdf", width: 80%),
@@ -2095,18 +2102,18 @@ Definizioni statiche basate su `FieldDescriptor` che pre-configurano la visualiz
 
 ====== Tenant <angular-tenant-model>
 Rappresenta il modello principale dell'entità tenant utilizzato all'interno della logica applicativa del frontend.
-  - `id: string`: identificativo univoco del tenant.
-  - `name: string`: nome descrittivo assegnato al tenant.
-  - `canImpersonate: boolean`: flag che indica se il tenant ha l'autorizzazione per eseguire operazioni di impersonificazione all'interno del sistema.
+- `id: string`: identificativo univoco del tenant.
+- `name: string`: nome descrittivo assegnato al tenant.
+- `canImpersonate: boolean`: flag che indica se il tenant ha l'autorizzazione per eseguire operazioni di impersonificazione all'interno del sistema.
 
 ====== TenantConfig <angular-tenantconfig-model>
 Rappresenta il modello utilizzato per le operazioni di creazione o aggiornamento dei dati di un tenant.
-  - `name: string`: il nome da assegnare o aggiornare per l'organizzazione.
-  - `canImpersonate: boolean`: la configurazione del permesso di impersonificazione.
+- `name: string`: il nome da assegnare o aggiornare per l'organizzazione.
+- `canImpersonate: boolean`: la configurazione del permesso di impersonificazione.
 
 ====== PaginatedTenantResponse <angular-paginatedtenantresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di tenant.
-  - `tenants: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+- `tenants: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioTenant.pdf", width: 100%),
@@ -2116,26 +2123,26 @@ Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione
 
 ====== UserRole <angular-userrole-model>
 Stabilisce i ruoli gerarchici disponibili nel sistema, utilizzati per determinare i permessi di accesso alle diverse funzionalità.
-  - `TENANT_USER`: rappresenta l'utente finale associato a un tenant specifico.
-  - `TENANT_ADMIN`: rappresenta l'amministratore di un tenant, con permessi di gestione locale.
-  - `SUPER_ADMIN`: rappresenta l'amministratore globale del sistema con permessi illimitati.
+- `TENANT_USER`: rappresenta l'utente finale associato a un tenant specifico.
+- `TENANT_ADMIN`: rappresenta l'amministratore di un tenant, con permessi di gestione locale.
+- `SUPER_ADMIN`: rappresenta l'amministratore globale del sistema con permessi illimitati.
 
 ====== User <angular-user-model>
 Rappresenta il modello principale dell'entità utente utilizzato nella logica di business del frontend.
-  - `id: string`: identificativo univoco dell'utente (normalizzato come stringa nel frontend).
-  - `username: string`: nome utente utilizzato per l'identificazione e la visualizzazione.
-  - `email: string`: indirizzo email associato all'account.
-  - `role: UserRole`: il ruolo assegnato all'utente.
-  - `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
+- `id: string`: identificativo univoco dell'utente (normalizzato come stringa nel frontend).
+- `username: string`: nome utente utilizzato per l'identificazione e la visualizzazione.
+- `email: string`: indirizzo email associato all'account.
+- `role: UserRole`: il ruolo assegnato all'utente.
+- `tenantId?: string`: identificativo opzionale del tenant di appartenenza.
 
 ====== UserConfig <angular-userconfig-model>
 Modello semplificato utilizzato per le operazioni di creazione o configurazione iniziale del profilo utente.
-  - `email: string`: indirizzo email da assegnare all'account.
-  - `username: string`: nome utente desiderato per la configurazione.
+- `email: string`: indirizzo email da assegnare all'account.
+- `username: string`: nome utente desiderato per la configurazione.
 
 ====== PaginatedUserResponse <angular-paginateduserresponse-model>
 Estensione dell'interfaccia di paginazione dedicata specificamente alla gestione di liste di utenti.
-  - `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
+- `users: T[]`: array di elementi di tipo generico `T` che popolano la pagina corrente.
 
 #figure(
   image("../../assets/c4/frontend/modelliDati/frontend-modelliDominioUser.pdf", width: 100%),
@@ -2198,7 +2205,7 @@ Il servizio presenta i seguenti metodi pubblici:
 
 #figure(
   image("../../assets/c4/frontend/services/PermissionService.pdf", width: 75%),
-  caption: [Code diagram - PermissionService]
+  caption: [Code diagram - PermissionService],
 )
 
 ====== AuthApiClientAdapter <angular-auth-api-client-adapter>
@@ -2287,7 +2294,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/TenantService.pdf", width: 50%),
-  caption: [Code diagram - TenantService]
+  caption: [Code diagram - TenantService],
 )
 
 ====== UserApiClientAdapter <angular-user-api-client-adapter>
@@ -2321,7 +2328,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/UserService.pdf", width: 60%),
-  caption: [Code diagram - UserService]
+  caption: [Code diagram - UserService],
 )
 
 ====== GatewayApiClientAdapter <angular-gateway-api-client-adapter>
@@ -2363,7 +2370,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewayService.pdf", width: 70%),
-  caption: [Code diagram - GatewayService]
+  caption: [Code diagram - GatewayService],
 )
 
 ====== SensorApiClientAdapter <angular-sensor-api-client-adapter>
@@ -2403,7 +2410,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorService.pdf", width: 70%),
-  caption: [Code diagram - SensorService]
+  caption: [Code diagram - SensorService],
 )
 
 ====== SensorHistoricApiClientAdapter <angular-sensor-historic-api-adapter>
@@ -2444,7 +2451,7 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/SensorChartService.pdf", width: 70%),
-  caption: [Code diagram - SensorChartService]
+  caption: [Code diagram - SensorChartService],
 )
 
 ====== DashboardService <angular-dashboard-service>
@@ -2470,11 +2477,11 @@ Il servizio presenta i seguenti metodi pubblici:
 - `closeChart(): void`: metodo utilizzato per chiudere il grafico di un sensore, aggiorna lo stato di `selectedChart` a `null`.
 
 Il servizio presenta i seguenti metodi privati:
-- `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`. 
+- `collapseGateway(): void`: metodo utilizzato per chiudere il dettaglio di un gateway nella dashboard, aggiorna lo stato di `expandedGateway` a `null` e pulisce la lista dei sensori dal `SensorService`.
 
 #figure(
   image("../../assets/c4/frontend/services/DashboardService.pdf", width: 70%),
-  caption: [Code diagram - DashboardService]
+  caption: [Code diagram - DashboardService],
 )
 
 ====== GatewaySensorManagerService <angular-gateway-sensor-manager-service>
@@ -2504,13 +2511,13 @@ Il servizio presenta i seguenti metodi privati:
 
 #figure(
   image("../../assets/c4/frontend/services/GatewaySensorManagerService.pdf", width: 70%),
-  caption: [Code diagram - GatewaySensorManagerService]
+  caption: [Code diagram - GatewaySensorManagerService],
 )
 
 ==== Logica di presentazione
 Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di esporre lo stato del Model in modo ottimizzato per la visualizzazione. Il ViewModel agisce come un mediatore che incapsula la logica di business e offre alla View dati pronti per il consumo tramite _data-binding_ reattivo. Questa separazione assicura che la View rimanga passiva e focalizzata sul layout, mentre il ViewModel gestisce l'orchestrazione degli eventi utente e la trasformazione dei dati necessari alla UI.
 
-===== Routes 
+===== Routes
 #tabella-paginata(
   table(
     columns: (auto, 1fr, 3fr),
@@ -2518,9 +2525,7 @@ Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di es
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Path*], [*Componente*], [*Descrizione*],
 
-    [/login],
-    [LoginPage],
-    [Rotta che porta alla pagina di login, accessibile agli utenti non autenticati.],
+    [/login], [LoginPage], [Rotta che porta alla pagina di login, accessibile agli utenti non autenticati.],
 
     [/forgot_password/:token],
     [ForgotPasswordPage],
@@ -2582,11 +2587,9 @@ Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di es
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Path*], [*Comportamento*],
 
-    [/(root)],
-    [Redirect automatico a `/dashboard`.],
+    [/(root)], [Redirect automatico a `/dashboard`.],
 
-    [\*\* (wildcard)],
-    [Redirect automatico a `/login`. Cattura tutte le rotte non definite.],
+    [\*\* (wildcard)], [Redirect automatico a `/login`. Cattura tutte le rotte non definite.],
   ),
   [Rotte di fallback],
   label-id: "angular-fallback-routes",
@@ -2597,30 +2600,30 @@ La cartella _shared_ contiene componenti presentazionali (dumb components) e dia
 
 ====== UI Components <angular-shared-components>
 *`GatewayTableComponent`*: una tabella per la visualizzazione dei gateway, dotata di logica di espansione per mostrare i sensori associati.
-  - *Dinamicità*: la proprietà `actionMode` determina quali colonne visualizzare; ad esempio, la colonna di eliminazione è visibile solo in modalità gestione.
-  - *Espansione nidificata*: utilizza la funzionalità `multiTemplateDataRows` di Angular Material per mostrare un dettaglio espanso (`GatewayExpandedComponent`) sotto la riga del gateway selezionato.
-  - *Interazioni*: gestisce la copia della Public Key negli appunti e l'apertura del dialogo per l'invio di comandi al gateway.
-  - *Input/Output*: riceve le liste di gateway e sensori, gli stati di caricamento e i parametri di paginazione; emette eventi per l'espansione, l'eliminazione, la creazione e il cambio pagina.
+- *Dinamicità*: la proprietà `actionMode` determina quali colonne visualizzare; ad esempio, la colonna di eliminazione è visibile solo in modalità gestione.
+- *Espansione nidificata*: utilizza la funzionalità `multiTemplateDataRows` di Angular Material per mostrare un dettaglio espanso (`GatewayExpandedComponent`) sotto la riga del gateway selezionato.
+- *Interazioni*: gestisce la copia della Public Key negli appunti e l'apertura del dialogo per l'invio di comandi al gateway.
+- *Input/Output*: riceve le liste di gateway e sensori, gli stati di caricamento e i parametri di paginazione; emette eventi per l'espansione, l'eliminazione, la creazione e il cambio pagina.
 
 *`SensorTableComponent`*: componente dedicato alla visualizzazione tabellare dei sensori.
-  - *Visualizzazione Condizionale*: analogamente alla tabella gateway, adatta le proprie colonne in base all' `actionMode`. In modalità 'dashboard', mostra le icone per l'apertura dei grafici storici e in tempo reale.
-  - *Gestione Grafici*: il metodo `onViewChart` distingue tra grafico in tempo reale (invio diretto della richiesta) e storico; in quest'ultimo caso, apre il dialogo `HistoricChartFiltersDialog` per permettere all'utente di selezionare l'intervallo temporale.
-  - *Sicurezza*: il pulsante per il grafico in tempo reale viene disabilitato automaticamente se il gateway o il sensore risultano inattivi.
+- *Visualizzazione Condizionale*: analogamente alla tabella gateway, adatta le proprie colonne in base all' `actionMode`. In modalità 'dashboard', mostra le icone per l'apertura dei grafici storici e in tempo reale.
+- *Gestione Grafici*: il metodo `onViewChart` distingue tra grafico in tempo reale (invio diretto della richiesta) e storico; in quest'ultimo caso, apre il dialogo `HistoricChartFiltersDialog` per permettere all'utente di selezionare l'intervallo temporale.
+- *Sicurezza*: il pulsante per il grafico in tempo reale viene disabilitato automaticamente se il gateway o il sensore risultano inattivi.
 
 *`GatewayExpandedComponent`*: agisce come contenitore specializzato per i sensori di un gateway specifico quando la riga della tabella principale viene espansa.
-  - *Responsabilità*: incapsula una `SensorTableComponent` passandole i dati filtrati e i parametri di configurazione necessari.
-  - *Delegazione*: funge da ponte per gli eventi (creazione/eliminazione sensore, richieste grafici) emessi dalla tabella interna verso il componente padre.
+- *Responsabilità*: incapsula una `SensorTableComponent` passandole i dati filtrati e i parametri di configurazione necessari.
+- *Delegazione*: funge da ponte per gli eventi (creazione/eliminazione sensore, richieste grafici) emessi dalla tabella interna verso il componente padre.
 
 ====== Dialogs <angular-shared-dialogs>
 *`ConfirmDeleteDialog`*: un dialogo generico e riutilizzabile per la conferma di operazioni distruttive.
-  - *Configurabilità*: riceve tramite il token `MAT_DIALOG_DATA` un oggetto contenente `title` e `message`, permettendo di personalizzare la richiesta di conferma per qualsiasi entità (gateway, sensore, ecc.).
-  - *Template*: presenta un'interfaccia chiara con un pulsante di annullamento e un pulsante di conferma evidenziato con colore "warn" per indicare la pericolosità dell'azione.
+- *Configurabilità*: riceve tramite il token `MAT_DIALOG_DATA` un oggetto contenente `title` e `message`, permettendo di personalizzare la richiesta di conferma per qualsiasi entità (gateway, sensore, ecc.).
+- *Template*: presenta un'interfaccia chiara con un pulsante di annullamento e un pulsante di conferma evidenziato con colore "warn" per indicare la pericolosità dell'azione.
 
 
 ===== App Shell
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-AppShell.pdf", width: 80%),
-  caption: [Code diagram - App Shell]
+  caption: [Code diagram - App Shell],
 ) \
 
 Il modulo `App Shell` definisce il layout persistente dell'applicazione, gestendo la navigazione principale, la visualizzazione delle informazioni dell'utente in sessione e le azioni globali come il logout e il cambio password.
@@ -2628,313 +2631,313 @@ Il modulo `App Shell` definisce il layout persistente dell'applicazione, gestend
 ====== AppShellPage <angular-appshell-page>
 
 La `AppShellPage` funge da orchestratore centrale del layout. Essendo uno smart component, interagisce con molteplici servizi di dominio per inizializzare l'interfaccia e gestire i permessi di navigazione.
-  - _Responsabilità_:
-    - Recupera i dati anagrafici dell'utente loggato e del relativo tenant tramite `UserService` e `TenantService` per visualizzarne i nomi nell'header.
-    - Gestisce dinamicamente la lista di navigazione tramite un segnale computato (navItems), filtrando le voci definite in `NAV_ITEMS` in base ai permessi dell'utente verificati dal `PermissionService`.
-    - Coordina le azioni globali: invoca il logout e apre il dialogo di cambio password.
-  - _Servizi Iniettati_: `UserSessionService` (@angular-user-session-service), `AuthSessionService` (@angular-auth-session-service), `UserService` (@angular-user-service), `TenantService` (@angular-tenant-service), `PermissionService` (@angular-permission-service).
+- _Responsabilità_:
+  - Recupera i dati anagrafici dell'utente loggato e del relativo tenant tramite `UserService` e `TenantService` per visualizzarne i nomi nell'header.
+  - Gestisce dinamicamente la lista di navigazione tramite un segnale computato (navItems), filtrando le voci definite in `NAV_ITEMS` in base ai permessi dell'utente verificati dal `PermissionService`.
+  - Coordina le azioni globali: invoca il logout e apre il dialogo di cambio password.
+- _Servizi Iniettati_: `UserSessionService` (@angular-user-session-service), `AuthSessionService` (@angular-auth-session-service), `UserService` (@angular-user-service), `TenantService` (@angular-tenant-service), `PermissionService` (@angular-permission-service).
 
 ====== UI Components <angular-appshell-components>
 All'interno della cartella components, l'`App Shell` si avvale di componenti presentazionali puri per la scomposizione del layout. \
 
 *`HeaderComponent`*: rappresenta la barra superiore dell'applicazione.
-  - _Input_:
-    - `username`: il nome dell'utente da visualizzare nel menu.
-    - `currentTenant`: il nome dell'organizzazione corrente, visualizzato tramite un badge.
-    - `currentUserRole`: il ruolo dell'utente, visualizzato in formato testuale.
-  - _Output_:
-    - `logoutRequested`: emesso quando l'utente seleziona la voce di uscita.
-    - `changePasswordRequested`: emesso quando l'utente apre il dialogo di cambio password.
+- _Input_:
+  - `username`: il nome dell'utente da visualizzare nel menu.
+  - `currentTenant`: il nome dell'organizzazione corrente, visualizzato tramite un badge.
+  - `currentUserRole`: il ruolo dell'utente, visualizzato in formato testuale.
+- _Output_:
+  - `logoutRequested`: emesso quando l'utente seleziona la voce di uscita.
+  - `changePasswordRequested`: emesso quando l'utente apre il dialogo di cambio password.
 
 *`SideBarComponent`*: gestisce il menu di navigazione laterale.
-  - _Input_:
-   - `navItems`: la lista filtrata di oggetti `NavItem` ricevuta dalla pagina.
-  - _Funzionalità_: 
-    - itera sugli elementi di navigazione gestendo graficamente separatori, titoli di sezione e link attivi tramite le direttive di routing di Angular.
+- _Input_:
+  - `navItems`: la lista filtrata di oggetti `NavItem` ricevuta dalla pagina.
+- _Funzionalità_:
+  - itera sugli elementi di navigazione gestendo graficamente separatori, titoli di sezione e link attivi tramite le direttive di routing di Angular.
 
 ====== Dialogs <angular-appshell-dialogs>
 *`ChangePasswordDialog`*: un componente autonomo utilizzato per consentire all'utente autenticato di aggiornare le proprie credenziali.
-  - _Logica_: utilizza un `FormBuilder` per gestire un modulo reattivo con validazioni specifiche per la lunghezza minima della password e la corrispondenza tra "nuova password" e "conferma password".
-  - _Interazione_: comunica con `AuthActionsService` (@angular-auth-actions-service) per inviare la richiesta `confirmPasswordChange`. Gestisce internamente lo stato di caricamento e la visualizzazione di eventuali errori generali restituiti dalle API tramite un banner dedicato nel template.
+- _Logica_: utilizza un `FormBuilder` per gestire un modulo reattivo con validazioni specifiche per la lunghezza minima della password e la corrispondenza tra "nuova password" e "conferma password".
+- _Interazione_: comunica con `AuthActionsService` (@angular-auth-actions-service) per inviare la richiesta `confirmPasswordChange`. Gestisce internamente lo stato di caricamento e la visualizzazione di eventuali errori generali restituiti dalle API tramite un banner dedicato nel template.
 
 
 ===== Confirm Account
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ConfirmAccount.pdf", width: 90%),
-  caption: [Code diagram - Confirm Account]
+  caption: [Code diagram - Confirm Account],
 ) \
 
 Il modulo `Confirm Account` gestisce il processo di attivazione dell'account utente a seguito della ricezione dell'invito. La pagina permette l'impostazione della password definitiva e il contestuale primo accesso al sistema.
 
 ====== ConfirmAccountPage <angular-confirmaccount-page>
 La `ConfirmAccountPage` funge da orchestratore per il processo di attivazione, recuperando i parametri necessari dall'URL e gestendo il flusso di navigazione post-attivazione.
-  - _Responsabilità_: 
-    - Estrae il token di attivazione dai parametri del percorso e l'eventuale `tenantId` dai parametri di ricerca (query parameters) dell'URL.
-    - Monitora lo stato di caricamento e gli eventuali errori globali attraverso i segnali esposti da `AuthActionsService`.
-    - Inoltra la richiesta di conferma al servizio di dominio e, in caso di successo, reindirizza l'utente alla `Dashboard` (poiché la conferma implica un login automatico tramite restituzione del JWT).
-  - _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
+- _Responsabilità_:
+  - Estrae il token di attivazione dai parametri del percorso e l'eventuale `tenantId` dai parametri di ricerca (query parameters) dell'URL.
+  - Monitora lo stato di caricamento e gli eventuali errori globali attraverso i segnali esposti da `AuthActionsService`.
+  - Inoltra la richiesta di conferma al servizio di dominio e, in caso di successo, reindirizza l'utente alla `Dashboard` (poiché la conferma implica un login automatico tramite restituzione del JWT).
+- _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
 
 ====== UI Components  <angular-confirmaccount-components>
 All'interno della cartella components, il modulo delega la logica di inserimento dati a un componente presentazionale dedicato.
 *`ConfirmAccountFormComponent`*: gestisce l'interfaccia di inserimento della nuova password e le relative validazioni.
-  - _Input_:
-    - `loading`: segnale booleano che indica se è in corso la comunicazione con il backend.
-    - `generalError`: stringa contenente eventuali errori restituiti dal server da visualizzare nel banner.
-  - _Output_:
-    - `submitConfirmAccount`: emette i dati del modulo (nuova password) verso la pagina per l'elaborazione.
-    - `dismissError`: segnala alla pagina la volontà dell'utente di chiudere il banner di errore.
-  - _Logica e Funzionalità_:
-    - Implementa un modulo reattivo (Reactive Form) che impone una lunghezza minima di 8 caratteri per la password.
-    - Include un validatore personalizzato `passwordsMatchValidator` per garantire che il campo di conferma coincida esattamente con la nuova password inserita.
-    - Gestisce la visualizzazione di messaggi di errore contestuali per i singoli campi e un indicatore di progresso (`MatProgressBar`) durante la fase di invio.
+- _Input_:
+  - `loading`: segnale booleano che indica se è in corso la comunicazione con il backend.
+  - `generalError`: stringa contenente eventuali errori restituiti dal server da visualizzare nel banner.
+- _Output_:
+  - `submitConfirmAccount`: emette i dati del modulo (nuova password) verso la pagina per l'elaborazione.
+  - `dismissError`: segnala alla pagina la volontà dell'utente di chiudere il banner di errore.
+- _Logica e Funzionalità_:
+  - Implementa un modulo reattivo (Reactive Form) che impone una lunghezza minima di 8 caratteri per la password.
+  - Include un validatore personalizzato `passwordsMatchValidator` per garantire che il campo di conferma coincida esattamente con la nuova password inserita.
+  - Gestisce la visualizzazione di messaggi di errore contestuali per i singoli campi e un indicatore di progresso (`MatProgressBar`) durante la fase di invio.
 
 
 ===== Dashboard
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Dashboard.pdf", width: 100%),
-  caption: [Code diagram - Dashboard]
+  caption: [Code diagram - Dashboard],
 ) \
 
 Il modulo `Dashboard` costituisce il centro operativo dell'applicazione, offrendo una visione d'insieme dello stato dei dispositivi e permettendo il monitoraggio analitico dei dati biometrici e ambientali in tempo reale e in modalità storica.
 
 ====== DashboardPage <angular-dashboard-page>
 La `DashboardPage` agisce come orchestratore principale per la visualizzazione dei dati, adattando il proprio contenuto e le funzionalità disponibili in base al ruolo dell'utente e all'eventuale contesto di impersonificazione.
-  - _Responsabilità_:
-      - Gestisce il caricamento dei dati filtrati per tenant; per il ruolo `SUPER_ADMIN`, implementa una logica di impersonificazione che permette di visualizzare i dati di un'organizzazione specifica tramite parametri dell'URL.
-      - Coordina la visualizzazione delle tabelle dei gateway e dei sensori (utilizzando i componenti shared @angular-shared-components), gestendo l'espansione dei dettagli e la paginazione dei risultati attraverso il `DashboardService`.
-      - Supervisiona il ciclo di vita dei grafici, gestendo l'apertura delle richieste di monitoraggio e assicurando la corretta chiusura delle connessioni alla distruzione del componente.
-      - Fornisce feedback all'utente tramite banner informativi o notifiche in risposta all'invio di comandi.
-  - _Servizi Iniettati_: `DashboardService` (@angular-dashboard-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`, `UserSessionService` (@angular-user-session-service).
+- _Responsabilità_:
+  - Gestisce il caricamento dei dati filtrati per tenant; per il ruolo `SUPER_ADMIN`, implementa una logica di impersonificazione che permette di visualizzare i dati di un'organizzazione specifica tramite parametri dell'URL.
+  - Coordina la visualizzazione delle tabelle dei gateway e dei sensori (utilizzando i componenti shared @angular-shared-components), gestendo l'espansione dei dettagli e la paginazione dei risultati attraverso il `DashboardService`.
+  - Supervisiona il ciclo di vita dei grafici, gestendo l'apertura delle richieste di monitoraggio e assicurando la corretta chiusura delle connessioni alla distruzione del componente.
+  - Fornisce feedback all'utente tramite banner informativi o notifiche in risposta all'invio di comandi.
+- _Servizi Iniettati_: `DashboardService` (@angular-dashboard-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`, `UserSessionService` (@angular-user-session-service).
 
 ====== UI Components <angular-dashboard-components>
 All'interno della dashboard, la visualizzazione dei segnali è affidata a componenti presentazionali specializzati che gestiscono la complessità del rendering grafico.
 
 *`ChartContainerComponent`*: funge da contenitore dinamico per la visualizzazione dei grafici, isolando la logica di gestione del servizio dati dalla rappresentazione visiva.
-  - _Input_:
-    - `chartRequest`: oggetto di configurazione contenente il sensore, il tipo di grafico e gli eventuali filtri richiesti.
-  - _Output_:
-    - `chartClosed`: segnala alla pagina la chiusura della vista del grafico.
-  - _Funzionalità_:
-    - Utilizza un effect per avviare automaticamente il recupero dei dati tramite `SensorChartService` ogni volta che la richiesta cambia.
-    - Visualizza lo stato della connessione WebSocket (es. "Connected", "Connecting") per i grafici live e gestisce la visualizzazione di eventuali errori di caricamento.
-    - Istanzia condizionalmente i componenti `HistoricChartComponent` e/o `RealTimeChartComponent` in base al tipo di richiesta.
+- _Input_:
+  - `chartRequest`: oggetto di configurazione contenente il sensore, il tipo di grafico e gli eventuali filtri richiesti.
+- _Output_:
+  - `chartClosed`: segnala alla pagina la chiusura della vista del grafico.
+- _Funzionalità_:
+  - Utilizza un effect per avviare automaticamente il recupero dei dati tramite `SensorChartService` ogni volta che la richiesta cambia.
+  - Visualizza lo stato della connessione WebSocket (es. "Connected", "Connecting") per i grafici live e gestisce la visualizzazione di eventuali errori di caricamento.
+  - Istanzia condizionalmente i componenti `HistoricChartComponent` e/o `RealTimeChartComponent` in base al tipo di richiesta.
 
 *`RealTimeChartComponent`*: componente dedicato al rendering dei segnali biometrici e ambientali in tempo reale.
-  - _Funzionalità_: 
-    - Utilizza la libreria `chart.js` per visualizzare un grafico a linee ottimizzato per lo streaming continuo di dati.
-    - Include un selettore di campo (mat-select) qualora il sensore fornisca letture multiple simultanee (es. Temperatura e Umidità).
-    - Applica configurazioni grafiche specifiche per il segnale ECG, come l'assenza di punti dati e una tensione della linea ridotta per una rappresentazione clinica accurata.
+- _Funzionalità_:
+  - Utilizza la libreria `chart.js` per visualizzare un grafico a linee ottimizzato per lo streaming continuo di dati.
+  - Include un selettore di campo (mat-select) qualora il sensore fornisca letture multiple simultanee (es. Temperatura e Umidità).
+  - Applica configurazioni grafiche specifiche per il segnale ECG, come l'assenza di punti dati e una tensione della linea ridotta per una rappresentazione clinica accurata.
 
 *`HistoricChartComponent`*: implementa la visualizzazione delle serie storiche, fornendo strumenti per l'analisi di dataset estesi.
-  - _Funzionalità_: 
-    - Utilizza la libreria `chart.js` per visualizzare un grafico a linee.
-    - Integra controlli di scorrimento (slider e pulsanti "chevron") per navigare all'interno dei dati storici, visualizzando una finestra definita di punti (es. 50 o 250 per l'ECG).
-    - Calcola dinamicamente l'offset di visualizzazione per permettere all'utente di scorrere temporalmente lungo tutta la lettura recuperata.
+- _Funzionalità_:
+  - Utilizza la libreria `chart.js` per visualizzare un grafico a linee.
+  - Integra controlli di scorrimento (slider e pulsanti "chevron") per navigare all'interno dei dati storici, visualizzando una finestra definita di punti (es. 50 o 250 per l'ECG).
+  - Calcola dinamicamente l'offset di visualizzazione per permettere all'utente di scorrere temporalmente lungo tutta la lettura recuperata.
 
 ====== Dialogs <angular-dashboard-dialogs>
 *Nota*: Sebbene descritti in questa sezione per pertinenza funzionale con il modulo _Dashboard_, i seguenti dialoghi non sono invocati direttamente dalla pagina, ma sono attivati dalle tabelle componenti (`GatewayTable` e `SensorTable`) descritte nella @angular-shared-components.
 
 *`GatewayCommandsDialog`*: interfaccia per l'invio di istruzioni operative ai gateway, con validazioni dinamiche basate sullo stato del dispositivo.
-  - _Logica_:
-    - Filtra l'elenco dei comandi disponibili in base allo stato attuale (es. "Commission" per dispositivi decommissionati, "Interrupt/Resume" per dispositivi attivi/inattivi).
-    - Gestisce l'inserimento obbligatorio del tenant e del token di sicurezza per l'attivazione dei gateway.
-  - _Interazione_: coordina l'invio tramite `GatewayService` (@angular-gateway-service) e gestisce internamente lo stato di invio e gli errori API.
+- _Logica_:
+  - Filtra l'elenco dei comandi disponibili in base allo stato attuale (es. "Commission" per dispositivi decommissionati, "Interrupt/Resume" per dispositivi attivi/inattivi).
+  - Gestisce l'inserimento obbligatorio del tenant e del token di sicurezza per l'attivazione dei gateway.
+- _Interazione_: coordina l'invio tramite `GatewayService` (@angular-gateway-service) e gestisce internamente lo stato di invio e gli errori API.
 
 *`SensorCommandsDialog`*: permette l'invio di comandi di interruzione o ripresa dell'attività ai sensori.
-  - _Funzionalità_: presenta opzioni contestuali allo stato del sensore e comunica con `SensorService` (@angular-sensor-service) per l'esecuzione del comando.
+- _Funzionalità_: presenta opzioni contestuali allo stato del sensore e comunica con `SensorService` (@angular-sensor-service) per l'esecuzione del comando.
 
 *`HistoricChartFiltersDialog`*: fornisce un modulo per la configurazione dei parametri di recupero dei dati storici.
-  - _Logica_:
-     - Permette di selezionare un intervallo temporale tramite datepicker e selettori di orario, oltre a definire il numero massimo di punti dati (da 1 a 300).
-    - Implementa una validazione incrociata per garantire che la data di inizio sia sempre precedente alla data di fine dell'intervallo.
+- _Logica_:
+  - Permette di selezionare un intervallo temporale tramite datepicker e selettori di orario, oltre a definire il numero massimo di punti dati (da 1 a 300).
+  - Implementa una validazione incrociata per garantire che la data di inizio sia sempre precedente alla data di fine dell'intervallo.
 
 
 ===== Gateway-Sensor
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-GatewaySensor.pdf", width: 75%),
-  caption: [Code diagram - Gateway-Sensor]
+  caption: [Code diagram - Gateway-Sensor],
 ) \
 
 Il modulo `Gateway-Sensor` fornisce l'interfaccia dedicata alle operazioni di amministrazione (CRUD) sui gateway e sui sensori. A differenza della `Dashboard`, questa sezione è ottimizzata per la configurazione del sistema e la gestione del ciclo di vita dei dispositivi.
 
 ====== GatewaySensorManagerPage <angular-gatewaysensormanager-page>
 La `GatewaySensorManagerPage` funge da orchestratore per le attività di gestione, interfacciandosi con il servizio di dominio per riflettere i cambiamenti di stato e di inventario nell'interfaccia utente.
-  - _Responsabilità_:
-    - Inizializza il caricamento dei gateway e dei sensori associati tramite il `GatewaySensorManagerService`.
-    - Configura la tabella dei gateway in modalità "manage" (`actionMode="manage"`), abilitando le colonne per la visualizzazione delle chiavi pubbliche e per l'eliminazione dei record.
-    - Gestisce i flussi di creazione e cancellazione: apre i dialoghi di creazione (`CreateGatewayDialog`, `CreateSensorDialog`) o conferma eliminazione (`ConfirmDeleteDialog`) e ne elabora l'esito aggiornando i dati e notificando l'utente tramite `SnackBar`.
-    - Monitora e visualizza eventuali errori operativi derivanti dalle API, permettendo all'utente di chiudere i banner di avviso.
-  - _Servizi Iniettati_: `GatewaySensorManagerService` (@angular-gateway-sensor-manager-service).
+- _Responsabilità_:
+  - Inizializza il caricamento dei gateway e dei sensori associati tramite il `GatewaySensorManagerService`.
+  - Configura la tabella dei gateway in modalità "manage" (`actionMode="manage"`), abilitando le colonne per la visualizzazione delle chiavi pubbliche e per l'eliminazione dei record.
+  - Gestisce i flussi di creazione e cancellazione: apre i dialoghi di creazione (`CreateGatewayDialog`, `CreateSensorDialog`) o conferma eliminazione (`ConfirmDeleteDialog`) e ne elabora l'esito aggiornando i dati e notificando l'utente tramite `SnackBar`.
+  - Monitora e visualizza eventuali errori operativi derivanti dalle API, permettendo all'utente di chiudere i banner di avviso.
+- _Servizi Iniettati_: `GatewaySensorManagerService` (@angular-gateway-sensor-manager-service).
 
 ====== Dialogs <angular-gatewaysensormanager-dialogs>
 Il modulo si avvale di dialoghi specializzati per l'inserimento e la validazione delle configurazioni dei nuovi dispositivi.
 
 *`CreateGatewayDialog`*: componente dedicato alla creazione di nuove entità gateway.
-  - _Logica_:
-     - Implementa un modulo reattivo per l'inserimento del nome e dell'intervallo di invio dati.
-     - Impone validazioni sul campo `interval`, richiedendo un valore minimo di 100ms per garantire la stabilità delle comunicazioni.
-  - _Interazione_: invia la configurazione `GatewayConfig` al `GatewayService` (@angular-gateway-service) e gestisce internamente la visualizzazione degli errori.
+- _Logica_:
+  - Implementa un modulo reattivo per l'inserimento del nome e dell'intervallo di invio dati.
+  - Impone validazioni sul campo `interval`, richiedendo un valore minimo di 100ms per garantire la stabilità delle comunicazioni.
+- _Interazione_: invia la configurazione `GatewayConfig` al `GatewayService` (@angular-gateway-service) e gestisce internamente la visualizzazione degli errori.
 
 *`CreateSensorDialog`*: gestisce l'aggiunta di sensori a un gateway specifico.
-  - _Logica_:
-     - Riceve tramite `MAT_DIALOG_DATA` l'identificativo e il nome del gateway ospite per contestualizzare l'operazione.
-     - Permette la selezione del profilo tecnologico del sensore (ECG, Battito, etc.) tramite l'enumerazione `SensorProfiles`.
-     - Utilizza il `sensorProfilesMapper` per tradurre il profilo selezionato nel formato richiesto dal backend prima dell'invio.
-  - _Interazione_: comunica con `SensorService` (@angular-sensor-service) per la creazione dell'entità `SensorConfig` e chiude il dialogo restituendo un feedback positivo in caso di successo.
+- _Logica_:
+  - Riceve tramite `MAT_DIALOG_DATA` l'identificativo e il nome del gateway ospite per contestualizzare l'operazione.
+  - Permette la selezione del profilo tecnologico del sensore (ECG, Battito, etc.) tramite l'enumerazione `SensorProfiles`.
+  - Utilizza il `sensorProfilesMapper` per tradurre il profilo selezionato nel formato richiesto dal backend prima dell'invio.
+- _Interazione_: comunica con `SensorService` (@angular-sensor-service) per la creazione dell'entità `SensorConfig` e chiude il dialogo restituendo un feedback positivo in caso di successo.
 
 
 ===== Login
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Login.pdf", width: 80%),
-  caption: [Code diagram - Login]
+  caption: [Code diagram - Login],
 ) \
 
 Il modulo `Login` costituisce il punto di accesso principale al sistema, gestendo l'autenticazione degli utenti e fornendo i flussi per il recupero delle credenziali dimenticate.
 
 ====== LoginPage <angular-login-page>
 La `LoginPage` funge da orchestratore per la fase di accesso, collegando il modulo di inserimento dati con i servizi di sessione e gestendo la navigazione post-autenticazione.
-  - _Responsabilità_:
-    - Coordina l'operazione di accesso invocando il metodo login dell'`AuthSessionService` e, in caso di successo, reindirizza l'utente verso la `Dashboard`.
-    - Gestisce l'apertura del dialogo per il recupero password (`ForgotPasswordDialog`).
-    - Espone lo stato di caricamento e gli eventuali errori recuperati dal servizio di sessione.
-  - _Servizi Iniettati_: `AuthSessionService` (@angular-auth-session-service), `Router`.
+- _Responsabilità_:
+  - Coordina l'operazione di accesso invocando il metodo login dell'`AuthSessionService` e, in caso di successo, reindirizza l'utente verso la `Dashboard`.
+  - Gestisce l'apertura del dialogo per il recupero password (`ForgotPasswordDialog`).
+  - Espone lo stato di caricamento e gli eventuali errori recuperati dal servizio di sessione.
+- _Servizi Iniettati_: `AuthSessionService` (@angular-auth-session-service), `Router`.
 
 ====== UI Components (Dumb Components) <angular-login-components>
 All'interno della cartella components, la logica di presentazione del modulo di accesso è isolata in un componente dedicato.
 *`LoginFormComponent`*: rappresenta l'interfaccia utente per l'inserimento delle credenziali e la selezione del contesto organizzativo.
-  - _Input_:
-    - `loading`: booleano che indica se è in corso un tentativo di autenticazione.
-    - `generalError`: stringa contenente messaggi di errore restituiti dal server.
-  - _Output_:
-    - `submitLogin`: emette la richiesta LoginRequest (email, password e tenantId) verso la pagina.
-    - `forgotPassword`: segnala l'intenzione dell'utente di avviare il recupero password.
-    - `dismissError`: emette un evento per pulire i messaggi di errore visualizzati.
-  - _Logica_ e _Funzionalità_:
-    - Utilizza il `TenantService` (@angular-tenant-service) nel costruttore per popolare dinamicamente il selettore dei tenant disponibili.
-    - Implementa validazioni reattive per garantire che l'email rispetti il formato corretto e che i campi obbligatori siano popolati prima dell'invio.
+- _Input_:
+  - `loading`: booleano che indica se è in corso un tentativo di autenticazione.
+  - `generalError`: stringa contenente messaggi di errore restituiti dal server.
+- _Output_:
+  - `submitLogin`: emette la richiesta LoginRequest (email, password e tenantId) verso la pagina.
+  - `forgotPassword`: segnala l'intenzione dell'utente di avviare il recupero password.
+  - `dismissError`: emette un evento per pulire i messaggi di errore visualizzati.
+- _Logica_ e _Funzionalità_:
+  - Utilizza il `TenantService` (@angular-tenant-service) nel costruttore per popolare dinamicamente il selettore dei tenant disponibili.
+  - Implementa validazioni reattive per garantire che l'email rispetti il formato corretto e che i campi obbligatori siano popolati prima dell'invio.
 
 ====== Dialogs <angular-login-dialogs>
 *`ForgotPasswordDialog`*: gestisce il flusso di richiesta per la reimpostazione della password.
-  - _Logica_:
-    - Presenta un modulo per l'inserimento dell'email e la selezione opzionale del tenant.
-    - Include una funzione `setupAutoClear` che monitora i cambiamenti nei campi del modulo per pulire automaticamente gli errori di invio mentre l'utente digita.
-  - _Interazione_:
-    - Invia la richiesta `ForgotPasswordRequest` tramite l'`AuthActionsService`.
-    - In caso di esito positivo, chiude il dialogo restituendo true per confermare l'invio del link di reset.
-    - _Servizi Iniettati_: `FormBuilder`, `MatDialogRef`, `AuthActionsService` (@angular-auth-actions-service), `TenantService` (@angular-tenant-service).
+- _Logica_:
+  - Presenta un modulo per l'inserimento dell'email e la selezione opzionale del tenant.
+  - Include una funzione `setupAutoClear` che monitora i cambiamenti nei campi del modulo per pulire automaticamente gli errori di invio mentre l'utente digita.
+- _Interazione_:
+  - Invia la richiesta `ForgotPasswordRequest` tramite l'`AuthActionsService`.
+  - In caso di esito positivo, chiude il dialogo restituendo true per confermare l'invio del link di reset.
+  - _Servizi Iniettati_: `FormBuilder`, `MatDialogRef`, `AuthActionsService` (@angular-auth-actions-service), `TenantService` (@angular-tenant-service).
 
 
 ===== Reset Password
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-ResetPassword.pdf", width: 100%),
-  caption: [Code diagram - Reset Password]
+  caption: [Code diagram - Reset Password],
 ) \
 
 Il modulo `ResetPassword` gestisce la fase finale del recupero delle credenziali, permettendo all'utente di impostare una nuova password tramite un link di sicurezza ricevuto via email.
 
 ====== ResetPasswordPage <angular-resetpassword-page>
 La `ResetPasswordPage` funge da coordinatore per l'operazione di ripristino, estraendo i parametri di validazione dall'URL e gestendo lo stato dell'interfaccia in base all'esito della richiesta.
-  - _Responsabilità_:
-    - Recupera il token di sicurezza dai parametri del percorso e l'eventuale tenantId dai parametri di ricerca (query parameters) per autorizzare l'operazione.
-    - Osserva i segnali esposti da `AuthActionsService` per monitorare lo stato di caricamento (`loading`), eventuali errori (`generalError`) e la conferma dell'avvenuta modifica (`passwordChangeResult`).
-    - Inoltra la richiesta di reset al servizio di dominio, integrando i dati ricevuti dal form con il token e il tenant ID estratti dall'URL.
-    - Gestisce la navigazione di ritorno alla pagina di login dopo il completamento con successo.
-  - _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
+- _Responsabilità_:
+  - Recupera il token di sicurezza dai parametri del percorso e l'eventuale tenantId dai parametri di ricerca (query parameters) per autorizzare l'operazione.
+  - Osserva i segnali esposti da `AuthActionsService` per monitorare lo stato di caricamento (`loading`), eventuali errori (`generalError`) e la conferma dell'avvenuta modifica (`passwordChangeResult`).
+  - Inoltra la richiesta di reset al servizio di dominio, integrando i dati ricevuti dal form con il token e il tenant ID estratti dall'URL.
+  - Gestisce la navigazione di ritorno alla pagina di login dopo il completamento con successo.
+- _Servizi Iniettati_: `AuthActionsService` (@angular-auth-actions-service), `Router`, `ActivatedRoute`.
 
 ====== UI Components <angular-resetpassword-components>
 La logica di inserimento e validazione dei dati è delegata a un componente presentazionale che separa la gestione dei messaggi di sistema dalla visualizzazione del modulo.
 *`ResetPasswordFormComponent`*: fornisce l'interfaccia per la creazione della nuova password, garantendo la correttezza dei dati inseriti tramite validazioni reattive.
-  - _Input_:
-    - `loading`: indica se la richiesta è in fase di elaborazione.
-    - `generalError`: contiene il messaggio di errore da visualizzare nel banner nel caso di errore.
-    - `success`: booleano che, se vero, nasconde il modulo e mostra un messaggio di conferma del successo dell'operazione.
-  - _Output_:
-    - `submitReset`: emette la nuova password verso la pagina orchestratrice.
-    - `goToLogin`: segnala l'intenzione dell'utente di tornare alla pagina di accesso.
-    - `dismissError`: richiede la rimozione del banner di errore.
-  - _Logica_ e _Funzionalità_:
-    - Utilizza un `FormBuilder` per creare un modulo reattivo con controlli sulla password (obbligatoria, minimo 8 caratteri).
-    - Implementa il validatore `passwordsMatchValidator` per assicurarsi che i campi "Nuova Password" e "Conferma Password" corrispondano.
-    - Gestisce dinamicamente il template per mostrare indicatori di progresso (`MatProgressBar`) o messaggi di errore contestuali sotto i campi del form.
+- _Input_:
+  - `loading`: indica se la richiesta è in fase di elaborazione.
+  - `generalError`: contiene il messaggio di errore da visualizzare nel banner nel caso di errore.
+  - `success`: booleano che, se vero, nasconde il modulo e mostra un messaggio di conferma del successo dell'operazione.
+- _Output_:
+  - `submitReset`: emette la nuova password verso la pagina orchestratrice.
+  - `goToLogin`: segnala l'intenzione dell'utente di tornare alla pagina di accesso.
+  - `dismissError`: richiede la rimozione del banner di errore.
+- _Logica_ e _Funzionalità_:
+  - Utilizza un `FormBuilder` per creare un modulo reattivo con controlli sulla password (obbligatoria, minimo 8 caratteri).
+  - Implementa il validatore `passwordsMatchValidator` per assicurarsi che i campi "Nuova Password" e "Conferma Password" corrispondano.
+  - Gestisce dinamicamente il template per mostrare indicatori di progresso (`MatProgressBar`) o messaggi di errore contestuali sotto i campi del form.
 
 
 ===== Tenant
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-Tenant.pdf", width: 70%),
-  caption: [Code diagram - Tenant page]
+  caption: [Code diagram - Tenant page],
 ) \
 
 Il modulo `Tenant` fornisce l'interfaccia per la gestione delle entità organizzative (appunto i tenant) all'interno del sistema multi-tenant. Questa sezione permette agli amministratori globali di creare nuove organizzazioni, monitorare quelle esistenti ed eseguire operazioni di impersonificazione.
 
 ====== TenantManagerPage <angular-tenantmanager-page>
 La `TenantManagerPage` funge da orchestratore centrale per l'anagrafica dei tenant, gestendo il caricamento dei dati e coordinando le azioni di amministrazione.
-  - _Responsabilità_:
-    - Inizializza il recupero della lista dei tenant attraverso il `TenantService`.
-    - Gestisce la creazione di nuovi tenant aprendo il dialogo `TenantFormDialog` (@angular-tenant-dialogs) e aggiornando la vista in caso di successo.
-    - Coordina l'eliminazione dei tenant esistenti, richiedendo conferma tramite il dialogo condiviso `ConfirmDeleteDialog` (@angular-shared-dialogs).
-    - Implementa la logica di navigazione contestuale: permette di "entrare" nella dashboard di un tenant specifico (impersonificazione) o di accedere alla gestione degli utenti di quella specifica organizzazione.
-    - Monitora lo stato di errore globale del servizio e permette all'utente di chiudere i banner di notifica in caso di fallimento delle API.
-  - _Servizi Iniettati_: `TenantService` (@angular-tenant-service), `Router`.
+- _Responsabilità_:
+  - Inizializza il recupero della lista dei tenant attraverso il `TenantService`.
+  - Gestisce la creazione di nuovi tenant aprendo il dialogo `TenantFormDialog` (@angular-tenant-dialogs) e aggiornando la vista in caso di successo.
+  - Coordina l'eliminazione dei tenant esistenti, richiedendo conferma tramite il dialogo condiviso `ConfirmDeleteDialog` (@angular-shared-dialogs).
+  - Implementa la logica di navigazione contestuale: permette di "entrare" nella dashboard di un tenant specifico (impersonificazione) o di accedere alla gestione degli utenti di quella specifica organizzazione.
+  - Monitora lo stato di errore globale del servizio e permette all'utente di chiudere i banner di notifica in caso di fallimento delle API.
+- _Servizi Iniettati_: `TenantService` (@angular-tenant-service), `Router`.
 
 ====== UI Components <angular-tenant-components>
 La visualizzazione dei dati è affidata a un componente presentazionale che isola la complessità della tabella di Angular Material.
 *`TenantTableComponent`*: componente dedicato alla rappresentazione tabellare dei tenant.
-  - _Input_:
-     - `tenants`: l'array di oggetti Tenant da visualizzare.
-     - `loading`: stato di caricamento per la visualizzazione dello spinner.
-     - `total`, `pageIndex`, `limit`: parametri per la gestione della paginazione integrata.
-  - _Output_:
-    - `deleteRequested`: segnala la volontà di eliminare un tenant.
-    - `dashboardRequested`: emette l'evento per avviare l'impersonificazione nella dashboard.
-    - `tenantUserManagementRequested`: richiede l'accesso alla gestione utenti del tenant.
-    - `pageChange`: notifica il cambio di pagina o della dimensione della stessa.
-  - _Funzionalità_: mostra dinamicamente le azioni di gestione (dashboard e utenti) solo se il tenant ha il flag `canImpersonate` attivo.
+- _Input_:
+  - `tenants`: l'array di oggetti Tenant da visualizzare.
+  - `loading`: stato di caricamento per la visualizzazione dello spinner.
+  - `total`, `pageIndex`, `limit`: parametri per la gestione della paginazione integrata.
+- _Output_:
+  - `deleteRequested`: segnala la volontà di eliminare un tenant.
+  - `dashboardRequested`: emette l'evento per avviare l'impersonificazione nella dashboard.
+  - `tenantUserManagementRequested`: richiede l'accesso alla gestione utenti del tenant.
+  - `pageChange`: notifica il cambio di pagina o della dimensione della stessa.
+- _Funzionalità_: mostra dinamicamente le azioni di gestione (dashboard e utenti) solo se il tenant ha il flag `canImpersonate` attivo.
 
 ====== Dialogs <angular-tenant-dialogs>
 *`TenantFormDialog`*: gestisce l'interfaccia di inserimento per la creazione di una nuova organizzazione.
-  - _Logica_:
-    - Utilizza un modulo reattivo per l'inserimento del `name` (obbligatorio) e la configurazione del permesso `canImpersonate` tramite checkbox.
-    - Gestisce internamente lo stato di invio (`isSubmitting`) e la visualizzazione di errori specifici restituiti dal backend durante la creazione.
-  - _Interazione_: comunica direttamente con il `TenantService` (@angular-tenant-service) per l'invio della configurazione `TenantConfig` e chiude il dialogo restituendo un feedback positivo alla pagina principale.
+- _Logica_:
+  - Utilizza un modulo reattivo per l'inserimento del `name` (obbligatorio) e la configurazione del permesso `canImpersonate` tramite checkbox.
+  - Gestisce internamente lo stato di invio (`isSubmitting`) e la visualizzazione di errori specifici restituiti dal backend durante la creazione.
+- _Interazione_: comunica direttamente con il `TenantService` (@angular-tenant-service) per l'invio della configurazione `TenantConfig` e chiude il dialogo restituendo un feedback positivo alla pagina principale.
 
 ===== User
 #figure(
   image("../../assets/c4/frontend/componentsUI/frontend-ComponentUI-User.pdf", width: 70%),
-  caption: [Code diagram - User page]
+  caption: [Code diagram - User page],
 ) \
 
 Il modulo `User` fornisce l'interfaccia per la gestione completa degli utenti del sistema. La pagina è dinamica e adatta i propri contenuti (titoli, permessi e filtri) in base al ruolo dell'utente collegato e alla tipologia di account che si sta gestendo.
 
 ====== UserManagerPage <angular-usermanager-page>
 La `UserManagerPage` agisce come orchestratore centrale per l'amministrazione degli utenti, gestendo la navigazione tra i diversi ruoli e il contesto organizzativo.
-  - _Responsabilità_:
-    - Determina il contesto operativo (titolo della pagina e ruolo target) analizzando il percorso di routing attivo.
-    - Gestisce la visualizzazione tabellare degli utenti tramite lo `UserService` (@angular-user-service), supportando la paginazione e il filtraggio per tenant.
-    - Implementa una logica di commutazione tramite tab per distinguere tra _Tenant User_ e _Tenant Admin_ all'interno di una specifica organizzazione.
-    - Per i _Super Admin_, fornisce un selettore per filtrare gli utenti in base al tenant di appartenenza.
-    - Coordina le operazioni CRUD: apre il dialogo `UserFormDialog` per la creazione e richiede conferma tramite `ConfirmDeleteDialog` prima della rimozione di un account.
-    - Gestisce i flussi di navigazione per tornare alla gestione dei tenant o alla dashboard.
-  - _Servizi Iniettati_: `UserService` (@angular-user-service), `UserSessionService` (@angular-user-session-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`.
+- _Responsabilità_:
+  - Determina il contesto operativo (titolo della pagina e ruolo target) analizzando il percorso di routing attivo.
+  - Gestisce la visualizzazione tabellare degli utenti tramite lo `UserService` (@angular-user-service), supportando la paginazione e il filtraggio per tenant.
+  - Implementa una logica di commutazione tramite tab per distinguere tra _Tenant User_ e _Tenant Admin_ all'interno di una specifica organizzazione.
+  - Per i _Super Admin_, fornisce un selettore per filtrare gli utenti in base al tenant di appartenenza.
+  - Coordina le operazioni CRUD: apre il dialogo `UserFormDialog` per la creazione e richiede conferma tramite `ConfirmDeleteDialog` prima della rimozione di un account.
+  - Gestisce i flussi di navigazione per tornare alla gestione dei tenant o alla dashboard.
+- _Servizi Iniettati_: `UserService` (@angular-user-service), `UserSessionService` (@angular-user-session-service), `TenantService` (@angular-tenant-service), `ActivatedRoute`, `Router`.
 
 ====== UI Components <angular-user-components>
 La visualizzazione della lista utenti è delegata a un componente specializzato che garantisce la coerenza visiva.
 *`UserTableComponent`*: componente dedicato alla rappresentazione dei dati degli utenti.
-  - _Input_:
-     - `users`: l'array di oggetti User da visualizzare nella tabella.
-     - `loading`: segnale booleano per lo stato di caricamento.
-     - `total`, `pageIndex`, `limit`: parametri per la gestione del paginatore.
-     - `currentUserId`, `currentUserRole`: utilizzati per la logica di protezione.
-  - _Output_:
-     - `deleteRequested`: segnala l'intenzione di eliminare un record.
-     - `pageChange`: notifica la richiesta di cambio pagina o dimensione del set di dati.
-  - _Funzionalità_: implementa una misura di sicurezza nel template che nasconde il pulsante di eliminazione per l'utente attualmente loggato, impedendo l'auto-cancellazione del proprio account.
+- _Input_:
+  - `users`: l'array di oggetti User da visualizzare nella tabella.
+  - `loading`: segnale booleano per lo stato di caricamento.
+  - `total`, `pageIndex`, `limit`: parametri per la gestione del paginatore.
+  - `currentUserId`, `currentUserRole`: utilizzati per la logica di protezione.
+- _Output_:
+  - `deleteRequested`: segnala l'intenzione di eliminare un record.
+  - `pageChange`: notifica la richiesta di cambio pagina o dimensione del set di dati.
+- _Funzionalità_: implementa una misura di sicurezza nel template che nasconde il pulsante di eliminazione per l'utente attualmente loggato, impedendo l'auto-cancellazione del proprio account.
 
 ====== Dialogs <angular-user-dialogs>
 *`UserFormDialogComponent`*: gestisce l'inserimento dei dati per la creazione di nuovi profili utente.
-  - _Logica_:
-    - Utilizza un modulo reattivo per acquisire username ed email (con validazione del formato).
-    - Gestisce dinamicamente il campo `tenantId`: se l'operazione avviene nel contesto di un tenant specifico, il campo viene bloccato e visualizzato come sola lettura; in caso contrario, permette la selezione da una lista caricata tramite `TenantService` (@angular-tenant-service).
-  - _Interazione_: invia i dati al servizio `UserService` (@angular-user-service) e monitora lo stato di sottomissione per visualizzare indicatori di progresso o messaggi di errore restituiti dalle API.
+- _Logica_:
+  - Utilizza un modulo reattivo per acquisire username ed email (con validazione del formato).
+  - Gestisce dinamicamente il campo `tenantId`: se l'operazione avviene nel contesto di un tenant specifico, il campo viene bloccato e visualizzato come sola lettura; in caso contrario, permette la selezione da una lista caricata tramite `TenantService` (@angular-tenant-service).
+- _Interazione_: invia i dati al servizio `UserService` (@angular-user-service) e monitora lo stato di sottomissione per visualizzare indicatori di progresso o messaggi di errore restituiti dalle API.
 
 
 
@@ -2981,11 +2984,11 @@ var Module = fx.Module(
   "nome_modulo",  // Nome con cui viene riconosciuto il modulo nel sistema di DI
   fx.Provide(
     // Costruttore del controller del package (se presente):
-    //   Non viene annotato come interfaccia, poiché 
+    //   Non viene annotato come interfaccia, poiché
     //   è sufficiente iniettare la struct concreta
     NewController,  // Ritorna *Controller
 
-    // Costruttore di ExampleService, il quale implementa 
+    // Costruttore di ExampleService, il quale implementa
     // ExampleUseCase1, ExampleUseCase2 e ExampleUseCase3:
     //   In questo caso, si annota il costruttore con ciascuna delle
     //   interfacce che ExampleSerivce implementa
@@ -2995,7 +2998,7 @@ var Module = fx.Module(
       fx.As(new(ExampleUseCase2)),
       fx.As(new(ExampleUseCase3)),
     ),
-    
+
     // ...
   ),
 )
@@ -3009,7 +3012,7 @@ Il package `email` non presenta controller poiché non viene chiamato direttamen
 
 #figure(
   image("../../assets/c4/backend/email/email.pdf", width: 100%),
-  caption: [Cloud Backend -- Code Diagram di package `email`]
+  caption: [Cloud Backend -- Code Diagram di package `email`],
 )
 
 ===== `SendEmailPort`
@@ -3029,9 +3032,9 @@ Struct che implementa `SendEmailPort` e presenta i seguenti attributi:
 
 Questa struct è costruita con la seguente funzione di costruzione:
 #align(center)[
-*```go
-NewSendEmailSMTPAdapter(cfg *config.Config, sender smtpSender, createMsgStrategy createMessageStrategy) *SendEmailSMTPAdapter
-```*
+  *```go
+  NewSendEmailSMTPAdapter(cfg *config.Config, sender smtpSender, createMsgStrategy createMessageStrategy) *SendEmailSMTPAdapter
+  ```*
 ]
 
 ===== `createMessageStrategy`
@@ -3044,14 +3047,14 @@ Rappresenta un'interfaccia che astrae il metodo *`DialAndSend(m ...*gomail.Messa
 
 Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *`smtpSender`* tramite la funzione *`newDialer(cfg *config.Config) *gomail.Dialer`* che legge la configurazione passata (`cfg`) per determinare le coordinate #gloss[SMTP] da contattare per inviare i messaggi email.
 
-==== Package `gateway` 
+==== Package `gateway`
 // TODO
 
 ==== Package `gateway/hello` <backend-gateway-hello>
 Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di ascoltare un subject #gloss[NATS] specifico in attesa di messaggi di hello da parte dei gateway e lo struct `Service` che si occupa di processare i messaggi ricevuti e validarli.
 
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.pdf", width:100%),
+  image("../../assets/c4/backend/gateway/hello/hello.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di `gateway/hello`],
 )
 
@@ -3092,13 +3095,13 @@ Il package `real_time_data` presenta le funzionalità per ricevere in tempo real
 
 Di seguito si riporta il Code Diagram degli struct di dominio rappresentati un dato o un errore ottenuti in tempo reale.
 #figure(
-  image("../../assets/c4/backend/real_time_data/real_time_data_datastructs.pdf", width:100%),
+  image("../../assets/c4/backend/real_time_data/real_time_data_datastructs.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di data structs per `real_time_data`],
 )
 
 Di seguito, invece, si riporta il Code Diagram di tutti gli altri struct presenti nel package.
 #figure(
-  image("../../assets/c4/backend/real_time_data/real_time_data_structs.pdf", width:90%),
+  image("../../assets/c4/backend/real_time_data/real_time_data_structs.pdf", width: 90%),
   caption: [Cloud Backend -- Code Diagram di Controller, UseCase, Service, Port, Adapter e Reader per `real_time_data`],
 )
 
@@ -3152,9 +3155,9 @@ L'_inbound port_ principale del package.
 ====== `RealTimeSample`
 *`RealTimeSample`* è l'interfaccia di dominio che rappresenta un dato ottenuto in tempo reale.
 
-*Metodi*: 
+*Metodi*:
 - *`GetData() any`*: Metodo per ottenere i dati strutturati del _sample_
--  *`GetProfile() sensorProfile.SensorProfile`*: Metodo per ottenere il profilo a cui sono associati i dati
+- *`GetProfile() sensorProfile.SensorProfile`*: Metodo per ottenere il profilo a cui sono associati i dati
 - *`GetTimestamp() time.Time`*: Metodo per ottenere il timestamp a cui è associato il dato
 
 Tutte le struct che implementano questa interfaccia presentano i seguenti attributi:
@@ -3185,7 +3188,7 @@ Le struct che implementano questa interfaccia sono le seguenti e ciascuna rappre
 - *`PulseOximeterSample`*: Rappresenta un _sample_ in formato *Pulse Oximeter*
   - Presenta attributo *`Data PulseOximeterSampleData`*, il quale ha come attributi:
     - *`Spo2 float64`*: Misura di ossigenazione del sangue in %
-	  - *`PulseRate int`*: Misura di battiti cardiaci al minuto
+    - *`PulseRate int`*: Misura di battiti cardiaci al minuto
 
 ====== `RealTimeError`
 Rappresenta un errore ricevuto in tempo reale. Può essere un errore di disconnessione ricevuto dal client oppure un errore di mapping ricevuto dal reader NATS.
@@ -3247,14 +3250,14 @@ Rappresenta un contenitore thread-safe per rappresentare un valore temporale cre
 ==== Package `sensor` <backend-sensor>
 Il package `sensor` si occupa della gestione CRUD dei sensori e dell'invio di comandi ad essi. Il diagramma riportato di seguito è comprensivo dell'intero package, per cui potrebbe essere necessario usare la funzionalità di zoom per leggerne i contenuti
 #figure(
-  image("../../assets/c4/backend/sensor/sensor.pdf", width:115%),
+  image("../../assets/c4/backend/sensor/sensor.pdf", width: 115%),
   caption: [Cloud Backend -- Code Diagram di `sensor`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
 L'_inbound adapter_ principale del package è `Controller`
 #figure(
-  image("../../assets/c4/backend/sensor/Controller.pdf", width:70%),
+  image("../../assets/c4/backend/sensor/Controller.pdf", width: 70%),
   caption: [Cloud Backend -- Code Diagram di `sensor.Controller`],
 )
 
@@ -3302,17 +3305,17 @@ I *DTO* usati da `Controller` sono i seguenti:
   - *`GatewayId string`*: UUID del gateway a cui il sensore è associato
   - *`Name string`*: Nome del sensore
   - *`Profile string`*: Profilo del sensore
-  - *`Interval int`*: Intervallo in millisecondi di generazione dati   
+  - *`Interval int`*: Intervallo in millisecondi di generazione dati
 
 - *`SensorsResponseDTO`*: Lista paginata in output di più sensori
   - *`Count int`*: Numero di elementi nella pagina corrente
   - *`Total int`*: Numero di elementi totali
-  - *`Sensors []SensorResponseDTO`*: Lista di sensori 
+  - *`Sensors []SensorResponseDTO`*: Lista di sensori
 
 
 ===== Inbound ports
 #figure(
-  image("../../assets/c4/backend/sensor/UseCases.pdf", width:80%),
+  image("../../assets/c4/backend/sensor/UseCases.pdf", width: 80%),
   caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ in `sensor`],
 ) <cloud-backend-code-inports-services>
 
@@ -3347,7 +3350,7 @@ Per dettagli sui `Command`, si consulti la @code-sensor-commands.
 
 ===== Comandi <code-sensor-commands>
 #figure(
-  image("../../assets/c4/backend/sensor/Commands.pdf", width:60%),
+  image("../../assets/c4/backend/sensor/Commands.pdf", width: 60%),
   caption: [Cloud Backend -- Code Diagram dei comandi in `sensor`],
 )
 
@@ -3363,23 +3366,23 @@ I comandi usati dallo strato di business sono i seguenti. Si noti che ciascuno d
   - *`SensorId uuid.UUID`*: UUID del sensore da eliminare
 
 - *`GetSensorCommand`*: Comando per ottenere un sensore
-  - *`SensorId uuid.UUID`*: UUID del sensore 
+  - *`SensorId uuid.UUID`*: UUID del sensore
 
 - *`GetSensorsByGatewayCommand`*: Comando per ottenere i sensori associati a un gateway
   - *`GatewayId uuid.UUID`*: UUID del gateway a cui sono associati i sensori
-  - *`Page int`*: Numero di pagina 
+  - *`Page int`*: Numero di pagina
   - *`Limit int`*: Numero di elementi per pagina
 
 - *`GetSensorsByTenantCommand`*: Comando per ottenere i sensori associati a un tenant
   - *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati i sensori
-  - *`Page int`*: Numero di pagina 
+  - *`Page int`*: Numero di pagina
   - *`Limit int`*: Numero di elementi per pagina
 
 - *`InterruptSensorCommand`*: Comando per interrompere un sensore
-    - *`SensorId uuid.UUID`*: UUID del sensore da interrompere
+  - *`SensorId uuid.UUID`*: UUID del sensore da interrompere
 
 - *`ResumeSensorCommand`*: Comando per riattivare un sensore
-    - *`SensorId uuid.UUID`*: UUID del sensore da riattivare
+  - *`SensorId uuid.UUID`*: UUID del sensore da riattivare
 
 
 ===== Services
@@ -3420,10 +3423,10 @@ Implementa l'interfaccia `InterruptSensorUseCase`.
 Implementa l'interfaccia `ResumeSensorUseCase`.
 
 *Attributi*:
--	*`sendResumeCmdPort SendResumeCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di riattivazione sensore;
--	*`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
--	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
--	*`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
+- *`sendResumeCmdPort SendResumeCmdPort`*: _Outbound port_ per inviare al gateway simulato il comando di riattivazione sensore;
+- *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway;
+- *`updatedSensorStatusPort UpdateSensorStatusPort`*: _Outbound port_ per aggiornare status di un sensore sul database.
 
 *Funzione di costruzione*: `NewResumeSensorService(sendResumeCmdPort SendResumeCmdPort, getSensorPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort, updatedSensorStatusPort UpdateSensorStatusPort) *ResumeSensorService`
 
@@ -3432,7 +3435,7 @@ Implementa l'interfaccia `GetSensorUseCase`.
 
 *Attributi*:
 - *`getSensorByIdPort GetSensorByIdPort`*: _Outbound port_ per ottenere i metadati di un sensore dato il suo UUID;
--	*`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
+- *`getGatewayPort gateway.GetGatewayPort`*: _Outbound port_ per ottenere metadati di un gateway.
 
 *Funzione di costruzione*: `NewGetSensorByIdService(getSensorByIdPort GetSensorByIdPort, getGatewayPort gateway.GetGatewayPort) *GetSensorByIdService`
 
@@ -3481,7 +3484,7 @@ Enumerazione che rappresenta lo stato di un sensore.
 In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di comunicare con il database.
 
 #figure(
-  image("../../assets/c4/backend/sensor/PortsAdapters-Database.pdf", width:100%),
+  image("../../assets/c4/backend/sensor/PortsAdapters-Database.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per database in `sensor`],
 ) <backend-code-outbound-ports-adapters-database>
 
@@ -3520,7 +3523,7 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno la responsabilità di inviare comandi#fn al gateway simulato tramite il message broker.
 
 #figure(
-  image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.pdf", width:100%),
+  image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.pdf", width: 100%),
   caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
 ) <backend-code-outbound-ports-adapters-broker>
 
@@ -3575,7 +3578,7 @@ Per visualizzare il #gloss[Code Diagram] relativo a `SendCmdAdapter`, si veda la
 
 ===== Repository per database -- `DatabaseRepository`, `SensorEntity`
 #figure(
-  image("../../assets/c4/backend/sensor/DatabaseRepository.pdf", width:85%),
+  image("../../assets/c4/backend/sensor/DatabaseRepository.pdf", width: 85%),
   caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per database in `sensor`],
 )
 
@@ -3615,7 +3618,7 @@ Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare 
 
 ===== Repository per message broker -- `MessageBrokerRepository` e relative `Entity`
 #figure(
-  image("../../assets/c4/backend/sensor/MessageBrokerRepository.pdf", width:85%),
+  image("../../assets/c4/backend/sensor/MessageBrokerRepository.pdf", width: 85%),
   caption: [Cloud Backend -- Code Diagram di struct `Repository` ed `Entity` per message broker in `sensor`],
 )
 
@@ -3672,7 +3675,7 @@ Questo package è stato creato separatamente da `sensor` per evitare la creazion
 
 ===== `SensorProfile` <code-sensor.SensorProfile>
 #figure(
-  image("../../assets/c4/backend/sensor/SensorProfile.pdf", width:30%),
+  image("../../assets/c4/backend/sensor/SensorProfile.pdf", width: 30%),
   caption: [Cloud Backend -- Code Diagram di `sensor/profile.SensorProfile`],
 )
 
@@ -3683,7 +3686,7 @@ L'enum `SensorProfile` rappresenta i vari profili GATT che un sensore può avere
 - `PULSE_OXIMETER_SERVICE`: Profilo per la misurazione di dati relativi alla pulsossimetria sanguigna.
 - `ECG_CUSTOM_PROFILE`: Profilo custom per le rilevazioni di dati ECG.
 - `HEALTH_THERMOMETER_SERVICE`: Profilo per la misurazione di dati di temperatura in ambito medico
-- `ENVIRONMENTAL_SENSING_SERVICE`: Profilo per la misurazione ambientale di umidità, pressione e temperatura 
+- `ENVIRONMENTAL_SENSING_SERVICE`: Profilo per la misurazione ambientale di umidità, pressione e temperatura
 
 ==== Cartella `shared` <backend-shared>
 Tutti i package dentro la cartella `shared` contengono le struct o le interfacce usate da più package. Fatta eccezione per `config.Config` e `identity.Requester`, è bene che tutti gli elementi dentro eventuali package in `shared` presentino solo interfacce e che le loro implementazioni siano posizionate in un apposito package in `infra`. Inoltre, è bene che tutti i package dipendano dalle interfacce definite in `shared` e non dalle specifiche implementazioni.
@@ -3692,7 +3695,7 @@ Tutti i package dentro la cartella `shared` contengono le struct o le interfacce
 Questo package contiene la struct di configurazione del sistema, che raggruppa tutte le informazioni di configurazione in un punto unico.
 
 #figure(
-  image("../../assets/c4/backend/shared/config/config.pdf", width:80%),
+  image("../../assets/c4/backend/shared/config/config.pdf", width: 80%),
   caption: [Cloud Backend -- Code Diagram di `shared/config`],
 )
 
@@ -3736,13 +3739,13 @@ Tipo basato su `int` utilizzato per rappresentare un intero deserializzabile con
 - *`UnmarshalJSON(b []byte) error`*: permette di serializzare una stringa contenente un numero intero in uno `StringInt`, poi convertibile in intero con `int()`.
 
 ===== `ReadConfigFromEnv(log *zap.Logger) (*Config, error) `
-Funzione globale che ritorna uno oggetto `Config` costruito secondo i parametri di configurazione specificati dalle variabili d'ambiente e dal file `.env`, se presente, dando priorità ai valori inseriti dentro quest'ultimo, 
+Funzione globale che ritorna uno oggetto `Config` costruito secondo i parametri di configurazione specificati dalle variabili d'ambiente e dal file `.env`, se presente, dando priorità ai valori inseriti dentro quest'ultimo,
 
 ==== Package `shared/crypto` <backend-shared-crypto>
-Il package `shared/crypto` contiene le interfacce usate nell'applicativo per interfacciarsi con le principali procedure crittografiche. 
+Il package `shared/crypto` contiene le interfacce usate nell'applicativo per interfacciarsi con le principali procedure crittografiche.
 
 #figure(
-  image("../../assets/c4/backend/shared/crypto/crypto.pdf", width:70%),
+  image("../../assets/c4/backend/shared/crypto/crypto.pdf", width: 70%),
   caption: [Cloud Backend -- Code Diagram di `shared/crypto`],
 )
 
@@ -3756,7 +3759,7 @@ Interfaccia che consente di gestire i token di autenticazione.
 ===== `SecretHasher`
 Interfaccia che consente di generare un hash crittografico per un segreto _plaintext_ e paragonare un _plaintext_ a un hash già generato.
 
-*Metodi*: 
+*Metodi*:
 - *`HashSecret(plaintext string) (string, error)`*: Genera l'hash crittografico associato a `plaintext` e un eventuale errore in caso la procedura di hashing fallisca.
 - *`CompareHashAndSecret(hashed string, plaintext string) error`*: Controlla che l'hash di `plaintext` sia uguale a `hashed`. È fondamentale che le implementazioni di questo metodo utilizzino funzioni sicure da timing attacks, quali `bcrypt.CompareHashAndPassword`. Se il controllo passa, allora viene ritornato `nil`, altrimenti viene ritornato un errore non-`nil`.
 
@@ -3771,7 +3774,7 @@ Interfaccia che consente di generare token generici di sicurezza con data di sca
 Il package `shared/identity` contiene gli elementi per attivare le procedure di #gloss[RBAC] nel sistema.
 
 #figure(
-  image("../../assets/c4/backend/shared/identity/identity.pdf", width:70%),
+  image("../../assets/c4/backend/shared/identity/identity.pdf", width: 70%),
   caption: [Cloud Backend -- Code Diagram di `shared/identity`],
 )
 
@@ -3792,7 +3795,7 @@ Struct che rappresenta l'utente che richiede una specifica azione, da utilizzare
 Enumerazione che rappresenta il ruolo di un utente.
 
 *Possibili valori*:
-- `ROLE_TENANT_USER`: Ruolo Tenant User 
+- `ROLE_TENANT_USER`: Ruolo Tenant User
 - `ROLE_TENANT_ADMIN`: Ruolo Tenant Admin
 - `ROLE_SUPER_ADMIN`: Ruolo Super Admin
 
@@ -3802,7 +3805,7 @@ Enumerazione che rappresenta il ruolo di un utente.
 ==== Package `user` <backend-user>
 Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
 #figure(
-  image("../../assets/c4/backend/user/user.pdf", width:110%),
+  image("../../assets/c4/backend/user/user.pdf", width: 110%),
   caption: [Cloud Backend -- Code Diagram di `user`],
 )
 
@@ -3810,7 +3813,7 @@ Il package `user` contiene le struct e interfacce che rappresentano le operazion
 La struct `Controller` è l'unico _inbound adapter_ del package e gestisce la comunicazione con il router HTTP relativamente alle operazioni CRUD sugli utenti.
 
 #figure(
-  image("../../assets/c4/backend/user/Controller.pdf", width:90%),
+  image("../../assets/c4/backend/user/Controller.pdf", width: 90%),
   caption: [Cloud Backend -- Code Diagram di `user.Controller`],
 )
 
@@ -3866,7 +3869,7 @@ Per ogni metodo vengono elencate le struct DTO utilizzate in input e il DTO rito
   - *Input*: `infra/transport/http/dto.SuperAdminUriDTO`
   - *Output*: `UserResponseDTO`
 
-- *`GetTenantUsers(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant User 
+- *`GetTenantUsers(ctx *gin.Context)`*: Ottiene una lista paginata di Tenant User
   - *Input*: `infra/transport/http/dto.TenantUriDTO`, `GetUserListQueryDTO`
   - *Output*: `UserListResponseDTO`
 
@@ -3878,7 +3881,7 @@ Per ogni metodo vengono elencate le struct DTO utilizzate in input e il DTO rito
   - *Input*: `GetUserListQueryDTO`
   - *Output*: `UserListResponseDTO`
 
-I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguenti: 
+I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguenti:
 - *`CreateUserBodyDTO`*: DTO che rappresenta i dati in input di creazione di un nuovo utente
   - `Username string`: Nome utente
   - `Email string`: Email del nuovo utente
@@ -3900,10 +3903,10 @@ I *DTO* utilizzati da `Controller` appartenenti al package `user` sono i seguent
   - `Users []UserResponseDTO`: L'effettiva lista di utenti
 
 ===== Inbound ports
-Di seguito sono riportate le _inbound ports_ del package. 
+Di seguito sono riportate le _inbound ports_ del package.
 
 #figure(
-  image("../../assets/c4/backend/user/UseCases.pdf", width:90%),
+  image("../../assets/c4/backend/user/UseCases.pdf", width: 90%),
   caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ di `user`],
 ) <backend-code-user-usecases-services>
 
@@ -3994,36 +3997,36 @@ Comando per creare un nuovo Tenant User.
 
 *Attributi*:
 - *`Email string`*: Email del nuovo utente.
--	*`Username string`*: Nome del nuovo utente.
--	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+- *`Username string`*: Nome del nuovo utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
 
 ====== `CreateTenantAdminCommand`
 Comando per creare un nuovo Tenant Admin.
 
 *Attributi*:
 - *`Email string`*: Email del nuovo utente.
--	*`Username string`*: Nome del nuovo utente.
--	*`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
+- *`Username string`*: Nome del nuovo utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui associare l'utente.
 
 ====== `CreateSuperAdminCommand`
 Comando per creare un nuovo Super Admin.
 
 *Attributi*:
 - *`Email string`*: Email del nuovo utente.
--	*`Username string`*: Nome del nuovo utente.
+- *`Username string`*: Nome del nuovo utente.
 
 ====== `DeleteTenantUserCommand`
 Comando per eliminare un Tenant User esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente da eliminare
 
 ====== `DeleteTenantAdminCommand`
 Comando per eliminare un Tenant Admin esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente da eliminare
 
 ====== `DeleteSuperAdminCommand`
@@ -4036,14 +4039,14 @@ Comando per eliminare un Super Admin esistente.
 Comando per ottenere i dati di un Tenant User esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente in esame.
 
 ====== `GetTenantAdminCommand`
 Comando per ottenere i dati di un Tenant Admin esistente.
 
 *Attributi*:
--	*`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui è associato l'utente.
 - *`UserId uint`*: ID dell'utente in esame.
 
 ====== `GetSuperAdminCommand`
@@ -4058,7 +4061,7 @@ Comando per ottenere una lista paginata di Tenant User associati a un tenant spe
 *Attributi*:
 - *`Page int`*: Numero della pagina
 - *`Limit int`*: Numero di elementi per pagina
--	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
 
 ====== `GetTenantAdminsByTenantCommand`
 Comando per ottenere una lista paginata di Tenant Admin associati a un tenant specifico.
@@ -4066,7 +4069,7 @@ Comando per ottenere una lista paginata di Tenant Admin associati a un tenant sp
 *Attributi*:
 - *`Page int`*: Numero della pagina
 - *`Limit int`*: Numero di elementi per pagina
--	*`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
+- *`TenantId uuid.UUID`*: UUID del tenant a cui sono associati gli utenti.
 
 ====== `GetSuperAdminListCommand`
 Comando per ottenere una lista paginata di Super Admin associati a un tenant specifico.
@@ -4225,9 +4228,9 @@ Struct che consente di specificare i parametri da usare per effettuare una ricer
 
 Ad esempio, se si utilizza una struct con valore puntato da `ID` pari a 1 e valore puntato da `Email` pari a `email@example.com`, allora la condizione `WHERE` in un'eventuale query SQL sarà la seguente:
 #align(center)[
-```sql
-WHERE id = 1 AND email = 'email@example.com'
-```
+  ```sql
+  WHERE id = 1 AND email = 'email@example.com'
+  ```
 ]
 
 *Attributi*:
@@ -4245,7 +4248,7 @@ Interfaccia che espone i metodi per eseguire le operazioni CRUD sui Tenant Membe
 *Metodi*:
 - *`SaveTenantMember(tenantMember *TenantMemberEntity) error`*: Crea il nuovo Tenant Member `tenantMember` o aggiorna quello esistente, ritornando errore in caso di errore nella procedura di salvataggio.
 - *`DeleteTenantMember(tenantMember *TenantMemberEntity) error`*: Elimina il Tenant Member `tenantMember` esistente, ritornando errore se non è stato trovato.
-- *`GetTenantMember(tenantId string, by UserRepositoryGetUserBy) (tenantMember *TenantMemberEntity, err error)`*: Ottiene i dati del Tenant Member appartenente al tenant con UUID `tenantId`, effettuando la ricerca a seconda di quanto specificato da `by`.  
+- *`GetTenantMember(tenantId string, by UserRepositoryGetUserBy) (tenantMember *TenantMemberEntity, err error)`*: Ottiene i dati del Tenant Member appartenente al tenant con UUID `tenantId`, effettuando la ricerca a seconda di quanto specificato da `by`.
 - *`GetTenantUsers(tenantId string, offset, limit int) (tenantUsers []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
 - *`GetTenantAdmins(tenantId string, offset, limit int) (tenantAdmins []TenantMemberEntity, total int64, err error)`*: Ottiene una lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
 - *`CountTenantAdminsByTenant(tenantId string) (total int64, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId`.
@@ -4298,7 +4301,7 @@ Struct concreta che implementa `SuperAdminRepository`.
 *Funzione di costruzione*: `newSuperAdminPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *superAdminPgRepository`
 
 ====== `SuperAdminEntity`
-Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super Admin inserito nel sistema. 
+Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super Admin inserito nel sistema.
 
 *Attributi*:
 - *`ID uint`*: ID dell'utente.
