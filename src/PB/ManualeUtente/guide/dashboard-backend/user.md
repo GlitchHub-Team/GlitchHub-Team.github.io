@@ -53,7 +53,7 @@ La creazione di un **Tenant Admin** è disponibile solo ai **Super Admin** e ai 
 ```
 
 ## Creazione tenant user
-La creazione di un tenant user è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono creare tenant user esclusivamente all'interno del proprio tenant. La richiesta crea un nuovo tenant user nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
+La creazione di un **Tenant User** è disponibile solo ai **Super Admin** e ai **Tenant Admin** appartenenti allo stesso tenant dell'utente creato. La richiesta crea un nuovo **Tenant User** nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
 
 ### Richiesta
 - **POST** `/api/v1/tenant/{tenant_id}/tenant_user`
