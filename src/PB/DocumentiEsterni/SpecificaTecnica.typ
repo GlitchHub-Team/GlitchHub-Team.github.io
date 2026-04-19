@@ -36,7 +36,7 @@
       "17/04/2026",
       "Michele Dioli",
       "-",
-      [],
+      [Aggiunti package Auth, gateway, historical data , infra, tenant],
     ),
     (
       "0.7.2",
