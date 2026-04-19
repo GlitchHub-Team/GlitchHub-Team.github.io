@@ -6,7 +6,7 @@ Le sezioni seguenti descrivono in dettaglio come utilizzare queste funzionalità
 Il sistema utilizza password con vincolo di lunghezza minima di 8 caratteri.
 
 ## Login
-Per accedere al sistema, gli utenti devono effettuare il login fornendo le proprie credenziali (username e password) e selezionando il tenant di appartenenza. In risposta, il sistema restituisce un token di autenticazione (JWT) da utilizzare per le richieste successive.
+Per accedere al sistema, gli utenti devono effettuare il login fornendo le proprie credenziali (email e password) e selezionando il tenant di appartenenza (nullo se si cerca di accedere con ruolo Super Admin). In risposta, il sistema restituisce un token di autenticazione (JWT) da utilizzare per le richieste successive.
 
 ### Richiesta
 - **POST** `/api/v1/auth/login`
