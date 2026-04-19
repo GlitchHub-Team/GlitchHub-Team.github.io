@@ -31,7 +31,7 @@ Il modulo di **gestione utenti** gestisce l'anagrafica degli account, supportand
 La creazione di un utente non prevede l'impostazione immediata di una password, ma attiva un processo di invito:
 1. L'amministratore inserisce `username` ed `email` nel form di creazione.
 2. Se il ruolo creato è `TENANT_ADMIN` o `TENANT_USER`, è necessario associare l'utente a un tenant (campo bloccato se si opera già nel contesto di un tenant specifico).
-3. Al salvataggio, il sistema invia un'email di attivazione (verificabile su **#gloss("Mailtrap")**{{gloss}} in ambiente di test).
+3. Al salvataggio, il sistema invia un'email di attivazione (verificabile su **#gloss("Mailtrap")** in ambiente di test).
 
 ![Form di creazione di un nuovo Super Admin](../../../../assets/frontend-MU/CreaSuperAdmin.png "Form di creazione di un nuovo Super Admin")
 _Figura 25: Form di creazione di un nuovo Super Admin._

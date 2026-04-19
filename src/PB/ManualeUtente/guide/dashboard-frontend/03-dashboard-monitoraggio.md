@@ -11,7 +11,7 @@ L'utente può interagire con le tabelle per navigare tra le entità del proprio 
 - **Filtri ruolo** (solo per i Super Admin): la dashboard permette di visualizzare i dati di un tenant specifico attraverso la procedura di impersonificazione{{gloss}} (cliccando il pulsante accanto al tenant desiderato nella sezione "Gestione Tenant"), mostrando un banner di avviso in cima alla pagina.
 
 ## Monitoraggio analitico 
-Il monitoraggio dei segnali avviene attraverso il **#gloss("chart-container")**{{gloss}}, che gestisce il ciclo di vita dei grafici e la comunicazione con il **#gloss("sensor-chart-service")**{{gloss}}.
+Il monitoraggio dei segnali avviene attraverso il gestore dei grafici, che ne gestisce il ciclo di vita e la comunicazione con i servizi dedicati al recupero dei dati storici e real time.
 
 ### Grafici in tempo reale
 Attivabile tramite l'icona `ssid_chart` nella tabella sensori, questa modalità apre uno stream di dati continuo.

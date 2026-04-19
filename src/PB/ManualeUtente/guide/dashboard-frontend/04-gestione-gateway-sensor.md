@@ -38,7 +38,7 @@ _Figura 16: Form dei comandi di un gateway mentre è attivo._
 _Figura 17: Form dei comandi di un gateway mentre è inattivo._
 
 ### Gestione delle chiavi pubbliche
-In modalità di gestione, la tabella mostra la **#gloss("Public Key")**{{gloss}} di ogni dispositivo. L'interfaccia mette a disposizione un pulsante di copia rapida per acquisire l'identificativo, necessario per la generazione dei token di commissioning tramite i tool del container `nats-manager`.
+In modalità di gestione, la tabella mostra la **#gloss("Public Key")** di ogni dispositivo. L'interfaccia mette a disposizione un pulsante di copia rapida per acquisire l'identificativo, necessario per la generazione dei token di commissioning tramite i tool del container `nats-manager`.
 
 ## Operazioni sui sensori
 I sensori vengono gestiti e configurati all'interno del contesto del gateway a cui sono associati.
