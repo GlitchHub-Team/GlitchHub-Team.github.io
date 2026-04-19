@@ -14,6 +14,13 @@
       [Creazione versione stabile],
     ),
     (
+      "1.8.1",
+      "19/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Applicate correzioni rilevate durante la verifica della v1.8.0],
+    ),
+    (
       "1.8.0",
       "19/04/2026",
       "Riccardo Graziani",
@@ -448,17 +455,17 @@ L'attività di *progettazione logica* ha lo scopo di definire la struttura di _a
 In questa fase il team svilupperà i seguenti livelli del modello C4:
 - *System context diagram*: rappresenta il primo livello ed ha lo scopo di illustrare il sistema nel suo intero ambiente. Vede il sistema come una _scatola nera_ (non contiene dettagli tecnici) e si focalizza unicamente sulle interazioni tra gli utenti (definiti _Personas_ o Attori) e i *sistemi software esterni* con cui il prodotto deve integrarsi.
 - *Container diagram*: rappresenta il secondo livello ed ha lo scopo di illustrare le unità eseguibili principali. In questo contesto, per *Container* non si intende un raggruppamento logico, ma un'unità applicativa separatamente distribuibile (es. un'applicazione web, un database, un microservizio, etc.). Per ogni Container deve essere esplicitata la _tecnologia_ ad alto livello utilizzata e il _protocollo_ di comunicazione tra di essi (es. REST/HTTPS).
+- *Component diagram*: rappresenta il terzo livello ed ha lo scopo di illustrare i moduli software (Componenti) che costituiscono l'interno di un singolo "Container". Deve illustrare le _responsabilità_ di ciascun componente, come essi sono cablati tra loro e quali _design pattern_ implementano. 
 
 Sulla base delle interazioni definite nel _container diagram_, il progettista deve redigere i requisiti preliminari per i *test di integrazione* (ovvero le modalità con cui i vari container verranno testati assieme per verificarne la corretta comunicazione).
+
+Per ogni componente individuato nel _component diagram_, devono essere stabiliti i requisiti per i *test di unità*, definendo i casi di test necessari a verificare il corretto funzionamento del singolo modulo in isolamento.
 
 ==== Progettazione di dettaglio <attivita-progettazione-dettaglio>
 La *progettazione di dettaglio* ha lo scopo di raffinare l'architettura espandendo i singoli _Container_ in componenti di livello inferiore, fornendo un livello di dettaglio sufficiente a permetterne la _codifica_ e il _testing_.
 
 In questa fase si scende nel dettaglio dei singoli applicativi. Il team svilupperà i seguenti livelli del modello C4:
-- *Component diagram*: rappresenta il terzo livello ed ha lo scopo di illustrare i moduli software (Componenti) che costituiscono l'interno di un singolo "Container". Deve illustrare le _responsabilità_ di ciascun componente, come essi sono cablati tra loro e quali _design pattern_ implementano. 
 - *Code diagram*: rappresenta il quarto livello ed illustra la struttura implementativa interna di un singolo componente (mostrando _classi_, _interfacce_ e le loro _relazioni_ tramite diagrammi UML).
-
-Per ogni componente individuato nel _component diagram_, devono essere stabiliti i requisiti per i *test di unità*, definendo i casi di test necessari a verificare il corretto funzionamento del singolo modulo in isolamento.
 
 ==== Principi architetturali e design pattern <principi-design>
 Durante la fase di progettazione di dettaglio (Livello 3 e 4), il team è tenuto ad applicare e documentare i *design pattern* scelti (es. Architettura MVVM, Adapter, Strategy, etc.) qualora questi risolvano problemi noti in modo standardizzato. 
@@ -469,7 +476,7 @@ Inoltre, la progettazione dei componenti e delle classi deve rispettare i princi
 ==== Progettazione di deployment <attivita-progettazione-deployment>
 La *progettazione di deployment* (o di distribuzione) ha lo scopo di illustrare come l'architettura software verrà fisicamente installata ed eseguita nell'infrastruttura di produzione. Questa fase è fondamentale per definire la topologia di rete, le dipendenze hardware, i servizi cloud e le logiche di scalabilità.
 
-Poiché l'obiettivo è la modellazione dell'infrastruttura fisica e virtuale, per questa fase il team non utilizzerà il modello C4, bensì lo standard *UML (Deployment Diagram)*. 
+Pur rappresentando informalmente il "Livello 5" del percorso di scomposizione del sistema, questa fase segna il passaggio dalla struttura logica alla realtà infrastrutturale. Per questo motivo, il team non utilizzerà il _modello C4_, bensì lo standard *UML (Deployment Diagram)*, più idoneo a descrivere con precisione nodi fisici, artefatti e protocolli di comunicazione tra le macchine.
 
 Nella stesura del diagramma di deployment, i progettisti sono tenuti a rispettare le seguenti convenzioni grafiche e strutturali:
 - *Nodi (Deployment Nodes):* le entità infrastrutturali (server fisici, macchine virtuali, dispositivi utente o servizi cloud) devono essere rappresentate utilizzando la notazione UML a "cubo 3D".
