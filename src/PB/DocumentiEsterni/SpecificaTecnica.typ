@@ -1372,7 +1372,7 @@ Il *ViewModel* agisce come mediatore tra la View e il Model ed è implementato d
 In questa sezione vengono descritte le modalità con cui l'applicazione interagisce con le sorgenti dati esterne: essa è implementata dai servizi _infrastrutturali_, il cui compito è quello di gestire le chiamate _HTTP_, le connessioni _WebSocket_ e la trasformazione dei dati grezzi in modelli di _dominio_.
 
 ===== Modelli dati
-I modelli dati del layer di *Infrastructure* rappresentano le strutture dati restituite dal backend, e sono utilizzati dai _services_ HTTP e WebSocket per modellare le risposte ricevute dal backend.
+I modelli dati presentati di seguito rappresentano le strutture restituite dal backend, e sono utilizzati dai _services_ HTTP e WebSocket per modellare le risposte ricevute dal backend.
 
 ====== ApiError <angular-apierror-model>
 Standardizza la struttura degli errori restituiti dal backend. Include il codice di stato HTTP (`status`) e un messaggio opzionale (`message`) per facilitare la gestione delle notifiche di errore all'utente.
@@ -1701,7 +1701,7 @@ Il servizio presenta i seguenti metodi pubblici:
 In questa sezione viene descritto il nucleo decisionale dell'applicazione. Questa componente è implementata dai servizi di _dominio_, il cui ruolo è coordinare le regole applicative, le validazioni e la coerenza dei dati attraverso l'uso degli *Angular Signals*. Agendo come gestore centralizzato dello stato dell'applicazione, la logica di business opera esclusivamente tramite i contratti (classi astratte) definiti dalla logica di _comunicazione_, rimanendo così totalmente agnostica rispetto alla provenienza dei dati o ai protocolli di trasporto.
 
 ===== Modelli dati
-I modelli dati del Domain layer rappresentano le entità del sistema in modo indipendente dal formato di trasporto, e sono utilizzati dai servizi applicativi per mantenere lo stato dell'applicazione e per esporre i dati ai componenti della Presentation layer.
+I modelli dati presentati di seguito rappresentano le entità del sistema in modo indipendente dal formato di trasporto, e sono utilizzati dai servizi applicativi per mantenere lo stato dell'applicazione e per esporre i dati ai componenti della Presentation layer.
 
 ====== Permission <angular-permission-model>
 Stabilisce i permessi granulari disponibili nel sistema. Ogni voce dell'enum è associata a una stringa descrittiva (`label`) utilizzata nell'interfaccia utente per mostrare all'utente le capacità associate al proprio ruolo. Include permessi per l'accesso alla dashboard, la gestione dei gateway, dei sensori, degli utenti (Super Admin, Tenant Admin, Tenant User), dei tenant e delle API Key (quest'ultimo non implementato).
