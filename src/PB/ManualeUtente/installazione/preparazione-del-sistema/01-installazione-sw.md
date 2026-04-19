@@ -1,6 +1,8 @@
 # Installazione del Software <!--raw-typst <preparazione-sistema> -->
 Questa pagina descrive i passaggi per scaricare ed installare il software.
 
+Si noti che i seguenti passaggi di setup sono eseguibili solamente su sistemi in cui è stata installata una shell bash. In caso si utilizzi Windows, si consiglia di installare WSL per poter eseguire correttamente i passaggi indicati.
+
 ## Download del software
 Il software è disponibile al seguente link: [MVP](https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/releases/download/MVP/MVP.zip).
 
