@@ -1577,23 +1577,21 @@ var Module = fx.Module(
 ==== Package `auth`
 
 Il package `auth` contiene tutte le funzionalità relative alla gestione dell'autenticazione e dell'autorizzazione, come ad esempio la gestione dei token JWT e la verifica delle autorizzazioni degli utenti.\
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/auth/auth.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway/auth`],
 )
-*/
+
 ===== Inbound adapter -- `Controller` e DTO
 Il package `auth` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
 
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/auth/controller.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway/auth`],
 )
-*/
+
 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
@@ -1671,13 +1669,12 @@ I DTO usati da `Controller` sono i seguenti:
 
 ===== Inbound ports
 
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/auth/service.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway/auth` - Inbound ports],
 )
-*/
+
 
 ====== LoginUserUseCase
 *Metodi:*
@@ -1812,13 +1809,17 @@ Rappresenta un token per la conferma di un account appena creato.
 =====  Outbound ports – Database
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
 
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
+  image("../../assets/c4/backend/auth/adaConfi.pdf", width:100%),
   caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
 )
-*/
+
+#figure(
+  image("../../assets/c4/backend/auth/adaPass.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+)
+
 
 ====== ForgotPasswordTokenPort
 *Metodi*
@@ -1973,9 +1974,6 @@ Entità di database che rappresenta la tabella TenantConfirmToken nel database
 - *`ExpiresAt`*: Data di scadenza del token
 
 
-
-===== Controller
-
 ==== Package `email`
 Il package `email` non presenta controller poiché non viene chiamato direttamente dal client, ma ne vengono chiamate solamente le _outbound ports_.
 
@@ -2019,22 +2017,21 @@ Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *
 ==== Package `gateway`
 Il package `gateway` contiene tutte le funzionalità relative alla gestione dei gateway, come ad esempio la gestione dei comandi da inviare ai gateway e la gestione dei dati ricevuti dai gateway e delle operazioni CRUD sui gateway stessi.\
 //TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/gateway/gateway/gw.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway`],
 )
-*/
+
 ===== Inbound adapter -- `Controller` e DTO
 Il package `gateway` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
 
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/gateway/gateway/controller.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway`],
 )
-*/
+
 
 ===== Attributi:
 - *`log *zap.Logger`*: Riferimento al logger zap
@@ -2115,13 +2112,11 @@ I DTO usati da `gateway/Controller` sono i seguenti:
 
 ===== Inbound ports
 
-//TODO: mettere svg 
-/*
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/gateway/gateway/gwservice.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway`],
 )
-*/
+
 
 ====== CreateGatewayUseCase
 *Metodi:*
@@ -2272,13 +2267,12 @@ Rappresenta lo stato di un gateway, i valori possibili sono:
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di
 comunicare con il database.
 
-//TODO: mettere svg 
-/*
+
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
+  image("../../assets/c4/backend/gateway/gateway/pgAdapter.pdf", width:100%),
   caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
 )
-*/
 
 ====== SaveGatewayPort
 *Metodi*
@@ -2306,13 +2300,10 @@ comunicare con il database.
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di
 comunicare con NATS.
 
-//TODO: mettere svg 
-/*
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
+  image("../../assets/c4/backend/gateway/gateway/natsAdapeter.pdf", width:100%),
   caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
 )
-*/
 
 ====== GatewayCommandPort
 *Metodi*
@@ -2439,23 +2430,16 @@ Struct di dominio che implementa *`GatewayHelloUseCase`*. Contiene i seguenti at
 
 Il package `historical_data` contiene tutte le funzionalità per poter accedere ai dati storici dei gateway creati dai sensori simulati.
 
-//TODO: mettere svg 
-/*
+
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/historical_data/historical.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway/historical_data`],
 )
-*/
+
 ===== Inbound adapter -- `Controller` e DTO
 Il package `historical_data` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
 
-//TODO: mettere svg 
-/*
-#figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
-)
-*/
 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
@@ -2487,14 +2471,6 @@ I DTO usati da `Controller` sono i seguenti:
   -`Limit`: numero massimo di campioni storici da restituire
 
 ===== Inbound ports
-
-//TODO: mettere svg 
-/*
-#figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
-)
-*/
 
 ====== GetSensorHistoricalDataUseCase
 *Metodi:*
@@ -2545,14 +2521,6 @@ Rappresenta un filtro per ottenere i dati storici di un sensore specifico nello 
 
 =====  Outbound ports – Database
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
-
-//TODO: mettere svg 
-/*
-#figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
-)
-*/
 
 ====== GetHistoricalDataPort
 *Metodi*
@@ -2658,13 +2626,13 @@ Struct interna che rappresenta il payload di un token JWT. I nomi delle chiavi J
 *Metodi:*
 - *`ToClaims() (jwt.MapClaims, error)`*: Converte l'oggetto `jwtObj` in una mappa di claim JWT compatibile con la libreria `golang-jwt`. Restituisce la mappa o un errore in caso di fallimento.
 
-===== Funzioni del pakage `crypto`
+===== Funzioni del package `crypto`
 
 - *`jwtTokenFromClaims(claims jwt.MapClaims) (jwtObj, error)`*: Funzione interna che ricostruisce un `jwtObj` a partire da una mappa di claim JWT. Restituisce l'oggetto deserializzato o un errore se i claim non sono validi.
 
 ==== Package `infra/database`
 
-Il sub-pakage `database` contiene le utilità condivise per la gestione dei database, indipendentemente dal tipo (cloud DB o sensor DB). Espone funzioni per la creazione di connessioni, la gestione dei test e la trasformazione di liste di entità in oggetti di dominio.
+Il sub-package `database` contiene le utilità condivise per la gestione dei database, indipendentemente dal tipo (cloud DB o sensor DB). Espone funzioni per la creazione di connessioni, la gestione dei test e la trasformazione di liste di entità in oggetti di dominio.
 
 ===== Interfaccia `Tabler`
 
@@ -2714,7 +2682,7 @@ Il sub-package `connection` gestisce la connessione al database cloud (PostgreSQ
 
 ==== Package `infra/database/cloud_db/migrate`
 
-Il sub-pakage `migrate` si occupa della migrazione effettiva degli schemi del cloud DB, sia per lo schema pubblico sia per gli schemi per-tenant.
+Il sub-package `migrate` si occupa della migrazione effettiva degli schemi del cloud DB, sia per lo schema pubblico sia per gli schemi per-tenant.
 
 ===== `CloudDBMigrator`
 
@@ -2834,9 +2802,9 @@ Il sub-package `nats` fornisce le funzioni di utilità per stabilire connessioni
 - *`CredsFileAuth(credsPath string) nats.Option`*: Restituisce un'opzione NATS per l'autenticazione tramite file di credenziali `.creds`.
 - *`JWTAuth(token, seed string) nats.Option`*: Restituisce un'opzione NATS per l'autenticazione tramite JWT e seed NKey.
 
-==== Pakage `infra/router`
+==== Package `infra/router`
 
-Il sub-pakage `router` si occupa della creazione e configurazione del router HTTP Gin, registrando tutti i controller e i middleware dell'applicazione.
+Il sub-package `router` si occupa della creazione e configurazione del router HTTP Gin, registrando tutti i controller e i middleware dell'applicazione.
 
 ===== Funzioni del package `router`
 
@@ -2974,7 +2942,7 @@ I DTO seguenti sono campi atomici e componibili tramite embedding:
 - *`DecodeSensorProfileData(profile sensorProfile.SensorProfile, raw json.RawMessage) (any, error)`*: Decodifica il payload grezzo `raw` nel tipo di dato concreto corretto (es. `ECGData`, `HeartRateData`, ecc.) in base al profilo sensore `profile`. Restituisce il dato decodificato o un errore se il profilo non è riconosciuto o se il payload non è valido.
 - *`decodeSensorProfileData[T any](raw json.RawMessage) (T, error)`*: Funzione generica interna che decodifica `raw` nel tipo `T` specificato. Restituisce il valore decodificato o un errore in caso di fallimento.
 
-==== Pakage `infra/transport/nats/dto`
+==== Package `infra/transport/nats/dto`
 
 Il sub-package `nats/dto` contiene i DTO usati per la comunicazione tramite NATS/JetStream, in particolare per i messaggi di campioni di dati provenienti dai sensori.
 
@@ -3727,23 +3695,20 @@ Enumerazione che rappresenta il ruolo di un utente.
 
 Il package `tenant` contiene tutte le funzionalità relative alla gestione dei tenant, le operazioni CRUD dei tenant.
 
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/tenant/tenant.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `gateway/tenant`],
 )
-*/
+
 ===== Inbound adapter -- `Controller` e DTO
 Il package `tenant` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
 
-//TODO: mettere svg 
-/*
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/tenant/controller.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `tenant/Controller`],
 )
-*/
+
 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
@@ -3800,13 +3765,12 @@ I DTO usati da `Controller` sono i seguenti:
 ===== Inbound ports
 Di seguito sono riportate le _inbound ports_ del package.
 
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/tenant/service.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `tenant /inbound ports`],
 )
-*/
+
 
 ====== CreateTenantUseCase
 *Metodi:*
@@ -3880,13 +3844,12 @@ Rappresento i tenant dell'applicazione, che rappresentano le organizzazioni che 
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
 
 
-//TODO: mettere svg 
-/*
+
 #figure(
-  image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  image("../../assets/c4/backend/tenant/adapter.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram per `tenant / outbound ports`],
 )
-*/
+
 
 ====== CreateTenantPort
 *Metodi*
