@@ -26,4 +26,4 @@ Dopo aver eseguito lo script `setup.sh`, è possibile avviare il sistema seguend
 - `docker compose --env-file Infrastructure/.env --env-file .env  up -d` per avviare tutti i container Docker{{gloss}} necessari per l'esecuzione del sistema.
 
 L'avvio del sistema richiede qualche minuto, in quanto è necessario che tutti i container Docker{{gloss}} vengano avviati e che tutti i microservizi al loro interno vengano inizializzati correttamente.   
-Solitamente l'ultimo microservizio ad avviarsi è il microservizio **Dashboard Backend**, perciò è consigliato monitorare l'avvio del sistema controllando i log di questo microservizio.
+Solitamente l'ultimo microservizio ad avviarsi è il microservizio **Cloud Backend**, perciò è consigliato monitorare l'avvio del sistema controllando i log di questo microservizio.

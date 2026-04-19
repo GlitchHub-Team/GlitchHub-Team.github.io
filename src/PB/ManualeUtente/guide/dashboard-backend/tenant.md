@@ -1,10 +1,10 @@
 # Gestione tenant
-Il sistema prevede la possibilità di gestire i tenant, che possono essere creati e cancellati dai **super admin**. Ai tenant sono associati gateway, sensori simulati, dati IoT e utenti con ruoli **tenant admin** e **tenant user**.
+Il sistema prevede la possibilità di gestire i tenant, che possono essere creati e cancellati dai **super admin**. Ai tenant sono associati gateway, sensori simulati, dati IoT e utenti con ruoli **Tenant Admin** e **Tenant User**.
 
 Il tenant, in particolare, rappresenta un'organizzazione che si rivolge al sistema per utilizzare i servizi offerti. È importante che i dati di ogni tenant siano isolati e accessibili solo agli utenti autorizzati, in modo da garantire la sicurezza e la privacy dei dati.
 
 ## Creazione tenant
-La creazione di un tenant è disponibile solo ai **super admin**. La richiesta crea un nuovo tenant nel sistema e crea gli **schema**{{gloss}} nei database per garantire l'isolamento logico.   
+La creazione di un tenant è disponibile solo ai **Super Admin**. La richiesta crea un nuovo tenant nel sistema e crea gli **schema**{{gloss}} nei database per garantire l'isolamento logico.   
 
 ### Richiesta
 - **POST** `/api/v1/tenant`
@@ -13,7 +13,7 @@ La creazione di un tenant è disponibile solo ai **super admin**. La richiesta c
 ```json
 {
     "tenant_name": "string",
-    "can_impersonate": boolean // indica se il tenant permette al super admin di accedere ai propri dati
+    "can_impersonate": boolean // indica se il tenant permette al Super Admin di accedere ai propri dati
 }
 ```
 
@@ -27,7 +27,7 @@ La creazione di un tenant è disponibile solo ai **super admin**. La richiesta c
 ```
 
 ## Eliminazione tenant
-L'eliminazione di un tenant è disponibile solo ai **super admin**. La richiesta elimina il tenant identificato dall'ID e tutti i dati ad esso associati, inclusi gateway, sensori simulati e utenti con ruoli **tenant admin** e **tenant user**.
+L'eliminazione di un tenant è disponibile solo ai **Super Admin**. La richiesta elimina il tenant identificato dall'ID e tutti i dati ad esso associati, inclusi gateway, sensori simulati e utenti con ruoli **Tenant Admin** e **Tenant User**.
 
 ### Richiesta
 - **DELETE** `/api/v1/tenant/{tenant_id}`
@@ -43,7 +43,7 @@ L'eliminazione di un tenant è disponibile solo ai **super admin**. La richiesta
 ```
 
 ## Ottenimento del singolo tenant per ID
-L'ottenimento del singolo tenant per ID è disponibile solo ai **super admin**, inoltre gli utenti **tenant admin** e **tenant user** possono ottenere solo il tenant associato al proprio tenant. La richiesta restituisce i dettagli del tenant identificato dall'ID.
+L'ottenimento del singolo tenant per ID è disponibile solo ai **Super Admin**, inoltre gli utenti **Tenant Admin** e **Tenant User** possono ottenere solo il tenant associato al proprio tenant. La richiesta restituisce i dettagli del tenant identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}`
@@ -59,7 +59,7 @@ L'ottenimento del singolo tenant per ID è disponibile solo ai **super admin**, 
 ```
 
 ## Ottenimento di tutti i tenant
-L'ottenimento di tutti i tenant è disponibile solo ai **super admin**. La richiesta restituisce una lista di tutti i tenant presenti nel sistema.
+L'ottenimento di tutti i tenant è disponibile solo ai **Super Admin**. La richiesta restituisce una lista di tutti i tenant presenti nel sistema.
 
 ### Richiesta
 - **GET** `/api/v1/tenants?page={page}&limit={limit}&impersonable={impersonable}`
@@ -67,7 +67,7 @@ L'ottenimento di tutti i tenant è disponibile solo ai **super admin**. La richi
 - Parametri nell'URL:
   - `page`: numero di pagina (opzionale, default: 1)
   - `limit`: numero di elementi per pagina (opzionale, default: 25)
-  - `impersonable`: filtro booleano per ottenere solo i tenant che permettono al super admin di accedere ai propri dati (opzionale)
+  - `impersonable`: filtro booleano per ottenere solo i tenant che permettono al **Super Admin** di accedere ai propri dati (opzionale)
 
 ### Risposta
 ```json

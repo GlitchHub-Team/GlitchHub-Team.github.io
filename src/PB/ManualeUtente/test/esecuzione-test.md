@@ -8,7 +8,7 @@ Nelle seguenti sezioni è possibile comprendere come eseguire e controllare l'es
 ## Esecuzione test di unità ed integrazione in Go
 L'esecuzione dei *test di unità* è la fase più semplice dei test e non richiede particolari dipendenze, mentre i *test di integrazione* richiedono l'esecuzione dell'infrastruttura del Sistema, con la necessità di avviare i **devcontainer**{{gloss}} dedicati ad ogni microservizio o direttamente i **container Docker**{{gloss}}.
 
-Per eseguire i *test di unità e di integrazione* nei microservizi scritti in **Go**, ovvero **Data Consumer**, **Gateway** e **Dashboard Backend**, è necessario eseguire il seguente comando nella root del microservizio:
+Per eseguire i *test di unità e di integrazione* nei microservizi scritti in **Go**, ovvero **Data Consumer**, **Gateway** e **Cloud Backend**, è necessario eseguire il seguente comando nella root del microservizio:
 
 ```bash
 go test -race -covermode atomic ./...
@@ -52,4 +52,15 @@ Con i possibili valori iniziali:
 - `FAIL`: test fallito.
   
 ## Esecuzione dei test di sistema
-....
+I *test di sistema* sono test end-to-end che coinvolgono l'intero Sistema, e richiedono l'esecuzione dell'infrastruttura completa, con l'avvio di tutti i **container Docker**{{gloss}}.
+
+Per eseguire i *test di sistema* è necessario eseguire i seguenti comandi nella repository `MVP`:
+
+1. Per avviare l'infrastruttura completa del Sistema:
+```bash
+`docker compose --env-file Infrastructure/.env --env-file .env  up -d` 
+```
+1. Per eseguire i test di sistema, è necessario eseguire il comando all'interno del container **e2e-tests**, il quale usa Playwright{{gloss}}. Il comando in question è il seguente:
+```bash
+docker compose --env-file Infrastructure/.env  --env-file .env -f docker-compose.yml exec -T -e APP_URL=http://frontend -e PYTHONDONTWRITEBYTECODE=1 e2e-tests python -B -m pytest -q tests
+```

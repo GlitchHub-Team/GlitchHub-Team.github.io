@@ -1,8 +1,8 @@
 # Gestione utenti
-Il sistema prevede la possibilità di gestire utenti, che possono essere creati e cancellati dagli utenti autorizzati. Gli utenti possono avere diversi ruoli, tra cui **super admin**, **tenant admin** e **tenant user**, che determinano le autorizzazioni e i permessi di accesso alle funzionalità del sistema.
+Il sistema prevede la possibilità di gestire utenti, che possono essere creati e cancellati dagli utenti autorizzati. Gli utenti possono avere diversi ruoli, tra cui **Super Admin**, **Tenant Admin** e **Tenant User**, che determinano le autorizzazioni e i permessi di accesso alle funzionalità del sistema.
 
-## Creazione super admin
-La creazione di un super admin è disponibile solo ai super admin esistenti. La richiesta crea un nuovo super admin nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
+## Creazione Super Admin
+La creazione di un **Super Admin** è disponibile solo ai **Super Admin** esistenti. La richiesta crea un nuovo **Super Admin** nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
 
 ### Richiesta
 - **POST** `/api/v1/super_admin`
@@ -27,7 +27,7 @@ La creazione di un super admin è disponibile solo ai super admin esistenti. La 
 
 I campi possibili per `user_role` sono: `super_admin`, `tenant_admin` e `tenant_user`.
 
-## Creazione tenant admin
+## Creazione Tenant Admin
 La creazione di un **Tenant Admin** è disponibile solo ai **Super Admin** e ai **Tenant Admin** all'interno dello stesso tenant dell'admin creato. La richiesta crea un nuovo **Tenant Admin** nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
 
 ### Richiesta
@@ -52,7 +52,7 @@ La creazione di un **Tenant Admin** è disponibile solo ai **Super Admin** e ai 
 }
 ```
 
-## Creazione tenant user
+## Creazione Tenant User
 La creazione di un **Tenant User** è disponibile solo ai **Super Admin** e ai **Tenant Admin** appartenenti allo stesso tenant dell'utente creato. La richiesta crea un nuovo **Tenant User** nel sistema ed invia una email all'indirizzo specificato con le istruzioni per impostare la password.
 
 ### Richiesta
@@ -77,8 +77,8 @@ La creazione di un **Tenant User** è disponibile solo ai **Super Admin** e ai *
 }
 ```
 
-## Eliminazione super admin
-L'eliminazione di un super admin è disponibile solo ai super admin esistenti. La richiesta elimina il super admin identificato dall'ID, ma restituisce errore se si tenta di eliminare l'ultimo super admin presente nel sistema.
+## Eliminazione Super Admin
+L'eliminazione di un **Super Admin** è disponibile solo ai **Super Admin** esistenti. La richiesta elimina il **Super Admin** identificato dall'ID, ma restituisce errore se si tenta di eliminare l'ultimo **Super Admin** presente nel sistema.
 
 ### Richiesta
 - **DELETE** `/api/v1/super_admin/{user_id}`
@@ -94,8 +94,8 @@ L'eliminazione di un super admin è disponibile solo ai super admin esistenti. L
 }
 ```
 
-## Eliminazione tenant admin
-L'eliminazione di un tenant admin è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono eliminare esclusivamente altri tenant admin appartenenti al proprio tenant. La richiesta elimina il tenant admin identificato dall'ID, ma restituisce un errore se si tenta di eliminare l'ultimo tenant admin presente all'interno del tenant.
+## Eliminazione Tenant Admin
+L'eliminazione di un **Tenant Admin** è disponibile solo ai **Super Admin** e ai **Tenant Admin**; tuttavia, i **Tenant Admin** possono eliminare esclusivamente altri **Tenant Admin** appartenenti al proprio tenant. La richiesta elimina il **Tenant Admin** identificato dall'ID, ma restituisce un errore se si tenta di eliminare l'ultimo **Tenant Admin** presente all'interno del tenant.
 
 ### Richiesta
 - **DELETE** `/api/v1/tenant/{tenant_id}/tenant_admin/{user_id}`
@@ -112,8 +112,8 @@ L'eliminazione di un tenant admin è disponibile solo ai **super admin** e ai **
 }
 ```
 
-## Eliminazione tenant user
-L'eliminazione di un tenant user è disponibile solo ai **super admin** e ai **tenant admin**; tuttavia, i tenant admin possono eliminare esclusivamente tenant user appartenenti al proprio tenant. Non vi è alcun vincolo sul numero minimo di tenant user che possono esistere all'interno di un tenant. La richiesta elimina il tenant user identificato dall'ID.
+## Eliminazione Tenant User
+L'eliminazione di un **Tenant User** è disponibile solo ai **Super Admin** e ai **Tenant Admin**; tuttavia, i **Tenant Admin** possono eliminare esclusivamente **Tenant User** appartenenti al proprio tenant. Non vi è alcun vincolo sul numero minimo di **Tenant User** che possono esistere all'interno di un tenant. La richiesta elimina il **Tenant User** identificato dall'ID.
 
 ### Richiesta
 - **DELETE** `/api/v1/tenant/{tenant_id}/tenant_user/{user_id}`
@@ -130,8 +130,8 @@ L'eliminazione di un tenant user è disponibile solo ai **super admin** e ai **t
 }
 ```
 
-## Ottenimento di un tenant user per ID
-L'ottenimento di un tenant user per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant user associati al proprio tenant, mentre gli utenti **tenant user** possono visualizzare solo i propri dati. La richiesta restituisce i dettagli del tenant user identificato dall'ID.
+## Ottenimento di un Tenant User per ID
+L'ottenimento di un **Tenant User** per ID è disponibile a tutti i **Super Admin**, inoltre gli utenti **Tenant Admin** possono visualizzare solo i **Tenant User** associati al proprio tenant, mentre gli utenti **Tenant User** possono visualizzare solo i propri dati. La richiesta restituisce i dettagli del **Tenant User** identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_user/{user_id}`
@@ -148,8 +148,8 @@ L'ottenimento di un tenant user per ID è disponibile a tutti i **super admin**,
 }
 ```
 
-## Ottenimento di un tenant admin per ID
-L'ottenimento di un tenant admin per ID è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant admin associati al proprio tenant. La richiesta restituisce i dettagli del tenant admin identificato dall'ID.
+## Ottenimento di un Tenant Admin per ID
+L'ottenimento di un **Tenant Admin** per ID è disponibile a tutti i **Super Admin**, inoltre gli utenti **Tenant Admin** possono visualizzare solo i **Tenant Admin** associati al proprio tenant. La richiesta restituisce i dettagli del **Tenant Admin** identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_admin/{user_id}`
@@ -166,8 +166,8 @@ L'ottenimento di un tenant admin per ID è disponibile a tutti i **super admin**
 }
 ``` 
 
-## Ottenimento di un super admin per ID
-L'ottenimento di un super admin per ID è disponibile solo ai super admin esistenti. La richiesta restituisce i dettagli del super admin identificato dall'ID.
+## Ottenimento di un Super Admin per ID
+L'ottenimento di un **Super Admin** per ID è disponibile solo ai **Super Admin** esistenti. La richiesta restituisce i dettagli del **Super Admin** identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/super_admin/{user_id}`
@@ -183,8 +183,8 @@ L'ottenimento di un super admin per ID è disponibile solo ai super admin esiste
 }
 ```
 
-## Ottenimento di tutti i tenant user per tenant
-L'ottenimento di tutti i tenant user associati a un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant user associati al proprio tenant. La richiesta restituisce una lista di tutti i tenant user associati al tenant identificato dall'ID.
+## Ottenimento di tutti i Tenant User per tenant
+L'ottenimento di tutti i **Tenant User** associati a un tenant è disponibile a tutti i **Super Admin**, inoltre gli utenti **Tenant Admin** possono visualizzare solo i **Tenant User** associati al proprio tenant. La richiesta restituisce una lista di tutti i **Tenant User** associati al tenant identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_users?page={page}&limit={limit}`
@@ -196,8 +196,8 @@ L'ottenimento di tutti i tenant user associati a un tenant è disponibile a tutt
 ### Risposta
 ```json
 {
-    "count": 0, // numero di tenant user restituiti nella risposta
-    "total": 0, // numero totale di tenant user associati al tenant
+    "count": 0, // numero di Tenant User restituiti nella risposta
+    "total": 0, // numero totale di Tenant User associati al tenant
     "users": [
         {
             "user_id": 1,
@@ -210,8 +210,8 @@ L'ottenimento di tutti i tenant user associati a un tenant è disponibile a tutt
 }
 ```
 
-## Ottenimento di tutti i tenant admin per tenant
-L'ottenimento di tutti i tenant admin associati a un tenant è disponibile a tutti i **super admin**, inoltre gli utenti **tenant admin** possono visualizzare solo i tenant admin associati al proprio tenant. La richiesta restituisce una lista di tutti i tenant admin associati al tenant identificato dall'ID.
+## Ottenimento di tutti i Tenant Admin per tenant
+L'ottenimento di tutti i **Tenant Admin** associati a un tenant è disponibile a tutti i **Super Admin**, inoltre gli utenti **Tenant Admin** possono visualizzare solo i **Tenant Admin** associati al proprio tenant. La richiesta restituisce una lista di tutti i **Tenant Admin** associati al tenant identificato dall'ID.
 
 ### Richiesta
 - **GET** `/api/v1/tenant/{tenant_id}/tenant_admins?page={page}&limit={limit}`
@@ -223,8 +223,8 @@ L'ottenimento di tutti i tenant admin associati a un tenant è disponibile a tut
 ### Risposta
 ```json
 {
-    "count": 0, // numero di tenant admin restituiti nella risposta
-    "total": 0, // numero totale di tenant admin associati al tenant
+    "count": 0, // numero di Tenant Admin restituiti nella risposta
+    "total": 0, // numero totale di Tenant Admin associati al tenant
     "users": [
         {
             "user_id": 1,
@@ -237,8 +237,8 @@ L'ottenimento di tutti i tenant admin associati a un tenant è disponibile a tut
 }
 ```
 
-## Ottenimento di tutti i super admin
-L'ottenimento di tutti i super admin è disponibile solo ai super admin esistenti. La richiesta restituisce una lista di tutti i super admin presenti nel sistema.
+## Ottenimento di tutti i Super Admin
+L'ottenimento di tutti i **Super Admin** è disponibile solo ai **Super Admin** esistenti. La richiesta restituisce una lista di tutti i **Super Admin** presenti nel sistema.
 
 ### Richiesta
 - **GET** `/api/v1/super_admins?page={page}&limit={limit}`
@@ -250,8 +250,8 @@ L'ottenimento di tutti i super admin è disponibile solo ai super admin esistent
 ### Risposta
 ```json
 {
-    "count": 0, // numero di super admin restituiti nella risposta
-    "total": 0, // numero totale di super admin presenti nel sistema
+    "count": 0, // numero di Super Admin restituiti nella risposta
+    "total": 0, // numero totale di Super Admin presenti nel sistema
     "users": [
         {
             "user_id": 1,

@@ -1,12 +1,12 @@
 # Autenticazione <!--raw-typst <dashboard-backend> -->
 Il sistema prevede diverse funzionalità a supporto dell'autenticazione degli utenti, tra cui: login, logout, cambio password, recupero password e impostazione prima password.
 
-Le sezioni seguenti descrivono in dettaglio come utilizzare queste funzionalità per il microservizio **Dashboard Backend**.
+Le sezioni seguenti descrivono in dettaglio come utilizzare queste funzionalità per il microservizio **Cloud Backend**.
 
 Il sistema utilizza password con vincolo di lunghezza minima di 8 caratteri.
 
 ## Login
-Per accedere al sistema, gli utenti devono effettuare il login fornendo le proprie credenziali (email e password) e selezionando il tenant di appartenenza (nullo se si cerca di accedere con ruolo Super Admin). In risposta, il sistema restituisce un token di autenticazione (JWT) da utilizzare per le richieste successive.
+Per accedere al sistema, gli utenti devono effettuare il login fornendo le proprie credenziali (email e password) e selezionando il tenant di appartenenza (nullo se si cerca di accedere con ruolo **Super Admin**). In risposta, il sistema restituisce un token di autenticazione (JWT) da utilizzare per le richieste successive.
 
 ### Richiesta
 - **POST** `/api/v1/auth/login`
@@ -16,7 +16,7 @@ Per accedere al sistema, gli utenti devono effettuare il login fornendo le propr
 {
   "username": "string",
   "password": "string",
-  "tenantId": "string<uuid>" // campo opzionale, il super admin non deve specificarlo
+  "tenantId": "string<uuid>" // campo opzionale, il Super Admin non deve specificarlo
 }
 ```
 
@@ -28,7 +28,7 @@ Per accedere al sistema, gli utenti devono effettuare il login fornendo le propr
 ```
 
 ### Utilizzo del token JWT
-Il token JWT restituito al momento del login deve essere incluso nell'header `Authorization` di tutte le richieste al microservizio **Dashboard Backend** che richiedono autenticazione. Il formato dell'intestazione è il seguente:
+Il token JWT restituito al momento del login deve essere incluso nell'header `Authorization` di tutte le richieste al microservizio **Cloud Backend** che richiedono autenticazione. Il formato dell'intestazione è il seguente:
 ```json
 Authorization: Bearer <jwt_token>
 ```
@@ -49,7 +49,7 @@ Il sistema prevede la possibilità di effettuare il logout, invalidando il token
 ```
 
 ## Richiesta cambio password per password dimenticata
-Il sistema prevede la funzionalità di recupero password, che consente agli utenti di richiedere un cambio password nel caso in cui abbiano dimenticato la propria password. La richiesta invia una email all'indirizzo associato all'account dell'utente con le istruzioni per impostare una nuova password. La richiesta ha una scadenza configurabile nel file `.env` del microservizio **Dashboard Backend**.
+Il sistema prevede la funzionalità di recupero password, che consente agli utenti di richiedere un cambio password nel caso in cui abbiano dimenticato la propria password. La richiesta invia una email all'indirizzo associato all'account dell'utente con le istruzioni per impostare una nuova password. La richiesta ha una scadenza configurabile nel file `.env` del microservizio **Cloud Backend**.
 
 ### Richiesta
 - **POST** `/api/v1/auth/forgot_password/request`
@@ -58,7 +58,7 @@ Il sistema prevede la funzionalità di recupero password, che consente agli uten
 ```json
 {
   "email": "string<email>",
-  "tenant_id": "string<uuid>" // campo opzionale, il super admin non deve specificarlo
+  "tenant_id": "string<uuid>" // campo opzionale, il Super Admin non deve specificarlo
 }
 ```
 
@@ -79,7 +79,7 @@ Il sistema prevede la funzionalità di verifica del token per il cambio password
 ```json
 {
     "token": "string",
-    "tenant_id": "string<uuid>" // campo opzionale, il super admin non deve specificarlo
+    "tenant_id": "string<uuid>" // campo opzionale, il Super Admin non deve specificarlo
 }
 ```
 
@@ -101,7 +101,7 @@ Il sistema prevede la funzionalità di cambio password dimenticata, che consente
 {
     "token": "string",
     "new_password": "string",
-    "tenant_id": "string<uuid>" // campo opzionale, il super admin non deve specificarlo
+    "tenant_id": "string<uuid>" // campo opzionale, il Super Admin non deve specificarlo
 }
 ```
 
@@ -123,7 +123,7 @@ Il sistema prevede la funzionalità di impostazione della prima password, che co
 {
     "token": "string",
     "new_password": "string",
-    "tenant_id": "string<uuid>" // campo opzionale, il super admin non deve specificarlo
+    "tenant_id": "string<uuid>" // campo opzionale, il Super Admin non deve specificarlo
 }
 ```
 
@@ -144,7 +144,7 @@ Il sistema prevede la funzionalità di verifica del token per l'impostazione del
 ```json
 {
     "token": "string",
-    "tenant_id": "string<uuid>", // campo opzionale, il super admin non deve specificarlo
+    "tenant_id": "string<uuid>", // campo opzionale, il Super Admin non deve specificarlo
 }
 ```
 

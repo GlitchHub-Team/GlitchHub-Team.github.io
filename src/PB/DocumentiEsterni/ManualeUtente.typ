@@ -6,6 +6,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.6.1",
+      "19/04/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Correzioni richieste in revisione: coerenza termini, aggiunta esecuzione test sistema e correzione Dashboard Backend in Cloud Backend],
+    ),
+    (
       "0.6.0",
       "16/04/2026",
       "Alessandro Dinato",
