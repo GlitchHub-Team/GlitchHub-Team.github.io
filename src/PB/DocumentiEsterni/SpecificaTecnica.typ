@@ -36,7 +36,7 @@
       "0.11.0",
       "18/04/2026",
       "Elia Ernesto Stellin",
-      "",
+      "Michele Dioli",
       [
         Aggiunta sezione @cloud-db.
       ]
@@ -45,7 +45,7 @@
       "0.10.0",
       "17/04/2026",
       "Elia Ernesto Stellin",
-      "",
+      "Michele Dioli",
       [
         Spostate sezioni sul diagramma C4 in @design-architetturale; Migliorata sezione @archit-log; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
       ]
@@ -152,8 +152,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Michele Dioli",
+  left-signature: "../assets/firme/firma_Michele_Dioli.png",
   tipo-documento: "Specifica tecnica",
 )
 
