@@ -341,7 +341,7 @@
     },
     {
         "term": "Economicità",
-        "definition": "È la combinazione tra @{efficacia} e @{efficienza}, ovvero l'equilibrio tra costi sostenuti, risorse impiegate e risultati ottenuti, con l'obiettivo di minimizzare sprechi o spese inutili."
+        "definition": "È la combinazione tra @{efficacia} ed @{efficienza}, ovvero l'equilibrio tra costi sostenuti, risorse impiegate e risultati ottenuti, con l'obiettivo di minimizzare sprechi o spese inutili."
     },
     {
         "term": "Ciclo di vita",
@@ -441,7 +441,7 @@
     },
     {
         "term": "Docker",
-        "definition": "Piattaforma che permette di creare, distribuire e eseguire applicazioni all'interno di container isolati, garantendo portabilità tra diversi ambienti."
+        "definition": "Piattaforma che permette di creare, distribuire ed eseguire applicazioni all'interno di container isolati, garantendo portabilità tra diversi ambienti."
     },
     {
         "term": "NoSQL",
