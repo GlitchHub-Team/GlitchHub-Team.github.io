@@ -2026,7 +2026,6 @@ Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *
 
 ==== Package `gateway`
 Il package `gateway` contiene tutte le funzionalità relative alla gestione dei gateway, quali la gestione dei comandi da inviare ad essi e la gestione dei dati ricevuti dai gateway e delle operazioni CRUD sui gateway stessi.
-//TODO: mettere svg 
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/gw.pdf", width:100%),
@@ -2243,7 +2242,13 @@ I comandi usati dagli _use case_ del package sono i seguenti:
 *Funzione di costruzione*: `NewGatewayManagementService(getPort GetGatewayPort, getManyPort GetGatewaysPort, getTenantPort tenant.GetTenantPort,) *GatewayManagementService`
 
 ====== `GatewayCommandService`
-Implemeta le interfaccie CommissionGatewayUseCase, DecommissionGatewayUseCase, InterruptGatewayUseCase, ResumeGatewayUseCase, ResetGatewayUseCase, RebootGatewayUseCase.
+*Interfacce implementate*:
+- `CommissionGatewayUseCase`
+- `DecommissionGatewayUseCase`
+- `InterruptGatewayUseCase`
+- `ResumeGatewayUseCase`
+- `ResetGatewayUseCase`
+- `RebootGatewayUseCase`
 
 *Attributi*
 - *`createGatewayPort CreateGatewayPort `* : _Outbound port_ usata per creare un nuovo gateway
@@ -2253,31 +2258,31 @@ Implemeta le interfaccie CommissionGatewayUseCase, DecommissionGatewayUseCase, I
 - *`saveGatewayPort SaveGatewayPort`*: _Outbound port_ usata per salvare un gateway
 - *`saveGatewayPort SaveGatewayPort`*: _Outbound port_ usata per salvare un gateway
 
-*Funzione di costruzione* :NewGatewayCommandService(createGatewayPort CreateGatewayPort, removeGatewayPort DeleteGatewayPort, getGatewayPort GetGatewayPort, getTenantPort tenant.GetTenantPort, saveGatewayPort SaveGatewayPort, gatewayCommandPort GatewayCommandPort,) \*GatewayCommandService
+*Funzione di costruzione*: `NewGatewayCommandService(createGatewayPort CreateGatewayPort, removeGatewayPort DeleteGatewayPort, getGatewayPort GetGatewayPort, getTenantPort tenant.GetTenantPort, saveGatewayPort SaveGatewayPort, gatewayCommandPort GatewayCommandPort,) *GatewayCommandService`
 
 ===== Dominio
 
 ====== Gateway
-Rappresenta un gateway simulato nello strato di business logic.
+Rappresenta un gateway nello strato di business logic.
 
 *Attributi:*
-- *`ID`*: UUID del gateway
-- *`Name`*: stringa rappresentante il nome del gateway
-- *`TenantID`*: UUID del tenant a cui il gateway è associato, se il gateway è commissionato
-- *`PublicIdentifier`*: stringa rappresentante l'identificativo pubblico del gateway
-- *`Interval`*: Frequenza di invio dei dati al cloud in millisecondi
-- *`Status`*: Stato del gateway
+- *`ID uuid.UUID`*: UUID del gateway
+- *`Name string`*: stringa rappresentante il nome del gateway
+- *`TenantID uuid.UUID`*: UUID del tenant a cui il gateway è associato, se il gateway è commissionato
+- *`PublicIdentifier *string`*: stringa rappresentante l'identificativo pubblico del gateway, pari a `nil` se non è stata svolta la procedura di hello
+- *`Interval time.Duration`*: Frequenza di invio dei dati al cloud in millisecondi
+- *`Status GatewayStatus`*: Stato del gateway
 
 *Metodi:*
 - *`IsZero() bool`*: Restituisce true se il gateway è commissionato, false altrimenti
 - *`GetId() bool`*: Restituisce lo UUID del gateway
-- *`BelongsToTenant() bool`*: Restituisce true se il gateway è associato a un tenant, false altrimenti
+- *`BelongsToTenant(userTenantId uuid.UUID) bool`*: Restituisce true se il gateway è associato al tenant con ID `userTenantId`, false altrimenti
 
 ====== GatewayStatus
-Rappresenta lo stato di un gateway, i valori possibili sono:
-- *`active`*: Il gateway è commissionato e sta inviando dati al cloud
-- *`inactive`*: Il gateway è commissionato ma non sta inviando dati al cloud
-- *`decommissioned`*: Il gateway è stato decommissionato e non è più associato a nessun tenant, non può inviare dati al cloud
+Enumerazione che rappresenta lo stato di un gateway, i valori possibili sono:
+- *`GATEWAY_STATUS_ACTIVE`*: Il gateway è commissionato e sta inviando dati al cloud
+- *`GATEWAY_STATUS_INACTIVE`*: Il gateway è commissionato ma non sta inviando dati al cloud
+- *`GATEWAY_STATUS_DECOMMISSIONED`*: Il gateway è stato decommissionato e non è più associato ad alcun tenant, per cui non può inviare dati al cloud
 
 =====  Outbound ports – Database
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di
@@ -2312,28 +2317,27 @@ comunicare con il database.
 - *`GetByTenantId(tenantId uuid.UUID, page int, limit int) ([]Gateway, uint, error)`*: Ottiene una lista di gateway associati a un tenant specifico dal database tramite l'UUID del tenant, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
 - *`GetAll(page int, limit int) ([]Gateway, uint, error)`*: Ottiene tutti i gateway presenti nel database, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
 
-=====  Outbound ports – NATS
-In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di
-comunicare con NATS.
+=====  Outbound ports – Message broker
+In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il gateway simulato tramite NATS.
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/natsAdapeter.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway - Outbound ports`],
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ di `gateway`],
 )
 
 ====== GatewayCommandPort
 *Metodi*
-- *`SendCreateGateway(gatewayId uuid.UUID, interval int64) error`* : Invia un comando di creazione a un gateway specifico tramite il suo UUID e l'intervallo di invio dei dati al cloud in millisecondi. Restituisce un errore in caso di fallimento
+- *`SendCreateGateway(gatewayId uuid.UUID, interval int64) error`* : Invia un comando di creazione di un gateway specifico tramite il suo UUID e l'intervallo di invio dei dati al cloud in millisecondi. Restituisce un errore in caso di fallimento
 - *`SendDeleteGateway(gatewayId uuid.UUID) error`*: Invia un comando di eliminazione a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
-- *`SendCommission(gatewayId uuid.UUID, tenantId uuid.UUID, token string) error`*: Invia un comando di commissionamento a un gateway specifico tramite il suo UUID, l'UUID del tenant a cui associare il gateway e il token di commissionamento. Restituisce un errore in caso di fallimento
-- *`SendDecommission(gatewayId uuid.UUID) error`*: Invia un comando di decommissionamento a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
-- *`SendInterrupt(gatewayId uuid.UUID) error`*: Invia un comando di interruzione a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
-- *`SendResume(gatewayId uuid.UUID) error`*: Invia un comando di ripresa a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendCommission(gatewayId uuid.UUID, tenantId uuid.UUID, token string) error`*: Invia un comando di _commissioning_ di un gateway specifico tramite il suo UUID, l'UUID del tenant a cui associare il gateway e il token di _commissioning_ . Restituisce un errore in caso di fallimento
+- *`SendDecommission(gatewayId uuid.UUID) error`*: Invia un comando di _decommissioning_ a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendInterrupt(gatewayId uuid.UUID) error`*: Invia un comando di interruzione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendResume(gatewayId uuid.UUID) error`*: Invia un comando di riattivazione a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
 - *`SendReset(gatewayId uuid.UUID) error`*: Invia un comando di reset a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
 - *`SendReboot(gatewayId uuid.UUID) error`*: Invia un comando di riavvio a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
 
 ===== Outbound adapter per database – GatewayPostgreAdapter
-GatewayPostgreAdapter è l’outbound port usata per comunicare con il database per le operazioni CRUD sui gateway, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
+`GatewayPostgreAdapter` è l’outbound adapter usata per comunicare con il database per le operazioni CRUD sui gateway, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
 *Interfaccie implementate*
 - *`SaveGatewayPort`*
@@ -2349,7 +2353,7 @@ GatewayPostgreAdapter è l’outbound port usata per comunicare con il database 
 
 
 ===== Outbound adapter per NATS – GatewayCommandNATSAdapter
-GatewayCommandNATSAdapter è l’outbound port usata per comunicare con NATS per l’invio dei comandi ai gateway, traducendo l’interfaccia di dominio nell’interfaccia di NATS e viceversa.
+GatewayCommandNATSAdapter è l’outbound adapter usata per comunicare con NATS per l’invio dei comandi ai gateway, traducendo l’interfaccia di dominio nell’interfaccia di NATS e viceversa.
 
 *Interfaccie implementate*
 - *`GatewayCommandPort`*
@@ -2360,13 +2364,13 @@ GatewayCommandNATSAdapter è l’outbound port usata per comunicare con NATS per
 
 ===== Repository per NATS – GatewayCommandNATSRepository
 *Metodi*
-- *`SendCreateGateway(gatewayId uuid.UUID, interval int64) error`* : Manda un comando di creazione a un gateway specifico tramite il suo UUID e l'intervallo di invio dei dati al cloud in millisecondi. Restituisce un errore in caso di fallimento
-- *`SendDeleteGateway(gatewayId uuid.UUID) error`*: Manda un comando di eliminazione a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
-- *`SendCommission(gatewayId uuid.UUID, tenantId uuid.UUID, token string) error`*: Manda un comando di commissionamento a un gateway specifico tramite il suo UUID, l'UUID del tenant a cui associare il gateway e il token di commissionamento. Restituisce un errore in caso di fallimento
-- *`SendDecommission(gatewayId uuid.UUID) error`*: Manda un comando di decommissionamento a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
-- *`SendInterrupt(gatewayId uuid.UUID) error`*: Manda un comando di interruzione a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
-- *`SendResume(gatewayId uuid.UUID) error`*: Manda un comando di ripresa a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
-- *`SendReset(gatewayId uuid.UUID) error`*: Manda un comando di reset a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendCreateGateway(gatewayId uuid.UUID, interval int64) error`* : Invia un comando di creazione di un gateway specifico tramite il suo UUID e l'intervallo di invio dei dati al cloud in millisecondi. Restituisce un errore in caso di fallimento
+- *`SendDeleteGateway(gatewayId uuid.UUID) error`*: Invia un comando di eliminazione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendCommission(gatewayId uuid.UUID, tenantId uuid.UUID, token string) error`*: Invia un comando di _commissioning_ di un gateway specifico tramite il suo UUID, l'UUID del tenant a cui associare il gateway e il token di _commissioning_. Restituisce un errore in caso di fallimento
+- *`SendDecommission(gatewayId uuid.UUID) error`*: Invia un comando di _decommissioning_ di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendInterrupt(gatewayId uuid.UUID) error`*: Invia un comando di interruzione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendResume(gatewayId uuid.UUID) error`*: Invia un comando di riattivazione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendReset(gatewayId uuid.UUID) error`*: Invia un comando di reset di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
 - *`SendReboot(gatewayId uuid.UUID) error`*: 
 
 
@@ -2384,27 +2388,27 @@ GatewayCommandNATSAdapter è l’outbound port usata per comunicare con NATS per
 
 ====== gatewayPostgreRepository
 
-Struct concreta che implementa GatewayRepository, in modo tale da comunicare con PostgreSQL.
+Struct concreta che implementa `GatewayRepository`, in modo tale da comunicare con PostgreSQL.
 
 *Attributi*
 - *`db *sql.DB`*: Riferimento al database PostgreSQL
 - *`log *zap.Logger`*: Riferimento al logger zap
 
-*Funzione di costruzione*: NewGatewayPostgreRepository(log zap.Logger, db clouddb.CloudDBConnection)\* GatewayPostgreRepository
+*Funzione di costruzione*: `NewGatewayPostgreRepository(log zap.Logger, db clouddb.CloudDBConnection) *GatewayPostgreRepository`
 
 ====== GatewayEntity
 
-Entità di database che rappresenta la tabella Gateway nel database
+Entità di database che rappresenta la tabella `gateways` nel database
 
 *Attributi*
-- *`ID`*: UUID del gateway
-- *`Name`*: stringa rappresentante il nome del gateway
-- *`TenantID`*: UUID del tenant a cui il gateway è associato
-- *`Interval`*: Frequenza di invio dei dati al cloud in millisecondi
-- *`PublicIdentifier`*: L'identificativo pubblico del gateway, usato in fase di commissioning
-- *`Status`*: Lo stato del gateway (es. attivo, inattivo)
-- *`CreatedAt`*: Data di creazione del gateway
-- *`UpdatedAt`*: Data di ultima modifica del gateway
+- *`ID string`*: UUID del gateway
+- *`Name string`*: stringa rappresentante il nome del gateway
+- *`TenantID string`*: UUID del tenant a cui il gateway è associato
+- *`Interval int`*: Frequenza di invio dei dati al cloud in millisecondi
+- *`PublicIdentifier string`*: L'identificativo pubblico del gateway, usato in fase di commissioning
+- *`Status string`*: Lo stato del gateway (es. attivo, inattivo)
+- *`CreatedAt time.Time`*: Data di creazione del gateway
+- *`UpdatedAt time.Time`*: Data di ultima modifica del gateway
 
 
 
