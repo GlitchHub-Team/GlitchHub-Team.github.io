@@ -11,7 +11,7 @@ In presenza di errori restituiti dalle API{{gloss}} (es. permessi insufficienti,
 Il componente di **visualizzazione** dei grafici monitora costantemente la qualità della connessione dati per garantire l'affidabilità delle letture biometriche.
 
 ### Stati della connessione live
-Nella parte superiore dei grafici in tempo reale viene visualizzato lo stato della connessione websocket{{gloss}}:
+Nella parte superiore dei grafici in tempo reale viene visualizzato lo stato della connessione WebSocket{{gloss}}:
 
 - **Connected**: la ricezione dati è ottimale.
 - **Reconnecting...**: il sistema ha rilevato una perdita temporanea di segnale e sta tentando il ripristino automatico. In questa fase, il grafico potrebbe mostrare un avviso.
