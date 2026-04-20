@@ -122,8 +122,8 @@
     "Pubblica",
   ),
   htmlId: "PB-DocumentiInterni",
-  verificatore-interno: "Jaume Bernardi",
-  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Glossario",
 )
 
