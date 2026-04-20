@@ -1603,21 +1603,21 @@ Il package `auth` presenta un controller che si occupa di ricevere le richieste 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
 - *`tokenService crypto.TokenService`*: Riferimento al servizio per la gestione dei token JWT
-- *`loginUserUseCase  LoginUserUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e autenticare un utente
+- *`loginUserUseCase LoginUserUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e autenticare un utente
 - *`logoutUserUseCase LogoutUserUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e disautenticare un utente
 - *`confirmAccountUseCase ConfirmAccountUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e confermare l'account di un utente
 - *`verifyConfirmAccountTokenUseCase VerifyConfirmAccountTokenUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e verificare il token di conferma dell'account
 - *`verifyForgotPasswordTokenUseCase VerifyForgotPasswordTokenUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e verificare il token per la reimpostazione della password
-- *`requestForgotPasswordUseCase RequestForgotPasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e richiedere la reimpostazione della password
-- *`confirmForgotPasswordUseCase ConfirmForgotPasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e confermare la reimpostazione della password
-- *`changePasswordUseCase ChangePasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e cambiare la password
+- *`requestForgotPasswordUseCase RequestForgotPasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e richiedere la reimpostazione della password dimenticata
+- *`confirmForgotPasswordUseCase ConfirmForgotPasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e confermare la reimpostazione della password dimenticata
+- *`changePasswordUseCase ChangePasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e cambiare la password per un utente che ha accesso al sistema
 
 *Metodi*:
 Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
--*`LoginUser(ctx *gin.Context)`*: Logga un utente nel sistema
+-*`LoginUser(ctx *gin.Context)`*: Esegue il login nel sistema per un utente
   - Input: `LoginUserDTO` 
   - Output: `LoginResponseDTO` 
--*`LogoutUser(ctx *gin.Context)`*: Dislogga un utente dal sistema ?
+-*`LogoutUser(ctx *gin.Context)`*: Esegue il logout per un utente del sistema.#footnote[Si noti che al momento questo metodo è una _no-op_ rispetto allo stato del sistema, poiché questo utilizza i JWT come token di autenticazione e non implementa un sistema di revocazione di tali, il quale permetterebbe di far scadere un token prima del timestamp specificato al suo interno. Il metodo è stato creato lo stesso per permettere una futura implementazione di tale sistema e di un eventuale sistema di audit logging. ]
 -*`VerifyConfirmAccountToken(ctx *gin.Context)`*:
   - Input: `VerifyConfirmAccountTokenBodyDTO`
 -*`ConfirmAccount(ctx *gin.Context)`*:
@@ -1642,7 +1642,7 @@ I DTO usati da `Controller` sono i seguenti:
   - `Email`: stringa rappresentante l'email dell'utente da loggare
   - `Password`: stringa rappresentante la password dell'utente da loggare
 
-- *`LogoutUserDTO`*: DTO usato per disloggare un utente, contiene i seguenti campi:
+- *`LogoutUserDTO`*: DTO usato per eseguire il logout per un utente, contiene i seguenti campi:
   - *`Requester identity.Requester`*: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC]
 
 - *`VerifyConfirmAccountTokenBodyDTO`*: DTO usato per verificare il token di conferma dell'account, contiene i seguenti campi:
@@ -1677,7 +1677,7 @@ I DTO usati da `Controller` sono i seguenti:
 ===== Inbound ports
 #figure(
   image("../../assets/c4/backend/auth/service.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `auth - Inbound ports`],
+  caption: [Cloud Backend -- Code Diagram per _inbound ports_ di `auth`],
 )
 
 
@@ -1686,7 +1686,7 @@ I DTO usati da `Controller` sono i seguenti:
 - LoginUser(cmd LoginUserCommand) (user.User, error): Loggare un utente nel sistema tramite le credenziali fornite in `cmd` e restituisce l'utente loggato o un errore in caso di fallimento
 ====== LogoutUserUseCase
 *Metodi:*
--LogoutUser(cmd LogoutUserCommand) error: Disloggare un utente dal sistema tramite i dati di autenticazione forniti in `cmd` e restituisce un errore in caso di fallimento
+-LogoutUser(cmd LogoutUserCommand) error: Eseguire il logout di un utente dal sistema tramite i dati di autenticazione forniti in `cmd` e restituisce un errore in caso di fallimento
 ====== ConfirmAccountUseCase
 *Metodi:*
 - ConfirmAccount(cmd ConfirmAccountCommand) (user.User, error): Confermare l'account di un utente tramite il token di conferma fornito in `cmd` e restituisce l'utente con l'account confermato o un errore in caso di fallimento
@@ -1746,25 +1746,29 @@ I comandi usati dagli _use case_ di `Controller` sono i seguenti:
   - `OldPassword`: stringa rappresentante la vecchia password dell'utente
 
 
-===== Services
+====== `ChangePasswordService`
 
-====== Change Password Service
-Implemeta le interfaccie VerifyForgotPasswordTokenUseCase, RequestForgotPasswordUseCase, ConfirmForgotPasswordUseCase, ChangePasswordUseCase.
+*Interfacce implementate*:
+- `VerifyForgotPasswordTokenUseCase`
+- `RequestForgotPasswordUseCase`
+- `ConfirmForgotPasswordUseCase`
+- `ChangePasswordUseCase`
 
-*Attributi*
-
+*Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
 - *`tokenGenerator crypto.SecurityTokenGenerator`*: _Outbound port_ usata per generare i token per la reimpostazione della password
-- *`hasher crypto.SecretHasher`*: _Outbound port_ usata per hashare le password
+- *`hasher crypto.SecretHasher`*: _Outbound port_ usata per generare hash della nuova password inserita
 - *`forgotPasswordTokenPort ForgotPasswordTokenPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
 - *`sendChangePasswordEmailPort SendForgotPasswordEmailPort`*: _Outbound port_ usata per inviare le email per la reimpostazione della password
 - *`getUserPort user.GetUserPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico user
 - *`saveUserPort user.SaveUserPort`*: _Outbound port_ usata per salvare un user
 
-*Funzione di costruzione* :NewChangePasswordService (log \*zap.Logger, tokenGenerator crypto.SecurityTokenGenerator, hasher crypto.SecretHasher, forgotPasswordTokenPort ForgotPasswordTokenPort, sendChangePasswordEmailPort SendForgotPasswordEmailPort, getUserPort user.GetUserPort, saveUserPort user.SaveUserPort) \* ChangePasswordService
+*Funzione di costruzione*: `NewChangePasswordService (log *zap.Logger, tokenGenerator crypto.SecurityTokenGenerator, hasher crypto.SecretHasher, forgotPasswordTokenPort ForgotPasswordTokenPort, sendChangePasswordEmailPort SendForgotPasswordEmailPort, getUserPort user.GetUserPort, saveUserPort user.SaveUserPort) *ChangePasswordService`
 
-====== Service Confirm User Account
-Implemeta le interfaccie ConfirmAccountUseCase, VerifyConfirmAccountTokenUseCase.
+====== `ConfirmUserAccountService`
+*Interfacce implementate*:
+- `ConfirmAccountUseCase`
+- `VerifyConfirmAccountTokenUseCase`
 
 *Attributi*
 - *`confirmAccountTokenPort ConfirmAccountTokenPort`* : _Outbound port_ usata per ottenere informazioni sui token di conferma dell'account
@@ -1773,27 +1777,29 @@ Implemeta le interfaccie ConfirmAccountUseCase, VerifyConfirmAccountTokenUseCase
 - *`log *zap.Logger`*: Riferimento al logger zap
 - *`hasher crypto.SecretHasher`*: _Outbound port_ usata per hashare le password
 
-*Funzione di costruzione* :NewConfirmUserAccountService(confirmAccountTokenPort ConfirmAccountTokenPort, saveUserPort user.SaveUserPort, getUserPort user.GetUserPort, log \*zap.Logger, hasher crypto.SecretHasher) \*ConfirmUserAccountService
+*Funzione di costruzione*: `NewConfirmUserAccountService(confirmAccountTokenPort ConfirmAccountTokenPort, saveUserPort user.SaveUserPort, getUserPort user.GetUserPort, log *zap.Logger, hasher crypto.SecretHasher) *ConfirmUserAccountService`
 
 ====== Service Session
-Implemeta le interfaccie LoginUserUseCase, LogoutUserUseCase.
+*Interfacce implementate*:
+- `LoginUserUseCase`
+- `LogoutUserUseCase`
 
 *Attributi*
 - *`getUserPort user.GetUserPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico user
 - *`hasher crypto.SecretHasher`*: _Outbound port_ usata per hashare le password
 
-*Funzione di costruzione* :NewSessionService(getUserPort user.GetUserPort, hasher crypto.SecretHasher) \*SessionService
+*Funzione di costruzione*: `NewSessionService(getUserPort user.GetUserPort, hasher crypto.SecretHasher) *SessionService`
 
 ===== Dominio
 
 ====== ForgotPasswordToken
-Rappresento i token JWT usati per la reimpostazione della password, contengono le seguenti informazioni:
+Rappresenta un token JWT usati per la reimpostazione della password.
 
 *Attributi:*
-- *`Token`*: stringa rappresentante il token di reimpostazione della password
-- *`TenantID`*: UUID del tenant a cui il token è associato
-- *`UserID`*: UUID dell'utente a cui il token è associato
-- *`ExpirationDate`*: Data di scadenza del token
+- *`Token string`*: stringa rappresentante il token di reimpostazione della password
+- *`TenantID *uuid.UUID`*: UUID del tenant a cui il token è associato, pari a `nil` se l'utente è un Super Admin
+- *`UserID uint`*: ID dell'utente a cui il token è associato
+- *`ExpirationDate time.Time`*: Data di scadenza del token
 
 
 *Metodi:*
@@ -1802,10 +1808,10 @@ Rappresento i token JWT usati per la reimpostazione della password, contengono l
 
 ====== ConfirmAccountToken
 Rappresenta un token per la conferma di un account appena creato.
-- *`Token`*: stringa rappresentante il token di conferma dell'account
-- *`TenantID`*: UUID del tenant a cui il token è associato
-- *`UserID`*: UUID dell'utente a cui il token è associato
-- *`ExpirationDate`*: Data di scadenza del token
+- *`Token string`*: stringa rappresentante il token di conferma dell'account
+- *`TenantID *uuid.UUID`*: UUID del tenant a cui il token è associato, pari a `nil` se l'utente è un Super Admin
+- *`UserID uint`*: ID dell'utente a cui il token è associato
+- *`ExpirationDate time.Time`*: Data di scadenza del token
 
 *Metodi:*
 - *`IsExpired() bool`*: Restituisce true se il token è scaduto, false altrimenti
@@ -1819,9 +1825,9 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 - *`NewForgotPasswordToken(user user.User) (string, error)`*: Crea un nuovo token per la reimpostazione della password. Restituisce il token creato o un errore in caso di fallimento.
 - *`DeleteForgotPasswordToken(tenantId uuid.UUID, tokenString string) error`*: Elimina un token per la reimpostazione della password specifico tramite un token stringa e l'UUID del tenant. Restituisce un errore in caso di fallimento.
 - *`GetTenantMemberByForgotPasswordToken(tenantId uuid.UUID, tokenString string) (userFound user.User, err error)`*: Ottiene un tenant member specifico tramite un token per la reimpostazione della password e l'UUID del tenant. Restituisce il tenant member trovato o un errore in caso di fallimento.
-- *GetSuperAdminByForgotPasswordToken(tokenString string) (userFound user.User, err error)*: Ottiene un super admin specifico tramite un token per la reimpostazione della password. Restituisce il super admin trovato o un errore in caso di fallimento.
--*GetTenantForgotPasswordToken(tenantId uuid.UUID, tokenString string) (token ForgotPasswordToken, err error)*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
-- *GetSuperAdminForgotPasswordToken(tokenString string) (token ForgotPasswordToken, err error)*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetSuperAdminByForgotPasswordToken(tokenString string) (userFound user.User, err error)`*: Ottiene un super admin specifico tramite un token per la reimpostazione della password. Restituisce il super admin trovato o un errore in caso di fallimento.
+-*`GetTenantForgotPasswordToken(tenantId uuid.UUID, tokenString string) (token ForgotPasswordToken, err error)`*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetSuperAdminForgotPasswordToken(tokenString string) (token ForgotPasswordToken, err error)`*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa. Restituisce il token trovato o un errore in caso di fallimento.
 
 ====== ChangePasswordTokenPort
 *Metodi*
@@ -1854,7 +1860,7 @@ ConfirmTokenAdapter è l’outbound port usata per comunicare con il database pe
   caption: [Cloud Backend -- Code Diagram per `gateway - database outbound ChangePasswordTokenPgAdapter`],
 )
 
-ChangePasswordTokenPgAdapter è l’outbound port usata per comunicare con il database per le operazioni CRUD sui token di cambio password, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
+`ChangePasswordTokenPgAdapter` è l’outbound port usata per comunicare con il database per le operazioni CRUD sui token di cambio password, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
 *Interfaccie implementate*
 - *`ChangePasswordTokenPort`*
@@ -1873,12 +1879,12 @@ ChangePasswordTokenPgAdapter è l’outbound port usata per comunicare con il da
 
 ====== SuperAdminConfirmTokenPgRepository
 
-Struct concreta che implementa SuperAdminConfirmTokenRepository, in modo tale da comunicare con PostgreSQL.
+Struct concreta che implementa `SuperAdminConfirmTokenRepository`, in modo tale da comunicare con PostgreSQL.
 
 *Attributi*
 - *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
 
-*Funzione di costruzione*: NewSuperAdminConfirmTokenPostgreRepository(db clouddb.CloudDBConnection)\* SuperAdminConfirmTokenPostgreRepository
+*Funzione di costruzione*: `NewSuperAdminConfirmTokenPostgreRepository(db clouddb.CloudDBConnection) *SuperAdminConfirmTokenPostgreRepository`
 
 ===== Repository per database – SuperAdminPasswordTokenRepository, SuperAdminPasswordTokenEntity
 
@@ -1890,30 +1896,30 @@ Struct concreta che implementa SuperAdminConfirmTokenRepository, in modo tale da
 
 ====== SuperAdminPasswordTokenPgRepository
 
-Struct concreta che implementa SuperAdminPasswordTokenRepository, in modo tale da comunicare con PostgreSQL.
+Struct concreta che implementa `SuperAdminPasswordTokenRepository`, in modo tale da comunicare con PostgreSQL.
 
 *Attributi*
 - *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
 
-*Funzione di costruzione*: NewSuperAdminPasswordTokenPostgreRepository(db clouddb.CloudDBConnection)\* SuperAdminPasswordTokenPostgreRepository
+*Funzione di costruzione*: `NewSuperAdminPasswordTokenPostgreRepository(db clouddb.CloudDBConnection) *SuperAdminPasswordTokenPostgreRepository`
 
 
 ===== Repository per database – TenantPasswordTokenRepository, TenantPasswordTokenEntity
 
 *Metodi*
-- *`SaveToken(entity *TenantPasswordTokenEntity) (err error)`*: Salva un token di ripristino per un tenant nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
-- *`DeleteToken(entity *TenantPasswordTokenEntity) (err error)`*: Elimina un token di ripristino per un tenant nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
-- *`GetToken(tenantId string, tokenString string) (entity *TenantPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un tenant specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
-- *`GetTokenWithUser(tenantId string, tokenString string) (entity *TenantPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un tenant specifico tramite un token stringa e l'UUID del tenant, includendo le informazioni sull'utente associato al token. Restituisce il token trovato o un errore in caso di fallimento.
+- *`SaveToken(entity *TenantPasswordTokenEntity) (err error)`*: Salva un token di ripristino per un Tenant Member tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`DeleteToken(entity *TenantPasswordTokenEntity) (err error)`*: Elimina un token di ripristino per un Tenant Member nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`GetToken(tenantId string, tokenString string) (entity *TenantPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un Tenant Member specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetTokenWithUser(tenantId string, tokenString string) (entity *TenantPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un Tenant Member specifico tramite un token stringa e l'UUID del tenant, includendo le informazioni sull'utente associato al token. Restituisce il token trovato o un errore in caso di fallimento.
 
 ====== TenantPasswordTokenPgRepository
 
-Struct concreta che implementa TenantPasswordTokenRepository, in modo tale da comunicare con PostgreSQL.
+Struct concreta che implementa `TenantPasswordTokenRepository`, in modo tale da comunicare con PostgreSQL.
 
 *Attributi*
 - *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
 
-*Funzione di costruzione*: NewTenantPasswordTokenPostgreRepository(db clouddb.CloudDBConnection)\* TenantPasswordTokenPostgreRepository
+*Funzione di costruzione*: `NewTenantPasswordTokenPostgreRepository(db clouddb.CloudDBConnection) *TenantPasswordTokenPostgreRepository`
 
 ===== Repository per database – TenantConfirmTokenRepository, TenantConfirmTokenEntity
 
@@ -1936,46 +1942,46 @@ Struct concreta che implementa TenantConfirmTokenRepository, in modo tale da com
 
 ====== SuperAdminPasswordTokenEntity
 
-Entità di database che rappresenta la tabella SuperAdminPasswordToken nel database
+Entità di database che rappresenta la tabella `super_admin_forgot_password_tokens` nel database
 
 *Attributi*
-- *`Token`*: UUID del token
-- *`UserId`*: ID dell'utente al quale il token è associato
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
 - *`SuperAdmin user.SuperAdminEntity`*: Riferimento all'entità dell'super admin associato al token
-- *`CreatedAt`*: Data di creazione del token
-- *`ExpiresAt`*: Data di scadenza del token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
 
 
 ====== SuperAdminConfirmTokenEntity
-Entità di database che rappresenta la tabella SuperAdminConfirmToken nel database
+Entità di database che rappresenta la tabella `super_admin_confirm_tokens` nel database.
 *Attributi*
-- *`Token`*: UUID del token
-- *`UserId`*: ID dell'utente al quale il token è associato
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
 - *`SuperAdmin user.SuperAdminEntity`*: Riferimento all'entità dell'super admin associato al token
-- *`CreatedAt`*: Data di creazione del token
-- *`ExpiresAt`*: Data di scadenza del token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
 
 ====== TenantPasswordTokenEntity
 
-Entità di database che rappresenta la tabella TenantPasswordToken nel database
+Entità di database che rappresenta la tabella `forgot_password_tokens` in un tenant schema del database (vd. @cloud-db).
 
 *Attributi*
-- *`Token`*: UUID del token
-- *`UserId`*: ID dell'utente al quale il token è associato
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
 - *`TenantMember user.TenantMemberEntity`*: Riferimento all'entità del tenant member associato al token
-- *`CreatedAt`*: Data di creazione del token
-- *`ExpiresAt`*: Data di scadenza del token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
 
 ====== TenantConfirmTokenEntity
 
-Entità di database che rappresenta la tabella TenantConfirmToken nel database
+Entità di database che rappresenta la tabella `confirm_tokens` in un tenant schema del database (vd. @cloud-db).
 
 *Attributi*
-- *`Token`*: UUID del token
-- *`UserId`*: ID dell'utente al quale il token è associato
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
 - *`TenantMember user.TenantMemberEntity`*: Riferimento all'entità del tenant member associato al token
-- *`CreatedAt`*: Data di creazione del token
-- *`ExpiresAt`*: Data di scadenza del token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
 
 
 ==== Package `email`
@@ -2019,7 +2025,7 @@ Rappresenta un'interfaccia che astrae il metodo *`DialAndSend(m ...*gomail.Messa
 Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *`smtpSender`* tramite la funzione *`newDialer(cfg *config.Config) *gomail.Dialer`* che legge la configurazione passata (`cfg`) per determinare le coordinate #gloss[SMTP] da contattare per inviare i messaggi email.
 
 ==== Package `gateway`
-Il package `gateway` contiene tutte le funzionalità relative alla gestione dei gateway, come ad esempio la gestione dei comandi da inviare ai gateway e la gestione dei dati ricevuti dai gateway e delle operazioni CRUD sui gateway stessi.\
+Il package `gateway` contiene tutte le funzionalità relative alla gestione dei gateway, quali la gestione dei comandi da inviare ad essi e la gestione dei dati ricevuti dai gateway e delle operazioni CRUD sui gateway stessi.
 //TODO: mettere svg 
 
 #figure(
@@ -2033,7 +2039,7 @@ Il package `gateway` presenta un controller che si occupa di ricevere le richies
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway - Controller`],
+  caption: [Cloud Backend -- Code Diagram per `gateway.Controller`],
 )
 
 
@@ -2061,7 +2067,6 @@ Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in outpu
   - Input: `DeleteGatewayDTO`
   - Output: `GatewayResponseDTO`
 - *`GetAllGateways(ctx *gin.Context)`*: Ottiene tutti i gateway
-  - Input: nessuno
   - Output: `GatewayListResponseDTO`
 - *`GetGatewaysByTenant(ctx *gin.Context)`*: Ottiene i gateways di un tenant specifico
   - Input: `GetGatewayListDTO`
@@ -2085,19 +2090,19 @@ Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in outpu
 - *`RebootGateway(ctx *gin.Context)`*: Riavvia un gateway
   - Output: `GatewayCommandResponseDTO`
 
-I DTO usati da `gateway/Controller` sono i seguenti:
+I DTO usati da `Controller` sono i seguenti:
 - *`CreateGatewayDTO`*: DTO usato per creare un nuovo gateway, contiene i seguenti campi:
   - `Name`: stringa rappresentante il nome del gateway da creare
   - `Interval`: Frequenza di invio dei dati al cloud in millisecondi
 - *`DeleteGatewayDTO`*: DTO usato per eliminare un gateway, contiene i seguenti campi:
   - `GatewayId`: UUID del gateway da eliminare
-- *`DecommissionGateway`*: DTO usato per deccommissionare un gateway
+- *`DecommissionGateway`*: DTO usato per decommissionare un gateway
   - `GatewayId`: UUID del gateway da decommissionare
 - *`GatewayResponseDTO`*: DTO usato per restituire informazioni su un gateway, contiene i seguenti campi:
   - `GatewayId`: UUID del gateway
   - `GatewayName`: stringa rappresentante il nome del gateway
   - `TenantId`: UUID del tenant a cui il gateway è associato, se il gateway è commissionto
-  -`PubblicIdentifier`: stringa rappresentante l'identificativo pubblico del gateway, se il gateway ha fatto l'hello e il backend ha scritto in database la pubblic key dichiarata
+  -`PublicIdentifier`: stringa rappresentante l'identificativo pubblico del gateway, se il gateway ha eseguito la procedura di hello e il backend ha scritto nel database la public key dichiarata
   - `Interval`: Frequenza di invio dei dati al cloud in millisecondi
   - `Status`: Stato del gateway (Commissioned, Decommissioned, Interrupted)
 - *`GatewayListResponseDTO`*: DTO usato per restituire una lista di gateway, contiene i seguenti campi:
@@ -2117,12 +2122,12 @@ I DTO usati da `gateway/Controller` sono i seguenti:
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/gwservice.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway - Inbound ports e GatewayService`],
+  caption: [Cloud Backend -- Code Diagram per `gateway.GatewayService` e relative _inbound ports_],
 )
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/natsservice.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway - Inbound ports e CommandService`],
+  caption: [Cloud Backend -- Code Diagram per `gateway.CommandService` e relative _inbound ports_],
 )
 
 ====== CreateGatewayUseCase
@@ -2163,67 +2168,71 @@ I DTO usati da `gateway/Controller` sono i seguenti:
 - RebootGateway(cmd RebootGatewayCommand) (Gateway, error): Riavvia un gateway specificato in `cmd` e restituisce il gateway riavviato o un errore in caso di fallimento
 
 ===== Commands
-I comandi usati dagli _use case_ di `gateway/Controller` sono i seguenti:
+I comandi usati dagli _use case_ del package sono i seguenti:
 - *`GetGatewayByIdCommand`* : Comando usato per ottenere un gateway specifico, contiene i seguenti campi:
-  - `GatewayId`: UUID del gateway da ottenere
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da ottenere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il gateway
 
 - *`GetAllGatewaysCommand`*: Comando usato per ottenere tutti i gateway, contiene i seguenti campi:
-  - `Page`: numero della pagina da ottenere
-  - `Limit`: numero limite di gateway per pagina
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i gateway
+  - `Page int`: numero della pagina da ottenere
+  - `Limit int`: numero limite di gateway per pagina
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i gateway
 
 - *`GetGatewaysByTenantCommand`*: Comando usato per ottenere i gateway di un tenants specifico, contiene i seguenti campi:
-  - `TenantId`: UUID del tenant di cui ottenere i gateway
-  - `Page`: numero della pagina da ottenere
-  - `Limit`: numero limite di gateway per pagina
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i gateway
+  - `TenantId uuid.UUID`: UUID del tenant di cui ottenere i gateway
+  - `Page int`: numero della pagina da ottenere
+  - `Limit int`: numero limite di gateway per pagina
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i gateway
 
 - *`GetGatewayByTenantIDCommand`*: Comando usato per ottenere un gateway specifico di un tenant specifico, contiene i seguenti campi:
-  - `TenantId`: UUID del tenant di cui ottenere il gateway
-  - `GatewayId`: UUID del gateway da ottenere
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il gateway
+  - `TenantId uuid.UUID`: UUID del tenant di cui ottenere il gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da ottenere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il gateway
 
 - *`CommissionGatewayCommand`*: Comando usato per commissionare un gateway, contiene i seguenti campi:
-  - `GatewayId`: UUID del gateway da commissionare
-  - `TenantId`: UUID del tenant a cui associare il gateway
-  - `CommissionToken`: stringa rappresentante il token di commissionamento del gateway, usato per validare la richiesta di commissionamento
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la commissione del gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da commissionare
+  - `TenantId uuid.UUID`: UUID del tenant a cui associare il gateway
+  - `CommissionToken string`: stringa rappresentante il token di commissionamento del gateway, usato per validare la richiesta di commissionamento
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la commissione del gateway
 
 - *`DecommissionGatewayCommand`*: Comando usato per decommissionare un gateway, contiene i seguenti campi:
-  - `GatewayId`: UUID del gateway da decommissionare
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il decommissionamento del gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da decommissionare
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il decommissionamento del gateway
 
 - *`InterruptGatewayCommand`*: Comando usato per interrompere un gateway, contiene i seguenti campi:
-  - `GatewayId`: UUID del gateway da interrompere
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto l'interruzione del gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da interrompere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto l'interruzione del gateway
 
 - *`ResumeGatewayCommand`*: Comando usato per riprendere un gateway, contiene i seguenti campi:
-  - `GatewayId`: UUID del gateway da riprendere
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la ripresa del gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da riprendere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la ripresa del gateway
 
 - *`ResetGatewayCommand`*: Comando usato per resettare un gateway, contiene i seguenti campi:
-  - `GatewayId`: UUID del gateway da resettare
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il reset del gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da resettare
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il reset del gateway
 
 - *`RebootGatewayCommand`*: Comando usato per riavviare un gateway, contiene i seguenti campi:
-  - `GatewayId`: UUID del gateway da riavviare
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il riavvio del gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da riavviare
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il riavvio del gateway
 
 - *`CreateGatewayCommand`*: Comando usato per creare un nuovo gateway, contiene i seguenti campi:
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la creazione del gateway
-  - `Name`: stringa rappresentante il nome del gateway da creare
-  - `Interval`: Frequenza di invio dei dati al cloud in millisecondi
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la creazione del gateway
+  - `Name string`: stringa rappresentante il nome del gateway da creare
+  - `Interval int`: Frequenza di invio dei dati al cloud in millisecondi
 
 - *`DeleteGatewayCommand`*: Comando usato per eliminare un gateway, contiene i seguenti campi:
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto l'eliminazione del gateway
-  - `GatewayId`: UUID del gateway da eliminare
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto l'eliminazione del gateway
+  - `GatewayId uuid.UUID`: UUID del gateway da eliminare
 
 
 ===== Services
 
-====== Service
-Implemeta le interfaccie GetGatewayUseCase, GetAllGatewaysUseCase, GetGatewaysByTenantUseCase, GetGatewayByTenantIDUseCase.
+====== `GatewayManagementService`
+*Interfacce implementate*:
+- `GetGatewayUseCase`
+- `GetAllGatewaysUseCase `
+- `GetGatewaysByTenantUseCase`
+- `GetGatewayByTenantIDUseCase`
 
 *Attributi*
 
@@ -2231,9 +2240,9 @@ Implemeta le interfaccie GetGatewayUseCase, GetAllGatewaysUseCase, GetGatewaysBy
 - *`getGatewaysPort GetGatewaysPort`*: _Outbound port_ usata per ottenere la lista di tutti i gateway
 - *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico tenant
 
-*Funzione di costruzione* :NewGatewayManagementService getPort GetGatewayPort,getManyPort GetGatewaysPort,getTenantPort tenant.GetTenantPort,) \* GatewayManagementService
+*Funzione di costruzione*: `NewGatewayManagementService(getPort GetGatewayPort, getManyPort GetGatewaysPort, getTenantPort tenant.GetTenantPort,) *GatewayManagementService`
 
-====== Service Gateway Command
+====== `GatewayCommandService`
 Implemeta le interfaccie CommissionGatewayUseCase, DecommissionGatewayUseCase, InterruptGatewayUseCase, ResumeGatewayUseCase, ResetGatewayUseCase, RebootGatewayUseCase.
 
 *Attributi*
