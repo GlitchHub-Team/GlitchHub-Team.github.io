@@ -566,7 +566,7 @@ Nel nostro sistema, il #gloss[Gateway] simulato deve gestire l'invio di dati #gl
 Il pattern _Command_ è un design pattern comportamentale che incapsula una richiesta come un oggetto, permettendo così di parametrizzare i client con diverse richieste, instradarle o metterle in coda. Questo approccio separa l'oggetto che invoca l'operazione da quello che sa come eseguirla, facilitando la gestione di operazioni complesse e asincrone.
 
 ==== Motivi per la scelta
-La scelta del pattern _Command_ è fondamentale per gestire i comandi che i microservizio *Cloud Backend* invia al microservizio *Gateway*.\
+La scelta del pattern _Command_ è fondamentale per gestire i comandi che il microservizio *Cloud Backend* invia al microservizio *Gateway*.\
 Poiché l'invio di istruzioni ai gateway avviene tramite #gloss[NATS] in modalità *request-reply*, il pattern permette di incapsulare i dati della richiesta all'interno di un tipo di comando concreto, che però implementa un'interfaccia comune.\
 Ciò permette al comando di essere inoltrato verso il gateway o il sensore interessato, attraverso un channel condiviso tra il manager e il destinatario del comando.
 
