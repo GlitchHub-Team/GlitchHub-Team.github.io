@@ -1,6 +1,8 @@
 # Installazione del Software <!--raw-typst <preparazione-sistema> -->
 Questa pagina descrive i passaggi per scaricare ed installare il software.
 
+Si noti che i seguenti passaggi di setup sono eseguibili solamente su sistemi in cui è stata installata una shell bash. In caso si utilizzi Windows, si consiglia di installare WSL per poter eseguire correttamente i passaggi indicati.
+
 ## Download del software
 Il software è disponibile al seguente link: [MVP](https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/releases/download/MVP/MVP.zip).
 
@@ -19,8 +21,9 @@ chmod +x setup.sh
 
 ## Avvio del sistema
 Dopo aver eseguito lo script `setup.sh`, è possibile avviare il sistema seguendo i due passaggi seguenti:
+
 - `cd MVP` per posizionarsi nella cartella del progetto;
-- `docker compose up -d` per avviare tutti i container Docker{{gloss}} necessari per l'esecuzione del sistema.
+- `docker compose --env-file Infrastructure/.env --env-file .env  up -d` per avviare tutti i container Docker{{gloss}} necessari per l'esecuzione del sistema.
 
 L'avvio del sistema richiede qualche minuto, in quanto è necessario che tutti i container Docker{{gloss}} vengano avviati e che tutti i microservizi al loro interno vengano inizializzati correttamente.   
-Solitamente l'ultimo microservizio ad avviarsi è il microservizio **Dashboard Backend**, perciò è consigliato monitorare l'avvio del sistema controllando i log di questo microservizio.
+Solitamente l'ultimo microservizio ad avviarsi è il microservizio **Cloud Backend**, perciò è consigliato monitorare l'avvio del sistema controllando i log di questo microservizio.

@@ -3,6 +3,7 @@ In questa sezione è possibile trovare la definizione dei termini tecnici e dei 
 
 - **ACK**: messaggio di conferma che viene inviato a NATS per indicare che un messaggio è stato ricevuto e processato correttamente da un **consumer**;
 - **Active**: stato del gateway o del sensore simulato che indica che sono in grado di inviare o produrre dati;
+- **API**: acronimo di **Application Programming Interface**, indica un insieme di regole e protocolli che permettono a diverse applicazioni software di comunicare e scambiare dati tra loro.
 - **At-rest**: indica i dato che sono stati memorizzati, nel manuale viene utilizzato per indicare che i dati su NATS JetStream sono crittografati anche su disco;
 - **Bulk Insert**: tecnica di inserimento massivo di dati in un database, tecnica utilizzata dal microservizio Data Consumer per ottimizzare le operazioni di scrittura su TimescaleDB{{gloss}} grazie alle **Hypertables**;
 - **Commissioning**: processo di associazione di un gateway simulato ad un tenant, che prevede la creazione di un JWT firmato dal **NATS Account** del tenant con cui si vuole commissionare il gateway;
@@ -13,25 +14,29 @@ In questa sezione è possibile trovare la definizione dei termini tecnici e dei 
 - **Docker Compose**: strumento per definire e eseguire applicazioni multi-container su Docker;
 - **Gin**: framework web Go per costruire API RESTful;
 - **Grafana**: piattaforma di visualizzazione e analisi di dati, utilizzata per creare dashboard e monitorare le metriche del sistema;
+- **Impersonificazione**: atto con cui un **Super Admin** si fa temporaneamente riconoscere dal sistema come utente appartenente a uno specifico **tenant**, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un **Tenant Admin**. 
 - **Inactive**: stato del gateway o del sensore simulato che indica che sono stati interrotti, ovvero l'invio o la produzione di dati è stata temporaneamente sospesa;
 - **Interruzione sensore/gateway**: processo di interruzione temporanea della produzione o l'invio dati di un sensore o di un gateway simulato;
 - **JSONB**: formato di dati JSON binario utilizzato da TimescaleDB{{gloss}} per ottimizzare le operazioni di lettura e scrittura dei dati JSON;
 - **JWT**: JSON Web Token, standard per la creazione di token che consentono di autenticare e autorizzare l'accesso a risorse protette. Facilita la scalabilità orizzontale di un sistema;
-- **Messaggio di hello**: messaggio inviato da un gateway simulato al microservizio **Dashboard Backend**, via **NATS JetStream**, all'avvio del gateway simulato, contenente la chiave pubblica del gateway simulato;
+- **Mailtrap**: è una piattaforma di **Email Delivery** progettata per sviluppatori e team di prodotto che permette di catturare le email inviate da ambienti di staging o sviluppo in una casella di posta virtuale.
+- **Messaggio di hello**: messaggio inviato da un gateway simulato al microservizio **Cloud Backend**, via **NATS JetStream**, all'avvio del gateway simulato, contenente la chiave pubblica del gateway simulato;
 - **NATS JetStream**: estensione di NATS che fornisce funzionalità di messaggistica persistente, come la memorizzazione dei messaggi, la gestione delle code e la garanzia di consegna dei messaggi;
 - **Nsc**: strumento a riga di comando per la gestione delle credenziali di NATS, utilizzato per creare e gestire gli **Account** e gli **User** all'interno del server NATS;
+- **Playwright**: framework di automazione per il testing end-to-end di applicazioni web, utilizzato per eseguire i test di sistema;
 - **Profilo GATT**: specifica che definisce le caratteristiche e i servizi di un dispositivo Bluetooth Low Energy (BLE), utilizzata per identificare la tipologia di dati prodotti dai sensori simulati;
 - **Prometheus**: sistema di persistenza per conservare le metriche di sistema:
 - **Pull Consumer**: modello di consumo dei messaggi in cui il consumer richiede attivamente i un numero definito di messaggi al broker. È utile per evitare che il consumer venga sovraccaricato da un numero eccessivo di messaggi;
-- **Request-reply**: modello di comunicazione disponibile in NATS in cui un client invia una richiesta a un subject e attende una risposta. È utilizzato per tutti i comandi dal microservizio **Dashboard Backend** verso il microservizio **Gateway**;
+- **Request-reply**: modello di comunicazione disponibile in NATS in cui un client invia una richiesta a un subject e attende una risposta. È utilizzato per tutti i comandi dal microservizio **Cloud Backend** verso il microservizio **Gateway**;
 - **Retention Policy**: politica di conservazione dei messaggi in NATS JetStream, che definisce il criterio con cui i messaggi vengono eliminati dallo stream, ad esempio in base alla dimensione dello stream o al tempo di conservazione dei messaggi;
-- **Riavvio gateway**: processo di re-invio del messaggio di hello da parte di un gateway simulato, che comporta la condivisione della chiave pubblica del gateway simulato e l'aggiornamento della chiave pubblica associata al gateway simulato all'interno del microservizio **Dashboard Backend**;
+- **Riavvio gateway**: processo di re-invio del messaggio di hello da parte di un gateway simulato, che comporta la condivisione della chiave pubblica del gateway simulato e l'aggiornamento della chiave pubblica associata al gateway simulato all'interno del microservizio **Cloud Backend**;
 - **Ripresa sensore/gateway**: processo di ripresa della produzione o dell'invio dati di un sensore o di un gateway simulato dopo essere stati interrotti temporaneamente;
 - **SQLite**: sistema di gestione di database relazionali leggero e integrato. Utilizzato per salvare i dati prodotti dai sensori simulati come buffer e mantenere le configurazione dei gateway e sensori simulati all'interno del microservizio **Gateway**;
 - **Schema**: separazione logica dei dati all'interno di un database, utilizzata per organizzare i dati in modo efficiente e garantire l'isolamento dei dati tra i diversi tenant nei due database utilizzati dal sistema;
 - **Scraping**: tecnica utilizzata da **Prometheus** per raccogliere le metriche esposte dai microservizi del sistema, che prevede l'invio di frequenti richieste HTTP ai microservizi per ottenere le metriche in formato **Prometheus**;
 - **Stream**: flusso di messaggi in **NATS JetStream**, che rappresenta una sequenza ordinata di messaggi con un nome univoco;
 - **Subject**: canale di comunicazione in NATS su cui i client possono pubblicare o sottoscrivere messaggi;
+- **Tenant**: in un sistema multi-tenant, è un cliente o gruppo di utenti che condivide la stessa piattaforma, ma con dati e accessi isolati dagli altri.
 - **TimescaleDB**: database relazionale basato su PostgreSQL ottimizzato per la gestione di dati time-series, utilizzato per memorizzare i dati dei sensori simulati ricevuti da NATS JetStream{{gloss}};
 - **UUID**: Universally Unique Identifier, identificatore univoco utilizzato per identificare in modo univoco i tenant, i gateway e i sensori all'interno del sistema;
 - **WebSocket**: protocollo di comunicazione *bidirezionale* che consente una comunicazione in tempo reale tra client e server, utilizzato per aggiornare ricevere dati in tempo reale all'interno del microservizio **Dashboard Frontend**;

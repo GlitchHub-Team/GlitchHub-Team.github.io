@@ -5297,7 +5297,7 @@ Inoltre un buon requisito deve essere *SMART*:
 == Tracciamento <tracciamento-requisiti>
 /*
 NOTA: In questa sezione le tabelle sono generate automaticamente, per modificare i requisiti direttamente è
-necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
+necessario modificare i file RF.json, RNF.json, RD.json
 */
 
 #context {

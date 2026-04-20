@@ -6,6 +6,34 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.0.0",
+      "20/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Approvazione versione stabile del documento],
+    ),
+    (
+      "0.7.0",
+      "20/04/2026",
+      "Siria Salvalaio",
+      "Riccardo Graziani",
+      [Stesura guida Dashboard Frontend (@dashboard-frontend)],
+    ),
+    (
+      "0.6.1",
+      "19/04/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Correzioni richieste in revisione: coerenza termini, aggiunta esecuzione test sistema e correzione Dashboard Backend in Cloud Backend],
+    ),
+    (
+      "0.6.0",
+      "16/04/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Stesura guida Dashboard Backend (@dashboard-backend)],
+    ),
+    (
       "0.5.0",
       "16/04/2026",
       "Hossam Ezzemouri",
