@@ -100,14 +100,14 @@
       "16/04/2026",
       "Siria Salvalaio",
       "Riccardo Graziani",
-      [Stesura sezione Presentation Layer del frontend],
+      [Stesura @angular-logica-presentazione],
     ),
     (
       "0.8.0",
       "16/04/2026",
       "Riccardo Graziani",
       "Siria Salvalaio",
-      [Stesura sezione Infrastructure Layer e Domain Layer del frontend],
+      [Stesura @angular-logica-comunicazione-backend e @angular-logica-business],
     ),
     (
       "0.7.2",
@@ -1613,7 +1613,7 @@ La presente sezione illustra nel dettaglio il #gloss[Code Diagram] del frontend 
 
 Come anticipato nella @pattern-architetturale-gui, l'applicazione adotta il paradigma *MVVM*, una scelta che l'ecosistema di #gloss[Angular] agevola nativamente, permettendo di separare in modo netto la logica di _presentazione_ dalla logica di _business_. In questo contesto, l'architettura sfrutta il motore di *data-binding* del framework per creare un legame reattivo tra i _template_ visivi e le classi dei componenti. L'uso degli *Angular Signals* eleva ulteriormente questo paradigma: agendo come motore primario di sincronizzazione, i _Signals_ permettono all'interfaccia di reagire ai cambiamenti di stato applicativo in modo estremamente _granulare_ e _sincrono_.
 
-==== Logica di comunicazione con il backend
+==== Logica di comunicazione con il backend <angular-logica-comunicazione-backend>
 In questa sezione vengono descritte le modalità con cui l'applicazione interagisce con le sorgenti dati esterne: essa è implementata dai servizi _infrastrutturali_, il cui compito è quello di gestire le chiamate _HTTP_, le connessioni _WebSocket_ e la trasformazione dei dati grezzi in modelli di _dominio_.
 
 ===== Modelli dati
@@ -1942,7 +1942,7 @@ Il servizio presenta i seguenti metodi pubblici:
 )
 
 
-==== Logica di business
+==== Logica di business <angular-logica-business>
 In questa sezione viene descritto il nucleo decisionale dell'applicazione. Questa componente è implementata dai servizi di _dominio_, il cui ruolo è coordinare le regole applicative, le validazioni e la coerenza dei dati attraverso l'uso degli *Angular Signals*. Agendo come gestore centralizzato dello stato dell'applicazione, la logica di business opera esclusivamente tramite i contratti (classi astratte) definiti dalla logica di _comunicazione_, rimanendo così totalmente agnostica rispetto alla provenienza dei dati o ai protocolli di trasporto.
 
 ===== Modelli dati
@@ -2574,7 +2574,7 @@ Il servizio presenta i seguenti metodi privati:
   caption: [Code diagram - GatewaySensorManagerService],
 )
 
-==== Logica di presentazione
+==== Logica di presentazione <angular-logica-presentazione>
 Questa logica è implementata dal binomio *View-ViewModel* e ha il compito di esporre lo stato del Model in modo ottimizzato per la visualizzazione. Il ViewModel agisce come un mediatore che incapsula la logica di business e offre alla View dati pronti per il consumo tramite _data-binding_ reattivo. Questa separazione assicura che la View rimanga passiva e focalizzata sul layout, mentre il ViewModel gestisce l'orchestrazione degli eventi utente e la trasformazione dei dati necessari alla UI.
 
 ===== Routes
