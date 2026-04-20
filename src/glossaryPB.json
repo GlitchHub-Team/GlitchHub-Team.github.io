@@ -405,7 +405,7 @@
     },
     {
         "term": "Retrospettiva",
-        "definition": "Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni."
+        "definition": "Vd. @{Sprint Retrospective}."
     },
     {
         "term": "Preventivo",
@@ -488,15 +488,15 @@
         "definition": "La parte del prodotto che si prende in considerazione nel contesto di un @{caso d'uso} specifico. Si noti che il sistema di un caso d'uso può corrispondere all'@{attore} di un altro caso, a seconda della funzionalità che si intende descrivere."
     },
     {
-        "term": "Tenant user",
+        "term": "Tenant User",
         "definition": "Utente autenticato senza privilegi appartenente a uno specifico @{tenant}. Ha solo il potere di visualizzare i dati dei sensori ricevuti dai @{gateway}."
     },
     {
-        "term": "Tenant admin",
+        "term": "Tenant Admin",
         "definition": "Utente autenticato appartenente a un @{tenant} specifico con privilegi di amministrazione all'interno del proprio tenant e sui @{gateway} a esso associati."
     },
     {
-        "term": "Super admin",
+        "term": "Super Admin",
         "definition": "Utente autenticato con poteri di amministrazione globali a tutti i @{tenant} associati alla piattaforma @{cloud}"
     },
     {
@@ -513,7 +513,7 @@
     },
     {
         "term": "Impersonificazione",
-        "definition": "Atto con cui un @{Super admin} si fa temporaneamente riconoscere dal sistema @{cloud} come utente appartenente a uno specifico @{tenant}, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un @{Tenant Admin}. Questo può avvenire soltanto se il @{tenant} impersonato ha precedentemente accettato un'apposita clausola contrattuale."
+        "definition": "Atto con cui un @{Super Admin} si fa temporaneamente riconoscere dal sistema @{cloud} come utente appartenente a uno specifico @{tenant}, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un @{Tenant Admin}. Questo può avvenire soltanto se il @{tenant} impersonato ha precedentemente accettato un'apposita clausola contrattuale."
     },
     {
         "term": "Comando (gateway)",
@@ -757,7 +757,7 @@
     },
     {
         "term": "Uber Fx",
-        "definition": "Framework di Dependency Injection per il linguaggio Go, che semplifica la gestione delle dipendenze e l'organizzazione del codice, promuovendo un'architettura modulare e testabile."
+        "definition": "Framework di @{Dependency Injection} per il linguaggio Go, che semplifica la gestione delle dipendenze e l'organizzazione del codice, promuovendo un'architettura modulare e testabile."
     },
     {
         "term": "SMTP",
@@ -774,5 +774,9 @@
     {
         "term": "Websocket",
         "definition": "Protocollo di comunicazione bidirezionale basato su TCP comunemente utilizzato per far comunicare un client con un web server. La comunicazione inizia con una richiesta GET da parte del client, sulla quale si fa un Upgrade al protocollo websocket."
+    },
+    {
+        "term": "Embedding",
+        "definition": "Funzionalità di @{Go} che consente di inserire campi di una struct all'interno di un'altra, consentendo di applicare un meccanismo simile all'ereditarietà nei linguaggi object-oriented. Si noti che l'embedding avviene solamente sugli *attributi* e non sui metodi della struct in considerazione."
     }
 ]
