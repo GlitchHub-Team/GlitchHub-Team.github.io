@@ -1,4 +1,5 @@
 #import "../../Templates/templateDocumentiGenerici.typ": *
+#import "../../lib/libRequisiti.typ": LISTA-RD, LISTA-RF, LISTA-RNF, get-req-by-id
 #show ref: underline
 
 
@@ -32,10 +33,28 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.11.1",
+      "18/04/2026",
+      "Elia Ernesto Stellin",
+      "Michele Dioli",
+      [
+        Implementate modifiche suggerite nella verifica di v0.11.0
+      ]
+    ),
+    (
+      "0.11.0",
+      "18/04/2026",
+      "Elia Ernesto Stellin",
+      "Michele Dioli",
+      [
+        Aggiunta sezione @cloud-db.
+      ]
+    ),
+    (
       "0.10.0",
       "17/04/2026",
       "Elia Ernesto Stellin",
-      "",
+      "Michele Dioli",
       [
         Spostate sezioni sul diagramma C4 in @architettura; Migliorata sezione @archit-esagonale; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
       ],
@@ -142,8 +161,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Michele Dioli",
+  left-signature: "../assets/firme/firma_Michele_Dioli.png",
   tipo-documento: "Specifica tecnica",
 )
 
@@ -228,8 +247,7 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 Per lo sviluppo del sistema abbiamo scelto uno stack tecnologico moderno e solido, selezionando ogni strumento con l'obiettivo di supportare bene un'architettura a microservizi che sia facile da gestire e capace di crescere nel tempo. Le nostre scelte sono state condotte dalla necessità di creare un'infrastruttura per la gestione dei dati IoT che funzioni bene anche sotto carico, garantendo che il flusso di informazioni dai sensori BLE sia sempre veloce e affidabile.
 
 Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione delle loro caratteristiche principali.
-//TODO aggiungere le versioni dei linguaggi
-//TODO: aggiungere goroutine al glossario
+
 == Linguaggi e ambienti di programmazione
 #tabella-paginata(
   table(
@@ -1296,7 +1314,7 @@ La struct ha i seguenti attributi e metodi:
 ==== Gateway simulato
 Il gateway simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un gateway IoT reale, ascoltando comandi in ingresso e di svuotare periodicamente un buffer interno di dati generati dai sensori simulati associati, inviandoli via #gloss[NATS JetStream].
 
-Il gateway simulato è fatto partire dal comando *CreateGatewayCmd* come una *goroutine* separata, in modo da eseguire ogni gateway simulato in parallelo e garantire l'esecuzione di un comando alla volta per gateway.\
+Il gateway simulato è fatto partire dal comando *CreateGatewayCmd* come una #gloss[goroutine] separata, in modo da eseguire ogni gateway simulato in parallelo e garantire l'esecuzione di un comando alla volta per gateway.\
 
 Ogni gateway simulato ha due *channel*: uno per ricevere i comandi di tipo `BaseCommand` e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
@@ -1389,7 +1407,7 @@ La struct *sensorData* rappresenta la misurazione IoT generata da un sensore sim
 ==== Sensore simulato
 Il sensore simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un sensore IoT reale, generando periodicamente delle misurazioni IoT e salvandole nel buffer interno del gateway simulato.
 
-Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una *goroutine* separata, in modo da eseguire ogni sensore simulato in parallelo.
+Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una #gloss[goroutine] separata, in modo da eseguire ogni sensore simulato in parallelo.
 
 Ogni sensore simulato ha due channel: uno per ricevere i comandi di tipo `BaseCommand` e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
@@ -3066,7 +3084,7 @@ Lo struct `NATSWorker` ha la responsabilità di istanziare una #gloss[goroutine]
 - *`gatewayHelloUseCase`*: Riferimento allo _use case_ implementato dal service; poiché comunica in input con la _business logic_, `NATSWorker` è un'_inbound adapter_
 - *`logger`*: Riferimento a logger zap
 
-Eseguendo il metodo `Run(lc fx.Lifecycle)` è possibile istanziare il worker, il quale istanzierà a sua volta `ListenHelloMessages(ctx context.Context)` in una goroutine, la quale applicherà il metodo `ProcessMsg(msg jetstream.Msg)` a ogni messaggio ricevuto su #gloss[JetStream].
+Eseguendo il metodo `Run(lc fx.Lifecycle)` è possibile istanziare il worker, il quale istanzierà a sua volta `ListenHelloMessages(ctx context.Context)` in una #gloss[goroutine], la quale applicherà il metodo `ProcessMsg(msg jetstream.Msg)` a ogni messaggio ricevuto su #gloss[JetStream].
 
 // TODO: Forse sarebbe bene spiegare meglio come funziona il tutto?
 *`GatewayHelloMessageDTO`* è il tipo del DTO creato da `NATSWorker` corrispondente a un messaggio di hello su #gloss[NATS Jetstream]. Esso consiste di:
@@ -3116,7 +3134,7 @@ _Inbound adapter_ principale del package.
 
 *Metodi*:
 - *`startClientListener(conn *websocket.Conn, errorChannel chan RealTimeError)`*: Metodo che esegue un _listener_ su #gloss[Websocket] per rilevare disconnessioni del client, in modo tale da interrompere l'esecuzione del sistema di ottenimento dati
-- *`GetRealTimeData(ctx *gin.Context)`*: Metodo che ha la responsabilità di iniziare l'ascolto dei dati in real-time su NATS chiamando lo _use case_, di eseguire `startClientListener()` su una goroutine e di inviare i dati ottenuti al client #gloss[Websocket]
+- *`GetRealTimeData(ctx *gin.Context)`*: Metodo che ha la responsabilità di iniziare l'ascolto dei dati in real-time su NATS chiamando lo _use case_, di eseguire `startClientListener()` su una #gloss[goroutine] e di inviare i dati ottenuti al client #gloss[Websocket]
 
 *Funzione di costruzione*: `NewController(log *zap.Logger, getRealTimeDataUseCase GetRealTimeDataUseCase) *Controller`
 
@@ -3211,7 +3229,7 @@ Rappresenta un errore ricevuto in tempo reale. Può essere un errore di disconne
 _Outbound port_ utilizzata per comunicare con il _listener_ dei dati in tempo reale.
 
 *Metodi*:
-- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Istanzia asincronamente una goroutine che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
+- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Istanzia asincronamente una #gloss[goroutine] che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
 
 
 ===== Outbound adapter -- `RealTimeDataNATSAdapter`
@@ -3605,7 +3623,7 @@ Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare 
 *Funzione di costruzione*: `NewSensorPostgreRepository(log *zap.Logger, db clouddb.CloudDBConnection) *sensorPostgreRepository`
 
 ====== `SensorEntity`
-`Entity` che rappresenta la tabella `sensors` nel database (vd. @er-cloud-db).
+`Entity` che rappresenta la tabella `sensors` nel database (vd. @cloud-db).
 
 *Attributi*:
 - *`ID string`*: UUID del sensore
@@ -4265,7 +4283,7 @@ Struct concreta che implementa `TenantMemberRepository`.
 *Funzione di costruzione*: `newTenantMemberPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *tenantMemberPgRepository`
 
 ====== `TenantMemberEntity`
-Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @er-cloud-db.
+Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @cloud-db.
 
 *Attributi*:
 - *`ID uint`*: ID dell'utente.
@@ -4315,6 +4333,8 @@ Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super 
 - *`UpdatedAt time.Time`*: Data di ultimo aggiornamento dell'utente.
 
 == Database design <db-design>
+Di seguito si riporta il design di tutti i database utilizzati nel sistema, riportando per ognuno i relativi schemi ER e descrizioni delle tabelle. La descrizione di ogni tabella comprende una breve sinossi del suo scopo e la lista dei suoi attributi, comprendenti di nome e tipo.
+
 === Buffer database
 #figure(
   image("../../assets/c4/gateway/BufferER.pdf", width: 40%),
@@ -4322,12 +4342,14 @@ Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super 
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] come buffer interno per i dati prodotti dai sensori simulati associati a ciascun gateway, in modo da poterli recuperare e inviare periodicamente tramite #gloss[NATS JetStream].
 
-Il database perciò avrà un'entità principale con i seguenti attributi:
-- `sensorId`: UUID del sensore simulato che ha generato la misurazione.
-- `gatewayId`: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- `timestamp`: timestamp rappresentante il momento in cui è stata generata la misurazione.
-- `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- `value`: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+Il database presenta, infatti, una tabella `buffer` coi seguenti attributi:
+- *`sensorId TEXT NOT NULL`*: UUID del sensore simulato che ha generato la misurazione.
+- *`gatewayId TEXT NOT NULL`*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- *`timestamp DATETIME NOT NULL`*: timestamp rappresentante il momento in cui è stata generata la misurazione.
+- *`profile TEXT NOT NULL`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- *`value BLOB NOT NULL`*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+
+La primary key della tabella è composta dagli attributi `(sensorId, gatewayId, timestamp)`.
 
 === Configuration database
 #figure(
@@ -4336,20 +4358,25 @@ Il database perciò avrà un'entità principale con i seguenti attributi:
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] per salvare la configurazione dei gateway e dei sensori simulati, in modo da poterla recuperare in caso di riavvio del servizio o di crash.
 
-Il database perciò avrà due entità principali, ovvero *Gateway* e *Sensor*, con i seguenti attributi:
-- `Gateway`:
-  - `id`: UUID del gateway simulato.
-  - `tenantId`: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
-  - `status`: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
-  - `interval`: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
-  - `publicIdentifier`: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
-  - `secretKey`: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
-  - `token`: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
-- `Sensor`:
-  - `id`: UUID del sensore simulato.
-  - `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
-  - `interval`: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
-  - `status`: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
+Il database perciò avrà due entità principali, ovvero *Gateway* e *Sensor*.
+
+==== Gateway
+L'entità Gateway descrive la tabella `gateways` che rappresenta i gateway simulati dal microservizio e presenta i seguenti attributi:
+- *`id VARCHAR(255)`*: Primary key, UUID del gateway simulato.
+- *`tenantId VARCHAR(255) NOT NULL`*: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
+- *`status VARCHAR(255) NOT NULL`*: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
+- *`interval INT NOT NULL`*: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
+- *`publicIdentifier VARCHAR(255) NOT NULL`*: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
+- *`secretKey VARCHAR(255) NOT NULL`*: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
+- *`token VARCHAR(255)`*: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
+
+==== Sensor
+L'entità Sensor descrive la tabella `sensors` che rappresenta i sensori simulati dal microservizio e presenta i seguenti attributi:
+- *`id VARCHAR(255)`*: Primary, UUID del sensore simulato.
+- *`gatewayId VARCHAR(255) NOT NULL`*: UUID del sensore simulato.
+- *`profile VARCHAR(255) NOT NULL`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
+- *`interval INT NOT NULL`*: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
+- *`status VARCHAR(255) NOT NULL`*: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
 
 Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un gateway può avere più sensori associati (o anche nessuno), mentre un sensore deve essere associato ad un gateway.
 
@@ -4362,19 +4389,120 @@ Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un
 Il microservizio *Data Consumer* e il microservizio *Cloud Backend* utilizzano un database #gloss[TimescaleDB] per salvare i dati IoT prodotti dai sensori simulati, in modo da poterne visualizzare lo storico.
 
 Il database avrà un'entità principale con i seguenti attributi:
-- `sensorId`: UUID del sensore simulato che ha generato la misurazione.
-- `gatewayId`: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- `tenantId`: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
-- `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- `timestamp`: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
-- `value`: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+- *`sensorId UUID`*: UUID del sensore simulato che ha generato la misurazione.
+- *`gatewayId UUID`*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- *`tenantId UUID`*: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
+- *`profile VARCHAR`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- *`timestamp TIMESTAMPTZ`*: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
+- *`value JSONB`*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
 
 Nel database ci sarà una separazione logica dei dati per tenant, resa possibile dalla creazione di uno *schema* per ogni tenant. \
 Perciò ogni tenant dovrà accedere al proprio schema e alla propria tabella per ottenere i propri dati.
 
-=== Cloud database <er-cloud-db>
+=== Cloud database <cloud-db>
 
-// TODO: Inserire specifica ER di cloud db
+#figure(
+  image("../../assets/c4/cloud_db_ER.pdf", width: 100%),
+  caption: [Schema ER per Cloud Database],
+) <cloud-db-er>
+
+Il microservizio *Cloud Backend* utilizza un database #gloss[PostgreSQL], le cui tabelle sono rappresentate dallo schema ER in @cloud-db-er, dove i riquadri azzurri rappresentano gli elementi che sono stati implementati, mentre i riquadri rossi gli elementi che sono stati originariamente progettati ma non implementati nell'#gloss[MVP].
+
+#let req = get-req-by-id(LISTA-RD, "RD-Dati-logicamente-separati-per-tenant").codice
+La separazione logica dei dati tra tenant, richiesta dal requisito #req, è stata ottenuta tramite l'utilizzo degli #gloss[schema] offerti da #gloss[PostgreSQL], i quali permettono di raggruppare un insieme di tabelle sotto uno stesso _namespace_. Nel *Cloud Database*, i dati sono così divisi:
+- Nello schema di nome `public` sono presenti le tabelle *non* associate a un tenant, ovvero:
+  - `gateways`
+  - `sensors`
+  - `super_admin_confirm_tokens`
+  - `super_admin_forgot_password_tokens`
+  - `super_admins`
+  - `tenants`
+- In ogni schema di nome `tenant_<uuid>` sono presenti le tabelle associate al tenant con ID pari a `<uuid>` e ai relativi Tenant User e Tenant Member, ovvero:
+  - `confirm_tokens`
+  - `forgot_password_tokens`
+  - `tenant_members`
+
+==== Tabelle nello schema `public`
+
+===== `gateways`
+La tabella `gateways` rappresenta l'insieme di gateway inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del gateway.
+- *`name VARCHAR(255) NOT NULL`*: Nome del gateway.
+- *`tenant_id UUID`*: UUID del tenant a cui è associato, se pari a `NULL` il gateway non è associato ad alcun gateway.
+- *`status VARCHAR(50) NOT NULL`*: Stato del gateway, può assumere i valori `'inactive'` o `'active'`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
+- *`public_identifier VARCHAR(255)`*: Stringa che identifica pubblicamente il gateway, se pari a `NULL` significa che il gateway non ha inviato il messaggio di hello al Cloud Backend e il gateway simulato non ha segnato nel DB locale l'identificatore pubblico.
+- *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
+
+===== `sensors`
+La tabella `sensors` rappresenta l'insieme dei sensori inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del sensore.
+- *`gateway_id UUID`*: UUID del gateway a cui il sensore è associato, chiave esterna su `gateways.id`.
+- *`name VARCHAR(255) NOT NULL`*: Nome del sensore.
+- *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
+- *`profile VARCHAR(50)`*: Profilo GATT del sensore.
+- *`status VARCHAR(50) NOT NULL`*: Stato del sensore, può assumere i valori `'inactive'`, `'active'` o `'decommissioned'`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
+
+===== `super_admin_confirm_tokens`
+La tabella `super_admin_confirm_tokens` rappresenta i token di conferma account creati per i Super Admin e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `super_admin_forgot_password_tokens`
+La tabella `super_admin_forgot_password_tokens` rappresenta i token di modifica password dimenticata creati per i Super Admin e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `super_admins`
+La tabella `super_admins` rappresenta l'insieme dei Super Admin inseriti nel sistema e presenta i seguenti attributi:
+- *`id BIGINT`*: Primary key, ID autoincrementale dell'utente.
+- *`email VARCHAR(256) NOT NULL`*: Indirizzo email dell'utente, unico nella tabella
+- *`name VARCHAR(128) NOT NULL`*: Nome dell'utente.
+- *`password VARCHAR(128)`*: Password dell'utente, pari a `NULL` se l'utente non è ancora stato confermato (vd. campo `confirmed`).
+- *`confirmed BOOLEAN`*: `true` se l'utente è stato confermato, `false` altrimenti.
+- *`created_at TIMESTAMPTZ`*: Data di creazione dell'utente.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento dei dati dell'utente.
+
+===== `tenants`
+La tabella `tenants` rappresenta l'insieme dei tenant inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del tenant.
+- *`name VARCHAR(256) NOT NULL`*: Nome del tenant.
+- *`can_impersonate BOOLEAN NOT NULL`*: `true` se il tenant è impersonabile, `false` altrimenti.
+
+==== Tabelle nello schema `tenant_<uuid>`
+
+===== `confirm_tokens`
+La tabella `confirm_tokens` rappresenta i token di conferma account creati per i Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `forgot_password_tokens`
+La tabella `super_admin_forgot_password_tokens` rappresenta i token di modifica password dimenticata creati per i Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `tenant_members`
+La tabella `tenant_members` rappresenta l'insieme dei Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`id BIGINT`*: Primary key, ID autoincrementale dell'utente.
+- *`email VARCHAR(256) NOT NULL`*: Indirizzo email dell'utente, unico nella tabella
+- *`name VARCHAR(128) NOT NULL`*: Nome dell'utente.
+- *`password VARCHAR(128)`*: Password dell'utente, pari a `NULL` se l'utente non è ancora stato confermato (vd. campo `confirmed`).
+- *`confirmed BOOLEAN`*: `true` se l'utente è stato confermato, `false` altrimenti.
+- *`role VARCHAR(32)`*: Il ruolo specifico dell'utente, può assumere il valore `tenant_user` o `tenant_member`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione dell'utente.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento dei dati dell'utente.
+
 
 == Architettura di deployment <archit-deploy>
 === Diagramma di deployment <deploy-diagram>
