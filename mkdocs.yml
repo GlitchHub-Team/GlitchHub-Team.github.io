@@ -33,7 +33,14 @@ nav:
       - Dashboard Frontend:
           - Login: guide/dashboard-frontend/login.md
       - Dashboard Backend:
-          - Login: guide/dashboard-backend/login.md
+          - Autenticazione: guide/dashboard-backend/auth.md
+          - Gestione utenti: guide/dashboard-backend/user.md
+          - Gestione tenant: guide/dashboard-backend/tenant.md
+          - Gestione gateway: guide/dashboard-backend/gateway.md
+          - Gestione sensori: guide/dashboard-backend/sensor.md
+          - Comandi per gateway e sensori: guide/dashboard-backend/comandi-sensor-gateway.md
+          - Ricezione dati storici: guide/dashboard-backend/dati-storici.md
+          - Ricezione dati in tempo reale: guide/dashboard-backend/dati-real-time.md
       - Observability:
           - Metriche del backend: guide/observability/metriche-backend.md
           - Metriche di NATS: guide/observability/metriche-nats.md
