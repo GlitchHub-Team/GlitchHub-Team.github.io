@@ -1587,7 +1587,7 @@ Il package `auth` contiene tutte le funzionalità relative alla gestione dell'au
 
 #figure(
   image("../../assets/c4/backend/auth/auth.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `auth`],
+  caption: [Cloud Backend -- Code Diagram di `auth`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
@@ -1603,14 +1603,14 @@ Il package `auth` presenta un controller che si occupa di ricevere le richieste 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
 - *`tokenService crypto.TokenService`*: Riferimento al servizio per la gestione dei token JWT
-- *`loginUserUseCase LoginUserUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e autenticare un utente
-- *`logoutUserUseCase LogoutUserUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e disautenticare un utente
-- *`confirmAccountUseCase ConfirmAccountUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e confermare l'account di un utente
-- *`verifyConfirmAccountTokenUseCase VerifyConfirmAccountTokenUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e verificare il token di conferma dell'account
-- *`verifyForgotPasswordTokenUseCase VerifyForgotPasswordTokenUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e verificare il token per la reimpostazione della password
-- *`requestForgotPasswordUseCase RequestForgotPasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e richiedere la reimpostazione della password dimenticata
-- *`confirmForgotPasswordUseCase ConfirmForgotPasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e confermare la reimpostazione della password dimenticata
-- *`changePasswordUseCase ChangePasswordUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e cambiare la password per un utente che ha accesso al sistema
+- *`loginUserUseCase LoginUserUseCase`*: Riferimento all'_inbound port_ per  autenticare un utente
+- *`logoutUserUseCase LogoutUserUseCase`*: Riferimento all'_inbound port_ per  disautenticare un utente
+- *`confirmAccountUseCase ConfirmAccountUseCase`*: Riferimento all'_inbound port_ per  confermare l'account di un utente
+- *`verifyConfirmAccountTokenUseCase VerifyConfirmAccountTokenUseCase`*: Riferimento all'_inbound port_ per  verificare il token di conferma dell'account
+- *`verifyForgotPasswordTokenUseCase VerifyForgotPasswordTokenUseCase`*: Riferimento all'_inbound port_ per  verificare il token per la reimpostazione della password
+- *`requestForgotPasswordUseCase RequestForgotPasswordUseCase`*: Riferimento all'_inbound port_ per  richiedere la reimpostazione della password dimenticata
+- *`confirmForgotPasswordUseCase ConfirmForgotPasswordUseCase`*: Riferimento all'_inbound port_ per  confermare la reimpostazione della password dimenticata
+- *`changePasswordUseCase ChangePasswordUseCase`*: Riferimento all'_inbound port_ per  cambiare la password per un utente che ha accesso al sistema
 
 *Metodi*:
 Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
@@ -1677,34 +1677,34 @@ I DTO usati da `Controller` sono i seguenti:
 ===== Inbound ports
 #figure(
   image("../../assets/c4/backend/auth/service.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per _inbound ports_ di `auth`],
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ di `auth`],
 )
 
 
 ====== LoginUserUseCase
 *Metodi:*
-- LoginUser(cmd LoginUserCommand) (user.User, error): Loggare un utente nel sistema tramite le credenziali fornite in `cmd` e restituisce l'utente loggato o un errore in caso di fallimento
+- *`LoginUser(cmd LoginUserCommand) (user.User, error)`*: Logga un utente nel sistema tramite le credenziali fornite in `cmd` e restituisce l'utente loggato o un errore in caso di fallimento
 ====== LogoutUserUseCase
 *Metodi:*
--LogoutUser(cmd LogoutUserCommand) error: Eseguire il logout di un utente dal sistema tramite i dati di autenticazione forniti in `cmd` e restituisce un errore in caso di fallimento
+- *`LogoutUser(cmd LogoutUserCommand) error`*: Esegue il logout di un utente dal sistema tramite i dati di autenticazione forniti in `cmd` e restituisce un errore in caso di fallimento
 ====== ConfirmAccountUseCase
 *Metodi:*
-- ConfirmAccount(cmd ConfirmAccountCommand) (user.User, error): Confermare l'account di un utente tramite il token di conferma fornito in `cmd` e restituisce l'utente con l'account confermato o un errore in caso di fallimento
+- *`ConfirmAccount(cmd ConfirmAccountCommand) (user.User, error)`*: Conferma l'account di un utente tramite il token di conferma fornito in `cmd` e restituisce l'utente con l'account confermato o un errore in caso di fallimento
 ====== VerifyConfirmAccountTokenUseCase
 *Metodi:*
-- VerifyConfirmAccountToken(cmd VerifyConfirmAccountTokenCommand) error: Verificare il token di conferma dell'account fornito in `cmd` e restituisce un errore in caso di fallimento
+- *`VerifyConfirmAccountToken(cmd VerifyConfirmAccountTokenCommand) error`*: Verifica il token di conferma dell'account fornito in `cmd` e restituisce un errore in caso di fallimento
 ====== VerifyForgotPasswordTokenUseCase
 *Metodi:*
-- VerifyForgotPasswordToken(cmd VerifyForgotPasswordTokenCommand) error: Verificare il token per la reimpostazione della password fornito in `cmd` e restituisce un errore in caso di fallimento
+- *`VerifyForgotPasswordToken(cmd VerifyForgotPasswordTokenCommand) error`*: Verifica il token per la reimpostazione della password fornito in `cmd` e restituisce un errore in caso di fallimento
 ====== RequestForgotPasswordUseCase
 *Metodi:*
-- RequestForgotPassword(cmd RequestForgotPasswordCommand) error: Richiedere la reimpostazione della password per un utente specifico e restituisce un errore in caso di fallimento
+- *`RequestForgotPassword(cmd RequestForgotPasswordCommand) error`*: Richiede la reimpostazione della password per un utente specifico e restituisce un errore in caso di fallimento
 ====== ConfirmForgotPasswordUseCase
 *Metodi:*
-- ConfirmForgotPassword(cmd ConfirmForgotPasswordCommand) error: Confermare la reimpostazione della password per un utente specifico tramite il token e la nuova password forniti in `cmd` e restituisce un errore in caso di fallimento
+- *`ConfirmForgotPassword(cmd ConfirmForgotPasswordCommand) error`*: Conferma la reimpostazione della password per un utente specifico tramite il token e la nuova password forniti in `cmd` e restituisce un errore in caso di fallimento
 ====== ChangePasswordUseCase
 *Metodi:*
-- ChangePassword(cmd ChangePasswordCommand) error: Cambiare la password per un utente specifico tramite i dati di autenticazione e la nuova password forniti in `cmd` e restituisce un errore in caso di fallimento
+- *`ChangePassword(cmd ChangePasswordCommand) error`*: Cambia la password per un utente specifico tramite i dati di autenticazione e la nuova password forniti in `cmd` e restituisce un errore in caso di fallimento
 
 ===== Commands
 I comandi usati dagli _use case_ di `Controller` sono i seguenti:
@@ -1839,15 +1839,15 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 - *GetSuperAdminChangePasswordToken(tokenString string) (token ChangePasswordToken, err error)*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa. Restituisce il token trovato o un errore in caso di fallimento.
 
 
-===== Outbound adapter per database – ConfirmTokenAdapter
+===== Outbound adapter per database –- ConfirmTokenAdapter
 #figure(
   image("../../assets/c4/backend/auth/adaPass.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway - database outbound ConfirmTokenAdapter`],
+  caption: [Cloud Backend -- Code Diagram di `gateway - database outbound ConfirmTokenAdapter`],
 )
 
 ConfirmTokenAdapter è l’outbound port usata per comunicare con il database per le operazioni CRUD sui token di conferma, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
-*Interfaccie implementate*
+*Interfacce implementate*
 - *`ForgetPassowordTokenTokenPort`*
 
 *Attributi*
@@ -1857,12 +1857,12 @@ ConfirmTokenAdapter è l’outbound port usata per comunicare con il database pe
 
 #figure(
   image("../../assets/c4/backend/auth/adaConfi.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway - database outbound ChangePasswordTokenPgAdapter`],
+  caption: [Cloud Backend -- Code Diagram di `gateway - database outbound ChangePasswordTokenPgAdapter`],
 )
 
 `ChangePasswordTokenPgAdapter` è l’outbound port usata per comunicare con il database per le operazioni CRUD sui token di cambio password, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
-*Interfaccie implementate*
+*Interfacce implementate*
 - *`ChangePasswordTokenPort`*
 
 *Attributi*
@@ -1989,7 +1989,7 @@ Il package `email` non presenta controller poiché non viene chiamato direttamen
 
 #figure(
   image("../../assets/c4/backend/email/email.svg", width: 100%),
-  caption: [Cloud Backend -- Code Diagram per package `email`]
+  caption: [Cloud Backend -- Code Diagram di package `email`]
 )
 
 ===== `SendEmailPort`
@@ -2029,7 +2029,7 @@ Il package `gateway` contiene tutte le funzionalità relative alla gestione dei 
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/gw.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway`],
+  caption: [Cloud Backend -- Code Diagram di `gateway`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
@@ -2038,24 +2038,24 @@ Il package `gateway` presenta un controller che si occupa di ricevere le richies
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway.Controller`],
+  caption: [Cloud Backend -- Code Diagram di `gateway.Controller`],
 )
 
 
 ===== Attributi:
 - *`log *zap.Logger`*: Riferimento al logger zap
-- * `createGatewayUseCase CreateGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e creare un nuovo gateway
-- *`deleteGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e eliminare un gateway
-- *`getAllGatewaysUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e ottenere tutti i gateway
-- *`getGatewaysByTenantUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e ottenere i gateway di un tenant specifico
-- *`commissionGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e commissionare un gateway
-- *`decommissionGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e decommissionare un gateway
-- *`interruptGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e interrompere un gateway
-- *`resumeGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e riprendere un gateway
-- *`resetGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e resettare un gateway
-- *`rebootGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e riavviare un gateway
-- *`getGatewayUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e ottenere un gateway specifico
-- *`getGatewayByTenantIDUseCase`*: Riferimento all'_inbound port_ per comunicare con la classe `Service` e ottenere i gateway di un tenant specifico
+- * `createGatewayUseCase CreateGatewayUseCase`*: Riferimento all'_inbound port_ per creare un nuovo gateway
+- *`deleteGatewayUseCase`*: Riferimento all'_inbound port_ per eliminare un gateway
+- *`getAllGatewaysUseCase`*: Riferimento all'_inbound port_ per ottenere tutti i gateway
+- *`getGatewaysByTenantUseCase`*: Riferimento all'_inbound port_ per ottenere i gateway di un tenant specifico
+- *`commissionGatewayUseCase`*: Riferimento all'_inbound port_ per commissionare un gateway
+- *`decommissionGatewayUseCase`*: Riferimento all'_inbound port_ per decommissionare un gateway
+- *`interruptGatewayUseCase`*: Riferimento all'_inbound port_ per interrompere un gateway
+- *`resumeGatewayUseCase`*: Riferimento all'_inbound port_ per riprendere un gateway
+- *`resetGatewayUseCase`*: Riferimento all'_inbound port_ per resettare un gateway
+- *`rebootGatewayUseCase`*: Riferimento all'_inbound port_ per riavviare un gateway
+- *`getGatewayUseCase`*: Riferimento all'_inbound port_ per ottenere un gateway specifico
+- *`getGatewayByTenantIDUseCase`*: Riferimento all'_inbound port_ per ottenere i gateway di un tenant specifico
 
 ===== Metodi:
 Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
@@ -2117,54 +2117,58 @@ I DTO usati da `Controller` sono i seguenti:
 - *`RebootGatewayDTO`*: DTO usato per riavviare un gateway
   - `GatewayId`: UUID del gateway da riavviare
 
-===== Inbound ports
+===== Inbound ports -- CRUD gateway
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/gwservice.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway.GatewayService` e relative _inbound ports_],
-)
-
-#figure(
-  image("../../assets/c4/backend/gateway/gateway/natsservice.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway.CommandService` e relative _inbound ports_],
+  caption: [Cloud Backend -- Code Diagram di `gateway.GatewayService` e relative _inbound ports_],
 )
 
 ====== CreateGatewayUseCase
 *Metodi:*
-- CreateGateway(command CreateGatewayCommand) (Gateway, error): Crea un nuovo gateway con i dati specificati in `command` e restituisce il gateway creato o un errore in caso di fallimento
+- *`CreateGateway(command CreateGatewayCommand) (Gateway, error)`*: Crea un nuovo gateway con i dati specificati in `command` e restituisce il gateway creato o un errore in caso di fallimento
 ====== DeleteGatewayUseCase
 *Metodi:*
-- DeleteGateway(cmd DeleteGatewayCommand) (Gateway, error): Elimina un gateway specificato in `cmd` e restituisce il gateway eliminato o un errore in caso di fallimento
+- *`DeleteGateway(cmd DeleteGatewayCommand) (Gateway, error)`*: Elimina un gateway specificato in `cmd` e restituisce il gateway eliminato o un errore in caso di fallimento
 ====== GetGatewayUseCase
 *Metodi:*
-- GetGateway(cmd GetGatewayByIdCommand) (Gateway, error): Ottiene un gateway specificato in `cmd` e restituisce il gateway o un errore in caso di fallimento
+- *`GetGateway(cmd GetGatewayByIdCommand) (Gateway, error)`*: Ottiene un gateway specificato in `cmd` e restituisce il gateway o un errore in caso di fallimento
 ====== GetAllGatewaysUseCase
 *Metodi:*
-- GetAllGateways(command GetAllGatewaysCommand) ([]Gateway, uint, error): Ottiene tutti i gateway presenti nel sistema e restituisce una lista di gateway, il numero totale di gateway e un errore in caso di fallimento
+- *`GetAllGateways(command GetAllGatewaysCommand) ([]Gateway, uint, error)`*: Ottiene tutti i gateway presenti nel sistema e restituisce una lista di gateway, il numero totale di gateway e un errore in caso di fallimento
 ====== GetGatewaysByTenantUseCase
 *Metodi:*
-- GetGatewaysByTenant(command GetGatewaysByTenantCommand) ([]Gateway, uint, error): Ottiene una lista di gateway associati a un tenant specifico e restituisce la lista, il numero totale di gateway e un errore in caso di fallimento
+- *`GetGatewaysByTenant(command GetGatewaysByTenantCommand) ([]Gateway, uint, error)`*: Ottiene una lista di gateway associati a un tenant specifico e restituisce la lista, il numero totale di gateway e un errore in caso di fallimento
 ====== GetGatewayByTenantIDUseCase
 *Metodi:*
-- GetGatewayByTenantID(cmd GetGatewayByTenantIDCommand) (Gateway, error): Ottiene un gateway specifico associato a un tenant specifico e restituisce il gateway o un errore in caso di fallimento
+- *`GetGatewayByTenantID(cmd GetGatewayByTenantIDCommand) (Gateway, error)`*: Ottiene un gateway specifico associato a un tenant specifico e restituisce il gateway o un errore in caso di fallimento
+
+===== Inbound ports -- Comandi gateway
+
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/natsservice.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway.CommandService` e relative _inbound ports_],
+)
+
+
 ====== CommissionGatewayUseCase
 *Metodi:*
-- CommissionGateway(cmd CommissionGatewayCommand) (Gateway, error): Commissiona un gateway specificato in `cmd` e restituisce il gateway commissionato o un errore in caso di fallimento
+- *`CommissionGateway(cmd CommissionGatewayCommand) (Gateway, error)`*: Commissiona un gateway specificato in `cmd` e restituisce il gateway commissionato o un errore in caso di fallimento
 ====== DecommissionGatewayUseCase
 *Metodi:*
-- DecommissionGateway(cmd DecommissionGatewayCommand) (Gateway, error): Decommissiona un gateway specificato in `cmd` e restituisce il gateway decommissionato o un errore in caso di fallimento
+- *`DecommissionGateway(cmd DecommissionGatewayCommand) (Gateway, error)`*: Decommissiona un gateway specificato in `cmd` e restituisce il gateway decommissionato o un errore in caso di fallimento
 ====== InterruptGatewayUseCase
 *Metodi:*
-- InterruptGateway(cmd InterruptGatewayCommand) (Gateway, error): Interrompe un gateway specificato in `cmd` e restituisce il gateway interrotto o un errore in caso di fallimento
+- *`InterruptGateway(cmd InterruptGatewayCommand) (Gateway, error)`*: Interrompe un gateway specificato in `cmd` e restituisce il gateway interrotto o un errore in caso di fallimento
 ====== ResumeGatewayUseCase
 *Metodi:*
-- ResumeGateway(cmd ResumeGatewayCommand) (Gateway, error): Riprende un gateway specificato in `cmd` e restituisce il gateway ripreso o un errore in caso di fallimento
+- *`ResumeGateway(cmd ResumeGatewayCommand) (Gateway, error)`*: Riprende un gateway specificato in `cmd` e restituisce il gateway ripreso o un errore in caso di fallimento
 ====== ResetGatewayUseCase
 *Metodi:*
-- ResetGateway(cmd ResetGatewayCommand) (Gateway, error): Resetta un gateway specificato in `cmd` e restituisce il gateway resettato o un errore in caso di fallimento
+- *`ResetGateway(cmd ResetGatewayCommand) (Gateway, error)`*: Resetta un gateway specificato in `cmd` e restituisce il gateway resettato o un errore in caso di fallimento
 ====== RebootGatewayUseCase
 *Metodi:*
-- RebootGateway(cmd RebootGatewayCommand) (Gateway, error): Riavvia un gateway specificato in `cmd` e restituisce il gateway riavviato o un errore in caso di fallimento
+- *`RebootGateway(cmd RebootGatewayCommand) (Gateway, error)`*: Riavvia un gateway specificato in `cmd` e restituisce il gateway riavviato o un errore in caso di fallimento
 
 ===== Commands
 I comandi usati dagli _use case_ del package sono i seguenti:
@@ -2292,7 +2296,7 @@ comunicare con il database.
 
 #figure(
   image("../../assets/c4/backend/gateway/gateway/pgAdapter.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway - Outbound ports`],
+  caption: [Cloud Backend -- Code Diagram di `gateway - Outbound ports`],
 )
 
 ====== SaveGatewayPort
@@ -2317,7 +2321,7 @@ comunicare con il database.
 - *`GetByTenantId(tenantId uuid.UUID, page int, limit int) ([]Gateway, uint, error)`*: Ottiene una lista di gateway associati a un tenant specifico dal database tramite l'UUID del tenant, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
 - *`GetAll(page int, limit int) ([]Gateway, uint, error)`*: Ottiene tutti i gateway presenti nel database, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
 
-=====  Outbound ports – Message broker
+=====  Outbound ports -– Message broker
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il gateway simulato tramite NATS.
 
 #figure(
@@ -2336,10 +2340,10 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 - *`SendReset(gatewayId uuid.UUID) error`*: Invia un comando di reset a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
 - *`SendReboot(gatewayId uuid.UUID) error`*: Invia un comando di riavvio a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
 
-===== Outbound adapter per database – GatewayPostgreAdapter
+===== Outbound adapter per database -– GatewayPostgreAdapter
 `GatewayPostgreAdapter` è l’outbound adapter usata per comunicare con il database per le operazioni CRUD sui gateway, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
-*Interfaccie implementate*
+*Interfacce implementate*
 - *`SaveGatewayPort`*
 - *`CreateGatewayPort`*
 - *`DeleteGatewayPort`*
@@ -2352,17 +2356,17 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 
 
 
-===== Outbound adapter per NATS – GatewayCommandNATSAdapter
+===== Outbound adapter per NATS -– GatewayCommandNATSAdapter
 GatewayCommandNATSAdapter è l’outbound adapter usata per comunicare con NATS per l’invio dei comandi ai gateway, traducendo l’interfaccia di dominio nell’interfaccia di NATS e viceversa.
 
-*Interfaccie implementate*
+*Interfacce implementate*
 - *`GatewayCommandPort`*
 
 *Attributi*
 - *`log *zap.Logger`*: Riferimento al logger zap
 - *`natsClient nats.Conn`*: Riferimento al client NATS
 
-===== Repository per NATS – GatewayCommandNATSRepository
+===== Repository per NATS –- GatewayCommandNATSRepository
 *Metodi*
 - *`SendCreateGateway(gatewayId uuid.UUID, interval int64) error`* : Invia un comando di creazione di un gateway specifico tramite il suo UUID e l'intervallo di invio dei dati al cloud in millisecondi. Restituisce un errore in caso di fallimento
 - *`SendDeleteGateway(gatewayId uuid.UUID) error`*: Invia un comando di eliminazione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
@@ -2375,7 +2379,7 @@ GatewayCommandNATSAdapter è l’outbound adapter usata per comunicare con NATS 
 
 
 
-===== Repository per database – GatewayRepository, GatewayEntity
+===== Repository per database –- GatewayRepository, GatewayEntity
 
 *Metodi*
 - *`SaveGateway(gateway *GatewayEntity) error`* : Salva un gateway a database. Restituisce un errore in caso di fallimento
@@ -2417,7 +2421,7 @@ Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di
 
 #figure(
   image("../../assets/c4/backend/gateway/hello/hello.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `gateway/hello`],
+  caption: [Cloud Backend -- Code Diagram di `gateway/hello`],
 )
 
 ===== Inbound adapter -- `NATSWorker`, `GatewayHelloMessageDTO`
@@ -2454,7 +2458,7 @@ Il package `historical_data` contiene tutte le funzionalità per poter accedere 
 
 #figure(
   image("../../assets/c4/backend/historical_data/historical.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `historical_data`],
+  caption: [Cloud Backend -- Code Diagram di `historical_data`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
@@ -2474,27 +2478,27 @@ Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in outpu
 
 I DTO usati da `Controller` sono i seguenti:
 - *`HistoricalSampleResponseDTO`*: DTO usato per creare un nuovo gateway, contiene i seguenti campi:
-  -`SensorId`: UUID del sensore per cui ottenere i dati storici
-  -`TenantId`: UUID del tenant a cui il sensore è associato
-  -`GatewayId`: UUID del gateway per cui ottenere i dati storici
-  -`Timestamp`: timestamp del campione storico
-  -`Profile`: profilo del campione storico
-  - `Data`: data del campione storico
+  -`SensorId string`: UUID del sensore per cui ottenere i dati storici
+  -`TenantId string`: UUID del tenant a cui il sensore è associato
+  -`GatewayId string`: UUID del gateway per cui ottenere i dati storici
+  -`Timestamp time.Time`: timestamp del campione storico
+  -`Profile string`: profilo del campione storico
+  - `Data string`: data del campione storico
 
 -*`HistoricalDataResponseDTO`*: DTO usato per restituire i dati storici di un sensore, contiene i seguenti campi:
-  -`Count`: numero di campioni storici restituiti
-  -`Samples`: lista di campioni storici restituiti
+  -`Count int`: numero di campioni storici restituiti
+  -`Samples int `: lista di campioni storici restituiti
 
 -*`GetHistoricalDataQueryDTO`*: DTO usato per ottenere i dati storici di un sensore, contiene i seguenti campi:
-  -`From`: data di inizio del periodo per cui ottenere i dati storici
-  -`To`: data di fine del periodo per cui ottenere i dati storici
-  -`Limit`: numero massimo di campioni storici da restituire
+  -`From time.Time`: data di inizio del periodo per cui ottenere i dati storici
+  -`To time.Time`: data di fine del periodo per cui ottenere i dati storici
+  -`Limit int`: numero massimo di campioni storici da restituire
 
 ===== Inbound ports
 
 ====== GetSensorHistoricalDataUseCase
 *Metodi:*
-- GetSensorHistoricalData(cmd GetSensorHistoricalDataCommand) ([]HistoricalSample, error): Ottiene i dati storici di un sensore specifico tramite il comando GetSensorHistoricalDataCommand. Restituisce una lista di campioni storici o un errore in caso di fallimento
+- *`GetSensorHistoricalData(cmd GetSensorHistoricalDataCommand) ([]HistoricalSample, error)`*: Ottiene i dati storici di un sensore specifico tramite il comando GetSensorHistoricalDataCommand. Restituisce una lista di campioni storici o un errore in caso di fallimento
 
 ===== Commands
 I comandi usati dagli _use case_ di `Controller` sono i seguenti:
@@ -2508,7 +2512,7 @@ I comandi usati dagli _use case_ di `Controller` sono i seguenti:
 ===== Services
 
 ====== GetHistoricalDataService
-Implemeta le interfaccie GetSensorHistoricalDataUseCase
+Implemeta le interfacce GetSensorHistoricalDataUseCase
 
 *Attributi*
 
@@ -2523,23 +2527,23 @@ Implemeta le interfaccie GetSensorHistoricalDataUseCase
 Rappresenta un campione di dati storici nello strato di business logic.
 
 *Attributi:*
-- *`SensorId`*: UUID del sensore per cui il campione è stato raccolto
-- *`TenantID`*: UUID del tenant a cui il sensore è associato
-- *`GatewayId`*: UUID del gateway per cui il campione è stato raccolto
-- *`Timestamp`*: timestamp del campione storico
-- *`Profile`*: profilo del campione storico
-- *`Data`*: data del campione storico
+- *`SensorId uuid.UUID`*: UUID del sensore per cui il campione è stato raccolto
+- *`TenantID uuid.UUID`*: UUID del tenant a cui il sensore è associato
+- *`GatewayId uuid.UUID`*: UUID del gateway per cui il campione è stato raccolto
+- *`Timestamp time.Time`*: timestamp del campione storico
+- *`Profile sensorProfile.SensorProfile`*: profilo del campione storico
+- *`Data json.RawMessage`*: data del campione storico
 
 
 ====== HistoricalDataFilter
 Rappresenta un filtro per ottenere i dati storici di un sensore specifico nello strato di business logic.
 
 *Attributi:*
-- *`From`*: data di inizio del periodo per cui ottenere i dati storici
-- *`To`*: data di fine del periodo per cui ottenere i dati storici
-- *`Limit`*: numero massimo di campioni storici da restituire
+- *`From time.Time`*: data di inizio del periodo per cui ottenere i dati storici
+- *`To time.Time`*: data di fine del periodo per cui ottenere i dati storici
+- *`Limit int`*: numero massimo di campioni storici da restituire
 
-=====  Outbound ports – Database
+=====  Outbound ports –- Database
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
 
 ====== GetHistoricalDataPort
@@ -2547,17 +2551,17 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 - *`GetHistoricalData(sensorId uuid.UUID, tenantId uuid.UUID, filter HistoricalDataFilter) ([]HistoricalSample, error)`*: Ottiene i dati storici di un sensore specifico dal database tramite l'UUID del sensore, l'UUID del tenant e un filtro per i dati storici. Restituisce una lista di campioni storici o un errore in caso di fallimento
 
 
-===== Outbound adapter per database – HistoricalDataTimescaleAdapter
+===== Outbound adapter per database -– HistoricalDataTimescaleAdapter
 HistoricalDataTimescaleAdapter è l’outbound port usata per comunicare con il database per ottenere i dati storici dei sensori, traducendo l’interfaccia di dominio nell’interfaccia di TimescaleDB e viceversa.
 
-*Interfaccie implementate*
+*Interfacce implementate*
 - *`GetHistoricalDataPort`*
 
 *Attributi*
 - *`log *zap.Logger`*: Riferimento al logger zap
 - *`repo HistoricalDataTimescaleRepository`*: Riferimento a classe Repository di accesso al database per i dati storici dei sensori
 
-===== Repository per database – HistoricalDataTimescaleRepository
+===== Repository per database –- HistoricalDataTimescaleRepository
 
 *Metodi*
 - *`GetSensorHistoricalData(sample *HistoricalSample) error`* : Ottiene i dati storici di un sensore specifico dal database tramite un campione storico che contiene l'UUID del sensore, l'UUID del tenant e un filtro per i dati storici. Restituisce un errore in caso di fallimento
@@ -2567,7 +2571,6 @@ HistoricalDataTimescaleAdapter è l’outbound port usata per comunicare con il 
 
 ==== Package `infra`
 
-//TODO: FIXARE HEADING
 
 Il package `infra` contiene tutti i componenti infrastrutturali dell'applicazione: gestione crittografica (hashing e JWT), connessione e migrazione dei database, middleware HTTP, routing, metriche, messaggistica NATS e utilità trasversali. È il livello più esterno dell'architettura esagonale e costituisce l'insieme degli _outbound adapter_ e dei componenti di supporto tecnico al dominio.
 
@@ -2977,13 +2980,13 @@ Interfaccia che definisce il contratto per i DTO di campioni di dati ricevuti vi
 
 Struct generica concreta che implementa `DataSampleNATSDto`. Contiene tutti i campi necessari a identificare univocamente un campione di dati proveniente da un sensore.
 
-*Attributi (tramite embedding):*
-- *`SensorIdField`*: `SensorId string `
-- *`GatewayIdField`*: `GatewayId string `
-- *`TenantIdField`*: `TenantId string `
-- *`TimestampField`*: `Timestamp string`
-- *`ProfileField`*: `Profile string`
-- *`Data T `*: Payload del campione, il cui tipo concreto dipende dal profilo sensore.
+*Attributi:*
+- `SensorIdField string`: Id del sensore a cui appartiene il campione di dati
+- `GatewayIdField string`: Id del gateway a cui appartiene il campione di dati
+- `TenantIdField string`: Id del tenant a cui appartiene il campione di dati
+- `TimestampField string`: Timestamp del campione di dati
+- `ProfileField string`: Profilo sensore del campione di dati
+- `Data T `: Payload del campione, il cui tipo concreto dipende dal profilo sensore.
 
 *Metodi:*
 - *`GetTimestamp() string`*: Restituisce il timestamp del campione di dati.
@@ -3011,7 +3014,7 @@ Di seguito si riporta il Code Diagram degli struct di dominio rappresentati un d
   caption: [Cloud Backend -- Code Diagram di data structs per `real_time_data`],
 )
 
-Di seguito, invece, si riporta il Code Diagram per tutti gli altri struct presenti nel package.
+Di seguito, invece, si riporta il Code Diagram di tutti gli altri struct presenti nel package.
 #figure(
   image("../../assets/c4/backend/real_time_data/real_time_data_structs.svg", width:90%),
   caption: [Cloud Backend -- Code Diagram di Controller, UseCase, Service, Port, Adapter e Reader per `real_time_data`],
@@ -3163,14 +3166,14 @@ Rappresenta un contenitore thread-safe per rappresentare un valore temporale cre
 Il package `sensor` si occupa della gestione CRUD dei sensori e dell'invio di comandi ad essi. Il diagramma riportato di seguito è comprensivo dell'intero package, per cui potrebbe essere necessario usare la funzionalità di zoom per leggerne i contenuti
 #figure(
   image("../../assets/c4/backend/sensor/sensor.svg", width:115%),
-  caption: [Cloud Backend -- Code Diagram per `sensor`],
+  caption: [Cloud Backend -- Code Diagram di `sensor`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
 L'_inbound adapter_ principale del package è `Controller`
 #figure(
   image("../../assets/c4/backend/sensor/Controller.svg", width:70%),
-  caption: [Cloud Backend -- Code Diagram per `sensor.Controller`],
+  caption: [Cloud Backend -- Code Diagram di `sensor.Controller`],
 )
 
 *Attributi*:
@@ -3228,7 +3231,7 @@ I *DTO* usati da `Controller` sono i seguenti:
 ===== Inbound ports
 #figure(
   image("../../assets/c4/backend/sensor/UseCases.svg", width:80%),
-  caption: [Cloud Backend -- Code Diagram per _inbound ports_ e _services_ in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ e _services_ in `sensor`],
 ) <cloud-backend-code-inports-services>
 
 Per dettagli sui `Command`, si consulti la @code-sensor-commands.
@@ -3263,7 +3266,7 @@ Per dettagli sui `Command`, si consulti la @code-sensor-commands.
 ===== Comandi <code-sensor-commands>
 #figure(
   image("../../assets/c4/backend/sensor/Commands.svg", width:60%),
-  caption: [Cloud Backend -- Code Diagram per comandi in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di comandi in `sensor`],
 )
 
 I comandi usati dallo strato di business sono i seguenti. Si noti che ciascuno di questi comandi presenta il campo *`Requester identity.Requester`* poiché ciascun comando dev'essere eseguito da un utente autorizzato, per cui per completezza non saranno ripetuti nella lista seguente.
@@ -3397,7 +3400,7 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 
 #figure(
   image("../../assets/c4/backend/sensor/PortsAdapters-Database.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per _outbound ports_ e _outbound adapters_ per database in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per database in `sensor`],
 ) <backend-code-outbound-ports-adapters-database>
 
 ====== `CreateSensorPort`
@@ -3436,7 +3439,7 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 
 #figure(
   image("../../assets/c4/backend/sensor/PortsAdapters-MessageBroker.svg", width:100%),
-  caption: [Cloud Backend -- Code Diagram per _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ e _outbound adapters_ per message broker in `sensor`],
 ) <backend-code-outbound-ports-adapters-broker>
 
 ====== `CreateSensorCmdPort`
@@ -3491,7 +3494,7 @@ Per visualizzare il #gloss[Code Diagram] relativo a `SendCmdAdapter`, si veda la
 ===== Repository per database -- `DatabaseRepository`, `SensorEntity`
 #figure(
   image("../../assets/c4/backend/sensor/DatabaseRepository.svg", width:85%),
-  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per database in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di classi `Repository` ed `Entity` per database in `sensor`],
 )
 
 Interfaccia che espone metodi per svolgere operazioni CRUD sui sensori sul database.
@@ -3531,7 +3534,7 @@ Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare 
 ===== Repository per message broker -- `MessageBrokerRepository` e relative `Entity`
 #figure(
   image("../../assets/c4/backend/sensor/MessageBrokerRepository.svg", width:85%),
-  caption: [Cloud Backend -- Code Diagram per classi `Repository` ed `Entity` per message broker in `sensor`],
+  caption: [Cloud Backend -- Code Diagram di classi `Repository` ed `Entity` per message broker in `sensor`],
 )
 
 Interfaccia che espone i metodi per inviare messaggi al simulatore di gateway tramite message broker.
@@ -3588,7 +3591,7 @@ Questo package è stato creato separatamente da `sensor` per evitare la creazion
 ===== `SensorProfile` <code-sensor.SensorProfile>
 #figure(
   image("../../assets/c4/backend/sensor/SensorProfile.svg", width:30%),
-  caption: [Cloud Backend -- Code Diagram per `sensor.SensorProfile`],
+  caption: [Cloud Backend -- Code Diagram di `sensor.SensorProfile`],
 )
 
 L'enum `SensorProfile` rappresenta i vari profili GATT che un sensore può avere.
@@ -3608,7 +3611,7 @@ Questo package contiene la struct di configurazione del sistema, che raggruppa t
 
 #figure(
   image("../../assets/c4/backend/shared/config/config.svg", width:80%),
-  caption: [Cloud Backend -- Code Diagram per `shared/config`],
+  caption: [Cloud Backend -- Code Diagram di `shared/config`],
 )
 
 ===== `Config`
@@ -3619,8 +3622,8 @@ Struct di configurazione dell'applicativo. Quasi tutti i suoi attributi sono cam
 - *`AppURL string`*: URL su cui si trova il front-end dell'applicativo. Viene usato dal package email per l'invio dei token di conferma/cambio password
 - *`Port string`*: Porta su cui aprire il backend
 - *`MailAdapter string`*: Quale mail adapter utilizzare, può assumere i valori:
-  - `"terminal"` per evitare di inviare email, ma mostrarne il contenuto su terminale
-  - `"smtp"` per inviare i messaggi email alle coordinate SMTP specificate nei campi che iniziano con `SMTP`
+  - `terminl"` per evitare di inviare email, ma mostrarne il contenuto su terminale
+  - `smtp` per inviare i messaggi email alle coordinate SMTP specificate nei campi che iniziano con `SMTP`
 - *`BcryptCost StringInt`*: Fattore di costo per algoritmo bcrypt per hashing delle password
 - *`TokenLength StringInt`*: Lunghezza in byte di un token di sicurezza
 - *`TokenDuration StringInt`*: Durata di un token di sicurezza in secondi
@@ -3658,7 +3661,7 @@ Il package `shared/crypto` contiene le interfacce usate nell'applicativo per int
 
 #figure(
   image("../../assets/c4/backend/shared/crypto/crypto.svg", width:70%),
-  caption: [Cloud Backend -- Code Diagram per `shared/crypto`],
+  caption: [Cloud Backend -- Code Diagram di `shared/crypto`],
 )
 
 ===== `AuthTokenManager`
@@ -3687,7 +3690,7 @@ Il package `shared/identity` contiene gli elementi per attivare le procedure di 
 
 #figure(
   image("../../assets/c4/backend/shared/identity/identity.svg", width:70%),
-  caption: [Cloud Backend -- Code Diagram per `shared/identity`],
+  caption: [Cloud Backend -- Code Diagram di `shared/identity`],
 )
 
 ===== `Requester`
@@ -3718,7 +3721,7 @@ Il package `tenant` contiene tutte le funzionalità relative alla gestione dei t
 
 #figure(
   image("../../assets/c4/backend/tenant/tenant.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `tenant`],
+  caption: [Cloud Backend -- Code Diagram di `tenant`],
 )
 
 ===== Inbound adapter -- `Controller` e DTO
@@ -3726,17 +3729,17 @@ Il package `tenant` presenta un controller che si occupa di ricevere le richiest
 
 #figure(
   image("../../assets/c4/backend/tenant/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `tenant - Controller`],
+  caption: [Cloud Backend -- Code Diagram di `tenant - Controller`],
 )
 
 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
-- *`createTenantUseCase CreateTenantUseCase`*: _Inbound port_ per comunicare con la classe `Service` e creare un tenant
-- *`deleteTenantUseCase DeleteTenantUseCase`*: _Inbound port_ per comunicare con la classe `Service` e eliminare un tenant
-- *`getTenantUseCase GetTenantUseCase`*: _Inbound port_ per comunicare con la classe `Service` e ottenere informazioni su un tenant
-- *`getTenantListUseCase GetTenantListUseCase`*: _Inbound port_ per comunicare con la classe `Service` e ottenere una lista,con paginazione , di tenant
-- *`getAllTenantsUseCase GetAllTenantsUseCase`*: _Inbound port_ per comunicare con la classe `Service` e ottenere tutti i tenant
+- *`createTenantUseCase CreateTenantUseCase`*: _Inbound port_ per  creare un tenant
+- *`deleteTenantUseCase DeleteTenantUseCase`*: _Inbound port_ per  eliminare un tenant
+- *`getTenantUseCase GetTenantUseCase`*: _Inbound port_ per  ottenere informazioni su un tenant
+- *`getTenantListUseCase GetTenantListUseCase`*: _Inbound port_ per  ottenere una lista,con paginazione , di tenant
+- *`getAllTenantsUseCase GetAllTenantsUseCase`*: _Inbound port_ per  ottenere tutti i tenant
 
 *Metodi*:
 Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
@@ -3759,28 +3762,28 @@ Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in outpu
 I DTO usati da `Controller` sono i seguenti:
 
 - *`CreateTenantDTO`*: DTO usato per creare un nuovo tenant, contiene i seguenti campi:
-  - `TenantId`: stringa rappresentante l'uuid del tenant
-  - `Name`: stringa rappresentante il nome del tenant
-  - `CanImpersonate`: booleano che indica se il tenant può errere impersonato dal super admin
+  - `TenantId string`: stringa rappresentante l'uuid del tenant
+  - `Name string`: stringa rappresentante il nome del tenant
+  - `CanImpersonate bool`: booleano che indica se il tenant può essere impersonato dal super admin
 
 - *`DeleteTenantDTO`*: DTO usato per eliminare un tenant, contiene i seguenti campi:
-  - `TenantId`: stringa rappresentante l'uuid del tenant da eliminare
+  - `TenantId string`: stringa rappresentante l'uuid del tenant da eliminare
 
 - *`GetTenantDTO`*: DTO usato per ottenere informazioni su un tenant, contiene i seguenti campi:
-  - `TenantId`: stringa rappresentante l'uuid del tenant
+  - `TenantId string`: stringa rappresentante l'uuid del tenant
 
 - *`GetTenantListDTO`*: DTO usato per ottenere una lista di tenant, contiene i seguenti campi:
-  - `Page`: intero rappresentante la pagina da visualizzare
-  - `Limit`: intero rappresentante il numero di tenant da visualizzare per pagina
+  - `Page int`: intero rappresentante la pagina da visualizzare
+  - `Limit int`: intero rappresentante il numero di tenant da visualizzare per pagina
 
 - *`TenantResponseDTO`*: DTO restituito in output quando un tenant viene creato con successo, contiene i seguenti campi:
-  - `TenantId`: stringa rappresentante l'uuid del tenant
-  - `Name`: stringa rappresentante il nome del tenant
+  - `TenantId string`: stringa rappresentante l'uuid del tenant
+  - `Name string`: stringa rappresentante il nome del tenant
 
 - *`TenantListResponseDTO`*: DTO restituito in output quando viene ottenuta una lista di tenant, contiene i seguenti campi:
-  - `Tenants`: lista di `TenantResponseDTO`
-  - `Total`: intero rappresentante il numero totale di tenant
-  - `Count`: intero rappresentante il numero di tenant restituiti nella pagina
+  - `Tenants []TenantResponseDTO`: lista di `TenantResponseDTO`
+  - `Total int`: intero rappresentante il numero totale di tenant
+  - `Count int`: intero rappresentante il numero di tenant restituiti nella pagina
 
 ===== Inbound ports
 Di seguito sono riportate le _inbound ports_ del package.
@@ -3788,52 +3791,56 @@ Di seguito sono riportate le _inbound ports_ del package.
 
 #figure(
   image("../../assets/c4/backend/tenant/service.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `tenant - inbound ports`],
+  caption: [Cloud Backend -- Code Diagram di `tenant - inbound ports`],
 )
 
 
 ====== CreateTenantUseCase
 *Metodi:*
-- CreateTenant(cmd CreateTenantCommand) (Tenant, error): Creare un nuovo tenant con i dati forniti in `cmd` e restituisce il tenant creato o un errore in caso di fallimento
+- *`CreateTenant(cmd CreateTenantCommand) (Tenant, error)`*: Creare un nuovo tenant con i dati forniti in `cmd` e restituisce il tenant creato o un errore in caso di fallimento
 ====== DeleteTenantUseCase
 *Metodi:*
-- DeleteTenant(cmd DeleteTenantCommand) error: Eliminare un tenant con i dati forniti in `cmd` e restituisce un errore in caso di fallimento
+- *`DeleteTenant(cmd DeleteTenantCommand) error`*: Eliminare un tenant con i dati forniti in `cmd` e restituisce un errore in caso di fallimento
 ====== GetTenantUseCase
 *Metodi:*
-- GetTenant(cmd GetTenantCommand) (Tenant, error): Ottenere informazioni su un tenant con i dati forniti in `cmd` e restituisce il tenant o un errore in caso di fallimento
+- *`GetTenant(cmd GetTenantCommand) (Tenant, error)`*: Ottenere informazioni su un tenant con i dati forniti in `cmd` e restituisce il tenant o un errore in caso di fallimento
 ====== GetAllTenantsUseCase
 *Metodi:*
-- GetAllTenants(cmd GetAllTenantsCommand) ([]Tenant, error): Ottenere tutti i tenant e restituisce una lista di tenant o un errore in caso di fallimento
+- *`GetAllTenants(cmd GetAllTenantsCommand) ([]Tenant, error)`*: Ottenere tutti i tenant e restituisce una lista di tenant o un errore in caso di fallimento
 ====== GetTenantListUseCase
 *Metodi:*
-- GetTenantList(cmd GetTenantListCommand) ([]Tenant, error): Ottenere una lista di tenant e restituisce una lista di tenant o un errore in caso di fallimento
+- *`GetTenantList(cmd GetTenantListCommand) ([]Tenant, error)`*: Ottenere una lista di tenant e restituisce una lista di tenant o un errore in caso di fallimento
 
 
 ===== Comandi
 I comandi usati dagli _use case_ di `Controller` sono i seguenti:
 - *`CreateTenantCommand`* : Comando usato per creare un nuovo tenant, contiene i seguenti campi:
-  - `TenantId`: UUID del tenant da creare
-  - `Name`: nome del tenant da creare
-  - `Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per creare un tenant
+  - `TenantId uuid.UUID`: UUID del tenant da creare
+  - `Name string`: nome del tenant da creare
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per creare un tenant
 
 - *`DeleteTenantCommand`*: Comando usato per eliminare un tenant, contiene i seguenti campi:
-  - `TenantId`: UUID del tenant da eliminare
-  - `Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per eliminare un tenant
+  - `TenantId uuid.UUID`: UUID del tenant da eliminare
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per eliminare un tenant
 
 - *`GetTenantListCommand`*: Comando usato per ottenere i gateway di un tenants specifico, contiene i seguenti campi:
-  - `Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per ottenere una lista di tenant
-  - `Limit`: intero rappresentante il numero di tenant da visualizzare per pagina
-  - `Page`: intero rappresentante la pagina da visualizzare
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per ottenere una lista di tenant
+  - `Limit int`: intero rappresentante il numero di tenant da visualizzare per pagina
+  - `Page int`: intero rappresentante la pagina da visualizzare
 
 - *`GetTenantCommand`*: Comando usato per ottenere un gateway specifico di un tenant specifico, contiene i seguenti campi:
-  - `TenantId`: UUID del tenant di cui ottenere i gateway
-  - `Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per ottenere informazioni su un tenant
+  - `TenantId uuid.UUID`: UUID del tenant di cui ottenere i gateway
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per ottenere informazioni su un tenant
 
 
 ===== Services
 
 ====== TenantService
-Implemeta le interfaccie CreateTenantPort, DeleteTenantPort, GetTenantPort, GetTenantsPort.
+Implemeta le interfacce: 
+- *`CreateTenantPort`* 
+- *`DeleteTenantPort`* 
+- *`GetTenantPort`* 
+- *`GetTenantsPort`*
 
 *Attributi*
 - *`createTenantPort CreateTenantPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
@@ -3841,7 +3848,7 @@ Implemeta le interfaccie CreateTenantPort, DeleteTenantPort, GetTenantPort, GetT
 - *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
 - *`getTenantsPort GetTenantsPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
 
-*Funzione di costruzione* :NewTenantService (createTenantPort CreateTenantPort, deleteTenantPort DeleteTenantPort, getTenantPort GetTenantPort, getTenantsPort GetTenantsPort) \* TenantService
+*Funzione di costruzione* :`NewTenantService (createTenantPort CreateTenantPort, deleteTenantPort DeleteTenantPort, getTenantPort GetTenantPort, getTenantsPort GetTenantsPort) * TenantService`
 
 
 ===== Dominio
@@ -3850,9 +3857,9 @@ Implemeta le interfaccie CreateTenantPort, DeleteTenantPort, GetTenantPort, GetT
 Rappresento i tenant dell'applicazione, che rappresentano le organizzazioni che utilizzano la piattaforma.
 
 *Attributi:*
-- *`ID`*: UUID del tenant a cui il token è associato
-- *`Name`*: nome del tenant
-- *`CanImpersonate`*: booleano che indica se il tenant può essere impersonato dal super admin
+- *`ID uuid.UUID`*: UUID del tenant a cui il token è associato
+- *`Name string`*: nome del tenant
+- *`CanImpersonate bool`*: booleano che indica se il tenant può essere impersonato dal super admin
 
 
 *Metodi:*
@@ -3860,14 +3867,14 @@ Rappresento i tenant dell'applicazione, che rappresentano le organizzazioni che 
 - *`GetId() uuid.UUID`*: Restituisce l'UUID del tenant
 
 
-=====  Outbound ports – Database
+=====  Outbound ports –- Database
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
 
 
 
 #figure(
   image("../../assets/c4/backend/tenant/adapter.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `tenant - outbound ports`],
+  caption: [Cloud Backend -- Code Diagram di `tenant - outbound ports`],
 )
 
 
@@ -3890,10 +3897,10 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 
 
 
-===== Outbound adapter per database – TenantPostgreAdapter
+===== Outbound adapter per database –- TenantPostgreAdapter
 TenantPostgreAdapter è l’outbound port usata per comunicare con il database per le operazioni CRUD sui tenant, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
-*Interfaccie implementate*
+*Interfacce implementate*
 - *`CreateTenantPort`*
 - *`DeleteTenantPort`*
 - *`GetTenantPort`*
@@ -3903,7 +3910,7 @@ TenantPostgreAdapter è l’outbound port usata per comunicare con il database p
 - *`repo TenantRepository`*: Riferimento al repository per dei tenants
 
 
-===== Repository per database – TenantRepository, TenantEntity
+===== Repository per database –- TenantRepository, TenantEntity
 
 *Metodi*
 - *`SaveTenant(entity *TenantEntity) (error)`*: Salva un tenant nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
@@ -3915,9 +3922,9 @@ TenantPostgreAdapter è l’outbound port usata per comunicare con il database p
 ====== TenantEntity
 Rappresenta l'entità di database dei tenant, usata per comunicare con PostgreSQL.
 *Attributi*
-- *`ID`*: UUID del tenant a cui il token è associato
-- *`Name`*: nome del tenant
-- *`CanImpersonate`*: booleano che indica se il tenant può essere impersonato dal super admin
+- *`ID string`*: UUID del tenant a cui il token è associato
+- *`Name string`*: nome del tenant
+- *`CanImpersonate bool`*: booleano che indica se il tenant può essere impersonato dal super admin
 
 ====== TenantPostgreRepository
 
@@ -3927,22 +3934,14 @@ Struct concreta che implementa TenantRepository, in modo tale da comunicare con 
 - *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
 - *`log zap.Logger`*: Riferimento al logger zap
 
-*Funzione di costruzione*: NewTenantPostgreRepository(db clouddb.CloudDBConnection, log zap.Logger)\* TenantPostgreRepository
-
-
-
-
-
-
-
-
+*Funzione di costruzione*: `NewTenantPostgreRepository(db clouddb.CloudDBConnection, log zap.Logger) * TenantPostgreRepository`
 
 ==== Package `user`
 
 Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
 #figure(
   image("../../assets/c4/backend/user/user.svg", width:110%),
-  caption: [Cloud Backend -- Code Diagram per `user`],
+  caption: [Cloud Backend -- Code Diagram di `user`],
 )
 
 ===== Inbound adapter -- `Controller` e relativi DTO
