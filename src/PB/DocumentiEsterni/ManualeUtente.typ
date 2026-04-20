@@ -6,6 +6,20 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "0.6.1",
+      "19/04/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Correzioni richieste in revisione: coerenza termini, aggiunta esecuzione test sistema e correzione Dashboard Backend in Cloud Backend],
+    ),
+    (
+      "0.6.0",
+      "16/04/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Stesura guida Dashboard Backend (@dashboard-backend)],
+    ),
+    (
       "0.5.0",
       "16/04/2026",
       "Hossam Ezzemouri",
@@ -44,8 +58,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Manuale Utente",
 )
 

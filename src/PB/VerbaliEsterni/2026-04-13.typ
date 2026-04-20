@@ -20,13 +20,13 @@
   htmlId: "PB-VerbaliEsterni",
   verificatore-interno: "Alessandro Dinato",
   left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
-  verificatore-esterno: "",
-  right-signature: "",
+  verificatore-esterno: "Cristian Pirlog",
+  right-signature: "../assets/firme/m31/firma_cristian_pirlog.png",
   tipo-verbale: "Esterno",
 )
 
 = Introduzione
-Il presente verbale attesta che in data 13 aprile 2026 dalle 14:30 alle 15:50, si è svolto l’incontro con la proponente *M31 SRL*, in presenza.
+Il presente verbale attesta che in data *13 aprile 2026* dalle 14:30 alle 15:50, si è svolto l’incontro con la proponente *M31 SRL*, in presenza.
 
 L’obiettivo dell’incontro è stata l'esposizione dello stato di avanzamento del progetto tramite presentazione dedicata e l’esecuzione del *test book* richiesto sul sistema.
 
