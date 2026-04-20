@@ -20,7 +20,7 @@ Attivabile tramite l'icona `ssid_chart` nella tabella sensori, questa modalità 
 - **Connessione**: lo stato della connessione (es. "Connected" o "Reconnecting") è sempre visibile nell'intestazione a destra del grafico.
 - **Selezione campi**: se un sensore invia più parametri (es. sensore ambientale con temperatura e umidità), l'utente può selezionare quale dato visualizzare tramite un menu a tendina integrato.
 
-![Figura 9: Visualizzazione grafico con dati real time](../../../../assets/frontend-MU/DatiRealTime.png)
+![Figura 9: Visualizzazione grafico con dati real time](img/DatiRealTime.png)
 
 ### Grafici storici
 Attivabile tramite l'icona `query_stats`, permette di analizzare le letture memorizzate nel database:
@@ -28,9 +28,9 @@ Attivabile tramite l'icona `query_stats`, permette di analizzare le letture memo
 - **Configurazione filtri**: l'apertura del grafico richiede l'interazione con la finestra di dialogo dedicata, dove l'utente definisce l'intervallo temporale e il numero di punti (limite massimo 300).
 - **Navigazione temporale**: il grafico contenente dati storici include, quando il numero di punti eccede la finestra di visualizzazione predefinita, uno slider inferiore e pulsanti di scorrimento per spostarsi all'interno del dataset recuperato.
 
-![Figura 10: Visualizzazione grafico con dati storici](../../../../assets/frontend-MU/DatiStorici.png)
+![Figura 10: Visualizzazione grafico con dati storici](img/DatiStorici.png)
 
-![Figura 11: Form dei filtri sui dati storici](../../../../assets/frontend-MU/FiltroDatiStorici.png)
+![Figura 11: Form dei filtri sui dati storici](img/FiltroDatiStorici.png)
 
 ## Invio comandi ai dispositivi
 Dalla dashboard è possibile interagire direttamente con i dispositivi per modificarne il comportamento operativo in tempo reale tramite l'invio di comandi.

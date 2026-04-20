@@ -11,7 +11,7 @@ Per effettuare l'accesso, l'utente deve interagire con la form del login inseren
 - **Password**: la password definita in fase di attivazione;
 - **Tenant**: tramite un menù a tendina che permette di indicare il tenant di riferimento.
 
-![Figura 1: Form di login](../../../../assets/frontend-MU/Login.png)
+![Figura 1: Form di login](img/Login.png)
 
 **Nota per i Super Admin**: Gli utenti con privilegi di amministratore globale possono effettuare il login senza selezionare un tenant specifico per accedere alla gestione anagrafica generale; la visualizzazione dei dati operativi (dashboard) richiederà successivamente una procedura di impersonificazione{{gloss}}.
 
@@ -28,7 +28,7 @@ Il flusso di attivazione prevede i seguenti step:
    - Il sistema convalida in tempo reale che la password di conferma coincida con quella inserita.
 - **Finalizzazione**: al clic su "Conferma account", il sistema crea le credenziali, inizializza lo schema nel database e logga automaticamente l'utente, reindirizzandolo alla dashboard.
 
-![Figura 2: Form di conferma account](../../../../assets/frontend-MU/ConfermaAccount.png)
+![Figura 2: Form di conferma account](img/ConfermaAccount.png)
 
 
 ## Recupero credenziali
@@ -37,7 +37,7 @@ In caso di smarrimento della password, il sistema offre un flusso di ripristino 
 ### Richiesta di reimpostazione password
 Attraverso la finestra di dialogo dedicata, l'utente può richiedere il reset inserendo la propria email e selezionando il tenant di riferimento. Se i dati corrispondono a un utente attivo, viene inviato un link di ripristino via email.
 
-![Figura 3: Form di richiesta di reset password](../../../../assets/frontend-MU/PasswordDimenticataForm.png)
+![Figura 3: Form di richiesta di reset password](img/PasswordDimenticataForm.png)
 
 ### Reimpostazione password
 Il link ricevuto conduce alla pagina di **reset** della password. L'utente deve:
@@ -45,7 +45,7 @@ Il link ricevuto conduce alla pagina di **reset** della password. L'utente deve:
 - Inserire la nuova password rispettando i requisiti di sicurezza (minimo 8 caratteri);
 - Confermare l'operazione. Una volta completata, l'interfaccia mostrerà un messaggio di successo e consentirà di tornare alla pagina di login per accedere con le nuove credenziali.
 
-![Figura 4: Form di reimpostazione password](../../../../assets/frontend-MU/ReimpostaPassword.png)
+![Figura 4: Form di reimpostazione password](img/ReimpostaPassword.png)
 
 ## Gestione sessione e sicurezza interna
 Dopo l'accesso, l'utente ha a disposizione strumenti per mantenere la sicurezza del proprio account direttamente dall'interfaccia principale.
@@ -56,7 +56,7 @@ Dopo l'accesso, l'utente ha a disposizione strumenti per mantenere la sicurezza 
 - È obbligatorio inserire la **vecchia password** per validare l'identità dell'utente prima della modifica;
 - Il sistema invia una richiesta che aggiorna le credenziali nel database senza interrompere la sessione corrente.
 
-![Figura 5: Form di cambio password](../../../../assets/frontend-MU/CambioPassword.png)
+![Figura 5: Form di cambio password](img/CambioPassword.png)
 
 ### Impersonificazione (solo Super Admin)
 Il ruolo Super Admin dispone della funzionalità di impersonificazione per supportare i diversi tenant:
@@ -71,4 +71,4 @@ L'azione di logout, disponibile nell'`header`, garantisce la chiusura sicura del
 - Pulizia dello stato dell'utente e delle sue informazioni;
 - Reindirizzamento immediato alla pagina di login, impedendo l'accesso alle rotte protette.
 
-![Figura 6: Logout](../../../../assets/frontend-MU/Logout.png)
+![Figura 6: Logout](img/Logout.png)
