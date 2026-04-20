@@ -17,10 +17,10 @@ La lista dei collegamenti è generata dinamicamente:
 - **Organizzazione visiva** (solo per i Super Admin): il menu ha due titoli utili per raggruppare visivamente l'area generica dall'area dedicata all'impersonificazione.
 - **Feedback di navigazione**: la pagina attualmente visualizzata è evidenziata nel menu.
 
-![Figura 7: Dashboard di un Super Admin](../../../../assets/frontend-MU/SchermataSuperAdmin.png)
+![Figura 7: Dashboard di un Super Admin](img/SchermataSuperAdmin.png)
 
 
-![Figura 8: Dashboard di un Tenant Admin](../../../../assets/frontend-MU/SchermataTenantAdmin.png)
+![Figura 8: Dashboard di un Tenant Admin](img/SchermataTenantAdmin.png)
 
 
 ## Barra degli strumenti
