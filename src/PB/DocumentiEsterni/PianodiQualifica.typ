@@ -31,8 +31,15 @@
 
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "Verificato",
+  stato: "da verificare",
   registro-modifiche: (
+    (
+      "1.1.0",
+      "20/04/2026",
+      "Jaume Bernardi",
+      "",
+      [Rendicontazione dei *TU* e *TI*],
+    ),
     (
       "1.0.0",
       "18/02/2026",
@@ -177,7 +184,7 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
+  verificatore-interno: "",
   left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Qualifica",
 )
@@ -503,7 +510,7 @@ L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-
     [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
     ..tabella-TU
   ),
-  [Test di Sistema con descrizione e requisito di riferimento],
+  [Test di Unità con descrizione, valore atteso e stato di implementazione],
   label-id: "tab-test-unità",
 )
 
@@ -543,7 +550,7 @@ I test di integrazione verificano il corretto comportamento delle interazioni tr
     [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
     ..tabella-TI
   ),
-  [Test di Sistema con descrizione e requisito di riferimento],
+  [Test di Integrazione con descrizione, valore atteso e stato di implementazione],
   label-id: "tab-test-integrazione",
 )
 

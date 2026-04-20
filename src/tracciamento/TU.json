@@ -79,73 +79,73 @@
   },
   {
     "id": "TU-Verifica-Token-Conferma-Account",
-    "descr": "VerifyConfirmAccountToken: verifica l’endpoint HTTP per Controller_VerifyConfirmAccountToken con risposta corretta.",
+    "descr": "VerifyConfirmAccountToken: verifica l’endpoint HTTP per Controller VerifyConfirmAccountToken con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Conferma-Account",
-    "descr": "ConfirmAccount: verifica l’endpoint HTTP per AuthController_ConfirmAccount con risposta corretta.",
+    "descr": "ConfirmAccount: verifica l’endpoint HTTP per AuthController ConfirmAccount con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Verifica-Token-Reset-Password",
-    "descr": "VerifyForgotPasswordToken: verifica l’endpoint HTTP per Controller_VerifyForgotPasswordToken con risposta corretta.",
+    "descr": "VerifyForgotPasswordToken: verifica l’endpoint HTTP per Controller VerifyForgotPasswordToken con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Richiesta-Token-Reset-Password",
-    "descr": "RequestForgotPasswordToken: verifica l’endpoint HTTP per Controller_RequestForgotPasswordToken con risposta corretta.",
+    "descr": "RequestForgotPasswordToken: verifica l’endpoint HTTP per Controller RequestForgotPasswordToken con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Cambio-Password",
-    "descr": "ConfirmForgotPasswordToken: verifica l’endpoint HTTP per Controller_ConfirmForgotPasswordToken con risposta corretta.",
+    "descr": "ConfirmForgotPasswordToken: verifica l’endpoint HTTP per Controller ConfirmForgotPasswordToken con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Conferma-Reset-Password",
-    "descr": "ChangePassword: verifica l’endpoint HTTP per Controller_ChangePassword con risposta corretta.",
+    "descr": "ChangePassword: verifica l’endpoint HTTP per Controller ChangePassword con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Logout-Utente",
-    "descr": "VerifyForgotPasswordToken: verifica la logica di servizio per ChangePasswordService_VerifyForgotPasswordToken.",
+    "descr": "VerifyForgotPasswordToken: verifica la logica di servizio per ChangePasswordService VerifyForgotPasswordToken.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Creazione-SuperAdmin",
-    "descr": "RequestForgotPassword: verifica la logica di servizio per ChangePasswordService_RequestForgotPassword.",
+    "descr": "RequestForgotPassword: verifica la logica di servizio per ChangePasswordService RequestForgotPassword.",
     "expected": "viene restituito nil come stato dell'operazione, con = \"1234\"",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-SuperAdmin",
-    "descr": "ConfirmForgotPassword: verifica la logica di servizio per ChangePasswordService_ConfirmForgotPassword.",
+    "descr": "ConfirmForgotPassword: verifica la logica di servizio per ChangePasswordService ConfirmForgotPassword.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-SuperAdmin",
-    "descr": "ChangePassword: verifica la logica di servizio per ChangePasswordService_ChangePassword.",
+    "descr": "ChangePassword: verifica la logica di servizio per ChangePasswordService ChangePassword.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-SuperAdmins",
-    "descr": "ConfirmAccount: verifica la logica di servizio per ConfirmAccountService_ConfirmAccount.",
+    "descr": "ConfirmAccount: verifica la logica di servizio per ConfirmAccountService ConfirmAccount.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Tenant",
-    "descr": "VerifyConfirmAccountToken: verifica la logica di servizio per ConfirmAccountService_VerifyConfirmAccountToken.",
+    "descr": "VerifyConfirmAccountToken: verifica la logica di servizio per ConfirmAccountService VerifyConfirmAccountToken.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
@@ -193,19 +193,19 @@
   },
   {
     "id": "TU-Recupero-Tenant-Admins",
-    "descr": "Save: verifica che l’adapter esegua correttamente l’operazione GatewayPostgreAdapter_Save sul database.",
+    "descr": "Save: verifica che l’adapter esegua correttamente l’operazione GatewayPostgreAdapter Save sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Tenant-User",
-    "descr": "Create: verifica che l’adapter esegua correttamente l’operazione GatewayPostgreAdapter_Create sul database.",
+    "descr": "Create: verifica che l’adapter esegua correttamente l’operazione GatewayPostgreAdapter Create sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Tenant-User",
-    "descr": "Delete: verifica che l’adapter esegua correttamente l’operazione GatewayPostgreAdapter_Delete sul database.",
+    "descr": "Delete: verifica che l’adapter esegua correttamente l’operazione GatewayPostgreAdapter Delete sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
@@ -229,61 +229,61 @@
   },
   {
     "id": "TU-Creazione-Gateway",
-    "descr": "CreateGateway: verifica l’endpoint HTTP per GatewayController_CreateGateway con risposta corretta.",
+    "descr": "CreateGateway: verifica l’endpoint HTTP per GatewayController CreateGateway con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Gateway",
-    "descr": "DeleteGateway: verifica l’endpoint HTTP per GatewayController_DeleteGateway con risposta corretta.",
+    "descr": "DeleteGateway: verifica l’endpoint HTTP per GatewayController DeleteGateway con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Gateway",
-    "descr": "CommissionGateway: verifica la logica di servizio per Service_CommissionGateway.",
+    "descr": "CommissionGateway: verifica la logica di servizio per Service CommissionGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Gateways-Tenant",
-    "descr": "DecommissionGateway: verifica la logica di servizio per Service_DecommissionGateway.",
+    "descr": "DecommissionGateway: verifica la logica di servizio per Service DecommissionGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tutti-Gateways",
-    "descr": "ResetGateway: verifica la logica di servizio per Service_ResetGateway.",
+    "descr": "ResetGateway: verifica la logica di servizio per Service ResetGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Commissione-Gateway",
-    "descr": "RebootGateway: verifica la logica di servizio per Service_RebootGateway.",
+    "descr": "RebootGateway: verifica la logica di servizio per Service RebootGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Decommissione-Gateway",
-    "descr": "InterruptGateway: verifica la logica di servizio per Service_InterruptGateway.",
+    "descr": "InterruptGateway: verifica la logica di servizio per Service InterruptGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Interruzione-Gateway",
-    "descr": "ResumeGateway: verifica la logica di servizio per Service_ResumeGateway.",
+    "descr": "ResumeGateway: verifica la logica di servizio per Service ResumeGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Ripresa-Gateway",
-    "descr": "CreateGateway: verifica la logica di servizio per Service_CreateGateway.",
+    "descr": "CreateGateway: verifica la logica di servizio per Service CreateGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Gateway-Service",
-    "descr": "DeleteGateway: verifica la logica di servizio per Service_DeleteGateway.",
+    "descr": "DeleteGateway: verifica la logica di servizio per Service DeleteGateway.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
@@ -349,8 +349,8 @@
   },
   {
     "id": "TU-Recupero-Sensori-Gateway",
-    "descr": "GetSensorHistoricalData: verifica l’endpoint HTTP per Controller_GetSensorHistoricalData con risposta corretta.",
-    "expected": "viene restituito l'errore HTTP 200; = func(mockUC *mocks.MockGetSensorHistoricalDataUseCase) *gomock.Call { dal mock configurato",
+    "descr": "GetSensorHistoricalData: verifica l’endpoint HTTP per Controller GetSensorHistoricalData con risposta corretta.",
+    "expected": "viene restituita una risposta HTTP 200 OK con i dati storici dei sensori",
     "state": "S"
   },
   {
@@ -403,7 +403,7 @@
   },
   {
     "id": "TU-Recupero-Dati-Storici-Sensore",
-    "descr": "GetSensorHistoricalData: verifica la logica di servizio per Service_GetSensorHistoricalData.",
+    "descr": "GetSensorHistoricalData: verifica la logica di servizio per Service GetSensorHistoricalData.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
@@ -421,7 +421,7 @@
   },
   {
     "id": "TU-Invio-Email-Conferma-Account-SMTP",
-    "descr": "GetRealTimeData: verifica l’endpoint HTTP per Controller_GetRealTimeData con risposta corretta.",
+    "descr": "GetRealTimeData: verifica l’endpoint HTTP per Controller GetRealTimeData con risposta corretta.",
     "expected": "viene restituito HTTP 401 Unauthorized per mancanza di autorizzazione",
     "state": "S"
   },
@@ -445,43 +445,43 @@
   },
   {
     "id": "TU-Creazione-Sensore-Adapter",
-    "descr": "CreateSensor: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter_CreateSensor sul database.",
+    "descr": "CreateSensor: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter CreateSensor sul database.",
     "expected": "viene restituito l'errore mockCreateSensorError dal mock configurato",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Sensore-Adapter",
-    "descr": "DeleteSensor: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter_DeleteSensor sul database.",
+    "descr": "DeleteSensor: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter DeleteSensor sul database.",
     "expected": "viene restituito l'errore mockDeleteSensorError dal mock configurato",
     "state": "S"
   },
   {
     "id": "TU-Invio-Comando-Creazione-Sensore-Adapter",
-    "descr": "SendCreateSensorCmd: verifica che l’adapter esegua correttamente l’operazione SendCmdAdapter_SendCreateSensorCmd sul database.",
+    "descr": "SendCreateSensorCmd: verifica che l’adapter esegua correttamente l’operazione SendCmdAdapter SendCreateSensorCmd sul database.",
     "expected": "viene restituito l'errore mockSendCreateSensorCmdError dal mock configurato",
     "state": "S"
   },
   {
     "id": "TU-Invio-Comando-Eliminazione-Sensore-Adapter",
-    "descr": "SendDeleteSensorCmd: verifica che l’adapter esegua correttamente l’operazione SendCmdAdapter_SendDeleteSensorCmd sul database.",
+    "descr": "SendDeleteSensorCmd: verifica che l’adapter esegua correttamente l’operazione SendCmdAdapter SendDeleteSensorCmd sul database.",
     "expected": "viene restituito l'errore mockSendDeleteSensorCmdError dal mock configurato",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensori-Gateway-Adapter",
-    "descr": "GetSensorsByGatewayId: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter_GetSensorsByGatewayId sul database.",
+    "descr": "GetSensorsByGatewayId: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter GetSensorsByGatewayId sul database.",
     "expected": "viene restituito l'errore pagination.ErrInvalidPage dal repository",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensore-Id-Adapter",
-    "descr": "GetSensorById: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter_GetSensorById sul database.",
+    "descr": "GetSensorById: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter GetSensorById sul database.",
     "expected": "viene restituito l'errore mockGetSensorByIdErr dal mock configurato",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensori-Tenant-Adapter",
-    "descr": "GetSensorsByTenant: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter_GetSensorsByTenant sul database.",
+    "descr": "GetSensorsByTenant: verifica che l’adapter esegua correttamente l’operazione DbSensorAdapter GetSensorsByTenant sul database.",
     "expected": "viene restituito l'errore pagination.ErrInvalidPage dal repository",
     "state": "S"
   },
@@ -505,31 +505,31 @@
   },
   {
     "id": "TU-Creazione-Sensore-Controller",
-    "descr": "CreateSensor: verifica l’endpoint HTTP per SensorController_CreateSensor con risposta corretta.",
+    "descr": "CreateSensor: verifica l’endpoint HTTP per SensorController CreateSensor con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Sensore-Controller",
-    "descr": "DeleteSensor: verifica l’endpoint HTTP per SensorController_DeleteSensor con risposta corretta.",
+    "descr": "DeleteSensor: verifica l’endpoint HTTP per SensorController DeleteSensor con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensore-Controller",
-    "descr": "GetSensor: verifica l’endpoint HTTP per SensorController_GetSensor con risposta corretta.",
+    "descr": "GetSensor: verifica l’endpoint HTTP per SensorController GetSensor con risposta corretta.",
     "expected": "viene restituito HTTP 401 Unauthorized",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensori-Gateway-Controller",
-    "descr": "GetSensorsByGateway: verifica l’endpoint HTTP per SensorController_GetSensorsByGateway con risposta corretta.",
+    "descr": "GetSensorsByGateway: verifica l’endpoint HTTP per SensorController GetSensorsByGateway con risposta corretta.",
     "expected": "viene restituito HTTP 401 Unauthorized",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensori-Tenant-Controller",
-    "descr": "GetSensorsByTenant: verifica l’endpoint HTTP per SensorController_GetSensorsByTenant con risposta corretta.",
+    "descr": "GetSensorsByTenant: verifica l’endpoint HTTP per SensorController GetSensorsByTenant con risposta corretta.",
     "expected": "viene restituito HTTP 401 Unauthorized",
     "state": "S"
   },
@@ -547,271 +547,271 @@
   },
   {
     "id": "TU-Creazione-Sensore-Service",
-    "descr": "CreateSensor: verifica la logica di servizio per Service_CreateSensor.",
+    "descr": "CreateSensor: verifica la logica di servizio per Service CreateSensor.",
     "expected": "viene restituito l'errore errGateway dal servizio",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Sensore-Service",
-    "descr": "DeleteSensor: verifica la logica di servizio per Service_DeleteSensor.",
+    "descr": "DeleteSensor: verifica la logica di servizio per Service DeleteSensor.",
     "expected": "viene restituito l'errore errGetSensor dal servizio",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensori-Gateway-Service",
-    "descr": "GetSensorsByGateway: verifica la logica di servizio per Service_GetSensorsByGateway.",
+    "descr": "GetSensorsByGateway: verifica la logica di servizio per Service GetSensorsByGateway.",
     "expected": "viene restituito l'errore errGateway dal servizio",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensore-Id-Service",
-    "descr": "GetSensorById: verifica la logica di servizio per Service_GetSensorById.",
+    "descr": "GetSensorById: verifica la logica di servizio per Service GetSensorById.",
     "expected": "viene restituito l'errore errGetSensor dal servizio",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Sensori-Tenant-Service",
-    "descr": "GetSensorsByTenant: verifica la logica di servizio per Service_GetSensorsByTenant.",
+    "descr": "GetSensorsByTenant: verifica la logica di servizio per Service GetSensorsByTenant.",
     "expected": "viene restituito l'errore identity.ErrUnauthorizedAccess dal servizio",
     "state": "S"
   },
   {
     "id": "TU-Interruzione-Sensore-Service",
-    "descr": "InterruptSensor: verifica la logica di servizio per Service_InterruptSensor.",
+    "descr": "InterruptSensor: verifica la logica di servizio per Service InterruptSensor.",
     "expected": "viene restituito l'errore errGetSensor dal servizio",
     "state": "S"
   },
   {
     "id": "TU-Ripresa-Sensore-Service",
-    "descr": "ResumeSensor: verifica la logica di servizio per Service_ResumeSensor.",
+    "descr": "ResumeSensor: verifica la logica di servizio per Service ResumeSensor.",
     "expected": "viene restituito l'errore errGetSensor dal servizio",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Tenant-Adapter",
-    "descr": "CreateTenant: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter_CreateTenant sul database.",
+    "descr": "CreateTenant: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter CreateTenant sul database.",
     "expected": "viene restituito l'errore tenant.ErrTenantAlreadyExists dal repository",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Tenant-Adapter",
-    "descr": "DeleteTenant: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter_DeleteTenant sul database.",
+    "descr": "DeleteTenant: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter DeleteTenant sul database.",
     "expected": "viene restituito l'errore tenant.ErrTenantNotFound dal repository",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tenant-Adapter",
-    "descr": "GetTenant: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter_GetTenant sul database.",
+    "descr": "GetTenant: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter GetTenant sul database.",
     "expected": "viene restituito l'errore tenant.ErrTenantNotFound dal repository",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tenants-Adapter",
-    "descr": "GetTenants: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter_GetTenants sul database.",
+    "descr": "GetTenants: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter GetTenants sul database.",
     "expected": "viene restituito l'errore pagination.ErrInvalidPage dal repository",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tutti-Tenants-Adapter",
-    "descr": "GetAllTenants: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter_GetAllTenants sul database.",
+    "descr": "GetAllTenants: verifica che l’adapter esegua correttamente l’operazione TenantPostgreAdapter GetAllTenants sul database.",
     "expected": "viene restituito l'errore mockGetAllErr dal mock configurato",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Tenant-Controller",
-    "descr": "CreateTenant: verifica l’endpoint HTTP per Controller_CreateTenant con risposta corretta.",
+    "descr": "CreateTenant: verifica l’endpoint HTTP per Controller CreateTenant con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Tenant-Controller",
-    "descr": "DeleteTenant: verifica l’endpoint HTTP per Controller_DeleteTenant con risposta corretta.",
+    "descr": "DeleteTenant: verifica l’endpoint HTTP per Controller DeleteTenant con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tenant-Controller",
-    "descr": "GetTenant: verifica l’endpoint HTTP per Controller_GetTenant con risposta corretta.",
+    "descr": "GetTenant: verifica l’endpoint HTTP per Controller GetTenant con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Lista-Tenants-Controller",
-    "descr": "GetTenantList: verifica l’endpoint HTTP per Controller_GetTenantList con risposta corretta.",
+    "descr": "GetTenantList: verifica l’endpoint HTTP per Controller GetTenantList con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tutti-Tenants-Controller",
-    "descr": "GetAllTenants: verifica l’endpoint HTTP per Controller_GetAllTenants con risposta corretta.",
+    "descr": "GetAllTenants: verifica l’endpoint HTTP per Controller GetAllTenants con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Tenant-Service",
-    "descr": "CreateTenant: verifica la logica di servizio per Service_CreateTenant.",
+    "descr": "CreateTenant: verifica la logica di servizio per Service CreateTenant.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Tenant-Service",
-    "descr": "DeleteTenant: verifica la logica di servizio per Service_DeleteTenant.",
+    "descr": "DeleteTenant: verifica la logica di servizio per Service DeleteTenant.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tenant-Service",
-    "descr": "GetTenant: verifica la logica di servizio per Service_GetTenant.",
+    "descr": "GetTenant: verifica la logica di servizio per Service GetTenant.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Tutti-Tenants-Service",
-    "descr": "GetAllTenants: verifica la logica di servizio per Service_GetAllTenants.",
+    "descr": "GetAllTenants: verifica la logica di servizio per Service GetAllTenants.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Lista-Tenants-Service",
-    "descr": "GetTenantList: verifica la logica di servizio per Service_GetTenantList.",
+    "descr": "GetTenantList: verifica la logica di servizio per Service GetTenantList.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Salvataggio-Utente-Adapter",
-    "descr": "SaveUser: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_SaveUser sul database.",
+    "descr": "SaveUser: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter SaveUser sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Utente-Tenant-Adapter",
-    "descr": "DeleteTenantUser: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_DeleteTenantUser sul database.",
+    "descr": "DeleteTenantUser: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter DeleteTenantUser sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Admin-Tenant-Adapter",
-    "descr": "DeleteTenantAdmin: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_DeleteTenantAdmin sul database.",
+    "descr": "DeleteTenantAdmin: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter DeleteTenantAdmin sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-SuperAdmin-Adapter",
-    "descr": "DeleteSuperAdmin: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_DeleteSuperAdmin sul database.",
+    "descr": "DeleteSuperAdmin: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter DeleteSuperAdmin sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Utente-Adapter",
-    "descr": "GetUser: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_GetUser sul database.",
+    "descr": "GetUser: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter GetUser sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Utente-Email-Adapter",
-    "descr": "GetUserByEmail: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_GetUserByEmail sul database.",
+    "descr": "GetUserByEmail: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter GetUserByEmail sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Utenti-Tenant-Tenant-Adapter",
-    "descr": "GetTenantUsersByTenant: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_GetTenantUsersByTenant sul database.",
+    "descr": "GetTenantUsersByTenant: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter GetTenantUsersByTenant sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Admins-Tenant-Tenant-Adapter",
-    "descr": "GetTenantAdminsByTenant: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_GetTenantAdminsByTenant sul database.",
+    "descr": "GetTenantAdminsByTenant: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter GetTenantAdminsByTenant sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-SuperAdmins-Adapter",
-    "descr": "GetSuperAdmins: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_GetSuperAdmins sul database.",
+    "descr": "GetSuperAdmins: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter GetSuperAdmins sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Conteggio-Admins-Tenant-Tenant-Adapter",
-    "descr": "CountTenantAdminsByTenant: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_CountTenantAdminsByTenant sul database.",
+    "descr": "CountTenantAdminsByTenant: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter CountTenantAdminsByTenant sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Conteggio-SuperAdmins-Adapter",
-    "descr": "CountSuperAdmins: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter_CountSuperAdmins sul database.",
+    "descr": "CountSuperAdmins: verifica che l’adapter esegua correttamente l’operazione UserPostgreAdapter CountSuperAdmins sul database.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Utente-Tenant-Controller",
-    "descr": "CreateTenantUser: verifica l’endpoint HTTP per Controller_CreateTenantUser con risposta corretta.",
+    "descr": "CreateTenantUser: verifica l’endpoint HTTP per Controller CreateTenantUser con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Admin-Tenant-Controller",
-    "descr": "CreateTenantAdmin: verifica l’endpoint HTTP per Controller_CreateTenantAdmin con risposta corretta.",
+    "descr": "CreateTenantAdmin: verifica l’endpoint HTTP per Controller CreateTenantAdmin con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Creazione-SuperAdmin-Controller",
-    "descr": "CreateSuperAdmin: verifica l’endpoint HTTP per Controller_CreateSuperAdmin con risposta corretta.",
+    "descr": "CreateSuperAdmin: verifica l’endpoint HTTP per Controller CreateSuperAdmin con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Utente-Tenant-Controller",
-    "descr": "DeleteTenantUser: verifica l’endpoint HTTP per Controller_DeleteTenantUser con risposta corretta.",
+    "descr": "DeleteTenantUser: verifica l’endpoint HTTP per Controller DeleteTenantUser con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Admin-Tenant-Controller",
-    "descr": "DeleteTenantAdmin: verifica l’endpoint HTTP per Controller_DeleteTenantAdmin con risposta corretta.",
+    "descr": "DeleteTenantAdmin: verifica l’endpoint HTTP per Controller DeleteTenantAdmin con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-SuperAdmin-Controller",
-    "descr": "DeleteSuperAdmin: verifica l’endpoint HTTP per Controller_DeleteSuperAdmin con risposta corretta.",
+    "descr": "DeleteSuperAdmin: verifica l’endpoint HTTP per Controller DeleteSuperAdmin con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Utente-Tenant-Controller",
-    "descr": "GetTenantUser: verifica l’endpoint HTTP per Controller_GetTenantUser con risposta corretta.",
+    "descr": "GetTenantUser: verifica l’endpoint HTTP per Controller GetTenantUser con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Admin-Tenant-Controller",
-    "descr": "GetTenantAdmin: verifica l’endpoint HTTP per Controller_GetTenantAdmin con risposta corretta.",
+    "descr": "GetTenantAdmin: verifica l’endpoint HTTP per Controller GetTenantAdmin con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-SuperAdmin-Controller",
-    "descr": "GetSuperAdmin: verifica l’endpoint HTTP per Controller_GetSuperAdmin con risposta corretta.",
+    "descr": "GetSuperAdmin: verifica l’endpoint HTTP per Controller GetSuperAdmin con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Utenti-Tenant-Controller",
-    "descr": "GetTenantUsers: verifica l’endpoint HTTP per Controller_GetTenantUsers con risposta corretta.",
+    "descr": "GetTenantUsers: verifica l’endpoint HTTP per Controller GetTenantUsers con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Admins-Tenant-Controller",
-    "descr": "GetTenantAdmins: verifica l’endpoint HTTP per Controller_GetTenantAdmins con risposta corretta.",
+    "descr": "GetTenantAdmins: verifica l’endpoint HTTP per Controller GetTenantAdmins con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
   {
     "id": "TU-Recupero-SuperAdmins-Controller",
-    "descr": "GetSuperAdmins: verifica l’endpoint HTTP per Controller_GetSuperAdmins con risposta corretta.",
+    "descr": "GetSuperAdmins: verifica l’endpoint HTTP per Controller GetSuperAdmins con risposta corretta.",
     "expected": "viene restituita una risposta HTTP 200 OK, indicando successo dell'operazione",
     "state": "S"
   },
@@ -823,73 +823,73 @@
   },
   {
     "id": "TU-Creazione-Utente-Tenant-Service",
-    "descr": "CreateTenantUser: verifica la logica di servizio per Service_CreateTenantUser.",
+    "descr": "CreateTenantUser: verifica la logica di servizio per Service CreateTenantUser.",
     "expected": "viene restituito nil come stato dell'operazione, con = \"token\"",
     "state": "S"
   },
   {
     "id": "TU-Creazione-Admin-Tenant-Service",
-    "descr": "CreateTenantAdmin: verifica la logica di servizio per Service_CreateTenantAdmin.",
+    "descr": "CreateTenantAdmin: verifica la logica di servizio per Service CreateTenantAdmin.",
     "expected": "viene restituito nil come stato dell'operazione, con = \"token\"",
     "state": "S"
   },
   {
     "id": "TU-Creazione-SuperAdmin-Service",
-    "descr": "CreateSuperAdmin: verifica la logica di servizio per Service_CreateSuperAdmin.",
+    "descr": "CreateSuperAdmin: verifica la logica di servizio per Service CreateSuperAdmin.",
     "expected": "viene restituito nil come stato dell'operazione, con = \"token\"",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Utente-Tenant-Service",
-    "descr": "DeleteTenantUser: verifica la logica di servizio per Service_DeleteTenantUser.",
+    "descr": "DeleteTenantUser: verifica la logica di servizio per Service DeleteTenantUser.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-Admin-Tenant-Service",
-    "descr": "DeleteTenantAdmin: verifica la logica di servizio per Service_DeleteTenantAdmin.",
+    "descr": "DeleteTenantAdmin: verifica la logica di servizio per Service DeleteTenantAdmin.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Eliminazione-SuperAdmin-Service",
-    "descr": "DeleteSuperAdmin: verifica la logica di servizio per Service_DeleteSuperAdmin.",
+    "descr": "DeleteSuperAdmin: verifica la logica di servizio per Service DeleteSuperAdmin.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Utente-Tenant-Service",
-    "descr": "GetTenantUser: verifica la logica di servizio per Service_GetTenantUser.",
+    "descr": "GetTenantUser: verifica la logica di servizio per Service GetTenantUser.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Admin-Tenant-Service",
-    "descr": "GetTenantAdmin: verifica la logica di servizio per Service_GetTenantAdmin.",
+    "descr": "GetTenantAdmin: verifica la logica di servizio per Service GetTenantAdmin.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-SuperAdmin-Service",
-    "descr": "GetSuperAdmin: verifica la logica di servizio per Service_GetSuperAdmin.",
+    "descr": "GetSuperAdmin: verifica la logica di servizio per Service GetSuperAdmin.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Utenti-Tenant-Tenant-Service",
-    "descr": "GetTenantUsersByTenant: verifica la logica di servizio per Service_GetTenantUsersByTenant.",
+    "descr": "GetTenantUsersByTenant: verifica la logica di servizio per Service GetTenantUsersByTenant.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Recupero-Admins-Tenant-Tenant-Service",
-    "descr": "GetTenantAdminsByTenant: verifica la logica di servizio per Service_GetTenantAdminsByTenant.",
+    "descr": "GetTenantAdminsByTenant: verifica la logica di servizio per Service GetTenantAdminsByTenant.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
   {
     "id": "TU-Lista-SuperAdmin-Service",
-    "descr": "GetSuperAdminList: verifica la logica di servizio per Service_GetSuperAdminList.",
+    "descr": "GetSuperAdminList: verifica la logica di servizio per Service GetSuperAdminList.",
     "expected": "la funzione completa con successo, nessun errore restituito",
     "state": "S"
   },
@@ -1183,7 +1183,7 @@
   },
   {
     "id": "TU-AppShell-TenantAdminNav",
-    "descr": "AppShellPage: Verifica che per utenti SUPER_ADMIN la side-bar includa un divisore/section divider e che per altri ruoli il divisore sia assente.",
+    "descr": "AppShellPage: Verifica che per utenti SUPER ADMIN la side-bar includa un divisore/section divider e che per altri ruoli il divisore sia assente.",
     "expected": "Divider visibile per SUPER_ADMIN, assente per altri ruoli",
     "state": "S"
   },
@@ -1237,7 +1237,7 @@
   },
   {
     "id": "TU-Dashboard-SuperAdminImpersonate",
-    "descr": "DashboardPage: Verifica che per utenti SUPER_ADMIN la pagina gestisca i tenant passati via query param e rispetti il flag di impersonazione.",
+    "descr": "DashboardPage: Verifica che per utenti SUPER ADMIN la pagina gestisca i tenant passati via query param e rispetti il flag di impersonazione.",
     "expected": "getTenant invocato per tenant dalla query; navigazione o loadDashboard dipende da canImpersonate",
     "state": "S"
   },
@@ -1537,7 +1537,7 @@
   },
   {
     "id": "TU-UserManager-SuperAdminTenant",
-    "descr": "UserManagerPage: Verifica che, se l'utente è SUPER_ADMIN con tenant id in URL, la pagina risolva il tenant (chiamando il servizio tenant) e recuperi gli utenti per quel tenant.",
+    "descr": "UserManagerPage: Verifica che, se l'utente è SUPER ADMIN con tenant id in URL, la pagina risolva il tenant (chiamando il servizio tenant) e recuperi gli utenti per quel tenant.",
     "expected": "Tenant risolto e lista utenti recuperata per il tenant id dell'URL.",
     "state": "S"
   },
@@ -1549,7 +1549,7 @@
   },
   {
     "id": "TU-UserManager-LoadTenants",
-    "descr": "UserManagerPage: Verifica che, se SUPER_ADMIN vede il contesto TENANT_ADMIN senza tenant id, vengano caricati i tenant disponibili e non vengano recuperati gli utenti finché non viene scelto un tenant.",
+    "descr": "UserManagerPage: Verifica che, se SUPER ADMIN vede il contesto TENANT ADMIN senza tenant id, vengano caricati i tenant disponibili e non vengano recuperati gli utenti finché non viene scelto un tenant.",
     "expected": "Lista tenant caricata; utenti non recuperati fino alla selezione di un tenant.",
     "state": "S"
   },
@@ -1561,7 +1561,7 @@
   },
   {
     "id": "TU-UserManager-OnTabChange",
-    "descr": "onTabChange: Verifica che cambiando tab (onTabChange) la pagina alterni il ruolo (TENANT_USER / TENANT_ADMIN) e ricarichi gli utenti con il tenant id corretto.",
+    "descr": "onTabChange: Verifica che cambiando tab (onTabChange) la pagina alterni il ruolo (TENANT USER / TENANT ADMIN) e ricarichi gli utenti con il tenant id corretto.",
     "expected": "Ruolo di contesto cambiato e utenti ricaricati per ruolo e tenant id correnti.",
     "state": "S"
   },
@@ -1627,13 +1627,13 @@
   },
   {
     "id": "TU-UserManager-TenantBanner",
-    "descr": "UserManagerPage: Verifica che, se SUPER_ADMIN visualizza il contesto TENANT_USER con tenant id, venga mostrato un banner del tenant con il nome e due pulsanti di azione.",
+    "descr": "UserManagerPage: Verifica che, se SUPER ADMIN visualizza il contesto TENANT USER con tenant id, venga mostrato un banner del tenant con il nome e due pulsanti di azione.",
     "expected": "Banner tenant mostrato con nome e due pulsanti di azione.",
     "state": "S"
   },
   {
     "id": "TU-UserManager-NoBanner",
-    "descr": "UserManagerPage: Verifica che il banner del tenant non venga mostrato per sessioni non SUPER_ADMIN o per contesti che non lo richiedono.",
+    "descr": "UserManagerPage: Verifica che il banner del tenant non venga mostrato per sessioni non SUPER ADMIN o per contesti che non lo richiedono.",
     "expected": "Banner non visibile in sessioni non SUPER_ADMIN o contesti non applicabili.",
     "state": "S"
   },
@@ -1657,7 +1657,7 @@
   },
   {
     "id": "TU-UserForm-Validation",
-    "descr": "UserFormDialog: Verifica che le validazioni sul form richiedano username e email obbligatori, che l'email abbia formato valido, che per TENANT_ADMIN il tenant id sia obbligatorio e che salvare con form invalido marchi i campi senza eseguire la chiamata.",
+    "descr": "UserFormDialog: Verifica che le validazioni sul form richiedano username e email obbligatori, che l'email abbia formato valido, che per TENANT ADMIN il tenant id sia obbligatorio e che salvare con form invalido marchi i campi senza eseguire la chiamata.",
     "expected": "Validazioni applicate e salvataggio invalido non invoca il servizio.",
     "state": "S"
   },
