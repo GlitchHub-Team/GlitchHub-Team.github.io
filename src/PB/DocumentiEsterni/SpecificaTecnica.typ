@@ -1,4 +1,5 @@
 #import "../../Templates/templateDocumentiGenerici.typ": *
+#import "../../lib/libRequisiti.typ": LISTA-RD, LISTA-RF, LISTA-RNF, get-req-by-id
 #show ref: underline
 
 
@@ -41,10 +42,35 @@
       ],
     ),
     (
+      "0.12.0",
+      "17/04/2026",
+      "Michele Dioli",
+      "Elia Ernesto Stellin",
+      [Aggiunte sezioni  @backend-auth, @backend-gateway, @backend-historical_data, @backend-infra, @backend-tenant],
+    ),
+    (
+      "0.11.1",
+      "18/04/2026",
+      "Elia Ernesto Stellin",
+      "Michele Dioli",
+      [
+        Implementate modifiche suggerite nella verifica di v0.11.0
+      ]
+    ),
+    (
+      "0.11.0",
+      "18/04/2026",
+      "Elia Ernesto Stellin",
+      "Michele Dioli",
+      [
+        Aggiunta sezione @cloud-db.
+      ]
+    ),
+    (
       "0.10.0",
       "17/04/2026",
       "Elia Ernesto Stellin",
-      "",
+      "Michele Dioli",
       [
         Spostate sezioni sul diagramma C4 in @architettura; Migliorata sezione @archit-esagonale; Aggiunte @cloud-backend, @backend-email, @backend-gateway-hello, @backend-real_time_data, @backend-sensor, @backend-sensor-profile, @backend-shared, @backend-shared-config, @backend-shared-crypto, @backend-shared-identity, @backend-user
       ],
@@ -151,8 +177,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Michele Dioli",
+  left-signature: "../assets/firme/firma_Michele_Dioli.png",
   tipo-documento: "Specifica tecnica",
 )
 
@@ -237,8 +263,7 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
 Per lo sviluppo del sistema abbiamo scelto uno stack tecnologico moderno e solido, selezionando ogni strumento con l'obiettivo di supportare bene un'architettura a microservizi che sia facile da gestire e capace di crescere nel tempo. Le nostre scelte sono state condotte dalla necessità di creare un'infrastruttura per la gestione dei dati IoT che funzioni bene anche sotto carico, garantendo che il flusso di informazioni dai sensori BLE sia sempre veloce e affidabile.
 
 Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione delle loro caratteristiche principali.
-//TODO aggiungere le versioni dei linguaggi
-//TODO: aggiungere goroutine al glossario
+
 == Linguaggi e ambienti di programmazione
 #tabella-paginata(
   table(
@@ -415,9 +440,9 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
     [1.5.1],
     [GoDotEnv è una libreria per il linguaggio #gloss[Go] che permette di caricare variabili d'ambiente da file .env all'interno dell'applicazione. Replica il comportamento del pacchetto dotenv diffuso in altri ecosistemi, facilitando la gestione di configurazioni esterne al codice sorgente.],
 
-    [google/uuid],
+    [google/UUID],
     [1.6.0],
-    [uuid è una libreria per il linguaggio #gloss[Go] che fornisce un'implementazione completa e conforme agli standard RFC 4122 per la gestione degli UUID (Universally Unique Identifier), ovvero identificatori univoci a livello globale. Può effettuare la loro generazione il parsing da stringa, la validazione, la serializzazione e la manipolazione in vari formati.],
+    [UUID è una libreria per il linguaggio #gloss[Go] che fornisce un'implementazione completa e conforme agli standard RFC 4122 per la gestione degli UUID (Universally Unique Identifier), ovvero identificatori univoci a livello globale. Può effettuare la loro generazione il parsing da stringa, la validazione, la serializzazione e la manipolazione in vari formati.],
 
     [Uber Fx],
     [1.24.0],
@@ -1309,7 +1334,7 @@ La struct ha i seguenti attributi e metodi:
 ==== Gateway simulato
 Il gateway simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un gateway IoT reale, ascoltando comandi in ingresso e di svuotare periodicamente un buffer interno di dati generati dai sensori simulati associati, inviandoli via #gloss[NATS JetStream].
 
-Il gateway simulato è fatto partire dal comando *CreateGatewayCmd* come una *goroutine* separata, in modo da eseguire ogni gateway simulato in parallelo e garantire l'esecuzione di un comando alla volta per gateway.\
+Il gateway simulato è fatto partire dal comando *CreateGatewayCmd* come una #gloss[goroutine] separata, in modo da eseguire ogni gateway simulato in parallelo e garantire l'esecuzione di un comando alla volta per gateway.\
 
 Ogni gateway simulato ha due *channel*: uno per ricevere i comandi di tipo `BaseCommand` e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
@@ -1402,7 +1427,7 @@ La struct *sensorData* rappresenta la misurazione IoT generata da un sensore sim
 ==== Sensore simulato
 Il sensore simulato è un insieme di componenti che ha lo scopo di simulare il comportamento di un sensore IoT reale, generando periodicamente delle misurazioni IoT e salvandole nel buffer interno del gateway simulato.
 
-Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una *goroutine* separata, in modo da eseguire ogni sensore simulato in parallelo.
+Il sensore simulato è fatto partire dal comando *AddSensorCmd* come una #gloss[goroutine] separata, in modo da eseguire ogni sensore simulato in parallelo.
 
 Ogni sensore simulato ha due channel: uno per ricevere i comandi di tipo `BaseCommand` e uno per inviare eventuali errori al *GatewayManagerService* in caso di problemi durante l'esecuzione dei comandi.
 
@@ -3019,23 +3044,420 @@ var Module = fx.Module(
 )
 ```
 
-==== Package `auth`
-// TODO
+==== Package `auth` <backend-auth>
+
+Il package `auth` contiene tutte le funzionalità relative alla gestione dell'autenticazione e dell'autorizzazione, come ad esempio la gestione dei token JWT e la verifica delle autorizzazioni degli utenti.\
+
+#figure(
+  image("../../assets/c4/backend/auth/auth.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `auth`],
+)
+
+===== Inbound adapter -- `Controller` e DTO
+Il package `auth` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
+
+
+#figure(
+  image("../../assets/c4/backend/auth/controller.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `auth.Controller` e relativi DTO],
+)
+
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`tokenService crypto.TokenService`*: Riferimento al servizio per la gestione dei token JWT
+- *`loginUserUseCase LoginUserUseCase`*: Riferimento all'_inbound port_ per  autenticare un utente
+- *`logoutUserUseCase LogoutUserUseCase`*: Riferimento all'_inbound port_ per  disautenticare un utente
+- *`confirmAccountUseCase ConfirmAccountUseCase`*: Riferimento all'_inbound port_ per  confermare l'account di un utente
+- *`verifyConfirmAccountTokenUseCase VerifyConfirmAccountTokenUseCase`*: Riferimento all'_inbound port_ per  verificare il token di conferma dell'account
+- *`verifyForgotPasswordTokenUseCase VerifyForgotPasswordTokenUseCase`*: Riferimento all'_inbound port_ per  verificare il token per la reimpostazione della password
+- *`requestForgotPasswordUseCase RequestForgotPasswordUseCase`*: Riferimento all'_inbound port_ per  richiedere la reimpostazione della password dimenticata
+- *`confirmForgotPasswordUseCase ConfirmForgotPasswordUseCase`*: Riferimento all'_inbound port_ per  confermare la reimpostazione della password dimenticata
+- *`changePasswordUseCase ChangePasswordUseCase`*: Riferimento all'_inbound port_ per  cambiare la password per un utente che ha accesso al sistema
+
+*Metodi*:
+Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
+-*`LoginUser(ctx *gin.Context)`*: Esegue il login nel sistema per un utente
+  - Input: `LoginUserDTO` 
+  - Output: `LoginResponseDTO` 
+-*`LogoutUser(ctx *gin.Context)`*: Esegue il logout per un utente del sistema.#footnote[Si noti che al momento questo metodo è una _no-op_ rispetto allo stato del sistema, poiché questo utilizza i JWT come token di autenticazione e non implementa un sistema di revocazione di tali, il quale permetterebbe di far scadere un token prima del timestamp specificato al suo interno. Il metodo è stato creato lo stesso per permettere una futura implementazione di tale sistema e di un eventuale sistema di audit logging. ]
+-*`VerifyConfirmAccountToken(ctx *gin.Context)`*:
+  - Input: `VerifyConfirmAccountTokenBodyDTO`
+-*`ConfirmAccount(ctx *gin.Context)`*:
+  - Input: `ConfirmUserAccountBodyDTO`
+  - Output: `LoginResponseDTO`
+-*`VerifyForgotPasswordToken(ctx *gin.Context)`*:
+  - Input: `VerifyForgotPasswordTokenBodyDTO`
+  - Output: `ResultDTO`
+-*`RequestForgotPasswordToken(ctx *gin.Context)`*:
+  - Input: `RequestForgotPasswordBodyDTO`
+  - Output: `ResultDTO`
+-*`ConfirmForgotPassword(ctx *gin.Context)`*:
+  - Input: `ConfirmForgotPasswordBodyDTO`
+  - Output: `ResultDTO`
+-*`ChangePassword(ctx *gin.Context)`*:
+  - Input: `ChangePasswordBodyDTO`
+  - Output: `ResultDTO`
+
+I DTO usati da `Controller` sono i seguenti:
+- *`LoginUserDTO`*: DTO usato per loggare un utente, contiene i seguenti campi:
+  - `TenantId`: stringa rappresentante l'UUID del tenant dell'utente da loggare
+  - `Email`: stringa rappresentante l'email dell'utente da loggare
+  - `Password`: stringa rappresentante la password dell'utente da loggare
+
+- *`LogoutUserDTO`*: DTO usato per eseguire il logout per un utente, contiene i seguenti campi:
+  - *`Requester identity.Requester`*: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC]
+
+- *`VerifyConfirmAccountTokenBodyDTO`*: DTO usato per verificare il token di conferma dell'account, contiene i seguenti campi:
+  - `Token`: stringa rappresentante il token di conferma dell'account
+
+- *`VerifyForgotPasswordTokenBodyDTO`*: DTO usato per verificare il token per la reimpostazione della password, contiene i seguenti campi:
+  - `Token`: stringa rappresentante il token per la reimpostazione della password
+
+-*`ConfirmUserAccountBodyDTO`*: DTO usato per confermare l'account di un utente, contiene i seguenti campi:
+  - `Token`: stringa rappresentante il token di conferma dell'account
+  - `NewPassword`: stringa rappresentante la nuova password da impostare per l'utente
+
+- *`VerifyForgotPasswordTokenBodyDTO`*: DTO usato per verificare il token per la reimpostazione della password, contiene i seguenti campi:
+  - `Token`: stringa rappresentante il token per la reimpostazione della password
+
+- *`RequestForgotPasswordBodyDTO`* : DTO usato per richiedere la reimpostazione della password, contiene i seguenti campi:
+  - `Email`: stringa rappresentante l'email dell'utente che richiede la reimpostazione della password
+  - `TenantId`: stringa rappresentante l'UUID del tenant dell'utente che richiede la reimpostazione della password
+
+- *`ConfirmForgotPasswordBodyDTO`*: DTO usato per confermare la reimpostazione della password, contiene i seguenti campi:
+  - `Token`: stringa rappresentante il token per la reimpostazione della password
+  - `NewPassword`: stringa rappresentante la nuova password da impostare
+
+- *`ChangePasswordBodyDTO`*: DTO usato per cambiare la password, contiene i seguenti campi:
+
+- *`LoginResponseDTO`*: DTO restituito in output quando un utente viene loggato con successo, contiene i seguenti campi:
+  - `Token`: stringa rappresentante il token JWT da usare per autenticare le richieste successive
+
+- *`ResultDTO`*: DTO usato per restituire il risultato di una operazione, contiene i seguenti campi:
+  - `Result`: booleano che indica se l'operazione è stata eseguita con successo o meno
+
+===== Inbound ports
+#figure(
+  image("../../assets/c4/backend/auth/service.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ di `auth`],
+)
+
+====== LoginUserUseCase
+*Metodi:*
+- *`LoginUser(cmd LoginUserCommand) (user.User, error)`*: Logga un utente nel sistema tramite le credenziali fornite in `cmd` e restituisce l'utente loggato o un errore in caso di fallimento
+====== LogoutUserUseCase
+*Metodi:*
+- *`LogoutUser(cmd LogoutUserCommand) error`*: Esegue il logout di un utente dal sistema tramite i dati di autenticazione forniti in `cmd` e restituisce un errore in caso di fallimento
+====== ConfirmAccountUseCase
+*Metodi:*
+- *`ConfirmAccount(cmd ConfirmAccountCommand) (user.User, error)`*: Conferma l'account di un utente tramite il token di conferma fornito in `cmd` e restituisce l'utente con l'account confermato o un errore in caso di fallimento
+====== VerifyConfirmAccountTokenUseCase
+*Metodi:*
+- *`VerifyConfirmAccountToken(cmd VerifyConfirmAccountTokenCommand) error`*: Verifica il token di conferma dell'account fornito in `cmd` e restituisce un errore in caso di fallimento
+====== VerifyForgotPasswordTokenUseCase
+*Metodi:*
+- *`VerifyForgotPasswordToken(cmd VerifyForgotPasswordTokenCommand) error`*: Verifica il token per la reimpostazione della password fornito in `cmd` e restituisce un errore in caso di fallimento
+====== RequestForgotPasswordUseCase
+*Metodi:*
+- *`RequestForgotPassword(cmd RequestForgotPasswordCommand) error`*: Richiede la reimpostazione della password per un utente specifico e restituisce un errore in caso di fallimento
+====== ConfirmForgotPasswordUseCase
+*Metodi:*
+- *`ConfirmForgotPassword(cmd ConfirmForgotPasswordCommand) error`*: Conferma la reimpostazione della password per un utente specifico tramite il token e la nuova password forniti in `cmd` e restituisce un errore in caso di fallimento
+====== ChangePasswordUseCase
+*Metodi:*
+- *`ChangePassword(cmd ChangePasswordCommand) error`*: Cambia la password per un utente specifico tramite i dati di autenticazione e la nuova password forniti in `cmd` e restituisce un errore in caso di fallimento
+
+===== Commands
+I comandi usati dagli _use case_ di `Controller` sono i seguenti:
+- *`LoginUserCommand`* : Comando usato per ottenere un gateway specifico, contiene i seguenti campi:
+  - `TenantId`: UUID del gateway da ottenere
+  - `Email`: indirizzo email dell'utente che ha richiesto il gateway
+  - `Password`: password dell'utente che ha richiesto il gateway
+
+- *`LogoutUserCommand`*: Comando usato per ottenere tutti i gateway, contiene i seguenti campi:
+  - `TenantId`: UUID del tenant di cui ottenere i gateway
+  - `requester`: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC]
+  - `UserId`: UUID dell'utente che ha richiesto il logout, usato per disloggare l'utente dal sistema
+
+- *`ConfirmAccountCommand`*: Comando usato per ottenere i gateway di un tenants specifico, contiene i seguenti campi:
+  - `TenantId`: UUID del tenant di cui ottenere i gateway
+  - `Token`: stringa rappresentante il token di conferma dell'account
+  - `NewPassword`: stringa rappresentante la nuova password da impostare per l'utente
+
+- *`VerifyConfirmAccountTokenCommand`*: Comando usato per ottenere un gateway specifico di un tenant specifico, contiene i seguenti campi:
+  - `TenantId`: UUID del tenant di cui ottenere i gateway
+  - `Token`: stringa rappresentante il token di conferma dell'account
+
+- *`VerifyForgotPasswordTokenCommand`*: Comando usato per commissionare un gateway, contiene i seguenti campi:
+  - `TenantId`: UUID del tenant di cui ottenere i gateway
+  - `Email`: indirizzo email dell'utente che ha richiesto il gateway
+
+- *`RequestForgotPasswordCommand`*: Comando usato per decommissionare un gateway, contiene i seguenti campi:
+  - `TenantId`: UUID del tenant di cui ottenere i gateway
+  - `Email`: indirizzo email dell'utente che ha richiesto il gateway
+
+- *`ConfirmForgotPasswordCommand`*: Comando usato per interrompere un gateway, contiene i seguenti campi:
+  - `TenantId`: UUID del tenant di cui ottenere i gateway
+  - `Token`: stringa rappresentante il token di conferma dell'account
+  - `NewPassword`: stringa rappresentante la nuova password da impostare per l'utente
+
+- *`ChangePasswordCommand`*: Comando usato per resettare un gateway, contiene i seguenti campi:
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC]
+  - `NewPassword`: stringa rappresentante la nuova password da impostare per l'utente
+  - `OldPassword`: stringa rappresentante la vecchia password dell'utente
+
+
+====== `ChangePasswordService`
+
+*Interfacce implementate*:
+- `VerifyForgotPasswordTokenUseCase`
+- `RequestForgotPasswordUseCase`
+- `ConfirmForgotPasswordUseCase`
+- `ChangePasswordUseCase`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`tokenGenerator crypto.SecurityTokenGenerator`*: _Outbound port_ usata per generare i token per la reimpostazione della password
+- *`hasher crypto.SecretHasher`*: _Outbound port_ usata per generare hash della nuova password inserita
+- *`forgotPasswordTokenPort ForgotPasswordTokenPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
+- *`sendChangePasswordEmailPort SendForgotPasswordEmailPort`*: _Outbound port_ usata per inviare le email per la reimpostazione della password
+- *`getUserPort user.GetUserPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico user
+- *`saveUserPort user.SaveUserPort`*: _Outbound port_ usata per salvare un user
+
+*Funzione di costruzione*: `NewChangePasswordService (log *zap.Logger, tokenGenerator crypto.SecurityTokenGenerator, hasher crypto.SecretHasher, forgotPasswordTokenPort ForgotPasswordTokenPort, sendChangePasswordEmailPort SendForgotPasswordEmailPort, getUserPort user.GetUserPort, saveUserPort user.SaveUserPort) *ChangePasswordService`
+
+====== `ConfirmUserAccountService`
+*Interfacce implementate*:
+- `ConfirmAccountUseCase`
+- `VerifyConfirmAccountTokenUseCase`
+
+*Attributi*:
+- *`confirmAccountTokenPort ConfirmAccountTokenPort`* : _Outbound port_ usata per ottenere informazioni sui token di conferma dell'account
+- *`saveUserPort user.SaveUserPort`*: _Outbound port_ usata per salvare un user
+- *`getUserPort user.GetUserPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico user
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`hasher crypto.SecretHasher`*: _Outbound port_ usata per hashare le password
+
+*Funzione di costruzione*: `NewConfirmUserAccountService(confirmAccountTokenPort ConfirmAccountTokenPort, saveUserPort user.SaveUserPort, getUserPort user.GetUserPort, log *zap.Logger, hasher crypto.SecretHasher) *ConfirmUserAccountService`
+
+====== Service Session
+*Interfacce implementate*:
+- `LoginUserUseCase`
+- `LogoutUserUseCase`
+
+*Attributi*:
+- *`getUserPort user.GetUserPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico user
+- *`hasher crypto.SecretHasher`*: _Outbound port_ usata per hashare le password
+
+*Funzione di costruzione*: `NewSessionService(getUserPort user.GetUserPort, hasher crypto.SecretHasher) *SessionService`
+
+===== Dominio
+
+====== ForgotPasswordToken
+Rappresenta un token JWT usati per la reimpostazione della password.
+
+*Attributi:*
+- *`Token string`*: stringa rappresentante il token di reimpostazione della password
+- *`TenantID *UUID.UUID`*: UUID del tenant a cui il token è associato, pari a `nil` se l'utente è un Super Admin
+- *`UserID uint`*: ID dell'utente a cui il token è associato
+- *`ExpirationDate time.Time`*: Data di scadenza del token
+
+
+*Metodi:*
+- *`IsExpired() bool`*: Restituisce true se il token è scaduto, false altrimenti
+
+
+====== ConfirmAccountToken
+Rappresenta un token per la conferma di un account appena creato.
+- *`Token string`*: stringa rappresentante il token di conferma dell'account
+- *`TenantID *UUID.UUID`*: UUID del tenant a cui il token è associato, pari a `nil` se l'utente è un Super Admin
+- *`UserID uint`*: ID dell'utente a cui il token è associato
+- *`ExpirationDate time.Time`*: Data di scadenza del token
+
+*Metodi:*
+- *`IsExpired() bool`*: Restituisce true se il token è scaduto, false altrimenti
+
+
+=====  Outbound ports – Database
+In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
+
+====== ForgotPasswordTokenPort
+*Metodi*:
+- *`NewForgotPasswordToken(user user.User) (string, error)`*: Crea un nuovo token per la reimpostazione della password. Restituisce il token creato o un errore in caso di fallimento.
+- *`DeleteForgotPasswordToken(tenantId UUID.UUID, tokenString string) error`*: Elimina un token per la reimpostazione della password specifico tramite un token stringa e l'UUID del tenant. Restituisce un errore in caso di fallimento.
+- *`GetTenantMemberByForgotPasswordToken(tenantId UUID.UUID, tokenString string) (userFound user.User, err error)`*: Ottiene un tenant member specifico tramite un token per la reimpostazione della password e l'UUID del tenant. Restituisce il tenant member trovato o un errore in caso di fallimento.
+- *`GetSuperAdminByForgotPasswordToken(tokenString string) (userFound user.User, err error)`*: Ottiene un super admin specifico tramite un token per la reimpostazione della password. Restituisce il super admin trovato o un errore in caso di fallimento.
+-*`GetTenantForgotPasswordToken(tenantId UUID.UUID, tokenString string) (token ForgotPasswordToken, err error)`*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetSuperAdminForgotPasswordToken(tokenString string) (token ForgotPasswordToken, err error)`*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa. Restituisce il token trovato o un errore in caso di fallimento.
+
+====== ChangePasswordTokenPort
+*Metodi*:
+- *`NewChangePasswordToken(user user.User) (string, error)`*: Crea un nuovo token per la reimpostazione della password. Restituisce il token creato o un errore in caso di fallimento.
+- *`DeleteChangePasswordToken(tenantId UUID.UUID, tokenString string) error`*: Elimina un token per il cambio della password specifico tramite un token stringa e l'UUID del tenant. Restituisce un errore in caso di fallimento.
+- *`GetTenantMemberByChangePasswordToken(tenantId UUID.UUID, tokenString string) (userFound user.User, err error)`*: Ottiene un tenant member specifico tramite un token per la reimpostazione della password e l'UUID del tenant. Restituisce il tenant member trovato o un errore in caso di fallimento.
+- *GetSuperAdminByChangePasswordToken(tokenString string) (userFound user.User, err error)*: Ottiene un super admin specifico tramite un token per la reimpostazione della password. Restituisce il super admin trovato o un errore in caso di fallimento.
+-*GetTenantChangePasswordToken(tenantId UUID.UUID, tokenString string) (token ChangePasswordToken, err error)*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *GetSuperAdminChangePasswordToken(tokenString string) (token ChangePasswordToken, err error)*: Ottiene un token per la reimpostazione della password specifico tramite un token stringa. Restituisce il token trovato o un errore in caso di fallimento.
+
+
+===== Outbound adapter per database –- ConfirmTokenAdapter
+#figure(
+  image("../../assets/c4/backend/auth/adaPass.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway - database outbound ConfirmTokenAdapter`],
+)
+
+ConfirmTokenAdapter è l'outbound port usata per comunicare con il database per le operazioni CRUD sui token di conferma, traducendo l'interfaccia di dominio nell'interfaccia di PostgreSQL e viceversa.
+
+*Interfacce implementate*:
+- `ForgetPassowordTokenTokenPort`
+
+*Attributi*:
+- *`repo ConfirmTokenPostgreRepository`*: Riferimento al repository per i token di conferma
+
+===== Outbound adapter per database – ChangePasswordTokenPgAdapter
+
+#figure(
+  image("../../assets/c4/backend/auth/adaConfi.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway - database outbound ChangePasswordTokenPgAdapter`],
+)
+
+`ChangePasswordTokenPgAdapter` è l'outbound port usata per comunicare con il database per le operazioni CRUD sui token di cambio password, traducendo l'interfaccia di dominio nell'interfaccia di PostgreSQL e viceversa.
+
+*Interfacce implementate*:
+- `ChangePasswordTokenPort`
+
+*Attributi*:
+- *`repo ChangePasswordTokenPostgreRepository`*: Riferimento al repository per i token di cambio password
+
+
+===== Repository per database – SuperAdminConfirmTokenRepository, SuperAdminConfirmTokenEntity
+
+*Metodi*:
+- *`SaveToken(entity *SuperAdminConfirmTokenEntity) (err error)`*: Salva un token di conferma per un super admin nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`DeleteToken(entity *SuperAdminConfirmTokenEntity) (err error)`*: Elimina un token di conferma per un super admin nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`GetToken(tenantId string, tokenString string) (entity *SuperAdminConfirmTokenEntity, err error)`*: Restituisce un token di conferma per un super admin specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetTokenWithUser(tenantId string, tokenString string) (entity *SuperAdminConfirmTokenEntity, err error)`*: Restituisce un token di conferma per un super admin specifico tramite un token stringa e l'UUID del tenant, includendo le informazioni sull'utente associato al token. Restituisce il token trovato o un errore in caso di fallimento.
+
+====== SuperAdminConfirmTokenPgRepository
+
+Struct concreta che implementa `SuperAdminConfirmTokenRepository`, in modo tale da comunicare con PostgreSQL.
+
+*Attributi*:
+- *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
+
+*Funzione di costruzione*: `NewSuperAdminConfirmTokenPostgreRepository(db clouddb.CloudDBConnection) *SuperAdminConfirmTokenPostgreRepository`
+
+===== Repository per database – SuperAdminPasswordTokenRepository, SuperAdminPasswordTokenEntity
+
+*Metodi*:
+- *`SaveToken(entity *SuperAdminPasswordTokenEntity) (err error)`*: Salva un token di ripristino per un super admin nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`DeleteToken(entity *SuperAdminPasswordTokenEntity) (err error)`*: Elimina un token di ripristino per un super admin nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`GetToken(tenantId string, tokenString string) (entity *SuperAdminPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un super admin specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetTokenWithUser(tenantId string, tokenString string) (entity *SuperAdminPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un super admin specifico tramite un token stringa e l'UUID del tenant, includendo le informazioni sull'utente associato al token. Restituisce il token trovato o un errore in caso di fallimento.
+
+====== SuperAdminPasswordTokenPgRepository
+
+Struct concreta che implementa `SuperAdminPasswordTokenRepository`, in modo tale da comunicare con PostgreSQL.
+
+*Attributi*:
+- *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
+
+*Funzione di costruzione*: `NewSuperAdminPasswordTokenPostgreRepository(db clouddb.CloudDBConnection) *SuperAdminPasswordTokenPostgreRepository`
+
+
+===== Repository per database – TenantPasswordTokenRepository, TenantPasswordTokenEntity
+
+*Metodi*:
+- *`SaveToken(entity *TenantPasswordTokenEntity) (err error)`*: Salva un token di ripristino per un Tenant Member tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`DeleteToken(entity *TenantPasswordTokenEntity) (err error)`*: Elimina un token di ripristino per un Tenant Member nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`GetToken(tenantId string, tokenString string) (entity *TenantPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un Tenant Member specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetTokenWithUser(tenantId string, tokenString string) (entity *TenantPasswordTokenEntity, err error)`*: Restituisce un token di ripristino per un Tenant Member specifico tramite un token stringa e l'UUID del tenant, includendo le informazioni sull'utente associato al token. Restituisce il token trovato o un errore in caso di fallimento.
+
+====== TenantPasswordTokenPgRepository
+
+Struct concreta che implementa `TenantPasswordTokenRepository`, in modo tale da comunicare con PostgreSQL.
+
+*Attributi*:
+- *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
+
+*Funzione di costruzione*: `NewTenantPasswordTokenPostgreRepository(db clouddb.CloudDBConnection) *TenantPasswordTokenPostgreRepository`
+
+===== Repository per database – TenantConfirmTokenRepository, TenantConfirmTokenEntity
+
+*Metodi*:
+- *`SaveToken(entity *TenantConfirmTokenEntity) (err error)`*: Salva un token di conferma per un tenant nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`DeleteToken(entity *TenantConfirmTokenEntity) (err error)`*: Elimina un token di conferma per un tenant nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`GetToken(tenantId string, tokenString string) (entity *TenantConfirmTokenEntity, err error)`*: Restituisce un token di conferma per un tenant specifico tramite un token stringa e l'UUID del tenant. Restituisce il token trovato o un errore in caso di fallimento.
+- *`GetTokenWithUser(tenantId string, tokenString string) (entity *TenantConfirmTokenEntity, err error)`*: Restituisce un token di conferma per un tenant specifico tramite un token stringa e l'UUID del tenant, includendo le informazioni sull'utente associato al token. Restituisce il token trovato o un errore in caso di fallimento.
+
+====== TenantConfirmTokenPgRepository
+
+Struct concreta che implementa TenantConfirmTokenRepository, in modo tale da comunicare con PostgreSQL.
+
+*Attributi*:
+- *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
+
+*Funzione di costruzione*: NewTenantConfirmTokenPostgreRepository(db clouddb.CloudDBConnection)\* TenantConfirmTokenPostgreRepository
+
+====== SuperAdminPasswordTokenEntity
+
+Entità di database che rappresenta la tabella `super_admin_forgot_password_tokens` nel database
+
+*Attributi*:
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
+- *`SuperAdmin user.SuperAdminEntity`*: Riferimento all'entità dell'super admin associato al token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
+
+
+====== SuperAdminConfirmTokenEntity
+Entità di database che rappresenta la tabella `super_admin_confirm_tokens` nel database.
+*Attributi*:
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
+- *`SuperAdmin user.SuperAdminEntity`*: Riferimento all'entità dell'super admin associato al token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
+
+====== TenantPasswordTokenEntity
+
+Entità di database che rappresenta la tabella `forgot_password_tokens` in un tenant schema del database .
+
+*Attributi*:
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
+- *`TenantMember user.TenantMemberEntity`*: Riferimento all'entità del tenant member associato al token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
+
+====== TenantConfirmTokenEntity
+
+Entità di database che rappresenta la tabella `confirm_tokens` in un tenant schema del database.    
+
+*Attributi*:
+- *`Token string`*: UUID del token
+- *`UserId int`*: ID dell'utente al quale il token è associato
+- *`TenantMember user.TenantMemberEntity`*: Riferimento all'entità del tenant member associato al token
+- *`CreatedAt time.Time`*: Data di creazione del token
+- *`ExpiresAt time.Time`*: Data di scadenza del token
+
 
 ==== Package `email` <backend-email>
 Il package `email` non presenta controller poiché non viene chiamato direttamente dal client, ma ne vengono chiamate solamente le _outbound ports_.
 
 #figure(
   image("../../assets/c4/backend/email/email.pdf", width: 100%),
-  caption: [Cloud Backend -- Code Diagram di package `email`],
+  caption: [Cloud Backend -- Code Diagram di package `email`]
 )
 
 ===== `SendEmailPort`
 Outbound port per inviare le email di conferma account (`SendConfirmAccountEmail()`) e di password dimenticata (`SendForgotPasswordEmail()`).
 
-- *`SendConfirmAccountEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+- *`SendConfirmAccountEmail(toAddress string, tenantId *UUID.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
 
-- *`SendForgotPasswordEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` da `fromAddress` un'email contenente il link di cambio password dimenticata, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+- *`SendForgotPasswordEmail(toAddress string, tenantId *UUID.UUID, tokenString string) error`* invia all'indirizzo `toAddress` da `fromAddress` un'email contenente il link di cambio password dimenticata, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
 
 
 ===== `SendEmailSMTPAdapter` <code-email.SendEmailSMTPAdapter>
@@ -3062,8 +3484,393 @@ Rappresenta un'interfaccia che astrae il metodo *`DialAndSend(m ...*gomail.Messa
 
 Nel sistema di #gloss[dependency injection], viene inserito un oggetto di tipo *`smtpSender`* tramite la funzione *`newDialer(cfg *config.Config) *gomail.Dialer`* che legge la configurazione passata (`cfg`) per determinare le coordinate #gloss[SMTP] da contattare per inviare i messaggi email.
 
-==== Package `gateway`
-// TODO
+==== Package `gateway` <backend-gateway>
+Il package `gateway` contiene tutte le funzionalità relative alla gestione dei gateway, quali la gestione dei comandi da inviare ad essi e la gestione dei dati ricevuti dai gateway e delle operazioni CRUD sui gateway stessi.
+
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/gw.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway`],
+)
+
+===== Inbound adapter -- `Controller` e DTO
+Il package `gateway` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
+
+
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/controller.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway.Controller`],
+)
+
+
+===== Attributi:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- * `createGatewayUseCase CreateGatewayUseCase`*: Riferimento all'_inbound port_ per creare un nuovo gateway
+- *`deleteGatewayUseCase`*: Riferimento all'_inbound port_ per eliminare un gateway
+- *`getAllGatewaysUseCase`*: Riferimento all'_inbound port_ per ottenere tutti i gateway
+- *`getGatewaysByTenantUseCase`*: Riferimento all'_inbound port_ per ottenere i gateway di un tenant specifico
+- *`commissionGatewayUseCase`*: Riferimento all'_inbound port_ per commissionare un gateway
+- *`decommissionGatewayUseCase`*: Riferimento all'_inbound port_ per decommissionare un gateway
+- *`interruptGatewayUseCase`*: Riferimento all'_inbound port_ per interrompere un gateway
+- *`resumeGatewayUseCase`*: Riferimento all'_inbound port_ per riprendere un gateway
+- *`resetGatewayUseCase`*: Riferimento all'_inbound port_ per resettare un gateway
+- *`rebootGatewayUseCase`*: Riferimento all'_inbound port_ per riavviare un gateway
+- *`getGatewayUseCase`*: Riferimento all'_inbound port_ per ottenere un gateway specifico
+- *`getGatewayByTenantIDUseCase`*: Riferimento all'_inbound port_ per ottenere i gateway di un tenant specifico
+
+===== Metodi:
+Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
+- *`CreateGateway(ctx *gin.Context)`*: Crea un gateway
+  - Input: `CreateGatewayDTO` 
+  - Output: `GatewayResponseDTO` 
+- *`DeleteGateway(ctx *gin.Context)`*: Elimina un gateway
+  - Input: `DeleteGatewayDTO`
+  - Output: `GatewayResponseDTO`
+- *`GetAllGateways(ctx *gin.Context)`*: Ottiene tutti i gateway
+  - Output: `GatewayListResponseDTO`
+- *`GetGatewaysByTenant(ctx *gin.Context)`*: Ottiene i gateways di un tenant specifico
+  - Input: `GetGatewayListDTO`
+  - Output: `GatewayListResponseDTO`
+- *`GetGateway(ctx *gin.Context)`*: Ottiene un gateway specifico
+  - Output: `GatewayResponseDTO`
+- *`GetGatewayByTenantID(ctx *gin.Context)`*: Ottiene il specifico gateway di un tenant specifico
+  - Input: `GetGatewayByTenantIdDTO`
+  - Output: `GatewayListResponseDTO`
+- *`CommissionGateway(ctx *gin.Context)`*: Commissiona un gateway
+  - Input: `CommissionGatewayDTO`
+  - Output: `GatewayResponseDTO`
+- *`DecommissionGateway(ctx *gin.Context)`*: Decommissiona un gateway
+  - Output: `GatewayResponseDTO`
+- *`InterruptGateway(ctx *gin.Context)`*: Interrompe un gateway
+  - Output: `GatewayCommandResponseDTO`
+- *`ResumeGateway(ctx *gin.Context)`*: Riprende un gateway
+  - Output: `GatewayCommandResponseDTO`
+- *`ResetGateway(ctx *gin.Context)`*: Resetta un gateway
+  - Output: `GatewayCommandResponseDTO`
+- *`RebootGateway(ctx *gin.Context)`*: Riavvia un gateway
+  - Output: `GatewayCommandResponseDTO`
+
+I DTO usati da `Controller` sono i seguenti:
+- *`CreateGatewayDTO`*: DTO usato per creare un nuovo gateway, contiene i seguenti campi:
+  - `Name`: stringa rappresentante il nome del gateway da creare
+  - `Interval`: Frequenza di invio dei dati al cloud in millisecondi
+- *`DeleteGatewayDTO`*: DTO usato per eliminare un gateway, contiene i seguenti campi:
+  - `GatewayId`: UUID del gateway da eliminare
+- *`DecommissionGateway`*: DTO usato per decommissionare un gateway
+  - `GatewayId`: UUID del gateway da decommissionare
+- *`GatewayResponseDTO`*: DTO usato per restituire informazioni su un gateway, contiene i seguenti campi:
+  - `GatewayId`: UUID del gateway
+  - `GatewayName`: stringa rappresentante il nome del gateway
+  - `TenantId`: UUID del tenant a cui il gateway è associato, se il gateway è commissionto
+  -`PublicIdentifier`: stringa rappresentante l'identificativo pubblico del gateway, se il gateway ha eseguito la procedura di hello e il backend ha scritto nel database la public key dichiarata
+  - `Interval`: Frequenza di invio dei dati al cloud in millisecondi
+  - `Status`: Stato del gateway (Commissioned, Decommissioned, Interrupted)
+- *`GatewayListResponseDTO`*: DTO usato per restituire una lista di gateway, contiene i seguenti campi:
+  - `Gateways`: array di `GatewayResponseDTO`
+  - `Total`: numero totale di gateway restituiti
+  - `Page`: numero della pagina restituita
+- *`InterruptGatewayDTO`*: DTO usato per interrompere un gateway
+  - `GatewayId`: UUID del gateway da interrompere
+- *`ResumeGatewayDTO`*: DTO usato per riprendere un gateway
+  - `GatewayId`: UUID del gateway da riprendere
+- *`ResetGatewayDTO`*: DTO usato per resettare un gateway
+  - `GatewayId`: UUID del gateway da resettare
+- *`RebootGatewayDTO`*: DTO usato per riavviare un gateway
+  - `GatewayId`: UUID del gateway da riavviare
+
+===== Inbound ports -- CRUD gateway
+
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/gwservice.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway.GatewayService` e relative _inbound ports_],
+)
+
+====== CreateGatewayUseCase
+*Metodi:*
+- *`CreateGateway(command CreateGatewayCommand) (Gateway, error)`*: Crea un nuovo gateway con i dati specificati in `command` e restituisce il gateway creato o un errore in caso di fallimento
+====== DeleteGatewayUseCase
+*Metodi:*
+- *`DeleteGateway(cmd DeleteGatewayCommand) (Gateway, error)`*: Elimina un gateway specificato in `cmd` e restituisce il gateway eliminato o un errore in caso di fallimento
+====== GetGatewayUseCase
+*Metodi:*
+- *`GetGateway(cmd GetGatewayByIdCommand) (Gateway, error)`*: Ottiene un gateway specificato in `cmd` e restituisce il gateway o un errore in caso di fallimento
+====== GetAllGatewaysUseCase
+*Metodi:*
+- *`GetAllGateways(command GetAllGatewaysCommand) ([]Gateway, uint, error)`*: Ottiene tutti i gateway presenti nel sistema e restituisce una lista di gateway, il numero totale di gateway e un errore in caso di fallimento
+====== GetGatewaysByTenantUseCase
+*Metodi:*
+- *`GetGatewaysByTenant(command GetGatewaysByTenantCommand) ([]Gateway, uint, error)`*: Ottiene una lista di gateway associati a un tenant specifico e restituisce la lista, il numero totale di gateway e un errore in caso di fallimento
+====== GetGatewayByTenantIDUseCase
+*Metodi:*
+- *`GetGatewayByTenantID(cmd GetGatewayByTenantIDCommand) (Gateway, error)`*: Ottiene un gateway specifico associato a un tenant specifico e restituisce il gateway o un errore in caso di fallimento
+
+===== Inbound ports -- Comandi gateway
+
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/natsservice.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway.CommandService` e relative _inbound ports_],
+)
+
+
+====== CommissionGatewayUseCase
+*Metodi:*
+- *`CommissionGateway(cmd CommissionGatewayCommand) (Gateway, error)`*: Commissiona un gateway specificato in `cmd` e restituisce il gateway commissionato o un errore in caso di fallimento
+====== DecommissionGatewayUseCase
+*Metodi:*
+- *`DecommissionGateway(cmd DecommissionGatewayCommand) (Gateway, error)`*: Decommissiona un gateway specificato in `cmd` e restituisce il gateway decommissionato o un errore in caso di fallimento
+====== InterruptGatewayUseCase
+*Metodi:*
+- *`InterruptGateway(cmd InterruptGatewayCommand) (Gateway, error)`*: Interrompe un gateway specificato in `cmd` e restituisce il gateway interrotto o un errore in caso di fallimento
+====== ResumeGatewayUseCase
+*Metodi:*
+- *`ResumeGateway(cmd ResumeGatewayCommand) (Gateway, error)`*: Riprende un gateway specificato in `cmd` e restituisce il gateway ripreso o un errore in caso di fallimento
+====== ResetGatewayUseCase
+*Metodi:*
+- *`ResetGateway(cmd ResetGatewayCommand) (Gateway, error)`*: Resetta un gateway specificato in `cmd` e restituisce il gateway resettato o un errore in caso di fallimento
+====== RebootGatewayUseCase
+*Metodi:*
+- *`RebootGateway(cmd RebootGatewayCommand) (Gateway, error)`*: Riavvia un gateway specificato in `cmd` e restituisce il gateway riavviato o un errore in caso di fallimento
+
+===== Commands
+I comandi usati dagli _use case_ del package sono i seguenti:
+- *`GetGatewayByIdCommand`* : Comando usato per ottenere un gateway specifico, contiene i seguenti campi:
+  - `GatewayId UUID.UUID`: UUID del gateway da ottenere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il gateway
+
+- *`GetAllGatewaysCommand`*: Comando usato per ottenere tutti i gateway, contiene i seguenti campi:
+  - `Page int`: numero della pagina da ottenere
+  - `Limit int`: numero limite di gateway per pagina
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i gateway
+
+- *`GetGatewaysByTenantCommand`*: Comando usato per ottenere i gateway di un tenants specifico, contiene i seguenti campi:
+  - `TenantId UUID.UUID`: UUID del tenant di cui ottenere i gateway
+  - `Page int`: numero della pagina da ottenere
+  - `Limit int`: numero limite di gateway per pagina
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i gateway
+
+- *`GetGatewayByTenantIDCommand`*: Comando usato per ottenere un gateway specifico di un tenant specifico, contiene i seguenti campi:
+  - `TenantId UUID.UUID`: UUID del tenant di cui ottenere il gateway
+  - `GatewayId UUID.UUID`: UUID del gateway da ottenere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il gateway
+
+- *`CommissionGatewayCommand`*: Comando usato per commissionare un gateway, contiene i seguenti campi:
+  - `GatewayId UUID.UUID`: UUID del gateway da commissionare
+  - `TenantId UUID.UUID`: UUID del tenant a cui associare il gateway
+  - `CommissionToken string`: stringa rappresentante il token di commissionamento del gateway, usato per validare la richiesta di commissionamento
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la commissione del gateway
+
+- *`DecommissionGatewayCommand`*: Comando usato per decommissionare un gateway, contiene i seguenti campi:
+  - `GatewayId UUID.UUID`: UUID del gateway da decommissionare
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il decommissionamento del gateway
+
+- *`InterruptGatewayCommand`*: Comando usato per interrompere un gateway, contiene i seguenti campi:
+  - `GatewayId UUID.UUID`: UUID del gateway da interrompere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto l'interruzione del gateway
+
+- *`ResumeGatewayCommand`*: Comando usato per riprendere un gateway, contiene i seguenti campi:
+  - `GatewayId UUID.UUID`: UUID del gateway da riprendere
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la ripresa del gateway
+
+- *`ResetGatewayCommand`*: Comando usato per resettare un gateway, contiene i seguenti campi:
+  - `GatewayId UUID.UUID`: UUID del gateway da resettare
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il reset del gateway
+
+- *`RebootGatewayCommand`*: Comando usato per riavviare un gateway, contiene i seguenti campi:
+  - `GatewayId UUID.UUID`: UUID del gateway da riavviare
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto il riavvio del gateway
+
+- *`CreateGatewayCommand`*: Comando usato per creare un nuovo gateway, contiene i seguenti campi:
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto la creazione del gateway
+  - `Name string`: stringa rappresentante il nome del gateway da creare
+  - `Interval int`: Frequenza di invio dei dati al cloud in millisecondi
+
+- *`DeleteGatewayCommand`*: Comando usato per eliminare un gateway, contiene i seguenti campi:
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto l'eliminazione del gateway
+  - `GatewayId UUID.UUID`: UUID del gateway da eliminare
+
+
+===== Services
+
+====== `GatewayManagementService`
+*Interfacce implementate*:
+- `GetGatewayUseCase`
+- `GetAllGatewaysUseCase `
+- `GetGatewaysByTenantUseCase`
+- `GetGatewayByTenantIDUseCase`
+
+*Attributi*:
+
+- *`getGatewayPort GetGatewayPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico gateway
+- *`getGatewaysPort GetGatewaysPort`*: _Outbound port_ usata per ottenere la lista di tutti i gateway
+- *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico tenant
+
+*Funzione di costruzione*: `NewGatewayManagementService(getPort GetGatewayPort, getManyPort GetGatewaysPort, getTenantPort tenant.GetTenantPort,) *GatewayManagementService`
+
+====== `GatewayCommandService`
+*Interfacce implementate*:
+- `CommissionGatewayUseCase`
+- `DecommissionGatewayUseCase`
+- `InterruptGatewayUseCase`
+- `ResumeGatewayUseCase`
+- `ResetGatewayUseCase`
+- `RebootGatewayUseCase`
+
+*Attributi*:
+- *`createGatewayPort CreateGatewayPort `* : _Outbound port_ usata per creare un nuovo gateway
+- *`removeGatewayPort DeleteGatewayPort`* : _Outbound port_ usata per eliminare un gateway
+- *`getTenantPort tenant.GetTenantPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico tenant
+- *`getGatewayPort GetGatewayPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico gateway
+- *`saveGatewayPort SaveGatewayPort`*: _Outbound port_ usata per salvare un gateway
+- *`saveGatewayPort SaveGatewayPort`*: _Outbound port_ usata per salvare un gateway
+
+*Funzione di costruzione*: `NewGatewayCommandService(createGatewayPort CreateGatewayPort, removeGatewayPort DeleteGatewayPort, getGatewayPort GetGatewayPort, getTenantPort tenant.GetTenantPort, saveGatewayPort SaveGatewayPort, gatewayCommandPort GatewayCommandPort,) *GatewayCommandService`
+
+===== Dominio
+
+====== Gateway
+Rappresenta un gateway nello strato di business logic.
+
+*Attributi:*
+- *`ID UUID.UUID`*: UUID del gateway
+- *`Name string`*: stringa rappresentante il nome del gateway
+- *`TenantID UUID.UUID`*: UUID del tenant a cui il gateway è associato, se il gateway è commissionato
+- *`PublicIdentifier *string`*: stringa rappresentante l'identificativo pubblico del gateway, pari a `nil` se non è stata svolta la procedura di hello
+- *`Interval time.Duration`*: Frequenza di invio dei dati al cloud in millisecondi
+- *`Status GatewayStatus`*: Stato del gateway
+
+*Metodi:*
+- *`IsZero() bool`*: Restituisce true se il gateway è commissionato, false altrimenti
+- *`GetId() bool`*: Restituisce lo UUID del gateway
+- *`BelongsToTenant(userTenantId UUID.UUID) bool`*: Restituisce true se il gateway è associato al tenant con ID `userTenantId`, false altrimenti
+
+====== GatewayStatus
+Enumerazione che rappresenta lo stato di un gateway, i valori possibili sono:
+- *`GATEWAY_STATUS_ACTIVE`*: Il gateway è commissionato e sta inviando dati al cloud
+- *`GATEWAY_STATUS_INACTIVE`*: Il gateway è commissionato ma non sta inviando dati al cloud
+- *`GATEWAY_STATUS_DECOMMISSIONED`*: Il gateway è stato decommissionato e non è più associato ad alcun tenant, per cui non può inviare dati al cloud
+
+=====  Outbound ports – Database
+In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di
+comunicare con il database.
+
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/pgAdapter.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `gateway - Outbound ports`],
+)
+
+====== SaveGatewayPort
+*Metodi*:
+- *`Save(g Gateway) (Gateway, error)`*: Salva un gateway a database. Restituisce il gateway salvato o un errore in caso di fallimento
+
+====== CreateGatewayPort
+*Metodi*:
+- *`Create(g Gateway) (Gateway, error)`*: Crea un nuovo gateway nel database. Restituisce il gateway creato o un errore in caso di fallimento
+
+====== DeleteGatewayPort
+*Metodi*:
+- *`Delete(gatewayId UUID.UUID) (Gateway, error)`*: Elimina un gateway dal database. Restituisce il gateway eliminato o un errore in caso di fallimento.
+
+====== GetGatewayPort
+*Metodi*:
+- *`GetById(gatewayId UUID.UUID) (Gateway, error)`*: Ottiene un gateway specifico dal database tramite il suo UUID. Restituisce il gateway o un errore in caso di fallimento
+- *`GetGatewayByTenantID(tenantId UUID.UUID, gatewayId UUID.UUID) (Gateway, error)`*: Ottiene un gateway specifico associato a un tenant specifico dal database tramite il suo UUID e l'UUID del tenant. Restituisce il gateway o un errore in caso di fallimento
+
+====== GetGatewaysPort
+*Metodi*:
+- *`GetByTenantId(tenantId UUID.UUID, page int, limit int) ([]Gateway, uint, error)`*: Ottiene una lista di gateway associati a un tenant specifico dal database tramite l'UUID del tenant, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
+- *`GetAll(page int, limit int) ([]Gateway, uint, error)`*: Ottiene tutti i gateway presenti nel database, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
+
+=====  Outbound ports -– Message broker
+In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il gateway simulato tramite NATS.
+
+#figure(
+  image("../../assets/c4/backend/gateway/gateway/natsAdapeter.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ di `gateway`],
+)
+
+====== GatewayCommandPort
+*Metodi*:
+- *`SendCreateGateway(gatewayId UUID.UUID, interval int64) error`* : Invia un comando di creazione di un gateway specifico tramite il suo UUID e l'intervallo di invio dei dati al cloud in millisecondi. Restituisce un errore in caso di fallimento
+- *`SendDeleteGateway(gatewayId UUID.UUID) error`*: Invia un comando di eliminazione a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendCommission(gatewayId UUID.UUID, tenantId UUID.UUID, token string) error`*: Invia un comando di _commissioning_ di un gateway specifico tramite il suo UUID, l'UUID del tenant a cui associare il gateway e il token di _commissioning_ . Restituisce un errore in caso di fallimento
+- *`SendDecommission(gatewayId UUID.UUID) error`*: Invia un comando di _decommissioning_ a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendInterrupt(gatewayId UUID.UUID) error`*: Invia un comando di interruzione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendResume(gatewayId UUID.UUID) error`*: Invia un comando di riattivazione a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendReset(gatewayId UUID.UUID) error`*: Invia un comando di reset a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendReboot(gatewayId UUID.UUID) error`*: Invia un comando di riavvio a un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+
+===== Outbound adapter per database -– GatewayPostgreAdapter
+`GatewayPostgreAdapter` è l'outbound adapter usata per comunicare con il database per le operazioni CRUD sui gateway, traducendo l'interfaccia di dominio nell'interfaccia di PostgreSQL e viceversa.
+
+*Interfacce implementate*:
+- `SaveGatewayPort`
+- `CreateGatewayPort`
+- `DeleteGatewayPort`
+- `GetGatewayPort`
+- `GetGatewaysPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`repo GatewayRepository`*: Riferimento a classe Repository di accesso al database per operazioni CRUD 
+
+
+===== Outbound adapter per NATS -– GatewayCommandNATSAdapter
+GatewayCommandNATSAdapter è l'outbound adapter usata per comunicare con NATS per l'invio dei comandi ai gateway, traducendo l'interfaccia di dominio nell'interfaccia di NATS e viceversa.
+
+*Interfacce implementate*:
+- `GatewayCommandPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`natsClient nats.Conn`*: Riferimento al client NATS
+
+===== Repository per NATS –- GatewayCommandNATSRepository
+*Metodi*:
+- *`SendCreateGateway(gatewayId UUID.UUID, interval int64) error`* : Invia un comando di creazione di un gateway specifico tramite il suo UUID e l'intervallo di invio dei dati al cloud in millisecondi. Restituisce un errore in caso di fallimento
+- *`SendDeleteGateway(gatewayId UUID.UUID) error`*: Invia un comando di eliminazione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendCommission(gatewayId UUID.UUID, tenantId UUID.UUID, token string) error`*: Invia un comando di _commissioning_ di un gateway specifico tramite il suo UUID, l'UUID del tenant a cui associare il gateway e il token di _commissioning_. Restituisce un errore in caso di fallimento
+- *`SendDecommission(gatewayId UUID.UUID) error`*: Invia un comando di _decommissioning_ di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendInterrupt(gatewayId UUID.UUID) error`*: Invia un comando di interruzione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendResume(gatewayId UUID.UUID) error`*: Invia un comando di riattivazione di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendReset(gatewayId UUID.UUID) error`*: Invia un comando di reset di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`SendReboot(gatewayId UUID.UUID) error`*: Invia un comando di riavvio di un gateway specifico tramite il suo UUID. Restituisce un errore in caso di fallimento
+
+
+===== Repository per database –- GatewayRepository, GatewayEntity
+
+*Metodi*:
+- *`SaveGateway(gateway *GatewayEntity) error`* : Salva un gateway a database. Restituisce un errore in caso di fallimento
+- *`CreateGateway(gateway *GatewayEntity) error`*: Crea un nuovo gateway nel database. Restituisce un errore in caso di fallimento
+- *`DeleteGateway(id string) error`*: Elimina un gateway dal database tramite il suo UUID. Restituisce un errore in caso di fallimento
+- *`GetGatewayById(gatewayId string) (GatewayEntity, error)`*: Ottiene un gateway specifico dal database tramite il suo UUID. Restituisce il gateway o un errore in caso di fallimento
+- *`GetGatewaysByTenantId(tenantId string, offset int, limit int) ([]GatewayEntity, uint, error)`*: Ottiene una lista di gateway associati a un tenant specifico dal database tramite l'UUID del tenant, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
+- *`GetAllGateways(offset int, limit int) ([]GatewayEntity, uint, error)`*: Ottiene tutti i gateway presenti nel database, con paginazione. Restituisce la lista di gateway, il numero totale di gateway e un errore in caso di fallimento
+- *`GetGatewayByTenantID(tenantId string, gatewayId string) (GatewayEntity, error)`*: Ottiene un gateway specifico associato a un tenant specifico dal database tramite il suo UUID e l'UUID del tenant. Restituisce il gateway o un errore in caso di fallimento
+
+====== gatewayPostgreRepository
+
+Struct concreta che implementa `GatewayRepository`, in modo tale da comunicare con PostgreSQL.
+
+*Attributi*:
+- *`db *sql.DB`*: Riferimento al database PostgreSQL
+- *`log *zap.Logger`*: Riferimento al logger zap
+
+*Funzione di costruzione*: `NewGatewayPostgreRepository(log zap.Logger, db clouddb.CloudDBConnection) *GatewayPostgreRepository`
+
+====== GatewayEntity
+
+Entità di database che rappresenta la tabella `gateways` nel database
+
+*Attributi*:
+- *`ID string`*: UUID del gateway
+- *`Name string`*: stringa rappresentante il nome del gateway
+- *`TenantID string`*: UUID del tenant a cui il gateway è associato
+- *`Interval int`*: Frequenza di invio dei dati al cloud in millisecondi
+- *`PublicIdentifier string`*: L'identificativo pubblico del gateway, usato in fase di commissioning
+- *`Status string`*: Lo stato del gateway (es. attivo, inattivo)
+- *`CreatedAt time.Time`*: Data di creazione del gateway
+- *`UpdatedAt time.Time`*: Data di ultima modifica del gateway
+
+
 
 ==== Package `gateway/hello` <backend-gateway-hello>
 Il package `gateway/hello` presenta lo struct `NATSWorker`, che ha il compito di ascoltare un subject #gloss[NATS] specifico in attesa di messaggi di hello da parte dei gateway e lo struct `Service` che si occupa di processare i messaggi ricevuti e validarli.
@@ -3079,7 +3886,7 @@ Lo struct `NATSWorker` ha la responsabilità di istanziare una #gloss[goroutine]
 - *`gatewayHelloUseCase`*: Riferimento allo _use case_ implementato dal service; poiché comunica in input con la _business logic_, `NATSWorker` è un'_inbound adapter_
 - *`logger`*: Riferimento a logger zap
 
-Eseguendo il metodo `Run(lc fx.Lifecycle)` è possibile istanziare il worker, il quale istanzierà a sua volta `ListenHelloMessages(ctx context.Context)` in una goroutine, la quale applicherà il metodo `ProcessMsg(msg jetstream.Msg)` a ogni messaggio ricevuto su #gloss[JetStream].
+Eseguendo il metodo `Run(lc fx.Lifecycle)` è possibile istanziare il worker, il quale istanzierà a sua volta `ListenHelloMessages(ctx context.Context)` in una #gloss[goroutine], la quale applicherà il metodo `ProcessMsg(msg jetstream.Msg)` a ogni messaggio ricevuto su #gloss[JetStream].
 
 // TODO: Forse sarebbe bene spiegare meglio come funziona il tutto?
 *`GatewayHelloMessageDTO`* è il tipo del DTO creato da `NATSWorker` corrispondente a un messaggio di hello su #gloss[NATS Jetstream]. Esso consiste di:
@@ -3096,14 +3903,597 @@ L'_inbound port_ implementata da `GatewayHelloService`. Contiene il metodo *`Pro
 ===== Service -- `GatewayHelloService`
 Struct di dominio che implementa *`GatewayHelloUseCase`*. Contiene i seguenti attributi:
 - *`getGateway`*: _Outbound port_ usata per ottenere informazioni su uno specifico gateway
-- *`saveGateway`*: _Outbound prot_ usata per aggiungere un nuovo gateway al Cloud DB o modificarne uno esistente
+- *`saveGateway`*: _Outbound port_ usata per aggiungere un nuovo gateway al Cloud DB o modificarne uno esistente
 - *`logger`*: Riferimento al logger zap
 
-==== Package `historical_data`
-// TODO
+==== Package `historical_data` <backend-historical_data>
 
-==== Package `infra`
-// TODO
+Il package `historical_data` contiene tutte le funzionalità per poter accedere ai dati storici dei gateway creati dai sensori simulati.
+
+
+
+#figure(
+  image("../../assets/c4/backend/historical_data/historical.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `historical_data`],
+)
+
+===== Inbound adapter -- `Controller` e DTO
+Il package `historical_data` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
+
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`getSensorHistoricalDataUseCase GetSensorHistoricalDataUseCase`*: Riferimento allo _use case_ usato per ottenere i dati storici dei gateway
+
+*Metodi*:
+Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
+- *`GetSensorHistoricalData(ctx *gin.Context)`*: Ottiene i dati storici di un sensore
+  - Input: `GetHistoricalDataQueryDTO`
+  - Output: `HistoricalDataResponseDTO`
+
+
+I DTO usati da `Controller` sono i seguenti:
+- *`HistoricalSampleResponseDTO`*: DTO usato per creare un nuovo gateway, contiene i seguenti campi:
+  -`SensorId string`: UUID del sensore per cui ottenere i dati storici
+  -`TenantId string`: UUID del tenant a cui il sensore è associato
+  -`GatewayId string`: UUID del gateway per cui ottenere i dati storici
+  -`Timestamp time.Time`: timestamp del campione storico
+  -`Profile string`: profilo del campione storico
+  - `Data string`: data del campione storico
+
+-*`HistoricalDataResponseDTO`*: DTO usato per restituire i dati storici di un sensore, contiene i seguenti campi:
+  -`Count int`: numero di campioni storici restituiti
+  -`Samples int `: lista di campioni storici restituiti
+
+-*`GetHistoricalDataQueryDTO`*: DTO usato per ottenere i dati storici di un sensore, contiene i seguenti campi:
+  -`From time.Time`: data di inizio del periodo per cui ottenere i dati storici
+  -`To time.Time`: data di fine del periodo per cui ottenere i dati storici
+  -`Limit int`: numero massimo di campioni storici da restituire
+
+===== Inbound ports
+
+====== GetSensorHistoricalDataUseCase
+*Metodi:*
+- *`GetSensorHistoricalData(cmd GetSensorHistoricalDataCommand) ([]HistoricalSample, error)`*: Ottiene i dati storici di un sensore specifico tramite il comando `cmd`. Restituisce una lista di campioni storici o un errore in caso di fallimento
+
+===== Commands
+I comandi usati dagli _use case_ di `Controller` sono i seguenti:
+- *`GetSensorHistoricalDataCommand`* : Comando usato per ottenere i dati storici di un sensore specifico, contiene i seguenti campi:
+  - `SensorId uuid.UUID`: UUID del sensore per cui ottenere i dati storici
+  - `TenantId uuid.UUID`: UUID del tenant a cui il sensore è associato
+  - `From time.Time`: data di inizio del periodo per cui ottenere i dati storici
+  - `To time.Time`: data di fine del periodo per cui ottenere i dati storici
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i dati
+
+===== Services
+
+====== GetHistoricalDataService
+*Interfacce implementate*:
+- `GetSensorHistoricalDataUseCase`
+
+*Attributi*:
+- *`getHistoricalDataPort GetHistoricalDataPort,`*: _Outbound port_ usata per ottenere i dati storici di un sensore specifico
+- *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico tenant
+
+*Funzione di costruzione*: `NewGetHistoricalDataService(getHistoricalDataPort GetHistoricalDataPort, getTenantPort tenant.GetTenantPort,) *GetHistoricalDataService`
+
+===== Dominio
+
+====== HistoricalSample
+Rappresenta un campione di dati storici nello strato di business logic.
+
+*Attributi:*
+- *`SensorId UUID.UUID`*: UUID del sensore per cui il campione è stato raccolto
+- *`TenantID UUID.UUID`*: UUID del tenant a cui il sensore è associato
+- *`GatewayId UUID.UUID`*: UUID del gateway per cui il campione è stato raccolto
+- *`Timestamp time.Time`*: timestamp del campione storico
+- *`Profile sensorProfile.SensorProfile`*: profilo del campione storico
+- *`Data json.RawMessage`*: data del campione storico
+
+
+====== HistoricalDataFilter
+Rappresenta un filtro per ottenere i dati storici di un sensore specifico nello strato di business logic.
+
+*Attributi:*
+- *`From time.Time`*: data di inizio del periodo per cui ottenere i dati storici
+- *`To time.Time`*: data di fine del periodo per cui ottenere i dati storici
+- *`Limit int`*: numero massimo di campioni storici da restituire
+
+=====  Outbound ports –- Database
+In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
+
+====== GetHistoricalDataPort
+*Metodi*:
+- *`GetHistoricalData(sensorId UUID.UUID, tenantId UUID.UUID, filter HistoricalDataFilter) ([]HistoricalSample, error)`*: Ottiene i dati storici di un sensore specifico dal database tramite l'UUID del sensore, l'UUID del tenant e un filtro per i dati storici. Restituisce una lista di campioni storici o un errore in caso di fallimento
+
+
+===== Outbound adapter per database -– HistoricalDataTimescaleAdapter
+`HistoricalDataTimescaleAdapter` è l'_outbound port_ usata per comunicare con il database per ottenere i dati storici dei sensori, traducendo l'interfaccia di dominio nell'interfaccia di TimescaleDB e viceversa.
+
+*Interfacce implementate*:
+- `GetHistoricalDataPort`
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`repo HistoricalDataTimescaleRepository`*: Riferimento a classe Repository di accesso al database per i dati storici dei sensori
+
+===== Repository per database –- HistoricalDataTimescaleRepository
+
+*Metodi*:
+- *`GetSensorHistoricalData(sample *HistoricalSample) error`* : Ottiene i dati storici di un sensore specifico dal database tramite un campione storico che contiene l'UUID del sensore, l'UUID del tenant e un filtro per i dati storici. Restituisce un errore in caso di fallimento
+
+-*`buildHistoricalDataQuery(tenantId UUID.UUID, sensorId UUID.UUID, filter HistoricalDataFilter) (string, []any)(sample *HistoricalSample) error`* : Costruisce la query SQL per ottenere i dati storici di un sensore specifico dal database tramite l'UUID del sensore, l'UUID del tenant e un filtro per i dati storici. Restituisce la query SQL e i parametri da passare alla query
+
+
+==== Package `infra` <backend-infra>
+
+
+La cartella `infra` contiene tutti i componenti _platform-dependent_ dell'applicazione, comprese le implementazioni delle interfacce definite in `shared`. All'interno della cartella si trova:
+- Package `infra/crypto`, per la gestione dei metodi crittografici definiti in `shared/crypto`.
+- Package `infra/database`, comprendente i package per la gestione connessione e migrazione dei database. Dentro la cartella, vi sono presenti i seguenti sub-package:
+  - `infra/database/cloud_db`, per la gestione del Cloud DB.
+  - `infra/database/pagination`, per la gestione della paginazione nei database.
+  - `infra/database/schema`, per la gestione degli #gloss[schema] di tutti i database.
+  - `infra/database/sensor_db`, per la gestione del Sensor DB.
+- Package `infra/metrics`, per esporre via HTTP le metriche rilevate da Grafana.
+- Package `infra/modules`, per accentrare i moduli fx dell'applicativo in un unico luogo
+- Cartella `infra/transport`, comprendente i package per la gestione del transport layer, ovvero dello specifico strato di comunicazione con il client. Questa cartella comprende:
+  - `infra/transport/http` per la gestione della comunicazione su #gloss[HTTP]
+  - `infra/transport/nats` per la gestione della comunicazione su #gloss[NATS]
+  - `infra/transport/ws` per la gestione della comunicazione su #gloss[Websocket]
+middleware HTTP, routing, metriche, messaggistica NATS e utilità trasversali. È il livello più esterno dell'architettura esagonale e costituisce l'insieme degli _outbound adapter_ e dei componenti di supporto tecnico al dominio.
+- Package `infra/utils`, per utility cross-cutting.
+==== Package `infra/crypto`
+
+Il sub-package `crypto` fornisce le primitive crittografiche usate dall'applicazione: hashing sicuro delle password tramite bcrypt, generazione e verifica di token JWT, e generazione di token opachi per operazioni come il reset della password.
+
+#figure(
+  image("../../assets/c4/backend/infra/cripto.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `crypto`],
+)
+
+===== `BcryptHasher`
+
+Struct concreta che implementa l'interfaccia `crypto.SecretHasher`. Esegue l'hashing di segreti tramite l'algoritmo bcrypt, con un pre-hashing SHA-512 per aggirare il limite di 72 byte imposto da bcrypt.
+
+*Attributi:*
+- *`cost int`*: Costo computazionale dell'algoritmo bcrypt
+
+*Metodi:*
+- *`HashSecret(plaintext string) (string, error)`*: Calcola l'hash bcrypt del testo in chiaro fornito. Restituisce l'hash risultante o un errore in caso di fallimento.
+- *`CompareHashAndSecret(hashed string, plaintext string) error`*: Verifica che il testo in chiaro corrisponda all'hash fornito. Restituisce un errore se i valori non corrispondono.
+- *`preHash(plaintext string) []byte`*: Esegue un pre-hashing SHA-512 sul testo in chiaro, usato come workaround per il limite di 72 byte di bcrypt.
+
+*Funzione di costruzione:* `NewBcryptHasher(cfg *config.Config) *BcryptHasher`
+
+===== `JWTManager`
+
+Struct concreta che gestisce la generazione e la verifica dei token JWT. 
+
+*Implementa*: `crypto.AuthTokenManager`.
+
+*Attributi:*
+- *`secret []byte`*: Chiave segreta usata per firmare i token JWT
+- *`tokenDuration time.Duration`*: Durata di validità dei token JWT generati
+
+*Metodi:*
+- *`GenerateForRequester(requester identity.Requester) (string, error)`*: Genera un token JWT per il requester fornito. Restituisce il token firmato o un errore in caso di fallimento.
+- *`GetRequesterFromToken(tokenString string) (identity.Requester, error)`*: Verifica e decodifica un token JWT, estraendo il `Requester` associato. Restituisce il requester o un errore se il token non è valido.
+- *`stringToUserRole(roleString string) (identity.UserRole, error)`*: Converte una stringa nel corrispondente valore `identity.UserRole`. Restituisce un errore se la stringa non è riconosciuta.
+- *`userRoleToString(role identity.UserRole) (string, error)`*: Converte un valore `identity.UserRole` nella corrispondente stringa. Restituisce un errore se il ruolo non è riconosciuto.
+
+*Funzione di costruzione:* `NewJWTManager(cfg *config.Config) (*JWTManager, error)`
+
+===== `MainTokenGenerator`
+
+Struct concreta che implementa la generazione di token (non JWT), usati ad esempio per il reset della password. Genera una coppia token in chiaro / token hashato.
+
+*Attributi:*
+- *`hasher crypto.SecretHasher`*: Riferimento all'hasher usato per hashare il token generato
+- *`decodedTokenLength int`*: Lunghezza del token grezzo prima della codifica in Base64
+- *`encoding base64.Encoding`*: Encoding base64 usato per la serializzazione del token
+- *`tokenDuration time.Duration`*: Durata di validità del token generato
+
+*Metodi:*
+- *`GenerateToken() (string, string, error)`*: Genera una coppia di token: il token in chiaro e il suo hash. Restituisce entrambi i valori o un errore in caso di fallimento.
+- *`ExpiryFromNow() time.Time`*: Calcola e restituisce il timestamp di scadenza del token a partire dal momento corrente.
+
+*Funzione di costruzione:* `NewMainTokenGenerator(hasher crypto.SecretHasher, cfg *config.Config) *MainTokenGenerator`
+
+===== `jwtObj`
+
+Struct interna che rappresenta il payload di un token JWT. I nomi delle chiavi JSON sono volutamente abbreviati per minimizzare la dimensione del token.
+
+*Attributi:*
+- *`Expiry int `*: Timestamp di scadenza del token
+- *`TenantId string `*: UUID del tenant a cui il token è associato
+- *`UserId int `*: ID numerico dell'utente a cui il token è associato
+- *`Role string `*: Ruolo dell'utente codificato come stringa
+
+*Metodi:*
+- *`ToClaims() (jwt.MapClaims, error)`*: Converte l'oggetto `jwtObj` in una mappa di claim JWT compatibile con la libreria `golang-jwt`. Restituisce la mappa o un errore in caso di fallimento.
+
+===== Funzioni del package `crypto`
+
+- *`jwtTokenFromClaims(claims jwt.MapClaims) (jwtObj, error)`*: Funzione interna che ricostruisce un `jwtObj` a partire da una mappa di claim JWT. Restituisce l'oggetto deserializzato o un errore se i claim non sono validi.
+
+==== Package `infra/database`
+
+
+
+Il sub-package `database` contiene le utilità condivise per la gestione dei database, indipendentemente dal tipo (cloud DB o sensor DB). Espone funzioni per la creazione di connessioni, la gestione dei test e la trasformazione di liste di entità in oggetti di dominio.
+
+===== Interfaccia `Tabler`
+
+Interfaccia che definisce il contratto per le entità di database compatibili con la naming convention delle tabelle di GORM.
+
+*Metodi:*
+- *`TableName() string`*: Restituisce il nome della tabella associata all'entità.
+
+===== Funzioni del package `database`
+
+- *`MapEntityListToDomain[EntityT Tabler, DomainT any](entityList []EntityT, mapper func(*EntityT) (DomainT, error)) ([]DomainT, error)`*: Funzione generica che applica la funzione `mapper` a tutti gli elementi di `entityList` (di tipo `EntityT`), restituendo una lista di oggetti di dominio (di tipo `DomainT`). In caso di errore durante il mapping restituisce uno slice vuoto (non-nil). *Nota:* il mapper deve avere firma `func(*EntityT) (DomainT, error)` anche quando non genera errori, per garantire la compatibilità con i mapper che possono farlo.
+- *`NewPostgresEngineConnection(host string, port int, user, password string) (*gorm.DB, error)`*: Crea e restituisce una nuova connessione all'engine Postgres con i parametri forniti. Restituisce un errore se la connessione fallisce.
+- *`SetupTestDatabase(log *zap.Logger, cfg *config.Config, whichDb SetupTestDbEnum) error`*: Crea un database di test e aggiorna `cfg.CloudDBName` con il nome del database creato (che include il timestamp di esecuzione al nanosecondo). Per aggiungere un nuovo database di test è necessario estendere `SetupTestDbEnum` e aggiungere il relativo `case` nello switch interno alla funzione.
+- *`SeverDropDatabase(log *zap.Logger, db *gorm.DB, targetDBName, dbType string) error`*: Disconnette forzatamente tutte le connessioni attive al database `targetDBName` ("sever") e lo elimina ("drop"). *Nota:* deve essere chiamata in modo sincrono e non causa conflitti con `OnStop` nel lifecycle Fx.
+- *`getTestDbName(oldName string) string`*: Funzione interna che genera il nome del database di test a partire dal nome base fornito.
+
+==== Package `infra/database/cloud_db`
+
+#figure(
+  image("../../assets/c4/backend/infra/cloudDB.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `cloud_db`],
+)
+
+Il sub-package `cloud_db` gestisce le operazioni di migrazione e popolamento del database cloud principale (PostgreSQL). Coordina la migrazione dello schema pubblico e degli schemi per-tenant.
+
+===== Interfaccia `localCloudMigrator`
+
+Interfaccia interna che rispecchia `migrate.CloudDBMigrator` e definisce il contratto per le operazioni di migrazione del cloud DB.
+
+*Metodi:*
+- *`DB() *gorm.DB`*: Restituisce il riferimento al database GORM.
+- *`Logger() *zap.Logger`*: Restituisce il riferimento al logger zap.
+- *`Hasher() crypto.SecretHasher`*: Restituisce il riferimento all'hasher crittografico.
+- *`MigratePublic() error`*: Esegue la migrazione dello schema pubblico del database.
+- *`MigrateTenantSchema(tenantId string, shouldLog bool) error`*: Esegue la migrazione dello schema per il tenant identificato da `tenantId`.
+
+===== Funzioni del package `cloud_db`
+
+- *`migrateAll(tenantRepo tenant.TenantRepository, migrator localCloudMigrator, setDefaultData bool) error`*: Esegue la migrazione completa del database: #gloss[schema] pubblico e schema di tutti i tenant esistenti. Se `setDefaultData` è `true`, popola anche i dati di default. Restituisce un errore in caso di fallimento.
+- *`populatePublicDefaultData(migrator localCloudMigrator) error`*: Popola lo #gloss[schema] pubblico del database con i dati di default. Restituisce un errore in caso di fallimento.
+- *`populateTenantDefaultData(migrator localCloudMigrator) error`*: Popola lo #gloss[schema] di un tenant con i dati di default. Restituisce un errore in caso di fallimento.
+
+==== Package `infra/database/cloud_db/connection`
+
+Il sub-package `connection` gestisce la connessione al database cloud (PostgreSQL) e il suo ciclo di vita nell'applicazione tramite Fx.
+
+===== Funzioni del package `cloud_db/connection`
+
+- *`NewCloudDbConnection(log *zap.Logger, cfg *config.Config) (CloudDBConnection, error)`*: Crea e restituisce una nuova connessione al cloud DB. Restituisce un errore se la connessione fallisce.
+- *`SetCloudDbLifecycle(lc fx.Lifecycle, log *zap.Logger, cfg *config.Config, cloudDB CloudDBConnection)`*: Registra gli hook di avvio e arresto della connessione al cloud DB nel lifecycle Fx.
+- *`WithTenantSchema(tenantId string, table dbPackage.Tabler) func(*gorm.DB) *gorm.DB`*: Restituisce una funzione di scope GORM che imposta lo #gloss[schema] del tenant corretto per la tabella specificata. Usata per eseguire query nel contesto dello schema PostgreSQL del tenant.
+
+==== Package `infra/database/cloud_db/migrate`
+
+Il sub-package `migrate` si occupa della migrazione effettiva degli #gloss[schema] del cloud DB, sia per lo #gloss[schema] pubblico sia per gli #gloss[schema] per-tenant.
+
+===== `CloudDBMigrator`
+
+Struct concreta che implementa l'interfaccia `Migrator` e coordina la migrazione del cloud DB tramite GORM AutoMigrate.
+
+*Attributi:*
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`cfg *config.Config`*: Riferimento alla configurazione dell'applicazione
+- *`db *gorm.DB`*: Riferimento alla connessione al database
+- *`hasher crypto.SecretHasher`*: Riferimento all'hasher crittografico, usato per la popolazione dei dati di default
+
+*Metodi:*
+- *`DB() *gorm.DB`*: Restituisce il riferimento alla connessione GORM.
+- *`Logger() *zap.Logger`*: Restituisce il riferimento al logger.
+- *`Hasher() crypto.SecretHasher`*: Restituisce il riferimento all'hasher.
+- *`MigratePublic() error`*: Esegue la migrazione delle entità dello schema pubblico. Restituisce un errore in caso di fallimento.
+- *`MigrateTenantSchema(tenantId string, shouldLog bool) error`*: Esegue la migrazione delle entità nello schema del tenant identificato da `tenantId`. Il parametro `shouldLog` controlla se la migrazione deve essere tracciata nel log. Restituisce un errore in caso di fallimento.
+- *`DeleteTenantSchema(tenantId string) error`*: Elimina lo schema del tenant identificato da `tenantId`. Restituisce un errore in caso di fallimento.
+
+*Funzione di costruzione:* `NewCloudDBMigrator(log *zap.Logger, cfg *config.Config, db connection.CloudDBConnection, hasher crypto.SecretHasher) *CloudDBMigrator`
+
+===== Interfaccia `Migrator`
+
+Interfaccia che definisce il contratto per le operazioni di migrazione del cloud DB.
+
+*Metodi:*
+- *`Logger() *zap.Logger`*: Restituisce il riferimento al logger.
+- *`MigratePublic() error`*: Esegue la migrazione dello schema pubblico.
+- *`MigrateTenantSchema(tenantId string, shouldLog bool) error`*: Esegue la migrazione dello schema di un tenant.
+- *`DeleteTenantSchema(tenantId string) error`*: Elimina lo schema di un tenant.
+
+===== Funzioni del package `cloud_db/migrate`
+
+- *`GetPublicEntities() []any`*: Restituisce la lista delle entità GORM appartenenti allo schema pubblico del database.
+- *`GetTenantSchemaEntities() [](interface{ TableName() string })`*: Restituisce la lista delle entità GORM appartenenti agli schemi per-tenant.
+
+==== Package `infra/database/pagination`
+
+Il sub-package `pagination` fornisce utilità per la gestione della paginazione nelle query al database.
+
+===== Funzioni del package `pagination`
+
+- *`PageLimitToOffset(page int, limit int) (int, error)`*: Converte i parametri di paginazione `page` e `limit` nell'offset corrispondente da usare nelle query SQL. Restituisce l'offset calcolato o un errore se i parametri non sono validi (es. pagina ≤ 0).
+
+==== Package `infra/database/schema`
+
+Il sub-package `schema` fornisce funzioni di utilità per la gestione degli schemi PostgreSQL, utilizzate durante la creazione e l'eliminazione degli schemi per-tenant.
+
+===== Funzioni del package `schema`
+
+- *`CreateSchema(db *gorm.DB, schemaName string) error`*: Crea uno schema PostgreSQL con il nome specificato. Restituisce un errore se la creazione fallisce.
+- *`DropSchema(db *gorm.DB, schemaName string) error`*: Elimina uno schema PostgreSQL con il nome specificato. Restituisce un errore se l'eliminazione fallisce.
+- *`GetSchemaName(tenantId string) string`*: Restituisce il nome dello schema PostgreSQL associato al tenant identificato da `tenantId`.
+
+==== Package `infra/database/sensor_db/connection`
+
+#figure(
+  image("../../assets/c4/backend/infra/sensorDB.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `sensor_db`],
+)
+
+Il sub-package `sensor_db/connection` gestisce la connessione al database dei sensori (TimescaleDB) e il suo ciclo di vita nell'applicazione tramite Fx.
+
+===== Funzioni del package `sensor_db/connection`
+
+- *`NewTimescaleDBConnection(log *zap.Logger, cfg *config.Config) (SensorDBConnection, error)`*: Crea e restituisce una nuova connessione al database TimescaleDB. Restituisce un errore se la connessione fallisce.
+- *`SetSensorDbLifecycle(lc fx.Lifecycle, log *zap.Logger, cfg *config.Config, sensorDB SensorDBConnection)`*: Registra gli hook di avvio e arresto della connessione al sensor DB nel lifecycle Fx.
+
+==== Package `infra/database/sensor_db/migrate`
+
+Il sub-package `sensor_db/migrate` gestisce la migrazione degli schemi del database dei sensori (TimescaleDB), sia per la creazione sia per l'eliminazione degli schemi per-tenant.
+
+===== `SensorDBMigrator`
+
+
+
+Struct concreta che implementa l'interfaccia `Migrator` e gestisce la migrazione dello schema per-tenant nel sensor DB.
+
+*Attributi:*
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`cfg *config.Config`*: Riferimento alla configurazione dell'applicazione
+- *`db *gorm.DB`*: Riferimento alla connessione al database
+
+*Metodi:*
+- *`MigrateTenantSchema(tenantId string) error`*: Esegue la migrazione dello schema del sensor DB per il tenant identificato da `tenantId`. Restituisce un errore in caso di fallimento. *Nota:* possibile miglioramento futuro consiste nell'adottare GORM AutoMigrate anche qui, in linea con quanto fatto nel cloud DB.
+- *`DeleteTenantSchema(tenantId string) error`*: Elimina lo schema del sensor DB per il tenant identificato da `tenantId`. Restituisce un errore in caso di fallimento.
+
+*Funzione di costruzione:* `NewSensorDBMigrator(log *zap.Logger, cfg *config.Config, db connection.SensorDBConnection) *SensorDBMigrator`
+
+===== Interfaccia `Migrator`
+
+Interfaccia che definisce il contratto per le operazioni di migrazione del sensor DB.
+
+*Metodi:*
+- *`MigrateTenantSchema(tenantId string) error`*: Esegue la migrazione dello schema di un tenant.
+- *`DeleteTenantSchema(tenantId string) error`*: Elimina lo schema di un tenant.
+
+==== Package `infra/metrics`
+
+Il sub-package `metrics` si occupa della registrazione e dell'esposizione delle metriche applicative tramite Prometheus, integrate nel router Gin.
+
+===== Funzioni del package `metrics`
+
+- *`RegisterPrometheus(router *gin.Engine)`*: Registra il middleware e l'endpoint di scraping Prometheus sul router #gloss[Gin] fornito. Non restituisce valori.
+
+==== Package `infra/modules`
+
+Il sub-package `modules` centralizza la configurazione del dependency injection tramite il framework Fx. Aggrega tutti i moduli dell'applicazione in un unico `fx.Option`.
+
+===== Funzioni del package `modules`
+
+- *`AppModules() fx.Option`*: Restituisce l'`fx.Option` che aggrega tutti i moduli Fx dell'applicazione (database, router, controller, service, ecc.). Usata come punto di ingresso per la configurazione del DI container.
+
+==== Package `infra/nats`
+
+Il sub-package `nats` fornisce le funzioni di utilità per stabilire connessioni al broker NATS JetStream, inclusa la gestione dei metodi di autenticazione supportati.
+
+===== Funzioni del package `nats`
+
+- *`NewNATSConnection(address NatsAddress, port NatsPort, credsPath NatsCredsPath, caPemPath NatsCAPemPath) *nats.Conn`*: Crea e restituisce una connessione al broker NATS con i parametri forniti. Usa `CredsFileAuth` e `CAPemAuth` come opzioni di autenticazione.
+- *`NewNATSTestConnection(address NatsAddress, port NatsPort, credsPath NatsTestCredsPath, caPemPath NatsCAPemPath) NatsTestConnection`*: Crea e restituisce una connessione NATS destinata ai test di integrazione.
+- *`NewJetStreamContext(nc *nats.Conn) (jetstream.JetStream, error)`*: Crea e restituisce un contesto JetStream a partire da una connessione NATS esistente. Restituisce un errore se l'operazione fallisce.
+- *`CAPemAuth(caPemPath string) nats.Option`*: Restituisce un'opzione NATS per l'autenticazione tramite certificato CA in formato PEM.
+- *`CredsFileAuth(credsPath string) nats.Option`*: Restituisce un'opzione NATS per l'autenticazione tramite file di credenziali `.creds`.
+- *`JWTAuth(token, seed string) nats.Option`*: Restituisce un'opzione NATS per l'autenticazione tramite JWT e seed NKey.
+
+==== Package `infra/router`
+
+Il sub-package `router` si occupa della creazione e configurazione del router HTTP Gin, registrando tutti i controller e i middleware dell'applicazione.
+
+===== Funzioni del package `router`
+
+- *`NewGinEngine(log *zap.Logger, config *config.Config, authzMiddleware *httpMiddlewares.AuthzMiddleware, gatewayController *gateway.GatewayController, historicalDataController *historical_data.Controller, realTimeDataController *real_time_data.Controller, userController *user.Controller, authController *auth.Controller, sensorController *sensor.Controller, tenantController *tenant.Controller) *gin.Engine`*: Crea e restituisce un'istanza configurata del router #gloss[Gin] con tutti i middleware e i controller registrati. Ogni controller corrisponde a un package applicativo e viene montato sul router con i propri endpoint.
+
+==== Package `infra/transport/http`
+
+Il sub-package `transport/http` fornisce funzioni di utilità per la gestione delle risposte HTTP standardizzate e per l'estrazione del `Requester` dal contesto #gloss[Gin].
+
+===== Funzioni del package `transport/http`
+
+- *`ExtractRequester(ctx *gin.Context) (identity.Requester, error)`*: Estrae il `Requester` dal contesto #gloss[Gin]. L'unico errore possibile è `ErrMissingIdentity`, restituito quando il requester non è presente nel contesto.
+- *`RequestOk(ctx *gin.Context, obj any)`*: Risponde con HTTP 200 e serializza `obj` come JSON.
+- *`RequestError(ctx *gin.Context, err error)`*: Risponde con un codice di errore HTTP appropriato in base al tipo di errore fornito.
+- *`RequestNotFound(ctx *gin.Context, err error)`*: Risponde con HTTP 404 e il messaggio di errore fornito.
+- *`RequestUnauthorized(ctx *gin.Context, err error)`*: Risponde con HTTP 401 e il messaggio di errore fornito.
+- *`RequestServerError(ctx *gin.Context, err error)`*: Risponde con HTTP 500 e il messaggio di errore fornito.
+- *`ValidationError(ctx *gin.Context, err error) bool`*: Verifica se `err` è un errore di validazione e, in caso affermativo, risponde con HTTP 400 e restituisce `true`. Restituisce `false` se l'errore non è di validazione.
+
+==== Package `infra/transport/http/middlewares`
+
+Il sub-package `middlewares` contiene i middleware #gloss[Gin] dell'applicazione. Attualmente espone il middleware di autorizzazione basato su JWT.
+
+===== `AuthzMiddleware`
+
+Middleware #gloss[Gin] di autorizzazione che verifica la presenza e la validità del token JWT nelle richieste in ingresso.
+
+*Attributi:*
+- *`authTokenManager crypto.AuthTokenManager`*: Riferimento al gestore dei token di autenticazione, usato per verificare e decodificare i JWT
+
+*Metodi:*
+- *`RequireAuthToken(ctx *gin.Context)`*: Middleware che richiede la presenza di un token JWT valido nell'header `Authorization` della richiesta. In caso di token assente o non valido, la richiesta viene rifiutata con HTTP 401.
+- *`RequireAuthTokenInQuery(ctx *gin.Context)`*: Middleware che richiede la presenza del JWT come query parameter (`?jwt=...`). Da usare esclusivamente nei casi in cui non è possibile inserire l'header `Authorization` nella richiesta, come nelle connessioni WebSocket. *Nota:* questa è una soluzione temporanea; il miglioramento previsto è l'adozione di un sistema a "ticket" one-time con store in-memory (Redis o memdb), dove il client ottiene un ticket a vita breve da un endpoint dedicato (es. `/ws/new-ticket`) e lo usa nella successiva richiesta WebSocket (es. `/api/v1/sensor/.../real_time_data?ticket=<ticket>`).
+
+*Funzione di costruzione:* `NewAuthzMiddleware(authTokenManager crypto.AuthTokenManager) *AuthzMiddleware`
+
+==== Package `infra/transport/http/dto`
+
+#figure(
+  image("../../assets/c4/backend/infra/dto.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `dto`],
+)
+
+
+Il sub-package `dto` contiene i DTO condivisi usati dai controller HTTP dell'applicazione. Sono struct componibili tramite #gloss[embedding], progettate per essere riutilizzate come blocchi costruttivi nei DTO specifici di ogni dominio.
+
+===== DTO condivisi per i campi delle richieste
+
+I DTO seguenti sono campi atomici e componibili tramite #gloss[embedding]:
+
+- *`TenantIdField`*: Campo per l'UUID del tenant.
+  - `TenantId string`
+
+- *`TenantIdField_NotRequired`*: Variante nullable di `TenantIdField`, escluso dalla validazione per i `super_admin`.
+  - `TenantId *string`
+
+- *`UserIdField`*: Campo per l'ID numerico dell'utente.
+  - `UserId uint`
+
+- *`UserRoleField`*: Campo per il ruolo dell'utente. I valori ammessi sono: `tenant_user`, `tenant_admin`, `super_admin`.
+  - `UserRole string`
+
+- *`UsernameField`*: Campo per lo username dell'utente.
+  - `Username string`
+- *`EmailField`*: Campo per l'indirizzo email.
+  - `Email string`
+- *`GatewayIdField`*: Campo per l'UUID del gateway.
+  - `GatewayId string`
+- *`GatewayNameField`*: Campo per il nome del gateway.
+  - `GatewayName string`
+
+- *`GatewayIntervalField`*: Campo per l'intervallo del gateway (in millisecondi, deve essere > 0).
+  - `Interval int64 `
+
+- *`SensorIdField`*: Campo per l'UUID del sensore.
+  - `SensorId string`
+
+- *`TenantNameField`*: Campo per il nome del tenant.
+  - `TenantName string`
+
+- *`TimestampField`*: Campo per un timestamp in formato `time.Time`.
+  - `Timestamp time.Time`
+
+- *`Pagination`*: Campi per la paginazione delle liste. `Page` minimo 1, `Limit` compreso tra 1 e 200.
+  - `Page int`
+  - `Limit int`
+
+===== DTO condivisi per le password
+
+- *`PasswordField`*: Campo per verificare la password corrente di un utente (minimo 8 caratteri).
+  - `Password string`
+
+- *`NewPasswordField`*: Campo per impostare una nuova password in contesti dove l'entità non aveva password in precedenza (minimo 8 caratteri). Per il cambio password (vecchia + nuova), usare `ChangePasswordFields`.
+  - `NewPassword string`
+
+- *`ChangePasswordFields`*: Campi per il cambio password: la nuova password deve essere diversa dalla vecchia (validazione `nefield=OldPassword`).
+  - `OldPassword string`
+  - `NewPassword string`
+
+===== DTO composti
+
+- *`TenantUriDTO`*: DTO che incorpora `TenantIdField`.
+- *`TenantMemberUriDTO`*: DTO che incorpora `TenantIdField` e `UserIdField`.
+- *`SuperAdminUriDTO`*: DTO che incorpora `UserIdField`.
+- *`TokenFields`*: Campi per l'identificazione di un token: il token stesso e il tenant ID opzionale a cui appartiene.
+  - `Token string`
+  - `TenantIdField_NotRequired`
+
+- *`CommissionTokenField`*: Campo per il token di commissioning di un gateway.
+  - `CommissionToken string`
+
+===== DTO per le risposte
+
+- *`CommandResponse`*: DTO di risposta generica per operazioni di comando.
+  - `Success bool`
+  - `Message string`
+
+- *`ListInfo`*: DTO contenente le informazioni di paginazione restituite nelle risposte di lista.
+  - `Count uint`: numero di elementi nella pagina corrente
+  - `Total uint`: numero totale di elementi
+
+===== DTO per i dati dei sensori
+
+- *`ECGData`*: Dato di misurazione ECG.
+  - `Waveform []int`
+
+- *`EnvironmentalSensingData`*: Dato di misurazione ambientale.
+  - `TemperatureValue float64`, `HumidityValue float64`, `PressureValue float64`
+
+- *`HealthThermometerData`*: Dato di misurazione della temperatura corporea.
+  - `TemperatureValue float64`
+
+- *`HeartRateData`*: Dato di misurazione del battito cardiaco.
+  - `BpmValue int`
+
+- *`PulseOximeterData`*: Dato di ossimetria.
+  - `Spo2Value float64`, `PulseRateValue int`
+
+===== Funzioni del package `transport/http/dto`
+
+- *`DecodeSensorProfileData(profile sensorProfile.SensorProfile, raw json.RawMessage) (any, error)`*: Decodifica il payload grezzo `raw` nel tipo di dato concreto corretto (es. `ECGData`, `HeartRateData`, ecc.) in base al profilo sensore `profile`. Restituisce il dato decodificato o un errore se il profilo non è riconosciuto o se il payload non è valido.
+- *`decodeSensorProfileData[T any](raw json.RawMessage) (T, error)`*: Funzione generica interna che decodifica `raw` nel tipo `T` specificato. Restituisce il valore decodificato o un errore in caso di fallimento.
+
+==== Package `infra/transport/nats/dto`
+
+#figure(
+  image("../../assets/c4/backend/infra/natsDto.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `nats.dto`],
+)
+
+
+Il sub-package `nats/dto` contiene i DTO usati per la comunicazione tramite NATS JetStream, in particolare per i messaggi di campioni di dati provenienti dai sensori.
+
+===== Interfaccia `DataSampleNATSDto`
+
+Interfaccia che definisce il contratto per i DTO di campioni di dati ricevuti via NATS.
+
+*Metodi:*
+- *`GetTimestamp() string`*: Restituisce il timestamp del campione di dati come stringa.
+
+===== `ConcreteDataSampleNATSDto[T]`
+
+Struct generica concreta che implementa `DataSampleNATSDto`. Contiene tutti i campi necessari a identificare univocamente un campione di dati proveniente da un sensore.
+
+*Attributi:*
+- `SensorIdField string`: Id del sensore a cui appartiene il campione di dati
+- `GatewayIdField string`: Id del gateway a cui appartiene il campione di dati
+- `TenantIdField string`: Id del tenant a cui appartiene il campione di dati
+- `TimestampField string`: Timestamp del campione di dati
+- `ProfileField string`: Profilo sensore del campione di dati
+- `Data T `: Payload del campione, il cui tipo concreto dipende dal profilo sensore.
+
+*Metodi:*
+- *`GetTimestamp() string`*: Restituisce il timestamp del campione di dati.
+
+===== Funzioni del package `transport/nats/dto`
+
+- *`MapRawToDataSampleNATSDto(profile sensorProfile.SensorProfile, raw json.RawMessage) (DataSampleNATSDto, error)`*: Mappa il payload grezzo `raw` nel tipo concreto `ConcreteDataSampleNATSDto[T]` corretto (rappresentato dall'interfaccia `DataSampleNATSDto`), dove `T` è determinato in modo forzato in base al parametro `profile`. Restituisce un errore se il profilo non è riconosciuto o se la decodifica fallisce.
+- *`mapRawToDto[T any](raw json.RawMessage) (*ConcreteDataSampleNATSDto[T], error)`*: Funzione generica interna che deserializza `raw` nel tipo `ConcreteDataSampleNATSDto[T]`. Restituisce un errore se la deserializzazione fallisce.
+
+==== Package `infra/utils`
+
+Il sub-package `utils` raccoglie funzioni di utilità generali usate trasversalmente dall'infrastruttura.
+
+===== Funzioni del package `utils`
+
+- *`EnvInt(key string, fallback int) int`*: Legge la variabile d'ambiente identificata da `key` e la restituisce come intero. Se la variabile non è definita o non è parsabile come intero, restituisce il valore di fallback `fallback`.
+
 
 ==== Package `real_time_data` <backend-real_time_data>
 Il package `real_time_data` presenta le funzionalità per ricevere in tempo reale i dati direttamente da un sensore specifico via #gloss[NATS] ed eventualmente presentarli a un client #gloss[Websocket].
@@ -3129,7 +4519,7 @@ _Inbound adapter_ principale del package.
 
 *Metodi*:
 - *`startClientListener(conn *websocket.Conn, errorChannel chan RealTimeError)`*: Metodo che esegue un _listener_ su #gloss[Websocket] per rilevare disconnessioni del client, in modo tale da interrompere l'esecuzione del sistema di ottenimento dati
-- *`GetRealTimeData(ctx *gin.Context)`*: Metodo che ha la responsabilità di iniziare l'ascolto dei dati in real-time su NATS chiamando lo _use case_, di eseguire `startClientListener()` su una goroutine e di inviare i dati ottenuti al client #gloss[Websocket]
+- *`GetRealTimeData(ctx *gin.Context)`*: Metodo che ha la responsabilità di iniziare l'ascolto dei dati in real-time su NATS chiamando lo _use case_, di eseguire `startClientListener()` su una #gloss[goroutine] e di inviare i dati ottenuti al client #gloss[Websocket]
 
 *Funzione di costruzione*: `NewController(log *zap.Logger, getRealTimeDataUseCase GetRealTimeDataUseCase) *Controller`
 
@@ -3224,7 +4614,7 @@ Rappresenta un errore ricevuto in tempo reale. Può essere un errore di disconne
 _Outbound port_ utilizzata per comunicare con il _listener_ dei dati in tempo reale.
 
 *Metodi*:
-- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Istanzia asincronamente una goroutine che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
+- *`StartDataRetriever(tenantId uuid.UUID, sensor sensor.Sensor, dataChan chan RealTimeSample, errorChan chan RealTimeError,) error`*: Istanzia asincronamente una #gloss[goroutine] che ascolti i dati del sensore `sensor` (associato al tenant con ID `tenantId`), inserendone i dati ottenuti in tempo reale su `dataChan` ed eventuali errori riscontrati su `errorChan`.
 
 
 ===== Outbound adapter -- `RealTimeDataNATSAdapter`
@@ -3234,7 +4624,7 @@ _Outbound adapter_ che implementa *`RealTimeDataPort`*, consentendo di creare un
 - *`reader RealTimeDataNATSReader`*: Riferimento alla struct che ha la responsabilità di leggere i dati in real-time su NATS
 
 *Metodi aggiuntivi*:
-- *`getSubject(tenantId, gatewayId, sensorId uuid.UUID) (string, error)`*: Dati gli ID di un tenant, di un gateway e di un sensore, ottiene il subject #gloss[NATS] corrispondente
+- *`getSubject(tenantId, gatewayId, sensorId UUID.UUID) (string, error)`*: Dati gli ID di un tenant, di un gateway e di un sensore, ottiene il subject #gloss[NATS] corrispondente
 
 
 ===== Reader -- `RealTimeDataNATSReader`
@@ -3372,13 +4762,13 @@ Per dettagli sui `Command`, si consulti la @code-sensor-commands.
 I comandi usati dallo strato di business sono i seguenti. Si noti che ciascuno di questi comandi presenta il campo *`Requester identity.Requester`* poiché ciascun comando dev'essere eseguito da un utente autorizzato, per cui per completezza non saranno ripetuti nella lista seguente.
 
 - *`CreateSensorCommand`*: Comando per creare un sensore
-  - *`GatewayId uuid.UUID`*: UUID del gateway a cui associare il sensore
+  - *`GatewayId UUID.UUID`*: UUID del gateway a cui associare il sensore
   - *`SensorName string`*: Nome del sensore
   - *`Profile sensorProfile.SensorProfile`*: Profilo del sensore
   - *`Interval int64`*: Intervallo in ms di generazione dati
 
 - *`DeleteSensorCommand`*: Comando per eliminare un sensore
-  - *`SensorId uuid.UUID`*: UUID del sensore da eliminare
+  - *`SensorId UUID.UUID`*: UUID del sensore da eliminare
 
 - *`GetSensorCommand`*: Comando per ottenere un sensore
   - *`SensorId uuid.UUID`*: UUID del sensore
@@ -3478,11 +4868,11 @@ Implementa l'interfaccia `GetSensorByTenantUseCase`.
 Rappresenta un sensore simulato nello strato di business logic.
 
 *Attributi*:
-- *`Id uuid.UUID`*: UUID del sensore;
+- *`Id UUID.UUID`*: UUID del sensore;
 - *`Name string`*: Nome del sensore;
 - *`Interval time.Duration`*: Intervallo di tempo tra la generazione di un dato simulato e la successiva;
 - *`Profile sensorProfile.SensorProfile`*: Profilo GATT associato;
-- *`GatewayId uuid.UUID`*: UUID del gateway a cui il sensore è associato;
+- *`GatewayId UUID.UUID`*: UUID del gateway a cui il sensore è associato;
 - *`Status SensorStatus`*: Status del sensore.
 
 *Metodi*:
@@ -3505,28 +4895,28 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 
 ====== `CreateSensorPort`
 *Metodi*:
-- *`CreateSensor(sensorId uuid.UUID, gatewayId uuid.UUID, name string, interval time.Duration, profile profile.SensorProfile) (Sensor, error)
+- *`CreateSensor(sensorId UUID.UUID, gatewayId UUID.UUID, name string, interval time.Duration, profile profile.SensorProfile) (Sensor, error)
 }`*: Crea un sensore secondo i parametri specificati e lo ritorna, ritornando errore se vi sono errori durante la creazione.
 
 ====== `DeleteSensorPort`
 *Metodi*:
-- *`DeleteSensor(sensorId uuid.UUID) (Sensor, error)`*: Elimina il sensore con ID `sensorId` e ritorna l'oggetto `Sensor` corrispondente al sensore eliminato, oppure errore se vi sono errori durante il processo di eliminazione.
+- *`DeleteSensor(sensorId UUID.UUID) (Sensor, error)`*: Elimina il sensore con ID `sensorId` e ritorna l'oggetto `Sensor` corrispondente al sensore eliminato, oppure errore se vi sono errori durante il processo di eliminazione.
 
 ====== `GetSensorByIdPort`
 *Metodi*:
-- *`GetSensorById(sensorId uuid.UUID) (Sensor, error)`*: Ritorna l'oggetto `Sensor` relativo al sensore con ID `sensorId` e ritorna errore in caso il sensore non sia stato trovato.
+- *`GetSensorById(sensorId UUID.UUID) (Sensor, error)`*: Ritorna l'oggetto `Sensor` relativo al sensore con ID `sensorId` e ritorna errore in caso il sensore non sia stato trovato.
 
 ====== `GetSensorByTenantPort`
 *Metodi*:
-- *`GetSensorByTenant(tenantId, sensorId uuid.UUID) (sensor Sensor, sensorTenantId *uuid.UUID, err error)`*: Ritorna al sensore con ID `sensorId` associato al tenant con ID `tenantId`. Questa funzione applica nativamente il controllo sul Repository di associazione del sensore al tenant, ritornando errore in caso il sensore non sia trovato oppure non sia associato al tenant specificato.
+- *`GetSensorByTenant(tenantId, sensorId UUID.UUID) (sensor Sensor, sensorTenantId *UUID.UUID, err error)`*: Ritorna al sensore con ID `sensorId` associato al tenant con ID `tenantId`. Questa funzione applica nativamente il controllo sul Repository di associazione del sensore al tenant, ritornando errore in caso il sensore non sia trovato oppure non sia associato al tenant specificato.
 
 ====== `GetSensorsByGatewayIdPort`
 *Metodi*:
-- *`GetSensorsByGatewayId(gatewayId uuid.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al gateway con ID `gatewayId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
+- *`GetSensorsByGatewayId(gatewayId UUID.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al gateway con ID `gatewayId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
 
 ====== `GetSensorsByTenantIdPort`
 *Metodi*:
-- *`GetSensorsByTenant(tenantId uuid.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al tenant con ID `tenantId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
+- *`GetSensorsByTenant(tenantId UUID.UUID, page int, limit int) ([]Sensor, uint, error)`*: Ritorna la lista paginata (secondo `page` e `limit`) e il numero totale di sensori associati al tenant con ID `tenantId`. Ritorna errore se vi è errore nell'ottenere la lista, ma ritorna lo slice vuoto se non vi sono sensori associati al gateway specificato.
 
 ====== `UpdateSensorStatusPort`
 *Metodi*:
@@ -3544,19 +4934,19 @@ In questa sezione sono riportate le descrizioni delle _outbound port_ che hanno 
 
 ====== `CreateSensorCmdPort`
 *Metodi:*
-- *`SendCreateSensorCmd(sensorId uuid.UUID, gatewayId uuid.UUID, interval time.Duration, profile profile.SensorProfile) error`*: Invia al gateway simulato un comando di creazione di un nuovo sensore secondo i parametri specificati e ritorna errore in caso la procedura d'invio o la creazione del sensore nel gateway simulato non vadano a buon fine.
+- *`SendCreateSensorCmd(sensorId UUID.UUID, gatewayId UUID.UUID, interval time.Duration, profile profile.SensorProfile) error`*: Invia al gateway simulato un comando di creazione di un nuovo sensore secondo i parametri specificati e ritorna errore in caso la procedura d'invio o la creazione del sensore nel gateway simulato non vadano a buon fine.
 
 ====== `DeleteSensorCmdPort`
 *Metodi:*
-- *`SendDeleteSensorCmd(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di eliminazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'eliminazione del sensore simulato non vadano a buon fine.
+- *`SendDeleteSensorCmd(sensorId UUID.UUID, gatewayId UUID.UUID) error`*: Invia al gateway simulato un comando di eliminazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'eliminazione del sensore simulato non vadano a buon fine.
 
 ====== `SendInterruptCmdPort`
 *Metodi:*
-- *`SendInterrupt(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di interruzione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'interruzione del sensore simulato non vadano a buon fine.
+- *`SendInterrupt(sensorId UUID.UUID, gatewayId UUID.UUID) error`*: Invia al gateway simulato un comando di interruzione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o l'interruzione del sensore simulato non vadano a buon fine.
 
 ====== `SendResumeCmdPort`
 *Metodi:*
-- *`SendResume(sensorId uuid.UUID, gatewayId uuid.UUID) error`*: Invia al gateway simulato un comando di riattivazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o la riattivazione del sensore simulato non vadano a buon fine.
+- *`SendResume(sensorId UUID.UUID, gatewayId UUID.UUID) error`*: Invia al gateway simulato un comando di riattivazione del sensore con ID `sensorId` associato al gateway con ID `gatewayId` e ritorna errore in caso la procedura d'invio o la riattivazione del sensore simulato non vadano a buon fine.
 
 ===== Outbound adapter per database -- `DbSensorAdapter`
 Per visualizzare il #gloss[Code Diagram] relativo a `DbSensorAdapter`, si veda la @backend-code-outbound-ports-adapters-database
@@ -3618,7 +5008,7 @@ Struct concreta che implementa `DatabaseRepository`, in modo tale da comunicare 
 *Funzione di costruzione*: `NewSensorPostgreRepository(log *zap.Logger, db clouddb.CloudDBConnection) *sensorPostgreRepository`
 
 ====== `SensorEntity`
-`Entity` che rappresenta la tabella `sensors` nel database (vd. @er-cloud-db).
+`Entity` che rappresenta la tabella `sensors` nel database (vd. @cloud-db).
 
 *Attributi*:
 - *`ID string`*: UUID del sensore
@@ -3722,8 +5112,8 @@ Struct di configurazione dell'applicativo. Quasi tutti i suoi attributi sono cam
 - *`AppURL string`*: URL su cui si trova il front-end dell'applicativo. Viene usato dal package email per l'invio dei token di conferma/cambio password
 - *`Port string`*: Porta su cui aprire il backend
 - *`MailAdapter string`*: Quale mail adapter utilizzare, può assumere i valori:
-  - `"terminal"` per evitare di inviare email, ma mostrarne il contenuto su terminale
-  - `"smtp"` per inviare i messaggi email alle coordinate SMTP specificate nei campi che iniziano con `SMTP`
+  - `terminal"` per evitare di inviare email, ma mostrarne il contenuto su terminale
+  - `smtp` per inviare i messaggi email alle coordinate SMTP specificate nei campi che iniziano con `SMTP`
 - *`BcryptCost StringInt`*: Fattore di costo per algoritmo bcrypt per hashing delle password
 - *`TokenLength StringInt`*: Lunghezza in byte di un token di sicurezza
 - *`TokenDuration StringInt`*: Durata di un token di sicurezza in secondi
@@ -3798,12 +5188,12 @@ Struct che rappresenta l'utente che richiede una specifica azione, da utilizzare
 
 *Attributi*:
 - *`RequesterUserId uint`*: ID dell'utente richiedente
-- *`RequesterTenantId *uuid.UUID`*: UUID del tenant a cui è associato l'utente richiedente, `nil` se l'utente è un *Super Admin* (ovvero abbia `RequesterRole == ROLE_SUPER_ADMIN`)
+- *`RequesterTenantId *UUID.UUID`*: UUID del tenant a cui è associato l'utente richiedente, `nil` se l'utente è un *Super Admin* (ovvero abbia `RequesterRole == ROLE_SUPER_ADMIN`)
 - *`RequesterRole UserRole`*: Ruolo dell'utente richiedente
 
 *Metodi*:
-- *`CanTenantUserAccess(accessedTenantId uuid.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_USER` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
-- *`CanTenantAdminAccess(accessedTenantId uuid.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_ADMIN` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
+- *`CanTenantUserAccess(accessedTenantId UUID.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_USER` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
+- *`CanTenantAdminAccess(accessedTenantId UUID.UUID) bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_TENANT_ADMIN` e Tenant ID pari a `accessedTenantId`, `false` altrimenti.
 - *`IsSuperAdmin() bool`*: Ritorna `true` se il `Requester` ha ruolo `ROLE_SUPER_ADMIN`
 
 ===== `UserRole`
@@ -3814,8 +5204,231 @@ Enumerazione che rappresenta il ruolo di un utente.
 - `ROLE_TENANT_ADMIN`: Ruolo Tenant Admin
 - `ROLE_SUPER_ADMIN`: Ruolo Super Admin
 
-==== Package `tenant`
-// TODO
+==== Package `tenant` <backend-tenant>
+
+Il package `tenant` contiene tutte le funzionalità relative alla gestione dei tenant, le operazioni CRUD dei tenant.
+
+
+#figure(
+  image("../../assets/c4/backend/tenant/tenant.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `tenant`],
+)
+
+===== Inbound adapter -- `Controller` e DTO
+Il package `tenant` presenta un controller che si occupa di ricevere le richieste HTTP ed è l'inbound adapter del package.
+
+#figure(
+  image("../../assets/c4/backend/tenant/controller.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di `tenant.Controller`],
+)
+
+
+*Attributi*:
+- *`log *zap.Logger`*: Riferimento al logger zap
+- *`createTenantUseCase CreateTenantUseCase`*: _Inbound port_ per creare un tenant
+- *`deleteTenantUseCase DeleteTenantUseCase`*: _Inbound port_ per eliminare un tenant
+- *`getTenantUseCase GetTenantUseCase`*: _Inbound port_ per ottenere informazioni su un tenant specifico
+- *`getTenantListUseCase GetTenantListUseCase`*: _Inbound port_ per ottenere una lista paginata di tenant
+- *`getAllTenantsUseCase GetAllTenantsUseCase`*: _Inbound port_ per ottenere la lista di tutti i tenant
+
+*Metodi*:
+Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
+-*`CreateTenant(ctx *gin.Context)`*: Crea un nuovo tenant
+  - Input: `CreateTenantDTO`
+  - Output: `TenantResponseDTO`
+-*`DeleteTenant(ctx *gin.Context)`*: Elimina un tenant
+  - Input: `DeleteTenantDTO`
+  - Output: `ResultDTO`
+-*`GetTenant(ctx *gin.Context)`*: Ottiene informazioni su un tenant
+  - Input: `GetTenantDTO`
+  - Output: `TenantResponseDTO`
+-*`GetTenantList(ctx *gin.Context)`*: Ottiene una lista di tenant
+  - Input: `GetTenantListDTO`
+  - Output: `TenantListResponseDTO`
+-*`GetAllTenants(ctx *gin.Context)`*: Ottiene tutti i tenant
+  - Output: `AllTenantsResponseDTO`
+
+
+I DTO usati da `Controller` sono i seguenti:
+
+- *`CreateTenantDTO`*: DTO usato per creare un nuovo tenant, contiene i seguenti campi:
+  - `TenantId string`: stringa rappresentante lo UUID del tenant
+  - `Name string`: stringa rappresentante il nome del tenant
+  - `CanImpersonate bool`: booleano che indica se il tenant può essere impersonato dal super admin
+
+- *`DeleteTenantDTO`*: DTO usato per eliminare un tenant, contiene i seguenti campi:
+  - `TenantId string`: stringa rappresentante lo UUID del tenant da eliminare
+
+- *`GetTenantDTO`*: DTO usato per ottenere informazioni su un tenant, contiene i seguenti campi:
+  - `TenantId string`: stringa rappresentante lo UUID del tenant
+
+- *`GetTenantListDTO`*: DTO usato per ottenere una lista di tenant, contiene i seguenti campi:
+  - `Page int`: intero rappresentante la pagina da visualizzare
+  - `Limit int`: intero rappresentante il numero di tenant da visualizzare per pagina
+
+- *`TenantResponseDTO`*: DTO restituito in output quando un tenant viene creato con successo, contiene i seguenti campi:
+  - `TenantId string`: stringa rappresentante l'UUID del tenant
+  - `Name string`: stringa rappresentante il nome del tenant
+
+- *`TenantListResponseDTO`*: DTO restituito in output quando viene ottenuta una lista di tenant, contiene i seguenti campi:
+  - `Tenants []TenantResponseDTO`: lista di `TenantResponseDTO`
+  - `Total int`: intero rappresentante il numero totale di tenant
+  - `Count int`: intero rappresentante il numero di tenant restituiti nella pagina
+
+===== Inbound ports
+Di seguito sono riportate le _inbound ports_ del package.
+
+
+#figure(
+  image("../../assets/c4/backend/tenant/service.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ di `tenant`],
+)
+
+
+====== CreateTenantUseCase
+*Metodi:*
+- *`CreateTenant(cmd CreateTenantCommand) (Tenant, error)`*: Creare un nuovo tenant con i dati forniti in `cmd` e restituisce il tenant creato o un errore in caso di fallimento
+====== DeleteTenantUseCase
+*Metodi:*
+- *`DeleteTenant(cmd DeleteTenantCommand) error`*: Eliminare un tenant con i dati forniti in `cmd` e restituisce un errore in caso di fallimento
+====== GetTenantUseCase
+*Metodi:*
+- *`GetTenant(cmd GetTenantCommand) (Tenant, error)`*: Ottenere informazioni su un tenant con i dati forniti in `cmd` e restituisce il tenant o un errore in caso di fallimento
+====== GetAllTenantsUseCase
+*Metodi:*
+- *`GetAllTenants(cmd GetAllTenantsCommand) ([]Tenant, error)`*: Ottenere tutti i tenant e restituisce una lista di tenant o un errore in caso di fallimento
+====== GetTenantListUseCase
+*Metodi:*
+- *`GetTenantList(cmd GetTenantListCommand) ([]Tenant, error)`*: Ottenere una lista di tenant e restituisce una lista di tenant o un errore in caso di fallimento
+
+
+===== Comandi
+I comandi usati dagli _use case_ di `Controller` sono i seguenti:
+- *`CreateTenantCommand`* : Comando usato per creare un nuovo tenant, contiene i seguenti campi:
+  - `TenantId UUID.UUID`: UUID del tenant da creare
+  - `Name string`: nome del tenant da creare
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per creare un tenant
+
+- *`DeleteTenantCommand`*: Comando usato per eliminare un tenant, contiene i seguenti campi:
+  - `TenantId UUID.UUID`: UUID del tenant da eliminare
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per eliminare un tenant
+
+- *`GetTenantListCommand`*: Comando usato per ottenere i gateway di un tenant specifico, contiene i seguenti campi:
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per ottenere una lista di tenant
+  - `Limit int`: intero rappresentante il numero di tenant da visualizzare per pagina
+  - `Page int`: intero rappresentante la pagina da visualizzare
+
+- *`GetTenantCommand`*: Comando usato per ottenere un gateway specifico di un tenant specifico, contiene i seguenti campi:
+  - `TenantId UUID.UUID`: UUID del tenant di cui ottenere i gateway
+  - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @backend-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per ottenere informazioni su un tenant
+
+
+===== Services
+
+====== TenantService
+Struct di _business logic_ per la gestione CRUD dei tenant nel sistema.
+
+*Interfacce implementate*
+- *`CreateTenantPort`* 
+- *`DeleteTenantPort`* 
+- *`GetTenantPort`* 
+- *`GetTenantsPort`*
+
+*Attributi*
+- *`createTenantPort CreateTenantPort`*: _Outbound port_ usata per creare un nuovo tenant.
+- *`deleteTenantPort DeleteTenantPort`*: _Outbound port_ usata per eliminare un tenant esistente.
+- *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni su un tenant esistente.
+- *`getTenantsPort GetTenantsPort`*: _Outbound port_ usata per ottenere informazioni su più tenant esistenti.
+
+*Funzione di costruzione* :`NewTenantService (createTenantPort CreateTenantPort, deleteTenantPort DeleteTenantPort, getTenantPort GetTenantPort, getTenantsPort GetTenantsPort) *TenantService`
+
+
+===== Dominio
+
+====== Tenant
+Rappresenta un tenant inserito nel sistema, a livello di _business logic_.
+
+*Attributi:*
+- *`ID uuid.UUID`*: UUID del tenant a cui il token è associato
+- *`Name string`*: Nome del tenant
+- *`CanImpersonate bool`*: Booleano che indica se il tenant può essere impersonato dal super admin
+
+
+*Metodi:*
+- *`IsZero() bool`*: Restituisce true se il tenant è vuoto, false altrimenti
+- *`GetId() UUID.UUID`*: Restituisce l'UUID del tenant
+
+
+=====  Outbound ports -- Database
+In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
+
+
+
+#figure(
+  image("../../assets/c4/backend/tenant/adapter.pdf", width:100%),
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ di `tenant`],
+)
+
+
+====== CreateTenantPort
+*Metodi*:
+- *`CreateTenant(tenant Tenant) (Tenant, error)`*: Crea un nuovo tenant. Restituisce il tenant creato o un errore in caso di fallimento.
+
+====== DeleteTenantPort
+*Metodi*:
+- *`DeleteTenant(tenantId UUID.UUID) (Tenant, error)`*: Elimina un tenant specifico. Restituisce il tenant eliminato o un errore in caso di fallimento.
+
+====== GetTenantPort
+*Metodi*:
+- *`GetTenant(tenantId UUID.UUID) (Tenant, error)`*: Ottiene un tenant specifico. Restituisce il tenant trovato o un errore in caso di fallimento.
+
+====== GetTenantsPort
+*Metodi*:
+- *`GetTenants(limit int, page int) ([]Tenant, error)`*: Ottiene una lista di tenant. Restituisce la lista di tenant trovati o un errore in caso di fallimento.
+- *`GetAllTenants() ([]Tenant, error)`*: Ottiene tutti i tenant. Restituisce la lista di tenant trovati o un errore in caso di fallimento.
+
+
+
+===== Outbound adapter per database –- TenantPostgreAdapter
+`TenantPostgreAdapter` è l'outbound port usata per comunicare con il database per le operazioni CRUD sui tenant, traducendo l'interfaccia di dominio nell'interfaccia di PostgreSQL e viceversa.
+
+*Interfacce implementate*:
+- `CreateTenantPort`
+- `DeleteTenantPort`
+- `GetTenantPort`
+- `GetTenantsPort`
+
+*Attributi*:
+- *`repo TenantRepository`*: Riferimento al repository per dei tenants
+
+
+===== Repository per database –- TenantRepository, TenantEntity
+
+*Metodi*:
+- *`SaveTenant(entity *TenantEntity) (error)`*: Salva un tenant nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`DeleteTenant(entity *TenantEntity) (error)`*: Elimina un tenant nel database tramite un'entità di database. Restituisce un errore in caso di fallimento.
+- *`GetTenant(tenantId UUID.UUID) (entity *TenantEntity, error)`*: Restituisce un tenant specifico tramite l'UUID. Restituisce il tenant trovato o un errore in caso di fallimento.
+- *`GetTenants(offset int, page int) (entities []TenantEntity, int, error)`*: Restituisce una lista di tenant tramite paginazione. Restituisce la lista di tenant trovati, il numero totale di tenant e un errore in caso di fallimento.
+- *`GetAllTenants() (entities []TenantEntity, error)`*: Restituisce tutti i tenant. Restituisce la lista di tenant trovati o un errore in caso di fallimento.
+
+====== TenantEntity
+Rappresenta l'entità di database dei tenant, usata per comunicare con PostgreSQL.
+*Attributi*:
+- *`ID string`*: UUID del tenant a cui il token è associato
+- *`Name string`*: nome del tenant
+- *`CanImpersonate bool`*: booleano che indica se il tenant può essere impersonato dal super admin
+
+====== TenantPostgreRepository
+
+Struct concreta che implementa `TenantRepository`, in modo tale da comunicare con PostgreSQL.
+
+*Attributi*:
+- *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
+- *`log zap.Logger`*: Riferimento al logger zap
+
+*Funzione di costruzione*: `NewTenantPostgreRepository(db clouddb.CloudDBConnection, log zap.Logger) * TenantPostgreRepository`
+
+==== Package `user`
 
 ==== Package `user` <backend-user>
 Il package `user` contiene le struct e interfacce che rappresentano le operazioni CRUD sugli utenti nel sistema. Il seguente diagramma è comprensivo dell'intero package, per cui si consiglia di utilizzare la funzionalità di zoom per consultarlo.
@@ -4160,7 +5773,7 @@ Lo struct `User` rappresenta un utente all'interno del sistema.
 - *`Email string`*: Email dell'utente.
 - *`PasswordHash *string`*: Hash della password dell'utente, è pari a nil se l'utente non è stato confermato (`Confirmed == false`).
 - *`Role identity.UserRole`*: Ruolo dell'utente.
-- *`TenantId *uuid.UUID`*: UUID del tenant a cui è associato l'utente se è un Tenant User o un Tenant Admin, altrimenti è pari a `nil`.
+- *`TenantId *UUID.UUID`*: UUID del tenant a cui è associato l'utente se è un Tenant User o un Tenant Admin, altrimenti è pari a `nil`.
 - *`Confirmed bool`*: `true` se l'utente ha svolto con successo la procedura di conferma account.
 
 *Metodi*:
@@ -4181,7 +5794,7 @@ _Outbound port_ per inviare email di conferma account all'indirizzo email degli 
 Nonostante ciò, quest'interfaccia viene rispettata da `email.SendEmailSMTPAdapter` (vd. @code-email.SendEmailSMTPAdapter).
 
 *Metodi*:
-- *`SendConfirmAccountEmail(toAddress string, tenantId *uuid.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
+- *`SendConfirmAccountEmail(toAddress string, tenantId *UUID.UUID, tokenString string) error`* invia all'indirizzo `toAddress` un'email contenente il link di conferma account, composto dal token `tokenString` e il tenant ID `tenantId`, se presente
 
 ====== `GenerateTokenPort`
 _Outbound port_ per la generazione di token di sicurezza usati nella procedura di conferma account. Si noti che viene usata tale interfaccia locale al posto di `auth.ConfirmAccountTokenPort` per evitare di creare import cycles.
@@ -4202,20 +5815,20 @@ _Outbound port_ con la responsabilità di creare un nuovo utente nel sistema o d
 _Outbound port_ che offre metodi per eliminare un utente esistente specifico per ogni ruolo.
 
 *Metodi*:
-- *`DeleteTenantUser(tenantId uuid.UUID, userId uint) (User, error)`*: Elimina il Tenant User appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
-- *`DeleteTenantAdmin(tenantId uuid.UUID, userId uint) (User, error)`*: Elimina il Tenant Admin appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
+- *`DeleteTenantUser(tenantId UUID.UUID, userId uint) (User, error)`*: Elimina il Tenant User appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
+- *`DeleteTenantAdmin(tenantId UUID.UUID, userId uint) (User, error)`*: Elimina il Tenant Admin appartenente al tenant con UUID `tenantID` con ID `userId` e ritorna lo `User` eliminato.
 - *`DeleteSuperAdmin(userId uint) (User, error)`*: Elimina il Super Admin con ID `userId` e ritorna lo `User` eliminato.
 
 ====== `GetUserPort`
 _Outbound port_ che offre metodi per ottenere uno o più utenti specifici.
 
 *Metodi*:
-- *`GetUser(tenantId *uuid.UUID, userId uint) (User, error)`*: Ritorna lo `User` associato all'utente con ID `userId` appartenente al tenant con UUID `tenantId`.
-- *`GetUserByEmail(tenantId *uuid.UUID, email string) (User, error)`*: Ritorna lo `User` associato all'utente con email `email` appartenente al tenant con UUID `tenantId`.
-- *`GetTenantUsersByTenant(tenantId uuid.UUID, page, limit int) (tenantUsers []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
-- *`GetTenantAdminsByTenant(tenantId uuid.UUID, page, limit int) (tenantAdmins []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
+- *`GetUser(tenantId *UUID.UUID, userId uint) (User, error)`*: Ritorna lo `User` associato all'utente con ID `userId` appartenente al tenant con UUID `tenantId`.
+- *`GetUserByEmail(tenantId *UUID.UUID, email string) (User, error)`*: Ritorna lo `User` associato all'utente con email `email` appartenente al tenant con UUID `tenantId`.
+- *`GetTenantUsersByTenant(tenantId UUID.UUID, page, limit int) (tenantUsers []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant User associati al tenant con UUID `tenantId` e il numero totale di Tenant User associati a tale tenant.
+- *`GetTenantAdminsByTenant(tenantId UUID.UUID, page, limit int) (tenantAdmins []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Tenant Admin associati al tenant con UUID `tenantId` e il numero totale di Tenant Admin associati a tale tenant.
 - *`GetSuperAdminList(page, limit int) (superAdmins []User, total uint, err error)`*: Ritorna la pagina numero `page` lunga `limit` elementi della lista paginata di Super Admin e il numero totale di Super Admin associati a tale tenant.
-- *`CountTenantAdminsByTenant(tenantId uuid.UUID) (total uint, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId` nel sistema.
+- *`CountTenantAdminsByTenant(tenantId UUID.UUID) (total uint, err error)`*: Ritorna il numero totale di Tenant Admin associati al tenant con UUID `tenantId` nel sistema.
 - *`CountSuperAdmins() (total uint, err error)`*: Ritorna il numero totale di Super Admin nel sistema.
 
 ===== Outbound adapter -- `UserPostgreAdapter`
@@ -4278,7 +5891,7 @@ Struct concreta che implementa `TenantMemberRepository`.
 *Funzione di costruzione*: `newTenantMemberPgRepository(log *zap.Logger, db clouddb.CloudDBConnection) *tenantMemberPgRepository`
 
 ====== `TenantMemberEntity`
-Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @er-cloud-db.
+Rappresenta un elemento nella tabella `tenant_members` nello _schema_ di un tenant all'interno del Cloud DB, corrispondente a un Tenant User o a un Tenant Admin all'interno di uno specifico tenant. Per maggiori informazioni sulla gestione degli _schema_ nel Cloud DB, si consulti la @cloud-db.
 
 *Attributi*:
 - *`ID uint`*: ID dell'utente.
@@ -4328,6 +5941,8 @@ Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super 
 - *`UpdatedAt time.Time`*: Data di ultimo aggiornamento dell'utente.
 
 == Database design <db-design>
+Di seguito si riporta il design di tutti i database utilizzati nel sistema, riportando per ognuno i relativi schemi ER e descrizioni delle tabelle. La descrizione di ogni tabella comprende una breve sinossi del suo scopo e la lista dei suoi attributi, comprendenti di nome e tipo.
+
 === Buffer database
 #figure(
   image("../../assets/c4/gateway/BufferER.pdf", width: 40%),
@@ -4335,12 +5950,14 @@ Rappresenta un elemento nella tabella `super_admins`, corrispondente a un Super 
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] come buffer interno per i dati prodotti dai sensori simulati associati a ciascun gateway, in modo da poterli recuperare e inviare periodicamente tramite #gloss[NATS JetStream].
 
-Il database perciò avrà un'entità principale con i seguenti attributi:
-- `sensorId`: UUID del sensore simulato che ha generato la misurazione.
-- `gatewayId`: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- `timestamp`: timestamp rappresentante il momento in cui è stata generata la misurazione.
-- `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- `value`: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+Il database presenta, infatti, una tabella `buffer` coi seguenti attributi:
+- *`sensorId TEXT NOT NULL`*: UUID del sensore simulato che ha generato la misurazione.
+- *`gatewayId TEXT NOT NULL`*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- *`timestamp DATETIME NOT NULL`*: timestamp rappresentante il momento in cui è stata generata la misurazione.
+- *`profile TEXT NOT NULL`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- *`value BLOB NOT NULL`*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+
+La primary key della tabella è composta dagli attributi `(sensorId, gatewayId, timestamp)`.
 
 === Configuration database
 #figure(
@@ -4349,20 +5966,25 @@ Il database perciò avrà un'entità principale con i seguenti attributi:
 )
 Il microservizio dei *gateway simulati* utilizza un database #gloss[SQLite] per salvare la configurazione dei gateway e dei sensori simulati, in modo da poterla recuperare in caso di riavvio del servizio o di crash.
 
-Il database perciò avrà due entità principali, ovvero *Gateway* e *Sensor*, con i seguenti attributi:
-- `Gateway`:
-  - `id`: UUID del gateway simulato.
-  - `tenantId`: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
-  - `status`: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
-  - `interval`: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
-  - `publicIdentifier`: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
-  - `secretKey`: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
-  - `token`: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
-- `Sensor`:
-  - `id`: UUID del sensore simulato.
-  - `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
-  - `interval`: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
-  - `status`: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
+Il database perciò avrà due entità principali, ovvero *Gateway* e *Sensor*.
+
+==== Gateway
+L'entità Gateway descrive la tabella `gateways` che rappresenta i gateway simulati dal microservizio e presenta i seguenti attributi:
+- *`id VARCHAR(255)`*: Primary key, UUID del gateway simulato.
+- *`tenantId VARCHAR(255) NOT NULL`*: eventuale UUID del tenant a cui è associato il gateway simulato (in caso di gateway commissionato).
+- *`status VARCHAR(255) NOT NULL`*: enum di tipo *GatewayStatus* rappresentante lo stato corrente del gateway (vedi @gateway-status-enum).
+- *`interval INT NOT NULL`*: intervallo di tempo in millisecondi tra gli invii di dati (svuotamento del buffer).
+- *`publicIdentifier VARCHAR(255) NOT NULL`*: stringa rappresentante la chiave pubblica del gateway, utile per il processo di commissioning.
+- *`secretKey VARCHAR(255) NOT NULL`*: stringa rappresentante la chiave privata del gateway, utile per garantire che è il corretto possessore del *token*.
+- *`token VARCHAR(255)`*: stringa rappresentante il #gloss[JWT] necessario per l'invio dei dati IoT via #gloss[NATS JetStream]
+
+==== Sensor
+L'entità Sensor descrive la tabella `sensors` che rappresenta i sensori simulati dal microservizio e presenta i seguenti attributi:
+- *`id VARCHAR(255)`*: Primary, UUID del sensore simulato.
+- *`gatewayId VARCHAR(255) NOT NULL`*: UUID del sensore simulato.
+- *`profile VARCHAR(255) NOT NULL`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile), utile per identificare il tipo di dato generato e per la generazione delle misurazioni.
+- *`interval INT NOT NULL`*: intervallo di tempo in millisecondi tra la generazione di due misurazioni consecutive.
+- *`status VARCHAR(255) NOT NULL`*: enum di tipo *SensorStatus* rappresentante lo stato corrente del sensore (vedi @sensor-status-enum).
 
 Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un gateway può avere più sensori associati (o anche nessuno), mentre un sensore deve essere associato ad un gateway.
 
@@ -4375,19 +5997,120 @@ Inoltre tra le due entità è presente una *relazione uno a molti*, in quanto un
 Il microservizio *Data Consumer* e il microservizio *Cloud Backend* utilizzano un database #gloss[TimescaleDB] per salvare i dati IoT prodotti dai sensori simulati, in modo da poterne visualizzare lo storico.
 
 Il database avrà un'entità principale con i seguenti attributi:
-- `sensorId`: UUID del sensore simulato che ha generato la misurazione.
-- `gatewayId`: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
-- `tenantId`: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
-- `profile`: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
-- `timestamp`: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
-- `value`: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
+- *`sensorId UUID`*: UUID del sensore simulato che ha generato la misurazione.
+- *`gatewayId UUID`*: UUID del gateway simulato a cui è associato il sensore che ha generato la misurazione.
+- *`tenantId UUID`*: UUID del tenant a cui appartiene il gateway del sensore che ha prodotto la misurazione.
+- *`profile VARCHAR`*: stringa rappresentante il profilo del sensore simulato (vedi @sensor-profile) che ha generato la misurazione, utile per identificare il tipo di dato generato.
+- *`timestamp TIMESTAMPTZ`*: timestamp rappresentante il momento in cui è stata generata la misurazione, con precisione al millisecondo.
+- *`value JSONB`*: array di byte rappresentante il o i valori della misurazione generata, è un array di byte per permettere di rappresentare qualsiasi tipo di dato.
 
 Nel database ci sarà una separazione logica dei dati per tenant, resa possibile dalla creazione di uno *schema* per ogni tenant. \
 Perciò ogni tenant dovrà accedere al proprio schema e alla propria tabella per ottenere i propri dati.
 
-=== Cloud database <er-cloud-db>
+=== Cloud database <cloud-db>
 
-// TODO: Inserire specifica ER di cloud db
+#figure(
+  image("../../assets/c4/cloud_db_ER.pdf", width: 100%),
+  caption: [Schema ER per Cloud Database],
+) <cloud-db-er>
+
+Il microservizio *Cloud Backend* utilizza un database #gloss[PostgreSQL], le cui tabelle sono rappresentate dallo schema ER in @cloud-db-er, dove i riquadri azzurri rappresentano gli elementi che sono stati implementati, mentre i riquadri rossi gli elementi che sono stati originariamente progettati ma non implementati nell'#gloss[MVP].
+
+#let req = get-req-by-id(LISTA-RD, "RD-Dati-logicamente-separati-per-tenant").codice
+La separazione logica dei dati tra tenant, richiesta dal requisito #req, è stata ottenuta tramite l'utilizzo degli #gloss[schema] offerti da #gloss[PostgreSQL], i quali permettono di raggruppare un insieme di tabelle sotto uno stesso _namespace_. Nel *Cloud Database*, i dati sono così divisi:
+- Nello schema di nome `public` sono presenti le tabelle *non* associate a un tenant, ovvero:
+  - `gateways`
+  - `sensors`
+  - `super_admin_confirm_tokens`
+  - `super_admin_forgot_password_tokens`
+  - `super_admins`
+  - `tenants`
+- In ogni schema di nome `tenant_<uuid>` sono presenti le tabelle associate al tenant con ID pari a `<uuid>` e ai relativi Tenant User e Tenant Member, ovvero:
+  - `confirm_tokens`
+  - `forgot_password_tokens`
+  - `tenant_members`
+
+==== Tabelle nello schema `public`
+
+===== `gateways`
+La tabella `gateways` rappresenta l'insieme di gateway inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del gateway.
+- *`name VARCHAR(255) NOT NULL`*: Nome del gateway.
+- *`tenant_id UUID`*: UUID del tenant a cui è associato, se pari a `NULL` il gateway non è associato ad alcun gateway.
+- *`status VARCHAR(50) NOT NULL`*: Stato del gateway, può assumere i valori `'inactive'` o `'active'`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
+- *`public_identifier VARCHAR(255)`*: Stringa che identifica pubblicamente il gateway, se pari a `NULL` significa che il gateway non ha inviato il messaggio di hello al Cloud Backend e il gateway simulato non ha segnato nel DB locale l'identificatore pubblico.
+- *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
+
+===== `sensors`
+La tabella `sensors` rappresenta l'insieme dei sensori inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del sensore.
+- *`gateway_id UUID`*: UUID del gateway a cui il sensore è associato, chiave esterna su `gateways.id`.
+- *`name VARCHAR(255) NOT NULL`*: Nome del sensore.
+- *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
+- *`profile VARCHAR(50)`*: Profilo GATT del sensore.
+- *`status VARCHAR(50) NOT NULL`*: Stato del sensore, può assumere i valori `'inactive'`, `'active'` o `'decommissioned'`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
+
+===== `super_admin_confirm_tokens`
+La tabella `super_admin_confirm_tokens` rappresenta i token di conferma account creati per i Super Admin e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `super_admin_forgot_password_tokens`
+La tabella `super_admin_forgot_password_tokens` rappresenta i token di modifica password dimenticata creati per i Super Admin e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `super_admins`
+La tabella `super_admins` rappresenta l'insieme dei Super Admin inseriti nel sistema e presenta i seguenti attributi:
+- *`id BIGINT`*: Primary key, ID autoincrementale dell'utente.
+- *`email VARCHAR(256) NOT NULL`*: Indirizzo email dell'utente, unico nella tabella
+- *`name VARCHAR(128) NOT NULL`*: Nome dell'utente.
+- *`password VARCHAR(128)`*: Password dell'utente, pari a `NULL` se l'utente non è ancora stato confermato (vd. campo `confirmed`).
+- *`confirmed BOOLEAN`*: `true` se l'utente è stato confermato, `false` altrimenti.
+- *`created_at TIMESTAMPTZ`*: Data di creazione dell'utente.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento dei dati dell'utente.
+
+===== `tenants`
+La tabella `tenants` rappresenta l'insieme dei tenant inseriti nel sistema e presenta i seguenti attributi:
+- *`id UUID`*: Primary key, UUID del tenant.
+- *`name VARCHAR(256) NOT NULL`*: Nome del tenant.
+- *`can_impersonate BOOLEAN NOT NULL`*: `true` se il tenant è impersonabile, `false` altrimenti.
+
+==== Tabelle nello schema `tenant_<uuid>`
+
+===== `confirm_tokens`
+La tabella `confirm_tokens` rappresenta i token di conferma account creati per i Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `forgot_password_tokens`
+La tabella `super_admin_forgot_password_tokens` rappresenta i token di modifica password dimenticata creati per i Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`token VARCHAR`*: Primary key, il token stesso codificato in base 64.
+- *`user_id BIGINT NOT NULL`*: ID dell'utente a cui è associato il token, è foreign key su `super_admins.id`
+- *`created_at TIMESTAMPTZ`*: Data di creazione del token.
+- *`expires_at TIMESTAMPTZ`*: Data di scadenza del token.
+
+===== `tenant_members`
+La tabella `tenant_members` rappresenta l'insieme dei Tenant Member inseriti nel tenant con UUID `<uuid>` e presenta i seguenti attributi:
+- *`id BIGINT`*: Primary key, ID autoincrementale dell'utente.
+- *`email VARCHAR(256) NOT NULL`*: Indirizzo email dell'utente, unico nella tabella
+- *`name VARCHAR(128) NOT NULL`*: Nome dell'utente.
+- *`password VARCHAR(128)`*: Password dell'utente, pari a `NULL` se l'utente non è ancora stato confermato (vd. campo `confirmed`).
+- *`confirmed BOOLEAN`*: `true` se l'utente è stato confermato, `false` altrimenti.
+- *`role VARCHAR(32)`*: Il ruolo specifico dell'utente, può assumere il valore `tenant_user` o `tenant_member`.
+- *`created_at TIMESTAMPTZ`*: Data di creazione dell'utente.
+- *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento dei dati dell'utente.
+
 
 == Architettura di deployment <archit-deploy>
 === Diagramma di deployment <deploy-diagram>
@@ -4400,8 +6123,8 @@ Il Deployment Diagram illustra come le istanze dei container siano effettivament
 
 Le responsabilità sono separate tra l'Edge Node, il Cloud e l'interfaccia utente (User Device).
 Nel primo risiede l'istanza del Gateway Simulator, che viene rappresentata come un'entità autonoma al di fuori del nodo centrale, in modo da rappresentare in modo più realistico l'infrastruttura su cui si dovrebbe basare il sistema. Qualora si decidesse di implementare quest'ultima in una successiva iterazione del progetto, ciò impedirebbe di causare modifiche a cascata obbligatorie verso altre aree dell'architettura.
-L'infrastruttura Cloud rimane l'ambiente di esecuzione principale dove vivono i diversi *microservizi*, per lo più in nodi indipendenti. Oltre ai database per la persistenza dei dati e al nodo di monitoraggio (che ospita Prometheus e Grafana), sono presenti nodi con componenti multi-istanza, ovvero:
-- Message Broker, che ospita istanze di NATS JetStream.
+L'infrastruttura Cloud rimane l'ambiente di esecuzione principale dove vivono i diversi *microservizi*, per lo più in nodi indipendenti. Oltre ai database per la persistenza dei dati e al nodo di monitoraggio (che ospita #gloss[Prometheus] e #gloss[Grafana]), sono presenti nodi con componenti multi-istanza, ovvero:
+- Message Broker, che ospita istanze di #gloss[NATS JetStream].
 - API Backend e Data Consumer, dedicati all'esecuzione dei container di business logic.
 User Device rappresenta l'ambiente di esecuzione lato client. Qui il nodo è il Web Browser, all'interno del quale viene distribuita ed eseguita l'istanza della Dashboard Angular.
 

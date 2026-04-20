@@ -30,6 +30,7 @@ ok      Gateway/tests/externalDatabases 1.403s  coverage: [no statements]
 ok      Gateway/tests/integrationTests  6.366s  coverage: [no statements]
 ```
 Con i possibili valori iniziali:
+
 - `ok`: test superato con successo;
 - `FAIL`: test fallito;
 - `?`: test non eseguito, ad esempio per l'assenza di file di test nella cartella.
@@ -60,7 +61,7 @@ Per eseguire i *test di sistema* è necessario eseguire i seguenti comandi nella
 ```bash
 `docker compose --env-file Infrastructure/.env --env-file .env  up -d` 
 ```
-1. Per eseguire i test di sistema, è necessario eseguire il comando all'interno del container **e2e-tests**, il quale usa Playwright{{gloss}}. Il comando in question è il seguente:
+2. Per eseguire i test di sistema, è necessario eseguire il comando all'interno del container **e2e-tests**, il quale usa Playwright{{gloss}}. Il comando in question è il seguente:
 ```bash
 docker compose --env-file Infrastructure/.env  --env-file .env -f docker-compose.yml exec -T -e APP_URL=http://frontend -e PYTHONDONTWRITEBYTECODE=1 e2e-tests python -B -m pytest -q tests
 ```
