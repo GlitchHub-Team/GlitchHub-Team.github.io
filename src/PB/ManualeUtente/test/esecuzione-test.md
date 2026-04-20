@@ -30,6 +30,7 @@ ok      Gateway/tests/externalDatabases 1.403s  coverage: [no statements]
 ok      Gateway/tests/integrationTests  6.366s  coverage: [no statements]
 ```
 Con i possibili valori iniziali:
+
 - `ok`: test superato con successo;
 - `FAIL`: test fallito;
 - `?`: test non eseguito, ad esempio per l'assenza di file di test nella cartella.
