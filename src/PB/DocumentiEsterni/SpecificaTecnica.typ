@@ -32,6 +32,15 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.13.0",
+      "20/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [
+        Miglioramento sezione @design-patterns
+      ],
+    ),
+    (
       "0.10.0",
       "17/04/2026",
       "Elia Ernesto Stellin",
