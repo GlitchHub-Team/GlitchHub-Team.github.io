@@ -778,5 +778,13 @@
     {
         "term": "Embedding",
         "definition": "Funzionalità di @{Go} che consente di inserire campi di una struct all'interno di un'altra, consentendo di applicare un meccanismo simile all'ereditarietà nei linguaggi object-oriented. Si noti che l'embedding avviene solamente sugli *attributi* e non sui metodi della struct in considerazione."
+    },
+    {
+        "term": "Goroutine",
+        "definition": "Primitiva di @{Go} che consente di eseguire una qualunque funzione, nominata o anonima, su un thread di esecuzione concorrente leggero senza doverla dichiarare esplicitamente come asincrona."
+    },
+    {
+        "term": "Schema (SQL)",
+        "definition": "Nel contesto dei database SQL, corrisponde a un raggruppamento nominato di tabelle e viste separato dal resto a cui si possono assegnare regole di accesso specifiche."
     }
 ]
