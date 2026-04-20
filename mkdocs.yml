@@ -6,16 +6,52 @@ site_url: https://glitchhub-team.github.io/ManualeUtente/
 
 nav:
   - Introduzione: index.md
-  - Concetti:
-      - Tipi di utenti: concetti/tipi-utenti.md
-      - Architettura del Sistema: concetti/architettura-sistema.md
+  - Glossario: glossary.md
+  - Concetti di dominio:
+      - Autenticazione: concetti/autenticazione.md
+      - Ruoli utente: concetti/ruoli-utente.md
+      - Comandi per gateway e sensori: concetti/comandi.md
+      - Profili GATT supportati: concetti/profili.md
       - Microservizi:
           - Gateway: concetti/microservizi/gateway.md
           - Data Consumer: concetti/microservizi/data-consumer.md
           - Dashboard: concetti/microservizi/dashboard.md
-          - Auth: concetti/microservizi/auth.md
-          - User: concetti/microservizi/user.md
-          - Tenant: concetti/microservizi/tenant.md
+          - Observability: concetti/microservizi/observability.md
+  - Guide:
+      - Gateway:
+          - Comandi per gateway e sensori: guide/gateway/comandi.md
+          - Creazione ed eliminazione gateway: guide/gateway/create-delete-gateway.md
+          - Creazione ed eliminazione sensore: guide/gateway/create-delete-sensor.md
+          - Commissioning e decommissioning gateway: guide/gateway/commission-decommission-gateway.md
+          - Interruzione e ripresa gateway: guide/gateway/interrupt-resume-gateway.md
+          - Interruzione e ripresa sensore: guide/gateway/interrupt-resume-sensor.md
+          - Reset e riavvio gateway: guide/gateway/reboot-reset-gateway.md
+          - Invio dati IoT: guide/gateway/invio-dati.md
+          - Invio messaggio Hello: guide/gateway/hello.md
+      - Data Consumer:
+          - Ricezione dati IoT: guide/data-consumer/ricezione-dati.md
+      - Dashboard Frontend:
+          - Accesso e autenticazione: guide/dashboard-frontend/01-accesso-autenticazione.md
+          - Interfaccia principale: guide/dashboard-frontend/02-interfaccia-principale.md
+          - Dashboard e monitoraggio: guide/dashboard-frontend/03-dashboard-monitoraggio.md
+          - Gestione gateway e sensori: guide/dashboard-frontend/04-gestione-gateway-sensor.md
+          - Gestione tenant e utenti: guide/dashboard-frontend/05-gestione-tenant-user.md
+          - Problemi: guide/dashboard-frontend/06-problemi.md
+      - Dashboard Backend:
+          - Autenticazione: guide/dashboard-backend/auth.md
+          - Gestione utenti: guide/dashboard-backend/user.md
+          - Gestione tenant: guide/dashboard-backend/tenant.md
+          - Gestione gateway: guide/dashboard-backend/gateway.md
+          - Gestione sensori: guide/dashboard-backend/sensor.md
+          - Comandi per gateway e sensori: guide/dashboard-backend/comandi-sensor-gateway.md
+          - Ricezione dati storici: guide/dashboard-backend/dati-storici.md
+          - Ricezione dati in tempo reale: guide/dashboard-backend/dati-real-time.md
+      - Observability:
+          - Metriche del backend: guide/observability/metriche-backend.md
+          - Metriche di NATS: guide/observability/metriche-nats.md
+          - Metriche di JetStream: guide/observability/metriche-jetstream.md
+  - Test:
+      - Esecuzione test: test/esecuzione-test.md
   - Installazione:
       - Requisiti:
           - Requisiti Hardware: installazione/requisiti/requisiti-hw.md
@@ -23,14 +59,6 @@ nav:
       - Preparazione del Sistema:
           - Installazione del Software: installazione/preparazione-del-sistema/01-installazione-sw.md
           - Personalizzare la configurazione: installazione/preparazione-del-sistema/02-configurare-ms.md
-          - Avviare il Sistema: installazione/preparazione-del-sistema/03-avvio-sistema.md
-  - Guide:
-      - Effettuare il login: guide/login.md
-  - Telemetria:
-      - Configurazione di Grafana: telemetria/config.md
-      - Importare e modificare una dashboard: telemetria/dashboard.md
-#  - Riferimento API:
-#      -
 
 theme:
   name: material
@@ -39,7 +67,11 @@ theme:
     primary: deep-purple
     accent: cyan
 
+plugins:
+  - markdownextradata
+
 extra:
+  gloss: '<sub>G</sub>'
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/GlitchHub-Team

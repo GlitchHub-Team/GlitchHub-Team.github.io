@@ -1,20 +1,14 @@
 # Dashboard
-
-Il microservizio **Dashboard** offre l'interfaccia utente e le API per la gestione del sistema e la visualizzazione dei dati.
+Il microservizio **Dashboard** offre l'interfaccia utente e le API per gestire e visualizzare i dati dei sensori, i gateway, i tenant e gli utenti.
 
 ## Funzioni principali
 
-- visualizzazione dei dati dei sensori in tempo reale e storici
-- gestione dei gateway, dei tenant e degli utenti
-- presentazione di notifiche, allarmi e report
-- integrazione con il backend di autenticazione per sessioni sicure
-
-## Componenti
-
-- frontend web responsivo per l'interazione utente
-- backend di API per il recupero dati e la gestione della configurazione
-- database per le impostazioni della dashboard e i profili utente
+- Creazione e gestione tenant
+- Gestione utenti con ruoli diversi (**Super Admin**, **Tenant Admin**, **Tenant User**)
+- Gestione gateway e sensori simulati, con possibilità di invio comandi per la modifica della configurazione
+- Visualizzazione dello storico dei dati acquisiti dai sensori, con possibilità di filtraggio per intervallo temporale
+- Visualizzazione dei dati prodotti dai sensori in tempo reale
+- Autenticazione via JWT{{gloss}} per permettere la scalabilità orizzontale del servizio
 
 ## Scopo
-
-Permettere agli utenti autorizzati di monitorare lo stato del sistema, esplorare i dati acquisiti e gestire le risorse multi-tenant.
+Fornire un'interfaccia utente semplice e intuitiva per la gestione del sistema da parte di diversi tipi di utenti con diversi livelli di accesso e diverse responsabilità.

@@ -13,7 +13,7 @@
     "Michele Dioli",
     "Riccardo Graziani",
     "Siria Salvalaio",
-    "Hossan Ezzemouri",
+    "Hossam Ezzemouri",
   ),
   distribuzione: (
     "GlitchHub Team",

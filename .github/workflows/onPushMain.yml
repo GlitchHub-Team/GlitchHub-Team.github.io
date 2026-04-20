@@ -94,7 +94,7 @@ jobs:
           cache: 'pip'
 
       - name: Install MkDocs
-        run: pip install mkdocs-material
+        run: pip install mkdocs-material mkdocs-markdownextradata-plugin
 
       - name: Run MkDocs
         run: python3 -m mkdocs build
