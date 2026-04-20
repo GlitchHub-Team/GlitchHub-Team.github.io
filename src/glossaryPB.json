@@ -81,7 +81,7 @@
     },
     {
         "term": "Committente",
-        "definition": "Nel _progetto didattico_ lo sono i docenti e hanno lo scopo di: misurare il progresso con due revisioni, regolare il progetto didattico e valutarlo"
+        "definition": "Nel _progetto didattico_ lo sono i docenti e hanno lo scopo di: misurare il progresso con due revisioni, regolare il progetto didattico e valutarlo."
     },
     {
         "term": "Proponente",
@@ -101,11 +101,11 @@
     },
     {
         "term": "Valutazione capitolati",
-        "definition": "Documento in cui il gruppo, secondo i pareri dei diversi componenti, elabora un pensiero comune riguardo ogni @{capitolato d'appalto}"
+        "definition": "Documento in cui il gruppo, secondo i pareri dei diversi componenti, elabora un pensiero comune riguardo ogni @{capitolato d'appalto}."
     },
     {
         "term": "Capitolato d'appalto",
-        "definition": "Documento redatto dalla @{proponente} con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative (@{requisito utente}{requisiti utente})"
+        "definition": "Documento redatto dalla @{proponente} con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative (@{requisito utente}{requisiti utente})."
     },
     {
         "term": "Way of working",
@@ -245,7 +245,7 @@
     },
     {
         "term": "GraphQL",
-        "definition": "Linguaggio di query per @{API} che permette ai client di richiedere esattamente i dati necessari e ridurre l'_over-fetching_, ovvero la ricezione di dati non necessari"
+        "definition": "Linguaggio di query per @{API} che permette ai client di richiedere esattamente i dati necessari e ridurre l'_over-fetching_, ovvero la ricezione di dati non necessari."
     },
     {
         "term": "Node.js",
@@ -325,7 +325,7 @@
     },
     {
         "term": "Architettura/Design",
-        "definition": "Descrive come il sistema è organizzato internamente: componenti, interazioni e tecnologia scelta. Indica come verranno soddisfatti i requisiti software. Ne è responsabile il _progettista_"
+        "definition": "Descrive come il sistema è organizzato internamente: componenti, interazioni e tecnologia scelta. Indica come verranno soddisfatti i requisiti software. Ne è responsabile il _progettista_."
     },
     {
         "term": "Stakeholder",
@@ -349,7 +349,7 @@
     },
     {
         "term": "Processo di ciclo di vita",
-        "definition": "Sono l'insieme di attività che guidano, secondo best practice, un cambio di fase all'interno di un prodotto software (es: concezione -> sviluppo). Un processo è composto da attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_, secondo _regole definite_, consumando _risorse_ nel farlo"
+        "definition": "Sono l'insieme di attività che guidano, secondo best practice, un cambio di fase all'interno di un prodotto software (es: concezione -> sviluppo). Un processo è composto da attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_, secondo _regole definite_, consumando _risorse_ nel farlo."
     },
     {
         "term": "Modello di ciclo di vita",
@@ -425,7 +425,7 @@
     },
     {
         "term": "Test Driven Development",
-        "definition": "Tecnica di sviluppo in cui prima si scrivono i test, poi il codice necessario a soddisfarli ed infine si ristruttura il codice. Garantisce verificabilità e qualità"
+        "definition": "Tecnica di sviluppo in cui prima si scrivono i test, poi il codice necessario a soddisfarli ed infine si ristruttura il codice. Garantisce verificabilità e qualità."
     },
     {
         "term": "Verifica",
@@ -457,7 +457,7 @@
     },
     {
         "term": "CD",
-        "definition": "Insieme di pratiche di automazione del rilascio software. Vd. @{Continuous Delivery} e @{Continuous Deployment}"
+        "definition": "Insieme di pratiche di automazione del rilascio software. Vd. @{Continuous Delivery} e @{Continuous Deployment}."
     },
     {
         "term": "Continuous Delivery",
@@ -497,7 +497,7 @@
     },
     {
         "term": "Super Admin",
-        "definition": "Utente autenticato con poteri di amministrazione globali a tutti i @{tenant} associati alla piattaforma @{cloud}"
+        "definition": "Utente autenticato con poteri di amministrazione globali a tutti i @{tenant} associati alla piattaforma @{cloud}."
     },
     {
         "term": "API Client",
@@ -529,7 +529,7 @@
     },
     {
         "term": "Sospensione (sensore)",
-        "definition": "@{comando (gateway)}{Comando} inviato al @{gateway} associato a un sensore specifico, per interrompere l'invio dei dati da esso ricevuti alla piattaforma @{Cloud}. Si noti che la sospensione non spegne completamente il sensore interessato"
+        "definition": "@{comando (gateway)}{Comando} inviato al @{gateway} associato a un sensore specifico, per interrompere l'invio dei dati da esso ricevuti alla piattaforma @{Cloud}. Si noti che la sospensione non spegne completamente il sensore interessato."
     },
     {
         "term": "Riattivazione (sensore)",
@@ -657,7 +657,7 @@
     },
     {
         "term": "Wildcard - NATS",
-        "definition": "Carattere speciale utilizzato nei soggetti di @{NATS} per rappresentare uno o più livelli di soggetti. Il wildcard '\\*' rappresenta un singolo livello, mentre '>' rappresenta tutti i livelli successivi. Esempio: 'sensors.\\*' corrisponde a 'sensors.temperature' e 'sensors.humidity', mentre 'sensors.>' corrisponde a tutti i soggetti che iniziano con 'sensors.'"
+        "definition": "Carattere speciale utilizzato nei soggetti di @{NATS} per rappresentare uno o più livelli di soggetti. Il wildcard '\\*' rappresenta un singolo livello, mentre '>' rappresenta tutti i livelli successivi. Esempio: 'sensors.\\*' corrisponde a 'sensors.temperature' e 'sensors.humidity', mentre 'sensors.>' corrisponde a tutti i soggetti che iniziano con 'sensors.'."
     },
     {
         "term": "JWT",
@@ -749,7 +749,7 @@
     },
     {
         "term": "Fire-and-forget",
-        "definition": "Modalità di comunicazione in cui un client invia una richiesta a un server senza attendere una risposta ed in cui il server deve essere in ascolto in quell'esatto momento per ricevere la richiesta, altrimenti questa viene persa. Un esempio di comunicazione fire-and-forget è @{NATS}"
+        "definition": "Modalità di comunicazione in cui un client invia una richiesta a un server senza attendere una risposta ed in cui il server deve essere in ascolto in quell'esatto momento per ricevere la richiesta, altrimenti questa viene persa. Un esempio di comunicazione fire-and-forget è @{NATS}."
     },
     {
         "term": "Dependency Injection",
@@ -765,7 +765,7 @@
     },
     {
         "term": "Role-Based Access Control",
-        "definition": "Modello per autorizzare accesso dell'utente finale a risorse specifiche in base al ruolo da questi ricoperto. Nel contesto del progetto, i ruoli sono @{Tenant User}, @{Tenant Admin}, @{Super Admin}"
+        "definition": "Modello per autorizzare accesso dell'utente finale a risorse specifiche in base al ruolo da questi ricoperto. Nel contesto del progetto, i ruoli sono @{Tenant User}, @{Tenant Admin}, @{Super Admin}."
     },
     {
         "term": "RBAC",
