@@ -2467,7 +2467,7 @@ Il package `historical_data` presenta un controller che si occupa di ricevere le
 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
-- *`getSensorHistoricalDataUseCase GetSensorHistoricalDataUseCase`*: Riferimento all'use case usato per ottenere i dati storici dei gateway
+- *`getSensorHistoricalDataUseCase GetSensorHistoricalDataUseCase`*: Riferimento allo _use case_ usato per ottenere i dati storici dei gateway
 
 *Metodi*:
 Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
@@ -2498,28 +2498,29 @@ I DTO usati da `Controller` sono i seguenti:
 
 ====== GetSensorHistoricalDataUseCase
 *Metodi:*
-- *`GetSensorHistoricalData(cmd GetSensorHistoricalDataCommand) ([]HistoricalSample, error)`*: Ottiene i dati storici di un sensore specifico tramite il comando GetSensorHistoricalDataCommand. Restituisce una lista di campioni storici o un errore in caso di fallimento
+- *`GetSensorHistoricalData(cmd GetSensorHistoricalDataCommand) ([]HistoricalSample, error)`*: Ottiene i dati storici di un sensore specifico tramite il comando `cmd`. Restituisce una lista di campioni storici o un errore in caso di fallimento
 
 ===== Commands
 I comandi usati dagli _use case_ di `Controller` sono i seguenti:
 - *`GetSensorHistoricalDataCommand`* : Comando usato per ottenere i dati storici di un sensore specifico, contiene i seguenti campi:
-  - `SensorId`: UUID del sensore per cui ottenere i dati storici
-  - `TenantId`: UUID del tenant a cui il sensore è associato
-  - `From`: data di inizio del periodo per cui ottenere i dati storici
-  - `To`: data di fine del periodo per cui ottenere i dati storici
-  - `requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i dati
+  - `SensorId uuid.UUID`: UUID del sensore per cui ottenere i dati storici
+  - `TenantId uuid.UUID`: UUID del tenant a cui il sensore è associato
+  - `From time.Time`: data di inizio del periodo per cui ottenere i dati storici
+  - `To time.Time`: data di fine del periodo per cui ottenere i dati storici
+  - `requester identity.Requester`: struct `Requester` contenente i dati di autenticazione dell'utente che ha richiesto i dati
 
 ===== Services
 
 ====== GetHistoricalDataService
-Implemeta le interfacce GetSensorHistoricalDataUseCase
+*Interfacce implementate*:
+- `GetSensorHistoricalDataUseCase`
 
 *Attributi*
 
 - *`getHistoricalDataPort GetHistoricalDataPort,`*: _Outbound port_ usata per ottenere i dati storici di un sensore specifico
 - *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni su uno specifico tenant
 
-*Funzione di costruzione* :NewGetHistoricalDataService(getHistoricalDataPort GetHistoricalDataPort, getTenantPort tenant.GetTenantPort,) \*GetHistoricalDataService 
+*Funzione di costruzione*: `NewGetHistoricalDataService(getHistoricalDataPort GetHistoricalDataPort, getTenantPort tenant.GetTenantPort,) *GetHistoricalDataService`
 
 ===== Dominio
 
@@ -2552,7 +2553,7 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 
 
 ===== Outbound adapter per database -– HistoricalDataTimescaleAdapter
-HistoricalDataTimescaleAdapter è l’outbound port usata per comunicare con il database per ottenere i dati storici dei sensori, traducendo l’interfaccia di dominio nell’interfaccia di TimescaleDB e viceversa.
+`HistoricalDataTimescaleAdapter` è l’_outbound port_ usata per comunicare con il database per ottenere i dati storici dei sensori, traducendo l’interfaccia di dominio nell’interfaccia di TimescaleDB e viceversa.
 
 *Interfacce implementate*
 - *`GetHistoricalDataPort`*
@@ -2572,16 +2573,21 @@ HistoricalDataTimescaleAdapter è l’outbound port usata per comunicare con il 
 ==== Package `infra`
 
 
-Il package `infra` contiene tutti i componenti infrastrutturali dell'applicazione: gestione crittografica (hashing e JWT), connessione e migrazione dei database, middleware HTTP, routing, metriche, messaggistica NATS e utilità trasversali. È il livello più esterno dell'architettura esagonale e costituisce l'insieme degli _outbound adapter_ e dei componenti di supporto tecnico al dominio.
-
-// TODO: mettere svg
-/*
-#figure(
-  image("../../assets/c4/backend/infra/infra.svg", width:100%),
-  caption: [Cloud Backend -- Overview del package `infra`],
-)
-*/
-
+La cartella `infra` contiene tutti i componenti _platform-dependent_ dell'applicazione, comprese le implementazioni delle interfacce definite in `shared`. All'interno della cartella si trova:
+- Package `infra/crypto`, per la gestione dei metodi crittografici definiti in `shared/crypto`.
+- Package `infra/database`, comprendente i package per la gestione connessione e migrazione dei database. Dentro la cartella, vi sono presenti i seguenti sub-package:
+  - `infra/database/cloud_db`, per la gestione del Cloud DB.
+  - `infra/database/pagination`, per la gestione della paginazione nei database.
+  - `infra/database/schema`, per la gestione degli #gloss[schema] di tutti i database.
+  - `infra/database/sensor_db`, per la gestione del Sensor DB.
+- Package `infra/metrics`, per esporre via HTTP le metriche rilevate da Grafana.
+- Package `infra/modules`, per accentrare i moduli fx dell'applicativo in un unico luogo
+- Cartella `infra/transport`, comprendente i package per la gestione del transport layer, ovvero dello specifico strato di comunicazione con il client. Questa cartella comprende:
+  - `infra/transport/http` per la gestione della comunicazione su #gloss[HTTP]
+  - `infra/transport/nats` per la gestione della comunicazione su #gloss[NATS]
+  - `infra/transport/ws` per la gestione della comunicazione su #gloss[Websocket]
+middleware HTTP, routing, metriche, messaggistica NATS e utilità trasversali. È il livello più esterno dell'architettura esagonale e costituisce l'insieme degli _outbound adapter_ e dei componenti di supporto tecnico al dominio.
+- Package `infra/utils`, per utility cross-cutting.
 ==== Package `infra/crypto`
 
 Il sub-package `crypto` fornisce le primitive crittografiche usate dall'applicazione: hashing sicuro delle password tramite bcrypt, generazione e verifica di token JWT, e generazione di token opachi per operazioni come il reset della password.
@@ -2626,12 +2632,12 @@ Struct concreta che implementa la generazione di token (non JWT), usati ad esemp
 
 *Attributi:*
 - *`hasher crypto.SecretHasher`*: Riferimento all'hasher usato per hashare il token generato
-- *`decodedTokenLength int`*: Lunghezza del token grezzo prima della codifica
+- *`decodedTokenLength int`*: Lunghezza del token grezzo prima della codifica in Base64
 - *`encoding base64.Encoding`*: Encoding base64 usato per la serializzazione del token
 - *`tokenDuration time.Duration`*: Durata di validità del token generato
 
 *Metodi:*
-- *`GenerateToken() (string, string, error)`*: Genera una coppia di token: il token in chiaro e il token hashato. Restituisce entrambi i valori o un errore in caso di fallimento.
+- *`GenerateToken() (string, string, error)`*: Genera una coppia di token: il token in chiaro e il suo hash. Restituisce entrambi i valori o un errore in caso di fallimento.
 - *`ExpiryFromNow() time.Time`*: Calcola e restituisce il timestamp di scadenza del token a partire dal momento corrente.
 
 *Funzione di costruzione:* `NewMainTokenGenerator(hasher crypto.SecretHasher, cfg *config.Config) *MainTokenGenerator`
@@ -2689,9 +2695,9 @@ Interfaccia interna che rispecchia `migrate.CloudDBMigrator` e definisce il cont
 
 ===== Funzioni del package `cloud_db`
 
-- *`migrateAll(tenantRepo tenant.TenantRepository, migrator localCloudMigrator, setDefaultData bool) error`*: Esegue la migrazione completa del database: schema pubblico e schema di tutti i tenant esistenti. Se `setDefaultData` è `true`, popola anche i dati di default. Restituisce un errore in caso di fallimento.
-- *`populatePublicDefaultData(migrator localCloudMigrator) error`*: Popola lo schema pubblico del database con i dati di default. Restituisce un errore in caso di fallimento.
-- *`populateTenantDefaultData(migrator localCloudMigrator) error`*: Popola lo schema di un tenant con i dati di default. Restituisce un errore in caso di fallimento.
+- *`migrateAll(tenantRepo tenant.TenantRepository, migrator localCloudMigrator, setDefaultData bool) error`*: Esegue la migrazione completa del database: #gloss[schema] pubblico e schema di tutti i tenant esistenti. Se `setDefaultData` è `true`, popola anche i dati di default. Restituisce un errore in caso di fallimento.
+- *`populatePublicDefaultData(migrator localCloudMigrator) error`*: Popola lo #gloss[schema] pubblico del database con i dati di default. Restituisce un errore in caso di fallimento.
+- *`populateTenantDefaultData(migrator localCloudMigrator) error`*: Popola lo #gloss[schema] di un tenant con i dati di default. Restituisce un errore in caso di fallimento.
 
 ==== Package `infra/database/cloud_db/connection`
 
@@ -2701,11 +2707,11 @@ Il sub-package `connection` gestisce la connessione al database cloud (PostgreSQ
 
 - *`NewCloudDbConnection(log *zap.Logger, cfg *config.Config) (CloudDBConnection, error)`*: Crea e restituisce una nuova connessione al cloud DB. Restituisce un errore se la connessione fallisce.
 - *`SetCloudDbLifecycle(lc fx.Lifecycle, log *zap.Logger, cfg *config.Config, cloudDB CloudDBConnection)`*: Registra gli hook di avvio e arresto della connessione al cloud DB nel lifecycle Fx.
-- *`WithTenantSchema(tenantId string, table dbPackage.Tabler) func(*gorm.DB) *gorm.DB`*: Restituisce una funzione di scope GORM che imposta lo schema del tenant corretto per la tabella specificata. Usata per eseguire query nel contesto dello schema PostgreSQL del tenant.
+- *`WithTenantSchema(tenantId string, table dbPackage.Tabler) func(*gorm.DB) *gorm.DB`*: Restituisce una funzione di scope GORM che imposta lo #gloss[schema] del tenant corretto per la tabella specificata. Usata per eseguire query nel contesto dello schema PostgreSQL del tenant.
 
 ==== Package `infra/database/cloud_db/migrate`
 
-Il sub-package `migrate` si occupa della migrazione effettiva degli schemi del cloud DB, sia per lo schema pubblico sia per gli schemi per-tenant.
+Il sub-package `migrate` si occupa della migrazione effettiva degli #gloss[schema] del cloud DB, sia per lo #gloss[schema] pubblico sia per gli #gloss[schema] per-tenant.
 
 ===== `CloudDBMigrator`
 
@@ -2814,7 +2820,7 @@ Il sub-package `modules` centralizza la configurazione del dependency injection 
 
 ==== Package `infra/nats`
 
-Il sub-package `nats` fornisce le funzioni di utilità per stabilire connessioni al broker NATS/JetStream, inclusa la gestione dei metodi di autenticazione supportati.
+Il sub-package `nats` fornisce le funzioni di utilità per stabilire connessioni al broker NATS JetStream, inclusa la gestione dei metodi di autenticazione supportati.
 
 ===== Funzioni del package `nats`
 
@@ -2879,47 +2885,47 @@ I DTO seguenti sono campi atomici e componibili tramite embedding:
   - `TenantId \*string`
 
 - *`UserIdField`*: Campo per l'ID numerico dell'utente.
-  - `UserId uint `
+  - `UserId uint`
 
 - *`UserRoleField`*: Campo per il ruolo dell'utente. I valori ammessi sono: `tenant_user`, `tenant_admin`, `super_admin`.
-  - `UserRole string `
+  - `UserRole string`
 
 - *`UsernameField`*: Campo per lo username dell'utente.
-  - `Username string `
+  - `Username string`
 - *`EmailField`*: Campo per l'indirizzo email.
-  - `Email string `
+  - `Email string`
 - *`GatewayIdField`*: Campo per l'UUID del gateway.
-  - `GatewayId string `
+  - `GatewayId string`
 - *`GatewayNameField`*: Campo per il nome del gateway.
-  - `GatewayName string `
+  - `GatewayName string`
 
 - *`GatewayIntervalField`*: Campo per l'intervallo del gateway (in millisecondi, deve essere > 0).
   - `Interval int64 `
 
 - *`SensorIdField`*: Campo per l'UUID del sensore.
-  - `SensorId string `
+  - `SensorId string`
 
 - *`TenantNameField`*: Campo per il nome del tenant.
-  - `TenantName string `
+  - `TenantName string`
 
 - *`TimestampField`*: Campo per un timestamp in formato `time.Time`.
-  - `Timestamp time.Time `
+  - `Timestamp time.Time`
 
 - *`Pagination`*: Campi per la paginazione delle liste. `Page` minimo 1, `Limit` compreso tra 1 e 200.
-  - `Page int `
-  - `Limit int `
+  - `Page int`
+  - `Limit int`
 
 ===== DTO condivisi per le password
 
 - *`PasswordField`*: Campo per verificare la password corrente di un utente (minimo 8 caratteri).
-  - `Password string `
+  - `Password string`
 
 - *`NewPasswordField`*: Campo per impostare una nuova password in contesti dove l'entità non aveva password in precedenza (minimo 8 caratteri). Per il cambio password (vecchia + nuova), usare `ChangePasswordFields`.
-  - `NewPassword string `
+  - `NewPassword string`
 
 - *`ChangePasswordFields`*: Campi per il cambio password: la nuova password deve essere diversa dalla vecchia (validazione `nefield=OldPassword`).
-  - `OldPassword string `
-  - `NewPassword string `
+  - `OldPassword string`
+  - `NewPassword string`
 
 ===== DTO composti
 
@@ -2927,21 +2933,21 @@ I DTO seguenti sono campi atomici e componibili tramite embedding:
 - *`TenantMemberUriDTO`*: DTO che incorpora `TenantIdField` e `UserIdField`.
 - *`SuperAdminUriDTO`*: DTO che incorpora `UserIdField`.
 - *`TokenFields`*: Campi per l'identificazione di un token: il token stesso e il tenant ID opzionale a cui appartiene.
-  - `Token string `
+  - `Token string`
   - `TenantIdField_NotRequired`
 
 - *`CommissionTokenField`*: Campo per il token di commissioning di un gateway.
-  - `CommissionToken string `
+  - `CommissionToken string`
 
 ===== DTO per le risposte
 
 - *`CommandResponse`*: DTO di risposta generica per operazioni di comando.
-  - `Success bool `
-  - `Message string `
+  - `Success bool`
+  - `Message string`
 
 - *`ListInfo`*: DTO contenente le informazioni di paginazione restituite nelle risposte di lista.
-  - `Count uint `: numero di elementi nella pagina corrente
-  - `Total uint `: numero totale di elementi
+  - `Count uint`: numero di elementi nella pagina corrente
+  - `Total uint`: numero totale di elementi
 
 ===== DTO per i dati dei sensori
 
@@ -2994,7 +3000,7 @@ Struct generica concreta che implementa `DataSampleNATSDto`. Contiene tutti i ca
 ===== Funzioni del package `transport/nats/dto`
 
 - *`MapRawToDataSampleNATSDto(profile sensorProfile.SensorProfile, raw json.RawMessage) (DataSampleNATSDto, error)`*: Mappa il payload grezzo `raw` nel tipo concreto `ConcreteDataSampleNATSDto[T]` corretto (rappresentato dall'interfaccia `DataSampleNATSDto`), dove `T` è determinato in modo forzato in base al parametro `profile`. Restituisce un errore se il profilo non è riconosciuto o se la decodifica fallisce.
-- *`mapRawToDto[T any](raw json.RawMessage) (\*ConcreteDataSampleNATSDto[T], error)`*: Funzione generica interna che deserializza `raw` nel tipo `ConcreteDataSampleNATSDto[T]`. Restituisce un errore se la deserializzazione fallisce.
+- *`mapRawToDto[T any](raw json.RawMessage) (*ConcreteDataSampleNATSDto[T], error)`*: Funzione generica interna che deserializza `raw` nel tipo `ConcreteDataSampleNATSDto[T]`. Restituisce un errore se la deserializzazione fallisce.
 
 ==== Package `infra/utils`
 
@@ -3622,7 +3628,7 @@ Struct di configurazione dell'applicativo. Quasi tutti i suoi attributi sono cam
 - *`AppURL string`*: URL su cui si trova il front-end dell'applicativo. Viene usato dal package email per l'invio dei token di conferma/cambio password
 - *`Port string`*: Porta su cui aprire il backend
 - *`MailAdapter string`*: Quale mail adapter utilizzare, può assumere i valori:
-  - `terminl"` per evitare di inviare email, ma mostrarne il contenuto su terminale
+  - `terminal"` per evitare di inviare email, ma mostrarne il contenuto su terminale
   - `smtp` per inviare i messaggi email alle coordinate SMTP specificate nei campi che iniziano con `SMTP`
 - *`BcryptCost StringInt`*: Fattore di costo per algoritmo bcrypt per hashing delle password
 - *`TokenLength StringInt`*: Lunghezza in byte di un token di sicurezza
@@ -3729,17 +3735,17 @@ Il package `tenant` presenta un controller che si occupa di ricevere le richiest
 
 #figure(
   image("../../assets/c4/backend/tenant/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram di `tenant - Controller`],
+  caption: [Cloud Backend -- Code Diagram di `tenant.Controller`],
 )
 
 
 *Attributi*:
 - *`log *zap.Logger`*: Riferimento al logger zap
-- *`createTenantUseCase CreateTenantUseCase`*: _Inbound port_ per  creare un tenant
-- *`deleteTenantUseCase DeleteTenantUseCase`*: _Inbound port_ per  eliminare un tenant
-- *`getTenantUseCase GetTenantUseCase`*: _Inbound port_ per  ottenere informazioni su un tenant
-- *`getTenantListUseCase GetTenantListUseCase`*: _Inbound port_ per  ottenere una lista,con paginazione , di tenant
-- *`getAllTenantsUseCase GetAllTenantsUseCase`*: _Inbound port_ per  ottenere tutti i tenant
+- *`createTenantUseCase CreateTenantUseCase`*: _Inbound port_ per creare un tenant
+- *`deleteTenantUseCase DeleteTenantUseCase`*: _Inbound port_ per eliminare un tenant
+- *`getTenantUseCase GetTenantUseCase`*: _Inbound port_ per ottenere informazioni su un tenant specifico
+- *`getTenantListUseCase GetTenantListUseCase`*: _Inbound port_ per ottenere una lista paginata di tenant
+- *`getAllTenantsUseCase GetAllTenantsUseCase`*: _Inbound port_ per ottenere la lista di tutti i tenant
 
 *Metodi*:
 Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in output via HTTP, se presenti.
@@ -3762,15 +3768,15 @@ Per ogni metodo si riporta il DTO ottenuto in input e il DTO restituito in outpu
 I DTO usati da `Controller` sono i seguenti:
 
 - *`CreateTenantDTO`*: DTO usato per creare un nuovo tenant, contiene i seguenti campi:
-  - `TenantId string`: stringa rappresentante l'uuid del tenant
+  - `TenantId string`: stringa rappresentante lo UUID del tenant
   - `Name string`: stringa rappresentante il nome del tenant
   - `CanImpersonate bool`: booleano che indica se il tenant può essere impersonato dal super admin
 
 - *`DeleteTenantDTO`*: DTO usato per eliminare un tenant, contiene i seguenti campi:
-  - `TenantId string`: stringa rappresentante l'uuid del tenant da eliminare
+  - `TenantId string`: stringa rappresentante lo UUID del tenant da eliminare
 
 - *`GetTenantDTO`*: DTO usato per ottenere informazioni su un tenant, contiene i seguenti campi:
-  - `TenantId string`: stringa rappresentante l'uuid del tenant
+  - `TenantId string`: stringa rappresentante lo UUID del tenant
 
 - *`GetTenantListDTO`*: DTO usato per ottenere una lista di tenant, contiene i seguenti campi:
   - `Page int`: intero rappresentante la pagina da visualizzare
@@ -3791,7 +3797,7 @@ Di seguito sono riportate le _inbound ports_ del package.
 
 #figure(
   image("../../assets/c4/backend/tenant/service.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram di `tenant - inbound ports`],
+  caption: [Cloud Backend -- Code Diagram di _inbound ports_ di `tenant`],
 )
 
 
@@ -3823,7 +3829,7 @@ I comandi usati dagli _use case_ di `Controller` sono i seguenti:
   - `TenantId uuid.UUID`: UUID del tenant da eliminare
   - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per eliminare un tenant
 
-- *`GetTenantListCommand`*: Comando usato per ottenere i gateway di un tenants specifico, contiene i seguenti campi:
+- *`GetTenantListCommand`*: Comando usato per ottenere i gateway di un tenant specifico, contiene i seguenti campi:
   - `Requester identity.Requester`: Dati dell'utente richiedente (vd. @code-shared-identity) che vengono usati per il #gloss[RBAC], usato per verificare se l'utente ha i permessi per ottenere una lista di tenant
   - `Limit int`: intero rappresentante il numero di tenant da visualizzare per pagina
   - `Page int`: intero rappresentante la pagina da visualizzare
@@ -3836,30 +3842,32 @@ I comandi usati dagli _use case_ di `Controller` sono i seguenti:
 ===== Services
 
 ====== TenantService
-Implemeta le interfacce: 
+Struct di _business logic_ per la gestione CRUD dei tenant nel sistema.
+
+*Interfacce implementate*
 - *`CreateTenantPort`* 
 - *`DeleteTenantPort`* 
 - *`GetTenantPort`* 
 - *`GetTenantsPort`*
 
 *Attributi*
-- *`createTenantPort CreateTenantPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
-- *`deleteTenantPort DeleteTenantPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
-- *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
-- *`getTenantsPort GetTenantsPort`*: _Outbound port_ usata per ottenere informazioni sui token per la reimpostazione della password
+- *`createTenantPort CreateTenantPort`*: _Outbound port_ usata per creare un nuovo tenant.
+- *`deleteTenantPort DeleteTenantPort`*: _Outbound port_ usata per eliminare un tenant esistente.
+- *`getTenantPort GetTenantPort`*: _Outbound port_ usata per ottenere informazioni su un tenant esistente.
+- *`getTenantsPort GetTenantsPort`*: _Outbound port_ usata per ottenere informazioni su più tenant esistenti.
 
-*Funzione di costruzione* :`NewTenantService (createTenantPort CreateTenantPort, deleteTenantPort DeleteTenantPort, getTenantPort GetTenantPort, getTenantsPort GetTenantsPort) * TenantService`
+*Funzione di costruzione* :`NewTenantService (createTenantPort CreateTenantPort, deleteTenantPort DeleteTenantPort, getTenantPort GetTenantPort, getTenantsPort GetTenantsPort) *TenantService`
 
 
 ===== Dominio
 
 ====== Tenant
-Rappresento i tenant dell'applicazione, che rappresentano le organizzazioni che utilizzano la piattaforma.
+Rappresenta un tenant inserito nel sistema, a livello di business logic_
 
 *Attributi:*
 - *`ID uuid.UUID`*: UUID del tenant a cui il token è associato
-- *`Name string`*: nome del tenant
-- *`CanImpersonate bool`*: booleano che indica se il tenant può essere impersonato dal super admin
+- *`Name string`*: Nome del tenant
+- *`CanImpersonate bool`*: Booleano che indica se il tenant può essere impersonato dal super admin
 
 
 *Metodi:*
@@ -3867,14 +3875,14 @@ Rappresento i tenant dell'applicazione, che rappresentano le organizzazioni che 
 - *`GetId() uuid.UUID`*: Restituisce l'UUID del tenant
 
 
-=====  Outbound ports –- Database
+=====  Outbound ports -- Database
 In questa sezione sono riportate le descrizioni delle outbound port che hanno la responsabilità di comunicare con il database.
 
 
 
 #figure(
   image("../../assets/c4/backend/tenant/adapter.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram di `tenant - outbound ports`],
+  caption: [Cloud Backend -- Code Diagram di _outbound ports_ di `tenant`],
 )
 
 
@@ -3898,7 +3906,7 @@ In questa sezione sono riportate le descrizioni delle outbound port che hanno la
 
 
 ===== Outbound adapter per database –- TenantPostgreAdapter
-TenantPostgreAdapter è l’outbound port usata per comunicare con il database per le operazioni CRUD sui tenant, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
+`TenantPostgreAdapter` è l’outbound port usata per comunicare con il database per le operazioni CRUD sui tenant, traducendo l’interfaccia di dominio nell’interfaccia di PostgreSQL e viceversa.
 
 *Interfacce implementate*
 - *`CreateTenantPort`*
@@ -3928,7 +3936,7 @@ Rappresenta l'entità di database dei tenant, usata per comunicare con PostgreSQ
 
 ====== TenantPostgreRepository
 
-Struct concreta che implementa TenantRepository, in modo tale da comunicare con PostgreSQL.
+Struct concreta che implementa `TenantRepository`, in modo tale da comunicare con PostgreSQL.
 
 *Attributi*
 - *`db clouddb.CloudDBConnection`*: Riferimento al database PostgreSQL
