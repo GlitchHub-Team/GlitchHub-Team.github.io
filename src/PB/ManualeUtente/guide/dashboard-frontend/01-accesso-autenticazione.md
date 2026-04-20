@@ -22,7 +22,7 @@ L'attivazione di un nuovo profilo è un passaggio che avviene a seguito della cr
 Il flusso di attivazione prevede i seguenti step:
 
 - **Ricezione invito**: l'utente riceve un'email (intercettabile tramite tool come #gloss("Mailtrap") in ambiente di test) contenente un link di attivazione univoco.
-- **Accesso alla pagina**: cliccando sul link, l'utente arriva sulla pagina di **conferma** dell'account, che estrae automaticamente il token{{gloss}} e il **tenantId** dai parametri dell'URL.
+- **Accesso alla pagina**: cliccando sul link, l'utente arriva sulla pagina di **conferma** dell'account, che estrae automaticamente il **token** e il **tenantId** dai parametri dell'URL.
 - **Impostazione credenziali**: l'utente deve definire la propria password tramite il form della conferma account.
    - La password deve essere lunga almeno 8 caratteri;
    - Il sistema convalida in tempo reale che la password di conferma coincida con quella inserita.
