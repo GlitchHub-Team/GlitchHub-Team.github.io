@@ -33,6 +33,15 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.14.0",
+      "20/04/2026",
+      "Elia Ernesto Stellin",
+      "",
+      [
+        Aggiunta sezione @tracciamento-requisiti
+      ]
+    ),
+    (
       "0.13.0",
       "20/04/2026",
       "Alessandro Dinato",
@@ -43,7 +52,7 @@
     ),
     (
       "0.12.0",
-      "17/04/2026",
+      "20/04/2026",
       "Michele Dioli",
       "Elia Ernesto Stellin",
       [Aggiunte sezioni  @backend-auth, @backend-gateway, @backend-historical_data, @backend-infra, @backend-tenant],
@@ -6128,7 +6137,293 @@ L'infrastruttura Cloud rimane l'ambiente di esecuzione principale dove vivono i 
 - API Backend e Data Consumer, dedicati all'esecuzione dei container di business logic.
 User Device rappresenta l'ambiente di esecuzione lato client. Qui il nodo è il Web Browser, all'interno del quale viene distribuita ed eseguita l'istanza della Dashboard Angular.
 
-= Stato dei requisiti funzionali
-== Stato per requisito <stato-requisito>
+= Tracciamento dei requisiti <tracciamento-requisiti>
+In questa sezione è riportato lo stato della copertura dei requisiti descritti nel documento di #gloss[Analisi dei Requisiti].
+
+In questa sezione, si utilizza la seguente notazione per indicare lo stato di un requisito:
+- *S* ("Soddisfatto"): Rappresenta un requisito che è stato soddisfatto nel prodotto, implementando i relativi sistemi che esso richiede;
+- *NS* ("Non Soddisfatto"): Rappresenta un requisito che *non* è stato soddisfatto nel prodotto.
+
+
+#LISTA-RF
+
+#let tracciamento-stato-req = (lista-req) => {
+  let tracc-req = ()
+  let conteggio-req = (
+    "Obb": (0, 0),  // (soddisfatti, totali)
+    "Des": (0, 0),
+    "Opt": (0, 0),
+  )
+  let tracc-req-S = ()
+  let tracc-req-NS = ()
+
+  for req in lista-req {
+    tracc-req.push([#req.codice])
+    tracc-req.push(req.desc)
+    tracc-req.push(req.stato)
+    if req.stato == "S" {
+      conteggio-req.at(req.urgenza).at(0) += 1
+      tracc-req-S.push([#req.codice])
+    }
+    else {
+      tracc-req-NS.push([#req.codice])
+    }
+    conteggio-req.at(req.urgenza).at(1) += 1
+  }
+
+  return (tracc-req, conteggio-req, tracc-req-S, tracc-req-NS)
+}
+
+== Tracciamento requisiti funzionali <tracciamento-rf>
+#let (tracc-rf, conteggio-rf, tracc-rf-S, tracc-rf-NS) = tracciamento-stato-req(LISTA-RF)
+
+=== Tracciamento requisito--stato
+
+#columns(1)[
+  #tabella-paginata(
+    table(
+      align: horizon,
+      columns: 3,
+      table.header(
+        [*Codice*], [*Descrizione*], [*Stato*]
+      ),
+      ..tracc-rf,
+    ),
+    [Tracciamento dello stato dei requisiti funzionali],
+    label-id: "tracciamento-rf"
+  )
+]
+
+#if tracc-rf-S != () [
+  === Requisiti funzionali soddisfatti
+  #columns(3)[
+    #tabella-paginata(
+      table(
+        align: horizon,
+        columns: 1,
+        table.header(
+          [*Codice*],
+        ),
+        ..tracc-rf-S,
+      ),
+      [Lista dei requisiti funzionali soddisfatti],
+      label-id: "tracciamento-rf-s"
+    )
+  ]
+]
+
+#if tracc-rf-NS != () [
+  === Requisiti funzionali non soddisfatti
+  #columns(3)[
+    #tabella-paginata(
+      table(
+        align: horizon,
+        columns: 1,
+        table.header(
+          [*Codice*],
+        ),
+        ..tracc-rf-NS,
+      ),
+      [Lista dei requisiti funzionali non soddisfatti],
+      label-id: "tracciamento-rf-ns"
+    )
+  ]
+]
+
+== Tracciamento requisiti non funzionali <tracciamento-rnf>
+#let (tracc-rnf, conteggio-rnf, tracc-rnf-S, tracc-rnf-NS) = tracciamento-stato-req(LISTA-RNF)
+
+=== Tracciamento requisito--stato
+
+#columns(1)[
+  #tabella-paginata(
+    table(
+      align: horizon,
+      columns: 3,
+      table.header(
+        [*Codice*], [*Descrizione*], [*Stato*]
+      ),
+      ..tracc-rnf,
+    ),
+    [Tracciamento dello stato dei requisiti non funzionali],
+    label-id: "tracciamento-rnf"
+  )
+]
+
+#if tracc-rnf-S != () [
+  === Requisiti non funzionali soddisfatti
+  #columns(1)[
+    #tabella-paginata(
+      table(
+        align: horizon,
+        columns: 1,
+        table.header(
+          [*Codice*],
+        ),
+        ..tracc-rnf-S,
+      ),
+      [Lista dei requisiti non funzionali soddisfatti],
+      label-id: "tracciamento-rnf-s"
+    )
+  ]
+]
+
+
+#if tracc-rnf-NS != () [
+  === Requisiti non funzionali non soddisfatti
+  #columns(3)[
+    #tabella-paginata(
+      table(
+        align: horizon,
+        columns: 1,
+        table.header(
+          [*Codice*],
+        ),
+        ..tracc-rnf-NS,
+      ),
+      [Lista dei requisiti non funzionali non soddisfatti],
+      label-id: "tracciamento-rnf-ns"
+    )
+  ]
+]
+
+== Tracciamento requisiti di dominio <tracciamento-rnf>
+#let (tracc-rd, conteggio-rd, tracc-rd-S, tracc-rd-NS) = tracciamento-stato-req(LISTA-RD)
+
+=== Tracciamento requisito--stato
+
+#columns(1)[
+  #tabella-paginata(
+    table(
+      align: horizon,
+      columns: 3,
+      table.header(
+        [*Codice*], [*Descrizione*], [*Stato*]
+      ),
+      ..tracc-rd,
+    ),
+    [Tracciamento dello stato dei requisiti di dominio],
+    label-id: "tracciamento-rd"
+  )
+]
+
+#if tracc-rnf-S != () [
+  === Requisiti di dominio soddisfatti
+  #columns(1)[
+    #tabella-paginata(
+      table(
+        align: horizon,
+        columns: 1,
+        table.header(
+          [*Codice*],
+        ),
+        ..tracc-rd-S,
+      ),
+      [Lista dei requisiti di dominio soddisfatti],
+      label-id: "tracciamento-rd-s"
+    )
+  ]
+]
+
+
+#if tracc-rnf-NS != () [
+  === Requisiti di dominio non soddisfatti
+  #columns(1)[
+    #tabella-paginata(
+      table(
+        align: horizon,
+        columns: 1,
+        table.header(
+          [*Codice*],
+        ),
+        ..tracc-rd-NS,
+      ),
+      [Lista dei requisiti di dominio non soddisfatti],
+      label-id: "tracciamento-rd-ns"
+    )
+  ]
+]
+
+
 
 == Grafici riassuntivi <grafici>
+
+=== Conteggio requisiti soddisfatti
+
+// Requisiti soddisfatti
+#let rf-obb  = conteggio-rf .at("Obb").at(0)
+#let rnf-obb = conteggio-rnf.at("Obb").at(0)
+#let rd-obb  = conteggio-rd .at("Obb").at(0)
+
+#let rf-des  = conteggio-rf .at("Des").at(0)
+#let rnf-des = conteggio-rnf.at("Des").at(0)
+#let rd-des  = conteggio-rd .at("Des").at(0)
+
+#let rf-opt  = conteggio-rf .at("Opt").at(0)
+#let rnf-opt = conteggio-rnf.at("Opt").at(0)
+#let rd-opt  = conteggio-rd .at("Opt").at(0)
+
+#let rf-tot-s = rf-obb + rf-des + rf-opt
+#let rnf-tot-s = rnf-obb + rnf-des + rnf-opt
+#let rd-tot-s = rd-obb + rd-des + rd-opt
+
+#let obb-tot-s = rf-obb + rnf-obb + rd-obb
+#let des-tot-s = rf-des + rnf-des + rd-des
+#let opt-tot-s = rf-opt + rnf-opt + rd-opt
+
+#let tot-s = obb-tot-s + des-tot-s + opt-tot-s
+
+// Requisiti totali
+#let rf-obb-tot  = conteggio-rf .at("Obb").at(1)
+#let rnf-obb-tot = conteggio-rnf.at("Obb").at(1)
+#let rd-obb-tot  = conteggio-rd .at("Obb").at(1)
+
+#let rf-des-tot  = conteggio-rf .at("Des").at(1)
+#let rnf-des-tot = conteggio-rnf.at("Des").at(1)
+#let rd-des-tot  = conteggio-rd .at("Des").at(1)
+
+#let rf-opt-tot  = conteggio-rf .at("Opt").at(1)
+#let rnf-opt-tot = conteggio-rnf.at("Opt").at(1)
+#let rd-opt-tot  = conteggio-rd .at("Opt").at(1)
+
+#let rf-tot = rf-obb-tot + rf-des-tot + rf-opt-tot
+#let rnf-tot = rnf-obb-tot + rnf-des-tot + rnf-opt-tot
+#let rd-tot = rd-obb-tot + rd-des-tot + rd-opt-tot
+
+#let obb-tot = rf-obb-tot + rnf-obb-tot + rd-obb-tot
+#let des-tot = rf-des-tot + rnf-des-tot + rd-des-tot
+#let opt-tot = rf-opt-tot + rnf-opt-tot + rd-opt-tot
+
+#let tot = obb-tot + des-tot + opt-tot
+
+#let perc = (num, dem) => {
+  if dem == 0 { return "-"}
+
+  let p = calc.round(100 * num / dem, digits: 2)
+
+  return str(p) + "%"
+}
+
+// TODO: usare #tabella-paginata per aggiungere didascalia e qualche parolina sulle tabelle
+
+#table(
+    columns: 5,
+    table.header(
+      [*Tipologia*], [*RF*],      [*RNF*],      [*RD*],      [*TOTALE*],
+    ),
+    [*Obb*],       [#rf-obb],   [#rnf-obb],   [#rd-obb],   [*#obb-tot-s*],
+    [*Des*],       [#rf-des],   [#rnf-des],   [#rd-des],   [*#des-tot-s*],
+    [*Opt*],       [#rf-opt],   [#rnf-opt],   [#rd-opt],   [*#opt-tot-s*],
+    [*Totale*],    [#rf-tot-s], [#rnf-tot-s], [#rd-tot-s], [*#tot-s*],
+)
+
+#table(
+    columns: 5,
+    table.header(
+    [*Tipologia*], [*RF*],                        [*RNF*],                        [*RD*],                        [*TOTALE*],
+    ),
+    [*Obb*],       [#perc(rf-obb, rf-obb-tot)],   [#perc(rnf-obb, rnf-obb-tot)],   [#perc(rd-obb, rd-obb-tot)],   [*#perc(obb-tot-s, obb-tot)*],
+    [*Des*],       [#perc(rf-des, rf-des-tot)],   [#perc(rnf-des, rnf-des-tot)],   [#perc(rd-des, rd-des-tot)],   [*#perc(des-tot-s, des-tot)*],
+    [*Opt*],       [#perc(rf-opt, rf-opt-tot)],   [#perc(rnf-opt, rnf-opt-tot)],   [#perc(rd-opt, rd-opt-tot)],   [*#perc(opt-tot-s, opt-tot)*],
+    [*Totale*],    [#perc(rf-tot-s, rf-tot)],     [#perc(rnf-tot-s, rnf-tot)],     [#perc(rd-tot-s, rd-tot)],     [*#perc(tot-s, tot)*],
+)
