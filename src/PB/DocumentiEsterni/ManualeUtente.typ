@@ -6,6 +6,20 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.0.0",
+      "20/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Approvazione versione stabile del documento],
+    ),
+    (
+      "0.7.0",
+      "20/04/2026",
+      "Siria Salvalaio",
+      "Riccardo Graziani",
+      [Stesura guida Dashboard Frontend (@dashboard-frontend)],
+    ),
+    (
       "0.6.1",
       "19/04/2026",
       "Alessandro Dinato",
@@ -58,8 +72,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Manuale Utente",
 )
 
