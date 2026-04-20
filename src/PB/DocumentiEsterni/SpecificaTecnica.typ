@@ -38,7 +38,7 @@
       "Elia Ernesto Stellin",
       "Michele Dioli",
       [
-        Implementata modifica suggerita nella verifica di v0.11.0
+        Implementate modifiche suggerite nella verifica di v0.11.0
       ]
     ),
     (
@@ -4432,7 +4432,7 @@ La tabella `gateways` rappresenta l'insieme di gateway inseriti nel sistema e pr
 - *`status VARCHAR(50) NOT NULL`*: Stato del gateway, può assumere i valori `'inactive'` o `'active'`.
 - *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
 - *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
-- *`public_identifier VARCHAR(255)`*: Stringa che identifica pubblicamente il gateway, se pari a `NULL` significa che il gateway non ha inviato il messaggio di hello al Cloud Backend.
+- *`public_identifier VARCHAR(255)`*: Stringa che identifica pubblicamente il gateway, se pari a `NULL` significa che il gateway non ha inviato il messaggio di hello al Cloud Backend e il gateway simulato non ha segnato nel DB locale l'identificatore pubblico.
 - *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
 
 ===== `sensors`
