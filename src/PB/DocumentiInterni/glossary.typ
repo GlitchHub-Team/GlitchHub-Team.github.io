@@ -6,6 +6,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.0.0",
+      "20/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Approvazione versione stabile del documento],
+    ),
+    (
       "0.6.0",
       "25/03/2026",
       "Alessandro Dinato",
