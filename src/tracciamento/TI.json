@@ -146,7 +146,7 @@
   {
     "id": "TI-Creazione-SuperAdmin-Integrazione",
     "descr": "InterruptSensorIntegration: Verifica il flusso end-to-end di creazione di un super amministratore.",
-    "expected": "Il flusso di creazione super admin viene completato con successo, creando il super admin nel database",
+    "expected": "Il flusso di creazione Super Admin viene completato con successo, creando il Super Admin nel database",
     "state": "S"
   },
   {
@@ -164,7 +164,7 @@
   {
     "id": "TI-Eliminazione-SuperAdmin-Integrazione",
     "descr": "DeleteTenantIntegration: Verifica il flusso end-to-end di eliminazione di un super amministratore.",
-    "expected": "Il flusso di eliminazione super admin viene completato con successo, rimuovendo il super admin dal database",
+    "expected": "Il flusso di eliminazione Super Admin viene completato con successo, rimuovendo il Super Admin dal database",
     "state": "S"
   },
   {
@@ -212,7 +212,7 @@
   {
     "id": "TI-Recupero-SuperAdmin-Integrazione",
     "descr": "DeleteTenantAdminIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un super amministratore.",
-    "expected": "Il flusso di recupero super admin viene completato con successo, restituendo i dati del super admin",
+    "expected": "Il flusso di recupero Super Admin viene completato con successo, restituendo i dati del Super Admin",
     "state": "S"
   },
   {
@@ -230,7 +230,7 @@
   {
     "id": "TI-Recupero-SuperAdmins-Integrazione",
     "descr": "GetTenantAdminListIntegration: Verifica il flusso end-to-end di recupero della lista di super amministratori.",
-    "expected": "Il flusso di recupero super admin viene completato con successo, restituendo la lista dei super admin",
+    "expected": "Il flusso di recupero Super Admin viene completato con successo, restituendo la lista dei Super Admin",
     "state": "S"
   },
   {

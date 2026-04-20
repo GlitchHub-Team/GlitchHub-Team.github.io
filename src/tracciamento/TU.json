@@ -1183,7 +1183,7 @@
   },
   {
     "id": "TU-AppShell-TenantAdminNav",
-    "descr": "AppShellPage: Verifica che per utenti SUPER ADMIN la side-bar includa un divisore/section divider e che per altri ruoli il divisore sia assente.",
+    "descr": "AppShellPage: Verifica che per utenti Super Admin la side-bar includa un divisore/section divider e che per altri ruoli il divisore sia assente.",
     "expected": "Divider visibile per SUPER_ADMIN, assente per altri ruoli",
     "state": "S"
   },
@@ -1237,7 +1237,7 @@
   },
   {
     "id": "TU-Dashboard-SuperAdminImpersonate",
-    "descr": "DashboardPage: Verifica che per utenti SUPER ADMIN la pagina gestisca i tenant passati via query param e rispetti il flag di impersonazione.",
+    "descr": "DashboardPage: Verifica che per utenti Super Admin la pagina gestisca i tenant passati via query param e rispetti il flag di impersonazione.",
     "expected": "GetTenant invocato per tenant dalla query; navigazione o loadDashboard dipende da canImpersonate",
     "state": "S"
   },
@@ -1537,7 +1537,7 @@
   },
   {
     "id": "TU-UserManager-SuperAdminTenant",
-    "descr": "UserManagerPage: Verifica che, se l'utente è SUPER ADMIN con tenant id in URL, la pagina risolva il tenant (chiamando il servizio tenant) e recuperi gli utenti per quel tenant.",
+    "descr": "UserManagerPage: Verifica che, se l'utente è Super Admin con tenant id in URL, la pagina risolva il tenant (chiamando il servizio tenant) e recuperi gli utenti per quel tenant.",
     "expected": "Tenant risolto e lista utenti recuperata per il tenant id dell'URL.",
     "state": "S"
   },
@@ -1549,7 +1549,7 @@
   },
   {
     "id": "TU-UserManager-LoadTenants",
-    "descr": "UserManagerPage: Verifica che, se SUPER ADMIN vede il contesto TENANT ADMIN senza tenant id, vengano caricati i tenant disponibili e non vengano recuperati gli utenti finché non viene scelto un tenant.",
+    "descr": "UserManagerPage: Verifica che, se Super Admin vede il contesto Tenant Admin senza tenant id, vengano caricati i tenant disponibili e non vengano recuperati gli utenti finché non viene scelto un tenant.",
     "expected": "Lista tenant caricata; utenti non recuperati fino alla selezione di un tenant.",
     "state": "S"
   },
@@ -1561,7 +1561,7 @@
   },
   {
     "id": "TU-UserManager-OnTabChange",
-    "descr": "onTabChange: Verifica che cambiando tab (onTabChange) la pagina alterni il ruolo (TENANT USER / TENANT ADMIN) e ricarichi gli utenti con il tenant id corretto.",
+    "descr": "onTabChange: Verifica che cambiando tab (onTabChange) la pagina alterni il ruolo (Tenant User/ Tenant Admin) e ricarichi gli utenti con il tenant id corretto.",
     "expected": "Ruolo di contesto cambiato e utenti ricaricati per ruolo e tenant id correnti.",
     "state": "S"
   },
@@ -1627,13 +1627,13 @@
   },
   {
     "id": "TU-UserManager-TenantBanner",
-    "descr": "UserManagerPage: Verifica che, se SUPER ADMIN visualizza il contesto TENANT USER con tenant id, venga mostrato un banner del tenant con il nome e due pulsanti di azione.",
+    "descr": "UserManagerPage: Verifica che, se Super Admin visualizza il contesto Tenant Usercon tenant id, venga mostrato un banner del tenant con il nome e due pulsanti di azione.",
     "expected": "Banner tenant mostrato con nome e due pulsanti di azione.",
     "state": "S"
   },
   {
     "id": "TU-UserManager-NoBanner",
-    "descr": "UserManagerPage: Verifica che il banner del tenant non venga mostrato per sessioni non SUPER ADMIN o per contesti che non lo richiedono.",
+    "descr": "UserManagerPage: Verifica che il banner del tenant non venga mostrato per sessioni non Super Admin o per contesti che non lo richiedono.",
     "expected": "Banner non visibile in sessioni non SUPER_ADMIN o contesti non applicabili.",
     "state": "S"
   },
@@ -1657,7 +1657,7 @@
   },
   {
     "id": "TU-UserForm-Validation",
-    "descr": "UserFormDialog: Verifica che le validazioni sul form richiedano username e email obbligatori, che l'email abbia formato valido, che per TENANT ADMIN il tenant id sia obbligatorio e che salvare con form invalido marchi i campi senza eseguire la chiamata.",
+    "descr": "UserFormDialog: Verifica che le validazioni sul form richiedano username e email obbligatori, che l'email abbia formato valido, che per Tenant Admin il tenant id sia obbligatorio e che salvare con form invalido marchi i campi senza eseguire la chiamata.",
     "expected": "Validazioni applicate e salvataggio invalido non invoca il servizio.",
     "state": "S"
   },
