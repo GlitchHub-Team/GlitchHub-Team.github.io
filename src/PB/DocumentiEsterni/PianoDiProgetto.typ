@@ -4025,7 +4025,7 @@ Nonostante ciò, sono stati completati tutti i package necessari per il funziona
 Per il resto del periodo, il gruppo si è quindi focalizzato nella stesura di diversi documenti, tra cui il test book richiesto dalla proponente ed utilizzato durante la riunione riguardo lo stato del prodotto avvenuta in data 13 aprile e documentata nell'apposito verbale.
 
 === Rischi occorsi
-*RO1* (@RO1): Come previsto il numero delle attività da svolgere e la scoperta di qualche bug ha impedito di completare tutte le issue programmate, ma il gruppo è riuscito a mantenere basso il numero di quelle da posticipare. L'obiettivo principale dello sprint, ovvero completare la parte funzionale di condice, rimane comunque compiuto, grazie al tempestivo intervento dei membri. Infatti, le issue da recuperare nel prossimo sprint sono principalmente di documentazione.
+*RO1* (@RO1): Come previsto il numero delle attività da svolgere e la scoperta di qualche bug ha impedito di completare tutte le issue programmate, ma il gruppo è riuscito a mantenere basso il numero di quelle da posticipare. L'obiettivo principale dello sprint, ovvero completare la parte funzionale di codice, rimane comunque compiuto, grazie al tempestivo intervento dei membri. Infatti, le issue da recuperare nel prossimo sprint sono principalmente di documentazione.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
@@ -4123,24 +4123,24 @@ Altre attività includono la correzione di qualche errore con le metriche di _ob
 === Compiti da svolgere
 Il gruppo ha svolto con successo i seguenti compiti: \
 Issue relative a sprint 17: \
-  - [PdQ] Aggiornare metriche (#issue(496))
-  - [ST] Cloud Backend (#issue(522))
-  - [ST] Tracciamento requisiti (#issue(525))
-  - [Backend] Togliere requester check da GetTenantList (#issue(120, repo: "dashboard"))
-  - [Backend] creazione test get gateway (#issue(143, repo: "dashboard"))
-  - Risolvere problema di scraping delle metriche gin (#issue(6, repo: "infra"))
-  - [Backend] Fixare scraping metriche gin  (#issue(153, repo: "dashboard"))
-  - Test di Sistema (#issue(158, repo: "dashboard"))
-  - [AdR] Revisione (#issue(543))
-  - [PdP] Sprint 16 (#issue(547))
-  - [MU] Perfezionamento manuale utente backend, installazione (#issue(544))
-  - Rendicontazione ore responsabile sprint 17 (#issue(545))
-  - [MU] Sezione frontend (#issue(549))
-  - [PdQ] Rendicontare test di unità/integrazione (#issue(550))
-  - [ST] Revisione primi 3 livelli C4 model (#issue(553))
-  - [ST] Sezione su Cloud DB (#issue(559))
-  - [MU] Perfezionamento manuale utente observability (#issue(548))
-  - [ST] Fix diagramma UserApiClientService (#issue(557))
+- [PdQ] Aggiornare metriche (#issue(496))
+- [ST] Cloud Backend (#issue(522))
+- [ST] Tracciamento requisiti (#issue(525))
+- [Backend] Togliere requester check da GetTenantList (#issue(120, repo: "dashboard"))
+- [Backend] creazione test get gateway (#issue(143, repo: "dashboard"))
+- Risolvere problema di scraping delle metriche gin (#issue(6, repo: "infra"))
+- [Backend] Fixare scraping metriche gin  (#issue(153, repo: "dashboard"))
+- Test di Sistema (#issue(158, repo: "dashboard"))
+- [AdR] Revisione (#issue(543))
+- [PdP] Sprint 16 (#issue(547))
+- [MU] Perfezionamento manuale utente backend, installazione (#issue(544))
+- Rendicontazione ore responsabile sprint 17 (#issue(545))
+- [MU] Sezione frontend (#issue(549))
+- [PdQ] Rendicontare test di unità/integrazione (#issue(550))
+- [ST] Revisione primi 3 livelli C4 model (#issue(553))
+- [ST] Sezione su Cloud DB (#issue(559))
+- [MU] Perfezionamento manuale utente observability (#issue(548))
+- [ST] Fix diagramma UserApiClientService (#issue(557))
 
 === Rischi attesi
 *RT2* (@RT2): L'esecuzione dei test di sistema è un'attività che potrebbe far emergere bug di integrazione imprevisti, necessitando l'investimento di tempo nella loro risoluzione. Se ciò capita spesso, potrebbe comportare un ritardo.

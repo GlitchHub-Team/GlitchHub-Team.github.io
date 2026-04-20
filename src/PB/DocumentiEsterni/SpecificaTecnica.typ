@@ -532,42 +532,61 @@ Di seguito si trovano l'elenco dei componenti scelti, con breve spiegazione dell
 
 
 = Architettura <architettura>
-L'architettura del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema.
+L'*architettura di deployment* del sistema è basata su un modello a *microservizi*, in cui ogni componente funzionale viene eseguito come un'unità indipendente e isolata per garantire la massima resilienza dell'intero ecosistema.
 
-
-// TODO: li inserirei dove sono serviti, non come collezione di cose usate. poiché sono degli strumenti atti a risolvere dei problemi.
 == Design Patterns <design-patterns>
-I design pattern sono stati selezionati per garantire che l'architettura a microservizi sia flessibile e scalabile, rispettando gli obiettivi di manutenibilità definiti nel capitolato.
+I design pattern sono stati selezionati per risolvere problemi specifici sorti durante la progettazione del sistema.
 
 === Strategy
 ==== Descrizione
-Il pattern Strategy è un design pattern comportamentale che permette di definire una famiglia di algoritmi, incapsularli in strutture separate e renderli intercambiabili a runtime. Questo approccio consente di variare il comportamento di un componente senza modificarne la logica di controllo principale.
+Il pattern _Strategy_ è un design pattern comportamentale che permette di definire una famiglia di algoritmi, incapsularli in strutture separate e renderli intercambiabili a runtime. Questo approccio consente di variare il comportamento di un componente senza modificarne la logica di controllo principale.
 
 ==== Motivi per la scelta
-Nel nostro sistema, il #gloss[Gateway] simulato deve gestire l'invio di dati #gloss[IoT] provenienti da sensori con caratteristiche profondamente diverse. L'uso dello Strategy permette di isolare la logica di generazione del dato di ogni specifico sensore, rendendo il gateway scalabile e pronto a supportare nuovi profili BLE senza dover riscrivere il core del simulatore.
+Nel nostro sistema, il #gloss[Gateway] simulato deve gestire l'invio di dati #gloss[IoT] provenienti da sensori con caratteristiche profondamente diverse. L'uso dello *Strategy Pattern* permette di isolare la logica di generazione del dato di ogni specifico sensore, permettendo al simulatore di creare diversi sensori, i quali hanno la capacità di generare tipologie di dati radicalmente diverse.
 
 ==== Utilizzo nel progetto
-//TODO: più avanti quando l'architettura è più stabile
+#figure(
+  image("../../assets/c4/designPatterns/strategyPatternSensorData.pdf", width: 100%),
+  caption: [Strategy Pattern per la generazione dei dati dei sensori],
+)
+
+È possibile notare che nel diagramma sono supportati cinque diversi tipi di #gloss[profili GATT], tuttavia il pattern offre la possibilità di aggiungerne illimitatamente o di modificarli a piacimento. Ciò rende l'architettura flessibile e futuribile per implementazioni e modifiche future.
 
 === Command
 ==== Descrizione
 Il pattern _Command_ è un design pattern comportamentale che incapsula una richiesta come un oggetto, permettendo così di parametrizzare i client con diverse richieste, instradarle o metterle in coda. Questo approccio separa l'oggetto che invoca l'operazione da quello che sa come eseguirla, facilitando la gestione di operazioni complesse e asincrone.
 
 ==== Motivi per la scelta
-La scelta del pattern _Command_ è fondamentale per gestire la comunicazione tra il #gloss[Cloud] Layer e l'Edge Layer. Poiché l'invio di istruzioni ai gateway avviene tramite un Message broker (NATS) in modalità asincrona, il pattern permette di trattare ogni comando come un'entità autonoma. Ciò garantisce la tracciabilità delle operazioni, la possibilità di gestire i log degli esiti e assicura che il Cloud Backend rimanga reattivo senza dover attendere l'esecuzione immediata sul gateway fisico o simulato.
+La scelta del pattern _Command_ è fondamentale per gestire i comandi che i microservizio *Cloud Backend* invia al microservizio *Gateway*.\
+Poiché l'invio di istruzioni ai gateway avviene tramite #gloss[NATS] in modalità *request-reply*, il pattern permette di incapsulare i dati della richiesta all'interno di un tipo di comando concreto, che però implementa un'interfaccia comune.\
+Ciò permette al comando di essere inoltrato verso il gateway o il sensore interessato, attraverso un channel condiviso tra il manager e il destinatario del comando.
 
 ==== Utilizzo nel progetto
-//TODO: più avanti quando l'architettura è più stabile
+#figure(
+  image("../../assets/c4/designPatterns/commandPattern.pdf", width: 100%),
+  caption: [Command Pattern per la gestione dei comandi all'interno di *Gateway*],
+)
 
-=== Adapter
+Si può notare, dalla suddetta immagine, che il *GatewayManagerService* ha il compito di creare i comandi fornendo tutto ciò di cui necessitano, successivamente verranno inviati alla *goroutine* che simula il gateway o il sensore destinatario attraverso un channel di tipo *chan BaseCommand*.\
+Questo pattern ha reso possibile la creazione di un'astrazione dei comandi con lo scopo di semplificare l'aggiunta di nuovi comandi e permettere l'invio sullo stesso canale di comandi di diverso tipo.
+
+=== Object Adapter
 ==== Descrizione
-L'Adapter è un design pattern strutturale che funge da intermediario tra due componenti con interfacce incompatibili. Agisce come un wrapper (involucro) che traduce i dati o le chiamate di un "fornitore" nel formato atteso dal "ricevente", permettendo loro di collaborare senza dover modificare il codice originale delle parti coinvolte.
+L'_Object Adapter_ è un design pattern strutturale che funge da intermediario tra due componenti con interfacce incompatibili.\
+Agisce come un traduttore che converte i dati o le chiamate di un client nel formato atteso, permettendo di collaborare senza dover modificare il codice originale delle parti coinvolte.
 
 ==== Motivi per la scelta
-La scelta di questo pattern è dettata dalla necessità di gestire l'eterogeneità dei sensori fisici simulati. Poiché ogni sensore può esporre dati secondo profili #gloss[BLE] differenti o protocolli specifici, l'Adapter permette di uniformare queste informazioni prima che entrino nel cuore del sistema. Questo garantisce che il #gloss[Cloud] Layer sia completamente agnostico rispetto alla sorgente fisica del dato, semplificando la manutenzione e l'aggiunta di nuovi dispositivi.
+La scelta di questo pattern è dettata dalla scelta dell'architettura logica di ogni microservizio.\
+Infatti la scelta è ricaduta fin da subito sull'*architettura esagonale* (vedi @archit-esagonale) per permettere un'isolamento della business logic ed una flessibilità nella sostituzione delle tecnologie di persistenza e comunicazione.\
+Ciò implica l'utilizzo del pattern in questione nelle porte in uscita ed in entrata.
 
 ==== Utilizzo nel progetto
-//TODO: più avanti quando l'architettura è più stabile
+#figure(
+  image("../../assets/c4/designPatterns/objectAdapter.pdf", width: 100%),
+  caption: [Sezione del Code Diagram del microservizio *Cloud Backend*],
+)
+
+In questo caso, è possibile notare che il microservizio *Cloud Backend* utilizza un *Object Adapter* per convertire l'azione logica di eliminazione del tenant all'interno del database #gloss[PostgreSQL]. Per fare ciò l'outbound port deve fornire un metodo di interfaccia al client (il service, non presente nel diagramma) che verrà implementato per convertire i dati passati nel formato richiesto per eseguire l'eliminazione del tenant su database.\
 
 === Dependency injection
 ==== Descrizione
@@ -579,37 +598,22 @@ dipendenze senza doversi preoccupare di istanziarle, permettendo dunque una magg
 modularità tra i diversi componenti del Sistema.
 
 Esistono principalmente due modalità di implementazione:
-- *Constructor Injection*: le dipendenze vengono passate attraverso il costruttore al momento della creazione dell'oggetto.
-- *Setter Injection*: le dipendenze vengono impostate tramite metodi specifici (setter) dopo l'istanziazione.
+- *Constructor Injection*: le dipendenze vengono passate attraverso il costruttore al momento della creazione dell'oggetto;
+- *Setter Injection*: le dipendenze vengono impostate tramite metodi specifici (setter) dopo l'istanziazione;
+- *Field Injection*: le dipendenze vengono iniettate direttamente nei campi dell'oggetto, spesso tramite annotazioni o configurazioni esterne.
 
-Nel progetto è stato usato il ... .
-
-==== Motivi per la scelta
-//TODO: questo non lo so
-Per quanto riguarda il *frontend*, #gloss[Angular] offre un sistema di _dependency injection_ integrato e altamente efficiente, che consente di gestire le dipendenze tra i componenti in modo dichiarativo e modulare, evitando la necessità di istanziare manualmente i servizi o di gestire le dipendenze in modo esplicito all'interno dei componenti.
-
-==== Utilizzo nel progetto
-//TODO: più avanti quando l'architettura è più stabile
-Nel *frontend* #gloss[Angular], la _dependency injection_ è utilizzata per gestire le dipendenze tra i componenti, i servizi e altri elementi dell'applicazione. Tramite il metodo `inject()` è infatti possibile iniettare le dipendenze necessarie direttamente nei componenti. Ad esempio, i servizi che gestiscono la comunicazione con il backend o la gestione dello stato dell'applicazione vengono iniettati nei componenti che ne hanno bisogno, garantendo un'architettura modulare e facilmente testabile.
-
-=== Observer
-==== Descrizione
-Il pattern _Observer_ è un design pattern comportamentale che definisce una relazione di dipendenza uno-a-molti tra oggetti, in cui un oggetto (il _subject_) mantiene una lista di dipendenti (_observers_) e notifica loro automaticamente ogni cambiamento di stato. Questo approccio consente di implementare un sistema di comunicazione efficiente e flessibile, in cui i componenti possono reagire dinamicamente agli eventi senza essere strettamente accoppiati.
+Nel progetto è stato usato il *Constructor Injection*, anche se in #gloss[Go] non è presente il concetto di costruttore, tuttavia ne è stato emulato il comportamento.\
+Mentre per il frontend #gloss[Angular] è stato utilizzato il sistema di dependency injection nativo del framework, il quale utilizza la *Field Injection* nelle ultime versioni.
 
 ==== Motivi per la scelta
-I *signals* di #gloss[Angular] sono stati scelti per implementare il pattern _Observer_ all'interno del frontend poiché offrono un meccanismo reattivo e performante per gestire lo stato dell'applicazione. Questo pattern è particolarmente utile per sincronizzare la visualizzazione dei dati dai _services_ ai _components_, garantendo che ogni cambiamento nei dati venga automaticamente riflesso nell'interfaccia utente senza la necessità di interventi manuali o di gestione complessa dello stato.
+La scelta di utilizzare il pattern in questione è stata automatica, data la dimensione del progetto e i requisiti di qualità, infatti comporta diversi vantaggi:
+- *Disaccoppiamento*: le componenti vengono fornite dall'esterno, permettendo di ridurre le dipendenze dirette tra i componenti e facilitando la sostituzione o la modifica di una componente senza influenzare le altre;
+- *Testabilità*: le dipendenze possono essere facilmente sostituite con mock o stub durante i test, migliorando la testabilità del codice;
+- *Manutenibilità*: rende il codice più modulare e organizzato, facilitando la manutenzione e l'estensione del sistema nel tempo;
+- *Scalabilità*: permette di gestire in modo più efficiente le dipendenze in sistemi complessi, facilitando la scalabilità del progetto;
 
 ==== Utilizzo nel progetto
-Nel progetto, il pattern _Observer_ è implementato principalmente attraverso i _signals_ di #gloss[Angular], che permettono ai componenti di sottoscriversi a flussi di dati provenienti dai servizi. Tutti i dati provenienti dal backend (come ad esempio i dati dei sensori, l'elenco dei gateway/sensori, i dati storici, etc.) vengono salvati e gestiti attraverso _signals_, creati con il metodo `signal()`. Tali dati sono poi esposti dai servizi attraverso relative istanze _readonly_.
-
-I componenti dell'interfaccia utente possono quindi sottoscriversi a tale istanze per ricevere aggiornamenti in tempo reale, garantendo una sincronizzazione efficiente e reattiva tra il backend e la visualizzazione dei dati.
-
-=== Altro Pattern
-==== Descrizione
-
-==== Motivi per la scelta
-
-==== Utilizzo nel progetto
+All'interno dei microservizi è stata implementata la #gloss[DI], attraverso #gloss[Angular] e #gloss[Uber Fx], evitando di creare direttamente le dipendenze all'interno dei componenti e l'utilizzo di pattern quali il _Singleton_.
 
 == Architettura logica <archit-log>
 L'architettura logica del sistema è documentata seguendo il #link("https://c4model.com")[modello C4], utile per descrivere il software su diversi livelli di astrazione e da molteplici punti di vista fornendo la scomposizione dell'applicativo in container, componenti, relazioni tra gli elementi e tra gli utenti.
@@ -789,7 +793,7 @@ Tutti i microservizi sviluppati in Go utilizzano _"package by component"_#pkg-by
     [`commands.go`], [Comandi usati nello strato di dominio per interfacciarsi con gli struct `Service`],
     [`controller.go`],
     [
-      - Definizione _Inbound adapter_ principale del package, sottoforma di struct `Controller` usato dal _router_ #gloss[Gin]
+      - Definizione _Inbound adapter_ principale del package, sotto forma di struct `Controller` usato dal _router_ #gloss[Gin]
       - Definizione delle _inbound port_ che vengono implementate dal `Service`
     ],
 
@@ -1613,7 +1617,7 @@ Descrive la struttura dei dati ricevuti in tempo reale tramite stream.
 
 ===== Utility
 Per la gestione coerente delle enumerazioni e delle costanti di sistema, è stata implementata una classe di utility generica denominata `EnumMapper<TFrontend, TBackend>`. Questa classe risolve il problema della discordanza tra i valori letterali utilizzati nelle API e le definizioni di tipo nel frontend.
-- *Funzinamento core*: la classe accetta nel costruttore un oggetto di mappatura e un valore di _fallback_. Internamente, genera automaticamente una mappa inversa (`toFrontendMap`) per supportare la conversione.
+- *Funzionamento core*: la classe accetta nel costruttore un oggetto di mappatura e un valore di _fallback_. Internamente, genera automaticamente una mappa inversa (`toFrontendMap`) per supportare la conversione.
 - *Gestione errori*: il metodo `fromBackend` include una logica di protezione che restituisce il valore di _fallback_ predefinito qualora il backend invii un valore non valido.
 
 Sulla base di questa utility, sono stati definiti i seguenti mappatori specializzati:
@@ -1648,7 +1652,7 @@ In aggiunta agli adapter per le entità principali, il sistema prevede contratti
 - *`SensorHistoricAdapter`*: un'astrazione dedicata alla gestione dei dati storici. Richiede di ridefinire una proprietà `fields` di tipo `FieldDescriptor[]` (per la descrizione dei metadati della lettura) e di implementare il metodo `fromResponse(response: HistoricResponse): HistoricReadings` per convertire i pacchetti di campionamento in letture storiche tipizzate.
 - *`SensorLiveReadingAdapter`*: definisce il contratto per l'elaborazione dei flussi dati in tempo reale. Analogamente all'adapter storico, richiede la definizione dei campi (`fields`), ma si focalizza sul metodo `fromDTO(dto: RealTimeReading)`, che deve restituire un array di letture normalizzate (`SensorReading[]`) pronte per lo streaming sui grafici live.
 
-Oltre alla gestione dell'anagrafica, il sistema richiede un processamento specialistico per le letture (misurazioni) prodotte dai sensori. Queste letture variano drasticamente in base al profilo medico o ambientale.
+Oltre alla gestione dell'anagrafica, il sistema richiede un'elaborazione specialistica per le letture (misurazioni) prodotte dai sensori. Queste letture variano drasticamente in base al profilo medico o ambientale.
 Ogni adapter di questa categoria definisce una proprietà `fields` (`FieldDescriptor[]` (@angular-fielddescriptor-model)) che funge da metadato per istruire i componenti UI (grafici e tabelle) su quali unità di misura e label visualizzare.
 - *`EcgHistoricAdapter`*: gestisce segnali ad alta frequenza. Poiché i dati arrivano come array di campioni (`waveform`), l'adapter ricostruisce la serie temporale calcolando il timestamp esatto per ogni punto tramite interpolazione.
 - *`EnvironmentalHistoricAdapter`*: estrae simultaneamente valori di temperatura e umidità dalla mappa dati.
@@ -2993,7 +2997,7 @@ var Module = fx.Module(
     // Costruttore di ExampleService, il quale implementa
     // ExampleUseCase1, ExampleUseCase2 e ExampleUseCase3:
     //   In questo caso, si annota il costruttore con ciascuna delle
-    //   interfacce che ExampleSerivce implementa
+    //   interfacce che ExampleService implementa
     fx.Annotate(
       NewExampleService,  // Ritorna *ExampleService
       fx.As(new(ExampleUseCase1)),
@@ -3588,7 +3592,7 @@ Interfaccia che espone metodi per svolgere operazioni CRUD sui sensori sul datab
 
 *Metodi*:
 - *`CreateSensor(entity *SensorEntity) error`*: Aggiunge il sensore descritto da `entity` al database.
-- *`DeleteSensor(entity *SensorEntity) error`*: Elimina il sensore descritto da `entityy` dal database.
+- *`DeleteSensor(entity *SensorEntity) error`*: Elimina il sensore descritto da `entity` dal database.
 - *`UpdateSensor(sensorId string, status string) error`*: Imposta nel database lo stato `status` al sensore con ID `sensorId`.
 - *`GetSensorById(sensorId string) (SensorEntity, error)`*: Ritorna il sensore con ID `sensorId`.
 - *`GetSensorByTenant(tenantId, sensorId string) (SensorEntity, error)`*: Ritorna il sensore con ID `sensorId` associato al tenant con ID `tenantId`, ritornando errore in caso tale sensore non esista o non sia associato al tenant specificato.
@@ -4206,7 +4210,7 @@ _Outbound port_ che offre metodi per ottenere uno o più utenti specifici.
 - *`CountSuperAdmins() (total uint, err error)`*: Ritorna il numero totale di Super Admin nel sistema.
 
 ===== Outbound adapter -- `UserPostgreAdapter`
-Di seguito si ripotano le specifiche dell'_outbound adapter_ principale del package, il quale permette di comunicare con il sistema di persistenza, traducendo l'interfaccia di PostgreSQL nell'interfaccia di dominio e viceversa. Per visualizzarne il #gloss[Code Diagram], si consulti la @backend-code-user-outports-adapters.
+Di seguito si riportano le specifiche dell'_outbound adapter_ principale del package, il quale permette di comunicare con il sistema di persistenza, traducendo l'interfaccia di PostgreSQL nell'interfaccia di dominio e viceversa. Per visualizzarne il #gloss[Code Diagram], si consulti la @backend-code-user-outports-adapters.
 
 *Interfacce implementate*:
 - `SaveUserPort`
