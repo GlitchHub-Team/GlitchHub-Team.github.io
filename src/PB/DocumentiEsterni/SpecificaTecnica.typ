@@ -33,6 +33,15 @@
   stato: "Bozza",
   registro-modifiche: (
     (
+      "0.11.1",
+      "18/04/2026",
+      "Elia Ernesto Stellin",
+      "Michele Dioli",
+      [
+        Implementata modifica suggerita nella verifica di v0.11.0
+      ]
+    ),
+    (
       "0.11.0",
       "18/04/2026",
       "Elia Ernesto Stellin",
@@ -4433,7 +4442,7 @@ La tabella `sensors` rappresenta l'insieme dei sensori inseriti nel sistema e pr
 - *`name VARCHAR(255) NOT NULL`*: Nome del sensore.
 - *`interval BIGINT`*: Intervallo in millisecondi di invio dati al Cloud.
 - *`profile VARCHAR(50)`*: Profilo GATT del sensore.
-- *`status VARCHAR(50) NOT NULL`*: Stato del sensore, può assumere i valori `'inactive'` o `'active'`.
+- *`status VARCHAR(50) NOT NULL`*: Stato del sensore, può assumere i valori `'inactive'`, `'active'` o `'decommissioned'`.
 - *`created_at TIMESTAMPTZ`*: Data di creazione del gateway.
 - *`updated_at TIMESTAMPTZ`*: Data di ultimo aggiornamento del gateway.
 
