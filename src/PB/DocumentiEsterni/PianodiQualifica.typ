@@ -31,13 +31,13 @@
 
 #show: report.with(
   titolo: "Piano di Qualifica",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.1.0",
       "20/04/2026",
       "Jaume Bernardi",
-      "",
+      "Riccardo Graziani",
       [Rendicontazione dei *TU* e *TI*],
     ),
     (
@@ -184,8 +184,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Piano di Qualifica",
 )
 
