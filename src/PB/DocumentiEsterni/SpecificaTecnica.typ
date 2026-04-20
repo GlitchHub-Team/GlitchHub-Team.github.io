@@ -1596,7 +1596,7 @@ Il package `auth` presenta un controller che si occupa di ricevere le richieste 
 
 #figure(
   image("../../assets/c4/backend/auth/controller.pdf", width:100%),
-  caption: [Cloud Backend -- Code Diagram per `auth - Controller e DTO`],
+  caption: [Cloud Backend -- Code Diagram di `auth.Controller` e relativi DTO],
 )
 
 
