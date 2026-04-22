@@ -4,8 +4,15 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "Verificato",
+  stato: "da verificare",
   registro-modifiche: (
+    (
+      "1.9.0",
+      "24/04/2026",
+      "Jaume Bernardi",
+      "",
+      [Stesura sprint 17 (@sprint-17)],
+    ),
     (
       "1.8.1",
       "19/04/2026",
@@ -4320,18 +4327,18 @@ Issue relative a sprint 17: \
     columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
     align: left,
     stroke: (x, y) => (
-      top: if y == 0 { 0pt } else { 0.5pt + black },
-      left: if x == 0 { 0pt } else { 0.5pt + black },
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
     ),
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-    "Jaume Bernardi", "1", "-", "-", "4", "-", "-", [*5*],
-    "Alessandro Dinato", "-", "-", "-", "-", "4", "3", [*7*],
-    "Michele Dioli", "-", "-", "-", "8", "4", "-", [*12*],
-    "Hossam Ezzemouri", "-", "-", "-", "1", "-", "-", [*1*],
-    "Riccardo Graziani", "-", "-", "-", "3", "4", "-", [*7*],
-    "Siria Salvalaio", "-", "-", "-", "3", "6", "-", [*9*],
-    "Elia Ernesto Stellin", "-", "-", "-", "6", "4", "-", [*10*],
-    table.footer([*Totale*], [*1*], [*0*], [*0*], [*25*], [*22*], [*3*], [*51*]),
+    "Jaume Bernardi", "1", "2", "-", "-", "-", "3", [*6*],
+    "Alessandro Dinato", "-", "-", "-", "-", "-", "4", [*4*],
+    "Michele Dioli", "-", "-", "-", "1", "-", "11", [*12*],
+    "Hossam Ezzemouri", "-", "-", "-", "3", "3", "-", [*6*],
+    "Riccardo Graziani", "-", "-", "-", "3", "4", "2", [*9*],
+    "Siria Salvalaio", "-", "-", "1", "3", "6", "3", [*13*],
+    "Elia Ernesto Stellin", "-", "-", "-", "7", "-", "-", [*7*],
+    table.footer([*Totale*], [*1*], [*2*], [*1*], [*17*], [*13*], [*23*], [*57*]),
   ),
   [Sprint 17 - Preventivo risorse da utilizzare],
   label-id: "spr17-prev-risorse",
@@ -4340,10 +4347,117 @@ Issue relative a sprint 17: \
 
 #let orePrevSprint17 = (
   ("Responsabile", 1),
-  ("Amministratore", 0),
-  ("Analista", 0),
-  ("Progettista", 25),
-  ("Programmatore", 22),
-  ("Verificatore", 3),
+  ("Amministratore", 2),
+  ("Analista", 1),
+  ("Progettista", 17),
+  ("Programmatore", 13),
+  ("Verificatore", 23),
+
 )
 #graficoTorta("Sprint 17 - Ore produttive previste per ogni ruolo", orePrevSprint17)
+
+=== Compiti svolti
+Il gruppo ha svolto con successo i seguenti compiti: \
+Issue relative a sprint 17: \
+
+
+
+=== Retrospettiva
+implementati testi di sistema
+scritta tanta documentazione:
+revisionato AdR
+completato manuale utente
+completata specifica tecnica
+completato PdP
+completato PdQ
+completato NdP
+
+=== Rischi occorsi
+Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di terminare le attività necessarie senza incombere in ritardi.
+
+=== Consuntivo di periodo
+==== Risorse utilizzate
+#tabella-paginata(
+  table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "1", "2", "-", "-", "-", "4 (+1)", [*7*],
+    "Alessandro Dinato", "-", "-", "-", "-", "-", "3 (-1)", [*3*],
+    "Michele Dioli", "-", "-", "-", "1", "-", "11", [*12*],
+    "Hossam Ezzemouri", "-", "-", "-", "3", "3", "-", [*6*],
+    "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
+    "Siria Salvalaio", "-", "-", "1", "-", "2 (-4)", "4 (+1)", [*7*],
+    "Elia Ernesto Stellin", "-", "-", "-", "3 (-4)", "-", "-", [*3*],
+  table.footer([*Totale*], [*1*], [*2*], [*1*], [*7*], [*5*], [*22*], [*38*]),
+  ),
+  [Sprint 17 - Risorse utilizzate],
+  label-id: "spr17-risorse-utiliz",
+)
+==== Grafico a torta della suddivisione oraria effettiva
+
+#let oreEffettiveSprint17 = (
+  
+  ("Responsabile", 1),
+  ("Amministratore", 2),
+  ("Analista", 1),
+  ("Progettista", 7),
+  ("Programmatore", 5),
+  ("Verificatore", 22),
+
+)
+#graficoTorta(
+"Sprint 17 - Ore produttive complessive ed effettive per ogni ruolo",
+oreEffettiveSprint17,
+)
+
+=== Preventivo a finire
+==== Aggiornamento ore rimanenti
+#tabella-paginata(
+  table(
+  columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "-", "2 (-2)", "-", "-", "11", "1 (-4)", [*14*],
+    "Alessandro Dinato", "-", "-", "-", "-", "-", "1 (-3)", [*1*],
+    "Michele Dioli", "-", "-", "-", "-", "-", "3 (-11)", [*3*],
+    "Hossam Ezzemouri", "-", "-", "-", "2 (-3)", "-", "-", [*2*],
+    "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
+    "Siria Salvalaio", "-", "-", "2 (-1)", "1", "1 (-2)", "-", [*4*],
+    "Elia Ernesto Stellin", "-", "-", "-", "-", "-", "-", [*0*],
+  table.footer([*Totale*], [*0*], [*2*], [*2*], [*3*], [*12*], [*5*], [*24*]),
+  ),
+  [Sprint 17 - Aggiornamento ore rimanenti],
+  label-id: "spr17-agg-ore-rim",
+)
+
+==== Aggiornamento costi
+#tabella-paginata(
+table(
+  columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+    align: left,
+    stroke: (x, y) => (
+    top: if y == 0 { 0pt } else { 0.5pt + black },
+    left: if x == 0 { 0pt } else { 0.5pt + black },
+  ),
+  table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+    "Responsabile", "0 (-1)" ,"30 €/h", "0 € (-30 €)",
+    "Amministratore", "2 (-2)" ,"20 €/h", "40 € (-40 €)",
+    "Analista", "2 (-1)" ,"25 €/h", "50 € (-25 €)",
+    "Progettista", "3 (-7)" ,"25 €/h", "75 € (-175 €)",
+    "Programmatore", "12 (-5)" ,"15 €/h", "180 € (-75 €)",
+    "Verificatore", "5 (-22)" ,"15 €/h", "75 € (-330 €)",
+  table.footer([*Totale*], [*24*], [-], [*420 €*]),
+  ),
+  [Sprint 17 - Aggiornamento costi],
+  label-id: "spr17-agg-costi",
+)
+
