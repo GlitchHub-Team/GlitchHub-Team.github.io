@@ -3358,11 +3358,11 @@ Di seguito sono elencati i compiti individuati:
 
 #let orePrevSprint12 = (
   ("Responsabile", 4),
+  ("Programmatore", 41),
   ("Amministratore", 5),
+  ("Verificatore", 16),
   ("Analista", 1),
   ("Progettista", 8),
-  ("Programmatore", 41),
-  ("Verificatore", 16),
 )
 #graficoTorta("Sprint 12 - Ore produttive previste per ogni ruolo", orePrevSprint12)
 
@@ -3436,11 +3436,11 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
 
 #let oreEffettiveSprint12 = (
   ("Responsabile", 2),
+  ("Verificatore", 28),
   ("Amministratore", 2),
+  ("Programmatore", 34),
   ("Analista", 1),
   ("Progettista", 17),
-  ("Programmatore", 34),
-  ("Verificatore", 28),
 )
 #graficoTorta(
   "Sprint 12 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -3563,11 +3563,11 @@ Di seguito sono elencati i compiti individuati:
 
   #let orePrevSprint13 = (
     ("Responsabile", 3),
-    ("Amministratore", 4),
-    ("Analista", 1),
-    ("Progettista", 0),
-    ("Programmatore", 34),
     ("Verificatore", 33),
+    ("Analista", 1),
+    ("Programmatore", 34),
+    ("Amministratore", 4),
+    ("Progettista", 0),
   )
   #graficoTorta("Sprint 13 - Ore produttive previste per ogni ruolo", orePrevSprint13)
 
@@ -3628,11 +3628,11 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 ==== Grafico a torta della suddivisione oraria effettiva
 
 #let oreEffettiveSprint13 = (
-  ("Responsabile", 2),
   ("Amministratore", 5),
   ("Analista", 3),
   ("Progettista", 0),
   ("Programmatore", 20),
+  ("Responsabile", 2),
   ("Verificatore", 22),
 )
 #graficoTorta(
@@ -3762,9 +3762,9 @@ Di seguito sono elencati i compiti individuati:
 #let orePrevSprint14 = (
   ("Responsabile", 2),
   ("Amministratore", 0),
+  ("Programmatore", 34),
   ("Analista", 0),
   ("Progettista", 3),
-  ("Programmatore", 34),
   ("Verificatore", 32),
 )
 #graficoTorta("Sprint 14 - Ore produttive previste per ogni ruolo", orePrevSprint14)
@@ -3840,9 +3840,9 @@ L'accumulo di queste criticità ha causato lo slittamento di alcune scadenze int
 #let oreEffettiveSprint14 = (
   ("Responsabile", 2),
   ("Amministratore", 0),
+  ("Programmatore", 42),
   ("Analista", 0),
   ("Progettista", 3),
-  ("Programmatore", 42),
   ("Verificatore", 34),
 )
 #graficoTorta(
@@ -3961,10 +3961,10 @@ Di seguito sono elencati i compiti individuati:
 
   #let orePrevSprint15 = (
     ("Responsabile", 1),
+    ("Programmatore", 23),
     ("Amministratore", 2),
     ("Analista", 0),
     ("Progettista", 12),
-    ("Programmatore", 23),
     ("Verificatore", 22),
   )
   #graficoTorta("Sprint 15 - Ore produttive previste per ogni ruolo", orePrevSprint15)
@@ -4025,12 +4025,12 @@ Sono comunque stati portati a termini diversi compiti significativi, in particol
 ==== Grafico a torta della suddivisione oraria effettiva
 
 #let oreEffettiveSprint15 = (
-  ("Responsabile", 1),
-  ("Amministratore", 2),
-  ("Analista", 0),
-  ("Progettista", 15),
   ("Programmatore", 28),
+  ("Responsabile", 1),
   ("Verificatore", 22),
+  ("Amministratore", 2),
+  ("Progettista", 15),
+  ("Analista", 0),
 )
 #graficoTorta(
   "Sprint 15 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -4348,10 +4348,10 @@ Issue relative a sprint 17: \
 
 #let orePrevSprint17 = (
   ("Responsabile", 1),
-  ("Amministratore", 2),
-  ("Analista", 1),
-  ("Progettista", 15),
   ("Programmatore", 14),
+  ("Amministratore", 2),
+  ("Progettista", 15),
+  ("Analista", 1),
   ("Verificatore", 23),
 )
 #graficoTorta("Sprint 17 - Ore produttive previste per ogni ruolo", orePrevSprint17)
@@ -4427,10 +4427,10 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
 
 #let oreEffettiveSprint17 = (
   ("Responsabile", 1),
-  ("Amministratore", 2),
-  ("Analista", 1),
   ("Progettista", 5),
   ("Programmatore", 5),
+  ("Amministratore", 2),
+  ("Analista", 1),
   ("Verificatore", 23),
 )
 #graficoTorta(
