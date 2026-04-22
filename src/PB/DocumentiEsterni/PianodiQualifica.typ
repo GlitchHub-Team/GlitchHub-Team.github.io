@@ -476,53 +476,113 @@ La copertura del codice (detta anche *Code Coverage*) misura la percentuale di c
 
 Il valore minimo accettabile è fissato all' 80%
 
+#let markup = eval.with(mode: "markup")
+
+/*
+  Crea i dati di una tabella per mostrare TU o TI di un microservizio
+  - func-codice: funzione per generare il codice del test
+  - lista-test: la lista di test (TU o TI)
+  - nome-sez: nome della sotto sezione nella lista
+*/
+#let crea-dati-tabella = (func-codice, lista-test, nome-sez) => {
+  let tabella = ()
+  for test in lista-test.at(nome-sez) {
+    let new-code = func-codice(test.id)
+    tabella.push(new-code)
+    tabella.push(markup(test.descr))
+    tabella.push(markup(test.expected))
+    tabella.push(markup(test.state))
+  }
+  tabella
+}
+
+/*
+  Crea una tabella per mostrare i test 
+*/
+#let crea-tabella = (dati, caption, label-id) => {
+  tabella-paginata(
+    table(
+      columns: (1fr, 2.5fr, 2.5fr, 0.7fr),
+      align: (x, y) => (
+        if x == 0 or x == 3 { center + horizon } 
+        else { start + horizon }
+      ),
+      inset: 8pt,
+      fill: (x, y) => if y == 0 { gray.lighten(70%) },
+      [*Codice*], [*Descrizione*], [*Valore atteso*], [*Stato*],
+      ..dati
+    ),
+    caption,
+    label-id: label-id,
+  )
+}
+
 == Test di unità <test-unità>
 I test di unità hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate.
 
 L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
 
-#let markup = eval.with(mode: "markup")
+Si noti che le sezioni seguenti suddividono i test di unità per microservizio / _container_ nel modello C4.
+
 
 #let tu-counter = counter("tu-counter")
 #tu-counter.update(1)
 
 #let LISTA-TU = json("../../tracciamento/TU.json")
-#let tabella-TU = ()
+
 
 #let tu = id => context {
   tu-counter.step()
   let tu-name = tu-counter.display(value => "TU-" + str(value))
-  [#tu-name]
+  [*#tu-name*]
 }
 
-
-#for test in LISTA-TU {
-  let new-code = tu(test.id)
-  tabella-TU.push(new-code)
-  tabella-TU.push(markup(test.descr))
-  tabella-TU.push(markup(test.expected))
-  tabella-TU.push(markup(test.state))
-}
+#let tabella-TU-backend      = crea-dati-tabella(tu, LISTA-TU, "Backend")
+#let tabella-TU-frontend     = crea-dati-tabella(tu, LISTA-TU, "Frontend")
+#let tabella-TU-gateway      = crea-dati-tabella(tu, LISTA-TU, "Gateway")
+#let tabella-TU-dataconsumer = crea-dati-tabella(tu, LISTA-TU, "DataConsumer")
 
 #show "_": it => it + h(0pt, weak: true)
-#tabella-paginata(
-  table(
-    columns: (1fr, 2.5fr, 2.5fr, 0.7fr),
-    align: (x, y) => (
-      if x == 0 or x == 3 { center + horizon } 
-      else { start + horizon }
-    ),
-    inset: 8pt,
-    fill: (x, y) => if y == 0 { gray.lighten(70%) },
-    [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
-    ..tabella-TU
-  ),
-  [Test di Unità con descrizione, valore atteso e stato di implementazione],
-  label-id: "tab-test-unità",
+
+=== Test di unità per Cloud Backend
+Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Cloud Backend*.
+
+#crea-tabella(
+  tabella-TU-backend, 
+  [Test di unità per Cloud Backend con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-backend",
 )
 
+=== Test di unità per Cloud Frontend
+Di seguito si riporta la lista di #gloss[test unitari] per il front-end della dashboard.
+
+#crea-tabella(
+  tabella-TU-frontend, 
+  [Test di unità per Cloud Frontend con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-frontend",
+)
+
+=== Test di unità per Gateway Simulator
+Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Gateway Simulator*.
+
+#crea-tabella(
+  tabella-TU-gateway, 
+  [Test di unità per Gateway Simulator con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-gw-simulator",
+)
+
+=== Test di unità per Data Consumer
+Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Data Consumer*.
+
+#crea-tabella(
+  tabella-TU-dataconsumer, 
+  [Test di unità per Data Consumer con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-backend",
+)
+
+
 == Test di integrazione <test-integrazione>
-I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
+I #gloss[test d'integrazione] verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
 
 #let ti-counter = counter("ti-counter")
 #ti-counter.update(1)
@@ -533,33 +593,40 @@ I test di integrazione verificano il corretto comportamento delle interazioni tr
 #let ti = id => context {
   ti-counter.step()
   let ti-name = ti-counter.display(value => "TI-" + str(value))
-  [#ti-name]
+  [*#ti-name*]
 }
 
+#let tabella-TI-dashboard    = crea-dati-tabella(ti, LISTA-TI, "Dashboard")
+#let tabella-TI-gateway      = crea-dati-tabella(ti, LISTA-TI, "Gateway")
+#let tabella-TI-dataconsumer = crea-dati-tabella(ti, LISTA-TI, "DataConsumer")
 
-#for test in LISTA-TI {
-  let new-code = ti(test.id)
-  tabella-TI.push(new-code)
-  tabella-TI.push(markup(test.descr))
-  tabella-TI.push(markup(test.expected))
-  tabella-TI.push(markup(test.state))
-}
+=== Test di integrazione per Cloud Backend
+Di seguito si riporta la lista di #gloss[test d'integrazione] per il microservizio *Cloud Backend*.
 
-#tabella-paginata(
-  table(
-    columns: (1fr, 2.5fr, 2.5fr, 0.7fr),
-    align: (x, y) => (
-      if x == 0 or x == 3 { center + horizon } 
-      else { start + horizon }
-    ),
-    inset: 8pt,
-    fill: (x, y) => if y == 0 { gray.lighten(70%) },
-    [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
-    ..tabella-TI
-  ),
-  [Test di Integrazione con descrizione, valore atteso e stato di implementazione],
-  label-id: "tab-test-integrazione",
+#crea-tabella(
+  tabella-TI-dashboard,
+  [Test d'integrazione per Cloud Backend con descrizione, valore atteso e stato di implementazione],
+  "tab-ti-dashboard"
 )
+
+=== Test di integrazione per Gateway Simulator
+Di seguito si riporta la lista di #gloss[test d'integrazione] per il microservizio *Gateway Simulator*.
+
+#crea-tabella(
+  tabella-TI-gateway,
+  [Test d'integrazione per Gateway Simulator con descrizione, valore atteso e stato di implementazione],
+  "tab-ti-gateway"
+)
+
+=== Test di integrazione per Data Consumer
+Di seguito si riporta la lista di #gloss[test d'integrazione] per il microservizio *Data Consumer*.
+
+#crea-tabella(
+  tabella-TI-gateway,
+  [Test d'integrazione per Data Consumer con descrizione, valore atteso e stato di implementazione],
+  "tab-ti-dataconsumer"
+)
+
 
 == Test di regressione
 I test di regressione vengono eseguiti in seguito all'implementazione di nuove funzionalità o modifiche al sistema, in modo da accertarsi che il corretto comportamento precedente non sia stato compromesso.
