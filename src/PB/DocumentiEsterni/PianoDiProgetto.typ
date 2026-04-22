@@ -4359,18 +4359,43 @@ Issue relative a sprint 17: \
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
 Issue relative a sprint 17: \
-
-
+- [PdQ] Aggiornare metriche (#issue(496))
+- [Backend] Togliere requester check da GetTenantList (#issue(120, repo: "dashboard"))
+- [ST] Stesura Cloud Backend - Elia (#issue(523)) 
+- [ST] Tracciamento requisiti (#issue(525)) 
+- [ST] Fix diagramma UserApiClientService (#issue(557))
+- Risolvere problema di scraping delle metrice gin (#issue(6, repo: "infra")) 
+- [Backend] Fixare scraping metriche gin (#issue(153, repo: "dashboard")) 
+- [Gloss] Aggiungere definizioni backend (#issue(538))
+- [AdR] Revisione (#issue(543)) 
+- [MU] Perfezionamento manuale utente backend, installazione (#issue(544))
+- Rendicontazione ore responsabile sprint 17 (#issue(545))
+- [PdP] Sprint 16 (#issue(547))
+- [PdP] Sprint 17 (#issue(594)) 
+- [MU] Perfezionamento manuale utente observability (#issue(548)) 
+- [MU] Sezione frontend (#issue(549)) 
+- [PdQ] Rendicontare test di unità/integrazione (#issue(550)) 
+- [ST] Revisione primi 3 livelli C4 model (#issue(553)) 
+- [ST] Fix typo in immagine (#issue(558)) 
+- [ST] Sezione su Cloud DB (#issue(559)) 
+- [ST] Modifica paragrafo su architettura Frontend (#issue(563)) 
+- [MVP] Test sistema da TS137 a TS281 (#issue(2, repo: "MVP")) 
+- [NdP] Sezione progettazione (#issue(567)) 
+- [ST] Miglioramento sezione design patterns (#issue(570)) 
+- [ST] Spostamento descrizione architettura frontend (#issue(571)) 
+- [MU] Controlli per v1.0.0 (#issue(575)) 
+- [Gloss] Controlli per v1.0.0 (#issue(577)) 
+- [Gloss] Nuovi termini (#issue(579))
+- [MU] Spostare immagini frontend (#issue(582)) 
+- [website] fix header PB (#issue(586))
 
 === Retrospettiva
-implementati testi di sistema
-scritta tanta documentazione:
-revisionato AdR
-completato manuale utente
-completata specifica tecnica
-completato PdP
-completato PdQ
-completato NdP
+Durante lo #gloss("sprint") 17, il gruppo ha mantenuto un ritmo di lavoro costante e produttivo, focalizzandosi principalmente sulla documentazione e sui test di sistema.
+
+I documenti principali sono stati completati con successo: l'#gloss("Analisi dei Requisiti") ha superato la revisione; il #gloss("Manuale Utente") ora copre tutte le sezioni necessarie, inclusi _gateway_, _data consumer_, _backend_, _installazione_, _frontend_ e _observability_; la #gloss("Specifica Tecnica") è stata finalizzata con l'aggiunta e revisione di sezioni tra cui cloud backend, tracciamento requisiti, design patterns e la revisione del modello C4; il #gloss("Piano di Qualifica") è stato aggiornato con le metriche e il rendiconto di tutti i test; infine, le #gloss("Norme di Progetto") sono state completate con aggiunta di nuovi strumenti e metodologie (C4, UML, draw.io).
+
+I test di sistema sono stati implementati utilizzando Playwright, come pianificato, permettendo di validare l'integrazione complessiva del sistema.
+
 
 === Rischi occorsi
 Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di terminare le attività necessarie senza incombere in ritardi.
