@@ -327,7 +327,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
     [MPC-QMS], [Quality Metrics Satisfied], [$>= 80%$], [$= 100%$],
-    [MPC-TE], [Time efficiency], [$>= 50%$], [$>= 90%$],
+    [MPC-TE], [Time Efficiency], [$>= 50%$], [$>= 90%$],
     [MPC-WD], [Work Distribution], [$$], [$$],
     [MPC-SPF], [Single Point of Failure Risk], [$15%$], [$<10%$],
   ),
@@ -353,10 +353,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     [MPD-CRO], [Copertura Requisiti Obbligatori], [$= 100%$], [$= 100%$],
     [MPD-CRP], [Copertura Requisiti Desiderabili], [$>= 0$], [$>=70%$],
     [MPD-CRP], [Copertura Requisiti Opzionali], [$>= 0$], [$>=70%$],
-    [MPD-AD], [API Documentation], [$>=90%$], [$100%$],
-    [MPD-DL], [Data Loss], [$0,1%-1%$], [$<0,01%$],
+    [MPD-AD], [API Documentation Coverage], [$>=90%$], [$100%$],
+    [MPD-DL], [Data Loss Rate], [$<= 1%$], [$<= 0,01%$],
   ),
-  [Valori per misurare la qualità delle funzionalità.],
+  [Metriche per misurare la qualità delle funzionalità.],
   label-id: "tab-qual-funz",
 )
 
@@ -374,7 +374,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     [MPD-BC], [Branch Coverage], [$>= "60%"$], [$>= "80%"$],
     [MPD-SC], [Statement Coverage], [$>= "70%"$], [$>= "90%"$],
   ),
-  [Valori per misurare la qualità dell'affidabilità.],
+  [Metriche per misurare la qualità dell'affidabilità.],
   label-id: "tab-qual-aff",
 )
 
@@ -387,9 +387,9 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
-    [MPD-LT], [Learning Time], [$<= "30 min"$], [$<= "10 min"$],
+    [MPD-TT], [Time on Task], [$<= "30 min"$], [$<= "10 min"$],
   ),
-  [Valori per misurare la qualità dell'usabilità.],
+  [Metriche per misurare la qualità dell'usabilità.],
   label-id: "tab-qual-usab",
 )
 
@@ -405,7 +405,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
     [MPD-RT], [Response Time], [$<= "2 secondi"$], [$<= "0,5 secondi"$],
   ),
-  [Valori per misurare la qualità dell'efficienza.],
+  [Metriche per misurare la qualità dell'efficienza.],
   label-id: "tab-qual-eff",
 )
 
@@ -419,15 +419,16 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
-    [MPD-CD], [Code Smell], [$<= "3"$], [$<= "1"$],
+    [MPD-CS], [Code Smell], [$<= "3"$], [$<= "1"$],
     [MPD-COC], [Coefficient of Coupling], [$<= "0.5"$], [$<= "0.2"$],
     [MPD-CYC], [Cyclomatic Complexity], [$<= "15"$], [$<= "10"$],
   ),
-  [Valori per misurare la qualità della manutenibilità.],
+  [Metriche per misurare la qualità della manutenibilità.],
   label-id: "tab-qual-manut",
 )
 
-#pagebreak()
+// #pagebreak()
+
 == Sicurezza
 
 #tabella-paginata(
@@ -437,13 +438,28 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
-    [MPD-DE], [Data encryption], [$"100% dati sensibili"$], [$"100% dati sensibili"$],
+    [MPD-DE], [Data Encryption Coverage], [$"100% dati sensibili"$], [$"100% dati sensibili"$],
   ),
-  [Valori per misurare la qualità della sicurezza.],
+  [Metriche per misurare la qualità della sicurezza.],
   label-id: "tab-qual-sicur",
 )
 
-\
+== Metriche di progresso dei test
+
+#tabella-paginata(
+  table(
+    columns: (auto, 2fr, 1fr, 1fr),
+    align: center + horizon,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
+
+    [MPD-TS], [Test di Sistema Specificati], [$100%$], [$100%$],
+    [MPD-TE], [Test di Sistema Eseguiti], [$100%$], [$100%$],
+    [MPD-TP], [Test di Sistema Superati], [$100%$], [$100%$],
+  ),
+  [Metriche per misurare il progresso dei test.],
+  label-id: "tab-qual-progresso-test",
+)
 
 = Metodi di testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
@@ -460,7 +476,7 @@ I codici per descrivere gli stati dei test sono i seguenti:
 == Copertura del codice
 La copertura del codice (detta anche *Code Coverage*) misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici. Tale metrica consente di valutare il grado di verifica del software ed è direttamente collegata alla metrica *MPC-CC (Code Coverage)*.
 
-Il valore minimo accettabile è fissato all' 80%
+Il valore minimo accettabile è fissato all'*80%*
 
 == Test di unità
 I test di unità hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate.
@@ -489,19 +505,6 @@ L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-
   tabella-TU.push(markup(test.expected))
   tabella-TU.push(markup(test.state))
 }
-
-#tabella-paginata(
-  table(
-    columns: (1fr, 2fr, 2fr, 0.5fr),
-    align: center + horizon,
-    inset: 8pt,
-    fill: (x, y) => if y == 0 { gray.lighten(70%) },
-    [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
-    ..tabella-TU
-  ),
-  [Test di Sistema con descrizione e requisito di riferimento],
-  label-id: "tab-test-unità",
-)
 
 == Test di integrazione
 I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
@@ -760,7 +763,7 @@ Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite ta
 
 L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttività del team, individuando eventuali scostamenti rispetto alla pianificazione.
 
-== MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
+== MPC-PV e MPC-EV: _Planned Value_ ed _Earned Value_
 
 #tabella-paginata(
   table(
@@ -776,17 +779,25 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
       [#text(fill: white, weight: "bold")[PV acc. (€)]],
       [#text(fill: white, weight: "bold")[EV acc. (€)]],
     ),
-    [Sprint 1], [315,00], [242,31], [315,00], [242,31],
-    [Sprint 2], [240,00], [240,00], [555,00], [482,31],
-    [Sprint 3], [120,00], [144,00], [675,00], [626,31],
-    [Sprint 4], [290,00], [290,00], [965,00], [916,31],
-    [Sprint 5], [200,00], [250,00], [1.165,00], [1.166,31],
-    [Sprint 6], [345,00], [366,56], [1.510,00], [1.532,87],
-    [Sprint 7], [260,00], [260,00], [1.770,00], [1.792,87],
-    [Sprint 8], [445,00], [519,17], [2.215,00], [2.312,04],
-    [Sprint 9], [895,00], [842,35], [3.110,00], [3.154,39],
+    [Sprint 1],  [315,00],   [242,31],   [315,00],    [242,31],
+    [Sprint 2],  [240,00],   [240,00],   [555,00],    [482,31],
+    [Sprint 3],  [220,00],   [244,00],   [775,00],    [726,31],
+    [Sprint 4],  [290,00],   [290,00],   [1.065,00],  [1.016,31],
+    [Sprint 5],  [400,00],   [450,00],   [1.465,00],  [1.466,31],
+    [Sprint 6],  [345,00],   [366,56],   [1.810,00],  [1.832,87],
+    [Sprint 7],  [460,00],   [460,00],   [2.270,00],  [2.292,87],
+    [Sprint 8],  [445,00],   [519,17],   [2.715,00],  [2.812,04],
+    [Sprint 9],  [895,00],   [842,35],   [3.610,00],  [3.654,39],
+    [Sprint 10], [955,00],   [798,12],   [4.565,00],  [4.452,51],
+    [Sprint 11], [1.465,00], [1.558,02], [6.030,00],  [6.010,53],
+    [Sprint 12], [1.075,00], [1.421,77], [7.105,00],  [7.432,30],
+    [Sprint 13], [1.600,00], [1.350,00], [8.705,00],  [8.782,30],
+    [Sprint 14], [1.110,00], [1.116,14], [9.815,00],  [9.898,44],
+    [Sprint 15], [955,00],   [1.114,17], [10.770,00], [11.012,61],
+    [Sprint 16], [970,00],   [727,43],   [11.740,00], [11.740,04],
+    [Sprint 17], [950,00],   [914,89],   [12.690,00], [12.654,93],
   ),
-  [Valori di PV e EV per sprint],
+  [Valori di PV, EV, PV accumulato ed EV accumulato per sprint],
   label-id: "tab-valori-EP-EV",
 )
 
@@ -796,17 +807,28 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
   caption: [Valori di PV e EV per sprint],
 )
 
+=== RTB (Sprint 1--9)
 Il valore pianificato (PV) mostra un incremento progressivo coerente con l'avanzamento del progetto.
 
 Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00). A partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
 
-L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di €3.110,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
+L'EV accumulato raggiunge €3.654,39, leggermente superiore al PV accumulato di €3.610,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
+
+*Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
+*Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
+
+=== PB (Sprint 10--17)
+In questo frangente temporale, il PV mostra un incremento più ripido rispetto a quello osservato durante l'RTB, poiché sono state compiute meno ore di "palestra" e molte più ore produttive, tra progettazione, codifica e verifica del prodotto effettivo.
+
+L'EV risulta leggermente inferiore al PV negli sprint 10 e 17, in corrispondenza con l'inizio e la fine del PB, mentre si riscontra una maggiore differenza in negativo negli sprint 13 e 16 a causa di una pianificazione troppo ottimistica durante questi ultimi.
+
+L'EV cumulativo raggiunge €12.654,93 alla fine della PB, risultando leggermente inferiore (-0,28%) al PV cumulativo di €12.690,00 a causa della pianificazione troppo  ottimistica sopra citata. 
 
 *Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
 *Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
 
 
-== MPC-AC e MPC-ETC: _Actual Cost_ e _Estimate To Complete_
+== MPC-AC e MPC-ETC rispetto a MPC-EAC: _Actual Cost_ ed _Estimate To Complete_ rispetto a _Estimate to Completion_
 
 #tabella-paginata(
   table(
@@ -1064,7 +1086,7 @@ Il Task Slippage conferma quanto osservato nel TCR:
 
 #figure(
   image("../../assets/metriche/PB/prct.svg"),
-  caption: [Task Slippage per sprint],
+  caption: [Pull Request Cycle Time per sprint],
 )
 
 Il _Pull Request Cycle Time_ medio risulta complessivamente contenuto per la quasi totalità degli sprint, indicando un processo di revisione rapido ed efficace.
@@ -1076,7 +1098,7 @@ Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 *Soglia accettabile*: PRCT $gt.eq 48$ ore _sempre rispettata_ \
 *Soglia ottima*: PRCT $gt.eq 24$ ore
 
-== MPC-WSD Distribuzione carico ore <mpc-wsd>
+== MPC-WD: Distribuzione carico ore <mpc-wd>
 
 #figure(
   table(
@@ -1105,7 +1127,7 @@ Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 
 #figure(
   image("../../assets/metriche/PB/wsd.svg"),
-  caption: [wsd per sprint],
+  caption: [Distribuzione del carico di lavoro per sprint],
 )
 
 La metrica MPC-WD evidenzia una distribuzione del carico di lavoro generalmente equilibrata nella maggior parte degli sprint.
@@ -1136,15 +1158,15 @@ Il Piano di Qualifica (PdQ) mostra un andamento leggermente decrescente (da 72 a
 
 Le Norme di Progetto (NdP) si mantengono invece stabili nell'intervallo 71-73, valori coerenti con la natura normativa del documento, tipicamente meno scorrevole rispetto ai documenti descrittivi.
 
-Soglia accettabile: IG $>= 40$ _rispettata_
-Soglia ottima: IG $>= 60$ _rispettata_
+*Soglia accettabile*: $"IG" >= 40$ _rispettata_ \
+*Soglia ottima*: $"IG" >= 60$ _rispettata_
 
 
 == MPC-CO: Correttezza Ortografica
 
 #figure(
-  image("../../assets/metriche/errori.svg"),
-  caption: [Numero di errori ortografici per documento],
+  image("../../assets/metriche/PB/errori.svg"),
+  caption: [Numero di errori ortografici per documento per sprint],
 )
 
 Il grafico evidenzia i primi sprint caratterizzati da una gestione non ancora ottimale degli errori ortografici. Infatti nei primi sprint (S1-S4) si registrano infatti picchi significativi, in particolare:
@@ -1227,7 +1249,7 @@ Nei successivi _sprint_ il rapporto diminuisce nuovamente.
 
 #figure(
   image("../../assets/metriche/PB/qm.svg"),
-  caption: [_Quality Metrics Satisfied_ sprint],
+  caption: [_Quality Metrics Satisfied_ per sprint],
 )
 
 L'indicatore MPC-QMS evidenzia un'elevata percentuale di metriche di qualità soddisfatte lungo gli sprint. Il valore ottimo (100%) viene raggiunto in quattro sprint (S2, S4, S5, S6), a conferma della piena conformità agli obiettivi di qualità prefissati.
@@ -1271,7 +1293,7 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
 
     [Distribuzione del carico],
     [Sovraccarichi per alcuni membri a causa della suddivisione non omogenea del lavoro],
-    [Istanziazione della metrica *WSD*(@mpc-wsd) per monitorare la distribuzione del carico e adottare misure correttive in caso di squilibri],
+    [Istanziazione della metrica *WSD*(@mpc-wd) per monitorare la distribuzione del carico e adottare misure correttive in caso di squilibri],
 
     [Dissidi interni],
     [Tensioni emerse a causa di differenti personalità o approcci lavorativi],
