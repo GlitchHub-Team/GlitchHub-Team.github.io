@@ -142,7 +142,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 2,
 	},
 	"Amministratore": {
-		"Jaume Bernardi":       3,
+		"Jaume Bernardi":       7,
 		"Alessandro Dinato":    11,
 		"Michele Dioli":        8,
 		"Hossam Ezzemouri":     13,
@@ -160,7 +160,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 12,
 	},
 	"Progettista": {
-		"Jaume Bernardi":       29,
+		"Jaume Bernardi":       17,
 		"Alessandro Dinato":    15,
 		"Michele Dioli":        16,
 		"Hossam Ezzemouri":     12,
@@ -169,7 +169,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 14,
 	},
 	"Programmatore": {
-		"Jaume Bernardi":       21,
+		"Jaume Bernardi":       29,
 		"Alessandro Dinato":    29,
 		"Michele Dioli":        28,
 		"Hossam Ezzemouri":     27,
