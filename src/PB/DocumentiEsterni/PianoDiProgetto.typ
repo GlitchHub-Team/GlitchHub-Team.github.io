@@ -2281,7 +2281,7 @@ Il gruppo di lavoro per il *Piano di Qualifica* ha individuato i seguenti compit
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 6:
+Issue relative allo sprint 6:
 - [AdR] UC per interfaccia utente #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/146")[\#146],
 - [UC] Studio metodi di normalizzazione dati da sensori BLE #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/133")[\#133],
 - [AdR] Approfondimento use case attuali #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/123")[\#123],
@@ -2447,7 +2447,7 @@ In seguito sono mostrati i compiti identificati:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 7: \
+Issue relative allo sprint 7: \
 - [PdQ] Stabilizzazione *Piano di Qualifica* #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/149")[\#149],
 - [AdR] Scrittura requisiti UC31 - UC60 #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/160")[\#160],
 - [AdR] Generalizzazione "admin generico" #link("https://github.com/GlitchHub-Team/GlitchHub-Team.github.io/issues/163")[\#163],
@@ -3149,7 +3149,7 @@ Di seguito sono elencati i compiti individuati:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 11: \
+Issue relative allo sprint 11: \
 
 - Creazione delle repo per l'MVP e automation (#issue(336))
 - Creazione Component Diagram per Data Consumer (#issue(329))
@@ -3368,7 +3368,7 @@ Di seguito sono elencati i compiti individuati:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 12: \
+Issue relative allo sprint 12: \
 - [PdP] Sprint 11 (#issue(390))
 - [Frontend] Codifica sezione di autenticazione (#issue(1, repo: "dash"))
 - [AdR] Sistemare urgenze requisiti (#issue(429))
@@ -3574,7 +3574,7 @@ Di seguito sono elencati i compiti individuati:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 13: \
+Issue relative allo sprint 13: \
 - [Backend] Scrittura test unità servizio tenant (sprint 13) (#issue(33, repo: "dash"))
 - [PdP] Sprint 12 (#issue(440))
 - [Backend] Codifica backend/internal/user (sprint 13) (#issue(17, repo: "dash"))
@@ -3772,7 +3772,7 @@ Di seguito sono elencati i compiti individuati:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 14: \
+Issue relative allo sprint 14: \
 - [Backend] Verifica TU package backend/internal/auth (#issue(36))
 - [Backend] Codifica package backend/internal/email (#issue(37))
 - [Backend] Verifica TU package backend/internal/email (#issue(38))
@@ -3972,7 +3972,7 @@ Di seguito sono elencati i compiti individuati:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 15: \
+Issue relative allo sprint 15: \
 - [Backend] TI backend/internal/user (#issue(71, repo: "dashboard"))
 - [Frontend] Modifica sezione di Historical Data e Real Time Data (#issue(114, repo: "dashboard"))
 - [Backend] TI backend/internal/auth (#issue(69, repo: "dashboard"))
@@ -4161,7 +4161,7 @@ Di seguito sono elencati i compiti individuati:
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 16: \
+Issue relative allo sprint 16: \
 - [ST] Completamento Specifica Tecnica per frontend (#issue(495))
 - [Frontend] Integrazione con Cloud (#issue(100, repo: "dashboard"))
 - [Backend] TI historical_data (#issue(101, repo: "dashboard"))
@@ -4298,7 +4298,7 @@ Altre attività includono la correzione di qualche errore con le metriche di _ob
 
 === Compiti da svolgere
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 17: \
+Issue relative allo sprint 17: \
 - [PdQ] Aggiornare metriche (#issue(496))
 - [ST] Cloud Backend (#issue(522))
 - [ST] Tracciamento requisiti (#issue(525))
@@ -4358,7 +4358,7 @@ Issue relative a sprint 17: \
 
 === Compiti svolti
 Il gruppo ha svolto con successo i seguenti compiti: \
-Issue relative a sprint 17: \
+Issue relative allo sprint 17: \
 - [PdQ] Aggiornare metriche (#issue(496))
 - [Backend] Togliere requester check da GetTenantList (#issue(120, repo: "dashboard"))
 - [ST] Stesura Cloud Backend - Elia (#issue(523))
