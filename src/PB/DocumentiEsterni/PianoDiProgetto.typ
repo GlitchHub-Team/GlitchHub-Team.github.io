@@ -815,8 +815,7 @@ Il ribilanciamento nasce dall'analisi dei primi nove sprint in retrospettiva, ch
 
 La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali, ovvero modificando la distribuzione tra ruoli per ciascun membro senza alterare il monte ore individuale di *95 ore* né il costo complessivo di realizzazione.
 
-=== Suddivisione oraria iniziale
-
+=== Suddivisione oraria dallo sprint 14 <suddivisione-oraria-pb>
 #tabella-paginata(
   table(
     columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
@@ -826,14 +825,14 @@ La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali
       left: if x == 0 { 0pt } else { 0.5pt + black },
     ),
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-    "Jaume Bernardi", "8", "7", "10", "21", "24", "23", [*93*],
-    "Alessandro Dinato", "7", "8", "10", "21", "23", "24", [*93*],
-    "Michele Dioli", "8", "7", "10", "21", "24", "23", [*93*],
-    "Hossam Ezzemouri", "7", "8", "10", "20", "24", "24", [*93*],
-    "Riccardo Graziani", "8", "8", "10", "20", "23", "24", [*93*],
-    "Siria Salvalaio", "8", "8", "9", "21", "24", "23", [*93*],
-    "Elia Ernesto Stellin", "8", "8", "9", "21", "23", "24", [*93*],
-    table.footer([*Totale*], [*54*], [*54*], [*68*], [*145*], [*165*], [*165*], [*651*]),
+    "Jaume Bernardi", "7", "7", "6", "17", "29", "29", [*95*],
+    "Alessandro Dinato", "6", "11", "13", "15", "29", "21", [*95*],
+    "Michele Dioli", "8", "8", "10", "16", "28", "25", [*95*],
+    "Hossam Ezzemouri", "2", "13", "15", "12", "27", "26", [*95*],
+    "Riccardo Graziani", "3", "5", "13", "20", "29", "25", [*95*],
+    "Siria Salvalaio", "8", "11", "7", "18", "28", "23", [*95*],
+    "Elia Ernesto Stellin", "2", "11", "12", "14", "25", "31", [*95*],
+    table.footer([*Totale*], [*36*], [*66*], [*76*], [*112*], [*195*], [*180*], [*665*]),
   ),
   [Tabella suddivisione ore produttive per componente e ruolo],
   label-id: "tab-sudd-ore",
@@ -864,7 +863,8 @@ La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali
 )
 
 
-=== Suddivisione oraria dallo sprint 14 <suddivisione-oraria-rtb>
+=== Suddivisione oraria iniziale
+
 #tabella-paginata(
   table(
     columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
@@ -874,17 +874,78 @@ La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali
       left: if x == 0 { 0pt } else { 0.5pt + black },
     ),
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-    "Jaume Bernardi", "7", "3", "6", "29", "21", "29", [*95*],
-    "Alessandro Dinato", "6", "11", "13", "15", "29", "21", [*95*],
-    "Michele Dioli", "8", "7", "10", "18", "27", "25", [*95*],
-    "Hossam Ezzemouri", "2", "9", "14", "17", "27", "26", [*95*],
-    "Riccardo Graziani", "3", "8", "13", "17", "27", "27", [*95*],
-    "Siria Salvalaio", "6", "9", "10", "18", "25", "27", [*95*],
-    "Elia Ernesto Stellin", "5", "8", "12", "18", "27", "25", [*95*],
-    table.footer([*Totale*], [*34*], [*56*], [*82*], [*124*], [*186*], [*183*], [*665*]),
+    "Jaume Bernardi", "8", "7", "10", "21", "24", "23", [*93*],
+    "Alessandro Dinato", "7", "8", "10", "21", "23", "24", [*93*],
+    "Michele Dioli", "8", "7", "10", "21", "24", "23", [*93*],
+    "Hossam Ezzemouri", "7", "8", "10", "20", "24", "24", [*93*],
+    "Riccardo Graziani", "8", "8", "10", "20", "23", "24", [*93*],
+    "Siria Salvalaio", "8", "8", "9", "21", "24", "23", [*93*],
+    "Elia Ernesto Stellin", "8", "8", "9", "21", "23", "24", [*93*],
+    table.footer([*Totale*], [*54*], [*54*], [*68*], [*145*], [*165*], [*165*], [*651*]),
   ),
   [Tabella suddivisione ore produttive per componente e ruolo],
   label-id: "tab-sudd-ore",
+)
+
+
+== Grafico a torta della suddivisione oraria dallo sprint 14
+#figure(
+  align(center)[
+
+    #let ore = (
+      ("Responsabile", 36),
+      ("Amministratore", 66),
+      ("Analista", 76),
+      ("Progettista", 112),
+      ("Programmatore", 195),
+      ("Verificatore", 180),
+    )
+
+    #cetz.canvas({
+      let colors = gradient.linear(
+        rgb(153, 72, 188),
+        rgb("#19e0d9"),
+        rgb(84, 101, 255),
+      )
+
+      chart.piechart(
+        ore,
+        value-key: 1,
+        label-key: 0,
+        radius: 4,
+        stroke: none,
+        slice-style: colors,
+        inner-radius: 0.7,
+        // Label interne con ore
+        inner-label: (
+          content: (value, label) => [#text(white, weight: "bold", str(value) + "h")],
+          radius: 110%,
+        ),
+        // Label esterne con linee di connessione
+        outer-label: (
+          content: (value, label) => [
+            #box(
+              fill: white,
+              outset: 3pt,
+              radius: 3pt,
+              stroke: 0.5pt + luma(200),
+              text(black, size: 0.85em, weight: "medium", label),
+            )
+          ],
+          radius: 110%,
+        ),
+        // Abilita le linee di connessione
+        outer-label-line: (
+          stroke: 1pt + luma(150),
+          mark: (end: ">", size: 0.15),
+        ),
+        legend: (label: none),
+      )
+    })
+  ],
+  caption: "Suddivisione oraria dallo sprint 14",
+  kind: "grafico",
+  supplement: [Grafico],
 )
 
 
@@ -1013,7 +1074,29 @@ La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali
 = Stima dei costi di realizzazione
 Il preventivo dei costi è calcolato moltiplicando le ore assegnate a ciascun ruolo per il relativo costo orario.\
 
-Come per la sezione precedente è disponibile la suddivisione dei costi prima e dopo la riassegnazione, la quale ha comportato una diminuzione della stime dei costi pari a *150 €*.
+Come per la sezione precedente è disponibile la suddivisione dei costi prima e dopo la riassegnazione dello sprint 10, la quale ha comportato una diminuzione della stime dei costi pari a *150 €*. Durante lo sprint 14 è stata effettuata una nuova ricalibrazione, che ha portato a un ulteriore risparmio di *100 €*.
+
+== Tabella suddivisione ore e costi per ruoli a partire dallo sprint 14
+#tabella-paginata(
+  table(
+    columns: (0.25fr, 0.25fr, 0.25fr, 0.25fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Ruolo*], [*Ore*], [*Costo orario*], [*Totale*]),
+    "Responsabile", "36", "30 €/h", "1080 €",
+    "Amministratore", "66", "20 €/h", "1320 €",
+    "Analista", "76", "25 €/h", "1900 €",
+    "Progettista", "112", "25 €/h", "2800 €",
+    "Programmatore", "195", "15 €/h", "2925 €",
+    "Verificatore", "180", "15 €/h", "2700 €",
+    table.footer([*Totale*], [*665*], [-], [*12725 €*]),
+  ),
+  [Tabella suddivisione ore e costi per ruoli],
+  label-id: "tab-sudd-ore-ruoli",
+)
 
 == Tabella suddivisione ore e costi per ruoli a partire dallo sprint 10
 #tabella-paginata(
@@ -1057,6 +1140,66 @@ Come per la sezione precedente è disponibile la suddivisione dei costi prima e 
   ),
   [Tabella suddivisione ore e costi per ruoli],
   label-id: "tab-sudd-ore-ruoli",
+)
+
+== Grafico a torta dei costi progettuali dallo sprint 14
+#figure(
+  align(center)[
+
+    #let costi = (
+      ("Responsabile", 1080),
+      ("Amministratore", 1320),
+      ("Analista", 1900),
+      ("Progettista", 2800),
+      ("Programmatore", 2925),
+      ("Verificatore", 2700),
+    )
+
+    #cetz.canvas({
+      let colors = gradient.linear(
+        rgb(153, 72, 188),
+        rgb("#19e0d9"),
+        rgb(84, 101, 255),
+      )
+
+      chart.piechart(
+        costi,
+        value-key: 1,
+        label-key: 0,
+        radius: 4,
+        stroke: none,
+        slice-style: colors,
+        inner-radius: 0.7,
+        // Label interne con ore
+        inner-label: (
+          content: (value, label) => [#text(white, weight: "bold", str(value) + " €")],
+          radius: 100%,
+        ),
+        // Label esterne con linee di connessione
+        outer-label: (
+          content: (value, label) => [
+            #box(
+              fill: white,
+              outset: 3pt,
+              radius: 3pt,
+              stroke: 0.5pt + luma(200),
+              text(black, size: 0.85em, weight: "medium", label),
+            )
+          ],
+          radius: 110%,
+        ),
+        // Abilita le linee di connessione
+        outer-label-line: (
+          stroke: 1pt + luma(150),
+          mark: (end: ">", size: 0.15),
+        ),
+        legend: (label: none),
+      )
+    })
+  ],
+  caption: "Costi complessivi per ogni ruolo a partire dallo rivalutazione dello sprint 14",
+  kind: "grafico",
+  supplement: [Grafico],
 )
 
 == Grafico a torta dei costi progettuali dallo sprint 10
