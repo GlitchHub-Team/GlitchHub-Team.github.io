@@ -792,7 +792,7 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
 
 
 #figure(
-  image("../../assets/metriche/pv-ev.svg"),
+  image("../../assets/metriche/PB/pv-ev.svg"),
   caption: [Valori di PV e EV per sprint],
 )
 
@@ -837,7 +837,7 @@ L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di
 )
 
 #figure(
-  image("../../assets/metriche/ac-etc.svg"),
+  image("../../assets/metriche/PB/ac-etc.svg"),
   caption: [Valori di AC, ETC e EAC per sprint],
 )
 
@@ -884,7 +884,7 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
 )
 
 #figure(
-  image("../../assets/metriche/cv-sv.svg"),
+  image("../../assets/metriche/PB/cv-sv.svg"),
   caption: [Cost Variance e Schedule Variance per sprint],
 )
 
@@ -928,7 +928,7 @@ $ "BAC" = 12.975 € $
 )
 
 #figure(
-  image("../../assets/metriche/eac-bac.png"),
+  image("../../assets/metriche/PB/eac-bac.svg"),
   caption: [EAC vs BAC per sprint],
 )
 
@@ -972,7 +972,7 @@ Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una prev
 )
 
 #figure(
-  image("../../assets/metriche/tcr.svg"),
+  image("../../assets/metriche/PB/tcr.svg"),
   caption: [Task Completion Rate per sprint],
 )
 
@@ -1020,7 +1020,7 @@ Il recupero completo nello sprint 9 (100% con 24 task completate) dimostra una b
 )
 
 #figure(
-  image("../../assets/metriche/ts.svg"),
+  image("../../assets/metriche/PB/ts.svg"),
   caption: [Task Slippage per sprint],
 )
 
@@ -1063,7 +1063,7 @@ Il Task Slippage conferma quanto osservato nel TCR:
 )
 
 #figure(
-  image("../../assets/metriche/prct.svg"),
+  image("../../assets/metriche/PB/prct.svg"),
   caption: [Task Slippage per sprint],
 )
 
@@ -1104,7 +1104,7 @@ Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 )
 
 #figure(
-  image("../../assets/metriche/wsd.svg"),
+  image("../../assets/metriche/PB/wsd.svg"),
   caption: [wsd per sprint],
 )
 
@@ -1124,7 +1124,7 @@ Soglia accettabile: MPC-WD $lt.eq$ 10%
 == MPC-IG: Indice di Gulpease
 
 #figure(
-  image("../../assets/metriche/gulpease.svg"),
+  image("../../assets/metriche/PB/gulpease.svg"),
   caption: [Indice di Gulpease per sprint],
 )
 
@@ -1186,7 +1186,7 @@ Nel complesso, l'andamento conferma un progressivo miglioramento del processo di
 )
 
 #figure(
-  image("../../assets/metriche/te.svg"),
+  image("../../assets/metriche/PB/te.svg"),
   caption: [_Time Efficiency_ sprint],
 )
 
@@ -1226,7 +1226,7 @@ Nei successivi _sprint_ il rapporto diminuisce nuovamente.
 )
 
 #figure(
-  image("../../assets/metriche/qm.svg"),
+  image("../../assets/metriche/PB/qm.svg"),
   caption: [_Quality Metrics Satisfied_ sprint],
 )
 
