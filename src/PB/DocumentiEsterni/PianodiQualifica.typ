@@ -34,6 +34,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.1.0",
+      "20/04/2026",
+      "Jaume Bernardi",
+      "Riccardo Graziani",
+      [Rendicontazione dei *TU* e *TI*],
+    ),
+    (
       "1.0.0",
       "18/02/2026",
       "Michele Dioli",
@@ -177,8 +184,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Piano di Qualifica",
 )
 
@@ -490,21 +497,62 @@ L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-
   tabella-TU.push(markup(test.state))
 }
 
+#show "_": it => it + h(0pt, weak: true)
 #tabella-paginata(
   table(
-    columns: (1fr, 2fr, 2fr, 0.5fr),
-    align: center + horizon,
+    columns: (1fr, 2.5fr, 2.5fr, 0.7fr),
+    align: (x, y) => (
+      if x == 0 or x == 3 { center + horizon } 
+      else { start + horizon }
+    ),
     inset: 8pt,
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
     ..tabella-TU
   ),
-  [Test di Sistema con descrizione e requisito di riferimento],
+  [Test di Unità con descrizione, valore atteso e stato di implementazione],
   label-id: "tab-test-unità",
 )
 
 == Test di integrazione
 I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
+
+#let ti-counter = counter("ti-counter")
+#ti-counter.update(1)
+
+#let LISTA-TI = json("../../tracciamento/TI.json")
+#let tabella-TI = ()
+
+#let ti = id => context {
+  ti-counter.step()
+  let ti-name = ti-counter.display(value => "TI-" + str(value))
+  [#ti-name]
+}
+
+
+#for test in LISTA-TI {
+  let new-code = ti(test.id)
+  tabella-TI.push(new-code)
+  tabella-TI.push(markup(test.descr))
+  tabella-TI.push(markup(test.expected))
+  tabella-TI.push(markup(test.state))
+}
+
+#tabella-paginata(
+  table(
+    columns: (1fr, 2.5fr, 2.5fr, 0.7fr),
+    align: (x, y) => (
+      if x == 0 or x == 3 { center + horizon } 
+      else { start + horizon }
+    ),
+    inset: 8pt,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
+    ..tabella-TI
+  ),
+  [Test di Integrazione con descrizione, valore atteso e stato di implementazione],
+  label-id: "tab-test-integrazione",
+)
 
 == Test di regressione
 I test di regressione vengono eseguiti in seguito all'implementazione di nuove funzionalità o modifiche al sistema, in modo da accertarsi che il corretto comportamento precedente non sia stato compromesso.
