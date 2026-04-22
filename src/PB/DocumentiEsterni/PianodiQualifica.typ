@@ -34,11 +34,18 @@
   stato: "Verificato",
   registro-modifiche: (
     (
-      "1.1.0",
-      "20/04/2026",
+      "1.2.0",
+      "09/03/2026",
       "Jaume Bernardi",
       "Riccardo Graziani",
-      [Rendicontazione dei *TU* e *TI*],
+      [Stesura dei test di unità @test-unità],
+    ),
+    (
+      "1.1.0",
+      "28/02/2026",
+      "Jaume Bernardi",
+      "Riccardo Graziani",
+      [Stesura dei test d'integrazione @test-integrazione],
     ),
     (
       "1.0.0",
@@ -469,7 +476,7 @@ La copertura del codice (detta anche *Code Coverage*) misura la percentuale di c
 
 Il valore minimo accettabile è fissato all' 80%
 
-== Test di unità
+== Test di unità <test-unità>
 I test di unità hanno l'obiettivo di verificare il corretto funzionamento delle singole unità software in isolamento. Particolare attenzione viene posta alle funzioni critiche e a quelle che implementano la logica di business principale del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per individuare errori che possono insorgere in particolare durante la comunicazione tra sensori, gateway e infrastruttura cloud, ambito in cui è più probabile che si verifichino rispetto alle singole componenti isolate.
 
 L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-TSR (Test Success Rate)* e *MPC-CC (Code Coverage)*, riducendo il numero di difetti introdotti nelle fasi successive.
@@ -514,7 +521,7 @@ L'esecuzione dei test unitari contribuisce al miglioramento delle metriche *MPC-
   label-id: "tab-test-unità",
 )
 
-== Test di integrazione
+== Test di integrazione <test-integrazione>
 I test di integrazione verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
 
 #let ti-counter = counter("ti-counter")

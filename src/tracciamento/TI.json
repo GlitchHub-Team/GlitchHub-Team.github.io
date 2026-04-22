@@ -334,5 +334,65 @@
     "descr": "NATSStopSensorCommandNotExposed: Verifica che il comando stop sensore non sia esposto tramite NATS.",
     "expected": "Il comando non è esposto come atteso",
     "state": "S"  
+  },
+  {
+    "id": "TI-StoreData-AckRicevuto-SuSalvataggioSuccesso",
+    "descr": "StoreData: verifica che ack sia ricevuto su salvataggio riuscito.",
+    "expected": "Ack ricevuto su salvataggio riuscito",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-PublicazioneDuplicata-NonConsentita",
+    "descr": "StoreData: verifica che pubblicazione duplicata non sia consentita.",
+    "expected": "Pubblicazione duplicata non consentita",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-FormatoDatiInvalido-NonSalvato",
+    "descr": "StoreData: verifica che formato dati invalido non sia salvato.",
+    "expected": "Dati con formato invalido non salvati",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-TenantIDInvalido-NonSalvato",
+    "descr": "StoreData: verifica che tenant ID invalido non sia salvato.",
+    "expected": "Dati con tenant ID invalido non salvati",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-FormatoSensorIDInvalido-NonSalvato",
+    "descr": "StoreData: verifica che formato sensor ID invalido non sia salvato.",
+    "expected": "Dati con formato sensor ID invalido non salvati",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-FormatoTenantIDInvalido-NonSalvato",
+    "descr": "StoreData: verifica che formato tenant ID invalido non sia salvato.",
+    "expected": "Dati con formato tenant ID invalido non salvati",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-FormatoGatewayIDInvalido-NonSalvato",
+    "descr": "StoreData: verifica che formato gateway ID invalido non sia salvato.",
+    "expected": "Dati con formato gateway ID invalido non salvati",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-DatiValidi-Salvati",
+    "descr": "StoreData: verifica che dati validi siano salvati.",
+    "expected": "Dati validi vengono salvati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-AuthErrata-Fallisce",
+    "descr": "StoreData: verifica che auth errata fallisca.",
+    "expected": "Fallisce con auth errata",
+    "state": "S"
+  },
+  {
+    "id": "TI-StoreData-TLSErrata-Fallisce",
+    "descr": "StoreData: verifica che TLS errata fallisca.",
+    "expected": "Fallisce con TLS errata",
+    "state": "S"
   }
 ]

@@ -2350,5 +2350,155 @@
     "descr": "PulseOximeterGenerate: verifica che vengano generati dati ossimetro polso.",
     "expected": "La funzione completa con successo",
     "state": "S"
+  },
+  {
+    "id": "TU-Creazione-Mock-Postgres",
+    "descr": "NewMockPostgres: verifica la creazione di un mock PostgreSQL.",
+    "expected": "Il mock viene creato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-Schema-Tenant-Mock-RestituisceDueSchema",
+    "descr": "MockTenantSchemas: verifica che restituisca due schemi.",
+    "expected": "Vengono restituiti due schemi",
+    "state": "S"
+  },
+  {
+    "id": "TU-Costruzione-DDL-Schema-Tenant-RestituisceStatement",
+    "descr": "BuildTenantSchemaDDL: verifica che restituisca statement di schema e tabella.",
+    "expected": "Gli statement vengono restituiti correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-Costruzione-DDL-Mock-Schema-Tenant-RestituisceDDL",
+    "descr": "BuildMockTenantSchemaDDL: verifica che restituisca DDL per entrambi gli schemi.",
+    "expected": "Il DDL viene restituito per entrambi gli schemi",
+    "state": "S"
+  },
+  {
+    "id": "TU-JWTAuth-ImpostaCallback",
+    "descr": "JWTAuth: verifica che imposti i callback per JWT utente e firma.",
+    "expected": "I callback vengono impostati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-JWTAuth-CallbackFirmaErroreSuSeedInvalido",
+    "descr": "JWTAuth: verifica che il callback di firma restituisca errore su seed invalido.",
+    "expected": "Viene restituito errore per seed invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-CredsFileAuth-ImpostaCallback",
+    "descr": "CredsFileAuth: verifica che imposti i callback per JWT utente e firma.",
+    "expected": "I callback vengono impostati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-CredsFileAuth-UserJWTErroreSuFileMancante",
+    "descr": "CredsFileAuth: verifica che UserJWT restituisca errore su file mancante.",
+    "expected": "Viene restituito errore per file mancante",
+    "state": "S"
+  },
+  {
+    "id": "TU-CAPemAuth-PercorsoVuotoNoOp",
+    "descr": "CAPemAuth: verifica che percorso vuoto sia no-op.",
+    "expected": "Nessuna operazione per percorso vuoto",
+    "state": "S"
+  },
+  {
+    "id": "TU-CAPemAuth-ErroreSuFileMancante",
+    "descr": "CAPemAuth: verifica che restituisca errore su file mancante.",
+    "expected": "Viene restituito errore per file mancante",
+    "state": "S"
+  },
+  {
+    "id": "TU-Creazione-Stream-ConnessioneChiusaNonPanico",
+    "descr": "CreateStream: verifica che connessione chiusa non causi panico.",
+    "expected": "Nessun panico con connessione chiusa",
+    "state": "S"
+  },
+  {
+    "id": "TU-Nuovo-JetStreamConsumer-ErroreSuStreamMancante",
+    "descr": "NewJetStreamConsumer: verifica che restituisca errore quando stream manca.",
+    "expected": "Viene restituito errore per stream mancante",
+    "state": "S"
+  },
+  {
+    "id": "TU-StoreData-RestituisceNil-SuSuccessoScrittura",
+    "descr": "StoreData: verifica che restituisca nil quando la scrittura dei dati riesce.",
+    "expected": "La funzione restituisce nil senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-StoreData-RestituisceErrore-SuFallimentoScrittura",
+    "descr": "StoreData: verifica che restituisca errore quando la scrittura dei dati fallisce.",
+    "expected": "Viene restituito errore su fallimento scrittura",
+    "state": "S"
+  },
+  {
+    "id": "TU-WriteData-BatchVuotoRestituisceNil",
+    "descr": "WriteData: verifica che batch vuoto restituisca nil.",
+    "expected": "Viene restituito nil per batch vuoto",
+    "state": "S"
+  },
+  {
+    "id": "TU-WriteData-ErroreSuSchemaMancante",
+    "descr": "WriteData: verifica che restituisca errore su schema mancante.",
+    "expected": "Viene restituito errore per schema mancante",
+    "state": "S"
+  },
+  {
+    "id": "TU-WriteData-SuccessoSuSchemaMockDefiniti",
+    "descr": "WriteData: verifica che abbia successo su schemi mock definiti.",
+    "expected": "La scrittura ha successo su schemi mock",
+    "state": "S"
+  },
+  {
+    "id": "TU-WriteData-ErroreSuJSONInvalido",
+    "descr": "WriteData: verifica che restituisca errore su byte JSON invalidi.",
+    "expected": "Viene restituito errore per JSON invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-WriteData-IgnoraDuplicatoPrimaryKey",
+    "descr": "WriteData: verifica che ignori duplicato primary key.",
+    "expected": "Il duplicato primary key viene ignorato",
+    "state": "S"
+  },
+  {
+    "id": "TU-Listen-ProcessaMessaggiPubblicati",
+    "descr": "Listen: verifica che processi messaggi pubblicati.",
+    "expected": "I messaggi pubblicati vengono processati",
+    "state": "S"
+  },
+  {
+    "id": "TU-Listen-FetchErrorePoiStop",
+    "descr": "Listen: verifica che su errore fetch poi si fermi.",
+    "expected": "La funzione si ferma dopo errore fetch",
+    "state": "S"
+  },
+  {
+    "id": "TU-ProcessBatch-StoreAndAckSuPayloadValido",
+    "descr": "ProcessBatch: verifica che store e ack su payload valido.",
+    "expected": "Store e ack avvengono su payload valido",
+    "state": "S"
+  },
+  {
+    "id": "TU-ProcessBatch-TermSuPayloadInvalido",
+    "descr": "ProcessBatch: verifica che termini su payload invalido.",
+    "expected": "La funzione termina su payload invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-ProcessBatch-TermErroreSuPayloadInvalido",
+    "descr": "ProcessBatch: verifica che termini con errore su payload invalido.",
+    "expected": "Termina con errore su payload invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-ProcessBatch-NoAckSuFallimentoStore",
+    "descr": "ProcessBatch: verifica che non ack quando store fallisce.",
+    "expected": "Nessun ack quando store fallisce",
+    "state": "S"
   }
 ]
