@@ -13,8 +13,9 @@ var costPerHourPerRole = map[string]int{
 	"Programmatore":  15,
 	"Verificatore":   15,
 }
-
-/*var hoursPerRolePerName = map[string]map[string]int{
+/*
+//rendicontazione iniziale fino allo sprint 9 (compreso)
+var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
 		"Jaume Bernardi":       8,
 		"Alessandro Dinato":    7,
@@ -69,9 +70,9 @@ var costPerHourPerRole = map[string]int{
 		"Siria Salvalaio":      23,
 		"Elia Ernesto Stellin": 24,
 	},
-}*/
-
-//nuova allocazione delle ore inizio PB
+}
+*/
+//nuova allocazione delle ore inizio PB (dal 10 al 13 compresi)
 /*
 var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
@@ -130,7 +131,8 @@ var hoursPerRolePerName = map[string]map[string]int{
 	},
 }
 */
-//nuova allocazione delle ore fine PB
+
+//nuova allocazione delle ore fine PB (dal 14 in poi, compreso)
 var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
 		"Jaume Bernardi":       7,
@@ -142,7 +144,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 2,
 	},
 	"Amministratore": {
-		"Jaume Bernardi":       3,
+		"Jaume Bernardi":       7,
 		"Alessandro Dinato":    11,
 		"Michele Dioli":        8,
 		"Hossam Ezzemouri":     13,
@@ -160,7 +162,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 12,
 	},
 	"Progettista": {
-		"Jaume Bernardi":       29,
+		"Jaume Bernardi":       17,
 		"Alessandro Dinato":    15,
 		"Michele Dioli":        16,
 		"Hossam Ezzemouri":     12,
@@ -169,7 +171,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 14,
 	},
 	"Programmatore": {
-		"Jaume Bernardi":       21,
+		"Jaume Bernardi":       29,
 		"Alessandro Dinato":    29,
 		"Michele Dioli":        28,
 		"Hossam Ezzemouri":     27,
@@ -187,6 +189,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 31,
 	},
 }
+
 
 func ResourceUsage(issues *[]Issue, sprint int, expected bool) map[string]map[string]int {
 	result := map[string]map[string]int{
