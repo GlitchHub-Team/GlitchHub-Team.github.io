@@ -256,5 +256,83 @@
     "descr": "GetTenantUserIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un gateway.",
     "expected": "Il flusso di recupero gateway viene completato con successo, restituendo i dati del gateway",
     "state": "S"
+  },
+  {
+    "id": "TI-NATSAddSensorIntegration",
+    "descr": "NATSAddSensorIntegration: Verifica il flusso end-to-end di aggiunta sensore tramite NATS.",
+    "expected": "Il flusso di aggiunta sensore viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSCommissionGatewayIntegration",
+    "descr": "NATSCommissionGatewayIntegration: Verifica il flusso end-to-end di commission gateway tramite NATS.",
+    "expected": "Il flusso di commission gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSCreateGatewayIntegration",
+    "descr": "NATSCreateGatewayIntegration: Verifica il flusso end-to-end di creazione gateway tramite NATS.",
+    "expected": "Il flusso di creazione gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSDecommissionGatewayIntegration",
+    "descr": "NATSDecommissionGatewayIntegration: Verifica il flusso end-to-end di decommission gateway tramite NATS.",
+    "expected": "Il flusso di decommission gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSDeleteGatewayIntegration",
+    "descr": "NATSDeleteGatewayIntegration: Verifica il flusso end-to-end di eliminazione gateway tramite NATS.",
+    "expected": "Il flusso di eliminazione gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSDeleteSensorIntegration",
+    "descr": "NATSDeleteSensorIntegration: Verifica il flusso end-to-end di eliminazione sensore tramite NATS.",
+    "expected": "Il flusso di eliminazione sensore viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSInterruptGatewayIntegration",
+    "descr": "NATSInterruptGatewayIntegration: Verifica il flusso end-to-end di interrupt gateway tramite NATS.",
+    "expected": "Il flusso di interrupt gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSInterruptSensorIntegration",
+    "descr": "NATSInterruptSensorIntegration: Verifica il flusso end-to-end di interrupt sensore tramite NATS.",
+    "expected": "Il flusso di interrupt sensore viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSRebootGatewayIntegration",
+    "descr": "NATSRebootGatewayIntegration: Verifica il flusso end-to-end di reboot gateway tramite NATS.",
+    "expected": "Il flusso di reboot gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSResetGatewayIntegration",
+    "descr": "NATSResetGatewayIntegration: Verifica il flusso end-to-end di reset gateway tramite NATS.",
+    "expected": "Il flusso di reset gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSResumeGatewayIntegration",
+    "descr": "NATSResumeGatewayIntegration: Verifica il flusso end-to-end di resume gateway tramite NATS.",
+    "expected": "Il flusso di resume gateway viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSResumeSensorIntegration",
+    "descr": "NATSResumeSensorIntegration: Verifica il flusso end-to-end di resume sensore tramite NATS.",
+    "expected": "Il flusso di resume sensore viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TI-NATSStopSensorCommandNotExposed",
+    "descr": "NATSStopSensorCommandNotExposed: Verifica che il comando stop sensore non sia esposto tramite NATS.",
+    "expected": "Il comando non è esposto come atteso",
+    "state": "S"  
   }
 ]

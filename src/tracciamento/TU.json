@@ -1672,5 +1672,683 @@
     "descr": "UserFormDialog: Verifica che, quando il tenant id è bloccato nel dialog, il campo sia precompilato, venga risolto il nome tenant e la select dei tenant non venga caricata (input disabilitato mostrante il nome).",
     "expected": "TenantId precompilato, nome risolto mostrato e select non caricata (campo disabilitato).",
     "state": "S"
+  },
+  {
+    "id": "TU-GetOrderedBufferedDataByGatewayAndValueColumn",
+    "descr": "GetOrderedBufferedData: verifica che i dati bufferizzati vengano recuperati ordinati per gateway e colonna valore.",
+    "expected": "I dati vengono restituiti ordinati correttamente per gateway e colonna specificata",
+    "state": "S"
+  },
+  {
+    "id": "TU-GetOrderedBufferedDataWrongColumnData",
+    "descr": "GetOrderedBufferedData: verifica che vengano gestiti correttamente dati di colonna errati nei dati bufferizzati.",
+    "expected": "I dati di colonna errati vengono gestiti correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-InsertWrongDataForEachColumn",
+    "descr": "Insert: verifica che l'inserimento di dati errati per ogni colonna venga gestito correttamente.",
+    "expected": "L'inserimento di dati errati per ogni colonna viene gestito correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-GetOrderedBufferedDataWithWrongDBConnection",
+    "descr": "GetOrderedBufferedData: verifica che venga restituito errore con connessione database errata.",
+    "expected": "Viene restituito l'errore di connessione database errata",
+    "state": "S"
+  },
+  {
+    "id": "TU-CleanSingleBufferedDataWithNilData",
+    "descr": "CleanSingleBufferedData: verifica che la pulizia di dati bufferizzati nil venga gestita correttamente.",
+    "expected": "La pulizia di dati bufferizzati nil viene gestita correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-CleanSingleBufferedDataDeletesOnlyPassedRows",
+    "descr": "CleanSingleBufferedData: verifica che vengano eliminati solo le righe passate nella pulizia.",
+    "expected": "Solo le righe passate vengono eliminate nella pulizia",
+    "state": "S"
+  },
+  {
+    "id": "TU-CleanSingleBufferedDataWithWrongDBConnection",
+    "descr": "CleanSingleBufferedData: verifica che venga restituito errore nella pulizia con connessione database errata.",
+    "expected": "Viene restituito l'errore di connessione database nella pulizia",
+    "state": "S"
+  },
+  {
+    "id": "TU-GetOrderedBufferedDataReturnsAllRowsAndAllowsSequentialCleanup",
+    "descr": "GetOrderedBufferedData: verifica che vengano restituite tutte le righe e consentita la pulizia sequenziale.",
+    "expected": "Tutte le righe vengono restituite e la pulizia sequenziale è consentita",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferTriggerLimitIsAppliedPerGateway",
+    "descr": "BufferTriggerLimit: verifica che il limite di trigger del buffer venga applicato per gateway.",
+    "expected": "Il limite di trigger viene applicato correttamente per ogni gateway",
+    "state": "S"
+  },
+  {
+    "id": "TU-CleanWholeBufferForValidAndInvalidGatewayID",
+    "descr": "CleanWholeBuffer: verifica che la pulizia dell'intero buffer gestisca ID gateway validi e invalidi.",
+    "expected": "Il buffer viene pulito per ID validi, errore per invalidi",
+    "state": "S"
+  },
+  {
+    "id": "TU-CleanWholeBufferWithWrongDBConnection",
+    "descr": "CleanWholeBuffer: verifica che venga restituito errore nella pulizia con connessione database errata.",
+    "expected": "Viene restituito l'errore di connessione al database",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryCreateReturnsRepository",
+    "descr": "Create: verifica che la factory NATS crei e restituisca il repository.",
+    "expected": "Il repository viene creato e restituito correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryReloadValidConnectionWithMockNATS",
+    "descr": "Reload: verifica che la factory ricarichi una connessione valida con NATS mock.",
+    "expected": "La connessione viene ricaricata con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryReloadInvalidConnectionWithMockNATS",
+    "descr": "Reload: verifica che la factory gestisca ricarica di connessione invalida con NATS mock.",
+    "expected": "Viene restituito un errore per connessione invalida",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryReloadInvalidAddress",
+    "descr": "Reload: verifica che la factory restituisca errore per indirizzo invalido.",
+    "expected": "Viene restituito l'errore di indirizzo invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryReloadInvalidPort",
+    "descr": "Reload: verifica che la factory restituisca errore per porta invalida.",
+    "expected": "Viene restituito l'errore di porta invalida",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryReloadInvalidCAPemPath",
+    "descr": "Reload: verifica che la factory restituisca errore per percorso CA PEM invalido.",
+    "expected": "Viene restituito l'errore di percorso CA PEM invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryReloadAcceptsCredsFormattedToken",
+    "descr": "Reload: verifica che la factory accetti credenziali formattate come token.",
+    "expected": "Le credenziali token vengono accettate e la connessione ricaricata",
+    "state": "S"
+  },
+  {
+    "id": "TU-NATSDataPublisherFactoryReloadEmptyTokenFailsFast",
+    "descr": "Reload: verifica che la factory fallisca velocemente con token vuoto.",
+    "expected": "Viene restituito un errore per token vuoto",
+    "state": "S"
+  },
+  {
+    "id": "TU-PublishRepositorySendValidDataPublishesExpectedPayload",
+    "descr": "Send: verifica che il repository pubblichi payload atteso con dati validi.",
+    "expected": "Il payload atteso viene pubblicato correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-PublishRepositorySendInvalidDomainDataReturnsMarshalError",
+    "descr": "Send: verifica che venga restituito errore di marshal per dati dominio invalidi.",
+    "expected": "Viene restituito l'errore di marshal per dati invalidi",
+    "state": "S"
+  },
+  {
+    "id": "TU-PublishRepositorySendLogicalInvalidDataStillPublishes",
+    "descr": "Send: verifica che dati logicamente invalidi vengano comunque pubblicati.",
+    "expected": "I dati vengono pubblicati nonostante l'invalidità logica",
+    "state": "S"
+  },
+  {
+    "id": "TU-PublishRepositorySendWithClosedNATSConnectionReturnsError",
+    "descr": "Send: verifica che venga restituito errore con connessione NATS chiusa.",
+    "expected": "Viene restituito l'errore di connessione chiusa",
+    "state": "S"
+  },
+  {
+    "id": "TU-PublishRepositorySendNilDataPanics",
+    "descr": "Send: verifica che l'invio di dati nil causi panico.",
+    "expected": "La funzione causa panico come previsto per dati nil",
+    "state": "S"
+  },
+  {
+    "id": "TU-PublishRepositoryHelloPublishesExpectedPayload",
+    "descr": "Hello: verifica che il repository pubblichi payload atteso per hello.",
+    "expected": "Il payload hello viene pubblicato correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-PublishRepositoryHelloWithInvalidJetStreamContextReturnsError",
+    "descr": "Hello: verifica che venga restituito errore con contesto JetStream invalido.",
+    "expected": "Viene restituito l'errore di contesto JetStream invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderStartExecutesCommandAndForwardsNilError",
+    "descr": "Start: verifica che l'avvio esegua comando e inoltri errore nil.",
+    "expected": "Il comando viene eseguito e l'errore nil inoltrato correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderStartExecutesCommandAndForwardsError",
+    "descr": "Start: verifica che l'avvio esegua comando e inoltri errore.",
+    "expected": "Il comando viene eseguito e l'errore inoltrato correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderStartTickerSendsDataAndCleansBuffer",
+    "descr": "Start: verifica che il ticker invii dati e pulisca buffer.",
+    "expected": "I dati vengono inviati e il buffer pulito periodicamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderStartTickerGetOrderedBufferedDataError",
+    "descr": "Start: verifica che il ticker gestisca errore nel recupero dati ordinati.",
+    "expected": "L'errore di recupero dati viene gestito correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderStartKeepsUnsentDataInBuffer",
+    "descr": "Start: verifica che i dati non inviati rimangano nel buffer.",
+    "expected": "I dati non inviati vengono mantenuti nel buffer",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderHelloSuccess",
+    "descr": "Hello: verifica che il hello abbia successo.",
+    "expected": "Il messaggio hello viene inviato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderHelloError",
+    "descr": "Hello: verifica che il hello restituisca errore.",
+    "expected": "Viene restituito l'errore nell'invio del hello",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderDecommissionSuccess",
+    "descr": "Decommission: verifica che la decommission abbia successo.",
+    "expected": "La decommission viene completata con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderDecommissionError",
+    "descr": "Decommission: verifica che la decommission restituisca errore.",
+    "expected": "Viene restituito l'errore nella decommission",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderCommissionSuccess",
+    "descr": "Commission: verifica che la commission abbia successo.",
+    "expected": "La commission viene completata con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderCommissionError",
+    "descr": "Commission: verifica che la commission restituisca errore.",
+    "expected": "Viene restituito l'errore nella commission",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderResetSuccess",
+    "descr": "BufferedDataSender.Reset: verifica che il reset abbia successo.",
+    "expected": "Il reset viene completato con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderResetError",
+    "descr": "BufferedDataSender.Reset: verifica che il reset restituisca errore.",
+    "expected": "Viene restituito l'errore nel reset",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderStopInterruptResume",
+    "descr": "BufferedDataSender.StopInterruptResume: verifica che stop, interrupt e resume funzionino correttamente.",
+    "expected": "Le operazioni stop, interrupt e resume funzionano correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderStopReturnsErrorWhenBufferCleanFails",
+    "descr": "BufferedDataSender.Stop: verifica che stop restituisca errore quando la pulizia buffer fallisce.",
+    "expected": "Viene restituito l'errore di pulizia buffer durante stop",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderInterruptIgnoresNonActiveGateway",
+    "descr": "BufferedDataSender.Interrupt: verifica che interrupt ignori gateway non attivi.",
+    "expected": "L'interrupt viene ignorato per gateway non attivi",
+    "state": "S"
+  },
+  {
+    "id": "TU-BufferedDataSenderResumeIgnoresNonInactiveGateway",
+    "descr": "BufferedDataSender.Resume: verifica che resume ignori gateway non inattivi.",
+    "expected": "Il resume viene ignorato per gateway non inattivi",
+    "state": "S"
+  },
+  {
+    "id": "TU-CommissionGatewayCmdExecute",
+    "descr": "CommissionGatewayCmd.Execute: verifica che il comando di commission gateway venga eseguito correttamente.",
+    "expected": "Il comando di commission gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-CommissionGatewayCmdExecuteReturnsCommissioningError",
+    "descr": "CommissionGatewayCmd.Execute: verifica che il comando restituisca errore di commissioning.",
+    "expected": "Viene restituito l'errore di commissioning",
+    "state": "S"
+  },
+  {
+    "id": "TU-CommissionGatewayCmdExecuteReturnsSenderError",
+    "descr": "CommissionGatewayCmd.Execute: verifica che il comando restituisca errore del sender.",
+    "expected": "Viene restituito l'errore del sender",
+    "state": "S"
+  },
+  {
+    "id": "TU-CreateGatewayCmdExecute",
+    "descr": "CreateGatewayCmd.Execute: verifica che il comando di creazione gateway venga eseguito correttamente.",
+    "expected": "Il comando di creazione gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-CreateGatewayCmdExecuteReturnsCreateError",
+    "descr": "CreateGatewayCmd.Execute: verifica che il comando restituisca errore di creazione.",
+    "expected": "Viene restituito l'errore di creazione",
+    "state": "S"
+  },
+  {
+    "id": "TU-CreateGatewayCmdExecuteReturnsHelloError",
+    "descr": "CreateGatewayCmd.Execute: verifica che il comando restituisca errore di hello.",
+    "expected": "Viene restituito l'errore di hello",
+    "state": "S"
+  },
+  {
+    "id": "TU-DecommissionGatewayCmdExecute",
+    "descr": "DecommissionGatewayCmd.Execute: verifica che il comando di decommission gateway venga eseguito correttamente.",
+    "expected": "Il comando di decommission gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-DecommissionGatewayCmdExecuteReturnsDecommissioningError",
+    "descr": "DecommissionGatewayCmd.Execute: verifica che il comando restituisca errore di decommissioning.",
+    "expected": "Viene restituito l'errore di decommissioning",
+    "state": "S"
+  },
+  {
+    "id": "TU-DecommissionGatewayCmdExecuteReturnsSenderError",
+    "descr": "DecommissionGatewayCmd.Execute: verifica che il comando restituisca errore del sender.",
+    "expected": "Viene restituito l'errore del sender",
+    "state": "S"
+  },
+  {
+    "id": "TU-DecommissionGatewayCmdExecuteReturnsHelloError",
+    "descr": "DecommissionGatewayCmd.Execute: verifica che il comando restituisca errore di hello.",
+    "expected": "Viene restituito l'errore di hello",
+    "state": "S"
+  },
+  {
+    "id": "TU-DeleteGatewayCmdExecute",
+    "descr": "DeleteGatewayCmd.Execute: verifica che il comando di eliminazione gateway venga eseguito correttamente.",
+    "expected": "Il comando di eliminazione gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-DeleteGatewayCmdExecuteReturnsDeleteError",
+    "descr": "DeleteGatewayCmd.Execute: verifica che il comando restituisca errore di eliminazione.",
+    "expected": "Viene restituito l'errore di eliminazione",
+    "state": "S"
+  },
+  {
+    "id": "TU-DeleteGatewayCmdExecuteReturnsStopError",
+    "descr": "DeleteGatewayCmd.Execute: verifica che il comando restituisca errore di stop.",
+    "expected": "Viene restituito l'errore di stop",
+    "state": "S"
+  },
+  {
+    "id": "TU-AddSensorCmdExecute",
+    "descr": "AddSensorCmd.Execute: verifica che il comando di aggiunta sensore venga eseguito correttamente.",
+    "expected": "Il comando di aggiunta sensore viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-AddSensorCmdExecuteReturnsAdderError",
+    "descr": "AddSensorCmd.Execute: verifica che il comando restituisca errore dell'adder.",
+    "expected": "Viene restituito l'errore dell'adder",
+    "state": "S"
+  },
+  {
+    "id": "TU-DeleteSensorCmdExecute",
+    "descr": "DeleteSensorCmd.Execute: verifica che il comando di eliminazione sensore venga eseguito correttamente.",
+    "expected": "Il comando di eliminazione sensore viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-DeleteSensorCmdExecuteReturnsDeleteError",
+    "descr": "DeleteSensorCmd.Execute: verifica che il comando restituisca errore di eliminazione.",
+    "expected": "Viene restituito l'errore di eliminazione",
+    "state": "S"
+  },
+  {
+    "id": "TU-InterruptGatewayCmdExecute",
+    "descr": "InterruptGatewayCmd.Execute: verifica che il comando di interrupt gateway venga eseguito correttamente.",
+    "expected": "Il comando di interrupt gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-InterruptGatewayCmdExecuteReturnsInterruptError",
+    "descr": "InterruptGatewayCmd.Execute: verifica che il comando restituisca errore di interrupt.",
+    "expected": "Viene restituito l'errore di interrupt",
+    "state": "S"
+  },
+  {
+    "id": "TU-InterruptSensorCmdExecute",
+    "descr": "InterruptSensorCmd.Execute: verifica che il comando di interrupt sensore venga eseguito correttamente.",
+    "expected": "Il comando di interrupt sensore viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-InterruptSensorCmdExecuteReturnsInterruptError",
+    "descr": "InterruptSensorCmd.Execute: verifica che il comando restituisca errore di interrupt.",
+    "expected": "Viene restituito l'errore di interrupt",
+    "state": "S"
+  },
+  {
+    "id": "TU-RebootGatewayCmdExecute",
+    "descr": "RebootGatewayCmd.Execute: verifica che il comando di reboot gateway venga eseguito correttamente.",
+    "expected": "Il comando di reboot gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-RebootGatewayCmdExecuteReturnsHelloError",
+    "descr": "RebootGatewayCmd.Execute: verifica che il comando restituisca errore di hello.",
+    "expected": "Viene restituito l'errore di hello",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResetGatewayCmdExecute",
+    "descr": "ResetGatewayCmd.Execute: verifica che il comando di reset gateway venga eseguito correttamente.",
+    "expected": "Il comando di reset gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResetGatewayCmdExecuteReturnsPortError",
+    "descr": "ResetGatewayCmd.Execute: verifica che il comando restituisca errore di porta.",
+    "expected": "Viene restituito l'errore di porta",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResetGatewayCmdExecuteReturnsSenderError",
+    "descr": "ResetGatewayCmd.Execute: verifica che il comando restituisca errore del sender.",
+    "expected": "Viene restituito l'errore del sender",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResumeGatewayCmdExecute",
+    "descr": "ResumeGatewayCmd.Execute: verifica che il comando di resume gateway venga eseguito correttamente.",
+    "expected": "Il comando di resume gateway viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResumeGatewayCmdExecuteReturnsResumeError",
+    "descr": "ResumeGatewayCmd.Execute: verifica che il comando restituisca errore di resume.",
+    "expected": "Viene restituito l'errore di resume",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResumeSensorCmdExecute",
+    "descr": "ResumeSensorCmd.Execute: verifica che il comando di resume sensore venga eseguito correttamente.",
+    "expected": "Il comando di resume sensore viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResumeSensorCmdExecuteReturnsResumeError",
+    "descr": "ResumeSensorCmd.Execute: verifica che il comando restituisca errore di resume.",
+    "expected": "Viene restituito l'errore di resume",
+    "state": "S"
+  },
+  {
+    "id": "TU-StopSensorCmdExecute",
+    "descr": "StopSensorCmd.Execute: verifica che il comando di stop sensore venga eseguito correttamente.",
+    "expected": "Il comando di stop sensore viene eseguito senza errori",
+    "state": "S"
+  },
+  {
+    "id": "TU-GetGatewayByIdLoadsGatewayAndSensors",
+    "descr": "GetGatewayById: verifica che vengano caricati gateway e sensori per ID.",
+    "expected": "Il gateway e i suoi sensori vengono caricati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-GetGatewayByIdReturnsErrorWhenGatewayMissing",
+    "descr": "GetGatewayById: verifica che venga restituito errore quando gateway manca.",
+    "expected": "Viene restituito l'errore di gateway mancante",
+    "state": "S"
+  },
+  {
+    "id": "TU-GetAllGatewaysLoadsAllGatewaysAndTheirSensors",
+    "descr": "GetAllGateways: verifica che vengano caricati tutti i gateway e i loro sensori.",
+    "expected": "Tutti i gateway e i loro sensori vengono caricati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-GetAllGatewaysReturnsErrorWhenSensorProfileIsInvalid",
+    "descr": "GetAllGateways: verifica che venga restituito errore quando profilo sensore è invalido.",
+    "expected": "Viene restituito l'errore di profilo sensore invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-CreateGatewayPersistsGatewayRow",
+    "descr": "CreateGateway: verifica che venga persistita la riga gateway.",
+    "expected": "La riga gateway viene persistita correttamente nel database",
+    "state": "S"
+  },
+  {
+    "id": "TU-CommissionGatewayUpdatesTenantTokenAndStatus",
+    "descr": "CommissionGateway: verifica che vengano aggiornati token tenant e stato.",
+    "expected": "Il token tenant e lo stato vengono aggiornati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-DecommissionGatewayClearsTenantTokenAndUpdatesStatus",
+    "descr": "DecommissionGateway: verifica che vengano cancellati token tenant e aggiornato stato.",
+    "expected": "Il token tenant viene cancellato e lo stato aggiornato",
+    "state": "S"
+  },
+  {
+    "id": "TU-InterruptAndResumeGatewayUpdateStatus",
+    "descr": "InterruptAndResumeGateway: verifica che vengano aggiornati stati per interrupt e resume.",
+    "expected": "Gli stati vengono aggiornati correttamente per interrupt e resume",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResetGatewayUpdatesInterval",
+    "descr": "ResetGateway: verifica che venga aggiornato l'intervallo.",
+    "expected": "L'intervallo viene aggiornato correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-AddSensorPersistsSensorRow",
+    "descr": "AddSensor: verifica che venga persistita la riga sensore.",
+    "expected": "La riga sensore viene persistita correttamente nel database",
+    "state": "S"
+  },
+  {
+    "id": "TU-InterruptAndResumeSensorUpdateStatus",
+    "descr": "InterruptAndResumeSensor: verifica che vengano aggiornati stati per interrupt e resume sensore.",
+    "expected": "Gli stati del sensore vengono aggiornati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-DeleteSensorDeletesRow",
+    "descr": "DeleteSensor: verifica che venga eliminata la riga sensore.",
+    "expected": "La riga sensore viene eliminata correttamente dal database",
+    "state": "S"
+  },
+  {
+    "id": "TU-DeleteGatewayDeletesGatewayAndCascadesSensors",
+    "descr": "DeleteGateway: verifica che vengano eliminati gateway e sensori in cascata.",
+    "expected": "Il gateway e i sensori associati vengono eliminati in cascata",
+    "state": "S"
+  },
+  {
+    "id": "TU-GenerateCredentialsReturnsConsistentKeyPair",
+    "descr": "GenerateCredentials: verifica che vengano generate credenziali con coppia chiave consistente.",
+    "expected": "Viene generata una coppia chiave consistente per le credenziali",
+    "state": "S"
+  },
+  {
+    "id": "TU-NewBufferDatabaseCreatesFileAndTable",
+    "descr": "NewBufferDatabase: verifica che venga creato file e tabella per database buffer.",
+    "expected": "Il file e la tabella del database buffer vengono creati correttamente",
+    "state": "S"
+  },
+  {
+    "id": "TU-NewGatewayDatabaseCreatesFileTablesAndEnablesForeignKeys",
+    "descr": "NewGatewayDatabase: verifica che vengano creati file, tabelle e abilitate chiavi esterne.",
+    "expected": "Il file, le tabelle vengono creati e le chiavi esterne abilitate",
+    "state": "S"
+  },
+  {
+    "id": "TU-NewNATSConnectionWithoutCredsConnectsToMockServer",
+    "descr": "NewNATSConnection: verifica che venga connesso a server mock senza credenziali.",
+    "expected": "La connessione NATS al server mock viene stabilita senza credenziali",
+    "state": "S"
+  },
+  {
+    "id": "TU-NewNATSConnectionWithCredsFileConnectsToMockServer",
+    "descr": "NewNATSConnection: verifica che venga connesso a server mock con file credenziali.",
+    "expected": "La connessione NATS al server mock viene stabilita con file credenziali",
+    "state": "S"
+  },
+  {
+    "id": "TU-NewJetStreamContextReturnsContextForValidConnection",
+    "descr": "NewJetStreamContext: verifica che venga restituito contesto per connessione valida.",
+    "expected": "Il contesto JetStream viene restituito per connessione valida",
+    "state": "S"
+  },
+  {
+    "id": "TU-JWTAuthWithInvalidSeedFailsToConnect",
+    "descr": "JWTAuth: verifica che fallisca connessione con seed JWT invalido.",
+    "expected": "La connessione fallisce con seed JWT invalido",
+    "state": "S"
+  },
+  {
+    "id": "TU-SaveReturnsErrorWhenSerializationFails",
+    "descr": "Save: verifica che venga restituito errore quando serializzazione fallisce.",
+    "expected": "Viene restituito l'errore di serializzazione fallita",
+    "state": "S"
+  },
+  {
+    "id": "TU-SaveReturnsErrorWhenInsertFails",
+    "descr": "Save: verifica che venga restituito errore quando inserimento fallisce.",
+    "expected": "Viene restituito l'errore di inserimento fallito",
+    "state": "S"
+  },
+  {
+    "id": "TU-Stop",
+    "descr": "Stop: verifica che il sensore venga fermato correttamente.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-Interrupt",
+    "descr": "Interrupt: verifica che il sensore venga interrotto correttamente.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-InterruptDoesNothingWhenNotActive",
+    "descr": "InterruptDoesNothingWhenNotActive: verifica che interrupt non faccia nulla se non attivo.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-Resume",
+    "descr": "Resume: verifica che il sensore venga ripreso correttamente.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-ResumeDoesNothingWhenNotInactive",
+    "descr": "ResumeDoesNothingWhenNotInactive: verifica che resume non faccia nulla se non inattivo.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-StartExecutesCommandAndForwardsError",
+    "descr": "StartExecutesCommandAndForwardsError: verifica che avvio esegua comando e inoltri errore.",
+    "expected": "Viene restituito l'errore inoltrato",
+    "state": "S"
+  },
+  {
+    "id": "TU-StartGeneratesDataOnTick",
+    "descr": "StartGeneratesDataOnTick: verifica che avvio generi dati su tick.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-StartSkipsGenerationWhenInactive",
+    "descr": "StartSkipsGenerationWhenInactive: verifica che avvio salti generazione se inattivo.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-StartStopsOnContextDone",
+    "descr": "Start: verifica che avvio si fermi quando contesto è completato.",
+    "expected": "L'avvio si ferma correttamente al completamento del contesto",
+    "state": "S"
+  },
+  {
+    "id": "TU-ParseSensorProfile",
+    "descr": "ParseSensorProfile: verifica che venga parsato il profilo sensore.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-ParseSensorProfileUnknown",
+    "descr": "ParseSensorProfileUnknown: verifica che venga gestito profilo sconosciuto.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-Serialize",
+    "descr": "Serialize: verifica che venga serializzato correttamente.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-EcgGenerate",
+    "descr": "EcgGenerate: verifica che vengano generati dati ECG.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-EnvironmentalSensingGenerate",
+    "descr": "EnvironmentalSensingGenerate: verifica che vengano generati dati di sensing ambientale.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-HealthThermometerGenerate",
+    "descr": "HealthThermometerGenerate: verifica che vengano generati dati termometro salute.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-HeartRateGenerate",
+    "descr": "HeartRateGenerate: verifica che vengano generati dati frequenza cardiaca.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
+  },
+  {
+    "id": "TU-PulseOximeterGenerate",
+    "descr": "PulseOximeterGenerate: verifica che vengano generati dati ossimetro polso.",
+    "expected": "La funzione completa con successo",
+    "state": "S"
   }
 ]
