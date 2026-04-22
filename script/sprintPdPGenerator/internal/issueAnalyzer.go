@@ -13,8 +13,9 @@ var costPerHourPerRole = map[string]int{
 	"Programmatore":  15,
 	"Verificatore":   15,
 }
-
-/*var hoursPerRolePerName = map[string]map[string]int{
+/*
+//rendicontazione iniziale fino allo sprint 9 (compreso)
+var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
 		"Jaume Bernardi":       8,
 		"Alessandro Dinato":    7,
@@ -69,9 +70,9 @@ var costPerHourPerRole = map[string]int{
 		"Siria Salvalaio":      23,
 		"Elia Ernesto Stellin": 24,
 	},
-}*/
-
-//nuova allocazione delle ore inizio PB
+}
+*/
+//nuova allocazione delle ore inizio PB (dal 10 al 13 compresi)
 /*
 var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
@@ -130,7 +131,8 @@ var hoursPerRolePerName = map[string]map[string]int{
 	},
 }
 */
-//nuova allocazione delle ore fine PB
+
+//nuova allocazione delle ore fine PB (dal 14 in poi, compreso)
 var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
 		"Jaume Bernardi":       7,
@@ -187,6 +189,7 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Elia Ernesto Stellin": 31,
 	},
 }
+
 
 func ResourceUsage(issues *[]Issue, sprint int, expected bool) map[string]map[string]int {
 	result := map[string]map[string]int{
