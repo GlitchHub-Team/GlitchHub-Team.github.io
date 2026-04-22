@@ -4364,7 +4364,7 @@ Issue relative a sprint 17: \
 - [ST] Stesura Cloud Backend - Elia (#issue(523))
 - [ST] Tracciamento requisiti (#issue(525))
 - [ST] Fix diagramma UserApiClientService (#issue(557))
-- Risolvere problema di scraping delle metrice gin (#issue(6, repo: "infra"))
+- Risolvere problema di scraping delle metriche gin (#issue(6, repo: "infra"))
 - [Backend] Fixare scraping metriche gin (#issue(153, repo: "dashboard"))
 - [Gloss] Aggiungere definizioni backend (#issue(538))
 - [AdR] Revisione (#issue(543))
@@ -4414,11 +4414,11 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
     "Jaume Bernardi", "1", "2", "-", "-", "-", "4 (+1)", [*7*],
     "Alessandro Dinato", "-", "-", "-", "-", "-", "4", [*4*],
     "Michele Dioli", "-", "-", "-", "1", "-", "11", [*12*],
-    "Hossam Ezzemouri", "-", "-", "-", "1", "3 (-1)", "-", [*4*],
+    "Hossam Ezzemouri", "-", "-", "-", "4 (+3)", "5 (+1)", "-", [*9*],
     "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
     "Siria Salvalaio", "-", "-", "1", "-", "2 (-4)", "4 (+1)", [*7*],
     "Elia Ernesto Stellin", "-", "-", "-", "3 (-4)", "-", "-", [*3*],
-    table.footer([*Totale*], [*1*], [*2*], [*1*], [*5*], [*5*], [*23*], [*37*]),
+    table.footer([*Totale*], [*1*], [*2*], [*1*], [*8*], [*7*], [*23*], [*42*]),
   ),
   [Sprint 17 - Risorse utilizzate],
   label-id: "spr17-risorse-utiliz",
@@ -4427,11 +4427,11 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
 
 #let oreEffettiveSprint17 = (
   ("Responsabile", 1),
-  ("Progettista", 5),
-  ("Programmatore", 5),
+  ("Progettista", 8),
   ("Amministratore", 2),
   ("Analista", 1),
   ("Verificatore", 23),
+  ("Programmatore", 7),
 )
 #graficoTorta(
   "Sprint 17 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -4451,12 +4451,12 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
     "Jaume Bernardi", "-", "2 (-2)", "-", "-", "11", "1 (-4)", [*14*],
     "Alessandro Dinato", "-", "-", "-", "-", "-", "-", [*0*],
-    "Michele Dioli", "-", "-", "-", "-", "8", "3 (-11)", [*11*],
-    "Hossam Ezzemouri", "-", "-", "-", "5 (-1)", "-", "-", [*5*],
+    "Michele Dioli", "-", "-", "-", "-", "-", "3 (-11)", [*3*],
+    "Hossam Ezzemouri", "-", "-", "-", "2 (-4)", "-2 (-5)", "-", [*0*],
     "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
     "Siria Salvalaio", "-", "-", "2 (-1)", "1", "1 (-2)", "-", [*4*],
     "Elia Ernesto Stellin", "-", "-", "-", "-", "-", "-", [*0*],
-    table.footer([*Totale*], [*0*], [*2*], [*2*], [*6*], [*20*], [*4*], [*34*]),
+    table.footer([*Totale*], [*0*], [*2*], [*2*], [*3*], [*10*], [*4*], [*21*]),
   ),
   [Sprint 17 - Aggiornamento ore rimanenti],
   label-id: "spr17-agg-ore-rim",
@@ -4475,10 +4475,10 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
     "Responsabile", "0 (-1)", "30 €/h", "0 € (-30 €)",
     "Amministratore", "2 (-2)", "20 €/h", "40 € (-40 €)",
     "Analista", "2 (-1)", "25 €/h", "50 € (-25 €)",
-    "Progettista", "6 (-5)", "25 €/h", "150 € (-125 €)",
-    "Programmatore", "20 (-5)", "15 €/h", "300 € (-75 €)",
+    "Progettista", "3 (-8)", "25 €/h", "75 € (-200 €)",
+    "Programmatore", "10 (-7)", "15 €/h", "150 € (-105 €)",
     "Verificatore", "4 (-23)", "15 €/h", "60 € (-345 €)",
-    table.footer([*Totale*], [*34*], [-], [*600 €*]),
+    table.footer([*Totale*], [*21*], [-], [*375 €*]),
   ),
   [Sprint 17 - Aggiornamento costi],
   label-id: "spr17-agg-costi",
