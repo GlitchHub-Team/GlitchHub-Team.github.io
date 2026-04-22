@@ -622,7 +622,7 @@ Di seguito si riporta la lista di #gloss[test d'integrazione] per il microserviz
 Di seguito si riporta la lista di #gloss[test d'integrazione] per il microservizio *Data Consumer*.
 
 #crea-tabella(
-  tabella-TI-gateway,
+  tabella-TI-dataconsumer,
   [Test d'integrazione per Data Consumer con descrizione, valore atteso e stato di implementazione],
   "tab-ti-dataconsumer"
 )
