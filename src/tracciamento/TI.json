@@ -1,260 +1,404 @@
-[
-  {
-    "id": "TI-Cambio-Password-Integrazione",
-    "descr": "ChangePasswordIntegration: Verifica il flusso end-to-end di cambio password, dalla richiesta di token alla conferma e aggiornamento della password.",
-    "expected": "Il flusso di cambio password viene completato con successo, aggiornando la password dell'utente nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Conferma-Account-Integrazione",
-    "descr": "ConfirmAccountIntegration: Verifica il flusso end-to-end di conferma account, dalla creazione dell'utente alla conferma via token.",
-    "expected": "Il flusso di conferma account viene completato con successo, confermando l'account dell'utente nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Verifica-Token-Conferma-Account-Integrazione",
-    "descr": "VerifyConfirmAccountTokenIntegration: Verifica il flusso end-to-end di verifica del token di conferma account.",
-    "expected": "Il flusso di verifica token conferma account viene completato con successo, validando il token",
-    "state": "S"
-  },
-  {
-    "id": "TI-Conferma-Reset-Password-Integrazione",
-    "descr": "ConfirmForgotPasswordIntegration: Verifica il flusso end-to-end di conferma del reset della password dimenticata.",
-    "expected": "Il flusso di conferma reset password viene completato con successo, aggiornando la password dimenticata nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Richiesta-Token-Reset-Password-Integrazione",
-    "descr": "RequestForgotPasswordTokenIntegration: Verifica il flusso end-to-end di richiesta del token per reset della password.",
-    "expected": "Il flusso di richiesta token reset password viene completato con successo, inviando l'email con il token",
-    "state": "S"
-  },
-  {
-    "id": "TI-Verifica-Token-Reset-Password-Integrazione",
-    "descr": "VerifyForgotPasswordTokenIntegration: Verifica il flusso end-to-end di verifica del token di reset della password.",
-    "expected": "Il flusso di verifica token reset password viene completato con successo, validando il token",
-    "state": "S"
-  },
-  {
-    "id": "TI-Login-Utente-Integrazione",
-    "descr": "LoginUserIntegration: Verifica il flusso end-to-end di login dell'utente e generazione del token JWT.",
-    "expected": "Il flusso di login utente viene completato con successo, restituendo un token JWT valido",
-    "state": "S"
-  },
-  {
-    "id": "TI-Logout-Utente-Integrazione",
-    "descr": "LogoutUserIntegration: Verifica il flusso end-to-end di logout dell'utente.",
-    "expected": "Il flusso di logout utente viene completato con successo, invalidando la sessione",
-    "state": "S"
-  },
-  {
-    "id": "TI-Commissione-Gateway-Integrazione",
-    "descr": "CommissionGatewayIntegration: Verifica il flusso end-to-end di messa in servizio di un gateway.",
-    "expected": "Il flusso di commissione gateway viene completato con successo, commissionando il gateway",
-    "state": "S"
-  },
-  {
-    "id": "TI-Creazione-Gateway-Integrazione",
-    "descr": "CreateGatewayIntegration: Verifica il flusso end-to-end di creazione di un nuovo gateway.",
-    "expected": "Il flusso di creazione gateway viene completato con successo, creando il gateway nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Decommissione-Gateway-Integrazione",
-    "descr": "DecommissionGatewayIntegration: Verifica il flusso end-to-end di rimozione dal servizio di un gateway.",
-    "expected": "Il flusso di decommissione gateway viene completato con successo, decommissionando il gateway",
-    "state": "S"
-  },
-  {
-    "id": "TI-Eliminazione-Gateway-Integrazione",
-    "descr": "DeleteGatewayIntegration: Verifica il flusso end-to-end di eliminazione di un gateway.",
-    "expected": "Il flusso di eliminazione gateway viene completato con successo, rimuovendo il gateway dal database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Interruzione-Gateway-Integrazione",
-    "descr": "InterruptGatewayIntegration: Verifica il flusso end-to-end di interruzione dell'invio dati di un gateway.",
-    "expected": "Il flusso di interruzione gateway viene completato con successo, interrompendo il gateway",
-    "state": "S"
-  },
-  {
-    "id": "TI-Ripresa-Gateway-Integrazione",
-    "descr": "RebootGatewayIntegration: Verifica il flusso end-to-end di ripresa dell'invio dati di un gateway.",
-    "expected": "Il flusso di ripresa gateway viene completato con successo, riprendendo il gateway",
-    "state": "S"
-  },
-  {
-    "id": "TI-Reset-Gateway-Integrazione",
-    "descr": "ResetGatewayIntegration: Verifica il flusso end-to-end di reset di un gateway.",
-    "expected": "Il flusso di reset gateway viene completato con successo, resettando il gateway",
-    "state": "S"
-  },
-  {
-    "id": "TI-Riavvio-Gateway-Integrazione",
-    "descr": "ResumeGatewayIntegration: Verifica il flusso end-to-end di riavvio di un gateway.",
-    "expected": "Il flusso di riavvio gateway viene completato con successo, riavviando il gateway",
-    "state": "S"
-  },
-  {
-    "id": "TI-Creazione-Sensore-Integrazione",
-    "descr": "GetSensorHistoricalDataIntegration: Verifica il flusso end-to-end di creazione di un nuovo sensore.",
-    "expected": "Il flusso di creazione sensore viene completato con successo, creando il sensore nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Eliminazione-Sensore-Integrazione",
-    "descr": "GetRealTimeDataIntegrationErrors: Verifica il flusso end-to-end di eliminazione di un sensore.",
-    "expected": "Il flusso di eliminazione sensore viene completato con successo, rimuovendo il sensore dal database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Interruzione-Sensore-Integrazione",
-    "descr": "GetRealTimeDataIntegrationSuccess: Verifica il flusso end-to-end di interruzione di un sensore.",
-    "expected": "Il flusso di interruzione sensore viene completato con successo, interrompendo il sensore",
-    "state": "S"
-  },
-  {
-    "id": "TI-Ripresa-Sensore-Integrazione",
-    "descr": "CreateSensorIntegration: Verifica il flusso end-to-end di ripresa di un sensore.",
-    "expected": "Il flusso di ripresa sensore viene completato con successo, riprendendo il sensore",
-    "state": "S"
-  },
-  {
-    "id": "TI-Creazione-Tenant-Integrazione",
-    "descr": "DeleteSensorIntegration: Verifica il flusso end-to-end di creazione di un nuovo tenant.",
-    "expected": "Il flusso di creazione tenant viene completato con successo, creando il tenant nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Eliminazione-Tenant-Integrazione",
-    "descr": "GetSensorByIdIntegration: Verifica il flusso end-to-end di eliminazione di un tenant.",
-    "expected": "Il flusso di eliminazione tenant viene completato con successo, rimuovendo il tenant dal database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Creazione-Tenant-User-Integrazione",
-    "descr": "GetSensorsByGatewayIdIntegration: Verifica il flusso end-to-end di creazione di un utente tenant.",
-    "expected": "Il flusso di creazione utente tenant viene completato con successo, creando l'utente nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Creazione-Tenant-Admin-Integrazione",
-    "descr": "GetSensorsByTenantIdIntegration: Verifica il flusso end-to-end di creazione di un amministratore tenant.",
-    "expected": "Il flusso di creazione admin tenant viene completato con successo, creando l'admin nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Creazione-SuperAdmin-Integrazione",
-    "descr": "InterruptSensorIntegration: Verifica il flusso end-to-end di creazione di un super amministratore.",
-    "expected": "Il flusso di creazione Super Admin viene completato con successo, creando il Super Admin nel database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Eliminazione-Tenant-User-Integrazione",
-    "descr": "ResumeSensorIntegration: Verifica il flusso end-to-end di eliminazione di un utente tenant.",
-    "expected": "Il flusso di eliminazione utente tenant viene completato con successo, rimuovendo l'utente dal database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Eliminazione-Tenant-Admin-Integrazione",
-    "descr": "CreateTenantIntegration: Verifica il flusso end-to-end di eliminazione di un amministratore tenant.",
-    "expected": "Il flusso di eliminazione admin tenant viene completato con successo, rimuovendo l'admin dal database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Eliminazione-SuperAdmin-Integrazione",
-    "descr": "DeleteTenantIntegration: Verifica il flusso end-to-end di eliminazione di un super amministratore.",
-    "expected": "Il flusso di eliminazione Super Admin viene completato con successo, rimuovendo il Super Admin dal database",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Dati-Storici-Sensore-Integrazione",
-    "descr": "GetAllTenantsIntegration: Verifica il flusso end-to-end di recupero dei dati storici di un sensore.",
-    "expected": "Il flusso di recupero dati storici sensore viene completato con successo, restituendo i dati storici",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Dati-Tempo-Reale-Integrazione",
-    "descr": "GetTenantListIntegration: Verifica il flusso end-to-end di recupero dei dati in tempo reale di un sensore.",
-    "expected": "Il flusso di recupero dati tempo reale viene completato con successo, restituendo i dati in tempo reale",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Tutti-Tenants-Integrazione",
-    "descr": "GetTenantIntegration: Verifica il flusso end-to-end di recupero di tutti i tenant.",
-    "expected": "Il flusso di recupero tutti tenant viene completato con successo, restituendo tutti i tenant",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Tenant-Integrazione",
-    "descr": "CreateSuperAdminIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un tenant.",
-    "expected": "Il flusso di recupero tenant viene completato con successo, restituendo i dati del tenant",
-    "state": "S"
-  },
-  {
-    "id": "TI-Lista-Tenants-Integrazione",
-    "descr": "CreateTenantAdminIntegration: Verifica il flusso end-to-end di recupero della lista paginata di tenant.",
-    "expected": "Il flusso di lista tenant viene completato con successo, restituendo la lista dei tenant",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Tenant-User-Integrazione",
-    "descr": "CreateTenantUserIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un utente tenant.",
-    "expected": "Il flusso di recupero utente tenant viene completato con successo, restituendo i dati dell'utente",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Tenant-Admin-Integrazione",
-    "descr": "DeleteSuperAdminIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un amministratore tenant.",
-    "expected": "Il flusso di recupero admin tenant viene completato con successo, restituendo i dati dell'admin",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-SuperAdmin-Integrazione",
-    "descr": "DeleteTenantAdminIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un super amministratore.",
-    "expected": "Il flusso di recupero Super Admin viene completato con successo, restituendo i dati del Super Admin",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Tenant-Users-Integrazione",
-    "descr": "DeleteTenantUserIntegration: Verifica il flusso end-to-end di recupero della lista di utenti tenant.",
-    "expected": "Il flusso di recupero utenti tenant viene completato con successo, restituendo la lista degli utenti",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Tenant-Admins-Integrazione",
-    "descr": "GetSuperAdminListIntegration: Verifica il flusso end-to-end di recupero della lista di amministratori tenant.",
-    "expected": "Il flusso di recupero admin tenant viene completato con successo, restituendo la lista degli admin",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-SuperAdmins-Integrazione",
-    "descr": "GetTenantAdminListIntegration: Verifica il flusso end-to-end di recupero della lista di super amministratori.",
-    "expected": "Il flusso di recupero Super Admin viene completato con successo, restituendo la lista dei Super Admin",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Sensore-Integrazione",
-    "descr": "GetTenantUserListIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un sensore.",
-    "expected": "Il flusso di recupero sensore viene completato con successo, restituendo i dati del sensore",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Sensori-Gateway-Integrazione",
-    "descr": "GetSuperAdminIntegration: Verifica il flusso end-to-end di recupero dei sensori associati a un gateway.",
-    "expected": "Il flusso di integrazione completa con successo, nessun errore restituito",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Sensori-Tenant-Integrazione",
-    "descr": "GetTenantAdminIntegration: Verifica il flusso end-to-end di recupero dei sensori associati a un tenant.",
-    "expected": "Il flusso di integrazione completa con successo, nessun errore restituito",
-    "state": "S"
-  },
-  {
-    "id": "TI-Recupero-Gateway-Integrazione",
-    "descr": "GetTenantUserIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un gateway.",
-    "expected": "Il flusso di recupero gateway viene completato con successo, restituendo i dati del gateway",
-    "state": "S"
-  }
-]
+{
+    "Dashboard":[
+        {
+            "id": "TI-Cambio-Password-Integrazione",
+            "descr": "ChangePasswordIntegration: Verifica il flusso end-to-end di cambio password, dalla richiesta di token alla conferma e aggiornamento della password.",
+            "expected": "Il flusso di cambio password viene completato con successo, aggiornando la password dell'utente nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Conferma-Account-Integrazione",
+            "descr": "ConfirmAccountIntegration: Verifica il flusso end-to-end di conferma account, dalla creazione dell'utente alla conferma via token.",
+            "expected": "Il flusso di conferma account viene completato con successo, confermando l'account dell'utente nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Verifica-Token-Conferma-Account-Integrazione",
+            "descr": "VerifyConfirmAccountTokenIntegration: Verifica il flusso end-to-end di verifica del token di conferma account.",
+            "expected": "Il flusso di verifica token conferma account viene completato con successo, validando il token",
+            "state": "S"
+        },
+        {
+            "id": "TI-Conferma-Reset-Password-Integrazione",
+            "descr": "ConfirmForgotPasswordIntegration: Verifica il flusso end-to-end di conferma del reset della password dimenticata.",
+            "expected": "Il flusso di conferma reset password viene completato con successo, aggiornando la password dimenticata nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Richiesta-Token-Reset-Password-Integrazione",
+            "descr": "RequestForgotPasswordTokenIntegration: Verifica il flusso end-to-end di richiesta del token per reset della password.",
+            "expected": "Il flusso di richiesta token reset password viene completato con successo, inviando l'email con il token",
+            "state": "S"
+        },
+        {
+            "id": "TI-Verifica-Token-Reset-Password-Integrazione",
+            "descr": "VerifyForgotPasswordTokenIntegration: Verifica il flusso end-to-end di verifica del token di reset della password.",
+            "expected": "Il flusso di verifica token reset password viene completato con successo, validando il token",
+            "state": "S"
+        },
+        {
+            "id": "TI-Login-Utente-Integrazione",
+            "descr": "LoginUserIntegration: Verifica il flusso end-to-end di login dell'utente e generazione del token JWT.",
+            "expected": "Il flusso di login utente viene completato con successo, restituendo un token JWT valido",
+            "state": "S"
+        },
+        {
+            "id": "TI-Logout-Utente-Integrazione",
+            "descr": "LogoutUserIntegration: Verifica il flusso end-to-end di logout dell'utente.",
+            "expected": "Il flusso di logout utente viene completato con successo, invalidando la sessione",
+            "state": "S"
+        },
+        {
+            "id": "TI-Commissione-Gateway-Integrazione",
+            "descr": "CommissionGatewayIntegration: Verifica il flusso end-to-end di messa in servizio di un gateway.",
+            "expected": "Il flusso di commissione gateway viene completato con successo, commissionando il gateway",
+            "state": "S"
+        },
+        {
+            "id": "TI-Creazione-Gateway-Integrazione",
+            "descr": "CreateGatewayIntegration: Verifica il flusso end-to-end di creazione di un nuovo gateway.",
+            "expected": "Il flusso di creazione gateway viene completato con successo, creando il gateway nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Decommissione-Gateway-Integrazione",
+            "descr": "DecommissionGatewayIntegration: Verifica il flusso end-to-end di rimozione dal servizio di un gateway.",
+            "expected": "Il flusso di decommissione gateway viene completato con successo, decommissionando il gateway",
+            "state": "S"
+        },
+        {
+            "id": "TI-Eliminazione-Gateway-Integrazione",
+            "descr": "DeleteGatewayIntegration: Verifica il flusso end-to-end di eliminazione di un gateway.",
+            "expected": "Il flusso di eliminazione gateway viene completato con successo, rimuovendo il gateway dal database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Interruzione-Gateway-Integrazione",
+            "descr": "InterruptGatewayIntegration: Verifica il flusso end-to-end di interruzione dell'invio dati di un gateway.",
+            "expected": "Il flusso di interruzione gateway viene completato con successo, interrompendo il gateway",
+            "state": "S"
+        },
+        {
+            "id": "TI-Ripresa-Gateway-Integrazione",
+            "descr": "RebootGatewayIntegration: Verifica il flusso end-to-end di ripresa dell'invio dati di un gateway.",
+            "expected": "Il flusso di ripresa gateway viene completato con successo, riprendendo il gateway",
+            "state": "S"
+        },
+        {
+            "id": "TI-Reset-Gateway-Integrazione",
+            "descr": "ResetGatewayIntegration: Verifica il flusso end-to-end di reset di un gateway.",
+            "expected": "Il flusso di reset gateway viene completato con successo, resettando il gateway",
+            "state": "S"
+        },
+        {
+            "id": "TI-Riavvio-Gateway-Integrazione",
+            "descr": "ResumeGatewayIntegration: Verifica il flusso end-to-end di riavvio di un gateway.",
+            "expected": "Il flusso di riavvio gateway viene completato con successo, riavviando il gateway",
+            "state": "S"
+        },
+        {
+            "id": "TI-Creazione-Sensore-Integrazione",
+            "descr": "GetSensorHistoricalDataIntegration: Verifica il flusso end-to-end di creazione di un nuovo sensore.",
+            "expected": "Il flusso di creazione sensore viene completato con successo, creando il sensore nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Eliminazione-Sensore-Integrazione",
+            "descr": "GetRealTimeDataIntegrationErrors: Verifica il flusso end-to-end di eliminazione di un sensore.",
+            "expected": "Il flusso di eliminazione sensore viene completato con successo, rimuovendo il sensore dal database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Interruzione-Sensore-Integrazione",
+            "descr": "GetRealTimeDataIntegrationSuccess: Verifica il flusso end-to-end di interruzione di un sensore.",
+            "expected": "Il flusso di interruzione sensore viene completato con successo, interrompendo il sensore",
+            "state": "S"
+        },
+        {
+            "id": "TI-Ripresa-Sensore-Integrazione",
+            "descr": "CreateSensorIntegration: Verifica il flusso end-to-end di ripresa di un sensore.",
+            "expected": "Il flusso di ripresa sensore viene completato con successo, riprendendo il sensore",
+            "state": "S"
+        },
+        {
+            "id": "TI-Creazione-Tenant-Integrazione",
+            "descr": "DeleteSensorIntegration: Verifica il flusso end-to-end di creazione di un nuovo tenant.",
+            "expected": "Il flusso di creazione tenant viene completato con successo, creando il tenant nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Eliminazione-Tenant-Integrazione",
+            "descr": "GetSensorByIdIntegration: Verifica il flusso end-to-end di eliminazione di un tenant.",
+            "expected": "Il flusso di eliminazione tenant viene completato con successo, rimuovendo il tenant dal database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Creazione-Tenant-User-Integrazione",
+            "descr": "GetSensorsByGatewayIdIntegration: Verifica il flusso end-to-end di creazione di un utente tenant.",
+            "expected": "Il flusso di creazione utente tenant viene completato con successo, creando l'utente nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Creazione-Tenant-Admin-Integrazione",
+            "descr": "GetSensorsByTenantIdIntegration: Verifica il flusso end-to-end di creazione di un amministratore tenant.",
+            "expected": "Il flusso di creazione admin tenant viene completato con successo, creando l'admin nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Creazione-SuperAdmin-Integrazione",
+            "descr": "InterruptSensorIntegration: Verifica il flusso end-to-end di creazione di un super amministratore.",
+            "expected": "Il flusso di creazione Super Admin viene completato con successo, creando il Super Admin nel database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Eliminazione-Tenant-User-Integrazione",
+            "descr": "ResumeSensorIntegration: Verifica il flusso end-to-end di eliminazione di un utente tenant.",
+            "expected": "Il flusso di eliminazione utente tenant viene completato con successo, rimuovendo l'utente dal database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Eliminazione-Tenant-Admin-Integrazione",
+            "descr": "CreateTenantIntegration: Verifica il flusso end-to-end di eliminazione di un amministratore tenant.",
+            "expected": "Il flusso di eliminazione admin tenant viene completato con successo, rimuovendo l'admin dal database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Eliminazione-SuperAdmin-Integrazione",
+            "descr": "DeleteTenantIntegration: Verifica il flusso end-to-end di eliminazione di un super amministratore.",
+            "expected": "Il flusso di eliminazione Super Admin viene completato con successo, rimuovendo il Super Admin dal database",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Dati-Storici-Sensore-Integrazione",
+            "descr": "GetAllTenantsIntegration: Verifica il flusso end-to-end di recupero dei dati storici di un sensore.",
+            "expected": "Il flusso di recupero dati storici sensore viene completato con successo, restituendo i dati storici",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Dati-Tempo-Reale-Integrazione",
+            "descr": "GetTenantListIntegration: Verifica il flusso end-to-end di recupero dei dati in tempo reale di un sensore.",
+            "expected": "Il flusso di recupero dati tempo reale viene completato con successo, restituendo i dati in tempo reale",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Tutti-Tenants-Integrazione",
+            "descr": "GetTenantIntegration: Verifica il flusso end-to-end di recupero di tutti i tenant.",
+            "expected": "Il flusso di recupero tutti tenant viene completato con successo, restituendo tutti i tenant",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Tenant-Integrazione",
+            "descr": "CreateSuperAdminIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un tenant.",
+            "expected": "Il flusso di recupero tenant viene completato con successo, restituendo i dati del tenant",
+            "state": "S"
+        },
+        {
+            "id": "TI-Lista-Tenants-Integrazione",
+            "descr": "CreateTenantAdminIntegration: Verifica il flusso end-to-end di recupero della lista paginata di tenant.",
+            "expected": "Il flusso di lista tenant viene completato con successo, restituendo la lista dei tenant",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Tenant-User-Integrazione",
+            "descr": "CreateTenantUserIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un utente tenant.",
+            "expected": "Il flusso di recupero utente tenant viene completato con successo, restituendo i dati dell'utente",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Tenant-Admin-Integrazione",
+            "descr": "DeleteSuperAdminIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un amministratore tenant.",
+            "expected": "Il flusso di recupero admin tenant viene completato con successo, restituendo i dati dell'admin",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-SuperAdmin-Integrazione",
+            "descr": "DeleteTenantAdminIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un super amministratore.",
+            "expected": "Il flusso di recupero Super Admin viene completato con successo, restituendo i dati del Super Admin",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Tenant-Users-Integrazione",
+            "descr": "DeleteTenantUserIntegration: Verifica il flusso end-to-end di recupero della lista di utenti tenant.",
+            "expected": "Il flusso di recupero utenti tenant viene completato con successo, restituendo la lista degli utenti",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Tenant-Admins-Integrazione",
+            "descr": "GetSuperAdminListIntegration: Verifica il flusso end-to-end di recupero della lista di amministratori tenant.",
+            "expected": "Il flusso di recupero admin tenant viene completato con successo, restituendo la lista degli admin",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-SuperAdmins-Integrazione",
+            "descr": "GetTenantAdminListIntegration: Verifica il flusso end-to-end di recupero della lista di super amministratori.",
+            "expected": "Il flusso di recupero Super Admin viene completato con successo, restituendo la lista dei Super Admin",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Sensore-Integrazione",
+            "descr": "GetTenantUserListIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un sensore.",
+            "expected": "Il flusso di recupero sensore viene completato con successo, restituendo i dati del sensore",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Sensori-Gateway-Integrazione",
+            "descr": "GetSuperAdminIntegration: Verifica il flusso end-to-end di recupero dei sensori associati a un gateway.",
+            "expected": "Il flusso di integrazione completa con successo, nessun errore restituito",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Sensori-Tenant-Integrazione",
+            "descr": "GetTenantAdminIntegration: Verifica il flusso end-to-end di recupero dei sensori associati a un tenant.",
+            "expected": "Il flusso di integrazione completa con successo, nessun errore restituito",
+            "state": "S"
+        },
+        {
+            "id": "TI-Recupero-Gateway-Integrazione",
+            "descr": "GetTenantUserIntegration: Verifica il flusso end-to-end di recupero dei dettagli di un gateway.",
+            "expected": "Il flusso di recupero gateway viene completato con successo, restituendo i dati del gateway",
+            "state": "S"
+        }
+    ],
+    "Gateway":[
+        {
+            "id": "TI-NATSAddSensorIntegration",
+            "descr": "NATSAddSensorIntegration: Verifica il flusso end-to-end di aggiunta sensore tramite NATS.",
+            "expected": "Il flusso di aggiunta sensore viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSCommissionGatewayIntegration",
+            "descr": "NATSCommissionGatewayIntegration: Verifica il flusso end-to-end di commission gateway tramite NATS.",
+            "expected": "Il flusso di commission gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSCreateGatewayIntegration",
+            "descr": "NATSCreateGatewayIntegration: Verifica il flusso end-to-end di creazione gateway tramite NATS.",
+            "expected": "Il flusso di creazione gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSDecommissionGatewayIntegration",
+            "descr": "NATSDecommissionGatewayIntegration: Verifica il flusso end-to-end di decommission gateway tramite NATS.",
+            "expected": "Il flusso di decommission gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSDeleteGatewayIntegration",
+            "descr": "NATSDeleteGatewayIntegration: Verifica il flusso end-to-end di eliminazione gateway tramite NATS.",
+            "expected": "Il flusso di eliminazione gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSDeleteSensorIntegration",
+            "descr": "NATSDeleteSensorIntegration: Verifica il flusso end-to-end di eliminazione sensore tramite NATS.",
+            "expected": "Il flusso di eliminazione sensore viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSInterruptGatewayIntegration",
+            "descr": "NATSInterruptGatewayIntegration: Verifica il flusso end-to-end di interrupt gateway tramite NATS.",
+            "expected": "Il flusso di interrupt gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSInterruptSensorIntegration",
+            "descr": "NATSInterruptSensorIntegration: Verifica il flusso end-to-end di interrupt sensore tramite NATS.",
+            "expected": "Il flusso di interrupt sensore viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSRebootGatewayIntegration",
+            "descr": "NATSRebootGatewayIntegration: Verifica il flusso end-to-end di reboot gateway tramite NATS.",
+            "expected": "Il flusso di reboot gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSResetGatewayIntegration",
+            "descr": "NATSResetGatewayIntegration: Verifica il flusso end-to-end di reset gateway tramite NATS.",
+            "expected": "Il flusso di reset gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSResumeGatewayIntegration",
+            "descr": "NATSResumeGatewayIntegration: Verifica il flusso end-to-end di resume gateway tramite NATS.",
+            "expected": "Il flusso di resume gateway viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSResumeSensorIntegration",
+            "descr": "NATSResumeSensorIntegration: Verifica il flusso end-to-end di resume sensore tramite NATS.",
+            "expected": "Il flusso di resume sensore viene completato con successo",
+            "state": "S"
+        },
+        {
+            "id": "TI-NATSStopSensorCommandNotExposed",
+            "descr": "NATSStopSensorCommandNotExposed: Verifica che il comando stop sensore non sia esposto tramite NATS.",
+            "expected": "Il comando non è esposto come atteso",
+            "state": "S"  
+        }
+    ],
+    "DataConsumer":[
+        {
+            "id": "TI-StoreData-AckRicevuto-SuSalvataggioSuccesso",
+            "descr": "StoreData: verifica che ack sia ricevuto su salvataggio riuscito.",
+            "expected": "Ack ricevuto su salvataggio riuscito",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-PublicazioneDuplicata-NonConsentita",
+            "descr": "StoreData: verifica che pubblicazione duplicata non sia consentita.",
+            "expected": "Pubblicazione duplicata non consentita",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-FormatoDatiInvalido-NonSalvato",
+            "descr": "StoreData: verifica che formato dati invalido non sia salvato.",
+            "expected": "Dati con formato invalido non salvati",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-TenantIDInvalido-NonSalvato",
+            "descr": "StoreData: verifica che tenant ID invalido non sia salvato.",
+            "expected": "Dati con tenant ID invalido non salvati",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-FormatoSensorIDInvalido-NonSalvato",
+            "descr": "StoreData: verifica che formato sensor ID invalido non sia salvato.",
+            "expected": "Dati con formato sensor ID invalido non salvati",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-FormatoTenantIDInvalido-NonSalvato",
+            "descr": "StoreData: verifica che formato tenant ID invalido non sia salvato.",
+            "expected": "Dati con formato tenant ID invalido non salvati",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-FormatoGatewayIDInvalido-NonSalvato",
+            "descr": "StoreData: verifica che formato gateway ID invalido non sia salvato.",
+            "expected": "Dati con formato gateway ID invalido non salvati",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-DatiValidi-Salvati",
+            "descr": "StoreData: verifica che dati validi siano salvati.",
+            "expected": "Dati validi vengono salvati correttamente",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-AuthErrata-Fallisce",
+            "descr": "StoreData: verifica che auth errata fallisca.",
+            "expected": "Fallisce con auth errata",
+            "state": "S"
+        },
+        {
+            "id": "TI-StoreData-TLSErrata-Fallisce",
+            "descr": "StoreData: verifica che TLS errata fallisca.",
+            "expected": "Fallisce con TLS errata",
+            "state": "S"
+        }
+    ]
+}
