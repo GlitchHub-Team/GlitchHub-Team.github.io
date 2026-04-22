@@ -4,13 +4,13 @@
 
 #show: report.with(
   titolo: "Piano di Progetto",
-  stato: "da verificare",
+  stato: "Verificato",
   registro-modifiche: (
     (
       "1.9.0",
       "24/04/2026",
       "Jaume Bernardi",
-      "",
+      "Alessandro Dinato",
       [Stesura sprint 17 (@sprint-17)],
     ),
     (
@@ -4392,13 +4392,13 @@ Issue relative a sprint 17: \
 === Retrospettiva
 Durante lo #gloss("sprint") 17, il gruppo ha mantenuto un ritmo di lavoro costante e produttivo, focalizzandosi principalmente sulla documentazione e sui test di sistema.
 
-I documenti principali sono stati completati con successo: l'#gloss("Analisi dei Requisiti") ha superato la revisione; il #gloss("Manuale Utente") ora copre tutte le sezioni necessarie, inclusi _gateway_, _data consumer_, _backend_, _installazione_, _frontend_ e _observability_; la #gloss("Specifica Tecnica") è stata finalizzata con l'aggiunta e revisione di sezioni tra cui cloud backend, tracciamento requisiti, design patterns e la revisione del modello C4; il #gloss("Piano di Qualifica") è stato aggiornato con le metriche e il rendiconto di tutti i test; infine, le #gloss("Norme di Progetto") sono state completate con aggiunta di nuovi strumenti e metodologie (C4, UML, draw.io).
+I documenti principali sono stati completati con successo: l'#gloss("Analisi dei Requisiti") ha superato la revisione. Il #gloss("Manuale Utente") ora copre tutte le sezioni necessarie, inclusi _gateway_, _data consumer_, _backend_, _installazione_, _frontend_ e _observability_; la #gloss("Specifica Tecnica") è stata finalizzata con l'aggiunta e revisione di sezioni tra cui "Cloud Backend", "tracciamento requisiti", "design patterns" e la revisione del modello C4; il #gloss("Piano di Qualifica") è stato aggiornato con le metriche e il rendiconto di tutti i test.
 
-I test di sistema sono stati implementati utilizzando Playwright, come pianificato, permettendo di validare l'integrazione complessiva del sistema.
+I test di sistema sono stati implementati utilizzando *Playwright*, come pianificato, permettendo di validare l'integrazione complessiva del sistema.
 
 
 === Rischi occorsi
-Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di terminare le attività necessarie senza incombere in ritardi.
+Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di terminare le attività necessarie senza incombere in ritardi o imprevisti.
 
 === Consuntivo di periodo
 ==== Risorse utilizzate
