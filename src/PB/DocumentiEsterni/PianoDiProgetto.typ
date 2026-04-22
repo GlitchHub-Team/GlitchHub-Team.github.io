@@ -815,6 +815,31 @@ Il ribilanciamento nasce dall'analisi dei primi nove sprint in retrospettiva, ch
 
 La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali, ovvero modificando la distribuzione tra ruoli per ciascun membro senza alterare il monte ore individuale di *95 ore* né il costo complessivo di realizzazione.
 
+=== Suddivisione oraria iniziale
+
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "8", "7", "10", "21", "24", "23", [*93*],
+    "Alessandro Dinato", "7", "8", "10", "21", "23", "24", [*93*],
+    "Michele Dioli", "8", "7", "10", "21", "24", "23", [*93*],
+    "Hossam Ezzemouri", "7", "8", "10", "20", "24", "24", [*93*],
+    "Riccardo Graziani", "8", "8", "10", "20", "23", "24", [*93*],
+    "Siria Salvalaio", "8", "8", "9", "21", "24", "23", [*93*],
+    "Elia Ernesto Stellin", "8", "8", "9", "21", "23", "24", [*93*],
+    table.footer([*Totale*], [*54*], [*54*], [*68*], [*145*], [*165*], [*165*], [*651*]),
+  ),
+  [Tabella suddivisione ore produttive per componente e ruolo],
+  label-id: "tab-sudd-ore",
+)
+
+
 === Suddivisione oraria dallo sprint 10 <suddivisione-oraria-rtb>
 #tabella-paginata(
   table(
@@ -838,8 +863,8 @@ La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali
   label-id: "tab-sudd-ore",
 )
 
-=== Suddivisione oraria iniziale
 
+=== Suddivisione oraria dallo sprint 14 <suddivisione-oraria-rtb>
 #tabella-paginata(
   table(
     columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
@@ -849,14 +874,14 @@ La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali
       left: if x == 0 { 0pt } else { 0.5pt + black },
     ),
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-    "Jaume Bernardi", "8", "7", "10", "21", "24", "23", [*93*],
-    "Alessandro Dinato", "7", "8", "10", "21", "23", "24", [*93*],
-    "Michele Dioli", "8", "7", "10", "21", "24", "23", [*93*],
-    "Hossam Ezzemouri", "7", "8", "10", "20", "24", "24", [*93*],
-    "Riccardo Graziani", "8", "8", "10", "20", "23", "24", [*93*],
-    "Siria Salvalaio", "8", "8", "9", "21", "24", "23", [*93*],
-    "Elia Ernesto Stellin", "8", "8", "9", "21", "23", "24", [*93*],
-    table.footer([*Totale*], [*54*], [*54*], [*68*], [*145*], [*165*], [*165*], [*651*]),
+    "Jaume Bernardi", "7", "3", "6", "29", "21", "29", [*95*],
+    "Alessandro Dinato", "6", "11", "13", "15", "29", "21", [*95*],
+    "Michele Dioli", "8", "7", "10", "18", "27", "25", [*95*],
+    "Hossam Ezzemouri", "2", "9", "14", "17", "27", "26", [*95*],
+    "Riccardo Graziani", "3", "8", "13", "17", "27", "27", [*95*],
+    "Siria Salvalaio", "6", "9", "10", "18", "25", "27", [*95*],
+    "Elia Ernesto Stellin", "5", "8", "12", "18", "27", "25", [*95*],
+    table.footer([*Totale*], [*34*], [*56*], [*82*], [*124*], [*186*], [*183*], [*665*]),
   ),
   [Tabella suddivisione ore produttive per componente e ruolo],
   label-id: "tab-sudd-ore",
