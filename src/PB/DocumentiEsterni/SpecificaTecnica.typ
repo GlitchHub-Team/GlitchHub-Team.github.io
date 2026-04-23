@@ -237,44 +237,44 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
     )[https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf] \
-  - *Ultimo accesso*: 01/03/2026
-- *Norme di Progetto v1.3.0*:
+  - *Ultimo accesso*: 19/04/2026
+- *Norme di Progetto v2.0.0*:
   - #link(
-      "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf",
-    )[https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf] \
-  - *Ultimo accesso*: 01/03/2026
+      "https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/NormeProgetto.pdf",
+    )[https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/NormeProgetto.pdf] \
+  - *Ultimo accesso*: 19/04/2026
 
 === Riferimenti informativi
 - *Modello C4*:
   - #link("https://c4model.com/")[https://c4model.com/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione linguaggio #gloss[Go]*:
   - #link("https://go.dev/doc/")[https://go.dev/doc/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione linguaggio #gloss[Typescript]*:
   - #link("https://www.typescriptlang.org/docs/")[https://www.typescriptlang.org/docs/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione #gloss[Angular]*:
   - #link("https://angular.dev/overview")[https://angular.dev/overview]
-  - *Ultimo accesso*: 02/04/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione #gloss[Gin]*:
   - #link("https://gin-gonic.com/en/docs/")[https://gin-gonic.com/en/docs/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione TimescaleDB*:
   - #link("https://docs.timescale.com/")[https://docs.timescale.com/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione #gloss[NATS]*:
   - #link("https://docs.nats.io/")[https://docs.nats.io/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione #gloss[Docker]*:
   - #link("https://docs.docker.com/")[https://docs.docker.com/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione #gloss[Grafana]*:
   - #link("https://grafana.com/docs/")[https://grafana.com/docs/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Documentazione #gloss[Prometheus]*:
   - #link("https://prometheus.io/docs/introduction/overview/")[https://prometheus.io/docs/introduction/overview/]
-  - *Ultimo accesso*: 01/03/2026
+  - *Ultimo accesso*: 19/04/2026
 //altro?
 
 #pagebreak()
