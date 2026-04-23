@@ -7,6 +7,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "2.0.0",
+      "24/04/2026",
+      "Alessandro Dinato",
+      "Elia Ernesto Stellin",
+      [Creazione versione stabile PdP],
+    ),
+    (
       "1.9.0",
       "24/04/2026",
       "Jaume Bernardi",
@@ -302,8 +309,8 @@
     "Prof. Vardanega Tullio",
   ),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Alessandro Dinato",
-  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
+  verificatore-interno: "Elia Ernesto Stellin",
+  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
   tipo-documento: "Piano di Progetto",
 )
 
