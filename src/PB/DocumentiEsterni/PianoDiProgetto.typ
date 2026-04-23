@@ -342,7 +342,7 @@
                 text(black, size: 0.85em, weight: "medium", label),
               )
             ],
-            radius: 110%,
+            radius: 125%,
           ),
           // Abilita le linee di connessione
           outer-label-line: (
@@ -2778,8 +2778,8 @@ Di seguito sono elencati i compiti individuati:
   ("Amministratore", 9),
   ("Analista", 4),
   ("Progettista", 0),
-  ("Programmatore", 31),
   ("Verificatore", 4),
+  ("Programmatore", 31),
 )
 #graficoTorta("Sprint 9 - Ore produttive previste per ogni ruolo", orePrevSprint9)
 
@@ -2844,8 +2844,8 @@ L'esecuzione parallela delle attività di sviluppo e redazione documentale ha ri
   ("Amministratore", 11),
   ("Analista", 1),
   ("Progettista", 0),
-  ("Programmatore", 31),
   ("Verificatore", 2),
+  ("Programmatore", 31),
 )
 #graficoTorta(
   "Sprint 9 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -2939,28 +2939,27 @@ Di seguito sono elencati i compiti individuati:
       left: if x == 0 { 0pt } else { 0.5pt + black },
     ),
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-    "Jaume Bernardi", "4", "-", "-", "-", "-", "1", [*5*],
+    "Jaume Bernardi", "4", "-", "-", "-", "-", "3", [*7*],
     "Alessandro Dinato", "-", "3", "2", "-", "-", "3", [*8*],
     "Michele Dioli", "-", "2", "-", "-", "-", "-", [*2*],
     "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
-    "Riccardo Graziani", "-", "-", "-", "-", "-", "7", [*7*],
+    "Riccardo Graziani", "-", "1", "-", "-", "-", "7", [*8*],
     "Siria Salvalaio", "-", "-", "-", "-", "-", "-", [*0*],
     "Elia Ernesto Stellin", "-", "-", "-", "-", "-", "-", [*0*],
-    table.footer([*Totale*], [*4*], [*5*], [*2*], [*0*], [*0*], [*11*], [*22*]),
+    table.footer([*Totale*], [*4*], [*6*], [*2*], [*0*], [*0*], [*13*], [*25*]),
   ),
   [Sprint 10 - Preventivo risorse da utilizzare],
   label-id: "spr10-prev-risorse",
 )
-
 ==== Grafico a torta della suddivisione oraria prevista
 
 #let orePrevSprint10 = (
   ("Responsabile", 4),
-  ("Amministratore", 5),
+  ("Amministratore", 6),
   ("Analista", 2),
   ("Progettista", 0),
   ("Programmatore", 0),
-  ("Verificatore", 11),
+  ("Verificatore", 13),
 )
 #graficoTorta("Sprint 10 - Ore produttive previste per ogni ruolo", orePrevSprint10)
 
@@ -3021,7 +3020,6 @@ Nonostante la presenza del rischio *RP1* (@RP1), il gruppo è riuscito a portare
   [Sprint 10 - Risorse utilizzate],
   label-id: "spr10-risorse-utiliz",
 )
-
 ==== Grafico a torta della suddivisione oraria effettiva
 
 #let oreEffettiveSprint10 = (
@@ -3083,6 +3081,7 @@ Nonostante la presenza del rischio *RP1* (@RP1), il gruppo è riuscito a portare
   label-id: "spr10-agg-costi",
 )
 
+
 == Sprint 11 <sprint-11>
 Inizio: 24/02/2026 \
 Fine:  11/03/2026\
@@ -3123,14 +3122,14 @@ Di seguito sono elencati i compiti individuati:
       left: if x == 0 { 0pt } else { 0.5pt + black },
     ),
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-    "Jaume Bernardi", "-", "-", "-", "3", "-", "-", [*3*],
-    "Alessandro Dinato", "-", "1", "-", "8", "5", "-", [*14*],
-    "Michele Dioli", "4", "1", "-", "9", "-", "-", [*14*],
+    "Jaume Bernardi", "-", "-", "-", "3", "-", "3", [*6*],
+    "Alessandro Dinato", "-", "1", "-", "8", "5", "2", [*16*],
+    "Michele Dioli", "4", "1", "-", "7", "-", "-", [*12*],
     "Hossam Ezzemouri", "-", "5", "-", "-", "-", "-", [*5*],
-    "Riccardo Graziani", "-", "3", "-", "9", "3", "-", [*15*],
+    "Riccardo Graziani", "-", "3", "-", "9", "-", "-", [*12*],
     "Siria Salvalaio", "-", "2", "-", "-", "-", "-", [*2*],
-    "Elia Ernesto Stellin", "-", "4", "-", "11", "-", "-", [*15*],
-    table.footer([*Totale*], [*4*], [*16*], [*0*], [*40*], [*8*], [*0*], [*68*]),
+    "Elia Ernesto Stellin", "-", "4", "-", "11", "-", "2", [*17*],
+    table.footer([*Totale*], [*4*], [*16*], [*0*], [*38*], [*5*], [*7*], [*70*]),
   ),
   [Sprint 11 - Preventivo risorse da utilizzare],
   label-id: "spr11-prev-risorse",
@@ -3138,12 +3137,12 @@ Di seguito sono elencati i compiti individuati:
 ==== Grafico a torta della suddivisione oraria prevista
 
 #let orePrevSprint11 = (
+  ("Progettista", 38),
   ("Responsabile", 4),
   ("Amministratore", 16),
   ("Analista", 0),
-  ("Progettista", 40),
-  ("Programmatore", 8),
-  ("Verificatore", 0),
+  ("Programmatore", 5),
+  ("Verificatore", 7),
 )
 #graficoTorta("Sprint 11 - Ore produttive previste per ogni ruolo", orePrevSprint11)
 
@@ -3228,12 +3227,12 @@ Gestione RT1(@RT1): La criticità legata alla complessità dei #gloss("diagrammi
 ==== Grafico a torta della suddivisione oraria effettiva
 
 #let oreEffettiveSprint11 = (
-  ("Responsabile", 4),
   ("Amministratore", 15),
+  ("Responsabile", 4),
   ("Analista", 0),
+  ("Verificatore", 6),
   ("Progettista", 41),
   ("Programmatore", 7),
-  ("Verificatore", 6),
 )
 #graficoTorta(
   "Sprint 11 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -3343,26 +3342,25 @@ Di seguito sono elencati i compiti individuati:
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
     "Jaume Bernardi", "-", "-", "-", "3", "-", "-", [*3*],
     "Alessandro Dinato", "-", "-", "-", "2", "7", "2", [*11*],
-    "Michele Dioli", "2", "-", "-", "2", "14", "2", [*20*],
+    "Michele Dioli", "-", "-", "-", "2", "3", "2", [*7*],
     "Hossam Ezzemouri", "-", "2", "-", "1", "-", "3", [*6*],
-    "Riccardo Graziani", "-", "-", "-", "-", "6", "5", [*11*],
+    "Riccardo Graziani", "-", "-", "-", "-", "6", "6", [*12*],
     "Siria Salvalaio", "2", "-", "1", "-", "9", "-", [*12*],
-    "Elia Ernesto Stellin", "-", "3", "-", "-", "5", "4", [*12*],
-    table.footer([*Totale*], [*4*], [*5*], [*1*], [*8*], [*41*], [*16*], [*75*]),
+    "Elia Ernesto Stellin", "-", "3", "-", "-", "5", "7", [*15*],
+    table.footer([*Totale*], [*2*], [*5*], [*1*], [*8*], [*30*], [*20*], [*66*]),
   ),
   [Sprint 12 - Preventivo risorse da utilizzare],
   label-id: "spr12-prev-risorse",
 )
-
 ==== Grafico a torta della suddivisione oraria prevista
 
 #let orePrevSprint12 = (
-  ("Responsabile", 4),
-  ("Programmatore", 41),
+  ("Responsabile", 2),
+  ("Programmatore", 30),
   ("Amministratore", 5),
-  ("Verificatore", 16),
-  ("Analista", 1),
   ("Progettista", 8),
+  ("Analista", 1),
+  ("Verificatore", 20),
 )
 #graficoTorta("Sprint 12 - Ore produttive previste per ogni ruolo", orePrevSprint12)
 
@@ -3408,7 +3406,6 @@ Sebbene lo sviluppo delle funzionalità sia proceduto spedito, la fase di verifi
 === Rischi occorsi
 Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbene avessimo previsto possibili ritardi generici nella fase di sviluppo, la criticità si è manifestata nello specifico durante la scrittura dei test unitari. Questa attività si è rivelata più complessa del previsto, richiedendo tempi di esecuzione superiori alle stime iniziali. Nonostante ciò, siamo riusciti a completare la maggior parte delle task previste, garantendo la solidità del codice a scapito di un leggero ritardo sulla pianificazione e quindi sulla data prevista di consegna.
 
-
 === Consuntivo di periodo
 ==== Risorse utilizzate
 #tabella-paginata(
@@ -3435,12 +3432,12 @@ Durante lo sprint 12 si è verificata l'attuazione del rischio RT2 (@RT2). Sebbe
 ==== Grafico a torta della suddivisione oraria effettiva
 
 #let oreEffettiveSprint12 = (
+  ("Programmatore", 34),
   ("Responsabile", 2),
+  ("Progettista", 17),
+  ("Analista", 1),
   ("Verificatore", 28),
   ("Amministratore", 2),
-  ("Programmatore", 34),
-  ("Analista", 1),
-  ("Progettista", 17),
 )
 #graficoTorta(
   "Sprint 12 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -3547,14 +3544,14 @@ Di seguito sono elencati i compiti individuati:
         left: if x == 0 { 0pt } else { 0.5pt + black },
       ),
       table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-      "Jaume Bernardi", "-", "-", "-", "-", "4", "4", [*8*],
-      "Alessandro Dinato", "-", "4", "-", "-", "-", "4", [*8*],
-      "Michele Dioli", "-", "-", "-", "-", "8", "8", [*16*],
+      "Jaume Bernardi", "-", "-", "-", "-", "-", "-", [*0*],
+      "Alessandro Dinato", "-", "6", "-", "-", "-", "4", [*10*],
+      "Michele Dioli", "-", "-", "-", "-", "-", "-", [*0*],
       "Hossam Ezzemouri", "-", "-", "1", "-", "3", "2", [*6*],
-      "Riccardo Graziani", "-", "-", "-", "-", "9", "6", [*15*],
-      "Siria Salvalaio", "3", "-", "-", "-", "3", "2", [*8*],
-      "Elia Ernesto Stellin", "-", "-", "-", "-", "7", "7", [*14*],
-      table.footer([*Totale*], [*3*], [*4*], [*1*], [*0*], [*34*], [*33*], [*75*]),
+      "Riccardo Graziani", "-", "-", "-", "-", "6", "7", [*13*],
+      "Siria Salvalaio", "2", "-", "-", "-", "3", "2", [*7*],
+      "Elia Ernesto Stellin", "-", "-", "-", "-", "5", "2", [*7*],
+      table.footer([*Totale*], [*2*], [*6*], [*1*], [*0*], [*17*], [*17*], [*43*]),
     ),
     [Sprint 13 - Preventivo risorse da utilizzare],
     label-id: "spr13-prev-risorse",
@@ -3562,12 +3559,12 @@ Di seguito sono elencati i compiti individuati:
   ==== Grafico a torta della suddivisione oraria prevista
 
   #let orePrevSprint13 = (
-    ("Responsabile", 3),
-    ("Verificatore", 33),
+    ("Responsabile", 2),
+    ("Amministratore", 6),
     ("Analista", 1),
-    ("Programmatore", 34),
-    ("Amministratore", 4),
     ("Progettista", 0),
+    ("Programmatore", 17),
+    ("Verificatore", 17),
   )
   #graficoTorta("Sprint 13 - Ore produttive previste per ogni ruolo", orePrevSprint13)
 
@@ -3629,11 +3626,11 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
 
 #let oreEffettiveSprint13 = (
   ("Amministratore", 5),
-  ("Analista", 3),
-  ("Progettista", 0),
-  ("Programmatore", 20),
   ("Responsabile", 2),
+  ("Programmatore", 20),
+  ("Analista", 3),
   ("Verificatore", 22),
+  ("Progettista", 0),
 )
 #graficoTorta(
   "Sprint 13 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -3685,6 +3682,7 @@ Si è concretizzato il rischio *RO1* (@RO1): il mancato completamento di alcuni 
   [Sprint 13 - Aggiornamento costi],
   label-id: "spr13-agg-costi",
 )
+
 
 
 == Sprint 14 <sprint-14>
@@ -3934,40 +3932,40 @@ Di seguito sono elencati i compiti individuati:
 - *RT2* (@RT2): L'elevata concentrazione di test di integrazione (TI) previsti per i package di backend (historical_data, email, user, auth) e l'integrazione del frontend con il Cloud potrebbero far emergere bug di programmazione o errori di design. La risoluzione di tali problematiche potrebbe richiedere un impegno superiore al previsto, rallentando il completamento delle relative issue.
 - *RO1* (@RO1): Attività fondamentali come il setup dell'MVP e l'implementazione delle metriche di osservabilità sono propedeutiche alla verifica finale della qualità. Un ritardo nel loro completamento potrebbe incidere sui tempi necessari alla validazione del sistema e richiedere un aggiornamento dei costi/ore.
 
-  === Preventivo
-  ==== Preventivo risorse da utilizzare
-  #tabella-paginata(
-    table(
-      columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
-      align: left,
-      stroke: (x, y) => (
-        top: if y == 0 { 0pt } else { 0.5pt + black },
-        left: if x == 0 { 0pt } else { 0.5pt + black },
-      ),
-      table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
-      "Jaume Bernardi", "1", "-", "-", "3", "-", "6", [*10*],
-      "Alessandro Dinato", "-", "2", "-", "2", "1", "-", [*5*],
-      "Michele Dioli", "-", "-", "-", "-", "8", "4", [*12*],
-      "Hossam Ezzemouri", "-", "-", "-", "-", "4", "3", [*7*],
-      "Riccardo Graziani", "-", "-", "-", "2", "6", "2", [*10*],
-      "Siria Salvalaio", "-", "-", "-", "5", "3", "1", [*9*],
-      "Elia Ernesto Stellin", "-", "-", "-", "-", "1", "6", [*7*],
-      table.footer([*Totale*], [*1*], [*2*], [*0*], [*12*], [*23*], [*22*], [*60*]),
+=== Preventivo
+==== Preventivo risorse da utilizzare
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
     ),
-    [Sprint 15 - Preventivo risorse da utilizzare],
-    label-id: "spr15-prev-risorse",
-  )
-  ==== Grafico a torta della suddivisione oraria prevista
+    table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    "Jaume Bernardi", "1", "-", "-", "3", "-", "6", [*10*],
+    "Alessandro Dinato", "-", "2", "-", "2", "1", "-", [*5*],
+    "Michele Dioli", "-", "-", "-", "-", "16", "4", [*20*],
+    "Hossam Ezzemouri", "-", "-", "-", "-", "4", "3", [*7*],
+    "Riccardo Graziani", "-", "-", "-", "2", "6", "2", [*10*],
+    "Siria Salvalaio", "-", "-", "-", "5", "3", "1", [*9*],
+    "Elia Ernesto Stellin", "-", "-", "-", "-", "1", "6", [*7*],
+    table.footer([*Totale*], [*1*], [*2*], [*0*], [*12*], [*31*], [*22*], [*68*]),
+  ),
+  [Sprint 15 - Preventivo risorse da utilizzare],
+  label-id: "spr15-prev-risorse",
+)
+==== Grafico a torta della suddivisione oraria prevista
 
-  #let orePrevSprint15 = (
-    ("Responsabile", 1),
-    ("Programmatore", 23),
-    ("Amministratore", 2),
-    ("Analista", 0),
-    ("Progettista", 12),
-    ("Verificatore", 22),
-  )
-  #graficoTorta("Sprint 15 - Ore produttive previste per ogni ruolo", orePrevSprint15)
+#let orePrevSprint15 = (
+  ("Responsabile", 1),
+  ("Progettista", 12),
+  ("Programmatore", 31),
+  ("Amministratore", 2),
+  ("Analista", 0),
+  ("Verificatore", 22),
+)
+#graficoTorta("Sprint 15 - Ore produttive previste per ogni ruolo", orePrevSprint15)
 
 
 === Compiti svolti
@@ -4012,12 +4010,12 @@ Sono comunque stati portati a termini diversi compiti significativi, in particol
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
     "Jaume Bernardi", "1", "-", "-", "3", "-", "7 (+1)", [*11*],
     "Alessandro Dinato", "-", "2", "-", "3 (+1)", "1", "-", [*6*],
-    "Michele Dioli", "-", "-", "-", "-", "12 (+4)", "4", [*16*],
+    "Michele Dioli", "-", "-", "-", "-", "20 (+4)", "4", [*24*],
     "Hossam Ezzemouri", "-", "-", "-", "-", "7 (+3)", "3", [*10*],
     "Riccardo Graziani", "-", "-", "-", "1 (-1)", "5 (-1)", "1 (-1)", [*7*],
     "Siria Salvalaio", "-", "-", "-", "8 (+3)", "2 (-1)", "1", [*11*],
     "Elia Ernesto Stellin", "-", "-", "-", "-", "1", "6", [*7*],
-    table.footer([*Totale*], [*1*], [*2*], [*0*], [*15*], [*28*], [*22*], [*68*]),
+    table.footer([*Totale*], [*1*], [*2*], [*0*], [*15*], [*36*], [*22*], [*76*]),
   ),
   [Sprint 15 - Risorse utilizzate],
   label-id: "spr15-risorse-utiliz",
@@ -4025,12 +4023,12 @@ Sono comunque stati portati a termini diversi compiti significativi, in particol
 ==== Grafico a torta della suddivisione oraria effettiva
 
 #let oreEffettiveSprint15 = (
-  ("Programmatore", 28),
   ("Responsabile", 1),
-  ("Verificatore", 22),
-  ("Amministratore", 2),
   ("Progettista", 15),
   ("Analista", 0),
+  ("Programmatore", 36),
+  ("Amministratore", 2),
+  ("Verificatore", 22),
 )
 #graficoTorta(
   "Sprint 15 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -4050,12 +4048,12 @@ Sono comunque stati portati a termini diversi compiti significativi, in particol
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
     "Jaume Bernardi", "2 (-1)", "4", "-", "-", "11", "5 (-7)", [*22*],
     "Alessandro Dinato", "-", "-", "-", "4 (-3)", "2 (-1)", "5", [*11*],
-    "Michele Dioli", "-", "-", "-", "4", "8 (-12)", "18 (-4)", [*30*],
+    "Michele Dioli", "-", "-", "-", "4", "-", "18 (-4)", [*22*],
     "Hossam Ezzemouri", "-", "-", "-", "8", "5 (-7)", "-", [*13*],
     "Riccardo Graziani", "-", "-", "-", "7 (-1)", "-", "1 (-1)", [*8*],
     "Siria Salvalaio", "-", "-", "3", "10 (-8)", "3 (-2)", "4 (-1)", [*20*],
     "Elia Ernesto Stellin", "-", "-", "-", "3", "4 (-1)", "8 (-6)", [*15*],
-    table.footer([*Totale*], [*2*], [*4*], [*3*], [*36*], [*33*], [*41*], [*119*]),
+    table.footer([*Totale*], [*2*], [*4*], [*3*], [*36*], [*25*], [*41*], [*111*]),
   ),
   [Sprint 15 - Aggiornamento ore rimanenti],
   label-id: "spr15-agg-ore-rim",
@@ -4075,13 +4073,14 @@ Sono comunque stati portati a termini diversi compiti significativi, in particol
     "Amministratore", "4 (-2)", "20 €/h", "80 € (-40 €)",
     "Analista", "3 ", "25 €/h", "75 € ",
     "Progettista", "36 (-15)", "25 €/h", "900 € (-375 €)",
-    "Programmatore", "33 (-28)", "15 €/h", "495 € (-420 €)",
+    "Programmatore", "25 (-36)", "15 €/h", "375 € (-540 €)",
     "Verificatore", "41 (-22)", "15 €/h", "615 € (-330 €)",
-    table.footer([*Totale*], [*119*], [-], [*2225 €*]),
+    table.footer([*Totale*], [*111*], [-], [*2105 €*]),
   ),
   [Sprint 15 - Aggiornamento costi],
   label-id: "spr15-agg-costi",
 )
+
 
 == Sprint 16 <sprint-16>
 Inizio: 08/04/2026 \
@@ -4254,12 +4253,12 @@ Per il resto del periodo, il gruppo si è quindi focalizzato nella stesura di di
     table.header([*Nome*], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
     "Jaume Bernardi", "1 (-1)", "4", "-", "-", "11", "5", [*21*],
     "Alessandro Dinato", "-", "-", "-", "-", "-", "4 (-1)", [*4*],
-    "Michele Dioli", "-", "-", "-", "1 (-3)", "8", "14 (-4)", [*23*],
+    "Michele Dioli", "-", "-", "-", "1 (-3)", "-", "14 (-4)", [*15*],
     "Hossam Ezzemouri", "-", "-", "-", "6 (-2)", "3 (-2)", "-", [*9*],
     "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
     "Siria Salvalaio", "-", "-", "3", "1 (-9)", "3", "4", [*11*],
     "Elia Ernesto Stellin", "-", "-", "-", "3", "-", "-", [*3*],
-    table.footer([*Totale*], [*1*], [*4*], [*3*], [*11*], [*25*], [*27*], [*71*]),
+    table.footer([*Totale*], [*1*], [*4*], [*3*], [*11*], [*17*], [*27*], [*63*]),
   ),
   [Sprint 16 - Aggiornamento ore rimanenti],
   label-id: "spr16-agg-ore-rim",
@@ -4279,13 +4278,15 @@ Per il resto del periodo, il gruppo si è quindi focalizzato nella stesura di di
     "Amministratore", "4 ", "20 €/h", "80 € ",
     "Analista", "3 ", "25 €/h", "75 € ",
     "Progettista", "11 (-25)", "25 €/h", "275 € (-625 €)",
-    "Programmatore", "25 (-8)", "15 €/h", "375 € (-120 €)",
+    "Programmatore", "17 (-8)", "15 €/h", "255 € (-120 €)",
     "Verificatore", "27 (-14)", "15 €/h", "405 € (-210 €)",
-    table.footer([*Totale*], [*71*], [-], [*1240 €*]),
+    table.footer([*Totale*], [*63*], [-], [*1120 €*]),
   ),
   [Sprint 16 - Aggiornamento costi],
   label-id: "spr16-agg-costi",
 )
+
+
 
 
 == Sprint 17 <sprint-17>
@@ -4335,11 +4336,11 @@ Issue relative allo sprint 17: \
     "Jaume Bernardi", "1", "2", "-", "-", "-", "3", [*6*],
     "Alessandro Dinato", "-", "-", "-", "-", "-", "4", [*4*],
     "Michele Dioli", "-", "-", "-", "1", "-", "11", [*12*],
-    "Hossam Ezzemouri", "-", "-", "-", "1", "4", "-", [*5*],
-    "Riccardo Graziani", "-", "-", "-", "3", "4", "2", [*9*],
-    "Siria Salvalaio", "-", "-", "1", "3", "6", "3", [*13*],
+    "Hossam Ezzemouri", "-", "-", "-", "4", "1", "-", [*5*],
+    "Riccardo Graziani", "-", "-", "-", "-", "4", "2", [*6*],
+    "Siria Salvalaio", "-", "-", "1", "-", "6", "3", [*10*],
     "Elia Ernesto Stellin", "-", "-", "-", "7", "-", "-", [*7*],
-    table.footer([*Totale*], [*1*], [*2*], [*1*], [*15*], [*14*], [*23*], [*56*]),
+    table.footer([*Totale*], [*1*], [*2*], [*1*], [*12*], [*11*], [*23*], [*50*]),
   ),
   [Sprint 17 - Preventivo risorse da utilizzare],
   label-id: "spr17-prev-risorse",
@@ -4348,9 +4349,9 @@ Issue relative allo sprint 17: \
 
 #let orePrevSprint17 = (
   ("Responsabile", 1),
-  ("Programmatore", 14),
+  ("Progettista", 12),
   ("Amministratore", 2),
-  ("Progettista", 15),
+  ("Programmatore", 11),
   ("Analista", 1),
   ("Verificatore", 23),
 )
@@ -4414,11 +4415,11 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
     "Jaume Bernardi", "1", "2", "-", "-", "-", "4 (+1)", [*7*],
     "Alessandro Dinato", "-", "-", "-", "-", "-", "4", [*4*],
     "Michele Dioli", "-", "-", "-", "1", "-", "11", [*12*],
-    "Hossam Ezzemouri", "-", "-", "-", "4 (+3)", "5 (+1)", "-", [*9*],
+    "Hossam Ezzemouri", "-", "-", "-", "6 (+2)", "3 (+2)", "-", [*9*],
     "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
     "Siria Salvalaio", "-", "-", "1", "-", "2 (-4)", "4 (+1)", [*7*],
     "Elia Ernesto Stellin", "-", "-", "-", "3 (-4)", "-", "-", [*3*],
-    table.footer([*Totale*], [*1*], [*2*], [*1*], [*8*], [*7*], [*23*], [*42*]),
+    table.footer([*Totale*], [*1*], [*2*], [*1*], [*10*], [*5*], [*23*], [*42*]),
   ),
   [Sprint 17 - Risorse utilizzate],
   label-id: "spr17-risorse-utiliz",
@@ -4427,11 +4428,11 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
 
 #let oreEffettiveSprint17 = (
   ("Responsabile", 1),
-  ("Progettista", 8),
-  ("Amministratore", 2),
-  ("Analista", 1),
   ("Verificatore", 23),
-  ("Programmatore", 7),
+  ("Analista", 1),
+  ("Amministratore", 2),
+  ("Programmatore", 5),
+  ("Progettista", 10),
 )
 #graficoTorta(
   "Sprint 17 - Ore produttive complessive ed effettive per ogni ruolo",
@@ -4452,11 +4453,11 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
     "Jaume Bernardi", "-", "2 (-2)", "-", "-", "11", "1 (-4)", [*14*],
     "Alessandro Dinato", "-", "-", "-", "-", "-", "-", [*0*],
     "Michele Dioli", "-", "-", "-", "-", "-", "3 (-11)", [*3*],
-    "Hossam Ezzemouri", "-", "-", "-", "2 (-4)", "-2 (-5)", "-", [*0*],
+    "Hossam Ezzemouri", "-", "-", "-", "-", "-", "-", [*0*],
     "Riccardo Graziani", "-", "-", "-", "-", "-", "-", [*0*],
     "Siria Salvalaio", "-", "-", "2 (-1)", "1", "1 (-2)", "-", [*4*],
     "Elia Ernesto Stellin", "-", "-", "-", "-", "-", "-", [*0*],
-    table.footer([*Totale*], [*0*], [*2*], [*2*], [*3*], [*10*], [*4*], [*21*]),
+    table.footer([*Totale*], [*0*], [*2*], [*2*], [*1*], [*12*], [*4*], [*21*]),
   ),
   [Sprint 17 - Aggiornamento ore rimanenti],
   label-id: "spr17-agg-ore-rim",
@@ -4475,10 +4476,10 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
     "Responsabile", "0 (-1)", "30 €/h", "0 € (-30 €)",
     "Amministratore", "2 (-2)", "20 €/h", "40 € (-40 €)",
     "Analista", "2 (-1)", "25 €/h", "50 € (-25 €)",
-    "Progettista", "3 (-8)", "25 €/h", "75 € (-200 €)",
-    "Programmatore", "10 (-7)", "15 €/h", "150 € (-105 €)",
+    "Progettista", "1 (-10)", "25 €/h", "25 € (-250 €)",
+    "Programmatore", "12 (-5)", "15 €/h", "180 € (-75 €)",
     "Verificatore", "4 (-23)", "15 €/h", "60 € (-345 €)",
-    table.footer([*Totale*], [*21*], [-], [*375 €*]),
+    table.footer([*Totale*], [*21*], [-], [*355 €*]),
   ),
   [Sprint 17 - Aggiornamento costi],
   label-id: "spr17-agg-costi",
