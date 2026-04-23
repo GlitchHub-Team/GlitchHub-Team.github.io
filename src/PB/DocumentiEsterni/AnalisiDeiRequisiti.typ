@@ -211,7 +211,25 @@
   titolo: "Analisi dei Requisiti",
   stato: "Verificato",
   registro-modifiche: (
-      (
+    (
+      "2.0.0",
+      "18/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [
+        Aggiornamento stato requisiti in soddisfatto o non soddisfatto, e conseguente creazione versione stabile
+      ],
+    ),
+    (
+      "1.3.0",
+      "08/04/2026",
+      "Alessandro Dinato",
+      "Riccardo Graziani",
+      [
+        Aggiornamento @lista-requisiti-funzionali secondo le modifiche delle priorità concordate con l'azienda
+      ],
+    ),
+    (
       "1.2.3",
       "11/03/2026",
       "Siria Salvalaio",
@@ -618,8 +636,8 @@
 
   distribuzione: ("GlitchHub Team", "M31 SRL", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Elia Ernesto Stellin",
-  left-signature: "../assets/firme/firma_Elia_Ernesto_Stellin.jpg",
+  verificatore-interno: "Riccardo Graziani",
+  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
   tipo-documento: "Analisi dei Requisiti",
 )
 
@@ -5279,7 +5297,7 @@ Inoltre un buon requisito deve essere *SMART*:
 == Tracciamento <tracciamento-requisiti>
 /*
 NOTA: In questa sezione le tabelle sono generate automaticamente, per modificare i requisiti direttamente è
-necessario modificare i file lista_RF.json, lista_RNF.json, lista_RD.json
+necessario modificare i file RF.json, RNF.json, RD.json
 */
 
 #context {

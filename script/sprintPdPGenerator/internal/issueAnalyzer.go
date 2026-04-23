@@ -72,7 +72,7 @@ var costPerHourPerRole = map[string]int{
 }*/
 
 //nuova allocazione delle ore inizio PB
-
+/*
 var hoursPerRolePerName = map[string]map[string]int{
 	"Responsabile": {
 		"Jaume Bernardi":       4,
@@ -127,6 +127,64 @@ var hoursPerRolePerName = map[string]map[string]int{
 		"Riccardo Graziani":    27,
 		"Siria Salvalaio":      27,
 		"Elia Ernesto Stellin": 25,
+	},
+}
+*/
+//nuova allocazione delle ore fine PB
+var hoursPerRolePerName = map[string]map[string]int{
+	"Responsabile": {
+		"Jaume Bernardi":       7,
+		"Alessandro Dinato":    6,
+		"Michele Dioli":        8,
+		"Hossam Ezzemouri":     2,
+		"Riccardo Graziani":    3,
+		"Siria Salvalaio":      8,
+		"Elia Ernesto Stellin": 2,
+	},
+	"Amministratore": {
+		"Jaume Bernardi":       3,
+		"Alessandro Dinato":    11,
+		"Michele Dioli":        8,
+		"Hossam Ezzemouri":     13,
+		"Riccardo Graziani":    5,
+		"Siria Salvalaio":      11,
+		"Elia Ernesto Stellin": 11,
+	},
+	"Analista": {
+		"Jaume Bernardi":       6,
+		"Alessandro Dinato":    13,
+		"Michele Dioli":        10,
+		"Hossam Ezzemouri":     15,
+		"Riccardo Graziani":    13,
+		"Siria Salvalaio":      7,
+		"Elia Ernesto Stellin": 12,
+	},
+	"Progettista": {
+		"Jaume Bernardi":       29,
+		"Alessandro Dinato":    15,
+		"Michele Dioli":        16,
+		"Hossam Ezzemouri":     12,
+		"Riccardo Graziani":    20,
+		"Siria Salvalaio":      18,
+		"Elia Ernesto Stellin": 14,
+	},
+	"Programmatore": {
+		"Jaume Bernardi":       21,
+		"Alessandro Dinato":    29,
+		"Michele Dioli":        28,
+		"Hossam Ezzemouri":     27,
+		"Riccardo Graziani":    29,
+		"Siria Salvalaio":      28,
+		"Elia Ernesto Stellin": 25,
+	},
+	"Verificatore": {
+		"Jaume Bernardi":       29,
+		"Alessandro Dinato":    21,
+		"Michele Dioli":        25,
+		"Hossam Ezzemouri":     26,
+		"Riccardo Graziani":    25,
+		"Siria Salvalaio":      23,
+		"Elia Ernesto Stellin": 31,
 	},
 }
 

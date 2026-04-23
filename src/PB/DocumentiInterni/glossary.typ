@@ -6,6 +6,13 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "1.0.0",
+      "20/04/2026",
+      "Riccardo Graziani",
+      "Alessandro Dinato",
+      [Approvazione versione stabile del documento],
+    ),
+    (
       "0.6.0",
       "25/03/2026",
       "Alessandro Dinato",
@@ -115,8 +122,8 @@
     "Pubblica",
   ),
   htmlId: "PB-DocumentiInterni",
-  verificatore-interno: "Jaume Bernardi",
-  left-signature: "../assets/firme/firma_Jaume_Bernardi.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Glossario",
 )
 

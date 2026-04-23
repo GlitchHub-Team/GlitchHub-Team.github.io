@@ -81,7 +81,7 @@
     },
     {
         "term": "Committente",
-        "definition": "Nel _progetto didattico_ lo sono i docenti ed hanno lo scopo di: misurare il progresso con due revisioni, regolare il progetto didattico e valutarlo"
+        "definition": "Nel _progetto didattico_ lo sono i docenti e hanno lo scopo di: misurare il progresso con due revisioni, regolare il progetto didattico e valutarlo."
     },
     {
         "term": "Proponente",
@@ -101,11 +101,11 @@
     },
     {
         "term": "Valutazione capitolati",
-        "definition": "Documento in cui il gruppo, secondo i pareri dei diversi componenti, elabora un pensiero comune riguardo ogni @{capitolato d'appalto}"
+        "definition": "Documento in cui il gruppo, secondo i pareri dei diversi componenti, elabora un pensiero comune riguardo ogni @{capitolato d'appalto}."
     },
     {
         "term": "Capitolato d'appalto",
-        "definition": "Documento redatto dalla @{proponente} con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative (@{requisito utente}{requisiti utente})"
+        "definition": "Documento redatto dalla @{proponente} con lo scopo di esporre il prodotto richiesto. Esso contiene vincoli, suggerimenti e aspettative (@{requisito utente}{requisiti utente})."
     },
     {
         "term": "Way of working",
@@ -245,7 +245,7 @@
     },
     {
         "term": "GraphQL",
-        "definition": "Linguaggio di query per @{API} che permette ai client di richiedere esattamente i dati necessari e ridurre l'_over-fetching_, ovvero la ricezione di dati non necessari"
+        "definition": "Linguaggio di query per @{API} che permette ai client di richiedere esattamente i dati necessari e ridurre l'_over-fetching_, ovvero la ricezione di dati non necessari."
     },
     {
         "term": "Node.js",
@@ -325,7 +325,7 @@
     },
     {
         "term": "Architettura/Design",
-        "definition": "Descrive come il sistema è organizzato internamente: componenti, interazioni e tecnologia scelta. Indica come verranno soddisfatti i requisiti software. Ne è responsabile il _progettista_"
+        "definition": "Descrive come il sistema è organizzato internamente: componenti, interazioni e tecnologia scelta. Indica come verranno soddisfatti i requisiti software. Ne è responsabile il _progettista_."
     },
     {
         "term": "Stakeholder",
@@ -341,7 +341,7 @@
     },
     {
         "term": "Economicità",
-        "definition": "È la combinazione tra @{efficacia} e @{efficienza}, ovvero l'equilibrio tra costi sostenuti, risorse impiegate e risultati ottenuti, con l'obiettivo di minimizzare sprechi o spese inutili."
+        "definition": "È la combinazione tra @{efficacia} ed @{efficienza}, ovvero l'equilibrio tra costi sostenuti, risorse impiegate e risultati ottenuti, con l'obiettivo di minimizzare sprechi o spese inutili."
     },
     {
         "term": "Ciclo di vita",
@@ -349,7 +349,7 @@
     },
     {
         "term": "Processo di ciclo di vita",
-        "definition": "Sono l'insieme di attività che guidano, secondo best practice, un cambio di fase all'interno di un prodotto software (es: concezione -> sviluppo). Un processo è composto da attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_, secondo _regole definite_, consumando _risorse_ nel farlo"
+        "definition": "Sono l'insieme di attività che guidano, secondo best practice, un cambio di fase all'interno di un prodotto software (es: concezione -> sviluppo). Un processo è composto da attività _correlate_ e _coese_ che trasformano _bisogni_ in _prodotti_, secondo _regole definite_, consumando _risorse_ nel farlo."
     },
     {
         "term": "Modello di ciclo di vita",
@@ -373,7 +373,7 @@
     },
     {
         "term": "Incremento",
-        "definition": "Aggiunta rilasciabile che estende il prodotto rispetto alla versione precedente(scopo _costruttivo_)."
+        "definition": "Aggiunta rilasciabile che estende il prodotto rispetto alla versione precedente (scopo _costruttivo_)."
     },
     {
         "term": "Prototipo",
@@ -405,7 +405,7 @@
     },
     {
         "term": "Retrospettiva",
-        "definition": "Riunione interna al team con valutazione _qualitativa_. Durante l'incontro si analizza cosa è andato bene o male e si discutono possibili correzioni."
+        "definition": "Vd. @{Sprint Retrospective}."
     },
     {
         "term": "Preventivo",
@@ -425,7 +425,7 @@
     },
     {
         "term": "Test Driven Development",
-        "definition": "Tecnica di sviluppo in cui prima si scrivono i test, poi il codice necessario a soddisfarli ed infine si ristruttura il codice. Garantisce verificabilità e qualità"
+        "definition": "Tecnica di sviluppo in cui prima si scrivono i test, poi il codice necessario a soddisfarli ed infine si ristruttura il codice. Garantisce verificabilità e qualità."
     },
     {
         "term": "Verifica",
@@ -441,7 +441,7 @@
     },
     {
         "term": "Docker",
-        "definition": "Piattaforma che permette di creare, distribuire e eseguire applicazioni all'interno di container isolati, garantendo portabilità tra diversi ambienti."
+        "definition": "Piattaforma che permette di creare, distribuire ed eseguire applicazioni all'interno di container isolati, garantendo portabilità tra diversi ambienti."
     },
     {
         "term": "NoSQL",
@@ -457,7 +457,7 @@
     },
     {
         "term": "CD",
-        "definition": "Insieme di pratiche di automazione del rilascio software. Vd. @{Continuous Delivery} e @{Continuous Deployment}"
+        "definition": "Insieme di pratiche di automazione del rilascio software. Vd. @{Continuous Delivery} e @{Continuous Deployment}."
     },
     {
         "term": "Continuous Delivery",
@@ -488,16 +488,16 @@
         "definition": "La parte del prodotto che si prende in considerazione nel contesto di un @{caso d'uso} specifico. Si noti che il sistema di un caso d'uso può corrispondere all'@{attore} di un altro caso, a seconda della funzionalità che si intende descrivere."
     },
     {
-        "term": "Tenant user",
+        "term": "Tenant User",
         "definition": "Utente autenticato senza privilegi appartenente a uno specifico @{tenant}. Ha solo il potere di visualizzare i dati dei sensori ricevuti dai @{gateway}."
     },
     {
-        "term": "Tenant admin",
+        "term": "Tenant Admin",
         "definition": "Utente autenticato appartenente a un @{tenant} specifico con privilegi di amministrazione all'interno del proprio tenant e sui @{gateway} a esso associati."
     },
     {
-        "term": "Super admin",
-        "definition": "Utente autenticato con poteri di amministrazione globali a tutti i @{tenant} associati alla piattaforma @{cloud}"
+        "term": "Super Admin",
+        "definition": "Utente autenticato con poteri di amministrazione globali a tutti i @{tenant} associati alla piattaforma @{cloud}."
     },
     {
         "term": "API Client",
@@ -513,7 +513,7 @@
     },
     {
         "term": "Impersonificazione",
-        "definition": "Atto con cui un @{Super admin} si fa temporaneamente riconoscere dal sistema @{cloud} come utente appartenente a uno specifico @{tenant}, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un @{Tenant Admin}. Questo può avvenire soltanto se il @{tenant} impersonato ha precedentemente accettato un'apposita clausola contrattuale."
+        "definition": "Atto con cui un @{Super Admin} si fa temporaneamente riconoscere dal sistema @{cloud} come utente appartenente a uno specifico @{tenant}, attribuendo a quest'ultimo la facoltà di compiere le stesse azioni di un @{Tenant Admin}. Questo può avvenire soltanto se il @{tenant} impersonato ha precedentemente accettato un'apposita clausola contrattuale."
     },
     {
         "term": "Comando (gateway)",
@@ -529,7 +529,7 @@
     },
     {
         "term": "Sospensione (sensore)",
-        "definition": "@{comando (gateway)}{Comando} inviato al @{gateway} associato a un sensore specifico, per interrompere l'invio dei dati da esso ricevuti alla piattaforma @{Cloud}. Si noti che la sospensione non spegne completamente il sensore interessato"
+        "definition": "@{comando (gateway)}{Comando} inviato al @{gateway} associato a un sensore specifico, per interrompere l'invio dei dati da esso ricevuti alla piattaforma @{Cloud}. Si noti che la sospensione non spegne completamente il sensore interessato."
     },
     {
         "term": "Riattivazione (sensore)",
@@ -657,7 +657,7 @@
     },
     {
         "term": "Wildcard - NATS",
-        "definition": "Carattere speciale utilizzato nei soggetti di @{NATS} per rappresentare uno o più livelli di soggetti. Il wildcard '\\*' rappresenta un singolo livello, mentre '>' rappresenta tutti i livelli successivi. Esempio: 'sensors.\\*' corrisponde a 'sensors.temperature' e 'sensors.humidity', mentre 'sensors.>' corrisponde a tutti i soggetti che iniziano con 'sensors.'"
+        "definition": "Carattere speciale utilizzato nei soggetti di @{NATS} per rappresentare uno o più livelli di soggetti. Il wildcard '\\*' rappresenta un singolo livello, mentre '>' rappresenta tutti i livelli successivi. Esempio: 'sensors.\\*' corrisponde a 'sensors.temperature' e 'sensors.humidity', mentre 'sensors.>' corrisponde a tutti i soggetti che iniziano con 'sensors.'."
     },
     {
         "term": "JWT",
@@ -749,7 +749,7 @@
     },
     {
         "term": "Fire-and-forget",
-        "definition": "Modalità di comunicazione in cui un client invia una richiesta a un server senza attendere una risposta ed in cui il server deve essere in ascolto in quell'esatto momento per ricevere la richiesta, altrimenti questa viene persa. Un esempio di comunicazione fire-and-forget è @{NATS}"
+        "definition": "Modalità di comunicazione in cui un client invia una richiesta a un server senza attendere una risposta ed in cui il server deve essere in ascolto in quell'esatto momento per ricevere la richiesta, altrimenti questa viene persa. Un esempio di comunicazione fire-and-forget è @{NATS}."
     },
     {
         "term": "Dependency Injection",
@@ -757,6 +757,34 @@
     },
     {
         "term": "Uber Fx",
-        "definition": "Framework di Dependency Injection per il linguaggio Go, che semplifica la gestione delle dipendenze e l'organizzazione del codice, promuovendo un'architettura modulare e testabile."
+        "definition": "Framework di @{Dependency Injection} per il linguaggio Go, che semplifica la gestione delle dipendenze e l'organizzazione del codice, promuovendo un'architettura modulare e testabile."
+    },
+    {
+        "term": "SMTP",
+        "definition": "Acronimo di Simple Mail Transfer Protocol. È il protocollo principale utilizzato per l'invio di messaggi di posta elettronica."
+    },
+    {
+        "term": "Role-Based Access Control",
+        "definition": "Modello per autorizzare accesso dell'utente finale a risorse specifiche in base al ruolo da questi ricoperto. Nel contesto del progetto, i ruoli sono @{Tenant User}, @{Tenant Admin}, @{Super Admin}."
+    },
+    {
+        "term": "RBAC",
+        "definition": "Acronimo di @{Role-Based Access Control}."
+    },
+    {
+        "term": "Websocket",
+        "definition": "Protocollo di comunicazione bidirezionale basato su TCP comunemente utilizzato per far comunicare un client con un web server. La comunicazione inizia con una richiesta GET da parte del client, sulla quale si fa un Upgrade al protocollo websocket."
+    },
+    {
+        "term": "Embedding",
+        "definition": "Funzionalità di @{Go} che consente di inserire campi di una struct all'interno di un'altra, consentendo di applicare un meccanismo simile all'ereditarietà nei linguaggi object-oriented. Si noti che l'embedding avviene solamente sugli *attributi* e non sui metodi della struct in considerazione."
+    },
+    {
+        "term": "Goroutine",
+        "definition": "Primitiva di @{Go} che consente di eseguire una qualunque funzione, nominata o anonima, su un thread di esecuzione concorrente leggero senza doverla dichiarare esplicitamente come asincrona."
+    },
+    {
+        "term": "Schema (SQL)",
+        "definition": "Nel contesto dei database SQL, corrisponde a un raggruppamento nominato di tabelle e viste separato dal resto a cui si possono assegnare regole di accesso specifiche."
     }
 ]
