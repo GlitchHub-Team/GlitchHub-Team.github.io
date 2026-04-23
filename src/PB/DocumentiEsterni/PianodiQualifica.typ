@@ -773,7 +773,7 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[PV (€)]],
       [#text(fill: white, weight: "bold")[EV (€)]],
       [#text(fill: white, weight: "bold")[PV acc. (€)]],
@@ -828,7 +828,7 @@ L'EV cumulativo raggiunge €12.654,93 alla fine della PB, risultando leggerment
 *Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
 
 
-== MPC-AC e MPC-ETC rispetto a MPC-EAC: _Actual Cost_ ed _Estimate To Complete_ rispetto a _Estimate to Completion_
+== MPC-AC e MPC-ETC rispetto a MPC-EAC: _Actual Cost_ ed _Estimate To Complete_ rispetto a _Estimate At Completion_
 
 #tabella-paginata(
   table(
@@ -838,21 +838,30 @@ L'EV cumulativo raggiunge €12.654,93 alla fine della PB, risultando leggerment
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[AC (€)]],
       [#text(fill: white, weight: "bold")[AC acc. (€)]],
       [#text(fill: white, weight: "bold")[ETC (€)]],
       [#text(fill: white, weight: "bold")[EAC (€)]],
     ),
-    [Sprint 1], [240,00], [240,00], [12.611,43], [12.851,43],
-    [Sprint 2], [240,00], [480,00], [12.432,92], [12.912,92],
-    [Sprint 3], [150,00], [630,00], [12.421,49], [13.051,49],
-    [Sprint 4], [290,00], [920,00], [12.107,28], [13.027,28],
-    [Sprint 5], [230,00], [1.150,00], [11.643,58], [12.793,58],
-    [Sprint 6], [365,00], [1.515,00], [11.308,74], [12.823,74],
-    [Sprint 7], [260,00], [1.775,00], [11.070,67], [12.845,67],
-    [Sprint 8], [520,00], [2.295,00], [10.584,39], [12.879,39],
-    [Sprint 9], [830,00], [3.125,00], [9.729,11], [12.854,11],
+    [Sprint 1],  [240,00],    [240,00],    [12.611,43], [12.851,43], 
+    [Sprint 2],  [240,00],    [480,00],    [12.432,92], [12.912,92], 
+    [Sprint 3],  [150,00],    [630,00],    [12.421,49], [13.051,49], 
+    [Sprint 4],  [290,00],    [920,00],    [12.107,28], [13.027,28], 
+    [Sprint 5],  [230,00],    [1.150,00],  [11.643,58], [12.793,58], 
+    [Sprint 6],  [365,00],    [1.515,00],  [11.308,74], [12.823,74], 
+    [Sprint 7],  [260,00],    [1.775,00],  [11.070,67], [12.852,51], 
+    [Sprint 8],  [520,00],    [2.295,00],  [10.584,39], [12.879,39], 
+    [Sprint 9],  [830,00],    [3.125,00],  [9.729,11],  [12.854,11], 
+    [Sprint 10], [385,00],    [3.510,00],  [8.353,34],  [12.848,34], 
+    [Sprint 11], [1.550,00],  [5.060,00],  [6.921,68],  [12.866,68], 
+    [Sprint 12], [1.450,00],  [6.510,00],  [5.751,61],  [12.846,61], 
+    [Sprint 13], [850,00],    [7.360,00],  [4.904,89],  [12.749,89], 
+    [Sprint 14], [1.305,00],  [8.665,00],  [3.687,03],  [12.737,03], 
+    [Sprint 15], [1.120,00],  [9.785,00],  [2.579,08],  [12.719,08], 
+    [Sprint 16], [755,00],    [10.540,00], [1.459,89],  [12.788,89], 
+    [Sprint 17], [605,00],    [11.145,00], [542,81],    [12.773,81], 
+
   ),
   [Valori di AC, ETC e EAC per sprint],
   label-id: "tab-valori-AC-ETC-EAC",
@@ -863,6 +872,7 @@ L'EV cumulativo raggiunge €12.654,93 alla fine della PB, risultando leggerment
   caption: [Valori di AC, ETC e EAC per sprint],
 )
 
+=== RTB (Sprint 1--9)
 Il costo effettivo sostenuto (AC) cresce progressivamente fino a raggiungere €3.125,00 allo sprint 9. Il valore massimo di spesa per singolo sprint si registra nello sprint 9 (€830,00), in corrispondenza del picco di attività operative.
 
 L'ETC mostra una riduzione costante nel tempo, passando da €12.611,43 a €9.729,11, a conferma del regolare avanzamento del progetto verso il completamento.
@@ -875,8 +885,10 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
 *Soglia accettabile:* $"ETC" gt.eq 0$  _sempre rispettata_. \
 *Soglia ottima:* $"ETC" gt.eq 0$  _sempre rispettata_.
 
-== MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
+=== PB (Sprint 10--17)
+Tra lo sprint 9 e 10, l'AC accumulato rimane stabile in quanto il primo sprint della PB è stato dedicato ad attività di "palestra" non rendicontate, dopodiché cresce più rapidamente dei primi 9 sprint, raggiungendo allo sprint 17 il totale finale di ...
 
+== MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
 
 #tabella-paginata(
   table(
@@ -886,20 +898,29 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[CV (€)]],
       [#text(fill: white, weight: "bold")[SV (€)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1], [+2,31], [-72,69], [Ritardo schedulazione],
-    [Sprint 2], [0,00], [0,00], [In linea],
-    [Sprint 3], [-6,00], [+24,00], [Lieve costo extra],
-    [Sprint 4], [0,00], [0,00], [In linea],
-    [Sprint 5], [+20,00], [+50,00], [Sotto budget e in anticipo],
-    [Sprint 6], [+1,56], [+21,56], [Sotto budget e in anticipo],
-    [Sprint 7], [0,00], [0,00], [In linea],
-    [Sprint 8], [-0,83], [+74,17], [In anticipo (costo ~in linea)],
-    [Sprint 9], [+12,35], [-52,65], [Ritardo schedulazione],
+    [Sprint 1],  [+2,31],  [-72,69],  [Ritardo schedulazione],
+    [Sprint 2],  [0,00],   [0,00],    [In linea],
+    [Sprint 3],  [-6,00],  [+24,00],  [Lieve costo extra],
+    [Sprint 4],  [0,00],   [0,00],    [In linea],
+    [Sprint 5],  [+20,00], [+50,00],  [Sotto budget e in anticipo],
+    [Sprint 6],  [+1,56],  [+21,56],  [Sotto budget e in anticipo],
+    [Sprint 7],  [0,00],   [0,00],    [In linea],
+    [Sprint 8],  [-0,88],  [+74,12],  [In anticipo (costo in linea)],
+    [Sprint 9],  [+12,35], [-52,65],  [Ritardo schedulazione],
+    [Sprint 10], [+13,12], [-56,88],  [Ritardo schedulazione], 
+    [Sprint 11], [+8,02],  [+93,02],  [Sotto budget e in anticipo], 
+    [Sprint 12], [-28,23], [+146,77], [Sopra budget, grande anticipo], 
+    [Sprint 13], [0,00],   [+50,00],  [In linea con budget, in anticipo], 
+    [Sprint 14], [+11,14], [+106,14], [Sotto budget, molto in anticipo], 
+    [Sprint 15], [-5,83],  [+159,17], [Lievemente sopra budget, molto in anticipo], 
+    [Sprint 16], [-27,57], [+57,43],  [Sopra budget, in anticipo], 
+    [Sprint 17], [+9,89],  [-35,11],  [Ritardo nella schedulazione], 
+
   ),
   [Cost Variance e Schedule Variance per sprint],
   label-id: "tab-CS-SV",
@@ -930,7 +951,7 @@ $ "BAC" = 12.975 € $
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[EAC (€)]],
       [#text(fill: white, weight: "bold")[BAC (€)]],
       [#text(fill: white, weight: "bold")[Stato]],
