@@ -553,27 +553,49 @@ Si noti che le sezioni seguenti suddividono i test di unità per microservizio /
   [*#tu-name*]
 }
 
+#let tabella-TU-backend      = crea-dati-tabella(tu, LISTA-TU, "Backend")
+#let tabella-TU-frontend     = crea-dati-tabella(tu, LISTA-TU, "Frontend")
+#let tabella-TU-gateway      = crea-dati-tabella(tu, LISTA-TU, "Gateway")
+#let tabella-TU-dataconsumer = crea-dati-tabella(tu, LISTA-TU, "DataConsumer")
 
-#for test in LISTA-TU {
-  let new-code = tu(test.id)
-  tabella-TU.push(new-code)
-  tabella-TU.push(markup(test.descr))
-  tabella-TU.push(markup(test.expected))
-  tabella-TU.push(markup(test.state))
-}
+#show "_": it => it + h(0pt, weak: true)
 
-#tabella-paginata(
-  table(
-    columns: (1fr, 2fr, 2fr, 0.5fr),
-    align: center + horizon,
-    inset: 8pt,
-    fill: (x, y) => if y == 0 { gray.lighten(70%) },
-    [*Identificativo*], [*Descrizione*], [*Valore atteso*], [*Stato*],
-    ..tabella-TU
-  ),
-  [Test di Sistema con descrizione e requisito di riferimento],
-  label-id: "tab-test-unità",
+=== Test di unità per Cloud Backend
+Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Cloud Backend*.
+
+#crea-tabella(
+  tabella-TU-backend, 
+  [Test di unità per Cloud Backend con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-backend",
 )
+
+=== Test di unità per Cloud Frontend
+Di seguito si riporta la lista di #gloss[test unitari] per il front-end della dashboard.
+
+#crea-tabella(
+  tabella-TU-frontend, 
+  [Test di unità per Cloud Frontend con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-frontend",
+)
+
+=== Test di unità per Gateway Simulator
+Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Gateway Simulator*.
+
+#crea-tabella(
+  tabella-TU-gateway, 
+  [Test di unità per Gateway Simulator con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-gw-simulator",
+)
+
+=== Test di unità per Data Consumer
+Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Data Consumer*.
+
+#crea-tabella(
+  tabella-TU-dataconsumer, 
+  [Test di unità per Data Consumer con descrizione, valore atteso e stato di implementazione],
+  "tab-tu-cloud-backend",
+)
+
 
 == Test di integrazione <test-integrazione>
 I #gloss[test d'integrazione] verificano il corretto comportamento delle interazioni tra i vari componenti del sistema. Considerata la natura distribuita dell'architettura, tali test risultano fondamentali per il raggiungimento di un solido risultato.
