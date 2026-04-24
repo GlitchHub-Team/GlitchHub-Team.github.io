@@ -72,7 +72,7 @@ All'interno di quest'ultima si mettono a disposizione i seguenti documenti, oltr
       "https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/NormeProgetto.pdf",
     )[Norme di Progetto v2.0.0]
   - #link(
-      "https://glitchhub-team.github.io/pdf/PB/VerbaliEsterni/2026-04-13.pdff",
+      "https://glitchhub-team.github.io/pdf/PB/VerbaliEsterni/2026-04-13.pdf",
     )[Verbale esterno 13/04/2026 v1.0.0]
   - #link(
       "https://glitchhub-team.github.io/pdf/PB/VerbaliEsterni/2026-03-31.pdf",
