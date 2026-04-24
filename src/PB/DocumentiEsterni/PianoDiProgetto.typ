@@ -18,7 +18,7 @@
       "24/04/2026",
       "Jaume Bernardi",
       "Alessandro Dinato",
-      [Stesura sprint 17 (@sprint-17)],
+      [Stesura sprint 17 (@sprint-17) e consuntivo di impegno individuale e collettivo],
     ),
     (
       "1.8.1",
@@ -809,7 +809,7 @@ Inoltre, come descritto nella #link("https://glitchhub-team.github.io/pdf/Candid
 = Impegno orario previsto
 Il gruppo ha deciso di dedicare un totale di *95 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
 
-== Tabella suddivisione ore produttive per componente e ruolo
+== Tabella suddivisione ore produttive per componente e ruolo <suddivisione-oraria>
 Nella tabella di conteggio ore verranno utilizzati degli acronimi per descrivere i singoli ruoli.
 - *Resp* = Responsabile
 - *Amm* = Amministratore
@@ -1024,7 +1024,7 @@ La ricalibrazione è stata effettuata esclusivamente con spostamenti orizzontali
 )
 
 
-== Grafico a torta della suddivisione oraria iniziale
+== Grafico a torta della suddivisione oraria iniziale <grafico-sudd-oraria-iniziale>
 #figure(
   align(center)[
 
@@ -4491,3 +4491,50 @@ Una buona distribuzione del lavoro tra i membri del gruppo ha permesso di termin
   [Sprint 17 - Aggiornamento costi],
   label-id: "spr17-agg-costi",
 )
+
+= Consuntivo di impegno individuale e collettivo
+Durante il progetto didattico sono stati applicati diversi ricalcoli delle ore e dei costi, i quali si possono visionare nella @suddivisione-oraria.\
+Di seguito è riportato il riepilogo delle risorse utilizzate complessivamente durante l'intero periodo del progetto didattico.
+
+#tabella-paginata(
+  table(
+    columns: (0.20fr, 0.10fr, 0.10fr, 0.10fr, 0.10fr, 0.12fr, 0.10fr, 0.10fr),
+    align: left,
+    stroke: (x, y) => (
+      top: if y == 0 { 0pt } else { 0.5pt + black },
+      left: if x == 0 { 0pt } else { 0.5pt + black },
+    ),
+    table.header([], [*Resp*], [*Amm*], [*Analist*], [*Progett*], [*Programm*], [*Verif*], [*Totale*]),
+    [*Jaume Bernardi*], [7], [5], [6], [17], [18], [28], [81],
+    [*Alessandro Dinato*], [6], [11], [13], [15], [29], [21], [95],
+    [*Michele Dioli*], [8], [8], [10], [16], [28], [22], [92],
+    [*Hossam Ezzemouri*], [2], [13], [15], [12], [27], [26], [95],
+    [*Riccardo Graziani*], [3], [5], [13], [20], [29], [25], [95],
+    [*Siria Salvalaio*], [8], [11], [5], [17], [27], [23], [91],
+    [*Elia Ernesto Stellin*], [2], [11], [12], [14], [25], [31], [95],
+    [*Totale*], [*36*], [*64*], [*74*], [*111*], [*183*], [*176*], [*644*],
+    [*Costo totale*], [*1080 €*], [*1280 €*], [*1850 €*], [*2775 €*], [*2745 €*], [*2640 €*], [*12370 €*],
+  ),
+  [Consuntivo di periodo attuale],
+  label-id: "consuntivo-periodo-attuale",
+)
+
+Dalla suddetta tabella si posso vedere le ore individuali utilizzate durante il progetto didattico, esse sono suddivise per ruolo e per membro del gruppo. Il totale delle ore è di *644*, con un costo complessivo di *12370 €* e con un risparmio di  *355 €* rispetto al preventivo totale.\
+
+Nel grafico sottostante, invece, è possibile analizzare la distribuzione delle ore complessivamente utilizzate per ogni ruolo attraverso un grafico a torta.\
+
+#graficoTorta(
+  "Ore produttive utilizzate complessivamente per ogni ruolo",
+  (
+    ("Responsabile", 36),
+    ("Amministratore", 64),
+    ("Analista", 74),
+    ("Progettista", 111),
+    ("Programmatore", 183),
+    ("Verificatore", 176),
+  ),
+)
+
+Rispetto alla suddivisione oraria iniziale, la quale si può visionare alla @grafico-sudd-oraria-iniziale, si è osservata una diminuzione delle ore da *progettista* e *responsabile* a fronte di un aumento verso gli altri ruoli.
+
+Ciò è avvenuto perché le attività relative ai due ruoli in questione hanno beneficiato di una curva di apprendimento rapida, richiedendo meno ore una volta a regime. Diversamente, gli altri ruoli sono stati assorbiti da mansioni più meccaniche e ripetitive, il cui svolgimento ha richiesto una quantità di ore produttive maggiore.
