@@ -804,7 +804,7 @@ Ogni rischio è identificato tramite un codice composto dall'acronimo della sua 
 = Calendario di massima del progetto <calendario-progetto>
 Il gruppo si impegna a presentare la candidatura per la #gloss[Requirements and Technology Baseline] entro il 12/02/2025, con possibilità di deroga a seconda delle necessità del gruppo.
 
-Inoltre, come descritto nella #link("https://glitchhub-team.github.io/pdf/Candidatura/Generale/DichiarazioneImpegni.pdf")[Dichiarazione degli Impegni], _GlitchHub Team_ si impegna a terminare il progetto entro il giorno *27 marzo 2026*, senza alcuna possibilità di deroga.
+Inoltre il gruppo _GlitchHub Team_ si impegna a terminare il progetto entro il giorno *29 aprile 2026*, senza alcuna possibilità di deroga.
 
 = Impegno orario previsto
 Il gruppo ha deciso di dedicare un totale di *95 ore produttive* per ogni componente, le quali verranno distribuite tra i diversi ruoli.
