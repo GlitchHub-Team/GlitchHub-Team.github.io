@@ -1,140 +1,146 @@
 [
     {
-        "id": "TA-acq-gen-sensori",
-        "descr": "Verificare che il gateway possa ricevere e gestire dati di 5 tipologie diverse di sensori simulati",
-        "ref-req": "RQ-1",
-        "state": "NI"
-    },
-    {
-        "id": "TA-sim-dati-gateway",
-        "descr": "Verificare che il gateway simulato generi dati simulati, attraverso sensori simulati, pronti alla trasmissione",
-        "ref-req": "RQ-2.1",
-        "state": "NI"
-    },
-    {
-        "id": "TA-invio-dati-tls",
-        "descr": "Verificare che il gateway simulato invii dati al cloud con crittografia TLS",
-        "ref-req": "RQ-2.2",
-        "state": "NI"
-    },
-    {
-        "id": "TA-gestione-sensori-simulati",
-        "descr": "Verificare che il gateway simulato riesca a gestire più sensori simulati in parallelo",
-        "ref-req": "RQ-2.3",
-        "state": "NI"
-    },
-    {
-        "id": "TA-acq-gen-sensori",
-        "descr": "Verificare che il gateway simulato possa salvare le informazioni di commissioning in modo consistente",
-        "ref-req": "RQ-2.4",
-        "state": "NI"
-    },
-    {
-        "id": "TA-risposta-mess-cloud",
-        "descr": "Verificare che il gateway possa rispondere ai messaggi da parte del cloud",
-        "ref-req": "RQ-2.5",
-        "state": "NI"
-    },
-    {
-        "id": "TA-isol-logico-dati-tenant",
-        "descr": "Verificare che il cloud possa isolare logicamente i dati dei diversi tenant",
-        "ref-req": "RQ-3",
-        "state": "NI"
-    },
-    {
-        "id": "TA-esp-api",
-        "descr": "Verificare che il cloud esponga API per accedere ai dati raccolti dai sensori",
-        "ref-req": "RQ-4",
-        "state": "NI"
-    },
-    {
-        "id": "TA-client-api",
-        "descr": "Verificare che ogni client delle API sia identificato univocamente",
-        "ref-req": "RQ-4.1",
-        "state": "NI"
-    },
-    {
-        "id": "TA-api-on-demand",
-        "descr": "Verificare che le API possano fornire su richiesta i dati di uno o più gateway con possibilità di filtraggio dati per sensore e per intervallo temporale",
-        "ref-req": "RQ-4.2.1",
-        "state": "NI"
-    },
-    {
-        "id": "TA-api-stream",
-        "descr": "Verificare che le API possano fornire i dati di un sensore specifico in real-time",
-        "ref-req": "RQ-4.2.2",
-        "state": "NI"
-    },
-    {
-        "id": "TA-ui-web",
-        "descr": "Verificare che l'interfaccia web permetta di esplorare i dati acquisiti e di configurare nuovi gateway e sensori simulati",
-        "ref-req": "RQ-5",
-        "state": "NI"
-    },
-    {
-        "id": "TA-api-terze-parti",
-        "descr": "Verificare che il cloud fornisca delle API integrabili da applicazioni esterne mediante l'utilizzo di API Key o Certificati SSL/TLS",
-        "ref-req": "RQ-6",
-        "state": "NI"
-    },
-    {
-        "id": "TA-alert-configurabili",
-        "descr": "Verificare che il cloud possa notificare gli utenti interessati in caso di anomalie o eventi critici tramite alert configurabili",
-        "ref-req": "RQ-7",
-        "state": "NI"
-    },
-    {
-        "id": "TA-auth-jwt",
-        "descr": "Verificare che gli accessi al cloud siano protetti tramite JWT con ruoli granulari",
+        "id": "TA-login-utente",
+        "descr": "Verificare il login utente con email, password ed eventuale selezione tenant, con accesso alla dashboard corretta.",
         "ref-req": "RQ-8",
-        "state": "NI"
+        "state": "S"
     },
     {
-        "id": "TA-dati-cifrati",
-        "descr": "Verificare che i dati siano cifrati a riposo e in transito",
-        "ref-req": "RQ-9",
-        "state": "NI"
+        "id": "TA-creazione-tenant",
+        "descr": "Verificare la creazione di un tenant con aggiornamento lista tenant, creazione schema DB e account NATS.",
+        "ref-req": "RQ-10, RQ-3, RQ-5",
+        "state": "S"
     },
     {
-        "id": "TA-auth-mfa",
-        "descr": "Verificare che l'accesso all'interfaccia web e alle API sia protetto da autenticazione a più fattori",
-        "ref-req": "RQ-11",
-        "state": "NI"
+        "id": "TA-creazione-tenant-admin",
+        "descr": "Verificare la creazione di un Tenant Admin con invio email di impostazione password e presenza nella lista.",
+        "ref-req": "RQ-8",
+        "state": "S"
     },
     {
-        "id": "TA-audit-log",
-        "descr": "Verificare che il cloud crei degli audit log per accessi, modifiche ai dati e alle configurazioni.",
-        "ref-req": "RQ-12",
-        "state": "NI"
+        "id": "TA-eliminazione-tenant-admin",
+        "descr": "Verificare l'eliminazione di un Tenant Admin dalla dashboard con aggiornamento della lista utenti.",
+        "ref-req": "RQ-8",
+        "state": "S"
     },
     {
-        "id": "TA-rate-limiting",
-        "descr": "Verificare che il cloud implementi meccanismi di rate limiting, intrusion detection e failover automatico",
-        "ref-req": "RQ-13",
-        "state": "NI"
+        "id": "TA-password-dimenticata",
+        "descr": "Verificare il flusso di password dimenticata con email, link di reset e modifica password efficace al login successivo.",
+        "ref-req": "RQ-8",
+        "state": "S"
     },
     {
-        "id": "TA-code-coverage",
-        "descr": "Verificare che il codice abbia un livello minimo di Code Coverage dell'80%",
-        "ref-req": "RQ-15",
-        "state": "NI"
+        "id": "TA-logout",
+        "descr": "Verificare il logout utente con ritorno alla pagina di login e blocco delle pagine protette.",
+        "ref-req": "RQ-8",
+        "state": "S"
     },
     {
-        "id": "TA-monitoring",
-        "descr": "Verificare che il cloud abbia un meccanismo di monitoraggio delle proprie performance",
+        "id": "TA-cambio-password",
+        "descr": "Verificare il cambio password da profilo utente con applicazione della nuova password al login successivo.",
+        "ref-req": "RQ-8",
+        "state": "S"
+    },
+    {
+        "id": "TA-creazione-gateway",
+        "descr": "Verificare la creazione di un gateway con aggiornamento lista, disponibilita della public key e persistenza su DB SQLite del gateway.",
+        "ref-req": "RQ-2, RQ-5",
+        "state": "S"
+    },
+    {
+        "id": "TA-creazione-sensore",
+        "descr": "Verificare la creazione di un sensore su gateway con aggiornamento lista, persistenza su DB SQLite e produzione dati nel buffer.",
+        "ref-req": "RQ-2.1, RQ-2.3, RQ-5",
+        "state": "S"
+    },
+    {
+        "id": "TA-commission-gateway",
+        "descr": "Verificare il commissioning di un gateway con JWT, stato attivo e disponibilita dati real-time.",
+        "ref-req": "RQ-2.2, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-visualizzazione-dati-real-time",
+        "descr": "Verificare la visualizzazione real-time dei dati sensore con aggiornamento grafico, assi corretti e valore su hover.",
+        "ref-req": "RQ-4.2.2, RQ-5",
+        "state": "S"
+    },
+    {
+        "id": "TA-visualizzazione-dati-storici",
+        "descr": "Verificare la visualizzazione storica con filtri temporali, limite misurazioni, slider oltre 50 punti e valore su hover.",
+        "ref-req": "RQ-4.2.1, RQ-5",
+        "state": "S"
+    },
+    {
+        "id": "TA-eliminazione-gateway",
+        "descr": "Verificare l'eliminazione di un gateway con aggiornamento della lista dopo conferma.",
+        "ref-req": "RQ-2, RQ-5",
+        "state": "S"
+    },
+    {
+        "id": "TA-eliminazione-sensore",
+        "descr": "Verificare l'eliminazione di un sensore con aggiornamento della lista sensori dopo conferma.",
+        "ref-req": "RQ-2, RQ-5",
+        "state": "S"
+    },
+    {
+        "id": "TA-decommission-gateway",
+        "descr": "Verificare il decommission di un gateway con stato decommissionato e rimozione dati dal buffer DB.",
+        "ref-req": "RQ-2.4, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-riavvio-gateway",
+        "descr": "Verificare il comando di riavvio gateway con visualizzazione della public key quando non ancora disponibile.",
+        "ref-req": "RQ-2.5, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-reset-gateway",
+        "descr": "Verificare il reset del gateway con azzeramento storico sensori e ripristino intervallo invio al default di 5s.",
+        "ref-req": "RQ-2.5, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-interrompi-gateway",
+        "descr": "Verificare l'interruzione del gateway con assenza dati real-time dei sensori e stato gateway inattivo.",
+        "ref-req": "RQ-2.5, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-riprendi-gateway",
+        "descr": "Verificare la ripresa del gateway con ritorno dei dati real-time e stato gateway attivo.",
+        "ref-req": "RQ-2.5, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-interrompi-sensore",
+        "descr": "Verificare l'interruzione del sensore con assenza dati real-time e stato sensore inattivo.",
+        "ref-req": "RQ-2.5, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-riprendi-sensore",
+        "descr": "Verificare la ripresa del sensore con ritorno dati real-time e stato sensore attivo.",
+        "ref-req": "RQ-2.5, RQ-5, RQ-2.5",
+        "state": "S"
+    },
+    {
+        "id": "TA-metriche-grafana-nats",
+        "descr": "Verificare la dashboard Grafana NATS Overview con metriche health status, connessioni, sottoscrizioni, slow consumer, messages/s e bytes/s.",
         "ref-req": "RQ-16",
-        "state": "NI"
+        "state": "S"
     },
     {
-        "id": "TA-monitoring-gateway",
-        "descr": "Verificare che il cloud abbia un meccanismo per monitorare lo stato di funzionamento dei gateway",
+        "id": "TA-metriche-grafana-jetstream",
+        "descr": "Verificare la dashboard Grafana JetStream Overview con metriche stream e consumer (pending, ack pending, redelivered, waiting).",
         "ref-req": "RQ-16",
-        "state": "NI"
+        "state": "S"
     },
     {
-        "id": "TA-ci-cd-git",
-        "descr": "Verificare che il codice sia versionato tramite Git e che abbia una pipeline CI/CD per il deployment automatico",
-        "ref-req": "RQ-17",
-        "state": "NI"
+        "id": "TA-metriche-grafana-gin",
+        "descr": "Verificare la dashboard Grafana Gin con metriche status, requests/s, status code, latency p95 ed endpoint principali.",
+        "ref-req": "RQ-16",
+        "state": "S"
     }
 ]
