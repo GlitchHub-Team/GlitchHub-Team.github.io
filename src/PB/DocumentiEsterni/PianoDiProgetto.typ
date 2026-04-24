@@ -2905,7 +2905,6 @@ L'esecuzione parallela delle attività di sviluppo e redazione documentale ha ri
   label-id: "spr9-agg-costi",
 )
 
-
 == Sprint 10 <sprint-10>
 Inizio: 13/02/2026 \
 Fine:  24/02/2026\
@@ -3088,7 +3087,7 @@ Nonostante la presenza del rischio *RP1* (@RP1), il gruppo è riuscito a portare
   label-id: "spr10-agg-costi",
 )
 
-
+= Pianificazione e analisi per sprint PB
 == Sprint 11 <sprint-11>
 Inizio: 24/02/2026 \
 Fine:  11/03/2026\
