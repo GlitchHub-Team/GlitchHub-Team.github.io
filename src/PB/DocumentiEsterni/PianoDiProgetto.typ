@@ -1408,6 +1408,64 @@ Dato il #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[cap
 - *Message broker*: strumento per la distribuzione di messaggi tra i componenti del sistema. Le probabili alternative che il gruppo andrà ad esplorare sono: *NATS Jetstream*(consigliata dalla proponente), *RabbitMQ* e *Apache Kafka*;
 - *Linguaggio back-end*: il gruppo necessiterà un linguaggio per lo sviluppo dei gateway simulati e della parte server side dell'applicazione. Le probabili alternative che il gruppo andrà ad esplorare sono: *Go*(utilizzato dalla proponente) e *C\#*;
 - *Framework front-end*: il gruppo avrà bisogno di esplorare un framework per lo sviluppo di un'applicazione che gestisca il sistema. Le probabili alternative che il gruppo andrà ad esplorare sono: *Angular* e *React*.
+
+= Pianificazione PB <pianificazione-pb>
+La #gloss[PB] è il periodo in cui le attività si concentrano sulla definizione del design e dell'architettura del prodotto software, a seguito della validazione del #gloss[Proof of Concept]. Successivamente, si procederà alla realizzazione del #gloss[MVP], che rappresenta la prima versione funzionante del prodotto software, con un set di funzionalità limitato ma sufficiente a dimostrare la fattibilità e la maturità della baseline architetturale del software.
+
+== Stesura Specifica Tecnica
+Il documento #gloss[Specifica Tecnica] ha lo scopo di documentare le scelte di design e architetturali fatte dal gruppo, fornendo una guida dettagliata alla struttura del sistema e alle decisioni progettuali adottate. Esso descrive l'architettura del sistema, i componenti principali, le loro interazioni e le tecnologie utilizzate, fungendo da riferimento per lo sviluppo e la manutenzione del prodotto software.\
+La redazione del documento prevede le seguenti attività:
+- *Elenco delle tecnologie adottate*: descrizione dettagliata delle tecnologie, dei framework e delle librerie utilizzate, motivando le scelte fatte in relazione ai requisiti del progetto;
+- *Descrizione dell'architettura*: definizione dell'architettura del sistema, illustrando i componenti principali, le loro responsabilità e le interazioni tra di essi;
+- *Descrizione del design*: descrizione dettagliata del design del sistema, includendo diagrammi UML, modelli di dati e specifiche delle interfacce.
+
+== Stesura Manuale Utente
+Il documento #gloss[Manuale Utente] ha lo scopo di illustrare il funzionamento del prodotto software e di fornire istruzioni chiare e dettagliate per l'utilizzo delle sue funzionalità. Esso è rivolto principalmente agli utenti finali del sistema, con l'obiettivo di facilitare la comprensione e l'adozione del prodotto software.\
+La redazione del documento prevede le seguenti attività:
+- *Descrizione delle funzionalità*: illustrazione dettagliata delle funzionalità del prodotto software, spiegando come utilizzarle e quali sono i benefici che offrono agli utenti;
+- *Istruzioni per l'installazione*: indicazioni dettagliate su come installare e configurare il prodotto software;
+- *Istruzioni per l'uso*: fornitura di istruzioni passo-passo per l'utilizzo delle funzionalità del sistema, includendo esempi pratici e suggerimenti per risolvere eventuali problemi comuni;
+
+== Aggiornamento Norme di Progetto
+Il documento #gloss[Norme di Progetto] richiede un aggiornamento continuo durante tutto l'arco del progetto didattico, al fine di garantire che le norme siano sempre allineate con le esigenze operative del gruppo.
+Durante il periodo di #gloss[PB] è previsto un aggiornamento del documento per integrare eventuali processi o procedure che si rendano necessari in seguito alla definizione dell'architettura del sistema e della codifica dello stesso.\
+L'aggiornamento del documento prevede le seguenti attività:
+- *Norme di progettazione*: definizione di norme specifiche per la progettazione del sistema, includendo linee guida per la definizione dell'architettura, del design e delle interfacce, con particolare attenzione agli strumenti utilizzati per la modellazione e la documentazione del design;
+- *Norme di codifica*: ampliamento delle norme specifiche per la codifica del sistema, includendo linee guida per la scrittura del codice, la gestione delle versioni e l'integrazione continua, con particolare attenzione alle convenzioni da rispettare per produrre codice di qualità.
+
+== Correzione Analisi dei Requisiti
+Durante il periodo di #gloss[PB] è previsto un aggiornamento del documento #gloss[Analisi dei Requisiti] per:
+- *Correggere* eventuali errori o incongruenze presenti nel documento;
+- *Rimodulare* eventuali requisiti che necessitano di modifiche a seguito della definizione dell'architettura del sistema.\
+L'aggiornamento del documento prevede le seguenti attività:
+- *Correzione casi d'uso*: revisione dei casi d'uso esistenti per correggere eventuali errori o incompletezze, garantendo che siano accurati e completi;
+- *Miglioramento della specifica dei requisiti non funzionali*: revisione e integrazione dei requisiti non funzionali per garantire che siano ben definiti, misurabili e allineati con le esigenze del progetto;
+- *Integrazione di nuovi requisiti*: aggiunta di nuovi requisiti funzionali, non funzionali o di dominio che sono emersi durante la realizzazione dell'MVP e la definizione dell'architettura del sistema e che non erano stati previsti nella stesura iniziale del documento;
+
+== Aggiornamento glossario
+Durante il periodo di #gloss[PB] è previsto un aggiornamento del documento #gloss[glossario] per integrare eventuali definizioni che si rendano necessarie in seguito alla definizione dell'architettura del sistema e alla codifica dello stesso, al fine di garantire che il gruppo disponga di un riferimento aggiornato, coerente e completo.\
+L'aggiornamento del documento prevede le seguenti attività:
+- *Revisione delle definizioni esistenti*: correzione di eventuali definizioni che sono state rilevate come errate o incomplete;
+- *Integrazione di nuove definizioni*: aggiunta di nuove definizioni per termini che sono emersi durante le attività di definizione dell'architettura e della codifica del sistema e che non erano stati previsti nella stesura iniziale del documento.
+
+== Aggiornamento Piano di Progetto
+Durante il periodo di #gloss[PB] è previsto un aggiornamento del documento di #gloss[Piano di Progetto], allo scopo di migliorare la profondità delle *retrospettive* effettuate dal gruppo durante le proprie riunioni settimanali di allineamento. \
+L'aggiornamento del documento prevede le seguenti attività:
+- *Valutazione di efficacia delle strategie di mitigazione*: analisi dell'efficacia delle strategie di mitigazione adottate per i rischi che si sono presentati, identificando eventuali aree di miglioramento e integrando nuove strategie se necessario;
+- *Rivisitazione migliorativa delle attività future*: revisione delle attività pianificate per i periodi futuri, integrando eventuali nuove attività che si rendano necessarie e raffinando di conseguenza il preventivo a finire.
+
+== Aggiornamento Piano di Qualifica
+Durante il periodo di #gloss[PB] è previsto un aggiornamento del documento #gloss[Piano di Qualifica] per integrare metriche relative alla qualità della campagna di *test* effettuata sul prodotto software, al fine di garantire trasparenza e tracciabilità rispetto alla qualità del prodotto software sviluppato.
+L'aggiornamento del documento prevede le seguenti attività:
+- *Misurazione delle metriche di qualità dei test*: misurazione delle metriche specifiche per valutare l'efficacia della campagna di test, come la copertura del codice, il numero di bug rilevati e risolti, e la percentuale di test superati;
+- *Aggiornamento del cruscotto di valutazione*: integrazione dei valori rilevati circa le metriche di qualità dei test nel cruscotto di monitoraggio, al fine di fornire una visione completa e aggiornata della qualità del prodotto software.
+
+== Realizzazione del Minimum Viable Product (MVP)
+La realizzazione del #gloss[MVP] rappresenta un momento cruciale del progetto, in quanto consente di concretizzare le scelte progettuali fatte durante la #gloss[PB] e di validare l'architettura e il design del prodotto software.\ Il processo di sviluppo dell'MVP coinvolgerà le seguenti attività:
+- *Definizione dell'architettura software*: progettazione dell'architettura del sistema, definendo i componenti principali e le loro interazioni;
+- *Sviluppo delle funzionalità chiave*: implementazione delle funzionalità principali del prodotto software, concentrandosi su quelle che rappresentano il cuore del sistema e che sono essenziali per la sua operatività;
+- *Test e validazione*: codifica ed esecuzione di test (di _unità_, di _integrazione_ e di _sistema_) per verificare la correttezza e la funzionalità dell'MVP, identificando eventuali bug o problemi di performance e correggendoli di conseguenza.
+
 = Pianificazione e analisi sprint per RTB
 Questa sezione descrive come il gruppo organizza, monitora e valuta il lavoro svolto durante ciascuno #gloss[sprint]. \
 Ogni #gloss[sprint] viene valutato attraverso un #gloss[consuntivo di periodo], il #gloss[preventivo a finire], i compiti svolti, i rischi occorsi e la #gloss[retrospettiva di periodo].
