@@ -1418,7 +1418,6 @@ La redazione del documento prevede le seguenti attività:
 - *Elenco delle tecnologie adottate*: descrizione dettagliata delle tecnologie, dei framework e delle librerie utilizzate, motivando le scelte fatte in relazione ai requisiti del progetto;
 - *Descrizione dell'architettura logica*: definizione dell'architettura logica del sistema, descrivendo i componenti principali e le loro interazioni;
 - *Descrizione dell'architettura di dettaglio*: definizione dell'architettura di dettaglio del sistema, specificando le implementazioni dei singoli componenti e le loro interfacce;
-- *Descrizione del design*: descrizione dettagliata del design del sistema, includendo diagrammi UML, modelli di dati e specifiche delle interfacce.
 
 == Stesura Manuale Utente
 Il documento #gloss[Manuale Utente] ha lo scopo di illustrare il funzionamento del prodotto software e di fornire istruzioni chiare e dettagliate per l'utilizzo delle sue funzionalità. Esso è rivolto principalmente agli utenti finali del sistema, con l'obiettivo di facilitare la comprensione e l'adozione del prodotto software.\
