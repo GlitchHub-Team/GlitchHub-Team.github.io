@@ -1416,7 +1416,8 @@ La #gloss[PB] è il periodo in cui le attività si concentrano sulla definizione
 Il documento #gloss[Specifica Tecnica] ha lo scopo di documentare le scelte architetturali e implementative fatte dal gruppo, fornendo una guida dettagliata alla struttura del sistema e alle decisioni progettuali adottate. Esso descrive l'architettura del sistema, i componenti principali, le loro interazioni e le tecnologie utilizzate, fungendo da riferimento per lo sviluppo e la manutenzione del prodotto software.\
 La redazione del documento prevede le seguenti attività:
 - *Elenco delle tecnologie adottate*: descrizione dettagliata delle tecnologie, dei framework e delle librerie utilizzate, motivando le scelte fatte in relazione ai requisiti del progetto;
-- *Descrizione dell'architettura logica e di dettaglio*: definizione dell'architettura del sistema, partendo dall'architettura logica che descrive i componenti principali e le loro interazioni, fino ad arrivare all'architettura di dettaglio che specifica le implementazioni dei singoli componenti e le loro interfacce;
+- *Descrizione dell'architettura logica*: definizione dell'architettura logica del sistema, descrivendo i componenti principali e le loro interazioni;
+- *Descrizione dell'architettura di dettaglio*: definizione dell'architettura di dettaglio del sistema, specificando le implementazioni dei singoli componenti e le loro interfacce;
 - *Descrizione del design*: descrizione dettagliata del design del sistema, includendo diagrammi UML, modelli di dati e specifiche delle interfacce.
 
 == Stesura Manuale Utente
