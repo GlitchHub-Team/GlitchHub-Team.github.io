@@ -434,34 +434,34 @@ Per indicare che la definizione di una parola o di un concetto è disponibile, s
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf`] \
-  - *Ultimo accesso*: 18/02/2026
-- *Norme di Progetto v1.2.0*:
+  - *Ultimo accesso*: 19/04/2026
+- *Norme di Progetto v2.0.0*:
   - #link(
-      "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf",
-    )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf`] \
-  - *Ultimo accesso*: 18/02/2026
+      "https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/NormeProgetto.pdf",
+    )[`https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/NormeProgetto.pdf`] \
+  - *Ultimo accesso*: 19/04/2026
 
 === Riferimenti informativi
 - *Regolamento del progetto didattico*:
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf`] \
-  - *Ultimo accesso*: 18/02/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Il ciclo di vita del software*:
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf`] \
-  - *Ultimo accesso*: 18/02/2026
+  - *Ultimo accesso*: 19/04/2026
 - *Gestione di progetto*:
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf",
     )[`https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf`] \
-  - *Ultimo accesso*: 18/02/2026
-- *Glossario v.0.5.0*:
+  - *Ultimo accesso*: 19/04/2026
+- *Glossario v1.0.0*:
   - #link(
-      "https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf",
-    )[`https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/glossary.pdf`] \
-  - *Ultimo accesso*: 18/02/2026
+      "https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/glossary.pdf",
+    )[`https://glitchhub-team.github.io/pdf/PB/DocumentiInterni/glossary.pdf`] \
+  - *Ultimo accesso*: 19/04/2026
 
 == Redazione del documento
 Questa sezione descrive le pratiche adottate per la redazione del #gloss[Piano di Progetto]. \
