@@ -1413,10 +1413,10 @@ Dato il #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[cap
 La #gloss[PB] è il periodo in cui le attività si concentrano sulla definizione del design e dell'architettura del prodotto software, a seguito della validazione del #gloss[Proof of Concept]. Successivamente, si procederà alla realizzazione del #gloss[MVP], che rappresenta la prima versione funzionante del prodotto software, con un set di funzionalità limitato ma sufficiente a dimostrare la fattibilità e la maturità della baseline architetturale del software.
 
 == Stesura Specifica Tecnica
-Il documento #gloss[Specifica Tecnica] ha lo scopo di documentare le scelte di design e architetturali fatte dal gruppo, fornendo una guida dettagliata alla struttura del sistema e alle decisioni progettuali adottate. Esso descrive l'architettura del sistema, i componenti principali, le loro interazioni e le tecnologie utilizzate, fungendo da riferimento per lo sviluppo e la manutenzione del prodotto software.\
+Il documento #gloss[Specifica Tecnica] ha lo scopo di documentare le scelte architetturali e implementative fatte dal gruppo, fornendo una guida dettagliata alla struttura del sistema e alle decisioni progettuali adottate. Esso descrive l'architettura del sistema, i componenti principali, le loro interazioni e le tecnologie utilizzate, fungendo da riferimento per lo sviluppo e la manutenzione del prodotto software.\
 La redazione del documento prevede le seguenti attività:
 - *Elenco delle tecnologie adottate*: descrizione dettagliata delle tecnologie, dei framework e delle librerie utilizzate, motivando le scelte fatte in relazione ai requisiti del progetto;
-- *Descrizione dell'architettura*: definizione dell'architettura del sistema, illustrando i componenti principali, le loro responsabilità e le interazioni tra di essi;
+- *Descrizione dell'architettura logica e di dettaglio*: definizione dell'architettura del sistema, partendo dall'architettura logica che descrive i componenti principali e le loro interazioni, fino ad arrivare all'architettura di dettaglio che specifica le implementazioni dei singoli componenti e le loro interfacce;
 - *Descrizione del design*: descrizione dettagliata del design del sistema, includendo diagrammi UML, modelli di dati e specifiche delle interfacce.
 
 == Stesura Manuale Utente
