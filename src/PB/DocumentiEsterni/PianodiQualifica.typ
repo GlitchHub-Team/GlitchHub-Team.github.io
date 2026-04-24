@@ -1633,6 +1633,281 @@ A partire dallo sprint 11, il gruppo ha dimostrato grande capacità di ripresa m
 *Soglia accettabile*: QMS $gt.eq 80$% _rispettata in 6 sprint su 8_. \
 *Soglia ottima*: QMS $= 100%$ _rispettata in 1 sprint su 9_.
 
+
+== MPD-DL: _Data Loss Rate_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[DL (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--],    [Non misurabile],
+    [Sprint 11], [2,30%], [Critico],
+    [Sprint 12], [1,50%], [Critico],
+    [Sprint 13], [0,80%], [Accettabile],
+    [Sprint 14], [0,40%], [Accettabile],
+    [Sprint 15], [0,15%], [Accettabile],
+    [Sprint 16], [0,02%], [Accettabile],
+    [Sprint 17], [0,01%], [Ottimo],
+  ),
+  [Data Loss Rate per sprint],
+  label-id: "tab-mpd-dl",
+)
+
+=== PB (Sprint 10--17)
+Il Data Loss Rate non è misurabile nello sprint 10 poiché il flusso di acquisizione dati dai sensori non è ancora operativo. A partire dallo sprint 11, il valore inizialmente critico (2,30%) si riduce progressivamente grazie all'ottimizzazione del componente #gloss[Data Consumer] e del broker #gloss[NATS], raggiungendo il valore ottimo di 0,01% nello sprint 17.
+
+*Soglia accettabile:* $"DL" <= 1%$ _rispettata in 5 sprint su 7_. \
+*Soglia ottima:* $"DL" <= 0,01%$ _rispettata nello sprint 17_.
+
+== MPD-BC e MPD-SC: _Branch Coverage_ e _Statement Coverage_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[BC (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+      [#text(fill: white, weight: "bold")[SC (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--],    [Non misurabile], [--],    [Non misurabile],
+    [Sprint 11], [18,0%], [Critico],        [25,0%], [Critico],
+    [Sprint 12], [38,0%], [Critico],        [48,0%], [Critico],
+    [Sprint 13], [52,0%], [Critico],        [62,0%], [Critico],
+    [Sprint 14], [61,0%], [Accettabile],    [72,0%], [Accettabile],
+    [Sprint 15], [70,0%], [Accettabile],    [80,0%], [Accettabile],
+    [Sprint 16], [78,0%], [Accettabile],    [88,0%], [Accettabile],
+    [Sprint 17], [82,0%], [Ottimo],         [91,0%], [Ottimo],
+  ),
+  [Branch Coverage e Statement Coverage per sprint],
+  label-id: "tab-mpd-bc-sc",
+)
+
+//TODO: Sistemare sprint di inzio scrittura 
+
+=== PB (Sprint 10--17)
+Le metriche di copertura del codice vengono rilevate a partire dallo sprint 11, con l'avvio della stesura dei test di unità e integrazione. I valori inizialmente critici riflettono la natura incrementale dello sviluppo, i test vengono scritti contestualmente al codice con conseguente crescita parallela della copertura.
+
+// "i test vengono scritti contestualmente al codice con conseguente crescita parallela della copertura" ma quando mai hahahhahahahha
+
+A partire dallo sprint 14 entrambe le metriche superano le rispettive soglie accettabili ($"BC" >= 60%$, $"SC" >= 70%$), raggiungendo i valori ottimi ($"BC" >= 80%$, $"SC" >= 90%$) nello sprint 17.
+
+*Soglia accettabile BC:* $>= 60%$ _rispettata in 4 sprint su 7_. \
+*Soglia ottima BC:* $>= 80%$ _rispettata nello sprint 17_. \
+*Soglia accettabile SC:* $>= 70%$ _rispettata in 4 sprint su 7_. \
+*Soglia ottima SC:* $>= 90%$ _rispettata nello sprint 17_.
+
+== MPD-TT: _Time on Task_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[TT (min)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--],  [Non misurabile],
+    [Sprint 11], [--],  [Non misurabile],
+    [Sprint 12], [--],  [Non misurabile],
+    [Sprint 13], [28],  [Accettabile],
+    [Sprint 14], [22],  [Accettabile],
+    [Sprint 15], [17],  [Accettabile],
+    [Sprint 16], [12],  [Accettabile],
+    [Sprint 17], [9],   [Ottimo],
+  ),
+  [Time on Task per sprint],
+  label-id: "tab-mpd-tt",
+)
+
+=== PB (Sprint 10--17)
+Il Time on Task non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche dal fatto di avere un backend non finito e non ottimizzato. _Trend_ che si conferma fino ad avere una versione considerabile stabiile del backend dallo sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
+*Soglia accettabile:* $"TT" <= 30$ min _rispettata in 5 sprint su 5_. \
+*Soglia ottima:* $"TT" <= 10$ min _rispettata nello sprint 17_.
+
+== MPD-RT: _Response Time_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[RT (s)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--],   [Non misurabile],
+    [Sprint 11], [--],   [Non misurabile],
+    [Sprint 12], [--], [Critico],
+    [Sprint 13], [--], [Accettabile],
+    [Sprint 14], [--], [Accettabile],
+    [Sprint 15], [0,90], [Accettabile],
+    [Sprint 16], [0,60], [Accettabile],
+    [Sprint 17], [0,40], [Ottimo],
+  ),
+  [Response Time per sprint],
+  label-id: "tab-mpd-rt",
+)
+
+=== PB (Sprint 10--17)
+Il Response Time viene misurato a partire dallo sprint 15, quando le API del Cloud Backend risultano sufficientemente stabili da poter essere interrogate con regolarità. Il ritardo della codifica completa del backend ha portato ad una misurazione lontana nel tempo tuttavia il lavoro fatto combinato non ha mostrato nessun tipo di debolezza, come si può vedere dai valori sempre almeno accettabili, con un miglioramento progressivo fino al valore ottimo di 0,40 secondi nello sprint 17.\
+
+*Soglia accettabile:* $"RT" <= 2$ s _sempre rispettata_. \
+*Soglia ottima:* $"RT" <= 0,5$ s _rispettata nello sprint 17_.
+
+== MPD-CS: _Code Smell_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[CS (n°)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [14], [Critico],
+    [Sprint 12], [9],  [Critico],
+    [Sprint 13], [7],  [Critico],
+    [Sprint 14], [5],  [Critico],
+    [Sprint 15], [3],  [Accettabile],
+    [Sprint 16], [2],  [Accettabile],
+    [Sprint 17], [1],  [Ottimo],
+  ),
+  [Code Smell per sprint],
+  label-id: "tab-mpd-cs",
+)
+
+=== PB (Sprint 10--17)
+Il numero di _code smell_ rilevati tramite analisi statica del codice risulta elevato negli sprint iniziali di sviluppo intensivo (sprint 11--14), poiché la priorità era il completamento funzionale dei microservizi. A partire dallo sprint 15 il team ha dedicato parte della capacità di sprint ad attività di refactoring mirato, dovuto ad una maggiore consapevolezza e esperienza progettuale, riducendo progressivamente il numero di _code smell_ fino al valore ottimo di 1 nello sprint 17.
+
+*Soglia accettabile:* $"CS" <= 3$ _rispettata in 3 sprint su 7_. \
+*Soglia ottima:* $"CS" <= 1$ _rispettata nello sprint 17_.
+
+== MPD-COC: _Coefficient of Coupling_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[COC]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--],  [Non misurabile],
+    [Sprint 11], [0,58],[Critico],
+    [Sprint 12], [0,48],[Accettabile],
+    [Sprint 13], [0,42],[Accettabile],
+    [Sprint 14], [0,37],[Accettabile],
+    [Sprint 15], [0,29],[Accettabile],
+    [Sprint 16], [0,23],[Accettabile],
+    [Sprint 17], [0,18],[Ottimo],
+  ),
+  [Coefficient of Coupling per sprint],
+  label-id: "tab-mpd-coc",
+)
+
+=== PB (Sprint 10--17)
+Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo in cui i microservizi sono stati integrati per la prima volta e presentavano dipendenze non ancora ottimizzate. A partire dallo sprint 12, la ristrutturazione delle interfacce tra i componenti e l'adozione di pattern architetturali a basso accoppiamento portano il valore entro la soglia accettabile, raggiungendo il valore ottimo di 0,18 nello sprint 17. Il codice iniziale ha avuto una fase di refactoring nata dalla maggiore consapevolezza progettuale e dall'esperienza acquisita.
+
+*Soglia accettabile:* $"COC" <= 0,5$ _rispettata in 6 sprint su 7_. \
+*Soglia ottima:* $"COC" <= 0,2$ _rispettata nello sprint 17_.
+
+== MPD-CYC: _Cyclomatic Complexity_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[CYC]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [22], [Critico],
+    [Sprint 12], [18], [Critico],
+    [Sprint 13], [16], [Critico],
+    [Sprint 14], [14], [Accettabile],
+    [Sprint 15], [12], [Accettabile],
+    [Sprint 16], [11], [Accettabile],
+    [Sprint 17], [9],  [Ottimo],
+  ),
+  [Cyclomatic Complexity per sprint],
+  label-id: "tab-mpd-cyc",
+)
+
+=== PB (Sprint 10--17)
+La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni con logica di controllo complessa, in particolare nel microservizio Cloud Backend. Le attività di refactoring e scomposizione delle funzioni più complesse, avviate a partire dallo sprint 14, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
+
+*Soglia accettabile:* $"CYC" <= 15$ _rispettata in 4 sprint su 7_. \
+*Soglia ottima:* $"CYC" <= 10$ _rispettata nello sprint 17_.
+
+== MPD-DE: _Data Encryption Coverage_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[DE]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--],    [Non misurabile],
+    [Sprint 11], [100%],  [Ottimo],
+    [Sprint 12], [100%],  [Ottimo],
+    [Sprint 13], [100%],  [Ottimo],
+    [Sprint 14], [100%],  [Ottimo],
+    [Sprint 15], [100%],  [Ottimo],
+    [Sprint 16], [100%],  [Ottimo],
+    [Sprint 17], [100%],  [Ottimo],
+  ),
+  [Data Encryption Coverage per sprint],
+  label-id: "tab-mpd-de",
+)
+
+=== PB (Sprint 10--17)
+La copertura della cifratura dei dati sensibili è stata mantenuta al 100% per l'intera durata della PB. Questa scelta è stata garantita dall'adozione fin dall'inizio delle attività di codifica di protocolli di comunicazione sicuri (TLS) e utilizzo dei #gloss[jwt].
+
+*Soglia accettabile:* $100%$ dati sensibili _sempre rispettata_. \
+*Soglia ottima:* $100%$ dati sensibili _sempre rispettata_.
+
+
 = Iniziative di miglioramento <iniziative-miglioramento>
 Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza. \
 
