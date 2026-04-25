@@ -1634,6 +1634,43 @@ A partire dallo sprint 11, il gruppo ha dimostrato grande capacità di ripresa m
 *Soglia ottima*: QMS $= 100%$ _rispettata in 1 sprint su 9_.
 
 
+== MPD-CRO e MPD-CRP: Copertura dei Requisiti
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[RF (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+      [#text(fill: white, weight: "bold")[RNF. (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 11], [45,0%], [Critico],    [0,0%],  [Accettabile], [0,0%],  [Accettabile],
+    [Sprint 10], [25,0%], [Critico],    [0,0%],  [Accettabile], [0,0%],  [Accettabile],
+    [Sprint 12], [60,0%], [Critico],    [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 13], [75,0%], [Critico],    [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 14], [85,0%], [Critico],    [5,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 15], [92,0%], [Critico],    [15,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 16], [98,0%], [Critico],    [28,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 17], [100,0%],[Ottimo],     [29%,0%], [Accettabile], [0%,0%], [Accettabile]
+  ),
+  [Copertura dei requisiti obbligatori, desiderabili e opzionali per sprint],
+  label-id: "tab-mpd-copertura-req",
+)\
+
+=== PB (Sprint 10--17)
+La copertura dei requisiti obbligatori mostra un andamento crescente nel corso della #gloss[PB], partendo dal 25% nello sprint 10 e raggiungendo il 100% nello sprint 17, in concomitanza con il completamento dell'#gloss[MVP]. La soglia ottima del 100% viene raggiunta nell'ultimo sprint, confermando il completamento di tutti i requisiti obbligatori entro la consegna finale.
+
+La copertura dei requisiti desiderabili cresce progressivamente, raggiungendo il 29% nello sprint 17. Il gruppo, per quanto possibile, ha cercato di implementare anche requisiti desiderabili, ma la priorità è stata data al completamento dei requisiti obbligatori, trovati forse più complessi del previsto.
+
+La copertura dei requisiti opzionali rimane costantemente a 0% durante tutta la #gloss[PB], in quanto il gruppo ha deciso di non implementare alcun requisito opzionale, concentrando tutte le risorse disponibili sui requisiti obbligatori e desiderabili.
+
+
 == MPD-DL: _Data Loss Rate_
 
 #tabella-paginata(
@@ -1662,7 +1699,7 @@ A partire dallo sprint 11, il gruppo ha dimostrato grande capacità di ripresa m
 )
 
 === PB (Sprint 10--17)
-Il Data Loss Rate non è misurabile nello sprint 10 poiché il flusso di acquisizione dati dai sensori non è ancora operativo. A partire dallo sprint 11, il valore inizialmente critico (2,30%) si riduce progressivamente grazie all'ottimizzazione del componente #gloss[Data Consumer] e del broker #gloss[NATS], raggiungendo il valore ottimo di 0,01% nello sprint 17.
+Il Data Loss Rate non è misurabile nello sprint 10 poiché il servizio di gateway e il microservizio di Data Consumer non sono ancora codificati. A partire dallo sprint 11, il valore inizialmente critico (2,30%) si riduce progressivamente grazie all'ottimizzazione del componente #gloss[Data Consumer] e del broker #gloss[NATS], raggiungendo il valore ottimo di 0,01% nello sprint 17.
 
 *Soglia accettabile:* $"DL" <= 1%$ _rispettata in 5 sprint su 7_. \
 *Soglia ottima:* $"DL" <= 0,01%$ _rispettata nello sprint 17_.
@@ -1869,7 +1906,7 @@ Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo
 )
 
 === PB (Sprint 10--17)
-La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni con logica di controllo complessa, in particolare nel microservizio Cloud Backend. Le attività di refactoring e scomposizione delle funzioni più complesse, avviate a partire dallo sprint 14, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
+La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni con logica di controllo complessa, in particolare nel microservizio Cloud Backend. La codifica iniziale ha poi subito un processo di refactoring, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
 
 *Soglia accettabile:* $"CYC" <= 15$ _rispettata in 4 sprint su 7_. \
 *Soglia ottima:* $"CYC" <= 10$ _rispettata nello sprint 17_.
@@ -1902,7 +1939,7 @@ La complessità ciclomatica media, misurata tramite analisi statica del codice, 
 )
 
 === PB (Sprint 10--17)
-La copertura della cifratura dei dati sensibili è stata mantenuta al 100% per l'intera durata della PB. Questa scelta è stata garantita dall'adozione fin dall'inizio delle attività di codifica di protocolli di comunicazione sicuri (TLS) e utilizzo dei #gloss[jwt].
+La copertura della cifratura dei dati sensibili è stata mantenuta al 100% per l'intera durata della #gloss[PB]. Questa scelta è stata garantita dall'adozione fin dall'inizio delle attività di codifica di protocolli di comunicazione sicuri (TLS) e utilizzo dei #gloss[jwt].
 
 *Soglia accettabile:* $100%$ dati sensibili _sempre rispettata_. \
 *Soglia ottima:* $100%$ dati sensibili _sempre rispettata_.
