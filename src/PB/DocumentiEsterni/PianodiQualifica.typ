@@ -34,6 +34,34 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "2.0.0",
+      "24/03/2026",
+      "Michele Dioli",
+      "Alessandro Dinato",
+      [Creazione versione stabile per PB],
+    ),
+    (
+      "1.4.1",
+      "17/04/2026",
+      "Michele Dioli",
+      "Riccardo Graziani",
+      [Implementazione grafici per cruscotto di valutazione],
+    ),
+    (
+      "1.4.0",
+      "16/04/2026",
+      "Michele Dioli",
+      "Riccardo Graziani",
+      [Scrittura sezione PB per cruscotto di valutazione],
+    ),
+    (
+      "1.3.0",
+      "10/04/2026",
+      "Alessandro Dinato",
+      "Michele Dioli",
+      [Stesura dei test di accettazione],
+    ),
+    (
       "1.2.0",
       "09/03/2026",
       "Jaume Bernardi",
@@ -45,7 +73,7 @@
       "28/02/2026",
       "Jaume Bernardi",
       "Riccardo Graziani",
-      [Stesura dei test d'integrazione @test-integrazione],
+      [Stesura iniziale struttura per i  dei test d'integrazione @test-integrazione],
     ),
     (
       "1.0.0",
@@ -223,36 +251,36 @@ Il Piano di qualifica determina 3 elementi essenziali:
 === Riferimenti normativi
 - *Norme di Progetto v1.2.0* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Piano di Progetto v1.1.0* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 === Riferimenti informativi
 - *Glossario v0.5.0* \
   https://glitchhub-team.github.io/pdf/glossary.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Slide T07 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Slide T08 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *ISO/IEC 25010* \
   https://iso25000.com/index.php/en/iso-25000-standards/iso-25010 \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 16 aprile 2026
 
 - *Metrica software -- Wikipedia* \
   https://it.wikipedia.org/wiki/Metrica_software \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 16 aprile 2026
 
 = Metriche di qualità del processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
@@ -901,8 +929,6 @@ Si noti che ai fini di questo documento, lo *sprint 10* si considera appartenent
 
 == MPC-PV e MPC-EV: _Planned Value_ ed _Earned Value_
 
-// TODO: come fa PV di s17 a essere 1240? non abbiamo più soldi
-
 #tabella-paginata(
   table(
     columns: (auto, auto, auto, auto, auto),
@@ -1180,7 +1206,7 @@ Tra gli sprint 10 e 13, l'EAC è sceso in seguito al ricalcolo del budget compiu
     [Sprint 14], [28], [6], [88,0%], [Accettabile],
     [Sprint 15], [19], [3], [86,4%], [Accettabile],
     [Sprint 16], [30], [7], [86,0%], [Accettabile],
-    [Sprint 17], [14], [3], [82,3%], [Critico],
+    [Sprint 17], [14], [0], [100,0%], [Ottimo],
   ),
   [Task Completion Rate per sprint],
   label-id: "tab-TCR",
