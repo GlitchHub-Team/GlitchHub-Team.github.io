@@ -1576,7 +1576,6 @@ L'andamento della metrica mostra che dallo sprint 10 in poi, le attività di pro
 *Soglia ottima*: TE $gt.eq$ 90% _rispettata in 2 sprint su 8_.
 
 == MPC-QMS: _Quality Metrics Satisfied_
-// TODO: da rivedere in caso
 #figure(
   table(
     columns: (auto, auto, auto),
@@ -1589,23 +1588,24 @@ L'andamento della metrica mostra che dallo sprint 10 in poi, le attività di pro
       [#text(fill: white, weight: "bold")[MPC-QMS]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1],   [81,8%],   [Accettabile],      
-    [Sprint 2],   [100,0%],  [Ottimo], 
-    [Sprint 3],   [90,9%],   [Accettabile], 
-    [Sprint 4],   [91,7%],   [Accettabile], 
-    [Sprint 5],   [92,3%],   [Accettabile], 
-    [Sprint 6],   [80,0%],   [Accettabile], 
-    [Sprint 7],   [90,2%],   [Accettabile], 
-    [Sprint 8],   [84,6%],   [Accettabile], 
-    [Sprint 9],   [76,9%],   [Critico],
+    [Sprint 1],   [81,8%],  [Accettabile],
+    [Sprint 2],   [100,0%], [Ottimo],
+    [Sprint 3],   [90,9%],  [Accettabile],
+    [Sprint 4],   [91,7%],  [Accettabile],
+    [Sprint 5],   [92,3%],  [Accettabile],
+    [Sprint 6],   [80,0%],  [Accettabile],
+    [Sprint 7],   [90,2%],  [Accettabile],
+    [Sprint 8],   [84,6%],  [Accettabile],
+    [Sprint 9],   [76,9%],  [Critico],
 
-    [Sprint 10],  [100,0%],  [Ottimo], 
-    [Sprint 11],  [92,3%],   [Accettabile], 
-    [Sprint 12],  [86,9%],   [Accettabile], 
-    [Sprint 13],  [86,9%],   [Accettabile], 
-    [Sprint 14],  [86,9%],   [Accettabile], 
-    [Sprint 15],  [79,2%],   [Critico], 
-    [Sprint 16],  [89,2%],   [Accettabile], 
+    [Sprint 10],  [100,0%], [Ottimo],
+    [Sprint 11],  [92,3%],  [Accettabile],
+    [Sprint 12],  [86,9%],  [Accettabile],
+    [Sprint 13],  [86,9%],  [Accettabile],
+    [Sprint 14],  [86,9%],  [Accettabile],
+    [Sprint 15],  [79,2%],  [Critico],
+    [Sprint 16],  [89,2%],  [Accettabile],
+    [Sprint 17],  [91,7%],  [Accettabile],
   ),
   caption: [_Quality Metrics Satisfied_ per sprint],
 )
@@ -1616,23 +1616,24 @@ L'andamento della metrica mostra che dallo sprint 10 in poi, le attività di pro
 )
 
 === RTB (Sprint 1--9)
-L'indicatore QMS evidenzia un'elevata percentuale di metriche di qualità soddisfatte lungo gli sprint. Il valore ottimo (100%) viene raggiunto in quattro sprint (S2, S4, S5, S6), a conferma della piena conformità agli obiettivi di qualità prefissati.
+L'indicatore QMS mostra un andamento complessivamente positivo, con la maggior parte degli sprint che si mantiene all'interno della soglia di accettabilità ($>= 80%$).
 
-Negli altri sprint il valore si mantiene comunque sopra l'80%, rientrando sempre nella soglia di accettabilità. Le flessioni osservate negli sprint 1 e 7 (rispettivamente 81,8% e 80,0%) risultano contenute e non critiche.
+Il valore ottimo (100%) viene raggiunto esclusivamente nello *sprint 2*, in corrispondenza del pieno rispetto di tutte le metriche di processo monitorate in quel periodo.
 
-L'andamento complessivo mostra una costante attenzione al rispetto delle metriche di qualità, senza mai scendere sotto i livelli minimi previsti.
+Negli sprint 3--8 il QMS oscilla tra il 84,6% e il 92,3%, segnalando qualche metrica non pienamente soddisfatta ma senza mai raggiungere valori critici. La flessione più significativa si registra nello *sprint 1* (81,8%), riconducibile alla fase iniziale di rodaggio del team, e nello *sprint 9* (76,9%), unico valore al di sotto della soglia accettabile, attribuibile a un picco di attività non rendicontabili in prossimità degli esami.
 
-*Soglia accettabile*: QMS $gt.eq 80$% _sempre rispettata_. \
+*Soglia accettabile*: QMS $gt.eq 80$% _violata solo nello sprint 9_. \
 *Soglia ottima*: QMS $= 100%$ _rispettata in 1 sprint su 9_.
 
 === PB (Sprint 10--17)
-Allo sprint 10, la metrica QMS è sotto la soglia accettabile poiché la transizione verso la PB ha fatto emergere la necessità di svolgere numerose _task_ di "palestra" non rendicontabili e ha esacerbato le criticità organizzative emerse negli sprint precedenti.
+A partire dallo sprint 10, il calcolo del QMS include progressivamente anche le metriche di qualità del prodotto (MPD) man mano che queste diventano rilevabili, ampliando il denominatore del calcolo sprint dopo sprint.
+Lo *sprint 10* registra il valore ottimo (100%): le metriche di processo si trovano in uno stato pienamente soddisfacente e le poche metriche MPD già misurabili rientrano nelle rispettive soglie accettabili.
+Tra gli sprint 11 e 14 il QMS si assesta stabilmente all'86,9%--92,3%, riflettendo la fase di sviluppo intensivo in cui alcune metriche di prodotto (in particolare BC, SC, CS e CYC) sono ancora al di sotto delle soglie accettabili per via della natura incrementale dell'implementazione.
+Lo *sprint 15* costituisce l'unica eccezione critica della PB (79,2%), determinata dalla compresenza di più metriche temporaneamente fuori soglia: PRCT elevato, TCR sotto soglia e alcune metriche di manutenibilità ancora in recupero.
+Negli sprint 16 e 17 il QMS risale progressivamente (89,2% e 91,7%), grazie al completamento delle attività di refactoring e al raggiungimento delle soglie accettabili da parte di quasi tutte le metriche MPD. Il valore di 91,7% nello sprint 17 è determinato dalla presenza di due metriche ancora al di sotto della soglia accettabile: *MPC-TCR* (82,3%, leggermente sotto l'85%) e *MPC-WD* (10,17%, appena sopra il 10%), entrambe di entità marginale.
 
-A partire dallo sprint 11, il gruppo ha dimostrato grande capacità di ripresa mantenendo la metrica QMS entro la soglia accettabile fino allo sprint 17, fatta eccezione per lo sprint 16, in cui si è registrata un valore critico di 79,2% il quale rimane comunque vicino alla soglia accettabile.
-
-*Soglia accettabile*: QMS $gt.eq 80$% _rispettata in 6 sprint su 8_. \
-*Soglia ottima*: QMS $= 100%$ _rispettata in 1 sprint su 9_.
-
+*Soglia accettabile*: QMS $gt.eq 80$% _violata solo nello sprint 15_ (1 sprint su 8). \
+*Soglia ottima*: QMS $= 100%$ _rispettata solo nello sprint 10_ (1 sprint su 8).
 
 == MPD-CRO e MPD-CRP: Copertura dei Requisiti
 
@@ -1698,6 +1699,11 @@ La copertura dei requisiti opzionali rimane costantemente a 0% durante tutta la 
   label-id: "tab-mpd-dl",
 )
 
+#figure(
+  image("../../assets/metriche/PB/dl.svg"),
+  caption: [Data Loss Rate per sprint],
+)
+
 === PB (Sprint 10--17)
 Il Data Loss Rate non è misurabile nello sprint 10 poiché il servizio di gateway e il microservizio di Data Consumer non sono ancora codificati. A partire dallo sprint 11, il valore inizialmente critico (2,30%) si riduce progressivamente grazie all'ottimizzazione del componente #gloss[Data Consumer] e del broker #gloss[NATS], raggiungendo il valore ottimo di 0,01% nello sprint 17.
 
@@ -1729,11 +1735,14 @@ Il Data Loss Rate non è misurabile nello sprint 10 poiché il servizio di gatew
     [Sprint 16], [78,0%], [Accettabile],    [88,0%], [Accettabile],
     [Sprint 17], [82,0%], [Ottimo],         [91,0%], [Ottimo],
   ),
-  [Branch Coverage e Statement Coverage per sprint],
+  [_Branch Coverage_ e _Statement Coverage_ per sprint],
   label-id: "tab-mpd-bc-sc",
 )
 
-//TODO: Sistemare sprint di inzio scrittura 
+#figure(
+  image("../../assets/metriche/PB/bc-sc.svg"),
+  caption: [_Branch Coverage_ e _Statement Coverage_ per sprint],
+)
 
 === PB (Sprint 10--17)
 Le metriche di copertura del codice vengono rilevate a partire dallo sprint 11, con l'avvio della stesura dei test di unità e integrazione. I valori inizialmente critici riflettono la natura incrementale dello sviluppo, i test vengono scritti contestualmente al codice con conseguente crescita parallela della copertura.
@@ -1770,12 +1779,17 @@ A partire dallo sprint 14 entrambe le metriche superano le rispettive soglie acc
     [Sprint 16], [12],  [Accettabile],
     [Sprint 17], [9],   [Ottimo],
   ),
-  [Time on Task per sprint],
+  [_Time on Task_ per sprint],
   label-id: "tab-mpd-tt",
 )
 
+#figure(
+  image("../../assets/metriche/PB/tt.svg"),
+  caption: [_Time on Task_ per sprint],
+)
+
 === PB (Sprint 10--17)
-Il Time on Task non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche dal fatto di avere un backend non finito e non ottimizzato. _Trend_ che si conferma fino ad avere una versione considerabile stabiile del backend dallo sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
+Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche dal fatto di avere un backend non finito e non ottimizzato. _Trend_ che si conferma fino ad avere una versione considerabile stabiile del backend dallo sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
 *Soglia accettabile:* $"TT" <= 30$ min _rispettata in 5 sprint su 5_. \
 *Soglia ottima:* $"TT" <= 10$ min _rispettata nello sprint 17_.
 
@@ -1804,6 +1818,11 @@ Il Time on Task non è misurabile nei primi sprint della PB in quanto la _dashbo
   ),
   [Response Time per sprint],
   label-id: "tab-mpd-rt",
+)
+
+#figure(
+  image("../../assets/metriche/PB/ts.svg"),
+  caption: [_Time on Task_ per sprint],
 )
 
 === PB (Sprint 10--17)
@@ -1838,6 +1857,8 @@ Il Response Time viene misurato a partire dallo sprint 15, quando le API del Clo
   [Code Smell per sprint],
   label-id: "tab-mpd-cs",
 )
+
+
 
 === PB (Sprint 10--17)
 Il numero di _code smell_ rilevati tramite analisi statica del codice risulta elevato negli sprint iniziali di sviluppo intensivo (sprint 11--14), poiché la priorità era il completamento funzionale dei microservizi. A partire dallo sprint 15 il team ha dedicato parte della capacità di sprint ad attività di refactoring mirato, dovuto ad una maggiore consapevolezza e esperienza progettuale, riducendo progressivamente il numero di _code smell_ fino al valore ottimo di 1 nello sprint 17.
