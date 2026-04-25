@@ -960,7 +960,7 @@ L'EV accumulato raggiunge €3.897.89, superiore al PV accumulato di €3.535,00
 === PB (Sprint 10--17)
 In questo frangente temporale, il PV mostra un incremento più ripido rispetto a quello osservato durante l'RTB, poiché sono state compiute meno ore di "palestra" e molte più ore produttive, tra progettazione, codifica e verifica del prodotto effettivo.
 
-L'EV risulta leggermente inferiore al PV negli sprint 13, 14 e 15 a causa di una pianificazione troppo ottimistica del lavoro da svolgere. Ciònonostante, tra lo sprint 10 e 16, l'EV accumulato è consistentemente superiore al PV accumulato, in quanto nello sprint 10 l'EV è stato pari a circa il triplo del PV: perciò, l'impatto degli sprint in cui l'EV è inferiore al PV è stato assorbito dallo sprint 10.
+L'EV risulta leggermente inferiore al PV negli sprint 13, 14 e 15 a causa di una pianificazione troppo ottimistica del lavoro da svolgere. Ciononostante, tra lo sprint 10 e 16, l'EV accumulato è consistentemente superiore al PV accumulato, in quanto nello sprint 10 l'EV è stato pari a circa il triplo del PV: perciò, l'impatto degli sprint in cui l'EV è inferiore al PV è stato assorbito dallo sprint 10.
 
 L'EV cumulativo raggiunge €12.788,19 alla fine della PB, risultando leggermente superiore (+3,42%) al PV cumulativo di €12.365,00. 
 
@@ -1626,11 +1626,12 @@ Negli sprint 3--8 il QMS oscilla tra il 84,6% e il 92,3%, segnalando qualche met
 *Soglia ottima*: QMS $= 100%$ _rispettata in 1 sprint su 9_.
 
 === PB (Sprint 10--17)
-A partire dallo sprint 10, il calcolo del QMS include progressivamente anche le metriche di qualità del prodotto (MPD) man mano che queste diventano rilevabili, ampliando il denominatore del calcolo sprint dopo sprint.
-Lo *sprint 10* registra il valore ottimo (100%): le metriche di processo si trovano in uno stato pienamente soddisfacente e le poche metriche MPD già misurabili rientrano nelle rispettive soglie accettabili.
-Tra gli sprint 11 e 14 il QMS si assesta stabilmente all'86,9%--92,3%, riflettendo la fase di sviluppo intensivo in cui alcune metriche di prodotto (in particolare BC, SC, CS e CYC) sono ancora al di sotto delle soglie accettabili per via della natura incrementale dell'implementazione.
-Lo *sprint 15* costituisce l'unica eccezione critica della PB (79,2%), determinata dalla compresenza di più metriche temporaneamente fuori soglia: PRCT elevato, TCR sotto soglia e alcune metriche di manutenibilità ancora in recupero.
-Negli sprint 16 e 17 il QMS risale progressivamente (89,2% e 91,7%), grazie al completamento delle attività di refactoring e al raggiungimento delle soglie accettabili da parte di quasi tutte le metriche MPD. Il valore di 91,7% nello sprint 17 è determinato dalla presenza di due metriche ancora al di sotto della soglia accettabile: *MPC-TCR* (82,3%, leggermente sotto l'85%) e *MPC-WD* (10,17%, appena sopra il 10%), entrambe di entità marginale.
+A partire dallo sprint 10, il calcolo del QMS include progressivamente anche le metriche di qualità del prodotto (MPD) man mano che queste diventano rilevabili, ampliando il denominatore del calcolo sprint dopo sprint.\
+Lo sprint 10 registra il valore ottimo (100%): le metriche di processo si trovano in uno stato pienamente soddisfacente e le poche metriche MPD già misurabili rientrano nelle rispettive soglie accettabili.\
+Tra gli sprint 11 e 14 il QMS si assesta stabilmente all'86,9%--92,3%, riflettendo la fase di sviluppo intensivo in cui alcune metriche di prodotto sono ancora al di sotto delle soglie accettabili per via della natura incrementale dell'implementazione.\
+Lo sprint 15 costituisce l'unica eccezione critica della PB (79,2%), determinata dalla compresenza di più metriche temporaneamente fuori soglia: PRCT elevato, TCR sotto soglia e alcune metriche di manutenibilità ancora in recupero.\
+Negli sprint 16 e 17 il QMS risale progressivamente (89,2% e 91,7%), grazie al completamento delle attività di refactoring e al raggiungimento delle soglie accettabili da parte di quasi tutte le metriche MPD.\
+Il valore di 91,7% nello sprint 17 è determinato dalla presenza di due metriche ancora al di sotto della soglia accettabile: *MPC-TCR* (82,3%, leggermente sotto l'85%) e *MPC-WD* (10,17%, appena sopra il 10%), entrambe di entità marginale.
 
 *Soglia accettabile*: QMS $gt.eq 80$% _violata solo nello sprint 15_ (1 sprint su 8). \
 *Soglia ottima*: QMS $= 100%$ _rispettata solo nello sprint 10_ (1 sprint su 8).
@@ -1658,7 +1659,7 @@ Negli sprint 16 e 17 il QMS risale progressivamente (89,2% e 91,7%), grazie al c
     [Sprint 14], [85,0%], [Critico],    [5,0%], [Accettabile], [0,0%], [Accettabile],
     [Sprint 15], [92,0%], [Critico],    [15,0%], [Accettabile], [0,0%], [Accettabile],
     [Sprint 16], [98,0%], [Critico],    [28,0%], [Accettabile], [0,0%], [Accettabile],
-    [Sprint 17], [100,0%],[Ottimo],     [29%,0%], [Accettabile], [0%,0%], [Accettabile]
+    [Sprint 17], [100,0%],[Ottimo],     [29%,0%], [Accettabile], [0%], [Accettabile]
   ),
   [Copertura dei requisiti obbligatori, desiderabili e opzionali per sprint],
   label-id: "tab-mpd-copertura-req",
@@ -1821,8 +1822,8 @@ Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dash
 )
 
 #figure(
-  image("../../assets/metriche/PB/ts.svg"),
-  caption: [_Time on Task_ per sprint],
+  image("../../assets/metriche/PB/rt.svg"),
+  caption: [_Response Time_ per sprint],
 )
 
 === PB (Sprint 10--17)
@@ -1861,7 +1862,7 @@ Il Response Time viene misurato a partire dallo sprint 15, quando le API del Clo
 
 
 === PB (Sprint 10--17)
-Il numero di _code smell_ rilevati tramite analisi statica del codice risulta elevato negli sprint iniziali di sviluppo intensivo (sprint 11--14), poiché la priorità era il completamento funzionale dei microservizi. A partire dallo sprint 15 il team ha dedicato parte della capacità di sprint ad attività di refactoring mirato, dovuto ad una maggiore consapevolezza e esperienza progettuale, riducendo progressivamente il numero di _code smell_ fino al valore ottimo di 1 nello sprint 17.
+Il numero di _code smell_ rilevati tramite analisi statica del codice risulta elevato negli sprint iniziali di sviluppo intensivo (sprint 11--14), poiché la priorità era il completamento funzionale dei microservizi. A partire dallo sprint 15 il team ha fatto dovuto ad una maggiore consapevolezza e esperienza progettuale, un lavoro di refactoring del codice riducendo progressivamente il numero di _code smell_ fino al valore ottimo di 1 nello sprint 17.
 
 *Soglia accettabile:* $"CS" <= 3$ _rispettata in 3 sprint su 7_. \
 *Soglia ottima:* $"CS" <= 1$ _rispettata nello sprint 17_.
@@ -1927,7 +1928,7 @@ Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo
 )
 
 === PB (Sprint 10--17)
-La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni con logica di controllo complessa, in particolare nel microservizio Cloud Backend. La codifica iniziale ha poi subito un processo di refactoring, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
+La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni per la logica di _consuming_ dei dati e di generezione coerente di essi. La codifica iniziale ha poi subito un processo di refactoring, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
 
 *Soglia accettabile:* $"CYC" <= 15$ _rispettata in 4 sprint su 7_. \
 *Soglia ottima:* $"CYC" <= 10$ _rispettata nello sprint 17_.
