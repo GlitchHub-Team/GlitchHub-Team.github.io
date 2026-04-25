@@ -246,7 +246,6 @@ Il Piano di Qualifica determina 3 elementi essenziali:
 - Le attività di *controllo di qualità*
 - Le iniziative di *miglioramento continuo*
 
-// TODO: Per i documenti con versione sarebbe meglio indicare la versione nel nome e la data di ultimo accesso
 == Riferimenti
 === Riferimenti normativi
 - *Norme di Progetto v1.2.0* \
@@ -836,17 +835,6 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
 #pagebreak()
 == Tracciamento test funzionali <tracciamento-test-funzionali>
-/*
-NON TOCCARE
-*/
-
-
-// #rf-counter.update(0)
-// #ts-counter.update(1)
-
-/*
-Non usare questa tabella usare lista sopra
-*/
 
 === Tracciamento TS -- RF <tracciamento-ts-rf>
 Di seguito, si esegue il tracciamento assegnando a ogni test di sistema (TS) il relativo requisito funzionale (RF):
@@ -918,7 +906,7 @@ Nella tabella sottostante il singolo test di accettazione verrà associato ad un
   label-id: "tab-test-accettazione",
 )
 
-= Cruscotto di valutazione // aka DASHBOARD
+= Cruscotto di valutazione
 
 In questa sezione vengono presentate le misurazioni raccolte negli sprint compresi tra l'aggiudicazione del capitolato e il raggiungimento della RTB.
 Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite tabelle riepilogative, grafici di andamento e relativa interpretazione qualitativa.
@@ -1768,8 +1756,6 @@ Il Data Loss Rate non è misurabile nello sprint 10 poiché il servizio di gatew
 
 === PB (Sprint 10--17)
 Le metriche di copertura del codice vengono rilevate a partire dallo sprint 11, con l'avvio della stesura dei test di unità e integrazione. I valori inizialmente critici riflettono la natura incrementale dello sviluppo, i test vengono scritti contestualmente al codice con conseguente crescita parallela della copertura.
-
-// "i test vengono scritti contestualmente al codice con conseguente crescita parallela della copertura" ma quando mai hahahhahahahha
 
 A partire dallo sprint 14 entrambe le metriche superano le rispettive soglie accettabili ($"BC" >= 60%$, $"SC" >= 70%$), raggiungendo i valori ottimi ($"BC" >= 80%$, $"SC" >= 90%$) nello sprint 17.
 
