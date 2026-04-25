@@ -35,7 +35,7 @@
   registro-modifiche: (
     (
       "2.0.0",
-      "24/03/2026",
+      "24/04/2026",
       "Michele Dioli",
       "Alessandro Dinato",
       [Creazione versione stabile per PB],
@@ -73,7 +73,7 @@
       "28/02/2026",
       "Jaume Bernardi",
       "Riccardo Graziani",
-      [Stesura iniziale struttura per i  dei test d'integrazione @test-integrazione],
+      [Stesura iniziale struttura per i test d'integrazione @test-integrazione],
     ),
     (
       "1.0.0",
@@ -241,7 +241,7 @@
 = Introduzione <introduzione>
 == Finalità del documento
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
-Il Piano di qualifica determina 3 elementi essenziali:
+Il Piano di Qualifica determina 3 elementi essenziali:
 - Il *Piano di Qualità*, cioè l'insieme delle attività e obiettivi di qualità
 - Le attività di *controllo di qualità*
 - Le iniziative di *miglioramento continuo*
@@ -276,11 +276,11 @@ Il Piano di qualifica determina 3 elementi essenziali:
 
 - *ISO/IEC 25010* \
   https://iso25000.com/index.php/en/iso-25000-standards/iso-25010 \
-  *Ultimo accesso*: 16 aprile 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Metrica software -- Wikipedia* \
   https://it.wikipedia.org/wiki/Metrica_software \
-  *Ultimo accesso*: 16 aprile 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 = Metriche di qualità del processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
@@ -1053,7 +1053,7 @@ Tra lo sprint 9 e 10, l'AC accumulato rimane stabile in quanto il primo sprint d
 
 L'ETC mostra una riduzione costante, passando da €9.154,72 allo sprint 9 a €301,09 allo sprint 17, riconfermando il regolare avanzamento del progetto.
 
-Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è stabilizzato al valore di €12.671,09, risultando inferiore al BAC finale di €12.725,00, con uno scostamento  di
+Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è stabilizzato al valore di €12.671,09, risultando inferiore al BAC finale di €12.725,00.
 
 == MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
 
@@ -1100,7 +1100,7 @@ Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è s
 === RTB (Sprint 1--9)
 - *Cost Variance (CV)*: La CV risulta prevalentemente positiva o nulla, indicando un buon controllo dei costi. Gli unici scostamenti negativi si verificano negli sprint 3, 4 e 5. Lo sprint 1 registra il miglior risultato economico (+€20,71), sebbene esso presenti il peggior valore di SV di tutto il progetto: in questo caso, si può attribuire questa variabilità all'inesperienza del gruppo all'inizio del progetto.
 
-- *Schedule Variance (SV)*: La SV presenta maggiore variabilità. Lo sprint 1 evidenzia il principale ritardo (-€97,50), attribuibile alla fase iniziale di rodaggio del _team_. Gli sprint intermedi mostrano valori positivi significativi, indicando recupero e anticipo sulla pianificazione. Nello sprint 9 si osserva un nuovo rallentamento (-€52,65), possibile causa i rallentamenti dovuti allo svolgimento di esami e alla precedente preparazione del _team_.
+- *Schedule Variance (SV)*: La SV presenta maggiore variabilità. Lo sprint 1 evidenzia il principale ritardo (-€97,50), attribuibile alla fase iniziale di rodaggio del _team_. Gli sprint intermedi mostrano valori positivi significativi, indicando recupero e anticipo sulla pianificazione. Nello sprint 9 si osserva un nuovo rallentamento (-€52,65), possibilmente a causa dei rallentamenti dovuti allo svolgimento di esami e alla precedente preparazione del _team_.
 
 *Soglia accettabile CV:* $"CV" > 0$ _violata in 2 sprint su 9 (scostamenti minimi)_ \
 *Soglia accettabile SV:* $"SV" >= 0$ _violata negli sprint 1 e 9_
@@ -1423,7 +1423,7 @@ Dallo sprint 10 in poi, la metrica WD mostra una distribuzione pressoché equa d
 
 La @fig-mpc-wd mostra che dallo sprint 12 al 15, ovvero in pieno periodo di progettazione e codifica dell'MVP, la distribuzione del carico di lavoro risiede entro la soglia ottimale.
 
-Perciò, si può evincere che tra le cause dei ritardi avvenuti negli sprint finali non vi è la mala distribuzione del carico di lavoro: è quindi ragionevole pensare che tali ritardi sono stati causati da una sottostima della mole di lavoro da dover compiere e ripartire tra lo sprint 13 e il 17.
+Perciò, si può evincere che tra le cause dei ritardi avvenuti negli sprint finali non vi sia la cattiva distribuzione del carico di lavoro: è quindi ragionevole pensare che tali ritardi siano stati causati da una sottostima della mole di lavoro da dover compiere e ripartire tra lo sprint 13 e il 17.
 
 *Soglia accettabile*: WD $lt.eq$ 10% _rispettata in 8 sprint su 8_. \
 *Soglia ottima*: WD $lt.eq$ 6,30% _rispettata in 4 sprint su 8_.
@@ -1502,7 +1502,7 @@ Il PdP ha subito un incremento a 75, in quanto sono state applicate ad esso modi
 
 Il Glossario ha subito oscillazioni nel range 80--83 per poi stabilizzarsi a 81 in quanto sono stati aggiunti numerosi termini tecnici con grado di leggibilità più basso.
 
-La Specifica Tecnica (ST) è stato aggiunto alla _repository_ durante lo sprint 10 con un indice di Gulpease di 90, in quanto le prime sezioni aggiunte al documento presentano contenuti semplici relativamente alle tecnologie usate. Man mano che il documento è stato ampliato aggiungendo dettagli tecnici che hanno influito negativamente sull'indice, portandolo a 77 durante lo sprint 17.
+La Specifica Tecnica (ST) è stata aggiunta alla _repository_ durante lo sprint 10 con un indice di Gulpease di 90, in quanto le prime sezioni aggiunte al documento presentano contenuti semplici relativamente alle tecnologie usate. Man mano che il documento è stato ampliato aggiungendo dettagli tecnici, questi hanno influito negativamente sull'indice, portandolo a 77 durante lo sprint 17.
 
 Infine, il Manuale Utente (MU) è stato aggiunto alla _repository_ durante lo sprint 16 con indice di Gulpease a 85, in quanto le prime sezioni aggiunte al documento presentano descrizioni semplici del sistema ad alto livello e istruzioni rivolte agli utenti. L'indice si è abbassato a 81 nello sprint 17 una volta aggiunti al documento contenuti tecnici rivolti agli sviluppatori.
 
@@ -1680,7 +1680,7 @@ Il valore di 91,7% nello sprint 17 è determinato dalla presenza di due metriche
     [Sprint 14], [85,0%], [Critico], [5,0%], [Accettabile], [0,0%], [Accettabile],
     [Sprint 15], [92,0%], [Critico], [15,0%], [Accettabile], [0,0%], [Accettabile],
     [Sprint 16], [98,0%], [Critico], [28,0%], [Accettabile], [0,0%], [Accettabile],
-    [Sprint 17], [100,0%], [Ottimo], [29%,0%], [Accettabile], [0%], [Accettabile],
+    [Sprint 17], [100,0%], [Ottimo], [29,0%], [Accettabile], [0%], [Accettabile],
   ),
   [Copertura dei requisiti obbligatori, desiderabili e opzionali per sprint],
   label-id: "tab-mpd-copertura-req",
@@ -1811,7 +1811,7 @@ A partire dallo sprint 14 entrambe le metriche superano le rispettive soglie acc
 )
 
 === PB (Sprint 10--17)
-Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche dal fatto di avere un backend non finito e non ottimizzato. _Trend_ che si conferma fino ad avere una versione considerabile stabile del backend dallo sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
+Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche a causa del fatto di avere un backend non finito e non ottimizzato. _Trend_ che si inverte fino ad avere una versione considerata stabile del backend nello sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
 *Soglia accettabile:* $"TT" <= 30$ min _rispettata in 5 sprint su 5_. \
 *Soglia ottima:* $"TT" <= 10$ min _rispettata nello sprint 17_.
 
@@ -1848,7 +1848,7 @@ Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dash
 )
 
 === PB (Sprint 10--17)
-Il Response Time viene misurato a partire dallo sprint 15, quando le API del Cloud Backend risultano sufficientemente stabili da poter essere interrogate con regolarità. Il ritardo della codifica completa del backend ha portato ad una misurazione lontana nel tempo tuttavia il lavoro fatto combinato non ha mostrato nessun tipo di debolezza, come si può vedere dai valori sempre almeno accettabili, con un miglioramento progressivo fino al valore ottimo di 0,40 secondi nello sprint 17.\
+Il Response Time viene misurato a partire dallo sprint 15, quando le API del Cloud Backend risultano sufficientemente stabili da poter essere interrogate con regolarità. Il ritardo della codifica completa del backend ha portato ad una misurazione successiva nel tempo; tuttavia, il lavoro fatto in modo combinato non ha mostrato nessun tipo di debolezza, come si può vedere dai valori sempre almeno accettabili, con un miglioramento progressivo fino al valore ottimo di 0,40 secondi nello sprint 17.\
 
 *Soglia accettabile:* $"RT" <= 2$ s _sempre rispettata_. \
 *Soglia ottima:* $"RT" <= 0,5$ s _rispettata nello sprint 17_.
@@ -1883,7 +1883,7 @@ Il Response Time viene misurato a partire dallo sprint 15, quando le API del Clo
 
 
 === PB (Sprint 10--17)
-Il numero di _code smell_ rilevati tramite analisi statica del codice risulta elevato negli sprint iniziali di sviluppo intensivo (sprint 11--14), poiché la priorità era il completamento funzionale dei microservizi. A partire dallo sprint 15 il team ha fatto dovuto ad una maggiore consapevolezza e esperienza progettuale, un lavoro di refactoring del codice riducendo progressivamente il numero di _code smell_ fino al valore ottimo di 1 nello sprint 17.
+Il numero di _code smell_ rilevati tramite analisi statica del codice risulta elevato negli sprint iniziali di sviluppo intensivo (sprint 11--14), poiché la priorità era il completamento funzionale dei microservizi. A partire dallo sprint 15 il team ha svolto, grazie ad una maggiore consapevolezza ed esperienza progettuale, un lavoro di _refactoring_ del codice, riducendo progressivamente il numero di _code smell_ fino al valore ottimo di 1 nello sprint 17.
 
 *Soglia accettabile:* $"CS" <= 3$ _rispettata in 3 sprint su 7_. \
 *Soglia ottima:* $"CS" <= 1$ _rispettata nello sprint 17_.
@@ -1916,7 +1916,7 @@ Il numero di _code smell_ rilevati tramite analisi statica del codice risulta el
 )
 
 === PB (Sprint 10--17)
-Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo in cui i microservizi sono stati integrati per la prima volta e presentavano dipendenze non ancora ottimizzate. A partire dallo sprint 12, la ristrutturazione delle interfacce tra i componenti e l'adozione di pattern architetturali a basso accoppiamento portano il valore entro la soglia accettabile, raggiungendo il valore ottimo di 0,18 nello sprint 17. Il codice iniziale ha avuto una fase di refactoring nata dalla maggiore consapevolezza progettuale e dall'esperienza acquisita.
+Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo in cui i microservizi sono stati integrati per la prima volta e presentavano dipendenze non ancora ottimizzate. A partire dallo sprint 12, la ristrutturazione delle interfacce tra i componenti e l'adozione di pattern architetturali a basso accoppiamento portano il valore entro la soglia accettabile, raggiungendo il valore ottimo di 0,18 nello sprint 17. Il codice iniziale ha attraversato una fase di _refactoring_ nata dalla maggiore consapevolezza progettuale e dall'esperienza acquisita.
 
 *Soglia accettabile:* $"COC" <= 0,5$ _rispettata in 6 sprint su 7_. \
 *Soglia ottima:* $"COC" <= 0,2$ _rispettata nello sprint 17_.
@@ -1949,7 +1949,7 @@ Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo
 )
 
 === PB (Sprint 10--17)
-La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni per la logica di _consuming_ dei dati e di generazione coerente di essi. La codifica iniziale ha poi subito un processo di refactoring, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
+La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni per la logica di _consuming_ dei dati e di generazione coerente di essi. La codifica iniziale ha poi subito un processo di _refactoring_, portando il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
 
 *Soglia accettabile:* $"CYC" <= 15$ _rispettata in 4 sprint su 7_. \
 *Soglia ottima:* $"CYC" <= 10$ _rispettata nello sprint 17_.
