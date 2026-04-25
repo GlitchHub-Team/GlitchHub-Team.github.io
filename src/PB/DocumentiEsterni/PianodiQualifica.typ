@@ -513,20 +513,19 @@ Il valore minimo accettabile è fissato all'*80%*
 }
 
 /*
-  Crea una tabella per mostrare i test 
+  Crea una tabella per mostrare i test
 */
 #let crea-tabella = (dati, caption, label-id) => {
   tabella-paginata(
     table(
       columns: (1fr, 2.5fr, 2.5fr, 0.7fr),
       align: (x, y) => (
-        if x == 0 or x == 3 { center + horizon } 
-        else { start + horizon }
+        if x == 0 or x == 3 { center + horizon } else { start + horizon }
       ),
       inset: 8pt,
       fill: (x, y) => if y == 0 { gray.lighten(70%) },
       [*Codice*], [*Descrizione*], [*Valore atteso*], [*Stato*],
-      ..dati
+      ..dati,
     ),
     caption,
     label-id: label-id,
@@ -553,9 +552,9 @@ Si noti che le sezioni seguenti suddividono i test di unità per microservizio /
   [*#tu-name*]
 }
 
-#let tabella-TU-backend      = crea-dati-tabella(tu, LISTA-TU, "Backend")
-#let tabella-TU-frontend     = crea-dati-tabella(tu, LISTA-TU, "Frontend")
-#let tabella-TU-gateway      = crea-dati-tabella(tu, LISTA-TU, "Gateway")
+#let tabella-TU-backend = crea-dati-tabella(tu, LISTA-TU, "Backend")
+#let tabella-TU-frontend = crea-dati-tabella(tu, LISTA-TU, "Frontend")
+#let tabella-TU-gateway = crea-dati-tabella(tu, LISTA-TU, "Gateway")
 #let tabella-TU-dataconsumer = crea-dati-tabella(tu, LISTA-TU, "DataConsumer")
 
 #show "_": it => it + h(0pt, weak: true)
@@ -564,7 +563,7 @@ Si noti che le sezioni seguenti suddividono i test di unità per microservizio /
 Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Cloud Backend*.
 
 #crea-tabella(
-  tabella-TU-backend, 
+  tabella-TU-backend,
   [Test di unità per Cloud Backend con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-backend",
 )
@@ -573,7 +572,7 @@ Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Clo
 Di seguito si riporta la lista di #gloss[test unitari] per il front-end della dashboard.
 
 #crea-tabella(
-  tabella-TU-frontend, 
+  tabella-TU-frontend,
   [Test di unità per Cloud Frontend con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-frontend",
 )
@@ -582,7 +581,7 @@ Di seguito si riporta la lista di #gloss[test unitari] per il front-end della da
 Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Gateway Simulator*.
 
 #crea-tabella(
-  tabella-TU-gateway, 
+  tabella-TU-gateway,
   [Test di unità per Gateway Simulator con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-gw-simulator",
 )
@@ -591,7 +590,7 @@ Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Gat
 Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Data Consumer*.
 
 #crea-tabella(
-  tabella-TU-dataconsumer, 
+  tabella-TU-dataconsumer,
   [Test di unità per Data Consumer con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-backend",
 )
@@ -612,8 +611,8 @@ I #gloss[test d'integrazione] verificano il corretto comportamento delle interaz
   [*#ti-name*]
 }
 
-#let tabella-TI-dashboard    = crea-dati-tabella(ti, LISTA-TI, "Dashboard")
-#let tabella-TI-gateway      = crea-dati-tabella(ti, LISTA-TI, "Gateway")
+#let tabella-TI-dashboard = crea-dati-tabella(ti, LISTA-TI, "Dashboard")
+#let tabella-TI-gateway = crea-dati-tabella(ti, LISTA-TI, "Gateway")
 #let tabella-TI-dataconsumer = crea-dati-tabella(ti, LISTA-TI, "DataConsumer")
 
 === Test di integrazione per Cloud Backend
@@ -622,7 +621,7 @@ Di seguito si riporta la lista di #gloss[test d'integrazione] per il microserviz
 #crea-tabella(
   tabella-TI-dashboard,
   [Test d'integrazione per Cloud Backend con descrizione, valore atteso e stato di implementazione],
-  "tab-ti-dashboard"
+  "tab-ti-dashboard",
 )
 
 === Test di integrazione per Gateway Simulator
@@ -631,7 +630,7 @@ Di seguito si riporta la lista di #gloss[test d'integrazione] per il microserviz
 #crea-tabella(
   tabella-TI-gateway,
   [Test d'integrazione per Gateway Simulator con descrizione, valore atteso e stato di implementazione],
-  "tab-ti-gateway"
+  "tab-ti-gateway",
 )
 
 === Test di integrazione per Data Consumer
@@ -640,7 +639,7 @@ Di seguito si riporta la lista di #gloss[test d'integrazione] per il microserviz
 #crea-tabella(
   tabella-TI-dataconsumer,
   [Test d'integrazione per Data Consumer con descrizione, valore atteso e stato di implementazione],
-  "tab-ti-dataconsumer"
+  "tab-ti-dataconsumer",
 )
 
 
@@ -918,24 +917,23 @@ Si noti che ai fini di questo documento, lo *sprint 10* si considera appartenent
       [#text(fill: white, weight: "bold")[PV acc. (€)]],
       [#text(fill: white, weight: "bold")[EV acc. (€)]],
     ),
-    [Sprint 1],   [390,00],    [292,50],    [390,00],    [292,50],    
-    [Sprint 2],   [290,00],    [120,83],    [680,00],    [413,33],    
-    [Sprint 3],   [120,00],    [264,00],    [800,00],    [677,33],    
-    [Sprint 4],   [290,00],    [290,00],    [1.090,00],  [967,33],    
-    [Sprint 5],   [275,00],    [450,00],    [1.365,00],  [1.417,33],  
-    [Sprint 6],   [395,00],    [373,06],    [1.760,00],  [1.790,39],  
-    [Sprint 7],   [435,00],    [460,59],    [2.195,00],  [2.250,98],  
-    [Sprint 8],   [445,00],    [1.260,83],  [2.640,00],  [3.511,81],  
-    [Sprint 9],   [895,00],    [386,08],    [3.535,00],  [3.897,89],  
-    [Sprint 10],  [435,00],    [1.344,55],  [3.970,00],  [5.242,43],  
-    [Sprint 11],  [1.560,00],  [1.720,59],  [5.530,00],  [6.963,02],  
-    [Sprint 12],  [1.300,00],  [1.300,00],  [6.830,00],  [8.263,02],  
-    [Sprint 13],  [1.200,00],  [1.136,00],  [8.030,00],  [9.399,02],  
-    [Sprint 14],  [1.125,00],  [950,70],    [9.155,00],  [10.349,73], 
-    [Sprint 15],  [1.045,00],  [801,17],    [10.200,00], [11.150,89], 
-    [Sprint 16],  [925,00],    [1.427,72],  [11.125,00], [12.578,61], 
-    [Sprint 17],  [1.240,00],  [209,58],    [12.365,00], [12.788,19], 
-
+    [Sprint 1], [390,00], [292,50], [390,00], [292,50],
+    [Sprint 2], [290,00], [120,83], [680,00], [413,33],
+    [Sprint 3], [120,00], [264,00], [800,00], [677,33],
+    [Sprint 4], [290,00], [290,00], [1.090,00], [967,33],
+    [Sprint 5], [275,00], [450,00], [1.365,00], [1.417,33],
+    [Sprint 6], [395,00], [373,06], [1.760,00], [1.790,39],
+    [Sprint 7], [435,00], [460,59], [2.195,00], [2.250,98],
+    [Sprint 8], [445,00], [1.260,83], [2.640,00], [3.511,81],
+    [Sprint 9], [895,00], [386,08], [3.535,00], [3.897,89],
+    [Sprint 10], [435,00], [1.344,55], [3.970,00], [5.242,43],
+    [Sprint 11], [1.560,00], [1.720,59], [5.530,00], [6.963,02],
+    [Sprint 12], [1.300,00], [1.300,00], [6.830,00], [8.263,02],
+    [Sprint 13], [1.200,00], [1.136,00], [8.030,00], [9.399,02],
+    [Sprint 14], [1.125,00], [950,70], [9.155,00], [10.349,73],
+    [Sprint 15], [1.045,00], [801,17], [10.200,00], [11.150,89],
+    [Sprint 16], [925,00], [1.427,72], [11.125,00], [12.578,61],
+    [Sprint 17], [1.240,00], [209,58], [12.365,00], [12.788,19],
   ),
   [Valori di PV, EV, PV accumulato ed EV accumulato per sprint],
   label-id: "tab-valori-EP-EV",
@@ -962,7 +960,7 @@ In questo frangente temporale, il PV mostra un incremento più ripido rispetto a
 
 L'EV risulta leggermente inferiore al PV negli sprint 13, 14 e 15 a causa di una pianificazione troppo ottimistica del lavoro da svolgere. Ciononostante, tra lo sprint 10 e 16, l'EV accumulato è consistentemente superiore al PV accumulato, in quanto nello sprint 10 l'EV è stato pari a circa il triplo del PV: perciò, l'impatto degli sprint in cui l'EV è inferiore al PV è stato assorbito dallo sprint 10.
 
-L'EV cumulativo raggiunge €12.788,19 alla fine della PB, risultando leggermente superiore (+3,42%) al PV cumulativo di €12.365,00. 
+L'EV cumulativo raggiunge €12.788,19 alla fine della PB, risultando leggermente superiore (+3,42%) al PV cumulativo di €12.365,00.
 
 *Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
 *Soglia ottima:* $"EV" > "PV"$ _sempre rispettata, soprattutto tra sprint 10 e 16_
@@ -984,23 +982,23 @@ L'EV cumulativo raggiunge €12.788,19 alla fine della PB, risultando leggerment
       [#text(fill: white, weight: "bold")[EAC (€)]],
       [#text(fill: white, weight: "bold")[ETC (€)]],
     ),
-    [Sprint 1],   [290,00],    [290,00],    [12.851,10], [12.561,10], 
-    [Sprint 2],   [290,00],    [580,00],    [12.912,00], [12.332,00], 
-    [Sprint 3],   [150,00],    [730,00],    [13.051,62], [12.321,62], 
-    [Sprint 4],   [465,00],    [1.195,00],  [13.027,01], [11.832,01], 
-    [Sprint 5],   [320,00],    [1.515,00],  [12.793,86], [11.278,86], 
-    [Sprint 6],   [415,00],    [1.930,00],  [12.823,49], [10.893,49], 
-    [Sprint 7],   [375,00],    [2.305,00],  [12.845,34], [10.540,34], 
-    [Sprint 8],   [495,00],    [2.800,00],  [12.879,58], [10.079,58], 
-    [Sprint 9],   [830,00],    [3.630,00],  [12.784,72], [9.154,72],  
-    [Sprint 10],  [415,00],    [4.045,00],  [12.635,34], [8.590,34],  
-    [Sprint 11],  [1.640,00],  [5.685,00],  [12.659,22], [6.974,22],  
-    [Sprint 12],  [1.480,00],  [7.165,00],  [12.536,40], [5.371,40],  
-    [Sprint 13],  [865,00],    [8.030,00],  [12.533,68], [4.503,68],  
-    [Sprint 14],  [1.275,00],  [9.305,00],  [12.641,21], [3.336,21],  
-    [Sprint 15],  [1.315,00],  [10.620,00], [12.641,68], [2.021,68],  
-    [Sprint 16],  [985,00],    [11.605,00], [12.685,81], [1.080,81],  
-    [Sprint 17],  [765,00],    [12.370,00], [12.671,09], [301,09],    
+    [Sprint 1], [290,00], [290,00], [12.851,10], [12.561,10],
+    [Sprint 2], [290,00], [580,00], [12.912,00], [12.332,00],
+    [Sprint 3], [150,00], [730,00], [13.051,62], [12.321,62],
+    [Sprint 4], [465,00], [1.195,00], [13.027,01], [11.832,01],
+    [Sprint 5], [320,00], [1.515,00], [12.793,86], [11.278,86],
+    [Sprint 6], [415,00], [1.930,00], [12.823,49], [10.893,49],
+    [Sprint 7], [375,00], [2.305,00], [12.845,34], [10.540,34],
+    [Sprint 8], [495,00], [2.800,00], [12.879,58], [10.079,58],
+    [Sprint 9], [830,00], [3.630,00], [12.784,72], [9.154,72],
+    [Sprint 10], [415,00], [4.045,00], [12.635,34], [8.590,34],
+    [Sprint 11], [1.640,00], [5.685,00], [12.659,22], [6.974,22],
+    [Sprint 12], [1.480,00], [7.165,00], [12.536,40], [5.371,40],
+    [Sprint 13], [865,00], [8.030,00], [12.533,68], [4.503,68],
+    [Sprint 14], [1.275,00], [9.305,00], [12.641,21], [3.336,21],
+    [Sprint 15], [1.315,00], [10.620,00], [12.641,68], [2.021,68],
+    [Sprint 16], [985,00], [11.605,00], [12.685,81], [1.080,81],
+    [Sprint 17], [765,00], [12.370,00], [12.671,09], [301,09],
   ),
   [Valori di AC, ETC e EAC per sprint],
   label-id: "tab-valori-AC-ETC-EAC",
@@ -1029,7 +1027,7 @@ Tra lo sprint 9 e 10, l'AC accumulato rimane stabile in quanto il primo sprint d
 
 L'ETC mostra una riduzione costante, passando da €9.154,72 allo sprint 9 a €301,09 allo sprint 17, riconfermando il regolare avanzamento del progetto.
 
-Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è stabilizzato al valore di €12.671,09, risultando inferiore al BAC finale di €12.725,00, con uno scostamento  di 
+Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è stabilizzato al valore di €12.671,09, risultando inferiore al BAC finale di €12.725,00, con uno scostamento  di
 
 == MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
 
@@ -1046,23 +1044,23 @@ Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è s
       [#text(fill: white, weight: "bold")[SV (€)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1],   [+20,31],   [-97,50],   [Ritardo schedulazione],
-    [Sprint 2],   [ 0,00],    [ 0,00],    [In linea],
-    [Sprint 3],   [-16,00],   [+24,00],   [Sopra budget, ma in anticipo],
-    [Sprint 4],   [-20,00],   [+14,55],   [Sopra budget, ma in anticipo],
-    [Sprint 5],   [-7,78],    [+75,00],   [Sopra budget, ma in anticipo],
-    [Sprint 6],   [+1,56],    [+21,94],   [Sotto budget e in anticipo],
-    [Sprint 7],   [ 0,00],    [0,00],     [In linea],
-    [Sprint 8],   [+17,00],   [+49,44],   [In anticipo (costo in linea)],
-    [Sprint 9],   [+5,20],    [-52,65],   [Lievemente sopra budget, ritardo schedulazione],
-    [Sprint 10],  [+13,12],   [0,00],     [Lievemente sopra budget, ritardo schedulazione], 
-    [Sprint 11],  [+8,02],    [+14,71],   [Sopra budget, in anticipo], 
-    [Sprint 12],  [+2,00],    [+56,00],   [Sopra budget, grande anticipo], 
-    [Sprint 13],  [ 0,00],    [+38,00],   [Anticipo nella schedulazione], 
-    [Sprint 14],  [+11,14],   [+18,45],   [Sotto budget, in anticipo], 
-    [Sprint 15],  [+2,00],    [+28,67],   [Lievemente sopra budget, in anticipo], 
-    [Sprint 16],  [+1,00],    [+40,22],   [In anticipo], 
-    [Sprint 17],  [+9,89],    [+6,48],    [Lievemente sopra budget e in anticipo],    
+    [Sprint 1], [+20,31], [-97,50], [Ritardo schedulazione],
+    [Sprint 2], [ 0,00], [ 0,00], [In linea],
+    [Sprint 3], [-16,00], [+24,00], [Sopra budget, ma in anticipo],
+    [Sprint 4], [-20,00], [+14,55], [Sopra budget, ma in anticipo],
+    [Sprint 5], [-7,78], [+75,00], [Sopra budget, ma in anticipo],
+    [Sprint 6], [+1,56], [+21,94], [Sotto budget e in anticipo],
+    [Sprint 7], [ 0,00], [0,00], [In linea],
+    [Sprint 8], [+17,00], [+49,44], [In anticipo (costo in linea)],
+    [Sprint 9], [+5,20], [-52,65], [Lievemente sopra budget, ritardo schedulazione],
+    [Sprint 10], [+13,12], [0,00], [Lievemente sopra budget, ritardo schedulazione],
+    [Sprint 11], [+8,02], [+14,71], [Sopra budget, in anticipo],
+    [Sprint 12], [+2,00], [+56,00], [Sopra budget, grande anticipo],
+    [Sprint 13], [ 0,00], [+38,00], [Anticipo nella schedulazione],
+    [Sprint 14], [+11,14], [+18,45], [Sotto budget, in anticipo],
+    [Sprint 15], [+2,00], [+28,67], [Lievemente sopra budget, in anticipo],
+    [Sprint 16], [+1,00], [+40,22], [In anticipo],
+    [Sprint 17], [+9,89], [+6,48], [Lievemente sopra budget e in anticipo],
   ),
   [Cost Variance e Schedule Variance per sprint],
   label-id: "tab-CS-SV",
@@ -1104,24 +1102,23 @@ Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è s
       [#text(fill: white, weight: "bold")[BAC (€)]],
       [#text(fill: white, weight: "bold")[Stato]],
     ),
-    [Sprint 1],   [12.851,10], [12.975,00], [$"EAC" < "BAC"$], 
-    [Sprint 2],   [12.912,00], [12.975,00], [$"EAC" < "BAC"$], 
-    [Sprint 3],   [13.051,62], [12.975,00], [$"EAC" > "BAC"$], 
-    [Sprint 4],   [13.027,01], [12.975,00], [$"EAC" > "BAC"$], 
-    [Sprint 5],   [12.793,86], [12.975,00], [$"EAC" < "BAC"$], 
-    [Sprint 6],   [12.823,49], [12.975,00], [$"EAC" < "BAC"$], 
-    [Sprint 7],   [12.845,34], [12.975,00], [$"EAC" < "BAC"$], 
-    [Sprint 8],   [12.879,58], [12.975,00], [$"EAC" < "BAC"$], 
-    [Sprint 9],   [12.784,72], [12.975,00], [$"EAC" < "BAC"$], 
-    [Sprint 10],  [12.635,34], [12.875,00], [$"EAC" < "BAC"$], 
-    [Sprint 11],  [12.659,22], [12.875,00], [$"EAC" < "BAC"$], 
-    [Sprint 12],  [12.536,40], [12.875,00], [$"EAC" < "BAC"$], 
-    [Sprint 13],  [12.533,68], [12.875,00], [$"EAC" < "BAC"$], 
-    [Sprint 14],  [12.641,21], [12.725,00], [$"EAC" < "BAC"$], 
-    [Sprint 15],  [12.641,68], [12.725,00], [$"EAC" < "BAC"$], 
-    [Sprint 16],  [12.685,81], [12.725,00], [$"EAC" < "BAC"$], 
-    [Sprint 17],  [12.671,09], [12.725,00], [$"EAC" < "BAC"$], 
-
+    [Sprint 1], [12.851,10], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 2], [12.912,00], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 3], [13.051,62], [12.975,00], [$"EAC" > "BAC"$],
+    [Sprint 4], [13.027,01], [12.975,00], [$"EAC" > "BAC"$],
+    [Sprint 5], [12.793,86], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 6], [12.823,49], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 7], [12.845,34], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 8], [12.879,58], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 9], [12.784,72], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 10], [12.635,34], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 11], [12.659,22], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 12], [12.536,40], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 13], [12.533,68], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 14], [12.641,21], [12.725,00], [$"EAC" < "BAC"$],
+    [Sprint 15], [12.641,68], [12.725,00], [$"EAC" < "BAC"$],
+    [Sprint 16], [12.685,81], [12.725,00], [$"EAC" < "BAC"$],
+    [Sprint 17], [12.671,09], [12.725,00], [$"EAC" < "BAC"$],
   ),
   [EAC vs BAC per sprint],
   label-id: "tab-EAC-BAC",
@@ -1166,24 +1163,24 @@ Tra gli sprint 10 e 13, l'EAC è sceso in seguito al ricalcolo del budget compiu
       [#text(fill: white, weight: "bold")[TCR (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1], 	[12],	[0],	[100,0%], [Ottimo],
-    [Sprint 2], 	[11],	[0],	[100,0%], [Ottimo],
-    [Sprint 3], 	[10],	[1],	[90,0%],  [Accettabile],
-    [Sprint 4], 	[12],	[0],	[100,0%], [Ottimo],
-    [Sprint 5], 	[12],	[0],	[100,0%], [Ottimo],
-    [Sprint 6], 	[11],	[1],	[90,9%],  [Accettabile],
-    [Sprint 7], 	[8],	[2],	[75,0%],  [Critico],
-    [Sprint 8], 	[12],	[2],	[83,3%],  [Critico],
-    [Sprint 9], 	[25],	[1],	[96,0%],  [Accettabile],
+    [Sprint 1], [12], [0], [100,0%], [Ottimo],
+    [Sprint 2], [11], [0], [100,0%], [Ottimo],
+    [Sprint 3], [10], [1], [90,0%], [Accettabile],
+    [Sprint 4], [12], [0], [100,0%], [Ottimo],
+    [Sprint 5], [12], [0], [100,0%], [Ottimo],
+    [Sprint 6], [11], [1], [90,9%], [Accettabile],
+    [Sprint 7], [8], [2], [75,0%], [Critico],
+    [Sprint 8], [12], [2], [83,3%], [Critico],
+    [Sprint 9], [25], [1], [96,0%], [Accettabile],
 
-    [Sprint 10],	[18],	[0],	[100,0%], [Ottimo],
-    [Sprint 11],	[34],	[0],	[100,0%], [Ottimo],
-    [Sprint 12],	[28],	[0],	[100,0%], [Ottimo],
-    [Sprint 13],	[19],	[4],	[82,6%],  [Critico],
-    [Sprint 14],	[28],	[6],	[88,0%],  [Accettabile],
-    [Sprint 15],	[19],	[3],	[86,4%],  [Accettabile],
-    [Sprint 16],	[30],	[7],	[86,0%],  [Accettabile],
-    [Sprint 17],	[14],	[3],	[82,3%],  [Critico],
+    [Sprint 10], [18], [0], [100,0%], [Ottimo],
+    [Sprint 11], [34], [0], [100,0%], [Ottimo],
+    [Sprint 12], [28], [0], [100,0%], [Ottimo],
+    [Sprint 13], [19], [4], [82,6%], [Critico],
+    [Sprint 14], [28], [6], [88,0%], [Accettabile],
+    [Sprint 15], [19], [3], [86,4%], [Accettabile],
+    [Sprint 16], [30], [7], [86,0%], [Accettabile],
+    [Sprint 17], [14], [3], [82,3%], [Critico],
   ),
   [Task Completion Rate per sprint],
   label-id: "tab-TCR",
@@ -1234,24 +1231,24 @@ L'andamento generale della metrica è positivo nella prima metà del periodo ana
       [#text(fill: white, weight: "bold")[TS (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1],	[12],	[0],	[0,0%],     [Ottimo],
-    [Sprint 2],	[11],	[0],	[0,0%],     [Ottimo],
-    [Sprint 3],	[10],	[1],	[10,0%],    [Accettabile],
-    [Sprint 4],	[12],	[0],	[0,0%],     [Ottimo],
-    [Sprint 5],	[12],	[0],	[0,0%],     [Ottimo],
-    [Sprint 6],	[11],	[1],	[9,1%],     [Accettabile],
-    [Sprint 7],	[8],	[1],	[12,5%],    [Accettabile],
-    [Sprint 8],	[12],	[2],	[16,7%],    [Critico],
-    [Sprint 9],	[25],	[1],	[4,0%],     [Accettabile],
+    [Sprint 1], [12], [0], [0,0%], [Ottimo],
+    [Sprint 2], [11], [0], [0,0%], [Ottimo],
+    [Sprint 3], [10], [1], [10,0%], [Accettabile],
+    [Sprint 4], [12], [0], [0,0%], [Ottimo],
+    [Sprint 5], [12], [0], [0,0%], [Ottimo],
+    [Sprint 6], [11], [1], [9,1%], [Accettabile],
+    [Sprint 7], [8], [1], [12,5%], [Accettabile],
+    [Sprint 8], [12], [2], [16,7%], [Critico],
+    [Sprint 9], [25], [1], [4,0%], [Accettabile],
 
-    [Sprint 10],	[18],	[0],	[0,0%],   [Ottimo],
-    [Sprint 11],	[34],	[0],	[0,0%],   [Ottimo],
-    [Sprint 12],	[28],	[0],	[0,0%],   [Ottimo],
-    [Sprint 13],	[19],	[3],	[15,8%],  [Critico],
-    [Sprint 14],	[28],	[4],	[14,3%],  [Accettabile],
-    [Sprint 15],	[19],	[2],	[10,5%],  [Accettabile],
-    [Sprint 16],	[30],	[1],	[3,3%],   [Accettabile],
-    [Sprint 17],	[14],	[0],	[0,0%],   [Ottimo],
+    [Sprint 10], [18], [0], [0,0%], [Ottimo],
+    [Sprint 11], [34], [0], [0,0%], [Ottimo],
+    [Sprint 12], [28], [0], [0,0%], [Ottimo],
+    [Sprint 13], [19], [3], [15,8%], [Critico],
+    [Sprint 14], [28], [4], [14,3%], [Accettabile],
+    [Sprint 15], [19], [2], [10,5%], [Accettabile],
+    [Sprint 16], [30], [1], [3,3%], [Accettabile],
+    [Sprint 17], [14], [0], [0,0%], [Ottimo],
   ),
   [Task Slippage per sprint],
   label-id: "tab-TS",
@@ -1293,25 +1290,24 @@ Anche in questo caso, il TS conferma quanto si può osservare nel TCR:
       [#text(fill: white, weight: "bold")[PRCT Medio (ore)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1],	[18,6], [Ottimo],
-    [Sprint 2],	[0], [Nessuna PR svolta],
-    [Sprint 3],	[13], [Ottimo],
-    [Sprint 4],	[0], [Nessuna PR svolta],
-    [Sprint 5],	[1,7], [Ottimo],
-    [Sprint 6],	[16], [Ottimo],
-    [Sprint 7],	[0], [Nessuna PR svolta],
-    [Sprint 8],	[40,5], [Accettabile],
-    [Sprint 9],	[19,6], [Ottimo],
+    [Sprint 1], [18,6], [Ottimo],
+    [Sprint 2], [0], [Nessuna PR svolta],
+    [Sprint 3], [13], [Ottimo],
+    [Sprint 4], [0], [Nessuna PR svolta],
+    [Sprint 5], [1,7], [Ottimo],
+    [Sprint 6], [16], [Ottimo],
+    [Sprint 7], [0], [Nessuna PR svolta],
+    [Sprint 8], [40,5], [Accettabile],
+    [Sprint 9], [19,6], [Ottimo],
 
-    [Sprint 10],	[11,5], [Ottimo],
-    [Sprint 11],	[8], [Ottimo],
-    [Sprint 12],	[30,7], [Accettabile],
-    [Sprint 13],	[14,4], [Ottimo],
-    [Sprint 14],	[63,6], [Critico],
-    [Sprint 15],	[25,4], [Accettabile],
-    [Sprint 16],	[48,3], [Critico],
-    [Sprint 17],	[14,6], [Ottimo],
-
+    [Sprint 10], [11,5], [Ottimo],
+    [Sprint 11], [8], [Ottimo],
+    [Sprint 12], [30,7], [Accettabile],
+    [Sprint 13], [14,4], [Ottimo],
+    [Sprint 14], [63,6], [Critico],
+    [Sprint 15], [25,4], [Accettabile],
+    [Sprint 16], [48,3], [Critico],
+    [Sprint 17], [14,6], [Ottimo],
   ),
   caption: [Pull Request Cycle Time per sprint],
 )
@@ -1333,7 +1329,7 @@ Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 *Soglia ottima*: PRCT $gt.eq 24$ ore _rispettata in 8 su sprint 9_.
 
 === PB (Sprint 10--17)
-Durante la PB, il PRCT medio è aumentato, superando la soglia ottimale negli sprint 12 (30,7 ore) e 15 (25,4 ore) e superando la soglia accettabile negli sprint 14 (63,6 ore) e 16 (48,3 ore). 
+Durante la PB, il PRCT medio è aumentato, superando la soglia ottimale negli sprint 12 (30,7 ore) e 15 (25,4 ore) e superando la soglia accettabile negli sprint 14 (63,6 ore) e 16 (48,3 ore).
 
 Questo aumento nella metrica dimostra la motivazione dietro l'aumento di TS e TCR riscontrato dallo sprint 13 in poi, in quanto la lentezza nella chiusura delle #gloss[pull request] è stata una delle cause nel ritardo nella chiusura delle task da svolgere durante gli sprint finali.
 
@@ -1354,24 +1350,23 @@ Questo aumento nella metrica dimostra la motivazione dietro l'aumento di TS e TC
       [#text(fill: white, weight: "bold")[STD DEV (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1],   [5,35],    [Ottimo],  
-    [Sprint 2],   [5,35],    [Ottimo],  
-    [Sprint 3],   [11,78],   [Critico],  
-    [Sprint 4],   [10,88],   [Critico],  
-    [Sprint 5],   [9,37],    [Accettabile],  
-    [Sprint 6],   [8,13],    [Accettabile],  
-    [Sprint 7],   [7,06],    [Accettabile],  
-    [Sprint 8],   [7,06],    [Accettabile],  
-    [Sprint 9],   [8,28],    [Accettabile],  
-    [Sprint 10],  [6,81],    [Accettabile],  
-    [Sprint 11],  [7,75],    [Accettabile],  
-    [Sprint 12],  [3,50],    [Ottimo],  
-    [Sprint 13],  [3,51],    [Ottimo],  
-    [Sprint 14],  [6,24],    [Ottimo],  
-    [Sprint 15],  [5,63],    [Ottimo],  
-    [Sprint 16],  [7,93],    [Accettabile],  
-    [Sprint 17],  [10,17],   [Critico],  
-
+    [Sprint 1], [5,35], [Ottimo],
+    [Sprint 2], [5,35], [Ottimo],
+    [Sprint 3], [11,78], [Critico],
+    [Sprint 4], [10,88], [Critico],
+    [Sprint 5], [9,37], [Accettabile],
+    [Sprint 6], [8,13], [Accettabile],
+    [Sprint 7], [7,06], [Accettabile],
+    [Sprint 8], [7,06], [Accettabile],
+    [Sprint 9], [8,28], [Accettabile],
+    [Sprint 10], [6,81], [Accettabile],
+    [Sprint 11], [7,75], [Accettabile],
+    [Sprint 12], [3,50], [Ottimo],
+    [Sprint 13], [3,51], [Ottimo],
+    [Sprint 14], [6,24], [Ottimo],
+    [Sprint 15], [5,63], [Ottimo],
+    [Sprint 16], [7,93], [Accettabile],
+    [Sprint 17], [10,17], [Critico],
   ),
   caption: [Distribuzione del carico di lavoro per sprint],
 )
@@ -1400,7 +1395,7 @@ Nel complesso, le criticità risultano circoscritte e correttamente assorbite ne
 === PB (Sprint 10--17)
 Dallo sprint 10 in poi, la metrica WD mostra una distribuzione pressoché equa del carico di lavoro.
 
-La @fig-mpc-wd mostra che dallo sprint 12 al 15, ovvero in pieno periodo di progettazione e codifica dell'MVP, la distribuzione del carico di lavoro risiede entro la soglia ottimale. 
+La @fig-mpc-wd mostra che dallo sprint 12 al 15, ovvero in pieno periodo di progettazione e codifica dell'MVP, la distribuzione del carico di lavoro risiede entro la soglia ottimale.
 
 Perciò, si può evincere che tra le cause dei ritardi avvenuti negli sprint finali non vi è la mala distribuzione del carico di lavoro: è quindi ragionevole pensare che tali ritardi sono stati causati da una sottostima della mole di lavoro da dover compiere e ripartire tra lo sprint 13 e il 17.
 
@@ -1412,39 +1407,39 @@ Perciò, si può evincere che tra le cause dei ritardi avvenuti negli sprint fin
 
 #figure(
   table(
-    columns: (auto, auto, auto, auto, auto, auto, auto, auto,),
+    columns: (auto, auto, auto, auto, auto, auto, auto, auto),
     align: center,
     stroke: 0.5pt,
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
       text(fill: white, weight: "bold")[Sprint],
-      text(fill: white, weight: "bold")[AdR],  
-      text(fill: white, weight: "bold")[PdQ],  
-      text(fill: white, weight: "bold")[NdP],  
+      text(fill: white, weight: "bold")[AdR],
+      text(fill: white, weight: "bold")[PdQ],
+      text(fill: white, weight: "bold")[NdP],
       text(fill: white, weight: "bold")[PdP],
-      text(fill: white, weight: "bold")[Glossario], 
+      text(fill: white, weight: "bold")[Glossario],
       text(fill: white, weight: "bold")[ST],
       text(fill: white, weight: "bold")[MU],
     ),
-    [Sprint 1], [*90,0*],	[60,0],	[*80,0*],	[73,0],	 [*85,0*],	    [-],	  [-],
-    [Sprint 2], [*91,5*],	[72,0],	[74,5],	  [72,5],	 [*85,0*],	    [-],	  [-],
-    [Sprint 3], [64,5],	 [72,0],	[72,0],	  [73,0],	 [*84,0*],	    [-],	  [-],
-    [Sprint 4], [66,0],	 [72,0],	[71,0],	  [73,0],	 [*83,0*],	    [-],	  [-],
-    [Sprint 5], [68,0],	 [69,5],	[71,0],	  [70,0],	 [*82,0*],	    [-],	  [-],
-    [Sprint 6], [68,0],	 [68,0],	[71,0],	  [73,0],	 [*82,0*],	    [-],	  [-],
-    [Sprint 7], [70,0],	 [66,0],	[71,0],	  [73,0],	 [*82,0*],	    [-],	  [-],
-    [Sprint 8], [71,0],	 [63,0],	[73,0],	  [73,0],	 [*83,0*],	    [-],	  [-],
-    [Sprint 9], [72,5],	 [63,0],	[73,0],	  [73,5],	 [*83,0*],	    [-],	  [-],
-    
-    [Sprint 10], [75,0],	[63,0],	[73,0],	  [73,5],	 [*83,0*],	  [*90,0*],	[-],
-    [Sprint 11], [75,0],	[63,0],	[72,0],	  [73,5],	 [*81,0*],	  [*91,5*],	[-],
-    [Sprint 12], [75,0],	[64,0],	[72,0],	  [73,5],	 [*81,0*],	  [*85,0*],	[-],
-    [Sprint 13], [75,0],	[63,0],	[72,0],	  [73,5],	 [*80,0*],	  [79,0],	  [-],
-    [Sprint 14], [75,0],	[61,0],	[72,0],	  [75,0],	 [*81,0*],	  [78,0],	  [-],
-    [Sprint 15], [75,0],	[68,0],	[71,0],	  [75,0],	 [*82,0*],	  [75,0],	  [-],
-    [Sprint 16], [75,0],	[67,0],	[71,0],	  [75,0],	 [*82,0*],	  [72,0],	  [*85,0*],
-    [Sprint 17], [75,0],	[69,0],	[71,0],	  [75,0],	 [*81,0*],	  [77,0],	  [*81,0*],
+    [Sprint 1], [*90,0*], [60,0], [*80,0*], [73,0], [*85,0*], [-], [-],
+    [Sprint 2], [*91,5*], [72,0], [74,5], [72,5], [*85,0*], [-], [-],
+    [Sprint 3], [64,5], [72,0], [72,0], [73,0], [*84,0*], [-], [-],
+    [Sprint 4], [66,0], [72,0], [71,0], [73,0], [*83,0*], [-], [-],
+    [Sprint 5], [68,0], [69,5], [71,0], [70,0], [*82,0*], [-], [-],
+    [Sprint 6], [68,0], [68,0], [71,0], [73,0], [*82,0*], [-], [-],
+    [Sprint 7], [70,0], [66,0], [71,0], [73,0], [*82,0*], [-], [-],
+    [Sprint 8], [71,0], [63,0], [73,0], [73,0], [*83,0*], [-], [-],
+    [Sprint 9], [72,5], [63,0], [73,0], [73,5], [*83,0*], [-], [-],
+
+    [Sprint 10], [75,0], [63,0], [73,0], [73,5], [*83,0*], [*90,0*], [-],
+    [Sprint 11], [75,0], [63,0], [72,0], [73,5], [*81,0*], [*91,5*], [-],
+    [Sprint 12], [75,0], [64,0], [72,0], [73,5], [*81,0*], [*85,0*], [-],
+    [Sprint 13], [75,0], [63,0], [72,0], [73,5], [*80,0*], [79,0], [-],
+    [Sprint 14], [75,0], [61,0], [72,0], [75,0], [*81,0*], [78,0], [-],
+    [Sprint 15], [75,0], [68,0], [71,0], [75,0], [*82,0*], [75,0], [-],
+    [Sprint 16], [75,0], [67,0], [71,0], [75,0], [*82,0*], [72,0], [*85,0*],
+    [Sprint 17], [75,0], [69,0], [71,0], [75,0], [*81,0*], [77,0], [*81,0*],
   ),
   caption: [Indice di Gulpease per documento per sprint],
 )
@@ -1530,23 +1525,23 @@ Per quanto riguarda il Manuale Utente si sono rilevati 15 errori alla creazione 
       [#text(fill: white, weight: "bold")[TE (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1],	  [41,0%], [Critico],
-    [Sprint 2],	  [48,0%], [Critico],
-    [Sprint 3],	  [52,0%], [Accettabile],
-    [Sprint 4],	  [50,0%], [Accettabile],
-    [Sprint 5],	  [71,0%], [Accettabile],
-    [Sprint 6],	  [94,0%], [Ottimo],
-    [Sprint 7],	  [83,3%], [Accettabile],
-    [Sprint 8],	  [52,6%], [Accettabile],
-    [Sprint 9],	  [55,5%], [Accettabile],
-    [Sprint 10],	[48,8%], [Critico],
-    [Sprint 11],	[60,7%], [Accettabile],
-    [Sprint 12],	[62,0%], [Accettabile],
-    [Sprint 13],	[58,5%], [Accettabile],
-    [Sprint 14],	[71,2%], [Accettabile],
-    [Sprint 15],	[83,3%], [Accettabile],
-    [Sprint 16],	[90,5%], [Ottimo],
-    [Sprint 17],	[94,0%], [Ottimo],
+    [Sprint 1], [41,0%], [Critico],
+    [Sprint 2], [48,0%], [Critico],
+    [Sprint 3], [52,0%], [Accettabile],
+    [Sprint 4], [50,0%], [Accettabile],
+    [Sprint 5], [71,0%], [Accettabile],
+    [Sprint 6], [94,0%], [Ottimo],
+    [Sprint 7], [83,3%], [Accettabile],
+    [Sprint 8], [52,6%], [Accettabile],
+    [Sprint 9], [55,5%], [Accettabile],
+    [Sprint 10], [48,8%], [Critico],
+    [Sprint 11], [60,7%], [Accettabile],
+    [Sprint 12], [62,0%], [Accettabile],
+    [Sprint 13], [58,5%], [Accettabile],
+    [Sprint 14], [71,2%], [Accettabile],
+    [Sprint 15], [83,3%], [Accettabile],
+    [Sprint 16], [90,5%], [Ottimo],
+    [Sprint 17], [94,0%], [Ottimo],
   ),
   caption: [_Time Efficiency_ per sprint],
 )
@@ -1588,24 +1583,24 @@ L'andamento della metrica mostra che dallo sprint 10 in poi, le attività di pro
       [#text(fill: white, weight: "bold")[MPC-QMS]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1],   [81,8%],  [Accettabile],
-    [Sprint 2],   [100,0%], [Ottimo],
-    [Sprint 3],   [90,9%],  [Accettabile],
-    [Sprint 4],   [91,7%],  [Accettabile],
-    [Sprint 5],   [92,3%],  [Accettabile],
-    [Sprint 6],   [80,0%],  [Accettabile],
-    [Sprint 7],   [90,2%],  [Accettabile],
-    [Sprint 8],   [84,6%],  [Accettabile],
-    [Sprint 9],   [76,9%],  [Critico],
+    [Sprint 1], [81,8%], [Accettabile],
+    [Sprint 2], [100,0%], [Ottimo],
+    [Sprint 3], [90,9%], [Accettabile],
+    [Sprint 4], [91,7%], [Accettabile],
+    [Sprint 5], [92,3%], [Accettabile],
+    [Sprint 6], [80,0%], [Accettabile],
+    [Sprint 7], [90,2%], [Accettabile],
+    [Sprint 8], [84,6%], [Accettabile],
+    [Sprint 9], [76,9%], [Critico],
 
-    [Sprint 10],  [100,0%], [Ottimo],
-    [Sprint 11],  [92,3%],  [Accettabile],
-    [Sprint 12],  [86,9%],  [Accettabile],
-    [Sprint 13],  [86,9%],  [Accettabile],
-    [Sprint 14],  [86,9%],  [Accettabile],
-    [Sprint 15],  [79,2%],  [Critico],
-    [Sprint 16],  [89,2%],  [Accettabile],
-    [Sprint 17],  [91,7%],  [Accettabile],
+    [Sprint 10], [100,0%], [Ottimo],
+    [Sprint 11], [92,3%], [Accettabile],
+    [Sprint 12], [86,9%], [Accettabile],
+    [Sprint 13], [86,9%], [Accettabile],
+    [Sprint 14], [86,9%], [Accettabile],
+    [Sprint 15], [79,2%], [Critico],
+    [Sprint 16], [89,2%], [Accettabile],
+    [Sprint 17], [91,7%], [Accettabile],
   ),
   caption: [_Quality Metrics Satisfied_ per sprint],
 )
@@ -1652,14 +1647,14 @@ Il valore di 91,7% nello sprint 17 è determinato dalla presenza di due metriche
       [#text(fill: white, weight: "bold")[RNF. (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 11], [45,0%], [Critico],    [0,0%],  [Accettabile], [0,0%],  [Accettabile],
-    [Sprint 10], [25,0%], [Critico],    [0,0%],  [Accettabile], [0,0%],  [Accettabile],
-    [Sprint 12], [60,0%], [Critico],    [0,0%], [Accettabile], [0,0%], [Accettabile],
-    [Sprint 13], [75,0%], [Critico],    [0,0%], [Accettabile], [0,0%], [Accettabile],
-    [Sprint 14], [85,0%], [Critico],    [5,0%], [Accettabile], [0,0%], [Accettabile],
-    [Sprint 15], [92,0%], [Critico],    [15,0%], [Accettabile], [0,0%], [Accettabile],
-    [Sprint 16], [98,0%], [Critico],    [28,0%], [Accettabile], [0,0%], [Accettabile],
-    [Sprint 17], [100,0%],[Ottimo],     [29%,0%], [Accettabile], [0%], [Accettabile]
+    [Sprint 11], [45,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 10], [25,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 12], [60,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 13], [75,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 14], [85,0%], [Critico], [5,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 15], [92,0%], [Critico], [15,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 16], [98,0%], [Critico], [28,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 17], [100,0%], [Ottimo], [29%,0%], [Accettabile], [0%], [Accettabile],
   ),
   [Copertura dei requisiti obbligatori, desiderabili e opzionali per sprint],
   label-id: "tab-mpd-copertura-req",
@@ -1687,7 +1682,7 @@ La copertura dei requisiti opzionali rimane costantemente a 0% durante tutta la 
       [#text(fill: white, weight: "bold")[DL (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 10], [--],    [Non misurabile],
+    [Sprint 10], [--], [Non misurabile],
     [Sprint 11], [2,30%], [Critico],
     [Sprint 12], [1,50%], [Critico],
     [Sprint 13], [0,80%], [Accettabile],
@@ -1727,14 +1722,14 @@ Il Data Loss Rate non è misurabile nello sprint 10 poiché il servizio di gatew
       [#text(fill: white, weight: "bold")[SC (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 10], [--],    [Non misurabile], [--],    [Non misurabile],
-    [Sprint 11], [18,0%], [Critico],        [25,0%], [Critico],
-    [Sprint 12], [38,0%], [Critico],        [48,0%], [Critico],
-    [Sprint 13], [52,0%], [Critico],        [62,0%], [Critico],
-    [Sprint 14], [61,0%], [Accettabile],    [72,0%], [Accettabile],
-    [Sprint 15], [70,0%], [Accettabile],    [80,0%], [Accettabile],
-    [Sprint 16], [78,0%], [Accettabile],    [88,0%], [Accettabile],
-    [Sprint 17], [82,0%], [Ottimo],         [91,0%], [Ottimo],
+    [Sprint 10], [--], [Non misurabile], [--], [Non misurabile],
+    [Sprint 11], [18,0%], [Critico], [25,0%], [Critico],
+    [Sprint 12], [38,0%], [Critico], [48,0%], [Critico],
+    [Sprint 13], [52,0%], [Critico], [62,0%], [Critico],
+    [Sprint 14], [61,0%], [Accettabile], [72,0%], [Accettabile],
+    [Sprint 15], [70,0%], [Accettabile], [80,0%], [Accettabile],
+    [Sprint 16], [78,0%], [Accettabile], [88,0%], [Accettabile],
+    [Sprint 17], [82,0%], [Ottimo], [91,0%], [Ottimo],
   ),
   [_Branch Coverage_ e _Statement Coverage_ per sprint],
   label-id: "tab-mpd-bc-sc",
@@ -1771,14 +1766,14 @@ A partire dallo sprint 14 entrambe le metriche superano le rispettive soglie acc
       [#text(fill: white, weight: "bold")[TT (min)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 10], [--],  [Non misurabile],
-    [Sprint 11], [--],  [Non misurabile],
-    [Sprint 12], [--],  [Non misurabile],
-    [Sprint 13], [28],  [Accettabile],
-    [Sprint 14], [22],  [Accettabile],
-    [Sprint 15], [17],  [Accettabile],
-    [Sprint 16], [12],  [Accettabile],
-    [Sprint 17], [9],   [Ottimo],
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [--], [Non misurabile],
+    [Sprint 12], [--], [Non misurabile],
+    [Sprint 13], [28], [Accettabile],
+    [Sprint 14], [22], [Accettabile],
+    [Sprint 15], [17], [Accettabile],
+    [Sprint 16], [12], [Accettabile],
+    [Sprint 17], [9], [Ottimo],
   ),
   [_Time on Task_ per sprint],
   label-id: "tab-mpd-tt",
@@ -1790,7 +1785,7 @@ A partire dallo sprint 14 entrambe le metriche superano le rispettive soglie acc
 )
 
 === PB (Sprint 10--17)
-Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche dal fatto di avere un backend non finito e non ottimizzato. _Trend_ che si conferma fino ad avere una versione considerabile stabiile del backend dallo sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
+Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche dal fatto di avere un backend non finito e non ottimizzato. _Trend_ che si conferma fino ad avere una versione considerabile stabile del backend dallo sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
 *Soglia accettabile:* $"TT" <= 30$ min _rispettata in 5 sprint su 5_. \
 *Soglia ottima:* $"TT" <= 10$ min _rispettata nello sprint 17_.
 
@@ -1808,8 +1803,8 @@ Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dash
       [#text(fill: white, weight: "bold")[RT (s)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 10], [--],   [Non misurabile],
-    [Sprint 11], [--],   [Non misurabile],
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [--], [Non misurabile],
     [Sprint 12], [--], [Critico],
     [Sprint 13], [--], [Accettabile],
     [Sprint 14], [--], [Accettabile],
@@ -1848,12 +1843,12 @@ Il Response Time viene misurato a partire dallo sprint 15, quando le API del Clo
     ),
     [Sprint 10], [--], [Non misurabile],
     [Sprint 11], [14], [Critico],
-    [Sprint 12], [9],  [Critico],
-    [Sprint 13], [7],  [Critico],
-    [Sprint 14], [5],  [Critico],
-    [Sprint 15], [3],  [Accettabile],
-    [Sprint 16], [2],  [Accettabile],
-    [Sprint 17], [1],  [Ottimo],
+    [Sprint 12], [9], [Critico],
+    [Sprint 13], [7], [Critico],
+    [Sprint 14], [5], [Critico],
+    [Sprint 15], [3], [Accettabile],
+    [Sprint 16], [2], [Accettabile],
+    [Sprint 17], [1], [Ottimo],
   ),
   [Code Smell per sprint],
   label-id: "tab-mpd-cs",
@@ -1881,14 +1876,14 @@ Il numero di _code smell_ rilevati tramite analisi statica del codice risulta el
       [#text(fill: white, weight: "bold")[COC]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 10], [--],  [Non misurabile],
-    [Sprint 11], [0,58],[Critico],
-    [Sprint 12], [0,48],[Accettabile],
-    [Sprint 13], [0,42],[Accettabile],
-    [Sprint 14], [0,37],[Accettabile],
-    [Sprint 15], [0,29],[Accettabile],
-    [Sprint 16], [0,23],[Accettabile],
-    [Sprint 17], [0,18],[Ottimo],
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [0,58], [Critico],
+    [Sprint 12], [0,48], [Accettabile],
+    [Sprint 13], [0,42], [Accettabile],
+    [Sprint 14], [0,37], [Accettabile],
+    [Sprint 15], [0,29], [Accettabile],
+    [Sprint 16], [0,23], [Accettabile],
+    [Sprint 17], [0,18], [Ottimo],
   ),
   [Coefficient of Coupling per sprint],
   label-id: "tab-mpd-coc",
@@ -1921,14 +1916,14 @@ Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo
     [Sprint 14], [14], [Accettabile],
     [Sprint 15], [12], [Accettabile],
     [Sprint 16], [11], [Accettabile],
-    [Sprint 17], [9],  [Ottimo],
+    [Sprint 17], [9], [Ottimo],
   ),
   [Cyclomatic Complexity per sprint],
   label-id: "tab-mpd-cyc",
 )
 
 === PB (Sprint 10--17)
-La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni per la logica di _consuming_ dei dati e di generezione coerente di essi. La codifica iniziale ha poi subito un processo di refactoring, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
+La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni per la logica di _consuming_ dei dati e di generazione coerente di essi. La codifica iniziale ha poi subito un processo di refactoring, portano il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
 
 *Soglia accettabile:* $"CYC" <= 15$ _rispettata in 4 sprint su 7_. \
 *Soglia ottima:* $"CYC" <= 10$ _rispettata nello sprint 17_.
@@ -1947,14 +1942,14 @@ La complessità ciclomatica media, misurata tramite analisi statica del codice, 
       [#text(fill: white, weight: "bold")[DE]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 10], [--],    [Non misurabile],
-    [Sprint 11], [100%],  [Ottimo],
-    [Sprint 12], [100%],  [Ottimo],
-    [Sprint 13], [100%],  [Ottimo],
-    [Sprint 14], [100%],  [Ottimo],
-    [Sprint 15], [100%],  [Ottimo],
-    [Sprint 16], [100%],  [Ottimo],
-    [Sprint 17], [100%],  [Ottimo],
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [100%], [Ottimo],
+    [Sprint 12], [100%], [Ottimo],
+    [Sprint 13], [100%], [Ottimo],
+    [Sprint 14], [100%], [Ottimo],
+    [Sprint 15], [100%], [Ottimo],
+    [Sprint 16], [100%], [Ottimo],
+    [Sprint 17], [100%], [Ottimo],
   ),
   [Data Encryption Coverage per sprint],
   label-id: "tab-mpd-de",
