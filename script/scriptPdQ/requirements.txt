@@ -5,3 +5,4 @@ pypdf
 language-tool-python
 pyspellchecker
 python-dotenv
+pyperclip

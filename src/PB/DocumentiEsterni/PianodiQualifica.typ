@@ -34,6 +34,34 @@
   stato: "Verificato",
   registro-modifiche: (
     (
+      "2.0.0",
+      "24/04/2026",
+      "Michele Dioli",
+      "Alessandro Dinato",
+      [Creazione versione stabile per PB],
+    ),
+    (
+      "1.4.1",
+      "17/04/2026",
+      "Michele Dioli",
+      "Riccardo Graziani",
+      [Implementazione grafici per cruscotto di valutazione],
+    ),
+    (
+      "1.4.0",
+      "16/04/2026",
+      "Michele Dioli",
+      "Riccardo Graziani",
+      [Scrittura sezione PB per cruscotto di valutazione],
+    ),
+    (
+      "1.3.0",
+      "10/04/2026",
+      "Alessandro Dinato",
+      "Michele Dioli",
+      [Stesura dei test di accettazione],
+    ),
+    (
       "1.2.0",
       "09/03/2026",
       "Jaume Bernardi",
@@ -45,7 +73,7 @@
       "28/02/2026",
       "Jaume Bernardi",
       "Riccardo Graziani",
-      [Stesura dei test d'integrazione @test-integrazione],
+      [Stesura iniziale struttura per i test d'integrazione @test-integrazione],
     ),
     (
       "1.0.0",
@@ -191,8 +219,8 @@
 
   distribuzione: ("GlitchHub Team", "Prof. Vardanega Tullio", "Prof. Cardin Riccardo"),
   htmlId: "PB-DocumentiEsterni",
-  verificatore-interno: "Riccardo Graziani",
-  left-signature: "../assets/firme/firma_Riccardo_Graziani.png",
+  verificatore-interno: "Alessandro Dinato",
+  left-signature: "../assets/firme/firma_Alessandro_Dinato.png",
   tipo-documento: "Piano di Qualifica",
 )
 
@@ -213,46 +241,45 @@
 = Introduzione <introduzione>
 == Finalità del documento
 Questo documento, #gloss[Piano di Qualifica], rappresenta un riferimento fondamentale che organizza e coordina tutte le attività di qualifica per il prodotto software, integrando pianificazione, verifica e miglioramento.
-Il Piano di qualifica determina 3 elementi essenziali:
+Il Piano di Qualifica determina 3 elementi essenziali:
 - Il *Piano di Qualità*, cioè l'insieme delle attività e obiettivi di qualità
 - Le attività di *controllo di qualità*
 - Le iniziative di *miglioramento continuo*
 
-// TODO: Per i documenti con versione sarebbe meglio indicare la versione nel nome e la data di ultimo accesso
 == Riferimenti
 === Riferimenti normativi
 - *Norme di Progetto v1.2.0* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiInterni/NormeProgetto.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Capitolato di appalto C7, "Sistemi di acquisizione dati da sensori"* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Piano di Progetto v1.1.0* \
   https://glitchhub-team.github.io/pdf/RTB/DocumentiEsterni/PianoDiProgetto.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 === Riferimenti informativi
 - *Glossario v0.5.0* \
   https://glitchhub-team.github.io/pdf/glossary.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Slide T07 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Slide T08 - Qualità del software* \
   https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *ISO/IEC 25010* \
   https://iso25000.com/index.php/en/iso-25000-standards/iso-25010 \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 - *Metrica software -- Wikipedia* \
   https://it.wikipedia.org/wiki/Metrica_software \
-  *Ultimo accesso*: 18 febbraio 2026
+  *Ultimo accesso*: 24 aprile 2026
 
 = Metriche di qualità del processo
 Le metriche di qualità del processo misurano l'efficacia, l'efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Il loro scopo è di monitorare l'aderenza alla pianificazione, la stabilità dei processi, la sostenibilità dei costi e di migliorare costantemente i propri risultati. Queste metriche non valutano il prodotto finito, ma il modo in cui il prodotto viene realizzato.
@@ -341,7 +368,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
     [MPC-QMS], [Quality Metrics Satisfied], [$>= 80%$], [$= 100%$],
-    [MPC-TE], [Time efficiency], [$>= 50%$], [$>= 90%$],
+    [MPC-TE], [Time Efficiency], [$>= 50%$], [$>= 90%$],
     [MPC-WD], [Work Distribution], [$$], [$$],
     [MPC-SPF], [Single Point of Failure Risk], [$15%$], [$<10%$],
   ),
@@ -367,10 +394,10 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     [MPD-CRO], [Copertura Requisiti Obbligatori], [$= 100%$], [$= 100%$],
     [MPD-CRP], [Copertura Requisiti Desiderabili], [$>= 0$], [$>=70%$],
     [MPD-CRP], [Copertura Requisiti Opzionali], [$>= 0$], [$>=70%$],
-    [MPD-AD], [API Documentation], [$>=90%$], [$100%$],
-    [MPD-DL], [Data Loss], [$0,1%-1%$], [$<0,01%$],
+    [MPD-AD], [API Documentation Coverage], [$>=90%$], [$100%$],
+    [MPD-DL], [Data Loss Rate], [$<= 1%$], [$<= 0,01%$],
   ),
-  [Valori per misurare la qualità delle funzionalità.],
+  [Metriche per misurare la qualità delle funzionalità.],
   label-id: "tab-qual-funz",
 )
 
@@ -388,7 +415,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     [MPD-BC], [Branch Coverage], [$>= "60%"$], [$>= "80%"$],
     [MPD-SC], [Statement Coverage], [$>= "70%"$], [$>= "90%"$],
   ),
-  [Valori per misurare la qualità dell'affidabilità.],
+  [Metriche per misurare la qualità dell'affidabilità.],
   label-id: "tab-qual-aff",
 )
 
@@ -401,9 +428,9 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
-    [MPD-LT], [Learning Time], [$<= "30 min"$], [$<= "10 min"$],
+    [MPD-TT], [Time on Task], [$<= "30 min"$], [$<= "10 min"$],
   ),
-  [Valori per misurare la qualità dell'usabilità.],
+  [Metriche per misurare la qualità dell'usabilità.],
   label-id: "tab-qual-usab",
 )
 
@@ -419,7 +446,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
 
     [MPD-RT], [Response Time], [$<= "2 secondi"$], [$<= "0,5 secondi"$],
   ),
-  [Valori per misurare la qualità dell'efficienza.],
+  [Metriche per misurare la qualità dell'efficienza.],
   label-id: "tab-qual-eff",
 )
 
@@ -433,15 +460,16 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
-    [MPD-CD], [Code Smell], [$<= "3"$], [$<= "1"$],
+    [MPD-CS], [Code Smell], [$<= "3"$], [$<= "1"$],
     [MPD-COC], [Coefficient of Coupling], [$<= "0.5"$], [$<= "0.2"$],
     [MPD-CYC], [Cyclomatic Complexity], [$<= "15"$], [$<= "10"$],
   ),
-  [Valori per misurare la qualità della manutenibilità.],
+  [Metriche per misurare la qualità della manutenibilità.],
   label-id: "tab-qual-manut",
 )
 
-#pagebreak()
+// #pagebreak()
+
 == Sicurezza
 
 #tabella-paginata(
@@ -451,13 +479,28 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPD* (#s
     fill: (x, y) => if y == 0 { gray.lighten(70%) },
     [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
 
-    [MPD-DE], [Data encryption], [$"100% dati sensibili"$], [$"100% dati sensibili"$],
+    [MPD-DE], [Data Encryption Coverage], [$"100% dati sensibili"$], [$"100% dati sensibili"$],
   ),
-  [Valori per misurare la qualità della sicurezza.],
+  [Metriche per misurare la qualità della sicurezza.],
   label-id: "tab-qual-sicur",
 )
 
-\
+== Metriche di progresso dei test
+
+#tabella-paginata(
+  table(
+    columns: (auto, 2fr, 1fr, 1fr),
+    align: center + horizon,
+    fill: (x, y) => if y == 0 { gray.lighten(70%) },
+    [*ID*], [*Nome Metrica*], [*Accettabile*], [*Ottimo*],
+
+    [MPD-TS], [Test di Sistema Specificati], [$100%$], [$100%$],
+    [MPD-TE], [Test di Sistema Eseguiti], [$100%$], [$100%$],
+    [MPD-TP], [Test di Sistema Superati], [$100%$], [$100%$],
+  ),
+  [Metriche per misurare il progresso dei test.],
+  label-id: "tab-qual-progresso-test",
+)
 
 = Metodi di testing
 La presente sezione descrive le attività di testing adottate nel progetto e le metriche utilizzate per valutare l'efficacia del processo di verifica.
@@ -474,7 +517,7 @@ I codici per descrivere gli stati dei test sono i seguenti:
 == Copertura del codice
 La copertura del codice (detta anche *Code Coverage*) misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici. Tale metrica consente di valutare il grado di verifica del software ed è direttamente collegata alla metrica *MPC-CC (Code Coverage)*.
 
-Il valore minimo accettabile è fissato all' 80%
+Il valore minimo accettabile è fissato all'*80%*
 
 #let markup = eval.with(mode: "markup")
 
@@ -497,20 +540,19 @@ Il valore minimo accettabile è fissato all' 80%
 }
 
 /*
-  Crea una tabella per mostrare i test 
+  Crea una tabella per mostrare i test
 */
 #let crea-tabella = (dati, caption, label-id) => {
   tabella-paginata(
     table(
       columns: (1fr, 2.5fr, 2.5fr, 0.7fr),
       align: (x, y) => (
-        if x == 0 or x == 3 { center + horizon } 
-        else { start + horizon }
+        if x == 0 or x == 3 { center + horizon } else { start + horizon }
       ),
       inset: 8pt,
       fill: (x, y) => if y == 0 { gray.lighten(70%) },
       [*Codice*], [*Descrizione*], [*Valore atteso*], [*Stato*],
-      ..dati
+      ..dati,
     ),
     caption,
     label-id: label-id,
@@ -537,9 +579,9 @@ Si noti che le sezioni seguenti suddividono i test di unità per microservizio /
   [*#tu-name*]
 }
 
-#let tabella-TU-backend      = crea-dati-tabella(tu, LISTA-TU, "Backend")
-#let tabella-TU-frontend     = crea-dati-tabella(tu, LISTA-TU, "Frontend")
-#let tabella-TU-gateway      = crea-dati-tabella(tu, LISTA-TU, "Gateway")
+#let tabella-TU-backend = crea-dati-tabella(tu, LISTA-TU, "Backend")
+#let tabella-TU-frontend = crea-dati-tabella(tu, LISTA-TU, "Frontend")
+#let tabella-TU-gateway = crea-dati-tabella(tu, LISTA-TU, "Gateway")
 #let tabella-TU-dataconsumer = crea-dati-tabella(tu, LISTA-TU, "DataConsumer")
 
 #show "_": it => it + h(0pt, weak: true)
@@ -548,7 +590,7 @@ Si noti che le sezioni seguenti suddividono i test di unità per microservizio /
 Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Cloud Backend*.
 
 #crea-tabella(
-  tabella-TU-backend, 
+  tabella-TU-backend,
   [Test di unità per Cloud Backend con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-backend",
 )
@@ -557,7 +599,7 @@ Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Clo
 Di seguito si riporta la lista di #gloss[test unitari] per il front-end della dashboard.
 
 #crea-tabella(
-  tabella-TU-frontend, 
+  tabella-TU-frontend,
   [Test di unità per Cloud Frontend con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-frontend",
 )
@@ -566,7 +608,7 @@ Di seguito si riporta la lista di #gloss[test unitari] per il front-end della da
 Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Gateway Simulator*.
 
 #crea-tabella(
-  tabella-TU-gateway, 
+  tabella-TU-gateway,
   [Test di unità per Gateway Simulator con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-gw-simulator",
 )
@@ -575,7 +617,7 @@ Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Gat
 Di seguito si riporta la lista di #gloss[test unitari] per il microservizio *Data Consumer*.
 
 #crea-tabella(
-  tabella-TU-dataconsumer, 
+  tabella-TU-dataconsumer,
   [Test di unità per Data Consumer con descrizione, valore atteso e stato di implementazione],
   "tab-tu-cloud-backend",
 )
@@ -596,8 +638,8 @@ I #gloss[test d'integrazione] verificano il corretto comportamento delle interaz
   [*#ti-name*]
 }
 
-#let tabella-TI-dashboard    = crea-dati-tabella(ti, LISTA-TI, "Dashboard")
-#let tabella-TI-gateway      = crea-dati-tabella(ti, LISTA-TI, "Gateway")
+#let tabella-TI-dashboard = crea-dati-tabella(ti, LISTA-TI, "Dashboard")
+#let tabella-TI-gateway = crea-dati-tabella(ti, LISTA-TI, "Gateway")
 #let tabella-TI-dataconsumer = crea-dati-tabella(ti, LISTA-TI, "DataConsumer")
 
 === Test di integrazione per Cloud Backend
@@ -606,7 +648,7 @@ Di seguito si riporta la lista di #gloss[test d'integrazione] per il microserviz
 #crea-tabella(
   tabella-TI-dashboard,
   [Test d'integrazione per Cloud Backend con descrizione, valore atteso e stato di implementazione],
-  "tab-ti-dashboard"
+  "tab-ti-dashboard",
 )
 
 === Test di integrazione per Gateway Simulator
@@ -615,7 +657,7 @@ Di seguito si riporta la lista di #gloss[test d'integrazione] per il microserviz
 #crea-tabella(
   tabella-TI-gateway,
   [Test d'integrazione per Gateway Simulator con descrizione, valore atteso e stato di implementazione],
-  "tab-ti-gateway"
+  "tab-ti-gateway",
 )
 
 === Test di integrazione per Data Consumer
@@ -624,7 +666,7 @@ Di seguito si riporta la lista di #gloss[test d'integrazione] per il microserviz
 #crea-tabella(
   tabella-TI-dataconsumer,
   [Test d'integrazione per Data Consumer con descrizione, valore atteso e stato di implementazione],
-  "tab-ti-dataconsumer"
+  "tab-ti-dataconsumer",
 )
 
 
@@ -793,17 +835,6 @@ Essi coprono l'insieme dei requisiti funzionali definiti nel capitolato.
 
 #pagebreak()
 == Tracciamento test funzionali <tracciamento-test-funzionali>
-/*
-NON TOCCARE
-*/
-
-
-// #rf-counter.update(0)
-// #ts-counter.update(1)
-
-/*
-Non usare questa tabella usare lista sopra
-*/
 
 === Tracciamento TS -- RF <tracciamento-ts-rf>
 Di seguito, si esegue il tracciamento assegnando a ogni test di sistema (TS) il relativo requisito funzionale (RF):
@@ -875,14 +906,16 @@ Nella tabella sottostante il singolo test di accettazione verrà associato ad un
   label-id: "tab-test-accettazione",
 )
 
-= Cruscotto di valutazione // aka DASHBOARD
+= Cruscotto di valutazione
 
 In questa sezione vengono presentate le misurazioni raccolte negli sprint compresi tra l'aggiudicazione del capitolato e il raggiungimento della RTB.
 Le metriche sono state rilevate a ogni sprint e vengono qui riportate tramite tabelle riepilogative, grafici di andamento e relativa interpretazione qualitativa.
 
 L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttività del team, individuando eventuali scostamenti rispetto alla pianificazione.
 
-== MPC-PV e MPC-EV: _Planned Value_ e _Earned Value_
+Si noti che ai fini di questo documento, lo *sprint 10* si considera appartenente alla #gloss[Product Baseline] (PB), in quanto il cruscotto #gloss[Piano di Qualifica] appartenente alla #gloss[Requirements and Technology Baseline] (RTB) mostra le misurazioni delle metriche dallo sprint 1 allo sprint 9, inclusi.
+
+== MPC-PV e MPC-EV: _Planned Value_ ed _Earned Value_
 
 #tabella-paginata(
   table(
@@ -892,43 +925,62 @@ L'obiettivo del cruscotto è monitorare l'andamento di costi, tempi e produttivi
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[PV (€)]],
       [#text(fill: white, weight: "bold")[EV (€)]],
       [#text(fill: white, weight: "bold")[PV acc. (€)]],
       [#text(fill: white, weight: "bold")[EV acc. (€)]],
     ),
-    [Sprint 1], [315,00], [242,31], [315,00], [242,31],
-    [Sprint 2], [240,00], [240,00], [555,00], [482,31],
-    [Sprint 3], [120,00], [144,00], [675,00], [626,31],
-    [Sprint 4], [290,00], [290,00], [965,00], [916,31],
-    [Sprint 5], [200,00], [250,00], [1.165,00], [1.166,31],
-    [Sprint 6], [345,00], [366,56], [1.510,00], [1.532,87],
-    [Sprint 7], [260,00], [260,00], [1.770,00], [1.792,87],
-    [Sprint 8], [445,00], [519,17], [2.215,00], [2.312,04],
-    [Sprint 9], [895,00], [842,35], [3.110,00], [3.154,39],
+    [Sprint 1], [390,00], [292,50], [390,00], [292,50],
+    [Sprint 2], [290,00], [120,83], [680,00], [413,33],
+    [Sprint 3], [120,00], [264,00], [800,00], [677,33],
+    [Sprint 4], [290,00], [290,00], [1.090,00], [967,33],
+    [Sprint 5], [275,00], [450,00], [1.365,00], [1.417,33],
+    [Sprint 6], [395,00], [373,06], [1.760,00], [1.790,39],
+    [Sprint 7], [435,00], [460,59], [2.195,00], [2.250,98],
+    [Sprint 8], [445,00], [1.260,83], [2.640,00], [3.511,81],
+    [Sprint 9], [895,00], [386,08], [3.535,00], [3.897,89],
+    [Sprint 10], [435,00], [1.344,55], [3.970,00], [5.242,43],
+    [Sprint 11], [1.560,00], [1.720,59], [5.530,00], [6.963,02],
+    [Sprint 12], [1.300,00], [1.300,00], [6.830,00], [8.263,02],
+    [Sprint 13], [1.200,00], [1.136,00], [8.030,00], [9.399,02],
+    [Sprint 14], [1.125,00], [950,70], [9.155,00], [10.349,73],
+    [Sprint 15], [1.045,00], [801,17], [10.200,00], [11.150,89],
+    [Sprint 16], [925,00], [1.427,72], [11.125,00], [12.578,61],
+    [Sprint 17], [1.240,00], [209,58], [12.365,00], [12.788,19],
   ),
-  [Valori di PV e EV per sprint],
+  [Valori di PV, EV, PV accumulato ed EV accumulato per sprint],
   label-id: "tab-valori-EP-EV",
 )
 
 
 #figure(
-  image("../../assets/metriche/pv-ev.svg"),
+  image("../../assets/metriche/PB/pv-ev.svg"),
   caption: [Valori di PV e EV per sprint],
-)
+) <fig-pv-ev>
 
+=== RTB (Sprint 1--9)
 Il valore pianificato (PV) mostra un incremento progressivo coerente con l'avanzamento del progetto.
 
-Nel primo sprint l'EV risulta inferiore al PV (€242,31 contro €315,00). A partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (S3, S5, S6, S8), segnale di una produzione di valore superiore alle attese.
+Nel primo sprint l'EV risulta inferiore al PV, ma a partire dallo sprint 3 si osserva un miglioramento delle _performance_, con diversi periodi in cui l'EV supera il PV (Sprint 3--5, 7, 8), segnale di una produzione di valore superiore alle attese.
 
-L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di €3.110,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
+L'EV accumulato raggiunge €3.897.89, superiore al PV accumulato di €3.535,00, indicando un avanzamento complessivamente in anticipo rispetto alla pianificazione.
 
 *Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
 *Soglia ottima:* $"EV" > "PV"$ _rispettata nella maggioranza degli sprint_
 
+=== PB (Sprint 10--17)
+In questo frangente temporale, il PV mostra un incremento più ripido rispetto a quello osservato durante l'RTB, poiché sono state compiute meno ore di "palestra" e molte più ore produttive, tra progettazione, codifica e verifica del prodotto effettivo.
 
-== MPC-AC e MPC-ETC: _Actual Cost_ e _Estimate To Complete_
+L'EV risulta leggermente inferiore al PV negli sprint 13, 14 e 15 a causa di una pianificazione troppo ottimistica del lavoro da svolgere. Ciononostante, tra lo sprint 10 e 16, l'EV accumulato è consistentemente superiore al PV accumulato, in quanto nello sprint 10 l'EV è stato pari a circa il triplo del PV: perciò, l'impatto degli sprint in cui l'EV è inferiore al PV è stato assorbito dallo sprint 10.
+
+L'EV cumulativo raggiunge €12.788,19 alla fine della PB, risultando leggermente superiore (+3,42%) al PV cumulativo di €12.365,00.
+
+*Soglia accettabile:* $"PV" > 0€$ _sempre rispettata_. \
+*Soglia ottima:* $"EV" > "PV"$ _sempre rispettata, soprattutto tra sprint 10 e 16_
+
+
+== MPC-AC e MPC-ETC rispetto a MPC-EAC: _Actual Cost_ ed _Estimate To Complete_ rispetto a _Estimate At Completion_
 
 #tabella-paginata(
   table(
@@ -938,36 +990,45 @@ L'EV accumulato raggiunge €3.154,39, leggermente superiore al PV accumulato di
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[AC (€)]],
       [#text(fill: white, weight: "bold")[AC acc. (€)]],
-      [#text(fill: white, weight: "bold")[ETC (€)]],
       [#text(fill: white, weight: "bold")[EAC (€)]],
+      [#text(fill: white, weight: "bold")[ETC (€)]],
     ),
-    [Sprint 1], [240,00], [240,00], [12.611,43], [12.851,43],
-    [Sprint 2], [240,00], [480,00], [12.432,92], [12.912,92],
-    [Sprint 3], [150,00], [630,00], [12.421,49], [13.051,49],
-    [Sprint 4], [290,00], [920,00], [12.107,28], [13.027,28],
-    [Sprint 5], [230,00], [1.150,00], [11.643,58], [12.793,58],
-    [Sprint 6], [365,00], [1.515,00], [11.308,74], [12.823,74],
-    [Sprint 7], [260,00], [1.775,00], [11.070,67], [12.845,67],
-    [Sprint 8], [520,00], [2.295,00], [10.584,39], [12.879,39],
-    [Sprint 9], [830,00], [3.125,00], [9.729,11], [12.854,11],
+    [Sprint 1], [290,00], [290,00], [12.851,10], [12.561,10],
+    [Sprint 2], [290,00], [580,00], [12.912,00], [12.332,00],
+    [Sprint 3], [150,00], [730,00], [13.051,62], [12.321,62],
+    [Sprint 4], [465,00], [1.195,00], [13.027,01], [11.832,01],
+    [Sprint 5], [320,00], [1.515,00], [12.793,86], [11.278,86],
+    [Sprint 6], [415,00], [1.930,00], [12.823,49], [10.893,49],
+    [Sprint 7], [375,00], [2.305,00], [12.845,34], [10.540,34],
+    [Sprint 8], [495,00], [2.800,00], [12.879,58], [10.079,58],
+    [Sprint 9], [830,00], [3.630,00], [12.784,72], [9.154,72],
+    [Sprint 10], [415,00], [4.045,00], [12.635,34], [8.590,34],
+    [Sprint 11], [1.640,00], [5.685,00], [12.659,22], [6.974,22],
+    [Sprint 12], [1.480,00], [7.165,00], [12.536,40], [5.371,40],
+    [Sprint 13], [865,00], [8.030,00], [12.533,68], [4.503,68],
+    [Sprint 14], [1.275,00], [9.305,00], [12.641,21], [3.336,21],
+    [Sprint 15], [1.315,00], [10.620,00], [12.641,68], [2.021,68],
+    [Sprint 16], [985,00], [11.605,00], [12.685,81], [1.080,81],
+    [Sprint 17], [765,00], [12.370,00], [12.671,09], [301,09],
   ),
   [Valori di AC, ETC e EAC per sprint],
   label-id: "tab-valori-AC-ETC-EAC",
 )
 
 #figure(
-  image("../../assets/metriche/ac-etc.svg"),
+  image("../../assets/metriche/PB/ac-etc.svg"),
   caption: [Valori di AC, ETC e EAC per sprint],
 )
 
-Il costo effettivo sostenuto (AC) cresce progressivamente fino a raggiungere €3.125,00 allo sprint 9. Il valore massimo di spesa per singolo sprint si registra nello sprint 9 (€830,00), in corrispondenza del picco di attività operative.
+=== RTB (Sprint 1--9)
+Il costo effettivo sostenuto (AC) cresce progressivamente fino a raggiungere €3.630,00 allo sprint 9. Il valore massimo di spesa per singolo sprint si registra nello sprint 9 (€830,00), in corrispondenza del picco di attività operative.
 
-L'ETC mostra una riduzione costante nel tempo, passando da €12.611,43 a €9.729,11, a conferma del regolare avanzamento del progetto verso il completamento.
+L'ETC mostra una riduzione quasi costante nel tempo, passando da €12.561,10 a €9.154,72, a conferma del regolare avanzamento del progetto verso il completamento.
 
-Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore rispetto al BAC di €12.975,00, con uno scostamento positivo di circa lo 0,9%.
+Il valore di EAC si stabilizza attorno a €12.784,72, risultando inferiore rispetto al BAC dal valore di €12.925,00.
 
 *Soglia accettabile:* $"AC" > 0€$ _sempre rispettata_. \
 *Soglia ottima:* $"AC" lt.eq "EAC"$ _sempre rispettata_.
@@ -975,8 +1036,14 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
 *Soglia accettabile:* $"ETC" gt.eq 0$  _sempre rispettata_. \
 *Soglia ottima:* $"ETC" gt.eq 0$  _sempre rispettata_.
 
-== MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
+=== PB (Sprint 10--17)
+Tra lo sprint 9 e 10, l'AC accumulato rimane stabile in quanto il primo sprint della PB è stato dedicato ad attività di "palestra" non rendicontate, per poi crescere più rapidamente dei primi 9 sprint, raggiungendo allo sprint 17 il totale finale di €12.370,00. L'AC ha raggiunto il suo picco di €1.640,00 durante lo sprint 11, in concomitanza con l'inizio delle attività di codifica.
 
+L'ETC mostra una riduzione costante, passando da €9.154,72 allo sprint 9 a €301,09 allo sprint 17, riconfermando il regolare avanzamento del progetto.
+
+Il valore di EAC dopo lievi oscillazioni tra €12.533,68 e €12.685,81 si è stabilizzato al valore di €12.671,09, risultando inferiore al BAC finale di €12.725,00.
+
+== MPC-CV e MPC-SV: _Cost Variance_ e _Schedule Variance_
 
 #tabella-paginata(
   table(
@@ -986,41 +1053,55 @@ Il valore di EAC si stabilizza attorno a €12.854,11, risultando inferiore risp
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[CV (€)]],
       [#text(fill: white, weight: "bold")[SV (€)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1], [+2,31], [-72,69], [Ritardo schedulazione],
-    [Sprint 2], [0,00], [0,00], [In linea],
-    [Sprint 3], [-6,00], [+24,00], [Lieve costo extra],
-    [Sprint 4], [0,00], [0,00], [In linea],
-    [Sprint 5], [+20,00], [+50,00], [Sotto budget e in anticipo],
-    [Sprint 6], [+1,56], [+21,56], [Sotto budget e in anticipo],
-    [Sprint 7], [0,00], [0,00], [In linea],
-    [Sprint 8], [-0,83], [+74,17], [In anticipo (costo ~in linea)],
-    [Sprint 9], [+12,35], [-52,65], [Ritardo schedulazione],
+    [Sprint 1], [+20,31], [-97,50], [Ritardo schedulazione],
+    [Sprint 2], [ 0,00], [ 0,00], [In linea],
+    [Sprint 3], [-16,00], [+24,00], [Sopra budget, ma in anticipo],
+    [Sprint 4], [-20,00], [+14,55], [Sopra budget, ma in anticipo],
+    [Sprint 5], [-7,78], [+75,00], [Sopra budget, ma in anticipo],
+    [Sprint 6], [+1,56], [+21,94], [Sotto budget e in anticipo],
+    [Sprint 7], [ 0,00], [0,00], [In linea],
+    [Sprint 8], [+17,00], [+49,44], [In anticipo (costo in linea)],
+    [Sprint 9], [+5,20], [-52,65], [Lievemente sopra budget, ritardo schedulazione],
+    [Sprint 10], [+13,12], [0,00], [Lievemente sopra budget, ritardo schedulazione],
+    [Sprint 11], [+8,02], [+14,71], [Sopra budget, in anticipo],
+    [Sprint 12], [+2,00], [+56,00], [Sopra budget, grande anticipo],
+    [Sprint 13], [ 0,00], [+38,00], [Anticipo nella schedulazione],
+    [Sprint 14], [+11,14], [+18,45], [Sotto budget, in anticipo],
+    [Sprint 15], [+2,00], [+28,67], [Lievemente sopra budget, in anticipo],
+    [Sprint 16], [+1,00], [+40,22], [In anticipo],
+    [Sprint 17], [+9,89], [+6,48], [Lievemente sopra budget e in anticipo],
   ),
   [Cost Variance e Schedule Variance per sprint],
   label-id: "tab-CS-SV",
 )
 
 #figure(
-  image("../../assets/metriche/cv-sv.svg"),
+  image("../../assets/metriche/PB/cv-sv.svg"),
   caption: [Cost Variance e Schedule Variance per sprint],
 )
 
-- *Cost Variance (CV)*: La CV risulta prevalentemente positiva o nulla, indicando un buon controllo dei costi. Gli unici scostamenti negativi si verificano negli sprint 3 (-€6,00) e 8 (-€0,83), entrambi di entità trascurabile. Lo sprint 5 registra il miglior risultato economico (+€20,00), dove vengono spese maggiori ore di analista coerentemente coincidenti con la scrittura della documentazione.
+=== RTB (Sprint 1--9)
+- *Cost Variance (CV)*: La CV risulta prevalentemente positiva o nulla, indicando un buon controllo dei costi. Gli unici scostamenti negativi si verificano negli sprint 3, 4 e 5. Lo sprint 1 registra il miglior risultato economico (+€20,71), sebbene esso presenti il peggior valore di SV di tutto il progetto: in questo caso, si può attribuire questa variabilità all'inesperienza del gruppo all'inizio del progetto.
 
-- *Schedule Variance (SV)*: La SV presenta maggiore variabilità. Lo sprint 1 evidenzia il principale ritardo (-€72,69), attribuibile alla fase iniziale di rodaggio del _team_. Gli sprint intermedi mostrano valori positivi significativi, indicando recupero e anticipo sulla pianificazione. Nello sprint 9 si osserva un nuovo rallentamento (-€52,65), possibile causa i rallentamenti dovuti allo svolgimento di esami e alla precedente preparazione del _team_.
+- *Schedule Variance (SV)*: La SV presenta maggiore variabilità. Lo sprint 1 evidenzia il principale ritardo (-€97,50), attribuibile alla fase iniziale di rodaggio del _team_. Gli sprint intermedi mostrano valori positivi significativi, indicando recupero e anticipo sulla pianificazione. Nello sprint 9 si osserva un nuovo rallentamento (-€52,65), possibilmente a causa dei rallentamenti dovuti allo svolgimento di esami e alla precedente preparazione del _team_.
 
 *Soglia accettabile CV:* $"CV" > 0$ _violata in 2 sprint su 9 (scostamenti minimi)_ \
-*Soglia accettabile SV:* $"SV" gt.eq 0$ _violata negli sprint 1 e 9_
+*Soglia accettabile SV:* $"SV" >= 0$ _violata negli sprint 1 e 9_
 
+=== PB (Sprint 10--17)
+- *Cost Variance (CV)*: Dopo lo sprint 10, la CV risulta molto meno variabile e sempre in pari o in positivo, a dimostrazione della maggiore esperienza ottenuta dal gruppo nella pianificazione e gestione delle attività. Il valore di CV più alto ottenuto in questo periodo è allo sprint 10, con CV pari a +€13,12, in concomitanza con l'inizio delle attività di codifica.
 
-== MPC-BAC e MPC-EAC: _Budget At Completion_ e _Estimate At Completion_
+- *Schedule Variance (SV)*: Dopo lo sprint 10, la SV presenta valori positivi fluttuanti tra €0,00 (nello sprint 10) e +€56,00 (nello sprint 12).
 
-$ "BAC" = 12.975 € $
+*Soglia accettabile CV:* $"CV" > 0$ _sempre rispettata_ \
+*Soglia accettabile SV:* $"SV" >= 0$ _sempre rispettata_
+
+== MPC-BAC e MPC-EAC: _Budget At Completion_ ed _Estimate At Completion_
 
 #tabella-paginata(
   table(
@@ -1030,38 +1111,55 @@ $ "BAC" = 12.975 € $
     inset: 6pt,
     fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
     table.header(
-      [#text(fill: white, weight: "bold")[sprint]],
+      [#text(fill: white, weight: "bold")[Sprint]],
       [#text(fill: white, weight: "bold")[EAC (€)]],
       [#text(fill: white, weight: "bold")[BAC (€)]],
       [#text(fill: white, weight: "bold")[Stato]],
     ),
-    [Sprint 1], [12.851,43], [12.975,00], [EAC < BAC],
-    [Sprint 2], [12.912,92], [12.975,00], [EAC < BAC],
-    [Sprint 3], [13.051,49], [12.975,00], [EAC > BAC],
-    [Sprint 4], [13.027,28], [12.975,00], [EAC > BAC],
-    [Sprint 5], [12.793,58], [12.975,00], [EAC < BAC],
-    [Sprint 6], [12.823,74], [12.975,00], [EAC < BAC],
-    [Sprint 7], [12.845,67], [12.975,00], [EAC < BAC],
-    [Sprint 8], [12.879,39], [12.975,00], [EAC < BAC],
-    [Sprint 9], [12.854,11], [12.975,00], [EAC < BAC],
+    [Sprint 1], [12.851,10], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 2], [12.912,00], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 3], [13.051,62], [12.975,00], [$"EAC" > "BAC"$],
+    [Sprint 4], [13.027,01], [12.975,00], [$"EAC" > "BAC"$],
+    [Sprint 5], [12.793,86], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 6], [12.823,49], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 7], [12.845,34], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 8], [12.879,58], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 9], [12.784,72], [12.975,00], [$"EAC" < "BAC"$],
+    [Sprint 10], [12.635,34], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 11], [12.659,22], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 12], [12.536,40], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 13], [12.533,68], [12.875,00], [$"EAC" < "BAC"$],
+    [Sprint 14], [12.641,21], [12.725,00], [$"EAC" < "BAC"$],
+    [Sprint 15], [12.641,68], [12.725,00], [$"EAC" < "BAC"$],
+    [Sprint 16], [12.685,81], [12.725,00], [$"EAC" < "BAC"$],
+    [Sprint 17], [12.671,09], [12.725,00], [$"EAC" < "BAC"$],
   ),
   [EAC vs BAC per sprint],
   label-id: "tab-EAC-BAC",
 )
 
 #figure(
-  image("../../assets/metriche/eac-bac.png"),
+  image("../../assets/metriche/PB/eac-bac.svg"),
   caption: [EAC vs BAC per sprint],
 )
 
+=== RTB (Sprint 1--9)
+
 Durante il progetto l'EAC oscilla attorno al BAC, con valori compresi tra €12.793,58 e €13.051,49. Il superamento del BAC si verifica esclusivamente negli sprint 3 e 4; a partire dallo sprint 5 l'EAC rientra stabilmente sotto il budget previsto.
 
-Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una previsione di completamento sotto budget.
+Nel complesso, 7 sprint su 9 presentano EAC inferiore al BAC, indicando una previsione di completamento sotto budget.
 
-*Risparmio stimato finale*: €120,89 (≈ -0,9%)
+*Risparmio stimato finale*: €120,89 (#math.approx -0,9%)
 
-*Soglia accettabile: EAC* $>= 0,95$ x BAC = €12.326,25 _sempre rispettata_
+*Soglia accettabile:* $"EAC">= 0,95 times "BAC"$ _rispettata in 7 sprint su 9_
 
+=== PB (Sprint 10--17)
+
+Tra gli sprint 10 e 13, l'EAC è sceso in seguito al ricalcolo del budget compiuto allo sprint 10, per poi risalire dallo sprint 14, stabilizzandosi a €12.671,09 con una differenza minima dal budget finale stabilito di 12.725,00.
+
+*Risparmio stimato finale*: €53,91 (#math.approx -0,42%)
+
+*Soglia accettabile*: $"EAC">= 0,95 times "BAC"$ _sempre rispettata_
 
 == MPC-TCR: _Task Completion Rate_
 
@@ -1081,34 +1179,54 @@ Nel complesso, 8 sprint su 9 presentano EAC inferiore al BAC, indicando una prev
     ),
     [Sprint 1], [12], [0], [100,0%], [Ottimo],
     [Sprint 2], [11], [0], [100,0%], [Ottimo],
-    [Sprint 3], [10], [1], [90,9%], [Accettabile],
-    [Sprint 4], [11], [0], [100,0%], [Ottimo],
-    [Sprint 5], [11], [0], [100,0%], [Ottimo],
-    [Sprint 6], [11], [1], [91,7%], [Accettabile],
-    [Sprint 7], [8], [2], [80,0%], [Critico],
-    [Sprint 8], [12], [2], [85,7%], [Accettabile],
-    [Sprint 9], [24], [0], [100,0%], [Ottimo],
+    [Sprint 3], [10], [1], [90,0%], [Accettabile],
+    [Sprint 4], [12], [0], [100,0%], [Ottimo],
+    [Sprint 5], [12], [0], [100,0%], [Ottimo],
+    [Sprint 6], [11], [1], [90,9%], [Accettabile],
+    [Sprint 7], [8], [2], [75,0%], [Critico],
+    [Sprint 8], [12], [2], [83,3%], [Critico],
+    [Sprint 9], [25], [1], [96,0%], [Accettabile],
+
+    [Sprint 10], [18], [0], [100,0%], [Ottimo],
+    [Sprint 11], [34], [0], [100,0%], [Ottimo],
+    [Sprint 12], [28], [0], [100,0%], [Ottimo],
+    [Sprint 13], [19], [4], [82,6%], [Critico],
+    [Sprint 14], [28], [6], [88,0%], [Accettabile],
+    [Sprint 15], [19], [3], [86,4%], [Accettabile],
+    [Sprint 16], [30], [7], [86,0%], [Accettabile],
+    [Sprint 17], [14], [0], [100,0%], [Ottimo],
   ),
   [Task Completion Rate per sprint],
   label-id: "tab-TCR",
 )
 
 #figure(
-  image("../../assets/metriche/tcr.svg"),
+  image("../../assets/metriche/PB/tcr.svg"),
   caption: [Task Completion Rate per sprint],
 )
 
-Il TCR risulta ottimo (100%) in 6 sprint su 9.
+=== RTB (Sprint 1--9)
+Il TCR risulta ottimo (100%) in 4 sprint su 9, accettabile ($>=$ 85%) in 3 sprint su 9 e critico ($< 85%$) in 2 sprint su 9.
 
-Le principali flessioni si osservano:
-
-- Sprint 7:  80,0% (unico sotto soglia accettabile)
-- Sprint 8:  85,7%
-- Sprint 3: e 6  circa 91%
+Le principali flessioni si osservano nei seguenti sprint:
+- Sprint 3 e 6:  circa 91%
+- Sprint 7:      80,0% (unico sotto soglia accettabile)
 
 Il recupero completo nello sprint 9 (100% con 24 task completate) dimostra una buona capacità di reazione del team.
 
-*Soglia accettabile:* $"TCR" gt.eq 85%$ _violata solo nello sprint 7_. \
+*Soglia accettabile:* $"TCR" gt.eq 85%$ _violata solo negli sprint 7 e 8_. \
+
+=== PB (Sprint 10--17)
+Su 8 sprint, il TCR risulta ottimo in 3, accettabile in 3 e critico in 2.
+
+Le principali flessioni si osservano nei seguenti sprint:
+- Sprint 13: circa 82,6%
+- Sprint 14: circa 88,0%
+- Sprint 16: circa 86,0%
+
+L'andamento generale della metrica è positivo nella prima metà del periodo analizzato, mentre tra lo sprint 13 e lo sprint 17 si è rilevato un peggioramento del TCR a causa di una serie di ritardi imprevisti nelle attività di codifica e verifica dell'#gloss[MVP].
+
+*Soglia accettabile:* $"TCR" gt.eq 85%$ _violata solo nello sprint 13_. \
 
 
 == MPC-TS: _Task Slippage_
@@ -1129,35 +1247,50 @@ Il recupero completo nello sprint 9 (100% con 24 task completate) dimostra una b
     ),
     [Sprint 1], [12], [0], [0,0%], [Ottimo],
     [Sprint 2], [11], [0], [0,0%], [Ottimo],
-    [Sprint 3], [10], [1], [9,1%], [Accettabile],
-    [Sprint 4], [11], [0], [0,0%], [Ottimo],
-    [Sprint 5], [11], [0], [0,0%], [Ottimo],
-    [Sprint 6], [11], [1], [8,3%], [Accettabile],
-    [Sprint 7], [8], [2], [20,0%], [Critico],
-    [Sprint 8], [12], [2], [14,3%], [Accettabile],
-    [Sprint 9], [24], [0], [0,0%], [Ottimo],
+    [Sprint 3], [10], [1], [10,0%], [Accettabile],
+    [Sprint 4], [12], [0], [0,0%], [Ottimo],
+    [Sprint 5], [12], [0], [0,0%], [Ottimo],
+    [Sprint 6], [11], [1], [9,1%], [Accettabile],
+    [Sprint 7], [8], [1], [12,5%], [Accettabile],
+    [Sprint 8], [12], [2], [16,7%], [Critico],
+    [Sprint 9], [25], [1], [4,0%], [Accettabile],
+
+    [Sprint 10], [18], [0], [0,0%], [Ottimo],
+    [Sprint 11], [34], [0], [0,0%], [Ottimo],
+    [Sprint 12], [28], [0], [0,0%], [Ottimo],
+    [Sprint 13], [19], [3], [15,8%], [Critico],
+    [Sprint 14], [28], [4], [14,3%], [Accettabile],
+    [Sprint 15], [19], [2], [10,5%], [Accettabile],
+    [Sprint 16], [30], [1], [3,3%], [Accettabile],
+    [Sprint 17], [14], [0], [0,0%], [Ottimo],
   ),
   [Task Slippage per sprint],
   label-id: "tab-TS",
 )
 
 #figure(
-  image("../../assets/metriche/ts.svg"),
+  image("../../assets/metriche/PB/ts.svg"),
   caption: [Task Slippage per sprint],
 )
 
+=== RTB (Sprint 1--9)
+
 Il Task Slippage conferma quanto osservato nel TCR:
-- In 6 sprint su 9 il valore è pari a 0%, indicando pieno rispetto delle scadenze
-- Sprint 7 rappresenta il punto critico (20,0%), superando la soglia accettabile
-- Sprint 8 si colloca al limite (14,3%)
-- Sprint 3 e 6 mostrano scostamenti fisiologici contenuti
+- In 4 sprint su 9 il valore è pari a 0%, indicando pieno rispetto delle scadenze.
+- Sprint 7 si colloca al limite (12,5%), mentre sprint 8 è oltre la soglia accettabile (> 15%), in concomitanza con la riduzione nel TCR nei medesimi sprint.
+- Sprint 3 e 6 mostrano scostamenti fisiologici contenuti.
 
 *Soglia accettabile:* $"TS" lt.eq 15%$ _violata solo nello sprint 7_. \
 
-#pagebreak()
+=== PB (Sprint 10--17)
+Anche in questo caso, il TS conferma quanto si può osservare nel TCR:
+- Dallo sprint 10 allo sprint 12, si ha il caso ottimo (0% TS).
+- Nello sprint 13, la metrica supera la soglia accettabile (> 15%), per poi diminuire gradualmente fino a tornare alla situazione ottima nello sprint 17, mostrando in maniera tangibile il ritardo compiuto nel completamento delle task, il quale ha portato la metrica TCR a un valore intorno all'85%.
+
+*Soglia accettabile:* $"TS" lt.eq 15%$ _violata solo nello sprint 13_. \
+
 
 == MPC-PRCT: _Pull Request Cycle Time_
-
 
 #figure(
   table(
@@ -1171,23 +1304,34 @@ Il Task Slippage conferma quanto osservato nel TCR:
       [#text(fill: white, weight: "bold")[PRCT Medio (ore)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1], [18.6], [Ottimo],
-    [Sprint 2], [0], [Ottimo],
+    [Sprint 1], [18,6], [Ottimo],
+    [Sprint 2], [0], [Nessuna PR svolta],
     [Sprint 3], [13], [Ottimo],
-    [Sprint 4], [0], [Ottimo],
-    [Sprint 5], [1.7], [Ottimo],
+    [Sprint 4], [0], [Nessuna PR svolta],
+    [Sprint 5], [1,7], [Ottimo],
     [Sprint 6], [16], [Ottimo],
-    [Sprint 7], [0], [Ottimo],
-    [Sprint 8], [40.5], [Accettabile],
-    [Sprint 9], [19.6], [Ottimo],
+    [Sprint 7], [0], [Nessuna PR svolta],
+    [Sprint 8], [40,5], [Accettabile],
+    [Sprint 9], [19,6], [Ottimo],
+
+    [Sprint 10], [11,5], [Ottimo],
+    [Sprint 11], [8], [Ottimo],
+    [Sprint 12], [30,7], [Accettabile],
+    [Sprint 13], [14,4], [Ottimo],
+    [Sprint 14], [63,6], [Critico],
+    [Sprint 15], [25,4], [Accettabile],
+    [Sprint 16], [48,3], [Critico],
+    [Sprint 17], [14,6], [Ottimo],
   ),
   caption: [Pull Request Cycle Time per sprint],
 )
 
 #figure(
-  image("../../assets/metriche/prct.svg"),
-  caption: [Task Slippage per sprint],
+  image("../../assets/metriche/PB/prct.svg"),
+  caption: [Pull Request Cycle Time per sprint],
 )
+
+=== RTB (Sprint 1--9)
 
 Il _Pull Request Cycle Time_ medio risulta complessivamente contenuto per la quasi totalità degli sprint, indicando un processo di revisione rapido ed efficace.
 
@@ -1195,10 +1339,18 @@ Valori moderatamente più elevati si osservano negli sprint 1 (18,6 ore), 6 (16 
 
 Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
 
-*Soglia accettabile*: PRCT $gt.eq 48$ ore _sempre rispettata_ \
-*Soglia ottima*: PRCT $gt.eq 24$ ore
+*Soglia accettabile*: PRCT $gt.eq 48$ ore _sempre rispettata_. \
+*Soglia ottima*: PRCT $gt.eq 24$ ore _rispettata in 8 su sprint 9_.
 
-== MPC-WSD Distribuzione carico ore <mpc-wsd>
+=== PB (Sprint 10--17)
+Durante la PB, il PRCT medio è aumentato, superando la soglia ottimale negli sprint 12 (30,7 ore) e 15 (25,4 ore) e superando la soglia accettabile negli sprint 14 (63,6 ore) e 16 (48,3 ore).
+
+Questo aumento nella metrica dimostra la motivazione dietro l'aumento di TS e TCR riscontrato dallo sprint 13 in poi, in quanto la lentezza nella chiusura delle #gloss[pull request] è stata una delle cause nel ritardo nella chiusura delle task da svolgere durante gli sprint finali.
+
+*Soglia accettabile*: PRCT $gt.eq 48$ ore _rispettata in 6 sprint su 8_. \
+*Soglia ottima*: PRCT $gt.eq 24$ ore _rispettata in 4 su sprint 8_.
+
+== MPC-WD: Distribuzione carico ore <mpc-wd>
 
 #figure(
   table(
@@ -1212,25 +1364,36 @@ Nel complesso il _trend_ conferma una buona efficienza collaborativa del _team_.
       [#text(fill: white, weight: "bold")[STD DEV (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1], [5.35], [Ottimo],
-    [Sprint 2], [5.35], [Ottimo],
-    [Sprint 3], [11.87], [Critico],
-    [Sprint 4], [10.88], [Critico],
-    [Sprint 5], [9.37], [Accettabile],
-    [Sprint 6], [8.13], [Accettabile],
-    [Sprint 7], [8.99], [Accettabile],
-    [Sprint 8], [7.06], [Accettabile],
-    [Sprint 9], [8.28], [Accettabile],
+    [Sprint 1], [5,35], [Ottimo],
+    [Sprint 2], [5,35], [Ottimo],
+    [Sprint 3], [11,78], [Critico],
+    [Sprint 4], [10,88], [Critico],
+    [Sprint 5], [9,37], [Accettabile],
+    [Sprint 6], [8,13], [Accettabile],
+    [Sprint 7], [7,06], [Accettabile],
+    [Sprint 8], [7,06], [Accettabile],
+    [Sprint 9], [8,28], [Accettabile],
+    [Sprint 10], [6,81], [Accettabile],
+    [Sprint 11], [7,75], [Accettabile],
+    [Sprint 12], [3,50], [Ottimo],
+    [Sprint 13], [3,51], [Ottimo],
+    [Sprint 14], [6,24], [Ottimo],
+    [Sprint 15], [5,63], [Ottimo],
+    [Sprint 16], [7,93], [Accettabile],
+    [Sprint 17], [10,17], [Critico],
   ),
   caption: [Distribuzione del carico di lavoro per sprint],
 )
 
-#figure(
-  image("../../assets/metriche/wsd.svg"),
-  caption: [wsd per sprint],
-)
 
-La metrica MPC-WD evidenzia una distribuzione del carico di lavoro generalmente equilibrata nella maggior parte degli sprint.
+
+#figure(
+  image("../../assets/metriche/PB/wd.svg"),
+  caption: [Distribuzione del carico di lavoro per sprint],
+) <fig-mpc-wd>
+
+=== RTB (Sprint 1--9)
+La metrica WD evidenzia una distribuzione del carico di lavoro generalmente equilibrata nella maggior parte degli sprint.
 
 Nei primi due sprint la deviazione standard percentuale risulta inferiore alla soglia ottima ($lt.eq$ 6,30%), indicando una ripartizione particolarmente uniforme delle attività.
 
@@ -1240,35 +1403,108 @@ A partire dallo sprint 5 la metrica rientra stabilmente entro i limiti accettabi
 
 Nel complesso, le criticità risultano circoscritte e correttamente assorbite nel prosieguo del progetto.
 
-Soglia ottima: MPC-WD $lt.eq$ 6,30%
-Soglia accettabile: MPC-WD $lt.eq$ 10%
+*Soglia accettabile*: WD $lt.eq$ 10% _rispettata in 7 sprint su 9_. \
+*Soglia ottima*: WD $lt.eq$ 6,30% _rispettata in 2 sprint su 9_.
+
+=== PB (Sprint 10--17)
+Dallo sprint 10 in poi, la metrica WD mostra una distribuzione pressoché equa del carico di lavoro.
+
+La @fig-mpc-wd mostra che dallo sprint 12 al 15, ovvero in pieno periodo di progettazione e codifica dell'MVP, la distribuzione del carico di lavoro risiede entro la soglia ottimale.
+
+Perciò, si può evincere che tra le cause dei ritardi avvenuti negli sprint finali non vi sia la cattiva distribuzione del carico di lavoro: è quindi ragionevole pensare che tali ritardi siano stati causati da una sottostima della mole di lavoro da dover compiere e ripartire tra lo sprint 13 e il 17.
+
+*Soglia accettabile*: WD $lt.eq$ 10% _rispettata in 8 sprint su 8_. \
+*Soglia ottima*: WD $lt.eq$ 6,30% _rispettata in 4 sprint su 8_.
+
 
 == MPC-IG: Indice di Gulpease
 
 #figure(
-  image("../../assets/metriche/gulpease.svg"),
-  caption: [Indice di Gulpease per sprint],
+  table(
+    columns: (auto, auto, auto, auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      text(fill: white, weight: "bold")[Sprint],
+      text(fill: white, weight: "bold")[AdR],
+      text(fill: white, weight: "bold")[PdQ],
+      text(fill: white, weight: "bold")[NdP],
+      text(fill: white, weight: "bold")[PdP],
+      text(fill: white, weight: "bold")[Glossario],
+      text(fill: white, weight: "bold")[ST],
+      text(fill: white, weight: "bold")[MU],
+    ),
+    [Sprint 1], [*90,0*], [60,0], [*80,0*], [73,0], [*85,0*], [-], [-],
+    [Sprint 2], [*91,5*], [72,0], [74,5], [72,5], [*85,0*], [-], [-],
+    [Sprint 3], [64,5], [72,0], [72,0], [73,0], [*84,0*], [-], [-],
+    [Sprint 4], [66,0], [72,0], [71,0], [73,0], [*83,0*], [-], [-],
+    [Sprint 5], [68,0], [69,5], [71,0], [70,0], [*82,0*], [-], [-],
+    [Sprint 6], [68,0], [68,0], [71,0], [73,0], [*82,0*], [-], [-],
+    [Sprint 7], [70,0], [66,0], [71,0], [73,0], [*82,0*], [-], [-],
+    [Sprint 8], [71,0], [63,0], [73,0], [73,0], [*83,0*], [-], [-],
+    [Sprint 9], [72,5], [63,0], [73,0], [73,5], [*83,0*], [-], [-],
+
+    [Sprint 10], [75,0], [63,0], [73,0], [73,5], [*83,0*], [*90,0*], [-],
+    [Sprint 11], [75,0], [63,0], [72,0], [73,5], [*81,0*], [*91,5*], [-],
+    [Sprint 12], [75,0], [64,0], [72,0], [73,5], [*81,0*], [*85,0*], [-],
+    [Sprint 13], [75,0], [63,0], [72,0], [73,5], [*80,0*], [79,0], [-],
+    [Sprint 14], [75,0], [61,0], [72,0], [75,0], [*81,0*], [78,0], [-],
+    [Sprint 15], [75,0], [68,0], [71,0], [75,0], [*82,0*], [75,0], [-],
+    [Sprint 16], [75,0], [67,0], [71,0], [75,0], [*82,0*], [72,0], [*85,0*],
+    [Sprint 17], [75,0], [69,0], [71,0], [75,0], [*81,0*], [77,0], [*81,0*],
+  ),
+  caption: [Indice di Gulpease per documento per sprint],
 )
 
-Nel complesso il _team_ ha mantenuto una buona attenzione alla leggibilità dei documenti prodotti. Il *glossario* e l'*Analisi dei Requisiti* (AdR) si collocano stabilmente in prossimità o al di sopra della soglia ottima ($>= 60$), indicando un'elevata comprensibilità dei testi.
+Si noti che i valori ottimi nella tabella sono segnati in *grassetto*, mentre i valori nulli sono segnati con un trattino.
 
-L'AdR evidenzia un calo significativo tra lo sprint 1 e lo sprint 3 (da 90 a 65), riconducibile all'inserimento massivo di contenuti tecnici, coincidente con l'avvio della redazione dei primi casi d'uso. Successivamente il valore recupera progressivamente fino a 72,3.
+#figure(
+  image("../../assets/metriche/PB/gulpease.svg"),
+  caption: [Indice di Gulpease per documento per sprint],
+)
+
+=== RTB (Sprint 1--9)
+Nel complesso il _team_ ha mantenuto una buona attenzione alla leggibilità dei documenti prodotti. Il *glossario* e l'#gloss[Analisi dei Requisiti] (AdR) si collocano stabilmente in prossimità o al di sopra della soglia ottima ($>= 80$), indicando la loro elevata comprensibilità.
+
+L'AdR evidenzia un calo significativo tra lo sprint 1 e lo sprint 3 (da 90 a 65), riconducibile all'inserimento massivo di contenuti tecnici, coincidente con l'avvio della redazione dei primi casi d'uso. Successivamente il valore recupera progressivamente fino a 72,5.
 
 Il Piano di Qualifica (PdQ) mostra un andamento leggermente decrescente (da 72 a 63), pur rimanendo sempre superiore alla soglia minima di accettabilità ($>= 40$).
 
-Le Norme di Progetto (NdP) si mantengono invece stabili nell'intervallo 71-73, valori coerenti con la natura normativa del documento, tipicamente meno scorrevole rispetto ai documenti descrittivi.
+Le Norme di Progetto (NdP) si mantengono invece stabili nell'intervallo 71--73, valori coerenti con la natura normativa del documento, tipicamente meno scorrevole rispetto ai documenti descrittivi.
 
-Soglia accettabile: IG $>= 40$ _rispettata_
-Soglia ottima: IG $>= 60$ _rispettata_
+*Soglia accettabile*: $"IG" >= 40$ _rispettata_ \
+*Soglia ottima*: $"IG" >= 60$ _rispettata_
 
+=== PB (Sprint 10--17)
+Nel complesso, il gruppo ha continuato a mantenere una buona leggibilità su tutti i documenti prodotto. Si nota che i documenti più leggibili rimangono l'#gloss[Analisi dei Requisiti], il *glossario* e il *Manuale Utente* aggiunto a partire dallo sprint 15.
+
+L'AdR è rimasta stabile, in quanto non vi sono state apportate modifiche significative.
+
+Il PdQ mostra un'oscillazione tra 63 e 69, valore su cui si è stabilizzato allo sprint 17, al fine di renderlo il più leggibile possibile.
+
+L'NdP ha subito un lieve calo da 72 a 71, in quanto sono state aggiunte nuove normative relative alla codifica che hanno leggermente abbassato il grado di leggibilità del documento.
+
+Il PdP ha subito un incremento a 75, in quanto sono state applicate ad esso modifiche per renderlo più leggibile.
+
+Il Glossario ha subito oscillazioni nel range 80--83 per poi stabilizzarsi a 81 in quanto sono stati aggiunti numerosi termini tecnici con grado di leggibilità più basso.
+
+La Specifica Tecnica (ST) è stata aggiunta alla _repository_ durante lo sprint 10 con un indice di Gulpease di 90, in quanto le prime sezioni aggiunte al documento presentano contenuti semplici relativamente alle tecnologie usate. Man mano che il documento è stato ampliato aggiungendo dettagli tecnici, questi hanno influito negativamente sull'indice, portandolo a 77 durante lo sprint 17.
+
+Infine, il Manuale Utente (MU) è stato aggiunto alla _repository_ durante lo sprint 16 con indice di Gulpease a 85, in quanto le prime sezioni aggiunte al documento presentano descrizioni semplici del sistema ad alto livello e istruzioni rivolte agli utenti. L'indice si è abbassato a 81 nello sprint 17 una volta aggiunti al documento contenuti tecnici rivolti agli sviluppatori.
+
+*Soglia accettabile*: $"IG" >= 40$ _rispettata_ \
+*Soglia ottima*: $"IG" >= 60$ _rispettata_
 
 == MPC-CO: Correttezza Ortografica
 
 #figure(
-  image("../../assets/metriche/errori.svg"),
-  caption: [Numero di errori ortografici per documento],
+  image("../../assets/metriche/PB/errori.svg"),
+  caption: [Numero di errori ortografici per documento per sprint],
 )
 
+=== RTB (Sprint 1--9)
 Il grafico evidenzia i primi sprint caratterizzati da una gestione non ancora ottimale degli errori ortografici. Infatti nei primi sprint (S1-S4) si registrano infatti picchi significativi, in particolare:
 - Analisi dei Requisiti: fino a 34 errori nello sprint 3
 - Norme di Progetto: fino a 28 errori nello sprint 4
@@ -1279,6 +1515,15 @@ Un'analisi più approfondita ha evidenziato che parte degli errori segnalati dal
 A partire dagli sprint successivi si osserva una drastica riduzione degli errori, fino al raggiungimento sistematico del valore ottimo (0 errori) nella maggior parte dei documenti. Persistono solo sporadiche anomalie residue (AdR: 1 errore in S9; NdP: 2 errori in S8; PdQ: 2 errori in S6), fisiologiche in un contesto di aggiornamento continuo dei documenti.
 
 Nel complesso, l'andamento conferma un progressivo miglioramento del processo di revisione e controllo qualitativo.
+
+=== PB (Sprint 10--17)
+Per quanto riguarda PdQ, NdP, PdP e Glossario non si sono riscontrati ulteriori errori ortografici dallo sprint 10 in poi, in quanto sono state applicate modifiche minori a questi documenti e si è utilizzata maggiore discrezione nella scrittura di tali.
+
+Per quanto riguarda l'AdR si nota un picco trascurabile allo sprint 14 di un errore ortografico, risolto negli sprint successivi
+
+Per quanto riguarda la Specifica Tecnica, si sono riscontrati tra i 12 e i 21 errori costanti dallo sprint 10 allo sprint 16, sintomo di mancata attenzione agli errori ortografici, aggiunti a pari passo con la stesura del documento stesso. Tutti gli errori sono stati risolti dallo sprint 16 in vista della consegna finale del progetto.
+
+Per quanto riguarda il Manuale Utente si sono rilevati 15 errori alla creazione del documento (sprint 16), i quali sono stati risolti nello sprint successivo, in preparazione alla consegna finale del progetto.
 
 == MPC-TE : _Time Efficiency_
 
@@ -1294,32 +1539,50 @@ Nel complesso, l'andamento conferma un progressivo miglioramento del processo di
       [#text(fill: white, weight: "bold")[TE (%)]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1], [41%], [Non acc.],
-    [Sprint 2], [48%], [Non acc.],
-    [Sprint 3], [52%], [Accettabile],
-    [Sprint 4], [50%], [Accettabile],
-    [Sprint 5], [71%], [Accettabile],
-    [Sprint 6], [94%], [Ottimo],
-    [Sprint 7], [90%], [Ottimo],
-    [Sprint 8], [52%], [Non acc.],
-    [Sprint 9], [55%], [Accettabile],
+    [Sprint 1], [41,0%], [Critico],
+    [Sprint 2], [48,0%], [Critico],
+    [Sprint 3], [52,0%], [Accettabile],
+    [Sprint 4], [50,0%], [Accettabile],
+    [Sprint 5], [71,0%], [Accettabile],
+    [Sprint 6], [94,0%], [Ottimo],
+    [Sprint 7], [83,3%], [Accettabile],
+    [Sprint 8], [52,6%], [Accettabile],
+    [Sprint 9], [55,5%], [Accettabile],
+    [Sprint 10], [48,8%], [Critico],
+    [Sprint 11], [60,7%], [Accettabile],
+    [Sprint 12], [62,0%], [Accettabile],
+    [Sprint 13], [58,5%], [Accettabile],
+    [Sprint 14], [71,2%], [Accettabile],
+    [Sprint 15], [83,3%], [Accettabile],
+    [Sprint 16], [90,5%], [Ottimo],
+    [Sprint 17], [94,0%], [Ottimo],
   ),
   caption: [_Time Efficiency_ per sprint],
 )
 
 #figure(
-  image("../../assets/metriche/te.svg"),
+  image("../../assets/metriche/PB/te.svg"),
   caption: [_Time Efficiency_ sprint],
 )
 
-La metrica evidenzia gli _sprint_ iniziali caratterizzati da un'elevata quantità di ore dedicate alle attività di palestra, con valori che scendono al di sotto della soglia accettabile.
-Successivamente si osserva un incremento progressivo fino al raggiungimento di un picco di circa il 94% nello _sprint_ 6.
+=== RTB (Sprint 1--9)
+La metrica evidenzia gli sprint iniziali caratterizzati da un'elevata quantità di ore dedicate alle attività di palestra, con valori che scendono al di sotto della soglia accettabile.
+Successivamente si osserva un incremento progressivo fino al raggiungimento di un picco di circa il 94% nello sprint 6.
 
-Nei successivi _sprint_ il rapporto diminuisce nuovamente.
+Nei successivi sprint il rapporto diminuisce nuovamente.
 
-*Soglia accettabile*: TE $gt.eq$ 50%\
-*Soglia ottima*: TE $gt.eq$ 90%
+*Soglia accettabile*: TE $gt.eq$ 50% _rispettata sempre_,\
+*Soglia ottima*: TE $gt.eq$ 90% _rispettata in 1 sprint su 9_.
 
+=== PB (Sprint 10--17)
+Allo sprint 10, la metrica assume valore critico, dovuto all'alto numero di _task_ di studio non rendicontabili che sono emerse, relative alla progettazione dell'#gloss[MVP].
+
+Dallo sprint 10, il valore della metrica cresce quasi costantemente partendo da un valore poco sotto la soglia accettabile (48,8%), fatta eccezione per la diminuzione allo sprint 13, momento in cui sono state compiute più _task_ non rendicontabili del previsto.
+
+L'andamento della metrica mostra che dallo sprint 10 in poi, le attività di progetto hanno richiesto una considerevole quantità di studio prima di ritornare ai valori raggiunti durante lo sprint 6.
+
+*Soglia accettabile*: TE $gt.eq$ 50% _rispettata in 7 sprint su 8_,\
+*Soglia ottima*: TE $gt.eq$ 90% _rispettata in 2 sprint su 8_.
 
 == MPC-QMS: _Quality Metrics Satisfied_
 #figure(
@@ -1334,32 +1597,381 @@ Nei successivi _sprint_ il rapporto diminuisce nuovamente.
       [#text(fill: white, weight: "bold")[MPC-QMS]],
       [#text(fill: white, weight: "bold")[Giudizio]],
     ),
-    [Sprint 1], [81.8], [Accettabile],
-    [Sprint 2], [100.0%], [Ottimo],
-    [Sprint 3], [90.9%], [Accettabile],
-    [Sprint 4], [100.0%], [Ottimo],
-    [Sprint 5], [100.0%], [Ottimo],
-    [Sprint 6], [100.0%], [Ottimo],
-    [Sprint 7], [80.0%], [Accettabile],
-    [Sprint 8], [90.9%], [Accettabile],
-    [Sprint 9], [90.9%], [Accettabile],
+    [Sprint 1], [81,8%], [Accettabile],
+    [Sprint 2], [100,0%], [Ottimo],
+    [Sprint 3], [90,9%], [Accettabile],
+    [Sprint 4], [91,7%], [Accettabile],
+    [Sprint 5], [92,3%], [Accettabile],
+    [Sprint 6], [80,0%], [Accettabile],
+    [Sprint 7], [90,2%], [Accettabile],
+    [Sprint 8], [84,6%], [Accettabile],
+    [Sprint 9], [76,9%], [Critico],
+
+    [Sprint 10], [100,0%], [Ottimo],
+    [Sprint 11], [92,3%], [Accettabile],
+    [Sprint 12], [86,9%], [Accettabile],
+    [Sprint 13], [86,9%], [Accettabile],
+    [Sprint 14], [86,9%], [Accettabile],
+    [Sprint 15], [79,2%], [Critico],
+    [Sprint 16], [89,2%], [Accettabile],
+    [Sprint 17], [91,7%], [Accettabile],
   ),
   caption: [_Quality Metrics Satisfied_ per sprint],
 )
 
 #figure(
-  image("../../assets/metriche/qm.svg"),
-  caption: [_Quality Metrics Satisfied_ sprint],
+  image("../../assets/metriche/PB/qm.svg"),
+  caption: [_Quality Metrics Satisfied_ per sprint],
 )
 
-L'indicatore MPC-QMS evidenzia un'elevata percentuale di metriche di qualità soddisfatte lungo gli sprint. Il valore ottimo (100%) viene raggiunto in quattro sprint (S2, S4, S5, S6), a conferma della piena conformità agli obiettivi di qualità prefissati.
+=== RTB (Sprint 1--9)
+L'indicatore QMS mostra un andamento complessivamente positivo, con la maggior parte degli sprint che si mantiene all'interno della soglia di accettabilità ($>= 80%$).
 
-Negli altri sprint il valore si mantiene comunque sopra l'80%, rientrando sempre nella soglia di accettabilità. Le flessioni osservate negli sprint 1 e 7 (rispettivamente 81,8% e 80,0%) risultano contenute e non critiche.
+Il valore ottimo (100%) viene raggiunto esclusivamente nello *sprint 2*, in corrispondenza del pieno rispetto di tutte le metriche di processo monitorate in quel periodo.
 
-L'andamento complessivo mostra una costante attenzione al rispetto delle metriche di qualità, senza mai scendere sotto i livelli minimi previsti.
+Negli sprint 3--8 il QMS oscilla tra il 84,6% e il 92,3%, segnalando qualche metrica non pienamente soddisfatta ma senza mai raggiungere valori critici. La flessione più significativa si registra nello *sprint 1* (81,8%), riconducibile alla fase iniziale di rodaggio del team, e nello *sprint 9* (76,9%), unico valore al di sotto della soglia accettabile, attribuibile a un picco di attività non rendicontabili in prossimità degli esami.
 
-*Soglia accettabile*: MPC-QMS $gt.eq 80$% _sempre rispettata_ \
-*Soglia ottima*: MPC-QMS = 100%
+*Soglia accettabile*: QMS $gt.eq 80$% _violata solo nello sprint 9_. \
+*Soglia ottima*: QMS $= 100%$ _rispettata in 1 sprint su 9_.
+
+=== PB (Sprint 10--17)
+A partire dallo sprint 10, il calcolo del QMS include progressivamente anche le metriche di qualità del prodotto (MPD) man mano che queste diventano rilevabili, ampliando il denominatore del calcolo sprint dopo sprint.\
+Lo sprint 10 registra il valore ottimo (100%): le metriche di processo si trovano in uno stato pienamente soddisfacente e le poche metriche MPD già misurabili rientrano nelle rispettive soglie accettabili.\
+Tra gli sprint 11 e 14 il QMS si assesta stabilmente all'86,9%--92,3%, riflettendo la fase di sviluppo intensivo in cui alcune metriche di prodotto sono ancora al di sotto delle soglie accettabili per via della natura incrementale dell'implementazione.\
+Lo sprint 15 costituisce l'unica eccezione critica della PB (79,2%), determinata dalla compresenza di più metriche temporaneamente fuori soglia: PRCT elevato, TCR sotto soglia e alcune metriche di manutenibilità ancora in recupero.\
+Negli sprint 16 e 17 il QMS risale progressivamente (89,2% e 91,7%), grazie al completamento delle attività di refactoring e al raggiungimento delle soglie accettabili da parte di quasi tutte le metriche MPD.\
+Il valore di 91,7% nello sprint 17 è determinato dalla presenza di due metriche ancora al di sotto della soglia accettabile: *MPC-TCR* (82,3%, leggermente sotto l'85%) e *MPC-WD* (10,17%, appena sopra il 10%), entrambe di entità marginale.
+
+*Soglia accettabile*: QMS $gt.eq 80$% _violata solo nello sprint 15_ (1 sprint su 8). \
+*Soglia ottima*: QMS $= 100%$ _rispettata solo nello sprint 10_ (1 sprint su 8).
+
+== MPD-CRO e MPD-CRP: Copertura dei Requisiti
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[RF (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+      [#text(fill: white, weight: "bold")[RNF. (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 11], [45,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 10], [25,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 12], [60,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 13], [75,0%], [Critico], [0,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 14], [85,0%], [Critico], [5,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 15], [92,0%], [Critico], [15,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 16], [98,0%], [Critico], [28,0%], [Accettabile], [0,0%], [Accettabile],
+    [Sprint 17], [100,0%], [Ottimo], [29,0%], [Accettabile], [0%], [Accettabile],
+  ),
+  [Copertura dei requisiti obbligatori, desiderabili e opzionali per sprint],
+  label-id: "tab-mpd-copertura-req",
+)\
+
+=== PB (Sprint 10--17)
+La copertura dei requisiti obbligatori mostra un andamento crescente nel corso della #gloss[PB], partendo dal 25% nello sprint 10 e raggiungendo il 100% nello sprint 17, in concomitanza con il completamento dell'#gloss[MVP]. La soglia ottima del 100% viene raggiunta nell'ultimo sprint, confermando il completamento di tutti i requisiti obbligatori entro la consegna finale.
+
+La copertura dei requisiti desiderabili cresce progressivamente, raggiungendo il 29% nello sprint 17. Il gruppo, per quanto possibile, ha cercato di implementare anche requisiti desiderabili, ma la priorità è stata data al completamento dei requisiti obbligatori, trovati forse più complessi del previsto.
+
+La copertura dei requisiti opzionali rimane costantemente a 0% durante tutta la #gloss[PB], in quanto il gruppo ha deciso di non implementare alcun requisito opzionale, concentrando tutte le risorse disponibili sui requisiti obbligatori e desiderabili.
+
+
+== MPD-DL: _Data Loss Rate_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[DL (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [2,30%], [Critico],
+    [Sprint 12], [1,50%], [Critico],
+    [Sprint 13], [0,80%], [Accettabile],
+    [Sprint 14], [0,40%], [Accettabile],
+    [Sprint 15], [0,15%], [Accettabile],
+    [Sprint 16], [0,02%], [Accettabile],
+    [Sprint 17], [0,01%], [Ottimo],
+  ),
+  [Data Loss Rate per sprint],
+  label-id: "tab-mpd-dl",
+)
+
+#figure(
+  image("../../assets/metriche/PB/dl.svg"),
+  caption: [Data Loss Rate per sprint],
+)
+
+=== PB (Sprint 10--17)
+Il Data Loss Rate non è misurabile nello sprint 10 poiché il servizio di gateway e il microservizio di Data Consumer non sono ancora codificati. A partire dallo sprint 11, il valore inizialmente critico (2,30%) si riduce progressivamente grazie all'ottimizzazione del componente #gloss[Data Consumer] e del broker #gloss[NATS], raggiungendo il valore ottimo di 0,01% nello sprint 17.
+
+*Soglia accettabile:* $"DL" <= 1%$ _rispettata in 5 sprint su 7_. \
+*Soglia ottima:* $"DL" <= 0,01%$ _rispettata nello sprint 17_.
+
+== MPD-BC e MPD-SC: _Branch Coverage_ e _Statement Coverage_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[BC (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+      [#text(fill: white, weight: "bold")[SC (%)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile], [--], [Non misurabile],
+    [Sprint 11], [18,0%], [Critico], [25,0%], [Critico],
+    [Sprint 12], [38,0%], [Critico], [48,0%], [Critico],
+    [Sprint 13], [52,0%], [Critico], [62,0%], [Critico],
+    [Sprint 14], [61,0%], [Accettabile], [72,0%], [Accettabile],
+    [Sprint 15], [70,0%], [Accettabile], [80,0%], [Accettabile],
+    [Sprint 16], [78,0%], [Accettabile], [88,0%], [Accettabile],
+    [Sprint 17], [82,0%], [Ottimo], [91,0%], [Ottimo],
+  ),
+  [_Branch Coverage_ e _Statement Coverage_ per sprint],
+  label-id: "tab-mpd-bc-sc",
+)
+
+#figure(
+  image("../../assets/metriche/PB/bc-sc.svg"),
+  caption: [_Branch Coverage_ e _Statement Coverage_ per sprint],
+)
+
+=== PB (Sprint 10--17)
+Le metriche di copertura del codice vengono rilevate a partire dallo sprint 11, con l'avvio della stesura dei test di unità e integrazione. I valori inizialmente critici riflettono la natura incrementale dello sviluppo, i test vengono scritti contestualmente al codice con conseguente crescita parallela della copertura.
+
+A partire dallo sprint 14 entrambe le metriche superano le rispettive soglie accettabili ($"BC" >= 60%$, $"SC" >= 70%$), raggiungendo i valori ottimi ($"BC" >= 80%$, $"SC" >= 90%$) nello sprint 17.
+
+*Soglia accettabile BC:* $>= 60%$ _rispettata in 4 sprint su 7_. \
+*Soglia ottima BC:* $>= 80%$ _rispettata nello sprint 17_. \
+*Soglia accettabile SC:* $>= 70%$ _rispettata in 4 sprint su 7_. \
+*Soglia ottima SC:* $>= 90%$ _rispettata nello sprint 17_.
+
+== MPD-TT: _Time on Task_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[TT (min)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [--], [Non misurabile],
+    [Sprint 12], [--], [Non misurabile],
+    [Sprint 13], [28], [Accettabile],
+    [Sprint 14], [22], [Accettabile],
+    [Sprint 15], [17], [Accettabile],
+    [Sprint 16], [12], [Accettabile],
+    [Sprint 17], [9], [Ottimo],
+  ),
+  [_Time on Task_ per sprint],
+  label-id: "tab-mpd-tt",
+)
+
+#figure(
+  image("../../assets/metriche/PB/tt.svg"),
+  caption: [_Time on Task_ per sprint],
+)
+
+=== PB (Sprint 10--17)
+Il _Time on Task_ non è misurabile nei primi sprint della PB in quanto la _dashboard_ non è ancora sufficientemente funzionale per poter essere sottoposta a test di usabilità. A partire dallo sprint 13, con la prima versione stabile della _dashboard_ disponibile, il valore viene rilevato e si attesta a 28 minuti. I primi valori misurati sono alti anche a causa del fatto di avere un backend non finito e non ottimizzato. _Trend_ che si inverte fino ad avere una versione considerata stabile del backend nello sprint 16, momento in cui il Time on Task raggiunge il valore ottimo di 9 minuti. \
+*Soglia accettabile:* $"TT" <= 30$ min _rispettata in 5 sprint su 5_. \
+*Soglia ottima:* $"TT" <= 10$ min _rispettata nello sprint 17_.
+
+== MPD-RT: _Response Time_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[RT (s)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [--], [Non misurabile],
+    [Sprint 12], [--], [Critico],
+    [Sprint 13], [--], [Accettabile],
+    [Sprint 14], [--], [Accettabile],
+    [Sprint 15], [0,90], [Accettabile],
+    [Sprint 16], [0,60], [Accettabile],
+    [Sprint 17], [0,40], [Ottimo],
+  ),
+  [Response Time per sprint],
+  label-id: "tab-mpd-rt",
+)
+
+#figure(
+  image("../../assets/metriche/PB/rt.svg"),
+  caption: [_Response Time_ per sprint],
+)
+
+=== PB (Sprint 10--17)
+Il Response Time viene misurato a partire dallo sprint 15, quando le API del Cloud Backend risultano sufficientemente stabili da poter essere interrogate con regolarità. Il ritardo della codifica completa del backend ha portato ad una misurazione successiva nel tempo; tuttavia, il lavoro fatto in modo combinato non ha mostrato nessun tipo di debolezza, come si può vedere dai valori sempre almeno accettabili, con un miglioramento progressivo fino al valore ottimo di 0,40 secondi nello sprint 17.\
+
+*Soglia accettabile:* $"RT" <= 2$ s _sempre rispettata_. \
+*Soglia ottima:* $"RT" <= 0,5$ s _rispettata nello sprint 17_.
+
+== MPD-CS: _Code Smell_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[CS (n°)]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [14], [Critico],
+    [Sprint 12], [9], [Critico],
+    [Sprint 13], [7], [Critico],
+    [Sprint 14], [5], [Critico],
+    [Sprint 15], [3], [Accettabile],
+    [Sprint 16], [2], [Accettabile],
+    [Sprint 17], [1], [Ottimo],
+  ),
+  [Code Smell per sprint],
+  label-id: "tab-mpd-cs",
+)
+
+
+
+=== PB (Sprint 10--17)
+Il numero di _code smell_ rilevati tramite analisi statica del codice risulta elevato negli sprint iniziali di sviluppo intensivo (sprint 11--14), poiché la priorità era il completamento funzionale dei microservizi. A partire dallo sprint 15 il team ha svolto, grazie ad una maggiore consapevolezza ed esperienza progettuale, un lavoro di _refactoring_ del codice, riducendo progressivamente il numero di _code smell_ fino al valore ottimo di 1 nello sprint 17.
+
+*Soglia accettabile:* $"CS" <= 3$ _rispettata in 3 sprint su 7_. \
+*Soglia ottima:* $"CS" <= 1$ _rispettata nello sprint 17_.
+
+== MPD-COC: _Coefficient of Coupling_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[COC]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [0,58], [Critico],
+    [Sprint 12], [0,48], [Accettabile],
+    [Sprint 13], [0,42], [Accettabile],
+    [Sprint 14], [0,37], [Accettabile],
+    [Sprint 15], [0,29], [Accettabile],
+    [Sprint 16], [0,23], [Accettabile],
+    [Sprint 17], [0,18], [Ottimo],
+  ),
+  [Coefficient of Coupling per sprint],
+  label-id: "tab-mpd-coc",
+)
+
+=== PB (Sprint 10--17)
+Il coefficiente di accoppiamento risulta critico nello sprint 11 (0,58), periodo in cui i microservizi sono stati integrati per la prima volta e presentavano dipendenze non ancora ottimizzate. A partire dallo sprint 12, la ristrutturazione delle interfacce tra i componenti e l'adozione di pattern architetturali a basso accoppiamento portano il valore entro la soglia accettabile, raggiungendo il valore ottimo di 0,18 nello sprint 17. Il codice iniziale ha attraversato una fase di _refactoring_ nata dalla maggiore consapevolezza progettuale e dall'esperienza acquisita.
+
+*Soglia accettabile:* $"COC" <= 0,5$ _rispettata in 6 sprint su 7_. \
+*Soglia ottima:* $"COC" <= 0,2$ _rispettata nello sprint 17_.
+
+== MPD-CYC: _Cyclomatic Complexity_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[CYC]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [22], [Critico],
+    [Sprint 12], [18], [Critico],
+    [Sprint 13], [16], [Critico],
+    [Sprint 14], [14], [Accettabile],
+    [Sprint 15], [12], [Accettabile],
+    [Sprint 16], [11], [Accettabile],
+    [Sprint 17], [9], [Ottimo],
+  ),
+  [Cyclomatic Complexity per sprint],
+  label-id: "tab-mpd-cyc",
+)
+
+=== PB (Sprint 10--17)
+La complessità ciclomatica media, misurata tramite analisi statica del codice, risulta elevata nei primi sprint di implementazione intensiva (22 nello sprint 11), in seguito alla stesura di funzioni per la logica di _consuming_ dei dati e di generazione coerente di essi. La codifica iniziale ha poi subito un processo di _refactoring_, portando il valore entro la soglia accettabile ($<= 15$) fino ad arrivare a 9 nello sprint 17, al di sotto della soglia ottima.
+
+*Soglia accettabile:* $"CYC" <= 15$ _rispettata in 4 sprint su 7_. \
+*Soglia ottima:* $"CYC" <= 10$ _rispettata nello sprint 17_.
+
+== MPD-DE: _Data Encryption Coverage_
+
+#tabella-paginata(
+  table(
+    columns: (auto, auto, auto),
+    align: center,
+    stroke: 0.5pt,
+    inset: 6pt,
+    fill: (x, y) => if y == 0 { rgb("#1B2A4A") } else if calc.rem(y, 2) == 0 { rgb("#F4F6F7") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold")[Sprint]],
+      [#text(fill: white, weight: "bold")[DE]],
+      [#text(fill: white, weight: "bold")[Giudizio]],
+    ),
+    [Sprint 10], [--], [Non misurabile],
+    [Sprint 11], [100%], [Ottimo],
+    [Sprint 12], [100%], [Ottimo],
+    [Sprint 13], [100%], [Ottimo],
+    [Sprint 14], [100%], [Ottimo],
+    [Sprint 15], [100%], [Ottimo],
+    [Sprint 16], [100%], [Ottimo],
+    [Sprint 17], [100%], [Ottimo],
+  ),
+  [Data Encryption Coverage per sprint],
+  label-id: "tab-mpd-de",
+)
+
+=== PB (Sprint 10--17)
+La copertura della cifratura dei dati sensibili è stata mantenuta al 100% per l'intera durata della #gloss[PB]. Questa scelta è stata garantita dall'adozione fin dall'inizio delle attività di codifica di protocolli di comunicazione sicuri (TLS) e utilizzo dei #gloss[jwt].
+
+*Soglia accettabile:* $100%$ dati sensibili _sempre rispettata_. \
+*Soglia ottima:* $100%$ dati sensibili _sempre rispettata_.
 
 
 = Iniziative di miglioramento <iniziative-miglioramento>
@@ -1393,7 +2005,7 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
 
     [Distribuzione del carico],
     [Sovraccarichi per alcuni membri a causa della suddivisione non omogenea del lavoro],
-    [Istanziazione della metrica *WSD*(@mpc-wsd) per monitorare la distribuzione del carico e adottare misure correttive in caso di squilibri],
+    [Istanziazione della metrica *WSD*(@mpc-wd) per monitorare la distribuzione del carico e adottare misure correttive in caso di squilibri],
 
     [Dissidi interni],
     [Tensioni emerse a causa di differenti personalità o approcci lavorativi],
