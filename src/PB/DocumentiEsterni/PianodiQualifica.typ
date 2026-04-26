@@ -306,7 +306,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-TCR], [Task Completion Rate], [$>=85%$], [$100%$],
     [MPC-TS], [Task Slippage], [$<= 15%$], [$0%$],
   ),
-  [Valori per misurare la qualità della fornitura.],
+  [Metriche per misurare la qualità della fornitura.],
   label-id: "tab-qual-forn",
 )
 
@@ -322,7 +322,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-RSI], [Requirements Stability Index], [$>= 80%$], [$= 100%$],
     [MPC-PRCT], [Pull Request Cycle Time], [$<= "48 ore"$], [$<= "24 ore"$],
   ),
-  [Valori per misurare la qualità dello sviluppo.],
+  [Metriche per misurare la qualità dello sviluppo.],
   label-id: "tab-qual-svil",
 )
 
@@ -339,7 +339,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-IG], [Indice di Gulpease], [$>= 40$], [$>= 60$],
     [MPC-CO], [Correttezza Ortografica], [$0$], [$0$],
   ),
-  [Valori per misurare la qualità della documentazione.],
+  [Metriche per misurare la qualità della documentazione.],
   label-id: "tab-qual-doc",
 )
 
@@ -356,7 +356,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-TSR], [Test Success Rate], [$= 100%$], [$= 100%$],
     [MPC-DD], [Bug Density], [$<= "2 per CRG"$], [$= "0 per CRG"$],
   ),
-  [Valori per misurare la qualità della verifica.],
+  [Metriche per misurare la qualità della verifica.],
   label-id: "tab-qual-ver",
 )
 
@@ -372,7 +372,7 @@ In questo documento, tali misure vengono identificate tramite la sigla *MPC* (#s
     [MPC-WD], [Work Distribution], [$$], [$$],
     [MPC-SPF], [Single Point of Failure Risk], [$15%$], [$<10%$],
   ),
-  [Valori per misurare l'efficacia della qualità e dei processi.],
+  [Metriche per misurare l'efficacia della qualità e dei processi.],
   label-id: "tab-qual-qual-proc",
 )
 
@@ -1562,7 +1562,7 @@ Per quanto riguarda il Manuale Utente si sono rilevati 15 errori alla creazione 
 
 #figure(
   image("../../assets/metriche/PB/te.svg"),
-  caption: [_Time Efficiency_ sprint],
+  caption: [_Time Efficiency_ per sprint],
 )
 
 === RTB (Sprint 1--9)
